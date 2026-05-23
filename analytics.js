@@ -57,6 +57,17 @@
   window.GQP = window.GQP || {};
   window.GQP.track = trackEvent;
 
+  // Delegated click tracker — add data-track="event_name" to any element.
+  // Optionally add data-track-from="hero" etc. for context.
+  // Example: <a href="..." data-track="buy_pro_clicked" data-track-from="pricing">Buy</a>
+  document.addEventListener('click', function(e){
+    const el = e.target.closest('[data-track]');
+    if(!el) return;
+    const eventName = el.getAttribute('data-track');
+    const from = el.getAttribute('data-track-from') || '';
+    if(eventName) trackEvent(eventName, from ? { from: from } : {});
+  }, true); // capture phase so it fires even if element stops propagation
+
   if(document.readyState === 'complete') track();
   else window.addEventListener('load', track, {once:true});
 })();
