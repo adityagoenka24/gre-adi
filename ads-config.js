@@ -34,9 +34,9 @@ window.GQP_ADS = {
 
   // Conversion action IDs — replace each AW-REPLACE_ME/REPLACE_ME pair
   conversions: {
-    mock_started:        'AW-REPLACE_ME/REPLACE_ME',  // "Mock Lead"
-    buy_pro_clicked:     'AW-REPLACE_ME/REPLACE_ME',  // "Purchase Intent - Pro"
-    purchase_completed:  'AW-REPLACE_ME/REPLACE_ME',  // "Purchase" (fires on thank-you page)
+    mock_started:        'AW-18184272300/wiDiCI6Hn7IcEKzz995D',  // "Mock Lead"
+    buy_pro_clicked:     'AW-18184272300/HlWzCO66nrIcEKzz995D',  // "Purchase Intent - Pro"
+    purchase_completed:  'AW-18184272300/Z051CICan7IcEKzz995D',  // "Purchase" (fires on thank-you page)
   },
 
   // Purchase values by plan — used when firing the purchase conversion
