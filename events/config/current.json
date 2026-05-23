@@ -1,18 +1,18 @@
 {
-  "event_id": "algebra_functions",
-  "event_name": "GRE Algebra - Functions",
+  "event_id": "mock_001",
+  "event_name": "GRE Quant Pro Mixed Bag",
   "event_type": "mock_test",
-  "created_at": "2026-05-16T03:36:53.343Z",
-  "timer_seconds": 2100,
-  "question_count": 20,
+  "created_at": "2026-05-23T11:48:14.823Z",
+  "timer_seconds": 3150,
+  "question_count": 30,
   "shuffle_questions_for_students": true,
   "allow_navigation": true,
   "show_feedback_during_test": false,
   "instructions": "Answer all questions. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after submission.",
   "source_filters": {
-    "bank_source": "../../gre-pro-adi/bank/",
-    "topic": "Algebra",
-    "subtopic": "Functions",
+    "bank_source": "../../gre-pro/bank/",
+    "topic": "Mixed Practice",
+    "subtopic": "General Mixed (All Topics)",
     "difficulties": [
       "medium",
       "hard",
@@ -27,468 +27,687 @@
   },
   "questions": [
     {
-      "id": "ALG-FNC-018",
+      "id": "MIX-GEN-056",
       "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "If f(x) = 3x + 1, what is f⁻¹(10)?",
-      "options": null,
-      "answer": "3",
-      "explanation": "To find f⁻¹, set y = 3x + 1 and solve for x in terms of y:\ny - 1 = 3x\nx = (y - 1)/3.\nSo f⁻¹(y) = (y - 1)/3.\n\nTherefore: f⁻¹(10) = (10 - 1)/3 = 9/3 = 3.",
-      "trap": "Students compute f(10) = 3(10) + 1 = 31 instead of inverting the function, confusing f(10) with f⁻¹(10).",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "inverse-function",
-        "two-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-060",
-      "difficulty": "extreme_hard",
       "type": "mcq",
-      "question": "A function f is defined for all real x as:\nf(x) = x - 1, if x is an integer\nf(x) = f(f(x + 2)), if x is not an integer\n\nWhat is f(1/2)?",
+      "question": "What is the area of an equilateral triangle with side length 6?",
       "options": [
-        "A. -1",
-        "B. 0",
-        "C. 1",
-        "D. 3/2",
-        "E. 2"
-      ],
-      "answer": "B",
-      "explanation": "Since 1/2 is not an integer: f(1/2) = f(f(1/2 + 2)) = f(f(5/2)).\n\nSince 5/2 is not an integer: f(5/2) = f(f(5/2 + 2)) = f(f(9/2)).\n\nNotice the pattern: adding 2 keeps us on half-integers (n + 1/2). Let's find a consistent value.\n\nSuppose f(n + 1/2) = c for some constant c (assuming all half-integers map to the same value).\nThen: c = f(f(n + 1/2 + 2)) = f(f(n + 5/2)) = f(c).\n\nSo we need f(c) = c. If c is an integer: f(c) = c - 1 ≠ c. So c cannot be an integer.\n\nTry the self-consistent construction: suppose f(5/2) = 1 (an integer).\nThen f(f(5/2)) = f(1) = 1 - 1 = 0.\nSo f(1/2) = f(f(5/2)) = 0.\n\nNow verify f(5/2) = 1: f(5/2) = f(f(9/2)).\nSuppose f(9/2) = 2 (integer): f(f(9/2)) = f(2) = 2 - 1 = 1. ✓\n\nVerify f(9/2) = 2: f(9/2) = f(f(13/2)).\nSuppose f(13/2) = 3: f(f(13/2)) = f(3) = 3 - 1 = 2. ✓\n\nThe pattern is self-consistent: f(n + 1/2) = n - 1 for positive integers n.\nf(1/2) = 1 - 1 = 0.",
-      "trap": "Students apply the integer rule f(x) = x - 1 to 1/2 treating it as approximately 0 or 1, computing f(1/2) ≈ f(0) = -1 or f(1) = 0, without tracing through the recursive definition.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "piecewise-function",
-        "function-notation",
-        "multi-step",
-        "conceptual"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-037",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "The custom operation is defined as a ⊕ b = a² + b for all real numbers a and b. Which of the following statements are true? Select all that apply.",
-      "options": [
-        "A. 2 ⊕ 3 = 3 ⊕ 2",
-        "B. (1 ⊕ 1) ⊕ 2 = 1 ⊕ (1 ⊕ 2)",
-        "C. a ⊕ 0 = a² for all a",
-        "D. 0 ⊕ a = a² for all a",
-        "E. a ⊕ b = b ⊕ a for all a and b"
-      ],
-      "answer": [
-        "C"
-      ],
-      "explanation": "Check each statement:\nA. 2 ⊕ 3 = (2)² + 3 = 7; 3 ⊕ 2 = (3)² + 2 = 11. 7 ≠ 11. FALSE.\nB. (1 ⊕ 1) ⊕ 2: first 1 ⊕ 1 = 1 + 1 = 2, then 2 ⊕ 2 = 4 + 2 = 6.\n   1 ⊕ (1 ⊕ 2): first 1 ⊕ 2 = 1 + 2 = 3, then 1 ⊕ 3 = 1 + 3 = 4. 6 ≠ 4. FALSE.\nC. a ⊕ 0 = a² + 0 = a². TRUE.\nD. 0 ⊕ a = (0)² + a = 0 + a = a. This equals a, not a². FALSE.\nE. The operation is not commutative (see A). FALSE.\n\nOnly C is true.",
-      "trap": "Students confuse C with D: 0 ⊕ a = 0² + a = a (not a²), so D is false. Students assume symmetry between C and D and mark both true.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "function-notation",
-        "multiple-answer",
-        "conceptual"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-040",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "For the custom operation a # b = (a + b)/(1 + ab), if 0.5 # x = 0.6, what is x?",
-      "options": [
-        "A. 1/11",
-        "B. 2/11",
-        "C. 1/7",
-        "D. 1/5",
-        "E. 2/7"
-      ],
-      "answer": "C",
-      "explanation": "Set up the equation: (0.5 + x)/(1 + 0.5x) = 0.6.\n\nCross-multiply: 0.5 + x = 0.6(1 + 0.5x) = 0.6 + 0.3x.\n\nCollect x terms: x - 0.3x = 0.6 - 0.5.\n0.7x = 0.1.\nx = 0.1/0.7 = 1/7.",
-      "trap": "Students cross-multiply as 0.5 + x = 0.6 + 0.5x (dropping the factor of 0.6 from the 0.5x term), getting 0.5x = 0.1, x = 1/5, and selecting D.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "function-notation",
-        "multi-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-049",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "A function f satisfies f(2x) = 4f(x) + 6 for all x. If f(1) = 2, what is f(4)?",
-      "options": null,
-      "answer": "62",
-      "explanation": "Step 1: Find f(2) using x = 1.\nf(2·1) = 4f(1) + 6\nf(2) = 4(2) + 6 = 8 + 6 = 14.\n\nStep 2: Find f(4) using x = 2.\nf(2·2) = 4f(2) + 6\nf(4) = 4(14) + 6 = 56 + 6 = 62.",
-      "trap": "Students compute f(4) = 4f(1) + 6 = 14 by plugging x = 1 directly, skipping the intermediate step f(2) = 14 and effectively computing f(2) instead of f(4).",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "function-notation",
-        "multi-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-056",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "A function f satisfies f(x) · f(1 - x) = 1 for all valid x. If f(1/3) = 2, what is f(2/3) + f(1/3)?",
-      "options": [
-        "A. 5/2",
-        "B. 5/3",
-        "C. 3",
-        "D. 7/2",
-        "E. 4"
+        "A. 9√3",
+        "B. 12√3",
+        "C. 18",
+        "D. 6√3",
+        "E. 18√3"
       ],
       "answer": "A",
-      "explanation": "From the functional equation, set x = 1/3:\nf(1/3) · f(1 - 1/3) = 1\nf(1/3) · f(2/3) = 1.\n\nGiven f(1/3) = 2:\n2 · f(2/3) = 1\nf(2/3) = 1/2.\n\nTherefore:\nf(2/3) + f(1/3) = 1/2 + 2 = 5/2.",
-      "trap": "Students confuse f(2/3) with f(1 - 2/3) = f(1/3) = 2, incorrectly computing f(2/3) = 2 and getting f(2/3) + f(1/3) = 2 + 2 = 4, selecting E.",
-      "estimated_time_seconds": 120,
+      "explanation": "Area of equilateral triangle = (√3/4) × s² = (√3/4) × 36 = 9√3.",
+      "trap": "Students use (1/2) × base × height but compute height as 6/2 = 3 instead of 6×(√3/2) = 3√3.",
+      "estimated_time_seconds": 75,
       "tags": [
-        "function-notation",
-        "multi-step",
-        "conceptual"
+        "triangle-area",
+        "special-right-triangle"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
     },
     {
-      "id": "ALG-FNC-036",
+      "id": "MIX-GEN-076",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "For how many integer values of k does the inequality k² − 7k + 10 < 0 hold?",
+      "options": null,
+      "answer": "2",
+      "explanation": "Factor: k² − 7k + 10 = (k−2)(k−5). This product is negative when one factor is positive and one is negative, which occurs when 2 < k < 5. Integer values in this range: k = 3 and k = 4. That gives 2 integers.",
+      "trap": "Students include the endpoints k=2 and k=5 (where the expression equals 0, not strictly less than 0), getting 4 integers.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "quadratic",
+        "linear-inequality",
+        "factoring"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-045",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "A piecewise function is defined as:\nf(x) = 2x + 1, if x < 0\nf(x) = x² - 1, if x ≥ 0\n\nFor how many integer values of x in the range -3 ≤ x ≤ 3 does f(x) > 3?",
+      "question": "A population of bacteria doubles every 3 hours. If there are 200 bacteria now, how many will there be in 12 hours?",
       "options": [
-        "A. 1",
-        "B. 2",
+        "A. 800",
+        "B. 1600",
+        "C. 2400",
+        "D. 3200",
+        "E. 6400"
+      ],
+      "answer": "D",
+      "explanation": "In 12 hours, the bacteria double 12/3 = 4 times. Final count = 200 × 2⁴ = 200 × 16 = 3200.",
+      "trap": "Students multiply 200 × 4 = 800 (multiplying by the number of doublings instead of 2 to the power of doublings).",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "compound-growth",
+        "exponent-rules"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-046",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a class of 30 students, 18 play soccer and 12 play basketball. If 6 students play both, how many students play neither?",
+      "options": [
+        "A. 0",
+        "B. 4",
+        "C. 6",
+        "D. 8",
+        "E. 10"
+      ],
+      "answer": "C",
+      "explanation": "|Soccer ∪ Basketball| = |Soccer| + |Basketball| − |Both| = 18 + 12 − 6 = 24. Students playing neither = 30 − 24 = 6.",
+      "trap": "Students add 18 + 12 = 30 and conclude everyone plays at least one sport, getting 0.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-080",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "How many 4-digit integers have all distinct digits and the first digit is not zero?",
+      "options": null,
+      "answer": "4536",
+      "explanation": "First digit: 9 choices (1–9). Second digit: 9 choices (0–9, except first digit). Third digit: 8 choices (remaining). Fourth digit: 7 choices. Total = 9 × 9 × 8 × 7 = 4536.",
+      "trap": "Students compute 9 × 8 × 7 × 6 = 3024 (treating the first digit as 9 choices and each subsequent digit as decreasing from 8, effectively not allowing 0 in any position).",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "permutations",
+        "multi-step"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-083",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "x is a positive real number less than 1.\nColumn A: x^(1/3)\nColumn B: x^(1/2)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "For 0 < x < 1, a smaller exponent produces a larger value (since raising a fraction to a higher power makes it smaller). x^(1/3) > x^(1/2) when 0 < x < 1. Example: x = 1/64. x^(1/3) = 1/4 = 0.25; x^(1/2) = 1/8 = 0.125. Indeed 0.25 > 0.125. Column A is greater.",
+      "trap": "Students reason 'smaller exponent (1/3 < 1/2) means smaller result' — this is only true for numbers greater than 1.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "qc",
+        "fractional-exponent",
+        "fractions-less-than-1",
+        "counterintuitive"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-096",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "n is a positive integer such that n leaves remainder 3 when divided by 7.\nColumn A: The remainder when n² is divided by 7\nColumn B: 2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "n ≡ 3 (mod 7). n² ≡ 3² = 9 ≡ 9 − 7 = 2 (mod 7). So the remainder when n² is divided by 7 is always 2, regardless of the specific value of n. Column A = 2 = Column B.",
+      "trap": "Students pick specific values of n (e.g., n=10: 10²=100, 100/7=14r2 ✓) but aren't sure if it generalizes, selecting D.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "qc",
+        "pattern",
+        "algebraic-proof"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-033",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A cylinder has radius 3 and height 10. What is its volume? (Enter the coefficient of π.)",
+      "options": null,
+      "answer": "90",
+      "explanation": "Volume = πr²h = π × 3² × 10 = π × 9 × 10 = 90π. Coefficient of π = 90.",
+      "trap": "Students use diameter instead of radius: π × 6² × 10 = 360π, giving 360.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "volume"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-067",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In triangle ABC, angle A = 60°, angle B = 75°, and side AB = 10. Using the law of sines, what is the length of side BC (opposite angle A) to the nearest integer?",
+      "options": [
+        "A. 7",
+        "B. 8",
+        "C. 9",
+        "D. 10",
+        "E. 12"
+      ],
+      "answer": "E",
+      "explanation": "Angle C = 180 − 60 − 75 = 45°. In triangle ABC: side BC is opposite angle A (60°), and side AB is opposite angle C (45°). By the law of sines: BC/sin(A) = AB/sin(C) → BC/sin(60°) = 10/sin(45°). BC = 10 × sin(60°)/sin(45°) = 10 × (√3/2)/(√2/2) = 10 × (√3/√2) = 10√(3/2) = 10 × √6/2 = 5√6 ≈ 5 × 2.449 ≈ 12.25 ≈ 12.",
+      "trap": "Students confuse which side is opposite which angle, computing BC = 10 × sin(45°)/sin(60°) = 10 × (√2/√3) ≈ 8.2, selecting B.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "similar-triangles",
+        "triangle-angles",
+        "multi-step"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-029",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In how many ways can a committee of 3 people be chosen from a group of 7?",
+      "options": null,
+      "answer": "35",
+      "explanation": "C(7,3) = 7! / (3! × 4!) = (7 × 6 × 5) / (3 × 2 × 1) = 210 / 6 = 35.",
+      "trap": "Students compute P(7,3) = 7 × 6 × 5 = 210, forgetting to divide by 3! = 6 to account for order not mattering in committees.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "combinations"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-047",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A square has area 64.\nColumn A: The perimeter of the square\nColumn B: The circumference of a circle with the same area (in terms of approximation, use π ≈ 3.14)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Square area = 64 → side = 8 → perimeter = 32. Circle area = 64 → πr² = 64 → r² = 64/π → r = 8/√π ≈ 8/1.772 ≈ 4.51. Circumference = 2πr ≈ 2 × 3.14 × 4.51 ≈ 28.3. Column A (32) > Column B (≈28.3).",
+      "trap": "Students assume the circle has larger perimeter than the square with equal area (thinking circles are 'bigger'). In fact for equal areas, a circle has SMALLER perimeter.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "qc",
+        "circle-area",
+        "circumference",
+        "counterintuitive"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-075",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A jar contains 3 red and 5 blue marbles. Two marbles are drawn without replacement. Given that the first marble drawn is red, what is the probability that the second is also red?",
+      "options": [
+        "A. 3/8",
+        "B. 2/7",
+        "C. 3/7",
+        "D. 1/4",
+        "E. 9/64"
+      ],
+      "answer": "B",
+      "explanation": "Given the first marble is red, there are now 2 red marbles remaining out of 7 total marbles. P(2nd red | 1st red) = 2/7.",
+      "trap": "Students compute P(both red) = (3/8)(2/7) = 6/56 = 3/28 and select this, forgetting the question asks for conditional probability given the first is already red.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "dependent-events",
+        "compound-probability"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-042",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Worker A can complete a job in 6 hours. Worker B can complete the same job in 4 hours. If they work together, how many hours will it take them to complete the job?",
+      "options": [
+        "A. 2",
+        "B. 2.4",
         "C. 3",
         "D. 4",
         "E. 5"
       ],
-      "answer": "A",
-      "explanation": "Check each integer in [-3, 3]:\nx = -3: f(-3) = 2(-3) + 1 = -5. Not > 3.\nx = -2: f(-2) = 2(-2) + 1 = -3. Not > 3.\nx = -1: f(-1) = 2(-1) + 1 = -1. Not > 3.\nx = 0: f(0) = (0)² - 1 = -1. Not > 3.\nx = 1: f(1) = (1)² - 1 = 0. Not > 3.\nx = 2: f(2) = (2)² - 1 = 3. Not > 3 (equals 3, strict inequality).\nx = 3: f(3) = (3)² - 1 = 8. > 3. ✓\n\nOnly x = 3 satisfies f(x) > 3.",
-      "trap": "Students include x = 2 (where f(2) = 3) by using ≥ 3 rather than the strict > 3, counting 2 values and selecting B.",
-      "estimated_time_seconds": 90,
+      "answer": "B",
+      "explanation": "Worker A's rate: 1/6 job/hour. Worker B's rate: 1/4 job/hour. Combined rate: 1/6 + 1/4 = 2/12 + 3/12 = 5/12 job/hour. Time = 1 ÷ (5/12) = 12/5 = 2.4 hours.",
+      "trap": "Students average the times: (6 + 4)/2 = 5 hours. Work rates add, not times.",
+      "estimated_time_seconds": 75,
       "tags": [
-        "piecewise-function",
-        "multi-step"
+        "direct-proportion",
+        "real-world",
+        "two-step"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
     },
     {
-      "id": "ALG-FNC-058",
+      "id": "MIX-GEN-094",
       "difficulty": "extreme_hard",
       "type": "multiple_answer",
-      "question": "A function f is defined for all positive integers and satisfies f(mn) = f(m) + f(n) for all positive integers m, n, with f(2) = 1. Which of the following can be determined from this information? Select all that apply.",
+      "question": "Which of the following statements about a set of 7 distinct integers are always true? Select all that apply.",
       "options": [
-        "A. f(4) = 2",
-        "B. f(8) = 3",
-        "C. f(6) = 1 + f(3)",
-        "D. f(1) = 0",
-        "E. f(3) = 1/2"
+        "A. The mean equals the median",
+        "B. The range is at least 6",
+        "C. At least one integer is even",
+        "D. There is always a unique mode",
+        "E. If sorted, the median is the 4th value"
+      ],
+      "answer": [
+        "B",
+        "E"
+      ],
+      "explanation": "A: Mean = median is only true for symmetric distributions, not always ✗. B: 7 distinct integers have at least 7 different values; the minimum range is when integers are consecutive: {n, n+1,...,n+6}, giving range = 6. The range is always at least 6 ✓. C: 7 distinct integers could all be odd: {1,3,5,7,9,11,13} ✗. D: With all distinct values, there is no mode (each appears once) ✗. E: The median of 7 sorted values is the 4th (middle) value ✓.",
+      "trap": "Students think 7 values must include both even and odd (C), or assume distinct values always have a mode (D).",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "multiple-answer",
+        "median",
+        "range",
+        "conceptual"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-086",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A certain investment doubles in value every 10 years. If the investment is worth $1,000 today, what was it worth 30 years ago?",
+      "options": [
+        "A. $100",
+        "B. $125",
+        "C. $333",
+        "D. $500",
+        "E. $3000"
+      ],
+      "answer": "B",
+      "explanation": "If the investment doubles every 10 years going forward, it halves every 10 years going backward. 30 years ago = 3 halving periods. Value 30 years ago = 1000 / 2³ = 1000 / 8 = 125.",
+      "trap": "Students divide by 3 instead of 2³, getting 1000/3 ≈ 333.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "compound-growth",
+        "reverse-percent",
+        "exponent-rules"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-071",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "If x is a real number satisfying x³ − x² − x + 1 = 0, which of the following must be true? Select all that apply.",
+      "options": [
+        "A. x = 1 is a solution",
+        "B. x = −1 is a solution",
+        "C. The equation has exactly 3 real roots",
+        "D. The equation has a repeated root",
+        "E. The product of all roots equals 1"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Factor: x³ − x² − x + 1 = x²(x−1) − (x−1) = (x²−1)(x−1) = (x+1)(x−1)². Roots: x = −1 (simple) and x = 1 (double). A: x=1 is a root ✓. B: x=−1 is a root ✓. C: Only 2 distinct real roots, not 3 distinct values ✗. D: x=1 is a repeated root (multiplicity 2) ✓. E: Product of all roots (with multiplicity) = (−1)(1)(1) = −1 ≠ 1. By Vieta's for x³ − x² − x + 1: product of roots = −(constant)/leading = −(1)/1 = −1. So E is false ✗.",
+      "trap": "Students apply Vieta's formula as product = +d/a = 1 instead of −d/a = −1, selecting E incorrectly.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "multiple-answer",
+        "factoring",
+        "vieta-formulas",
+        "quadratic"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-087",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Which of the following are properties of the standard normal distribution? Select all that apply.",
+      "options": [
+        "A. Mean = 0",
+        "B. Standard deviation = 1",
+        "C. The distribution is symmetric about x = 0",
+        "D. Approximately 68% of data falls within 2 standard deviations of the mean",
+        "E. The total area under the curve equals 1"
       ],
       "answer": [
         "A",
         "B",
         "C",
-        "D"
-      ],
-      "explanation": "Using f(mn) = f(m) + f(n) with f(2) = 1:\n\nA. f(4) = f(2 × 2) = f(2) + f(2) = 1 + 1 = 2. TRUE and determined. ✓\n\nB. f(8) = f(2 × 4) = f(2) + f(4) = 1 + 2 = 3. TRUE and determined. ✓\n\nC. f(6) = f(2 × 3) = f(2) + f(3) = 1 + f(3). TRUE as a relationship — this statement is determinable as a formula even though f(3) itself is unknown. ✓\n\nD. f(1): set m = n = 1: f(1 × 1) = f(1) + f(1) → f(1) = 2f(1) → f(1) = 0. TRUE and determined. ✓\n\nE. f(3) cannot be determined from f(2) alone. The functional equation f(mn) = f(m) + f(n) is satisfied by any logarithm base, but f(3) is a free parameter (it is not forced to be 1/2). NOT determined.",
-      "trap": "Students assume f follows log base 2 exactly, computing f(3) = log₂(3) ≈ 1.585, and conclude f(3) = 1/2 is false rather than simply undeterminable, then incorrectly exclude C or D.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "function-notation",
-        "multiple-answer",
-        "conceptual",
-        "multi-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-028",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If g(x) = x/(x + 2), what is the range of g(x)?",
-      "options": [
-        "A. All real numbers",
-        "B. All real numbers except y = 0",
-        "C. All real numbers except y = 1",
-        "D. 0 < y < 1",
-        "E. y ≥ 0"
-      ],
-      "answer": "C",
-      "explanation": "Set y = x/(x + 2) and solve for x in terms of y to find which y-values are possible:\ny(x + 2) = x\nyx + 2y = x\n2y = x - yx = x(1 - y)\nx = 2y/(1 - y).\n\nThis has a real solution for every y except y = 1 (which makes the denominator zero).\nSo the range is all real numbers except y = 1.",
-      "trap": "Students assume the range is all real numbers (selecting A), not recognizing that y = 1 is excluded because x/(x+2) = 1 implies x = x + 2, which is impossible.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "domain-range",
-        "multi-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-029",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "For the operation x @ y = x² + y² - xy:\n\nColumn A: 3 @ 4\nColumn B: 4 @ 3",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "Column A: 3 @ 4 = (3)² + (4)² - (3)(4) = 9 + 16 - 12 = 13.\nColumn B: 4 @ 3 = (4)² + (3)² - (4)(3) = 16 + 9 - 12 = 13.\nBoth equal 13. This particular operation is commutative.",
-      "trap": "Students recall that function composition is not commutative and assume all custom operations behave similarly, selecting D without computing both sides.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "function-notation",
-        "qc",
-        "conceptual"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-034",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "f(x) = (x + 1)/(x - 1) for x ≠ 1\n\nColumn A: f(3)\nColumn B: f(f(3))",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "Column A: f(3) = (3 + 1)/(3 - 1) = 4/2 = 2.\n\nColumn B: f(f(3)) = f(2) = (2 + 1)/(2 - 1) = 3/1 = 3.\n\nColumn A = 2, Column B = 3. Column B is greater.",
-      "trap": "Students compute f(3) = 2 correctly but then calculate f(f(3)) as (f(3))² = 4 instead of substituting 2 into f, selecting A.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "composite-function",
-        "qc",
-        "two-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-044",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "The inverse of f(x) = (2x + 3)/(x - 1) is f⁻¹(x). What is f⁻¹(4)?",
-      "options": null,
-      "answer": "3.5",
-      "explanation": "Find f⁻¹(x) by swapping x and y and solving:\ny = (2x + 3)/(x - 1)\nSwap: x = (2y + 3)/(y - 1)\nx(y - 1) = 2y + 3\nxy - x = 2y + 3\nxy - 2y = x + 3\ny(x - 2) = x + 3\ny = (x + 3)/(x - 2).\n\nSo f⁻¹(x) = (x + 3)/(x - 2).\nf⁻¹(4) = (4 + 3)/(4 - 2) = 7/2 = 3.5.\n\nVerify: f(3.5) = (2(3.5) + 3)/(3.5 - 1) = (7 + 3)/2.5 = 10/2.5 = 4. ✓",
-      "trap": "Students compute f(4) = (2(4) + 3)/(4 - 1) = 11/3 ≈ 3.67 instead of finding the inverse, confusing f(4) with f⁻¹(4).",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "inverse-function",
-        "multi-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-016",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If f(x) = 2x - 1, what is f(f(3))?",
-      "options": [
-        "A. 5",
-        "B. 7",
-        "C. 9",
-        "D. 11",
-        "E. 13"
-      ],
-      "answer": "C",
-      "explanation": "Step 1: Evaluate f(3).\nf(3) = 2(3) - 1 = 6 - 1 = 5.\n\nStep 2: Evaluate f(f(3)) = f(5).\nf(5) = 2(5) - 1 = 10 - 1 = 9.",
-      "trap": "Students evaluate f(3) = 5 correctly but then substitute x = 3 again instead of x = 5 for the second application, computing f(3) = 5 again and selecting A.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "composite-function",
-        "two-step"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-023",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "If f(x) = x² - 4, which of the following values of x are in the domain of g(x) = √(f(x))? Select all that apply.",
-      "options": [
-        "A. x = -3",
-        "B. x = -1",
-        "C. x = 0",
-        "D. x = 2",
-        "E. x = 3"
-      ],
-      "answer": [
-        "A",
-        "D",
         "E"
       ],
-      "explanation": "g(x) = √(f(x)) = √(x² - 4) requires x² - 4 ≥ 0, so x² ≥ 4, meaning x ≤ -2 or x ≥ 2.\n\nA. x = -3: (-3)² = 9 ≥ 4. ✓\nB. x = -1: (-1)² = 1 < 4. ✗\nC. x = 0: 0² = 0 < 4. ✗\nD. x = 2: (2)² = 4 ≥ 4. ✓ (√0 = 0 is valid)\nE. x = 3: (3)² = 9 ≥ 4. ✓",
-      "trap": "Students exclude x = 2 in option D because they use a strict inequality (x² > 4), not realizing x = 2 gives √0 = 0 which is defined.",
-      "estimated_time_seconds": 85,
+      "explanation": "A: Mean = 0 ✓ (by definition). B: SD = 1 ✓ (by definition). C: Symmetric about x=0 ✓ (the mean is 0 and normal distributions are symmetric). D: 68% falls within 1 SD, not 2 SD. Within 2 SD is approximately 95% ✗. E: Total area = 1 ✓ (property of all probability distributions).",
+      "trap": "Students confuse '68% within 1 SD' with '68% within 2 SD', selecting D.",
+      "estimated_time_seconds": 90,
       "tags": [
-        "domain-range",
-        "composite-function",
-        "multiple-answer"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-045",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "For all real x, the function f satisfies f(x) + f(x + 1) = x². What is f(3) - f(1)?",
-      "options": [
-        "A. -4",
-        "B. -1",
-        "C. 0",
-        "D. 3",
-        "E. 5"
-      ],
-      "answer": "D",
-      "explanation": "Use the functional equation with specific values:\n\nLet x = 1: f(1) + f(2) = 1² = 1 ... (i)\nLet x = 2: f(2) + f(3) = 2² = 4 ... (ii)\n\nSubtract (i) from (ii):\n[f(2) + f(3)] - [f(1) + f(2)] = 4 - 1\nf(3) - f(1) = 3.",
-      "trap": "Students attempt to find f(1), f(2), f(3) individually from one equation (impossible) and get stuck, or they try x = 3 in the original equation, producing f(3) + f(4) = 9, which doesn't help.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "function-notation",
-        "multi-step",
+        "multiple-answer",
+        "standard-deviation",
+        "data-distribution",
         "conceptual"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
     },
     {
-      "id": "ALG-FNC-020",
+      "id": "MIX-GEN-059",
       "difficulty": "medium",
+      "type": "mcq",
+      "question": "If the price of a stock falls by 20% and then rises by 20%, what is the net percent change from the original price?",
+      "options": [
+        "A. 0%",
+        "B. −4%",
+        "C. +4%",
+        "D. −20%",
+        "E. +20%"
+      ],
+      "answer": "B",
+      "explanation": "Let original price = 100. After 20% fall: 100 × 0.80 = 80. After 20% rise: 80 × 1.20 = 96. Net change = (96−100)/100 = −4%. The price is 4% below original.",
+      "trap": "Students assume −20% and +20% cancel to 0%. They don't — the 20% rise applies to the already-reduced price.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "successive-percent",
+        "counterintuitive",
+        "percent-change"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-058",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A line passes through points (0, 4) and (3, −2). Which of the following points also lie on this line? Select all that apply.",
+      "options": [
+        "A. (1, 2)",
+        "B. (2, 1)",
+        "C. (6, −8)",
+        "D. (−1, 6)",
+        "E. (4, −3)"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "Slope = (−2−4)/(3−0) = −6/3 = −2. Equation: y = −2x + 4. Check each: A (1,2): −2(1)+4 = 2 ✓. B (2,1): −2(2)+4 = 0 ≠ 1 ✗. C (6,−8): −2(6)+4 = −8 ✓. D (−1,6): −2(−1)+4 = 6 ✓. E (4,−3): −2(4)+4 = −4 ≠ −3 ✗.",
+      "trap": "Students compute the slope as −6/3 = −3 (sign error), which gives y = −3x + 4, and then verify the wrong points.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "multiple-answer",
+        "equation-of-line",
+        "slope"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-038",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A store sells coffee at $3.50 per pound and tea at $2.00 per pound. A merchant wants 10 pounds of a mixture worth $2.60 per pound. How many pounds of coffee should be used?",
+      "options": [
+        "A. 2",
+        "B. 3",
+        "C. 4",
+        "D. 5",
+        "E. 6"
+      ],
+      "answer": "C",
+      "explanation": "Let c = pounds of coffee, so 10 − c = pounds of tea. 3.50c + 2.00(10 − c) = 2.60 × 10 = 26. 3.5c + 20 − 2c = 26. 1.5c = 6. c = 4.",
+      "trap": "Students set up the equation with the total cost wrong: using 2.60 × c instead of 2.60 × 10.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "mixture",
+        "two-variable-system"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-060",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "How many integers from 1 to 100 (inclusive) are divisible by either 3 or 5?",
+      "options": null,
+      "answer": "47",
+      "explanation": "Divisible by 3: ⌊100/3⌋ = 33. Divisible by 5: ⌊100/5⌋ = 20. Divisible by both (15): ⌊100/15⌋ = 6. By inclusion-exclusion: 33 + 20 − 6 = 47.",
+      "trap": "Students simply add 33 + 20 = 53 without subtracting the overlap (multiples of 15).",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "inclusion-exclusion",
+        "divisibility"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-034",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If a set of 5 numbers has a mean of 20, and a 6th number equal to 26 is added, what is the new mean?",
+      "options": [
+        "A. 20",
+        "B. 21",
+        "C. 22",
+        "D. 23",
+        "E. 26"
+      ],
+      "answer": "B",
+      "explanation": "Original sum = 5 × 20 = 100. New sum = 100 + 26 = 126. New mean = 126 / 6 = 21.",
+      "trap": "Students average 20 and 26 as (20+26)/2 = 23, not weighting by the number of items in each group.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "mean",
+        "weighted-average"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-050",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If x + y = 10 and x − y = 4, what is the value of x²− y²?",
+      "options": [
+        "A. 6",
+        "B. 16",
+        "C. 40",
+        "D. 84",
+        "E. 100"
+      ],
+      "answer": "C",
+      "explanation": "x² − y² = (x+y)(x−y) = 10 × 4 = 40. No need to solve for x and y individually.",
+      "trap": "Students solve for x=7, y=3, then compute 49−9=40 (correct but slower) OR mistakenly compute (10)²−(4)²=84 (squaring the sums/differences instead of using difference of squares).",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "factoring",
+        "polynomial",
+        "two-step"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-036",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Two fair coins are flipped. What is the probability that both land on heads?",
+      "options": [
+        "A. 1/2",
+        "B. 1/4",
+        "C. 3/4",
+        "D. 1/3",
+        "E. 2/3"
+      ],
+      "answer": "B",
+      "explanation": "The events are independent. P(both heads) = P(head) × P(head) = 1/2 × 1/2 = 1/4.",
+      "trap": "Students add the probabilities: 1/2 + 1/2 = 1, or think P = 2/4 = 1/2 by some doubling logic.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "independent-events",
+        "compound-probability"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-074",
+      "difficulty": "hard",
       "type": "quantitative_comparison",
-      "question": "f(x) = 2x + 3 and g(x) = x - 1\n\nColumn A: f(g(5))\nColumn B: g(f(5))",
+      "question": "Triangle ABC is similar to triangle DEF. The ratio of their areas is 4:9.\nColumn A: The ratio of their perimeters (ABC to DEF)\nColumn B: 2/3",
       "options": [
         "A. Column A is greater",
         "B. Column B is greater",
         "C. The two quantities are equal",
         "D. The relationship cannot be determined from the information given"
       ],
-      "answer": "B",
-      "explanation": "Column A: f(g(5)).\ng(5) = 5 - 1 = 4.\nf(g(5)) = f(4) = 2(4) + 3 = 8 + 3 = 11.\n\nColumn B: g(f(5)).\nf(5) = 2(5) + 3 = 10 + 3 = 13.\ng(f(5)) = g(13) = 13 - 1 = 12.\n\nColumn A = 11, Column B = 12. Column B is greater.",
-      "trap": "Students assume f(g(x)) = g(f(x)) because they treat composition as commutative, selecting C without computing both sides.",
-      "estimated_time_seconds": 80,
+      "answer": "C",
+      "explanation": "For similar figures, the ratio of areas = (ratio of corresponding lengths)². If area ratio = 4/9, then length ratio = √(4/9) = 2/3. The ratio of perimeters equals the ratio of corresponding sides = 2/3. Column A = 2/3 = Column B.",
+      "trap": "Students apply the area ratio directly as the perimeter ratio, getting perimeter ratio = 4/9.",
+      "estimated_time_seconds": 90,
       "tags": [
-        "composite-function",
         "qc",
-        "conceptual"
+        "similar-triangles",
+        "perimeter"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
     },
     {
-      "id": "ALG-FNC-053",
-      "difficulty": "hard",
+      "id": "MIX-GEN-035",
+      "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "A function f has the property f(x + 2) = f(x) + 4 for all real x, and f(1) = 3. Which of the following values can be determined from this information? Select all that apply.",
+      "question": "Which of the following values of x satisfy |2x − 4| ≤ 6? Select all that apply.",
       "options": [
-        "A. f(3) = 7",
-        "B. f(5) = 11",
-        "C. f(0) = -1",
-        "D. f(-1) = -1",
-        "E. f(2) = 5"
+        "A. −2",
+        "B. −1",
+        "C. 0",
+        "D. 5",
+        "E. 6"
       ],
       "answer": [
-        "A",
         "B",
+        "C",
         "D"
       ],
-      "explanation": "Given f(x + 2) = f(x) + 4 and f(1) = 3.\n\nMoving forward (add 2 to input):\nf(3) = f(1 + 2) = f(1) + 4 = 3 + 4 = 7. → A is true and determinable.\nf(5) = f(3 + 2) = f(3) + 4 = 7 + 4 = 11. → B is true and determinable.\n\nMoving backward (subtract 2 from input via rearrangement):\nf(x + 2) = f(x) + 4 → f(x) = f(x + 2) - 4.\nSo f(-1) = f(1) - 4 = 3 - 4 = -1. → D is true and determinable.\n\nC. f(0): f(0) would need f(0 + 2) = f(0) + 4 → f(0) = f(2) - 4. But f(2) is unknown (different parity chain from f(1)). f(0) cannot be determined.\nE. f(2): Starting from f(1) = 3, we can only reach f(1), f(3), f(5), f(-1), f(-3), ... (odd integers). f(2) is on the even chain and cannot be determined from f(1) alone.",
-      "trap": "Students assume f(2) = f(1) + 1 = 4 (adding 1 to the input adds 1 to the output), confusing the step size in input (+2) with the step size in output (+4), and mark E as determinable.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "function-notation",
-        "multiple-answer",
-        "multi-step",
-        "conceptual"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
-    },
-    {
-      "id": "ALG-FNC-022",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "The inverse of f(x) = (x - 2)/3 is f⁻¹(x) =",
-      "options": [
-        "A. 3x + 2",
-        "B. 3x - 2",
-        "C. (x + 2)/3",
-        "D. 3/(x - 2)",
-        "E. x/3 + 2"
-      ],
-      "answer": "A",
-      "explanation": "Let y = (x - 2)/3. Swap x and y, then solve for y:\nx = (y - 2)/3\n3x = y - 2\ny = 3x + 2.\nSo f⁻¹(x) = 3x + 2.\n\nVerify: f(f⁻¹(x)) = f(3x + 2) = (3x + 2 - 2)/3 = 3x/3 = x. ✓",
-      "trap": "Students forget the swap step and instead solve y = (x-2)/3 for x: x = 3y + 2, then mistakenly write f⁻¹(x) = 3x + 2 — this happens to be the correct answer, but many students skip the swap and arrive at B (3x - 2) from a sign error.",
+      "explanation": "|2x − 4| ≤ 6 means −6 ≤ 2x − 4 ≤ 6. Adding 4 to all parts: −2 ≤ 2x ≤ 10. Dividing by 2: −1 ≤ x ≤ 5. Check each option: A (x=−2): |2(−2)−4| = |−8| = 8 > 6 ✗ — outside range. B (x=−1): |2(−1)−4| = |−6| = 6 ≤ 6 ✓. C (x=0): |0−4| = 4 ≤ 6 ✓. D (x=5): |10−4| = 6 ≤ 6 ✓. E (x=6): |12−4| = 8 > 6 ✗.",
+      "trap": "Students incorrectly include x=−2 (thinking it satisfies the boundary) or exclude x=−1 (thinking the ≤ boundary is strict).",
       "estimated_time_seconds": 80,
       "tags": [
-        "inverse-function",
-        "two-step"
+        "multiple-answer",
+        "compound-inequality",
+        "linear-inequality"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
     },
     {
-      "id": "ALG-FNC-030",
+      "id": "MIX-GEN-051",
       "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "If f(x) = x² - 5x + 6 and f(a) = 0, what is the sum of all possible values of a?",
+      "question": "What is the remainder when 2^10 is divided by 7?",
       "options": null,
-      "answer": "5",
-      "explanation": "Solve x² - 5x + 6 = 0 by factoring.\n(x - 2)(x - 3) = 0\nSo x = 2 or x = 3.\n\nSum of all possible values = 2 + 3 = 5.\n(By Vieta's formulas, sum of roots = -(-5)/1 = 5. ✓)",
-      "trap": "Students find x = 2 and x = 3 correctly but report only one value (e.g., 2) or report the product (6) instead of the sum.",
-      "estimated_time_seconds": 75,
+      "answer": "2",
+      "explanation": "Find the pattern of 2^n mod 7: 2¹=2, 2²=4, 2³=8≡1 (mod 7), 2⁴≡2, 2⁵≡4, 2⁶≡1. The cycle length is 3. 10 = 3×3 + 1, so 2^10 ≡ 2^1 = 2 (mod 7).",
+      "trap": "Students compute 2^10 = 1024 and then divide 1024 ÷ 7 = 146 remainder 2 (this is correct but students often make arithmetic errors on 1024/7).",
+      "estimated_time_seconds": 80,
       "tags": [
-        "function-notation",
-        "two-step"
+        "pattern",
+        "exponent-rules"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
     },
     {
-      "id": "ALG-FNC-031",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "The function f is defined by f(x) = |2x - 6|. For which of the following values of x is f(x) = 4? Select all that apply.",
-      "options": [
-        "A. x = 1",
-        "B. x = 5",
-        "C. x = 3",
-        "D. x = -1",
-        "E. x = 4"
-      ],
-      "answer": [
-        "A",
-        "B"
-      ],
-      "explanation": "Solve |2x - 6| = 4.\n\nCase 1: 2x - 6 = 4 → 2x = 10 → x = 5.\nCase 2: 2x - 6 = -4 → 2x = 2 → x = 1.\n\nVerify:\nf(5) = |10 - 6| = |4| = 4. ✓\nf(1) = |2 - 6| = |-4| = 4. ✓\nf(3) = |6 - 6| = 0. ✗\nf(-1) = |-2 - 6| = 8. ✗\nf(4) = |8 - 6| = 2. ✗\n\nCorrect answers: A (x = 1) and B (x = 5).",
-      "trap": "Students solve only Case 1 (2x - 6 = 4 → x = 5), selecting only B, and miss the negative case x = 1.",
-      "estimated_time_seconds": 85,
+      "id": "MIX-GEN-072",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A sphere is inscribed in a cube of side length 6. What is the volume of the space inside the cube but outside the sphere? (Leave the answer in terms of π — enter the expression as a decimal approximation to the nearest whole number.)",
+      "options": null,
+      "answer": "103",
+      "explanation": "The sphere inscribed in a cube of side 6 has diameter 6, so radius = 3. Volume of cube = 6³ = 216. Volume of sphere = (4/3)π(3³) = (4/3)π(27) = 36π ≈ 36 × 3.14159 ≈ 113.1. Volume outside sphere = 216 − 113.1 ≈ 102.9 ≈ 103.",
+      "trap": "Students use radius = 6 (the full side length) instead of radius = 3 (half the side, since the sphere touches each face).",
+      "estimated_time_seconds": 95,
       "tags": [
-        "function-notation",
-        "multiple-answer"
+        "volume",
+        "surface-area",
+        "multi-step"
       ],
-      "topic": "Algebra",
-      "subtopic": "Functions"
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-040",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If the sum of the roots of a quadratic x² + bx + 12 = 0 is −7, what is b?",
+      "options": [
+        "A. −7",
+        "B. 7",
+        "C. 12",
+        "D. −12",
+        "E. −5"
+      ],
+      "answer": "B",
+      "explanation": "By Vieta's formulas, the sum of roots = −b/a. Here a = 1, so sum of roots = −b. We're told sum = −7, so −b = −7, which gives b = 7.",
+      "trap": "Students use sum of roots = b directly (forgetting the negative sign), setting b = −7.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "vieta-formulas",
+        "quadratic"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
+    },
+    {
+      "id": "MIX-GEN-061",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A right circular cone has radius 3 and height 4. What is the slant height of the cone?",
+      "options": [
+        "A. 4",
+        "B. 5",
+        "C. 6",
+        "D. 7",
+        "E. √7"
+      ],
+      "answer": "B",
+      "explanation": "The slant height l = √(r² + h²) = √(9 + 16) = √25 = 5.",
+      "trap": "Students add r + h = 3 + 4 = 7 without using the Pythagorean theorem.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "pythagorean-theorem",
+        "volume"
+      ],
+      "topic": "Mixed Practice",
+      "subtopic": "General Mixed (All Topics)"
     }
   ]
 }
