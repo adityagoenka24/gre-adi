@@ -686,7 +686,7 @@ const Events = (() => {
           <div class="pro-locked-card"><div class="pro-locked-label">Locked in Pro</div><b>Trap pattern review</b><span>${trapText}</span></div>
         </div>
       </div>
-      <a class="primary-btn" href="https://grequantpro.com/#plans">Unlock My Practice Plan</a>
+      <a class="primary-btn" href="https://grequantpro.com/#plans" onclick="if(window.GQP)window.GQP.track('pro_cta_clicked',{from:'mock_result',event_id:'${escapeHtml(String(state.config && state.config.event_id || ''))}',band:'${escapeHtml(String(diagnosis.band && diagnosis.band.label || ''))}',accuracy:${result.accuracy}})">Unlock My Practice Plan</a>
     </div>`;
   }
 
@@ -753,6 +753,14 @@ const Events = (() => {
     };
     const team = $("studentTeam") ? $("studentTeam").value : null;
     const result = buildResult(student, team);
+    if (window.GQP) window.GQP.track('mock_submitted', {
+      event_id: result.event_id,
+      score: result.score,
+      total: result.total_questions,
+      accuracy: result.accuracy,
+      band: result.diagnosis && result.diagnosis.band ? result.diagnosis.band.label : null,
+      timed_out: timedOut
+    });
     renderResults(result, timedOut);
     saveAttempt(result);
   }
@@ -778,6 +786,11 @@ const Events = (() => {
         $("examSection").classList.remove("hidden");
         if ($("eventMetaName")) $("eventMetaName").textContent = $("studentName").value.trim();
         if ($("eventMetaTopic")) $("eventMetaTopic").textContent = teamMode && $("studentTeam") ? `${state.config.event_name} · ${$("studentTeam").value}` : state.config.event_name;
+        if (window.GQP) window.GQP.track('mock_started', {
+          event_id: state.config.event_id,
+          event_name: state.config.event_name,
+          mode: teamMode ? 'team' : 'solo'
+        });
         state.startedAt = new Date();
         state.answers = new Array(state.config.questions.length).fill(null);
         state.qTimes = new Array(state.config.questions.length).fill(0);

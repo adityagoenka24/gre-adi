@@ -1,5 +1,6 @@
 (function(){
-  const ENDPOINT = 'https://gre-auth.goenka-aditya-kol.workers.dev/analytics/view';
+  const PAGEVIEW_ENDPOINT = 'https://gre-auth.goenka-aditya-kol.workers.dev/analytics/view';
+  const EVENT_ENDPOINT    = 'https://gre-auth.goenka-aditya-kol.workers.dev/analytics/event';
   const STORAGE_KEY = 'gqp_anon_visitor_id';
 
   function visitorId(){
@@ -24,7 +25,7 @@
       referrer: document.referrer ? document.referrer.slice(0, 240) : ''
     };
     try{
-      fetch(ENDPOINT, {
+      fetch(PAGEVIEW_ENDPOINT, {
         method: 'POST',
         headers: {'Content-Type':'application/json'},
         body: JSON.stringify(payload),
@@ -32,6 +33,29 @@
       }).catch(function(){});
     }catch(e){}
   }
+
+  // Custom event tracking — call window.GQP.track('event_name', { ...props })
+  function trackEvent(eventName, props){
+    try{
+      fetch(EVENT_ENDPOINT, {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          site: 'grequantpro',
+          visitorId: visitorId(),
+          event: String(eventName || 'unknown').slice(0, 60),
+          path: location.pathname,
+          props: props || {},
+          ts: new Date().toISOString()
+        }),
+        keepalive: true
+      }).catch(function(){});
+    }catch(e){}
+  }
+
+  // Expose globally so events_common.js and any page can call window.GQP.track()
+  window.GQP = window.GQP || {};
+  window.GQP.track = trackEvent;
 
   if(document.readyState === 'complete') track();
   else window.addEventListener('load', track, {once:true});
