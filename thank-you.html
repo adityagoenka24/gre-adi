@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Payment Confirmed — GRE Quant Pro</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a28; --border:#2a2a45;
+  --accent:#6c63ff; --accent2:#a089ff; --success:#43e97b; --warning:#f7971e;
+  --text:#e8e8f0; --text2:#9898b8; --text3:#5a5a7a;
+  --font-body:'Outfit',sans-serif; --font-mono:'DM Mono',monospace;
+  --radius:16px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--font-body);}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;text-align:center;}
+
+.card{
+  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
+  padding:48px 40px;max-width:520px;width:100%;
+  box-shadow:0 24px 64px rgba(0,0,0,0.4);
+}
+
+.check-ring{
+  width:80px;height:80px;border-radius:50%;
+  background:rgba(67,233,123,0.12);border:2px solid rgba(67,233,123,0.35);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 28px;font-size:36px;
+  animation:pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
+}
+@keyframes pop{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+
+h1{font-size:28px;font-weight:800;margin-bottom:10px;line-height:1.2;}
+.plan-badge{
+  display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:white;font-size:13px;font-weight:700;padding:4px 14px;border-radius:20px;
+  margin-bottom:20px;
+}
+.subtitle{font-size:16px;color:var(--text2);line-height:1.6;margin-bottom:32px;}
+
+.steps{text-align:left;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px;}
+.steps-title{font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+.step{display:flex;gap:14px;align-items:flex-start;padding:10px 0;}
+.step:not(:last-child){border-bottom:1px solid var(--border);}
+.step-num{
+  width:28px;height:28px;border-radius:50%;flex-shrink:0;margin-top:1px;
+  background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.3);
+  color:var(--accent);font-size:12px;font-weight:700;font-family:var(--font-mono);
+  display:flex;align-items:center;justify-content:center;
+}
+.step-body{flex:1;}
+.step-title{font-size:14px;font-weight:600;margin-bottom:2px;}
+.step-desc{font-size:13px;color:var(--text2);line-height:1.5;}
+.step-desc a{color:var(--accent);text-decoration:none;}
+
+.payment-id{
+  font-family:var(--font-mono);font-size:11px;color:var(--text3);
+  background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  padding:8px 14px;margin-bottom:24px;word-break:break-all;
+}
+
+.btn-primary{
+  display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:white;text-decoration:none;padding:14px 32px;border-radius:10px;
+  font-weight:700;font-size:15px;transition:transform 0.2s,box-shadow 0.2s;
+  box-shadow:0 8px 24px rgba(108,99,255,0.35);
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(108,99,255,0.45);}
+.btn-secondary{
+  display:inline-block;color:var(--text2);text-decoration:none;font-size:13px;
+  margin-top:14px;transition:color 0.2s;
+}
+.btn-secondary:hover{color:var(--text);}
+
+.guarantee{font-size:12px;color:var(--text3);margin-top:24px;line-height:1.6;}
+.guarantee a{color:var(--accent);text-decoration:none;}
+
+/* Not-a-real-payment state */
+.stray-card .check-ring{background:rgba(108,99,255,0.1);border-color:rgba(108,99,255,0.3);font-size:32px;}
+</style>
+</head>
+<body>
+
+<div class="card" id="mainCard">
+  <!-- Populated by JS based on URL params -->
+  <div style="color:var(--text3);font-family:var(--font-mono);font-size:13px;">Loading…</div>
+</div>
+
+<script src="ads-config.js"></script>
+<script src="analytics.js"></script>
+<script>
+(function(){
+  const params = new URLSearchParams(location.search);
+  const status = params.get('razorpay_payment_link_status');
+  const paymentId = params.get('razorpay_payment_id') || '';
+  const plan = params.get('plan') || 'pro'; // 'pro' or 'coach'
+  const isPaid = status === 'paid';
+
+  const card = document.getElementById('mainCard');
+
+  if (!isPaid) {
+    // Someone navigated here directly — show a neutral page, don't fire conversions
+    card.classList.add('stray-card');
+    card.innerHTML = `
+      <div class="check-ring">🔐</div>
+      <h1>GRE Quant Pro</h1>
+      <p class="subtitle">This page confirms payments made through GRE Quant Pro.<br>
+      If you've just paid, you should have been redirected here automatically.</p>
+      <a href="https://grequantpro.com" class="btn-primary">Go to GRE Quant Pro →</a>
+      <br>
+      <a href="mailto:goenka.aditya.kol@gmail.com" class="btn-secondary">Contact Coach Aditya</a>`;
+    return;
+  }
+
+  // ── Real payment confirmed ──────────────────────────────────────────────────
+  const isPro   = plan === 'pro';
+  const planLabel   = isPro ? 'Pro' : 'Pro + Coach Review';
+  const planPrice   = isPro ? '₹999' : '₹1,499/mo';
+  const loginUrl    = 'https://tinyurl.com/grequantpro-pro';
+
+  const proSteps = `
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Your secured subscription is getting created within 6 hours. </div>
+        <div class="step-desc">Access is granted manually within <strong>1–2 hours</strong> (usually faster). You'll get a reply at your registered email once it's done.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">After 6 hours, open the Pro app and log in</div>
+        <div class="step-desc">Visit <a href="${loginUrl}" target="_blank">the Pro app</a>, enter your registered email, and you're in. No download, no password.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Start from your weak area</div>
+        <div class="step-desc">If you took the free mock, your diagnosis already told you where to begin. Pick that subtopic first in Pro.</div>
+      </div>
+    </div>`;
+
+  const coachSteps = `
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <div class="step-title">Your secured subscription is getting created within 6 hours.</div>
+        <div class="step-desc">Pro access is granted within <strong>1–2 hours</strong>. Coach Aditya will also reach out directly to set up your first session review.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <div class="step-title">After 6 hours, open the Pro app and do your first session</div>
+        <div class="step-desc">Visit <a href="${loginUrl}" target="_blank">the Pro app</a> and complete at least one session. Use "Send to Coach" to share your session data.</div>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <div class="step-title">Receive your personalised review within 24 hours</div>
+        <div class="step-desc">Coach Aditya reviews your session data and sends a targeted feedback note on what to fix next.</div>
+      </div>
+    </div>`;
+
+  card.innerHTML = `
+    <div class="check-ring">✓</div>
+    <div class="plan-badge">${planLabel} — ${planPrice}</div>
+    <h1>You're in. Welcome to GRE Quant Pro.</h1>
+    <p class="subtitle">Your payment is confirmed. Here's exactly what happens next.</p>
+    ${paymentId ? `<div class="payment-id">Payment ID: ${paymentId}</div>` : ''}
+    <div class="steps">
+      <div class="steps-title">What happens next</div>
+      ${isPro ? proSteps : coachSteps}
+    </div>
+    <a href="${loginUrl}" class="btn-primary" target="_blank">Open Pro App →</a>
+    <br>
+    <a href="https://grequantpro.com" class="btn-secondary">← Back to GRE Quant Pro</a>
+    <p class="guarantee">
+      Questions? Email <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a> — Coach Aditya replies personally.<br>
+      Remember: 7-day money-back guarantee, no questions asked.
+    </p>`;
+
+  // ── Fire conversion tracking ───────────────────────────────────────────────
+  // Our Cloudflare event + Google Ads conversion via analytics.js / ads-config.js
+  if (window.GQP && window.GQP.track) {
+    window.GQP.track('purchase_completed', {
+      plan: plan,
+      value: plan === 'pro' ? 999 : 1499,
+      payment_id: paymentId.slice(0, 40) || '',
+    });
+  }
+})();
+</script>
+</body>
+</html>
