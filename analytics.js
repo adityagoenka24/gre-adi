@@ -57,6 +57,57 @@
   window.GQP = window.GQP || {};
   window.GQP.track = trackEvent;
 
+  // ── Google Ads integration ──────────────────────────────────────────────────
+  // Reads window.GQP_ADS (set by ads-config.js loaded before this script).
+  // Dynamically injects gtag.js and wires conversions to our trackEvent calls.
+  // No-ops silently if ads-config.js is missing or IDs are still placeholders.
+  (function initGoogleAds(){
+    var cfg = window.GQP_ADS;
+    if(!cfg) return;
+    var id = cfg.googleAdsId;
+    if(!id || id.indexOf('REPLACE_ME') !== -1) return;
+
+    // Bootstrap dataLayer + gtag shim before the async script loads
+    window.dataLayer = window.dataLayer || [];
+    if(!window.gtag){
+      window.gtag = function(){ window.dataLayer.push(arguments); };
+    }
+    window.gtag('js', new Date());
+    window.gtag('config', id);
+
+    // Inject the gtag.js script
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=' + id;
+    document.head.appendChild(s);
+
+    window.GQP._gadsReady = true;
+  })();
+
+  // Internal helper — fires a Google Ads conversion if configured for this event
+  function fireGoogleConversion(eventName, extraProps){
+    if(!window.GQP._gadsReady) return;
+    var cfg = window.GQP_ADS;
+    if(!cfg || !cfg.conversions) return;
+    var convId = cfg.conversions[eventName];
+    if(!convId || convId.indexOf('REPLACE_ME') !== -1) return;
+    var payload = { send_to: convId };
+    // Attach value/currency for purchase events
+    if(eventName === 'purchase_completed' && extraProps && extraProps.plan){
+      var val = cfg.values && cfg.values[extraProps.plan];
+      if(val){ payload.value = val; payload.currency = cfg.currency || 'INR'; }
+    }
+    try{ window.gtag('event', 'conversion', payload); }catch(e){}
+  }
+
+  // Wrap trackEvent to also fire Google conversion
+  var _origTrack = trackEvent;
+  trackEvent = function(eventName, props){
+    _origTrack(eventName, props);
+    fireGoogleConversion(eventName, props);
+  };
+  window.GQP.track = trackEvent;
+
   // Delegated click tracker — add data-track="event_name" to any element.
   // Optionally add data-track-from="hero" etc. for context.
   // Example: <a href="..." data-track="buy_pro_clicked" data-track-from="pricing">Buy</a>
