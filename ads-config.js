@@ -30,7 +30,7 @@
 window.GQP_ADS = {
 
   // Your Google Ads Tag ID — replace AW-REPLACE_ME with your real ID
-  googleAdsId: 'AW-REPLACE_ME',
+  googleAdsId: 'AW-18184272300',
 
   // Conversion action IDs — replace each AW-REPLACE_ME/REPLACE_ME pair
   conversions: {
