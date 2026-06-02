@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PharmaBoard Codex · Executive Edition · AFD Hospicare</title>
+<title>PharmaBoard · Presentation Mode · AFD Hospicare</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.35.2/plotly.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -395,55 +395,6 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
   .action-grid{grid-template-columns:1fr}
   .nav-dots{display:none}
 }
-
-/* ─── CODEX EXECUTIVE OVERRIDES (flagship layout) ─── */
-:root{
-  --codex-accent:#7aa3ff;
-  --codex-gold:#e6c25e;
-  --codex-bg:#050a18;
-  --codex-panel:#0a1228;
-}
-body{ background: linear-gradient(180deg, var(--codex-bg) 0%, #060c1d 100%); }
-.app-brand .suffix::after{ content:' Codex'; color:var(--codex-gold); font-weight:900; letter-spacing:.05em; }
-
-/* Denser KPI tiles for the executive room */
-.kpi .kpi-val{ font-size:21px; letter-spacing:.005em }
-.kpi .kpi-lbl{ font-size:9.5px }
-.kpi .kpi-sub{ font-size:10.5px; line-height:1.45 }
-.yoy-band{ gap:8px }
-.yoy-tile{ padding:9px 12px }
-.yoy-tile .val{ font-size:19px }
-.yoy-tile .sub{ font-size:10px }
-.mega .val{ font-size:34px }
-
-/* Codex layout — denser 3-up grids on field-force/customer/region slides */
-#slide-5 .grid.two, #slide-6 .grid.two, #slide-7 .grid.two, #slide-8 .grid.two{
-  grid-template-columns: 1.2fr 1fr;
-  gap:12px;
-}
-#slide-4 .grid.two{ grid-template-columns: 1.05fr 1fr; }
-
-/* Promote Boardroom Signals as a permanently visible sidebar surface */
-.codex-signals-pin{
-  position: fixed; right: 20px; bottom: 96px; width: 260px;
-  max-height: 320px; overflow:auto;
-  background: linear-gradient(180deg, rgba(10,18,40,.96), rgba(7,13,28,.92));
-  border:1px solid var(--line2); border-radius:10px;
-  padding:10px 12px; z-index:25; box-shadow:0 8px 24px rgba(0,0,0,.45);
-  font-size:11px; color:var(--tx2); display:none;
-}
-.codex-signals-pin.on{ display:block; }
-.codex-signals-pin h4{ font-family:var(--display); font-size:10.5px; font-weight:900; color:var(--codex-gold); letter-spacing:.10em; text-transform:uppercase; margin:0 0 8px }
-.codex-signals-pin ul{ margin:0; padding-left:14px; list-style:disc }
-.codex-signals-pin li{ margin-bottom:6px; line-height:1.4 }
-
-/* Slightly tighter chart heights for the executive read */
-.chart.lg{ height:380px }
-.chart.md{ height:300px }
-.chart.sm{ height:220px }
-
-/* Promote the FY chip — it's the executive's anchor */
-.fy-chip{ background: linear-gradient(90deg, rgba(230,194,94,.18), rgba(122,163,255,.14)); color: var(--codex-gold); border-color: rgba(230,194,94,.40); font-size:11.5px; }
 </style>
 </head>
 <body>
@@ -1058,12 +1009,6 @@ body{ background: linear-gradient(180deg, var(--codex-bg) 0%, #060c1d 100%); }
     <button class="arrow-btn" id="prev-btn" onclick="navSlide(-1)" title="Previous slide (←)">‹</button>
     <button class="arrow-btn" id="next-btn" onclick="navSlide(1)" title="Next slide (→)">›</button>
   </div>
-</div>
-
-<!-- ═════════════ CODEX SIGNALS PIN (persistent executive sidebar) ═════════════ -->
-<div class="codex-signals-pin" id="codex-signals-pin">
-  <h4>Boardroom Signals</h4>
-  <ul id="codex-signals-list"><li>Loading…</li></ul>
 </div>
 
 <!-- ═════════════ CHART EXPAND MODAL ═════════════ -->
@@ -2383,7 +2328,6 @@ function updateSlideUI() {
   });
   el('prev-btn').disabled = CURRENT_SLIDE === 1;
   el('next-btn').disabled = CURRENT_SLIDE === TOTAL_SLIDES;
-  if (typeof renderCodexSignalsPin === 'function') renderCodexSignalsPin();
 }
 function setupScrollObserver() {
   const observer = new IntersectionObserver(entries => {
@@ -5143,7 +5087,6 @@ function applyF() {
   else                          { FS = FS_CUR_FILTERED; FSMSR = FSMSR_CUR_F; FPREV = FS_PREV_COMP; FPREVMSR = FSMSR_PREV_COMP; }
 
   refreshFYChip();
-  renderCodexSignalsPin();
 
   /* Re-render the current slide; invalidate the rest so they re-render fresh on next visit. */
   const cur = CURRENT_SLIDE;
@@ -5151,36 +5094,6 @@ function applyF() {
   renderSlide(cur);
   /* Lazy-refresh the rest in the background — keeps presenter scrolling smooth. */
   setTimeout(prerenderRemainingSlides, 250);
-}
-
-/* ─── Codex signals pin: rendered on every filter change + slide change ─── */
-function renderCodexSignalsPin() {
-  const pin = el('codex-signals-pin');
-  const list = el('codex-signals-list');
-  if (!pin || !list) return;
-  /* Hide on slides 1 (cover) and 12 (register) — the rest get a constant sidebar. */
-  const showOn = CURRENT_SLIDE >= 2 && CURRENT_SLIDE <= 11;
-  pin.classList.toggle('on', showOn && !!(FS_PREV_COMP && FS_PREV_COMP.length));
-  if (!FS_PREV_COMP || !FS_PREV_COMP.length) {
-    list.innerHTML = '<li>Previous-year file not loaded — YoY signals unavailable.</li>';
-    return;
-  }
-  const s = compareSummary(FS_CUR_COMP, FS_PREV_COMP);
-  const prod = compareByDim(FS_CUR_COMP, FS_PREV_COMP, 'product_name');
-  const cust = compareByDim(FS_CUR_COMP, FS_PREV_COMP, 'customer');
-  const terr = compareByDim(FS_CUR_COMP, FS_PREV_COMP, 'station');
-  const topGain = sortBy(prod.filter(p => p.delta > 0), p => p.delta)[0];
-  const topLoss = sortBy(prod.filter(p => p.delta < 0), p => -p.delta)[0];
-  const terrWin = sortBy(terr.filter(t => t.delta > 0), t => t.delta)[0];
-  const custLoss = sortBy(cust.filter(c => c.delta < 0), c => -c.delta)[0];
-  const lines = [
-    '<b>' + (s.delta >= 0 ? '+' : '') + fmtMoney(s.delta) + '</b> · ' + fmtDelta(s.growth) + ' vs ' + FY_PREV,
-  ];
-  if (topGain) lines.push('Scale <b>' + shortName(topGain.key, 22) + '</b> — adds ' + fmtMoney(topGain.delta));
-  if (topLoss) lines.push('Recover <b>' + shortName(topLoss.key, 22) + '</b> — loss ' + fmtMoney(topLoss.delta));
-  if (terrWin) lines.push('Replicate playbook from <b>' + shortName(terrWin.key, 18) + '</b>');
-  if (custLoss) lines.push('Protect <b>' + shortName(custLoss.key, 22) + '</b>');
-  list.innerHTML = lines.map(l => '<li>' + l + '</li>').join('');
 }
 
 function resetF() {
