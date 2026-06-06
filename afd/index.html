@@ -333,7 +333,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
 .fy-chip{margin-left:auto;height:28px;display:inline-flex;align-items:center;padding:0 12px;background:linear-gradient(90deg,rgba(244,207,107,.10),rgba(91,141,239,.10));border:1px solid var(--line2);border-radius:6px;font-family:var(--display);font-size:10.5px;font-weight:800;letter-spacing:.04em;color:var(--gold);white-space:nowrap;flex-shrink:0}
 
 /* ─── CARD-LOCAL FILTER STRIP ──── */
-.card-filter{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-left:8px}
+.card-filter{display:none!important}
 .card-filter label{font-family:var(--display);font-size:9px;font-weight:800;color:var(--tx3);text-transform:uppercase;letter-spacing:.10em}
 .card-filter select{background:var(--bg2);border:1px solid var(--line2);color:var(--tx);font-size:10.5px;height:24px;padding:0 6px;border-radius:5px;font-family:var(--font);outline:none;cursor:pointer;min-width:88px;max-width:170px}
 .card-filter select:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(244,207,107,.15)}
@@ -749,7 +749,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         </div>
         <div class="period-badge"><span class="lbl">Manager Grain</span><span class="val">Country → ABM → MSR</span></div>
       </div>
-      <div class="kpi-row" id="abm-strip"></div>
+      <div class="kpi-row six" id="abm-strip"></div>
       <div class="div-line"><span class="dot"></span><span class="lbl">ABM YoY · same comparable window</span><span class="line"></span></div>
       <div class="yoy-band" id="abm-yoy"></div>
       <div class="card">
@@ -762,9 +762,9 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
       <div class="grid two">
         <div class="card">
           <div class="card-head">
-            <div><div class="card-title">ABM Efficiency Score</div>
-            <div class="card-sub">Territory-fair · Growth 35 + Targeting 30 + Coverage 25 + Strategic SKU 10</div></div>
-            <span class="card-pill pill-violet">Score / 100</span>
+            <div><div class="card-title">ABM Revenue — Latest vs Prior Month</div>
+            <div class="card-sub" id="abm-rev-period">Grouped by ABM · latest month (blue) vs prior month (grey)</div></div>
+            <span class="card-pill pill-blue">MoM</span>
           </div>
           <div id="ch-abm-bars" class="chart lg"></div>
         </div>
@@ -791,7 +791,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         </div>
         <div class="period-badge"><span class="lbl">Field Force</span><span class="val" id="msr-period">—</span></div>
       </div>
-      <div class="kpi-row" id="msr-strip"></div>
+      <div class="kpi-row six" id="msr-strip"></div>
       <div class="div-line"><span class="dot"></span><span class="lbl">MSR YoY · same comparable window</span><span class="line"></span></div>
       <div class="yoy-band" id="msr-yoy"></div>
       <div class="card">
@@ -879,45 +879,26 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
       <div class="slide-head">
         <div>
           <span class="crumb">11 · Executive YoY</span>
-          <h1>YoY Analysis Center — Where the Year Was Won &amp; Lost</h1>
+          <h1>YoY Analysis Center</h1>
         </div>
         <div class="period-badge"><span class="lbl">Comparison Window</span><span class="val" id="yoy-period">—</span></div>
       </div>
 
-      <!-- Strip + control bar -->
+      <!-- Strip -->
       <div class="yoy-band" id="yoy-strip"></div>
+      <!-- Hidden mount for card-filter registry (keeps JS working) -->
+      <div id="cardf-yoyctrl" style="display:none"></div>
+
+      <!-- Hero: Momentum Quadrant full-width -->
       <div class="card">
-        <div class="card-head">
-          <div><div class="card-title">Analysis Controls</div><div class="card-sub">Narrow the lens · all charts below respond instantly</div></div>
-          <div class="card-filter" id="cardf-yoyctrl"></div>
-        </div>
+        <div class="card-head"><div><div class="card-title">Product Momentum Quadrant</div><div class="card-sub">Stars (high revenue + growth) · Rising (low revenue + growth) · Cash Cows (high revenue, slowing) · Drag (low revenue + declining) · bubble size = current FY net</div></div></div>
+        <div id="ch-yoy-quad" class="chart lg"></div>
       </div>
-
-      <!-- Hero: Revenue Bridge + Momentum Quadrant -->
-      <div class="grid two">
-        <div class="card">
-          <div class="card-head"><div><div class="card-title">YoY Revenue Bridge</div><div class="card-sub">Volume · Price · Mix · New Business · Lost Business — closes to YoY Δ</div></div></div>
-          <div id="ch-yoy-bridge" class="chart lg"></div>
-        </div>
-        <div class="card">
-          <div class="card-head"><div><div class="card-title">Product Momentum Quadrant</div><div class="card-sub">Stars · Rising · Cash Cows · Drag — size = current FY net, Y = YoY %</div></div></div>
-          <div id="ch-yoy-quad" class="chart lg"></div>
-        </div>
-      </div>
-
-      <!-- Month Mirror + Growth Attribution -->
-      <div class="grid two">
-        <div class="card">
-          <div class="card-head"><div><div class="card-title">Month Mirror — Cur vs Prev FY</div><div class="card-sub">Fiscal order Apr→Mar · grey = previous FY, blue = current FY, gold = YoY %</div></div>
-            <span class="card-pill pill-blue" id="yoy-month-pill">—</span>
-          </div>
-          <div id="ch-yoy-months" class="chart lg"></div>
-        </div>
-        <div class="card">
-          <div class="card-head"><div><div class="card-title">Growth Attribution</div><div class="card-sub">Existing-growth · New customers · Existing-decline · Lost customers</div></div></div>
-          <div id="ch-yoy-attr" class="chart lg"></div>
-        </div>
-      </div>
+      <!-- Hidden placeholders so renderYoYAnalysisCenterContent doesn't error -->
+      <div id="ch-yoy-bridge" style="display:none"></div>
+      <div id="ch-yoy-months" style="display:none"></div>
+      <div id="ch-yoy-attr"   style="display:none"></div>
+      <span id="yoy-month-pill" style="display:none"></span>
 
       <!-- Top Movers strip -->
       <div class="grid two">
@@ -998,6 +979,49 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         </div>
       </div>
       <div class="watermark">PharmaBoard · Sales Register</div>
+    </section>
+
+    <!-- ═════════════ SLIDE 13 · FIELD FORCE REGISTER ═════════════ -->
+    <section class="slide" id="slide-13" data-title="Field Force Register">
+      <div class="slide-head">
+        <div>
+          <span class="crumb">13 · Detail</span>
+          <h1>Field Force Register</h1>
+        </div>
+        <div class="period-badge"><span class="lbl">ABM · MSR · Party · Revenue</span><span class="val" id="ff-period">—</span></div>
+      </div>
+      <div class="card">
+        <div class="register-toolbar">
+          <select id="ff-scope" class="f-select" onchange="onFFChange()">
+            <option value="current">Current FY</option>
+            <option value="previous">Previous FY</option>
+            <option value="both">Current + Previous</option>
+          </select>
+          <input id="ff-search" class="f-input" placeholder="Search · ABM · MSR · customer · product · territory" oninput="onFFChange()" style="width:280px">
+          <select id="ff-page-size" class="f-select" onchange="onFFChange()">
+            <option value="25">25 rows</option>
+            <option value="50" selected>50 rows</option>
+            <option value="100">100 rows</option>
+            <option value="250">250 rows</option>
+          </select>
+          <div class="register-note" id="ff-note">ABM · MSR · Customer · Territory · Product · Revenue — full field force view</div>
+          <div class="spacer"></div>
+          <button class="thin-btn" onclick="exportFFAll()" title="Export all filtered rows">↓ Export (.xlsx)</button>
+          <button class="thin-btn" onclick="exportFFCSV()" title="Export as CSV">↓ CSV</button>
+        </div>
+        <div class="register-grid-wrap" id="ff-grid-wrap">
+          <table class="register-grid" id="ff-grid">
+            <thead id="ff-h"></thead>
+            <tbody id="ff-b"></tbody>
+          </table>
+        </div>
+        <div class="register-pager">
+          <button class="thin-btn" onclick="ffPage(-1)">‹ Prev</button>
+          <span id="ff-pageinfo">—</span>
+          <button class="thin-btn" onclick="ffPage(1)">Next ›</button>
+        </div>
+      </div>
+      <div class="watermark">PharmaBoard · Field Force Register</div>
     </section>
 
   </div>
@@ -1174,7 +1198,7 @@ let DOC_BY_MSR = new Map();
 let DOC_BY_CITY = new Map();
 let JOIN_HEALTH = { msrLinked:0, msrTotal:0, cityLinked:0, cityTotal:0, pct:0, cityPct:0 };
 let CURRENT_SLIDE = 1;
-const TOTAL_SLIDES = 12;
+const TOTAL_SLIDES = 13;
 let RENDERED_SLIDES = new Set();
 let CF = {};                       /* cross-filter: { dim, val } */
 let LAST_MODAL_TITLE = '';         /* for PNG export */
@@ -1200,6 +1224,23 @@ let FS_CUR_COMP = [],     FS_PREV_COMP = [];
 let FSMSR_CUR_COMP = [],  FSMSR_PREV_COMP = [];
 let LOCAL_F = {};                  /* per-card filter state, mutated by mountCardFilters() */
 let CARD_RENDER_REGISTRY = {};     /* { cardKey: renderFn } — used by card-local filter onChange */
+
+/* ─── Customer disambiguation ───
+ * Detects customer names that appear at multiple stations and builds helpers
+ * so they can be shown as "Name (Station)" throughout the dashboard. */
+let CUST_DISAMBIG = { dupes: new Set(), custStations: new Map() };
+function buildCustDisambig() {
+  const map = new Map();
+  for (const r of D) {
+    if (!map.has(r.customer)) map.set(r.customer, new Set());
+    if (r.station) map.get(r.customer).add(r.station);
+  }
+  const dupes = new Set([...map.entries()].filter(([, s]) => s.size > 1).map(([k]) => k));
+  CUST_DISAMBIG = { dupes, custStations: map };
+}
+function custDisp(name, station) {
+  return (CUST_DISAMBIG.dupes.has(name) && station) ? name + ' (' + station + ')' : name;
+}
 
 /* ════════════════════════════════════════════════════
    HELPERS
@@ -1228,14 +1269,14 @@ function fmtMoney(n, short=true) {
   if (short) {
     if (v >= 1e7) return sign + '₹' + (v/1e7).toFixed(2) + ' Cr';
     if (v >= 1e5) return sign + '₹' + (v/1e5).toFixed(2) + ' L';
-    if (v >= 1e3) return sign + '₹' + (v/1e3).toFixed(1) + 'K';
+    if (v >= 1e3) return sign + '₹' + (v/1e3).toFixed(2) + 'K';
   }
   return sign + '₹' + Math.round(v).toLocaleString('en-IN');
 }
 function fmtNum(n) { return (+n || 0).toLocaleString('en-IN', { maximumFractionDigits:0 }); }
 function fmtPct(n, dp) {
   if (!isFinite(n)) return '0%';
-  const d = dp != null ? dp : (Math.abs(n) >= 100 ? 0 : 1);
+  const d = dp != null ? dp : (Math.abs(n) >= 100 ? 0 : 2);
   return (+n).toFixed(d) + '%';
 }
 function fmtDelta(n) {
@@ -1243,7 +1284,7 @@ function fmtDelta(n) {
   if (n >= 999) return '▲ NEW';
   if (n <= -99) return '▼ ' + Math.min(99, Math.abs(n)).toFixed(0) + '%';
   const s = n >= 0 ? '▲' : '▼';
-  return s + ' ' + Math.abs(n).toFixed(Math.abs(n) >= 100 ? 0 : 1) + '%';
+  return s + ' ' + Math.abs(n).toFixed(Math.abs(n) >= 100 ? 0 : 2) + '%';
 }
 function safeGrowth(latest, prior) {
   if (prior === 0 && latest === 0) return 0;
@@ -1314,18 +1355,19 @@ function monthBuckets(rows) {
   for (const r of rows) {
     if (!r.date) continue;
     const k = monthKey(r.date);
-    if (!m.has(k)) m.set(k, { net:0, ret:0, qty:0, bills:new Set(), custs:new Set(), prods:new Set() });
+    if (!m.has(k)) m.set(k, { gross:0, ret:0, qty:0, bills:new Set(), custs:new Set(), prods:new Set() });
     const b = m.get(k);
-    if (r.is_return) b.ret += Math.abs(r.sales_value); else b.net += r.sales_value;
+    /* net of returns: positive rows add to gross, return rows add to ret; net = gross - ret */
+    if (r.is_return) b.ret += Math.abs(r.sales_value); else b.gross += r.sales_value;
     b.qty += r.qty || 0;
     if (r.bill_no) b.bills.add(r.bill_no);
     if (r.customer) b.custs.add(r.customer);
     if (r.product_name) b.prods.add(r.product_name);
   }
   return [...m.entries()].sort((a,b)=>a[0].localeCompare(b[0])).map(([k,v]) => ({
-    key:k, label:monthLabel(k), net:v.net, ret:v.ret, gross:v.net+v.ret,
+    key:k, label:monthLabel(k), net:v.gross - v.ret, ret:v.ret, gross:v.gross,
     qty:v.qty, bills:v.bills.size, custs:v.custs.size, prods:v.prods.size,
-    retPct: safePct(v.ret, v.net + v.ret),
+    retPct: safePct(v.ret, v.gross),   /* returns as % of gross (R/P) */
   }));
 }
 function latestPriorRows(rows) {
@@ -1340,11 +1382,13 @@ function latestPriorRows(rows) {
   };
 }
 function summarize(rows) {
-  const net = sum(rows.filter(r => !r.is_return), r => r.sales_value);
-  const ret = sum(rows.filter(r => r.is_return), r => Math.abs(r.sales_value));
+  /* gross = positive sales (P); ret = credit notes (R); net = P - R (TRUE net of returns) */
+  const gross = sum(rows.filter(r => !r.is_return), r => r.sales_value);
+  const ret   = sum(rows.filter(r => r.is_return), r => Math.abs(r.sales_value));
+  const net   = gross - ret;
   return {
-    net, ret, gross: net + ret,
-    retPct: safePct(ret, net + ret),
+    net, ret, gross,
+    retPct: safePct(ret, gross),   /* R / P */
     qty: sum(rows, r => r.qty),
     bills: uniq(rows.map(r => r.bill_no)).length,
     custs: uniq(rows.map(r => r.customer)).length,
@@ -1579,12 +1623,14 @@ function renderGrowthAttribution(targetId, curRows, prevRows, opts = {}) {
     return;
   }
   Plotly.newPlot(targetId, [{
-    type:'pie', hole:.55,
+    type:'pie', hole:.52,
     labels: slices.map(s => s.label),
     values: slices.map(s => s.value),
     marker:{ colors: slices.map(s => s.color), line:{ color:COLORS.bg, width:2 } },
     textinfo: 'label+percent',
-    textfont:{ size: 11, color: COLORS.tx },
+    textposition: 'outside',
+    outsidetextfont:{ size: 11, color: COLORS.tx },
+    insidetextfont:{ size: 10, color: COLORS.bg },
     hovertemplate: '<b>%{label}</b><br>%{value:,.0f} · %{percent}<extra></extra>'
   }], {
     ...PL,
@@ -1594,7 +1640,7 @@ function renderGrowthAttribution(targetId, curRows, prevRows, opts = {}) {
       font:{ size:14, color:COLORS.tx }
     }],
     showlegend: false,
-    margin:{ t:8, r:8, b:8, l:8 }
+    margin:{ t:28, r:36, b:28, l:36 }
   }, PC);
 }
 
@@ -1858,16 +1904,16 @@ function launchDashboard() {
     FS = [...D]; FPREV = [...DPREV]; FSMSR = [...DMSR]; FPREVMSR = [...DMSR_PREV];
     CF = {};
     LOCAL_F = {};                                           /* reset card-local filters */
+    buildCustDisambig();
     buildNavDots();
     buildFilters();
     showApp();
     CURRENT_SLIDE = 1;
     RENDERED_SLIDES = new Set();
-    renderSlide(1);
+    applyF();                                                /* initialises FS_CUR_COMP / FS_PREV_COMP */
     el('deck').scrollTo({ top: 0, behavior:'auto' });
     setTimeout(updateSlideUI, 60);
     setupScrollObserver();
-    setTimeout(prerenderRemainingSlides, 450);
   }, 80);
 }
 
@@ -1949,7 +1995,22 @@ function cleanMSR(raw, map, salesRows = D) {
   for (const sale of salesRows) {
     let entry = lookup.get(norm(sale.customer));
     if (!entry) entry = lookup._entries.find(e => { const a = norm(sale.customer), b = norm(e.name); return b && (a.includes(b) || b.includes(a)); });
-    if (!entry || !entry.msrs.length) continue;
+    if (!entry || !entry.msrs.length) {
+      /* Unmapped customer: keep the sale (full value, no split) under an explicit
+         'Unassigned' ABM/MSR so Σ(ABM net)+Unassigned reconciles to total CY/PY net. */
+      out.push({
+        sale_id: sale.sale_id, msr: 'Unassigned', abm: 'Unassigned',
+        customer: sale.customer, product_name: sale.product_name,
+        station: sale.station,
+        state: '',
+        date: sale.date, date_str: sale.date_str,
+        sales_value: sale.sales_value,
+        qty: sale.qty,
+        is_return: sale.is_return, bill_no: sale.bill_no,
+        fy: sale.fy, fy_month_idx: sale.fy_month_idx,
+      });
+      continue;
+    }
     const share = entry.msrs.length;
     for (const msr of entry.msrs) {
       out.push({
@@ -2091,7 +2152,7 @@ function productStats(rows) {
   const out = [];
   const { latestKey, priorKey } = latestPriorRows(rows);
   for (const [name, list] of all) {
-    const net = sum(list.filter(r => !r.is_return), r => r.sales_value);
+    const net = netAfterReturns(list);   /* P - R, net of credit notes */
     const ret = sum(list.filter(r => r.is_return), r => Math.abs(r.sales_value));
     const qty = sum(list, r => r.qty);
     const custs = uniq(list.map(r => r.customer)).length;
@@ -2113,7 +2174,7 @@ function msrStats(rows) {
   const out = [];
   const { latestKey, priorKey } = latestPriorRows(rows);
   for (const [msr, list] of all) {
-    const net = sum(list.filter(r => !r.is_return), r => r.sales_value);
+    const net = netAfterReturns(list);   /* P - R, net of credit notes */
     const ret = sum(list.filter(r => r.is_return), r => Math.abs(r.sales_value));
     const custs = uniq(list.map(r => r.customer)).length;
     const prods = uniq(list.map(r => r.product_name)).length;
@@ -2205,7 +2266,7 @@ function abmStats(rows, hasDoc) {
   const out = [];
   for (const [abm, list] of grouped) {
     const msrs = uniq(list.map(r => r.msr));
-    const net = sum(list.filter(r => !r.is_return), r => r.sales_value);
+    const net = netAfterReturns(list);   /* P - R, net of credit notes */
     const ret = sum(list.filter(r => r.is_return), r => Math.abs(r.sales_value));
     const custs = uniq(list.map(r => r.customer)).length;
     const prods = uniq(list.map(r => r.product_name)).length;
@@ -2292,7 +2353,7 @@ function hqExCoverage() {
 /* ════════════════════════════════════════════════════
    NAVIGATION
 ════════════════════════════════════════════════════ */
-const SLIDE_TITLES = ['Cover','Revenue Momentum','Growth Story','Product Portfolio','Customer Base','Territory Map','ABM Team','MSR Performance','Doctor Universe','Risks & Actions','YoY Command Center','Sales Register'];
+const SLIDE_TITLES = ['Cover','Revenue Momentum','Growth Story','Product Portfolio','Customer Base','Territory Map','ABM Team','MSR Performance','Doctor Universe','Risks & Actions','YoY Analysis Center','Sales Register','Field Force Register'];
 
 function buildNavDots() {
   const wrap = el('nav-dots');
@@ -2394,6 +2455,7 @@ function renderSlide(n) {
       case 10: renderRisksActions(); break;
       case 11: renderYoYCommandCenter(); break;
       case 12: renderSalesRegister(); break;
+      case 13: renderFieldRegister(); break;
     }
     RENDERED_SLIDES.add(n);
   } catch (e) {
@@ -2504,7 +2566,7 @@ function renderCover() {
       delta: mom, spark: buckets.map(b => b.net) },
     { tone: (mom == null ? 'gold' : (mom >= 0 ? 'green' : 'red')),
       label:'Growth (MoM)',
-      value: mom == null ? '—' : (mom >= 0 ? '+' : '') + mom.toFixed(1) + '%',
+      value: mom == null ? '—' : (mom >= 0 ? '+' : '') + mom.toFixed(2) + '%',
       sub: prev ? ('Prior month '+prev.label+': '+fmtMoney(prev.net)) : 'Need two months for MoM',
       chip: mom != null ? (mom >= 0 ? 'up' : 'down') : 'neutral',
       spark: buckets.map(b => b.net) },
@@ -2557,7 +2619,7 @@ function renderCover() {
   });
 
   // bottom strip — 5 supplementary KPIs
-  const avgBill = s.bills ? s.gross / s.bills : 0;
+  const avgBill = s.bills ? s.net / s.bills : 0;   /* net revenue per bill */
   const strip = [
     { c:'c0', l:'Bills Raised', v:fmtNum(s.bills), s:'unique invoices' },
     { c:'c1', l:'Avg Bill Value', v:fmtMoney(avgBill), s:'per invoice' },
@@ -2624,7 +2686,7 @@ function renderMomentum() {
   const last = buckets[buckets.length-1], prev = buckets[buckets.length-2];
   const mom = (last && prev) ? safeGrowth(last.net, prev.net) : null;
   const bestMonth = sortBy(buckets, b => b.net)[0];
-  const worstMonth = sortBy(buckets.filter(b => b.net > 0), b => b.net, false)[0];
+  const worstMonth = sortBy(buckets, b => b.net, false)[0];  /* lowest net month, including negatives */
   const avg = buckets.length ? buckets.reduce((s,b) => s + b.net, 0) / buckets.length : 0;
   const totalRet = sum(FS.filter(r => r.is_return), r => Math.abs(r.sales_value));
   const totalNet = sum(FS.filter(r => !r.is_return), r => r.sales_value);
@@ -2663,8 +2725,8 @@ function renderMomentum() {
   });
 
   // overall return % pill
-  const overallRetPct = safePct(totalRet, totalNet + totalRet);
-  el('momentum-pill').textContent = 'Return ' + overallRetPct.toFixed(1) + '%';
+  const overallRetPct = safePct(totalRet, totalNet);   /* R / P (totalNet here = gross P) */
+  el('momentum-pill').textContent = 'Return ' + overallRetPct.toFixed(2) + '%';
 }
 
 function renderMomentumYoYBand() {
@@ -2715,7 +2777,7 @@ function renderMomentumChart() {
     prev.push(p);
     const b = retMap.get(i);
     ret.push(-b.ret);                                        /* draw below axis */
-    retPct.push(b.net + b.ret ? safePct(b.ret, b.net + b.ret) : 0);
+    retPct.push(b.net ? safePct(b.ret, b.net) : 0);   /* R / P; b.net here = gross P accumulator */
     yoy.push(safeGrowth(c, p));
   }
   if (!labels.length) {
@@ -2766,10 +2828,25 @@ function renderGrowthStory() {
   const mom = (last && prev) ? safeGrowth(last.net, prev.net) : null;
   const delta = (last && prev) ? last.net - prev.net : 0;
 
+  /* YoY same-month: find prev-year net for the same fiscal month as the latest bucket */
+  const lastFyIdx = last
+    ? (FS.find(r => r.date && monthKey(r.date) === last.key) || {}).fy_month_idx
+    : null;
+  const prevSameMonthRows = (lastFyIdx && FS_PREV_FILTERED && FS_PREV_FILTERED.length)
+    ? FS_PREV_FILTERED.filter(r => r.fy_month_idx === lastFyIdx)
+    : [];
+  const prevSameNet = prevSameMonthRows.length ? netAfterReturns(prevSameMonthRows) : null;
+  const yoyDelta   = (last && prevSameNet != null) ? last.net - prevSameNet : null;
+  const yoyGrowth  = (last && prevSameNet != null) ? safeGrowth(last.net, prevSameNet) : null;
+
   const strip = [
     { c:'c0', l:'Latest Month Net', v: last ? fmtMoney(last.net) : '—', s: last ? last.label : '' },
-    { c: delta >= 0 ? 'c1' : 'c3', l:'MoM Δ Value', v: fmtMoney(delta),
-      s: mom != null ? '<span class="delta '+deltaClass(mom)+'">'+fmtDelta(mom)+'</span> vs prior' : '' },
+    { c: yoyDelta != null ? (yoyDelta >= 0 ? 'c1' : 'c3') : 'c2',
+      l: 'Prev Year Same Month',
+      v: prevSameNet != null ? fmtMoney(prevSameNet) : '—',
+      s: prevSameNet != null && yoyGrowth != null
+          ? fyMonthLabel(lastFyIdx) + ' ' + FY_PREV + ' · <span class="delta ' + deltaClass(yoyGrowth) + '">' + fmtDelta(yoyGrowth) + '</span> YoY'
+          : 'Upload previous_sales for YoY' },
     { c:'c1', l:'Accelerating SKUs', v: fmtNum(accel), s:'positive MoM change' },
     { c:'c3', l:'Declining SKUs', v: fmtNum(decl), s: newProds + ' new · ' + lostProds + ' lost' },
   ];
@@ -2998,20 +3075,12 @@ function renderProductYoYInner(state) {
     volumeDelta += (v.curQty - v.prevQty) * v.prevPrice;
     priceDelta  += (v.curPrice - v.prevPrice) * v.curQty;
   }
-  /* Share of total portfolio */
-  const totalCur  = netAfterReturns(FS_CUR_COMP);
-  const totalPrev = netAfterReturns(FS_PREV_COMP);
-  const shareCur  = totalCur  ? (s.curNet / totalCur) * 100 : 0;
-  const sharePrev = totalPrev ? (s.prevNet / totalPrev) * 100 : 0;
-  const shareShift = shareCur - sharePrev;
-
   el('prod-yoy-strip').innerHTML = [
     yoyTile('Cur FY Net', fmtMoney(s.curNet), lensLabel + ' · ' + lf.monthLabel, s.delta >= 0 ? 'up' : 'down'),
     yoyTile('Prev FY Net', fmtMoney(s.prevNet), 'same comparable window', 'flat'),
     yoyTile('YoY Δ', (s.delta >= 0 ? '+' : '') + fmtMoney(s.delta), fmtDelta(s.growth), yoyDeltaTone(s.delta)),
     yoyTile('Volume Δ', (volumeDelta >= 0 ? '+' : '') + fmtMoney(volumeDelta), 'qty effect · cur qty vs prev qty', yoyDeltaTone(volumeDelta)),
     yoyTile('Price Δ', (priceDelta >= 0 ? '+' : '') + fmtMoney(priceDelta), 'avg price effect · vol-weighted', yoyDeltaTone(priceDelta)),
-    yoyTile('Share Shift', (shareShift >= 0 ? '+' : '') + shareShift.toFixed(1) + 'pp', 'of portfolio · ' + shareCur.toFixed(1) + '% vs ' + sharePrev.toFixed(1) + '%', yoyDeltaTone(shareShift)),
   ].join('');
 
   el('prod-yoy-pill').textContent = (s.delta >= 0 ? 'Ahead ' : 'Behind ') + fmtMoney(Math.abs(s.delta));
@@ -3080,8 +3149,8 @@ function renderProductYoYInner(state) {
 ════════════════════════════════════════════════════ */
 function renderCustomerBase() {
   const s = summarize(FS);
-  const byC = groupRows(FS.filter(r => !r.is_return), r => r.customer);
-  const cArr = sortBy([...byC].map(([k,l]) => ({ k, v: sum(l, r=>r.sales_value), bills: uniq(l.map(r=>r.bill_no)).length })), x => x.v);
+  const byC = groupRows(FS, r => r.customer);
+  const cArr = sortBy([...byC].map(([k,l]) => ({ k, v: netAfterReturns(l), bills: uniq(l.map(r=>r.bill_no)).length })), x => x.v);
   const totalNet = cArr.reduce((a,b) => a+b.v, 0);
   const top10 = cArr.slice(0, 10);
   const top10share = safePct(top10.reduce((a,b)=>a+b.v, 0), totalNet);
@@ -3090,7 +3159,7 @@ function renderCustomerBase() {
   el('cust-period').textContent = cArr.length + ' active customers';
 
   const strip = [
-    { c:'c0', l:'Active Customers', v: fmtNum(cArr.length), s: s.bills + ' bills · ' + fmtMoney(s.bills ? s.gross/s.bills : 0) + ' avg' },
+    { c:'c0', l:'Active Customers', v: fmtNum(cArr.length), s: s.bills + ' bills · ' + fmtMoney(s.bills ? s.net/s.bills : 0) + ' avg' },
     { c: top1Concentration(top10share), l:'Top 10 Share', v: top10share.toFixed(0)+'%', s:'concentration signal' },
     { c: top1Concentration(top5share), l:'Top 5 Share', v: top5share.toFixed(0)+'%', s:'biggest dependency' },
     { c:'c1', l:'Repeat Customers', v: fmtNum(repeat), s: cArr.length ? safePct(repeat, cArr.length).toFixed(0)+'% of base' : '' },
@@ -3178,7 +3247,7 @@ function renderCustomerBase() {
     if (!combo.has(k)) combo.set(k, { customer:r.customer, product:r.product_name, net:0, ret:0, latest:0, prior:0 });
     const b = combo.get(k);
     if (r.is_return) b.ret += Math.abs(r.sales_value);
-    else b.net += r.sales_value;
+    b.net += r.is_return ? -Math.abs(r.sales_value) : r.sales_value;   /* net of returns */
     if (r.date && latestKey && monthKey(r.date) === latestKey) b.latest += r.is_return ? -Math.abs(r.sales_value) : r.sales_value;
     if (r.date && priorKey && monthKey(r.date) === priorKey) b.prior += r.is_return ? -Math.abs(r.sales_value) : r.sales_value;
   }
@@ -3255,26 +3324,41 @@ function renderCustomerYoYBand() {
   ].join('');
 }
 
+/* Customer YoY comparison — groups by compound "Name|||Station" key for duplicate names */
+function compareByCustomerDisambig(curRows, prevRows) {
+  const keyFor = r => CUST_DISAMBIG.dupes.has(r.customer) ? r.customer + '|||' + r.station : r.customer;
+  const labelFor = k => { const p = k.split('|||'); return p.length > 1 ? p[0] + ' (' + p[1] + ')' : k; };
+  const m = new Map();
+  const touch = k => {
+    if (!k) return null;
+    if (!m.has(k)) m.set(k, { key:k, label:labelFor(k), cur:0, prev:0 });
+    return m.get(k);
+  };
+  curRows.forEach(r => { const b = touch(keyFor(r)); if (b) b.cur += r.is_return ? -Math.abs(r.sales_value) : r.sales_value; });
+  prevRows.forEach(r => { const b = touch(keyFor(r)); if (b) b.prev += r.is_return ? -Math.abs(r.sales_value) : r.sales_value; });
+  return [...m.values()].map(b => ({ ...b, delta: b.cur - b.prev, growth: safeGrowth(b.cur, b.prev) }));
+}
+
 function renderCustomerYoYChart() {
   const lf = applyLocalFilter('custYoY', FS_CUR_COMP, FS_PREV_COMP);
   if (!lf.prev.length && !lf.cur.length) {
     el('ch-cust-yoy').innerHTML = '<div class="empty">No comparable customer data.</div>';
     return;
   }
-  const cmp = compareByDim(lf.cur, lf.prev, 'customer').filter(c => c.cur || c.prev);
+  const cmp = compareByCustomerDisambig(lf.cur, lf.prev).filter(c => c.cur || c.prev);
   const top = sortBy(cmp, c => Math.max(Math.abs(c.cur), Math.abs(c.prev), Math.abs(c.delta))).slice(0, 12).reverse();
   if (!top.length) {
     el('ch-cust-yoy').innerHTML = '<div class="empty">No customers to compare.</div>';
     return;
   }
-  const lm = Math.max(120, Math.min(220, top.reduce((m,c) => Math.max(m, c.key.length), 0) * 5.4));
+  const lm = Math.max(120, Math.min(260, top.reduce((m,c) => Math.max(m, (c.label || c.key).length), 0) * 5.4));
   Plotly.newPlot('ch-cust-yoy', [
     { type:'bar', orientation:'h', name: FY_PREV,
-      x: top.map(c => c.prev), y: top.map(c => shortName(c.key, 28)), customdata: top.map(c => c.key),
+      x: top.map(c => c.prev), y: top.map(c => shortName(c.label || c.key, 32)), customdata: top.map(c => c.label || c.key),
       marker:{ color:'rgba(168,182,214,.40)', line:{ color:'rgba(168,182,214,.65)', width:1 } },
       hovertemplate:'<b>%{customdata}</b><br>' + FY_PREV + ': ₹%{x:,.0f}<extra></extra>' },
     { type:'bar', orientation:'h', name: FY_CUR,
-      x: top.map(c => c.cur), y: top.map(c => shortName(c.key, 28)), customdata: top.map(c => c.key),
+      x: top.map(c => c.cur), y: top.map(c => shortName(c.label || c.key, 32)), customdata: top.map(c => c.label || c.key),
       marker:{ color: COLORS.acc },
       hovertemplate:'<b>%{customdata}</b><br>' + FY_CUR + ': ₹%{x:,.0f}<extra></extra>' },
   ], {
@@ -3294,7 +3378,7 @@ function renderTerritoryMap() {
   const growMap = new Map(growthByDim(FS, 'station').map(g => [g.key, g]));
   const stats = [];
   for (const [k, l] of byT) {
-    const net = sum(l.filter(r => !r.is_return), r => r.sales_value);
+    const net = netAfterReturns(l);   /* P - R per territory */
     if (net <= 0) continue;
     const ret = sum(l.filter(r => r.is_return), r => Math.abs(r.sales_value));
     const g = growMap.get(k);
@@ -3454,13 +3538,22 @@ function renderABMTeam() {
   const bottom = sortBy(stats.filter(s => s.net > 0), s => s.score, false)[0];
   const growing = stats.filter(s => s.growth != null && s.growth > 0).length;
 
+  const { latestKey: abmStripLatest, priorKey: abmStripPrior } = latestPriorRows(FSMSR);
+  const latestMonthRev = abmStripLatest ? sum(FSMSR.filter(r => r.date && monthKey(r.date) === abmStripLatest), r => r.is_return ? -Math.abs(r.sales_value) : r.sales_value) : 0;
+  const priorMonthRev  = abmStripPrior  ? sum(FSMSR.filter(r => r.date && monthKey(r.date) === abmStripPrior),  r => r.is_return ? -Math.abs(r.sales_value) : r.sales_value) : 0;
+  const momGrowth = abmStripPrior ? safeGrowth(latestMonthRev, priorMonthRev) : null;
   const strip = [
-    { c:'c0', l:'Active ABMs', v: fmtNum(stats.filter(s => s.net > 0).length), s: stats.length + ' total in MSR file' },
-    { c:'c5', l:'Top Performer', v: top ? shortName(top.abm, 18) : '—',
-      s: top ? 'Score ' + top.score.toFixed(0) + ' · ' + fmtMoney(top.net) : '' },
-    { c:'c1', l:'Avg Team Revenue', v: fmtMoney(stats.length ? totalNet/stats.length : 0), s:'per ABM' },
-    { c: growing > stats.length/2 ? 'c1' : 'c3', l:'Growing Teams', v: growing + ' / ' + stats.filter(s => s.growth != null).length,
-      s:'positive MoM' },
+    { c:'c0', l: abmStripLatest ? monthLabel(abmStripLatest) + ' Revenue' : 'Latest Month',
+      v: fmtMoney(latestMonthRev),
+      s: momGrowth != null ? '<span class="delta ' + deltaClass(momGrowth) + '">' + fmtDelta(momGrowth) + '</span> vs ' + (abmStripPrior ? monthLabel(abmStripPrior) : 'prior') : 'No prior month' },
+    { c:'c5', l:'FY Revenue (to date)', v: fmtMoney(totalNet), s: FY_CUR || 'current FY' },
+    { c:'c1', l:'Avg per ABM', v: fmtMoney(stats.length ? totalNet/stats.length : 0), s: stats.filter(s => s.net > 0).length + ' active ABMs' },
+    { c:'c5', l:'Top ABM', v: top ? shortName(top.abm, 18) : '—',
+      s: top ? fmtMoney(top.net) + ' · ' + (top.growth != null ? fmtDelta(top.growth) + ' MoM' : 'FY total') : '' },
+    { c: growing > stats.length/2 ? 'c1' : 'c3', l:'Growing Teams',
+      v: growing + ' / ' + stats.filter(s => s.growth != null).length, s:'positive MoM' },
+    { c:'c2', l:'Prior Month', v: abmStripPrior ? fmtMoney(priorMonthRev) : '—',
+      s: abmStripPrior ? monthLabel(abmStripPrior) : 'No prior month data' },
   ];
   el('abm-strip').innerHTML = strip.map(c => `
     <div class="kpi ${c.c}">
@@ -3484,35 +3577,40 @@ function renderABMTeam() {
     onChange: renderABMYoYChart,
   });
 
-  // ABM efficiency stacked bars
-  const sorted = sortBy(stats, s => s.score);
-  const y = sorted.map(s => shortName(s.abm, 22));
-  const traces = [
-    { name:'Growth (35)',    values: sorted.map(s => s.score_parts.growth),    color: COLORS.green2 },
-    { name:'Targeting (30)', values: sorted.map(s => s.score_parts.targeting), color: COLORS.acc },
-    { name:'Coverage (25)',  values: sorted.map(s => s.score_parts.coverage),  color: COLORS.gold2 },
-    { name:'Strategic (10)', values: sorted.map(s => s.score_parts.sku),       color: COLORS.violet2 },
-  ];
-  const data = traces.map(t => ({
-    type:'bar', orientation:'h', name: t.name,
-    x: t.values, y,
-    marker:{ color: t.color },
-    text: t.values.map(v => v >= 4 ? v.toFixed(0) : ''),
-    textposition:'inside', textfont:{size:11, color:'#fff'},
-    hovertemplate:'<b>%{y}</b><br>'+t.name+': <b>%{x:.1f}</b><extra></extra>'
-  }));
-  Plotly.newPlot('ch-abm-bars', data, {
-    ...PL, barmode:'stack', showlegend:true,
-    legend:{orientation:'h', y:1.10, x:0, font:{size:11, color:COLORS.tx2}},
-    xaxis:{...AX, range:[0,100], title:{text:'Efficiency Score (out of 100)', font:{size:11, color:COLORS.tx3}}},
-    yaxis:{...AX, automargin:true, tickfont:{size:11, color:COLORS.tx2}},
-    margin:{...PL.margin, l:160, t:46, r:60},
-    annotations: sorted.map((s,i) => ({
-      x: s.score + 2, y: y[i], xref:'x', yref:'y',
-      text: '<b>'+s.score.toFixed(0)+'</b>', showarrow:false,
-      font:{size:12, color:COLORS.gold, family:'Plus Jakarta Sans'}, xanchor:'left'
-    }))
-  }, PC);
+  // ABM Revenue — latest month vs prior month grouped bar
+  const { latestKey: abmLatestKey, priorKey: abmPriorKey } = latestPriorRows(FSMSR);
+  if (el('abm-rev-period')) {
+    el('abm-rev-period').textContent = abmLatestKey
+      ? (monthLabel(abmLatestKey) + ' vs ' + (abmPriorKey ? monthLabel(abmPriorKey) : 'prior month') + ' · revenue per ABM')
+      : 'Grouped by ABM';
+  }
+  const abmRevSorted = sortBy(stats, s => s.latest);
+  const abmRevDisp = [...abmRevSorted].reverse();
+  if (!abmRevDisp.length) {
+    el('ch-abm-bars').innerHTML = '<div class="empty">No ABM revenue data.</div>';
+  } else {
+    const lm2 = Math.max(100, Math.min(200, abmRevDisp.reduce((m,s) => Math.max(m, s.abm.length), 0) * 5.2));
+    Plotly.newPlot('ch-abm-bars', [
+      { type:'bar', orientation:'h', name: abmPriorKey ? monthLabel(abmPriorKey) : 'Prior Month',
+        x: abmRevDisp.map(s => s.prior), y: abmRevDisp.map(s => shortName(s.abm, 24)),
+        marker:{ color:'rgba(168,182,214,.40)', line:{ color:'rgba(168,182,214,.65)', width:1 } },
+        text: abmRevDisp.map(s => s.prior > 0 ? fmtMoney(s.prior) : ''),
+        textposition:'outside', cliponaxis:false, textfont:{ size:10, color:COLORS.tx2 },
+        hovertemplate:'<b>%{y}</b><br>' + (abmPriorKey ? monthLabel(abmPriorKey) : 'Prior') + ': ₹%{x:,.0f}<extra></extra>' },
+      { type:'bar', orientation:'h', name: abmLatestKey ? monthLabel(abmLatestKey) : 'Latest Month',
+        x: abmRevDisp.map(s => s.latest), y: abmRevDisp.map(s => shortName(s.abm, 24)),
+        marker:{ color: COLORS.acc },
+        text: abmRevDisp.map(s => s.latest > 0 ? fmtMoney(s.latest) : ''),
+        textposition:'outside', cliponaxis:false, textfont:{ size:10, color:COLORS.tx2 },
+        hovertemplate:'<b>%{y}</b><br>' + (abmLatestKey ? monthLabel(abmLatestKey) : 'Latest') + ': ₹%{x:,.0f}<extra></extra>' },
+    ], {
+      ...PL, barmode:'group', showlegend:true,
+      legend:{ orientation:'h', y:1.10, x:0, font:{ size:11, color:COLORS.tx2 } },
+      xaxis:{ ...AX, tickformat:'~s' },
+      yaxis:{ ...AX, automargin:true, ticklen:0 },
+      margin:{ ...PL.margin, l:lm2, t:46, r:90 }
+    }, PC);
+  }
 
   // ABM MoM growth
   const withGrowth = stats.filter(s => s.growth != null);
@@ -3558,7 +3656,7 @@ function renderABMTeam() {
         <td class="num"><span class="badge ${covBadge}">${s.coverage.toFixed(0)}%</span></td>
         <td class="num"><span class="badge ${targBadge}">${s.targeting.toFixed(0)}%</span></td>
         <td class="num">${fmtNum(s.strategic)}/${s.strategic_cap}</td>
-        <td class="num ${s.retPct>4?'warn':''}">${s.retPct.toFixed(1)}%</td>
+        <td class="num ${s.retPct>4?'warn':''}">${s.retPct.toFixed(2)}%</td>
       </tr>`;
     }
     return `<tr>
@@ -3569,7 +3667,7 @@ function renderABMTeam() {
       <td class="num ${s.growth>0?'good':(s.growth<0?'bad':'')}">${s.growth==null?'—':fmtDelta(s.growth)}</td>
       <td class="num">${fmtNum(s.custs)}</td>
       <td class="num">${fmtNum(s.prods)}</td>
-      <td class="num ${s.retPct>4?'warn':''}">${s.retPct.toFixed(1)}%</td>
+      <td class="num ${s.retPct>4?'warn':''}">${s.retPct.toFixed(2)}%</td>
     </tr>`;
   }).join('');
 }
@@ -3597,14 +3695,23 @@ function renderMSRPerformance() {
   const { latestKey, priorKey } = latestPriorRows(FSMSR);
   el('msr-period').textContent = latestKey ? (monthLabel(latestKey) + (priorKey ? ' vs ' + monthLabel(priorKey) : '')) : '—';
 
+  const msrLatestRev = latestKey ? sum(FSMSR.filter(r => r.date && monthKey(r.date) === latestKey), r => r.is_return ? -Math.abs(r.sales_value) : r.sales_value) : 0;
+  const msrPriorRev  = priorKey  ? sum(FSMSR.filter(r => r.date && monthKey(r.date) === priorKey),  r => r.is_return ? -Math.abs(r.sales_value) : r.sales_value) : 0;
+  const msrMom = priorKey ? safeGrowth(msrLatestRev, msrPriorRev) : null;
   const strip = [
-    { c:'c0', l:'Active MSRs', v: fmtNum(activeMSRs), s: stats.length + ' total assigned' },
-    { c:'c5', l:'Top MSR', v: top ? shortName(top.msr, 18) : '—', s: top ? fmtMoney(top.net) : '' },
-    { c:'c1', l:'Avg per MSR', v: fmtMoney(avgMSR), s:'per active rep' },
+    { c:'c0', l: latestKey ? monthLabel(latestKey) + ' Revenue' : 'Latest Month',
+      v: fmtMoney(msrLatestRev),
+      s: msrMom != null ? '<span class="delta ' + deltaClass(msrMom) + '">' + fmtDelta(msrMom) + '</span> vs ' + (priorKey ? monthLabel(priorKey) : 'prior') : 'No prior month' },
+    { c:'c5', l:'FY Revenue (to date)', v: fmtMoney(totalNet), s: FY_CUR || 'current FY' },
+    { c:'c1', l:'Avg per MSR', v: fmtMoney(avgMSR), s: activeMSRs + ' active reps' },
+    { c:'c5', l:'Top MSR', v: top ? shortName(top.msr, 18) : '—',
+      s: top ? fmtMoney(top.net) + ' FY total' : '' },
     { c: hasDoc ? (targPct >= 60 ? 'c1' : 'c3') : 'c2',
       l: hasDoc ? 'Targeting Fit' : 'Customers Covered',
       v: hasDoc ? fmtPct(targPct, 0) : fmtNum(uniq(FSMSR.map(r=>r.customer)).length),
       s: hasDoc ? 'revenue from mapped SKUs' : 'across all reps' },
+    { c:'c2', l:'Prior Month', v: priorKey ? fmtMoney(msrPriorRev) : '—',
+      s: priorKey ? monthLabel(priorKey) : 'No prior month data' },
   ];
   el('msr-strip').innerHTML = strip.map(c => `
     <div class="kpi ${c.c}">
@@ -3999,7 +4106,7 @@ function renderDoctorUniverse() {
           x: labels, y: adherenceSeries,
           mode:'lines+markers+text', line:{color:COLORS.gold, width:3},
           marker:{size:14, color:COLORS.gold, line:{color:'#fff', width:2}},
-          text: adherenceSeries.map(v => v.toFixed(1) + '%'),
+          text: adherenceSeries.map(v => v.toFixed(2) + '%'),
           textposition:'top center', textfont:{size:12, color:COLORS.gold, family:'Plus Jakarta Sans', weight:700},
           hovertemplate:'<b>%{x}</b><br>Adherence: <b>%{y:.1f}%</b><extra></extra>' }
       ], {
@@ -4022,8 +4129,8 @@ function renderDoctorUniverse() {
 function renderRisksActions() {
   const s = summarize(FS);
   const totalRet = s.ret;
-  const byC = groupRows(FS.filter(r => !r.is_return), r => r.customer);
-  const cArr = sortBy([...byC].map(([k,l]) => ({ k, v: sum(l, r=>r.sales_value) })), x => x.v);
+  const byC = groupRows(FS, r => r.customer);
+  const cArr = sortBy([...byC].map(([k,l]) => ({ k, v: netAfterReturns(l) })), x => x.v);
   const top5share = safePct(cArr.slice(0,5).reduce((a,b)=>a+b.v, 0), s.net);
   const ps = productStats(FS);
   const highRetSku = ps.filter(p => p.retPct > 5).length;
@@ -4058,7 +4165,7 @@ function renderRisksActions() {
     Plotly.newPlot('ch-returns', [{
       x, y: yPct, type:'bar',
       marker:{color: colors, opacity:.88},
-      text: yPct.map(v => v.toFixed(1) + '%'), textposition:'outside', textfont:{size:11, color:COLORS.tx2},
+      text: yPct.map(v => v.toFixed(2) + '%'), textposition:'outside', textfont:{size:11, color:COLORS.tx2},
       hovertemplate:'%{x}<br>Return: <b>%{y:.1f}%</b><extra></extra>'
     }], {
       ...PL, margin:{t:18, r:18, b:50, l:50},
@@ -4111,8 +4218,8 @@ function buildActions() {
   const last = buckets[buckets.length - 1], prev = buckets[buckets.length - 2];
 
   // 1. PROTECT (concentration risk on top customer)
-  const byC = groupRows(FS.filter(r=>!r.is_return), r => r.customer);
-  const cArr = sortBy([...byC].map(([k,l]) => ({ k, v: sum(l, r=>r.sales_value)})), x => x.v);
+  const byC = groupRows(FS, r => r.customer);
+  const cArr = sortBy([...byC].map(([k,l]) => ({ k, v: netAfterReturns(l)})), x => x.v);
   if (cArr.length) {
     const top = cArr[0];
     const share = safePct(top.v, s.net);
@@ -4121,7 +4228,7 @@ function buildActions() {
       lbl: 'Protect',
       impact: top.v,
       title: 'Protect ' + shortName(top.k, 28),
-      meta: 'Contributes <strong>' + share.toFixed(1) + '%</strong> of net revenue · ' + fmtMoney(top.v)
+      meta: 'Contributes <strong>' + share.toFixed(2) + '%</strong> of net revenue · ' + fmtMoney(top.v)
     });
   }
 
@@ -4146,7 +4253,7 @@ function buildActions() {
         tone:'red', lbl:'Fix',
         impact: retArr[0].v,
         title:'Plug return leakage in ' + shortName(retArr[0].k, 26),
-        meta:'Return rate <strong>' + s.retPct.toFixed(1) + '%</strong> · total ' + fmtMoney(s.ret)
+        meta:'Return rate <strong>' + s.retPct.toFixed(2) + '%</strong> · total ' + fmtMoney(s.ret)
       });
     }
   }
@@ -4272,7 +4379,7 @@ function renderDoctorYoYBand() {
     yoyTile('MSR Pool YoY Δ', (delta >= 0 ? '+' : '') + fmtMoney(delta), fmtDelta(growth), yoyDeltaTone(delta)),
     yoyTile('Active MSRs', fmtNum(curActive) + ' / ' + fmtNum(prevActive), 'cur vs prev FY comparable', curActive >= prevActive ? 'up' : 'down'),
     yoyTile('On-Strategy %', fmtPct(onCurPct, 0),
-            'shift ' + (onShift >= 0 ? '+' : '') + onShift.toFixed(1) + 'pp',
+            'shift ' + (onShift >= 0 ? '+' : '') + onShift.toFixed(2) + 'pp',
             yoyDeltaTone(onShift)),
     yoyTile('MSR Overlap', fmtNum([...curMSRs].filter(m => prevMSRs.has(m)).length) + ' / ' + prevMSRs.size,
             'MSRs active both years', 'flat'),
@@ -4314,7 +4421,7 @@ function renderYoYCommandCenter() {
   el('yoy-period').textContent = periodChipText();
   if (!DPREV.length) {
     el('yoy-strip').innerHTML = yoyTile('Previous FY', 'Not loaded', 'Upload previous_sales to activate YoY analytics.', 'flat');
-    ['ch-yoy-bridge','ch-yoy-quad','ch-yoy-months','ch-yoy-attr','ch-yoy-pos','ch-yoy-neg','ch-yoy-matrix','ch-yoy-products'].forEach(id => {
+    ['ch-yoy-quad','ch-yoy-pos','ch-yoy-neg','ch-yoy-matrix','ch-yoy-products'].forEach(id => {
       const n = el(id); if (n) n.innerHTML = '<div class="empty">Previous-year sales file not loaded.</div>';
     });
     el('yoy-action-h').innerHTML = '';
@@ -4369,42 +4476,8 @@ function renderYoYAnalysisCenterContent(state) {
   ].join('');
 
   /* Hero: Revenue Bridge + Momentum Quadrant */
-  renderRevenueBridge('ch-yoy-bridge', curRows, prevRows);
+  /* Revenue Bridge and Month Mirror removed from Slide 11 (visible on Slides 3 and 2) */
   renderProductMomentumQuadrant('ch-yoy-quad', curRows, prevRows);
-
-  /* Month Mirror — fiscal order */
-  const months = fiscalMonthCompare(curRows, prevRows);
-  const monthsShown = months.filter(m => m.cur || m.prev);
-  const best = sortBy(months, m => m.delta)[0];
-  el('yoy-month-pill').textContent = best ? ('Best lift ' + best.month + ' ' + fmtMoney(best.delta)) : '—';
-  if (!monthsShown.length) {
-    el('ch-yoy-months').innerHTML = '<div class="empty">No dated rows for the active selection.</div>';
-  } else {
-    Plotly.newPlot('ch-yoy-months', [
-      { x: monthsShown.map(m => m.month), y: monthsShown.map(m => m.prev), name: FY_PREV, type:'bar',
-        marker:{ color:'rgba(168,182,214,.34)', line:{ color:'rgba(168,182,214,.65)', width:1 } },
-        hovertemplate:'%{x}<br>' + FY_PREV + ': <b>₹%{y:,.0f}</b><extra></extra>' },
-      { x: monthsShown.map(m => m.month), y: monthsShown.map(m => m.cur), name: FY_CUR, type:'bar',
-        marker:{ color: COLORS.acc },
-        hovertemplate:'%{x}<br>' + FY_CUR + ': <b>₹%{y:,.0f}</b><extra></extra>' },
-      { x: monthsShown.map(m => m.month), y: monthsShown.map(m => m.growth), name:'YoY %', type:'scatter', mode:'lines+markers+text', yaxis:'y2',
-        line:{ color: COLORS.gold, width:3, shape:'spline', smoothing:.55 },
-        marker:{ size:8, color: COLORS.gold, line:{ color:'#fff', width:1.2 } },
-        text: monthsShown.map(m => isFinite(m.growth) ? (m.growth >= 0 ? '+' : '') + m.growth.toFixed(0) + '%' : ''),
-        textposition:'top center', textfont:{ size:10, color: COLORS.gold },
-        hovertemplate:'%{x}<br>YoY: <b>%{y:.1f}%</b><extra></extra>' }
-    ], {
-      ...PL, barmode:'group', showlegend:true,
-      legend:{ orientation:'h', y:1.12, x:0, font:{ size:11, color: COLORS.tx2 } },
-      xaxis:{ ...AX },
-      yaxis:{ ...AX, tickformat:'~s', title:{ text:'Net after returns', font:{ size:11, color: COLORS.tx3 } } },
-      yaxis2:{ ...AX, overlaying:'y', side:'right', ticksuffix:'%', title:{ text:'YoY %', font:{ size:11, color: COLORS.tx3 } } },
-      margin:{ ...PL.margin, t:42, r:62 }
-    }, PC);
-  }
-
-  /* Growth Attribution donut */
-  renderGrowthAttribution('ch-yoy-attr', curRows, prevRows);
 
   /* Top 5 Pos / Top 5 Neg contributors */
   const pos = sortBy(prod.filter(p => p.delta > 0), p => p.delta).slice(0, 5).reverse();
@@ -4550,7 +4623,7 @@ function buildYoYSignalsV2(summary, prod, cust, terr, launched, dropped, custome
     badge: Math.abs(concShift) < 3 ? 'good' : (concShift > 0 ? 'warn' : 'good'),
     label:'Concentration',
     text:'Top-5 customer share moved from ' + concPrev.toFixed(0) + '% to <strong>' + concCur.toFixed(0) + '%</strong> of net.',
-    impact:(concShift >= 0 ? '+' : '') + concShift.toFixed(1) + 'pp'
+    impact:(concShift >= 0 ? '+' : '') + concShift.toFixed(2) + 'pp'
   });
   out.push({
     badge: customerRetention >= 70 ? 'good' : (customerRetention >= 45 ? 'warn' : 'bad'),
@@ -4822,10 +4895,146 @@ function exportRegisterCSV() {
 function exportSalesRegister() { exportRegisterAll(); }
 
 /* ════════════════════════════════════════════════════
+   SLIDE 13 — FIELD FORCE REGISTER
+   Joins FSMSR rows (ABM + MSR + customer + product) into
+   a searchable, sortable, paginated data grid with export.
+════════════════════════════════════════════════════ */
+let FF_STATE = { page:1, pageSize:50, sortCol:'date', sortDir:'desc', search:'' };
+
+function getFFRowsRaw() {
+  if (!DMSR.length) return [];
+  const scope = (el('ff-scope') && el('ff-scope').value) || 'current';
+  let src = [];
+  if (scope === 'current')  src = FSMSR;
+  else if (scope === 'previous') src = FPREVMSR;
+  else src = [...FSMSR, ...FPREVMSR];
+  return src.map(r => ({
+    date:     r.date_str || '',
+    fy:       r.fy || '',
+    abm:      (r.abm || '').trim() || '—',
+    msr:      r.msr || '—',
+    customer: r.customer || '—',
+    territory:r.station || '—',
+    product:  r.product_name || '—',
+    bill_no:  r.bill_no || '—',
+    qty:      Math.round(r.qty || 0),
+    net_value: r.is_return ? -Math.abs(r.sales_value) : r.sales_value,
+    is_return: r.is_return ? 'Y' : '',
+  }));
+}
+
+function applyFFFilter(rows) {
+  const q = (el('ff-search') && el('ff-search').value || '').trim().toLowerCase();
+  let filtered = q
+    ? rows.filter(r =>
+        (r.abm + r.msr + r.customer + r.territory + r.product + r.bill_no).toLowerCase().includes(q))
+    : rows;
+  /* sort */
+  const { sortCol, sortDir } = FF_STATE;
+  filtered = filtered.slice().sort((a, b) => {
+    let av = a[sortCol], bv = b[sortCol];
+    if (typeof av === 'number') return sortDir === 'asc' ? av - bv : bv - av;
+    av = String(av || ''); bv = String(bv || '');
+    return sortDir === 'asc' ? av.localeCompare(bv) : bv.localeCompare(av);
+  });
+  return filtered;
+}
+
+function renderFieldRegister() {
+  if (!DMSR.length) {
+    el('ff-b').innerHTML = '<tr><td class="empty" colspan="11">No MSR mapping file loaded — Field Force Register requires the MSR file.</td></tr>';
+    return;
+  }
+  const rawRows = getFFRowsRaw();
+  const filtered = applyFFFilter(rawRows);
+  const pageSize = +(el('ff-page-size') && el('ff-page-size').value) || 50;
+  FF_STATE.pageSize = pageSize;
+  const totalPages = Math.max(1, Math.ceil(filtered.length / pageSize));
+  FF_STATE.page = Math.min(FF_STATE.page, totalPages);
+  const start = (FF_STATE.page - 1) * pageSize;
+  const page  = filtered.slice(start, start + pageSize);
+
+  if (el('ff-period')) el('ff-period').textContent = rawRows.length + ' rows · ' + filtered.length + ' filtered';
+  if (el('ff-note'))   el('ff-note').textContent = filtered.length + ' rows shown (filtered from ' + rawRows.length + ' total)';
+  if (el('ff-pageinfo')) el('ff-pageinfo').textContent = 'Page ' + FF_STATE.page + ' / ' + totalPages + ' · rows ' + (start+1) + '–' + Math.min(start+pageSize, filtered.length);
+
+  const cols = [
+    { key:'date',      label:'Date',      cls:'' },
+    { key:'fy',        label:'FY',        cls:'' },
+    { key:'abm',       label:'ABM',       cls:'wrap strong' },
+    { key:'msr',       label:'MSR',       cls:'wrap strong' },
+    { key:'customer',  label:'Customer',  cls:'wrap' },
+    { key:'territory', label:'Territory', cls:'' },
+    { key:'product',   label:'Product',   cls:'wrap' },
+    { key:'bill_no',   label:'Bill No',   cls:'' },
+    { key:'qty',       label:'Qty',       cls:'num' },
+    { key:'net_value', label:'Net ₹',     cls:'num money' },
+    { key:'is_return', label:'Return',    cls:'num' },
+  ];
+
+  const mkSort = key => {
+    const active = FF_STATE.sortCol === key;
+    const dir = active ? (FF_STATE.sortDir === 'asc' ? 'sorted-asc' : 'sorted-desc') : '';
+    return `<th class="${cols.find(c=>c.key===key)?.cls?.includes('num') ? 'num ' : ''}${dir}" onclick="ffSort('${key}')">${cols.find(c=>c.key===key)?.label || key}</th>`;
+  };
+  el('ff-h').innerHTML = '<tr>' + cols.map(c => mkSort(c.key)).join('') + '</tr>';
+
+  if (!page.length) {
+    el('ff-b').innerHTML = '<tr><td class="empty" colspan="' + cols.length + '">No rows match the current filter.</td></tr>';
+    return;
+  }
+  el('ff-b').innerHTML = page.map(r => `<tr>
+    <td>${esc(r.date)}</td>
+    <td>${esc(r.fy)}</td>
+    <td class="wrap strong">${esc(r.abm)}</td>
+    <td class="wrap strong">${esc(r.msr)}</td>
+    <td class="wrap">${esc(r.customer)}</td>
+    <td>${esc(r.territory)}</td>
+    <td class="wrap">${esc(r.product)}</td>
+    <td>${esc(r.bill_no)}</td>
+    <td class="num">${fmtNum(r.qty)}</td>
+    <td class="num money ${r.net_value < 0 ? 'bad' : ''}">${fmtMoney(r.net_value)}</td>
+    <td class="num ${r.is_return ? 'bad' : ''}">${esc(r.is_return)}</td>
+  </tr>`).join('');
+}
+
+function ffSort(col) {
+  if (FF_STATE.sortCol === col) FF_STATE.sortDir = FF_STATE.sortDir === 'asc' ? 'desc' : 'asc';
+  else { FF_STATE.sortCol = col; FF_STATE.sortDir = col === 'net_value' ? 'desc' : 'asc'; }
+  renderFieldRegister();
+}
+function onFFChange() { FF_STATE.page = 1; renderFieldRegister(); }
+function ffPage(dir) { FF_STATE.page += dir; renderFieldRegister(); }
+
+function exportFFAll() {
+  const rows = applyFFFilter(getFFRowsRaw());
+  if (!rows.length) { alert('No rows to export.'); return; }
+  const ws = XLSX.utils.json_to_sheet(rows.map(r => ({
+    Date: r.date, FY: r.fy, ABM: r.abm, MSR: r.msr,
+    Customer: r.customer, Territory: r.territory, Product: r.product,
+    Bill_No: r.bill_no, Qty: r.qty, Net_Value: r.net_value, Return: r.is_return
+  })));
+  const wb = XLSX.utils.book_new(); XLSX.utils.book_append_sheet(wb, ws, 'FieldForce');
+  XLSX.writeFile(wb, 'pharmaboard_field_register_' + new Date().toISOString().slice(0,10) + '.xlsx');
+}
+function exportFFCSV() {
+  const rows = applyFFFilter(getFFRowsRaw());
+  if (!rows.length) { alert('No rows to export.'); return; }
+  const keys = ['date','fy','abm','msr','customer','territory','product','bill_no','qty','net_value','is_return'];
+  const escCsv = v => { const s = v == null ? '' : String(v); return /[",\n]/.test(s) ? '"' + s.replace(/"/g,'""') + '"' : s; };
+  const csv = [keys.join(',')].concat(rows.map(r => keys.map(k => escCsv(r[k])).join(','))).join('\n');
+  const blob = new Blob([csv], { type:'text/csv;charset=utf-8' });
+  const a = document.createElement('a'); a.href = URL.createObjectURL(blob);
+  a.download = 'pharmaboard_field_register_' + new Date().toISOString().slice(0,10) + '.csv';
+  a.click(); setTimeout(() => URL.revokeObjectURL(a.href), 5000);
+}
+
+/* ════════════════════════════════════════════════════
    RESET
 ════════════════════════════════════════════════════ */
 function resetAll() {
   RAW = {}; COLS = {}; MAP = {}; D = []; DPREV = []; DMSR = []; DMSR_PREV = []; FS = []; FPREV = []; FSMSR = []; FPREVMSR = []; DOC = [];
+  FF_STATE = { page:1, pageSize:50, sortCol:'date', sortDir:'desc', search:'' };
   MSR_PRODUCTS = new Map(); DOC_BY_MSR = new Map(); DOC_BY_CITY = new Map();
   RENDERED_SLIDES = new Set();
   CURRENT_SLIDE = 1;
@@ -4850,7 +5059,18 @@ function buildFilters() {
   fillSelect('f-fmfrom', 'Auto',  fmOpts);
   fillSelect('f-fmto',   'Auto',  fmOpts);
   fillSelect('f-prod', 'All Products',   uniq(D.map(r => r.product_name)).sort());
-  fillSelect('f-cust', 'All Customers',  uniq(D.map(r => r.customer)).sort());
+  /* Build customer list — duplicate names get "(Station)" suffix so each is selectable */
+  const _custNames = uniq(D.map(r => r.customer)).sort();
+  const _custOpts = [];
+  _custNames.forEach(name => {
+    if (CUST_DISAMBIG.dupes.has(name)) {
+      const stns = [...(CUST_DISAMBIG.custStations.get(name) || new Set())].sort();
+      stns.forEach(stn => _custOpts.push({ value: name + '|||' + stn, label: name + ' (' + stn + ')' }));
+    } else {
+      _custOpts.push({ value: name, label: name });
+    }
+  });
+  fillSelect('f-cust', 'All Customers', _custOpts);
   fillSelect('f-rgn',  'All Territories',uniq(D.map(r => r.station)).sort());
   if (DMSR.length) {
     fillSelect('f-msr', 'All MSRs', uniq(DMSR.map(r => r.msr)).sort());
@@ -5004,6 +5224,27 @@ function applyF() {
   const fspec  = el('f-spec').value;
   const ftier  = el('f-tier').value;
 
+  /* ABM / MSR → customer restrictor.
+   * When an ABM or MSR filter is active we derive the exact set of customer names
+   * linked to that ABM / MSR from the MSR mapping, and apply it as an additional
+   * pass on D so that every slide (Revenue, Customer, Territory, etc.) automatically
+   * narrows to that manager's territory — no approximation needed because the
+   * customer→MSR→ABM relationship is exact in the MSR file. */
+  let abmCustRestrict = null;
+  if ((fabm || fmsr) && DMSR.length) {
+    /* Search both current and previous MSR rows so PY comparison also matches */
+    const allMsrRows = DMSR_PREV.length ? [...DMSR, ...DMSR_PREV] : DMSR;
+    abmCustRestrict = new Set(
+      allMsrRows
+        .filter(r => {
+          if (fabm && (r.abm || '').trim() !== fabm) return false;
+          if (fmsr && r.msr !== fmsr) return false;
+          return true;
+        })
+        .map(r => r.customer)
+    );
+  }
+
   /* Doctor-derived restrictor: if a speciality or tier is picked, narrow stations/MSRs to those matching the chosen doctors */
   let docCityRestrict = null, docMsrRestrict = null;
   if (DOC.length && (fspec || ftier)) {
@@ -5029,8 +5270,18 @@ function applyF() {
 
   function passDim(r) {
     if (fp && r.product_name !== fp) return false;
-    if (fc && r.customer !== fc) return false;
+    if (fc) {
+      const sep = fc.indexOf('|||');
+      if (sep !== -1) {
+        /* compound value: "CustName|||Station" — match both fields */
+        if (r.customer !== fc.slice(0, sep) || r.station !== fc.slice(sep + 3)) return false;
+      } else {
+        if (r.customer !== fc) return false;
+      }
+    }
     if (fr && r.station !== fr) return false;
+    /* ABM / MSR territory restrictor — derived from MSR mapping file */
+    if (abmCustRestrict && !abmCustRestrict.has(r.customer)) return false;
     return true;
   }
   function passCF(r) {
