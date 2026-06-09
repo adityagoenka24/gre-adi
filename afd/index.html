@@ -1115,6 +1115,18 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
       <div class="op-kpis" id="op-kpis"></div>
       <div class="op-mount" id="op-hero-mount"></div>
       <div class="op-grid2" id="op-prod-mount"></div>
+      <div class="op-toggcol" style="margin-bottom:16px">
+        <div class="op-togghead"><span class="op-togg-lbl">Product Returns — value by product</span>
+          <div class="op-switch" id="op-sw-prodret">
+            <button class="on" data-v="cy"  onclick="opTog('prodret','cy')">This FY</button>
+            <button data-v="yoy" onclick="opTog('prodret','yoy')">YoY vs PY</button>
+          </div>
+        </div>
+        <div class="op-toggbody" id="op-prodret-mount">
+          <div class="card"><div class="card-head"><div><div class="card-title">Returns by Product · This FY</div><div class="card-sub">Credit-note value per product · hover shows how many parties returned it</div></div></div><div id="ch-prodret" class="chart lg"></div></div>
+          <div class="card"><div class="card-head"><div><div class="card-title">Returns by Product · CY vs PY</div><div class="card-sub">Return value this FY vs previous FY (comparable window)</div></div></div><div id="ch-prodret-yoy" class="chart lg"></div></div>
+        </div>
+      </div>
       <div class="op-actions-wrap"><div class="op-act-title">▸ Actions for the room</div><div class="op-actions" id="op-act-0"></div></div>
     </section>
 
@@ -1142,6 +1154,18 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
             </div>
           </div>
           <div class="op-toggbody" id="op-region-mount"></div>
+        </div>
+      </div>
+      <div class="op-toggcol" style="margin-bottom:16px">
+        <div class="op-togghead"><span class="op-togg-lbl">Customer Returns — value by customer</span>
+          <div class="op-switch" id="op-sw-custret">
+            <button class="on" data-v="cy"  onclick="opTog('custret','cy')">This FY</button>
+            <button data-v="yoy" onclick="opTog('custret','yoy')">YoY vs PY</button>
+          </div>
+        </div>
+        <div class="op-toggbody" id="op-custret-mount">
+          <div class="card"><div class="card-head"><div><div class="card-title">Returns by Customer · This FY</div><div class="card-sub">Credit-note value per customer · hover shows how many products they returned</div></div></div><div id="ch-custret" class="chart lg"></div></div>
+          <div class="card"><div class="card-head"><div><div class="card-title">Returns by Customer · CY vs PY</div><div class="card-sub">Return value this FY vs previous FY (comparable window)</div></div></div><div id="ch-custret-yoy" class="chart lg"></div></div>
         </div>
       </div>
       <div class="op-actions-wrap"><div class="op-act-title">▸ Actions for the room</div><div class="op-actions" id="op-act-1"></div></div>
@@ -4047,17 +4071,7 @@ function renderABMYoYChart() {
   if (!arr.length) { el('ch-abm-yoy').innerHTML = '<div class="empty">No comparable ABM data.</div>'; return; }
   const top = sortBy(arr, o => Math.max(Math.abs(o.cur), Math.abs(o.prev))).slice(0, 14).reverse();
   const labels = top.map(o => shortName(o.key, 24));
-  const annotations = top.map((o,i) => {
-    const move = (o.prevRank && o.curRank) ? (o.prevRank - o.curRank) : 0;
-    let chip;
-    if (move > 0) chip = '↑' + move;
-    else if (move < 0) chip = '↓' + Math.abs(move);
-    else chip = '—';
-    const color = move > 0 ? COLORS.green : (move < 0 ? COLORS.red : COLORS.tx2);
-    return { x: Math.max(o.cur, o.prev) * 1.04, y: labels[i], xref:'x', yref:'y',
-             text: '<b>' + chip + '</b>', showarrow:false,
-             font:{ size:11, color, family:'Inter' }, xanchor:'left' };
-  });
+  const annotations = [];   /* rank-change arrows removed per request */
   const lm = Math.max(110, Math.min(220, top.reduce((m,o) => Math.max(m, o.key.length), 0) * 5.4));
   Plotly.newPlot('ch-abm-yoy', [
     { type:'bar', orientation:'h', name: FY_PREV,
@@ -4116,17 +4130,7 @@ function renderMSRYoYChart() {
   if (!arr.length) { el('ch-msr-yoy').innerHTML = '<div class="empty">No comparable MSR data.</div>'; return; }
   const top = sortBy(arr, o => Math.max(Math.abs(o.cur), Math.abs(o.prev))).slice(0, 18).reverse();
   const labels = top.map(o => shortName(o.key, 22));
-  const annotations = top.map((o,i) => {
-    const move = (o.prevRank && o.curRank) ? (o.prevRank - o.curRank) : 0;
-    let chip;
-    if (move > 0) chip = '↑' + move;
-    else if (move < 0) chip = '↓' + Math.abs(move);
-    else chip = '—';
-    const color = move > 0 ? COLORS.green : (move < 0 ? COLORS.red : COLORS.tx2);
-    return { x: Math.max(o.cur, o.prev) * 1.04, y: labels[i], xref:'x', yref:'y',
-             text: '<b>' + chip + '</b>', showarrow:false,
-             font:{ size:10.5, color, family:'Inter' }, xanchor:'left' };
-  });
+  const annotations = [];   /* rank-change arrows removed per request */
   const lm = Math.max(100, Math.min(180, top.reduce((m,o) => Math.max(m, o.key.length), 0) * 5.3));
   Plotly.newPlot('ch-msr-yoy', [
     { type:'bar', orientation:'h', name: FY_PREV,
@@ -5649,8 +5653,82 @@ goChoice();
     cust:  {sw:'op-sw-cust',   map:{cy:'ch-topcust',  yoy:'ch-cust-yoy'}},
     region:{sw:'op-sw-region', map:{cy:'ch-region',   yoy:'ch-region-yoy'}},
     msr:   {sw:'op-sw-msr',    map:{cy:'ch-msr-sales',yoy:'ch-msr-yoy'}},
-    abm:   {sw:'op-sw-abm',    map:{mom:'ch-abm-bars',yoy:'ch-abm-yoy'}}
+    abm:   {sw:'op-sw-abm',    map:{mom:'ch-abm-bars',yoy:'ch-abm-yoy'}},
+    prodret:{sw:'op-sw-prodret', map:{cy:'ch-prodret', yoy:'ch-prodret-yoy'}},
+    custret:{sw:'op-sw-custret', map:{cy:'ch-custret', yoy:'ch-custret-yoy'}}
   };
+
+  /* ── Returns charts (one-pager originals; not re-homed from the deck) ── */
+  function retByDim(rows, dimKey, cntKey){
+    var out=[];
+    groupRows(rows, function(r){return r[dimKey];}).forEach(function(list,k){
+      var rr=list.filter(function(r){return r.is_return;});
+      if(!rr.length) return;
+      var v=sum(rr, function(r){return Math.abs(r.sales_value);});
+      if(v<=0) return;
+      out.push({k:k, v:v, cnt:uniq(rr.map(function(r){return r[cntKey];})).length});
+    });
+    return out;
+  }
+  function retCompare(curRows, prevRows, dimKey, cntKey){
+    var cur={}, prev={}, cnt={}, keys={};
+    groupRows(curRows, function(r){return r[dimKey];}).forEach(function(list,k){
+      var rr=list.filter(function(r){return r.is_return;});
+      cur[k]=sum(rr, function(r){return Math.abs(r.sales_value);});
+      cnt[k]=uniq(rr.map(function(r){return r[cntKey];})).length; keys[k]=1;
+    });
+    groupRows(prevRows, function(r){return r[dimKey];}).forEach(function(list,k){
+      var rr=list.filter(function(r){return r.is_return;});
+      prev[k]=sum(rr, function(r){return Math.abs(r.sales_value);}); keys[k]=1;
+    });
+    return Object.keys(keys).map(function(k){return {k:k, cur:cur[k]||0, prev:prev[k]||0, cnt:cnt[k]||0};})
+      .filter(function(o){return o.cur>0||o.prev>0;});
+  }
+  function plotRetCY(divId, arr, cntLabel){
+    var node=elx(divId); if(!node) return;
+    arr=arr.slice().sort(function(a,b){return b.v-a.v;}).slice(0,12);   /* desc by value */
+    if(!arr.length){ node.innerHTML='<div class="empty">No returns in this period.</div>'; return; }
+    var disp=arr.slice().reverse();                                     /* largest on top for h-bars */
+    var lm=Math.max(110, Math.min(220, disp.reduce(function(m,p){return Math.max(m,String(p.k).length);},0)*5.5));
+    Plotly.newPlot(divId, [{
+      x: disp.map(function(p){return p.v;}),
+      y: disp.map(function(p){return shortName(p.k,28);}),
+      customdata: disp.map(function(p){return [p.k, p.cnt];}),
+      type:'bar', orientation:'h',
+      marker:{ color: COLORS.red, opacity:.85 },
+      text: disp.map(function(p){return fmtMoney(p.v);}), textposition:'outside', cliponaxis:false,
+      textfont:{size:11, color:COLORS.tx2},
+      hovertemplate:'<b>%{customdata[0]}</b><br>Returns: ₹%{x:,.0f}<br>'+cntLabel+': <b>%{customdata[1]}</b><extra></extra>'
+    }], { ...PL, margin:{t:8,r:90,b:36,l:lm}, xaxis:{...AX, tickformat:'~s'}, yaxis:{...AX, ticklen:0}, showlegend:false }, PC);
+  }
+  function plotRetYoY(divId, arr, cntLabel){
+    var node=elx(divId); if(!node) return;
+    arr=arr.slice().sort(function(a,b){return Math.max(b.cur,b.prev)-Math.max(a.cur,a.prev);}).slice(0,12);
+    if(!arr.length){ node.innerHTML='<div class="empty">No comparable returns — previous-year file needed.</div>'; return; }
+    var top=arr.slice().reverse();
+    var labels=top.map(function(o){return shortName(o.k,28);});
+    var lm=Math.max(110, Math.min(220, top.reduce(function(m,o){return Math.max(m,String(o.k).length);},0)*5.4));
+    Plotly.newPlot(divId, [
+      { type:'bar', orientation:'h', name: FY_PREV,
+        x: top.map(function(o){return o.prev;}), y: labels, customdata: top.map(function(o){return o.k;}),
+        marker:{ color:'rgba(168,182,214,.40)', line:{ color:'rgba(168,182,214,.65)', width:1 } },
+        hovertemplate:'<b>%{customdata}</b><br>'+FY_PREV+': ₹%{x:,.0f}<extra></extra>' },
+      { type:'bar', orientation:'h', name: FY_CUR,
+        x: top.map(function(o){return o.cur;}), y: labels, customdata: top.map(function(o){return [o.k,o.cnt];}),
+        marker:{ color: COLORS.red },
+        hovertemplate:'<b>%{customdata[0]}</b><br>'+FY_CUR+': ₹%{x:,.0f}<br>'+cntLabel+': <b>%{customdata[1]}</b><extra></extra>' },
+    ], { ...PL, barmode:'group', showlegend:true,
+         legend:{ orientation:'h', y:1.10, x:0, font:{ size:11, color: COLORS.tx2 } },
+         xaxis:{ ...AX, tickformat:'~s' }, yaxis:{ ...AX, automargin:true, ticklen:0 },
+         margin:{ ...PL.margin, t:36, r:80, b:36, l:lm } }, PC);
+  }
+  function renderReturns(){
+    if(typeof FS==='undefined'||!FS) return;
+    try{ plotRetCY('ch-prodret', retByDim(FS,'product_name','customer'), 'Parties returned'); }catch(e){}
+    try{ plotRetCY('ch-custret', retByDim(FS,'customer','product_name'), 'Products returned'); }catch(e){}
+    try{ plotRetYoY('ch-prodret-yoy', retCompare(FS_CUR_COMP,FS_PREV_COMP,'product_name','customer'), 'Parties returned'); }catch(e){}
+    try{ plotRetYoY('ch-custret-yoy', retCompare(FS_CUR_COMP,FS_PREV_COMP,'customer','product_name'), 'Products returned'); }catch(e){}
+  }
 
   window.opTog=function(group,val){
     var cfg=TOG[group]; if(!cfg) return;
@@ -5743,7 +5821,7 @@ goChoice();
     });
   }
 
-  window.opRefresh=function(){ renderKPIs(); renderActions(); };
+  window.opRefresh=function(){ renderKPIs(); renderActions(); renderReturns(); };
 
   function opBuild(){
     if(OP_BUILT) return;
@@ -5774,6 +5852,7 @@ goChoice();
 
     OP_BUILT=true;
     window.opRefresh();
+    window.opTog('prodret','cy'); window.opTog('custret','cy');
     window.opGo(0);
     setTimeout(function(){ document.querySelectorAll('#op-screen-0 [id^="ch-"]').forEach(function(c){try{Plotly.Plots.resize(c);}catch(e){}}); },200);
   }
