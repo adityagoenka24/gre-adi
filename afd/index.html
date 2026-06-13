@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>PharmaBoard · Presentation Mode · AFD Hospicare</title>
+<title>Sales Dashboard · Resarcio </title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist@2.35.2/plotly.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="vendor/plotly.min.js"></script>
+<script src="vendor/xlsx.full.min.js"></script>
 <style>
 :root{
   --bg:#070d1c;
@@ -556,33 +556,20 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
 
 <!-- ═══════════════ ONBOARDING ═══════════════ -->
 <div id="s-choice" class="screen">
-  <div class="onboard">
-    <div class="brand-mark"><span class="dot"></span>Pharma<span class="suffix">Board</span></div>
-    <div class="brand-tag">Presentation Mode · Sales Storytelling</div>
-    <div class="screen-sub">Built for the room. An 11-slide guided walk-through across revenue health, growth drivers, field force, doctor universe, and year-on-year performance, plus a bill-level register appendix.</div>
-    <div class="choice-stack">
-      <button class="choice-btn primary" onclick="startGithub()">
-        <div class="choice-icon gold">FX</div>
-        <div>
-          <div class="choice-title">Auto-fetch latest data from secure repository</div>
-          <div class="choice-desc">Pulls current Sales Register, optional previous-year sales, Customer-MSR mapping, and Doctor Master in parallel.</div>
-        </div>
-      </button>
-      <div class="divider">or</div>
-      <button class="choice-btn" onclick="goUpload()">
-        <div class="choice-icon">UP</div>
-        <div>
-          <div class="choice-title">Upload ERP exports manually</div>
-          <div class="choice-desc">XLS, XLSX, or CSV — current and previous-year sales activate the full YoY story.</div>
-        </div>
-      </button>
-    </div>
+  <div class="onboard" style="align-items:center;text-align:center;max-width:480px">
+    <div class="brand-mark"><span class="dot"></span>Resarcio</div>
+    <div class="brand-tag">Sales Dashboard</div>
+    <div class="screen-sub" style="margin-bottom:36px">Revenue, field force, and customer analytics — updated from the latest data.</div>
+    <button class="choice-btn primary" onclick="startGithub()" style="width:100%;justify-content:center;padding:20px 32px;font-size:15px">
+      <div class="choice-icon gold" style="font-size:18px">▶</div>
+      <div><div class="choice-title" style="font-size:16px">Launch Dashboard</div></div>
+    </button>
   </div>
 </div>
 
 <div id="s-upload" class="screen hidden">
   <div class="onboard">
-    <div class="brand-mark"><span class="dot"></span>Pharma<span class="suffix">Board</span></div>
+    <div class="brand-mark"><span class="dot"></span>Resarcio<span class="suffix"></span></div>
     <div class="brand-tag">Presentation Mode</div>
     <div class="screen-sub">Upload current-year and previous-year sales files. The same column mapping is used for both, while MSR and Doctor Master enrich field-force attribution.</div>
     <div class="choice-stack">
@@ -651,17 +638,13 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
 <!-- ═══════════════ APP / DECK ═══════════════ -->
 <div id="app">
   <header class="topbar">
-    <div class="app-brand"><span class="dot"></span>Pharma<span class="suffix">Board</span></div>
-    <div class="client-line"><strong>AFD Hospicare</strong>Sales Storytelling</div>
+    <div class="app-brand"><span class="dot"></span>Resarcio<span class="suffix"> </span></div>
+    <div class="client-line"><strong>Resarcio</strong>Sales Dashboard</div>
     <div class="top-spacer"></div>
     <div class="slide-counter"><b id="slide-cur">1</b> / <span id="slide-total">12</span></div>
     <button class="thin-btn icon" onclick="toggleFullscreen()" title="Fullscreen (F)">⛶ Fullscreen</button>
-    <button class="thin-btn" onclick="resetAll()" title="Load different data">⟲ Reload</button>
   </header>
   <div class="filter-bar">
-    <div class="f-group"><label>FY</label>
-      <select id="f-fy" class="f-select" onchange="applyF()"><option value="comp">Comparable (Cur vs Prev)</option><option value="cur">Current FY only</option><option value="prev">Previous FY only</option><option value="both">Both years</option></select>
-    </div>
     <div class="f-group"><label>From</label>
       <select id="f-fmfrom" class="f-select" onchange="applyF()"><option value="">Auto</option></select>
     </div>
@@ -687,7 +670,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
       <div class="slide-head">
         <div>
           <span class="crumb">01 · Headline</span>
-          <h1>AFD Hospicare · Sales Pulse</h1>
+          <h1>Resarcio · Sales Pulse</h1>
         </div>
         <div class="period-badge"><span class="lbl">Active Period</span><span class="val" id="cover-period">All time</span></div>
       </div>
@@ -696,7 +679,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
       <div class="yoy-band" id="cover-yoy"></div>
       <div class="div-line"><span class="dot"></span><span class="lbl">Period at a glance</span><span class="line"></span></div>
       <div class="kpi-row five" id="cover-strip"></div>
-      <div class="watermark">PharmaBoard · Sales Storytelling · No data leaves this machine</div>
+      <div class="watermark">Sales Dashboard · Resarcio · No data leaves this machine</div>
     </section>
 
     <!-- ═════════════ SLIDE 2 · MOMENTUM ═════════════ -->
@@ -721,7 +704,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         </div>
         <div id="ch-momentum" class="chart lg"></div>
       </div>
-      <div class="watermark">PharmaBoard · Revenue Momentum</div>
+      <div class="watermark">Sales Dashboard · Revenue Momentum</div>
     </section>
 
     <!-- ═════════════ SLIDE 3 · GROWTH STORY ═════════════ -->
@@ -760,7 +743,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
           </div>
         </div>
       </div>
-      <div class="watermark">PharmaBoard · Growth Story</div>
+      <div class="watermark">Sales Dashboard · Growth Story</div>
     </section>
 
     <!-- ═════════════ SLIDE 4 · PRODUCT PORTFOLIO ═════════════ -->
@@ -808,7 +791,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         </div>
         <div id="ch-pareto" class="chart md"></div>
       </div>
-      <div class="watermark">PharmaBoard · Product Portfolio</div>
+      <div class="watermark">Sales Dashboard · Product Portfolio</div>
     </section>
 
     <!-- ═════════════ SLIDE 5 · CUSTOMER BASE ═════════════ -->
@@ -860,7 +843,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
           <table><thead id="cp-h"></thead><tbody id="cp-b"></tbody></table>
         </div>
       </div>
-      <div class="watermark">PharmaBoard · Customer Base</div>
+      <div class="watermark">Sales Dashboard · Customer Base</div>
     </section>
 
     <!-- ═════════════ SLIDE 6 · TERRITORY MAP ═════════════ -->
@@ -892,7 +875,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
           <div id="ch-terr-opp" class="chart lg"></div>
         </div>
       </div>
-      <div class="watermark">PharmaBoard · Territory Map</div>
+      <div class="watermark">Sales Dashboard · Territory Map</div>
     </section>
 
     <!-- ═════════════ SLIDE 7 · ABM TEAM ═════════════ -->
@@ -918,7 +901,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         <div class="card">
           <div class="card-head">
             <div><div class="card-title">ABM Revenue — Latest vs Prior Month</div>
-            <div class="card-sub" id="abm-rev-period">Grouped by ABM · latest month (blue) vs prior month (grey)</div></div>
+            <div class="card-sub" id="abm-rev-period">Grouped by ABM within current filters · latest month (blue) vs prior month (grey)</div></div>
             <span class="card-pill pill-blue">MoM</span>
           </div>
           <div id="ch-abm-bars" class="chart lg"></div>
@@ -934,7 +917,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
           <table><thead id="abm-tbl-hdr"></thead><tbody id="abm-tbl-body"></tbody></table>
         </div>
       </div>
-      <div class="watermark">PharmaBoard · ABM Team</div>
+      <div class="watermark">Sales Dashboard · ABM Team</div>
     </section>
 
     <!-- ═════════════ SLIDE 8 · MSR PERFORMANCE ═════════════ -->
@@ -970,7 +953,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         <div class="card-head"><div><div class="card-title">MSR Sales Trend — Top 5</div><div class="card-sub">Monthly stacked revenue contribution</div></div></div>
         <div id="ch-msr-trend" class="chart md"></div>
       </div>
-      <div class="watermark">PharmaBoard · MSR Performance</div>
+      <div class="watermark">Sales Dashboard · MSR Performance</div>
     </section>
 
     <!-- ═════════════ SLIDE 9 · DOCTOR UNIVERSE ═════════════ -->
@@ -996,10 +979,10 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         </div>
       </div>
       <div class="card">
-        <div class="card-head"><div><div class="card-title">HQ vs Extension — Coverage &amp; Strategy Adherence</div><div class="card-sub">Mapped vs active doctors and on-strategy revenue share by territory type</div></div></div>
+        <div class="card-head"><div><div class="card-title">HQ vs Extension — Coverage &amp; Strategy Adherence</div><div class="card-sub">Coverage counts doctors; adherence is revenue from products mapped to the scoped doctors</div></div></div>
         <div id="ch-hq-ex" class="chart md"></div>
       </div>
-      <div class="watermark">PharmaBoard · Doctor Universe</div>
+      <div class="watermark">Sales Dashboard · Doctor Universe</div>
     </section>
 
     <!-- ═════════════ SLIDE 10 · RISKS & ACTIONS ═════════════ -->
@@ -1026,7 +1009,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
       </div>
       <div class="div-line"><span class="dot"></span><span class="lbl">Actions for the room · ranked by max(MoM Δ, YoY Δ)</span><span class="line"></span></div>
       <div class="action-grid" id="action-grid"></div>
-      <div class="watermark">PharmaBoard · Risks &amp; Actions</div>
+      <div class="watermark">Sales Dashboard · Risks &amp; Actions</div>
     </section>
 
     <!-- ═════════════ SLIDE 11 · EXECUTIVE YOY ANALYSIS CENTER ═════════════ -->
@@ -1087,7 +1070,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         <div id="ch-yoy-matrix" class="chart lg"></div>
       </div>
 
-      <div class="watermark">PharmaBoard · Executive YoY Analysis Center</div>
+      <div class="watermark">Sales Dashboard · Executive YoY Analysis Center</div>
     </section>
 
     <!-- ═════════════ SLIDE 12 · SALES REGISTER (DATA GRID) ═════════════ -->
@@ -1133,7 +1116,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
           <button class="thin-btn" onclick="registerPage(1)">Next ›</button>
         </div>
       </div>
-      <div class="watermark">PharmaBoard · Sales Register</div>
+      <div class="watermark">Sales Dashboard · Sales Register</div>
     </section>
 
     <!-- ═════════════ SLIDE 13 · FIELD FORCE REGISTER ═════════════ -->
@@ -1176,7 +1159,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
           <button class="thin-btn" onclick="ffPage(1)">Next ›</button>
         </div>
       </div>
-      <div class="watermark">PharmaBoard · Field Force Register</div>
+      <div class="watermark">Sales Dashboard · Field Force Register</div>
     </section>
 
   </div>
@@ -1195,7 +1178,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
     <!-- SCREEN 1 · REVENUE & PRODUCTS -->
     <section class="op-screen active" id="op-screen-0">
       <div class="op-screenhead">
-        <div><div class="op-eyebrow">01 · Revenue &amp; Products</div><h2 class="op-h2">AFD Hospicare · Sales Pulse</h2></div>
+        <div><div class="op-eyebrow">01 · Revenue &amp; Products</div><h2 class="op-h2">Resarcio · Sales Pulse</h2></div>
         <div class="op-period"><span class="lbl">Active period</span><span class="val" id="op-period">—</span></div>
       </div>
       <div class="op-kpis" id="op-kpis"></div>
@@ -1337,10 +1320,10 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
 ════════════════════════════════════════════════════ */
 
 const GH_FILES = {
-  sales: 'https://raw.githubusercontent.com/adityagoenka24/afd-hospicare-sales-dashboard/main/sales.xls',
-  previous_sales: 'https://raw.githubusercontent.com/adityagoenka24/afd-hospicare-sales-dashboard/main/previous_sales.xls',
-  msr:   'https://raw.githubusercontent.com/adityagoenka24/afd-hospicare-sales-dashboard/main/msr.xlsx',
-  doc:   'https://raw.githubusercontent.com/adityagoenka24/afd-hospicare-sales-dashboard/main/Doctor_Master.xlsx'
+  sales: 'https://raw.githubusercontent.com/adityagoenka24/gre-adi/main/afd/sales.xls',
+  previous_sales: 'https://raw.githubusercontent.com/adityagoenka24/gre-adi/main/afd/previous_sales.xls',
+  msr:   'https://raw.githubusercontent.com/adityagoenka24/gre-adi/main/afd/main/msr.xlsx',
+  doc:   'https://raw.githubusercontent.com/adityagoenka24/gre-adi/main/afd/main/Doctor_Master.xlsx'
 };
 
 const SCHEMA = {
@@ -1530,6 +1513,15 @@ function normName(s) {
   v = v.replace(SALUTATION_RE, '').replace(SALUTATION_RE, '');
   return v.toUpperCase().replace(/\.+/g,'').replace(/\s+/g,' ').trim();
 }
+/* MSR name reconciliation — Doctor Master and MSR Master spell a few reps
+ * differently. msrCanon() folds these to one canonical key so the
+ * Doctor→MSR→Party→Sales join lines up. Keys/values are post-normName. */
+const MSR_ALIAS = {
+  'PRAVEEN KUMAR SINGH': 'PRAVEEN KUMAR',
+  'SWARUP HALDER': 'SWARUP HALDAR',
+  'ANNAND RAJ': 'ANAND RAJ',
+};
+function msrCanon(s) { const n = normName(s); return MSR_ALIAS[n] || n; }
 const uniq = arr => [...new Set(arr.filter(v => v !== null && v !== undefined && String(v).trim() !== ''))];
 const sum = (arr, fn) => arr.reduce((a,b) => a + (+fn(b) || 0), 0);
 const safePct = (a,b) => b ? (a / b * 100) : 0;
@@ -1559,6 +1551,18 @@ function fmtDelta(n) {
   if (n <= -99) return '▼ ' + Math.min(99, Math.abs(n)).toFixed(0) + '%';
   const s = n >= 0 ? '▲' : '▼';
   return s + ' ' + Math.abs(n).toFixed(Math.abs(n) >= 100 ? 0 : 2) + '%';
+}
+function wrapHoverText(s, max=24) {
+  const words = String(s || '').split(/\s+/).filter(Boolean);
+  const lines = [];
+  let line = '';
+  for (const word of words) {
+    if (!line) line = word;
+    else if ((line + ' ' + word).length <= max) line += ' ' + word;
+    else { lines.push(line); line = word; }
+  }
+  if (line) lines.push(line);
+  return lines.join('<br>');
 }
 function safeGrowth(latest, prior) {
   if (prior === 0 && latest === 0) return 0;
@@ -2010,7 +2014,7 @@ function startGithub() {
 function onGithubDone(results, failed) {
   if (!results.sales) {
     goChoice();
-    alert('Could not fetch the sales file. Upload manually instead.\n\n' + failed.join('\n'));
+    alert('Could not fetch the sales data. Please check your connection and try again.\n\n' + failed.join('\n'));
     return;
   }
   const ps = parseXLS(results.sales);
@@ -2022,8 +2026,7 @@ function onGithubDone(results, failed) {
   MAP.sales = autoMap(COLS.sales, SCHEMA);
   if (RAW.msr) MAP.msr = autoMap(COLS.msr, MSR_SCHEMA);
   if (RAW.doc) MAP.doc = autoMap(COLS.doc, DOC_SCHEMA);
-  buildMapper();
-  showOnly('s-mapper');
+  launchDashboard();
 }
 
 function onFile(type, input) {
@@ -2168,7 +2171,7 @@ function launchDashboard() {
   showLoad('Preparing the presentation…');
   setTimeout(() => {
     D = cleanSales(RAW.sales, MAP.sales);
-    if (!D.length) { alert('No sales rows after cleaning.'); goChoice(); return; }
+    if (!D.length) { alert('No sales rows found after cleaning. Please reload and try again.'); return; }
     DPREV = RAW.previous_sales ? cleanSales(RAW.previous_sales, MAP.sales) : [];
     DMSR = (RAW.msr && MAP.msr) ? cleanMSR(RAW.msr, MAP.msr, D) : [];
     DMSR_PREV = (DPREV.length && RAW.msr && MAP.msr) ? cleanMSR(RAW.msr, MAP.msr, DPREV) : [];
@@ -2306,11 +2309,18 @@ function tokenizeProducts(s) {
   if (!s) return [];
   return String(s).split(/[\/,;\|]/).map(x => cleanBrandKey(x)).filter(Boolean);
 }
-function productTokenMatch(salesProductName, mappedKeys) {
-  if (!mappedKeys || !mappedKeys.size) return false;
-  const k = cleanBrandKey(salesProductName);
+function productKeyMatch(k, mappedKeys) {
   if (!k) return false;
-  return mappedKeys.has(k);
+  const keys = mappedKeys instanceof Set ? [...mappedKeys] : (mappedKeys || []);
+  if (!keys.length) return false;
+  if (mappedKeys instanceof Set && mappedKeys.has(k)) return true;
+  if (!(mappedKeys instanceof Set) && mappedKeys.includes(k)) return true;
+  return keys.some(m => m && (k.startsWith(m + ' ') || m.startsWith(k + ' ')));
+}
+function productTokenMatch(salesProductName, mappedKeys) {
+  if (!mappedKeys || !(mappedKeys instanceof Set ? mappedKeys.size : mappedKeys.length)) return false;
+  const k = cleanBrandKey(salesProductName);
+  return productKeyMatch(k, mappedKeys);
 }
 /* ─── Fiscal-year detection + comparable-period engine ───
  * Inspects D and DPREV; picks the highest FY tag in D as FY_CUR
@@ -2368,14 +2378,20 @@ function periodChipText() {
 }
 
 function computeJoinHealth() {
-  const dmsrNames = new Set(DMSR.map(r => normName(r.msr)));
-  const docMsrs = new Set(DOC.map(d => d.msrUpper));
-  let linked = 0; for (const n of docMsrs) if (dmsrNames.has(n)) linked++;
+  /* Doctor→MSR→Party link health: which doctor MSRs exist in the MSR mapping
+   * (after alias reconciliation), and how many doctors that leaves stranded. */
+  const dmsrNames = new Set(DMSR.map(r => msrCanon(r.msr)));
+  const docMsrs = new Set(DOC.map(d => d.msrCanon));
+  let linked = 0; const unmappedMsrs = [];
+  for (const n of docMsrs) { if (dmsrNames.has(n)) linked++; else unmappedMsrs.push(n); }
+  /* doctors whose MSR has no party mapping at all (can never be marked active) */
+  const unmappedDocs = DOC.filter(d => !dmsrNames.has(d.msrCanon)).length;
   const stationKeys = new Set(DMSR.map(r => canonCity(r.station)));
   const docCities = new Set(DOC.map(d => d.cityKey).filter(Boolean));
   let cityLinked = 0; for (const c of docCities) if (stationKeys.has(c)) cityLinked++;
   JOIN_HEALTH = {
     msrLinked: linked, msrTotal: docMsrs.size,
+    unmappedMsrs, unmappedDocs,
     cityLinked, cityTotal: docCities.size,
     pct: docMsrs.size ? linked/docMsrs.size*100 : 0,
     cityPct: docCities.size ? cityLinked/docCities.size*100 : 0,
@@ -2395,7 +2411,7 @@ function buildDoctorIndex(raw, map) {
     const cityCanon = canonCity(city || terr);
     const rec = {
       doctor: titleCase(name),
-      msr: titleCase(msr), msrUpper: normName(msr),
+      msr: titleCase(msr), msrUpper: normName(msr), msrCanon: msrCanon(msr),
       city: titleCase(city || terr), cityKey: cityCanon,
       territory: titleCase(terr || city),
       speciality_raw: spec || 'Unspecified',
@@ -2574,51 +2590,93 @@ function doctorPortfolio(msrName) {
   list.forEach(d => { const c = d.category; if (cnt[c] != null) cnt[c]++; else cnt.OTHER++; });
   return { total:list.length, super:cnt['SUPER CORE'], vip:cnt['VIP'], core:cnt['CORE'], other:cnt.OTHER, list };
 }
+/* ─── Doctor coverage engine — MSR-based (Doctor→MSR→Party→Sales) ───
+ * City is no longer used. A doctor is "active" when the MSR they are mapped
+ * to actually billed (non-return) in the current filtered scope. "Mapped"
+ * follows the current selection (MSR / ABM / speciality / tier). */
+
+/* MSRs that billed (non-return) in the current FSMSR scope, canonicalized. */
+function activeMSRSet() {
+  return new Set(FSMSR.filter(r => !r.is_return).map(r => msrCanon(r.msr)));
+}
+/* ABM → set of msrCanon, from the MSR mapping (DMSR). */
+function abmToMsrSet(abm) {
+  const set = new Set();
+  for (const r of DMSR) if (((r.abm || '').trim()) === abm) set.add(msrCanon(r.msr));
+  return set;
+}
+/* Doctors in the current selection scope, independent of any sale. */
+function scopedDoctors() {
+  const fmsr  = (el('f-msr')  && el('f-msr').value)  || '';
+  const fabm  = (el('f-abm')  && el('f-abm').value)  || '';
+  const fspec = (el('f-spec') && el('f-spec').value) || '';
+  const ftier = (el('f-tier') && el('f-tier').value) || '';
+  const msrKey = fmsr ? msrCanon(fmsr) : '';
+  const abmSet = fabm ? abmToMsrSet(fabm) : null;
+  return DOC.filter(d =>
+    (!msrKey || d.msrCanon === msrKey) &&
+    (!abmSet || abmSet.has(d.msrCanon)) &&
+    (!fspec  || d.speciality === fspec) &&
+    (!ftier  || d.category === ftier)
+  );
+}
 function activeDoctorCount() {
-  const activeStations = new Set(FSMSR.map(r => canonCity(r.station)));
-  const activeMSRs = new Set(FSMSR.map(r => normName(r.msr)));
+  const active = activeMSRSet();
   let n = 0;
-  for (const d of DOC) {
-    if (activeMSRs.has(d.msrUpper) && activeStations.has(d.cityKey)) n++;
-  }
+  for (const d of scopedDoctors()) if (active.has(d.msrCanon)) n++;
   return n;
 }
+/* HQ vs Extension — coverage & strategy adherence (no city).
+ *   Mapped    = scoped doctors, split HQ/EX.
+ *   Active    = scoped doctors whose MSR billed (non-return) in scope.
+ *   Adherence = of an MSR's revenue, the share in products mapped to its
+ *               scoped doctors. Each sale's value is split across HQ/EX by the
+ *               MSR's scoped-doctor mix; the mapped numerator counts only the
+ *               doctors of that type who actually map the sold product. */
 function hqExCoverage() {
-  const activeStations = new Set(FSMSR.filter(r => !r.is_return).map(r => canonCity(r.station)));
-  const revByCity = new Map();
-  for (const r of FSMSR) {
-    if (r.is_return) continue;
-    const ck = canonCity(r.station);
-    if (!ck) continue;
-    if (!revByCity.has(ck)) revByCity.set(ck, { total:0, mapped:0 });
-    const b = revByCity.get(ck);
-    b.total += r.sales_value;
-    const docsHere = DOC_BY_CITY.get(ck) || [];
-    if (docsHere.length) {
-      const cityMapped = new Set();
-      docsHere.forEach(d => d.mapped_products.forEach(p => cityMapped.add(p)));
-      if (cityMapped.has(cleanBrandKey(r.product_name))) b.mapped += r.sales_value;
-    }
+  const active = activeMSRSet();
+  const scoped = scopedDoctors();
+
+  const docByMsr = new Map();
+  for (const d of scoped) {
+    if (!docByMsr.has(d.msrCanon)) docByMsr.set(d.msrCanon, []);
+    docByMsr.get(d.msrCanon).push(d);
   }
+
   const out = {
     HQ: { mapped:0, active:0, rev:0, mappedRev:0 },
     EX: { mapped:0, active:0, rev:0, mappedRev:0 }
   };
-  for (const d of DOC) {
+
+  /* Mapped + Active (count-based) */
+  for (const d of scoped) {
     const t = (d.terr_type === 'EX') ? 'EX' : 'HQ';
-    const bucket = out[t];
-    bucket.mapped += 1;
-    if (activeStations.has(d.cityKey)) bucket.active += 1;
-    if (d.cityKey && revByCity.has(d.cityKey)) {
-      const rb = revByCity.get(d.cityKey);
-      const totalDocsInCity = (DOC_BY_CITY.get(d.cityKey) || []).length || 1;
-      bucket.rev += rb.total / totalDocsInCity;
-      bucket.mappedRev += rb.mapped / totalDocsInCity;
-    }
+    out[t].mapped += 1;
+    if (active.has(d.msrCanon)) out[t].active += 1;
   }
+
+  /* Strategy adherence (revenue-based, MSR→product→doctor) */
+  for (const r of FSMSR) {
+    if (r.is_return) continue;
+    const docs = docByMsr.get(msrCanon(r.msr));
+    if (!docs || !docs.length) continue;          /* MSR not in current scope */
+    const pkey = cleanBrandKey(r.product_name);
+    let hqTot=0, exTot=0, hqMap=0, exMap=0;
+    for (const d of docs) {
+      const ex = (d.terr_type === 'EX');
+      if (ex) exTot++; else hqTot++;
+      if (productKeyMatch(pkey, d.mapped_products)) { if (ex) exMap++; else hqMap++; }
+    }
+    const n = docs.length;
+    out.HQ.rev       += r.sales_value * hqTot / n;
+    out.EX.rev       += r.sales_value * exTot / n;
+    out.HQ.mappedRev += r.sales_value * hqMap / n;
+    out.EX.mappedRev += r.sales_value * exMap / n;
+  }
+
   ['HQ','EX'].forEach(k => {
     const b = out[k];
-    b.coveragePct = b.mapped ? safePct(b.active, b.mapped) : 0;
+    b.coveragePct  = b.mapped ? safePct(b.active, b.mapped) : 0;
     b.adherencePct = b.rev ? safePct(b.mappedRev, b.rev) : 0;
   });
   return out;
@@ -3855,8 +3913,8 @@ function renderABMTeam() {
   const { latestKey: abmLatestKey, priorKey: abmPriorKey } = latestPriorRows(FSMSR);
   if (el('abm-rev-period')) {
     el('abm-rev-period').textContent = abmLatestKey
-      ? (monthLabel(abmLatestKey) + ' vs ' + (abmPriorKey ? monthLabel(abmPriorKey) : 'prior month') + ' · revenue per ABM')
-      : 'Grouped by ABM';
+      ? (monthLabel(abmLatestKey) + ' vs ' + (abmPriorKey ? monthLabel(abmPriorKey) : 'prior month') + ' · revenue per ABM within current filters')
+      : 'Grouped by ABM within current filters';
   }
   const abmRevSorted = sortBy(stats, s => s.latest);
   const abmRevDisp = [...abmRevSorted].reverse();
@@ -3864,24 +3922,28 @@ function renderABMTeam() {
     el('ch-abm-bars').innerHTML = '<div class="empty">No ABM revenue data.</div>';
   } else {
     const lm2 = Math.max(100, Math.min(200, abmRevDisp.reduce((m,s) => Math.max(m, s.abm.length), 0) * 5.2));
+    const abmHoverData = abmRevDisp.map(s => [wrapHoverText(s.abm, 26)]);
     Plotly.newPlot('ch-abm-bars', [
       { type:'bar', orientation:'h', name: abmPriorKey ? monthLabel(abmPriorKey) : 'Prior Month',
         x: abmRevDisp.map(s => s.prior), y: abmRevDisp.map(s => shortName(s.abm, 24)),
         marker:{ color:'rgba(168,182,214,.40)', line:{ color:'rgba(168,182,214,.65)', width:1 } },
         text: abmRevDisp.map(s => s.prior > 0 ? fmtMoney(s.prior) : ''),
         textposition:'outside', cliponaxis:false, textfont:{ size:10, color:COLORS.tx2 },
-        hovertemplate:'<b>%{y}</b><br>' + (abmPriorKey ? monthLabel(abmPriorKey) : 'Prior') + ': ₹%{x:,.0f}<extra></extra>' },
+        customdata: abmHoverData,
+        hovertemplate:'<b>%{customdata[0]}</b><br>' + wrapHoverText(abmPriorKey ? monthLabel(abmPriorKey) : 'Prior', 26) + ': ₹%{x:,.0f}<extra></extra>' },
       { type:'bar', orientation:'h', name: abmLatestKey ? monthLabel(abmLatestKey) : 'Latest Month',
         x: abmRevDisp.map(s => s.latest), y: abmRevDisp.map(s => shortName(s.abm, 24)),
         marker:{ color: COLORS.acc },
         text: abmRevDisp.map(s => s.latest > 0 ? fmtMoney(s.latest) : ''),
         textposition:'outside', cliponaxis:false, textfont:{ size:10, color:COLORS.tx2 },
-        hovertemplate:'<b>%{y}</b><br>' + (abmLatestKey ? monthLabel(abmLatestKey) : 'Latest') + ': ₹%{x:,.0f}<extra></extra>' },
+        customdata: abmHoverData,
+        hovertemplate:'<b>%{customdata[0]}</b><br>' + wrapHoverText(abmLatestKey ? monthLabel(abmLatestKey) : 'Latest', 26) + ': ₹%{x:,.0f}<extra></extra>' },
     ], {
       ...PL, barmode:'group', showlegend:true,
       legend:{ orientation:'h', y:1.10, x:0, font:{ size:11, color:COLORS.tx2 } },
       xaxis:{ ...AX, tickformat:'~s' },
       yaxis:{ ...AX, automargin:true, ticklen:0 },
+      hoverlabel:{...PL.hoverlabel, align:'left'},
       margin:{ ...PL.margin, l:lm2, t:46, r:90 }
     }, PC);
   }
@@ -4248,7 +4310,7 @@ function renderDoctorUniverse() {
     el('ch-hq-ex').innerHTML = '<div class="empty">Doctor Master not loaded.</div>';
     return;
   }
-  const filtered = DOC;
+  const filtered = scopedDoctors();
   const total = filtered.length;
   const vip = filtered.filter(d => d.category === 'VIP').length;
   const sc = filtered.filter(d => d.category === 'SUPER CORE').length;
@@ -4266,9 +4328,10 @@ function renderDoctorUniverse() {
     { c:'c1', l:'Core', v: fmtNum(core), s: total ? safePct(core, total).toFixed(0) + '% of portfolio' : '' },
     { c: coverage >= 60 ? 'c1' : coverage >= 40 ? 'c2' : 'c3',
       l:'Active Coverage', v: fmtPct(coverage, 0), s: activeDocs + ' active · ' + total + ' mapped' },
-    { c:'c2', l:'Join Health',
+    { c: (JOIN_HEALTH.unmappedDocs > 0) ? 'c2' : 'c1', l:'Join Health',
       v: JOIN_HEALTH.msrTotal ? JOIN_HEALTH.pct.toFixed(0) + '%' : '—',
-      s: JOIN_HEALTH.msrLinked + '/' + JOIN_HEALTH.msrTotal + ' MSRs matched' },
+      s: JOIN_HEALTH.msrLinked + '/' + JOIN_HEALTH.msrTotal + ' MSRs linked'
+         + (JOIN_HEALTH.unmappedDocs > 0 ? ' · ' + fmtNum(JOIN_HEALTH.unmappedDocs) + ' docs no party map' : '') },
   ];
   el('doc-strip').innerHTML = strip.map(c => `
     <div class="kpi ${c.c}">
@@ -4280,9 +4343,17 @@ function renderDoctorUniverse() {
   /* ── Doctor universe YoY band (inherited from MSR layer) ── */
   renderDoctorYoYBand();
 
-  // pyramid
-  const msrs = uniq(DOC.map(d => d.msr));
-  const data = msrs.map(m => ({ msr: m, ...doctorPortfolio(m) }));
+  // pyramid (scoped)
+  const pyrMap = new Map();
+  for (const d of filtered) {
+    if (!pyrMap.has(d.msr)) pyrMap.set(d.msr, { msr:d.msr, total:0, super:0, vip:0, core:0, other:0 });
+    const e = pyrMap.get(d.msr); e.total++;
+    if (d.category === 'SUPER CORE') e.super++;
+    else if (d.category === 'VIP') e.vip++;
+    else if (d.category === 'CORE') e.core++;
+    else e.other++;
+  }
+  const data = [...pyrMap.values()];
   const sorted = sortBy(data, d => d.total);
   el('pyramid-list').innerHTML = sorted.map(d => {
     const total = d.total || 1;
@@ -4303,9 +4374,9 @@ function renderDoctorUniverse() {
       <span><span class="swatch" style="background:var(--acc)"></span>Core</span>
     </div>`;
 
-  // speciality headcount
+  // speciality headcount (scoped)
   const counts = new Map();
-  for (const d of DOC) {
+  for (const d of filtered) {
     const k = d.speciality || 'Unspecified';
     counts.set(k, (counts.get(k) || 0) + 1);
   }
@@ -4344,17 +4415,23 @@ function renderDoctorUniverse() {
       const mappedSeries = labels.map(k => c[k].mapped);
       const activeSeries = labels.map(k => c[k].active);
       const adherenceSeries = labels.map(k => c[k].adherencePct);
+      const adherenceHover = labels.map(k => [c[k].mappedRev, c[k].rev]);
+      const maxDoctors = Math.max(1, ...mappedSeries, ...activeSeries);
+      const doctorAxisMax = Math.ceil(maxDoctors * 1.22);
+      const maxAdherence = Math.max(0, ...adherenceSeries);
       Plotly.newPlot('ch-hq-ex', [
         { type:'bar', name:'Mapped Doctors',
           x: labels, y: mappedSeries,
           marker:{color:'rgba(91,141,239,0.25)', line:{color:COLORS.acc, width:1.5}},
           text: mappedSeries.map(v => fmtNum(v)), textposition:'outside', textfont:{size:12, color:COLORS.tx2},
+          cliponaxis:false,
           hovertemplate:'<b>%{x}</b><br>Mapped: %{y}<extra></extra>' },
         { type:'bar', name:'Active Doctors',
           x: labels, y: activeSeries,
           marker:{color: COLORS.acc},
           text: activeSeries.map((v,i) => fmtNum(v) + ' (' + (mappedSeries[i] ? safePct(v, mappedSeries[i]).toFixed(0) : '0') + '%)'),
           textposition:'outside', textfont:{size:12, color:'#fff'},
+          cliponaxis:false,
           hovertemplate:'<b>%{x}</b><br>Active: %{y}<extra></extra>' },
         { type:'scatter', name:'Strategy Adherence %', yaxis:'y2',
           x: labels, y: adherenceSeries,
@@ -4362,16 +4439,18 @@ function renderDoctorUniverse() {
           marker:{size:14, color:COLORS.gold, line:{color:'#fff', width:2}},
           text: adherenceSeries.map(v => v.toFixed(2) + '%'),
           textposition:'top center', textfont:{size:12, color:COLORS.gold, family:'Plus Jakarta Sans', weight:700},
-          hovertemplate:'<b>%{x}</b><br>Adherence: <b>%{y:.1f}%</b><extra></extra>' }
+          customdata: adherenceHover,
+          cliponaxis:false,
+          hovertemplate:'<b>%{x}</b><br>Adherence: <b>%{y:.1f}%</b><br>Mapped-product revenue: ₹%{customdata[0]:,.0f}<br>Total scoped revenue: ₹%{customdata[1]:,.0f}<extra></extra>' }
       ], {
         ...PL, barmode:'group', showlegend:true,
-        legend:{orientation:'h', y:1.16, x:0, font:{size:11, color:COLORS.tx2}},
+        legend:{orientation:'h', y:1.20, x:0, font:{size:11, color:COLORS.tx2}},
         xaxis:{...AX, title:{text:'Territory Type', font:{size:11, color:COLORS.tx3}}},
-        yaxis:{...AX, tickformat:',d', title:{text:'Doctors', font:{size:11, color:COLORS.tx3}}},
+        yaxis:{...AX, tickformat:',d', range:[0, doctorAxisMax], title:{text:'Doctors', font:{size:11, color:COLORS.tx3}}},
         yaxis2:{...AX, overlaying:'y', side:'right', ticksuffix:'%',
-                range:[0, Math.max(100, Math.max(...adherenceSeries)*1.2)],
+                range:[0, Math.max(100, maxAdherence * 1.25)],
                 title:{text:'Adherence %', font:{size:11, color:COLORS.tx3}}},
-        margin:{...PL.margin, t:48, r:64, b:54}
+        margin:{...PL.margin, t:68, r:64, b:54}
       }, PC);
     }
   }
@@ -5507,7 +5586,7 @@ function applyF() {
       (!ftier || r.category === ftier)
     );
     docCityRestrict = new Set(matches.map(r => r.cityKey).filter(Boolean));
-    docMsrRestrict = new Set(matches.map(r => r.msrUpper));
+    docMsrRestrict = new Set(matches.map(r => r.msrCanon));
   }
 
   /* Fiscal-month range — defaults to COMP_MONTHS when both ends are 'Auto'.
@@ -5549,7 +5628,7 @@ function applyF() {
     if (docCityRestrict && r.station && !docCityRestrict.has(canonCity(r.station))) return false;
     return true;
   }
-  function passDocMSR(r) { if (docMsrRestrict && !docMsrRestrict.has(normName(r.msr))) return false; return true; }
+  function passDocMSR(r) { if (docMsrRestrict && !docMsrRestrict.has(msrCanon(r.msr))) return false; return true; }
   function passMsrDim(r) { if (fabm && (r.abm || '').trim() !== fabm) return false; if (fmsr && r.msr !== fmsr) return false; return true; }
 
   /* PASS 1 — global filter (applied to current/previous separately) */
