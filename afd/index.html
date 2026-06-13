@@ -979,7 +979,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         </div>
       </div>
       <div class="card">
-        <div class="card-head"><div><div class="card-title">HQ vs Extension — Coverage &amp; Strategy Adherence</div><div class="card-sub">Coverage counts doctors; adherence is revenue from products mapped to the scoped doctors</div></div></div>
+        <div class="card-head"><div><div class="card-title">HQ vs Extension — Coverage &amp; Strategy Adherence</div><div class="card-sub">Bars = mapped vs active doctors. Adherence = % of revenue in products mapped to at least one of the territory's doctors</div></div></div>
         <div id="ch-hq-ex" class="chart md"></div>
       </div>
       <div class="watermark">Sales Dashboard · Doctor Universe</div>
@@ -1409,14 +1409,31 @@ function canonCity(c) {
 function cleanBrandKey(name) {
   if (!name) return '';
   let v = String(name).trim().toUpperCase();
-  v = v.replace(/\b(?:TAB|TABLET|TABLETS|CAP|CAPS|CAPSULE|CAPSULES|INJ|INJECTION|LIQUID|SUSP|SUSPENSION|SYRUP|GEL|CREAM|OINTMENT|OINT|LOTION|DROPS|SACHET|POWDER|SPRAY)\b/gi, ' ');
-  v = v.replace(/\b(?:MR|SR|PR|XR|XL|CR|DS|HD|FORTE|PLUS|ADVANCE)\b/gi, ' ');
+  v = v.replace(/\b(?:TABS?|TABLETS?|CAPS?|CAPSULES?|INJ|INJECTION|LIQUID|SUSP|SUSPENSION|SYRUP|SYP|GEL|CREAM|OINTMENT|OINT|LOTION|DROPS?|SACHET|POWDER|SPRAY|SHORTS|ORAL|SOLUTION)\b/gi, ' ');
+  v = v.replace(/\b(?:MR|SR|PR|XR|XL|CR|DS|HD|FORTE|PLUS|ADVANCE|ER|CV|ACE|DUO|OZ)\b/gi, ' ');
   v = v.replace(/\b\d+\s*(?:MG|MCG|GM|G|ML|IU|%)?\b/gi, ' ');
   v = v.replace(/[^A-Z0-9\s]/g, ' ');
   v = v.replace(/\s+/g, ' ').trim();
-  if (v.startsWith('ECOXIB')) return 'ECOXIB';
-  if (v.startsWith('KOVER'))  return 'KOVER ALL';
-  if (v.startsWith('REDNIL')) return 'REDNIL';
+  /* strip leftover lone pack-marker letter, e.g. "10'S" -> stray "S" */
+  v = v.replace(/\bS\b/g, ' ').replace(/\s+/g, ' ').trim();
+  /* ── Canonical brand-family resolution (separator-insensitive) ──
+   * Doctor Master spells brands inconsistently (e.g. "L STYLE CAP",
+   * "LSTYLE", "L-STYLE") and sales names carry pack/strength suffixes.
+   * Compacting to an alnum string and matching brand prefixes folds
+   * every spelling on BOTH sides to one key so adherence/coverage match. */
+  const c = v.replace(/\s+/g, '');
+  if (c.startsWith('ECOXIB'))                       return 'ECOXIB';
+  if (c.startsWith('KOVER'))                        return 'KOVER ALL';
+  if (c.startsWith('REDNIL'))                       return 'REDNIL';
+  if (c.startsWith('AFDICAL') || c === 'AFD')       return 'AFDICAL';
+  if (c.startsWith('CARTI'))                        return 'CARTI TONE';
+  if (c.startsWith('CONOSTEO') || c === 'CON')      return 'CON OSTEO';
+  if (c.startsWith('LSTYLE'))                       return 'L STYLE';
+  if (c.startsWith('KALD3'))                        return 'KAL D3';
+  if (c.startsWith('TEZALO') || c.startsWith('TZ')) return 'TEZALO';
+  if (c.startsWith('TMA'))                          return 'TMA';
+  if (c.startsWith('RECARE'))                       return 'RECARE P2';
+  if (c.startsWith('REGULETTS') || c === 'REG')     return 'REGULETTS';
   return v;
 }
 function divisionForProduct(productName) {
@@ -2644,8 +2661,8 @@ function hqExCoverage() {
   }
 
   const out = {
-    HQ: { mapped:0, active:0, rev:0, mappedRev:0 },
-    EX: { mapped:0, active:0, rev:0, mappedRev:0 }
+    HQ: { mapped:0, active:0, rev:0, mappedRev:0, reachRev:0 },
+    EX: { mapped:0, active:0, rev:0, mappedRev:0, reachRev:0 }
   };
 
   /* Mapped + Active (count-based) */
@@ -2655,7 +2672,11 @@ function hqExCoverage() {
     if (active.has(d.msrCanon)) out[t].active += 1;
   }
 
-  /* Strategy adherence (revenue-based, MSR→product→doctor) */
+  /* Two adherence views (both revenue-based, MSR→product→doctor):
+   *   mappedRev (coverage-weighted) — each sale credited by the SHARE of
+   *             that territory's doctors who map the sold product.
+   *   reachRev  (portfolio reach)   — each sale credited in FULL if AT LEAST
+   *             ONE doctor of that territory maps the sold product. */
   for (const r of FSMSR) {
     if (r.is_return) continue;
     const docs = docByMsr.get(msrCanon(r.msr));
@@ -2672,12 +2693,18 @@ function hqExCoverage() {
     out.EX.rev       += r.sales_value * exTot / n;
     out.HQ.mappedRev += r.sales_value * hqMap / n;
     out.EX.mappedRev += r.sales_value * exMap / n;
+    if (hqMap > 0) out.HQ.reachRev += r.sales_value * hqTot / n;
+    if (exMap > 0) out.EX.reachRev += r.sales_value * exTot / n;
   }
 
   ['HQ','EX'].forEach(k => {
     const b = out[k];
     b.coveragePct  = b.mapped ? safePct(b.active, b.mapped) : 0;
-    b.adherencePct = b.rev ? safePct(b.mappedRev, b.rev) : 0;
+    /* Official adherence = portfolio reach: % of revenue in products mapped
+     * to AT LEAST ONE scoped doctor of that territory type. */
+    b.adherencePct = b.rev ? safePct(b.reachRev, b.rev) : 0;
+    b.reachPct     = b.adherencePct;
+    b.coverageWeightedPct = b.rev ? safePct(b.mappedRev, b.rev) : 0;  /* kept for reference */
   });
   return out;
 }
@@ -4415,7 +4442,7 @@ function renderDoctorUniverse() {
       const mappedSeries = labels.map(k => c[k].mapped);
       const activeSeries = labels.map(k => c[k].active);
       const adherenceSeries = labels.map(k => c[k].adherencePct);
-      const adherenceHover = labels.map(k => [c[k].mappedRev, c[k].rev]);
+      const adherenceHover = labels.map(k => [c[k].reachRev, c[k].rev]);
       const maxDoctors = Math.max(1, ...mappedSeries, ...activeSeries);
       const doctorAxisMax = Math.ceil(maxDoctors * 1.22);
       const maxAdherence = Math.max(0, ...adherenceSeries);
@@ -4437,11 +4464,11 @@ function renderDoctorUniverse() {
           x: labels, y: adherenceSeries,
           mode:'lines+markers+text', line:{color:COLORS.gold, width:3},
           marker:{size:14, color:COLORS.gold, line:{color:'#fff', width:2}},
-          text: adherenceSeries.map(v => v.toFixed(2) + '%'),
+          text: adherenceSeries.map(v => v.toFixed(1) + '%'),
           textposition:'top center', textfont:{size:12, color:COLORS.gold, family:'Plus Jakarta Sans', weight:700},
           customdata: adherenceHover,
           cliponaxis:false,
-          hovertemplate:'<b>%{x}</b><br>Adherence: <b>%{y:.1f}%</b><br>Mapped-product revenue: ₹%{customdata[0]:,.0f}<br>Total scoped revenue: ₹%{customdata[1]:,.0f}<extra></extra>' }
+          hovertemplate:'<b>%{x}</b><br>Adherence: <b>%{y:.1f}%</b><br>Revenue in mapped products: ₹%{customdata[0]:,.0f}<br>Total scoped revenue: ₹%{customdata[1]:,.0f}<extra></extra>' }
       ], {
         ...PL, barmode:'group', showlegend:true,
         legend:{orientation:'h', y:1.20, x:0, font:{size:11, color:COLORS.tx2}},
