@@ -1,0 +1,1002 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRE Quant Pro — Free Mocks — Coach Aditya Goenka</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a28; --surface3:#22223a; --border:#2a2a45;
+  --accent:#6c63ff; --accent2:#ff6584; --accent3:#43e97b; --accent4:#f7971e;
+  --text:#e8e8f0; --text2:#9898b8; --text3:#5a5a7a;
+  --success:#43e97b; --warning:#f7971e; --danger:#ff6584;
+  --font-display:'DM Serif Display',serif; --font-body:'Outfit',sans-serif; --font-mono:'DM Mono',monospace;
+  --radius:16px; --radius-sm:8px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(rgba(108,99,255,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(108,99,255,0.03) 1px,transparent 1px);background-size:40px 40px;pointer-events:none;z-index:0;}
+.app{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:32px 20px 80px;}
+
+/* HEADER */
+.app-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:40px;padding-bottom:24px;border-bottom:1px solid var(--border);}
+.logo h1{font-family:var(--font-display);font-size:26px;}
+.logo h1 span{color:var(--accent);}
+.logo p{font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-top:4px;}
+.badge-free{background:linear-gradient(135deg,var(--accent),#9b59b6);color:#fff;font-size:11px;font-weight:700;padding:4px 10px;border-radius:20px;letter-spacing:1px;text-transform:uppercase;font-family:var(--font-mono);}
+
+/* SCREENS */
+.screen{display:none;} .screen.active{display:block;}
+
+/* MOCK SELECTION */
+.section-title{font-family:var(--font-display);font-size:28px;margin-bottom:8px;}
+.section-sub{color:var(--text2);font-size:14px;margin-bottom:32px;}
+.mocks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.mock-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
+.mock-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity 0.2s;}
+.mock-card:hover{border-color:var(--accent);transform:translateY(-2px);box-shadow:0 8px 32px rgba(108,99,255,0.2);}
+.mock-card:hover::before{opacity:1;}
+.mock-card .free-tag{position:absolute;top:12px;right:12px;background:var(--accent3);color:#0a0a0f;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;font-family:var(--font-mono);letter-spacing:1px;}
+.mock-num{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;}
+.mock-title{font-family:var(--font-display);font-size:18px;margin-bottom:8px;}
+.mock-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:12px;}
+.mock-tag{font-size:11px;color:var(--text3);font-family:var(--font-mono);background:var(--surface2);padding:3px 8px;border-radius:4px;}
+.diff-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:4px;}
+
+/* UPGRADE BANNER */
+.upgrade-banner{background:linear-gradient(135deg,rgba(108,99,255,0.1),rgba(255,101,132,0.1));border:1px solid rgba(108,99,255,0.25);border-radius:var(--radius);padding:28px 32px;margin-top:32px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.upgrade-banner h3{font-family:var(--font-display);font-size:20px;margin-bottom:6px;}
+.upgrade-banner p{color:var(--text2);font-size:13px;max-width:420px;}
+.upgrade-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px;}
+.upgrade-tag{font-size:11px;background:rgba(108,99,255,0.12);color:var(--accent);border:1px solid rgba(108,99,255,0.2);border-radius:20px;padding:3px 10px;font-family:var(--font-mono);}
+
+/* REGISTRATION */
+.reg-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:36px;max-width:520px;margin:0 auto;position:relative;overflow:hidden;}
+.reg-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent3),var(--accent));}
+.reg-card h2{font-family:var(--font-display);font-size:24px;margin-bottom:6px;}
+.reg-card p{color:var(--text2);font-size:14px;margin-bottom:28px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+label{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-mono);}
+input{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-body);font-size:14px;padding:12px 16px;outline:none;transition:border-color 0.2s;width:100%;}
+input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.15);}
+
+/* INSTRUCTIONS */
+.instr-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:36px;max-width:600px;margin:0 auto;}
+.instr-card h2{font-family:var(--font-display);font-size:24px;margin-bottom:20px;}
+.instr-list{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:28px;}
+.instr-list li{display:flex;gap:12px;align-items:flex-start;font-size:14px;color:var(--text2);}
+.instr-list li::before{content:'→';color:var(--accent);font-family:var(--font-mono);flex-shrink:0;margin-top:1px;}
+.instr-highlight{background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:var(--radius-sm);padding:16px;margin-bottom:24px;font-size:13px;color:var(--text2);}
+.instr-highlight strong{color:var(--text);}
+
+/* EXAM BAR */
+.exam-bar{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:14px 24px;margin-bottom:24px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;position:sticky;top:16px;z-index:50;}
+.exam-info{display:flex;gap:24px;align-items:center;}
+.exam-label{font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;}
+.exam-value{font-size:15px;font-weight:600;margin-top:2px;}
+.exam-timer{font-family:var(--font-mono);font-size:22px;color:var(--accent);background:rgba(108,99,255,0.1);padding:8px 16px;border-radius:8px;border:1px solid rgba(108,99,255,0.2);min-width:90px;text-align:center;}
+.exam-timer.urgent{color:var(--danger);background:rgba(255,101,132,0.1);border-color:rgba(255,101,132,0.3);}
+.progress-bar-wrap{height:3px;background:var(--surface3);border-radius:2px;margin-bottom:20px;}
+.progress-bar-fill{height:3px;background:linear-gradient(90deg,var(--accent3),var(--accent));border-radius:2px;transition:width 0.3s;}
+
+/* QUESTION */
+.q-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:20px;position:relative;}
+.q-meta{display:flex;gap:10px;align-items:center;margin-bottom:16px;flex-wrap:wrap;}
+.q-num{font-family:var(--font-mono);font-size:12px;color:var(--accent);background:rgba(108,99,255,0.1);padding:3px 10px;border-radius:20px;border:1px solid rgba(108,99,255,0.2);}
+.q-type{font-size:11px;color:var(--text3);font-family:var(--font-mono);background:var(--surface2);padding:3px 8px;border-radius:4px;text-transform:uppercase;letter-spacing:1px;}
+.q-diff{font-size:11px;font-family:var(--font-mono);padding:3px 8px;border-radius:4px;}
+.q-diff.easy{background:rgba(67,233,123,0.1);color:var(--success);}
+.q-diff.medium{background:rgba(247,151,30,0.1);color:var(--warning);}
+.q-diff.hard{background:rgba(255,101,132,0.1);color:var(--danger);}
+.q-diff.extreme_hard{background:rgba(255,0,128,0.15);color:#ff69b4;}
+.q-text{font-size:16px;line-height:1.7;margin-bottom:20px;white-space:pre-wrap;}
+
+/* OPTIONS */
+.options{display:flex;flex-direction:column;gap:10px;}
+.option{display:flex;align-items:flex-start;gap:12px;padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);cursor:pointer;transition:all 0.15s;font-size:14px;}
+.option:hover{border-color:var(--accent);background:rgba(108,99,255,0.07);}
+.option.selected{border-color:var(--accent);background:rgba(108,99,255,0.12);}
+.option-letter{font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--accent);flex-shrink:0;width:18px;}
+.option-text{flex:1;line-height:1.5;}
+
+/* NUMERIC ENTRY */
+.ne-group{display:flex;flex-direction:column;gap:8px;max-width:240px;}
+.ne-group label{font-size:12px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-mono);}
+.ne-input{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--text);font-family:var(--font-mono);font-size:18px;padding:12px 16px;outline:none;width:100%;}
+.ne-input:focus{border-color:var(--accent);}
+
+/* NAV */
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;gap:12px;}
+.q-counter{font-size:13px;color:var(--text3);font-family:var(--font-mono);}
+
+/* SECTION BREAK */
+.break-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:48px 36px;max-width:520px;margin:60px auto 0;text-align:center;}
+.break-card h2{font-family:var(--font-display);font-size:28px;margin-bottom:12px;}
+.break-card p{color:var(--text2);font-size:15px;margin-bottom:8px;}
+.break-timer{font-family:var(--font-mono);font-size:48px;color:var(--accent);margin:24px 0;}
+.break-score-preview{background:var(--surface2);border-radius:var(--radius-sm);padding:16px;margin:20px 0;font-size:14px;color:var(--text2);}
+.break-score-preview strong{color:var(--text);font-size:18px;}
+
+/* RESULTS */
+.results-header{text-align:center;margin-bottom:40px;}
+.results-header h2{font-family:var(--font-display);font-size:32px;margin-bottom:8px;}
+.results-header p{color:var(--text2);}
+.score-ring-wrap{display:flex;justify-content:center;margin-bottom:40px;}
+.score-ring{width:160px;height:160px;position:relative;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-ring-label .score-val{font-family:var(--font-display);font-size:36px;font-weight:bold;}
+.score-ring-label .score-sub{font-size:12px;color:var(--text3);font-family:var(--font-mono);}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-bottom:32px;}
+.stat-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center;}
+.stat-val{font-family:var(--font-display);font-size:28px;font-weight:bold;margin-bottom:4px;}
+.stat-lbl{font-size:12px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;}
+.section-compare{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:32px;}
+.sec-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:20px;}
+.sec-card h3{font-family:var(--font-mono);font-size:12px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;}
+.sec-score{font-family:var(--font-display);font-size:24px;margin-bottom:8px;}
+.topic-bars{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.topic-bars h3{font-family:var(--font-display);font-size:18px;margin-bottom:20px;}
+.topic-row{display:flex;align-items:center;gap:12px;margin-bottom:14px;}
+.topic-name{font-size:13px;color:var(--text2);width:170px;flex-shrink:0;}
+.topic-bar-bg{flex:1;height:8px;background:var(--surface3);border-radius:4px;overflow:hidden;}
+.topic-bar-fill{height:8px;border-radius:4px;transition:width 0.6s ease;}
+.topic-pct{font-family:var(--font-mono);font-size:12px;color:var(--text2);width:40px;text-align:right;}
+.diagnosis-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px;margin-bottom:32px;position:relative;overflow:hidden;}
+.diagnosis-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent2),var(--accent));}
+.diagnosis-card h3{font-family:var(--font-display);font-size:20px;margin-bottom:16px;}
+.band{display:inline-block;font-family:var(--font-mono);font-size:11px;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.band.strong{background:rgba(67,233,123,0.15);color:var(--success);border:1px solid rgba(67,233,123,0.3);}
+.band.close{background:rgba(108,99,255,0.15);color:var(--accent);border:1px solid rgba(108,99,255,0.3);}
+.band.focus{background:rgba(247,151,30,0.15);color:var(--warning);border:1px solid rgba(247,151,30,0.3);}
+.band.risk{background:rgba(255,101,132,0.15);color:var(--danger);border:1px solid rgba(255,101,132,0.3);}
+.diag-text{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:16px;}
+.recovery-steps{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.recovery-steps li{display:flex;gap:10px;font-size:14px;color:var(--text2);}
+.recovery-steps li .step-num{font-family:var(--font-mono);color:var(--accent);font-size:12px;background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.review-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:32px;}
+.review-section h3{font-family:var(--font-display);font-size:18px;margin-bottom:16px;display:flex;align-items:center;gap:10px;}
+.review-toggle{font-size:12px;color:var(--accent);font-family:var(--font-mono);cursor:pointer;background:none;border:none;text-decoration:underline;}
+.review-list{display:flex;flex-direction:column;gap:14px;margin-top:16px;}
+.review-item{padding:16px;background:var(--surface2);border-radius:var(--radius-sm);border-left:3px solid var(--border);}
+.review-item.correct{border-left-color:var(--success);}
+.review-item.incorrect{border-left-color:var(--danger);}
+.review-item.skipped{border-left-color:var(--text3);}
+.review-q{font-size:14px;margin-bottom:8px;white-space:pre-wrap;}
+.review-answers{display:flex;gap:16px;font-size:13px;color:var(--text2);font-family:var(--font-mono);}
+.review-answers .correct-ans{color:var(--success);}
+.review-answers .wrong-ans{color:var(--danger);}
+.review-exp{font-size:13px;color:var(--text2);margin-top:8px;padding-top:8px;border-top:1px solid var(--border);line-height:1.6;}
+.review-trap{font-size:12px;color:var(--warning);margin-top:6px;font-style:italic;}
+.result-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:32px;}
+
+/* RESULT UPGRADE CTA */
+.result-upgrade{position:relative;overflow:hidden;border-radius:var(--radius);margin-bottom:32px;}
+.result-upgrade::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(108,99,255,0.18) 0%,rgba(255,101,132,0.12) 50%,rgba(108,99,255,0.1) 100%);z-index:0;}
+.result-upgrade::after{content:'PRO';position:absolute;right:-10px;top:50%;transform:translateY(-50%);font-family:var(--font-display);font-size:120px;color:rgba(255,255,255,0.03);pointer-events:none;z-index:0;line-height:1;}
+.ru-inner{position:relative;z-index:1;border:1px solid rgba(108,99,255,0.35);border-radius:var(--radius);padding:40px 36px;}
+.ru-top-bar{position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--accent));border-radius:var(--radius) var(--radius) 0 0;}
+.ru-kicker{font-family:var(--font-mono);font-size:11px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.ru-headline{font-family:var(--font-display);font-size:clamp(24px,3vw,34px);line-height:1.15;margin-bottom:10px;}
+.ru-headline span{color:var(--accent);}
+.ru-sub{color:var(--text2);font-size:14px;line-height:1.7;max-width:580px;margin-bottom:28px;}
+.ru-mocks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px;}
+.ru-mock-pill{background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:10px;padding:12px 10px;text-align:center;}
+.ru-mock-pill .rmp-num{font-family:var(--font-mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;}
+.ru-mock-pill .rmp-diff{font-size:12px;font-weight:600;color:var(--text);}
+.ru-mock-pill .rmp-level{font-family:var(--font-mono);font-size:10px;color:var(--text3);margin-top:2px;}
+.ru-mock-pill.locked{border-color:rgba(108,99,255,0.2);background:rgba(108,99,255,0.06);}
+.ru-mock-pill.locked .rmp-num{color:var(--accent);}
+.ru-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.ru-price-block{display:flex;align-items:baseline;gap:8px;}
+.ru-price{font-family:var(--font-display);font-size:42px;font-weight:bold;color:var(--text);}
+.ru-price-label{font-size:13px;color:var(--text2);}
+.ru-price-vs{font-size:12px;color:var(--text3);margin-top:2px;font-family:var(--font-mono);}
+.ru-cta-btn{display:inline-flex;align-items:center;gap:10px;padding:16px 32px;background:var(--accent);color:white;border:none;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;box-shadow:0 8px 32px rgba(108,99,255,0.4);transition:all 0.2s;white-space:nowrap;}
+.ru-cta-btn:hover{transform:translateY(-2px);box-shadow:0 12px 40px rgba(108,99,255,0.6);}
+.ru-features{display:flex;gap:20px;flex-wrap:wrap;margin-top:20px;}
+.ru-feat{font-size:13px;color:var(--text2);display:flex;align-items:center;gap:6px;}
+.ru-feat::before{content:'✓';color:var(--accent);font-weight:700;flex-shrink:0;}
+@media(max-width:600px){
+  .ru-mocks{grid-template-columns:repeat(2,1fr);}
+  .ru-inner{padding:28px 20px;}
+  .ru-bottom{flex-direction:column;align-items:flex-start;}
+  .ru-cta-btn{width:100%;justify-content:center;}
+}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 24px;border:none;border-radius:var(--radius-sm);font-family:var(--font-body);font-size:14px;font-weight:600;cursor:pointer;transition:all 0.2s;}
+.btn-primary{background:var(--accent);color:white;box-shadow:0 4px 16px rgba(108,99,255,0.3);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(108,99,255,0.5);}
+.btn-success{background:var(--success);color:#0a0a0f;}
+.btn-success:hover{transform:translateY(-2px);filter:brightness(1.1);}
+.btn-ghost{background:var(--surface2);color:var(--text2);}
+.btn-ghost:hover{background:var(--surface3);color:var(--text);}
+.btn-outline{background:transparent;border:1px solid var(--border);color:var(--text2);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.btn:disabled{opacity:0.4;cursor:not-allowed;transform:none!important;}
+.btn-sm{padding:8px 14px;font-size:13px;}
+
+/* LOADING */
+.loading-screen{text-align:center;padding:80px 20px;}
+.loading-screen p{color:var(--text2);font-family:var(--font-mono);font-size:14px;margin-top:16px;}
+.spinner{width:40px;height:40px;border:3px solid var(--surface3);border-top-color:var(--accent3);border-radius:50%;animation:spin 0.8s linear infinite;margin:0 auto;}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:600px){
+  .mocks-grid{grid-template-columns:1fr;}
+  .section-compare{grid-template-columns:1fr;}
+  .exam-bar{padding:12px 16px;}
+  .q-card{padding:20px;}
+  .exam-info{gap:16px;}
+  .upgrade-banner{flex-direction:column;}
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="app-header">
+    <div class="logo">
+      <h1>GRE Quant <span>Pro</span></h1>
+      <p>Full Mock Tests · Coach Aditya Goenka</p>
+    </div>
+    <span class="badge-free">FREE MOCKS</span>
+  </div>
+
+  <!-- SCREEN: LOADING -->
+  <div id="screen-loading" class="screen active">
+    <div class="loading-screen">
+      <div class="spinner"></div>
+      <p>Loading mock tests...</p>
+    </div>
+  </div>
+
+  <!-- SCREEN: SELECT MOCK -->
+  <div id="screen-select" class="screen">
+    <h2 class="section-title">Free Mock Tests</h2>
+    <p class="section-sub">2 full-length GRE Quant mocks · 2 sections · 27 questions each · 35 min per section</p>
+    <div class="mocks-grid" id="mocks-grid"></div>
+
+    <div class="result-upgrade" style="margin-top:32px;">
+      <div class="ru-inner">
+        <div class="ru-top-bar"></div>
+        <div class="ru-kicker">🔒 Pro Plan — 8 More Mocks Waiting</div>
+        <div class="ru-headline">You've seen what free looks like.<br><span>Pro is a different league.</span></div>
+        <div class="ru-sub">These 2 mocks are the warm-up. The real GRE battlefield — escalating from Moderate (162) to Expert (170) — lives in Pro. Every mock has trap analysis, question-level diagnostics, and section-break feedback.</div>
+        <div class="ru-mocks">
+          <div class="ru-mock-pill locked">
+            <div class="rmp-num">Mock 03–04</div>
+            <div class="rmp-diff">Moderate</div>
+            <div class="rmp-level">Target: 162+</div>
+          </div>
+          <div class="ru-mock-pill locked">
+            <div class="rmp-num">Mock 05–06</div>
+            <div class="rmp-diff" style="color:var(--warning)">Moderate–Hard</div>
+            <div class="rmp-level">Target: 164+</div>
+          </div>
+          <div class="ru-mock-pill locked">
+            <div class="rmp-num">Mock 07–08</div>
+            <div class="rmp-diff" style="color:var(--danger)">Hard</div>
+            <div class="rmp-level">Target: 166+</div>
+          </div>
+          <div class="ru-mock-pill locked">
+            <div class="rmp-num">Mock 09–10</div>
+            <div class="rmp-diff" style="color:#ff69b4">Very Hard + Expert</div>
+            <div class="rmp-level">Target: 168–170</div>
+          </div>
+        </div>
+        <div class="ru-bottom">
+          <div>
+            <div class="ru-price-block">
+              <span class="ru-price">₹499</span>
+              <span class="ru-price-label">one-time · lifetime access</span>
+            </div>
+            <div class="ru-price-vs">vs Magoosh ₹10,000+/yr · Manhattan ₹15,000+/yr</div>
+            <div class="ru-features" style="margin-top:14px;">
+              <div class="ru-feat">8 Pro mocks (Mocks 3–10)</div>
+              <div class="ru-feat">88 subtopics · 8,410+ questions</div>
+              <div class="ru-feat">Trap analysis on every question</div>
+              <div class="ru-feat">All future content included</div>
+            </div>
+          </div>
+          <div style="flex-shrink:0;">
+            <a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" rel="noopener" data-track="upgrade_clicked" data-track-from="mock_select">
+              Unlock Pro — ₹499 →
+            </a>
+            <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-align:center;margin-top:8px;">7-day money-back guarantee</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: REGISTER -->
+  <div id="screen-register" class="screen">
+    <div class="reg-card">
+      <h2 id="reg-mock-title">Mock Test 1</h2>
+      <p>Enter your details to begin. Your result will be saved for review.</p>
+      <div class="form-group">
+        <label>Your Name</label>
+        <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label>Email (optional)</label>
+        <input type="email" id="reg-email" placeholder="priya@email.com" autocomplete="email">
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button class="btn btn-ghost" onclick="goTo('screen-select')">← Back</button>
+        <button class="btn btn-primary" onclick="startInstructions()">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: INSTRUCTIONS -->
+  <div id="screen-instructions" class="screen">
+    <div class="instr-card">
+      <h2>Before You Begin</h2>
+      <div class="instr-highlight">
+        <strong>This is a timed, full-length GRE Quant mock.</strong><br>
+        Each section has 27 questions and 35 minutes. The timer starts automatically when you proceed to each section.
+      </div>
+      <ul class="instr-list">
+        <li>You have <strong>35 minutes per section</strong>. Time does not carry over between sections.</li>
+        <li>You can navigate between questions within a section using the Prev / Next buttons.</li>
+        <li>You can change your answer any time before submitting the section.</li>
+        <li>When time runs out, the section is auto-submitted.</li>
+        <li>There is a short break between Section 1 and Section 2.</li>
+        <li>No calculator is allowed (GRE Quant only provides one for some questions — we keep it consistent).</li>
+        <li>Unanswered questions count as wrong — attempt everything.</li>
+      </ul>
+      <div style="display:flex;gap:12px;">
+        <button class="btn btn-ghost" onclick="goTo('screen-register')">← Back</button>
+        <button class="btn btn-primary" onclick="startSection(1)">Start Section 1 →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: EXAM -->
+  <div id="screen-exam" class="screen">
+    <div class="exam-bar">
+      <div class="exam-info">
+        <div>
+          <div class="exam-label">Section</div>
+          <div class="exam-value" id="bar-section">1 of 2</div>
+        </div>
+        <div>
+          <div class="exam-label">Question</div>
+          <div class="exam-value" id="bar-qnum">1 / 27</div>
+        </div>
+        <div>
+          <div class="exam-label">Answered</div>
+          <div class="exam-value" id="bar-answered">0</div>
+        </div>
+      </div>
+      <div id="exam-timer" class="exam-timer">35:00</div>
+    </div>
+    <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
+    <div id="question-area"></div>
+    <div class="q-nav">
+      <button class="btn btn-ghost btn-sm" id="btn-prev" onclick="prevQ()">← Prev</button>
+      <span class="q-counter" id="q-counter-text">Q1 of 27</span>
+      <button class="btn btn-ghost btn-sm" id="btn-next" onclick="nextQ()">Next →</button>
+    </div>
+    <div style="margin-top:24px;text-align:center;">
+      <button class="btn btn-outline btn-sm" onclick="confirmSubmitSection()">Submit Section</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: SECTION BREAK -->
+  <div id="screen-break" class="screen">
+    <div class="break-card">
+      <h2>Section 1 Complete!</h2>
+      <p>Great work. Take a moment before Section 2.</p>
+      <div class="break-timer" id="break-timer">2:00</div>
+      <div class="break-score-preview" id="break-preview"></div>
+      <p style="color:var(--text3);font-size:13px;margin-bottom:24px;">Section 2 starts automatically, or click below to begin early.</p>
+      <button class="btn btn-primary" onclick="startSection(2)">Start Section 2 Now →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: RESULTS -->
+  <div id="screen-results" class="screen">
+    <div class="results-header">
+      <h2>Mock Complete!</h2>
+      <p id="res-subtitle"></p>
+    </div>
+    <div class="score-ring-wrap">
+      <div class="score-ring">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="68" fill="none" stroke="var(--surface3)" stroke-width="12"/>
+          <circle id="score-arc" cx="80" cy="80" r="68" fill="none" stroke="var(--accent3)" stroke-width="12" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427"/>
+        </svg>
+        <div class="score-ring-label">
+          <div class="score-val" id="res-score-val">—</div>
+          <div class="score-sub">CORRECT</div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-grid" id="res-stats"></div>
+    <div class="section-compare" id="section-compare"></div>
+    <div class="topic-bars" id="topic-bars"></div>
+    <div class="diagnosis-card" id="diagnosis-card"></div>
+    <div class="result-upgrade" id="result-upgrade"></div>
+    <div class="result-actions">
+      <button class="btn btn-ghost" onclick="downloadResult()">⬇ Download Result</button>
+      <button class="btn btn-outline" onclick="reviewAnswers()">Review All Answers</button>
+      <button class="btn btn-primary" onclick="goTo('screen-select')">← All Mocks</button>
+    </div>
+    <div class="review-section" id="review-section" style="display:none;">
+      <h3>Question Review <button class="review-toggle" onclick="toggleReview()">hide</button></h3>
+      <div class="review-list" id="review-list"></div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<script>
+// ─── CLOUDFLARE SUBMISSION ────────────────────────────────────────────────────
+const SUBMISSION_ENDPOINT = 'https://gre-auth.goenka-aditya-kol.workers.dev/mock/submission';
+
+async function saveAttempt(result) {
+  try {
+    await fetch(SUBMISSION_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ result })
+    });
+  } catch(e) {
+    console.warn('Could not save mock attempt', e);
+  }
+}
+
+function buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2) {
+  const totalTime = r1.timeUsed + r2.timeUsed;
+  const avgTime = Math.round(totalTime / totalQs);
+
+  // Build per-question results array (what the Worker requires)
+  const results = [];
+  state.mockData.sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      const given = state.answers[si+1][qi];
+      const isCorrect = checkAnswer(q, given);
+      const isSkipped = !given && given !== 0;
+      results.push({
+        id: q.id,
+        correct: isCorrect,
+        skipped: isSkipped,
+        time_taken_seconds: state.timings[si+1][qi] || 0,
+        topic: q.tags?.[0] || 'general',
+        subtopic: q.tags?.[1] || '',
+        difficulty: q.difficulty,
+        type: q.type,
+        given_answer: Array.isArray(given) ? given.join(',') : (given ?? ''),
+        correct_answer: Array.isArray(q.answer) ? q.answer.join(',') : q.answer,
+      });
+    });
+  });
+
+  const skipped = results.filter(r => r.skipped).length;
+  const incorrect = totalQs - totalCorrect - skipped;
+
+  return {
+    event_id: state.mockMeta.id,
+    event_name: state.mockMeta.title,
+    event_type: 'full_mock',
+    submitted_at: new Date().toISOString(),
+    student: {
+      name: state.student.name,
+      email: state.student.email,
+      batch: '',
+    },
+    score: pct,
+    total_questions: totalQs,
+    accuracy: pct,
+    correct: totalCorrect,
+    incorrect,
+    skipped,
+    total_time_seconds: totalTime,
+    average_time_seconds: avgTime,
+    section_1: { correct: r1.correct, total: r1.total, time_used: r1.timeUsed },
+    section_2: { correct: r2.correct, total: r2.total, time_used: r2.timeUsed },
+    diagnosis: null, // filled in after renderDiagnosis
+    results,
+  };
+}
+
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
+const MOCK_INDEX = [
+  { id:'mock_01', title:'Mock Test 1', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
+  { id:'mock_02', title:'Mock Test 2', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
+];
+const DIFF_COLORS = { Balanced:'#6c63ff', Moderate:'#43e97b', 'Moderate-Hard':'#f7971e', Hard:'#ff6584', 'Very Hard':'#ff69b4', Expert:'#ff0080' };
+const SECTION_TIME = 35 * 60;
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let state = {
+  mockData: null, mockMeta: null,
+  currentSection: 1, currentQIndex: 0,
+  answers: { 1: {}, 2: {} },
+  timings: { 1: {}, 2: {} },
+  sectionStart: null, qStart: null,
+  timerInterval: null, breakInterval: null,
+  timeLeft: SECTION_TIME,
+  student: { name:'', email:'' },
+  sectionResults: {},
+  loadError: null,
+};
+
+// ─── NAVIGATION ───────────────────────────────────────────────────────────────
+function goTo(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+}
+
+// ─── MOCK SELECTION ───────────────────────────────────────────────────────────
+function renderMockGrid() {
+  const grid = document.getElementById('mocks-grid');
+  grid.innerHTML = MOCK_INDEX.map((m, i) => `
+    <div class="mock-card" onclick="selectMock('${m.id}','${m.title}')">
+      <span class="free-tag">FREE</span>
+      <div class="mock-num">MOCK ${String(i+1).padStart(2,'0')}</div>
+      <div class="mock-title">${m.title}</div>
+      <div style="font-size:13px;color:var(--text2);margin-bottom:4px;">
+        <span class="diff-dot" style="background:${DIFF_COLORS[m.difficulty]||'#6c63ff'}"></span>${m.difficulty}
+      </div>
+      <div class="mock-meta">${m.tags.map(t=>`<span class="mock-tag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+function selectMock(mockId, title) {
+  state.mockData = null;
+  state.loadError = null;
+  state.mockMeta = MOCK_INDEX.find(m => m.id === mockId);
+  document.getElementById('reg-mock-title').textContent = title;
+  loadMock(mockId);
+  goTo('screen-register');
+}
+
+async function loadMock(mockId) {
+  try {
+    const res = await fetch(`mocks/${mockId}.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    state.mockData = await res.json();
+  } catch(e) {
+    state.loadError = e.message;
+    console.error('Failed to load mock:', e);
+  }
+}
+
+// ─── REGISTRATION ─────────────────────────────────────────────────────────────
+function startInstructions() {
+  state.student.name = document.getElementById('reg-name').value.trim() || 'Student';
+  state.student.email = document.getElementById('reg-email').value.trim();
+  if (!state.mockData) {
+    if (state.loadError) {
+      alert('Failed to load mock: ' + state.loadError + '\n\nPlease check that the mock JSON file exists.');
+      return;
+    }
+    alert('Mock is still loading. Please wait a moment and try again.');
+    return;
+  }
+  goTo('screen-instructions');
+}
+
+// ─── SECTION START ────────────────────────────────────────────────────────────
+function startSection(num) {
+  clearInterval(state.timerInterval);
+  clearInterval(state.breakInterval);
+  state.currentSection = num;
+  state.currentQIndex = 0;
+  state.timeLeft = SECTION_TIME;
+  state.sectionStart = Date.now();
+  state.qStart = Date.now();
+  document.getElementById('bar-section').textContent = `${num} of 2`;
+  updateExamBar();
+  renderQuestion();
+  goTo('screen-exam');
+  startTimer();
+}
+
+// ─── TIMER ────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  state.timerInterval = setInterval(() => {
+    state.timeLeft--;
+    updateTimerDisplay();
+    if (state.timeLeft <= 0) { clearInterval(state.timerInterval); submitSection(true); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const m = Math.floor(state.timeLeft / 60);
+  const s = state.timeLeft % 60;
+  const el = document.getElementById('exam-timer');
+  el.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  el.className = state.timeLeft <= 120 ? 'exam-timer urgent' : 'exam-timer';
+}
+
+// ─── QUESTION RENDER ──────────────────────────────────────────────────────────
+function currentSectionQs() {
+  return state.mockData.sections[state.currentSection - 1].questions;
+}
+
+function renderQuestion() {
+  const qs = currentSectionQs();
+  const q = qs[state.currentQIndex];
+  state.qStart = Date.now();
+  const saved = state.answers[state.currentSection][state.currentQIndex];
+  updateExamBar();
+
+  let optionsHtml = '';
+  if (q.type === 'numeric_entry') {
+    optionsHtml = `<div class="ne-group">
+      <label>Enter your answer</label>
+      <input class="ne-input" type="text" id="ne-input" value="${saved||''}"
+             oninput="saveNE(this.value)" placeholder="Type your answer..." autocomplete="off">
+    </div>`;
+  } else if (q.type === 'multiple_answer') {
+    const sel = Array.isArray(saved) ? saved : [];
+    optionsHtml = `<div style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:10px;">SELECT ALL THAT APPLY</div>
+    <div class="options">${(q.options||[]).map(opt => {
+      const letter = opt[0];
+      return `<div class="option${sel.includes(letter)?' selected':''}" onclick="toggleMA('${letter}',this)">
+        <span class="option-letter">${letter}</span>
+        <span class="option-text">${opt.slice(3)}</span>
+      </div>`;
+    }).join('')}</div>`;
+  } else {
+    optionsHtml = `<div class="options">${(q.options||[]).map(opt => {
+      const letter = opt[0];
+      return `<div class="option${saved===letter?' selected':''}" onclick="selectOption('${letter}',this)">
+        <span class="option-letter">${letter}</span>
+        <span class="option-text">${opt.slice(3)}</span>
+      </div>`;
+    }).join('')}</div>`;
+  }
+
+  const typeLabel = {
+    mcq:'Multiple Choice', quantitative_comparison:'Quantitative Comparison',
+    numeric_entry:'Numeric Entry', multiple_answer:'Multiple Answer'
+  }[q.type] || q.type;
+
+  document.getElementById('question-area').innerHTML = `
+    <div class="q-card">
+      <div class="q-meta">
+        <span class="q-num">Q${state.currentQIndex + 1}</span>
+        <span class="q-type">${typeLabel}</span>
+        <span class="q-diff ${q.difficulty}">${q.difficulty.replace('_',' ')}</span>
+      </div>
+      <div class="q-text">${q.question}</div>
+      ${optionsHtml}
+    </div>`;
+
+  document.getElementById('btn-prev').disabled = state.currentQIndex === 0;
+  document.getElementById('btn-next').disabled = state.currentQIndex === qs.length - 1;
+  document.getElementById('q-counter-text').textContent = `Q${state.currentQIndex+1} of ${qs.length}`;
+  updateExamBar();
+}
+
+function updateExamBar() {
+  const qs = currentSectionQs();
+  const answered = Object.keys(state.answers[state.currentSection]).filter(k => {
+    const a = state.answers[state.currentSection][k];
+    return a !== undefined && a !== '' && !(Array.isArray(a) && a.length === 0);
+  }).length;
+  document.getElementById('bar-qnum').textContent = `${state.currentQIndex+1} / ${qs.length}`;
+  document.getElementById('bar-answered').textContent = `${answered} / ${qs.length}`;
+  document.getElementById('progress-fill').style.width = `${((state.currentQIndex+1)/qs.length*100)}%`;
+}
+
+// ─── ANSWER SAVE ─────────────────────────────────────────────────────────────
+function saveQTime() {
+  const elapsed = Math.round((Date.now() - state.qStart) / 1000);
+  state.timings[state.currentSection][state.currentQIndex] =
+    (state.timings[state.currentSection][state.currentQIndex] || 0) + elapsed;
+}
+
+function selectOption(letter, el) {
+  saveQTime();
+  state.answers[state.currentSection][state.currentQIndex] = letter;
+  el.closest('.options').querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  state.qStart = Date.now();
+  updateExamBar();
+}
+
+function saveNE(val) {
+  state.answers[state.currentSection][state.currentQIndex] = val;
+  updateExamBar();
+}
+
+function toggleMA(letter, el) {
+  const cur = state.answers[state.currentSection][state.currentQIndex];
+  let sel = Array.isArray(cur) ? [...cur] : [];
+  if (sel.includes(letter)) sel = sel.filter(l => l !== letter);
+  else sel.push(letter);
+  state.answers[state.currentSection][state.currentQIndex] = sel;
+  el.classList.toggle('selected');
+  updateExamBar();
+}
+
+// ─── NAVIGATION ───────────────────────────────────────────────────────────────
+function prevQ() {
+  if (state.currentQIndex > 0) { saveQTime(); state.currentQIndex--; renderQuestion(); }
+}
+function nextQ() {
+  const qs = currentSectionQs();
+  if (state.currentQIndex < qs.length - 1) { saveQTime(); state.currentQIndex++; renderQuestion(); }
+}
+
+// ─── SUBMIT SECTION ───────────────────────────────────────────────────────────
+function confirmSubmitSection() {
+  const qs = currentSectionQs();
+  const answered = Object.keys(state.answers[state.currentSection]).length;
+  const unanswered = qs.length - answered;
+  if (unanswered > 0 && !confirm(`You have ${unanswered} unanswered question(s). Submit anyway?`)) return;
+  submitSection(false);
+}
+
+function submitSection(autoSubmit) {
+  clearInterval(state.timerInterval);
+  saveQTime();
+  const qs = currentSectionQs();
+  let correct = 0;
+  qs.forEach((q, i) => { if (checkAnswer(q, state.answers[state.currentSection][i])) correct++; });
+  state.sectionResults[state.currentSection] = {
+    correct, total: qs.length,
+    timeUsed: SECTION_TIME - state.timeLeft,
+    autoSubmit
+  };
+  if (state.currentSection === 1) showBreak();
+  else showResults();
+}
+
+function checkAnswer(q, given) {
+  if (!given && given !== 0) return false;
+  if (q.type === 'multiple_answer') {
+    if (!Array.isArray(given)) return false;
+    const correct = Array.isArray(q.answer) ? q.answer : [q.answer];
+    return given.length === correct.length && given.every(l => correct.includes(l));
+  }
+  if (q.type === 'numeric_entry') return String(given).trim() === String(q.answer).trim();
+  return given === q.answer;
+}
+
+// ─── SECTION BREAK ────────────────────────────────────────────────────────────
+function showBreak() {
+  const r1 = state.sectionResults[1];
+  const pct = Math.round((r1.correct / r1.total) * 100);
+  document.getElementById('break-preview').innerHTML =
+    `Section 1: <strong>${r1.correct} / ${r1.total}</strong> correct (${pct}%)`;
+
+  let breakLeft = 120;
+  const breakEl = document.getElementById('break-timer');
+  const fmt = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+  breakEl.textContent = fmt(breakLeft);
+  state.breakInterval = setInterval(() => {
+    breakLeft--;
+    breakEl.textContent = fmt(breakLeft);
+    if (breakLeft <= 0) { clearInterval(state.breakInterval); startSection(2); }
+  }, 1000);
+  goTo('screen-break');
+}
+
+// ─── RESULTS ─────────────────────────────────────────────────────────────────
+function showResults() {
+  const r1 = state.sectionResults[1];
+  const r2 = state.sectionResults[2];
+  const totalCorrect = r1.correct + r2.correct;
+  const totalQs = r1.total + r2.total;
+  const pct = Math.round((totalCorrect / totalQs) * 100);
+
+  document.getElementById('res-subtitle').textContent =
+    `${state.student.name} · ${state.mockMeta.title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}`;
+
+  setTimeout(() => {
+    const arc = document.getElementById('score-arc');
+    arc.style.strokeDashoffset = 427 - (427 * pct / 100);
+    arc.style.transition = 'stroke-dashoffset 1s ease';
+    if (pct >= 80) arc.style.stroke = 'var(--success)';
+    else if (pct >= 60) arc.style.stroke = 'var(--accent)';
+    else if (pct >= 40) arc.style.stroke = 'var(--warning)';
+    else arc.style.stroke = 'var(--danger)';
+  }, 100);
+
+  document.getElementById('res-score-val').textContent = `${totalCorrect}/${totalQs}`;
+
+  const totalTime = r1.timeUsed + r2.timeUsed;
+  const avgTime = Math.round(totalTime / totalQs);
+  document.getElementById('res-stats').innerHTML = `
+    <div class="stat-card"><div class="stat-val">${pct}%</div><div class="stat-lbl">Accuracy</div></div>
+    <div class="stat-card"><div class="stat-val">${totalCorrect}</div><div class="stat-lbl">Correct</div></div>
+    <div class="stat-card"><div class="stat-val">${totalQs - totalCorrect}</div><div class="stat-lbl">Wrong / Skipped</div></div>
+    <div class="stat-card"><div class="stat-val">${avgTime}s</div><div class="stat-lbl">Avg / Question</div></div>
+  `;
+
+  document.getElementById('section-compare').innerHTML = [1,2].map(s => {
+    const r = state.sectionResults[s];
+    const sp = Math.round((r.correct/r.total)*100);
+    const tm = Math.floor(r.timeUsed/60);
+    return `<div class="sec-card">
+      <h3>Section ${s}</h3>
+      <div class="sec-score">${r.correct} / ${r.total} <small style="font-size:14px;color:var(--text2)">(${sp}%)</small></div>
+      <div style="font-size:13px;color:var(--text2);">Time used: ${tm} min${r.autoSubmit?' · Auto-submitted':''}</div>
+    </div>`;
+  }).join('');
+
+  const topicMap = {};
+  state.mockData.sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      const topic = q.tags?.[0] || 'general';
+      if (!topicMap[topic]) topicMap[topic] = { correct:0, total:0 };
+      topicMap[topic].total++;
+      if (checkAnswer(q, state.answers[si+1][qi])) topicMap[topic].correct++;
+    });
+  });
+  const topicHtml = Object.entries(topicMap).map(([t, v]) => {
+    const tp = Math.round((v.correct/v.total)*100);
+    const color = tp >= 75 ? 'var(--success)' : tp >= 50 ? 'var(--warning)' : 'var(--danger)';
+    return `<div class="topic-row">
+      <span class="topic-name">${t}</span>
+      <div class="topic-bar-bg"><div class="topic-bar-fill" style="width:${tp}%;background:${color}"></div></div>
+      <span class="topic-pct">${tp}%</span>
+    </div>`;
+  }).join('');
+  document.getElementById('topic-bars').innerHTML = `<h3>Topic Breakdown</h3>${topicHtml}`;
+
+  const diagBand = renderDiagnosis(pct, totalCorrect, totalQs);
+  renderUpgradeCTA(pct);
+
+  // Fire-and-forget submission to Cloudflare Worker
+  const payload = buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2);
+  payload.diagnosis = diagBand;
+  saveAttempt(payload);
+
+  goTo('screen-results');
+}
+
+function renderDiagnosis(pct, correct, total) {
+  let band, bandClass, message, steps;
+  if (pct >= 80) {
+    band='STRONG'; bandClass='strong';
+    message=`Excellent work, ${state.student.name}! You answered ${correct} out of ${total} correctly. You're performing at the 165–170 level. Focus on eliminating careless errors.`;
+    steps=['Review every wrong answer carefully — at this level, mistakes are often careless, not conceptual.','Time yourself on harder questions — efficiency is your edge.','Challenge yourself with harder mocks to keep improving.'];
+  } else if (pct >= 65) {
+    band='CLOSE'; bandClass='close';
+    message=`Good performance, ${state.student.name}. You got ${correct}/${total} right. You're in the 158–165 band. Targeted practice on weak topics will push you higher.`;
+    steps=['Identify the 2–3 topics where you missed the most and drill subtopic practice.','Review medium-difficulty questions you got wrong — biggest score gains are here.','Work on time management — slow easy questions cost you hard question attempts.'];
+  } else if (pct >= 50) {
+    band='NEEDS FOCUS'; bandClass='focus';
+    message=`You got ${correct}/${total} correct, ${state.student.name}. You're at the 150–158 level. Clear concept gaps exist — focused fundamentals study will make a big difference.`;
+    steps=['Go back to basics: arithmetic, algebra, and number properties first.','Spend 2 weeks on subtopic drills before attempting more full mocks.','Focus on understanding why wrong answers are wrong, not just the right answer.'];
+  } else {
+    band='HIGH RISK'; bandClass='risk';
+    message=`You got ${correct}/${total} right, ${state.student.name}. This is a foundation-building phase. Don't be discouraged — everyone starts somewhere.`;
+    steps=['Start with easy-only practice to build confidence and concept clarity.','Read each explanation even for questions you got right — method matters.','Set a goal: improve by 10% on the next mock before tackling harder ones.'];
+  }
+  document.getElementById('diagnosis-card').innerHTML = `
+    <h3>Your Diagnosis</h3>
+    <div class="band ${bandClass}">${band}</div>
+    <p class="diag-text">${message}</p>
+    <ul class="recovery-steps">${steps.map((s,i)=>`<li><span class="step-num">${i+1}</span><span>${s}</span></li>`).join('')}</ul>
+  `;
+  return band;
+}
+
+function renderUpgradeCTA(pct) {
+  const headlines = {
+    high:   { kicker: "You're ready for the next level", headline: "Push to <span>165+</span> with 8 harder full-length mocks.", sub: "You've proven the foundation is solid. The Pro mocks escalate from Moderate (162) all the way to Expert 170-level — the kind of difficulty that separates a 163 from a 168 on test day." },
+    mid:    { kicker: "The gaps are clear — now close them", headline: "8 more mocks that target exactly <span>where you slipped.</span>", sub: "Each Pro mock goes harder and more specific. Moderate, Hard, Very Hard, and Expert levels give you the reps needed to convert weak spots into reliable scores." },
+    low:    { kicker: "Diagnose faster. Fix deeper.", headline: "Go from foundation to <span>160+</span> with structured mock progression.", sub: "The Pro pack gives you 8 more full-length mocks in escalating difficulty — so you're not just practising, you're building toward a target score with each paper." },
+  };
+  const { kicker, headline, sub } = pct >= 75 ? headlines.high : pct >= 50 ? headlines.mid : headlines.low;
+
+  const mocks = [
+    { num:'03–04', diff:'Moderate',      level:'162', color:'#43e97b' },
+    { num:'05–06', diff:'Moderate-Hard', level:'164', color:'#f7971e' },
+    { num:'07–08', diff:'Hard',          level:'166', color:'#ff6584' },
+    { num:'09–10', diff:'Very Hard / Expert', level:'168–170', color:'#ff69b4' },
+  ];
+
+  const mockPills = mocks.map(m => `
+    <div class="ru-mock-pill locked">
+      <div class="rmp-num">Mock ${m.num}</div>
+      <div class="rmp-diff" style="color:${m.color}">${m.diff}</div>
+      <div class="rmp-level">${m.level} level</div>
+    </div>`).join('');
+
+  document.getElementById('result-upgrade').innerHTML = `
+    <div class="ru-inner">
+      <div class="ru-top-bar"></div>
+      <div class="ru-kicker">${kicker}</div>
+      <h3 class="ru-headline">${headline}</h3>
+      <p class="ru-sub">${sub}</p>
+      <div class="ru-mocks">${mockPills}</div>
+      <div class="ru-bottom">
+        <div>
+          <div class="ru-price-block">
+            <span class="ru-price">₹499</span>
+            <span class="ru-price-label">one-time · lifetime access</span>
+          </div>
+          <div class="ru-price-vs">vs. Magoosh ₹10,000+/yr · Manhattan ₹15,000+/yr</div>
+          <div class="ru-features">
+            <span class="ru-feat">8 more full-length mocks</span>
+            <span class="ru-feat">All 88 subtopics</span>
+            <span class="ru-feat">8,410+ practice questions</span>
+            <span class="ru-feat">All future content included</span>
+          </div>
+        </div>
+        <a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" data-track="upgrade_clicked" data-track-from="mock_result">
+          Unlock Pro — ₹499 →
+        </a>
+      </div>
+    </div>
+  `;
+}
+
+// ─── REVIEW ───────────────────────────────────────────────────────────────────
+function reviewAnswers() {
+  const reviewEl = document.getElementById('review-section');
+  reviewEl.style.display = 'block';
+  const list = document.getElementById('review-list');
+  let html = '';
+  state.mockData.sections.forEach((sec, si) => {
+    html += `<div style="font-family:var(--font-mono);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;padding:8px 0;margin-top:8px;">── Section ${si+1} ──</div>`;
+    sec.questions.forEach((q, qi) => {
+      const given = state.answers[si+1][qi];
+      const isCorrect = checkAnswer(q, given);
+      const isSkipped = !given && given !== 0;
+      const status = isSkipped ? 'skipped' : isCorrect ? 'correct' : 'incorrect';
+      const givenStr = Array.isArray(given) ? given.join(', ') : (given || '—');
+      const correctStr = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
+      html += `<div class="review-item ${status}">
+        <div class="review-q"><strong>Q${qi+1}.</strong> ${q.question}</div>
+        <div class="review-answers">
+          <span>Your answer: <span class="${isCorrect?'correct-ans':'wrong-ans'}">${givenStr}</span></span>
+          <span>Correct: <span class="correct-ans">${correctStr}</span></span>
+        </div>
+        ${q.explanation ? `<div class="review-exp">💡 ${q.explanation}</div>` : ''}
+        ${q.trap ? `<div class="review-trap">⚠ Trap: ${q.trap}</div>` : ''}
+      </div>`;
+    });
+  });
+  list.innerHTML = html;
+  reviewEl.scrollIntoView({ behavior:'smooth' });
+}
+
+function toggleReview() {
+  const list = document.getElementById('review-list');
+  const btn = document.querySelector('.review-toggle');
+  if (list.style.display === 'none') { list.style.display='flex'; btn.textContent='hide'; }
+  else { list.style.display='none'; btn.textContent='show'; }
+}
+
+// ─── DOWNLOAD ─────────────────────────────────────────────────────────────────
+function downloadResult() {
+  const r1 = state.sectionResults[1];
+  const r2 = state.sectionResults[2];
+  const totalCorrect = r1.correct + r2.correct;
+  const total = r1.total + r2.total;
+  const result = {
+    student: state.student, mock: state.mockMeta,
+    date: new Date().toISOString(),
+    totalCorrect, total,
+    accuracy: Math.round((totalCorrect/total)*100),
+    sections: state.sectionResults,
+    answers: state.answers, timings: state.timings,
+  };
+  const blob = new Blob([JSON.stringify(result, null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${state.student.name.replace(/\s+/g,'-')}_${state.mockMeta.id}_result.json`;
+  a.click();
+}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+renderMockGrid();
+goTo('screen-select');
+</script>
+</body>
+</html>
