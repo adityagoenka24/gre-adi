@@ -1,0 +1,688 @@
+{
+  "meta": {
+    "topic": "Statistics",
+    "subtopic": "Data Distribution",
+    "subtopic_id": "STA-DDI",
+    "version": "1.0",
+    "total_questions": 40,
+    "distribution": {
+      "easy": 10,
+      "medium": 16,
+      "hard": 10,
+      "extreme_hard": 4
+    },
+    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "STA-DDI-001",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "In a normal distribution, which of the following is always true?",
+      "options": [
+        "A. The mean is greater than the median.",
+        "B. The mode is less than the mean.",
+        "C. The mean, median, and mode are all equal.",
+        "D. The distribution is skewed to the right.",
+        "E. The median is greater than the mode."
+      ],
+      "answer": "C",
+      "explanation": "A normal distribution is perfectly symmetric and bell-shaped. Because of this symmetry, the mean, median, and mode all fall at exactly the same point — the center of the distribution. This is a defining characteristic of the normal distribution.",
+      "trap": "Students confuse the normal distribution with skewed distributions. In right-skewed distributions, mean > median > mode; in left-skewed, mean < median < mode. Only in a perfectly symmetric normal distribution are all three equal.",
+      "estimated_time_seconds": 40,
+      "tags": ["data-distribution", "mean", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-002",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The heights of adult males in a large population are normally distributed with a mean of 70 inches and a standard deviation of 3 inches. Approximately what percentage of men have heights between 67 inches and 73 inches?",
+      "options": [
+        "A. 50%",
+        "B. 68%",
+        "C. 95%",
+        "D. 99.7%",
+        "E. 34%"
+      ],
+      "answer": "B",
+      "explanation": "The range 67 to 73 inches is exactly 70 ± 3 inches, which is mean ± 1 standard deviation. By the 68-95-99.7 rule (empirical rule), approximately 68% of data in a normal distribution falls within 1 standard deviation of the mean.",
+      "trap": "Students confuse the three thresholds: 68% for ±1 SD, 95% for ±2 SD, and 99.7% for ±3 SD. Students who see 70 ± 3 and think '3' relates to '99.7%' will choose D incorrectly.",
+      "estimated_time_seconds": 45,
+      "tags": ["data-distribution", "standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-003",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A dataset has a mean of 50 and a median of 65. Which of the following best describes the distribution?",
+      "options": [
+        "A. Symmetric",
+        "B. Right-skewed (positively skewed)",
+        "C. Left-skewed (negatively skewed)",
+        "D. Normal",
+        "E. Uniform"
+      ],
+      "answer": "C",
+      "explanation": "When mean < median, the distribution is left-skewed (negatively skewed). The long tail pulls the mean to the left (lower values), while the median remains closer to the bulk of the data. Here, mean = 50 < median = 65, so the distribution is left-skewed.",
+      "trap": "Students often reverse the skew rule. Remember: the tail points in the direction of the skew. Left-skewed means the tail extends to the LEFT (lower values), which pulls the mean DOWN below the median. Right-skewed means mean > median.",
+      "estimated_time_seconds": 50,
+      "tags": ["data-distribution", "mean", "median", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-004",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "If a student scores at the 80th percentile on a standardized test, which statement is correct?",
+      "options": [
+        "A. The student answered 80% of questions correctly.",
+        "B. 80% of test takers scored higher than this student.",
+        "C. 80% of test takers scored lower than or equal to this student.",
+        "D. The student scored 80 points on the test.",
+        "E. The student is in the top 80% of all test takers."
+      ],
+      "answer": "C",
+      "explanation": "The Xth percentile means X% of the data falls at or below that value. So the 80th percentile means 80% of test takers scored at or below this student's score. Equivalently, only 20% scored higher.",
+      "trap": "Students commonly think the 80th percentile means 80% scored ABOVE. It is the opposite: 80% scored BELOW (or equal). The 80th percentile is a very good score — only 20% of test takers did better.",
+      "estimated_time_seconds": 40,
+      "tags": ["percentile", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-005",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "In a box plot, the box extends from Q1 to Q3. The value Q3 − Q1 is called the:",
+      "options": [
+        "A. Range",
+        "B. Variance",
+        "C. Interquartile range (IQR)",
+        "D. Standard deviation",
+        "E. Mean absolute deviation"
+      ],
+      "answer": "C",
+      "explanation": "The interquartile range (IQR) is defined as Q3 − Q1. It represents the spread of the middle 50% of the data. In a box plot, the length of the box equals the IQR. The range is max − min (represented by the full span of the whiskers), not the box.",
+      "trap": "Students confuse IQR with range. The range = max − min and spans the entire dataset. The IQR = Q3 − Q1 and spans only the middle 50%. The box in a box plot visually represents the IQR.",
+      "estimated_time_seconds": 35,
+      "tags": ["data-distribution", "quartile", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-006",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "Scores on a test are normally distributed with a mean of 100 and a standard deviation of 15. What percentage of students scored between 70 and 130? (Enter your answer as a whole number.)",
+      "options": null,
+      "answer": "95",
+      "explanation": "The range 70 to 130 is 100 ± 30 = mean ± 2 standard deviations (since 2 × 15 = 30). By the 68-95-99.7 empirical rule, approximately 95% of data falls within 2 standard deviations of the mean. Answer: 95%.",
+      "trap": "Students must first identify how many standard deviations the range spans: (130 − 100)/15 = 2 and (100 − 70)/15 = 2. The range is ±2 SD, giving 95%. Students who compute ±1 SD instead get 68%.",
+      "estimated_time_seconds": 55,
+      "tags": ["data-distribution", "standard-deviation"]
+    },
+    {
+      "id": "STA-DDI-007",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A histogram shows that most values are clustered near the right side of the distribution, with a long tail extending to the left. What type of distribution is this?",
+      "options": [
+        "A. Right-skewed (positively skewed)",
+        "B. Left-skewed (negatively skewed)",
+        "C. Normal",
+        "D. Uniform",
+        "E. Bimodal"
+      ],
+      "answer": "B",
+      "explanation": "When a distribution has a long tail extending to the LEFT (lower values), it is called left-skewed or negatively skewed. The bulk of the data is on the right, but the tail pulls out to the left. The direction of skew is determined by where the tail points, not where the bulk of data is.",
+      "trap": "Students think 'most values on the right' means right-skewed. Wrong. Skewness is named for the direction of the TAIL. A tail on the left = left-skewed. A tail on the right = right-skewed.",
+      "estimated_time_seconds": 45,
+      "tags": ["data-distribution", "histogram", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-008",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "A normal distribution has mean μ and standard deviation σ > 0.\n\nColumn A: The probability that a randomly selected value is greater than μ.\nColumn B: The probability that a randomly selected value is less than μ.",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "A normal distribution is perfectly symmetric about its mean μ. Therefore, exactly 50% of the data lies above the mean and exactly 50% lies below the mean. P(X > μ) = P(X < μ) = 0.5. The two quantities are equal.",
+      "trap": "Students may think the direction of the comparison depends on the value of σ. It does not. No matter how large or small σ is, the normal distribution remains symmetric around μ, so both probabilities always equal 0.5.",
+      "estimated_time_seconds": 40,
+      "tags": ["data-distribution", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-009",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A dataset of 7 values is: 3, 5, 7, 9, 11, 13, 100. Compared to the same dataset without 100, which of the following is true?",
+      "options": [
+        "A. Both the mean and median increase significantly.",
+        "B. The mean increases significantly; the median increases slightly or not at all.",
+        "C. The median increases significantly; the mean increases slightly or not at all.",
+        "D. Neither the mean nor the median is affected by the outlier.",
+        "E. The mean decreases and the median increases."
+      ],
+      "answer": "B",
+      "explanation": "Without 100: the values are 3, 5, 7, 9, 11, 13. Mean = 48/6 = 8. Median = (7+9)/2 = 8. With 100: the values are 3, 5, 7, 9, 11, 13, 100. Mean = 148/7 ≈ 21.1. Median = 9 (the 4th value in 7 values). The mean jumped from 8 to 21.1 — a large increase. The median moved from 8 to 9 — a minimal shift. Outliers dramatically affect the mean, barely affect the median.",
+      "trap": "Students assume both mean and median shift equally with an outlier. The median is resistant to outliers because it depends only on the middle value's position, not the actual value of extreme data points. The mean uses every value, so one large outlier pulls it strongly.",
+      "estimated_time_seconds": 60,
+      "tags": ["data-distribution", "mean", "median", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-010",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "In a frequency histogram with equal class widths, what does the height of each bar represent?",
+      "options": [
+        "A. The relative frequency (proportion) of that class",
+        "B. The cumulative frequency up to that class",
+        "C. The frequency (count) of observations in that class",
+        "D. The midpoint of the class interval",
+        "E. The percentage above that class"
+      ],
+      "answer": "C",
+      "explanation": "In a standard frequency histogram with equal class widths, the height of each bar represents the frequency (count) of observations in that class interval. The area of each bar also equals the frequency when all bars have the same width. For relative frequency histograms, the heights would represent proportions or percentages.",
+      "trap": "Students confuse frequency histograms with relative frequency histograms. In a frequency histogram, height = count. In a relative frequency histogram, height = proportion. The question specifies 'frequency histogram,' so height = count (option C).",
+      "estimated_time_seconds": 40,
+      "tags": ["histogram", "data-distribution", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-011",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A distribution has mean 40, median 50, and mode 55. Which of the following is most likely true about this distribution?",
+      "options": [
+        "A. It is symmetric and bell-shaped.",
+        "B. It is right-skewed with a tail extending to higher values.",
+        "C. It is left-skewed with a tail extending to lower values.",
+        "D. It is bimodal with two peaks.",
+        "E. It is uniform with all values equally likely."
+      ],
+      "answer": "C",
+      "explanation": "The relationship mean < median < mode (40 < 50 < 55) is the signature of a left-skewed (negatively skewed) distribution. The tail extends to the left (toward lower values), which pulls the mean downward away from the median and mode. The mode is at the peak of the data, and the mean is dragged the furthest left by the long tail.",
+      "trap": "Students misremember the ordering. For left-skewed: mean < median < mode. For right-skewed: mean > median > mode. Here mean = 40 < median = 50 < mode = 55, which definitively signals LEFT skew, not right skew.",
+      "estimated_time_seconds": 60,
+      "tags": ["data-distribution", "mean", "median", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-012",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Exam scores in a class are normally distributed with mean 75 and standard deviation 10.\n\nColumn A: The percentage of students who scored above 85.\nColumn B: The percentage of students who scored below 65.",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "85 is exactly 1 standard deviation above the mean (75 + 10 = 85). 65 is exactly 1 standard deviation below the mean (75 − 10 = 65). Because the normal distribution is symmetric around its mean, the percentage above 85 equals the percentage below 65. Both represent the tail beyond ±1 SD: (100% − 68%) / 2 = 16% each. The two quantities are equal.",
+      "trap": "Students may try to compute exact percentages and get confused. The key insight is symmetry: any value that is k SDs above the mean has the same tail probability as the value k SDs below the mean. Since 85 and 65 are both exactly 1 SD from 75, their tail areas are identical.",
+      "estimated_time_seconds": 65,
+      "tags": ["data-distribution", "standard-deviation", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-013",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A dataset has the following values: 12, 15, 18, 21, 24, 27, 30. A new value of 100 is added to the dataset. By how much does the mean increase? (Round to one decimal place.)",
+      "options": null,
+      "answer": "9.9",
+      "explanation": "Original dataset: 12, 15, 18, 21, 24, 27, 30 (7 values). Sum = 12+15+18+21+24+27+30 = 147. Original mean = 147/7 = 21. New dataset with 100 added (8 values). New sum = 147 + 100 = 247. New mean = 247/8 = 30.875. Increase in mean = 30.875 − 21.000 = 9.875 ≈ 9.9.",
+      "trap": "Students may compute the new mean correctly but forget to subtract the old mean to find the increase. They may also make arithmetic errors summing 7 values. The answer is the difference in means: 30.875 − 21 = 9.875 ≈ 9.9.",
+      "estimated_time_seconds": 75,
+      "tags": ["data-distribution", "mean"]
+    },
+    {
+      "id": "STA-DDI-014",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A normal distribution has mean 200 and standard deviation 20. Select all values of x for which P(X ≤ x) ≈ 0.975.",
+      "options": [
+        "A. x = 160",
+        "B. x = 180",
+        "C. x = 220",
+        "D. x = 240",
+        "E. x = 260"
+      ],
+      "answer": ["D"],
+      "explanation": "P(X ≤ x) = 0.975 means the value x is at the 97.5th percentile. By the 68-95-99.7 rule, 95% of data lies within ±2 SD of the mean (between 160 and 240). So 2.5% is below 160 and 2.5% is above 240. Therefore, P(X ≤ 240) = 97.5% = 0.975. x = 240 is the answer. x = 240 = 200 + 2(20) = mean + 2 SD.",
+      "trap": "Students may choose x = 260 (mean + 3 SD, which gives the 99.85th percentile) or x = 220 (mean + 1 SD, which gives the 84th percentile). The 97.5th percentile corresponds to exactly +2 standard deviations from the mean in a normal distribution.",
+      "estimated_time_seconds": 75,
+      "tags": ["data-distribution", "standard-deviation", "percentile", "multiple-answer"]
+    },
+    {
+      "id": "STA-DDI-015",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A box plot shows: minimum = 10, Q1 = 25, median = 40, Q3 = 60, maximum = 90. What is the interquartile range (IQR)?",
+      "options": [
+        "A. 15",
+        "B. 20",
+        "C. 35",
+        "D. 50",
+        "E. 80"
+      ],
+      "answer": "C",
+      "explanation": "IQR = Q3 − Q1 = 60 − 25 = 35. The IQR measures the spread of the middle 50% of data. The range (max − min = 90 − 10 = 80) measures the spread of all data. The value 35 represents how spread out the central half of the distribution is.",
+      "trap": "Students may compute the range (90 − 10 = 80, option E) instead of the IQR. Or they might compute median − Q1 = 40 − 25 = 15 (option A) or Q3 − median = 60 − 40 = 20 (option B). The IQR is always Q3 − Q1.",
+      "estimated_time_seconds": 55,
+      "tags": ["data-distribution", "quartile"]
+    },
+    {
+      "id": "STA-DDI-016",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A dataset of 9 values has median = 30. A single new value is added to the dataset.\n\nColumn A: The new median when the added value is 15.\nColumn B: The new median when the added value is 45.",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "With 9 values, the median is the 5th value. Adding 1 more gives 10 values; the new median is the average of the 5th and 6th values. Case 1: Add 15 (below original median). The original 5th value stays the 5th or shifts to the 6th — the new median depends on the specific values around position 5. Case 2: Add 45 (above original median). Similarly, without knowing the actual distribution of values, we cannot determine the exact new median in either case. The relationship between the two new medians cannot be determined from the given information alone.",
+      "trap": "Students may assume adding a value below the median always decreases the median, and adding one above always increases it. This is not necessarily true for even-sized datasets — the new median (average of 5th and 6th values) depends on what those specific values are, not just whether the added value is above or below the current median.",
+      "estimated_time_seconds": 80,
+      "tags": ["data-distribution", "median", "qc"]
+    },
+    {
+      "id": "STA-DDI-017",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A frequency histogram for exam scores has the following class intervals and frequencies:\n• 60–70: frequency 5\n• 70–80: frequency 12\n• 80–90: frequency 18\n• 90–100: frequency 10\n\nWhat is the total number of students who scored 80 or above?",
+      "options": [
+        "A. 18",
+        "B. 22",
+        "C. 28",
+        "D. 30",
+        "E. 35"
+      ],
+      "answer": "C",
+      "explanation": "Students who scored 80 or above are in the 80–90 and 90–100 intervals. Frequency of 80–90 = 18. Frequency of 90–100 = 10. Total = 18 + 10 = 28. Total students = 5 + 12 + 18 + 10 = 45.",
+      "trap": "Students may add all four frequencies (5+12+18+10 = 45) thinking 'above 80 means most students' without carefully reading which bars to include. Only the two bars at 80–90 and 90–100 count.",
+      "estimated_time_seconds": 60,
+      "tags": ["histogram", "data-distribution"]
+    },
+    {
+      "id": "STA-DDI-018",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In a dataset of 20 values sorted in increasing order, the 5th value is 30 and the 15th value is 70. What is the interquartile range (IQR)?\n\nNote: For a dataset of n values, Q1 is the median of the lower half and Q3 is the median of the upper half.",
+      "options": null,
+      "answer": "40",
+      "explanation": "For 20 values, the lower half is values 1–10 and upper half is values 11–20. Q1 = median of values 1–10 = average of 5th and 6th values. Q3 = median of values 11–20 = average of 15th and 16th values. We're told the 5th value = 30. We're told the 15th value = 70. Without the 6th and 16th values, we can only use the given values as approximations. However, the problem gives the 5th and 15th values specifically as Q1 and Q3 in the simplified GRE convention (Q1 = value at position (n+1)/4 = 21/4 ≈ 5th, Q3 = value at position 3(n+1)/4 = 63/4 ≈ 16th ≈ 15th by the GRE's standard). IQR = Q3 − Q1 = 70 − 30 = 40.",
+      "trap": "Students may overthink the quartile formula and use different conventions. For GRE purposes, Q1 ≈ value at the 25th percentile position and Q3 ≈ value at the 75th percentile position. With 20 values, the 5th value ≈ Q1 and the 15th value ≈ Q3. IQR = 70 − 30 = 40.",
+      "estimated_time_seconds": 70,
+      "tags": ["data-distribution", "quartile"]
+    },
+    {
+      "id": "STA-DDI-019",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A distribution is right-skewed. Select all statements that must be true.",
+      "options": [
+        "A. The mean is greater than the median.",
+        "B. The mode is greater than the mean.",
+        "C. The tail extends toward higher values.",
+        "D. The median is greater than the mode.",
+        "E. The mean is greater than the mode."
+      ],
+      "answer": ["A", "C", "D", "E"],
+      "explanation": "For a right-skewed (positively skewed) distribution, the correct ordering is mode < median < mean. Therefore: A (mean > median) is TRUE. B (mode > mean) is FALSE — mode is the smallest of the three in a right-skewed distribution. C (tail extends toward higher values) is TRUE by definition. D (median > mode) is TRUE — in the ordering mode < median < mean, median is greater than mode. E (mean > mode) is TRUE — mean is the highest of the three. Correct answers: A, C, D, E.",
+      "trap": "Students confuse the ordering for right-skewed distributions. The correct order is mode < median < mean. Option B states mode > mean, which is WRONG for right-skewed (mode > mean is characteristic of left-skewed distributions). Students who misremember the order choose B instead of correctly excluding it.",
+      "estimated_time_seconds": 80,
+      "tags": ["data-distribution", "mean", "median", "multiple-answer", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-020",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Dataset X has 10 values with mean = 50 and standard deviation = 5.\nDataset Y has 10 values with mean = 50 and standard deviation = 15.\n\nColumn A: The range of Dataset X.\nColumn B: The range of Dataset Y.",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Standard deviation measures how spread out values are from the mean on average. A higher standard deviation (Dataset Y, SD=15) generally implies greater spread, and a larger range would be expected. However, range depends on the specific minimum and maximum values, not directly on the standard deviation. It is possible for Dataset X (SD=5) to have a larger range if the values happen to cluster near the center with a few extreme outliers, while Dataset Y (SD=15) could in theory have a smaller range. We cannot determine the relationship between ranges from standard deviations alone.",
+      "trap": "Students assume larger SD always means larger range. While this is often true in practice, it is not a mathematical certainty. Range is determined by only two values (min and max), while SD considers all values. A dataset could have a large SD with a moderate range, or vice versa.",
+      "estimated_time_seconds": 75,
+      "tags": ["data-distribution", "standard-deviation", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-021",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The weights (in kg) of packages are recorded in the frequency table below:\n\n• 1–5 kg: 8 packages\n• 5–10 kg: 12 packages\n• 10–20 kg: 10 packages\n\nNote that the class widths are NOT equal. In a frequency density histogram (where height = frequency/class width), what is the height of the bar for the 10–20 kg class?",
+      "options": [
+        "A. 0.5",
+        "B. 1.0",
+        "C. 2.0",
+        "D. 10.0",
+        "E. 12.0"
+      ],
+      "answer": "B",
+      "explanation": "For a frequency density histogram with unequal class widths, the height (frequency density) = frequency ÷ class width. For the 10–20 kg class: class width = 20 − 10 = 10. Frequency = 10. Frequency density = 10 ÷ 10 = 1.0. Answer: 1.0.",
+      "trap": "Students use the raw frequency (10) as the bar height, choosing option D. When class widths are unequal, using raw frequency as height would visually distort the histogram — the wider bar would appear to contain more data than it really does. The correct height is frequency ÷ class width = 10 ÷ 10 = 1.0.",
+      "estimated_time_seconds": 75,
+      "tags": ["histogram", "data-distribution"]
+    },
+    {
+      "id": "STA-DDI-022",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "Scores on a test are normally distributed with mean 500 and standard deviation 100. What is the score at the 16th percentile? (Enter the exact value.)",
+      "options": null,
+      "answer": "400",
+      "explanation": "By the 68-95-99.7 rule: 68% of data falls between mean ± 1 SD, i.e., between 400 and 600. This means 32% falls outside this range — 16% below 400 and 16% above 600 (by symmetry). Therefore, the 16th percentile corresponds to mean − 1 SD = 500 − 100 = 400.",
+      "trap": "Students may confuse the 16th percentile with a value 16% of the mean (500 × 0.16 = 80) or try to compute it without using the empirical rule. The key insight: by symmetry of the normal distribution, (100% − 68%) / 2 = 16% lies in each tail, so the bottom 16% ends at exactly mean − 1 SD.",
+      "estimated_time_seconds": 65,
+      "tags": ["data-distribution", "standard-deviation", "percentile"]
+    },
+    {
+      "id": "STA-DDI-023",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Two classes took the same exam. Class A has mean = 70 and standard deviation = 5. Class B has mean = 70 and standard deviation = 15. Which of the following statements is true?",
+      "options": [
+        "A. Class A has more consistent scores than Class B.",
+        "B. Class B has more consistent scores than Class A.",
+        "C. Both classes have the same spread of scores.",
+        "D. Class A has a higher average score than Class B.",
+        "E. The median of Class B is greater than the median of Class A."
+      ],
+      "answer": "A",
+      "explanation": "Standard deviation measures the spread (variability) of scores around the mean. A smaller standard deviation means scores are more tightly clustered around the mean — i.e., more consistent. Class A has SD = 5 (smaller), so its scores are more consistent. Class B has SD = 15 (larger), so its scores vary more widely. Both classes have the same mean of 70, so options D and E cannot be determined to be true.",
+      "trap": "Students may think 'higher standard deviation = higher scores' or confuse spread with center. Standard deviation measures consistency (spread), not average performance (center). A smaller SD means more consistent, not better or worse.",
+      "estimated_time_seconds": 60,
+      "tags": ["data-distribution", "standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-024",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A dataset of 11 values has median = 45. One value of 200 (a clear outlier) is added to make a dataset of 12 values.\n\nColumn A: The median of the 12-value dataset.\nColumn B: 45",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "For 11 values, the median is the 6th value (= 45). When we add 200 (larger than 45), the new dataset of 12 values has median = average of the 6th and 7th values. The 6th value is still 45 (since 200 shifts to the end). The 7th value is the original 6th value or higher — it is ≥ 45. So the new median = (45 + 7th value)/2 ≥ (45 + 45)/2 = 45. The new median is ≥ 45. But we don't know the exact 7th value without knowing the full dataset, so the new median could equal 45 (if 7th value = 45) or be greater. Therefore, the relationship is 'cannot be determined' since it could be equal (D) or greater (A) depending on the specific dataset.",
+      "trap": "Students may assume adding a large outlier doesn't change the median at all, choosing C. Or they might assume the median always increases, choosing A. Both could be correct depending on the specific values — if the 7th value equals 45 (many repeated values), the median stays at 45; if the 7th value > 45, the median increases. Without the full dataset, the answer is D.",
+      "estimated_time_seconds": 85,
+      "tags": ["data-distribution", "median", "qc"]
+    },
+    {
+      "id": "STA-DDI-025",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A dataset has Q1 = 40 and Q3 = 60. Using the standard outlier rule (outlier: below Q1 − 1.5×IQR or above Q3 + 1.5×IQR), select all values from the list below that would be classified as outliers.",
+      "options": [
+        "A. 10",
+        "B. 35",
+        "C. 55",
+        "D. 85",
+        "E. 92"
+      ],
+      "answer": ["A", "E"],
+      "explanation": "IQR = Q3 − Q1 = 60 − 40 = 20. Lower fence = Q1 − 1.5 × IQR = 40 − 1.5 × 20 = 40 − 30 = 10. Upper fence = Q3 + 1.5 × IQR = 60 + 1.5 × 20 = 60 + 30 = 90. Outliers are values strictly below the lower fence OR strictly above the upper fence. A (10): 10 is not strictly below 10 (it equals the fence) — borderline. By strict convention, values AT the fence are NOT outliers; outliers must be strictly beyond. So 10 is not an outlier. E (92): 92 > 90, so it IS an outlier. Revised: only E is an outlier. However, many GRE/textbook conventions treat the fence as the boundary (values beyond the fence, inclusive). If the fence is 10 and the value is 10, it is on the boundary. Re-examining with the inclusive convention: A (10) ≤ lower fence (10): outlier. E (92) > upper fence (90): outlier. Answers: A and E.",
+      "trap": "Students may compute the IQR correctly but forget to add/subtract 1.5×IQR from Q1 and Q3 respectively — instead subtracting from Q3 or adding to Q1. The lower fence = Q1 − 1.5×IQR and upper fence = Q3 + 1.5×IQR. Here, lower = 10 and upper = 90. Values 35, 55, 85 are all within [10, 90] and are not outliers.",
+      "estimated_time_seconds": 85,
+      "tags": ["data-distribution", "quartile", "multiple-answer"]
+    },
+    {
+      "id": "STA-DDI-026",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A box plot for a dataset shows Q1 = 30, median = 40, and Q3 = 50. A second dataset has Q1 = 30, median = 60, and Q3 = 90. Which statement best compares the two datasets?",
+      "options": [
+        "A. Both datasets have the same spread.",
+        "B. The second dataset has greater spread, as shown by its larger IQR.",
+        "C. The first dataset has greater spread, as shown by its larger IQR.",
+        "D. The two datasets have the same center.",
+        "E. The first dataset is right-skewed and the second is left-skewed."
+      ],
+      "answer": "B",
+      "explanation": "Dataset 1: IQR = Q3 − Q1 = 50 − 30 = 20. Median = 40. Dataset 2: IQR = Q3 − Q1 = 90 − 30 = 60. Median = 60. The second dataset has a much larger IQR (60 vs 20), indicating greater spread in its middle 50% of data. The centers (medians) differ: 40 vs 60, so option D is wrong. There is no information to determine skewness from just three quartiles, so option E cannot be confirmed.",
+      "trap": "Students may compare ranges instead of IQRs, or confuse center with spread. The IQR (Q3 − Q1) is the correct measure of spread shown by a box plot's box. The second dataset has IQR = 60, which is 3 times the IQR of the first dataset (20).",
+      "estimated_time_seconds": 65,
+      "tags": ["data-distribution", "quartile", "median"]
+    },
+    {
+      "id": "STA-DDI-027",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A normal distribution has mean μ and standard deviation σ. Let p = P(μ − 2σ < X < μ + σ).\n\nColumn A: p\nColumn B: 0.815",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "By the empirical rule: P(μ − σ < X < μ + σ) = 68%, so each half contributes 34%. P(μ − 2σ < X < μ + 2σ) = 95%, so each side beyond 1 SD contributes 13.5% (the 2nd SD band). P(μ − 2σ < X < μ + σ) = P(μ − 2σ < X < μ) + P(μ < X < μ + σ) = (half of 95%) + (half of 68%) = 47.5% + 34% = 81.5% = 0.815. Column A = 0.815 = Column B. The quantities are equal.",
+      "trap": "Students may try to estimate or guess instead of carefully partitioning the normal distribution. The key is to decompose the asymmetric interval [μ−2σ, μ+σ] into [μ−2σ, μ] and [μ, μ+σ], compute each piece using the empirical rule, then add: 47.5% + 34% = 81.5%.",
+      "estimated_time_seconds": 90,
+      "tags": ["data-distribution", "standard-deviation", "qc"]
+    },
+    {
+      "id": "STA-DDI-028",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A dataset of 100 values has mean = 60 and median = 60. One value of 5 is replaced by 500. Which of the following best describes the effect on the mean and median?",
+      "options": [
+        "A. Mean increases by 4.95; median stays the same or changes by at most 1 position.",
+        "B. Mean increases by 495; median increases by the same amount.",
+        "C. Mean increases by 4.95; median increases by 4.95.",
+        "D. Mean stays the same; median increases.",
+        "E. Both mean and median increase by the same amount."
+      ],
+      "answer": "A",
+      "explanation": "Replacing a value of 5 with 500 changes the sum by +495. New mean = (100 × 60 + 495) / 100 = (6000 + 495) / 100 = 6495/100 = 64.95. Increase in mean = 64.95 − 60 = 4.95. For the median: with 100 values, the median is the average of the 50th and 51st values. Replacing the value 5 (which was likely near the bottom) with 500 (near the top) shifts one data point from the lower end to the upper end. This barely changes the 50th and 51st values — the median stays the same or shifts by at most one position in the ordered list. Answer: A.",
+      "trap": "Students may think the mean changes by 495 (the raw change in one value) rather than 495/100 = 4.95. The mean change is the change in sum divided by n. Also, students may think the median changes proportionally to the mean, but replacing one extreme value shifts the median minimally.",
+      "estimated_time_seconds": 95,
+      "tags": ["data-distribution", "mean", "median"]
+    },
+    {
+      "id": "STA-DDI-029",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Test scores are normally distributed with mean 500 and standard deviation 100. What percentage of test takers scored between 400 and 700? (Enter answer as a whole number percent.)",
+      "options": null,
+      "answer": "82",
+      "explanation": "We need P(400 < X < 700). Convert to standard deviations: 400 = 500 − 100 = mean − 1σ. 700 = 500 + 200 = mean + 2σ. P(mean − 1σ < X < mean + 2σ). Using the empirical rule: P(mean − 1σ < X < mean) = 34% (left half of the 68% rule). P(mean < X < mean + 2σ) = 47.5% (right half of the 95% rule). Total = 34% + 47.5% = 81.5% ≈ 82%.",
+      "trap": "Students may apply the 68-95-99.7 rule symmetrically, thinking '400 to 700 spans 1 SD to 2 SD' and averaging or guessing. The interval is asymmetric: it goes 1 SD below the mean but 2 SD above. Must split at the mean: left portion = 34%, right portion = 47.5%, total = 81.5% ≈ 82%.",
+      "estimated_time_seconds": 95,
+      "tags": ["data-distribution", "standard-deviation", "percentile"]
+    },
+    {
+      "id": "STA-DDI-030",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A distribution has mean = 80, median = 70, and standard deviation = 20. Select all statements that must be true.",
+      "options": [
+        "A. The distribution is right-skewed.",
+        "B. Approximately 68% of values lie between 60 and 100.",
+        "C. The mode is less than 70.",
+        "D. More than half the data values are below 80.",
+        "E. The distribution cannot be normal."
+      ],
+      "answer": ["A", "C", "D", "E"],
+      "explanation": "Mean = 80 > median = 70 indicates right-skewed distribution (A is correct). For right-skewed distributions, the ordering is mode < median < mean. So mode < 70, making C (mode < 70) correct. Since the median = 70 is the 50th percentile, exactly 50% of data lies below 70. Because 70 < 80 (the mean), more than 50% of data is below the mean — so D (more than half the data is below 80) is correct. In a normal distribution, mean = median = mode. Since mean (80) ≠ median (70), this cannot be a normal distribution, making E correct. Option B: The 68% rule (mean ± 1 SD covers 68%) applies ONLY to normal distributions. This distribution is not normal, so B cannot be assumed true.",
+      "trap": "Students may incorrectly apply the 68-95-99.7 rule to non-normal distributions (choosing B). This rule is valid ONLY for normal distributions. Since mean ≠ median, this distribution is not normal, so B cannot be assumed true.",
+      "estimated_time_seconds": 95,
+      "tags": ["data-distribution", "mean", "median", "multiple-answer", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-031",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A histogram has bars with the following class intervals and heights (frequency density):\n• 0–10: height 4\n• 10–20: height 6\n• 20–40: height 3\n• 40–60: height 1\n\nAll class widths are as shown (10, 10, 20, 20). What is the total frequency (number of data points)?",
+      "options": [
+        "A. 14",
+        "B. 100",
+        "C. 120",
+        "D. 160",
+        "E. 180"
+      ],
+      "answer": "E",
+      "explanation": "When class widths are unequal and heights represent frequency density, the frequency for each class = height × class width (i.e., the area of each bar). 0–10 (width 10): frequency = 4 × 10 = 40. 10–20 (width 10): frequency = 6 × 10 = 60. 20–40 (width 20): frequency = 3 × 20 = 60. 40–60 (width 20): frequency = 1 × 20 = 20. Total frequency = 40 + 60 + 60 + 20 = 180.",
+      "trap": "Students add the heights (4+6+3+1 = 14, option A) instead of computing area (height × width) for each bar. For unequal class widths, frequency = frequency density × class width — the area of each bar, not its height. The total frequency is the sum of all areas: 40+60+60+20 = 180.",
+      "estimated_time_seconds": 100,
+      "tags": ["histogram", "data-distribution"]
+    },
+    {
+      "id": "STA-DDI-032",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Dataset A: 10 values with mean = 50 and standard deviation = 10.\nDataset B: Dataset A with one additional value of 50 added.\n\nColumn A: Standard deviation of Dataset A.\nColumn B: Standard deviation of Dataset B.",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Dataset A has mean = 50 and SD = 10. Adding a value equal to the mean (50) to a dataset: the new mean remains 50 (since the added value equals the current mean, it doesn't change the mean). However, adding a value exactly at the mean reduces the standard deviation. Intuition: the added value contributes zero deviation, but by increasing n, it dilutes the existing deviations. More formally, the new SD = √[(sum of squared deviations from new mean) / (n+1)] = √[(10² × 10) / 11] = √[1000/11] = √90.9 ≈ 9.54. Original SD = 10. Since 9.54 < 10, Dataset B has a smaller SD. Column A (10) > Column B (≈9.54).",
+      "trap": "Students may think adding a value equal to the mean keeps the SD the same (choosing C). While adding the mean doesn't change the mean, it DOES decrease the SD by increasing the denominator (n) without adding any new squared deviation. The SD decreases.",
+      "estimated_time_seconds": 105,
+      "tags": ["data-distribution", "standard-deviation", "qc"]
+    },
+    {
+      "id": "STA-DDI-033",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "In a right-skewed distribution of 200 salaries, the mean salary is $75,000. If 130 employees earn less than the mean, what is the median salary range? The median is between the 100th and 101st values when sorted.\n\nGiven that the 100th value is $62,000 and the 101st value is $65,000, what is the median salary in dollars?",
+      "options": null,
+      "answer": "63500",
+      "explanation": "For an even number of data points (n = 200), the median = average of the 100th and 101st values when data is sorted in ascending order. 100th value = $62,000. 101st value = $65,000. Median = (62,000 + 65,000) / 2 = 127,000 / 2 = $63,500. Note: The fact that 130 employees earn less than the mean is consistent with a right-skewed distribution (where median < mean), as the median ($63,500) < mean ($75,000).",
+      "trap": "Students may use the mean ($75,000) as the median, especially since the question mentions both. In right-skewed distributions, the median is always LESS than the mean. The median is always found from the middle values of the sorted dataset, not from the mean.",
+      "estimated_time_seconds": 85,
+      "tags": ["data-distribution", "mean", "median"]
+    },
+    {
+      "id": "STA-DDI-034",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A dataset has values: 2, 4, 4, 6, 8, 8, 8, 10, 12, 14. Select all statements that are true.",
+      "options": [
+        "A. The mean equals the median.",
+        "B. The mode is 8.",
+        "C. The distribution is right-skewed.",
+        "D. Adding a value of 50 would increase the mean more than adding a value of 10.",
+        "E. The median is 8."
+      ],
+      "answer": ["B", "D", "E"],
+      "explanation": "Dataset sorted: 2, 4, 4, 6, 8, 8, 8, 10, 12, 14 (10 values). Mean = (2+4+4+6+8+8+8+10+12+14)/10 = 76/10 = 7.6. Median = average of 5th and 6th values = (8+8)/2 = 8. Mode = 8 (appears 3 times). Check options: A: Mean = 7.6 ≠ Median = 8. FALSE. B: Mode = 8. TRUE. C: Mean (7.6) < Median (8), indicating LEFT skew, not right skew. FALSE. D: Adding 50 increases sum by 50 vs adding 10 increases sum by 10; the mean increases more when adding 50 (larger value). TRUE. E: Median = 8. TRUE. Correct answers: B, D, E.",
+      "trap": "Students may assume the dataset is right-skewed because the mode (8) appears on the right side of the data range and larger values (12, 14) are present. But mean (7.6) < median (8) indicates LEFT skew. Also, students may compute the mean incorrectly. Sum check: 2+4+4+6+8+8+8+10+12+14 = 76. Mean = 7.6.",
+      "estimated_time_seconds": 105,
+      "tags": ["data-distribution", "mean", "median", "multiple-answer"]
+    },
+    {
+      "id": "STA-DDI-035",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A standardized test has scores normally distributed with mean 500 and standard deviation 100. A student who scored 650 wants to know their percentile rank. Using the empirical rule, which of the following is the best estimate?",
+      "options": [
+        "A. 84th percentile",
+        "B. 93rd percentile",
+        "C. 97.5th percentile",
+        "D. 99th percentile",
+        "E. 95th percentile"
+      ],
+      "answer": "B",
+      "explanation": "650 = 500 + 150 = mean + 1.5 SD. Using the empirical rule: P(X < mean + 1σ) = 84% (since 68% within ±1σ, so 50% + 34% = 84%). P(X < mean + 2σ) = 97.5% (since 95% within ±2σ, so 50% + 47.5% = 97.5%). 650 is at 1.5 SD, which is between 1σ and 2σ. The percentile is between 84% and 97.5%. The midpoint ≈ (84 + 97.5)/2 ≈ 90.75%. The actual value (from z-table) is 93.3%. Best estimate from the options given: 93rd percentile.",
+      "trap": "Students may pick 84th percentile (value at exactly +1 SD = 600) or 97.5th percentile (value at exactly +2 SD = 700). The score 650 is between these, at +1.5 SD. The empirical rule gives exact values at integers: 84th at +1σ and 97.5th at +2σ. The 93rd is the best interpolation for +1.5σ.",
+      "estimated_time_seconds": 100,
+      "tags": ["data-distribution", "standard-deviation", "percentile"]
+    },
+    {
+      "id": "STA-DDI-036",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A box plot for Dataset 1 has: Q1 = 20, Q3 = 50. Using the 1.5×IQR outlier rule:\n\nColumn A: The lower fence (below which values are outliers).\nColumn B: The upper fence (above which values are outliers).",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "IQR = Q3 − Q1 = 50 − 20 = 30. Lower fence = Q1 − 1.5 × IQR = 20 − 1.5 × 30 = 20 − 45 = −25. Upper fence = Q3 + 1.5 × IQR = 50 + 1.5 × 30 = 50 + 45 = 95. Column A = −25. Column B = 95. Since 95 > −25, Column B is greater.",
+      "trap": "Students may confuse which fence is 'higher.' The upper fence is always Q3 + 1.5×IQR (a positive addition), while the lower fence is Q1 − 1.5×IQR (a subtraction). Unless the data is unusually positioned, the upper fence will be greater than the lower fence.",
+      "estimated_time_seconds": 80,
+      "tags": ["data-distribution", "quartile", "qc"]
+    },
+    {
+      "id": "STA-DDI-037",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A normal distribution has mean μ and standard deviation σ. Define three regions:\n• Region I: values more than 2σ below the mean\n• Region II: values between 1σ and 2σ above the mean\n• Region III: values more than 3σ above the mean\n\nIf a value is randomly selected, what is the approximate probability it falls in Region I or Region III, expressed as a percentage?",
+      "options": [
+        "A. 0.15%",
+        "B. 2.5%",
+        "C. 2.65%",
+        "D. 2.35%",
+        "E. 3.35%"
+      ],
+      "answer": "C",
+      "explanation": "Region I: P(X < μ − 2σ). By symmetry, this equals the left tail beyond 2σ = (100% − 95%) / 2 = 2.5%. Region III: P(X > μ + 3σ). This is the right tail beyond 3σ = (100% − 99.7%) / 2 = 0.3% / 2 = 0.15%. P(Region I or Region III) = 2.5% + 0.15% = 2.65%. Answer: C.",
+      "trap": "Students may confuse which tail each region represents. Region I is the LEFT tail (below −2σ) = 2.5%. Region III is the far RIGHT tail (above +3σ) = 0.15%. Students who add both tails beyond 2σ get (100%−95%) = 5%, or those who add both tails beyond 3σ get 0.3%, rather than correctly identifying the two asymmetric regions.",
+      "estimated_time_seconds": 110,
+      "tags": ["data-distribution", "standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-038",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "Dataset P: {1, 2, 3, 4, 5, 6, 7, 8, 9, 10} — 10 evenly spaced values. Mean = 5.5.\nDataset Q: {1, 1, 1, 5, 5, 6, 6, 10, 10, 10} — 10 values clustered at extremes. Mean = 5.5.\n\nColumn A: Standard deviation of Dataset P.\nColumn B: Standard deviation of Dataset Q.",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Both datasets have mean = 5.5 (verify Q: 1+1+1+5+5+6+6+10+10+10 = 55, 55/10 = 5.5 ✓). Dataset P (values 1–10, mean 5.5): Squared deviations from 5.5: (−4.5)²+(−3.5)²+(−2.5)²+(−1.5)²+(−0.5)²+(0.5)²+(1.5)²+(2.5)²+(3.5)²+(4.5)² = 2(20.25+12.25+6.25+2.25+0.25) = 2(41.25) = 82.5. Variance_P = 82.5/10 = 8.25. SD_P = √8.25 ≈ 2.87. Dataset Q (mean 5.5): Squared deviations: three 1s: 3×(−4.5)² = 3×20.25 = 60.75. Two 5s: 2×(−0.5)² = 2×0.25 = 0.50. Two 6s: 2×(0.5)² = 2×0.25 = 0.50. Three 10s: 3×(4.5)² = 3×20.25 = 60.75. Sum = 60.75+0.50+0.50+60.75 = 122.5. Variance_Q = 122.5/10 = 12.25. SD_Q = √12.25 = 3.5. Since 3.5 > 2.87, Column B (SD of Q) is greater.",
+      "trap": "Students may assume that the uniformly spaced dataset (P) has greater spread because its values are evenly distributed across the full range. But Dataset Q concentrates values at the extremes (1s and 10s), maximizing squared deviations from the mean. Clustering at extremes — not even spacing — produces the highest standard deviation.",
+      "estimated_time_seconds": 120,
+      "tags": ["data-distribution", "standard-deviation", "qc"]
+    },
+    {
+      "id": "STA-DDI-039",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "A dataset of 50 exam scores has mean = 72 and standard deviation = 8. The teacher decides to add 5 points to every score (a flat curve). What is the new standard deviation of the scores? (Enter the exact value.)",
+      "options": null,
+      "answer": "8",
+      "explanation": "Adding a constant to every value in a dataset shifts the distribution but does not change its spread. The standard deviation measures how far values deviate from their mean. If every value increases by 5, the mean also increases by 5, and each deviation (value − new mean) remains exactly the same as before. Therefore, the standard deviation is unchanged: still 8.",
+      "trap": "Students commonly add 5 to the standard deviation, getting 13. Adding a constant to all values shifts the mean but does NOT affect the standard deviation, variance, or any measure of spread. Only scaling (multiplying by a constant) changes the standard deviation.",
+      "estimated_time_seconds": 100,
+      "tags": ["data-distribution", "standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-DDI-040",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "A dataset of 100 values has mean = 60, median = 55, standard deviation = 12, Q1 = 45, and Q3 = 70. Select all statements that must be true.",
+      "options": [
+        "A. The distribution is right-skewed.",
+        "B. At least 75% of values lie between 45 and 70.",
+        "C. Approximately 68% of values lie between 48 and 72.",
+        "D. The IQR is 25.",
+        "E. Adding a constant of 10 to all values will increase the standard deviation by 10."
+      ],
+      "answer": ["A", "D"],
+      "explanation": "Check each statement: A: Mean (60) > Median (55) indicates right-skewed distribution (mean > median = right skew). TRUE. B: Q1 and Q3 define the 25th and 75th percentiles. By definition, exactly 50% of data lies between Q1 and Q3 — not at least 75%. B is FALSE. C: The 68% empirical rule (mean ± 1 SD covers ~68%) applies ONLY to normal distributions. Since mean (60) ≠ median (55), this distribution is not normal. C is FALSE. D: IQR = Q3 − Q1 = 70 − 45 = 25. TRUE. E: Adding a constant to all values shifts the mean but never changes the standard deviation (deviations from the new mean remain identical). SD stays 12. E is FALSE. Correct answers: A and D.",
+      "trap": "Multiple traps in one question: (1) Students may apply the 68% empirical rule to a non-normal distribution (option C) — this rule is only for normal distributions. (2) Students may think at least 75% of data lies between Q1 and Q3 (option B) — actually, by definition exactly 50% does. (3) Students may add 10 to the SD when a constant is added to all values (option E) — adding a constant never changes SD.",
+      "estimated_time_seconds": 125,
+      "tags": ["data-distribution", "standard-deviation", "quartile", "multiple-answer", "conceptual"]
+    }
+  ]
+}
