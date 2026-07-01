@@ -10,8 +10,6 @@
 <!-- EmailJS CDN — commented out until ready to use
 <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
 -->
-<script src="ads-config.js"></script>
-<script src="analytics.js"></script>
 <style>
 :root {
   --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a28; --surface3:#22223a; --border:#2a2a45;
@@ -393,6 +391,20 @@ tr:hover td{background:rgba(108,99,255,0.04);}
 /* Question body */
 .pq-body{padding:28px;}
 .pq-question-text{font-size:16px;line-height:1.7;color:var(--text);margin-bottom:24px;white-space:pre-wrap;}
+.pq-figure{display:flex;justify-content:center;margin-bottom:20px;padding:16px;background:var(--surface2);border-radius:var(--radius-sm);border:1px solid var(--border);}
+.pq-figure svg{max-width:100%;height:auto;display:block;}
+.pq-chart-wrap{background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 12px 8px;margin-bottom:20px;position:relative;}
+.pq-chart-wrap canvas{max-height:240px;}
+.pq-table-wrap{margin-bottom:20px;overflow-x:auto;border-radius:var(--radius-sm);border:1px solid var(--border);}
+.pq-table-wrap table{width:100%;border-collapse:collapse;font-size:13px;font-family:var(--font-mono);}
+.pq-table-wrap th{background:rgba(108,99,255,0.15);color:var(--accent);font-weight:700;padding:8px 14px;text-align:center;border-bottom:1px solid var(--border);white-space:nowrap;}
+.pq-table-wrap th:first-child{text-align:left;}
+.pq-table-wrap td{padding:7px 14px;text-align:center;border-bottom:1px solid rgba(255,255,255,0.04);color:var(--text2);}
+.pq-table-wrap td:first-child{text-align:left;color:var(--text);font-weight:500;}
+.pq-table-wrap tr:last-child td{border-bottom:none;}
+.pq-table-wrap tr:hover td{background:rgba(108,99,255,0.06);}
+.pq-figure-desc{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:var(--radius-sm);padding:12px 16px;margin-bottom:20px;font-size:13px;color:var(--text2);line-height:1.6;}
+.pq-figure-label{display:block;font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:6px;font-weight:700;}
 .pq-qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:24px;}
 .pq-qc-col{padding:20px;}
 .pq-qc-col:first-child{border-right:1px solid var(--border);}
@@ -532,6 +544,67 @@ tr:hover td{background:rgba(108,99,255,0.04);}
   .bank-stat-row{gap:20px;}
 }
 
+/* ============================================================
+   AUTH GATE — sits above everything until student authenticates
+   ============================================================ */
+#auth-gate{
+  position:fixed;inset:0;background:var(--bg);z-index:9999;
+  display:flex;align-items:center;justify-content:center;
+  padding:20px;
+}
+#auth-gate::before{
+  content:'';position:fixed;inset:0;
+  background-image:linear-gradient(rgba(108,99,255,0.04) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(108,99,255,0.04) 1px,transparent 1px);
+  background-size:40px 40px;pointer-events:none;
+}
+.auth-card{
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:20px;padding:40px;width:100%;max-width:440px;
+  position:relative;overflow:visible;
+  box-shadow:0 24px 80px rgba(0,0,0,0.6);
+}
+.auth-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--accent),#9c8fff,var(--accent2));
+  border-radius:20px 20px 0 0;
+}
+.auth-logo{font-family:var(--font-display);font-size:26px;margin-bottom:4px;}
+.auth-logo span{color:var(--accent);}
+.auth-subtitle{font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:32px;}
+.auth-label{font-size:11px;font-weight:600;color:var(--text2);text-transform:uppercase;
+  letter-spacing:1px;font-family:var(--font-mono);display:block;margin-bottom:8px;}
+.auth-input{
+  width:100%;background:var(--surface2);border:1px solid var(--border);
+  border-radius:10px;color:var(--text);font-family:var(--font-body);
+  font-size:15px;padding:14px 16px;outline:none;
+  transition:border-color 0.2s,box-shadow 0.2s;margin-bottom:16px;
+}
+.auth-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.15);}
+.auth-btn{
+  width:100%;padding:14px;border:none;border-radius:10px;
+  background:var(--accent);color:white;font-family:var(--font-body);
+  font-size:15px;font-weight:600;cursor:pointer;
+  transition:all 0.2s;box-shadow:0 4px 20px rgba(108,99,255,0.35);
+}
+.auth-btn:hover:not(:disabled){transform:translateY(-2px);box-shadow:0 8px 28px rgba(108,99,255,0.5);}
+.auth-btn:disabled{opacity:0.5;cursor:not-allowed;transform:none;}
+.auth-error{
+  background:rgba(255,101,132,0.1);border:1px solid rgba(255,101,132,0.3);
+  color:var(--danger);border-radius:8px;padding:10px 14px;
+  font-size:13px;margin-bottom:16px;display:none;
+}
+.auth-error.show{display:block;}
+.auth-status{
+  font-size:12px;color:var(--text3);font-family:var(--font-mono);
+  text-align:center;margin-top:16px;min-height:18px;
+}
+.auth-footer{
+  margin-top:28px;padding-top:20px;border-top:1px solid var(--border);
+  font-size:12px;color:var(--text3);text-align:center;
+}
+.auth-footer a{color:var(--accent);text-decoration:none;}
+
 /* ── Report an Error modal ─────────────────────────────────────────────── */
 #error-report-modal{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:10000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);}
 .error-modal-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:32px;max-width:480px;width:100%;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.6);}
@@ -547,45 +620,53 @@ tr:hover td{background:rgba(108,99,255,0.04);}
 .error-report-btn{background:none;border:1px solid rgba(255,101,132,0.3);color:var(--danger);font-size:11px;font-family:var(--font-mono);padding:4px 10px;border-radius:6px;cursor:pointer;transition:all 0.2s;opacity:0.7;}
 .error-report-btn:hover{opacity:1;border-color:var(--danger);background:rgba(255,101,132,0.07);}
 
-/* ── Hero Section ──────────────────────────────────────────────────── */
-.hero-section{padding:36px 0 28px;text-align:center;border-bottom:1px solid var(--border);margin-bottom:32px;}
-.hero-headline{font-family:var(--font-display);font-size:clamp(26px,4vw,40px);line-height:1.15;margin-bottom:12px;color:var(--text);}
-.hero-headline em{font-style:italic;color:var(--accent);}
-.hero-sub{font-size:15px;color:var(--text2);max-width:560px;margin:0 auto 20px;line-height:1.7;}
-.trust-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:24px;}
-.trust-pill{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:5px 14px;font-size:12px;font-family:var(--font-mono);color:var(--text2);}
-.trust-pill strong{color:var(--accent);}
-.hero-cta-btn{display:inline-block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:14px 32px;border-radius:12px;font-size:15px;font-weight:700;font-family:var(--font-body);border:none;cursor:pointer;box-shadow:0 4px 20px rgba(108,99,255,0.4);transition:all 0.2s;}
-.hero-cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(108,99,255,0.55);}
-/* ── Positioning Block ─────────────────────────────────────────────── */
-.positioning-block{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:0 12px 12px 0;padding:18px 22px;margin-bottom:28px;font-size:14px;color:var(--text2);line-height:1.75;}
-.positioning-block strong{color:var(--text);}
-/* ── Recommended preset chip ───────────────────────────────────────── */
-.recommended-chip{display:inline-flex;align-items:center;gap:6px;background:rgba(67,233,123,0.08);border:1px solid rgba(67,233,123,0.25);border-radius:20px;padding:6px 14px;font-size:12px;color:var(--success);font-family:var(--font-mono);cursor:pointer;transition:all 0.2s;margin-bottom:20px;}
-.recommended-chip:hover{background:rgba(67,233,123,0.14);border-color:rgba(67,233,123,0.45);}
-/* ── Send to Tutor teaser ──────────────────────────────────────────── */
-.tutor-teaser{background:rgba(108,99,255,0.06);border:1px solid rgba(108,99,255,0.18);border-radius:10px;padding:14px 18px;margin-top:12px;font-size:13px;color:var(--text2);line-height:1.65;text-align:left;}
-.tutor-teaser strong{color:var(--accent);}
-
 /* ── Exam Sidebar Layout ────────────────────────────────────────── */
 .exam-layout{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:start;}
 .exam-sidebar{position:sticky;top:80px;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:16px;}
 .exam-sidebar-title{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:12px;}
 .exam-sidebar .exam-dots-wrap{display:flex;flex-wrap:wrap;gap:6px;}
 .exam-sidebar .exam-dot{width:28px;height:28px;font-size:11px;}
-.exam-sidebar-unanswered{font-family:var(--font-mono);font-size:11px;color:var(--warning);margin-top:10px;padding-top:10px;border-top:1px solid var(--border);min-height:18px;}
+.exam-sidebar-unanswered{font-family:var(--font-mono);font-size:11px;margin-top:10px;padding-top:10px;border-top:1px solid var(--border);min-height:18px;}
 .exam-question-col{min-width:0;}
-/* Mobile: sidebar collapses to compact top strip */
 @media(max-width:700px){
   .exam-layout{grid-template-columns:1fr;gap:12px;}
   .exam-sidebar{position:static;padding:10px 14px;}
-  .exam-sidebar-title{margin-bottom:8px;}
   .exam-sidebar .exam-dots-wrap{gap:4px;}
   .exam-sidebar .exam-dot{width:22px;height:22px;font-size:10px;}
 }
 </style>
 </head>
 <body>
+
+<!-- ============================================================
+     AUTH GATE — hidden after successful authentication
+     ============================================================ -->
+<div id="auth-gate">
+  <div class="auth-card">
+    <div class="auth-logo">GRE <span>Quant</span> Pro</div>
+    <div class="auth-subtitle">by Coach Aditya Goenka &nbsp;·&nbsp; Licensed Access</div>
+
+    <div class="auth-error" id="auth-error"></div>
+
+    <label class="auth-label" for="auth-email">Your Registered Email</label>
+    <input class="auth-input" type="email" id="auth-email"
+      placeholder="Enter the email you used to purchase"
+      onkeydown="if(event.key==='Enter')handleAuthSubmit()">
+
+    <button class="auth-btn" id="auth-btn" onclick="handleAuthSubmit()">
+      🔓 Unlock Pro Access
+    </button>
+
+    <div class="auth-status" id="auth-status"></div>
+
+    <div class="auth-footer">
+      Not a Pro student yet? <a href="pricing.html">See pricing →</a><br>
+      <span style="margin-top:6px;display:inline-block;">
+        Device issue? <a href="mailto:goenka.aditya.kol@gmail.com">Email Coach Aditya</a>
+      </span>
+    </div>
+  </div>
+</div>
 
 <div class="app-wrapper">
 
@@ -594,59 +675,14 @@ tr:hover td{background:rgba(108,99,255,0.04);}
       <h1>GRE <span>Quant</span> Pro</h1>
       <p>by Coach Aditya Goenka</p>
     </div>
-    <div style="text-align:right;display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
-      <a href="https://grequantpro.com/#plans" style="display:inline-block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:7px 16px;border-radius:20px;font-size:12px;font-weight:700;font-family:var(--font-body);letter-spacing:0.3px;box-shadow:0 2px 10px rgba(108,99,255,0.35);" data-track="upgrade_to_pro_clicked" data-track-from="free_app">⚡ Upgrade to Pro</a>
-      <a href="mailto:goenka.aditya.kol@gmail.com" style="font-family:var(--font-mono);font-size:11px;color:var(--accent);text-decoration:none;opacity:0.75;">goenka.aditya.kol@gmail.com</a>
+    <div style="text-align:right;">
+      <div style="font-family:var(--font-display);font-size:14px;color:var(--text2);">Coach Aditya Goenka</div>
+      <a href="mailto:goenka.aditya.kol@gmail.com" style="font-family:var(--font-mono);font-size:11px;color:var(--accent);text-decoration:none;opacity:0.85;">goenka.aditya.kol@gmail.com</a>
     </div>
-  </div>
-
-
-  <!-- ── Hero Section (1.1) ── -->
-  <div class="hero-section">
-    <h2 class="hero-headline">Stop solving <em>random</em> GRE questions</h2>
-    <p class="hero-sub">Practice with real exam timing, trap-based explanations, and score-band calibration — built question by question by a GRE coach.</p>
-    <div class="trust-bar">
-      <span class="trust-pill"><strong>8,410+</strong> Practice Questions</span>
-      <span class="trust-pill"><strong>88</strong> Subtopics</span>
-      <span class="trust-pill"><strong>9</strong> Topics</span>
-      <span class="trust-pill"><strong>4</strong> Difficulty Levels</span>
-      <span class="trust-pill">Calibrated <strong>130–170</strong></span>
-    </div>
-    <button class="hero-cta-btn" onclick="startGuidedSession()">Start Free Practice →</button>
-  </div>
-
-  <!-- ── Free Full Mocks Banner ── -->
-  <div style="background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(255,101,132,0.08));border:1px solid rgba(108,99,255,0.3);border-radius:16px;padding:28px 32px;margin-bottom:28px;position:relative;overflow:hidden;">
-    <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#6c63ff,#ff6584,#6c63ff);"></div>
-    <div style="position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:serif;font-size:80px;color:rgba(255,255,255,0.03);pointer-events:none;line-height:1;">MOCK</div>
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
-      <div>
-        <div style="font-family:monospace;font-size:11px;color:#6c63ff;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">🎓 Also Free — Full-Length Mock Tests</div>
-        <div style="font-size:20px;font-weight:700;margin-bottom:6px;line-height:1.2;">Test yourself under real GRE conditions</div>
-        <div style="font-size:13px;color:#9898b8;line-height:1.65;max-width:480px;">2 full-length mock tests — 2 sections, 27 questions each, 35-minute timer per section. Complete with score analysis, topic breakdown, and a diagnosis of your weak areas.</div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
-          <span style="font-size:11px;background:rgba(108,99,255,0.12);color:#6c63ff;border:1px solid rgba(108,99,255,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">2 Free Mocks</span>
-          <span style="font-size:11px;background:rgba(108,99,255,0.12);color:#6c63ff;border:1px solid rgba(108,99,255,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">54 Questions Each</span>
-          <span style="font-size:11px;background:rgba(108,99,255,0.12);color:#6c63ff;border:1px solid rgba(108,99,255,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">Timed · 35 min/section</span>
-          <span style="font-size:11px;background:rgba(108,99,255,0.12);color:#6c63ff;border:1px solid rgba(108,99,255,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">Score Analysis</span>
-        </div>
-      </div>
-      <div style="flex-shrink:0;text-align:center;">
-        <a href="full_mock.html" style="display:inline-flex;align-items:center;gap:8px;padding:14px 28px;background:#6c63ff;color:white;border-radius:10px;font-size:15px;font-weight:700;text-decoration:none;box-shadow:0 6px 24px rgba(108,99,255,0.4);transition:all 0.2s;white-space:nowrap;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 10px 32px rgba(108,99,255,0.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 6px 24px rgba(108,99,255,0.4)'" data-track="start_full_mock_clicked" data-track-from="practice_app">
-          Take a Free Mock →
-        </a>
-        <div style="font-size:11px;color:#5a5a7a;font-family:monospace;margin-top:8px;">No sign-up required</div>
-      </div>
-    </div>
-  </div>
-
-  <!-- ── Positioning Block (1.2) ── -->
-  <div class="positioning-block">
-    <strong>GRE Quant Pro is not a generic question bank.</strong> It is a structured practice system with coach-authored questions, trap-based explanations, and real exam-mode simulation — built specifically for GRE aspirants who are past the theory stage and need focused, calibrated practice.
   </div>
 
   <div class="tabs">
-    <!-- <button class="tab-btn" id="tab-btn-session" onclick="switchTab('session',this)">✏️ New Session</button> -->
+    <button class="tab-btn" id="tab-btn-session" onclick="switchTab('session',this)">✏️ New Session</button>
     <button class="tab-btn active" id="tab-btn-bank" onclick="switchTab('bank',this)">🎯 Practice from Bank</button>
     <button class="tab-btn" id="tab-btn-progress" onclick="switchTab('progress',this)">📊 My Progress</button>
   </div>
@@ -775,13 +811,6 @@ tr:hover td{background:rgba(108,99,255,0.04);}
           <button class="mode-btn" id="mode-btn-exam" onclick="bankSetMode('exam')">📝 Exam Mode <span style="font-size:11px;font-weight:400;opacity:0.7;">timed · analysis after</span></button>
         </div>
 
-        <!-- ⚡ Recommended preset (3.2) -->
-        <div style="text-align:left;">
-          <button class="recommended-chip" onclick="startGuidedSession()">
-            ⚡ Recommended for first session — Arithmetic · Percentages · Medium · 10 Q · Practice Mode
-          </button>
-        </div>
-
         <div class="form-grid" style="margin-bottom:20px;">
           <div class="form-group"><label>Student Name</label><input type="text" id="bank-student-name" placeholder="Your full name"></div>
           <div class="form-group">
@@ -808,10 +837,10 @@ tr:hover td{background:rgba(108,99,255,0.04);}
             <label>Difficulty</label>
             <div class="tag-select" id="bank-diff-select">
               <button class="tag-opt active-all" data-val="all" onclick="bankToggleDiff(this)">All</button>
-              <button class="tag-opt" data-val="easy" onclick="bankToggleDiff(this)" title="Easy — GRE score band 130–145">Easy <span style="font-size:10px;opacity:0.5;">130–145</span></button>
-              <button class="tag-opt" data-val="medium" onclick="bankToggleDiff(this)" title="Medium — GRE score band 146–155">Medium <span style="font-size:10px;opacity:0.5;">146–155</span></button>
-              <button class="tag-opt" data-val="hard" onclick="bankToggleDiff(this)" title="Hard — GRE score band 156–163. Available in Pro.">Hard <span style="font-size:10px;opacity:0.6;">156–163</span></button>
-              <button class="tag-opt" data-val="extreme_hard" onclick="bankToggleDiff(this)" title="Extreme Hard — GRE score band 164–170. Available in Pro.">Extreme <span style="font-size:10px;opacity:0.6;">164–170</span></button>
+              <button class="tag-opt" data-val="easy" onclick="bankToggleDiff(this)">Easy</button>
+              <button class="tag-opt" data-val="medium" onclick="bankToggleDiff(this)">Medium</button>
+              <button class="tag-opt" data-val="hard" onclick="bankToggleDiff(this)">Hard</button>
+              <button class="tag-opt" data-val="extreme_hard" onclick="bankToggleDiff(this)">Extreme</button>
             </div>
           </div>
           <div class="bank-filter-group">
@@ -856,10 +885,9 @@ tr:hover td{background:rgba(108,99,255,0.04);}
           <div class="exam-countdown" id="exam-countdown" style="display:none;">00:00</div>
         </div>
       </div>
-      <!-- Exam layout: sidebar nav + question column (exam mode only) -->
+      <!-- Exam sidebar layout (exam mode only) -->
       <div id="exam-layout-wrapper" style="display:none;">
         <div class="exam-layout">
-          <!-- Sidebar navigator -->
           <div class="exam-sidebar" id="exam-nav-bar">
             <div class="exam-sidebar-title">Navigator</div>
             <div class="exam-dots-wrap" id="exam-dots"></div>
@@ -868,13 +896,11 @@ tr:hover td{background:rgba(108,99,255,0.04);}
               <button class="btn btn-danger" style="width:100%;padding:10px;" onclick="examSubmit()">📝 Submit</button>
             </div>
           </div>
-          <!-- Question column — exam mode renders here via JS move -->
           <div class="exam-question-col" id="exam-question-col"></div>
         </div>
       </div>
-      <!-- Practice Mode question area — always visible when bank-active-screen is shown -->
+      <!-- Practice mode question area — always visible -->
       <div id="bank-question-area"></div>
-      <!-- Keep old submit area hidden — submit is now in sidebar -->
       <div id="exam-submit-area" style="display:none;"></div>
     </div>
 
@@ -894,12 +920,11 @@ tr:hover td{background:rgba(108,99,255,0.04);}
       </div>
       <div class="table-card" style="margin-bottom:24px;"><h3>Time Per Question</h3><div id="exam-time-table"></div></div>
       <div id="exam-wrong-section"></div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;">
         <button class="btn btn-success" onclick="saveBankSessionAsJSON()">💾 Save Session</button>
         <button class="btn btn-outline" onclick="sendBankMailto()">📧 Send to Tutor</button>
         <button class="btn btn-primary" onclick="resetBankSession()">🔄 New Session</button>
       </div>
-      <div id="tutor-teaser-exam"></div>
     </div>
 
     <!-- Complete Screen -->
@@ -923,7 +948,6 @@ tr:hover td{background:rgba(108,99,255,0.04);}
           <button class="btn btn-outline" onclick="sendBankMailto()">📧 Send to Tutor</button>
           <button class="btn btn-primary" onclick="resetBankSession()">🔄 Practice Again</button>
         </div>
-        <div id="tutor-teaser-block"></div>
         <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);font-family:var(--font-mono);">
           Adi's GRE Quant Bank · Coach Aditya Goenka · <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none;">goenka.aditya.kol@gmail.com</a>
         </div>
@@ -968,24 +992,228 @@ tr:hover td{background:rgba(108,99,255,0.04);}
 /* ============================================================
    APP CONFIG — change this line only to switch free ↔ pro
    ============================================================ */
-const APP_MODE = 'free'; // 'free' | 'pro'
+const APP_MODE = 'pro'; // 'free' | 'pro'
+
+/* ============================================================
+   AUTH CONFIG — update WORKER_URL after deploying Cloudflare Worker
+   ============================================================ */
+const AUTH_CONFIG = {
+  WORKER_URL: 'https://gre-auth.goenka-aditya-kol.workers.dev',
+  STORAGE_KEY: 'gre_pro_auth',   // localStorage key
+  SESSION_HOURS: 24,             // re-validate after 24 hours of inactivity
+};
+
+/* ============================================================
+   AUTH — FINGERPRINT GENERATION
+   Builds a stable browser fingerprint from non-sensitive signals.
+   Hashed with SHA-256 so raw values never leave the device.
+   ============================================================ */
+async function generateFingerprint() {
+  const signals = [
+    navigator.userAgent,
+    navigator.language,
+    screen.width + 'x' + screen.height,
+    screen.colorDepth,
+    Intl.DateTimeFormat().resolvedOptions().timeZone,
+    navigator.hardwareConcurrency || '',
+    navigator.platform || '',
+  ];
+
+  // Canvas fingerprint — how the GPU renders text differs per device
+  try {
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+    ctx.textBaseline = 'top';
+    ctx.font = '14px Arial';
+    ctx.fillText('GRE-fp-2026', 2, 2);
+    signals.push(canvas.toDataURL());
+  } catch(e) { /* canvas blocked — skip */ }
+
+  const raw = signals.join('||');
+  const encoded = new TextEncoder().encode(raw);
+  const hashBuffer = await crypto.subtle.digest('SHA-256', encoded);
+  const hashArray = Array.from(new Uint8Array(hashBuffer));
+  return hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/* ============================================================
+   AUTH — INIT
+   Called on page load. Checks localStorage first to avoid
+   hammering the Worker on every visit. Re-validates with Worker
+   after SESSION_HOURS of inactivity.
+   ============================================================ */
+async function initAuth() {
+  const stored = getStoredAuth();
+  const fp = await generateFingerprint();
+
+  // Always validate with Worker on every load — this is what enables instant revocation.
+  // localStorage only stores email + fingerprint so we don't ask the student to retype.
+  // The Worker call is fast (~50ms) and runs silently in the background.
+
+  if (stored && stored.email) {
+    // We have a stored email — try silent auto-validate
+    setAuthStatus('Verifying access…');
+    await submitAuthToWorker(stored.email, fp);
+  } else {
+    // First time — show the gate
+    showAuthGate();
+  }
+}
+
+/* ============================================================
+   AUTH — HANDLE SUBMIT (user clicks Unlock or presses Enter)
+   ============================================================ */
+async function handleAuthSubmit() {
+  const email = document.getElementById('auth-email').value.trim().toLowerCase();
+  if (!email || !email.includes('@')) {
+    showAuthError('Please enter a valid email address.');
+    return;
+  }
+
+  const btn = document.getElementById('auth-btn');
+  btn.disabled = true;
+  btn.textContent = '⏳ Verifying…';
+  clearAuthError();
+  setAuthStatus('Checking with server…');
+
+  const fp = await generateFingerprint();
+  await submitAuthToWorker(email, fp);
+}
+
+/* ============================================================
+   AUTH — WORKER CALL
+   ============================================================ */
+async function submitAuthToWorker(email, fp) {
+  const btn = document.getElementById('auth-btn');
+
+  try {
+    // Step 1: validate
+    const res = await fetch(`${AUTH_CONFIG.WORKER_URL}/validate`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email, fingerprint: fp }),
+    });
+
+    if (!res.ok) throw new Error('Server error ' + res.status);
+    const data = await res.json();
+
+    if (data.status === 'ok') {
+      // Step 2: register fingerprint if needed (new device or new student)
+      if (data.needsRegister) {
+        setAuthStatus('Registering your device…');
+        await fetch(`${AUTH_CONFIG.WORKER_URL}/register`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, fingerprint: fp }),
+        });
+      }
+      // Save to localStorage and unlock
+      saveAuth(email, fp);
+      unlockApp();
+
+    } else if (data.status === 'revoked') {
+      // Clear any cached session immediately
+      localStorage.removeItem(AUTH_CONFIG.STORAGE_KEY);
+      showAuthGate();
+      showAuthError('Your Pro access has been revoked. Please contact Coach Aditya at goenka.aditya.kol@gmail.com for assistance.');
+      resetAuthBtn();
+
+    } else if (data.status === 'unknown_email') {
+      showAuthError('This email is not registered for Pro access. Please check your email or contact Coach Aditya.');
+      resetAuthBtn();
+
+    } else if (data.status === 'device_limit') {
+      showAuthError('This account is active on another device. To reset your device access, email Coach Aditya at goenka.aditya.kol@gmail.com');
+      resetAuthBtn();
+
+    } else {
+      showAuthError('Unexpected error. Please try again or contact Coach Aditya.');
+      resetAuthBtn();
+    }
+
+  } catch (err) {
+    // Network failure — if they have a stored session, let them in offline
+    // (revoked students are blocked at the Worker level; offline is a genuine network issue)
+    const stored = getStoredAuth();
+    if (stored && stored.email === email) {
+      setAuthStatus('Offline — using cached access.');
+      setTimeout(unlockApp, 1200);
+    } else {
+      showAuthGate();
+      showAuthError('Could not reach the server. Please check your internet connection and try again.');
+      resetAuthBtn();
+    }
+  }
+}
+
+/* ============================================================
+   AUTH — UI HELPERS
+   ============================================================ */
+function showAuthGate() {
+  document.getElementById('auth-gate').style.display = 'flex';
+  document.getElementById('auth-email').focus();
+}
+
+function unlockApp() {
+  document.getElementById('auth-gate').style.display = 'none';
+  // Now safe to load the bank index — app is unlocked
+  loadBankIndex();
+}
+
+function showAuthError(msg) {
+  const el = document.getElementById('auth-error');
+  el.textContent = msg;
+  el.classList.add('show');
+}
+
+function clearAuthError() {
+  document.getElementById('auth-error').classList.remove('show');
+}
+
+function setAuthStatus(msg) {
+  document.getElementById('auth-status').textContent = msg;
+}
+
+function resetAuthBtn() {
+  const btn = document.getElementById('auth-btn');
+  btn.disabled = false;
+  btn.textContent = '🔓 Unlock Pro Access';
+  setAuthStatus('');
+}
+
+/* ============================================================
+   AUTH — LOCALSTORAGE HELPERS
+   ============================================================ */
+function saveAuth(email, fingerprint) {
+  localStorage.setItem(AUTH_CONFIG.STORAGE_KEY, JSON.stringify({
+    email,
+    fingerprint,
+    savedAt: Date.now(),
+  }));
+}
+
+function getStoredAuth() {
+  try {
+    const raw = localStorage.getItem(AUTH_CONFIG.STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch(e) { return null; }
+}
+
+function isSessionExpired(stored) {
+  if (!stored || !stored.savedAt) return true;
+  const hours = (Date.now() - stored.savedAt) / (1000 * 60 * 60);
+  return hours > AUTH_CONFIG.SESSION_HOURS;
+}
 
 const FREE_CONFIG = {
   allowedSubtopics: {
-    'Arithmetic':          ['Percentages', 'Fractions & Decimals', 'Ratios & Proportions'],
-    'Algebra':             ['Linear Equations (1 Variable)', 'Quadratic Equations', 'Inequalities'],
-    'Geometry':            ['Triangles (General)', 'Circles', 'Perimeter & Area'],
-    'Number Properties':   ['Factors & Multiples', 'Divisibility Rules', 'Prime Numbers & Factorization'],
-    'Word Problems':       ['Distance–Speed–Time', 'Work & Rate', 'Mixture Problems'],
-    'Statistics':          ['Mean/Median/Mode', 'Basic Probability', 'Combinations'],
-    'Coordinate Geometry': ['Slope & Intercepts', 'Equation of a Line', 'Distance Between Points'],
-    'Data Interpretation': ['Bar Graphs', 'Pie Charts', 'Tables & Data Sets']
+    'Arithmetic': ['Percentages', 'Fractions & Decimals', 'Ratios & Proportions']
   },
-  allowedDifficulties: ['easy', 'medium', 'hard', 'extreme_hard'],
-  examMode: true,       // Free users can try Exam Mode (subtopic restriction still applies)
-  sendToTutor: false,   // Pro only — coaching relationship driver
-  myProgress: true,     // Free users can try My Progress
-  maxQuestions: 20      // Raised from 10 — enough to feel the analytics value
+  allowedDifficulties: ['easy', 'medium'],
+  examMode: false,
+  sendToTutor: false,
+  myProgress: false,
+  maxQuestions: 10
 };
 
 /* ============================================================
@@ -1024,10 +1252,6 @@ const chartInstances={};
 // TABS
 // ============================================================
 function switchTab(name,btn){
-
-  // safety
-  if(tabName === 'session') return;
-
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
@@ -1754,11 +1978,7 @@ function bankSubtopicChanged(){
     el.textContent='Not found in bank';el.style.color='var(--danger)';
     document.getElementById('bank-start-btn').disabled=true;return;
   }
-  el.innerHTML = meta.count + ' questions available in this subtopic'
-    + (isFreeTier()
-      ? ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">8,410+ practice questions in Pro across 88 subtopics →</a>'
-      : '');
-  el.style.color='var(--success)';
+  el.textContent=meta.count+' questions available';el.style.color='var(--success)';
   bankUpdateSummary();
 }
 
@@ -1896,13 +2116,23 @@ function bankRenderQuestion(){
   bankState.qStartTime=Date.now();
   window.bankSelectedOptions=[];
 
+  const visualHTML=q.chart
+    ?`<div class="pq-chart-wrap"><canvas id="pq-chart-canvas"></canvas></div>`
+    :q.table_data
+    ?`<div class="pq-table-wrap">${buildTableHTML(q.table_data)}</div>`
+    :q.svg
+    ?`<div class="pq-figure">${q.svg}</div>`
+    :q.figure_description
+    ?`<div class="pq-figure-desc"><span class="pq-figure-label">Figure</span>${escHtml(q.figure_description)}</div>`
+    :'';
+
   let bodyHTML='';
   if(q.type==='quantitative_comparison'){
     const lines=q.question.split('\n');
     const intro=lines[0];
     const colA=(lines.find(l=>l.startsWith('Column A:'))||'Column A: —').replace('Column A:','').trim();
     const colB=(lines.find(l=>l.startsWith('Column B:'))||'Column B: —').replace('Column B:','').trim();
-    bodyHTML=`<p class="pq-question-text">${escHtml(intro)}</p>
+    bodyHTML=`${visualHTML}<p class="pq-question-text">${escHtml(intro)}</p>
     <div class="pq-qc-grid">
       <div class="pq-qc-col"><div class="pq-qc-label">Column A</div><div class="pq-qc-content">${escHtml(colA)}</div></div>
       <div class="pq-qc-col"><div class="pq-qc-label">Column B</div><div class="pq-qc-content">${escHtml(colB)}</div></div>
@@ -1912,14 +2142,14 @@ function bankRenderQuestion(){
       return`<button class="pq-option" id="pq-opt-${l}" onclick="bankSelectOpt('${l}',this)">${escHtml(o)}</button>`;
     }).join('')}</div>`;
   }else if(q.type==='numeric_entry'){
-    bodyHTML=`<p class="pq-question-text">${escHtml(q.question)}</p>
+    bodyHTML=`${visualHTML}<p class="pq-question-text">${escHtml(q.question)}</p>
     <div class="pq-numeric-wrap">
       <input type="text" id="pq-numeric-input" placeholder="Enter answer" style="max-width:240px;font-family:var(--font-mono);font-size:20px;text-align:center;padding:14px;" onkeydown="if(event.key==='Enter')bankSubmit()">
       <div style="font-size:12px;color:var(--text3);margin-top:8px;font-family:var(--font-mono);">Type your answer and press Submit</div>
     </div>`;
   }else{
     const isMulti=q.type==='multiple_answer';
-    bodyHTML=`<p class="pq-question-text">${escHtml(q.question)}</p>
+    bodyHTML=`${visualHTML}<p class="pq-question-text">${escHtml(q.question)}</p>
     ${isMulti?'<p style="font-size:12px;color:var(--warning);font-family:var(--font-mono);margin-bottom:12px;">⚠️ Select ALL that apply</p>':''}
     <div class="pq-options">${q.options.map((o,i)=>{
       const l=String.fromCharCode(65+i);
@@ -1938,7 +2168,10 @@ function bankRenderQuestion(){
           <span class="pq-type-badge">${bankTypeLabel(q.type)}</span>
           <span style="font-size:11px;color:var(--text3);font-family:var(--font-mono);">~${q.estimated_time_seconds||90}s</span>
         </div>
-        <div class="pq-timer" id="pq-qtimer">0:00</div>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <button class="error-report-btn" onclick="openErrorReport()">⚑ Report Error</button>
+          <div class="pq-timer" id="pq-qtimer">0:00</div>
+        </div>
       </div>
       <div class="pq-body">${bodyHTML}</div>
       <div class="pq-feedback" id="pq-feedback"></div>
@@ -1947,6 +2180,10 @@ function bankRenderQuestion(){
         <button class="btn btn-primary" id="pq-submit-btn" onclick="bankSubmit()">Submit →</button>
       </div>
     </div>`;
+
+  // Render Chart.js chart if question has chart data
+  destroyChart('pq-chart');
+  if(q.chart){const cv=document.getElementById('pq-chart-canvas');if(cv)chartInstances['pq-chart']=new Chart(cv,buildChartConfig(q.chart));}
 
   if(bankState.bankQTimer)clearInterval(bankState.bankQTimer);
   const est=q.estimated_time_seconds||90;
@@ -2028,9 +2265,6 @@ function bankSubmit(){
           <span>Your time: ${fmtTime(timeTaken)} · Est: ${fmtTime(q.estimated_time_seconds||90)}</span>
           <span>${timeTaken<=(q.estimated_time_seconds||90)?'⚡ On pace':'🐢 Over time'}</span>
         </div>
-        <div style="margin-top:14px;padding-top:12px;border-top:1px solid var(--border);text-align:right;">
-          <button class="error-report-btn" style="opacity:1;" onclick="openErrorReport()">⚑ Spotted an error in this question? Report it</button>
-        </div>
       </div>`;
     fEl.classList.add('visible');
     setTimeout(()=>fEl.scrollIntoView({behavior:'smooth',block:'nearest'}),100);
@@ -2055,9 +2289,7 @@ function bankSubmit(){
 
 function bankNext(){
   bankState.currentIndex++;window.bankSelectedOptions=[];
-  bankRenderQuestion();
-  const qArea = document.getElementById('bank-question-area');
-  if (qArea) qArea.scrollIntoView({behavior:'smooth', block:'start'});
+  bankRenderQuestion();window.scrollTo({top:0,behavior:'smooth'});
 }
 
 function bankFinish(){
@@ -2101,7 +2333,6 @@ function bankFinish(){
     </div>`;
   window.scrollTo({top:0,behavior:'smooth'});
   showToast('Session complete! '+acc+'% accuracy 🎉',acc>=75?'success':'info');
-  showTutorTeaser();
 }
 
 function saveBankSessionAsJSON(){
@@ -2167,8 +2398,8 @@ function resetBankSession(){
 
 
 document.getElementById('session-date').value=new Date().toISOString().slice(0,10);
-// Load bank manifest on startup
-loadBankIndex();
+// Auth gate — unlockApp() calls loadBankIndex() after successful auth
+initAuth();
 
 // ============================================================
 // FREE / PRO GATING
@@ -2180,8 +2411,22 @@ function isFreeTier() { return APP_MODE === 'free'; }
 function applyFreeModeLimitations() {
   if (!isFreeTier()) return;
 
-  // Exam Mode: now available in free (subtopic restriction still applies)
-  // My Progress: now available in free
+  // Hide Exam Mode button
+  const examBtn = document.getElementById('mode-btn-exam');
+  if (examBtn) {
+    examBtn.style.opacity = '0.4';
+    examBtn.style.cursor = 'not-allowed';
+    examBtn.title = 'Exam Mode is a Pro feature';
+    examBtn.onclick = () => showUpgradePrompt('Exam Mode');
+  }
+
+  // Hide My Progress tab
+  const progressBtn = document.getElementById('tab-btn-progress');
+  if (progressBtn) {
+    progressBtn.style.opacity = '0.4';
+    progressBtn.title = 'My Progress is a Pro feature';
+    progressBtn.onclick = (e) => { e.preventDefault(); showUpgradePrompt('My Progress Dashboard'); };
+  }
 
   // Lock Hard + Extreme difficulty tags
   document.querySelectorAll('#bank-diff-select .tag-opt').forEach(btn => {
@@ -2194,14 +2439,14 @@ function applyFreeModeLimitations() {
     }
   });
 
-  // Cap question count at 20
+  // Cap question count at 10
   document.querySelectorAll('.qcount-btn').forEach(btn => {
     const n = parseInt(btn.dataset.n);
-    if (n > 20 || btn.dataset.n === '999') {
+    if (n > 10 || btn.dataset.n === '999') {
       btn.style.opacity = '0.4';
       btn.style.cursor = 'not-allowed';
       btn.title = 'Upgrade to Pro for more questions per session';
-      btn.onclick = () => showUpgradePrompt('sessions longer than 20 questions');
+      btn.onclick = () => showUpgradePrompt('sessions longer than 10 questions');
     }
   });
 
@@ -2211,8 +2456,8 @@ function applyFreeModeLimitations() {
     const banner = document.createElement('div');
     banner.style.cssText = 'background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:8px;padding:12px 16px;margin-bottom:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;';
     banner.innerHTML = `
-      <span style="font-size:13px;color:var(--text2);">🎓 <strong>Free Tier</strong> — 2 subtopics · Easy & Medium only · up to 20 questions/session</span>
-      <a href="https://grequantpro.com/#plans" style="font-size:12px;font-family:var(--font-mono);color:var(--accent);text-decoration:none;white-space:nowrap;">Upgrade to Pro →</a>`;
+      <span style="font-size:13px;color:var(--text2);">🎓 <strong>Free Tier</strong> — 3 subtopics · Easy & Medium only · 10 questions/session</span>
+      <a href="mailto:goenka.aditya.kol@gmail.com?subject=GRE Pro Access" style="font-size:12px;font-family:var(--font-mono);color:var(--accent);text-decoration:none;white-space:nowrap;">Upgrade to Pro →</a>`;
     setupCard.insertBefore(banner, setupCard.firstChild);
   }
 
@@ -2221,7 +2466,7 @@ function applyFreeModeLimitations() {
   if (setupCardSession) {
     const banner2 = document.createElement('div');
     banner2.style.cssText = 'background:rgba(108,99,255,0.08);border:1px solid rgba(108,99,255,0.2);border-radius:8px;padding:10px 16px;margin-bottom:16px;font-size:12px;color:var(--text2);display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;';
-    banner2.innerHTML = `<span>🎓 Free Tier — Manual session logging is always free</span><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:11px;">See Pricing →</a>`;
+    banner2.innerHTML = `<span>🎓 Free Tier — Manual session logging is always free</span><a href="mailto:goenka.aditya.kol@gmail.com?subject=GRE Pro Access" style="color:var(--accent);text-decoration:none;font-family:var(--font-mono);font-size:11px;">Get Pro →</a>`;
     setupCardSession.insertBefore(banner2, setupCardSession.firstChild);
   }
 }
@@ -2271,13 +2516,21 @@ bankGetFiltered = function(topic, subtopic) {
   return results;
 };
 
-// Exam Mode is now available in free tier — no override needed
+// Override bankSetMode to block exam mode in free tier
+const _origBankSetMode = bankSetMode;
+bankSetMode = function(mode) {
+  if (isFreeTier() && mode === 'exam') {
+    showUpgradePrompt('Exam Mode');
+    return;
+  }
+  _origBankSetMode(mode);
+};
 
-// Override bankSetCount to cap at 20 in free tier
+// Override bankSetCount to cap at 10 in free tier
 const _origBankSetCount = bankSetCount;
 bankSetCount = function(btn) {
-  if (isFreeTier() && (parseInt(btn.dataset.n) > 20 || btn.dataset.n === '999')) {
-    showUpgradePrompt('sessions longer than 20 questions');
+  if (isFreeTier() && (parseInt(btn.dataset.n) > 10 || btn.dataset.n === '999')) {
+    showUpgradePrompt('sessions longer than 10 questions');
     return;
   }
   _origBankSetCount(btn);
@@ -2290,41 +2543,42 @@ sendBankMailto = function() {
   _origSendBankMailto();
 };
 
-// My Progress now available in free tier — no override needed
+// Override switchTab to block My Progress in free tier
+const _origSwitchTab = switchTab;
+switchTab = function(name, btn) {
+  if (isFreeTier() && name === 'progress') {
+    showUpgradePrompt('My Progress Dashboard');
+    return;
+  }
+  _origSwitchTab(name, btn);
+};
 
 // Show upgrade prompt modal
 function showUpgradePrompt(feature) {
+  // Remove any existing prompt
   const existing = document.getElementById('upgrade-modal');
   if (existing) existing.remove();
 
   const modal = document.createElement('div');
   modal.id = 'upgrade-modal';
-  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);';
+  modal.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:9999;display:flex;align-items:center;justify-content:center;padding:20px;';
   modal.innerHTML = `
-    <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;padding:40px 36px;max-width:460px;width:100%;text-align:center;position:relative;box-shadow:0 24px 80px rgba(0,0,0,0.6);">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#a89aff,#ff6584);border-radius:20px 20px 0 0;"></div>
-
-      <div style="font-size:36px;margin-bottom:12px;">🎯</div>
-      <div style="font-family:var(--font-display);font-size:22px;margin-bottom:12px;line-height:1.3;">Ready to practice what actually<br>matters for your score?</div>
-
-      <div style="font-size:13px;color:var(--text2);margin-bottom:20px;line-height:1.75;text-align:left;background:var(--surface2);border-radius:10px;padding:16px 18px;">
-        Pro gives you <strong style="color:var(--text);">every GRE Quant topic and subtopic</strong>, full difficulty range up to Extreme Hard, and session analytics that show you <strong style="color:var(--text);">exactly where you're losing points</strong>.<br><br>
-        <span style="color:var(--text3);font-size:12px;font-family:var(--font-mono);">One payment · Lifetime access · Questions keep growing</span>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:36px;max-width:420px;width:100%;text-align:center;position:relative;">
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),#ff6584);border-radius:16px 16px 0 0;"></div>
+      <div style="font-size:36px;margin-bottom:12px;">🔒</div>
+      <div style="font-family:var(--font-display);font-size:22px;margin-bottom:8px;">Pro Feature</div>
+      <div style="font-size:14px;color:var(--text2);margin-bottom:24px;line-height:1.6;">
+        <strong>${feature}</strong> is available in the Pro version.<br><br>
+        Get access to the full question bank, Exam Mode, Hard & Extreme questions, Send to Tutor, and My Progress dashboard.
       </div>
-
-      <a href="https://grequantpro.com/?feature=${encodeURIComponent(feature)}#plans" target="_blank"
-        style="display:block;background:linear-gradient(135deg,var(--accent),#a89aff);color:white;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;margin-bottom:10px;box-shadow:0 4px 20px rgba(108,99,255,0.4);">
-        Get Pro — ₹499 →
+      <a href="mailto:goenka.aditya.kol@gmail.com?subject=GRE Pro Access Request&body=Hi Coach Aditya, I would like to upgrade to Pro access for GRE Quant Pro. Please share the details."
+        style="display:inline-block;background:var(--accent);color:white;text-decoration:none;padding:12px 28px;border-radius:8px;font-weight:600;font-size:14px;margin-bottom:12px;">
+        📧 Contact Coach Aditya
       </a>
-
-      <a href="https://grequantpro.com/?feature=${encodeURIComponent(feature)}#plans" target="_blank"
-        style="display:block;background:linear-gradient(135deg,#f5c842,#f97316);color:#0a0a0f;text-decoration:none;padding:12px 28px;border-radius:10px;font-weight:700;font-size:14px;margin-bottom:18px;">
-        🎓 Pro + Tutor — ₹1,499/mo
-      </a>
-
+      <div style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:20px;">goenka.aditya.kol@gmail.com</div>
       <button onclick="document.getElementById('upgrade-modal').remove()"
-        style="background:none;border:none;color:var(--text3);padding:8px 24px;cursor:pointer;font-size:13px;font-family:var(--font-body);text-decoration:underline;text-underline-offset:3px;">
-        Continue with Free
+        style="background:none;border:1px solid var(--border);color:var(--text2);padding:8px 24px;border-radius:8px;cursor:pointer;font-size:13px;">
+        Maybe Later
       </button>
     </div>`;
   document.body.appendChild(modal);
@@ -2428,12 +2682,11 @@ startBankSession = async function() {
   document.getElementById('bank-session-timer').style.display = 'none';
   document.getElementById('exam-countdown').style.display = 'block';
   document.getElementById('exam-layout-wrapper').style.display = 'block';
-  document.getElementById('exam-submit-area').style.display = 'none';
-
-  // Move the shared question area into the exam column
+  // Move question area into exam column
   const qa = document.getElementById('bank-question-area');
   const examCol = document.getElementById('exam-question-col');
   if (qa && examCol) examCol.appendChild(qa);
+  document.getElementById('exam-submit-area').style.display = 'block';
 
   // Build nav dots
   examBuildNavDots();
@@ -2496,11 +2749,10 @@ function examUpdateDots() {
 }
 
 function examJumpTo(idx) {
-  examSaveCurrentAnswer();
+  examSaveCurrentAnswer();  // saves time spent on current question
   bankState.currentIndex = idx;
-  bankState.qStartTime = Date.now();
+  bankState.qStartTime = Date.now();  // fresh timer for the jumped-to question
   examRenderQuestion(idx);
-  // No scroll — sidebar is sticky on desktop, question renders in place
 }
 
 // ============================================================
@@ -2513,13 +2765,23 @@ function examRenderQuestion(idx) {
   document.getElementById('bank-progress-pill').textContent = 'Q ' + (idx + 1) + ' / ' + total;
   bankState.qStartTime = Date.now();
 
+  const visualHTML2 = q.chart
+    ? `<div class="pq-chart-wrap"><canvas id="pq-chart-canvas"></canvas></div>`
+    : q.table_data
+    ? `<div class="pq-table-wrap">${buildTableHTML(q.table_data)}</div>`
+    : q.svg
+    ? `<div class="pq-figure">${q.svg}</div>`
+    : q.figure_description
+    ? `<div class="pq-figure-desc"><span class="pq-figure-label">Figure</span>${escHtml(q.figure_description)}</div>`
+    : '';
+
   let bodyHTML = '';
   if (q.type === 'quantitative_comparison') {
     const lines = q.question.split('\n');
     const intro = lines[0];
     const colA = (lines.find(l => l.startsWith('Column A:')) || 'Column A: —').replace('Column A:', '').trim();
     const colB = (lines.find(l => l.startsWith('Column B:')) || 'Column B: —').replace('Column B:', '').trim();
-    bodyHTML = `<p class="pq-question-text">${escHtml(intro)}</p>
+    bodyHTML = `${visualHTML2}<p class="pq-question-text">${escHtml(intro)}</p>
       <div class="pq-qc-grid">
         <div class="pq-qc-col"><div class="pq-qc-label">Column A</div><div class="pq-qc-content">${escHtml(colA)}</div></div>
         <div class="pq-qc-col"><div class="pq-qc-label">Column B</div><div class="pq-qc-content">${escHtml(colB)}</div></div>
@@ -2529,7 +2791,7 @@ function examRenderQuestion(idx) {
         return `<button class="pq-option" id="pq-opt-${l}" onclick="examSelectOpt('${l}',this)">${escHtml(o)}</button>`;
       }).join('')}</div>`;
   } else if (q.type === 'numeric_entry') {
-    bodyHTML = `<p class="pq-question-text">${escHtml(q.question)}</p>
+    bodyHTML = `${visualHTML2}<p class="pq-question-text">${escHtml(q.question)}</p>
       <div class="pq-numeric-wrap">
         <input type="text" id="pq-numeric-input" placeholder="Enter answer"
           style="max-width:240px;font-family:var(--font-mono);font-size:20px;text-align:center;padding:14px;"
@@ -2538,7 +2800,7 @@ function examRenderQuestion(idx) {
       </div>`;
   } else {
     const isMulti = q.type === 'multiple_answer';
-    bodyHTML = `<p class="pq-question-text">${escHtml(q.question)}</p>
+    bodyHTML = `${visualHTML2}<p class="pq-question-text">${escHtml(q.question)}</p>
       ${isMulti ? '<p style="font-size:12px;color:var(--warning);font-family:var(--font-mono);margin-bottom:12px;">⚠️ Select ALL that apply</p>' : ''}
       <div class="pq-options">${q.options.map((o,i)=>{
         const l = String.fromCharCode(65+i);
@@ -2569,11 +2831,15 @@ function examRenderQuestion(idx) {
       </div>
     </div>`;
 
+  // Render Chart.js chart if question has chart data
+  destroyChart('pq-chart');
+  if(q.chart){const cv=document.getElementById('pq-chart-canvas');if(cv)chartInstances['pq-chart']=new Chart(cv,buildChartConfig(q.chart));}
+
   // Restore previously selected answer
   examRestoreAnswer(idx, q);
   examUpdateDots();
   examUpdateUnansweredWarning();
-  // No scroll — with sidebar layout, question renders in place
+  // No scroll — question renders in place
 }
 
 // ============================================================
@@ -2730,7 +2996,6 @@ function examSubmit() {
 function examRenderAnalysis() {
   document.getElementById('exam-analysis-screen').style.display = 'block';
   window.scrollTo({ top: 0, behavior: 'smooth' });
-  showTutorTeaserExam();
 
   const res = bankState.results;
   const total = res.length;
@@ -2832,9 +3097,6 @@ function examRenderAnalysis() {
                 </div>
                 <div class="wrong-q-explanation">${escHtml(q.explanation)}</div>
                 <div class="wrong-q-trap">⚠️ Trap: ${escHtml(q.trap)}</div>
-                <div style="margin-top:10px;text-align:right;">
-                  <button class="error-report-btn" style="opacity:1;" data-wrong-idx="${i}" onclick="openErrorReportForQuestion(bankState.results.filter(r=>!r.correct)[this.dataset.wrongIdx].question)">⚑ Report an error in this question</button>
-                </div>
               </div>
             </div>`;
           }).join('')}
@@ -2873,20 +3135,17 @@ const _origResetBankSession = resetBankSession;
 resetBankSession = function() {
   document.getElementById('exam-analysis-screen').style.display = 'none';
   document.getElementById('exam-layout-wrapper').style.display = 'none';
+  // Restore question area to home position
+  const qa2 = document.getElementById('bank-question-area');
+  const activeScreen2 = document.getElementById('bank-active-screen');
+  const examWrapper2 = document.getElementById('exam-layout-wrapper');
+  if (qa2 && activeScreen2 && qa2.parentElement !== activeScreen2) {
+    activeScreen2.insertBefore(qa2, examWrapper2);
+  }
   document.getElementById('exam-submit-area').style.display = 'none';
   document.getElementById('exam-countdown').style.display = 'none';
   document.getElementById('bank-score-pill').style.display = 'flex';
   document.getElementById('bank-session-timer').style.display = 'flex';
-
-  // Restore bank-question-area to its home outside the exam wrapper
-  const qa = document.getElementById('bank-question-area');
-  const activeScreen = document.getElementById('bank-active-screen');
-  const examWrapper = document.getElementById('exam-layout-wrapper');
-  if (qa && activeScreen && qa.parentElement !== activeScreen) {
-    // Insert before the exam-layout-wrapper
-    activeScreen.insertBefore(qa, examWrapper);
-  }
-
   window.examSelectedOptions = [];
   _origResetBankSession();
 };
@@ -3439,6 +3698,29 @@ function fmtTime(s){if(s===null||s===undefined||s==='')return '—';s=Math.floor
 function fmtDate(d){if(!d)return '';return new Date(d+'T00:00:00').toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'});}
 function destroyChart(id){if(chartInstances[id]){chartInstances[id].destroy();delete chartInstances[id];}}
 
+function buildTableHTML(t){
+  const esc=s=>String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  const headers=t.headers.map(h=>`<th>${esc(h)}</th>`).join('');
+  const rows=t.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join('')}</tr>`).join('');
+  return`<table><thead><tr>${headers}</tr></thead><tbody>${rows}</tbody></table>`;
+}
+
+function buildChartConfig(c){
+  const PALETTE=['#6c63ff','#43e97b','#f7971e','#ff6584','#4ecdc4','#a78bfa','#fbbf24'];
+  const gridColor='rgba(255,255,255,0.07)';const tickColor='#7070a0';
+  const isPie=c.type==='pie'||c.type==='doughnut';
+  const datasets=(c.datasets||[]).map((ds,i)=>{
+    const base={label:ds.label||'',data:ds.data};
+    if(isPie){base.backgroundColor=PALETTE.slice(0,ds.data.length);base.borderWidth=0;base.hoverOffset=6;}
+    else{base.backgroundColor=PALETTE[i%PALETTE.length]+(c.type==='line'?'33':'cc');
+      if(c.type==='line'){base.borderColor=PALETTE[i%PALETTE.length];base.tension=0.35;base.fill=true;base.pointRadius=4;base.pointBackgroundColor=PALETTE[i%PALETTE.length];}}
+    return base;
+  });
+  const opts={responsive:true,maintainAspectRatio:true,plugins:{legend:{display:isPie||datasets.length>1,labels:{color:tickColor,font:{family:'Outfit',size:12},boxWidth:12}},title:{display:!!c.title,text:c.title,color:tickColor,font:{family:'Outfit',size:12}},tooltip:{callbacks:{label:ctx=>` ${ctx.formattedValue}${c.unit||''}`}}}};
+  if(!isPie){opts.scales={x:{ticks:{color:tickColor,font:{family:'Outfit',size:11}},grid:{color:gridColor}},y:{ticks:{color:tickColor,font:{family:'Outfit',size:11}},grid:{color:gridColor},beginAtZero:true}};}
+  return{type:c.type,data:{labels:c.labels,datasets},options:opts};
+}
+
 function showToast(msg,type='info'){
   const icons={success:'✅',error:'❌',info:'ℹ️'};
   document.getElementById('toast-icon').textContent=icons[type]||'ℹ️';
@@ -3452,17 +3734,13 @@ function hideLoading(){document.getElementById('loading-overlay').classList.remo
 
 document.getElementById('session-date').value=new Date().toISOString().slice(0,10);
 
-// ── Report an Error (Practice Mode — uses bankState.queue[currentIndex]) ────────
+// ── Report an Error ──────────────────────────────────────────────────────────
 function openErrorReport() {
   const existing = document.getElementById('error-report-modal');
   if (existing) existing.remove();
 
   const q = bankState.queue[bankState.currentIndex];
   if (!q) return;
-
-  const optionsText = q.options
-    ? q.options.map((o, i) => String.fromCharCode(65+i) + '. ' + o).join('\n')
-    : 'N/A (Numeric Entry)';
 
   const modal = document.createElement('div');
   modal.id = 'error-report-modal';
@@ -3475,7 +3753,7 @@ function openErrorReport() {
       </div>
       <label class="error-modal-label" for="error-textarea">Describe the issue</label>
       <textarea class="error-modal-textarea" id="error-textarea"
-        placeholder="e.g. The answer key seems wrong — I believe the answer should be B because... / The explanation has a calculation error on line 2 / The question text seems incomplete..."></textarea>
+        placeholder="e.g. The answer key seems wrong — I believe the answer should be B because... / The explanation has a calculation error / The question text seems incomplete..."></textarea>
       <div class="error-modal-footer">
         <button class="error-modal-cancel" onclick="document.getElementById('error-report-modal').remove()">Cancel</button>
         <button class="error-modal-submit" onclick="submitErrorReport()">Send Report →</button>
@@ -3495,10 +3773,6 @@ function submitErrorReport() {
     showToast('Please describe the issue before submitting.', 'error');
     return;
   }
-
-  const optionsText = q.options
-    ? q.options.map((o, i) => String.fromCharCode(65+i) + '. ' + o).join('%0A')
-    : 'N/A (Numeric Entry)';
 
   const subject = encodeURIComponent('[GRE Quant Pro] Question Error Report — ' + q.id);
   const body = encodeURIComponent(
@@ -3524,139 +3798,6 @@ function submitErrorReport() {
 
   document.getElementById('error-report-modal')?.remove();
   showToast('Error report opened in Gmail. Please send the email to complete your report.', 'success');
-}
-
-
-// ── Guided First Session (1.4 + 3.2) ────────────────────────────────────────
-// Called from hero CTA and recommended preset chip.
-// Pre-fills the bank setup form and scrolls to it — student still clicks Start.
-function startGuidedSession() {
-  // 1. Switch to bank tab
-  const bankBtn = document.getElementById('tab-btn-bank');
-  if (bankBtn && !bankBtn.classList.contains('active')) {
-    switchTab('bank', bankBtn);
-  }
-
-  // 2. Set mode to Practice
-  bankSetMode('practice');
-
-  // 3. Set topic → Arithmetic
-  const topicEl = document.getElementById('bank-topic');
-  if (topicEl) {
-    topicEl.value = 'Arithmetic';
-    bankTopicChanged();
-  }
-
-  // 4. Set subtopic → Percentages (after a tick so dropdown populates)
-  setTimeout(() => {
-    const subEl = document.getElementById('bank-subtopic');
-    if (subEl) {
-      subEl.value = 'Percentages';
-      bankSubtopicChanged();
-    }
-
-    // 5. Set difficulty: Medium only
-    document.querySelectorAll('#bank-diff-select .tag-opt').forEach(btn => {
-      const isLocked = btn.style.cursor === 'not-allowed';
-      if (isLocked) return;
-      const val = btn.dataset.val;
-      if (val === 'medium') {
-        if (!btn.classList.contains('active-tag')) bankToggleDiff(btn);
-      } else if (val !== 'all' && btn.classList.contains('active-tag')) {
-        bankToggleDiff(btn);
-      }
-    });
-
-    // 6. Set count to 10
-    document.querySelectorAll('.qcount-btn').forEach(btn => {
-      if (btn.dataset.n === '10') {
-        const isLocked = btn.style.cursor === 'not-allowed';
-        if (!isLocked) bankSetCount(btn);
-      }
-    });
-
-    // 7. Scroll to setup card
-    const setupCard = document.querySelector('.bank-setup-card');
-    if (setupCard) setupCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }, 80);
-}
-
-// ── Report Error for a specific question object (Exam Mode wrong review) ────────
-function openErrorReportForQuestion(q) {
-  if (!q) return;
-  const existing = document.getElementById('error-report-modal');
-  if (existing) existing.remove();
-  const modal = document.createElement('div');
-  modal.id = 'error-report-modal';
-  modal.innerHTML = `
-    <div class="error-modal-card">
-      <div class="error-modal-title">⚑ Report a Question Error</div>
-      <div class="error-modal-meta">
-        ID: ${escHtml(q.id)} &nbsp;·&nbsp; ${escHtml(q.topic||bankState.topic)} › ${escHtml(q.subtopic||bankState.subtopic)}<br>
-        We review all reports within 24 hours.
-      </div>
-      <label class="error-modal-label" for="error-textarea">Describe the issue</label>
-      <textarea class="error-modal-textarea" id="error-textarea"
-        placeholder="e.g. The answer key seems wrong — I believe the answer should be B because... / Explanation has a calculation error..."></textarea>
-      <div class="error-modal-footer">
-        <button class="error-modal-cancel" onclick="document.getElementById('error-report-modal').remove()">Cancel</button>
-        <button class="error-modal-submit" onclick="submitErrorReportForQuestion(${JSON.stringify(q).replace(/"/g,'&quot;')})">Send Report →</button>
-      </div>
-    </div>`;
-  document.body.appendChild(modal);
-  modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
-  setTimeout(() => document.getElementById('error-textarea')?.focus(), 100);
-}
-
-function submitErrorReportForQuestion(q) {
-  const issue = (document.getElementById('error-textarea')?.value || '').trim();
-  if (!issue) { showToast('Please describe the issue before submitting.', 'error'); return; }
-  const subject = encodeURIComponent('[GRE Quant Pro] Question Error Report — ' + q.id);
-  const body = encodeURIComponent(
-    'QUESTION ERROR REPORT\n' +
-    '═══════════════════════════════════════\n\n' +
-    'Question ID     : ' + q.id + '\n' +
-    'Topic           : ' + (q.topic||bankState.topic) + '\n' +
-    'Subtopic        : ' + (q.subtopic||bankState.subtopic) + '\n' +
-    'Difficulty      : ' + q.difficulty + '\n' +
-    'Type            : ' + q.type + '\n\n' +
-    '───────────────────────────────────────\n' +
-    'QUESTION:\n' + q.question + '\n\n' +
-    'OPTIONS:\n' + (q.options ? q.options.map((o,i)=>String.fromCharCode(65+i)+'. '+o).join('\n') : 'N/A') + '\n\n' +
-    'CORRECT ANSWER  : ' + (Array.isArray(q.answer) ? q.answer.join(', ') : q.answer) + '\n\n' +
-    '───────────────────────────────────────\n' +
-    'ISSUE REPORTED BY STUDENT:\n' + issue + '\n\n' +
-    'Sent via GRE Quant Pro · Coach Aditya Goenka'
-  );
-  window.open('https://mail.google.com/mail/?view=cm&to=goenka.aditya.kol%40gmail.com&su=' + subject + '&body=' + body, '_blank');
-  document.getElementById('error-report-modal')?.remove();
-  showToast('Error report opened in Gmail. Please send the email to complete your report.', 'success');
-}
-
-// ── Send to Tutor Teaser — Exam analysis screen (2.6b) ──────────────────────
-function showTutorTeaserExam() {
-  if (!isFreeTier()) return;
-  const el = document.getElementById('tutor-teaser-exam');
-  if (!el) return;
-  el.innerHTML = `
-    <div class="tutor-teaser" style="margin-bottom:24px;">
-      <strong>📧 Want Coach Aditya to review this exam?</strong><br>
-      With Pro, your full exam report — every question, your answer, the trap you fell for, and your time per question — is compiled and sent to Coach Aditya in one click. He reviews it before your next session.
-      <br><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹499 →</a>
-    </div>`;
-}
-
-// ── Send to Tutor Teaser (3.3) — shown in free tier after session complete ──
-function showTutorTeaser() {
-  if (!isFreeTier()) return;
-  const el = document.getElementById('tutor-teaser-block');
-  if (!el) return;
-  el.innerHTML = `
-    <div class="tutor-teaser">
-      <strong>📧 Want Coach Aditya to review this session?</strong><br>
-      With Pro, your full session report — every question, your answer, and the exact trap you fell for — is compiled and sent to Coach Aditya automatically. He reviews it before your next session.
-      <br><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹499 →</a>
-    </div>`;
 }
 
 </script>
