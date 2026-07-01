@@ -1879,10 +1879,20 @@ const QUESTION_BANK = {};       // populated on demand via fetch
 const BANK_CACHE = {};          // cache loaded subtopics this session
 let BANK_INDEX = null;          // loaded from bank/index.json
 
+// Compute the absolute base URL for the bank directory.
+// Handles /pro/, /pro, and /pro/index.html correctly.
+const BANK_BASE = (() => {
+  const p = window.location.pathname;
+  const dir = p.endsWith('/')   ? p                                       // /pro/
+    : /\.\w{2,5}$/.test(p)     ? p.substring(0, p.lastIndexOf('/') + 1)  // /pro/index.html
+    : p + '/';                                                             // /pro → /pro/
+  return window.location.origin + dir + 'bank/';
+})();
+
 // Load the bank manifest on startup
 async function loadBankIndex() {
   try {
-    const res = await fetch('bank/index.json');
+    const res = await fetch(BANK_BASE + 'index.json');
     if (!res.ok) throw new Error('index not found');
     BANK_INDEX = await res.json();
     bankPopulateTopicDropdown();
@@ -1920,8 +1930,8 @@ async function loadSubtopic(topic, subtopic) {
   const path = BANK_INDEX.topics[topic][subtopic].file;
   showLoading('Loading ' + subtopic + ' questions...');
   try {
-    const res = await fetch('bank/' + path);
-    if (!res.ok) throw new Error('File not found: bank/' + path);
+    const res = await fetch(BANK_BASE + path);
+    if (!res.ok) throw new Error('File not found: ' + BANK_BASE + path);
     const data = await res.json();
     if (!QUESTION_BANK[topic]) QUESTION_BANK[topic] = {};
     QUESTION_BANK[topic][subtopic] = data.questions;
