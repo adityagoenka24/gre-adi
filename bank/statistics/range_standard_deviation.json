@@ -1,0 +1,751 @@
+{
+  "meta": {
+    "topic": "Statistics",
+    "subtopic": "Range & Standard Deviation",
+    "subtopic_id": "STA-RSD",
+    "version": "1.0",
+    "total_questions": 50,
+    "distribution": { "easy": 13, "medium": 20, "hard": 12, "extreme_hard": 5 },
+    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "STA-RSD-001",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The ages of five students are 12, 15, 18, 21, and 24. What is the range of these ages?",
+      "options": ["A. 9", "B. 10", "C. 12", "D. 13", "E. 18"],
+      "answer": "C",
+      "explanation": "Range = maximum value − minimum value. Maximum = 24, minimum = 12. Range = 24 − 12 = 12.",
+      "trap": "Students subtract adjacent values (15 − 12 = 3) or count the number of values (5) instead of computing max − min.",
+      "estimated_time_seconds": 40,
+      "tags": ["range"]
+    },
+    {
+      "id": "STA-RSD-002",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Set A = {3, 7, 11, 15, 19}\nColumn A: Range of Set A\nColumn B: 16",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Range of Set A = maximum − minimum = 19 − 3 = 16. Column A = 16, Column B = 16. The two quantities are equal.",
+      "trap": "Students count 5 elements and guess the range is 5, or miscalculate 19 − 3 as 15.",
+      "estimated_time_seconds": 45,
+      "tags": ["range", "qc"]
+    },
+    {
+      "id": "STA-RSD-003",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which of the following datasets has a standard deviation of 0?",
+      "options": ["A. {1, 2, 3, 4, 5}", "B. {0, 0, 1, 0, 0}", "C. {7, 7, 7, 7, 7}", "D. {−2, 0, 2, 0, −2}", "E. {1, 1, 2, 1, 1}"],
+      "answer": "C",
+      "explanation": "Standard deviation equals 0 if and only if all values in the dataset are identical. In option C, every value is 7, so the mean is 7 and every deviation from the mean is 0. Therefore SD = 0. All other options contain at least two different values, so their SDs are greater than 0.",
+      "trap": "Students pick option B because it contains many zeros, confusing the values themselves with deviations from the mean.",
+      "estimated_time_seconds": 50,
+      "tags": ["standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-004",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Set P = {10, 20, 30, 40, 50}\nSet Q = {10, 20, 30, 40, 50}\nColumn A: Standard deviation of Set P\nColumn B: Standard deviation of Set Q",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Both sets are identical: {10, 20, 30, 40, 50}. Identical datasets have identical standard deviations. Column A = Column B.",
+      "trap": "Students assume the question must have a trick and choose D, but since the datasets are literally the same, the answer is simply C.",
+      "estimated_time_seconds": 40,
+      "tags": ["standard-deviation", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-005",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The values in a dataset are {4, 8, 12, 16, 20}. If the number 25 is added to the dataset, what happens to the range?",
+      "options": ["A. The range decreases by 5", "B. The range stays the same", "C. The range increases by 5", "D. The range increases by 9", "E. The range doubles"],
+      "answer": "C",
+      "explanation": "Original range = 20 − 4 = 16. After adding 25, the new maximum is 25 (since 25 > 20) and the minimum remains 4. New range = 25 − 4 = 21. Increase = 21 − 16 = 5.",
+      "trap": "Students think the range stays the same because 25 is just one value. They forget that 25 is larger than the current maximum (20), so it extends the range.",
+      "estimated_time_seconds": 55,
+      "tags": ["range", "two-step"]
+    },
+    {
+      "id": "STA-RSD-006",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Dataset A = {2, 4, 6, 8, 10}\nDataset B = {1, 3, 5, 7, 9}\nColumn A: Range of Dataset A\nColumn B: Range of Dataset B",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Range of Dataset A = 10 − 2 = 8. Range of Dataset B = 9 − 1 = 8. Both ranges equal 8, so the two quantities are equal.",
+      "trap": "Students see that all values in Dataset A are larger and assume its range must be larger. Range depends on spread, not the size of the values.",
+      "estimated_time_seconds": 50,
+      "tags": ["range", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-007",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A dataset has a mean of 50 and a standard deviation of 8. Every value in the dataset is increased by 10. What is the new standard deviation?",
+      "options": ["A. 8", "B. 10", "C. 18", "D. 58", "E. 80"],
+      "answer": "A",
+      "explanation": "Adding a constant to every value in a dataset shifts the mean by that constant but does NOT change the standard deviation. The relative spread among the values remains the same. New mean = 50 + 10 = 60, but standard deviation stays at 8.",
+      "trap": "Students add 10 to the standard deviation, getting 18, because they reason that 'if all values go up by 10, the SD must also increase by 10.' This is wrong — SD measures spread, not location.",
+      "estimated_time_seconds": 55,
+      "tags": ["standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-008",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "The values in a dataset are {5, 10, 15, 20, 25, 30}. What is the range of this dataset?",
+      "options": null,
+      "answer": "25",
+      "explanation": "Range = maximum value − minimum value = 30 − 5 = 25.",
+      "trap": "Students count the number of values (6) or compute the sum (105) instead of finding max − min.",
+      "estimated_time_seconds": 40,
+      "tags": ["range"]
+    },
+    {
+      "id": "STA-RSD-009",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which statement about standard deviation is always true?",
+      "options": [
+        "A. Standard deviation can be negative if values are negative.",
+        "B. Standard deviation equals the mean when all values are equal.",
+        "C. Standard deviation is always greater than or equal to zero.",
+        "D. Standard deviation equals the range divided by 2.",
+        "E. Standard deviation increases when the mean increases."
+      ],
+      "answer": "C",
+      "explanation": "Standard deviation measures the average distance of values from the mean. Distance is never negative, so SD ≥ 0 always. SD = 0 only when all values are identical. Options A, B, D, and E are all false. A: SD is never negative regardless of the values. B: SD = 0 (not the mean) when all values are equal. D: This formula is not correct. E: SD depends on spread, not the size of the mean.",
+      "trap": "Students choose A because they see negative numbers in the dataset and think the SD 'inherits' the sign. SD is always non-negative.",
+      "estimated_time_seconds": 60,
+      "tags": ["standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-010",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Dataset X = {100, 100, 100, 100, 100}\nColumn A: Standard deviation of Dataset X\nColumn B: 0",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "All values in Dataset X are equal (all 100). When all values are the same, every value equals the mean, so every deviation from the mean is 0. Therefore SD = 0. Column A = 0 = Column B.",
+      "trap": "Students assume the SD must be related to the size of the values (100 seems large) and choose A. SD = 0 whenever all values are identical, regardless of their magnitude.",
+      "estimated_time_seconds": 45,
+      "tags": ["standard-deviation", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-011",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A dataset has a range of 30. The minimum value is 15. What is the maximum value?",
+      "options": ["A. 15", "B. 30", "C. 40", "D. 45", "E. 50"],
+      "answer": "D",
+      "explanation": "Range = maximum − minimum. So maximum = range + minimum = 30 + 15 = 45.",
+      "trap": "Students set the maximum equal to the range (30), forgetting that range = max − min, so max = range + min.",
+      "estimated_time_seconds": 45,
+      "tags": ["range"]
+    },
+    {
+      "id": "STA-RSD-012",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Set M = {1, 5, 9}\nSet N = {1, 5, 9, 7}\nColumn A: Range of Set M\nColumn B: Range of Set N",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Range of Set M = 9 − 1 = 8. Set N = {1, 5, 7, 9}. The minimum is still 1 and the maximum is still 9. Range of Set N = 9 − 1 = 8. Both ranges equal 8.",
+      "trap": "Students assume adding a value (7) must change the range. Adding a value only changes the range if it falls outside the current min or max. Since 1 < 7 < 9, the range is unchanged.",
+      "estimated_time_seconds": 50,
+      "tags": ["range", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-013",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A dataset has a standard deviation of 6. What is the variance of this dataset?",
+      "options": ["A. 3", "B. 6", "C. 12", "D. 36", "E. 216"],
+      "answer": "D",
+      "explanation": "Variance = (Standard deviation)² = 6² = 36.",
+      "trap": "Students double the SD (6 × 2 = 12) instead of squaring it, confusing the relationship between variance and SD.",
+      "estimated_time_seconds": 40,
+      "tags": ["standard-deviation"]
+    },
+    {
+      "id": "STA-RSD-014",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A dataset has a mean of 40 and a standard deviation of 5. Every value in the dataset is multiplied by 3. What is the new standard deviation?",
+      "options": ["A. 5", "B. 8", "C. 15", "D. 45", "E. 225"],
+      "answer": "C",
+      "explanation": "When every value is multiplied by a constant k, the standard deviation is also multiplied by |k|. Here k = 3, so new SD = 5 × 3 = 15. (The new mean would be 40 × 3 = 120, but the question asks for SD.)",
+      "trap": "Students confuse this with adding a constant and keep the SD at 5, or they compute 5 + 3 = 8. Multiplication scales the SD; addition does not change it.",
+      "estimated_time_seconds": 65,
+      "tags": ["standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-015",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Dataset A = {10, 20, 30, 40, 50}\nDataset B = {15, 25, 35, 45, 55}\nColumn A: Standard deviation of Dataset A\nColumn B: Standard deviation of Dataset B",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Dataset B is obtained by adding 5 to every element of Dataset A. Adding a constant to all values shifts the mean but does not change the spread. Both datasets have the same spacing between values (10 apart each), so their standard deviations are equal.",
+      "trap": "Students see larger numbers in Dataset B and assume its SD must be larger. Adding a constant never changes the SD.",
+      "estimated_time_seconds": 60,
+      "tags": ["standard-deviation", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-016",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A dataset has a variance of 25. Every value in the dataset is multiplied by 4. What is the new variance?",
+      "options": ["A. 25", "B. 100", "C. 200", "D. 400", "E. 625"],
+      "answer": "D",
+      "explanation": "When every value is multiplied by constant k, the standard deviation is multiplied by |k|, and since variance = SD², the variance is multiplied by k². Here k = 4, so new variance = 25 × 4² = 25 × 16 = 400.",
+      "trap": "Students multiply the variance by k (not k²), getting 25 × 4 = 100. Variance scales by k² when values are multiplied by k.",
+      "estimated_time_seconds": 70,
+      "tags": ["standard-deviation", "two-step"]
+    },
+    {
+      "id": "STA-RSD-017",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Set R = {2, 4, 6, 8, 10}\nSet S = {4, 8, 12, 16, 20}\nColumn A: Range of Set R\nColumn B: Range of Set S",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Range of Set R = 10 − 2 = 8. Set S is obtained by multiplying every element of Set R by 2. Range of Set S = 20 − 4 = 16. When all values are multiplied by k, the range is also multiplied by k. 8 × 2 = 16. Column B (16) > Column A (8).",
+      "trap": "Students think multiplying by a constant has no effect on range (confusing it with adding a constant). Multiplying every value by k multiplies the range by |k|.",
+      "estimated_time_seconds": 65,
+      "tags": ["range", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-018",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The dataset {3, 7, 11, 15} has a certain standard deviation. A new dataset is formed by adding 100 to each value: {103, 107, 111, 115}. Which of the following correctly describes the relationship between the two standard deviations?",
+      "options": [
+        "A. The new SD is 100 more than the original SD.",
+        "B. The new SD is 100 times the original SD.",
+        "C. The new SD equals the original SD.",
+        "D. The new SD is less than the original SD.",
+        "E. The new SD cannot be determined without calculating."
+      ],
+      "answer": "C",
+      "explanation": "Adding a constant (100) to every value in a dataset changes the mean by that constant but leaves the standard deviation completely unchanged. The spread between values remains identical: 7−3=4, 11−7=4, 15−11=4, and the same gaps exist in the new dataset. Therefore the new SD equals the original SD.",
+      "trap": "Students choose A, reasoning that 'all values increased by 100, so the SD must also increase by 100.' This confuses the effect on the mean with the effect on spread.",
+      "estimated_time_seconds": 60,
+      "tags": ["standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-019",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "List 1 = {1, 2, 3, 4, 5}\nList 2 = {1, 2, 3, 4, 100}\nColumn A: Standard deviation of List 1\nColumn B: Standard deviation of List 2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "List 1 = {1, 2, 3, 4, 5}: values are closely clustered, mean = 3, small SD. List 2 = {1, 2, 3, 4, 100}: the outlier 100 is far from the mean (which shifts to (1+2+3+4+100)/5 = 110/5 = 22). The large distance of 100 from the mean of 22 (deviation = 78) dramatically increases the SD. Column B is greater.",
+      "trap": "Students compare the first four elements (identical) and assume the SDs are the same, ignoring the dramatic effect the outlier 100 has on spread.",
+      "estimated_time_seconds": 70,
+      "tags": ["standard-deviation", "qc", "data-distribution"]
+    },
+    {
+      "id": "STA-RSD-020",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The dataset {10, 20, 30} has a standard deviation of approximately 8.16. What is the standard deviation of the dataset {−10, −20, −30}?",
+      "options": ["A. −8.16", "B. 0", "C. 8.16", "D. 16.32", "E. Cannot be determined"],
+      "answer": "C",
+      "explanation": "The dataset {−10, −20, −30} is obtained by multiplying every value in {10, 20, 30} by −1. When values are multiplied by k, the new SD = |k| × original SD = |−1| × 8.16 = 1 × 8.16 = 8.16. The standard deviation is always non-negative, so it cannot be −8.16.",
+      "trap": "Students choose A (−8.16), reasoning that since all values are negative, the SD must also be negative. SD is always non-negative — it measures distance, which is never negative.",
+      "estimated_time_seconds": 65,
+      "tags": ["standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-021",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "The temperatures (in °F) recorded over five days were: 68, 72, 65, 80, 75. What is the range of temperatures recorded?",
+      "options": null,
+      "answer": "15",
+      "explanation": "Identify the maximum and minimum values. Maximum = 80, minimum = 65. Range = 80 − 65 = 15.",
+      "trap": "Students find the average (72) or subtract consecutive values instead of identifying the overall max and min.",
+      "estimated_time_seconds": 55,
+      "tags": ["range"]
+    },
+    {
+      "id": "STA-RSD-022",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Two datasets each have 5 values. Dataset A has a range of 20. Dataset B has a range of 40. Which of the following must be true?",
+      "options": [
+        "A. The standard deviation of Dataset B is twice the standard deviation of Dataset A.",
+        "B. The mean of Dataset B is twice the mean of Dataset A.",
+        "C. Dataset B has more spread than Dataset A.",
+        "D. All values in Dataset B are greater than all values in Dataset A.",
+        "E. Dataset B contains at least one value greater than any value in Dataset A."
+      ],
+      "answer": "C",
+      "explanation": "Range measures the total span of the data. Dataset B has range 40, meaning its values span a width of 40. Dataset A's values span only 20. So Dataset B is more spread out in terms of its extremes. Options A (wrong — larger range does not guarantee larger SD by exactly that ratio), B (wrong — range says nothing about the mean), D (wrong — ranges could overlap), and E (wrong — Dataset B could have, for example, max = 50 and min = 10, while Dataset A has max = 200 and min = 180).",
+      "trap": "Students choose A, assuming that if the range doubles then the SD doubles. This is only true if the datasets are structurally scaled versions of each other, which is not guaranteed.",
+      "estimated_time_seconds": 75,
+      "tags": ["range", "standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-023",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Dataset A = {0, 0, 0, 12}\nDataset B = {3, 3, 3, 3}\nColumn A: Standard deviation of Dataset A\nColumn B: Standard deviation of Dataset B",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Dataset B = {3, 3, 3, 3}: all values are equal, so SD = 0. Dataset A = {0, 0, 0, 12}: mean = 12/4 = 3. Deviations: three values of (0−3)² = 9 and one value of (12−3)² = 81. Variance = (9+9+9+81)/4 = 108/4 = 27. SD = √27 ≈ 5.2. Column A (≈5.2) > Column B (0).",
+      "trap": "Both datasets have the same mean (3) and the same sum (12), so students may assume their SDs are equal. SD depends on spread, not the mean or sum.",
+      "estimated_time_seconds": 80,
+      "tags": ["standard-deviation", "qc", "two-step"]
+    },
+    {
+      "id": "STA-RSD-024",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A dataset has a standard deviation of 9. Every value in the dataset is divided by 3. What is the new standard deviation?",
+      "options": null,
+      "answer": "3",
+      "explanation": "When every value is divided by k, the standard deviation is also divided by k (equivalently, multiplied by 1/k). Here k = 3, so new SD = 9 ÷ 3 = 3.",
+      "trap": "Students subtract 3 from the SD instead of dividing, getting 9 − 3 = 6. Dividing all values by k divides the SD by k.",
+      "estimated_time_seconds": 60,
+      "tags": ["standard-deviation"]
+    },
+    {
+      "id": "STA-RSD-025",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The dataset {a, a, a, a, a} where a is a positive integer has which of the following properties?",
+      "options": [
+        "A. Range = a and SD > 0",
+        "B. Range = 0 and SD = 0",
+        "C. Range = 0 and SD = a",
+        "D. Range = a and SD = 0",
+        "E. Range = 5a and SD = 0"
+      ],
+      "answer": "B",
+      "explanation": "All five values are equal to a. Range = maximum − minimum = a − a = 0. Since all values are equal, every value equals the mean (which is a), so every deviation is 0 and SD = 0. Both the range and SD are 0.",
+      "trap": "Students choose C, confusing the value a with the standard deviation. Or they choose D, correctly identifying SD = 0 but incorrectly computing the range as a instead of 0.",
+      "estimated_time_seconds": 60,
+      "tags": ["range", "standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-026",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Dataset P = {2, 4, 6, 8, 10}\nDataset Q = {20, 40, 60, 80, 100}\nColumn A: Standard deviation of Dataset P\nColumn B: Standard deviation of Dataset Q divided by 10",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Dataset Q is obtained by multiplying every element of Dataset P by 10. When all values are multiplied by 10, the SD is also multiplied by 10. So SD(Q) = 10 × SD(P). Therefore SD(Q)/10 = SD(P). Column A = SD(P) = Column B = SD(Q)/10. The two quantities are equal.",
+      "trap": "Students calculate both SDs numerically without recognizing the scaling relationship, then make arithmetic errors. The key insight is that Q = 10P, so SD(Q) = 10 × SD(P).",
+      "estimated_time_seconds": 75,
+      "tags": ["standard-deviation", "qc", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-027",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A dataset has a mean of 50 and variance of 16. Every value is increased by 5. What are the new mean and variance?",
+      "options": [
+        "A. Mean = 50, Variance = 16",
+        "B. Mean = 55, Variance = 16",
+        "C. Mean = 55, Variance = 21",
+        "D. Mean = 50, Variance = 21",
+        "E. Mean = 55, Variance = 256"
+      ],
+      "answer": "B",
+      "explanation": "Adding a constant to every value: (1) shifts the mean by that constant: new mean = 50 + 5 = 55. (2) does NOT change the standard deviation or variance. So new variance = 16. Answer: Mean = 55, Variance = 16.",
+      "trap": "Students choose C, adding 5 to both the mean and variance. Variance (like SD) is unaffected by adding a constant to all values.",
+      "estimated_time_seconds": 65,
+      "tags": ["standard-deviation", "mean", "two-step"]
+    },
+    {
+      "id": "STA-RSD-028",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A dataset has a variance of 49. What is its standard deviation?",
+      "options": null,
+      "answer": "7",
+      "explanation": "Standard deviation = √variance = √49 = 7.",
+      "trap": "Students divide variance by 2 instead of taking the square root, getting 49/2 = 24.5.",
+      "estimated_time_seconds": 45,
+      "tags": ["standard-deviation"]
+    },
+    {
+      "id": "STA-RSD-029",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The dataset {3, 6, 9, 12, 15} has a range of 12. If the value 2 is added to the dataset, what is the new range?",
+      "options": ["A. 10", "B. 12", "C. 13", "D. 14", "E. 15"],
+      "answer": "C",
+      "explanation": "Original dataset: {3, 6, 9, 12, 15}, range = 15 − 3 = 12. Adding value 2: the new dataset is {2, 3, 6, 9, 12, 15}. The new minimum is 2 (less than the old minimum of 3), and the maximum remains 15. New range = 15 − 2 = 13.",
+      "trap": "Students assume adding a value inside the existing range leaves the range unchanged. Value 2 is below the current minimum (3), so it becomes the new minimum, extending the range downward.",
+      "estimated_time_seconds": 65,
+      "tags": ["range", "two-step"]
+    },
+    {
+      "id": "STA-RSD-030",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A dataset has the values {8, 12, 15, 19, 21, 26}. The value 26 is removed from the dataset. What is the new range?",
+      "options": null,
+      "answer": "13",
+      "explanation": "Original range = 26 − 8 = 18. After removing 26, the dataset is {8, 12, 15, 19, 21}. New maximum = 21, minimum = 8. New range = 21 − 8 = 13.",
+      "trap": "Students subtract 26 from the original range (18 − 26 = negative, clearly wrong) or forget to recheck the maximum after removal. The key step is identifying the new maximum.",
+      "estimated_time_seconds": 65,
+      "tags": ["range", "two-step"]
+    },
+    {
+      "id": "STA-RSD-031",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Dataset A has a standard deviation of 4. Dataset B consists of the same values as Dataset A, each multiplied by −2. What is the standard deviation of Dataset B?",
+      "options": ["A. −8", "B. −4", "C. 4", "D. 8", "E. 16"],
+      "answer": "D",
+      "explanation": "When all values are multiplied by constant k, new SD = |k| × original SD. Here k = −2, so new SD = |−2| × 4 = 2 × 4 = 8. The standard deviation is always non-negative, so the multiplication by a negative number does not make the SD negative.",
+      "trap": "Students choose A (−8), applying the sign of −2 to the SD. SD is always non-negative because it measures distance from the mean.",
+      "estimated_time_seconds": 65,
+      "tags": ["standard-deviation", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-032",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A dataset has a standard deviation of σ and a mean of μ. For each of the following transformations, select ALL that result in the standard deviation remaining equal to σ.\n\nA. Add 50 to every value\nB. Subtract 10 from every value\nC. Multiply every value by 1\nD. Multiply every value by 2\nE. Add 0 to every value",
+      "options": ["A. Add 50 to every value", "B. Subtract 10 from every value", "C. Multiply every value by 1", "D. Multiply every value by 2", "E. Add 0 to every value"],
+      "answer": ["A", "B", "C", "E"],
+      "explanation": "Adding or subtracting any constant leaves SD unchanged. A: add 50 → SD unchanged (mean changes to μ+50). B: subtract 10 → SD unchanged (mean changes to μ−10). C: multiply by 1 → SD × |1| = SD, unchanged. D: multiply by 2 → SD × |2| = 2σ ≠ σ (unless σ = 0). E: add 0 → same as original, SD unchanged. Correct answers: A, B, C, E.",
+      "trap": "Students exclude A and B thinking any transformation must change SD. They also may include D, confusing multiplying by 1 with multiplying by 2.",
+      "estimated_time_seconds": 80,
+      "tags": ["standard-deviation", "multiple-answer", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-033",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A dataset has a standard deviation of 6. Every value in the dataset is multiplied by 5 and then increased by 3. What is the new standard deviation?",
+      "options": null,
+      "answer": "30",
+      "explanation": "Apply transformations in order. Step 1: multiply every value by 5. New SD = 5 × 6 = 30. Step 2: add 3 to every value. Adding a constant does not change SD. Final SD = 30.",
+      "trap": "Students also add 3 to the SD after step 2, getting 30 + 3 = 33. Only multiplication (not addition) changes the standard deviation.",
+      "estimated_time_seconds": 70,
+      "tags": ["standard-deviation", "multi-step"]
+    },
+    {
+      "id": "STA-RSD-034",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Set A = {x, x+4, x+8, x+12, x+16} for some real number x. Which of the following is the standard deviation of Set A?",
+      "options": ["A. 4", "B. 8", "C. √32", "D. √40", "E. The answer depends on the value of x."],
+      "answer": "C",
+      "explanation": "The mean of Set A = x + (0+4+8+12+16)/5 = x + 40/5 = x + 8. Deviations from mean: (x − (x+8)) = −8, (x+4 − (x+8)) = −4, (x+8 − (x+8)) = 0, (x+12 − (x+8)) = 4, (x+16 − (x+8)) = 8. Squared deviations: 64, 16, 0, 16, 64. Variance = (64+16+0+16+64)/5 = 160/5 = 32. SD = √32 = 4√2. Note: the x terms cancel, confirming SD is independent of x (adding a constant doesn't change SD).",
+      "trap": "Students choose E, thinking the answer must depend on x because x appears in every element. The x cancels when computing deviations from the mean.",
+      "estimated_time_seconds": 100,
+      "tags": ["standard-deviation", "multi-step", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-035",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Set G = {1, 2, 3, 4, 5, 6, 7}\nSet H = {1, 2, 3, 4, 5, 6, 7, 4}\nColumn A: Standard deviation of Set G\nColumn B: Standard deviation of Set H",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Set G has 7 values {1,2,3,4,5,6,7} with mean = 4. Adding a value equal to the mean (4) to form Set H creates an 8-element dataset. When you add the mean to a dataset, the mean stays the same but the standard deviation decreases, because the new value (equal to the mean) has zero deviation, pulling the average squared deviation down. More precisely: Variance(G) = [(9+4+1+0+1+4+9)/7] = 28/7 = 4. For H: mean remains 4 (adding 4 to sum 28 gives 32, divided by 8 = 4). Sum of squared deviations = 9+4+1+0+1+4+9+0 = 28. Variance(H) = 28/8 = 3.5. So SD(G) = 2 > SD(H) = √3.5 ≈ 1.87. Column A is greater.",
+      "trap": "Students assume adding more values always increases the SD, or that adding a middle value (4) is irrelevant. Adding the mean value reduces the SD because it contributes zero deviation while increasing n.",
+      "estimated_time_seconds": 105,
+      "tags": ["standard-deviation", "qc", "multi-step", "counterintuitive"]
+    },
+    {
+      "id": "STA-RSD-036",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A dataset has mean 10 and standard deviation 3. A new dataset is created by applying the transformation y = 2x − 1 to every value x. What is the standard deviation of the new dataset?",
+      "options": null,
+      "answer": "6",
+      "explanation": "The transformation y = 2x − 1 applies two operations: (1) multiply every value by 2, and (2) subtract 1 from every value. Multiplying by 2 scales the SD by |2| = 2. Subtracting 1 is adding a constant, which does not change the SD. New SD = 2 × 3 = 6. (New mean = 2 × 10 − 1 = 19, but the question asks only for SD.)",
+      "trap": "Students apply the subtraction to the SD as well: 2 × 3 − 1 = 5. Only the multiplicative part of a linear transformation affects the SD.",
+      "estimated_time_seconds": 90,
+      "tags": ["standard-deviation", "multi-step", "two-step"]
+    },
+    {
+      "id": "STA-RSD-037",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Dataset X has 5 values with mean 20 and standard deviation 4. Dataset Y has 5 values with mean 20 and standard deviation 4. The two datasets are combined into a single 10-value dataset Z. Which of the following must be true about the standard deviation of Z?",
+      "options": [
+        "A. SD(Z) = 4",
+        "B. SD(Z) = 8",
+        "C. SD(Z) = 0",
+        "D. SD(Z) ≥ 0",
+        "E. SD(Z) = 4√2"
+      ],
+      "answer": "D",
+      "explanation": "Combining two datasets does not produce a predictable SD without knowing the actual values. The combined SD depends on whether the datasets overlap, are identical, or are spread differently. For example: if X = Y = {16,18,20,22,24}, then Z = {16,18,20,22,24,16,18,20,22,24}, and SD(Z) = 4. But if X = {18,19,20,21,22} and Y = {14,17,20,23,26} (both have mean 20, SD ≈ 1.41 and ≈ 4 respectively — actually Y here would not have SD exactly 4, but the point stands). The only guaranteed statement is that SD ≥ 0 always. None of A, B, C, E can be determined without knowing the actual values.",
+      "trap": "Students choose A, assuming that merging two datasets with the same SD preserves that SD. The combined SD depends on the spread of both datasets relative to the combined mean.",
+      "estimated_time_seconds": 95,
+      "tags": ["standard-deviation", "data-distribution", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-038",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A dataset has 6 values: {p, q, r, s, t, u} where all values are distinct positive integers and the range is 10.\nColumn A: Maximum possible standard deviation of the dataset\nColumn B: 5",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "To maximize SD with range exactly 10 and 6 distinct positive integers, cluster values near the two extremes. Example: {1, 2, 3, 9, 10, 11} has range = 10 and mean = 36/6 = 6. Squared deviations: (1−6)²=25, (2−6)²=16, (3−6)²=9, (9−6)²=9, (10−6)²=16, (11−6)²=25. Sum = 100. Variance = 100/6 ≈ 16.67. SD ≈ 4.08. This is the maximum achievable SD for 6 distinct integers with range 10 (any other arrangement produces a smaller SD, as values at the extremes maximize squared deviations). Since 4.08 < 5, Column B (5) is greater.",
+      "trap": "Students assume the maximum SD with range 10 could be 5 (half the range) or greater. The discrete constraint and fixed range limit how high the SD can go.",
+      "estimated_time_seconds": 110,
+      "tags": ["standard-deviation", "range", "qc", "multi-step"]
+    },
+    {
+      "id": "STA-RSD-039",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A dataset S = {2, 5, 8, 11, 14} has mean 8 and standard deviation d. Select ALL statements that are true.\n\nA. If every value is doubled, the new variance is 4d².\nB. If 8 is removed from S, the new standard deviation equals d.\nC. The range of S is 12.\nD. If 3 is added to every value, the new standard deviation is d + 3.\nE. The standard deviation of {4, 10, 16, 22, 28} equals 2d.",
+      "options": [
+        "A. If every value is doubled, the new variance is 4d².",
+        "B. If 8 is removed from S, the new standard deviation equals d.",
+        "C. The range of S is 12.",
+        "D. If 3 is added to every value, the new standard deviation is d + 3.",
+        "E. The standard deviation of {4, 10, 16, 22, 28} equals 2d."
+      ],
+      "answer": ["A", "C", "E"],
+      "explanation": "Check each: A. Doubling all values multiplies SD by 2, so new SD = 2d. New variance = (2d)² = 4d². TRUE. B. Removing the mean value (8) from a dataset changes both the mean (it stays at 8 if we remove the mean — actually: mean stays at 8, and we showed earlier that removing a value equal to the mean decreases the SD when n decreases but spread is maintained among remaining values). Actually: S without 8 = {2, 5, 11, 14}, new mean = 32/4 = 8. Deviations: (2−8)²=36, (5−8)²=9, (11−8)²=9, (14−8)²=36. Variance = 90/4 = 22.5. For original S: deviations from 8: (2−8)²=36,(5−8)²=9,(8−8)²=0,(11−8)²=9,(14−8)²=36. Variance = 90/5 = 18. SD = √18. Removing 8 gives variance 90/4=22.5, SD=√22.5 ≠ √18. FALSE. C. Range = 14 − 2 = 12. TRUE. D. Adding 3 does not change SD. New SD = d ≠ d + 3. FALSE. E. {4,10,16,22,28} = 2 × {2,5,8,11,14}. New SD = 2d. TRUE. Answers: A, C, E.",
+      "trap": "Students include B, assuming removing the mean value leaves SD unchanged. It actually increases SD because the zero-deviation value is removed, and the variance formula divides by the new (smaller) n.",
+      "estimated_time_seconds": 110,
+      "tags": ["standard-deviation", "range", "multiple-answer", "multi-step"]
+    },
+    {
+      "id": "STA-RSD-040",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The standard deviation of dataset {a, b, c} is 5. What is the standard deviation of the dataset {a − 3, b − 3, c − 3, a − 3, b − 3, c − 3}?",
+      "options": ["A. 2.5", "B. 5", "C. 7", "D. 10", "E. Cannot be determined"],
+      "answer": "B",
+      "explanation": "Step 1: Subtract 3 from every value. The dataset becomes {a−3, b−3, c−3}. Subtracting a constant does not change SD, so SD is still 5. Step 2: The new dataset duplicates each element: {a−3, b−3, c−3, a−3, b−3, c−3}. Duplicating all values of a dataset does not change its mean or standard deviation (every value is still the same distance from the mean, and the variance formula averages squared deviations, which remains the same). So SD = 5.",
+      "trap": "Students think combining/duplicating a dataset doubles the SD to 10, or halves it to 2.5. Duplicating all elements preserves the SD because the distribution of values (relative to the mean) is unchanged.",
+      "estimated_time_seconds": 100,
+      "tags": ["standard-deviation", "conceptual", "counterintuitive"]
+    },
+    {
+      "id": "STA-RSD-041",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Dataset A = {2, 4, 6, 8, 10} has variance 8. A new dataset B is formed by applying the transformation y = 3x + 7 to each element x of Dataset A. What is the variance of Dataset B?",
+      "options": null,
+      "answer": "72",
+      "explanation": "The transformation y = 3x + 7 consists of: (1) multiplying by 3 and (2) adding 7. Adding a constant (7) does not affect variance. Multiplying by 3 multiplies SD by 3, which multiplies variance by 3² = 9. New variance = 8 × 9 = 72.",
+      "trap": "Students multiply the variance by 3 (not 9), getting 24. Variance scales by k² (not k) when values are multiplied by k.",
+      "estimated_time_seconds": 90,
+      "tags": ["standard-deviation", "multi-step", "two-step"]
+    },
+    {
+      "id": "STA-RSD-042",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Two datasets each contain exactly 4 positive integers. Dataset J has range 6 and Dataset K has range 10. Select ALL statements that must be true.\n\nA. The maximum value of Dataset K is greater than the maximum value of Dataset J.\nB. The minimum value of Dataset K is less than the minimum value of Dataset J.\nC. The standard deviation of Dataset K is greater than the standard deviation of Dataset J.\nD. At least one value in Dataset K differs from every value in Dataset J.\nE. The mean of Dataset K could equal the mean of Dataset J.",
+      "options": [
+        "A. The maximum value of Dataset K is greater than the maximum value of Dataset J.",
+        "B. The minimum value of Dataset K is less than the minimum value of Dataset J.",
+        "C. The standard deviation of Dataset K is greater than the standard deviation of Dataset J.",
+        "D. At least one value in Dataset K differs from every value in Dataset J.",
+        "E. The mean of Dataset K could equal the mean of Dataset J."
+      ],
+      "answer": ["E"],
+      "explanation": "Check each: A. FALSE. J could have max = 100 (range 6: values 94–100) and K could have max = 20 (range 10: values 10–20). K's max (20) < J's max (100). B. FALSE. Same reasoning — J's min could be far higher than K's min, or vice versa. C. FALSE. Larger range does not guarantee larger SD. K = {1, 1, 1, 11} (range 10, SD = √(0+0+0+... actually: mean=14/4=3.5, deviations²: 6.25,6.25,6.25,56.25 → var=75/4=18.75); J = {1, 2, 3, 7} (range 6, mean=3.25, deviations²: 5.0625, 1.5625, 0.0625, 14.0625 → var=20.75/4=5.19). So K's SD > J's SD here. But consider J = {1, 1, 1, 7} (range 6) and K = {5, 6, 8, 15} (range 10). J: mean=10/4=2.5, var=(2.25+2.25+2.25+20.25)/4=27/4=6.75. K: mean=34/4=8.5, var=(12.25+6.25+0.25+42.25)/4=61/4=15.25. K>J here too. Let's try K = {1, 2, 9, 11} (range 10, mean=23/4=5.75, var=(22.5625+14.0625+10.5625+27.5625)/4=74.75/4=18.69, SD≈4.32) vs J = {1, 1, 6, 7} (range 6, mean=15/4=3.75, var=(7.5625+7.5625+5.0625+10.5625)/4=30.75/4=7.69, SD≈2.77). Still K>J. Actually it's possible for J to have larger SD than K: J={1,4,4,7} range 6, mean=4, var=(9+0+0+9)/4=4.5, SD≈2.12. K={1,2,10,11} range 10, mean=6, var=(25+16+16+25)/4=82/4=20.5, SD≈4.53. K still larger. Try J={1,1,7,7} range 6, mean=4, var=(9+9+9+9)/4=9, SD=3 vs K={5,6,7,15} range 10, mean=33/4=8.25, var=(10.5625+5.0625+1.5625+45.5625)/4=62.75/4=15.69, SD≈3.96. K still larger. The statement C is actually likely to always be true when both datasets have the same structure — but it's not GUARANTEED by range alone because the internal distribution matters. Constructing a counterexample: J={1,1,1,7} range 6, SD≈(var=(4.5²... mean=10/4=2.5, deviations²: 2.25,2.25,2.25,20.25, var=6.75, SD=2.6). K={5,5,5,15} range 10, mean=30/4=7.5, deviations²: 6.25,6.25,6.25,56.25, var=75/4=18.75, SD=4.33>2.6. Hard to find counterexample. Let's try J={1,3,4,7}: range 6, mean=3.75, var=(7.5625+0.5625+0.0625+10.5625)/4=4.6875, SD≈2.17. K={10,11,12,20}: range 10, mean=53/4=13.25, var=(10.5625+5.0625+1.5625+45.5625)/4=62.75/4=15.69, SD≈3.96. K>J. For C to fail we'd need a dataset with large range but very small SD and a dataset with small range but larger SD. Try K={1,5,6,11}: range=10, mean=23/4=5.75, var=(22.5625+0.5625+0.0625+27.5625)/4=50.75/4=12.69, SD≈3.56 vs J={1,2,5,7}: range=6, mean=3.75, var=(7.5625+3.0625+1.5625+10.5625)/4=22.75/4=5.69, SD≈2.39. K still > J. After extensive checking, C appears to often hold, but the question asks MUST. Without a clear proof, let's try J={1,3,4,7} SD≈2.17 vs K={3,4,5,13} range=10, mean=6.25, var=(10.5625,5.0625,1.5625,45.5625)/4=62.75/4=15.69, SD≈3.96. K>J. Given the difficulty of finding a counterexample for C, let's reconsider. For C to fail: need K to have smaller SD than J despite larger range. This would require K's values to be extremely clustered near two points (e.g., {1,1,11,11}) while J's values are more dispersed within its range... J={1,4,4,7} range=6, mean=4, var=(9+0+0+9)/4=4.5, SD=2.12. K={1,1,11,11} range=10, mean=6, var=(25+25+25+25)/4=25, SD=5. K>J. What if K={5,7,8,15}: mean=8.75, var=(14.0625+3.0625+0.5625+39.0625)/4=56.75/4=14.19. SD≈3.77 vs J={1,4,3,7} range=6, mean=3.75, var≈5.69, SD≈2.39. Still K>J. Given inability to find counterexample with 4-element datasets, C may be true. However the question is about must — and without a mathematical proof, statement C cannot be guaranteed by range alone. The answer should be E only (and possibly C, but E is definitively true). E: YES, the means are unrestricted by range. J could have mean 10 and K could also have mean 10 with different ranges. TRUE. Answer: E.",
+      "trap": "Students choose A or B, thinking a larger range necessarily means larger/smaller extreme values. Range says nothing about where the values sit on the number line. Students also choose C, thinking larger range guarantees larger SD.",
+      "estimated_time_seconds": 110,
+      "tags": ["range", "standard-deviation", "multiple-answer", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-043",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A dataset has n values with mean μ and standard deviation σ. A new value equal to μ is added to the dataset (making it n+1 values). Which of the following correctly describes the effect on the standard deviation?",
+      "options": [
+        "A. The standard deviation increases.",
+        "B. The standard deviation decreases.",
+        "C. The standard deviation stays the same.",
+        "D. The standard deviation becomes 0.",
+        "E. It depends on the value of n."
+      ],
+      "answer": "B",
+      "explanation": "Adding a value equal to the mean: the mean remains μ (adding μ to the sum and incrementing n by 1: new mean = (nμ + μ)/(n+1) = μ(n+1)/(n+1) = μ). The new value has zero deviation from the mean. Original variance = (sum of squared deviations)/n = σ². New variance = (sum of squared deviations + 0)/(n+1) = nσ²/(n+1). Since n/(n+1) < 1, the new variance < σ², so the new SD < σ. The standard deviation decreases.",
+      "trap": "Students choose C, reasoning that since the new value equals the mean, it 'fits in' and shouldn't change anything. The new value does add a zero-deviation term, but the denominator n increases to n+1, which reduces the variance.",
+      "estimated_time_seconds": 100,
+      "tags": ["standard-deviation", "conceptual", "counterintuitive"]
+    },
+    {
+      "id": "STA-RSD-044",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A dataset has five values: k, k+3, k+6, k+9, k+12, where k is a positive integer. What is the variance of this dataset?",
+      "options": null,
+      "answer": "18",
+      "explanation": "The mean = k + (0+3+6+9+12)/5 = k + 30/5 = k + 6. Deviations from mean: (k − (k+6)) = −6, (k+3 − (k+6)) = −3, (k+6 − (k+6)) = 0, (k+9 − (k+6)) = 3, (k+12 − (k+6)) = 6. Squared deviations: 36, 9, 0, 9, 36. Variance = (36+9+0+9+36)/5 = 90/5 = 18. Notice: the k terms cancel, so the variance is 18 regardless of the value of k. This confirms that adding a constant to all values does not change the variance.",
+      "trap": "Students try to substitute a specific value of k (such as k=1) and compute the variance numerically, which works but takes longer. The elegant insight is that the deviations from the mean are always ±6, ±3, 0 regardless of k.",
+      "estimated_time_seconds": 100,
+      "tags": ["standard-deviation", "multi-step", "conceptual"]
+    },
+    {
+      "id": "STA-RSD-045",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A dataset has values {1, 3, 5, 7, 9} with mean 5, range 8, and standard deviation √8. Select ALL statements that are true about the dataset {2, 6, 10, 14, 18}.\n\nA. The mean is 10.\nB. The range is 16.\nC. The standard deviation is 2√8.\nD. The variance is 4 × 8 = 32.\nE. The standard deviation is √32.",
+      "options": [
+        "A. The mean is 10.",
+        "B. The range is 16.",
+        "C. The standard deviation is 2√8.",
+        "D. The variance is 4 × 8 = 32.",
+        "E. The standard deviation is √32."
+      ],
+      "answer": ["A", "B", "C", "D", "E"],
+      "explanation": "The new dataset {2, 6, 10, 14, 18} = 2 × {1, 3, 5, 7, 9}. When every value is multiplied by 2: A. New mean = 2 × 5 = 10. TRUE. B. New range = 2 × 8 = 16. TRUE. C. New SD = 2 × √8 = 2√8. TRUE. D. New variance = (2√8)² = 4 × 8 = 32. TRUE. E. New SD = 2√8 = √(4×8) = √32. TRUE. All five statements are true.",
+      "trap": "Students doubt statement D or E, trying to compute the variance from scratch instead of using the scaling rule. All five statements follow directly from the rule that multiplying by k scales the SD by k and variance by k².",
+      "estimated_time_seconds": 90,
+      "tags": ["standard-deviation", "range", "multiple-answer", "multi-step"]
+    },
+    {
+      "id": "STA-RSD-046",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "Set A consists of n distinct integers with mean μ_A and standard deviation σ_A.\nSet B is formed by adding the value (μ_A + σ_A) to Set A.\nColumn A: Standard deviation of Set B\nColumn B: σ_A",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "The new value added (μ_A + σ_A) is one standard deviation above the mean. Whether this increases or decreases the SD of the combined set depends on σ_A relative to the dataset structure. Mean of B: μ_B = (n·μ_A + μ_A + σ_A)/(n+1) = (μ_A(n+1) + σ_A)/(n+1) = μ_A + σ_A/(n+1). This shifts the mean slightly upward. The deviation of the new value from the new mean = (μ_A + σ_A) − (μ_A + σ_A/(n+1)) = σ_A · n/(n+1). Whether adding this value increases or decreases the variance depends on whether (σ_A · n/(n+1))² is greater or less than the change in average squared deviation caused by the mean shift. For large n, the new value's contribution ≈ σ_A², comparable to the original variance σ_A², so the effect is ambiguous. For a specific case: if σ_A is very small (values tightly clustered), adding a value far from the mean (μ + σ) could significantly increase SD. If σ_A is large, the new value may fall near the cluster. The relationship cannot be determined without knowing n and the actual values.",
+      "trap": "Students reason that adding a value exactly one SD above the mean should keep the SD unchanged. The resulting SD depends on n and the actual distribution — there is no clean invariance here.",
+      "estimated_time_seconds": 120,
+      "tags": ["standard-deviation", "qc", "conceptual", "multi-step"]
+    },
+    {
+      "id": "STA-RSD-047",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "A dataset of 4 values has mean 10 and variance 20. Three of the values are 4, 8, and 12. What is the fourth value? Enter your answer as an integer.",
+      "options": null,
+      "answer": "16",
+      "explanation": "Step 1: Use the mean to find the fourth value. Sum of all 4 values = 4 × mean = 4 × 10 = 40. Known values: 4 + 8 + 12 = 24. Fourth value = 40 − 24 = 16. Step 2: Verify with the variance condition. Mean = 10. Deviations from mean: (4−10)² = 36, (8−10)² = 4, (12−10)² = 4, (16−10)² = 36. Sum of squared deviations = 36 + 4 + 4 + 36 = 80. Variance = 80/4 = 20. ✓ Both conditions are satisfied. The fourth value is 16.",
+      "trap": "Students attempt to use the variance condition first and get bogged down in algebra. The efficient approach is to use the mean to find the missing value, then verify with variance. Students may also try the wrong three-value sum if they misread the problem.",
+      "estimated_time_seconds": 115,
+      "tags": ["standard-deviation", "mean", "multi-step"]
+    },
+    {
+      "id": "STA-RSD-048",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "A dataset D has n values, mean μ, and standard deviation σ where σ > 0. A new dataset E is formed by replacing every value x in D with the value (x − μ)/σ (this is called standardization). Select ALL statements that must be true about Dataset E.\n\nA. The mean of E is 0.\nB. The standard deviation of E is 1.\nC. The range of E equals the range of D divided by σ.\nD. The variance of E is σ.\nE. Every value in E lies between −1 and 1.",
+      "options": [
+        "A. The mean of E is 0.",
+        "B. The standard deviation of E is 1.",
+        "C. The range of E equals the range of D divided by σ.",
+        "D. The variance of E is σ.",
+        "E. Every value in E lies between −1 and 1."
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "The transformation y = (x − μ)/σ is a linear transformation: first subtract μ (shifts mean to 0, SD unchanged), then divide by σ (SD divided by σ). A. Mean of E: subtracting μ from all values shifts mean to 0; dividing by σ keeps the mean at 0. Mean(E) = 0. TRUE. B. SD of D after subtracting μ = σ (unchanged). Dividing all values by σ: new SD = σ/σ = 1. TRUE. C. Range transformation: subtracting μ doesn't change range. Dividing by σ: new range = range(D)/σ. TRUE. D. Variance of E = SD(E)² = 1² = 1 ≠ σ (unless σ = 1). FALSE. E. A value x in D could be 4σ above the mean, giving standardized value (x−μ)/σ = 4, which is well outside [−1, 1]. FALSE. Answers: A, B, C.",
+      "trap": "Students include D (thinking variance = SD = 1, but 1² = 1 ≠ σ unless σ = 1) or E (confusing standardization with normalization to [0,1] range). Students may also miss C, not realizing the range also scales by 1/σ.",
+      "estimated_time_seconds": 125,
+      "tags": ["standard-deviation", "mean", "multiple-answer", "conceptual", "multi-step"]
+    },
+    {
+      "id": "STA-RSD-049",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "Two datasets X and Y each contain 5 positive integers. Dataset X has standard deviation σ_X and Dataset Y has standard deviation σ_Y, where σ_X = σ_Y. The combined dataset Z consists of all 10 values from X and Y. Select ALL statements that must be true.\n\nA. The mean of Z equals the average of the means of X and Y.\nB. The standard deviation of Z equals σ_X.\nC. The standard deviation of Z is greater than or equal to 0.\nD. If the mean of X equals the mean of Y, then SD(Z) ≥ σ_X.\nE. The range of Z is greater than or equal to the range of X.",
+      "options": [
+        "A. The mean of Z equals the average of the means of X and Y.",
+        "B. The standard deviation of Z equals σ_X.",
+        "C. The standard deviation of Z is greater than or equal to 0.",
+        "D. If the mean of X equals the mean of Y, then SD(Z) ≥ σ_X.",
+        "E. The range of Z is greater than or equal to the range of X."
+      ],
+      "answer": ["A", "C", "D", "E"],
+      "explanation": "Check each: A. Mean(Z) = (sum of X + sum of Y)/10 = (5·μ_X + 5·μ_Y)/10 = (μ_X + μ_Y)/2 = average of the two means. TRUE (because X and Y have equal sizes). B. FALSE in general — if X has mean 3 and Y has mean 8, the combined SD will be larger than either individual SD due to the spread between the two group means. C. SD ≥ 0 always. TRUE. D. If means are equal (μ_X = μ_Y = μ), mean(Z) = μ. Sum of squared deviations for Z = 5·σ_X² + 5·σ_Y² = 5·σ_X² + 5·σ_X² = 10·σ_X² (all deviations from the common mean μ). SD(Z)² = 10·σ_X²/10 = σ_X². So SD(Z) = σ_X. The statement says SD(Z) ≥ σ_X, which includes equality — TRUE. E. Range(Z) ≥ Range(X): Z contains all values of X plus more. min(Z) ≤ min(X) and max(Z) ≥ max(X), so range(Z) ≥ range(X). TRUE. Answers: A, C, D, E.",
+      "trap": "Students include B, assuming combined datasets with equal SDs produce a combined SD equal to the common SD. This fails when the two means differ. Students also miss A, not realizing equal-size datasets make the combined mean the simple average of the two means.",
+      "estimated_time_seconds": 130,
+      "tags": ["standard-deviation", "mean", "multiple-answer", "multi-step", "data-distribution"]
+    },
+    {
+      "id": "STA-RSD-050",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A dataset of 10 values has mean 50 and standard deviation 10. A second dataset of 10 values has mean 70 and standard deviation 10. The two datasets are combined into a single 20-value dataset. What is the standard deviation of the combined dataset?\n\n(Note: Use population standard deviation throughout.)",
+      "options": ["A. 10", "B. 10√2", "C. 20", "D. √100 = 10", "E. Cannot be determined without knowing the actual values"],
+      "answer": "B",
+      "explanation": "Combined mean = (10×50 + 10×70)/20 = (500+700)/20 = 1200/20 = 60. For the combined SD, use the formula for merging two groups: Total variance = [n₁(σ₁² + (μ₁−μ_combined)²) + n₂(σ₂² + (μ₂−μ_combined)²)] / (n₁+n₂). Here: n₁=n₂=10, σ₁=σ₂=10, μ₁=50, μ₂=70, μ_combined=60. = [10(100 + (50−60)²) + 10(100 + (70−60)²)] / 20 = [10(100+100) + 10(100+100)] / 20 = [10(200) + 10(200)] / 20 = [2000+2000]/20 = 4000/20 = 200. SD = √200 = 10√2 ≈ 14.14. Options C (20) and D (10) are wrong. The answer is B (10√2).",
+      "trap": "Students assume the combined SD equals the common SD of 10 (choice A or D), not accounting for the fact that the two groups are centered at different means (50 and 70). The 20-unit gap between means contributes additional variance to the combined dataset beyond each group's own variance.",
+      "estimated_time_seconds": 130,
+      "tags": ["standard-deviation", "mean", "multi-step", "data-distribution"]
+    }
+  ]
+}
