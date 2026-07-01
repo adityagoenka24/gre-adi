@@ -255,7 +255,7 @@ input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.15
   <!-- SCREEN: SELECT MOCK -->
   <div id="screen-select" class="screen">
     <h2 class="section-title">Free Mock Tests</h2>
-    <p class="section-sub">2 full-length GRE Quant mocks · Section 1: 12 Q / 21 min · Section 2: 15 Q / 26 min · Adaptive S2</p>
+    <p class="section-sub">2 full-length GRE Quant mocks · 2 sections · 27 questions each · 35 min per section</p>
     <div class="mocks-grid" id="mocks-grid"></div>
 
     <div class="result-upgrade" style="margin-top:32px;">
@@ -290,7 +290,7 @@ input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.15
           <div>
             <div class="ru-price-block">
               <span class="ru-price">₹499</span>
-              <span class="ru-price-label">one-time · 1-year access</span>
+              <span class="ru-price-label">one-time · lifetime access</span>
             </div>
             <div class="ru-price-vs">vs Magoosh ₹10,000+/yr · Manhattan ₹15,000+/yr</div>
             <div class="ru-features" style="margin-top:14px;">
@@ -301,8 +301,7 @@ input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.15
             </div>
           </div>
           <div style="flex-shrink:0;">
-            <a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" rel="noopener" data-track="upgrade_clicked" data-track-from="mock_select"
-               onclick="if(window.GQP&&window.GQP.track)window.GQP.track('pro_cta_clicked',{from:'mock_select'});">
+            <a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" rel="noopener" data-track="upgrade_clicked" data-track-from="mock_select">
               Unlock Pro — ₹499 →
             </a>
             <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-align:center;margin-top:8px;">7-day money-back guarantee</div>
@@ -337,17 +336,16 @@ input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.15
     <div class="instr-card">
       <h2>Before You Begin</h2>
       <div class="instr-highlight">
-        <strong>This is a timed, full-length GRE Quant mock — real format.</strong><br>
-        <strong>Section 1:</strong> 12 questions · 21 minutes &nbsp;|&nbsp; <strong>Section 2:</strong> 15 questions · 26 minutes.<br>
-        Section 2 difficulty adapts based on your Section 1 performance — just like the real GRE.
+        <strong>This is a timed, full-length GRE Quant mock.</strong><br>
+        Each section has 27 questions and 35 minutes. The timer starts automatically when you proceed to each section.
       </div>
       <ul class="instr-list">
-        <li>Section 1: <strong>12 questions, 21 minutes</strong>. Section 2: <strong>15 questions, 26 minutes</strong>. Time does not carry over.</li>
-        <li>Section 2 is adaptive — your S1 score selects the harder or standard S2 form automatically.</li>
+        <li>You have <strong>35 minutes per section</strong>. Time does not carry over between sections.</li>
         <li>You can navigate between questions within a section using the Prev / Next buttons.</li>
         <li>You can change your answer any time before submitting the section.</li>
         <li>When time runs out, the section is auto-submitted.</li>
         <li>There is a short break between Section 1 and Section 2.</li>
+        <li>No calculator is allowed (GRE Quant only provides one for some questions — we keep it consistent).</li>
         <li>Unanswered questions count as wrong — attempt everything.</li>
       </ul>
       <div style="display:flex;gap:12px;">
@@ -374,7 +372,7 @@ input:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(108,99,255,0.15
           <div class="exam-value" id="bar-answered">0</div>
         </div>
       </div>
-      <div id="exam-timer" class="exam-timer">21:00</div>
+      <div id="exam-timer" class="exam-timer">35:00</div>
     </div>
     <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill" style="width:0%"></div></div>
     <div id="question-area"></div>
@@ -500,7 +498,7 @@ function buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2) {
     total_time_seconds: totalTime,
     average_time_seconds: avgTime,
     section_1: { correct: r1.correct, total: r1.total, time_used: r1.timeUsed },
-    section_2: { correct: r2.correct, total: r2.total, time_used: r2.timeUsed, form: state.section2Form || 'unknown' },
+    section_2: { correct: r2.correct, total: r2.total, time_used: r2.timeUsed },
     diagnosis: null, // filled in after renderDiagnosis
     results,
   };
@@ -512,8 +510,7 @@ const MOCK_INDEX = [
   { id:'mock_02', title:'Mock Test 2', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
 ];
 const DIFF_COLORS = { Balanced:'#6c63ff', Moderate:'#43e97b', 'Moderate-Hard':'#f7971e', Hard:'#ff6584', 'Very Hard':'#ff69b4', Expert:'#ff0080' };
-const SECTION_TIMES = { 1: 21 * 60, 2: 26 * 60 }; // real GRE: S1=21min, S2=26min
-const ADAPTIVE_THRESHOLD = 7; // out of 12 correct → hard S2; else easy S2
+const SECTION_TIME = 35 * 60;
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let state = {
@@ -523,10 +520,9 @@ let state = {
   timings: { 1: {}, 2: {} },
   sectionStart: null, qStart: null,
   timerInterval: null, breakInterval: null,
-  timeLeft: SECTION_TIMES[1],
+  timeLeft: SECTION_TIME,
   student: { name:'', email:'' },
   sectionResults: {},
-  section2Form: null, // 'easy' or 'hard' — set after S1 submission
   loadError: null,
 };
 
@@ -593,7 +589,7 @@ function startSection(num) {
   clearInterval(state.breakInterval);
   state.currentSection = num;
   state.currentQIndex = 0;
-  state.timeLeft = SECTION_TIMES[num];
+  state.timeLeft = SECTION_TIME;
   state.sectionStart = Date.now();
   state.qStart = Date.now();
   document.getElementById('bar-section').textContent = `${num} of 2`;
@@ -623,9 +619,7 @@ function updateTimerDisplay() {
 
 // ─── QUESTION RENDER ──────────────────────────────────────────────────────────
 function currentSectionQs() {
-  const sec = state.mockData.sections[state.currentSection - 1];
-  // S2 has forms.easy/hard until adaptive selection resolves it into sec.questions
-  return sec.questions || [];
+  return state.mockData.sections[state.currentSection - 1].questions;
 }
 
 function renderQuestion() {
@@ -752,19 +746,11 @@ function submitSection(autoSubmit) {
   qs.forEach((q, i) => { if (checkAnswer(q, state.answers[state.currentSection][i])) correct++; });
   state.sectionResults[state.currentSection] = {
     correct, total: qs.length,
-    timeUsed: SECTION_TIMES[state.currentSection] - state.timeLeft,
+    timeUsed: SECTION_TIME - state.timeLeft,
     autoSubmit
   };
-  if (state.currentSection === 1) {
-    // ── Adaptive S2 selection ────────────────────────────────────────────
-    // Score ≥ ADAPTIVE_THRESHOLD → harder S2 form; else easier S2 form
-    state.section2Form = (correct >= ADAPTIVE_THRESHOLD) ? 'hard' : 'easy';
-    const s2forms = state.mockData.sections[1].forms;
-    state.mockData.sections[1].questions = s2forms[state.section2Form];
-    showBreak();
-  } else {
-    showResults();
-  }
+  if (state.currentSection === 1) showBreak();
+  else showResults();
 }
 
 function checkAnswer(q, given) {
@@ -782,13 +768,8 @@ function checkAnswer(q, given) {
 function showBreak() {
   const r1 = state.sectionResults[1];
   const pct = Math.round((r1.correct / r1.total) * 100);
-  const s2Label = state.section2Form === 'hard' ? 'Higher Difficulty ↑' : 'Standard Difficulty';
-  const s2Color = state.section2Form === 'hard' ? 'var(--warning)' : 'var(--accent)';
   document.getElementById('break-preview').innerHTML =
-    `Section 1: <strong>${r1.correct} / ${r1.total}</strong> correct (${pct}%)<br>
-    <span style="font-family:var(--font-mono);font-size:11px;color:${s2Color};margin-top:6px;display:inline-block;">
-      Section 2 adapted → ${s2Label}
-    </span>`;
+    `Section 1: <strong>${r1.correct} / ${r1.total}</strong> correct (${pct}%)`;
 
   let breakLeft = 120;
   const breakEl = document.getElementById('break-timer');
@@ -937,7 +918,7 @@ function renderUpgradeCTA(pct) {
         <div>
           <div class="ru-price-block">
             <span class="ru-price">₹499</span>
-            <span class="ru-price-label">one-time · 1-year access</span>
+            <span class="ru-price-label">one-time · lifetime access</span>
           </div>
           <div class="ru-price-vs">vs. Magoosh ₹10,000+/yr · Manhattan ₹15,000+/yr</div>
           <div class="ru-features">
@@ -947,8 +928,7 @@ function renderUpgradeCTA(pct) {
             <span class="ru-feat">All future content included</span>
           </div>
         </div>
-        <a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" data-track="upgrade_clicked" data-track-from="mock_result"
-           onclick="if(window.GQP&&window.GQP.track)window.GQP.track('pro_cta_clicked',{from:'mock_result'});">
+        <a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" data-track="upgrade_clicked" data-track-from="mock_result">
           Unlock Pro — ₹499 →
         </a>
       </div>
