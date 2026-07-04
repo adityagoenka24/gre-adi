@@ -1,0 +1,108 @@
+{
+  "id": "phase0",
+  "kind": "brushup",
+  "name": "6-Hour SQL Brush-Up",
+  "blurb": "Not a course — a sharpening. Six focused hours that compress the full foundation into a fast, drill-heavy refresh on the ShopNow tables. Attempt every drill first, then reveal.",
+  "hours": [
+    {
+      "n": 1,
+      "title": "Filtering, CASE & Data Profiling",
+      "recap": "SELECT … FROM … WHERE … ORDER BY … LIMIT; CASE WHEN … THEN … ELSE … END; the difference between COUNT(*), COUNT(col), COUNT(DISTINCT col); COALESCE, NULLIF. Profiling = interrogating a table before you trust it.",
+      "drills": [
+        { "q": "Profile orders in one query: total rows, distinct customers, distinct products, earliest & latest order date.", "answer": "SELECT\n  COUNT(*)                   AS rows,\n  COUNT(DISTINCT CustomerID) AS distinct_customers,\n  COUNT(DISTINCT ProductID)  AS distinct_products,\n  MIN(OrderDate)             AS first_order,\n  MAX(OrderDate)             AS last_order\nFROM orders;" },
+        { "q": "Count orders by OrderStatus and show each status as a % of all orders.", "answer": "SELECT OrderStatus, COUNT(*) AS orders,\n  ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM orders), 1) AS pct_of_total\nFROM orders\nGROUP BY OrderStatus\nORDER BY orders DESC;", "note": "Note the 100.0 — integer division would truncate the percentage to 0." },
+        { "q": "Bucket every order's ShippingDays into 'Fast (<=2)', 'Normal (3-5)', 'Slow (>5)' and count each bucket.", "answer": "SELECT\n  CASE WHEN ShippingDays <= 2 THEN 'Fast (<=2)'\n       WHEN ShippingDays <= 5 THEN 'Normal (3-5)'\n       ELSE 'Slow (>5)' END AS ship_bucket,\n  COUNT(*) AS orders\nFROM orders\nGROUP BY 1\nORDER BY MIN(ShippingDays);" },
+        { "q": "Find the 'impossible' rows: orders where Revenue <= 0 OR ShippingDays < 0. How many are there?", "answer": "SELECT COUNT(*) AS bad_rows\nFROM orders\nWHERE Revenue <= 0 OR ShippingDays < 0;" },
+        { "q": "Compute a NULL-safe margin % per order: GrossProfit / Revenue * 100 without dividing by zero.", "answer": "SELECT OrderID,\n  ROUND(GrossProfit / NULLIF(Revenue, 0) * 100, 2) AS margin_pct\nFROM orders\nLIMIT 20;", "note": "NULLIF(Revenue,0) turns a 0 denominator into NULL, so the result is NULL instead of an error." }
+      ]
+    },
+    {
+      "n": 2,
+      "title": "Aggregation, HAVING & Conditional Aggregation",
+      "recap": "GROUP BY sets the grain; HAVING filters groups after aggregation; SUM(CASE WHEN … THEN … ELSE 0 END) computes many measures in one pass. The most important pattern in the whole brush-up.",
+      "drills": [
+        { "q": "Total revenue and order count by Category, highest revenue first.", "answer": "SELECT Category, COUNT(*) AS orders, ROUND(SUM(Revenue), 0) AS revenue\nFROM orders\nGROUP BY Category\nORDER BY revenue DESC;" },
+        { "q": "Only categories with more than 5,000 orders.", "answer": "SELECT Category, COUNT(*) AS orders\nFROM orders\nGROUP BY Category\nHAVING COUNT(*) > 5000\nORDER BY orders DESC;", "note": "WHERE can't see COUNT(*) — group-level filters belong in HAVING." },
+        { "q": "In ONE query per category: gross revenue, net revenue (returns = 0), and the rupees lost to returns.", "answer": "SELECT Category,\n  ROUND(SUM(Revenue), 0) AS gross_revenue,\n  ROUND(SUM(CASE WHEN ReturnFlag='Yes' THEN 0 ELSE Revenue END), 0) AS net_revenue,\n  ROUND(SUM(CASE WHEN ReturnFlag='Yes' THEN Revenue ELSE 0 END), 0) AS lost_to_returns\nFROM orders\nGROUP BY Category\nORDER BY net_revenue DESC;" },
+        { "q": "Return rate (% of orders returned) by category, worst first.", "answer": "SELECT Category, COUNT(*) AS orders,\n  ROUND(SUM(CASE WHEN ReturnFlag='Yes' THEN 1 ELSE 0 END) * 100.0 / COUNT(*), 2) AS return_rate_pct\nFROM orders\nGROUP BY Category\nORDER BY return_rate_pct DESC;" },
+        { "q": "Average order value (AOV) by OrderYear, excluding returns and non-positive revenue.", "answer": "SELECT OrderYear, ROUND(AVG(Revenue), 0) AS aov\nFROM orders\nWHERE ReturnFlag='No' AND Revenue > 0\nGROUP BY OrderYear\nORDER BY OrderYear;" }
+      ]
+    },
+    {
+      "n": 3,
+      "title": "Joins, Anti-Joins & Set Operations",
+      "recap": "INNER keeps matches only; LEFT keeps all left rows (unmatched → NULL on the right); the LEFT JOIN … WHERE right.key IS NULL pattern finds what's missing; UNION stacks result sets. In this dataset, the unmatched rows are usually the point.",
+      "drills": [
+        { "q": "Revenue by Brand (top 10). Brand lives in products.", "answer": "SELECT p.Brand, ROUND(SUM(o.Revenue), 0) AS revenue\nFROM orders o\nJOIN products p ON o.ProductID = p.ProductID\nGROUP BY p.Brand\nORDER BY revenue DESC\nLIMIT 10;" },
+        { "q": "How many orders reference a ProductID that doesn't exist in products (deprecated SKUs)? Use a LEFT JOIN.", "answer": "SELECT COUNT(*) AS orders_on_deprecated_skus, ROUND(SUM(o.Revenue), 0) AS revenue_affected\nFROM orders o\nLEFT JOIN products p ON o.ProductID = p.ProductID\nWHERE p.ProductID IS NULL;", "note": "This is exactly the revenue an INNER JOIN would have silently dropped." },
+        { "q": "How many orders have no matching row in payments? (anti-join)", "answer": "SELECT COUNT(*) AS unpaid_orders\nFROM orders o\nLEFT JOIN payments pmt ON o.OrderID = pmt.OrderID\nWHERE pmt.OrderID IS NULL;", "sparkNote": "Databricks also supports the explicit form: FROM orders o LEFT ANTI JOIN payments pmt ON o.OrderID = pmt.OrderID. DuckDB uses the LEFT JOIN … IS NULL pattern (or ANTI JOIN)." },
+        { "q": "Revenue by customer Region. (Heads-up: raw customers has duplicate IDs — note the risk; you fix it in S1.)", "answer": "SELECT c.Region, ROUND(SUM(o.Revenue), 0) AS revenue\nFROM orders o\nJOIN customers c ON o.CustomerID = c.CustomerID\nGROUP BY c.Region\nORDER BY revenue DESC;", "note": "Because customers has ~120 duplicate IDs, those customers' orders are counted twice here. In the internship you always join to customers_clean instead." },
+        { "q": "Rehearse UNION/DISTINCT: list distinct Region and distinct State stacked with a label.", "answer": "SELECT 'Region' AS field, Region AS value FROM customers WHERE Region IS NOT NULL\nUNION\nSELECT 'State', State FROM customers\nORDER BY field, value;", "note": "UNION de-duplicates; UNION ALL keeps every row (and is faster when you don't need de-dup)." }
+      ]
+    },
+    {
+      "n": 4,
+      "title": "Subqueries & CTEs",
+      "recap": "A scalar subquery returns one value; IN (subquery) filters by a set; a correlated subquery references the outer row; a WITH (CTE) names a step so the query reads like an argument. Prefer CTEs over deep nesting.",
+      "drills": [
+        { "q": "Orders whose revenue is above the overall average order revenue.", "answer": "SELECT OrderID, Revenue\nFROM orders\nWHERE Revenue > (SELECT AVG(Revenue) FROM orders)\nORDER BY Revenue DESC\nLIMIT 20;" },
+        { "q": "Using a CTE: categories whose total revenue is above the average category revenue.", "answer": "WITH cat_rev AS (\n  SELECT Category, SUM(Revenue) AS revenue FROM orders GROUP BY Category\n)\nSELECT Category, ROUND(revenue, 0) AS revenue\nFROM cat_rev\nWHERE revenue > (SELECT AVG(revenue) FROM cat_rev)\nORDER BY revenue DESC;" },
+        { "q": "Correlated subquery: products priced above their own category's average SellingPrice.", "answer": "SELECT p.ProductName, p.Category, p.SellingPrice\nFROM products p\nWHERE p.SellingPrice > (\n  SELECT AVG(p2.SellingPrice) FROM products p2 WHERE p2.Category = p.Category\n)\nORDER BY p.Category, p.SellingPrice DESC;", "note": "The inner query re-runs per outer row, scoped to that row's category — that's 'correlated.'" },
+        { "q": "How many customers have at least one returned order? Use IN.", "answer": "SELECT COUNT(DISTINCT CustomerID) AS customers_with_a_return\nFROM orders\nWHERE ReturnFlag = 'Yes';" },
+        { "q": "CTE chain: bucket customers by lifetime order count (1, 2-3, 4-5, 6+) and count customers per bucket.", "answer": "WITH cust_orders AS (\n  SELECT CustomerID, COUNT(*) AS n FROM orders GROUP BY CustomerID\n)\nSELECT CASE WHEN n=1 THEN '1' WHEN n<=3 THEN '2-3' WHEN n<=5 THEN '4-5' ELSE '6+' END AS order_bucket,\n  COUNT(*) AS customers\nFROM cust_orders\nGROUP BY 1\nORDER BY MIN(n);" }
+      ]
+    },
+    {
+      "n": 5,
+      "title": "Window Functions",
+      "recap": "A window function keeps every row and computes across a frame: ROW_NUMBER/RANK/DENSE_RANK, LAG/LEAD, and aggregates like SUM() OVER (…). The engine is OVER (PARTITION BY g ORDER BY o). The dividing line between intermediate and senior SQL.",
+      "drills": [
+        { "q": "Number each customer's orders in date order (1 = first ever order).", "answer": "SELECT OrderID, CustomerID, OrderDate,\n  ROW_NUMBER() OVER (PARTITION BY CustomerID ORDER BY OrderDate) AS order_seq\nFROM orders\nORDER BY CustomerID, order_seq\nLIMIT 50;" },
+        { "q": "Top 3 products by revenue within each category.", "answer": "WITH ranked AS (\n  SELECT Category, ProductID, SUM(Revenue) AS revenue,\n    ROW_NUMBER() OVER (PARTITION BY Category ORDER BY SUM(Revenue) DESC) AS rn\n  FROM orders GROUP BY Category, ProductID\n)\nSELECT Category, rn, ProductID, ROUND(revenue, 0) AS revenue\nFROM ranked WHERE rn <= 3\nORDER BY Category, rn;" },
+        { "q": "Monthly revenue with the previous month's revenue beside it (LAG).", "answer": "WITH monthly AS (\n  SELECT OrderYear, OrderMonth, SUM(Revenue) AS rev FROM orders GROUP BY OrderYear, OrderMonth\n)\nSELECT OrderYear, OrderMonth, ROUND(rev, 0) AS revenue,\n  ROUND(LAG(rev) OVER (ORDER BY OrderYear, OrderMonth), 0) AS prev_month\nFROM monthly\nORDER BY OrderYear, OrderMonth;" },
+        { "q": "Add a cumulative running total of revenue to that monthly series.", "answer": "WITH monthly AS (\n  SELECT OrderYear, OrderMonth, SUM(Revenue) AS rev FROM orders GROUP BY OrderYear, OrderMonth\n)\nSELECT OrderYear, OrderMonth, ROUND(rev, 0) AS revenue,\n  ROUND(SUM(rev) OVER (ORDER BY OrderYear, OrderMonth), 0) AS running_total\nFROM monthly\nORDER BY OrderYear, OrderMonth;" },
+        { "q": "Explain the difference between ROW_NUMBER, RANK, and DENSE_RANK on tied values.", "answer": "-- For values 100, 100, 90:\n-- ROW_NUMBER -> 1, 2, 3 (arbitrary tiebreak, always unique)\n-- RANK       -> 1, 1, 3 (ties share a rank, then a gap)\n-- DENSE_RANK -> 1, 1, 2 (ties share, no gap)\n-- 'Exactly top N rows' -> ROW_NUMBER; 'everyone tied at the top' -> RANK/DENSE_RANK." }
+      ]
+    },
+    {
+      "n": 6,
+      "title": "Dialect Specifics + Speed Round",
+      "recap": "The app runs DuckDB; the internship's 'production' environment is Databricks/Spark SQL. These are the idioms that differ — learn both forms.",
+      "drills": [
+        { "q": "Median product Rating per category.", "answer": "SELECT Category, median(Rating) AS median_rating\nFROM products\nGROUP BY Category\nORDER BY median_rating DESC;", "sparkNote": "Spark: percentile_approx(Rating, 0.5). DuckDB: median(Rating) or quantile_cont(Rating, 0.5)." },
+        { "q": "Deduplicate customers to one row per ID (latest JoinDate) using QUALIFY.", "answer": "SELECT *\nFROM customers\nQUALIFY ROW_NUMBER() OVER (PARTITION BY CustomerID ORDER BY JoinDate DESC) = 1;", "note": "QUALIFY filters on a window result without a wrapping subquery — supported in both DuckDB and Databricks." },
+        { "q": "Standardize a dirty city value: '  MUMBAI ' → 'Mumbai'.", "answer": "-- DuckDB has no INITCAP; lower+trim gives 'mumbai':\nSELECT TRIM(LOWER('  MUMBAI ')) AS clean;", "sparkNote": "Spark: INITCAP(TRIM(LOWER('  MUMBAI '))) -> 'Mumbai'. DuckDB lacks INITCAP — normalize to lower+trim (the distinct count is identical; only display casing differs)." },
+        { "q": "Days between each order and the latest order in the table.", "answer": "SELECT OrderID,\n  date_diff('day', OrderDate, (SELECT MAX(OrderDate) FROM orders)) AS days_before_latest\nFROM orders\nLIMIT 20;", "sparkNote": "Spark: DATEDIFF(end, start) -> days. DuckDB: date_diff('day', start, end) (note argument order) or simply (end - start) for DATE columns." },
+        { "q": "Build a '2024-03' style month label from OrderDate. (Heads-up: OrderMonth is already stored as 'YYYY-MM' and OrderQuarter as 'Q1-2022' — profile columns before assuming their type.)", "answer": "SELECT strftime(OrderDate, '%Y-%m') AS month_label\nFROM orders LIMIT 5;", "sparkNote": "Spark: DATE_FORMAT(OrderDate,'yyyy-MM'). DuckDB: strftime(OrderDate,'%Y-%m'). And note ShopNow's OrderMonth column is already a 'YYYY-MM' string, so you can often just use it directly." }
+      ]
+    }
+  ],
+  "diagnostic": {
+    "title": "Entry Diagnostic — \"The Offer Letter\"",
+    "intro": "Ten questions, closed-book. Write runnable SQL against the ShopNow tables. Pass bar: 8/10. The four auto-graded questions must match exactly; the rest reveal a model answer to self-mark. A query only counts if it runs AND is correct on edge cases (guard divide-by-zero, use DISTINCT where needed).",
+    "questions": [
+      { "id": "DIAG-Q1", "task": "Total net revenue (returns = 0) for 2024 only.", "tests": "WHERE + conditional agg", "mode": "auto",
+        "grader": { "type": "scalar", "round": 0, "salt": "dq1", "answerHash": "f3273ce32a5bc1f0627e317550b4743bbaa1b5d7e525bc80c3d205c30c8318a3" } },
+      { "id": "DIAG-Q2", "task": "Return rate % by Region (join to customers), worst first.", "tests": "Join + rate", "mode": "reveal",
+        "answer": "SELECT c.Region,\n  ROUND(SUM(CASE WHEN o.ReturnFlag='Yes' THEN 1 ELSE 0 END)*100.0/COUNT(*), 2) AS return_rate_pct\nFROM orders o JOIN customers c ON o.CustomerID=c.CustomerID\nGROUP BY c.Region ORDER BY return_rate_pct DESC;" },
+      { "id": "DIAG-Q3", "task": "Count of orders on deprecated SKUs (not in products).", "tests": "LEFT/anti join", "mode": "auto",
+        "grader": { "type": "scalar", "round": 0, "salt": "dq3", "answerHash": "d8b872db1f0e7dd3446223ef36a077c3fba794871a13f38bed8cbbcbdad0b675" } },
+      { "id": "DIAG-Q4", "task": "Top 5 products by net revenue overall, with product name.", "tests": "Join + aggregate + LIMIT", "mode": "reveal",
+        "answer": "SELECT p.ProductName,\n  ROUND(SUM(CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END), 0) AS net_rev\nFROM orders o JOIN products p ON o.ProductID=p.ProductID\nGROUP BY p.ProductName ORDER BY net_rev DESC LIMIT 5;" },
+      { "id": "DIAG-Q5", "task": "Categories whose net margin % is below the company-wide average margin.", "tests": "CTE + scalar subquery", "mode": "reveal",
+        "answer": "WITH cat AS (\n  SELECT Category,\n    SUM(CASE WHEN ReturnFlag='Yes' THEN 0 ELSE GrossProfit END) AS np,\n    SUM(CASE WHEN ReturnFlag='Yes' THEN 0 ELSE Revenue END) AS nr\n  FROM orders GROUP BY Category)\nSELECT Category, ROUND(np/NULLIF(nr,0)*100, 2) AS margin_pct\nFROM cat WHERE np/NULLIF(nr,0) < (SELECT SUM(np)/NULLIF(SUM(nr),0) FROM cat)\nORDER BY margin_pct;" },
+      { "id": "DIAG-Q6", "task": "Each customer's first order date.", "tests": "GROUP BY MIN (or window)", "mode": "reveal",
+        "answer": "SELECT CustomerID, MIN(OrderDate) AS first_order FROM orders GROUP BY CustomerID;" },
+      { "id": "DIAG-Q7", "task": "Month-over-month revenue growth % for 2023.", "tests": "LAG + NULLIF", "mode": "reveal",
+        "answer": "WITH m AS (SELECT OrderMonth, SUM(Revenue) rev FROM orders WHERE OrderYear=2023 GROUP BY OrderMonth)\nSELECT OrderMonth,\n  ROUND((rev-LAG(rev) OVER (ORDER BY OrderMonth))/NULLIF(LAG(rev) OVER (ORDER BY OrderMonth),0)*100, 1) AS mom_growth_pct\nFROM m ORDER BY OrderMonth;" },
+      { "id": "DIAG-Q8", "task": "Top 2 brands by revenue within each category.", "tests": "ROW_NUMBER PARTITION BY", "mode": "reveal",
+        "answer": "WITH b AS (\n  SELECT o.Category, p.Brand, SUM(o.Revenue) rev,\n    ROW_NUMBER() OVER (PARTITION BY o.Category ORDER BY SUM(o.Revenue) DESC) rn\n  FROM orders o JOIN products p ON o.ProductID=p.ProductID\n  GROUP BY o.Category, p.Brand)\nSELECT Category, Brand, ROUND(rev,0) rev FROM b WHERE rn<=2 ORDER BY Category, rn;" },
+      { "id": "DIAG-Q9", "task": "Distinct customers who ordered in BOTH 2022 and 2024.", "tests": "Set logic / INTERSECT", "mode": "auto",
+        "grader": { "type": "scalar", "round": 0, "salt": "dq9", "answerHash": "f813630a9bcafdd41f9b93e93ec41c04bd66358dd0dd096629df656ed6d87b4d" },
+        "hint": "Return a single COUNT. INTERSECT the 2022 customer set with the 2024 set, then count." },
+      { "id": "DIAG-Q10", "task": "Dedupe customers to one row per ID (latest JoinDate); return rows_removed and rows_kept (in that order).", "tests": "QUALIFY / ROW_NUMBER", "mode": "auto",
+        "grader": { "type": "result-set", "round": 0, "ordered": true, "salt": "dq10", "answerHash": "78408b4886766e7da179237a29f3923add16f7ff3541894b98e899f4581b0b5b" },
+        "hint": "One row, two columns: rows_removed then rows_kept. Use ROW_NUMBER() per CustomerID by JoinDate DESC; rn>1 are removed, rn=1 are kept." }
+    ]
+  }
+}

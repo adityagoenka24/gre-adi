@@ -1,0 +1,44 @@
+{
+  "id": "s4",
+  "kind": "sprint",
+  "name": "CTEs & Problem Decomposition",
+  "est": "~2.5 hours",
+  "goal": "Break a vague, layered question into named steps a reviewer can follow — and compare rows against a benchmark you computed.",
+  "brief": {
+    "from": "Sana Kapoor · Head of Growth — sent 11:48 pm",
+    "body": "Quick one (sorry, late) — investors want to understand our customer base quality. Who are our best customers, how concentrated is revenue in them, and are good customers going quiet that we should win back? I don't need a dashboard, I need the logic. Something before the 10am sync? Real-world skill: 'best', 'quality', 'going quiet' are undefined — your first job is to define them in measurable terms and state your definitions."
+  },
+  "clinic": {
+    "title": "CTEs as readable thinking",
+    "body": "A WITH chain names each step — compute per-customer value → compute a benchmark → compare — so the query reads top-to-bottom like an argument. Prefer a CTE chain over deeply nested subqueries; reviewers (and future-you) can actually follow it."
+  },
+  "classwork": {
+    "title": "LTV tiers & the Pareto question — together",
+    "steps": [
+      { "instr": "One LTV value per customer (net of returns, off customers_clean).", "sql": "WITH cust_ltv AS (\n  SELECT c.CustomerID,\n    SUM(CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END) AS ltv,\n    COUNT(*) AS orders\n  FROM customers_clean c JOIN orders o ON c.CustomerID = o.CustomerID\n  GROUP BY c.CustomerID\n)\nSELECT * FROM cust_ltv ORDER BY ltv DESC LIMIT 10;", "checkpoint": "LTV is net of returns, computed off customers_clean (no double-counting)." },
+      { "instr": "Bucket into tiers, then answer the concentration question.", "sql": "WITH cust_ltv AS (\n  SELECT c.CustomerID,\n    SUM(CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END) AS ltv, COUNT(*) AS orders\n  FROM customers_clean c JOIN orders o ON c.CustomerID = o.CustomerID GROUP BY c.CustomerID),\ntiered AS (\n  SELECT *, CASE WHEN ltv>=100000 THEN 'Platinum' WHEN ltv>=50000 THEN 'Gold' WHEN ltv>=20000 THEN 'Silver' ELSE 'Bronze' END AS tier\n  FROM cust_ltv)\nSELECT tier, COUNT(*) AS customers, ROUND(SUM(ltv),0) AS tier_revenue,\n  ROUND(AVG(orders),1) AS avg_orders,\n  ROUND(SUM(ltv)/(SELECT SUM(ltv) FROM tiered)*100,1) AS pct_of_total_revenue\nFROM tiered GROUP BY tier ORDER BY tier_revenue DESC;", "checkpoint": "Headline sentence, e.g. 'Platinum+Gold are ~18% of customers but ~61% of revenue.' Thresholds are business choices, not laws." }
+    ],
+    "reference": "WITH cust_ltv AS (\n  SELECT c.CustomerID,\n    SUM(CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END) AS ltv, COUNT(*) AS orders\n  FROM customers_clean c JOIN orders o ON c.CustomerID = o.CustomerID GROUP BY c.CustomerID),\ntiered AS (\n  SELECT *, CASE WHEN ltv>=100000 THEN 'Platinum' WHEN ltv>=50000 THEN 'Gold' WHEN ltv>=20000 THEN 'Silver' ELSE 'Bronze' END AS tier FROM cust_ltv)\nSELECT tier, COUNT(*) AS customers, ROUND(SUM(ltv),0) AS tier_revenue,\n  ROUND(AVG(orders),1) AS avg_orders,\n  ROUND(SUM(ltv)/(SELECT SUM(ltv) FROM tiered)*100,1) AS pct_of_total_revenue\nFROM tiered GROUP BY tier ORDER BY tier_revenue DESC;"
+  },
+  "tickets": [
+    { "id": "SHOP-401", "title": "Customers who out-spend their own segment's average", "difficulty": 3, "type": "homework", "from": "Sana Kapoor · Head of Growth", "est": "30 min", "mode": "auto",
+      "prompt": "Within each segment, find customers whose net lifetime spend exceeds that segment's average. Build it as a CTE chain off customers_clean. Output exactly four columns — Segment, CustomerID, net_spend (rounded 0), segment_avg (rounded 0) — one row per qualifying customer. Row order doesn't matter (graded as a set). net_spend = SUM of revenue with returns zeroed; segment_avg = the average of those per-customer net spends within the segment.",
+      "acceptanceCriteria": ["Per-customer spend net of returns", "Each customer compared to their OWN segment average, not the global", "Built as a CTE chain, using customers_clean", "Columns: Segment, CustomerID, net_spend (0dp), segment_avg (0dp)"],
+      "hints": ["CTE 1: per-customer net_spend grouped by CustomerID, Segment (from customers_clean).", "CTE 2: AVG(net_spend) per Segment.", "Join and keep rows where net_spend > seg_avg."],
+      "grader": { "type": "result-set", "round": 0, "ordered": false, "salt": "s401", "answerHash": "3f78b03d6cd294aae6fb32644533d7f7da9bc7ae8922e1cb3b67a11ab30e1827" } },
+
+    { "id": "SHOP-402", "title": "\"Rising star\" products — beat category on revenue AND rating", "difficulty": 4, "type": "homework", "from": "Priya Nair · Lead Data Analyst", "est": "35 min", "mode": "reveal",
+      "prompt": "Find products exceeding their category's average revenue AND median rating — candidates for the investor growth story. Two benchmarks computed per category, then compared.",
+      "acceptanceCriteria": ["Per-product revenue and rating assembled", "Category average revenue AND median rating computed as benchmarks", "Only products beating both returned", "Median via median() (Spark: percentile_approx)"],
+      "hints": ["CTE 1: per-product revenue + Rating (join products to orders).", "CTE 2: per-category AVG(revenue) and median(Rating).", "Keep products beating both benchmarks."],
+      "solution": "WITH prod AS (\n  SELECT p.ProductID, p.ProductName, p.Category, p.Rating, ROUND(SUM(o.Revenue),0) AS revenue\n  FROM products p JOIN orders o ON p.ProductID = o.ProductID\n  GROUP BY p.ProductID, p.ProductName, p.Category, p.Rating),\ncat_bench AS (\n  SELECT Category, AVG(revenue) AS cat_avg_revenue, median(Rating) AS cat_median_rating\n  FROM prod GROUP BY Category)\nSELECT pr.Category, pr.ProductName, pr.revenue, pr.Rating,\n  ROUND(cb.cat_avg_revenue,0) AS cat_avg_revenue, cb.cat_median_rating\nFROM prod pr JOIN cat_bench cb ON pr.Category = cb.Category\nWHERE pr.revenue > cb.cat_avg_revenue AND pr.Rating > cb.cat_median_rating\nORDER BY pr.Category, pr.revenue DESC;",
+      "modelNote": "DuckDB uses median(Rating) or quantile_cont(Rating,0.5). On Databricks the same benchmark is percentile_approx(Rating,0.5)." },
+
+    { "id": "SHOP-4S", "title": "Win-back list: high-value customers gone quiet", "difficulty": 5, "type": "stretch", "from": "Sana Kapoor (portfolio piece)", "est": "45 min", "mode": "reveal",
+      "prompt": "Answer Sana's 'good customers going quiet.' Define it, then build the list: customers with >=3 lifetime orders whose most recent order is >180 days before the latest date in the data. Rank by LTV. Defend your thresholds.",
+      "acceptanceCriteria": ["'Quiet' defined relative to the dataset's max date, not today", "Frequency floor (>=3 orders) applied", "Output ranked by net LTV with days-since-last-order", "One-line rationale for the thresholds"],
+      "hints": ["Per-customer: COUNT(*), MAX(OrderDate), net LTV.", "data_max = (SELECT MAX(OrderDate) FROM orders).", "DuckDB days-between: date_diff('day', last_order_date, data_max). (Spark: DATEDIFF(data_max, last_order_date).)"],
+      "solution": "WITH per_cust AS (\n  SELECT o.CustomerID, COUNT(*) AS lifetime_orders, MAX(o.OrderDate) AS last_order_date,\n    SUM(CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END) AS net_ltv\n  FROM orders o GROUP BY o.CustomerID),\nbound AS (SELECT MAX(OrderDate) AS data_max FROM orders)\nSELECT pc.CustomerID, pc.lifetime_orders, pc.last_order_date,\n  date_diff('day', pc.last_order_date, (SELECT data_max FROM bound)) AS days_since_last,\n  ROUND(pc.net_ltv,0) AS net_ltv\nFROM per_cust pc\nWHERE pc.lifetime_orders >= 3\n  AND date_diff('day', pc.last_order_date, (SELECT data_max FROM bound)) > 180\nORDER BY pc.net_ltv DESC;",
+      "modelNote": "Threshold rationale example: '180 days ~ 2x our median repeat interval, so a gap that long signals real disengagement; the >=3-order floor restricts the list to customers with a relationship worth saving.' Note the DuckDB date_diff argument order (unit, start, end)." }
+  ]
+}

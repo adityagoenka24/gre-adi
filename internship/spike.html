@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShopNow Internship — DuckDB-WASM Spike (M0)</title>
+<style>
+  :root { --bg:#14161c; --panel:#1f2530; --line:#2c3340; --green:#6fd08c; --red:#ff6b6b; --txt:#e7ebf0; --mut:#8a92a0; }
+  * { box-sizing:border-box; }
+  body { margin:0; font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif; background:var(--bg); color:var(--txt); font-size:14px; }
+  header { padding:20px 24px; border-bottom:1px solid var(--line); }
+  h1 { margin:0 0 4px; font-size:20px; }
+  .sub { color:var(--mut); font-size:13px; }
+  #status { padding:8px 24px; font-size:13px; color:var(--mut); border-bottom:1px solid var(--line); }
+  main { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+  @media (max-width:900px){ main{ grid-template-columns:1fr; } }
+  section { padding:18px 24px; }
+  section + section { border-left:1px solid var(--line); }
+  h2 { font-size:13px; text-transform:uppercase; letter-spacing:1px; color:var(--green); margin:0 0 12px; }
+  table { width:100%; border-collapse:collapse; font-size:13px; }
+  td,th { padding:6px 8px; border-bottom:1px solid var(--line); text-align:left; }
+  th { color:var(--mut); font-weight:600; }
+  .ok { color:var(--green); font-weight:700; }
+  .fail { color:var(--red); font-weight:700; }
+  textarea { width:100%; height:120px; background:#0e1116; color:var(--txt); border:1px solid var(--line); border-radius:6px; padding:10px; font-family:ui-monospace,Menlo,Consolas,monospace; font-size:13px; resize:vertical; }
+  button { background:var(--green); color:#0e1a12; border:none; border-radius:6px; padding:8px 16px; font-weight:700; cursor:pointer; margin-top:8px; }
+  button:disabled { opacity:.5; cursor:default; }
+  #out { margin-top:14px; overflow:auto; max-height:340px; }
+  .err { color:var(--red); white-space:pre-wrap; font-family:ui-monospace,monospace; font-size:12px; }
+  code { background:#0e1116; padding:1px 5px; border-radius:3px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>ShopNow Internship — DuckDB-WASM Spike</h1>
+  <div class="sub">M0 proof: 7 Parquet tables loaded &amp; queried entirely in your browser tab. No server, no Databricks.</div>
+</header>
+<div id="status">Booting DuckDB-WASM…</div>
+<main>
+  <section>
+    <h2>Auto verification (seeded answers)</h2>
+    <table id="checks"><thead><tr><th>Check</th><th>Got</th><th>Expect</th><th></th></tr></thead><tbody></tbody></table>
+  </section>
+  <section>
+    <h2>Try any SQL</h2>
+    <textarea id="sql">SELECT event_type, COUNT(DISTINCT event_id) AS n
+FROM raw_web_events
+WHERE event_id IS NOT NULL
+GROUP BY event_type
+ORDER BY n DESC;</textarea>
+    <button id="run" disabled>Run query</button>
+    <div id="out"></div>
+  </section>
+</main>
+
+<script type="module">
+import * as duckdb from 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/+esm';
+
+const statusEl = document.getElementById('status');
+const setStatus = (m) => statusEl.textContent = m;
+const TABLES = ['products','events','customers','orders','payments','raw_web_events','marketing_spend'];
+
+const CHECKS = [
+  ['duplicate_customer_ids', "SELECT COUNT(*) FROM (SELECT CustomerID FROM customers GROUP BY CustomerID HAVING COUNT(*)>1)", 120],
+  ['null_region_customers', "SELECT COUNT(*) FROM customers WHERE Region IS NULL", 300],
+  ['orders_on_deprecated_skus', "SELECT COUNT(*) FROM orders o LEFT JOIN products p ON o.ProductID=p.ProductID WHERE p.ProductID IS NULL", 1500],
+  ['orphan_payments', "SELECT COUNT(*) FROM payments pmt LEFT JOIN orders o ON pmt.OrderID=o.OrderID WHERE o.OrderID IS NULL", 200],
+  ['unpaid_orders', "SELECT COUNT(*) FROM orders WHERE OrderID NOT IN (SELECT OrderID FROM payments WHERE OrderID IS NOT NULL)", 150],
+  ['orders_negative_or_zero_rev', "SELECT COUNT(*) FROM orders WHERE Revenue <= 0", 12],
+  ['cities_raw', "SELECT COUNT(DISTINCT City) FROM customers", 250],
+  ['cities_clean', "SELECT COUNT(DISTINCT TRIM(LOWER(City))) FROM customers", 50],
+  ['funnel_purchase', "SELECT COUNT(DISTINCT event_id) FROM raw_web_events WHERE LOWER(TRIM(event_type))='purchase'", 9220],
+];
+
+let conn;
+
+async function boot() {
+  const bundles = duckdb.getJsDelivrBundles();
+  const bundle = await duckdb.selectBundle(bundles);
+  const workerUrl = URL.createObjectURL(new Blob(
+    [`importScripts("${bundle.mainWorker}");`], { type: 'text/javascript' }));
+  const worker = new Worker(workerUrl);
+  const db = new duckdb.AsyncDuckDB(new duckdb.ConsoleLogger(), worker);
+  await db.instantiate(bundle.mainModule, bundle.pthreadWorker);
+  URL.revokeObjectURL(workerUrl);
+  conn = await db.connect();
+
+  setStatus('Loading Parquet tables…');
+  for (const t of TABLES) {
+    const res = await fetch(`./data/${t}.parquet`);
+    if (!res.ok) throw new Error(`fetch ./data/${t}.parquet -> ${res.status}`);
+    await db.registerFileBuffer(`${t}.parquet`, new Uint8Array(await res.arrayBuffer()));
+    await conn.query(`CREATE VIEW ${t} AS SELECT * FROM read_parquet('${t}.parquet')`);
+  }
+
+  const counts = await conn.query(
+    "SELECT " + TABLES.map(t=>`(SELECT COUNT(*) FROM ${t}) AS ${t}`).join(", "));
+  const row = counts.get(0);
+  const total = TABLES.reduce((s,t)=>s+Number(row[t]),0);
+  setStatus(`Ready — ${TABLES.length} tables, ${total.toLocaleString()} rows, all in-browser.`);
+
+  await runChecks();
+  document.getElementById('run').disabled = false;
+}
+
+async function scalar(sql){ const r = await conn.query(sql); return Number(r.get(0)[r.schema.fields[0].name]); }
+
+async function runChecks(){
+  const tb = document.querySelector('#checks tbody');
+  for (const [label, sql, expect] of CHECKS) {
+    const tr = document.createElement('tr');
+    let got, pass;
+    try { got = await scalar(sql); pass = got === expect; }
+    catch(e){ got = 'ERR'; pass = false; }
+    tr.innerHTML = `<td>${label}</td><td>${got.toLocaleString?got.toLocaleString():got}</td>`+
+                   `<td>${expect.toLocaleString()}</td>`+
+                   `<td class="${pass?'ok':'fail'}">${pass?'✓ PASS':'✗ FAIL'}</td>`;
+    tb.appendChild(tr);
+  }
+}
+
+document.getElementById('run').addEventListener('click', async () => {
+  const out = document.getElementById('out');
+  out.innerHTML = 'Running…';
+  try {
+    const r = await conn.query(document.getElementById('sql').value);
+    const cols = r.schema.fields.map(f=>f.name);
+    let html = '<table><thead><tr>'+cols.map(c=>`<th>${c}</th>`).join('')+'</tr></thead><tbody>';
+    for (let i=0;i<Math.min(r.numRows,200);i++){
+      const row=r.get(i);
+      html+='<tr>'+cols.map(c=>`<td>${row[c]}</td>`).join('')+'</tr>';
+    }
+    html+='</tbody></table>';
+    if (r.numRows>200) html+=`<div class="sub">…showing first 200 of ${r.numRows} rows</div>`;
+    out.innerHTML = html;
+  } catch(e){ out.innerHTML = `<div class="err">${e}</div>`; }
+});
+
+boot().catch(e => { setStatus('Boot failed'); document.getElementById('out').innerHTML = `<div class="err">${e.stack||e}</div>`; });
+</script>
+</body>
+</html>

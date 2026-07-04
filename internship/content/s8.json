@@ -1,0 +1,44 @@
+{
+  "id": "s8",
+  "kind": "sprint",
+  "name": "Power BI Model & DAX",
+  "est": "~3.5 hours",
+  "env": "Power BI Desktop — build this alongside the app. DAX doesn't run in-browser, so these tickets are self-checked; the app holds the briefs, the exact DAX, and the acceptance criteria.",
+  "goal": "Stand the gold-layer star up inside Power BI — clean relationships, a proper date table, and a measure library a dashboard can be built from.",
+  "brief": {
+    "from": "Sana Kapoor · Head of Growth",
+    "body": "I can't keep pinging you for numbers. I need a Power BI model where I can click a category or a quarter and the numbers just update — net revenue, margin, return rate, growth. Build it on the clean model Priya had you make, not the raw tables. And please make the measures right the first time — last time someone's 'revenue' double-counted because of a bad relationship."
+  },
+  "clinic": {
+    "title": "From star schema to semantic model",
+    "body": "Power BI loves a star: import the dim_*/fact_* views, join each dimension to the fact one-to-many with a single filter direction (dimension filters fact, not the reverse), and mark dim_date as the official date table. Then write measures (evaluated in filter context) — not calculated columns — for anything that aggregates. CALCULATE is the engine: it changes the filter context a measure runs in. Get the model right and the DAX stays short. Connection: in this app the gold layer is DuckDB views; on the job you'd Get Data → Azure Databricks, pick main → shopnow, and load the dim_*/fact_* views in Import mode."
+  },
+  "classwork": {
+    "title": "Build the model — together (in Power BI Desktop)",
+    "steps": [
+      { "instr": "Connect & load the gold views (Import mode). In Navigator tick dim_customer, dim_product, dim_date, dim_payment, dim_event, fact_sales (+ fact_web_events, marketing_spend if built).", "sql": "Get Data → Azure Databricks → Server Hostname + HTTP Path → sign in →\nNavigator → main → shopnow → tick the dim_* / fact_* views → Load (Import).", "checkpoint": "All selected tables appear in the Fields pane with correct row counts. No transforms needed — the gold layer is already clean." },
+      { "instr": "Set types & mark the date table.", "sql": "Model/Power Query: DateKey = Date, Revenue/Profit = Decimal, keys = Text.\nTable tools → Mark as date table → dim_date[DateKey].", "checkpoint": "dim_date shows the calendar icon. Time intelligence (YTD, MoM) now works." },
+      { "instr": "Build relationships — one-to-many, single filter direction (dimension → fact). This is the part people get wrong.", "sql": "dim_customer[CustomerKey] 1 --- * fact_sales[CustomerKey]\ndim_product [ProductKey]  1 --- * fact_sales[ProductKey]\ndim_date    [DateKey]     1 --- * fact_sales[DateKey]\n-- fact_web_events reuses dim_customer / dim_product / dim_date (conformed)", "checkpoint": "A clean star in Model view, all arrows into the fact. No two-way filters (double-counting). No relationship between two dimensions." },
+      { "instr": "Write the base measure library (measures, not calculated columns).", "sql": "Total Revenue   = SUM ( fact_sales[Revenue] )\nNet Revenue     = SUM ( fact_sales[NetRevenue] )     -- returns already zeroed in gold\nTotal Orders    = DISTINCTCOUNT ( fact_sales[OrderID] )\nReturned Orders = CALCULATE ( [Total Orders], fact_sales[ReturnFlag] = \"Yes\" )\nReturn Rate %   = DIVIDE ( [Returned Orders], [Total Orders] )\nNet Profit      = SUMX ( fact_sales, IF ( fact_sales[ReturnFlag]=\"Yes\", 0, fact_sales[GrossProfit] ) )\nNet Margin %    = DIVIDE ( [Net Profit], [Net Revenue] )\nDistinct Customers = DISTINCTCOUNT ( fact_sales[CustomerKey] )", "checkpoint": "Drop [Net Revenue] into a card and dim_product[Category] into a table — the numbers slice by category instantly. The model works." }
+    ]
+  },
+  "tickets": [
+    { "id": "DAX-801", "title": "Time intelligence: MoM, YTD, running total", "difficulty": 3, "type": "homework", "from": "Sana Kapoor · Head of Growth", "est": "35 min", "mode": "external",
+      "prompt": "Add the growth measures investors expect: previous-month net revenue, MoM growth %, year-to-date, and a running total. All driven by the marked dim_date. Build these in Power BI, then self-check against the acceptance criteria and reveal the reference DAX.",
+      "acceptanceCriteria": ["Uses the marked date table (no string dates)", "MoM growth guarded against divide-by-zero / blanks (DIVIDE)", "YTD and running total both present and correct on a month visual"],
+      "solution": "Net Revenue LM =\nCALCULATE ( [Net Revenue], DATEADD ( dim_date[DateKey], -1, MONTH ) )\n\nNet Revenue MoM % =\nDIVIDE ( [Net Revenue] - [Net Revenue LM], [Net Revenue LM] )\n\nNet Revenue YTD =\nTOTALYTD ( [Net Revenue], dim_date[DateKey] )\n\nNet Revenue Running =\nCALCULATE ( [Net Revenue],\n  FILTER ( ALLSELECTED ( dim_date[DateKey] ), dim_date[DateKey] <= MAX ( dim_date[DateKey] ) ) )",
+      "modelNote": "DIVIDE (not '/') gives blank instead of an error on the first month. TOTALYTD and DATEADD both require the marked date table — that's why Sprint 8 step 2 matters." },
+
+    { "id": "DAX-802", "title": "Marketing efficiency: spend, ROAS, CAC", "difficulty": 4, "type": "homework", "from": "Arjun Mehta · CFO", "est": "40 min", "mode": "external",
+      "prompt": "Relate marketing_spend to dim_date (and a cleaned channel/category) and build Total Spend, ROAS (revenue per ₹ spent) and a rough CAC (spend per new customer). Mind the 'Home&Kitchen' vs 'Home & Kitchen' mismatch — fix it in Power Query before relating.",
+      "acceptanceCriteria": ["Category text standardized in Power Query so it joins to dim_product category", "Total Spend, ROAS, CAC measures", "ROAS sliceable by channel and month"],
+      "solution": "-- Power Query on marketing_spend: Replace Values 'Home&Kitchen' → 'Home & Kitchen' (or Text.Trim),\n-- then relate marketing_spend[spend_date] → dim_date[DateKey].\n\nTotal Spend = SUM ( marketing_spend[spend_inr] )\nROAS = DIVIDE ( [Net Revenue], [Total Spend] )        -- revenue per rupee spent\nCAC  = DIVIDE ( [Total Spend], [Distinct Customers] )  -- rough cost per customer",
+      "modelNote": "ROAS here attributes all revenue to spend — a blended proxy, not last-touch attribution. Name that limitation in the debrief; that's what a senior analyst does." },
+
+    { "id": "DAX-8S", "title": "New vs returning customers & % of total", "difficulty": 5, "type": "stretch", "from": "Sana Kapoor (portfolio piece)", "est": "45 min", "mode": "external",
+      "prompt": "Two senior DAX patterns: a measure that counts new customers (first-ever order falls in the visual's period) and a % of Total Revenue measure that ignores the category filter for the denominator.",
+      "acceptanceCriteria": ["New Customers correct as you slice by month", "% of Total uses ALL/ALLSELECTED appropriately", "One sentence on the filter-context reasoning"],
+      "solution": "New Customers =\nVAR PeriodDates = VALUES ( dim_date[DateKey] )\nRETURN\nCOUNTROWS ( FILTER ( VALUES ( fact_sales[CustomerKey] ),\n  VAR FirstOrder = CALCULATE ( MIN ( fact_sales[DateKey] ), ALLEXCEPT ( fact_sales, fact_sales[CustomerKey] ) )\n  RETURN FirstOrder IN PeriodDates ) )\n\n% of Total Revenue =\nDIVIDE ( [Net Revenue], CALCULATE ( [Net Revenue], ALLSELECTED ( dim_product ) ) )",
+      "modelNote": "New Customers re-computes each customer's first-ever order date ignoring the date filter (ALLEXCEPT), then keeps only those whose first order lands in the visible period. % of Total strips the product filter from the denominator with ALLSELECTED so each category shows its share of the visible total." }
+  ]
+}

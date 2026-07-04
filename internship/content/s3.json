@@ -1,0 +1,44 @@
+{
+  "id": "s3",
+  "kind": "sprint",
+  "name": "Multi-Table Investigations",
+  "est": "~3 hours",
+  "goal": "Connect tables without lying — find what doesn't match, and treat the gaps as findings, not nuisances.",
+  "brief": {
+    "from": "Arjun Mehta · CFO — flagged URGENT",
+    "body": "The PE firm's finance lead asked me a question I couldn't answer cleanly: 'Does total payments collected reconcile to total order revenue?' I said 'roughly.' Not good enough. Reconcile orders against payments to the rupee, explain every gap, and tell me if we're recognising any revenue we never actually collected. This ticket makes or breaks diligence."
+  },
+  "clinic": {
+    "title": "Joins as investigation tools",
+    "body": "INNER keeps matches and silently deletes everything else. LEFT keeps all left rows; unmatched ones surface as NULL on the right. The pattern LEFT JOIN … WHERE right.key IS NULL finds what's missing — orphan payments, unpaid orders, deprecated SKUs. In reconciliation, the unmatched rows are the entire point."
+  },
+  "classwork": {
+    "title": "Build the cash reconciliation — together",
+    "steps": [
+      { "instr": "Find orphan payments (payment, no order).", "sql": "SELECT COUNT(*) AS orphan_payments, ROUND(SUM(pmt.Amount),0) AS orphan_amount\nFROM payments pmt\nLEFT JOIN orders o ON pmt.OrderID = o.OrderID\nWHERE o.OrderID IS NULL;", "checkpoint": "200 orphan payments totalling ~₹81.2 lakh — orders were purged. Flag to Ravi." },
+      { "instr": "Find unpaid orders (order, no payment).", "sql": "SELECT COUNT(*) AS unpaid_orders, ROUND(SUM(o.Revenue),0) AS uncollected_revenue\nFROM orders o\nLEFT JOIN payments pmt ON o.OrderID = pmt.OrderID\nWHERE pmt.OrderID IS NULL;", "checkpoint": "150 unpaid orders ~₹30.8 lakh recognised with no matching payment — the scary CFO number." },
+      { "instr": "Classify matched-but-mismatched amounts — mind the branch order.", "sql": "SELECT\n  CASE WHEN pmt.PaymentStatus='Refunded' THEN 'Refunded (cash returned)'\n       WHEN pmt.Amount < o.Revenue THEN 'Underpaid / partial'\n       WHEN pmt.Amount > o.Revenue THEN 'Overpaid / EMI rounding'\n       ELSE 'Exact match' END AS gap_type,\n  COUNT(*) AS orders,\n  ROUND(SUM(pmt.Amount - o.Revenue), 0) AS net_gap_inr\nFROM orders o JOIN payments pmt ON o.OrderID = pmt.OrderID\nGROUP BY 1\nORDER BY ABS(SUM(pmt.Amount - o.Revenue)) DESC;", "checkpoint": "Check Refunded BEFORE the amount comparisons — otherwise refunds misclassify as 'underpaid'. The #1 reviewer trap this sprint." }
+    ],
+    "reference": "SELECT 'orphan_payments' AS check_name, COUNT(*) AS records, ROUND(SUM(pmt.Amount),0) AS rupees\nFROM payments pmt LEFT JOIN orders o ON pmt.OrderID=o.OrderID WHERE o.OrderID IS NULL\nUNION ALL\nSELECT 'unpaid_orders', COUNT(*), ROUND(SUM(o.Revenue),0)\nFROM orders o LEFT JOIN payments pmt ON o.OrderID=pmt.OrderID WHERE pmt.OrderID IS NULL\nUNION ALL\nSELECT 'matched_amount_gap', COUNT(*), ROUND(SUM(pmt.Amount - o.Revenue),0)\nFROM orders o JOIN payments pmt ON o.OrderID=pmt.OrderID;"
+  },
+  "tickets": [
+    { "id": "SHOP-301", "title": "Expose the revenue an INNER JOIN to products would hide", "difficulty": 4, "type": "homework", "from": "Priya Nair · Lead Data Analyst", "est": "30 min", "mode": "auto",
+      "prompt": "Prove how dangerous a reflexive INNER JOIN to products is. In ONE query (LEFT JOIN orders to products), return exactly these five columns in order: total_orders, total_revenue (rounded 0), orders_on_deprecated_skus, revenue_hidden_by_inner_join (rounded 0), pct_revenue_at_risk (rounded 2).",
+      "acceptanceCriteria": ["Single row, five columns in the stated order", "Deprecated = ProductID absent from products (IS NULL after LEFT JOIN)", "pct_revenue_at_risk = hidden_revenue / total_revenue * 100, rounded to 2"],
+      "hints": ["LEFT JOIN products pr ON o.ProductID=pr.ProductID.", "Deprecated rows are where pr.ProductID IS NULL.", "Use SUM(CASE WHEN pr.ProductID IS NULL THEN … END) for the hidden counts/revenue."],
+      "grader": { "type": "result-set", "round": 2, "ordered": true, "salt": "s301", "answerHash": "6abdc7c96ca1f04722d20f097a2871eb327eb4df39e313402388ba1d016eb2e3" } },
+
+    { "id": "SHOP-302", "title": "Payment-method mix & digital penetration over time", "difficulty": 3, "type": "homework", "from": "Arjun Mehta · CFO", "est": "30 min", "mode": "auto",
+      "prompt": "Is COD declining as a share of orders? Join orders to payments and return, per year, exactly these four columns in order: OrderYear, cod_pct, digital_pct (everything except COD), upi_pct. Round every percentage to 1 decimal. One row per year, chronological.",
+      "acceptanceCriteria": ["One row per OrderYear, ascending", "cod_pct + digital_pct = 100 within a year", "All percentages rounded to 1 decimal"],
+      "hints": ["CTE joining orders to payments to get (OrderYear, PaymentMethod).", "cod_pct = SUM(CASE WHEN PaymentMethod='COD' THEN 1 ELSE 0 END)*100.0/COUNT(*).", "digital = non-COD; upi = PaymentMethod='UPI'."],
+      "grader": { "type": "result-set", "round": 1, "ordered": true, "salt": "s302", "answerHash": "00a0fd2e240a2a0e65b4a159a648bfcfb7c56f8201a32824d5476812782d90ae" } },
+
+    { "id": "SHOP-3S", "title": "Sale-event lift via a non-equi join", "difficulty": 5, "type": "stretch", "from": "Sana Kapoor (portfolio piece)", "est": "50 min", "mode": "reveal",
+      "prompt": "Did sale events actually lift revenue? Join orders to events where the order date falls between an event's start and end — a non-equi join most juniors have never written — and compare average daily revenue inside vs outside event windows.",
+      "acceptanceCriteria": ["Orders tagged in/out of an event window via BETWEEN on dates", "Average daily revenue compared event vs non-event", "Lift expressed as a % uplift"],
+      "hints": ["LEFT JOIN events e ON o.OrderDate BETWEEN e.StartDate AND e.EndDate.", "Aggregate to daily revenue per window_type, then AVG.", "An order in overlapping events multiplies — use EXISTS or SELECT DISTINCT to avoid double-count."],
+      "solution": "WITH tagged AS (\n  SELECT o.OrderDate, o.Revenue,\n    CASE WHEN e.EventID IS NOT NULL THEN 'Event' ELSE 'Non-event' END AS window_type\n  FROM orders o\n  LEFT JOIN events e ON o.OrderDate BETWEEN e.StartDate AND e.EndDate\n),\ndaily AS (\n  SELECT window_type, OrderDate, SUM(Revenue) AS day_rev FROM tagged GROUP BY window_type, OrderDate\n)\nSELECT window_type, COUNT(*) AS days, ROUND(AVG(day_rev),0) AS avg_daily_revenue\nFROM daily GROUP BY window_type;",
+      "modelNote": "Lift = (event avg / non-event avg - 1) * 100, computed from the two rows. Watch the overlapping-events edge case — it inflates an order's row via the LEFT JOIN." }
+  ]
+}

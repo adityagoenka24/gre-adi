@@ -1,0 +1,52 @@
+{
+  "id": "s7",
+  "kind": "sprint",
+  "name": "Dimensional Modeling & the Gold Layer",
+  "est": "~3.5 hours",
+  "env": "Runs here — DuckDB builds the gold-layer views live. (On the job this is Databricks Unity Catalog.)",
+  "goal": "Turn the messy, query-by-query tables into a clean dimensional model a BI tool can sit on — facts, conformed dimensions, a date dimension, and a star schema (plus the snowflake variant and when each wins).",
+  "brief": {
+    "from": "Priya Nair · Lead Data Analyst",
+    "body": "The data room is great, but every query re-derives the same joins and cleaning from scratch — that doesn't scale, and we can't hand raw orders to a BI tool with duplicate customers and deprecated SKUs in it. Build us a proper gold layer: fact and dimension tables, a date dimension, clean keys. Then we (and Power BI) build on that, not on the swamp. I want a star schema — and I want you to be able to explain when you'd snowflake it instead."
+  },
+  "clinic": {
+    "title": "Dimensional modeling in 5 ideas",
+    "body": "(1) A fact table holds measurable events at a stated grain — here, one row per order. Facts hold numbers and foreign keys. (2) A dimension holds descriptive context you slice by — customer, product, date. (3) A star schema = one fact surrounded by denormalized dimensions (one join hop each). (4) A snowflake normalizes a dimension into sub-tables (Product → SubCategory → Category) — less redundancy, more joins. (5) A date dimension is non-negotiable: it powers every by-month/quarter/YTD slice. Medallion model: Bronze = raw (raw_web_events), Silver = cleaned (customers_clean), Gold = the dim_*/fact_* model you build now. The app has already created these gold views for you — the classwork shows exactly how."
+  },
+  "classwork": {
+    "title": "Build the gold-layer star — together",
+    "steps": [
+      { "instr": "dim_customer — reuse the clean view (already deduped/standardized in S1).", "sql": "CREATE OR REPLACE VIEW dim_customer AS\nSELECT CustomerID AS CustomerKey, CustomerName, Segment, PrimeSubscriber,\n  AgeGroup, Gender, City, State, Region, SubRegion\nFROM customers_clean;", "checkpoint": "One row per customer, no duplicates (inherits customers_clean's guarantee)." },
+      { "instr": "dim_product — add an explicit 'UNKNOWN' member so deprecated-SKU facts map somewhere instead of vanishing.", "sql": "CREATE OR REPLACE VIEW dim_product AS\nSELECT ProductID AS ProductKey, ProductName, Category, SubCategory, Brand, Supplier, Rating FROM products\nUNION ALL\nSELECT 'UNKNOWN','Deprecated/Unknown SKU','Unknown','Unknown','Unknown','Unknown',NULL;", "checkpoint": "490 rows (489 products + 1 unknown member). Every fact row now finds a product." },
+      { "instr": "dim_date — generate a contiguous calendar (not from strings). Note the DuckDB syntax; Databricks differs (see Spark note).", "sql": "CREATE OR REPLACE VIEW dim_date AS\nSELECT d AS DateKey, year(d) AS \"Year\", quarter(d) AS \"Quarter\", month(d) AS MonthNo,\n  strftime(d,'%b') AS MonthName, strftime(d,'%Y-%m') AS YearMonth,\n  concat(year(d),'-Q',quarter(d)) AS YearQuarter, day(d) AS DayOfMonth,\n  strftime(d,'%a') AS DayName,\n  CASE WHEN isodow(d) IN (6,7) THEN true ELSE false END AS IsWeekend\nFROM (SELECT unnest(generate_series(DATE '2022-01-01', DATE '2024-12-31', INTERVAL 1 DAY)) AS d);", "checkpoint": "1,096 rows (3 years incl. a leap day). Note: Year/Quarter are reserved words in DuckDB, so they're quoted. Spark form: explode(sequence(...)) + DATE_FORMAT(d,'yyyy-MM')." },
+      { "instr": "fact_sales — grain: one row per order. Route deprecated SKUs to 'UNKNOWN' so nothing is dropped.", "sql": "CREATE OR REPLACE VIEW fact_sales AS\nSELECT o.OrderID, o.CustomerID AS CustomerKey, COALESCE(p.ProductID,'UNKNOWN') AS ProductKey,\n  o.OrderDate AS DateKey, o.Quantity, o.Revenue,\n  CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END AS NetRevenue,\n  o.CostOfGoods, o.GrossProfit, o.Discount_Pct, o.ReturnFlag\nFROM orders o LEFT JOIN products p ON o.ProductID = p.ProductID;", "checkpoint": "50,000 rows — exactly the order count, no fan-out. NetRevenue pre-computed so BI measures stay simple." }
+    ],
+    "reference": "-- Validate referential integrity — every fact key must resolve (all zero):\nSELECT\n  (SELECT COUNT(*) FROM fact_sales f LEFT JOIN dim_customer d ON f.CustomerKey=d.CustomerKey WHERE d.CustomerKey IS NULL) AS orphan_customers,\n  (SELECT COUNT(*) FROM fact_sales f LEFT JOIN dim_product  d ON f.ProductKey =d.ProductKey  WHERE d.ProductKey  IS NULL) AS orphan_products,\n  (SELECT COUNT(*) FROM fact_sales f LEFT JOIN dim_date     d ON f.DateKey    =d.DateKey     WHERE d.DateKey     IS NULL) AS orphan_dates;"
+  },
+  "tickets": [
+    { "id": "MODEL-700", "title": "Validate the gold layer — shape & referential integrity", "difficulty": 3, "type": "homework", "from": "Priya Nair · Lead Data Analyst", "est": "20 min", "mode": "auto",
+      "prompt": "Prove the model is clean and correctly grained in ONE query. Return a single row with exactly six columns in order: dim_date row count, dim_product row count, fact_sales row count, then the three orphan-key counts (fact rows whose CustomerKey / ProductKey / DateKey don't resolve to a dimension). The three orphan counts must be zero. The gold views (dim_customer, dim_product, dim_date, fact_sales) are already created.",
+      "acceptanceCriteria": ["Single row, six columns in the stated order", "Counts prove the grain: dim_date=1096, dim_product=490, fact_sales=50000", "All three orphan-key counts are 0 (referential integrity holds)"],
+      "hints": ["Use scalar subqueries: (SELECT COUNT(*) FROM dim_date), etc.", "Orphans: LEFT JOIN fact_sales to each dim on the key, count rows where the dim key IS NULL."],
+      "grader": { "type": "result-set", "round": 0, "ordered": true, "salt": "m700", "answerHash": "ab0235d89107283b2e9a9a42fb1645be14a3bfd982335158e5c9c5b4f29aa156" } },
+
+    { "id": "MODEL-701", "title": "Snowflake the product dimension", "difficulty": 3, "type": "homework", "from": "Priya Nair · Lead Data Analyst", "est": "30 min", "mode": "reveal",
+      "prompt": "Normalize dim_product into a snowflake: dim_product → dim_subcategory → dim_category. Then write one sentence on why a star (denormalized) is usually preferred in Power BI despite the redundancy.",
+      "acceptanceCriteria": ["Three linked views with clean keys (CategoryKey, SubCategoryKey)", "No category/subcategory text duplicated across the chain", "One-line written star-vs-snowflake trade-off"],
+      "hints": ["dim_category: DISTINCT Category. dim_subcategory: DISTINCT SubCategory + its CategoryKey.", "dim_product_snowflake keeps only SubCategoryKey, not the text."],
+      "solution": "CREATE OR REPLACE VIEW dim_category AS\nSELECT DISTINCT Category AS CategoryKey, Category AS CategoryName FROM products;\nCREATE OR REPLACE VIEW dim_subcategory AS\nSELECT DISTINCT SubCategory AS SubCategoryKey, SubCategory AS SubCategoryName, Category AS CategoryKey FROM products;\nCREATE OR REPLACE VIEW dim_product_snowflake AS\nSELECT ProductID AS ProductKey, ProductName, Brand, Supplier, Rating, SubCategory AS SubCategoryKey FROM products;",
+      "modelNote": "Trade-off: 'Star wins in Power BI because the VertiPaq engine compresses redundant dimension text cheaply, and fewer relationship hops mean simpler DAX and faster filter propagation. Snowflake only pays off when a sub-dimension is huge or reused across many facts.'" },
+
+    { "id": "MODEL-702", "title": "A second fact: fact_web_events (constellation)", "difficulty": 4, "type": "homework", "from": "Sana Kapoor · Head of Growth", "est": "40 min", "mode": "reveal",
+      "prompt": "Build a cleaned fact_web_events (grain: one event) off the dirty clickstream, sharing dim_customer, dim_product and dim_date. This makes the model a constellation (two facts, conformed dimensions). Reuse your Sprint 5 cleaning.",
+      "acceptanceCriteria": ["Deduped by event_id, event_type normalized, timestamp parsed to a real date", "DateKey = the event's date (joins to dim_date)", "Guest events (NULL customer) routed to an 'UNKNOWN' member, not dropped"],
+      "hints": ["Dedup with ROW_NUMBER per event_id.", "DuckDB timestamp parse: try_strptime(event_ts,'%Y-%m-%d %H:%M:%S') across the 3 formats, COALESCE, cast to DATE.", "COALESCE(customer_id,'UNKNOWN')."],
+      "solution": "CREATE OR REPLACE VIEW fact_web_events AS\nWITH deduped AS (\n  SELECT *, ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY event_ts) AS rn FROM raw_web_events),\ncleaned AS (\n  SELECT event_id, session_id,\n    COALESCE(customer_id,'UNKNOWN') AS CustomerKey,\n    COALESCE(product_id,'UNKNOWN')  AS ProductKey,\n    LOWER(TRIM(event_type)) AS event_type,\n    CAST(COALESCE(\n      try_strptime(event_ts,'%Y-%m-%d %H:%M:%S'),\n      try_strptime(event_ts,'%d/%m/%Y %H:%M'),\n      try_strptime(event_ts,'%Y-%m-%dT%H:%M:%SZ')\n    ) AS DATE) AS DateKey,\n    TRY_CAST(revenue AS DOUBLE) AS event_revenue\n  FROM deduped WHERE rn = 1)\nSELECT * FROM cleaned WHERE DateKey IS NOT NULL;",
+      "modelNote": "A constellation only works if dimensions are conformed — dim_customer means the same to both facts. Don't build a second customer dimension. Spark uses try_to_timestamp(...) with 'yyyy-MM-dd HH:mm:ss' style masks instead of DuckDB's try_strptime with strptime tokens." },
+
+    { "id": "MODEL-7S", "title": "Document the model: a Kimball bus matrix", "difficulty": 4, "type": "stretch", "from": "Priya Nair (portfolio piece)", "est": "30 min", "mode": "free",
+      "prompt": "Produce a Kimball-style bus matrix: a grid of facts (rows) × dimensions (columns) with a mark where a fact uses a dimension. It's how data teams communicate a model at a glance — a great portfolio artifact. Write it in the notes box.",
+      "acceptanceCriteria": ["Rows: fact_sales, fact_web_events (and fact_marketing if built)", "Columns: date, customer, product, payment, event, channel", "Shows which dimensions are conformed (shared) across facts"],
+      "modelNote": "Example — fact_sales uses date/customer/product/payment; fact_web_events uses date/customer/product/channel(utm); fact_marketing uses date/channel. Shared (conformed) dimensions — date, customer, product — are what let one dashboard slice every fact at once." }
+  ]
+}

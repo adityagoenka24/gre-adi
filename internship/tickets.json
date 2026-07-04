@@ -1,0 +1,70 @@
+{
+  "sprint": {
+    "id": "S1",
+    "name": "Data Quality & Foundations",
+    "goal": "Turn an untrustworthy customer table into a single source of truth — and quantify the cost of not doing so.",
+    "brief": {
+      "from": "Arjun Mehta · CFO — cc: Priya",
+      "body": "The PE firm starts diligence in five weeks. Before we show them a single customer number, I need to know our customer data is clean — last quarter we reported a customer count inflated by duplicates and it was embarrassing. Get the new intern to (a) tell me exactly how bad the duplication is, and (b) hand me one customer table I can actually trust."
+    }
+  },
+  "tickets": [
+    {
+      "id": "SHOP-100",
+      "title": "Measure the duplication in the customer table",
+      "difficulty": 2,
+      "type": "homework",
+      "from": "Priya Nair · Lead Data Analyst",
+      "est": "10 min",
+      "prompt": "Before we clean anything, quantify the problem. Return a single number: how many CustomerIDs appear more than once in the raw customers table.",
+      "acceptanceCriteria": [
+        "Returns one value: the count of CustomerIDs that occur more than once",
+        "Counts distinct offending IDs, not total duplicate rows"
+      ],
+      "hints": [
+        "GROUP BY CustomerID, then keep only groups with COUNT(*) > 1.",
+        "Wrap that in an outer COUNT(*) to count how many such IDs there are."
+      ],
+      "grader": { "type": "scalar", "round": 0, "salt": "s1a", "answerHash": "3063aa50cfdae7b8a5a5a61f92bc86c96d624c7397e9b3fe868101d8ad191bba" }
+    },
+    {
+      "id": "SHOP-101",
+      "title": "Clean city report — how many phantom cities did the dirty data invent?",
+      "difficulty": 3,
+      "type": "homework",
+      "from": "Sana Kapoor · Head of Growth",
+      "est": "25 min",
+      "prompt": "Raw City is a mess of casing and stray whitespace, so the same city shows up several times. Return a single row with exactly two columns, in this order: (1) the distinct city count BEFORE cleaning, (2) the distinct city count AFTER cleaning (trim + lowercase). This is the 'before vs after' card Sana wants at the top of the report.",
+      "acceptanceCriteria": [
+        "One row, two columns: raw distinct-city count then cleaned distinct-city count",
+        "Cleaning handles BOTH whitespace and casing",
+        "Column order is raw first, clean second"
+      ],
+      "hints": [
+        "COUNT(DISTINCT City) gives the raw count.",
+        "For the clean count, normalize inside the COUNT: COUNT(DISTINCT TRIM(LOWER(City))).",
+        "LOWER alone leaves 'mumbai' and 'mumbai ' as two cities — TRIM is mandatory."
+      ],
+      "grader": { "type": "result-set", "round": 0, "ordered": true, "salt": "s101", "answerHash": "fd37b7b7a92daf32d472e2721ab0d5b0e961c5b4ee34916a6cb1d3780411f1b0" }
+    },
+    {
+      "id": "SHOP-102D",
+      "title": "Surface the impossible-revenue orders",
+      "difficulty": 4,
+      "type": "homework",
+      "from": "Priya Nair · Lead Data Analyst",
+      "est": "15 min",
+      "prompt": "The orders table has a few rows with impossible revenue that distort every average and margin. Return the OrderID of every order whose Revenue is zero or negative — one column, one row per bad order. Don't drop them silently; we need the list for the audit.",
+      "acceptanceCriteria": [
+        "Returns a single column of OrderIDs",
+        "Includes every order with Revenue <= 0",
+        "No orders with valid (positive) revenue leak into the list"
+      ],
+      "hints": [
+        "Filter with WHERE Revenue <= 0.",
+        "Select only OrderID — the grader looks at the first column."
+      ],
+      "grader": { "type": "id-set", "round": 0, "salt": "s102d", "answerHash": "54b9a90c95b10c80dd990979bee60ac582add8681856dbc87c344283da93594a" }
+    }
+  ]
+}

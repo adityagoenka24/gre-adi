@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShopNow Analyst Internship</title>
+<style>
+  :root{--bg:#14161c;--panel:#1b202a;--panel2:#0e1116;--line:#2a3140;--green:#6fd08c;--greenDk:#0e1a12;--amber:#f5a623;--red:#ff6b6b;--txt:#e7ebf0;--mut:#8a92a0;--blue:#5b8af5;--purple:#b79cff;}
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{font-family:-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:var(--bg);color:var(--txt);font-size:14px;display:flex;flex-direction:column;height:100vh;overflow:hidden;}
+  #boot{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:50;gap:14px;}
+  .spinner{width:34px;height:34px;border:3px solid var(--line);border-top-color:var(--green);border-radius:50%;animation:spin 1s linear infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  #boot .msg{color:var(--mut);font-size:13px;}
+  header{display:flex;align-items:center;justify-content:space-between;padding:11px 20px;border-bottom:1px solid var(--line);flex:0 0 auto;}
+  header .brand{font-weight:700;} header .brand span{color:var(--green);}
+  header .env{font-size:12px;color:var(--mut);}
+  .wrap{display:flex;flex:1 1 auto;min-height:0;}
+  #side{width:270px;flex:0 0 auto;border-right:1px solid var(--line);overflow-y:auto;background:var(--panel);padding:10px 0;}
+  .navphase{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);padding:12px 18px 4px;}
+  .navitem{padding:9px 18px;cursor:pointer;display:flex;gap:9px;align-items:center;border-left:3px solid transparent;}
+  .navitem:hover{background:#222836;}
+  .navitem.active{background:#222836;border-left-color:var(--green);font-weight:600;}
+  .navitem .nx{font-size:11px;color:var(--mut);}
+  #main{flex:1 1 auto;overflow-y:auto;padding:24px 30px;min-width:0;}
+  h1{font-size:21px;margin:0 0 4px;} h2.section{font-size:13px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:26px 0 10px;border-bottom:1px solid var(--line);padding-bottom:6px;}
+  .goal{color:var(--mut);font-size:13.5px;margin:6px 0 4px;}
+  .brief{background:#20242d;border-left:3px solid var(--amber);border-radius:6px;padding:12px 16px;margin:14px 0;font-size:13px;}
+  .brief .from{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--amber);margin-bottom:6px;font-weight:700;}
+  .clinic{background:#141d20;border-left:3px solid var(--green);border-radius:6px;padding:12px 16px;margin:14px 0;font-size:13px;}
+  .clinic .h{color:var(--green);font-weight:700;margin-bottom:5px;}
+  details{border:1px solid var(--line);border-radius:8px;margin:10px 0;overflow:hidden;}
+  summary{cursor:pointer;padding:10px 14px;font-weight:600;font-size:13px;background:#1b202a;list-style:none;}
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"▶ ";font-size:9px;color:var(--mut);}
+  details[open]>summary::before{content:"▼ ";}
+  .dbody{padding:12px 16px;}
+  .step{margin:10px 0;}
+  .step .instr{font-size:13px;margin-bottom:6px;}
+  .cp{font-size:12px;color:var(--green);margin-top:6px;}
+  pre{background:var(--panel2);border:1px solid var(--line);border-radius:6px;padding:10px 12px;overflow-x:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.5;margin:8px 0;white-space:pre;}
+  .card{border:1px solid var(--line);border-radius:10px;margin:14px 0;overflow:hidden;}
+  .card>.chead{background:#1b202a;padding:11px 15px;display:flex;gap:10px;align-items:center;cursor:pointer;}
+  .dot{width:10px;height:10px;border-radius:50%;background:#3a4250;flex:0 0 auto;}
+  .dot.done{background:var(--green);}
+  .cid{font-family:ui-monospace,monospace;font-size:11px;color:var(--mut);}
+  .ctitle{font-size:13.5px;font-weight:600;flex:1 1 auto;}
+  .pill{display:inline-block;font-size:10px;font-weight:700;border-radius:10px;padding:1px 7px;}
+  .d2{background:#173a22;color:var(--green);}.d3{background:#3a2f12;color:var(--amber);}.d4{background:#3a1f14;color:#e0803a;}.d5{background:#3a1414;color:var(--red);}
+  .mode{font-size:10px;text-transform:uppercase;letter-spacing:.5px;padding:1px 7px;border-radius:8px;}
+  .m-auto{background:#12203a;color:var(--blue);}.m-reveal{background:#231a3a;color:var(--purple);}.m-free{background:#20242d;color:var(--mut);}.m-ext{background:#3a2f0f;color:#f2c811;}
+  .cbody{padding:14px 16px;display:none;}
+  .card.open .cbody{display:block;}
+  .prompt{font-size:13.5px;line-height:1.55;margin-bottom:10px;}
+  .aclist{list-style:none;padding:0;margin:8px 0;}
+  .aclist li{padding:4px 0 4px 24px;position:relative;font-size:12.5px;}
+  .aclist li::before{content:"☐";position:absolute;left:2px;color:var(--mut);}
+  .aclist li.met::before{content:"☑";color:var(--green);}
+  textarea.ed{width:100%;height:130px;background:var(--panel2);color:var(--txt);border:1px solid var(--line);border-radius:8px;padding:11px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;line-height:1.5;resize:vertical;}
+  textarea.note{height:110px;}
+  .btns{display:flex;gap:8px;margin-top:9px;flex-wrap:wrap;align-items:center;}
+  button{border:none;border-radius:7px;padding:8px 15px;font-weight:700;cursor:pointer;font-size:12.5px;}
+  .run{background:#2a3140;color:var(--txt);}.run:hover{background:#333c4d;}
+  .submit{background:var(--green);color:var(--greenDk);}
+  .ghost{background:none;color:var(--blue);font-weight:600;padding:8px 4px;}
+  .ghost.purple{color:var(--purple);}
+  .markdone{background:#233a26;color:var(--green);}
+  button:disabled{opacity:.5;cursor:default;}
+  .result{margin-top:12px;overflow:auto;max-height:300px;}
+  table{width:100%;border-collapse:collapse;font-size:12px;}
+  th,td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;white-space:nowrap;}
+  th{color:var(--mut);position:sticky;top:0;background:var(--bg);}
+  .banner{margin-top:11px;padding:10px 14px;border-radius:8px;font-size:13px;font-weight:600;display:none;}
+  .banner.ok{display:block;background:#12301c;border:1px solid var(--green);color:var(--green);}
+  .banner.no{display:block;background:#301414;border:1px solid var(--red);color:#ff9a9a;}
+  .err{color:#ff9a9a;font-family:ui-monospace,monospace;font-size:12px;white-space:pre-wrap;}
+  .hint{background:#12203a;border:1px solid #1c3a6b;border-radius:6px;padding:7px 11px;margin:6px 0;font-size:12px;color:#bcd2f5;}
+  .sparknote{background:#241a10;border:1px solid #4a3316;border-radius:6px;padding:7px 11px;margin:6px 0;font-size:12px;color:#e8c48a;}
+  .note-txt{font-size:12px;color:var(--mut);margin:6px 0;}
+  .scorebar{font-size:12.5px;color:var(--mut);margin:6px 0 14px;}
+  .diagq{border:1px solid var(--line);border-radius:8px;margin:10px 0;padding:12px 15px;}
+  .diagq .qt{font-size:13px;font-weight:600;}
+  .diagq .tests{font-size:11px;color:var(--mut);margin:2px 0 8px;}
+  /* overview */
+  .ovhead{display:flex;gap:24px;align-items:center;flex-wrap:wrap;margin:6px 0 8px;}
+  .ring{--pct:0;width:104px;height:104px;border-radius:50%;flex:0 0 auto;background:conic-gradient(var(--green) calc(var(--pct)*1%), #262d3a 0);display:flex;align-items:center;justify-content:center;}
+  .ring .inner{width:80px;height:80px;border-radius:50%;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .ring .pctn{font-size:22px;font-weight:800;color:var(--green);}
+  .ring .pctl{font-size:9px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;}
+  .stats{display:flex;gap:12px;flex-wrap:wrap;}
+  .stat{background:#1b202a;border:1px solid var(--line);border-radius:10px;padding:12px 16px;min-width:110px;}
+  .stat .n{font-size:22px;font-weight:800;color:var(--green);}
+  .stat .l{font-size:11px;color:var(--mut);text-transform:uppercase;letter-spacing:.5px;}
+  .spbars{margin:10px 0;}
+  .spbar{display:flex;align-items:center;gap:10px;margin:7px 0;font-size:12.5px;cursor:pointer;}
+  .spbar:hover .spname{color:#fff;}
+  .spname{width:210px;flex:0 0 auto;color:var(--mut);}
+  .track{flex:1 1 auto;height:8px;background:#262d3a;border-radius:5px;overflow:hidden;}
+  .fill{height:100%;background:var(--green);}
+  .spcount{width:52px;text-align:right;color:var(--mut);flex:0 0 auto;}
+  .board{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:10px 0;}
+  @media(max-width:900px){.board{grid-template-columns:1fr 1fr;}}
+  .col{background:#161b23;border:1px solid var(--line);border-radius:10px;padding:8px;min-height:80px;}
+  .col h4{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:var(--mut);margin:4px 6px 8px;display:flex;justify-content:space-between;}
+  .chip{background:#1b202a;border:1px solid var(--line);border-left:3px solid #3a4250;border-radius:7px;padding:7px 9px;margin:6px 0;cursor:pointer;font-size:12px;}
+  .chip:hover{background:#222836;}
+  .chip.done{border-left-color:var(--green);} .chip.wip{border-left-color:var(--amber);} .chip.review{border-left-color:var(--purple);} .chip.locked{opacity:.55;border-left-color:#555;cursor:default;}
+  .chip .cid2{font-family:ui-monospace,monospace;font-size:10px;color:var(--mut);}
+  .chip .lk{float:right;}
+  .locked-note{background:#241a10;border:1px solid #4a3316;border-radius:6px;padding:8px 12px;font-size:12px;color:#e8c48a;}
+</style>
+</head>
+<body>
+<div id="boot"><div class="spinner"></div><div class="msg">Booting your workspace…</div></div>
+<header>
+  <div class="brand">ShopNow <span>Analyst Internship</span></div>
+  <div class="env" id="env">DuckDB in-browser · loading…</div>
+</header>
+<div class="wrap">
+  <aside id="side"></aside>
+  <main id="main"></main>
+</div>
+
+<script type="module">
+import * as duckdb from 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/+esm';
+import { grade } from './canonical.js';
+
+const TABLES=['products','events','customers','orders','payments','raw_web_events','marketing_spend'];
+const LS=k=>`shopnow.${k}`;
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+let conn, INDEX, PORTFOLIO; const cache={};
+
+/* ---------- boot ---------- */
+async function boot(){
+  const b=await duckdb.selectBundle(duckdb.getJsDelivrBundles());
+  const wurl=URL.createObjectURL(new Blob([`importScripts("${b.mainWorker}");`],{type:'text/javascript'}));
+  const db=new duckdb.AsyncDuckDB(new duckdb.ConsoleLogger(),new Worker(wurl));
+  await db.instantiate(b.mainModule,b.pthreadWorker); URL.revokeObjectURL(wurl);
+  conn=await db.connect();
+  for(const t of TABLES){
+    const res=await fetch(`./data/${t}.parquet`);
+    if(!res.ok) throw new Error(`fetch ${t}.parquet -> ${res.status}`);
+    await db.registerFileBuffer(`${t}.parquet`,new Uint8Array(await res.arrayBuffer()));
+    await conn.query(`CREATE VIEW ${t} AS SELECT * FROM read_parquet('${t}.parquet')`);
+  }
+  // Pre-build customers_clean so any sprint can use it (DuckDB-safe; no INITCAP)
+  await conn.query(`CREATE OR REPLACE VIEW customers_clean AS
+    WITH ranked AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY CustomerID ORDER BY JoinDate DESC) rn FROM customers)
+    SELECT CustomerID, CustomerName, Email, Phone, TRIM(LOWER(City)) AS City, State,
+      COALESCE(Region,'Unknown') AS Region, SubRegion, AgeGroup, Gender, Segment, JoinDate, PrimeSubscriber
+    FROM ranked WHERE rn=1`);
+  // Pre-build the Phase 2 gold layer (star schema) so S7 tickets work immediately
+  await conn.query(`CREATE OR REPLACE VIEW dim_customer AS
+    SELECT CustomerID AS CustomerKey, CustomerName, Segment, PrimeSubscriber, AgeGroup, Gender, City, State, Region, SubRegion FROM customers_clean`);
+  await conn.query(`CREATE OR REPLACE VIEW dim_product AS
+    SELECT ProductID AS ProductKey, ProductName, Category, SubCategory, Brand, Supplier, Rating FROM products
+    UNION ALL SELECT 'UNKNOWN','Deprecated/Unknown SKU','Unknown','Unknown','Unknown','Unknown',NULL`);
+  await conn.query(`CREATE OR REPLACE VIEW dim_date AS
+    SELECT d AS DateKey, year(d) AS "Year", quarter(d) AS "Quarter", month(d) AS MonthNo, strftime(d,'%b') AS MonthName,
+      strftime(d,'%Y-%m') AS YearMonth, concat(year(d),'-Q',quarter(d)) AS YearQuarter, day(d) AS DayOfMonth,
+      strftime(d,'%a') AS DayName, CASE WHEN isodow(d) IN (6,7) THEN true ELSE false END AS IsWeekend
+    FROM (SELECT unnest(generate_series(DATE '2022-01-01', DATE '2024-12-31', INTERVAL 1 DAY)) AS d)`);
+  await conn.query(`CREATE OR REPLACE VIEW fact_sales AS
+    SELECT o.OrderID, o.CustomerID AS CustomerKey, COALESCE(p.ProductID,'UNKNOWN') AS ProductKey,
+      o.OrderDate AS DateKey, o.Quantity, o.Revenue,
+      CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END AS NetRevenue,
+      o.CostOfGoods, o.GrossProfit, o.Discount_Pct, o.ReturnFlag
+    FROM orders o LEFT JOIN products p ON o.ProductID = p.ProductID`);
+  INDEX=await (await fetch('./content/index.json')).json();
+  // prefetch all modules (small JSON) for the overview + gating
+  for(const m of INDEX.modules){ cache[m.id]=await (await fetch('./'+m.file)).json(); }
+  PORTFOLIO=await (await fetch('./content/portfolio.json')).json();
+  buildRegistry();
+  document.getElementById('env').textContent='DuckDB in-browser · 8 views (incl. customers_clean) · ready';
+  document.getElementById('boot').style.display='none';
+  renderNav(); openOverview();
+}
+
+/* flat ticket registry across sprints (excludes brushup drills) */
+let REGISTRY=[];
+function buildRegistry(){
+  REGISTRY=[];
+  INDEX.modules.forEach(m=>{
+    const d=cache[m.id]; if(!d||d.kind==='brushup')return;
+    (d.tickets||[]).forEach(t=>REGISTRY.push({...t, sprintId:m.id, sprintName:d.name}));
+  });
+}
+function ticketById(id){return REGISTRY.find(t=>t.id===id);}
+function isLocked(t){ if(!t.requires)return false; return t.requires.some(r=>st(r)!=='done'); }
+
+/* ---------- state ---------- */
+const st=id=>localStorage.getItem(LS('status.'+id))||'todo';
+const setSt=(id,s)=>{localStorage.setItem(LS('status.'+id),s);renderNav();};
+const draft=id=>localStorage.getItem(LS('draft.'+id))||'';
+const setDraft=(id,v)=>localStorage.setItem(LS('draft.'+id),v);
+const note=id=>localStorage.getItem(LS('note.'+id))||'';
+const setNote=(id,v)=>localStorage.setItem(LS('note.'+id),v);
+const attempted=id=>!!localStorage.getItem(LS('attempt.'+id));
+const setAttempt=id=>localStorage.setItem(LS('attempt.'+id),'1');
+function ticketState(id){ if(st(id)==='done')return 'done'; if(attempted(id))return 'review'; if((draft(id)+note(id)).trim())return 'wip'; return 'todo'; }
+
+/* ---------- nav ---------- */
+function renderNav(){
+  const s=document.getElementById('side'); s.innerHTML='';
+  const ov=document.createElement('div');ov.className='navitem'+(currentView==='overview'?' active':'');
+  ov.innerHTML=`<span>▪ Overview</span>`; ov.onclick=()=>openOverview(); s.appendChild(ov);
+  const pf=document.createElement('div');pf.className='navitem'+(currentView==='portfolio'?' active':'');
+  pf.innerHTML=`<span>▪ Portfolio</span>`; pf.onclick=()=>openPortfolio(); s.appendChild(pf);
+  let phase=null;
+  INDEX.modules.forEach(m=>{
+    if(m.phase!==phase){phase=m.phase;const p=document.createElement('div');p.className='navphase';p.textContent=phase;s.appendChild(p);}
+    const dn=(cache[m.id]&&cache[m.id].kind!=='brushup')?cache[m.id].tickets.filter(t=>st(t.id)==='done').length:null;
+    const tot=(cache[m.id]&&cache[m.id].kind!=='brushup')?cache[m.id].tickets.length:null;
+    const d=document.createElement('div');d.className='navitem'+(currentView==='module'&&current&&current.id===m.id?' active':'');d.dataset.id=m.id;
+    d.innerHTML=`<span>${esc(m.name)}</span>`+(tot!==null?`<span class="nx" style="margin-left:auto">${dn}/${tot}</span>`:'');
+    d.onclick=()=>openModule(m); s.appendChild(d);
+  });
+  if(INDEX.roadmap){const p=document.createElement('div');p.className='navphase';p.textContent='Coming next';s.appendChild(p);
+    INDEX.roadmap.forEach(r=>{const d=document.createElement('div');d.className='navitem';d.style.opacity=.5;d.innerHTML=`<span class="nx">${esc(r)}</span>`;s.appendChild(d);});}
+}
+
+/* ---------- module loading ---------- */
+let current, currentView='overview';
+async function openModule(m, openTicketId){
+  current=m; currentView='module'; renderNav();
+  if(!cache[m.id]) cache[m.id]=await (await fetch('./'+m.file)).json();
+  const data=cache[m.id];
+  if(m.kind==='brushup') renderBrushup(data); else renderSprint(data);
+  document.getElementById('main').scrollTop=0;
+  if(openTicketId){
+    const cards=[...document.querySelectorAll('#tickets .card')];
+    const idx=(data.tickets||[]).findIndex(t=>t.id===openTicketId);
+    if(idx>=0&&cards[idx]){ cards[idx].querySelector('.chead').click(); cards[idx].scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+}
+
+/* ---------- overview ---------- */
+function openOverview(){
+  currentView='overview'; current=null; renderNav(); renderOverview();
+  document.getElementById('main').scrollTop=0;
+}
+function renderOverview(){
+  const total=REGISTRY.length;
+  const done=REGISTRY.filter(t=>st(t.id)==='done').length;
+  const pct=total?Math.round(done*100/total):0;
+  const sprints=INDEX.modules.filter(m=>cache[m.id]&&cache[m.id].kind!=='brushup');
+  // diagnostic
+  const p0=INDEX.modules.find(m=>cache[m.id]&&cache[m.id].kind==='brushup');
+  let diagPass=0,diagTot=0;
+  if(p0){const qs=cache[p0.id].diagnostic.questions.filter(q=>q.mode==='auto');diagTot=qs.length;diagPass=qs.filter(q=>st(q.id)==='done').length;}
+  const cols=[['todo','Backlog'],['wip','In Progress'],['review','In Review'],['done','Done']];
+  const byState={todo:[],wip:[],review:[],done:[]};
+  REGISTRY.forEach(t=>byState[isLocked(t)&&st(t.id)!=='done'?'todo':ticketState(t.id)].push(t));
+  let h=`<h1>Your Internship</h1><div class="goal">Data Analyst Intern · ShopNow India Analytics. Progress is saved in this browser.</div>`;
+  h+=`<div class="ovhead"><div class="ring" style="--pct:${pct}"><div class="inner"><span class="pctn">${pct}%</span><span class="pctl">complete</span></div></div>
+    <div class="stats">
+      <div class="stat"><div class="n">${done}/${total}</div><div class="l">Tickets passed</div></div>
+      <div class="stat"><div class="n">${diagPass}/${diagTot}</div><div class="l">Diagnostic (auto)</div></div>
+      <div class="stat"><div class="n">${sprints.length}</div><div class="l">Sprints</div></div>
+    </div></div>`;
+  h+=`<h2 class="section">Sprint progress</h2><div class="spbars">`;
+  sprints.forEach(m=>{const d=cache[m.id];const dn=d.tickets.filter(t=>st(t.id)==='done').length;const tt=d.tickets.length;const p=tt?Math.round(dn*100/tt):0;
+    h+=`<div class="spbar" data-sp="${m.id}"><span class="spname">${esc(m.name)}</span><span class="track"><span class="fill" style="width:${p}%"></span></span><span class="spcount">${dn}/${tt}</span></div>`;});
+  h+=`</div>`;
+  h+=`<h2 class="section">Sprint board</h2><div class="board">`;
+  cols.forEach(([k,label])=>{
+    h+=`<div class="col"><h4>${label}<span>${byState[k].length}</span></h4>`;
+    byState[k].forEach(t=>{
+      const lk=isLocked(t)&&st(t.id)!=='done';
+      h+=`<div class="chip ${lk?'locked':ticketState(t.id)}" data-tid="${t.id}" data-sp="${t.sprintId}">
+        <span class="cid2">${esc(t.id)}</span> ${lk?'<span class="lk">🔒</span>':''}<br>${esc(t.title)}</div>`;
+    });
+    h+=`</div>`;
+  });
+  h+=`</div>`;
+  const m=document.getElementById('main'); m.innerHTML=h;
+  m.querySelectorAll('.spbar').forEach(b=>b.onclick=()=>openModule(INDEX.modules.find(x=>x.id===b.dataset.sp)));
+  m.querySelectorAll('.chip').forEach(c=>{ if(c.classList.contains('locked'))return;
+    c.onclick=()=>openModule(INDEX.modules.find(x=>x.id===c.dataset.sp), c.dataset.tid);});
+}
+
+/* ---------- portfolio ---------- */
+const pname=()=>localStorage.getItem(LS('profile.name'))||'';
+function openPortfolio(){currentView='portfolio';current=null;renderNav();renderPortfolio();document.getElementById('main').scrollTop=0;}
+function earnedBullets(){return PORTFOLIO.resumeBullets.map(b=>({...b,earned:b.requires.every(r=>st(r)==='done')}));}
+function doneDeliverables(){return REGISTRY.filter(t=>st(t.id)==='done').map(t=>({...t,work:(draft(t.id)||note(t.id)||'').trim()}));}
+function renderPortfolio(){
+  const total=REGISTRY.length, done=REGISTRY.filter(t=>st(t.id)==='done').length;
+  const bullets=earnedBullets(), earned=bullets.filter(b=>b.earned), dels=doneDeliverables();
+  let h=`<h1>Your Portfolio</h1><div class="goal">${esc(PORTFOLIO.intro)}</div>`;
+  h+=`<div class="ovhead"><div class="stats">
+    <div class="stat"><div class="n">${done}/${total}</div><div class="l">Deliverables</div></div>
+    <div class="stat"><div class="n">${earned.length}/${bullets.length}</div><div class="l">Résumé bullets earned</div></div></div></div>`;
+  h+=`<div class="note-txt" style="margin:8px 0">Your name (for the export): <input id="pfname" value="${esc(pname())}" placeholder="Your name" style="background:#0e1116;color:var(--txt);border:1px solid var(--line);border-radius:6px;padding:6px 10px;font-size:13px"></div>`;
+  h+=`<div class="btns"><button class="submit" id="dlPortfolio">⬇ Download portfolio (HTML)</button><button class="run" id="exportProg">Export progress</button><button class="run" id="importProg">Import progress</button><input type="file" id="impFile" accept="application/json" style="display:none"></div>`;
+  h+=`<h2 class="section">${esc(PORTFOLIO.role)}</h2>`;
+  h+=`<ul class="aclist">`+bullets.map(b=>`<li class="${b.earned?'met':''}" style="opacity:${b.earned?1:0.45}">${esc(b.text)}</li>`).join('')+`</ul>`;
+  h+=`<div class="note-txt">${esc(PORTFOLIO.note)}</div>`;
+  h+=`<h2 class="section">Completed deliverables (${dels.length})</h2>`;
+  if(!dels.length) h+=`<div class="note-txt">Nothing yet — pass a ticket and it appears here with your query.</div>`;
+  dels.forEach(t=>{h+=`<div class="card open"><div class="chead"><span class="dot done"></span><span class="cid">${esc(t.id)}</span><span class="ctitle">${esc(t.title)}</span><span class="mode m-auto">${esc(t.sprintName)}</span></div><div class="cbody" style="display:block">${t.work?`<pre>${esc(t.work)}</pre>`:'<div class="note-txt">(marked done)</div>'}</div></div>`;});
+  const m=document.getElementById('main');m.innerHTML=h;
+  document.getElementById('pfname').addEventListener('input',e=>localStorage.setItem(LS('profile.name'),e.target.value));
+  document.getElementById('dlPortfolio').onclick=downloadPortfolio;
+  document.getElementById('exportProg').onclick=exportProgress;
+  const impFile=document.getElementById('impFile');
+  document.getElementById('importProg').onclick=()=>impFile.click();
+  impFile.onchange=importProgress;
+}
+function downloadPortfolio(){
+  const name=pname()||'ShopNow Analyst Intern';
+  const bullets=earnedBullets().filter(b=>b.earned), dels=doneDeliverables();
+  const total=REGISTRY.length, done=dels.length;
+  const style=`body{font-family:Georgia,serif;max-width:820px;margin:40px auto;padding:0 20px;color:#1a1a1a;line-height:1.6}h1{margin-bottom:2px}.sub{color:#555;font-family:Arial,sans-serif;font-size:14px}h2{border-bottom:2px solid #1a1a1a;padding-bottom:5px;margin-top:32px;font-size:19px}ul{padding-left:20px}li{margin:6px 0}pre{background:#f4f4f0;border:1px solid #ddd;border-radius:5px;padding:10px;overflow-x:auto;font-size:12.5px;font-family:Consolas,monospace}.d{margin:14px 0}.d .m{font-family:Arial,sans-serif;font-size:12px;color:#666}`;
+  let b=`<!doctype html><html><head><meta charset="utf-8"><title>${esc(name)} — ShopNow Analyst Portfolio</title><style>${style}</style></head><body>`;
+  b+=`<h1>${esc(name)}</h1><div class="sub">${esc(PORTFOLIO.role)} · ${done}/${total} deliverables completed</div>`;
+  b+=`<h2>Résumé bullets (earned)</h2><ul>`+(bullets.length?bullets.map(x=>`<li>${esc(x.text)}</li>`).join(''):'<li>None yet.</li>')+`</ul>`;
+  b+=`<h2>Deliverables & the SQL behind them</h2>`;
+  dels.forEach(t=>{b+=`<div class="d"><b>${esc(t.id)} — ${esc(t.title)}</b><div class="m">${esc(t.sprintName)}</div>`+(t.work?`<pre>${esc(t.work)}</pre>`:'')+`</div>`;});
+  b+=`<hr><div class="sub">Generated from the ShopNow Analyst Internship (simulated).</div></body></html>`;
+  const blob=new Blob([b],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${name.replace(/[^a-z0-9]+/gi,'_')}_portfolio.html`;a.click();URL.revokeObjectURL(a.href);
+}
+function exportProgress(){
+  const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('shopnow.'))data[k]=localStorage.getItem(k);}
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='shopnow_progress.json';a.click();URL.revokeObjectURL(a.href);
+}
+function importProgress(e){
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{const d=JSON.parse(r.result);Object.entries(d).forEach(([k,v])=>{if(k.startsWith('shopnow.'))localStorage.setItem(k,v);});buildRegistry();renderNav();renderPortfolio();alert('Progress imported.');}catch(err){alert('Invalid progress file.');}};
+  r.readAsText(f);
+}
+
+/* ---------- SQL exec ---------- */
+async function execToRows(sql){
+  const res=await conn.query(sql);
+  const cols=res.schema.fields.map(f=>f.name);
+  return {cols,rows:res.toArray().map(r=>cols.map(c=>r[c]))};
+}
+function tableHTML(cols,rows){
+  let h='<table><thead><tr>'+cols.map(c=>`<th>${esc(c)}</th>`).join('')+'</tr></thead><tbody>';
+  rows.slice(0,200).forEach(r=>{h+='<tr>'+r.map(v=>`<td>${v===null?'∅':esc(v)}</td>`).join('')+'</tr>';});
+  h+='</tbody></table>'; if(rows.length>200)h+=`<div class="note-txt">…first 200 of ${rows.length} rows</div>`;
+  return h;
+}
+
+/* ---------- sprint render ---------- */
+function renderSprint(d){
+  const m=document.getElementById('main');
+  let h=`<h1>${esc(d.name)}</h1><div class="goal">${esc(d.goal)} · ${esc(d.est||'')}</div>`;
+  if(d.env) h+=`<div class="sparknote" style="margin:10px 0">${esc(d.env)}</div>`;
+  const done=d.tickets.filter(t=>st(t.id)==='done').length;
+  h+=`<div class="scorebar">${done} / ${d.tickets.length} tickets signed off</div>`;
+  h+=`<div class="brief"><div class="from">${esc(d.brief.from)}</div>${esc(d.brief.body)}</div>`;
+  h+=`<div class="clinic"><div class="h">Clinic · ${esc(d.clinic.title)}</div>${esc(d.clinic.body)}</div>`;
+  if(d.classwork){
+    h+=`<details><summary>Classwork · ${esc(d.classwork.title)} (guided — do together)</summary><div class="dbody">`;
+    (d.classwork.steps||[]).forEach((s,i)=>{h+=`<div class="step"><div class="instr"><b>${i+1}.</b> ${esc(s.instr)}</div><pre>${esc(s.sql)}</pre><div class="cp">✓ ${esc(s.checkpoint)}</div></div>`;});
+    if(d.classwork.reference) h+=`<div class="step"><div class="instr"><b>Reference — full query</b></div><pre>${esc(d.classwork.reference)}</pre></div>`;
+    h+=`</div></details>`;
+  }
+  h+=`<h2 class="section">Tickets</h2><div id="tickets"></div>`;
+  if(d.finalReview) h+=`<div class="brief" style="border-left-color:var(--purple);margin-top:20px"><div class="from" style="color:var(--purple)">${esc(d.finalReview.title)}</div>${esc(d.finalReview.body)}</div>`;
+  m.innerHTML=h;
+  const tc=document.getElementById('tickets');
+  d.tickets.forEach(t=>tc.appendChild(ticketCard(t)));
+}
+
+function ticketCard(t){
+  const card=document.createElement('div'); card.className='card';
+  const done=st(t.id)==='done';
+  const modeCls=t.mode==='auto'?'m-auto':t.mode==='free'?'m-free':t.mode==='external'?'m-ext':'m-reveal';
+  const modeLbl=t.mode==='auto'?'auto-graded':t.mode==='free'?'written':t.mode==='external'?'Power BI':'self-check';
+  const locked=isLocked(t);
+  card.innerHTML=`<div class="chead"><span class="dot ${done?'done':''}"></span>
+    <span class="cid">${esc(t.id)}</span><span class="ctitle">${esc(t.title)}${locked?' 🔒':''}</span>
+    <span class="pill d${t.difficulty}">L${t.difficulty}</span><span class="mode ${modeCls}">${modeLbl}</span></div>
+    <div class="cbody"></div>`;
+  const head=card.querySelector('.chead'), body=card.querySelector('.cbody');
+  head.onclick=()=>{
+    card.classList.toggle('open');
+    if(!card.classList.contains('open'))return;
+    const rebuild = body.dataset.built!=='1' || (body.dataset.lockedBuilt==='1' && !isLocked(t));
+    if(rebuild){ buildTicketBody(t,body); body.dataset.built='1'; body.dataset.lockedBuilt=isLocked(t)?'1':'0';
+      if(!isLocked(t)) head.querySelector('.ctitle').innerHTML=esc(t.title); }
+  };
+  return card;
+}
+
+function buildTicketBody(t,body){
+  if(isLocked(t)){
+    const miss=t.requires.filter(r=>st(r)!=='done');
+    body.innerHTML=`<div class="locked-note">🔒 Locked by Definition of Done. Pass these first: <b>${miss.map(esc).join(', ')}</b>. Capstone deliverables must build on verified work.</div>`;
+    return;
+  }
+  const done=st(t.id)==='done';
+  let h=`<div class="note-txt">Assigned by <b>${esc(t.from)}</b> · est ${esc(t.est||'')}</div>`;
+  h+=`<div class="prompt">${esc(t.prompt)}</div>`;
+  if(t.acceptanceCriteria){h+=`<div class="note-txt"><b>Acceptance criteria</b></div><ul class="aclist">${t.acceptanceCriteria.map(a=>`<li class="${done?'met':''}">${esc(a)}</li>`).join('')}</ul>`;}
+  if(t.mode==='external'){
+    h+=`<div class="sparknote">🖥 Do this in <b>Power BI Desktop</b> — DAX and visuals don't run in this app. Build it there, then self-check against the criteria and mark it done.</div>`;
+    h+=`<textarea class="ed note" id="note-${t.id}" placeholder="Notes / what you built / your interpretation…">${esc(note(t.id))}</textarea>`;
+    h+=`<div class="btns"><button class="ghost purple" data-reveal>Reveal reference ${t.solution?'DAX':'guidance'}</button><button class="markdone" data-done>Mark done</button></div>`;
+  }else if(t.mode==='free'){
+    h+=`<textarea class="ed note" id="note-${t.id}" placeholder="Write your note here…">${esc(note(t.id))}</textarea>`;
+    h+=`<div class="btns"><button class="run" data-run>▶ Run scratch SQL</button><button class="ghost purple" data-guide>Reveal guidance</button><button class="markdone" data-done>Mark done</button></div>`;
+    h+=`<textarea class="ed" id="scratch-${t.id}" style="height:90px;margin-top:8px" placeholder="Optional: profiling SQL…"></textarea>`;
+  }else{
+    h+=`<textarea class="ed" id="ed-${t.id}" spellcheck="false" placeholder="Write SQL against orders, customers_clean, products…">${esc(draft(t.id))}</textarea>`;
+    h+=`<div class="btns"><button class="run" data-run>▶ Run</button>`;
+    if(t.mode==='auto') h+=`<button class="submit" data-submit>Submit for review</button>`;
+    else h+=`<button class="ghost purple" data-reveal>Reveal model answer</button><button class="markdone" data-done>Mark done</button>`;
+    if(t.hints&&t.hints.length) h+=`<button class="ghost" data-hint>Need a hint?</button>`;
+    h+=`</div><div class="hints" id="hints-${t.id}"></div>`;
+  }
+  if(t.selfCheck) h+=`<div class="note-txt">💡 ${esc(t.selfCheck)}</div>`;
+  h+=`<div class="banner ${done?'ok':''}" id="ban-${t.id}">${done?'✓ Signed off.':''}</div><div class="result" id="res-${t.id}"></div>`;
+  body.innerHTML=h;
+  wireItem(t,body);
+}
+
+/* ---------- shared wiring for tickets & diagnostic ---------- */
+function wireItem(t,scope){
+  const ed=scope.querySelector(`#ed-${cssid(t.id)}`);
+  const scratch=scope.querySelector(`#scratch-${cssid(t.id)}`);
+  const noteEl=scope.querySelector(`#note-${cssid(t.id)}`);
+  const res=scope.querySelector(`#res-${cssid(t.id)}`);
+  const ban=scope.querySelector(`#ban-${cssid(t.id)}`);
+  if(ed) ed.addEventListener('input',e=>setDraft(t.id,e.target.value));
+  if(noteEl) noteEl.addEventListener('input',e=>setNote(t.id,e.target.value));
+  const runBtn=scope.querySelector('[data-run]');
+  if(runBtn) runBtn.onclick=async()=>{
+    const sql=(ed||scratch).value.trim(); ban.className='banner';ban.textContent='';
+    if(!sql){res.innerHTML='<div class="err">Write a query first.</div>';return;}
+    try{const {cols,rows}=await execToRows(sql);res.innerHTML=tableHTML(cols,rows);}catch(e){res.innerHTML=`<div class="err">${esc(e)}</div>`;}
+  };
+  const subBtn=scope.querySelector('[data-submit]');
+  if(subBtn) subBtn.onclick=async()=>{
+    const sql=ed.value.trim(); ban.className='banner';ban.textContent='';
+    if(!sql){res.innerHTML='<div class="err">Write a query first.</div>';return;}
+    let out; try{out=await execToRows(sql);}catch(e){res.innerHTML=`<div class="err">${esc(e)}</div>`;return;}
+    res.innerHTML=tableHTML(out.cols,out.rows);
+    const g=await grade(out.rows,t.grader);
+    if(g.empty){ban.className='banner no';ban.textContent='✗ Your query returned no rows.';return;}
+    if(g.pass){ban.className='banner ok';ban.textContent='✓ Passed — matches the expected result. Signed off.';setSt(t.id,'done');
+      scope.querySelectorAll('.aclist li').forEach(li=>li.classList.add('met'));onProgress();}
+    else{setAttempt(t.id);renderNav();ban.className='banner no';ban.textContent='✗ Not quite — result doesn’t match. Re-check the acceptance criteria and rounding/column order, then resubmit.';}
+  };
+  const revBtn=scope.querySelector('[data-reveal]');
+  if(revBtn) revBtn.onclick=()=>{
+    if(scope.querySelector('.revealbox'))return;
+    const box=document.createElement('div');box.className='revealbox';
+    box.innerHTML=`<div class="note-txt" style="margin-top:8px"><b>Model answer</b></div><pre>${esc(t.solution||'(see notes)')}</pre>`+
+      (t.modelNote?`<div class="note-txt">${esc(t.modelNote)}</div>`:'');
+    revBtn.parentNode.parentNode.insertBefore(box,ban);
+  };
+  const guideBtn=scope.querySelector('[data-guide]');
+  if(guideBtn) guideBtn.onclick=()=>{
+    if(scope.querySelector('.revealbox'))return;
+    const box=document.createElement('div');box.className='revealbox';
+    box.innerHTML=`<div class="note-txt" style="margin-top:8px">${esc(t.modelNote||'')}</div>`;
+    guideBtn.parentNode.parentNode.insertBefore(box,ban);
+  };
+  const doneBtn=scope.querySelector('[data-done]');
+  if(doneBtn) doneBtn.onclick=()=>{setSt(t.id,'done');ban.className='banner ok';ban.textContent='✓ Marked done.';
+    scope.querySelectorAll('.aclist li').forEach(li=>li.classList.add('met'));onProgress();};
+  const hintBtn=scope.querySelector('[data-hint]');
+  if(hintBtn){let i=0;const box=scope.querySelector(`#hints-${cssid(t.id)}`);
+    hintBtn.onclick=()=>{if(i>=t.hints.length)return;const d=document.createElement('div');d.className='hint';d.textContent=`Hint ${i+1}: ${t.hints[i]}`;box.appendChild(d);i++;if(i>=t.hints.length)hintBtn.disabled=true;};}
+}
+function cssid(id){return id.replace(/[^a-zA-Z0-9_-]/g,'');}
+function onProgress(){
+  if(!current||!cache[current.id])return;
+  const d=cache[current.id];
+  if(d.kind==='brushup'){
+    const autoQs=d.diagnostic.questions.filter(q=>q.mode==='auto');
+    const passed=autoQs.filter(q=>st(q.id)==='done').length;
+    const sb=document.getElementById('diagscore');if(sb)sb.textContent=`Auto-graded: ${passed} / ${autoQs.length} correct`;
+  }else{
+    const done=d.tickets.filter(t=>st(t.id)==='done').length;
+    const sb=document.querySelector('.scorebar');if(sb)sb.textContent=`${done} / ${d.tickets.length} tickets signed off`;
+  }
+}
+
+/* ---------- brushup render ---------- */
+function renderBrushup(d){
+  const m=document.getElementById('main');
+  let h=`<h1>${esc(d.name)}</h1><div class="goal">${esc(d.blurb)}</div>`;
+  h+=`<h2 class="section">Drills — attempt first, then reveal</h2>`;
+  d.hours.forEach(hr=>{
+    h+=`<details><summary>Hour ${hr.n} · ${esc(hr.title)}</summary><div class="dbody"><div class="note-txt">${esc(hr.recap)}</div>`;
+    hr.drills.forEach((dr,i)=>{
+      h+=`<div class="step"><div class="instr"><b>${hr.n}.${i+1}</b> ${esc(dr.q)}</div>`;
+      h+=`<details><summary>Show answer</summary><div class="dbody"><pre>${esc(dr.answer)}</pre>`;
+      if(dr.note)h+=`<div class="note-txt">${esc(dr.note)}</div>`;
+      if(dr.sparkNote)h+=`<div class="sparknote">⚡ Spark note — ${esc(dr.sparkNote)}</div>`;
+      h+=`</div></details></div>`;
+    });
+    h+=`</div></details>`;
+  });
+  // diagnostic
+  const dg=d.diagnostic;
+  const autoQs=dg.questions.filter(q=>q.mode==='auto');
+  const passed=autoQs.filter(q=>st(q.id)==='done').length;
+  h+=`<h2 class="section">${esc(dg.title)}</h2><div class="brief"><div class="from">Instructions</div>${esc(dg.intro)}</div>`;
+  h+=`<div class="scorebar" id="diagscore">Auto-graded: ${passed} / ${autoQs.length} correct</div><div id="diag"></div>`;
+  m.innerHTML=h;
+  const dc=document.getElementById('diag');
+  dg.questions.forEach(q=>dc.appendChild(diagCard(q)));
+}
+function diagCard(q){
+  const el=document.createElement('div');el.className='diagq';
+  const done=st(q.id)==='done';
+  const modeLbl=q.mode==='auto'?'<span class="mode m-auto">auto-graded</span>':'<span class="mode m-reveal">self-check</span>';
+  let h=`<div class="qt"><span class="dot ${done?'done':''}" style="display:inline-block;vertical-align:middle;margin-right:6px"></span>${esc(q.id)} — ${esc(q.task)} ${modeLbl}</div>`;
+  h+=`<div class="tests">Tests: ${esc(q.tests)}</div>`;
+  h+=`<textarea class="ed" id="ed-${cssid(q.id)}" spellcheck="false" placeholder="Write SQL…">${esc(draft(q.id))}</textarea>`;
+  h+=`<div class="btns"><button class="run" data-run>▶ Run</button>`;
+  if(q.mode==='auto') h+=`<button class="submit" data-submit>Submit</button>`;
+  else h+=`<button class="ghost purple" data-reveal>Reveal model answer</button><button class="markdone" data-done>Mark done</button>`;
+  h+=`</div>`;
+  if(q.hint) h+=`<div class="hint">Hint: ${esc(q.hint)}</div>`;
+  h+=`<div class="banner ${done?'ok':''}" id="ban-${cssid(q.id)}">${done?'✓ Correct.':''}</div><div class="result" id="res-${cssid(q.id)}"></div>`;
+  el.innerHTML=h;
+  wireItem({...q,solution:q.answer,acceptanceCriteria:null},el);
+  return el;
+}
+
+boot().catch(e=>{document.getElementById('boot').innerHTML=`<div class="err">Boot failed:\n${esc(e.stack||e)}</div>`;});
+</script>
+</body>
+</html>

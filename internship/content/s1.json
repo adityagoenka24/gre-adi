@@ -1,0 +1,63 @@
+{
+  "id": "s1",
+  "kind": "sprint",
+  "name": "Data Quality & Foundations",
+  "est": "~3 hours",
+  "goal": "Turn an untrustworthy customer table into a single source of truth — and quantify the cost of not doing so.",
+  "brief": {
+    "from": "Arjun Mehta · CFO — cc: Priya",
+    "body": "The PE firm starts diligence in five weeks. Before we show them a single customer number, I need to know our customer data is clean — last quarter we reported a customer count inflated by duplicates and it was embarrassing. Get the new intern to (a) tell me exactly how bad the duplication is in rupee terms, and (b) hand me one customer table I can actually trust."
+  },
+  "clinic": {
+    "title": "Deduplicating a slowly-changing dimension",
+    "body": "When a key repeats, decide which row to keep — here, the most recent by JoinDate. Pattern: ROW_NUMBER() OVER (PARTITION BY key ORDER BY recency DESC), keep = 1. Wrap it in a VIEW so every downstream query inherits the clean version. Pair with text standardization (TRIM/LOWER) and NULL handling (COALESCE). Note: the app pre-creates customers_clean for you, so tickets that need it can join it directly."
+  },
+  "classwork": {
+    "title": "Build customers_clean — together, step by step",
+    "steps": [
+      { "instr": "Measure the duplication.", "sql": "SELECT COUNT(*) AS dup_ids\nFROM (SELECT CustomerID FROM customers GROUP BY CustomerID HAVING COUNT(*) > 1);", "checkpoint": "~120 duplicated CustomerIDs. Small in row terms, but large in rupee terms (next step)." },
+      { "instr": "Prove the rupee impact — a naive join to the dirty table double-counts revenue.", "sql": "SELECT\n  (SELECT ROUND(SUM(Revenue),0) FROM orders) AS true_revenue,\n  ROUND(SUM(o.Revenue),0) AS revenue_via_naive_join,\n  ROUND(SUM(o.Revenue),0) - (SELECT ROUND(SUM(Revenue),0) FROM orders) AS inflation\nFROM orders o JOIN customers c ON o.CustomerID = c.CustomerID;", "checkpoint": "Inflation ~ ₹69.6 lakh on a true total of ~₹115 cr. That inflation figure is what Arjun cares about." },
+      { "instr": "Assemble the clean view (DuckDB form — no INITCAP).", "sql": "CREATE OR REPLACE VIEW customers_clean AS\nWITH ranked AS (\n  SELECT *, ROW_NUMBER() OVER (PARTITION BY CustomerID ORDER BY JoinDate DESC) AS rn FROM customers\n)\nSELECT CustomerID, CustomerName, Email, Phone,\n  TRIM(LOWER(City)) AS City, State,\n  COALESCE(Region, 'Unknown') AS Region,\n  SubRegion, AgeGroup, Gender, Segment, JoinDate, PrimeSubscriber\nFROM ranked WHERE rn = 1;", "checkpoint": "One record per customer; NULL regions bucketed as 'Unknown' instead of silently dropping." },
+      { "instr": "Prove it worked — must return ZERO rows.", "sql": "SELECT CustomerID, COUNT(*) FROM customers_clean GROUP BY CustomerID HAVING COUNT(*) > 1;", "checkpoint": "Zero rows = one record per customer, guaranteed." }
+    ]
+  },
+  "tickets": [
+    { "id": "SHOP-000", "title": "First-impressions data note", "difficulty": 2, "type": "homework", "from": "Priya Nair · Lead Data Analyst", "est": "30 min", "mode": "free",
+      "prompt": "Write a short note listing, for each of the 7 tables: row count, your best guess at the grain, and any red flags. End with the one table you'd least trust and why. (Use Run to profile tables; write your note in the box.)",
+      "acceptanceCriteria": ["All 7 tables covered with row counts", "Grain stated for each (e.g. 'one row per order')", "At least 5 specific data-quality red flags identified", "A clear 'least-trusted table' verdict with reasoning"],
+      "hints": ["Run SELECT COUNT(*) and a few profiling queries per table.", "raw_web_events is all-STRING on purpose — that's a red flag worth naming."],
+      "modelNote": "Strong notes name concrete issues: duplicate CustomerIDs, orphan payments, deprecated SKUs, dirty timestamps in raw_web_events, NULL regions. The least-trusted table is almost always raw_web_events." },
+
+    { "id": "SHOP-100", "title": "Measure the duplication in the customer table", "difficulty": 2, "type": "homework", "from": "Priya Nair · Lead Data Analyst", "est": "10 min", "mode": "auto",
+      "prompt": "Before we clean anything, quantify the problem. Return a single number: how many CustomerIDs appear more than once in the raw customers table.",
+      "acceptanceCriteria": ["Returns one value: the count of CustomerIDs that occur more than once", "Counts distinct offending IDs, not total duplicate rows"],
+      "hints": ["GROUP BY CustomerID, then keep only groups with COUNT(*) > 1.", "Wrap that in an outer COUNT(*)."],
+      "grader": { "type": "scalar", "round": 0, "salt": "s1a", "answerHash": "3063aa50cfdae7b8a5a5a61f92bc86c96d624c7397e9b3fe868101d8ad191bba" } },
+
+    { "id": "SHOP-101", "title": "Clean city report — how many phantom cities did the dirty data invent?", "difficulty": 3, "type": "homework", "from": "Sana Kapoor · Head of Growth", "est": "25 min", "mode": "auto",
+      "prompt": "Raw City is a mess of casing and stray whitespace. Return a single row with exactly two columns, in order: (1) distinct city count BEFORE cleaning, (2) distinct city count AFTER cleaning (trim + lowercase).",
+      "acceptanceCriteria": ["One row, two columns: raw count then cleaned count", "Cleaning handles BOTH whitespace and casing", "Column order is raw first, clean second"],
+      "hints": ["COUNT(DISTINCT City) gives the raw count.", "For clean: COUNT(DISTINCT TRIM(LOWER(City))).", "LOWER alone leaves 'mumbai' and 'mumbai ' as two cities — TRIM is mandatory."],
+      "grader": { "type": "result-set", "round": 0, "ordered": true, "salt": "s101", "answerHash": "fd37b7b7a92daf32d472e2721ab0d5b0e961c5b4ee34916a6cb1d3780411f1b0" } },
+
+    { "id": "SHOP-102", "title": "One-query data health card for orders", "difficulty": 4, "type": "homework", "from": "Priya Nair · Lead Data Analyst", "est": "35 min", "mode": "reveal",
+      "prompt": "Build a single-screen 'health card' for orders: row count, distinct counts for the keys, null counts on critical columns, and at least three 'impossible value' checks (revenue <= 0, negative ship days, year out of range). One tidy output, one row per metric (metric, value).",
+      "acceptanceCriteria": ["Single result set: metric, value", "Covers null counts, distinct counts, and >=3 impossible-value checks", "Readable enough to paste into the audit one-pager"],
+      "hints": ["Stack UNION ALL rows, each SELECT 'metric_name', <measure>.", "Use SUM(CASE WHEN … THEN 1 ELSE 0 END) for each check."],
+      "solution": "SELECT 'row_count' AS metric, COUNT(*) AS value FROM orders\nUNION ALL SELECT 'distinct_customers', COUNT(DISTINCT CustomerID) FROM orders\nUNION ALL SELECT 'distinct_products', COUNT(DISTINCT ProductID) FROM orders\nUNION ALL SELECT 'null_customerid', SUM(CASE WHEN CustomerID IS NULL THEN 1 ELSE 0 END) FROM orders\nUNION ALL SELECT 'revenue_le_zero', SUM(CASE WHEN Revenue <= 0 THEN 1 ELSE 0 END) FROM orders\nUNION ALL SELECT 'ship_days_negative', SUM(CASE WHEN ShippingDays < 0 THEN 1 ELSE 0 END) FROM orders\nUNION ALL SELECT 'ship_days_over_30', SUM(CASE WHEN ShippingDays > 30 THEN 1 ELSE 0 END) FROM orders\nUNION ALL SELECT 'year_out_of_range', SUM(CASE WHEN OrderYear NOT IN (2022,2023,2024) THEN 1 ELSE 0 END) FROM orders;",
+      "modelNote": "Your metrics may differ — that's fine. Check you have a row count, distinct key counts, at least one null count, and >=3 impossible-value checks, all in one tidy metric/value output." },
+
+    { "id": "SHOP-102D", "title": "Surface the impossible-revenue orders", "difficulty": 4, "type": "homework", "from": "Priya Nair · Lead Data Analyst", "est": "15 min", "mode": "auto",
+      "prompt": "Return the OrderID of every order whose Revenue is zero or negative — one column, one row per bad order. Don't drop them silently; we need the list for the audit.",
+      "acceptanceCriteria": ["Returns a single column of OrderIDs", "Includes every order with Revenue <= 0", "No valid (positive) revenue orders leak in"],
+      "hints": ["Filter with WHERE Revenue <= 0.", "Select only OrderID — the grader reads the first column."],
+      "grader": { "type": "id-set", "round": 0, "salt": "s102d", "answerHash": "54b9a90c95b10c80dd990979bee60ac582add8681856dbc87c344283da93594a" } },
+
+    { "id": "SHOP-1S", "title": "Reusable profiler across every key column", "difficulty": 5, "type": "stretch", "from": "Priya Nair (portfolio piece)", "est": "45 min", "mode": "reveal",
+      "prompt": "Generalize the health card into something that reports null rate and distinct count for many columns of a table, so it can be pointed at any table. A per-column UNION ALL template is fine here (the original Databricks version uses a Python loop — noted below).",
+      "acceptanceCriteria": ["Per-column null rate and distinct count", "Generalizes beyond orders with minimal edits", "Documented so a teammate can reuse it"],
+      "hints": ["One UNION ALL block per column: SELECT '<col>', 100.0*SUM(CASE WHEN <col> IS NULL THEN 1 ELSE 0 END)/COUNT(*), COUNT(DISTINCT <col>)."],
+      "solution": "-- DuckDB template (repeat the block per column):\nSELECT 'CustomerID' AS column,\n  ROUND(100.0*SUM(CASE WHEN CustomerID IS NULL THEN 1 ELSE 0 END)/COUNT(*),2) AS null_pct,\n  COUNT(DISTINCT CustomerID) AS distinct_count\nFROM orders\nUNION ALL\nSELECT 'ProductID',\n  ROUND(100.0*SUM(CASE WHEN ProductID IS NULL THEN 1 ELSE 0 END)/COUNT(*),2),\n  COUNT(DISTINCT ProductID)\nFROM orders;",
+      "modelNote": "On Databricks the portfolio version loops df.columns in PySpark and unions the checks programmatically — mention that in your write-up. In pure SQL, the UNION ALL template above is the reusable form." }
+  ]
+}

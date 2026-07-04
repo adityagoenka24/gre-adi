@@ -1,0 +1,47 @@
+{
+  "id": "s6",
+  "kind": "sprint",
+  "name": "Capstone — The Investor Data Room",
+  "est": "~3 hours",
+  "goal": "Ship five documented, re-runnable SQL deliverables that survive a PE firm's diligence — then present them to leadership.",
+  "brief": {
+    "from": "Arjun Mehta · CFO — \"This is the one\"",
+    "body": "The PE firm's data team sent their due-diligence checklist. They don't want a deck — they want clean, documented SQL outputs they can re-run themselves. Five deliverables. I'm not telling you how to write any of them — you've built every piece across the last five sprints. Each must be commented, formatted, handle the edge cases we found, and come with a two-line business interpretation. Then you present to me and Priya. Don't embarrass us."
+  },
+  "clinic": {
+    "title": "Capstone rules — graded like a real deliverable",
+    "body": "Only DR-1 is built together; DR-2…DR-5 are yours. Every query must (1) use customers_clean, (2) be net of returns where money is involved, (3) guard divide-by-zero, (4) account for the orphans/deprecated SKUs from Sprint 3, and (5) carry comments + a 2-line interpretation. A correct number with no documentation is a partial pass. These deliverables are self-marked here — write the SQL in the scratch box, run it, and record your interpretation in the notes."
+  },
+  "classwork": {
+    "title": "Build DR-1 together — set the documentation bar",
+    "steps": [
+      { "instr": "DR-1 · Revenue Quality by Category & Quarter. Note the documentation header — that bar applies to all five.", "sql": "-- ============================================================\n-- INVESTOR DATA ROOM · DR-1 · Revenue Quality by Category & Quarter\n-- Purpose: net revenue (after returns), margin, and QoQ growth\n-- Edge cases: returns zeroed (not deleted); divide-by-zero guarded\n-- ============================================================\nWITH quarterly AS (\n  SELECT o.Category, o.OrderYear, o.OrderQuarter,\n    ROUND(SUM(o.Revenue),0) AS gross_revenue,\n    ROUND(SUM(CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END),0) AS net_revenue,\n    ROUND(SUM(CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.GrossProfit END),0) AS net_profit\n  FROM orders o GROUP BY o.Category, o.OrderYear, o.OrderQuarter)\nSELECT Category, OrderQuarter AS period, gross_revenue, net_revenue,\n  gross_revenue - net_revenue AS revenue_lost_to_returns,\n  ROUND(net_profit/NULLIF(net_revenue,0)*100,2) AS net_margin_pct,\n  ROUND((net_revenue - LAG(net_revenue) OVER (PARTITION BY Category ORDER BY OrderYear, OrderQuarter))\n        /NULLIF(LAG(net_revenue) OVER (PARTITION BY Category ORDER BY OrderYear, OrderQuarter),0)*100,1) AS qoq_growth_pct\nFROM quarterly ORDER BY Category, OrderYear, OrderQuarter;", "checkpoint": "Interpretation (2 lines): name the fastest-growing category and the one whose margin is eroding. That's what an investor reads first." }
+    ],
+    "reference": "-- DR-1 as above. Note: ShopNow's OrderQuarter is already 'Q1-2022' style, so it is the period label; ordering by (OrderYear, OrderQuarter) is chronologically correct."
+  },
+  "tickets": [
+    { "id": "DR-2", "title": "Customer Health Scorecard", "difficulty": 4, "type": "capstone", "from": "PE Diligence Checklist", "est": "40 min", "mode": "free", "requires": ["SHOP-401"],
+      "prompt": "LTV tiers, revenue concentration %, average orders, segment breakdown, and win-back exposure (good customers gone quiet). Design it yourself, drawing on SHOP-401/402 + SHOP-4S. Write the SQL in the scratch box, run it, and record your findings + interpretation in the notes.",
+      "acceptanceCriteria": ["Builds on SHOP-401/402 + SHOP-4S (LTV tiers + win-back)", "States top-tier revenue concentration % explicitly", "Deduped customers (customers_clean); no double-counting", "Two-line business interpretation written"],
+      "modelNote": "No reference solution — this is your capstone. What good looks like: a tier table with an explicit 'top tiers = X% of revenue' sentence, plus a win-back count/₹ exposure. Lead your interpretation with the concentration number." },
+
+    { "id": "DR-3", "title": "Regional & Returns Risk", "difficulty": 4, "type": "capstone", "from": "PE Diligence Checklist", "est": "40 min", "mode": "free", "requires": ["SHOP-201", "SHOP-301"],
+      "prompt": "Return and cancellation rates by region ranked against the national average, plus subcategory return hotspots with revenue at risk. Draw on SHOP-202 + SHOP-2S. Write, run, and interpret.",
+      "acceptanceCriteria": ["Builds on SHOP-202 + SHOP-2S", "Ranks regions vs the national benchmark (window or subquery)", "NULL/Unknown region handled, not dropped", "Two-line interpretation"],
+      "modelNote": "What good looks like: each region's return rate next to the national average with a rank, and the top subcategory hotspots with ₹ at risk. Remember 'Unknown' region rows must appear, not vanish." },
+
+    { "id": "DR-4", "title": "Cash Reconciliation Statement", "difficulty": 5, "type": "capstone", "from": "PE Diligence Checklist", "est": "50 min", "mode": "free", "requires": ["SHOP-301", "SHOP-302"],
+      "prompt": "The diligence-winner: total order revenue vs total cash collected, with every rupee of the gap explained (orphans, unpaid orders, partial refunds, deprecated SKUs). Draw on the Sprint 3 classwork + SHOP-301. Write, run, and interpret.",
+      "acceptanceCriteria": ["Builds on the Sprint 3 reconciliation + SHOP-301", "One reconciling statement: revenue - collected = sum of explained components", "Every component a labelled line with count + ₹", "Two-line interpretation"],
+      "modelNote": "What good looks like: a single labelled statement where the components (orphan payments, unpaid orders, matched-amount gaps) sum to the total gap — no unexplained residual. This is the number the PE firm scrutinises hardest." },
+
+    { "id": "DR-5", "title": "Growth & Funnel Story", "difficulty": 5, "type": "capstone", "from": "PE Diligence Checklist", "est": "50 min", "mode": "free", "requires": ["SHOP-501", "SHOP-5S"],
+      "prompt": "MoM revenue trajectory with growth %, a retention cohort summary, and the web funnel conversion — the forward-looking narrative. Draw on SHOP-501 + the Sprint 5 cohort classwork + SHOP-5S. Write, run, and interpret.",
+      "acceptanceCriteria": ["Builds on SHOP-501 + cohort classwork + SHOP-5S", "Funnel built on the cleaned clickstream (dedup + normalised)", "One slide-ready summary of trend, retention shape, biggest funnel leak", "Two-line interpretation"],
+      "modelNote": "What good looks like: the revenue trend and its inflection, the retention curve's shape (where cohorts drop off), and the funnel's single biggest leak — named as the top growth opportunity." }
+  ],
+  "finalReview": {
+    "title": "Final Review — present to leadership",
+    "body": "10 minutes with Arjun and Priya. Not a code walkthrough — a findings presentation: revenue quality & growth, customer concentration & risk, the reconciliation result, and the single biggest opportunity and biggest risk you'd flag to investors. Expect pushback — 'is that net of returns?', 'did you dedupe?', 'what about the orphan payments?'. Surviving the questions is the assessment."
+  }
+}

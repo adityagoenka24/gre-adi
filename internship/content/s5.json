@@ -1,0 +1,37 @@
+{
+  "id": "s5",
+  "kind": "sprint",
+  "name": "Cohorts, Funnels & Window Functions",
+  "est": "~3.5 hours",
+  "goal": "The senior-analyst sprint — trend, rank within groups, build a retention cohort, and compute a funnel from the dirty clickstream you must clean first.",
+  "brief": {
+    "from": "Sana Kapoor · Head of Growth",
+    "body": "This is the stuff investors get excited about. Three things for the growth story: month-over-month revenue with growth rates, a retention cohort showing whether customers stick around, and our purchase funnel from the web logs — how many sessions go view → cart → checkout → buy. Heads up: the web events table is raw and ugly. Engineering hasn't cleaned it. That's part of the job."
+  },
+  "clinic": {
+    "title": "Window functions in anger",
+    "body": "LAG() reaches to the previous period (growth %); SUM() OVER (ORDER BY …) gives running totals; ROW_NUMBER() OVER (PARTITION BY g ORDER BY m) ranks within groups; FIRST_VALUE() anchors a cohort's starting size for retention %. Master PARTITION BY … ORDER BY … and most analytics opens up."
+  },
+  "classwork": {
+    "title": "Monthly cohort retention — together (DuckDB date functions)",
+    "steps": [
+      { "instr": "Find each customer's cohort (first-order month).", "sql": "WITH first_order AS (\n  SELECT CustomerID, MIN(OrderDate) AS first_dt FROM orders GROUP BY CustomerID\n)\nSELECT strftime(first_dt, '%Y-%m') AS cohort_month, COUNT(*) AS new_customers\nFROM first_order GROUP BY 1 ORDER BY 1;", "checkpoint": "A sensible new-customers-per-month series — each cohort's month-0 size. Spark: DATE_FORMAT(first_dt,'yyyy-MM')." },
+      { "instr": "Compute the month offset of every order (count DISTINCT customers).", "sql": "WITH first_order AS (\n  SELECT CustomerID, MIN(OrderDate) AS first_dt FROM orders GROUP BY CustomerID),\nactivity AS (\n  SELECT strftime(f.first_dt,'%Y-%m') AS cohort_month,\n    date_diff('month', date_trunc('month', f.first_dt), date_trunc('month', o.OrderDate)) AS month_offset,\n    o.CustomerID\n  FROM orders o JOIN first_order f ON o.CustomerID = f.CustomerID)\nSELECT cohort_month, month_offset, COUNT(DISTINCT CustomerID) AS active\nFROM activity GROUP BY cohort_month, month_offset\nORDER BY cohort_month, month_offset;", "checkpoint": "month_offset = 0 equals the cohort size from step 1. DISTINCT customers — counting order rows would double-count repeat buyers. Spark: MONTHS_BETWEEN(...)." }
+    ],
+    "reference": "WITH first_order AS (\n  SELECT CustomerID, MIN(OrderDate) AS first_dt FROM orders GROUP BY CustomerID),\nactivity AS (\n  SELECT strftime(f.first_dt,'%Y-%m') AS cohort_month,\n    date_diff('month', date_trunc('month', f.first_dt), date_trunc('month', o.OrderDate)) AS month_offset,\n    o.CustomerID\n  FROM orders o JOIN first_order f ON o.CustomerID = f.CustomerID),\nsized AS (\n  SELECT cohort_month, month_offset, COUNT(DISTINCT CustomerID) AS active\n  FROM activity GROUP BY cohort_month, month_offset)\nSELECT cohort_month, month_offset, active,\n  ROUND(active * 100.0 / FIRST_VALUE(active) OVER (PARTITION BY cohort_month ORDER BY month_offset), 1) AS retention_pct\nFROM sized ORDER BY cohort_month, month_offset;"
+  },
+  "tickets": [
+    { "id": "SHOP-501", "title": "MoM net revenue, growth %, and running total", "difficulty": 3, "type": "homework", "from": "Sana Kapoor · Head of Growth", "est": "30 min", "mode": "auto",
+      "prompt": "Monthly net revenue 2022-2024 with MoM growth % and a cumulative running total. Output exactly five columns in order: month (use the OrderMonth column, which is already 'YYYY-MM'), net_revenue (rounded 0), prev_month (rounded 0), mom_growth_pct (rounded 1), running_total (rounded 0). One row per calendar month, chronological. The first month's prev_month and mom_growth_pct are NULL.",
+      "acceptanceCriteria": ["One row per month, chronological (36 rows)", "MoM growth % via LAG, divide-by-zero guarded with NULLIF", "Cumulative running total via windowed SUM", "Net of returns"],
+      "hints": ["CTE: net_rev per OrderMonth (returns zeroed).", "LAG(net_rev) OVER (ORDER BY OrderMonth) for prev_month.", "SUM(net_rev) OVER (ORDER BY OrderMonth) for running_total."],
+      "grader": { "type": "result-set", "round": 1, "ordered": true, "salt": "s501", "answerHash": "0ac72f6c2ea65dfabce016c76236c01371af0b1c64b13654879a64352728bc60" } },
+
+    { "id": "SHOP-5S", "title": "Clean the clickstream & compute the purchase funnel", "difficulty": 5, "type": "stretch", "from": "Sana Kapoor (portfolio centerpiece)", "est": "60 min", "mode": "auto",
+      "prompt": "The full real-world gauntlet, from raw raw_web_events. Dedup re-delivered events (by event_id), normalise event_type casing/whitespace, then compute the session funnel. Output exactly eight columns in order: viewed, carted, checkout, purchased, view_to_cart_pct, cart_to_checkout_pct, checkout_to_purchase_pct, overall_conversion_pct — all percentages rounded to 1 decimal, divide-by-zero guarded. Stages map to event_type: page_view, add_to_cart, checkout_start, purchase.",
+      "acceptanceCriteria": ["Duplicate event_id rows removed (ROW_NUMBER per event_id = 1)", "event_type normalised (LOWER+TRIM) so casing variants collapse", "Funnel uses COUNT(DISTINCT session_id) per stage", "Conversion % per step + overall, guarded with NULLIF"],
+      "hints": ["deduped CTE: ROW_NUMBER() OVER (PARTITION BY event_id ORDER BY event_ts), keep rn=1.", "cleaned: LOWER(TRIM(event_type)).", "COUNT(DISTINCT CASE WHEN et='page_view' THEN session_id END) for each stage."],
+      "selfCheck": "The grader checks the funnel row. The full portfolio version also parses the mixed timestamp formats and counts the unparseable rows (don't hide them) — do that as a second query for your write-up. DuckDB: try_strptime(event_ts,'%Y-%m-%d %H:%M:%S'); Spark: try_to_timestamp(...).",
+      "grader": { "type": "result-set", "round": 1, "ordered": true, "salt": "s5s", "answerHash": "950a07ef9053155fb7c55bfa80a1d0de01ea100b84a5567e15a8ce044d467ae6" } }
+  ]
+}

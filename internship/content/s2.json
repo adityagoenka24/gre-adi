@@ -1,0 +1,45 @@
+{
+  "id": "s2",
+  "kind": "sprint",
+  "name": "Revenue Analytics",
+  "est": "~3 hours",
+  "goal": "Report revenue the way a CFO defends it — net of returns, at the right grain, with subtotals that tie out.",
+  "brief": {
+    "from": "Arjun Mehta · CFO",
+    "body": "Investors don't care about gross revenue — they care about quality of revenue. The first question on every number will be 'is that net of returns?' I need revenue and margin by category and quarter I'd be comfortable putting on a slide. And while you're in there — tell me whether our discounting is buying us anything or just torching margin."
+  },
+  "clinic": {
+    "title": "Aggregation that survives scrutiny",
+    "body": "Conditional aggregation computes gross, net, counts and rates in one pass. HAVING filters groups. GROUP BY ROLLUP(a,b) adds subtotals + a grand total, and GROUPING() labels those total rows. Every division gets NULLIF(denominator,0). Carry-over: use customers_clean anywhere you touch customers — never the raw table."
+  },
+  "classwork": {
+    "title": "Return-adjusted revenue by category & quarter",
+    "steps": [
+      { "instr": "Get the grain right first: one row per (category, year-quarter).", "sql": "SELECT Category, OrderYear, OrderQuarter, COUNT(*) AS orders\nFROM orders\nGROUP BY Category, OrderYear, OrderQuarter\nORDER BY Category, OrderYear, OrderQuarter;", "checkpoint": "8 categories x up to 12 quarters ~ up to 96 rows. Use orders.Category directly — no join to products (which would drop deprecated-SKU revenue)." },
+      { "instr": "Layer in gross, net & lost-to-returns. (Note: OrderQuarter is already stored as 'Q1-2022' etc., so use it directly as the period label.)", "sql": "SELECT Category,\n  OrderQuarter AS period,\n  COUNT(*) AS orders,\n  SUM(CASE WHEN ReturnFlag='Yes' THEN 1 ELSE 0 END) AS returned_orders,\n  ROUND(SUM(Revenue), 0) AS gross_revenue,\n  ROUND(SUM(CASE WHEN ReturnFlag='Yes' THEN 0 ELSE Revenue END),0) AS net_revenue\nFROM orders\nGROUP BY Category, OrderYear, OrderQuarter\nORDER BY Category, OrderYear, OrderQuarter;", "checkpoint": "net_revenue <= gross_revenue in every row. Returns are zeroed, not deleted." }
+    ],
+    "reference": "SELECT Category,\n  OrderQuarter AS period,\n  COUNT(*) AS orders,\n  SUM(CASE WHEN ReturnFlag='Yes' THEN 1 ELSE 0 END) AS returned_orders,\n  ROUND(SUM(Revenue), 0) AS gross_revenue,\n  ROUND(SUM(CASE WHEN ReturnFlag='Yes' THEN 0 ELSE Revenue END),0) AS net_revenue,\n  ROUND(SUM(CASE WHEN ReturnFlag='Yes' THEN 0 ELSE GrossProfit END),0) AS net_profit,\n  ROUND(SUM(CASE WHEN ReturnFlag='Yes' THEN 0 ELSE GrossProfit END)\n        / NULLIF(SUM(CASE WHEN ReturnFlag='Yes' THEN 0 ELSE Revenue END), 0) * 100, 2) AS net_margin_pct\nFROM orders\nGROUP BY Category, OrderYear, OrderQuarter\nORDER BY Category, OrderYear, OrderQuarter;"
+  },
+  "tickets": [
+    { "id": "SHOP-201", "title": "Is our discounting profitable? Margin by discount band", "difficulty": 4, "type": "homework", "from": "Arjun Mehta · CFO", "est": "35 min", "mode": "auto",
+      "prompt": "Bucket orders into discount bands and show, per band, volume, revenue, gross profit and margin %. Exclude returns and non-positive revenue. Output exactly these five columns in this order: discount_band, orders, revenue (rounded to 0), gross_profit (rounded to 0), margin_pct (rounded to 2). Bands must be in logical order (0%, 1-10%, 11-20%, 21-30%, 30%+), not alphabetical.",
+      "acceptanceCriteria": ["Bands: 0%, 1-10%, 11-20%, 21-30%, 30%+ in that order", "Returns & non-positive revenue excluded (WHERE ReturnFlag='No' AND Revenue>0)", "revenue & gross_profit rounded to 0; margin_pct rounded to 2", "Then answer for yourself: which band turns margin negative?"],
+      "hints": ["CASE on Discount_Pct for the bands.", "ORDER BY MIN(Discount_Pct) forces logical band order.", "margin_pct = SUM(GrossProfit)/NULLIF(SUM(Revenue),0)*100."],
+      "selfCheck": "The auto-grader checks the table. The business answer (where margin turns negative) is yours to state — it's the '30%+' band, which sells below cost.",
+      "grader": { "type": "result-set", "round": 2, "ordered": true, "salt": "s201", "answerHash": "28a58f8b0a629c01c6e925d8015f9bf56ba5a87a7ca05fa6b448665abf45e816" } },
+
+    { "id": "SHOP-202", "title": "Category x Region net revenue matrix with subtotals", "difficulty": 4, "type": "homework", "from": "Sana Kapoor · Head of Growth", "est": "30 min", "mode": "reveal",
+      "prompt": "Net revenue by category and region in one table, with per-category subtotals and a grand total — board-deck style. Remember NULL regions exist (handled as 'Unknown' in customers_clean).",
+      "acceptanceCriteria": ["Uses ROLLUP for subtotals + grand total", "Total rows clearly labelled (not blank cells)", "Joins customers_clean"],
+      "hints": ["GROUP BY ROLLUP (o.Category, c.Region).", "Label totals with CASE WHEN GROUPING(col)=1 THEN 'ALL …'.", "ORDER BY GROUPING(...) keeps subtotals beneath their detail rows."],
+      "solution": "SELECT\n  CASE WHEN GROUPING(o.Category)=1 THEN 'ALL CATEGORIES' ELSE o.Category END AS category,\n  CASE WHEN GROUPING(c.Region)=1 THEN 'ALL REGIONS' ELSE c.Region END AS region,\n  ROUND(SUM(CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END), 0) AS net_revenue\nFROM orders o\nJOIN customers_clean c ON o.CustomerID = c.CustomerID\nGROUP BY ROLLUP (o.Category, c.Region)\nORDER BY GROUPING(o.Category), o.Category, GROUPING(c.Region), c.Region;",
+      "modelNote": "GROUPING() = 1 on subtotal/total rows is how you label them instead of leaving NULLs. DuckDB supports ROLLUP and GROUPING() just like Databricks." },
+
+    { "id": "SHOP-2S", "title": "Return-rate hotspots putting revenue at risk", "difficulty": 5, "type": "stretch", "from": "Arjun Mehta (portfolio piece)", "est": "45 min", "mode": "reveal",
+      "prompt": "Find subcategories whose return rate is more than 2x their own category's average, and quantify revenue exposed. Needs SubCategory (from products) — so mind the deprecated-SKU rows, and document your join choice.",
+      "acceptanceCriteria": ["Return rate per subcategory vs its category average", "Only subcategories > 2x the category average", "Revenue at risk quantified per hotspot", "One-line written justification of the join choice"],
+      "hints": ["Two CTEs: per-subcategory stats, then per-category average.", "INNER JOIN products here — a row with no known subcategory can't be bucketed (and that exclusion is itself a finding to report separately)."],
+      "solution": "WITH by_sub AS (\n  SELECT p.Category, p.SubCategory, COUNT(*) AS orders,\n    SUM(CASE WHEN o.ReturnFlag='Yes' THEN 1 ELSE 0 END) AS returns,\n    ROUND(SUM(CASE WHEN o.ReturnFlag='Yes' THEN 1 ELSE 0 END)*100.0/COUNT(*),2) AS ret_rate,\n    ROUND(SUM(o.Revenue),0) AS revenue\n  FROM orders o JOIN products p ON o.ProductID = p.ProductID\n  GROUP BY p.Category, p.SubCategory\n),\ncat_avg AS (\n  SELECT Category, ROUND(SUM(returns)*100.0/SUM(orders),2) AS cat_ret_rate FROM by_sub GROUP BY Category\n)\nSELECT b.Category, b.SubCategory, b.orders, b.ret_rate, a.cat_ret_rate, b.revenue AS revenue_at_risk\nFROM by_sub b JOIN cat_avg a ON b.Category=a.Category\nWHERE b.ret_rate > 2*a.cat_ret_rate\nORDER BY revenue_at_risk DESC;",
+      "modelNote": "Join justification: INNER JOIN is right because rows without a known subcategory can't be bucketed — but report the ₹ on deprecated SKUs separately so leadership knows what's excluded. The dropped rows are themselves a finding." }
+  ]
+}

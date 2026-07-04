@@ -1,0 +1,46 @@
+{
+  "id": "s9",
+  "kind": "sprint",
+  "name": "Capstone — The Investor Dashboard",
+  "est": "~3 hours",
+  "env": "Power BI Desktop — the visual twin of the SQL data room. Build the four pages in Power BI; the app holds the plan, the measures, and the acceptance criteria for self-check.",
+  "goal": "Turn the model and measures into a multi-page Power BI dashboard a CFO opens during a board meeting — the visual twin of the SQL data room.",
+  "brief": {
+    "from": "Arjun Mehta · CFO",
+    "body": "The PE firm got the SQL data room and loved it — but the board doesn't read SQL. They want to click. Build me a Power BI dashboard that tells the same story: revenue quality and growth, customer health, the funnel, and what it costs us to acquire revenue. Clean, fast, honest. If a partner clicks 'Electronics, Q3 2024,' every number should move together. This is the artifact I present."
+  },
+  "clinic": {
+    "title": "Dashboard design that earns trust",
+    "body": "One page = one question. Lead each page with 3–5 KPI cards (the headline), then supporting visuals below. Put slicers (Category, Year/Quarter) top or left and let them filter the whole page. Choose visuals by intent: trend → line; comparison → bar/column; part-to-whole → stacked bar (not pie); detail → matrix; funnel → funnel visual. One accent color, labelled axes, formatted ₹ and %. Add a 'data as of' note. Less chart-junk, more clarity. The four pages mirror the data room: 1) Revenue Quality & Growth · 2) Customer Health · 3) Funnel & Web · 4) Marketing & Reconciliation."
+  },
+  "classwork": {
+    "title": "Build Page 1 — Revenue Quality & Growth (together)",
+    "steps": [
+      { "instr": "KPI header row — five Card visuals across the top.", "sql": "Cards: [Net Revenue], [Net Margin %], [Return Rate %], [Net Revenue YTD], [Net Revenue MoM %]\nFormat ₹ with thousands; % to one decimal.", "checkpoint": "Five cards reading sensible values (Net Revenue ≈ ₹115 cr before slicing)." },
+      { "instr": "Trend + composition.", "sql": "Line chart: axis dim_date[YearMonth], value [Net Revenue] (+ optional [Net Revenue Running]).\nClustered column: axis dim_date[YearQuarter], value [Net Revenue], legend dim_product[Category].", "checkpoint": "Line shows trajectory; columns show category mix per quarter. Both react to slicers." },
+      { "instr": "The category × quarter matrix — DR-1 made interactive.", "sql": "Matrix: rows dim_product[Category], columns dim_date[YearQuarter], values [Net Revenue] and [Net Margin %]. Subtotals on.", "checkpoint": "The matrix matches your SQL DR-1 numbers for a spot-checked cell. If they disagree, a measure or the model is wrong — fix before continuing." },
+      { "instr": "Slicers & polish.", "sql": "Slicers: dim_product[Category], dim_date[Year]/[Quarter]. Add page title + 'Data as of Dec 2024'.", "checkpoint": "Select 'Electronics' + '2024' — every visual updates coherently. Page 1 is board-ready." }
+    ]
+  },
+  "tickets": [
+    { "id": "DASH-901", "title": "Page 2 — Customer Health", "difficulty": 4, "type": "capstone", "from": "Sana Kapoor · Head of Growth", "est": "40 min", "mode": "external", "requires": ["MODEL-700"],
+      "prompt": "LTV-tier concentration, segment mix, and a customer-count trend. Cards: Distinct Customers, New Customers, top-tier revenue %. Visuals: stacked bar of revenue by Segment; a tier table; New Customers by month. Build in Power BI; self-check against the criteria.",
+      "acceptanceCriteria": ["Uses [Distinct Customers], [New Customers], [% of Total Revenue]", "Top-tier concentration visible at a glance", "Deduped — counts tie to the SQL customer scorecard (DR-2)"],
+      "modelNote": "Reuse the DAX-8S measures. The numbers must tie to DR-2 from the data room — if the dashboard and SQL disagree, the model relationship is wrong." },
+
+    { "id": "DASH-902", "title": "Page 3 — Funnel & Web", "difficulty": 4, "type": "capstone", "from": "Sana Kapoor · Head of Growth", "est": "40 min", "mode": "external", "requires": ["MODEL-700"],
+      "prompt": "Built on fact_web_events: a Funnel visual (view → cart → checkout → purchase) and step conversion %s, plus sessions by device and by month. Call out the biggest leak. Reveal the reference DAX for the funnel measures.",
+      "acceptanceCriteria": ["Funnel uses distinct sessions per stage (DISTINCTCOUNT measure)", "Conversion %s match the SQL funnel (SHOP-5S): 62,000 → 27,852 → 15,274 → 9,220", "A text/callout naming the biggest drop-off step"],
+      "solution": "Sessions Viewed    = CALCULATE ( DISTINCTCOUNT ( fact_web_events[session_id] ), fact_web_events[event_type]=\"page_view\" )\nSessions Carted    = CALCULATE ( DISTINCTCOUNT ( fact_web_events[session_id] ), fact_web_events[event_type]=\"add_to_cart\" )\nSessions Checkout  = CALCULATE ( DISTINCTCOUNT ( fact_web_events[session_id] ), fact_web_events[event_type]=\"checkout_start\" )\nSessions Purchased = CALCULATE ( DISTINCTCOUNT ( fact_web_events[session_id] ), fact_web_events[event_type]=\"purchase\" )\nOverall Conversion % = DIVIDE ( [Sessions Purchased], [Sessions Viewed] )",
+      "modelNote": "The biggest leak is view → cart (62,000 → 27,852, ~55% drop). That's the number to lead the growth conversation with." },
+
+    { "id": "DASH-903", "title": "Page 4 — Marketing & Reconciliation", "difficulty": 5, "type": "capstone", "from": "Arjun Mehta · CFO", "est": "45 min", "mode": "external", "requires": ["MODEL-700"],
+      "prompt": "ROAS and spend by channel/month (from DAX-802), plus a small reconciliation summary (revenue vs collected, orphans, unpaid) as KPI cards so the cash story is visible. The CFO's page.",
+      "acceptanceCriteria": ["ROAS by channel; spend trend", "Reconciliation KPIs (₹ uncollected, orphan ₹) — from the gold model or a small fact", "ROAS limitation noted on the page (blended, not attributed)"],
+      "modelNote": "Bring the DR-4 reconciliation numbers onto a card so the cash story is one glance. Label ROAS as blended so nobody over-reads it." }
+  ],
+  "finalReview": {
+    "title": "Final Review — the live demo",
+    "body": "15-minute live demo to Arjun and the board. Drive the dashboard, don't read it: open on the headline, slice to the story (the growing category, the funnel leak, the concentration risk), and field 'click here / what about returns?' on the fly. The test is whether the dashboard answers follow-up questions without going back to SQL. Publish it: export to .pbix for the portfolio, optionally publish to the Power BI Service for a shareable link."
+  }
+}
