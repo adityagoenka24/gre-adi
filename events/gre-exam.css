@@ -1,0 +1,156 @@
+/* ============================================================
+   GRE EXAM OVERRIDE — mock_test.html only
+   Loaded AFTER events.css. Converts the event mock portal to
+   the light, ETS PowerPrep-style replica used by the full mocks.
+   team_battle / coach_aggregator / event_builder do NOT load
+   this file and keep the original theme.
+   ============================================================ */
+:root{
+  --bg:#eef1f4;
+  --surface:#ffffff;
+  --surface2:#f3f6f9;
+  --surface3:#e2e8ee;
+  --border:#c9d2da;
+  --text:#16191d;
+  --text2:#4a545e;
+  --text3:#77828c;
+  --accent:#1a5da6;
+  --accent2:#c0392b;
+  --success:#1e7e46;
+  --warning:#b06000;
+  --danger:#c0392b;
+  --red:#c0392b;
+  --blue:#1a5da6;
+  --radius:6px;
+  --font-body:Arial, Helvetica, "Segoe UI", sans-serif;
+  --font-display:Arial, Helvetica, sans-serif;
+  --font-mono:"Courier New", Consolas, monospace;
+  --gre-bar:#28455e;
+  --gre-bar-dark:#1e3549;
+  --gre-strip:#dfe6ed;
+  --gre-strip-border:#c3ccd6;
+  --gre-selected:#e8f1fa;
+}
+body::before{display:none;}
+body{font-size:16px;}
+
+/* Top bar → GRE control-bar look */
+.topbar{background:linear-gradient(180deg,var(--gre-bar),var(--gre-bar-dark));margin:-28px -20px 28px;padding:12px 20px;}
+.nav-logo{color:#fff;font-weight:700;font-size:19px;}
+.nav-logo span{color:#a8c8e8;}
+.nav a{background:transparent;border-color:rgba(255,255,255,.25);color:#fff;font-size:13px;}
+.nav a:hover{background:rgba(255,255,255,.13);}
+
+/* Panels / cards → clean white */
+.panel,.stat,.question-card,.result-card{background:#fff;}
+.hero h1{font-size:clamp(28px,4vw,44px);line-height:1.15;color:var(--gre-bar);font-weight:700;}
+.eyebrow{color:var(--accent);font-weight:700;}
+.notice{background:#eef4fb;border-color:#c9dcf0;}
+.notice.warning{background:#faf3e3;border-color:#e8d5ae;}
+.notice.danger{background:#fae4e1;border-color:#eec4bf;}
+.primary-btn{background:var(--accent);font-weight:700;}
+.primary-btn:hover{background:#124a87;}
+.ghost-btn:hover{background:var(--surface3);}
+.field input,.field select,.field textarea{background:#fff;min-height:44px;}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--accent);box-shadow:0 0 0 3px rgba(26,93,166,.15);}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #7fb2e5;outline-offset:2px;}
+pre{background:#f7f9fb;color:#2b3947;border-color:var(--border);}
+
+/* Exam meta bar → GRE section strip */
+.bank-meta-bar{background:var(--gre-strip);border-color:var(--gre-strip-border);border-radius:4px;}
+.meta-label{color:#51606e;}
+.meta-value{color:#1d2833;}
+.bank-progress-pill{background:#fff;border-color:var(--gre-strip-border);color:#1d2833;font-weight:700;}
+.exam-countdown{background:transparent;border:none;color:#1d2833;font-size:22px;font-weight:700;letter-spacing:1px;padding:6px 10px;}
+.exam-countdown.critical{color:var(--danger);background:transparent;border:none;}
+
+/* Navigator sidebar */
+.exam-sidebar{background:#fff;}
+.exam-sidebar-title{color:var(--text3);}
+.exam-dot{background:#fff;border-color:var(--border);color:var(--text2);}
+.exam-dot.answered{background:var(--gre-selected);border-color:var(--accent);color:var(--accent);}
+.exam-dot.current{background:var(--accent);border-color:var(--accent);color:#fff;}
+.exam-sidebar-unanswered{color:var(--warning);}
+
+/* Question card → white GRE question sheet */
+.practice-q-card{background:#fff;animation:none;}
+.pq-header{background:var(--gre-strip);border-color:var(--gre-strip-border);}
+.q-number{color:#1d2833;font-weight:700;font-size:17px;}
+.pq-type-badge{background:#fff;border:1px solid var(--gre-strip-border);color:#2b3947;}
+.pq-badge.easy{background:#e2f3e9;color:var(--success);}
+.pq-badge.medium{background:#faf0dd;color:var(--warning);}
+.pq-badge.hard{background:#fae4e1;color:var(--danger);}
+.pq-badge.extreme_hard{background:#f0e4f6;color:#6b1f6e;}
+.pq-body{padding:34px 34px 28px;}
+.pq-question-text{font-size:18px;line-height:1.7;color:var(--text);}
+.pq-option{background:#fff;border:1px solid transparent;color:var(--text);font-size:16px;min-height:48px;border-radius:4px;}
+.pq-option:hover:not(:disabled){background:#f3f6f9;border-color:transparent;color:var(--text);}
+.pq-option.selected{background:var(--gre-selected);border-color:#b7d0e8;color:var(--text);font-weight:400;}
+.pq-opt-letter{background:var(--surface3);color:var(--text2);}
+.pq-option.selected .pq-opt-letter{background:var(--accent);color:#fff;}
+.pq-qc-grid{border:none;max-width:620px;margin:0 auto 26px;}
+.pq-qc-col{text-align:center;}
+.pq-qc-col:first-child{border-right:none;}
+.pq-qc-label{color:var(--text);font-family:var(--font-body);font-size:15px;font-weight:700;text-decoration:underline;text-transform:none;letter-spacing:0;}
+.pq-qc-content{font-size:18px;}
+.pq-qc-options .pq-option{justify-content:flex-start;text-align:left;font-weight:400;}
+.pq-numeric-wrap input{background:#fff;border-color:var(--text3);color:var(--text);font-family:var(--font-body);}
+.pq-footer{background:var(--gre-strip);border-color:var(--gre-strip-border);}
+.btn-primary{background:var(--accent);}
+.btn-danger{background:var(--danger);}
+.btn-ghost{background:#fff;color:var(--text2);border:1px solid var(--border);}
+
+/* Results / analysis → light */
+.analysis-header{background:#fff;}
+.analysis-header::after{color:rgba(40,69,94,.05);}
+.analysis-title{color:var(--gre-bar);font-weight:700;}
+.kpi-card{background:#fff;}
+.chart-card,.table-card{background:#fff;}
+.chart-card h3,.table-card h3{color:var(--gre-bar);}
+th{background:var(--surface2);}
+.bar-track{background:var(--surface3);}
+.smart-diagnosis{background:#fff;border-color:var(--border);border-left:4px solid var(--accent);}
+.diagnosis-top h3{color:var(--gre-bar);}
+.diagnosis-band{background:var(--surface2);border-color:var(--border);}
+.diagnosis-card{background:var(--surface2);border-color:var(--border);}
+.diagnosis-card.primary{background:var(--gre-selected);border-color:#b7d0e8;}
+.diagnosis-card b{color:var(--text);}
+.recovery-plan{background:var(--surface2);border-color:var(--border);}
+.wrong-q-card{background:#fff;border-color:#eec4bf;}
+.wrong-q-header{background:#fdf1ef;border-color:#f2d8d4;}
+.wrong-q-explanation{background:var(--surface2);}
+.wrong-q-trap{background:#faf3e3;border-color:#e8d5ae;}
+.question-reference{background:#fff;}
+.question-reference summary{color:var(--gre-bar);}
+.reference-q-card{background:var(--surface2);border-color:var(--border);}
+.reference-q-card.correct{border-color:#bfe0cc;}
+.reference-q-card.incorrect{border-color:#eec4bf;}
+.reference-q-card.skipped{border-color:var(--border);}
+.reference-status{color:var(--text2);background:#fff;border-color:var(--border);}
+.pro-analysis-cta{background:linear-gradient(135deg,#f4f8fc,#eef3f9);border-color:var(--border);}
+.pro-analysis-cta::after{color:rgba(40,69,94,.05);}
+.pro-analysis-cta h3{color:var(--gre-bar);}
+.pro-cta-points span{background:#fff;border-color:var(--border);color:var(--text2);}
+.pro-locked-card{background:#fff;border-color:var(--border);}
+.pro-locked-card b{color:var(--text);}
+.pro-locked-label{background:#faf3e3;border-color:#e8d5ae;}
+.drop-zone{background:var(--surface2);}
+
+/* Math typesetting */
+.gre-math{white-space:normal;}
+.katex{font-size:1.08em!important;}
+.pq-question-text .katex,.pq-qc-content .katex{font-size:1.12em!important;}
+.mfrac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;line-height:1.15;font-size:.92em;}
+.mfrac .mnum{padding:0 4px;border-bottom:1.2px solid currentColor;}
+.mfrac .mden{padding:0 4px;}
+.msqrt{display:inline-flex;align-items:stretch;vertical-align:middle;}
+.msqrt .rad{font-size:1.1em;line-height:1;align-self:flex-end;}
+.msqrt .arg{border-top:1.2px solid currentColor;padding:0 3px;}
+sup.mexp{font-size:.72em;vertical-align:super;line-height:0;}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+@media(max-width:520px){
+  .topbar{margin:-20px -14px 22px;padding:12px 14px;}
+}

@@ -356,6 +356,7 @@ const Events = (() => {
         </div>
       </div>`;
     renderNav();
+    if (window.GREMath) window.GREMath.renderIn($("eventQuestionArea"));
   }
 
   function renderAnswerControl(q, currentAnswer) {
@@ -374,12 +375,13 @@ const Events = (() => {
       const selected = new Set(currentAnswer ? [Array.isArray(currentAnswer) ? currentAnswer[0] : currentAnswer] : []);
       return `<p class="pq-question-text">${escapeHtml(intro)}</p>
         <div class="pq-qc-grid">
-          <div class="pq-qc-col"><div class="pq-qc-label">Column A</div><div class="pq-qc-content">${escapeHtml(colA)}</div></div>
-          <div class="pq-qc-col"><div class="pq-qc-label">Column B</div><div class="pq-qc-content">${escapeHtml(colB)}</div></div>
+          <div class="pq-qc-col"><div class="pq-qc-label">Quantity A</div><div class="pq-qc-content">${escapeHtml(colA)}</div></div>
+          <div class="pq-qc-col"><div class="pq-qc-label">Quantity B</div><div class="pq-qc-content">${escapeHtml(colB)}</div></div>
         </div>
         <div class="pq-qc-options">${(q.options || []).map((option) => {
           const letter = answerLetter(option);
-          return `<button class="pq-option ${selected.has(letter) ? "selected" : ""}" onclick="Events.chooseOption('${letter}', false)">${escapeHtml(option)}</button>`;
+          const display = String(option).replace(/Column\s+A/g, "Quantity A").replace(/Column\s+B/g, "Quantity B").replace(/The two columns are equal/i, "The two quantities are equal");
+          return `<button class="pq-option ${selected.has(letter) ? "selected" : ""}" onclick="Events.chooseOption('${letter}', false)">${escapeHtml(display)}</button>`;
         }).join("")}</div>`;
     }
     const multiple = q.type === "multiple_answer";
@@ -713,6 +715,7 @@ const Events = (() => {
     renderTimeTable(result);
     if ($("proCta")) $("proCta").innerHTML = renderSmartDiagnosis(result) + renderProCta(result);
     $("exam-wrong-section").innerHTML = renderQuestionReference(result) + renderWrongReview(result);
+    if (window.GREMath) window.GREMath.renderIn($("resultsSection"));
     $("downloadResultBtn").onclick = () => downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, result);
     document.getElementById("emailResultBtn").onclick = async () => {
   const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);
