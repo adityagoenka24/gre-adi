@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRE Quant Full Mock Tests — Coach Aditya Goenka</title>
+<link rel="stylesheet" href="gre-exam-theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="gre-math.js"></script>
+<style>
+  .gre-shell.screen{display:none;}
+  .gre-shell.screen.active{display:flex;}
+  .gre-svg{text-align:center;margin:8px 0 26px;}
+  .gre-svg svg{max-width:100%;}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="app-header">
+    <div class="logo">
+      <h1>GRE Quant <span>Pro</span></h1>
+      <p>Full Mock Test Series · Coach Aditya Goenka</p>
+    </div>
+    <span class="badge">PRO</span>
+  </div>
+
+  <!-- SCREEN: LOADING -->
+  <div id="screen-loading" class="screen active">
+    <div class="loading-screen">
+      <div class="spinner"></div>
+      <p>Loading mock tests...</p>
+    </div>
+  </div>
+
+  <!-- SCREEN: SELECT MOCK -->
+  <div id="screen-select" class="screen">
+    <h2 class="section-title">Full Mock Tests</h2>
+    <p class="section-sub">10 full-length GRE Quant mocks · 2 sections · 35 min per section · Real-GRE test interface</p>
+    <div class="mocks-grid" id="mocks-grid"></div>
+  </div>
+
+  <!-- SCREEN: REGISTER -->
+  <div id="screen-register" class="screen">
+    <div class="reg-card">
+      <h2 id="reg-mock-title">Mock Test 1</h2>
+      <p>Enter your details to begin. Your result will be saved for review.</p>
+      <div class="form-group">
+        <label for="reg-name">Your Name</label>
+        <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name">
+      </div>
+      <div class="form-group">
+        <label for="reg-email">Email (optional)</label>
+        <input type="email" id="reg-email" placeholder="priya@email.com" autocomplete="email">
+      </div>
+      <div style="display:flex;gap:12px;margin-top:8px;">
+        <button class="btn btn-ghost" onclick="goTo('screen-select')">← Back</button>
+        <button class="btn btn-primary" onclick="startInstructions()">Continue →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: INSTRUCTIONS -->
+  <div id="screen-instructions" class="screen">
+    <div class="instr-card">
+      <h2>Before You Begin</h2>
+      <div class="instr-highlight">
+        <strong>This is a timed, full-length GRE Quant mock — real interface.</strong><br>
+        Each section has 27 questions and 35 minutes. The timer starts automatically when you proceed to each section.
+      </div>
+      <ul class="instr-list">
+        <li>The test screen replicates the real GRE: use <strong>Back / Next</strong> to move, <strong>Mark</strong> to flag a question, and <strong>Review</strong> to see the status of every question in the section.</li>
+        <li>You have <strong>35 minutes per section</strong>. Time does not carry over between sections.</li>
+        <li>You can change your answer any time before exiting the section.</li>
+        <li>When time runs out, the section is auto-submitted.</li>
+        <li>There is a short break between Section 1 and Section 2.</li>
+        <li>No calculator is allowed (GRE Quant only provides one for some questions — we keep it consistent).</li>
+        <li>Unanswered questions count as wrong — attempt everything.</li>
+      </ul>
+      <div style="display:flex;gap:12px;">
+        <button class="btn btn-ghost" onclick="goTo('screen-register')">← Back</button>
+        <button class="btn btn-primary" onclick="startSection(1)">Start Section 1 →</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN: SECTION BREAK -->
+  <div id="screen-break" class="screen">
+    <div class="break-card">
+      <h2>Section 1 Complete</h2>
+      <p>Take a moment before Section 2.</p>
+      <div class="break-timer" id="break-timer">2:00</div>
+      <div class="break-score-preview" id="break-preview"></div>
+      <p style="color:var(--gre-text3);font-size:13px;margin-bottom:24px;">Section 2 starts automatically, or click below to begin early.</p>
+      <button class="btn btn-primary" onclick="startSection(2)">Start Section 2 Now →</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: RESULTS -->
+  <div id="screen-results" class="screen">
+    <div class="results-header">
+      <h2>Mock Complete!</h2>
+      <p id="res-subtitle"></p>
+    </div>
+    <div class="score-ring-wrap">
+      <div class="score-ring">
+        <svg width="160" height="160" viewBox="0 0 160 160">
+          <circle cx="80" cy="80" r="68" fill="none" stroke="#e2e8ee" stroke-width="12"/>
+          <circle id="score-arc" cx="80" cy="80" r="68" fill="none" stroke="var(--gre-blue)" stroke-width="12" stroke-linecap="round" stroke-dasharray="427" stroke-dashoffset="427"/>
+        </svg>
+        <div class="score-ring-label">
+          <div class="score-val" id="res-score-val">—</div>
+          <div class="score-sub">CORRECT</div>
+        </div>
+      </div>
+    </div>
+    <div class="stats-grid" id="res-stats"></div>
+    <div class="section-compare" id="section-compare"></div>
+    <div class="topic-bars" id="topic-bars"></div>
+    <div class="diagnosis-card" id="diagnosis-card"></div>
+    <div class="result-actions">
+      <button class="btn btn-ghost" onclick="downloadResult()">Download Result</button>
+      <button class="btn btn-outline" onclick="reviewAnswers()">Review All Answers</button>
+      <button class="btn btn-primary" onclick="goTo('screen-select')">← All Mocks</button>
+    </div>
+    <div class="review-section" id="review-section" style="display:none;">
+      <h3>Question Review <button class="review-toggle" onclick="toggleReview()">hide</button></h3>
+      <div class="review-list" id="review-list"></div>
+    </div>
+  </div>
+
+</div><!-- /app -->
+
+<!-- SCREEN: EXAM — GRE replica shell -->
+<div id="screen-exam" class="screen gre-shell" role="application" aria-label="GRE test screen">
+  <div class="gre-topbar">
+    <div class="gre-topbar-left">
+      <b id="gre-sec-label">Section 1 of 2</b>
+      <span aria-hidden="true">&nbsp;|&nbsp;</span>
+      <span id="gre-q-label">Question 1 of 27</span>
+    </div>
+    <div class="gre-topbar-btns">
+      <button class="gre-tb-btn" id="btn-exit" onclick="confirmExitSection()" aria-label="Exit Section">
+        <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+        Exit Section
+      </button>
+      <button class="gre-tb-btn" id="btn-help" onclick="showHelp()" aria-label="Help">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        Help
+      </button>
+      <button class="gre-tb-btn" id="btn-mark" onclick="toggleMark()" aria-label="Mark question for review" aria-pressed="false">
+        <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+        Mark
+      </button>
+      <button class="gre-tb-btn" id="btn-review" onclick="openReview()" aria-label="Review section">
+        <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        Review
+      </button>
+      <button class="gre-tb-btn" id="btn-prev" onclick="prevQ()" aria-label="Back">
+        <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+        Back
+      </button>
+      <button class="gre-tb-btn" id="btn-next" onclick="nextQ()" aria-label="Next">
+        <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        Next
+      </button>
+    </div>
+  </div>
+  <div class="gre-strip">
+    <div class="gre-strip-title">GRE<sup>®</sup> Mock — Quantitative Reasoning <span id="gre-strip-mock"></span></div>
+    <div class="gre-strip-right">
+      <div class="gre-timer" id="exam-timer" aria-live="off">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        <span id="exam-timer-text">00:35:00</span>
+      </div>
+      <button class="gre-hide-time" id="btn-hide-time" onclick="toggleTimer()">Hide Time</button>
+    </div>
+  </div>
+  <div class="gre-body" id="gre-body">
+    <div class="gre-qwrap" id="question-area"></div>
+    <div class="gre-review" id="gre-review-area" style="display:none;"></div>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="gre-modal-backdrop" id="gre-modal" role="dialog" aria-modal="true" aria-labelledby="gre-modal-title">
+  <div class="gre-modal">
+    <div class="gre-modal-head" id="gre-modal-title">Notice</div>
+    <div class="gre-modal-body" id="gre-modal-body"></div>
+    <div class="gre-modal-actions" id="gre-modal-actions"></div>
+  </div>
+</div>
+
+<script>
+// ─── CONFIG ───────────────────────────────────────────────────────────────────
+const MOCK_INDEX = [
+  { id:'mock_01', title:'Mock Test 1', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
+  { id:'mock_02', title:'Mock Test 2', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
+  { id:'mock_03', title:'Mock Test 3', difficulty:'Moderate', tags:['All Topics','Moderate','162 Level'] },
+  { id:'mock_04', title:'Mock Test 4', difficulty:'Moderate', tags:['All Topics','Moderate','162 Level'] },
+  { id:'mock_05', title:'Mock Test 5', difficulty:'Moderate-Hard', tags:['All Topics','Moderate-Hard','164 Level'] },
+  { id:'mock_06', title:'Mock Test 6', difficulty:'Moderate-Hard', tags:['All Topics','Moderate-Hard','164 Level'] },
+  { id:'mock_07', title:'Mock Test 7', difficulty:'Hard', tags:['All Topics','Hard','166 Level'] },
+  { id:'mock_08', title:'Mock Test 8', difficulty:'Hard', tags:['All Topics','Hard','166 Level'] },
+  { id:'mock_09', title:'Mock Test 9', difficulty:'Very Hard', tags:['All Topics','Very Hard','168 Level'] },
+  { id:'mock_10', title:'Mock Test 10', difficulty:'Expert', tags:['All Topics','Expert','170 Level'] },
+];
+const DIFF_COLORS = { Balanced:'#1a5da6', Moderate:'#1e7e46', 'Moderate-Hard':'#b06000', Hard:'#c0392b', 'Very Hard':'#8e44ad', Expert:'#6b1f6e' };
+const SECTION_TIME = 35 * 60;
+
+const TYPE_DIRECTIONS = {
+  mcq: 'Select one answer choice.',
+  quantitative_comparison: 'Compare Quantity A and Quantity B, using additional information given, if any. Select one answer choice.',
+  numeric_entry: 'Enter your answer in the box.',
+  multiple_answer: 'Select one or more answer choices. Select all that apply.',
+};
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let state = {
+  mockData: null, mockMeta: null,
+  currentSection: 1, currentQIndex: 0,
+  answers: { 1: {}, 2: {} },
+  timings: { 1: {}, 2: {} },
+  marked: { 1: {}, 2: {} },
+  sectionStart: null, qStart: null,
+  timerInterval: null, breakInterval: null,
+  timeLeft: SECTION_TIME,
+  timerHidden: false,
+  student: { name:'', email:'' },
+  sectionResults: {},
+  loadError: null,
+};
+
+// ─── NAVIGATION ───────────────────────────────────────────────────────────────
+function goTo(screenId) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(screenId).classList.add('active');
+}
+
+// ─── MODAL ────────────────────────────────────────────────────────────────────
+function showModal(title, bodyHtml, buttons) {
+  document.getElementById('gre-modal-title').textContent = title;
+  document.getElementById('gre-modal-body').innerHTML = bodyHtml;
+  const actions = document.getElementById('gre-modal-actions');
+  actions.innerHTML = '';
+  buttons.forEach(b => {
+    const btn = document.createElement('button');
+    btn.className = 'btn ' + (b.cls || 'btn-ghost');
+    btn.textContent = b.label;
+    btn.onclick = () => { closeModal(); if (b.action) b.action(); };
+    actions.appendChild(btn);
+  });
+  document.getElementById('gre-modal').classList.add('open');
+}
+function closeModal() { document.getElementById('gre-modal').classList.remove('open'); }
+
+// ─── MOCK SELECTION ───────────────────────────────────────────────────────────
+function renderMockGrid() {
+  const grid = document.getElementById('mocks-grid');
+  grid.innerHTML = MOCK_INDEX.map((m,i) => `
+    <div class="mock-card${i<2?' free-badge':''}" onclick="selectMock('${m.id}','${m.title}')">
+      <div class="mock-num">MOCK ${String(i+1).padStart(2,'0')}</div>
+      <div class="mock-title">${m.title}</div>
+      <div style="font-size:13px;color:var(--gre-text2);margin-bottom:4px;">
+        <span class="diff-dot" style="background:${DIFF_COLORS[m.difficulty]||'#1a5da6'}"></span>${m.difficulty}
+      </div>
+      <div class="mock-meta">${m.tags.map(t=>`<span class="mock-tag">${t}</span>`).join('')}</div>
+    </div>
+  `).join('');
+}
+
+function selectMock(mockId, title) {
+  state.mockData = null;
+  state.loadError = null;
+  state.mockMeta = MOCK_INDEX.find(m => m.id === mockId);
+  document.getElementById('reg-mock-title').textContent = title;
+  loadMock(mockId);
+  goTo('screen-register');
+}
+
+async function loadMock(mockId) {
+  try {
+    const res = await fetch(`mocks/${mockId}.json`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    state.mockData = await res.json();
+  } catch(e) {
+    state.loadError = e.message;
+    console.error('Failed to load mock:', e);
+  }
+}
+
+// ─── REGISTRATION ─────────────────────────────────────────────────────────────
+function startInstructions() {
+  state.student.name = document.getElementById('reg-name').value.trim() || 'Student';
+  state.student.email = document.getElementById('reg-email').value.trim();
+  if (!state.mockData) {
+    if (state.loadError) {
+      showModal('Load Error', 'Failed to load mock: ' + state.loadError + '<br><br>Please check that the mock JSON file exists.', [{label:'OK', cls:'btn-primary'}]);
+      return;
+    }
+    showModal('Please Wait', 'Mock is still loading. Please wait a moment and try again.', [{label:'OK', cls:'btn-primary'}]);
+    return;
+  }
+  goTo('screen-instructions');
+}
+
+// ─── SECTION START ────────────────────────────────────────────────────────────
+function startSection(num) {
+  clearInterval(state.timerInterval);
+  clearInterval(state.breakInterval);
+  state.currentSection = num;
+  state.currentQIndex = 0;
+  state.timeLeft = SECTION_TIME;
+  state.sectionStart = Date.now();
+  state.qStart = Date.now();
+  document.getElementById('gre-strip-mock').textContent = '· ' + (state.mockMeta?.title || '');
+  closeReview();
+  renderQuestion();
+  goTo('screen-exam');
+  startTimer();
+}
+
+// ─── TIMER ────────────────────────────────────────────────────────────────────
+function startTimer() {
+  updateTimerDisplay();
+  state.timerInterval = setInterval(() => {
+    state.timeLeft--;
+    updateTimerDisplay();
+    if (state.timeLeft <= 0) { clearInterval(state.timerInterval); submitSection(true); }
+  }, 1000);
+}
+
+function updateTimerDisplay() {
+  const h = Math.floor(state.timeLeft / 3600);
+  const m = Math.floor((state.timeLeft % 3600) / 60);
+  const s = state.timeLeft % 60;
+  document.getElementById('exam-timer-text').textContent =
+    `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+  const el = document.getElementById('exam-timer');
+  el.classList.toggle('urgent', state.timeLeft <= 300);
+  el.classList.toggle('hidden-time', state.timerHidden && state.timeLeft > 300);
+}
+
+function toggleTimer() {
+  state.timerHidden = !state.timerHidden;
+  document.getElementById('btn-hide-time').textContent = state.timerHidden ? 'Show Time' : 'Hide Time';
+  updateTimerDisplay();
+}
+
+// ─── QUESTION RENDER ──────────────────────────────────────────────────────────
+function currentSectionQs() {
+  return state.mockData.sections[state.currentSection - 1].questions;
+}
+
+function escapeHtml(s) {
+  return String(s ?? '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+function parseQC(text) {
+  const lines = String(text || '').split('\n');
+  let a = null, b = null;
+  const rest = [];
+  lines.forEach(line => {
+    const t = line.trim();
+    if (/^(Column|Quantity)\s*A\s*:/i.test(t)) a = t.replace(/^(Column|Quantity)\s*A\s*:/i,'').trim();
+    else if (/^(Column|Quantity)\s*B\s*:/i.test(t)) b = t.replace(/^(Column|Quantity)\s*B\s*:/i,'').trim();
+    else rest.push(line);
+  });
+  return { info: rest.join('\n').trim(), a, b };
+}
+
+function qcOptionText(opt) {
+  return String(opt).replace(/^[A-E]\.\s*/, '').replace(/Column\s+A/g, 'Quantity A').replace(/Column\s+B/g, 'Quantity B')
+    .replace(/The two columns are equal/i, 'The two quantities are equal');
+}
+
+function renderQuestion() {
+  const qs = currentSectionQs();
+  const q = qs[state.currentQIndex];
+  state.qStart = Date.now();
+  const saved = state.answers[state.currentSection][state.currentQIndex];
+  closeReview();
+
+  const directions = TYPE_DIRECTIONS[q.type] || '';
+  const svgHtml = q.svg ? `<div class="gre-svg">${q.svg}</div>` : '';
+  let bodyHtml = '';
+
+  if (q.type === 'quantitative_comparison' && /(Column|Quantity)\s*[AB]\s*:/i.test(q.question)) {
+    const qc = parseQC(q.question);
+    bodyHtml = `
+      ${qc.info ? `<div class="gre-qc-info">${escapeHtml(qc.info)}</div>` : ''}
+      ${svgHtml}
+      <div class="gre-qc-grid">
+        <div class="gre-qc-col"><div class="gre-qc-head">Quantity A</div><div class="gre-qc-val">${escapeHtml(qc.a || '—')}</div></div>
+        <div class="gre-qc-col"><div class="gre-qc-head">Quantity B</div><div class="gre-qc-val">${escapeHtml(qc.b || '—')}</div></div>
+      </div>
+      <div class="gre-options" role="radiogroup" aria-label="Answer choices">${(q.options||[]).map(opt => {
+        const letter = opt[0];
+        return `<label class="gre-option${saved===letter?' selected':''}">
+          <input type="radio" name="gre-q" value="${letter}" ${saved===letter?'checked':''} onchange="selectOption('${letter}',this)">
+          <span class="opt-body">${escapeHtml(qcOptionText(opt))}</span>
+        </label>`;
+      }).join('')}</div>`;
+  } else if (q.type === 'numeric_entry') {
+    bodyHtml = `
+      <div class="gre-qtext">${escapeHtml(q.question)}</div>
+      ${svgHtml}
+      <div class="gre-ne">
+        <input type="text" id="ne-input" value="${escapeHtml(saved||'')}" inputmode="decimal"
+               oninput="saveNE(this.value)" autocomplete="off" aria-label="Your answer">
+      </div>`;
+  } else if (q.type === 'multiple_answer') {
+    const sel = Array.isArray(saved) ? saved : [];
+    bodyHtml = `
+      <div class="gre-qtext">${escapeHtml(q.question)}</div>
+      ${svgHtml}
+      <div class="gre-options" role="group" aria-label="Answer choices">${(q.options||[]).map(opt => {
+        const letter = opt[0];
+        const on = sel.includes(letter);
+        return `<label class="gre-option${on?' selected':''}">
+          <input type="checkbox" value="${letter}" ${on?'checked':''} onchange="toggleMA('${letter}',this)">
+          <span class="opt-body">${escapeHtml(opt.slice(3))}</span>
+        </label>`;
+      }).join('')}</div>`;
+  } else {
+    bodyHtml = `
+      <div class="gre-qtext">${escapeHtml(q.question)}</div>
+      ${svgHtml}
+      <div class="gre-options" role="radiogroup" aria-label="Answer choices">${(q.options||[]).map(opt => {
+        const letter = opt[0];
+        return `<label class="gre-option${saved===letter?' selected':''}">
+          <input type="radio" name="gre-q" value="${letter}" ${saved===letter?'checked':''} onchange="selectOption('${letter}',this)">
+          <span class="opt-body">${escapeHtml(opt.slice(3))}</span>
+        </label>`;
+      }).join('')}</div>`;
+  }
+
+  const area = document.getElementById('question-area');
+  area.innerHTML = `
+    ${directions ? `<div class="gre-directions">${directions}</div>` : ''}
+    ${bodyHtml}`;
+  if (window.GREMath) GREMath.renderIn(area);
+
+  document.getElementById('btn-prev').disabled = state.currentQIndex === 0;
+  document.getElementById('btn-next').disabled = state.currentQIndex === qs.length - 1;
+  updateExamBar();
+  updateMarkButton();
+  document.getElementById('gre-body').scrollTop = 0;
+}
+
+function updateExamBar() {
+  const qs = currentSectionQs();
+  document.getElementById('gre-sec-label').textContent = `Section ${state.currentSection} of 2`;
+  document.getElementById('gre-q-label').textContent = `Question ${state.currentQIndex+1} of ${qs.length}`;
+}
+
+function updateMarkButton() {
+  const btn = document.getElementById('btn-mark');
+  const on = !!state.marked[state.currentSection][state.currentQIndex];
+  btn.classList.toggle('marked', on);
+  btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+}
+
+function toggleMark() {
+  const cur = state.marked[state.currentSection];
+  cur[state.currentQIndex] = !cur[state.currentQIndex];
+  updateMarkButton();
+}
+
+// ─── ANSWER SAVE ─────────────────────────────────────────────────────────────
+function saveQTime() {
+  const elapsed = Math.round((Date.now() - state.qStart) / 1000);
+  state.timings[state.currentSection][state.currentQIndex] =
+    (state.timings[state.currentSection][state.currentQIndex] || 0) + elapsed;
+}
+
+function selectOption(letter, el) {
+  saveQTime();
+  state.answers[state.currentSection][state.currentQIndex] = letter;
+  el.closest('.gre-options').querySelectorAll('.gre-option').forEach(o => o.classList.remove('selected'));
+  el.closest('.gre-option').classList.add('selected');
+  state.qStart = Date.now();
+}
+
+function saveNE(val) {
+  state.answers[state.currentSection][state.currentQIndex] = val;
+}
+
+function toggleMA(letter, el) {
+  const cur = state.answers[state.currentSection][state.currentQIndex];
+  let sel = Array.isArray(cur) ? [...cur] : [];
+  if (sel.includes(letter)) sel = sel.filter(l => l !== letter);
+  else sel.push(letter);
+  state.answers[state.currentSection][state.currentQIndex] = sel;
+  el.closest('.gre-option').classList.toggle('selected', el.checked);
+}
+
+// ─── QUESTION NAV ─────────────────────────────────────────────────────────────
+function prevQ() {
+  if (state.currentQIndex > 0) { saveQTime(); state.currentQIndex--; renderQuestion(); }
+}
+function nextQ() {
+  const qs = currentSectionQs();
+  if (state.currentQIndex < qs.length - 1) { saveQTime(); state.currentQIndex++; renderQuestion(); }
+}
+
+// ─── REVIEW SCREEN (GRE-style) ────────────────────────────────────────────────
+function isAnswered(si, qi) {
+  const a = state.answers[si][qi];
+  return a !== undefined && a !== '' && !(Array.isArray(a) && a.length === 0);
+}
+
+function openReview() {
+  saveQTime();
+  const qs = currentSectionQs();
+  const si = state.currentSection;
+  const rows = qs.map((q, i) => {
+    const ans = isAnswered(si, i);
+    const marked = !!state.marked[si][i];
+    return `<tr onclick="jumpTo(${i})" tabindex="0" onkeydown="if(event.key==='Enter')jumpTo(${i})" aria-label="Go to question ${i+1}">
+      <td>Question ${i+1}${i===state.currentQIndex?' (current)':''}</td>
+      <td class="${ans?'st-answered':'st-unanswered'}">${ans?'Answered':'Not Answered'}</td>
+      <td>${marked?'<span class="mark-flag">⚑ Marked</span>':''}</td>
+    </tr>`;
+  }).join('');
+  const answered = qs.filter((_,i)=>isAnswered(si,i)).length;
+  document.getElementById('gre-review-area').innerHTML = `
+    <h2>Review — Section ${si}</h2>
+    <p>Below is the status of each question. Select a question to return to it. ${answered} of ${qs.length} answered.</p>
+    <table class="gre-review-table">
+      <thead><tr><th scope="col">Question</th><th scope="col">Status</th><th scope="col">Marked</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="gre-review-actions">
+      <button class="btn btn-primary" onclick="closeReviewToQuestion()">Return to Question</button>
+      <button class="btn btn-outline" onclick="confirmExitSection()">Exit Section</button>
+    </div>`;
+  document.getElementById('question-area').style.display = 'none';
+  document.getElementById('gre-review-area').style.display = 'block';
+  state.qStart = Date.now();
+}
+
+function closeReview() {
+  document.getElementById('gre-review-area').style.display = 'none';
+  document.getElementById('question-area').style.display = 'block';
+}
+
+function closeReviewToQuestion() { closeReview(); state.qStart = Date.now(); }
+
+function jumpTo(i) {
+  state.currentQIndex = i;
+  renderQuestion();
+}
+
+// ─── HELP ─────────────────────────────────────────────────────────────────────
+function showHelp() {
+  showModal('Test Help', `
+    <strong>Back / Next</strong> — move between questions in this section.<br>
+    <strong>Mark</strong> — flag the current question so you can find it on the Review screen.<br>
+    <strong>Review</strong> — see the answered / marked status of every question and jump to any of them.<br>
+    <strong>Exit Section</strong> — submit this section. You cannot return to it afterwards.<br><br>
+    Unanswered questions count as wrong. The timer force-displays in the final 5 minutes.`,
+    [{label:'Return to Test', cls:'btn-primary'}]);
+}
+
+// ─── SUBMIT SECTION ───────────────────────────────────────────────────────────
+function confirmExitSection() {
+  const qs = currentSectionQs();
+  const answered = qs.filter((_,i)=>isAnswered(state.currentSection,i)).length;
+  const unanswered = qs.length - answered;
+  showModal('Exit Section',
+    `Are you sure you want to exit this section?${unanswered>0?`<br><br><strong>You have ${unanswered} unanswered question${unanswered>1?'s':''}.</strong>`:''}<br><br>Once you exit, you cannot return to this section.`,
+    [
+      {label:'Cancel', cls:'btn-ghost'},
+      {label:'Exit Section', cls:'btn-primary', action:()=>submitSection(false)},
+    ]);
+}
+
+function submitSection(autoSubmit) {
+  clearInterval(state.timerInterval);
+  saveQTime();
+  closeReview();
+  const qs = currentSectionQs();
+  let correct = 0;
+  qs.forEach((q, i) => {
+    const given = state.answers[state.currentSection][i];
+    if (checkAnswer(q, given)) correct++;
+  });
+  state.sectionResults[state.currentSection] = {
+    correct, total: qs.length,
+    timeUsed: SECTION_TIME - state.timeLeft,
+    autoSubmit
+  };
+
+  if (state.currentSection === 1) showBreak();
+  else showResults();
+}
+
+function checkAnswer(q, given) {
+  if (!given && given !== 0) return false;
+  if (q.type === 'multiple_answer') {
+    if (!Array.isArray(given)) return false;
+    const correct = Array.isArray(q.answer) ? q.answer : [q.answer];
+    return given.length === correct.length && given.every(l => correct.includes(l));
+  }
+  if (q.type === 'numeric_entry') {
+    return String(given).trim() === String(q.answer).trim();
+  }
+  return given === q.answer;
+}
+
+// ─── SECTION BREAK ────────────────────────────────────────────────────────────
+function showBreak() {
+  const r1 = state.sectionResults[1];
+  const pct = Math.round((r1.correct / r1.total) * 100);
+  document.getElementById('break-preview').innerHTML =
+    `Section 1: <strong>${r1.correct} / ${r1.total}</strong> correct (${pct}%)`;
+
+  let breakLeft = 120;
+  const breakEl = document.getElementById('break-timer');
+  const fmt = s => `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+  breakEl.textContent = fmt(breakLeft);
+
+  state.breakInterval = setInterval(() => {
+    breakLeft--;
+    breakEl.textContent = fmt(breakLeft);
+    if (breakLeft <= 0) { clearInterval(state.breakInterval); startSection(2); }
+  }, 1000);
+
+  goTo('screen-break');
+}
+
+// ─── RESULTS ─────────────────────────────────────────────────────────────────
+function showResults() {
+  const r1 = state.sectionResults[1];
+  const r2 = state.sectionResults[2];
+  const totalCorrect = r1.correct + r2.correct;
+  const totalQs = r1.total + r2.total;
+  const pct = Math.round((totalCorrect / totalQs) * 100);
+
+  document.getElementById('res-subtitle').textContent =
+    `${state.student.name} · ${state.mockMeta.title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}`;
+
+  setTimeout(() => {
+    const arc = document.getElementById('score-arc');
+    const circumference = 427;
+    arc.style.strokeDashoffset = circumference - (circumference * pct / 100);
+    arc.style.transition = 'stroke-dashoffset 1s ease';
+    if (pct >= 80) arc.style.stroke = 'var(--gre-success)';
+    else if (pct >= 60) arc.style.stroke = 'var(--gre-blue)';
+    else if (pct >= 40) arc.style.stroke = 'var(--gre-warning)';
+    else arc.style.stroke = 'var(--gre-danger)';
+  }, 100);
+
+  document.getElementById('res-score-val').textContent = `${totalCorrect}/${totalQs}`;
+
+  const totalTime = r1.timeUsed + r2.timeUsed;
+  const avgTime = Math.round(totalTime / totalQs);
+  document.getElementById('res-stats').innerHTML = `
+    <div class="stat-card"><div class="stat-val">${pct}%</div><div class="stat-lbl">Accuracy</div></div>
+    <div class="stat-card"><div class="stat-val">${totalCorrect}</div><div class="stat-lbl">Correct</div></div>
+    <div class="stat-card"><div class="stat-val">${totalQs - totalCorrect}</div><div class="stat-lbl">Wrong / Skipped</div></div>
+    <div class="stat-card"><div class="stat-val">${avgTime}s</div><div class="stat-lbl">Avg / Question</div></div>
+  `;
+
+  document.getElementById('section-compare').innerHTML = [1,2].map(s => {
+    const r = state.sectionResults[s];
+    const sp = Math.round((r.correct/r.total)*100);
+    const tm = Math.floor(r.timeUsed/60);
+    return `<div class="sec-card">
+      <h3>Section ${s}</h3>
+      <div class="sec-score">${r.correct} / ${r.total} <small style="font-size:14px;color:var(--gre-text2)">(${sp}%)</small></div>
+      <div style="font-size:13px;color:var(--gre-text2);">Time used: ${tm} min${r.autoSubmit?' · Auto-submitted':''}</div>
+    </div>`;
+  }).join('');
+
+  const topicMap = {};
+  state.mockData.sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      const topic = q.tags?.[0] || 'general';
+      if (!topicMap[topic]) topicMap[topic] = { correct:0, total:0 };
+      topicMap[topic].total++;
+      const given = state.answers[si+1][qi];
+      if (checkAnswer(q, given)) topicMap[topic].correct++;
+    });
+  });
+  const topicHtml = Object.entries(topicMap).map(([t, v]) => {
+    const tp = Math.round((v.correct/v.total)*100);
+    const color = tp >= 75 ? 'var(--gre-success)' : tp >= 50 ? 'var(--gre-warning)' : 'var(--gre-danger)';
+    return `<div class="topic-row">
+      <span class="topic-name">${t}</span>
+      <div class="topic-bar-bg"><div class="topic-bar-fill" style="width:${tp}%;background:${color}"></div></div>
+      <span class="topic-pct">${tp}%</span>
+    </div>`;
+  }).join('');
+  document.getElementById('topic-bars').innerHTML = `<h3>Topic Breakdown</h3>${topicHtml}`;
+
+  renderDiagnosis(pct, totalCorrect, totalQs, r1, r2);
+  goTo('screen-results');
+}
+
+function renderDiagnosis(pct, correct, total, r1, r2) {
+  let band, bandClass, message, steps;
+  if (pct >= 80) {
+    band='STRONG'; bandClass='strong';
+    message=`Excellent work, ${state.student.name}! You answered ${correct} out of ${total} correctly. You're performing at the 165–170 level. Focus on eliminating careless errors in the questions you got wrong.`;
+    steps=['Review every wrong answer carefully — at this level, mistakes are often careless, not conceptual.','Time yourself on extreme hard questions — efficiency is your edge.','Simulate test conditions with full mocks to maintain peak performance.'];
+  } else if (pct >= 65) {
+    band='CLOSE'; bandClass='close';
+    message=`Good performance, ${state.student.name}. You got ${correct}/${total} right. You're in the 158–165 band. Targeted practice on your weak topics will push you into the 165+ range.`;
+    steps=['Identify the 2-3 topics where you missed the most and drill them with subtopic practice.','Review medium-difficulty questions you got wrong — these are your biggest score gains.','Work on time management — being slow on easy questions costs you hard question attempts.'];
+  } else if (pct >= 50) {
+    band='NEEDS FOCUS'; bandClass='focus';
+    message=`You got ${correct}/${total} correct, ${state.student.name}. You're at the 150–158 level. There are clear concept gaps — focused study on fundamentals will make a big difference.`;
+    steps=['Go back to basics: arithmetic, algebra, and number properties need to be solid before harder topics.','Do not attempt full mocks yet — spend 2 weeks on subtopic drills first.','Focus on understanding why wrong answers are wrong, not just what the right answer is.'];
+  } else {
+    band='HIGH RISK'; bandClass='risk';
+    message=`You got ${correct}/${total} right, ${state.student.name}. This is a foundation-building phase. Don't be discouraged — everyone starts somewhere.`;
+    steps=['Start with easy-only practice across all topics to build confidence and concept clarity.','Read each explanation even for questions you got right — understanding the method matters.','Set a goal: improve by 10% on the next mock before attempting harder difficulty questions.'];
+  }
+
+  document.getElementById('diagnosis-card').innerHTML = `
+    <h3>Your Diagnosis</h3>
+    <div class="band ${bandClass}">${band}</div>
+    <p class="diag-text">${message}</p>
+    <ul class="recovery-steps">${steps.map((s,i)=>`<li><span class="step-num">${i+1}</span><span>${s}</span></li>`).join('')}</ul>
+  `;
+}
+
+// ─── POST-TEST ANSWER REVIEW ─────────────────────────────────────────────────
+function reviewAnswers() {
+  const reviewEl = document.getElementById('review-section');
+  reviewEl.style.display = 'block';
+  const list = document.getElementById('review-list');
+  let html = '';
+  state.mockData.sections.forEach((sec, si) => {
+    html += `<div class="section-label-row">── Section ${si+1} ──</div>`;
+    sec.questions.forEach((q, qi) => {
+      const given = state.answers[si+1][qi];
+      const isCorrect = checkAnswer(q, given);
+      const isSkipped = !given && given !== 0;
+      const status = isSkipped ? 'skipped' : isCorrect ? 'correct' : 'incorrect';
+      const givenStr = Array.isArray(given) ? given.join(', ') : (given || '—');
+      const correctStr = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
+      html += `<div class="review-item ${status}">
+        <div class="review-q"><strong>Q${qi+1}.</strong> ${escapeHtml(q.question)}</div>
+        <div class="review-answers">
+          <span>Your answer: <span class="${isCorrect?'correct-ans':'wrong-ans'}">${escapeHtml(givenStr)}</span></span>
+          <span>Correct: <span class="correct-ans">${escapeHtml(correctStr)}</span></span>
+        </div>
+        ${q.explanation ? `<div class="review-exp">${escapeHtml(q.explanation)}</div>` : ''}
+        ${q.trap ? `<div class="review-trap">⚠ Trap: ${escapeHtml(q.trap)}</div>` : ''}
+      </div>`;
+    });
+  });
+  list.innerHTML = html;
+  if (window.GREMath) GREMath.renderIn(list);
+  reviewEl.scrollIntoView({ behavior:'smooth' });
+}
+
+function toggleReview() {
+  const list = document.getElementById('review-list');
+  const btn = document.querySelector('.review-toggle');
+  if (list.style.display === 'none') { list.style.display='flex'; btn.textContent='hide'; }
+  else { list.style.display='none'; btn.textContent='show'; }
+}
+
+// ─── DOWNLOAD ─────────────────────────────────────────────────────────────────
+function downloadResult() {
+  const r1 = state.sectionResults[1];
+  const r2 = state.sectionResults[2];
+  const totalCorrect = r1.correct + r2.correct;
+  const total = r1.total + r2.total;
+  const result = {
+    student: state.student,
+    mock: state.mockMeta,
+    date: new Date().toISOString(),
+    totalCorrect, total,
+    accuracy: Math.round((totalCorrect/total)*100),
+    sections: state.sectionResults,
+    answers: state.answers,
+    timings: state.timings,
+  };
+  const blob = new Blob([JSON.stringify(result, null, 2)], { type:'application/json' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `${state.student.name.replace(/\s+/g,'-')}_${state.mockMeta.id}_result.json`;
+  a.click();
+}
+
+// ─── KEYBOARD ─────────────────────────────────────────────────────────────────
+document.addEventListener('keydown', (e) => {
+  if (!document.getElementById('screen-exam').classList.contains('active')) return;
+  if (['INPUT','TEXTAREA'].includes(document.activeElement?.tagName)) return;
+  if (e.key === 'ArrowRight') nextQ();
+  else if (e.key === 'ArrowLeft') prevQ();
+});
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+renderMockGrid();
+goTo('screen-select');
+</script>
+</body>
+</html>

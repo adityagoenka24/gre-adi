@@ -1,0 +1,1160 @@
+{
+  "meta": {
+    "mock_id": "mock_10",
+    "title": "GRE Quant Mock Test 10 \u2014 Expert Level",
+    "difficulty": "Expert",
+    "access": "pro",
+    "total_questions": 54,
+    "sections": 2,
+    "time_per_section_minutes": 35,
+    "target_score_band": "168-170",
+    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "sections": [
+    {
+      "section_num": 1,
+      "questions": [
+        {
+          "id": "MOCK-10-S1-001",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "What are the last two digits of 7^(7^7)?",
+          "options": [
+            "A. 01",
+            "B. 43",
+            "C. 07",
+            "D. 49",
+            "E. 77"
+          ],
+          "answer": "B",
+          "explanation": "Need 7^(7^7) mod 100. \u03c6(100)=40. 7^7=823543. 823543 mod 40=23. So 7^(7^7)\u22617^23 (mod100). 7^4\u226101, 7^8\u226101, 7^16\u226101. 7^23=7^16\u00d77^4\u00d77^2\u00d77=1\u00d71\u00d749\u00d77=343\u226143.",
+          "trap": "Students compute 7^7 mod 100=43, not applying Euler's theorem to first reduce the exponent mod \u03c6(100)=40.",
+          "estimated_time_seconds": 130,
+          "tags": [
+            "number-properties",
+            "modular-arithmetic",
+            "euler-totient"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-002",
+          "difficulty": "extreme_hard",
+          "type": "quantitative_comparison",
+          "question": "n is a positive integer with n \u2265 2.\nColumn A: Number of divisors of n!\nColumn B: n",
+          "options": [
+            "A. Column A is greater",
+            "B. Column B is greater",
+            "C. The two quantities are equal",
+            "D. The relationship cannot be determined from the information given"
+          ],
+          "answer": "D",
+          "explanation": "n=2: 2!=2 has exactly 2 divisors = n \u2192 equal. n=3: 3!=6 has 4 divisors > n=3 \u2192 A>B. Two relationships are possible \u2192 D.",
+          "trap": "Students test n=3 or larger (always A>B) and conclude A always wins, missing the n=2 edge case where equality holds.",
+          "estimated_time_seconds": 90,
+          "tags": [
+            "number-properties",
+            "factorials",
+            "divisors"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-003",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "How many integers n in {1, 2, \u2026, 1000} satisfy n\u00b2 \u2261 n (mod 10)?",
+          "options": [
+            "A. 100",
+            "B. 200",
+            "C. 300",
+            "D. 400",
+            "E. 500"
+          ],
+          "answer": "D",
+          "explanation": "n\u00b2\u2261n(mod10) iff n(n\u22121)\u22610(mod10). Test all units digits: d=0\u21920\u00d79=0\u2713; d=1\u21921\u00d70=0\u2713; d=5\u21925\u00d74=20\u2713; d=6\u21926\u00d75=30\u2713. 4 out of 10 digits \u2192 4\u00d7100=400.",
+          "trap": "Students find units digits 0 and 1 only (\u2192200), missing that d=5 and d=6 also satisfy n(n\u22121)\u22610(mod10).",
+          "estimated_time_seconds": 105,
+          "tags": [
+            "number-properties",
+            "modular-arithmetic",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-004",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "The polynomial x\u2074 \u2212 1 factored completely over the reals is:",
+          "options": [
+            "A. (x\u22121)(x+1)(x\u00b2+1)",
+            "B. (x\u00b2\u22121)\u00b2",
+            "C. (x\u22121)\u00b2(x+1)\u00b2",
+            "D. (x\u22121)(x+1)(x\u2212i)(x+i)",
+            "E. (x\u00b2\u22121)(x\u00b2+1)"
+          ],
+          "answer": "A",
+          "explanation": "x\u2074\u22121=(x\u00b2\u22121)(x\u00b2+1)=(x\u22121)(x+1)(x\u00b2+1). Over reals, x\u00b2+1 has no real roots and is irreducible.",
+          "trap": "Students stop at (x\u00b2\u22121)(x\u00b2+1) (option E) without completing the factoring of x\u00b2\u22121=(x\u22121)(x+1).",
+          "estimated_time_seconds": 60,
+          "tags": [
+            "algebra",
+            "polynomial-equations",
+            "factoring"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-005",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "A and B each flip a fair coin repeatedly: A until heads, B until tails. What is P(A needs fewer flips than B)?",
+          "options": [
+            "A. 1/3",
+            "B. 1/4",
+            "C. 2/5",
+            "D. 3/8",
+            "E. 5/16"
+          ],
+          "answer": "A",
+          "explanation": "P(A=a)=P(B=b)=(1/2)^k. P(A<B)=\u03a3_{a=1}^\u221e (1/2)^a \u03a3_{b=a+1}^\u221e (1/2)^b=\u03a3_{a=1}^\u221e(1/4)^a=(1/4)/(3/4)=1/3.",
+          "trap": "Students compute P(A<B)=P(B<A)=(1\u2212P(A=B))/2. P(A=B)=\u03a3(1/4)^k=1/3. P(A<B)=(1\u22121/3)/2=1/3 \u2713. Error: P(A<B)=1/2 by 'symmetry' without accounting for P(A=B)>0.",
+          "estimated_time_seconds": 115,
+          "tags": [
+            "statistics",
+            "basic-probability",
+            "geometric-series"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-006",
+          "difficulty": "extreme_hard",
+          "type": "quantitative_comparison",
+          "question": "x and y are real numbers with x\u00b2+y\u00b2=1 and x+y=k.\nColumn A: k\u00b2\nColumn B: 2",
+          "options": [
+            "A. Column A is greater",
+            "B. Column B is greater",
+            "C. The two quantities are equal",
+            "D. The relationship cannot be determined from the information given"
+          ],
+          "answer": "D",
+          "explanation": "k\u00b2=1+2xy. Since x\u00b2+y\u00b2=1: by AM-GM, xy\u22641/2 (equality at x=y=1/\u221a2). Also xy\u2265\u22121/2. So k\u00b2\u2208[0,2]. When x=y=1/\u221a2: k\u00b2=2 (equal). When x=1,y=0: k\u00b2=1 (B>A). So both B>A and A=B are possible \u2192 D.",
+          "trap": "Students conclude k\u00b2\u22642 always, so Column B\u2265Column A, and choose B without noting that equality is achievable at x=y=1/\u221a2.",
+          "estimated_time_seconds": 105,
+          "tags": [
+            "algebra",
+            "inequalities",
+            "circles"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-007",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "The geometric mean of two positive numbers is 6 and their harmonic mean is 4. What is their arithmetic mean?",
+          "options": [
+            "A. 4",
+            "B. 6",
+            "C. 9",
+            "D. 3",
+            "E. 12"
+          ],
+          "answer": "C",
+          "explanation": "AM\u00d7HM=GM\u00b2. AM\u00d74=36 \u2192 AM=9. Verify: AM=9\u2265GM=6\u2265HM=4 \u2713.",
+          "trap": "Students compute AM=(HM+GM)/2=5 (simple average), not using the identity AM\u00d7HM=GM\u00b2.",
+          "estimated_time_seconds": 80,
+          "tags": [
+            "algebra",
+            "inequalities",
+            "means"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-008",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "Wilson's theorem: (p\u22121)!\u2261\u22121(mod p) for prime p. Find 4! mod 7.",
+          "options": [
+            "A. 1",
+            "B. 3",
+            "C. 5",
+            "D. 6",
+            "E. 0"
+          ],
+          "answer": "B",
+          "explanation": "6!\u2261\u22121(mod7). 6!=6\u00d75\u00d74!. 6\u2261\u22121,5\u2261\u22122(mod7): (\u22121)(\u22122)\u00d74!=2\u00d74!\u2261\u22121(mod7). 4!\u2261\u22121\u00d74=\u22124\u22613(mod7).",
+          "trap": "Students compute 4!=24 directly and verify 24=3\u00d77+3\u22613(mod7) \u2713. Using Wilson: 2\u207b\u00b9\u22614(mod7) since 2\u00d74=8\u22611. 4!=\u22121/2\u2261(\u22121)\u00d74=\u22124\u22613.",
+          "estimated_time_seconds": 90,
+          "tags": [
+            "number-properties",
+            "modular-arithmetic",
+            "wilson-theorem"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-009",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "A sequence satisfies a\u2099=5a\u2099\u208b\u2081\u22126a\u2099\u208b\u2082 with a\u2081=1, a\u2082=3. What is a\u2084?",
+          "options": [
+            "A. 9",
+            "B. 18",
+            "C. 27",
+            "D. 33",
+            "E. 45"
+          ],
+          "answer": "C",
+          "explanation": "a\u2083=5(3)\u22126(1)=9. a\u2084=5(9)\u22126(3)=45\u221218=27.",
+          "trap": "Students compute a\u2084=5a\u2083\u22126a\u2081=45\u22126=39 (using a\u2081 instead of a\u2082 in the recurrence).",
+          "estimated_time_seconds": 75,
+          "tags": [
+            "algebra",
+            "sequences-series",
+            "recurrence"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-010",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "How many positive divisors of 10^8 are perfect squares?",
+          "options": [
+            "A. 10",
+            "B. 15",
+            "C. 20",
+            "D. 25",
+            "E. 30"
+          ],
+          "answer": "D",
+          "explanation": "10^8=2^8\u00d75^8. Divisor 2^a\u00d75^b is a perfect square iff a,b are even: a\u2208{0,2,4,6,8}\u21925, b\u2208{0,2,4,6,8}\u21925. Total=25.",
+          "trap": "Students count all divisors: (8+1)\u00b2=81, not filtering for even exponents only.",
+          "estimated_time_seconds": 75,
+          "tags": [
+            "number-properties",
+            "divisors",
+            "perfect-squares"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-011",
+          "difficulty": "extreme_hard",
+          "type": "numeric_entry",
+          "question": "For how many integers n in {1, 2, \u2026, 200} is n\u00b3+n\u00b2+n+1 divisible by 5?",
+          "options": null,
+          "answer": "120",
+          "explanation": "n\u00b3+n\u00b2+n+1=(n+1)(n\u00b2+1). Divisible by 5 iff 5|(n+1) or 5|(n\u00b2+1). n\u22614(mod5): 40 values. n\u22612(mod5): n\u00b2+1\u22615\u22610\u219240. n\u22613(mod5): n\u00b2+1\u226110\u22610\u219240. Total=40+40+40=120. (No overlap: n\u22614 gives n\u00b2+1\u226117\u22612\u22600.)",
+          "trap": "Students only find n\u22614(mod5) (40 values), missing the n\u00b2+1\u22610(mod5) cases (n\u22612 or 3).",
+          "estimated_time_seconds": 110,
+          "tags": [
+            "number-properties",
+            "modular-arithmetic",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-012",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "Triangle ABC has A(0,0), B(4,0), C(0,3). What is the minimum value of PA\u00b2+PB\u00b2+PC\u00b2 over all points P?",
+          "options": [
+            "A. 25/3",
+            "B. 50/3",
+            "C. 75/9",
+            "D. 100/9",
+            "E. 125/9"
+          ],
+          "answer": "B",
+          "explanation": "Minimum at centroid G=(4/3,1). GA\u00b2=(4/3)\u00b2+1=25/9. GB\u00b2=(4/3\u22124)\u00b2+1=64/9+1=73/9. GC\u00b2=(4/3)\u00b2+(1\u22123)\u00b2=16/9+4=52/9. Sum=150/9=50/3.",
+          "trap": "Students place P at the origin or at the centroid but compute distances incorrectly.",
+          "estimated_time_seconds": 95,
+          "tags": [
+            "coordinate-geometry",
+            "optimization",
+            "triangles"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-013",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "How many non-negative integer solutions does x\u2081+x\u2082+x\u2083+x\u2084=12 have with each x\u1d62\u22645?",
+          "options": [
+            "A. 80",
+            "B. 90",
+            "C. 100",
+            "D. 116",
+            "E. 125"
+          ],
+          "answer": "E",
+          "explanation": "Unrestricted: C(15,3)=455. Subtract at least one \u22656 (sub x'=x\u22126, sum=6): C(9,3)=84 per choice, \u00d74=336. Add back at least two \u22656 (sum=0): C(3,3)=1, \u00d7C(4,2)=6. Three \u22656: impossible. Result=455\u2212336+6=125.",
+          "trap": "Students compute 455\u2212336=119 (forgetting to add back the two-variable overlap of 6).",
+          "estimated_time_seconds": 120,
+          "tags": [
+            "statistics",
+            "counting",
+            "stars-and-bars"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-014",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "If log_a(b) = log_b(a\u00b2) where a,b>1 and a\u2260b, what is log_a(b)?",
+          "options": [
+            "A. 1",
+            "B. \u221a2",
+            "C. 2",
+            "D. \u2212\u221a2",
+            "E. \u22121"
+          ],
+          "answer": "B",
+          "explanation": "Let x=log_a(b). log_b(a\u00b2)=2log_b(a)=2/x. x=2/x \u2192 x\u00b2=2 \u2192 x=\u221a2 (positive since a,b>1).",
+          "trap": "Students solve x=2/x as x=2 (cancelling x from both sides) instead of x\u00b2=2 \u2192 x=\u221a2.",
+          "estimated_time_seconds": 85,
+          "tags": [
+            "algebra",
+            "logarithms"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-015",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "In how many ways can the letters of MISSISSIPPI be arranged so that no two I's are adjacent?",
+          "options": [
+            "A. 7350",
+            "B. 14700",
+            "C. 5040",
+            "D. 3465",
+            "E. 11025"
+          ],
+          "answer": "A",
+          "explanation": "MISSISSIPPI: M=1,I=4,S=4,P=2. Arrange the 7 non-I letters: 7!/(4!\u00d72!)=105. These create 8 gaps. Place 4 I's in distinct gaps: C(8,4)=70. Total=105\u00d770=7350.",
+          "trap": "Students compute the gap-selection as P(8,4)/4!=70 \u2713 but use incorrect total for the non-I arrangement.",
+          "estimated_time_seconds": 125,
+          "tags": [
+            "statistics",
+            "permutations",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-016",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "What is the sum of the series 1/(1\u00d73)+1/(3\u00d75)+1/(5\u00d77)+\u2026?",
+          "options": [
+            "A. 1/2",
+            "B. 1/3",
+            "C. 1",
+            "D. 2",
+            "E. \u03c0/4"
+          ],
+          "answer": "A",
+          "explanation": "1/((2k\u22121)(2k+1))=(1/2)(1/(2k\u22121)\u22121/(2k+1)). Telescoping: Sum=(1/2)(1)=1/2.",
+          "trap": "Students identify this as similar to the Leibniz \u03c0/4 formula (which is 1\u22121/3+1/5\u2212... alternating) and choose \u03c0/4.",
+          "estimated_time_seconds": 70,
+          "tags": [
+            "algebra",
+            "sequences-series",
+            "telescoping"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-017",
+          "difficulty": "extreme_hard",
+          "type": "numeric_entry",
+          "question": "How many integers from 1 to 500 are divisible by at least one of 2, 3, or 7?",
+          "options": null,
+          "answer": "357",
+          "explanation": "|A|=250,|B|=166,|C|=71. |A\u2229B|=\u230a500/6\u230b=83. |A\u2229C|=\u230a500/14\u230b=35. |B\u2229C|=\u230a500/21\u230b=23. |A\u2229B\u2229C|=\u230a500/42\u230b=11. |A\u222aB\u222aC|=250+166+71\u221283\u221235\u221223+11=357.",
+          "trap": "Students miss the triple-intersection term (+11), getting 357\u221211=346.",
+          "estimated_time_seconds": 100,
+          "tags": [
+            "number-properties",
+            "divisibility",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-018",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "A fair coin is flipped repeatedly. What is P(pattern HT appears before TT)?",
+          "options": [
+            "A. 1/2",
+            "B. 3/4",
+            "C. 2/3",
+            "D. 1/3",
+            "E. 3/8"
+          ],
+          "answer": "B",
+          "explanation": "States: start, after-H, after-T. Let p=P(win|start), h=P(win|after-H), t=P(win|after-T). h=1/2+(1/2)h\u2192h=1. t=(1/2)h+0=1/2. p=(1/2)h+(1/2)t=3/4.",
+          "trap": "Students assume P(HT before TT)=1/2 by symmetry, not accounting for how the two patterns interact on overlapping sequences.",
+          "estimated_time_seconds": 125,
+          "tags": [
+            "statistics",
+            "basic-probability",
+            "markov-chains"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-019",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "For x\u00b2+ax+b=0 with roots r,s, if r+s=1 and r\u00b2+s\u00b2=5, what is |r\u2212s|?",
+          "options": [
+            "A. \u221a3",
+            "B. 2",
+            "C. \u221a5",
+            "D. 3",
+            "E. \u221a7"
+          ],
+          "answer": "D",
+          "explanation": "rs=((r+s)\u00b2\u2212(r\u00b2+s\u00b2))/2=(1\u22125)/2=\u22122. (r\u2212s)\u00b2=(r+s)\u00b2\u22124rs=1+8=9. |r\u2212s|=3.",
+          "trap": "Students compute (r\u2212s)\u00b2=(r+s)\u00b2\u2212rs=1+2=3, missing the factor 4 in 4rs.",
+          "estimated_time_seconds": 70,
+          "tags": [
+            "algebra",
+            "quadratic-equations",
+            "vieta-formulas"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-020",
+          "difficulty": "extreme_hard",
+          "type": "quantitative_comparison",
+          "question": "S = set of all 4-digit numbers with distinct digits.\nColumn A: Count of elements of S divisible by 5\nColumn B: 500",
+          "options": [
+            "A. Column A is greater",
+            "B. Column B is greater",
+            "C. The two quantities are equal",
+            "D. The relationship cannot be determined from the information given"
+          ],
+          "answer": "A",
+          "explanation": "Last digit=0: 9\u00d78\u00d77=504. Last digit=5: 8\u00d78\u00d77=448. Total=952>500. Column A.",
+          "trap": "Students count only last-digit=0 (504) and compare to 500, barely choosing A, missing the last-digit=5 case (448 more).",
+          "estimated_time_seconds": 110,
+          "tags": [
+            "statistics",
+            "counting",
+            "digit-problems"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-021",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "An arithmetic sequence of 9 positive terms has sum 99. What is the middle (5th) term?",
+          "options": [
+            "A. 9",
+            "B. 11",
+            "C. 13",
+            "D. 7",
+            "E. 15"
+          ],
+          "answer": "B",
+          "explanation": "Sum of n terms of AP = n \u00d7 middle term (for odd n). 99 = 9 \u00d7 middle \u2192 middle = 11.",
+          "trap": "Students use S=n/2\u00d7(first+last)=99 and try to solve for specific terms without recognising that sum/n gives the middle term directly.",
+          "estimated_time_seconds": 50,
+          "tags": [
+            "algebra",
+            "sequences-series",
+            "arithmetic"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-022",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "In how many ways can 8 people be divided into two groups of 4 (groups are unlabelled)?",
+          "options": [
+            "A. 35",
+            "B. 70",
+            "C. 140",
+            "D. 280",
+            "E. 560"
+          ],
+          "answer": "A",
+          "explanation": "C(8,4)/2=70/2=35. Divide by 2 because the two groups have no distinguishing label.",
+          "trap": "Students compute C(8,4)=70 treating the groups as labelled (Group A vs Group B).",
+          "estimated_time_seconds": 70,
+          "tags": [
+            "statistics",
+            "combinations",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-023",
+          "difficulty": "hard",
+          "type": "multiple_answer",
+          "question": "Which of the following series converge? Select all that apply.",
+          "options": [
+            "A. \u03a3 1/n",
+            "B. \u03a3 1/n\u00b2",
+            "C. \u03a3 1/\u221an",
+            "D. \u03a3 (\u22121)\u207f/n",
+            "E. \u03a3 1/n^(3/2)"
+          ],
+          "answer": [
+            "B",
+            "D",
+            "E"
+          ],
+          "explanation": "A: Harmonic (p=1), diverges. B: p=2>1, converges. C: p=1/2<1, diverges. D: Alternating with 1/n\u21920 decreasingly \u2014 converges by AST. E: p=3/2>1, converges.",
+          "trap": "Students include A (classic divergent series) or exclude D (forgetting the Alternating Series Test applies here).",
+          "estimated_time_seconds": 90,
+          "tags": [
+            "algebra",
+            "sequences-series"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-024",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "How many colorings of a 6\u00d76 grid use exactly 18 black and 18 white squares?",
+          "options": [
+            "A. C(36,18)",
+            "B. 2\u00b3\u2076",
+            "C. C(18,9)\u00b2",
+            "D. C(36,18)/2",
+            "E. 2\u00b9\u2078"
+          ],
+          "answer": "A",
+          "explanation": "Choose 18 of 36 squares to be black; the rest are white. C(36,18).",
+          "trap": "Students compute 2^36 (all colorings) or C(36,18)/2 (dividing by some symmetry that doesn't apply here).",
+          "estimated_time_seconds": 70,
+          "tags": [
+            "statistics",
+            "combinations",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-025",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "What is the smallest positive integer n for which 2\u207f > n\u00b2?",
+          "options": [
+            "A. 3",
+            "B. 4",
+            "C. 5",
+            "D. 6",
+            "E. 7"
+          ],
+          "answer": "C",
+          "explanation": "n=1:2>1\u2713 but fails at n=3. Check: n=2:4=4 \u2717. n=3:8<9 \u2717. n=4:16=16 \u2717. n=5:32>25 \u2713, and 2\u207f>n\u00b2 holds for all n\u22655. So smallest such n=5.",
+          "trap": "Students check n=2: 4=4 and guess 2 (strictly greater fails), or stop at n=1 where 2>1 \u2713 but the pattern breaks.",
+          "estimated_time_seconds": 85,
+          "tags": [
+            "algebra",
+            "inequalities",
+            "exponents"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-026",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "Equilateral triangle ABC has side 6. P is equidistant from all three vertices. What is P's distance from each side?",
+          "options": [
+            "A. \u221a3",
+            "B. 2",
+            "C. \u221a3/2",
+            "D. 2\u221a3",
+            "E. 1"
+          ],
+          "answer": "A",
+          "explanation": "P = centroid = incenter for equilateral triangle. Inradius r = (side)/(2\u221a3) = 6/(2\u221a3) = \u221a3.",
+          "trap": "Students compute circumradius R=6/\u221a3=2\u221a3 (distance to vertices, not to sides).",
+          "estimated_time_seconds": 75,
+          "tags": [
+            "geometry",
+            "triangles",
+            "equilateral"
+          ]
+        },
+        {
+          "id": "MOCK-10-S1-027",
+          "difficulty": "extreme_hard",
+          "type": "numeric_entry",
+          "question": "How many 4-digit integers have the product of their digits equal to 12?",
+          "options": null,
+          "answer": "36",
+          "explanation": "Digit multisets with product 12: {1,1,3,4}\u21924!/2!=12. {1,1,2,6}\u219212. {1,2,2,3}\u21924!/2!=12. Total=36.",
+          "trap": "Students find only {1,1,3,4} and {1,1,2,6} (24 arrangements), missing {1,2,2,3}.",
+          "estimated_time_seconds": 115,
+          "tags": [
+            "number-properties",
+            "counting",
+            "digit-problems"
+          ]
+        }
+      ]
+    },
+    {
+      "section_num": 2,
+      "questions": [
+        {
+          "id": "MOCK-10-S2-001",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "How many 3-element subsets {a,b,c} of {1,2,\u2026,15} satisfy a+b+c \u2261 0 (mod 3)?",
+          "options": [
+            "A. 120",
+            "B. 105",
+            "C. 155",
+            "D. 165",
+            "E. 195"
+          ],
+          "answer": "C",
+          "explanation": "Classes mod 3: each class {0,1,2} has 5 elements. Valid subsets: all same class: C(5,3)\u00d73=30. One from each class: 5\u00d75\u00d75=125. Total=155.",
+          "trap": "Students count only the all-same-class case (30) and miss the mixed-class case (125).",
+          "estimated_time_seconds": 105,
+          "tags": [
+            "number-properties",
+            "modular-arithmetic",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-002",
+          "difficulty": "hard",
+          "type": "quantitative_comparison",
+          "question": "ABCD is a square with side 4. E is the midpoint of BC.\nColumn A: Area of triangle ADE\nColumn B: 8",
+          "options": [
+            "A. Column A is greater",
+            "B. Column B is greater",
+            "C. The two quantities are equal",
+            "D. The relationship cannot be determined from the information given"
+          ],
+          "answer": "C",
+          "explanation": "A=(0,0),B=(4,0),C=(4,4),D=(0,4),E=(4,2). Area of ADE: using shoelace: |(0(4\u22122)+0(2\u22120)+4(0\u22124))|/2=|0+0\u221216|/2=8. Equal.",
+          "trap": "Students compute area of ADE = half the square's area = 16/2 = 8 \u2713. Some compute incorrectly as (1/2)(4)(4)=8 \u2713.",
+          "estimated_time_seconds": 70,
+          "tags": [
+            "geometry",
+            "triangles",
+            "coordinate-geometry"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-003",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "A sequence has a\u2081=2, a\u2082=3, a\u2099=a\u2099\u208b\u2081\u00d7a\u2099\u208b\u2082. What is the units digit of a\u2081\u2080?",
+          "options": [
+            "A. 2",
+            "B. 4",
+            "C. 6",
+            "D. 8",
+            "E. 0"
+          ],
+          "answer": "D",
+          "explanation": "Units digits: a\u2081=2,a\u2082=3,a\u2083=6,a\u2084=8(3\u00d76=18),a\u2085=8(6\u00d718=108),a\u2086=4(18\u00d78=144 ud=4\u00d78=... wait: ud(a\u2084)=ud(3\u00d76)=8. ud(a\u2085)=ud(6\u00d78)=8. ud(a\u2086)=ud(8\u00d78)=4. Wait: a\u2084=a\u2083\u00d7a\u2082=6\u00d73=18\u21928. a\u2085=a\u2084\u00d7a\u2083=18\u00d76=108\u21928. a\u2086=a\u2085\u00d7a\u2084\u2192ud(8\u00d78)=64\u21924. a\u2087=a\u2086\u00d7a\u2085\u2192ud(4\u00d78)=32\u21922. a\u2088=a\u2087\u00d7a\u2086\u2192ud(2\u00d74)=8. a\u2089=a\u2088\u00d7a\u2087\u2192ud(8\u00d72)=16\u21926. a\u2081\u2080=a\u2089\u00d7a\u2088\u2192ud(6\u00d78)=48\u21928.",
+          "trap": "Students confuse the multiplicative recurrence with Fibonacci (additive), computing a\u2081\u2080=89 with units digit 9.",
+          "estimated_time_seconds": 95,
+          "tags": [
+            "algebra",
+            "sequences-series",
+            "units-digit"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-004",
+          "difficulty": "hard",
+          "type": "numeric_entry",
+          "question": "How many positive integers less than 100 are coprime to 30?",
+          "options": null,
+          "answer": "26",
+          "explanation": "\u03c6(30)=8 coprime residues per 30 integers. In [1,90]: 3\u00d78=24. In [91,99]: check: 91=7\u00d713\u2713, 97=prime\u2713. Others divisible by 2,3,or 5. Count: 2. Total=26.",
+          "trap": "Students compute \u03c6(30)\u00d7\u230a100/30\u230b=8\u00d73=24, forgetting to check the remaining 91\u201399.",
+          "estimated_time_seconds": 95,
+          "tags": [
+            "number-properties",
+            "euler-totient",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-005",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "If z=cos(2\u03c0/5)+i\u00b7sin(2\u03c0/5), what is 1+z+z\u00b2+z\u00b3+z\u2074?",
+          "options": [
+            "A. 0",
+            "B. 1",
+            "C. 5",
+            "D. 5z",
+            "E. Cannot be determined"
+          ],
+          "answer": "A",
+          "explanation": "z=e^(2\u03c0i/5) is a primitive 5th root of unity. The sum of all 5th roots of unity equals 0.",
+          "trap": "Students compute |1+z|\u22481.9 and guess a non-zero result, or sum magnitudes instead of complex values.",
+          "estimated_time_seconds": 75,
+          "tags": [
+            "algebra",
+            "complex-numbers"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-006",
+          "difficulty": "hard",
+          "type": "quantitative_comparison",
+          "question": "Circle O has radius 5. Chord AB has length 6 and chord CD has length 8.\nColumn A: Distance from O to AB\nColumn B: Distance from O to CD",
+          "options": [
+            "A. Column A is greater",
+            "B. Column B is greater",
+            "C. The two quantities are equal",
+            "D. The relationship cannot be determined from the information given"
+          ],
+          "answer": "A",
+          "explanation": "d(AB)=\u221a(25\u22129)=4. d(CD)=\u221a(25\u221216)=3. Column A=4>3=Column B.",
+          "trap": "Students confuse half-chord lengths (3 and 4) with the distances to the chord (4 and 3 \u2014 reversed).",
+          "estimated_time_seconds": 65,
+          "tags": [
+            "geometry",
+            "circles",
+            "chord"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-007",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "How many ordered triples (a,b,c) of positive integers satisfy a\u2264b\u2264c and a+b+c=15?",
+          "options": [
+            "A. 19",
+            "B. 22",
+            "C. 28",
+            "D. 14",
+            "E. 35"
+          ],
+          "answer": "A",
+          "explanation": "a=1: 7 triples (b from 1 to 7). a=2: 5. a=3: 4. a=4: 2. a=5: 1. Total=7+5+4+2+1=19.",
+          "trap": "Students use C(14,2)=91 (unrestricted) or C(14,2)/6\u224815 (dividing by 3! incorrectly for ordered triples).",
+          "estimated_time_seconds": 105,
+          "tags": [
+            "statistics",
+            "counting",
+            "combinatorics"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-008",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "If a+b+c=0, which expression equals a\u00b3+b\u00b3+c\u00b3?",
+          "options": [
+            "A. 0",
+            "B. 3abc",
+            "C. abc",
+            "D. (a+b)(b+c)(a+c)",
+            "E. a\u00b2+b\u00b2+c\u00b2"
+          ],
+          "answer": "B",
+          "explanation": "Identity: a\u00b3+b\u00b3+c\u00b3\u22123abc=(a+b+c)(a\u00b2+b\u00b2+c\u00b2\u2212ab\u2212bc\u2212ca). If a+b+c=0: a\u00b3+b\u00b3+c\u00b3=3abc.",
+          "trap": "Students compute a\u00b3+b\u00b3+c\u00b3=0 by direct analogy with a+b+c=0 (incorrectly extending linearity to cubes).",
+          "estimated_time_seconds": 70,
+          "tags": [
+            "algebra",
+            "algebraic-expressions",
+            "identities"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-009",
+          "difficulty": "extreme_hard",
+          "type": "numeric_entry",
+          "question": "What is the maximum number of regions into which 6 lines (in general position) can divide the plane?",
+          "options": null,
+          "answer": "22",
+          "explanation": "R(n)=1+n+C(n,2)=1+6+15=22.",
+          "trap": "Students compute 2\u2076=64 (doubling per line) or 6\u00b2=36.",
+          "estimated_time_seconds": 80,
+          "tags": [
+            "geometry",
+            "combinatorics",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-010",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "A box has 2 red, 2 blue, 2 green balls. Two are drawn. Given at least one is red, what is P(both same color)?",
+          "options": [
+            "A. 1/9",
+            "B. 1/6",
+            "C. 2/9",
+            "D. 1/3",
+            "E. 1/4"
+          ],
+          "answer": "A",
+          "explanation": "P(both red)=C(2,2)/C(6,2)=1/15. P(\u22651 red)=1\u2212C(4,2)/C(6,2)=9/15. P(both same|\u22651 red)=(1/15)/(9/15)=1/9.",
+          "trap": "Students compute P(both same)/P(\u22651 red)=(3/15)/(9/15)=1/3 (including all-blue and all-green in 'same color').",
+          "estimated_time_seconds": 110,
+          "tags": [
+            "statistics",
+            "conditional-probability"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-011",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "What is \u03a3_{k=1}^{n} 1/(k(k+1)(k+2)) in closed form?",
+          "options": [
+            "A. 1/4",
+            "B. n(n+3)/(4(n+1)(n+2))",
+            "C. 1/(2(n+1)(n+2))",
+            "D. (n+1)/(4(n+2))",
+            "E. 1/4\u22121/(2(n+1)(n+2))"
+          ],
+          "answer": "B",
+          "explanation": "Partial fractions: 1/(k(k+1)(k+2))=(1/2)(1/(k(k+1))\u22121/((k+1)(k+2))). Sum=(1/2)(1/2\u22121/((n+1)(n+2)))=1/4\u22121/(2(n+1)(n+2))=n(n+3)/(4(n+1)(n+2)). Verify n=1: 1/6 vs (1\u00d74)/(4\u00d72\u00d73)=4/24=1/6 \u2713.",
+          "trap": "Students compute the infinite sum (1/4) and choose A, ignoring that the problem asks for the finite n-term sum.",
+          "estimated_time_seconds": 100,
+          "tags": [
+            "algebra",
+            "sequences-series",
+            "telescoping"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-012",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "What is the distance between the parallel lines 3x+4y=5 and 3x+4y=15?",
+          "options": [
+            "A. 1",
+            "B. 2",
+            "C. 3",
+            "D. 4",
+            "E. 5"
+          ],
+          "answer": "B",
+          "explanation": "Distance=|15\u22125|/\u221a(9+16)=10/5=2.",
+          "trap": "Students compute |15\u22125|=10 without dividing by \u221a(a\u00b2+b\u00b2)=5.",
+          "estimated_time_seconds": 55,
+          "tags": [
+            "coordinate-geometry",
+            "lines"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-013",
+          "difficulty": "extreme_hard",
+          "type": "quantitative_comparison",
+          "question": "Positive integer n satisfies: n\u22613(mod7) and n\u22615(mod11).\nColumn A: n mod 77\nColumn B: 38",
+          "options": [
+            "A. Column A is greater",
+            "B. Column B is greater",
+            "C. The two quantities are equal",
+            "D. The relationship cannot be determined from the information given"
+          ],
+          "answer": "C",
+          "explanation": "CRT: n=7k+3, 7k\u22612(mod11). 7\u207b\u00b9\u22618(mod11). k\u226116\u22615(mod11). n=7(11m+5)+3=77m+38. Remainder mod 77 is always 38 \u2192 C.",
+          "trap": "Students apply CRT correctly but make an arithmetic error: 7\u00d75+3=38 \u2713. Some compute 3+5=8 (adding remainders) and get Column A=8<38=Column B.",
+          "estimated_time_seconds": 90,
+          "tags": [
+            "number-properties",
+            "chinese-remainder-theorem",
+            "modular-arithmetic"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-014",
+          "difficulty": "extreme_hard",
+          "type": "numeric_entry",
+          "question": "How many positive integers n\u2264100 satisfy \u03c3(n)=n+1, where \u03c3(n) is the sum of all positive divisors of n?",
+          "options": null,
+          "answer": "25",
+          "explanation": "\u03c3(n)=n+1 means the only divisors are 1 and n \u2192 n is prime. Count primes \u2264100: 2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59,61,67,71,73,79,83,89,97 \u2192 25.",
+          "trap": "Students include n=1 (\u03c3(1)=1\u22602) or confuse \u03c3(n)=n+1 with \u03c3(n)=2n (perfect numbers).",
+          "estimated_time_seconds": 75,
+          "tags": [
+            "number-properties",
+            "prime-numbers",
+            "divisors"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-015",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "The complex number (1+i)\u2078 equals:",
+          "options": [
+            "A. 16",
+            "B. \u221216",
+            "C. 16i",
+            "D. \u221216i",
+            "E. 8"
+          ],
+          "answer": "A",
+          "explanation": "(1+i)\u00b2=2i. (1+i)\u2074=\u22124. (1+i)\u2078=16.",
+          "trap": "Students compute (1+i)\u00b2=1+i\u00b2=1\u22121=0 (forgetting the cross term 2i), getting (0)\u2078=0.",
+          "estimated_time_seconds": 60,
+          "tags": [
+            "algebra",
+            "complex-numbers"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-016",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "In how many ways can 10 people sit at a round table with 3 specific people all together?",
+          "options": [
+            "A. 7!\u00d73!",
+            "B. 7!",
+            "C. 9!",
+            "D. 8!\u00d73!",
+            "E. 6!\u00d73!"
+          ],
+          "answer": "A",
+          "explanation": "Treat 3 as one block: 8 units at round table \u2192 (8\u22121)!=7!. Internal: 3!=6. Total=7!\u00d73!.",
+          "trap": "Students compute (10\u22121)!=9! (all 10 at round table, ignoring the grouping constraint).",
+          "estimated_time_seconds": 70,
+          "tags": [
+            "statistics",
+            "permutations",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-017",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "What is the minimum value of f(x)=x+1/x+x/(x\u00b2+1) for x>0?",
+          "options": [
+            "A. 2",
+            "B. 5/2",
+            "C. 3",
+            "D. 7/3",
+            "E. 4"
+          ],
+          "answer": "B",
+          "explanation": "Let u=x+1/x\u22652. Note x/(x\u00b2+1)=1/(x+1/x)=1/u. So f=u+1/u. For u\u22652, f increases \u2192 minimum at u=2: f=5/2.",
+          "trap": "Students differentiate and solve f'=0 directly, obtaining a quartic \u2014 very hard. Substitution u=x+1/x is the key insight.",
+          "estimated_time_seconds": 110,
+          "tags": [
+            "algebra",
+            "optimization",
+            "functions"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-018",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "Two tangents from external point P touch a circle at A and B. \u2220APB=60\u00b0. What is \u2220AOB (O is the center)?",
+          "options": [
+            "A. 60\u00b0",
+            "B. 90\u00b0",
+            "C. 120\u00b0",
+            "D. 150\u00b0",
+            "E. 180\u00b0"
+          ],
+          "answer": "C",
+          "explanation": "OAPB is a quadrilateral with \u2220OAP=\u2220OBP=90\u00b0. 360\u00b0\u221290\u00b0\u221290\u00b0\u221260\u00b0=120\u00b0.",
+          "trap": "Students compute \u2220AOB=180\u00b0\u2212\u2220APB=120\u00b0 \u2713 via supplementary relationship (works since OAPB is cyclic with OA,OB\u22a5tangents). Error: \u2220AOB=\u2220APB=60\u00b0.",
+          "estimated_time_seconds": 65,
+          "tags": [
+            "geometry",
+            "circles",
+            "tangent"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-019",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "For what values of k does kx\u00b2+4x+1=0 have two distinct real roots?",
+          "options": [
+            "A. k<4",
+            "B. k>0 and k<4",
+            "C. k<4 and k\u22600",
+            "D. k>4",
+            "E. 0<k<4"
+          ],
+          "answer": "C",
+          "explanation": "Discriminant=16\u22124k>0 \u2192 k<4. Also k\u22600 (quadratic, not linear). Combined: k<4 and k\u22600.",
+          "trap": "Students compute 16\u22124k>0 \u2192 k<4 and choose A, forgetting k=0 gives a linear equation (single root).",
+          "estimated_time_seconds": 75,
+          "tags": [
+            "algebra",
+            "quadratic-equations",
+            "discriminant"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-020",
+          "difficulty": "extreme_hard",
+          "type": "mcq",
+          "question": "How many lattice paths from (0,0) to (5,5) using R=(1,0) and U=(0,1) avoid the point (2,3)?",
+          "options": [
+            "A. 252",
+            "B. 100",
+            "C. 152",
+            "D. 126",
+            "E. 168"
+          ],
+          "answer": "C",
+          "explanation": "Total=C(10,5)=252. Through (2,3): C(5,2)\u00d7C(5,3)=10\u00d710=100. Avoiding=252\u2212100=152.",
+          "trap": "Students compute total\u2212C(5,2)=252\u221210=242 (only subtracting paths TO (2,3), not paths through it to (5,5)).",
+          "estimated_time_seconds": 105,
+          "tags": [
+            "statistics",
+            "combinatorics",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-021",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "If log\u2081\u2080(x)+log\u2081\u2080(x+3)=1, what is x?",
+          "options": [
+            "A. 2",
+            "B. 5",
+            "C. \u22125",
+            "D. \u22127",
+            "E. 7"
+          ],
+          "answer": "A",
+          "explanation": "x(x+3)=10 \u2192 x\u00b2+3x\u221210=0 \u2192 (x+5)(x\u22122)=0. x=2 or x=\u22125. Domain requires x>0 \u2192 x=2.",
+          "trap": "Students include x=\u22125 without checking that log(x) requires x>0.",
+          "estimated_time_seconds": 60,
+          "tags": [
+            "algebra",
+            "logarithms"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-022",
+          "difficulty": "extreme_hard",
+          "type": "quantitative_comparison",
+          "question": "n is a positive integer. \u03c3(n) is the sum of all divisors of n.\nColumn A: \u03c3(2\u207f)\nColumn B: 2\u00b7\u03c3(2^(n\u22121))",
+          "options": [
+            "A. Column A is greater",
+            "B. Column B is greater",
+            "C. The two quantities are equal",
+            "D. The relationship cannot be determined from the information given"
+          ],
+          "answer": "A",
+          "explanation": "\u03c3(2\u207f)=2^(n+1)\u22121. \u03c3(2^(n\u22121))=2\u207f\u22121. Column B=2^(n+1)\u22122. A\u2212B=1>0. Column A always greater.",
+          "trap": "Students compute \u03c3(2\u207f)=2\u03c3(2^(n\u22121)) (thinking \u03c3 doubles when exponent increases by 1), choosing C.",
+          "estimated_time_seconds": 85,
+          "tags": [
+            "number-properties",
+            "divisors"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-023",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "What is lim_{n\u2192\u221e} 2n/(n+1)?",
+          "options": [
+            "A. 0",
+            "B. 1",
+            "C. 2",
+            "D. \u221e",
+            "E. Cannot be determined"
+          ],
+          "answer": "C",
+          "explanation": "Divide numerator and denominator by n: lim 2/(1+1/n)=2/1=2.",
+          "trap": "Students compute lim 2n/(n+1)=2n/n=2 \u2713 (heuristic) or incorrectly get 1 by dividing 2n/(n+1)\u22482n/n=2 \u2014 correct. Error: get \u221e or n/n=1.",
+          "estimated_time_seconds": 40,
+          "tags": [
+            "algebra",
+            "sequences-series",
+            "limits"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-024",
+          "difficulty": "extreme_hard",
+          "type": "numeric_entry",
+          "question": "How many arrangements of AABBCC have no two identical letters adjacent?",
+          "options": null,
+          "answer": "30",
+          "explanation": "Total=6!/(2!2!2!)=90. By inclusion-exclusion: both A's adjacent adds 5!/(2!2!)=30 per pair letter \u00d7 3 pairs=90 minus double-counted pairs. |A\u2090\u222aA\u1d66\u222aA_c|=3\u00d730\u22123\u00d712+6=60. Valid=90\u221260=30.",
+          "trap": "Students compute 90\u22123\u00d730=0 (over-subtracting) or forget the inclusion-exclusion correction terms.",
+          "estimated_time_seconds": 120,
+          "tags": [
+            "statistics",
+            "permutations",
+            "counting"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-025",
+          "difficulty": "hard",
+          "type": "mcq",
+          "question": "For geometric sequence 2,6,18,54,\u2026, what is the smallest term exceeding 5000?",
+          "options": [
+            "A. 1458",
+            "B. 4374",
+            "C. 13122",
+            "D. 6561",
+            "E. 2187"
+          ],
+          "answer": "C",
+          "explanation": "a\u2099=2\u00d73^(n\u22121). Need 3^(n\u22121)>2500. 3\u2077=2187<2500, 3\u2078=6561>2500. n=9: a\u2089=2\u00d73\u2078=13122.",
+          "trap": "Students compute a\u2088=2\u00d73\u2077=4374<5000 and stop, not checking a\u2089.",
+          "estimated_time_seconds": 65,
+          "tags": [
+            "algebra",
+            "sequences-series",
+            "geometric"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-026",
+          "difficulty": "extreme_hard",
+          "type": "multiple_answer",
+          "question": "Let f(x)=x\u00b3\u22123x. Which statements are true? Select all that apply.",
+          "options": [
+            "A. f has a local max at x=\u22121",
+            "B. f is increasing on (1,\u221e)",
+            "C. f(\u22121)=2 is a local max value",
+            "D. f has exactly 2 critical points",
+            "E. f is concave up for x>0"
+          ],
+          "answer": [
+            "A",
+            "B",
+            "C",
+            "D",
+            "E"
+          ],
+          "explanation": "f'=3x\u00b2\u22123=3(x\u22121)(x+1). Crit at \u00b11. f''=6x. f''(\u22121)=\u22126<0 \u2192 local max \u2713. f(\u22121)=\u22121+3=2 \u2713. f'(x)>0 for x>1 \u2192 increasing \u2713. 2 crit points \u2713. f''>0 for x>0 \u2192 concave up \u2713.",
+          "trap": "Students include x=0 as a critical point (f'(0)=\u22123\u22600), or compute f(\u22121)=1\u22123=\u22122 (sign error).",
+          "estimated_time_seconds": 100,
+          "tags": [
+            "algebra",
+            "calculus-concepts",
+            "functions"
+          ]
+        },
+        {
+          "id": "MOCK-10-S2-027",
+          "difficulty": "extreme_hard",
+          "type": "numeric_entry",
+          "question": "Given log\u2081\u2080(2)\u22480.30103, what is \u230a100\u00d7log\u2081\u2080(2)\u230b?",
+          "options": null,
+          "answer": "30",
+          "explanation": "100\u00d70.30103=30.103. \u230a30.103\u230b=30.",
+          "trap": "Students compute \u230alog\u2081\u2080(2\u00b9\u2070\u2070)\u230b and note 2\u00b9\u2070\u2070\u22481.27\u00d710\u00b3\u2070 so \u230a30.103\u230b=30 \u2713. Error: report 31 by rounding up.",
+          "estimated_time_seconds": 50,
+          "tags": [
+            "algebra",
+            "logarithms"
+          ]
+        }
+      ]
+    }
+  ]
+}

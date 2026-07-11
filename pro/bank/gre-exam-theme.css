@@ -1,0 +1,283 @@
+/* ============================================================
+   GRE EXAM THEME — ETS PowerPrep-style replica
+   Shared by full_mock.html (free & pro).
+   Light, calm, authentic test-day interface.
+   ============================================================ */
+:root{
+  --gre-bar:#28455e;          /* top control bar — steel navy */
+  --gre-bar-dark:#1e3549;
+  --gre-bar-text:#ffffff;
+  --gre-strip:#dfe6ed;        /* section/timer strip */
+  --gre-strip-border:#c3ccd6;
+  --gre-blue:#1a5da6;         /* primary action blue */
+  --gre-blue-dark:#124a87;
+  --gre-bg:#eef1f4;           /* page background */
+  --gre-surface:#ffffff;
+  --gre-text:#16191d;
+  --gre-text2:#4a545e;
+  --gre-text3:#77828c;
+  --gre-border:#c9d2da;
+  --gre-border-soft:#e2e8ee;
+  --gre-selected:#e8f1fa;
+  --gre-success:#1e7e46;
+  --gre-warning:#b06000;
+  --gre-danger:#c0392b;
+  --gre-mark:#d9822b;
+  --gre-font:Arial, Helvetica, "Segoe UI", sans-serif;
+  --gre-mono:"Courier New", Consolas, monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{-webkit-text-size-adjust:100%;}
+body{background:var(--gre-bg);color:var(--gre-text);font-family:var(--gre-font);min-height:100vh;font-size:16px;line-height:1.6;}
+button{font-family:var(--gre-font);cursor:pointer;}
+button:focus-visible,a:focus-visible,input:focus-visible,label:focus-visible{outline:3px solid #7fb2e5;outline-offset:2px;}
+.screen{display:none;} .screen.active{display:block;}
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;}
+}
+
+/* ============ NON-EXAM PAGES (select / register / results) ============ */
+.app{max-width:960px;margin:0 auto;padding:28px 20px 80px;}
+.app-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;padding-bottom:18px;border-bottom:2px solid var(--gre-strip-border);}
+.logo h1{font-size:24px;color:var(--gre-bar);font-weight:700;letter-spacing:.2px;}
+.logo h1 span{color:var(--gre-blue);}
+.logo p{font-size:12px;color:var(--gre-text3);margin-top:3px;}
+.badge-free,.badge{background:var(--gre-blue);color:#fff;font-size:11px;font-weight:700;padding:5px 12px;border-radius:3px;letter-spacing:1px;text-transform:uppercase;}
+
+.section-title{font-size:26px;margin-bottom:6px;color:var(--gre-bar);font-weight:700;}
+.section-sub{color:var(--gre-text2);font-size:14px;margin-bottom:28px;}
+.mocks-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;}
+.mock-card{background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:6px;padding:22px;cursor:pointer;transition:box-shadow .15s,border-color .15s;position:relative;}
+.mock-card:hover{border-color:var(--gre-blue);box-shadow:0 2px 10px rgba(26,60,102,.14);}
+.mock-card .free-tag{position:absolute;top:12px;right:12px;background:var(--gre-success);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:1px;}
+.mock-card.free-badge::after{content:'FREE';position:absolute;top:12px;right:12px;background:var(--gre-success);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:3px;letter-spacing:1px;}
+.mock-num{font-size:11px;color:var(--gre-blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px;font-weight:700;}
+.mock-title{font-size:18px;margin-bottom:8px;font-weight:700;}
+.mock-meta{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;}
+.mock-tag{font-size:11px;color:var(--gre-text2);background:var(--gre-bg);border:1px solid var(--gre-border-soft);padding:3px 8px;border-radius:3px;}
+.diff-dot{width:8px;height:8px;border-radius:50%;display:inline-block;margin-right:5px;}
+
+.reg-card,.instr-card,.break-card{background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:6px;padding:34px;max-width:560px;margin:0 auto;}
+.reg-card h2,.instr-card h2{font-size:22px;margin-bottom:6px;color:var(--gre-bar);}
+.reg-card p{color:var(--gre-text2);font-size:14px;margin-bottom:26px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:18px;}
+label{font-size:12px;font-weight:700;color:var(--gre-text2);text-transform:uppercase;letter-spacing:.5px;}
+input{background:#fff;border:1px solid var(--gre-border);border-radius:4px;color:var(--gre-text);font-family:var(--gre-font);font-size:15px;padding:12px 14px;outline:none;width:100%;min-height:44px;}
+input:focus{border-color:var(--gre-blue);box-shadow:0 0 0 3px rgba(26,93,166,.15);}
+
+.instr-card h2{margin-bottom:18px;}
+.instr-list{list-style:none;display:flex;flex-direction:column;gap:11px;margin-bottom:26px;}
+.instr-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--gre-text2);}
+.instr-list li::before{content:'•';color:var(--gre-blue);flex-shrink:0;font-weight:700;}
+.instr-highlight{background:#eef4fb;border:1px solid #c9dcf0;border-radius:4px;padding:16px;margin-bottom:22px;font-size:13px;color:var(--gre-text2);line-height:1.6;}
+.instr-highlight strong{color:var(--gre-text);}
+
+/* generic buttons (non-exam screens) */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 24px;border:1px solid transparent;border-radius:4px;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s;min-height:44px;text-decoration:none;}
+.btn-primary{background:var(--gre-blue);color:#fff;}
+.btn-primary:hover{background:var(--gre-blue-dark);}
+.btn-success{background:var(--gre-success);color:#fff;}
+.btn-success:hover{filter:brightness(1.08);}
+.btn-ghost{background:#fff;color:var(--gre-text2);border-color:var(--gre-border);}
+.btn-ghost:hover{background:var(--gre-bg);color:var(--gre-text);}
+.btn-outline{background:transparent;border-color:var(--gre-blue);color:var(--gre-blue);}
+.btn-outline:hover{background:var(--gre-selected);}
+.btn:disabled{opacity:.45;cursor:not-allowed;}
+.btn-sm{padding:9px 14px;font-size:13px;min-height:40px;}
+
+/* ============ EXAM SHELL — the strict GRE replica ============ */
+.gre-shell{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--gre-surface);z-index:100;}
+
+/* Top control bar */
+.gre-topbar{background:linear-gradient(180deg,var(--gre-bar),var(--gre-bar-dark));color:var(--gre-bar-text);display:flex;align-items:stretch;justify-content:space-between;flex-shrink:0;min-height:58px;}
+.gre-topbar-left{display:flex;align-items:center;padding:0 18px;font-size:13.5px;gap:8px;white-space:nowrap;overflow:hidden;}
+.gre-topbar-left b{font-weight:700;}
+.gre-topbar-btns{display:flex;align-items:stretch;}
+.gre-tb-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;border:none;border-left:1px solid rgba(255,255,255,.16);color:var(--gre-bar-text);min-width:72px;padding:7px 12px;font-size:11px;font-weight:600;letter-spacing:.3px;transition:background .12s;}
+.gre-tb-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.gre-tb-btn:hover{background:rgba(255,255,255,.13);}
+.gre-tb-btn:active{background:rgba(255,255,255,.22);}
+.gre-tb-btn:disabled{opacity:.4;cursor:not-allowed;background:transparent;}
+.gre-tb-btn.marked{color:#ffce7a;}
+.gre-tb-btn.marked svg{fill:#ffce7a;stroke:#ffce7a;}
+
+/* Section / timer strip */
+.gre-strip{background:var(--gre-strip);border-bottom:1px solid var(--gre-strip-border);display:flex;align-items:center;justify-content:space-between;padding:7px 18px;flex-shrink:0;gap:12px;flex-wrap:wrap;}
+.gre-strip-title{font-size:13px;color:#2b3947;font-weight:700;}
+.gre-strip-title span{font-weight:400;color:#51606e;}
+.gre-strip-right{display:flex;align-items:center;gap:14px;}
+.gre-timer{font-family:var(--gre-mono);font-size:17px;font-weight:700;color:#1d2833;letter-spacing:1px;display:flex;align-items:center;gap:7px;}
+.gre-timer svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;}
+.gre-timer.urgent{color:var(--gre-danger);}
+.gre-timer.hidden-time{visibility:hidden;}
+.gre-hide-time{background:none;border:none;color:#3b5a77;font-size:12px;text-decoration:underline;padding:6px;}
+
+/* Question area */
+.gre-body{flex:1;overflow-y:auto;background:var(--gre-surface);}
+.gre-qwrap{max-width:860px;margin:0 auto;padding:44px 34px 80px;}
+.gre-directions{font-size:13.5px;color:var(--gre-text2);border-bottom:1px solid var(--gre-border-soft);padding-bottom:12px;margin-bottom:26px;font-style:italic;}
+.gre-qtext{font-size:18px;line-height:1.7;color:var(--gre-text);margin-bottom:30px;white-space:pre-wrap;}
+
+/* Options — real radio / checkbox rows */
+.gre-options{display:flex;flex-direction:column;gap:6px;max-width:640px;}
+.gre-option{display:flex;align-items:flex-start;gap:14px;padding:12px 14px;border:1px solid transparent;border-radius:4px;cursor:pointer;font-size:16.5px;line-height:1.55;transition:background .12s;min-height:48px;}
+.gre-option:hover{background:#f3f6f9;}
+.gre-option.selected{background:var(--gre-selected);border-color:#b7d0e8;}
+.gre-option input{width:19px;height:19px;min-width:19px;margin-top:3px;accent-color:var(--gre-blue);cursor:pointer;}
+.gre-option .opt-body{flex:1;}
+.gre-ma-note{font-size:13px;color:var(--gre-text2);margin-bottom:14px;font-style:italic;}
+
+/* Quantitative Comparison layout */
+.gre-qc-info{font-size:17px;line-height:1.7;text-align:center;margin-bottom:28px;white-space:pre-wrap;}
+.gre-qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:620px;margin:0 auto 34px;}
+.gre-qc-col{text-align:center;padding:0 18px;}
+.gre-qc-head{font-size:16px;font-weight:700;text-decoration:underline;margin-bottom:14px;}
+.gre-qc-val{font-size:18px;line-height:1.6;}
+
+/* Numeric entry */
+.gre-ne{margin-top:6px;}
+.gre-ne-label{font-size:14px;color:var(--gre-text2);margin-bottom:10px;}
+.gre-ne input{max-width:180px;font-size:20px;text-align:center;padding:12px;border:1px solid var(--gre-text3);border-radius:3px;font-family:var(--gre-font);}
+.gre-ne input:focus{border-color:var(--gre-blue);box-shadow:0 0 0 3px rgba(26,93,166,.15);}
+
+/* Review screen */
+.gre-review{max-width:760px;margin:0 auto;padding:40px 30px;}
+.gre-review h2{font-size:21px;color:var(--gre-bar);margin-bottom:8px;}
+.gre-review p{font-size:14px;color:var(--gre-text2);margin-bottom:22px;}
+.gre-review-table{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff;}
+.gre-review-table th{background:var(--gre-strip);color:#2b3947;text-align:left;padding:10px 14px;border:1px solid var(--gre-strip-border);font-size:12.5px;text-transform:uppercase;letter-spacing:.5px;}
+.gre-review-table td{padding:10px 14px;border:1px solid var(--gre-border-soft);}
+.gre-review-table tr{cursor:pointer;}
+.gre-review-table tbody tr:hover{background:var(--gre-selected);}
+.gre-review-table .st-answered{color:var(--gre-success);font-weight:700;}
+.gre-review-table .st-unanswered{color:var(--gre-danger);font-weight:700;}
+.gre-review-table .mark-flag{color:var(--gre-mark);font-weight:700;}
+.gre-review-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;}
+
+/* Modal dialog (ETS-style) */
+.gre-modal-backdrop{position:fixed;inset:0;background:rgba(20,30,40,.5);display:none;align-items:center;justify-content:center;z-index:300;padding:20px;}
+.gre-modal-backdrop.open{display:flex;}
+.gre-modal{background:#fff;border-radius:6px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.3);}
+.gre-modal-head{background:var(--gre-bar);color:#fff;padding:12px 18px;font-size:15px;font-weight:700;}
+.gre-modal-body{padding:22px 18px;font-size:14.5px;color:var(--gre-text2);line-height:1.6;}
+.gre-modal-actions{display:flex;justify-content:flex-end;gap:10px;padding:0 18px 18px;}
+
+/* Section break */
+.break-card{text-align:center;margin-top:48px;}
+.break-card h2{font-size:24px;color:var(--gre-bar);margin-bottom:10px;}
+.break-card p{color:var(--gre-text2);font-size:15px;margin-bottom:8px;}
+.break-timer{font-family:var(--gre-mono);font-size:44px;color:var(--gre-blue);margin:22px 0;font-weight:700;}
+.break-score-preview{background:var(--gre-bg);border:1px solid var(--gre-border-soft);border-radius:4px;padding:16px;margin:18px 0;font-size:14px;color:var(--gre-text2);}
+.break-score-preview strong{color:var(--gre-text);font-size:17px;}
+
+/* ============ RESULTS (light restyle) ============ */
+.results-header{text-align:center;margin-bottom:36px;}
+.results-header h2{font-size:28px;color:var(--gre-bar);margin-bottom:6px;}
+.results-header p{color:var(--gre-text2);}
+.score-ring-wrap{display:flex;justify-content:center;margin-bottom:36px;}
+.score-ring{width:160px;height:160px;position:relative;}
+.score-ring svg{transform:rotate(-90deg);}
+.score-ring-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;}
+.score-ring-label .score-val{font-size:34px;font-weight:700;color:var(--gre-text);}
+.score-ring-label .score-sub{font-size:11px;color:var(--gre-text3);letter-spacing:1px;}
+.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:28px;}
+.stat-card{background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:6px;padding:18px;text-align:center;}
+.stat-val{font-size:26px;font-weight:700;margin-bottom:4px;color:var(--gre-bar);}
+.stat-lbl{font-size:11px;color:var(--gre-text3);text-transform:uppercase;letter-spacing:1px;}
+.section-compare{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:28px;}
+.sec-card{background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:6px;padding:18px;}
+.sec-card h3{font-size:12px;color:var(--gre-blue);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px;}
+.sec-score{font-size:22px;font-weight:700;margin-bottom:6px;}
+.topic-bars{background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:6px;padding:22px;margin-bottom:28px;}
+.topic-bars h3{font-size:17px;margin-bottom:18px;color:var(--gre-bar);}
+.topic-row{display:flex;align-items:center;gap:12px;margin-bottom:13px;}
+.topic-name{font-size:13px;color:var(--gre-text2);width:170px;flex-shrink:0;}
+.topic-bar-bg{flex:1;height:9px;background:var(--gre-bg);border:1px solid var(--gre-border-soft);border-radius:5px;overflow:hidden;}
+.topic-bar-fill{height:100%;border-radius:5px;transition:width .6s ease;}
+.topic-pct{font-size:12px;color:var(--gre-text2);width:40px;text-align:right;font-weight:700;}
+.diagnosis-card{background:var(--gre-surface);border:1px solid var(--gre-border);border-left:4px solid var(--gre-blue);border-radius:6px;padding:26px;margin-bottom:28px;}
+.diagnosis-card h3{font-size:18px;margin-bottom:14px;color:var(--gre-bar);}
+.band{display:inline-block;font-size:11px;font-weight:700;padding:4px 12px;border-radius:3px;letter-spacing:2px;text-transform:uppercase;margin-bottom:12px;}
+.band.strong{background:#e2f3e9;color:var(--gre-success);}
+.band.close{background:#e6effa;color:var(--gre-blue);}
+.band.focus{background:#faf0dd;color:var(--gre-warning);}
+.band.risk{background:#fae4e1;color:var(--gre-danger);}
+.diag-text{font-size:14px;color:var(--gre-text2);line-height:1.7;margin-bottom:16px;}
+.recovery-steps{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.recovery-steps li{display:flex;gap:10px;font-size:14px;color:var(--gre-text2);}
+.recovery-steps li .step-num{color:#fff;background:var(--gre-blue);border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700;}
+.review-section{background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:6px;padding:22px;margin-bottom:28px;}
+.review-section h3{font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:10px;color:var(--gre-bar);}
+.review-toggle{font-size:12px;color:var(--gre-blue);cursor:pointer;background:none;border:none;text-decoration:underline;}
+.review-list{display:flex;flex-direction:column;gap:13px;margin-top:14px;}
+.review-item{padding:16px;background:#fafbfc;border:1px solid var(--gre-border-soft);border-left:4px solid var(--gre-border);border-radius:4px;}
+.review-item.correct{border-left-color:var(--gre-success);}
+.review-item.incorrect{border-left-color:var(--gre-danger);}
+.review-item.skipped{border-left-color:var(--gre-text3);}
+.review-q{font-size:14px;margin-bottom:8px;white-space:pre-wrap;}
+.review-answers{display:flex;gap:16px;font-size:13px;color:var(--gre-text2);flex-wrap:wrap;}
+.review-answers .correct-ans{color:var(--gre-success);font-weight:700;}
+.review-answers .wrong-ans{color:var(--gre-danger);font-weight:700;}
+.review-exp{font-size:13px;color:var(--gre-text2);margin-top:8px;padding-top:8px;border-top:1px solid var(--gre-border-soft);line-height:1.6;}
+.review-trap{font-size:12.5px;color:var(--gre-warning);margin-top:6px;font-style:italic;}
+.result-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-bottom:28px;}
+.section-label-row{font-size:11px;color:var(--gre-blue);text-transform:uppercase;letter-spacing:2px;padding:8px 0;margin-top:8px;font-weight:700;}
+
+/* ============ UPGRADE CTA (light) ============ */
+.result-upgrade{border:1px solid var(--gre-border);border-radius:6px;margin-bottom:28px;background:linear-gradient(135deg,#f4f8fc,#eef3f9);}
+.ru-inner{padding:34px 30px;position:relative;}
+.ru-top-bar{position:absolute;top:0;left:0;right:0;height:4px;background:var(--gre-blue);border-radius:6px 6px 0 0;}
+.ru-kicker{font-size:11px;color:var(--gre-blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;font-weight:700;}
+.ru-headline{font-size:clamp(22px,3vw,30px);line-height:1.2;margin-bottom:10px;color:var(--gre-bar);font-weight:700;}
+.ru-headline span{color:var(--gre-blue);}
+.ru-sub{color:var(--gre-text2);font-size:14px;line-height:1.7;max-width:580px;margin-bottom:24px;}
+.ru-mocks{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:24px;}
+.ru-mock-pill{background:#fff;border:1px solid var(--gre-border);border-radius:6px;padding:12px 10px;text-align:center;}
+.ru-mock-pill .rmp-num{font-size:11px;color:var(--gre-blue);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;font-weight:700;}
+.ru-mock-pill .rmp-diff{font-size:12.5px;font-weight:700;color:var(--gre-text);}
+.ru-mock-pill .rmp-level{font-size:10.5px;color:var(--gre-text3);margin-top:2px;}
+.ru-bottom{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;}
+.ru-price-block{display:flex;align-items:baseline;gap:8px;}
+.ru-price{font-size:38px;font-weight:700;color:var(--gre-bar);}
+.ru-price-label{font-size:13px;color:var(--gre-text2);}
+.ru-price-vs{font-size:12px;color:var(--gre-text3);margin-top:2px;}
+.ru-cta-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;background:var(--gre-blue);color:#fff;border:none;border-radius:4px;font-size:16px;font-weight:700;cursor:pointer;text-decoration:none;transition:background .15s;white-space:nowrap;}
+.ru-cta-btn:hover{background:var(--gre-blue-dark);}
+.ru-features{display:flex;gap:16px;flex-wrap:wrap;margin-top:16px;}
+.ru-feat{font-size:13px;color:var(--gre-text2);display:flex;align-items:center;gap:6px;}
+.ru-feat::before{content:'✓';color:var(--gre-success);font-weight:700;flex-shrink:0;}
+
+/* Loading */
+.loading-screen{text-align:center;padding:80px 20px;}
+.loading-screen p{color:var(--gre-text2);font-size:14px;margin-top:16px;}
+.spinner{width:40px;height:40px;border:3px solid var(--gre-border-soft);border-top-color:var(--gre-blue);border-radius:50%;animation:gre-spin .8s linear infinite;margin:0 auto;}
+@keyframes gre-spin{to{transform:rotate(360deg)}}
+.error-box{background:#fae4e1;border:1px solid #eec4bf;border-radius:4px;padding:16px;font-size:14px;color:var(--gre-danger);margin-bottom:16px;}
+
+/* ============ MATH (KaTeX sizing + no-JS fallback) ============ */
+.gre-math{white-space:normal;}
+.katex{font-size:1.08em!important;}
+.gre-qtext .katex,.gre-qc-val .katex{font-size:1.12em!important;}
+/* CSS fallback fraction / sqrt when KaTeX unavailable */
+.mfrac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;line-height:1.15;font-size:.92em;}
+.mfrac .mnum{padding:0 4px;border-bottom:1.2px solid currentColor;}
+.mfrac .mden{padding:0 4px;}
+.msqrt{display:inline-flex;align-items:stretch;vertical-align:middle;}
+.msqrt .rad{font-size:1.1em;line-height:1;align-self:flex-end;}
+.msqrt .arg{border-top:1.2px solid currentColor;padding:0 3px;}
+sup.mexp{font-size:.72em;vertical-align:super;line-height:0;}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:720px){
+  .gre-topbar{flex-direction:column;}
+  .gre-topbar-left{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.15);}
+  .gre-topbar-btns{width:100%;justify-content:space-between;}
+  .gre-tb-btn{flex:1;min-width:0;border-left:none;border-right:1px solid rgba(255,255,255,.12);}
+  .gre-qwrap{padding:26px 18px 70px;}
+  .gre-qtext{font-size:17px;}
+  .gre-qc-grid{grid-template-columns:1fr;gap:20px;}
+  .mocks-grid,.section-compare{grid-template-columns:1fr;}
+  .ru-mocks{grid-template-columns:repeat(2,1fr);}
+  .ru-bottom{flex-direction:column;align-items:flex-start;}
+  .ru-cta-btn{width:100%;justify-content:center;}
+}
