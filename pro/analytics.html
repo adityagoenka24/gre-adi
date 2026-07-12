@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Analytics — GRE Quant Pro</title>
+<meta name="description" content="Upload your GRE Quant Pro session and mock result files to see your combined analytics: accuracy, topic breakdown, timing, and weak areas.">
+<link rel="stylesheet" href="gre-exam-theme.css">
+<style>
+  .an-wrap{max-width:1000px;margin:0 auto;padding:28px 20px 80px;}
+  .an-sub{color:var(--gre-text2);font-size:15px;max-width:620px;margin-bottom:28px;}
+  .drop-zone{border:2px dashed var(--gre-border);background:var(--gre-surface);border-radius:8px;padding:40px 28px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;}
+  .drop-zone.drag,.drop-zone:hover{border-color:var(--gre-blue);background:var(--gre-selected);}
+  .drop-zone b{display:block;font-size:17px;color:var(--gre-bar);margin-bottom:6px;}
+  .drop-zone span{font-size:13.5px;color:var(--gre-text3);}
+  .file-list{margin-top:14px;display:flex;flex-direction:column;gap:6px;}
+  .file-chip{display:flex;justify-content:space-between;gap:10px;background:var(--gre-surface);border:1px solid var(--gre-border-soft);border-radius:6px;padding:9px 14px;font-size:13.5px;color:var(--gre-text2);}
+  .file-chip b{color:var(--gre-text);}
+  .file-chip .bad{color:var(--gre-danger);}
+  .an-section{margin-top:36px;}
+  .an-section h2{font-size:20px;color:var(--gre-bar);margin-bottom:16px;}
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;}
+  .kpi{background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:8px;padding:18px;text-align:center;}
+  .kpi b{display:block;font-size:26px;color:var(--gre-bar);}
+  .kpi span{font-size:11px;color:var(--gre-text3);text-transform:uppercase;letter-spacing:1px;}
+  .bar-row{display:grid;grid-template-columns:minmax(130px,190px) 1fr 92px;gap:12px;align-items:center;margin-bottom:11px;}
+  .bar-name{font-size:13.5px;color:var(--gre-text2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+  .bar-track{height:12px;background:var(--gre-bg);border:1px solid var(--gre-border-soft);border-radius:6px;overflow:hidden;}
+  .bar-fill{height:100%;border-radius:6px;}
+  .bar-val{font-size:12.5px;color:var(--gre-text2);text-align:right;font-weight:700;white-space:nowrap;}
+  .panel{background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:8px;padding:22px;}
+  .two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .weak-card{background:#fdf6ef;border:1px solid #ecd3bd;border-left:4px solid var(--gre-mark);border-radius:8px;padding:18px 20px;margin-top:16px;font-size:14.5px;color:#6b4a23;line-height:1.65;}
+  .weak-card b{color:#8a4116;}
+  .sess-table{width:100%;border-collapse:collapse;font-size:13.5px;background:var(--gre-surface);}
+  .sess-table th{background:var(--gre-strip);color:#2b3947;text-align:left;padding:9px 13px;border:1px solid var(--gre-strip-border);font-size:11.5px;text-transform:uppercase;letter-spacing:.5px;}
+  .sess-table td{padding:9px 13px;border:1px solid var(--gre-border-soft);color:var(--gre-text2);}
+  .hidden{display:none;}
+  textarea{width:100%;min-height:110px;border:1px solid var(--gre-border);border-radius:6px;padding:12px;font-family:var(--gre-mono);font-size:12px;color:var(--gre-text);resize:vertical;}
+  textarea:focus{outline:none;border-color:var(--gre-blue);box-shadow:0 0 0 3px rgba(26,93,166,.15);}
+  .paste-row{display:flex;gap:10px;margin-top:10px;flex-wrap:wrap;}
+  details.paste-box{margin-top:14px;}
+  details.paste-box summary{cursor:pointer;font-size:13.5px;color:var(--gre-blue);font-weight:700;}
+  @media(max-width:720px){.two-col{grid-template-columns:1fr;}.bar-row{grid-template-columns:minmax(90px,120px) 1fr 80px;}}
+</style>
+</head>
+<body>
+<div class="an-wrap">
+  <div class="app-header">
+    <div class="logo">
+      <h1>My <span>Analytics</span></h1>
+      <p>GRE Quant Pro · Coach Aditya Goenka</p>
+    </div>
+    <a href="index.html" class="btn btn-ghost btn-sm">← Member Hub</a>
+  </div>
+
+  <p class="an-sub">Upload the result files you've downloaded from mocks and practice sessions (<b>.json</b>). Everything is analysed locally in your browser — nothing is uploaded to a server.</p>
+
+  <div class="drop-zone" id="dropZone" tabindex="0" role="button" aria-label="Upload result JSON files">
+    <b>Drop your result JSON files here</b>
+    <span>or click to choose files — mock results, event results, and practice session exports all work</span>
+    <input type="file" id="fileInput" accept=".json,application/json" multiple style="display:none">
+  </div>
+  <details class="paste-box">
+    <summary>…or paste result JSON directly</summary>
+    <textarea id="pasteArea" placeholder='Paste one result JSON (or an array of them) here'></textarea>
+    <div class="paste-row"><button class="btn btn-primary btn-sm" onclick="addPasted()">Add to analysis</button></div>
+  </details>
+  <div class="file-list" id="fileList"></div>
+
+  <div id="results" class="hidden">
+    <div class="an-section">
+      <h2>Overall</h2>
+      <div class="kpis" id="kpiRow"></div>
+      <div id="weakArea"></div>
+    </div>
+    <div class="an-section two-col">
+      <div class="panel"><h2 style="font-size:16px">By Topic</h2><div id="topicBars"></div></div>
+      <div class="panel"><h2 style="font-size:16px">By Difficulty</h2><div id="diffBars"></div></div>
+    </div>
+    <div class="an-section two-col">
+      <div class="panel"><h2 style="font-size:16px">By Question Type</h2><div id="typeBars"></div></div>
+      <div class="panel"><h2 style="font-size:16px">By Subtopic (weakest first)</h2><div id="subBars"></div></div>
+    </div>
+    <div class="an-section">
+      <h2>Sessions &amp; Mocks Uploaded</h2>
+      <div style="overflow-x:auto"><table class="sess-table" id="sessTable"><thead><tr><th>Source</th><th>Name / Title</th><th>Date</th><th>Score</th><th>Accuracy</th><th>Questions</th></tr></thead><tbody></tbody></table></div>
+      <p style="font-size:13px;color:var(--gre-text3);margin-top:12px">Want Coach Aditya's eyes on this? Email your JSON files to <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--gre-blue);font-weight:700;text-decoration:none">goenka.aditya.kol@gmail.com</a>.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+// ─── STATE ────────────────────────────────────────────────────
+const store = { records: [], sessions: [] };
+
+// ─── NORMALIZERS ──────────────────────────────────────────────
+// Accepts: event/mock_test results (results[]), full_mock downloads
+// (sections/answers/timings), logger session exports (questions[]),
+// coach leaderboard exports (submissions_raw[]).
+function normalize(obj, fileName) {
+  const out = [];
+  if (Array.isArray(obj)) { obj.forEach(o => out.push(...normalize(o, fileName))); return out; }
+  if (!obj || typeof obj !== 'object') return out;
+
+  if (Array.isArray(obj.submissions_raw)) { obj.submissions_raw.forEach(o => out.push(...normalize(o, fileName))); return out; }
+
+  // 1) event / worker-style result with per-question results[]
+  if (Array.isArray(obj.results) && obj.results.length && ('correct' in obj.results[0])) {
+    const recs = obj.results.map(r => ({
+      correct: !!r.correct, skipped: !!r.skipped,
+      time: +r.time_taken_seconds || 0,
+      topic: cap(r.topic) || 'General', subtopic: cap(r.subtopic) || '',
+      difficulty: normDiff(r.difficulty), type: normType(r.type),
+    }));
+    out.push(...recs);
+    store.sessions.push({
+      source: obj.event_type === 'full_mock' ? 'Full Mock' : 'Event Mock',
+      title: obj.event_name || obj.event_id || fileName,
+      name: obj.student?.name || '', date: fmtDate(obj.submitted_at),
+      score: (obj.correct ?? recs.filter(r=>r.correct).length) + ' / ' + (obj.total_questions ?? recs.length),
+      acc: (obj.accuracy ?? pct(recs)) + '%', n: recs.length,
+    });
+    return out;
+  }
+
+  // 2) full_mock download JSON (no per-question topics)
+  if (obj.mock && obj.sections && 'totalCorrect' in obj) {
+    store.sessions.push({
+      source: 'Full Mock', title: obj.mock.title || obj.mock.id || fileName,
+      name: obj.student?.name || '', date: fmtDate(obj.date),
+      score: obj.totalCorrect + ' / ' + obj.total, acc: (obj.accuracy ?? Math.round(obj.totalCorrect/obj.total*100)) + '%',
+      n: obj.total, aggregateOnly: true,
+    });
+    // synth records without topic detail so overall KPIs still count them
+    for (let i = 0; i < obj.total; i++) out.push({ correct: i < obj.totalCorrect, skipped: false, time: 0, topic: 'Mock: ' + (obj.mock.title || obj.mock.id), subtopic: '', difficulty: '', type: '' });
+    return out;
+  }
+
+  // 3) logger session export (questions[])
+  if (Array.isArray(obj.questions) && obj.questions.length) {
+    const recs = obj.questions.map(q => ({
+      correct: q.correct === true, skipped: q.correct !== true && q.correct !== false,
+      time: +q.timeTaken || +q.time_taken_seconds || 0,
+      topic: cap(obj.topic || q.topic) || 'Practice', subtopic: cap(q.subtopic) || '',
+      difficulty: normDiff(q.difficulty), type: normType(q.type),
+    }));
+    out.push(...recs);
+    store.sessions.push({
+      source: 'Practice Session', title: cap(obj.topic) || fileName,
+      name: obj.studentName || '', date: obj.date || '',
+      score: recs.filter(r=>r.correct).length + ' / ' + recs.length, acc: pct(recs) + '%', n: recs.length,
+    });
+    return out;
+  }
+  return out;
+}
+
+const cap = s => s ? String(s).replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase()).trim() : '';
+const normDiff = d => d ? cap(d) : '';
+const normType = t => ({mcq:'Multiple Choice',quantitative_comparison:'Quant Comparison',numeric_entry:'Numeric Entry',multiple_answer:'Multiple Answer'})[t] || cap(t);
+const pct = rs => rs.length ? Math.round(rs.filter(r=>r.correct).length/rs.length*100) : 0;
+const fmtDate = d => { try { return d ? new Date(d).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}) : ''; } catch(e){ return ''; } };
+
+// ─── INGEST ───────────────────────────────────────────────────
+const dz = document.getElementById('dropZone');
+const fi = document.getElementById('fileInput');
+dz.addEventListener('click', () => fi.click());
+dz.addEventListener('keydown', e => { if (e.key==='Enter'||e.key===' ') { e.preventDefault(); fi.click(); } });
+dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('drag'); });
+dz.addEventListener('dragleave', () => dz.classList.remove('drag'));
+dz.addEventListener('drop', e => { e.preventDefault(); dz.classList.remove('drag'); handleFiles(e.dataTransfer.files); });
+fi.addEventListener('change', () => handleFiles(fi.files));
+
+function handleFiles(files) {
+  [...files].forEach(f => {
+    const reader = new FileReader();
+    reader.onload = () => ingest(reader.result, f.name);
+    reader.readAsText(f);
+  });
+}
+
+function addPasted() {
+  const t = document.getElementById('pasteArea').value.trim();
+  if (t) { ingest(t, 'pasted JSON'); document.getElementById('pasteArea').value=''; }
+}
+
+function ingest(text, name) {
+  const list = document.getElementById('fileList');
+  let recs = [];
+  try {
+    recs = normalize(JSON.parse(text), name);
+  } catch(e) {
+    list.insertAdjacentHTML('beforeend', `<div class="file-chip"><b>${esc(name)}</b><span class="bad">Not valid JSON — skipped</span></div>`);
+    return;
+  }
+  if (!recs.length) {
+    list.insertAdjacentHTML('beforeend', `<div class="file-chip"><b>${esc(name)}</b><span class="bad">No recognisable result data</span></div>`);
+    return;
+  }
+  store.records.push(...recs);
+  list.insertAdjacentHTML('beforeend', `<div class="file-chip"><b>${esc(name)}</b><span>${recs.length} questions added ✓</span></div>`);
+  render();
+}
+
+const esc = s => String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+
+// ─── RENDER ───────────────────────────────────────────────────
+function groupBars(recs, key, elId, opts={}) {
+  const map = {};
+  recs.forEach(r => {
+    const k = r[key]; if (!k) return;
+    (map[k] = map[k] || {c:0,t:0,time:0}).t++;
+    if (r.correct) map[k].c++;
+    map[k].time += r.time;
+  });
+  let entries = Object.entries(map).filter(([,v]) => v.t >= (opts.min||1));
+  entries.sort((a,b) => opts.weakFirst ? (a[1].c/a[1].t)-(b[1].c/b[1].t) : b[1].t-a[1].t);
+  if (opts.limit) entries = entries.slice(0, opts.limit);
+  document.getElementById(elId).innerHTML = entries.length ? entries.map(([k,v]) => {
+    const a = Math.round(v.c/v.t*100);
+    const color = a >= 75 ? 'var(--gre-success)' : a >= 50 ? 'var(--gre-warning)' : 'var(--gre-danger)';
+    return `<div class="bar-row"><span class="bar-name" title="${esc(k)}">${esc(k)}</span>
+      <div class="bar-track"><div class="bar-fill" style="width:${a}%;background:${color}"></div></div>
+      <span class="bar-val">${a}% · ${v.c}/${v.t}</span></div>`;
+  }).join('') : '<p style="font-size:13px;color:var(--gre-text3)">No detail available in the uploaded files.</p>';
+  return map;
+}
+
+function render() {
+  const recs = store.records;
+  document.getElementById('results').classList.remove('hidden');
+
+  const attempted = recs.filter(r => !r.skipped).length;
+  const correct = recs.filter(r => r.correct).length;
+  const acc = recs.length ? Math.round(correct/recs.length*100) : 0;
+  const timed = recs.filter(r => r.time > 0);
+  const avgT = timed.length ? Math.round(timed.reduce((s,r)=>s+r.time,0)/timed.length) : null;
+  document.getElementById('kpiRow').innerHTML = `
+    <div class="kpi"><b>${recs.length}</b><span>Questions</span></div>
+    <div class="kpi"><b>${correct}</b><span>Correct</span></div>
+    <div class="kpi"><b>${acc}%</b><span>Accuracy</span></div>
+    <div class="kpi"><b>${recs.length - attempted}</b><span>Skipped</span></div>
+    <div class="kpi"><b>${avgT !== null ? avgT + 's' : '—'}</b><span>Avg / Question</span></div>
+    <div class="kpi"><b>${store.sessions.length}</b><span>Sessions</span></div>`;
+
+  const detail = recs.filter(r => r.subtopic || (r.topic && !r.topic.startsWith('Mock:')));
+  groupBars(detail, 'topic', 'topicBars');
+  groupBars(detail, 'difficulty', 'diffBars');
+  groupBars(detail, 'type', 'typeBars');
+  const subMap = groupBars(detail, 'subtopic', 'subBars', { weakFirst:true, limit:12, min:2 });
+
+  // weak-area callout
+  const weak = Object.entries(subMap).filter(([,v]) => v.t >= 3).map(([k,v]) => [k, v.c/v.t, v]).sort((a,b)=>a[1]-b[1]).slice(0,3).filter(([,a])=>a<0.7);
+  document.getElementById('weakArea').innerHTML = weak.length ? `<div class="weak-card"><b>Focus next:</b> ${weak.map(([k,a,v])=>`${esc(k)} (${Math.round(a*100)}% on ${v.t} Qs)`).join(' · ')} — drill these subtopics in the Pro app before your next mock.</div>` : '';
+
+  document.querySelector('#sessTable tbody').innerHTML = store.sessions.map(s => `
+    <tr><td>${esc(s.source)}</td><td>${esc(s.title)}${s.name?' — '+esc(s.name):''}${s.aggregateOnly?' <span style="color:var(--gre-text3)">(score only)</span>':''}</td><td>${esc(s.date)}</td><td>${esc(s.score)}</td><td>${esc(s.acc)}</td><td>${s.n}</td></tr>`).join('');
+}
+</script>
+</body>
+</html>

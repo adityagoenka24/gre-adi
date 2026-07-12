@@ -3,12 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRE Quant Pro — Your Practice Hub · Coach Aditya Goenka</title>
-<meta name="description" content="GRE Quant Pro member hub: open the Pro practice app, take full-length mocks in the real GRE interface, and track your progress.">
+<title>GRE Quant Pro — Member Hub · Coach Aditya Goenka</title>
+<meta name="description" content="GRE Quant Pro member hub: practice topic-wise, take full-length mocks in the real GRE interface, or analyse your results.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450..700;1,9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="site.css">
+<style>
+  .hub-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px}
+  .hub-card{display:flex;flex-direction:column;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:36px 30px;box-shadow:var(--shadow);text-decoration:none;transition:transform .15s,box-shadow .15s,border-color .15s}
+  .hub-card:hover{transform:translateY(-4px);box-shadow:var(--shadow-lg);border-color:var(--blue)}
+  .hub-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:20px}
+  .hub-icon svg{width:26px;height:26px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+  .hub-card:nth-child(1) .hub-icon{background:var(--blue-soft);color:var(--blue)}
+  .hub-card:nth-child(2) .hub-icon{background:var(--accent-soft);color:var(--accent)}
+  .hub-card:nth-child(3) .hub-icon{background:var(--green-soft);color:var(--green)}
+  .hub-title{font-family:var(--fd);font-weight:640;font-size:22px;color:var(--navy);margin-bottom:8px}
+  .hub-desc{font-size:14.5px;color:var(--ink2);line-height:1.65;flex:1}
+  .hub-go{margin-top:22px;font-size:15px;font-weight:800}
+  .hub-card:nth-child(1) .hub-go{color:var(--blue)}
+  .hub-card:nth-child(2) .hub-go{color:var(--accent)}
+  .hub-card:nth-child(3) .hub-go{color:var(--green)}
+  @media(max-width:860px){.hub-grid{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <div class="glow-1"></div>
@@ -19,11 +36,10 @@
   <div class="nav-inner">
     <a href="https://grequantpro.com/" class="nav-logo">GRE Quant <em>Pro</em></a>
     <div class="nav-links">
-      <a href="#mocks">Full Mocks</a>
-      <a href="#bank">Question Bank</a>
-      <a href="#plans">Plans</a>
-      <a href="#faq">Help</a>
-      <a href="gre_practice_logger_pro.html" class="nav-cta-solid">Open Pro App →</a>
+      <a href="gre_practice_logger_pro.html">Practice</a>
+      <a href="full_mock.html">Full Mocks</a>
+      <a href="analytics.html">My Analytics</a>
+      <a href="mailto:goenka.aditya.kol@gmail.com" class="nav-cta-ghost">Contact Coach</a>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -31,110 +47,40 @@
   </div>
 </nav>
 <div class="mobile-menu" id="mobileMenu">
-  <a href="#mocks">Full Mocks</a>
-  <a href="#bank">Question Bank</a>
-  <a href="#plans">Plans</a>
-  <a href="#faq">Help</a>
-  <a href="gre_practice_logger_pro.html" style="color:var(--accent);font-weight:800">Open Pro App →</a>
+  <a href="gre_practice_logger_pro.html">Practice</a>
+  <a href="full_mock.html">Full Mocks</a>
+  <a href="analytics.html">My Analytics</a>
+  <a href="mailto:goenka.aditya.kol@gmail.com">Contact Coach</a>
 </div>
 
 <div class="wrap">
 
-<!-- ─── HERO ─────────────────────────────────────────────── -->
-<section class="hero fade-in" style="grid-template-columns:1fr;text-align:center;padding-bottom:40px;gap:0">
+<!-- ─── HERO + 3 OPTIONS ─────────────────────────────────── -->
+<section class="hero fade-in" style="grid-template-columns:1fr;text-align:center;padding-bottom:64px;gap:0">
   <div>
     <div class="hero-eyebrow" style="justify-content:center">Member Area · Coach Aditya Goenka</div>
-    <h1 style="max-width:800px;margin-left:auto;margin-right:auto">Welcome back. <em>Let's raise that score.</em></h1>
-    <p class="hero-sub" style="margin-left:auto;margin-right:auto">Everything you have access to as a Pro member — the full 8,410+ question bank, all 10 full-length mocks in the real GRE interface, and Send-to-Coach analytics.</p>
-    <div class="hero-btns" style="justify-content:center">
-      <a href="gre_practice_logger_pro.html" class="btn btn-primary">Open the Pro App →</a>
-      <a href="full_mock.html" class="btn btn-secondary">Take a Full Mock</a>
-    </div>
-    <p class="hero-note">Log in with your registered email — no password needed.</p>
-  </div>
-</section>
+    <h1 style="max-width:720px;margin-left:auto;margin-right:auto">What do you want to <em>work on today?</em></h1>
+    <p class="hero-sub" style="margin-left:auto;margin-right:auto;margin-bottom:0">Log in with your registered email inside the practice app — no password needed.</p>
 
-<!-- ─── QUICK CARDS ─────────────────────────────────────── -->
-<section class="section fade-in" id="mocks" style="scroll-margin-top:88px">
-  <div class="section-eyebrow">Your Tools</div>
-  <h2 class="section-title">Pick up where you left off</h2>
-  <p class="section-sub">Three ways to practice — all included in your plan.</p>
-  <div class="how-grid">
-    <div class="how-card">
-      <div class="how-num">01</div>
-      <div class="how-title">Subtopic Practice</div>
-      <div class="how-body">Drill any of the 88 subtopics with instant trap-based feedback, all four difficulty levels, unlimited questions per session.</div>
-      <a href="gre_practice_logger_pro.html" class="btn btn-navy" style="margin-top:18px;width:100%">Open Pro App →</a>
-    </div>
-    <div class="how-card">
-      <div class="how-num">02</div>
-      <div class="how-title">Full-Length Mocks</div>
-      <div class="how-body">10 mocks from Balanced (160) to Expert (170) — timed sections, adaptive difficulty, in a strict replica of the real GRE test screen.</div>
-      <a href="full_mock.html" class="btn btn-navy" style="margin-top:18px;width:100%">Start a Mock →</a>
-    </div>
-    <div class="how-card">
-      <div class="how-num">03</div>
-      <div class="how-title">Send to Coach</div>
-      <div class="how-body">After any session, send your data to Coach Aditya in one click. Pro + Coach members get personalised feedback within 24 hours.</div>
-      <a href="mailto:goenka.aditya.kol@gmail.com" class="btn btn-navy" style="margin-top:18px;width:100%">Email Coach Adi →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── QUESTION BANK ──────────────────────────────────────── -->
-<section class="section fade-in" id="bank" style="scroll-margin-top:88px">
-  <div class="section-eyebrow">Question Bank</div>
-  <h2 class="section-title">Everything in your bank</h2>
-  <p class="section-sub">9 topics · 88 subtopics · 8,410+ questions · Growing continuously · Every question trap-tagged</p>
-  <div class="topic-grid" id="topic-grid"></div>
-</section>
-
-<!-- ─── PLANS POINTER ──────────────────────────────────────── -->
-<section class="section fade-in" id="plans" style="scroll-margin-top:88px">
-  <div class="cta-strip" style="margin-bottom:0">
-    <div>
-      <div class="cta-strip-text">Need to renew, upgrade, or refer a friend?</div>
-      <div class="cta-strip-sub">Current plans and pricing live on the main site — Pro ₹499/year · Pro + Coach ₹1,499/month</div>
-    </div>
-    <div class="cta-strip-btns">
-      <a href="https://grequantpro.com/#plans" class="btn btn-primary">See Current Plans →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ─── FAQ / HELP ─────────────────────────────────────────── -->
-<section class="section fade-in" id="faq" style="scroll-margin-top:88px">
-  <div class="section-eyebrow">Help</div>
-  <h2 class="section-title">Common questions</h2>
-  <p class="section-sub">Stuck? Coach Aditya replies personally, usually within 2 hours.</p>
-  <div class="faq-list">
-    <div class="faq-item">
-      <div class="faq-header" onclick="toggleFaq(this)">
-        <div class="faq-q">How do I log in to the Pro app?</div>
-        <span class="faq-chevron">+</span>
-      </div>
-      <div class="faq-body"><p class="faq-a">Open <a href="gre_practice_logger_pro.html">the Pro app</a> and enter the email you used at payment. No password needed. If your email isn't recognised, it may still be in the 1–2 hour activation window — email <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a> if it takes longer.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-header" onclick="toggleFaq(this)">
-        <div class="faq-q">Which mock should I take first?</div>
-        <span class="faq-chevron">+</span>
-      </div>
-      <div class="faq-body"><p class="faq-a">Start with Mock 1 or 2 (Balanced, 160-level) to establish a baseline, then move up the ladder — Moderate (162), Moderate-Hard (164), Hard (166), and finally Very Hard / Expert (168–170) as your accuracy improves.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-header" onclick="toggleFaq(this)">
-        <div class="faq-q">How does Send to Coach work?</div>
-        <span class="faq-chevron">+</span>
-      </div>
-      <div class="faq-body"><p class="faq-a">After a session or mock, use the Send to Coach button — it emails your full session data to Coach Aditya. Pro + Coach members get a personalised review within 24 hours; Pro members can use it for occasional check-ins.</p></div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-header" onclick="toggleFaq(this)">
-        <div class="faq-q">Does the app work offline?</div>
-        <span class="faq-chevron">+</span>
-      </div>
-      <div class="faq-body"><p class="faq-a">Yes — after the first load, the practice app works offline in your browser. Full mocks and Send to Coach need a connection.</p></div>
+    <div class="hub-grid">
+      <a class="hub-card" href="gre_practice_logger_pro.html">
+        <div class="hub-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <div class="hub-title">Practice Topic-wise</div>
+        <div class="hub-desc">Drill any of the 88 subtopics with instant trap-based feedback — all four difficulty levels, unlimited questions, in the GRE-style interface.</div>
+        <span class="hub-go">Open Practice →</span>
+      </a>
+      <a class="hub-card" href="full_mock.html">
+        <div class="hub-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <div class="hub-title">Take a Full Mock</div>
+        <div class="hub-desc">10 full-length mocks from Balanced (160) to Expert (170) — timed sections, adaptive difficulty, in a strict replica of the real GRE test screen.</div>
+        <span class="hub-go">Start a Mock →</span>
+      </a>
+      <a class="hub-card" href="analytics.html">
+        <div class="hub-icon"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <div class="hub-title">My Analytics</div>
+        <div class="hub-desc">Upload your downloaded mock and session JSON files to see combined accuracy, topic breakdown, timing, and the exact subtopics to fix next.</div>
+        <span class="hub-go">View Analytics →</span>
+      </a>
     </div>
   </div>
 </section>
@@ -142,12 +88,13 @@
 </div><!-- end .wrap -->
 
 <!-- ─── FOOTER ─────────────────────────────────────────────── -->
-<footer>
+<footer style="margin-top:0">
   <div class="footer-inner">
     <div class="footer-logo">GRE Quant <em>Pro</em></div>
     <div class="footer-links">
-      <a href="gre_practice_logger_pro.html">Pro App</a>
+      <a href="gre_practice_logger_pro.html">Practice</a>
       <a href="full_mock.html">Full Mocks</a>
+      <a href="analytics.html">My Analytics</a>
       <a href="https://grequantpro.com/#plans">Plans</a>
       <a href="mailto:goenka.aditya.kol@gmail.com">Contact</a>
     </div>
@@ -166,42 +113,10 @@ document.addEventListener('click',e=>{
     m.classList.remove('open');
   }
 });
-function toggleFaq(header){
-  const item=header.parentElement;
-  const wasOpen=item.classList.contains('open');
-  document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-  if(!wasOpen) item.classList.add('open');
-}
 const observer=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('visible');}});
 },{threshold:0.06});
 document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
-
-const BANK=[
-  {name:"Arithmetic",total:1320,subtopics:["Percentages","Fractions & Decimals","Ratios & Proportions","Exponents & Roots","Rates & Unit Conversions","Prime Numbers & Factorization","Integers & Divisibility","Sequences & Patterns","Remainders","Absolute Value","Odd & Even Numbers","Powers of 10","Number Line & Ordering","Estimation & Approximation"]},
-  {name:"Algebra",total:1200,subtopics:["Linear Equations (1 Variable)","Linear Equations (2 Variables)","Inequalities","Quadratic Equations","Functions","Algebraic Expressions","Simultaneous Equations","Factoring","Sequences & Series","Word Problem Modelling","Exponents & Roots (Algebraic)"]},
-  {name:"Word Problems",total:470,subtopics:["Distance-Speed-Time","Mixture Problems","Work & Rate Problems","Interest (Simple & Compound)","Profit & Loss","Percentage Word Problems","Ratio Word Problems","Multi-step Problems","Age Problems"]},
-  {name:"Geometry",total:1780,subtopics:["Circles (Area, Arc & Sector)","Triangles (General)","Lines & Angles","Pythagorean Theorem","Special Triangles (30-60-90, 45-45-90)","Quadrilaterals","Perimeter & Area","Parallel Lines & Transversals","Inscribed & Circumscribed Shapes","Similar & Congruent Figures","Surface Area & Volume","3D Geometry","Parallelograms & Trapezoids","Isosceles & Equilateral Triangles","Chords, Tangents & Secants","Other Polygons","Cones, Spheres & Hemispheres"]},
-  {name:"Coordinate Geometry",total:740,subtopics:["Slope & Intercepts","Equation of a Line","Distance Between Points","Midpoint","Parallel & Perpendicular Lines","Graphs of Linear Equations","Graphs of Quadratic Functions","Coordinate Geometry Word Problems","Plotting Points"]},
-  {name:"Statistics & Probability",total:1120,subtopics:["Mean, Median & Mode","Basic Probability","Combinations","Permutations","Overlapping Sets (Venn Diagrams)","Range & Standard Deviation","Weighted Average","Compound Probability","Independent & Dependent Events","Data Distribution","Interquartile Range & Percentiles"]},
-  {name:"Data Interpretation",total:580,subtopics:["Reading & Comparing Data","Bar Graphs","Line Graphs","Pie Charts","Tables & Data Sets","Percentage Change from Graphs","Mixed Graph Sets","Multi-graph DI Sets"]},
-  {name:"Number Properties",total:1100,subtopics:["Factors & Multiples","GCD & LCM","Divisibility Rules","Consecutive Integers","Even/Odd Properties","Prime Factorization","Digit Problems & Place Value","Number Theory"]},
-  {name:"Mixed Practice",total:100,subtopics:["General Mixed (All Topics)"]}
-];
-const grid=document.getElementById("topic-grid");
-if(grid){
-  BANK.forEach(t=>{
-    const card=document.createElement("div");
-    card.className="topic-card";
-    card.innerHTML=`
-      <div class="topic-header">
-        <span class="topic-name">${t.name}</span>
-        <span class="topic-count-badge">${t.total.toLocaleString()} Qs</span>
-      </div>
-      <div class="subtopics-list">${t.subtopics.map(s=>`<span class="sub-tag">${s}</span>`).join('')}</div>`;
-    grid.appendChild(card);
-  });
-}
 </script>
 </body>
 </html>
