@@ -2,90 +2,100 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Payment Confirmed — GRE Quant Pro</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a28; --border:#2a2a45;
-  --accent:#6c63ff; --accent2:#a089ff; --success:#43e97b; --warning:#f7971e;
-  --text:#e8e8f0; --text2:#9898b8; --text3:#5a5a7a;
-  --font-body:'Outfit',sans-serif; --font-mono:'DM Mono',monospace;
+  --paper:#faf8f4; --card:#ffffff;
+  --ink:#152a3d; --ink2:#46586a; --ink3:#7c8b99;
+  --navy:#16324f; --navy-deep:#0e2334;
+  --blue:#1a5da6; --blue-soft:#e8f0f8;
+  --accent:#c65d21; --accent-dark:#a84e1b; --accent-soft:#faeee4;
+  --green:#1e7e46; --green-soft:#e5f2ea;
+  --line:#e6dfd3;
+  --ff:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --fd:"Fraunces",Georgia,serif;
+  --fm:"DM Mono","Courier New",monospace;
   --radius:16px;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{min-height:100vh;background:var(--bg);color:var(--text);font-family:var(--font-body);}
-body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;text-align:center;}
+html,body{min-height:100vh;background:var(--paper);color:var(--ink);font-family:var(--ff);}
+body{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px 20px;text-align:center;line-height:1.6;}
 
 .card{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:48px 40px;max-width:520px;width:100%;
-  box-shadow:0 24px 64px rgba(0,0,0,0.4);
+  background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+  padding:48px 40px;max-width:540px;width:100%;
+  box-shadow:0 2px 4px rgba(22,50,79,.06),0 24px 56px rgba(22,50,79,.12);
 }
 
 .check-ring{
   width:80px;height:80px;border-radius:50%;
-  background:rgba(67,233,123,0.12);border:2px solid rgba(67,233,123,0.35);
+  background:var(--green-soft);border:2px solid #bfe0cc;color:var(--green);
   display:flex;align-items:center;justify-content:center;
-  margin:0 auto 28px;font-size:36px;
+  margin:0 auto 28px;font-size:34px;font-weight:800;
   animation:pop 0.4s cubic-bezier(0.34,1.56,0.64,1) both;
 }
 @keyframes pop{from{transform:scale(0.5);opacity:0;}to{transform:scale(1);opacity:1;}}
+@media (prefers-reduced-motion: reduce){.check-ring{animation:none}}
 
-h1{font-size:28px;font-weight:800;margin-bottom:10px;line-height:1.2;}
+h1{font-family:var(--fd);font-weight:640;font-size:28px;margin-bottom:10px;line-height:1.2;color:var(--navy);}
 .plan-badge{
-  display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:white;font-size:13px;font-weight:700;padding:4px 14px;border-radius:20px;
-  margin-bottom:20px;
+  display:inline-block;background:var(--accent);
+  color:#fff;font-size:13px;font-weight:700;padding:5px 16px;border-radius:20px;
+  margin-bottom:20px;letter-spacing:.3px;
 }
-.subtitle{font-size:16px;color:var(--text2);line-height:1.6;margin-bottom:32px;}
+.subtitle{font-size:16px;color:var(--ink2);line-height:1.6;margin-bottom:32px;}
 
-.steps{text-align:left;background:var(--surface2);border:1px solid var(--border);border-radius:12px;padding:24px;margin-bottom:32px;}
-.steps-title{font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-bottom:16px;}
+.steps{text-align:left;background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:24px;margin-bottom:32px;}
+.steps-title{font-size:11px;color:var(--ink3);font-family:var(--fm);text-transform:uppercase;letter-spacing:2px;margin-bottom:16px;}
 .step{display:flex;gap:14px;align-items:flex-start;padding:10px 0;}
-.step:not(:last-child){border-bottom:1px solid var(--border);}
+.step:not(:last-child){border-bottom:1px solid var(--line);}
 .step-num{
   width:28px;height:28px;border-radius:50%;flex-shrink:0;margin-top:1px;
-  background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.3);
-  color:var(--accent);font-size:12px;font-weight:700;font-family:var(--font-mono);
+  background:var(--blue-soft);
+  color:var(--blue);font-size:13px;font-weight:800;
   display:flex;align-items:center;justify-content:center;
 }
 .step-body{flex:1;}
-.step-title{font-size:14px;font-weight:600;margin-bottom:2px;}
-.step-desc{font-size:13px;color:var(--text2);line-height:1.5;}
-.step-desc a{color:var(--accent);text-decoration:none;}
+.step-title{font-size:14.5px;font-weight:700;margin-bottom:2px;color:var(--navy);}
+.step-desc{font-size:13.5px;color:var(--ink2);line-height:1.55;}
+.step-desc a{color:var(--blue);text-decoration:none;font-weight:600;}
 
 .payment-id{
-  font-family:var(--font-mono);font-size:11px;color:var(--text3);
-  background:var(--surface2);border:1px solid var(--border);border-radius:8px;
+  font-family:var(--fm);font-size:11px;color:var(--ink3);
+  background:var(--paper);border:1px solid var(--line);border-radius:8px;
   padding:8px 14px;margin-bottom:24px;word-break:break-all;
 }
 
 .btn-primary{
-  display:inline-block;background:linear-gradient(135deg,var(--accent),var(--accent2));
-  color:white;text-decoration:none;padding:14px 32px;border-radius:10px;
-  font-weight:700;font-size:15px;transition:transform 0.2s,box-shadow 0.2s;
-  box-shadow:0 8px 24px rgba(108,99,255,0.35);
+  display:inline-block;background:var(--accent);
+  color:#fff;text-decoration:none;padding:15px 32px;border-radius:10px;
+  font-weight:700;font-size:15.5px;transition:background .15s,transform 0.2s;
+  box-shadow:0 6px 20px rgba(198,93,33,.28);
 }
-.btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 32px rgba(108,99,255,0.45);}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-2px);}
 .btn-secondary{
-  display:inline-block;color:var(--text2);text-decoration:none;font-size:13px;
-  margin-top:14px;transition:color 0.2s;
+  display:inline-block;color:var(--ink2);text-decoration:none;font-size:13.5px;
+  margin-top:16px;transition:color 0.2s;font-weight:600;
 }
-.btn-secondary:hover{color:var(--text);}
+.btn-secondary:hover{color:var(--navy);}
 
-.guarantee{font-size:12px;color:var(--text3);margin-top:24px;line-height:1.6;}
-.guarantee a{color:var(--accent);text-decoration:none;}
+.guarantee{font-size:12.5px;color:var(--ink3);margin-top:24px;line-height:1.6;}
+.guarantee a{color:var(--blue);text-decoration:none;font-weight:600;}
 
-/* Not-a-real-payment state */
-.stray-card .check-ring{background:rgba(108,99,255,0.1);border-color:rgba(108,99,255,0.3);font-size:32px;}
+.stray-card .check-ring{background:var(--blue-soft);border-color:#b7d0e8;color:var(--blue);font-size:30px;}
 </style>
 </head>
 <body>
 
 <div class="card" id="mainCard">
   <!-- Populated by JS based on URL params -->
-  <div style="color:var(--text3);font-family:var(--font-mono);font-size:13px;">Loading…</div>
+  <div style="color:var(--ink3);font-family:var(--fm);font-size:13px;">Loading…</div>
 </div>
 
 <script src="ads-config.js"></script>
@@ -104,7 +114,7 @@ h1{font-size:28px;font-weight:800;margin-bottom:10px;line-height:1.2;}
     // Someone navigated here directly — show a neutral page, don't fire conversions
     card.classList.add('stray-card');
     card.innerHTML = `
-      <div class="check-ring">🔐</div>
+      <div class="check-ring">?</div>
       <h1>GRE Quant Pro</h1>
       <p class="subtitle">This page confirms payments made through GRE Quant Pro.<br>
       If you've just paid, you should have been redirected here automatically.</p>
@@ -119,7 +129,7 @@ h1{font-size:28px;font-weight:800;margin-bottom:10px;line-height:1.2;}
   const planLabel   = isPro ? 'Pro' : 'Pro + Coach Review';
   const planPrice   = isPro ? '₹499' : '₹1,499/mo';
   const loginUrl    = 'https://grequantpro.com/pro';
-  const loginFallback = 'https://tinyurl.com/grequantpro-pro'; // used until domain is confirmed live
+  const loginFallback = 'https://grequantpro.com/pro'; // used until domain is confirmed live
 
   const proSteps = `
     <div class="step">
@@ -133,7 +143,7 @@ h1{font-size:28px;font-weight:800;margin-bottom:10px;line-height:1.2;}
       <div class="step-num">2</div>
       <div class="step-body">
         <div class="step-title">After 6 hours, open the Pro app and log in</div>
-        <div class="step-desc">Visit <a href="${loginUrl}" target="_blank">grequantpro.com/pro</a>, enter your registered email, and you're in. No download, no password. (If that link doesn't work yet, use: <a href="${loginFallback}" target="_blank">tinyurl.com/grequantpro-pro</a>.)</div>
+        <div class="step-desc">Visit <a href="${loginUrl}" target="_blank">grequantpro.com/pro</a>, enter your registered email, and you're in. No download, no password.</div>
       </div>
     </div>
     <div class="step">
@@ -156,7 +166,7 @@ h1{font-size:28px;font-weight:800;margin-bottom:10px;line-height:1.2;}
       <div class="step-num">2</div>
       <div class="step-body">
         <div class="step-title">After 6 hours, open the Pro app and do your first session</div>
-        <div class="step-desc">Visit <a href="${loginUrl}" target="_blank">grequantpro.com/pro</a> and complete at least one session. Use "Send to Coach" to share your session data. (Fallback: <a href="${loginFallback}" target="_blank">tinyurl.com/grequantpro-pro</a>.)</div>
+        <div class="step-desc">Visit <a href="${loginUrl}" target="_blank">grequantpro.com/pro</a> and complete at least one session. Use "Send to Coach" to share your session data.</div>
       </div>
     </div>
     <div class="step">

@@ -15,331 +15,10 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRE Quant Pro · Score 165+ With Trap-Based Practice</title>
 <meta name="description" content="8,410+ GRE Quant practice questions across 88 subtopics. Every wrong answer shows you the exact trap you fell into. Built question by question by Coach Aditya Goenka.">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-:root{
-  --bg:#07080f;--s1:#0d0f1a;--s2:#13162a;--s3:#1a1e35;
-  --border:rgba(255,255,255,0.07);--border2:rgba(255,255,255,0.13);
-  --accent:#6c63ff;--accent2:#ff6584;--gold:#f5c842;
-  --success:#3ecf8e;--warning:#f7971e;
-  --text:#e8e8f8;--text2:#a0a0c0;--text3:#5a5a7a;
-  --ff:"Inter",sans-serif;--fd:"DM Serif Display",serif;--fm:"DM Mono",monospace;
-  --radius:14px;--radius-sm:8px;--radius-lg:20px;
-}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--ff);overflow-x:hidden;line-height:1.6}
-
-/* ─── AMBIENT GLOWS ────────────────────────────────────────── */
-.glow-1{position:fixed;width:800px;height:800px;border-radius:50%;background:radial-gradient(circle,rgba(108,99,255,0.09) 0%,transparent 70%);top:-300px;left:-200px;pointer-events:none;z-index:0}
-.glow-2{position:fixed;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(255,101,132,0.06) 0%,transparent 70%);bottom:-200px;right:-100px;pointer-events:none;z-index:0}
-
-/* ─── LAYOUT ──────────────────────────────────────────────── */
-.wrap{position:relative;z-index:1;max-width:1160px;margin:0 auto;padding:0 24px}
-
-/* ─── TOP BAR ─────────────────────────────────────────────── */
-.top-bar{background:linear-gradient(90deg,#3d38a8,#6c63ff,#a089ff);text-align:center;padding:10px 24px;font-size:12px;font-weight:600;color:white;letter-spacing:0.5px;position:relative;z-index:101}
-.top-bar a{color:white;text-decoration:underline;margin-left:8px}
-
-/* ─── NAV ─────────────────────────────────────────────────── */
-nav{position:sticky;top:0;background:rgba(7,8,15,0.90);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);z-index:100;padding:0}
-.nav-inner{max-width:1160px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;height:60px}
-.nav-logo{font-family:var(--fd);font-size:20px;color:var(--text);text-decoration:none;display:flex;align-items:center;gap:8px}
-.nav-logo .logo-badge{background:var(--accent);color:white;font-size:9px;font-family:var(--fm);font-weight:700;padding:2px 7px;border-radius:4px;letter-spacing:1px;text-transform:uppercase;margin-left:2px;vertical-align:super}
-.nav-links{display:flex;align-items:center;gap:6px}
-.nav-links a{font-size:13px;color:var(--text2);text-decoration:none;transition:color 0.2s;padding:7px 12px;border-radius:8px;font-weight:500}
-.nav-links a:hover{color:var(--text);background:var(--s2)}
-.nav-cta-ghost{border:1px solid rgba(108,99,255,0.4)!important;color:var(--accent)!important;background:rgba(108,99,255,0.08)!important}
-.nav-cta-ghost:hover{background:rgba(108,99,255,0.16)!important}
-.nav-cta-solid{background:var(--accent)!important;color:white!important;font-weight:600!important}
-.nav-cta-solid:hover{background:#7c74ff!important;transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none}
-.hamburger span{display:block;width:22px;height:2px;background:var(--text);border-radius:2px;transition:all 0.25s}
-.mobile-menu{display:none;position:fixed;top:60px;left:0;right:0;background:rgba(7,8,15,0.98);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);z-index:99;padding:16px 24px;flex-direction:column;gap:4px}
-.mobile-menu a{display:block;font-size:15px;color:var(--text2);text-decoration:none;padding:11px 12px;border-radius:8px;font-weight:500;border-bottom:1px solid var(--border)}
-.mobile-menu a:last-child{border-bottom:none}
-.mobile-menu.open{display:flex}
-
-/* ─── HERO ────────────────────────────────────────────────── */
-.hero{padding:80px 0 56px;text-align:center}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:11px;color:var(--accent);background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.22);padding:6px 18px;border-radius:20px;letter-spacing:2px;text-transform:uppercase;margin-bottom:28px}
-.hero-eyebrow::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--success);display:block;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
-.hero h1{font-family:var(--fd);font-size:clamp(40px,6.5vw,74px);line-height:1.05;margin-bottom:22px;letter-spacing:-0.5px}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero h1 .gold{color:var(--gold)}
-.hero-sub{font-size:18px;color:var(--text2);max-width:620px;margin:0 auto 32px;line-height:1.7;font-weight:400}
-.hero-stars{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:36px;font-size:13px;color:var(--text2)}
-.hero-stars .stars{color:#f5c842;font-size:16px;letter-spacing:1px}
-.hero-stars strong{color:var(--text);font-weight:600}
-.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:20px}
-.btn{display:inline-flex;align-items:center;gap:8px;padding:15px 32px;border-radius:12px;font-size:15px;font-weight:600;text-decoration:none;cursor:pointer;border:none;font-family:var(--ff);transition:all 0.2s;line-height:1}
-.btn-primary{background:linear-gradient(135deg,#6c63ff,#a089ff);color:white;box-shadow:0 8px 28px rgba(108,99,255,0.30);background-size:200% auto;animation:shimmer 3s linear infinite}
-.btn-primary:hover{box-shadow:0 12px 36px rgba(108,99,255,0.45);transform:translateY(-2px)}
-.btn-secondary{background:var(--s2);color:var(--text2);border:1px solid var(--border2)}
-.btn-secondary:hover{background:var(--s3);color:var(--text);transform:translateY(-1px)}
-.hero-note{font-size:12px;color:var(--text3);font-family:var(--fm)}
-@keyframes shimmer{0%{background-position:-200% center}100%{background-position:200% center}}
-
-/* ─── MOCK EVENT DOORWAY ─────────────────────────────────── */
-.event-doorway{background:linear-gradient(145deg,rgba(108,99,255,0.12),rgba(62,207,142,0.05));border:1px solid rgba(108,99,255,0.28);border-radius:var(--radius-lg);padding:32px 36px;margin-bottom:36px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(280px,0.9fr);gap:28px;align-items:center;position:relative;overflow:hidden;scroll-margin-top:88px}
-.event-doorway::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--success),var(--gold))}
-.event-doorway::after{content:"MOCK";position:absolute;right:24px;top:50%;transform:translateY(-50%);font-family:var(--fd);font-size:92px;color:rgba(255,255,255,0.035);pointer-events:none}
-.event-doorway-content,.event-doorway-panel{position:relative;z-index:1}
-.event-doorway-kicker{font-family:var(--fm);font-size:11px;color:var(--success);letter-spacing:1.8px;text-transform:uppercase;margin-bottom:10px}
-.event-doorway h2{font-family:var(--fd);font-size:clamp(28px,3.5vw,42px);line-height:1.12;margin-bottom:12px}
-.event-doorway p{font-size:14px;color:var(--text2);line-height:1.7;max-width:620px}
-.event-doorway-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:22px}
-.event-doorway-panel{background:rgba(10,10,15,0.42);border:1px solid rgba(255,255,255,0.08);border-radius:var(--radius);padding:22px}
-.event-doorway-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px}
-.event-meta-item{background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:12px}
-.event-meta-label{display:block;font-family:var(--fm);font-size:10px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.event-meta-value{font-size:14px;color:var(--text);font-weight:700}
-.event-doorway-list{list-style:none;display:flex;flex-direction:column;gap:8px}
-.event-doorway-list li{font-size:13px;color:var(--text2);display:flex;align-items:flex-start;gap:8px}
-.event-doorway-list li span{color:var(--success);font-weight:700;flex-shrink:0}
-.event-note{font-family:var(--fm);font-size:11px;color:var(--text3);margin-top:14px}
-
-/* ─── SOCIAL PROOF BAR ────────────────────────────────────── */
-.proof-bar{border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;margin-bottom:72px}
-.proof-bar-inner{display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-.proof-item{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text2)}
-.proof-item-icon{font-size:18px}
-.proof-item strong{color:var(--text);font-weight:700}
-.proof-divider{width:1px;height:28px;background:var(--border);flex-shrink:0}
-
-/* ─── SECTIONS ────────────────────────────────────────────── */
-.section{margin-bottom:88px}
-.section-eyebrow{font-family:var(--fm);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;text-align:center;margin-bottom:14px}
-.section-title{font-family:var(--fd);font-size:clamp(30px,4vw,44px);text-align:center;margin-bottom:12px;line-height:1.15}
-.section-title em{font-style:italic;color:var(--accent)}
-.section-sub{text-align:center;font-size:15px;color:var(--text2);margin-bottom:48px;max-width:560px;margin-left:auto;margin-right:auto;line-height:1.7}
-
-/* ─── PROBLEM SECTION ─────────────────────────────────────── */
-.problem-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.problem-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:24px;position:relative;overflow:hidden}
-.problem-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,rgba(255,101,132,0.5),transparent)}
-.problem-emoji{font-size:24px;margin-bottom:14px;display:block}
-.problem-title{font-size:15px;font-weight:700;color:var(--text);margin-bottom:8px}
-.problem-body{font-size:13px;color:var(--text2);line-height:1.65}
-
-/* ─── DIFFERENTIATOR / TRAP ───────────────────────────────── */
-.diff-card{background:linear-gradient(145deg,rgba(108,99,255,0.09),rgba(168,154,255,0.04));border:1px solid rgba(108,99,255,0.22);border-radius:var(--radius-lg);padding:52px 56px;position:relative;overflow:hidden}
-.diff-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.diff-eyebrow{font-family:var(--fm);font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:2px;margin-bottom:18px}
-.diff-headline{font-family:var(--fd);font-size:clamp(26px,3.5vw,40px);margin-bottom:18px;line-height:1.2;max-width:640px}
-.diff-headline em{font-style:italic;color:var(--accent2)}
-.diff-body{font-size:15px;color:var(--text2);max-width:600px;line-height:1.75;margin-bottom:36px}
-.diff-example-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:680px}
-.diff-example-box{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:20px}
-.diff-example-label{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:10px;font-weight:600}
-.diff-example-label.wrong{color:var(--accent2)}
-.diff-example-label.right{color:var(--success)}
-.diff-example-text{font-size:13px;color:var(--text2);line-height:1.65}
-.diff-trap-pill{display:inline-flex;align-items:center;gap:6px;background:rgba(247,151,30,0.12);border:1px solid rgba(247,151,30,0.3);border-radius:20px;padding:5px 14px;font-family:var(--fm);font-size:11px;color:var(--warning);margin-top:10px}
-
-/* ─── HOW IT WORKS ────────────────────────────────────────── */
-.how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.how-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:32px 28px;position:relative;transition:border-color 0.2s,transform 0.2s}
-.how-card:hover{border-color:var(--border2);transform:translateY(-3px)}
-.how-num{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--accent),#a89aff);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:16px;font-weight:700;color:white;margin-bottom:20px}
-.how-title{font-size:16px;font-weight:700;color:var(--text);margin-bottom:10px}
-.how-body{font-size:13px;color:var(--text2);line-height:1.7}
-.how-connector{display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:20px;padding-top:40px}
-
-/* ─── TESTIMONIALS ────────────────────────────────────────── */
-.testimonials-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px}
-.testimonial-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:28px;display:flex;flex-direction:column;gap:16px;transition:border-color 0.2s,transform 0.2s}
-.testimonial-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.testimonial-card.featured{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;background:linear-gradient(145deg,rgba(108,99,255,0.08),rgba(62,207,142,0.04));border-color:rgba(108,99,255,0.22)}
-.testimonial-stars{color:#f5c842;font-size:14px;letter-spacing:2px}
-.testimonial-quote{font-family:var(--fd);font-size:17px;line-height:1.55;color:var(--text);font-style:italic}
-.testimonial-quote::before{content:'"';color:var(--accent);font-size:2.5em;line-height:0;vertical-align:-0.3em;margin-right:4px;font-style:normal}
-.testimonial-quote::after{content:'"';color:var(--accent);font-size:2.5em;line-height:0;vertical-align:-0.3em;margin-left:2px;font-style:normal}
-.testimonial-author{display:flex;align-items:center;gap:12px}
-.testimonial-avatar{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;border:2px solid var(--border2)}
-.testimonial-name{font-size:14px;font-weight:600;color:var(--text)}
-.testimonial-meta{font-size:12px;color:var(--text3);font-family:var(--fm);margin-top:2px}
-.score-badge{display:inline-flex;align-items:center;gap:5px;background:rgba(62,207,142,0.12);border:1px solid rgba(62,207,142,0.25);border-radius:20px;padding:4px 12px;font-family:var(--fm);font-size:11px;color:var(--success);font-weight:600;margin-top:6px}
-.testimonial-featured-stat{text-align:center}
-.stat-big{font-family:var(--fd);font-size:72px;color:var(--accent);line-height:1}
-.stat-big-label{font-size:14px;color:var(--text2);margin-top:8px}
-.stat-big-sub{font-family:var(--fm);font-size:11px;color:var(--text3);margin-top:4px}
-
-/* ─── PRICING ─────────────────────────────────────────────── */
-.pricing-context{text-align:center;margin-bottom:32px}
-.pricing-context-text{font-family:var(--fm);font-size:12px;color:var(--text3);display:inline-flex;align-items:center;gap:10px;background:var(--s1);border:1px solid var(--border);border-radius:20px;padding:8px 20px}
-.pricing-context-text .crossed{text-decoration:line-through;color:var(--accent2);margin-right:4px}
-.plans{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:32px;align-items:start}
-.plan-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius-lg);padding:36px;position:relative;overflow:hidden;transition:transform 0.25s}
-.plan-card:hover{transform:translateY(-3px)}
-.plan-card.free::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--text3),var(--border2))}
-.plan-card.pro{border-color:rgba(108,99,255,0.35);background:linear-gradient(155deg,#0d0f1a,#111428)}
-.plan-card.pro::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
-.plan-card.tutor{border-color:rgba(245,200,66,0.3);background:linear-gradient(155deg,#0d0f1a,#131208);grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
-.plan-card.tutor::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),#f97316)}
-.popular-badge{position:absolute;top:20px;right:20px;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;font-size:10px;font-weight:700;font-family:var(--fm);letter-spacing:1.5px;text-transform:uppercase;padding:5px 12px;border-radius:20px}
-.plan-icon{font-size:28px;margin-bottom:14px;display:block}
-.plan-name{font-family:var(--fd);font-size:26px;margin-bottom:6px}
-.plan-tagline{font-size:13px;color:var(--text2);margin-bottom:24px;line-height:1.55;max-width:340px}
-.price-wrap{display:flex;align-items:baseline;gap:6px;margin-bottom:6px}
-.price-currency{font-size:20px;color:var(--text2);font-family:var(--fm)}
-.price-amount{font-family:var(--fd);font-size:56px;line-height:1}
-.plan-card.pro .price-amount{color:var(--accent)}
-.plan-card.tutor .price-amount{color:var(--gold)}
-.price-period{font-size:13px;color:var(--text3);font-family:var(--fm)}
-.price-note{font-size:12px;color:var(--text3);font-family:var(--fm);margin-bottom:8px;min-height:16px}
-.price-vs{font-family:var(--fm);font-size:11px;color:var(--text3);margin-bottom:24px}
-.price-vs .vs-competitor{text-decoration:line-through;color:var(--accent2);margin-left:4px}
-.plan-cta{display:block;width:100%;padding:15px 20px;border-radius:12px;font-size:15px;font-weight:600;font-family:var(--ff);text-align:center;text-decoration:none;cursor:pointer;border:none;transition:all 0.2s;margin-bottom:10px;line-height:1}
-.free-cta{background:var(--s2);color:var(--text2);border:1px solid var(--border2)}
-.free-cta:hover{background:var(--s3);color:var(--text)}
-.pro-cta{color:white;box-shadow:0 8px 24px rgba(108,99,255,0.28);background:linear-gradient(135deg,var(--accent),#a89aff);background-size:200% auto;animation:shimmer 3s linear infinite}
-.pro-cta:hover{box-shadow:0 12px 32px rgba(108,99,255,0.45);transform:translateY(-1px)}
-.tutor-cta{background:linear-gradient(135deg,var(--gold),#f97316);color:#0a0a0f;font-weight:700;box-shadow:0 8px 24px rgba(245,200,66,0.18)}
-.tutor-cta:hover{box-shadow:0 12px 32px rgba(245,200,66,0.32);transform:translateY(-1px)}
-.plan-guarantee{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--success);font-family:var(--fm);margin-bottom:24px}
-.features-label{font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);margin-bottom:12px}
-.feature-list{list-style:none}
-.feature-list li{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text2);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.5}
-.feature-list li:last-child{border-bottom:none}
-.feature-list li.locked{opacity:0.38}
-.f-check{color:var(--success);font-size:13px;flex-shrink:0;margin-top:1px;font-weight:700}
-.f-lock{font-size:13px;flex-shrink:0;margin-top:1px}
-.plan-delivery{background:rgba(62,207,142,0.07);border:1px solid rgba(62,207,142,0.18);border-radius:var(--radius-sm);padding:12px 16px;margin-top:4px;font-size:12px;color:var(--success);font-family:var(--fm);display:flex;align-items:center;gap:8px}
-
-/* ─── ACCESS EXPLAINER ────────────────────────────────────── */
-.access-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:32px}
-.access-step{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:20px;text-align:center}
-.access-step-icon{font-size:24px;display:block;margin-bottom:10px}
-.access-step-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px}
-.access-step-body{font-size:12px;color:var(--text3);font-family:var(--fm);line-height:1.5}
-.access-step-arrow{display:flex;align-items:center;justify-content:center;color:var(--text3);font-size:18px;padding-top:28px}
-
-/* ─── GUARANTEE BANNER ────────────────────────────────────── */
-.guarantee-banner{background:linear-gradient(135deg,rgba(62,207,142,0.08),rgba(62,207,142,0.03));border:1px solid rgba(62,207,142,0.2);border-radius:var(--radius-lg);padding:36px 40px;display:flex;align-items:center;gap:28px;margin-bottom:72px;flex-wrap:wrap}
-.guarantee-icon{font-size:52px;flex-shrink:0}
-.guarantee-title{font-family:var(--fd);font-size:24px;color:var(--success);margin-bottom:8px}
-.guarantee-body{font-size:14px;color:var(--text2);line-height:1.65;max-width:680px}
-
-/* ─── QUESTION BANK ───────────────────────────────────────── */
-.topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:16px}
-.topic-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:22px;transition:border-color 0.2s,transform 0.2s}
-.topic-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.topic-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
-.topic-title-row{display:flex;align-items:center;gap:10px}
-.topic-icon{font-size:20px}
-.topic-name{font-size:15px;font-weight:600;color:var(--text)}
-.topic-count-badge{font-family:var(--fm);font-size:11px;padding:3px 10px;border-radius:20px;background:rgba(108,99,255,0.1);color:var(--accent);border:1px solid rgba(108,99,255,0.2);white-space:nowrap}
-.subtopics-list{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
-.sub-tag{font-family:var(--fm);font-size:11px;padding:4px 10px;border-radius:6px;border:1px solid var(--border);color:var(--text3);background:var(--s2)}
-.sub-tag.done{color:var(--success);border-color:rgba(62,207,142,0.22);background:rgba(62,207,142,0.06)}
-
-/* ─── COMPARE TABLE ───────────────────────────────────────── */
-.compare-table{width:100%;border-collapse:collapse;background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.compare-table th{padding:18px 20px;font-size:13px;font-weight:600;text-align:left;background:var(--s2);border-bottom:1px solid var(--border)}
-.compare-table th:not(:first-child){text-align:center}
-.compare-table th.col-pro{color:var(--accent)}
-.compare-table th.col-tutor{color:var(--gold)}
-.compare-table td{padding:13px 20px;font-size:13px;color:var(--text2);border-bottom:1px solid var(--border)}
-.compare-table tr:last-child td{border-bottom:none}
-.compare-table td:not(:first-child){text-align:center;font-size:15px}
-.compare-table tr:hover td{background:rgba(255,255,255,0.015)}
-.cat-header td{background:var(--s2);font-family:var(--fm);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--text3);padding:9px 20px}
-
-/* ─── ABOUT ADITYA ────────────────────────────────────────── */
-.about-card{background:var(--s1);border:1px solid var(--border2);border-radius:var(--radius-lg);padding:52px;position:relative;overflow:hidden;display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:start}
-.about-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2),var(--gold))}
-.about-avatar{width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:40px;flex-shrink:0;border:3px solid rgba(108,99,255,0.35)}
-.about-name{font-family:var(--fd);font-size:28px;margin-bottom:6px}
-.about-cred{font-family:var(--fm);font-size:12px;color:var(--accent);margin-bottom:20px;display:flex;flex-wrap:wrap;gap:8px}
-.about-cred span{background:rgba(108,99,255,0.1);border:1px solid rgba(108,99,255,0.2);padding:4px 12px;border-radius:20px}
-.about-quote{font-family:var(--fd);font-size:18px;line-height:1.55;color:var(--text);font-style:italic;margin-bottom:20px}
-.about-quote::before{content:'"';color:var(--accent);font-size:2.5em;line-height:0;vertical-align:-0.3em;margin-right:4px;font-style:normal}
-.about-body{font-size:14px;color:var(--text2);line-height:1.7;margin-bottom:20px}
-.about-contact a{font-family:var(--fm);font-size:13px;color:var(--accent);text-decoration:none}
-.about-contact a:hover{text-decoration:underline}
-
-/* ─── FAQ ─────────────────────────────────────────────────── */
-.faq-list{display:flex;flex-direction:column;gap:12px;max-width:760px;margin:0 auto}
-.faq-item{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;cursor:pointer}
-.faq-header{display:flex;align-items:center;justify-content:space-between;padding:20px 24px;gap:16px}
-.faq-q{font-size:15px;font-weight:600;color:var(--text);line-height:1.4}
-.faq-chevron{color:var(--text3);font-size:18px;transition:transform 0.25s;flex-shrink:0;font-weight:300}
-.faq-item.open .faq-chevron{transform:rotate(180deg)}
-.faq-body{padding:0 24px;max-height:0;overflow:hidden;transition:max-height 0.3s ease,padding 0.3s ease}
-.faq-item.open .faq-body{max-height:300px;padding:0 24px 20px}
-.faq-a{font-size:14px;color:var(--text2);line-height:1.7}
-.faq-a a{color:var(--accent);text-decoration:none}
-
-/* ─── CTA STRIP ───────────────────────────────────────────── */
-.cta-strip{background:linear-gradient(135deg,rgba(108,99,255,0.12),rgba(168,154,255,0.06));border:1px solid rgba(108,99,255,0.22);border-radius:var(--radius);padding:36px 40px;display:flex;align-items:center;justify-content:space-between;gap:20px;margin-bottom:72px;flex-wrap:wrap}
-.cta-strip-text{font-family:var(--fd);font-size:24px;color:var(--text)}
-.cta-strip-sub{font-size:13px;color:var(--text2);margin-top:6px}
-.cta-strip-btns{display:flex;gap:12px;flex-shrink:0;flex-wrap:wrap}
-
-/* ─── WHO IS IT FOR ───────────────────────────────────────── */
-.who-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
-.who-card{background:var(--s1);border:1px solid var(--border);border-radius:var(--radius);padding:28px}
-.who-card.yes{border-top:3px solid var(--success)}
-.who-card.no{border-top:3px solid rgba(255,101,132,0.5)}
-.who-card-title{font-size:14px;font-weight:700;margin-bottom:18px}
-.who-card.yes .who-card-title{color:var(--success)}
-.who-card.no .who-card-title{color:var(--accent2)}
-.who-item{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--text2);padding:8px 0;border-bottom:1px solid var(--border);line-height:1.5}
-.who-item:last-child{border-bottom:none}
-
-/* ─── FOOTER ──────────────────────────────────────────────── */
-footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
-.footer-inner{max-width:1160px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px}
-.footer-logo{font-family:var(--fd);font-size:20px;color:var(--text)}
-.footer-links{display:flex;gap:20px;justify-content:center}
-.footer-links a{font-size:12px;color:var(--text3);text-decoration:none;font-family:var(--fm)}
-.footer-links a:hover{color:var(--text2)}
-.footer-copy{font-size:12px;color:var(--text3);font-family:var(--fm);text-align:right}
-
-/* ─── ANIMATIONS ──────────────────────────────────────────── */
-.fade-in{opacity:0;transform:translateY(18px);transition:opacity 0.6s ease,transform 0.6s ease}
-.fade-in.visible{opacity:1;transform:translateY(0)}
-
-/* ─── MOBILE ──────────────────────────────────────────────── */
-@media(max-width:900px){
-  .plans{grid-template-columns:1fr}
-  .plan-card.tutor{grid-template-columns:1fr}
-  .testimonials-grid{grid-template-columns:1fr}
-  .testimonial-card.featured{grid-column:unset;grid-template-columns:1fr}
-  .problem-grid{grid-template-columns:1fr}
-  .how-grid{grid-template-columns:1fr}
-  .about-card{grid-template-columns:1fr}
-  .who-grid{grid-template-columns:1fr}
-  .access-steps{grid-template-columns:1fr 1fr}
-  .diff-example-row{grid-template-columns:1fr}
-  .footer-inner{grid-template-columns:1fr;text-align:center}
-  .footer-links{justify-content:center}
-  .footer-copy{text-align:center}
-  .cta-strip{flex-direction:column;text-align:center}
-  .cta-strip-btns{justify-content:center}
-  .guarantee-banner{flex-direction:column;text-align:center;padding:28px}
-  .event-doorway{grid-template-columns:1fr;padding:28px}
-  .event-doorway::after{font-size:70px;top:28px;transform:none}
-  .proof-bar-inner{gap:20px}
-  .proof-divider{display:none}
-}
-@media(max-width:600px){
-  nav .nav-links{display:none}
-  .hamburger{display:flex}
-  .hero h1{font-size:36px}
-  .hero-sub{font-size:16px}
-  .hero{padding:56px 0 40px}
-  .diff-card{padding:32px 24px}
-  .about-card{padding:32px 24px}
-  .access-steps{grid-template-columns:1fr}
-  .event-doorway-meta{grid-template-columns:1fr}
-  .proof-bar-inner{flex-direction:column;gap:14px}
-  .btn{padding:13px 24px;font-size:14px}
-  .mock-two-col{grid-template-columns:1fr!important}
-}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450..700;1,9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="site.css">
 </head>
 <body>
 <div class="glow-1"></div>
@@ -347,23 +26,22 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 
 <!-- ─── TOP BAR ─────────────────────────────────────────── -->
 <div class="top-bar">
-  ⚡ Early Access Pricing: Pro is ₹499 / year — price increases after launch.
-  <a href="#plans">Lock in early-access pricing →</a>
+  Early Access Pricing: Pro is ₹499 / year — price increases after launch.
+  <a href="#plans">Lock it in →</a>
 </div>
 
 <!-- ─── NAV ─────────────────────────────────────────────── -->
 <nav>
   <div class="nav-inner">
-    <a href="https://grequantpro.com/" class="nav-logo">GRE Quant Pro</a>
+    <a href="https://grequantpro.com/" class="nav-logo">GRE Quant <em>Pro</em></a>
     <div class="nav-links">
       <a href="#how">How it works</a>
       <a href="#free">Free Practice</a>
       <a href="#bank">Question Bank</a>
       <a href="#plans">Pricing</a>
       <a href="#faq">FAQ</a>
-      <a href="https://grequantpro.com/gre_practice_logger_free.html">Try Free</a>
-      <a href="https://grequantpro.com/pro" class="nav-cta-ghost">Log in →</a>
-      <a href="#plans" class="nav-cta-solid btn" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — ₹499</a>
+      <a href="https://grequantpro.com/pro" class="nav-cta-ghost">Log in</a>
+      <a href="#plans" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — ₹499</a>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
@@ -378,82 +56,91 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
   <a href="#faq">FAQ</a>
   <a href="https://grequantpro.com/gre_practice_logger_free.html">Try Free App</a>
   <a href="https://grequantpro.com/pro">Log in to Pro</a>
-  <a href="#plans" style="color:var(--accent);font-weight:700">Get Pro — ₹499 →</a>
+  <a href="#plans" style="color:var(--accent);font-weight:800">Get Pro — ₹499 →</a>
 </div>
 
-<!-- ─── HERO ─────────────────────────────────────────────── -->
 <div class="wrap">
+
+<!-- ─── HERO ─────────────────────────────────────────────── -->
 <section class="hero fade-in">
-  <div class="hero-eyebrow">GRE Quant Practice · Coach Aditya Goenka</div>
-  <h1>Stop guessing why you<br>got it wrong. <em>Know.</em></h1>
-  <p class="hero-sub">8,410+ GRE Quant practice questions across 88 subtopics — each with the exact trap you fell into, not just the correct answer. Built by a coach who has seen every mistake firsthand.</p>
-  <div class="hero-stars">
-    <span style="font-size:13px;color:var(--text3);font-family:var(--fm);">No account needed &nbsp;·&nbsp; Try free first &nbsp;·&nbsp; 7-day money-back guarantee</span>
+  <div>
+    <div class="hero-eyebrow">GRE Quant Practice · Coach Aditya Goenka</div>
+    <h1>Stop guessing why you got it wrong. <em>Know.</em></h1>
+    <p class="hero-sub">8,410+ GRE Quant questions across 88 subtopics — each with the exact trap you fell into, not just the correct answer. Practiced in a replica of the real GRE test interface.</p>
+    <div class="hero-btns">
+      <a href="#plans" class="btn btn-primary" data-track="buy_pro_clicked" data-track-from="hero">Get Pro — ₹499 →</a>
+      <a href="full_mock.html" class="btn btn-secondary" data-track="free_mock_clicked" data-track-from="hero">Take a Free Full Mock</a>
+    </div>
+    <p class="hero-note"><strong>No account needed</strong> · Try free first · 7-day money-back guarantee · 1-year access</p>
   </div>
-  <div class="hero-btns">
-    <a href="#plans" class="btn btn-primary" data-track="buy_pro_clicked" data-track-from="hero">Get Pro — ₹499 →</a>
-    <a href="https://grequantpro.com/gre_practice_logger_free.html" class="btn btn-secondary" data-track="try_free_clicked" data-track-from="hero">Try Free First (no card)</a>
-  </div>
-  <p class="hero-note">One payment · 1-year access · All 88 subtopics · All future questions included</p>
-</section>
-
-<!-- ─── FREE PRACTICE LAUNCHER ────────────────────────────── -->
-<section class="fade-in" id="free" style="scroll-margin-top:88px;margin-bottom:36px;">
-  <div style="text-align:center;margin-bottom:24px;">
-    <div style="font-family:var(--fm);font-size:11px;color:var(--success);letter-spacing:1.8px;text-transform:uppercase;margin-bottom:10px;">Free practice · No account needed</div>
-    <h2 style="font-family:var(--fd);font-size:clamp(24px,3vw,36px);line-height:1.15;margin-bottom:8px;">Practice for free — right now.</h2>
-    <p style="font-size:14px;color:var(--text2);max-width:520px;margin:0 auto;">Open the free practice app and choose how you want to work: full GRE simulation or targeted topic drill. Both are free, both give instant trap-based feedback.</p>
-  </div>
-
-  <div style="background:linear-gradient(145deg,rgba(62,207,142,0.1),rgba(62,207,142,0.03));border:1px solid rgba(62,207,142,0.28);border-radius:var(--radius);padding:32px;position:relative;overflow:hidden;max-width:700px;margin:0 auto;">
-    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--success),rgba(62,207,142,0.3));"></div>
-
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:24px;" class="free-launcher-grid">
-      <!-- Option 1 -->
-      <div style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
-        <div style="font-family:var(--fm);font-size:10px;color:var(--accent);letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px;">Full Mock</div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:6px;line-height:1.3;">2-section GRE simulation</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.55;">Score · section breakdown · diagnosis · trap review</div>
+  <div class="hero-visual" aria-hidden="true">
+    <div class="shot">
+      <div class="shot-bar">
+        <b>Section 1 of 2&nbsp; | &nbsp;Question 4 of 12</b>
+        <div class="shot-bar-btns"><span>Mark</span><span>Review</span><span>Back</span><span>Next</span></div>
       </div>
-      <!-- Option 2 -->
-      <div style="background:rgba(255,255,255,0.035);border:1px solid rgba(255,255,255,0.07);border-radius:12px;padding:18px;">
-        <div style="font-family:var(--fm);font-size:10px;color:var(--success);letter-spacing:1.6px;text-transform:uppercase;margin-bottom:8px;">Topic Practice</div>
-        <div style="font-size:14px;font-weight:600;margin-bottom:6px;line-height:1.3;">Drill a specific subtopic</div>
-        <div style="font-size:12px;color:var(--text2);line-height:1.55;">Pick difficulty · instant feedback · named-trap explanations</div>
+      <div class="shot-strip"><span>GRE® Mock — Quantitative Reasoning</span><span>00:17:42</span></div>
+      <div class="shot-body">
+        <div class="shot-q">If <span class="shot-frac"><span>2ab</span><span>a+b</span></span> = 48 and a = 60, what is the value of b?</div>
+        <div class="shot-opt"><span class="dot"></span>30</div>
+        <div class="shot-opt sel"><span class="dot"></span>40</div>
+        <div class="shot-opt"><span class="dot"></span>48</div>
+        <div class="shot-opt"><span class="dot"></span>50</div>
+        <div class="shot-trap"><b>Named trap</b>Students average 60 and 40 to get 50 — but average speed over equal distances is the harmonic mean, always less than the arithmetic mean.</div>
       </div>
     </div>
-
-    <ul style="list-style:none;display:flex;flex-direction:column;gap:7px;margin-bottom:24px;">
-      <li style="font-size:13px;color:var(--text2);display:flex;gap:9px;"><span style="color:var(--success);font-weight:700;">✓</span>No account, no card — opens instantly</li>
-      <li style="font-size:13px;color:var(--text2);display:flex;gap:9px;"><span style="color:var(--success);font-weight:700;">✓</span>Every wrong answer shows the exact trap you fell into</li>
-      <li style="font-size:13px;color:var(--text2);display:flex;gap:9px;"><span style="color:var(--success);font-weight:700;">✓</span>Session report + PDF export after each session</li>
-    </ul>
-
-    <a href="gre_practice_logger_free.html"
-       class="btn btn-secondary"
-       style="width:100%;justify-content:center;background:rgba(62,207,142,0.14);border:1px solid rgba(62,207,142,0.38);color:var(--success);font-size:15px;padding:14px 20px;"
-       data-track="free_logger_opened"
-       data-track-from="landing"
-       onclick="if(window.GQP&&window.GQP.track)window.GQP.track('free_logger_opened',{from:'landing'});">
-      Open Free Practice App →
-    </a>
+    <div class="shot-caption">THE ACTUAL PRACTICE INTERFACE — A REPLICA OF THE REAL GRE</div>
   </div>
 </section>
+</div>
 
 <!-- ─── SOCIAL PROOF BAR ──────────────────────────────────── -->
 <div class="proof-bar fade-in">
   <div class="proof-bar-inner">
-    <div class="proof-item"><span class="proof-item-icon">📝</span><span><strong>8,410+</strong> practice questions</span></div>
+    <div class="proof-item"><strong>8,410+</strong> practice questions</div>
     <div class="proof-divider"></div>
-    <div class="proof-item"><span class="proof-item-icon">🧭</span><span><strong>88</strong> subtopics covered</span></div>
+    <div class="proof-item"><strong>88</strong> subtopics covered</div>
     <div class="proof-divider"></div>
-    <div class="proof-item"><span class="proof-item-icon">🎯</span><span><strong>9</strong> major GRE topics</span></div>
+    <div class="proof-item"><strong>9</strong> major GRE topics</div>
     <div class="proof-divider"></div>
-    <div class="proof-item"><span class="proof-item-icon">⏱️</span><span>Calibrated to <strong>real GRE pace</strong></span></div>
+    <div class="proof-item"><strong>1:45</strong> real GRE pace per question</div>
     <div class="proof-divider"></div>
-    <div class="proof-item"><span class="proof-item-icon">🏆</span><span>Every trap <strong>named</strong> &amp; explained</span></div>
+    <div class="proof-item"><strong>Every</strong> trap named &amp; explained</div>
   </div>
 </div>
+
+<div class="wrap">
+
+<!-- ─── FREE PRACTICE LAUNCHER ────────────────────────────── -->
+<section class="section fade-in" id="free" style="scroll-margin-top:88px">
+  <div class="section-eyebrow">Free practice · No account needed</div>
+  <h2 class="section-title">Practice for free — right now.</h2>
+  <p class="section-sub">Choose how you want to start: a full GRE simulation in the real test interface, or a targeted topic drill. Both free, both with instant trap-based feedback.</p>
+
+  <div class="free-panel">
+    <div class="free-launcher-grid">
+      <a class="free-opt" href="full_mock.html" data-track="free_mock_clicked" data-track-from="free_section"
+         onclick="if(window.GQP&&window.GQP.track)window.GQP.track('free_mock_clicked',{from:'free_section'});">
+        <div class="free-opt-kicker">Full Mock</div>
+        <div class="free-opt-title">2-section GRE simulation</div>
+        <div class="free-opt-desc">Real GRE interface · adaptive Section 2 · score, diagnosis &amp; trap review</div>
+        <span class="free-opt-go">Start a free mock →</span>
+      </a>
+      <a class="free-opt" href="gre_practice_logger_free.html" data-track="free_logger_opened" data-track-from="free_section"
+         onclick="if(window.GQP&&window.GQP.track)window.GQP.track('free_logger_opened',{from:'free_section'});">
+        <div class="free-opt-kicker" style="color:var(--green)">Topic Practice</div>
+        <div class="free-opt-title">Drill a specific subtopic</div>
+        <div class="free-opt-desc">Pick difficulty · instant feedback · named-trap explanations</div>
+        <span class="free-opt-go" style="color:var(--green)">Open the practice app →</span>
+      </a>
+    </div>
+    <ul class="free-list">
+      <li><span>✓</span>No account, no card — opens instantly in your browser</li>
+      <li><span>✓</span>Every wrong answer shows the exact trap you fell into</li>
+      <li><span>✓</span>Session report + PDF export after each session</li>
+    </ul>
+  </div>
+</section>
 
 <!-- ─── PROBLEM ────────────────────────────────────────────── -->
 <section class="section fade-in">
@@ -462,19 +149,19 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
   <p class="section-sub">It's not a knowledge gap. It's a pattern-recognition gap. Every platform shows you the solution — almost none show you why you specifically got it wrong.</p>
   <div class="problem-grid">
     <div class="problem-card">
-      <span class="problem-emoji">🔁</span>
+      <div class="problem-num">1</div>
       <div class="problem-title">You keep making the same mistakes</div>
       <div class="problem-body">You review the solution, understand it, then make the same error two days later. Because you never addressed the underlying trap — you just learned the answer.</div>
     </div>
     <div class="problem-card">
-      <span class="problem-emoji">📉</span>
+      <div class="problem-num">2</div>
       <div class="problem-title">Your score plateaus despite practice</div>
-      <div class="problem-body">More practice without targeted feedback is just expensive repetition. Without knowing which subtopics drain your accuracy, you practice the same things you're already decent at.</div>
+      <div class="problem-body">More practice without targeted feedback is just expensive repetition. Without knowing which subtopics drain your accuracy, you practice what you're already decent at.</div>
     </div>
     <div class="problem-card">
-      <span class="problem-emoji">⏳</span>
+      <div class="problem-num">3</div>
       <div class="problem-title">Practice without real time pressure</div>
-      <div class="problem-body">Unlimited time practice creates false confidence. The GRE gives you 1 min 45 sec per question. If you've never practiced at that pace, exam day will feel completely different.</div>
+      <div class="problem-body">Unlimited-time practice creates false confidence. The GRE gives you 1 min 45 sec per question. If you've never practiced at that pace, exam day feels completely different.</div>
     </div>
   </div>
 </section>
@@ -484,77 +171,68 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
   <div class="diff-card">
     <div class="diff-eyebrow">The GRE Quant Pro difference</div>
     <h2 class="diff-headline">Most platforms show you solutions.<br><em>This one shows you why you got it wrong.</em></h2>
-    <p class="diff-body">Every question in GRE Quant Pro includes a named trap — the specific cognitive error students typically make on that exact question. Not generic advice. The precise mistake, for that precise question, explained so you recognise and avoid it next time.</p>
-    <div class="diff-example-row" style="flex-direction:column;gap:16px;">
-      <div class="diff-example-box" style="border-color:rgba(108,99,255,0.25);background:rgba(108,99,255,0.04);">
-        <div class="diff-example-label" style="color:var(--text3);border-color:var(--border);">🎯 Real question from the bank — Extreme Hard</div>
-        <div class="diff-example-text" style="font-size:15px;line-height:1.7;color:var(--text);margin-bottom:14px;">
-          A store raises a price by 20%, then offers a 20% discount on the new price, then raises it again by 25%. If the final price is <strong>₹810</strong>, what was the original price?
-        </div>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
-          <span style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);font-size:13px;color:var(--text2);">A. ₹648</span>
-          <span style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);font-size:13px;color:var(--text2);">B. ₹660</span>
-          <span style="padding:5px 12px;border-radius:6px;border:1px solid rgba(108,99,255,0.4);background:rgba(108,99,255,0.08);font-size:13px;color:var(--accent);font-weight:700;">C. ₹675 ✓</span>
-          <span style="padding:5px 12px;border-radius:6px;border:1px solid var(--border);font-size:13px;color:var(--text2);">D. ₹720</span>
-        </div>
-        <div style="font-size:13px;color:var(--text2);line-height:1.7;margin-bottom:10px;">
-          <strong style="color:var(--text);">Explanation:</strong> Multiply the three multipliers: 1.20 × 0.80 × 1.25 = 1.20. So Original × 1.20 = 810, giving Original = 810 ÷ 1.20 = <strong style="color:var(--accent);">₹675</strong>.
-        </div>
-        <div class="diff-trap-pill">⚠️ Trap: Students add +20% − 20% + 25% = +25% and compute 810 ÷ 1.25 = ₹648 (Option A). Successive percent changes must be <em>multiplied</em>, not added — each applies to the previous price, not the original.</div>
+    <p class="diff-body">Every question includes a named trap — the specific cognitive error students typically make on that exact question. Not generic advice. The precise mistake, for that precise question, explained so you recognise and avoid it next time.</p>
+    <div class="diff-example">
+      <div class="diff-example-label">Real question from the bank — Extreme Hard</div>
+      <div class="diff-example-text">A store raises a price by 20%, then offers a 20% discount on the new price, then raises it again by 25%. If the final price is <strong>₹810</strong>, what was the original price?</div>
+      <div class="diff-opts">
+        <span class="diff-opt">A. ₹648</span>
+        <span class="diff-opt">B. ₹660</span>
+        <span class="diff-opt correct">C. ₹675 ✓</span>
+        <span class="diff-opt">D. ₹720</span>
       </div>
+      <div class="diff-expl"><strong>Explanation:</strong> Multiply the three multipliers: 1.20 × 0.80 × 1.25 = 1.20. So Original × 1.20 = 810, giving Original = 810 ÷ 1.20 = <strong>₹675</strong>.</div>
+      <div class="diff-trap-pill"><b>Named trap</b>Students add +20% − 20% + 25% = +25% and compute 810 ÷ 1.25 = ₹648 (Option A). Successive percent changes must be <em>multiplied</em>, not added — each applies to the previous price, not the original.</div>
     </div>
   </div>
 </section>
 
 <!-- ─── HOW IT WORKS ───────────────────────────────────────── -->
-<section class="section fade-in" id="how">
+<section class="section fade-in" id="how" style="scroll-margin-top:88px">
   <div class="section-eyebrow">How It Works</div>
   <h2 class="section-title">Three steps from confusion<br>to <em>clarity</em></h2>
   <p class="section-sub">No account setup. No downloads. Works in your browser on any device.</p>
   <div class="how-grid">
     <div class="how-card">
-      <div class="how-num">1</div>
-      <div class="how-title">Pick your topic, subtopic & difficulty</div>
-      <div class="how-body">Select from 9 topic areas and 88 subtopics. Filter by difficulty — Easy through Extreme Hard — calibrated to GRE score bands from 130 to 170. Immediately focus on your weak spots.</div>
+      <div class="how-num">01</div>
+      <div class="how-title">Pick your topic, subtopic &amp; difficulty</div>
+      <div class="how-body">Select from 9 topic areas and 88 subtopics. Filter by difficulty — Easy through Extreme Hard — calibrated to GRE score bands from 130 to 170. Focus on your weak spots immediately.</div>
     </div>
     <div class="how-card">
-      <div class="how-num">2</div>
+      <div class="how-num">02</div>
       <div class="how-title">Practice with trap-based feedback</div>
       <div class="how-body">In Practice Mode, every question gets instant feedback: correct answer, full explanation, and the named trap. In Exam Mode, a timer counts down at 1:45 per question — real GRE pace — with full analytics after.</div>
     </div>
     <div class="how-card">
-      <div class="how-num">3</div>
+      <div class="how-num">03</div>
       <div class="how-title">Track patterns, fix weak spots</div>
       <div class="how-body">Every session generates a performance report — accuracy by difficulty, time per question, subtopic breakdown. Pro students can send the full report to Coach Aditya in one click for personalised review.</div>
     </div>
   </div>
 </section>
 
-<!-- ─── FOUNDING COHORT CTA ─────────────────────────────────── -->
-<section class="section fade-in" id="reviews">
+<!-- ─── FOUNDING COHORT ────────────────────────────────────── -->
+<section class="section fade-in" id="reviews" style="scroll-margin-top:88px">
   <div class="section-eyebrow">Early Access</div>
   <h2 class="section-title">Join the founding cohort.</h2>
   <p class="section-sub">GRE Quant Pro is brand new. We're onboarding the first 20 students at the lowest price it will ever be — ₹499/year — in exchange for honest feedback on what helps and what doesn't.</p>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:32px;">
-    <div class="testimonial-card" style="border-color:rgba(108,99,255,0.25);background:rgba(108,99,255,0.04);">
-      <div style="font-size:28px;margin-bottom:12px;">🔒</div>
-      <div class="testimonial-name" style="font-size:16px;margin-bottom:8px;">Lock in ₹499/year</div>
-      <p style="font-size:13px;color:var(--text2);line-height:1.6;">Price increases once the founding cohort is full. Early access students keep this rate as long as they stay subscribed.</p>
+  <div class="cohort-grid">
+    <div class="cohort-card">
+      <div class="cohort-title">Lock in ₹499/year</div>
+      <p class="cohort-body">Price increases once the founding cohort is full. Early access students keep this rate as long as they stay subscribed.</p>
     </div>
-    <div class="testimonial-card" style="border-color:rgba(67,233,123,0.2);background:rgba(67,233,123,0.03);">
-      <div style="font-size:28px;margin-bottom:12px;">💬</div>
-      <div class="testimonial-name" style="font-size:16px;margin-bottom:8px;">Direct access to Coach Aditya</div>
-      <p style="font-size:13px;color:var(--text2);line-height:1.6;">Founding cohort students get Coach Aditya's personal attention. Your practice data shapes how the product evolves.</p>
+    <div class="cohort-card">
+      <div class="cohort-title">Direct access to Coach Aditya</div>
+      <p class="cohort-body">Founding cohort students get Coach Aditya's personal attention. Your practice data shapes how the product evolves.</p>
     </div>
-    <div class="testimonial-card" style="border-color:rgba(247,151,30,0.2);background:rgba(247,151,30,0.03);">
-      <div style="font-size:28px;margin-bottom:12px;">📈</div>
-      <div class="testimonial-name" style="font-size:16px;margin-bottom:8px;">7-day money-back guarantee</div>
-      <p style="font-size:13px;color:var(--text2);line-height:1.6;">Try the full Pro bank for a week. If it isn't better than anything else you've tried, email Coach Aditya for a full refund — no questions asked.</p>
+    <div class="cohort-card">
+      <div class="cohort-title">7-day money-back guarantee</div>
+      <p class="cohort-body">Try the full Pro bank for a week. If it isn't better than anything else you've tried, email Coach Aditya for a full refund — no questions asked.</p>
     </div>
   </div>
-  <div style="text-align:center;margin-top:32px;">
+  <div style="text-align:center;margin-top:36px;">
     <a href="#plans" class="btn btn-primary" onclick="if(window.GQP&&window.GQP.track)window.GQP.track('pro_cta_clicked',{from:'founding_cohort'});">Join the Founding Cohort — ₹499 →</a>
-    <p style="font-size:12px;color:var(--text3);margin-top:12px;font-family:var(--fm);">Real student results will appear here as founding cohort members complete their prep.</p>
+    <p style="font-size:13px;color:var(--ink3);margin-top:14px;">Real student results will appear here as founding cohort members complete their prep.</p>
   </div>
 </section>
 
@@ -565,7 +243,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
   <p class="section-sub">Be honest with yourself before buying. We'd rather you not buy and tell a friend than buy and feel let down.</p>
   <div class="who-grid">
     <div class="who-card yes">
-      <div class="who-card-title">✅ This is built for you if…</div>
+      <div class="who-card-title">This is built for you if…</div>
       <div class="who-item"><span>✓</span>You've covered the basics and need focused, calibrated practice</div>
       <div class="who-item"><span>✓</span>You keep making the same types of mistakes and can't figure out why</div>
       <div class="who-item"><span>✓</span>You want to know your weak subtopics before exam day, not during</div>
@@ -573,7 +251,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
       <div class="who-item"><span>✓</span>You want a coach who gives data-driven, personalised feedback</div>
     </div>
     <div class="who-card no">
-      <div class="who-card-title">❌ This is NOT for you if…</div>
+      <div class="who-card-title">This is NOT for you if…</div>
       <div class="who-item"><span>✗</span>You're a complete beginner who hasn't studied GRE Quant concepts yet</div>
       <div class="who-item"><span>✗</span>You're looking for a video course — this is a pure practice tool</div>
       <div class="who-item"><span>✗</span>You want 50,000 generic questions with no coaching context</div>
@@ -583,7 +261,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 </section>
 
 <!-- ─── QUESTION BANK ──────────────────────────────────────── -->
-<section class="section fade-in" id="bank">
+<section class="section fade-in" id="bank" style="scroll-margin-top:88px">
   <div class="section-eyebrow">Question Bank</div>
   <h2 class="section-title">What's inside</h2>
   <p class="section-sub">9 topics · 88 subtopics · 8,410+ questions · Growing continuously · Every question trap-tagged</p>
@@ -594,7 +272,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 <div class="cta-strip fade-in">
   <div>
     <div class="cta-strip-text">Try it free — no account needed</div>
-    <div class="cta-strip-sub">2 subtopics · Practice Mode + Exam Mode · No credit card · Access in 30 seconds</div>
+    <div class="cta-strip-sub">Free full mock + 2 practice subtopics · No credit card · Access in 30 seconds</div>
   </div>
   <div class="cta-strip-btns">
     <a href="https://grequantpro.com/gre_practice_logger_free.html" class="btn btn-secondary" data-track="try_free_clicked" data-track-from="cta_strip">Try Free App →</a>
@@ -603,25 +281,25 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 </div>
 
 <!-- ─── PRICING ────────────────────────────────────────────── -->
-<section class="section fade-in" id="plans">
+<section class="section fade-in" id="plans" style="scroll-margin-top:88px">
   <div class="section-eyebrow">Pricing</div>
   <h2 class="section-title">Less than a single tutoring<br>session. <em>1-year access.</em></h2>
   <p class="section-sub">Magoosh charges ₹10,000+ per year. Manhattan costs even more. GRE Quant Pro is ₹499 — one payment, full access for 12 months, including all questions added during that year.</p>
   <div class="pricing-context">
     <span class="pricing-context-text">
-      Compare: <span class="crossed">Magoosh ~₹10,000/yr</span> · <span class="crossed">Manhattan ~₹15,000/yr</span> · GRE Quant Pro: <strong style="color:var(--success)">₹499 / year</strong>
+      Compare: <span class="crossed">Magoosh ~₹10,000/yr</span> · <span class="crossed">Manhattan ~₹15,000/yr</span> · GRE Quant Pro: <strong style="color:var(--green)">₹499 / year</strong>
     </span>
   </div>
   <div class="plans">
     <!-- FREE PLAN -->
     <div class="plan-card free">
-      <span class="plan-icon">🎯</span>
       <div class="plan-name">Free</div>
       <div class="plan-tagline">Experience the full app with 2 subtopics. No commitment, no card.</div>
       <div class="price-wrap"><span class="price-currency">₹</span><span class="price-amount">0</span></div>
       <div class="price-note">Always free. No credit card.</div>
       <div class="price-vs">&nbsp;</div>
       <a href="https://grequantpro.com/gre_practice_logger_free.html" class="plan-cta free-cta" data-track="try_free_clicked" data-track-from="pricing">Open Free App →</a>
+      <div class="plan-guarantee" style="visibility:hidden">·</div>
       <div class="features-label">What's included</div>
       <ul class="feature-list">
         <li><span class="f-check">✓</span> Manual session logger — unlimited</li>
@@ -630,6 +308,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
         <li><span class="f-check">✓</span> Up to 20 questions per session</li>
         <li><span class="f-check">✓</span> Practice Mode with trap-based feedback</li>
         <li><span class="f-check">✓</span> Exam Mode — try it on free subtopics</li>
+        <li><span class="f-check">✓</span> Free full-length mocks in the GRE interface</li>
         <li><span class="f-check">✓</span> Session reports + PDF export</li>
         <li class="locked"><span class="f-lock">🔒</span> 88 subtopics across 9 topics</li>
         <li class="locked"><span class="f-lock">🔒</span> Hard + Extreme Hard questions</li>
@@ -639,20 +318,20 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
     <!-- PRO PLAN -->
     <div class="plan-card pro">
       <div class="popular-badge">Most Popular</div>
-      <span class="plan-icon">⚡</span>
       <div class="plan-name">Pro</div>
       <div class="plan-tagline">All 9 topics, all 88 subtopics, all 8,410+ questions. One payment — 1-year access including all questions added during that year.</div>
       <div class="price-wrap"><span class="price-currency">₹</span><span class="price-amount">499</span></div>
       <div class="price-note">One-time · 1-year access · All questions included</div>
       <div class="price-vs">vs. <span class="vs-competitor">Magoosh ₹10,000+/year</span></div>
       <a href="https://rzp.io/rzp/ORSwVJu" class="plan-cta pro-cta" target="_blank" rel="noopener" data-track="buy_pro_clicked" data-track-from="pricing">Buy Pro — ₹499 →</a>
-      <div class="plan-guarantee">🛡️ 7-day money-back guarantee. No questions asked.</div>
+      <div class="plan-guarantee">7-day money-back guarantee. No questions asked.</div>
       <div class="features-label">Everything in Free, plus</div>
       <ul class="feature-list">
         <li><span class="f-check">✓</span> All 88 subtopics across 9 topics</li>
         <li><span class="f-check">✓</span> 8,410+ practice questions (growing)</li>
         <li><span class="f-check">✓</span> All 4 difficulty levels incl. Extreme Hard</li>
         <li><span class="f-check">✓</span> Unlimited questions per session</li>
+        <li><span class="f-check">✓</span> 10 full-length mocks — Balanced to Expert (170)</li>
         <li><span class="f-check">✓</span> Exam Mode across all topics + analysis</li>
         <li><span class="f-check">✓</span> My Progress — unlimited multi-session view</li>
         <li><span class="f-check">✓</span> Send to Coach — email sessions to Adi</li>
@@ -662,14 +341,13 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
     <!-- TUTOR PLAN -->
     <div class="plan-card tutor">
       <div class="plan-content">
-        <span class="plan-icon">🎯</span>
         <div class="plan-name">Pro + Coach Review</div>
         <div class="plan-tagline">Everything in Pro — plus Coach Aditya personally reviews your session data and gives you targeted, data-driven feedback within 24 hours.</div>
         <div class="price-wrap"><span class="price-currency">₹</span><span class="price-amount">1,499</span><span class="price-period">/month</span></div>
         <div class="price-note">Cancel anytime · Max 20 students</div>
         <div class="price-vs">&nbsp;</div>
         <a href="https://rzp.io/rzp/HPH7R8Nj" class="plan-cta tutor-cta" target="_blank" rel="noopener" data-track="buy_coach_clicked" data-track-from="pricing">Get Pro + Coach — ₹1,499/mo →</a>
-        <div class="plan-guarantee" style="color:var(--gold)">⭐ Limited to 20 students max for quality</div>
+        <div class="plan-guarantee" style="color:var(--gold)">Limited to 20 students max for quality</div>
       </div>
       <div class="plan-features">
         <div class="features-label">Coaching includes</div>
@@ -687,39 +365,41 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
   </div>
 
   <!-- ACCESS EXPLAINER -->
-  <div style="margin-top:40px">
+  <div style="margin-top:48px">
     <div class="section-eyebrow">How access works</div>
-    <h3 style="font-family:var(--fd);font-size:24px;text-align:center;margin-bottom:8px">You'll have Pro access within 2 hours</h3>
-    <p style="text-align:center;font-size:13px;color:var(--text2);font-family:var(--fm);margin-bottom:28px">No manual steps for you — here's what happens after payment</p>
+    <h3 style="font-family:var(--fd);font-weight:640;font-size:26px;text-align:center;margin-bottom:8px;color:var(--navy)">You'll have Pro access within 2 hours</h3>
+    <p style="text-align:center;font-size:14px;color:var(--ink2);margin-bottom:8px">No manual steps for you — here's what happens after payment</p>
     <div class="access-steps">
       <div class="access-step">
-        <span class="access-step-icon">💳</span>
+        <span class="access-step-num">1</span>
         <div class="access-step-title">Pay via Razorpay</div>
         <div class="access-step-body">Secure payment — UPI, card, net banking all accepted. Takes 30 seconds.</div>
       </div>
       <div class="access-step">
-        <span class="access-step-icon">📧</span>
+        <span class="access-step-num">2</span>
         <div class="access-step-title">Your email is registered</div>
         <div class="access-step-body">Adi receives your payment confirmation and adds your email to the Pro list within 1–2 hours.</div>
       </div>
       <div class="access-step">
-        <span class="access-step-icon">🔓</span>
+        <span class="access-step-num">3</span>
         <div class="access-step-title">Open the Pro app</div>
-        <div class="access-step-body">Visit the Pro app (a browser-based file — no downloads), enter your email, and you're in.</div>
+        <div class="access-step-body">Visit the Pro app in your browser — no downloads — enter your email, and you're in.</div>
       </div>
       <div class="access-step">
-        <span class="access-step-icon">✅</span>
-        <div class="access-step-title">Full access, forever</div>
-        <div class="access-step-body">All 88 subtopics, all difficulty levels, all future questions — yours. No subscription, no renewal.</div>
+        <span class="access-step-num">4</span>
+        <div class="access-step-title">Full access, all year</div>
+        <div class="access-step-body">All 88 subtopics, all difficulty levels, all future questions — yours for 12 months.</div>
       </div>
     </div>
-    <p style="text-align:center;margin-top:16px;font-size:12px;color:var(--text3);font-family:var(--fm)">Questions about access? Email <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none">goenka.aditya.kol@gmail.com</a> — usually responds in under 2 hours.</p>
+    <p style="text-align:center;margin-top:18px;font-size:13px;color:var(--ink3)">Questions about access? Email <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--blue);text-decoration:none;font-weight:600">goenka.aditya.kol@gmail.com</a> — usually responds in under 2 hours.</p>
   </div>
 </section>
 
 <!-- ─── GUARANTEE ──────────────────────────────────────────── -->
 <div class="guarantee-banner fade-in">
-  <div class="guarantee-icon">🛡️</div>
+  <div class="guarantee-icon">
+    <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg>
+  </div>
   <div>
     <div class="guarantee-title">7-Day Money-Back Guarantee</div>
     <div class="guarantee-body">If you buy Pro and feel it wasn't worth it — for any reason — email Adi within 7 days and you'll get a full refund. No forms, no questions asked. We'd rather earn your trust than keep your ₹499.</div>
@@ -727,10 +407,11 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 </div>
 
 <!-- ─── FULL COMPARE TABLE ─────────────────────────────────── -->
-<section class="section fade-in" id="compare" style="margin-bottom:48px">
+<section class="section fade-in" id="compare" style="scroll-margin-top:88px">
   <div class="section-eyebrow">Full Comparison</div>
   <h2 class="section-title">Every feature, clearly laid out</h2>
   <p class="section-sub">No asterisks, no hidden limits.</p>
+  <div class="compare-scroll">
   <table class="compare-table">
     <thead><tr>
       <th>Feature</th><th>Free</th>
@@ -743,34 +424,36 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
       <tr><td>Subtopics available</td><td>2 of 88</td><td>All 88</td><td>All 88</td></tr>
       <tr><td>Total questions</td><td>160</td><td>8,410+</td><td>8,410+</td></tr>
       <tr><td>Difficulty levels</td><td>Easy + Medium</td><td>All 4 levels</td><td>All 4 levels</td></tr>
-      <tr><td>Future subtopics</td><td>❌</td><td>✅ Always included</td><td>✅ Always included</td></tr>
+      <tr><td>Future subtopics</td><td class="cross">—</td><td class="tick">✓ Always included</td><td class="tick">✓ Always included</td></tr>
       <tr class="cat-header"><td colspan="4">Practice Modes</td></tr>
-      <tr><td>Practice Mode (trap feedback)</td><td>✅</td><td>✅</td><td>✅</td></tr>
-      <tr><td>Exam Mode (timed + analysis)</td><td>✅ 2 subtopics only</td><td>✅ All topics</td><td>✅ All topics</td></tr>
+      <tr><td>Practice Mode (trap feedback)</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Exam Mode (timed + analysis)</td><td>✓ 2 subtopics only</td><td class="tick">✓ All topics</td><td class="tick">✓ All topics</td></tr>
+      <tr><td>Full-length mocks (GRE interface)</td><td>2 free mocks</td><td class="tick">All 10 mocks</td><td class="tick">All 10 mocks</td></tr>
       <tr><td>Max questions per session</td><td>20</td><td>Unlimited</td><td>Unlimited</td></tr>
       <tr class="cat-header"><td colspan="4">Analytics</td></tr>
-      <tr><td>Per-session report + PDF</td><td>✅</td><td>✅</td><td>✅</td></tr>
-      <tr><td>My Progress multi-session dashboard</td><td>✅ Free sessions only</td><td>✅ Unlimited</td><td>✅ Unlimited</td></tr>
-      <tr><td>Send to Coach</td><td>❌</td><td>✅</td><td>✅</td></tr>
+      <tr><td>Per-session report + PDF</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td>My Progress multi-session dashboard</td><td>✓ Free sessions only</td><td class="tick">✓ Unlimited</td><td class="tick">✓ Unlimited</td></tr>
+      <tr><td>Send to Coach</td><td class="cross">—</td><td class="tick">✓</td><td class="tick">✓</td></tr>
       <tr class="cat-header"><td colspan="4">Coaching</td></tr>
-      <tr><td>Session reviews per week</td><td>❌</td><td>❌</td><td>2 reviews/week</td></tr>
-      <tr><td>Personalised feedback (24hr)</td><td>❌</td><td>❌</td><td>✅</td></tr>
-      <tr><td>Custom study plan</td><td>❌</td><td>❌</td><td>✅</td></tr>
-      <tr><td>WhatsApp doubt clearing</td><td>❌</td><td>❌</td><td>✅</td></tr>
-      <tr><td>Monthly 30-min progress call</td><td>❌</td><td>❌</td><td>✅</td></tr>
+      <tr><td>Session reviews per week</td><td class="cross">—</td><td class="cross">—</td><td>2 reviews/week</td></tr>
+      <tr><td>Personalised feedback (24hr)</td><td class="cross">—</td><td class="cross">—</td><td class="tick">✓</td></tr>
+      <tr><td>Custom study plan</td><td class="cross">—</td><td class="cross">—</td><td class="tick">✓</td></tr>
+      <tr><td>WhatsApp doubt clearing</td><td class="cross">—</td><td class="cross">—</td><td class="tick">✓</td></tr>
+      <tr><td>Monthly 30-min progress call</td><td class="cross">—</td><td class="cross">—</td><td class="tick">✓</td></tr>
       <tr class="cat-header"><td colspan="4">Technical</td></tr>
-      <tr><td>No account / no login required</td><td>✅</td><td>✅</td><td>✅</td></tr>
-      <tr><td>Works offline (after first load)</td><td>✅ Logger only</td><td>✅</td><td>✅</td></tr>
-      <tr><td>Money-back guarantee</td><td>—</td><td>✅ 7 days</td><td>✅ Cancel anytime</td></tr>
+      <tr><td>No account / no login required</td><td class="tick">✓</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Works offline (after first load)</td><td>✓ Logger only</td><td class="tick">✓</td><td class="tick">✓</td></tr>
+      <tr><td>Money-back guarantee</td><td>—</td><td class="tick">✓ 7 days</td><td class="tick">✓ Cancel anytime</td></tr>
     </tbody>
   </table>
+  </div>
 </section>
 
 <!-- ─── ABOUT ADITYA ───────────────────────────────────────── -->
 <section class="section fade-in">
   <div class="about-card">
     <div>
-      <div class="about-avatar">👨‍🏫</div>
+      <div class="about-avatar">AG</div>
     </div>
     <div>
       <div class="about-name">Coach Aditya Goenka</div>
@@ -787,7 +470,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 </section>
 
 <!-- ─── FAQ ────────────────────────────────────────────────── -->
-<section class="section fade-in" id="faq">
+<section class="section fade-in" id="faq" style="scroll-margin-top:88px">
   <div class="section-eyebrow">FAQ</div>
   <h2 class="section-title">Common questions</h2>
   <p class="section-sub">Everything you need to know before buying.</p>
@@ -795,63 +478,63 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">How do I get access after paying?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
-      <div class="faq-body"><p class="faq-a">After payment, Coach Aditya will add your email to the Pro access list within 1–2 hours (usually faster). Then visit <a href="https://grequantpro.com/pro">grequantpro.com/pro</a>, enter your registered email, and you're immediately in. No downloads, no zip files, no delays after that. (If the link doesn't open, use this fallback: <a href="https://tinyurl.com/grequantpro-pro">tinyurl.com/grequantpro-pro</a>.)</p></div>
+      <div class="faq-body"><p class="faq-a">After payment, Coach Aditya will add your email to the Pro access list within 1–2 hours (usually faster). Then visit <a href="https://grequantpro.com/pro">grequantpro.com/pro</a>, enter your registered email, and you're immediately in. No downloads, no zip files, no delays after that.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">Are all 8,410+ questions available right now?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
-      <div class="faq-body"><p class="faq-a">Yes — all 8,410+ practice questions across 88 subtopics are live and available to Pro users today. As new questions are added (which happens continuously), they're automatically included in your plan at no extra cost, forever.</p></div>
+      <div class="faq-body"><p class="faq-a">Yes — all 8,410+ practice questions across 88 subtopics are live and available to Pro users today. As new questions are added (which happens continuously), they're automatically included in your plan at no extra cost.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">Is this a web app or something I download?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
-      <div class="faq-body"><p class="faq-a">It's a browser-based file — you open it in Chrome/Safari like a website, but it works offline after the first load. No installation, no account needed. Works on Windows, Mac, and mobile. Think of it like a local web app.</p></div>
+      <div class="faq-body"><p class="faq-a">It's a browser-based app — you open it in Chrome/Safari like a website, and it works offline after the first load. No installation, no account needed. Works on Windows, Mac, and mobile.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">What payment methods are accepted?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
       <div class="faq-body"><p class="faq-a">Payment is via Razorpay — which accepts UPI (PhonePe, GPay, Paytm), all major debit/credit cards, net banking, and EMI. If you face any issue, email <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a> directly.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">What is Exam Mode?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
       <div class="faq-body"><p class="faq-a">Exam Mode is a timed practice environment with a countdown at 1 min 45 sec per question — matching real GRE pace. No feedback during the exam. After you finish, you get full analytics: accuracy by difficulty, by question type, time per question, and a complete wrong-answer review with trap explanations.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">Is there a refund if it doesn't work for me?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
       <div class="faq-body"><p class="faq-a">Yes — 7-day money-back guarantee, no questions asked. Email <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a> within 7 days of purchase and you'll receive a full refund. Simple as that.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">What makes this better than Magoosh or Manhattan Prep?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
       <div class="faq-body"><p class="faq-a">The trap system. Every wrong answer shows you the specific cognitive error students make on that question — not just the solution. Magoosh and Manhattan give you explanations. GRE Quant Pro gives you pattern recognition. Also: ₹499 once vs ₹10,000+ per year.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">How are difficulty levels calibrated?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
       <div class="faq-body"><p class="faq-a">Each question maps to a GRE score band: Easy (130–155), Medium (155–162), Hard (162–167), Extreme Hard (167–170). Extreme Hard questions are designed specifically to separate 165-scorers from 170-scorers — they require a non-obvious insight, not just formula recall.</p></div>
     </div>
     <div class="faq-item">
       <div class="faq-header" onclick="toggleFaq(this)">
         <div class="faq-q">Can I cancel the Pro + Coach plan?</div>
-        <span class="faq-chevron">&#8964;</span>
+        <span class="faq-chevron">+</span>
       </div>
       <div class="faq-body"><p class="faq-a">Yes — message Adi anytime on WhatsApp or email, and billing stops immediately. You retain Pro app access even after cancelling coaching. No lock-in, no notice period.</p></div>
     </div>
@@ -859,7 +542,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 </section>
 
 <!-- ─── FINAL CTA ───────────────────────────────────────────── -->
-<div class="cta-strip fade-in" style="background:linear-gradient(135deg,rgba(108,99,255,0.15),rgba(168,154,255,0.08));margin-bottom:0">
+<div class="cta-strip fade-in" style="margin-bottom:0">
   <div>
     <div class="cta-strip-text">Ready to stop guessing and start improving?</div>
     <div class="cta-strip-sub">₹499 · One payment · 1-year access · 7-day money-back guarantee</div>
@@ -875,7 +558,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
 <!-- ─── FOOTER ─────────────────────────────────────────────── -->
 <footer>
   <div class="footer-inner">
-    <div class="footer-logo">GRE Quant Pro</div>
+    <div class="footer-logo">GRE Quant <em>Pro</em></div>
     <div class="footer-links">
       <a href="#how">How it works</a>
       <a href="#bank">Question Bank</a>
@@ -883,7 +566,7 @@ footer{border-top:1px solid var(--border);padding:40px 0;margin-top:88px}
       <a href="#faq">FAQ</a>
       <a href="mailto:goenka.aditya.kol@gmail.com">Contact</a>
     </div>
-    <div class="footer-copy">Built by Coach Aditya Goenka · <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none">goenka.aditya.kol@gmail.com</a></div>
+    <div class="footer-copy">Built by Coach Aditya Goenka · <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a></div>
   </div>
 </footer>
 
@@ -917,7 +600,7 @@ document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
 
 // ── QUESTION BANK DATA ────────────────────────────────────────
 const BANK=[
-  {name:"Arithmetic",icon:"🔢",total:1320,subtopics:[
+  {name:"Arithmetic",total:1320,subtopics:[
     {n:"Percentages",done:true},{n:"Fractions & Decimals",done:true},
     {n:"Ratios & Proportions",done:true},{n:"Exponents & Roots",done:true},
     {n:"Rates & Unit Conversions",done:true},{n:"Prime Numbers & Factorization",done:true},
@@ -926,7 +609,7 @@ const BANK=[
     {n:"Odd & Even Numbers",done:true},{n:"Powers of 10",done:true},
     {n:"Number Line & Ordering",done:true},{n:"Estimation & Approximation",done:true}
   ]},
-  {name:"Algebra",icon:"✏️",total:1200,subtopics:[
+  {name:"Algebra",total:1200,subtopics:[
     {n:"Linear Equations (1 Variable)",done:true},{n:"Linear Equations (2 Variables)",done:true},
     {n:"Inequalities",done:true},{n:"Quadratic Equations",done:true},
     {n:"Functions",done:true},{n:"Algebraic Expressions",done:true},
@@ -934,14 +617,14 @@ const BANK=[
     {n:"Sequences & Series",done:true},{n:"Word Problem Modelling",done:true},
     {n:"Exponents & Roots (Algebraic)",done:true}
   ]},
-  {name:"Word Problems",icon:"📋",total:470,subtopics:[
+  {name:"Word Problems",total:470,subtopics:[
     {n:"Distance-Speed-Time",done:true},{n:"Mixture Problems",done:true},
     {n:"Work & Rate Problems",done:true},{n:"Interest (Simple & Compound)",done:true},
     {n:"Profit & Loss",done:true},{n:"Percentage Word Problems",done:true},
     {n:"Ratio Word Problems",done:true},{n:"Multi-step Problems",done:true},
     {n:"Age Problems",done:true}
   ]},
-  {name:"Geometry",icon:"📐",total:1780,subtopics:[
+  {name:"Geometry",total:1780,subtopics:[
     {n:"Circles (Area, Arc & Sector)",done:true},{n:"Triangles (General)",done:true},
     {n:"Lines & Angles",done:true},{n:"Pythagorean Theorem",done:true},
     {n:"Special Triangles (30-60-90, 45-45-90)",done:true},{n:"Quadrilaterals",done:true},
@@ -952,14 +635,14 @@ const BANK=[
     {n:"Chords, Tangents & Secants",done:true},{n:"Other Polygons",done:true},
     {n:"Cones, Spheres & Hemispheres",done:true}
   ]},
-  {name:"Coordinate Geometry",icon:"📍",total:740,subtopics:[
+  {name:"Coordinate Geometry",total:740,subtopics:[
     {n:"Slope & Intercepts",done:true},{n:"Equation of a Line",done:true},
     {n:"Distance Between Points",done:true},{n:"Midpoint",done:true},
     {n:"Parallel & Perpendicular Lines",done:true},{n:"Graphs of Linear Equations",done:true},
     {n:"Graphs of Quadratic Functions",done:true},{n:"Coordinate Geometry Word Problems",done:true},
     {n:"Plotting Points",done:true}
   ]},
-  {name:"Statistics & Probability",icon:"📊",total:1120,subtopics:[
+  {name:"Statistics & Probability",total:1120,subtopics:[
     {n:"Mean, Median & Mode",done:true},{n:"Basic Probability",done:true},
     {n:"Combinations",done:true},{n:"Permutations",done:true},
     {n:"Overlapping Sets (Venn Diagrams)",done:true},{n:"Range & Standard Deviation",done:true},
@@ -967,19 +650,19 @@ const BANK=[
     {n:"Independent & Dependent Events",done:true},{n:"Data Distribution",done:true},
     {n:"Interquartile Range & Percentiles",done:true}
   ]},
-  {name:"Data Interpretation",icon:"📈",total:580,subtopics:[
+  {name:"Data Interpretation",total:580,subtopics:[
     {n:"Reading & Comparing Data",done:true},{n:"Bar Graphs",done:true},
     {n:"Line Graphs",done:true},{n:"Pie Charts",done:true},
     {n:"Tables & Data Sets",done:true},{n:"Percentage Change from Graphs",done:true},
     {n:"Mixed Graph Sets",done:true},{n:"Multi-graph DI Sets",done:true}
   ]},
-  {name:"Number Properties",icon:"🔬",total:1100,subtopics:[
+  {name:"Number Properties",total:1100,subtopics:[
     {n:"Factors & Multiples",done:true},{n:"GCD & LCM",done:true},
     {n:"Divisibility Rules",done:true},{n:"Consecutive Integers",done:true},
     {n:"Even/Odd Properties",done:true},{n:"Prime Factorization",done:true},
     {n:"Digit Problems & Place Value",done:true},{n:"Number Theory",done:true}
   ]},
-  {name:"Mixed Practice",icon:"🎯",total:100,subtopics:[
+  {name:"Mixed Practice",total:100,subtopics:[
     {n:"General Mixed (All Topics)",done:true}
   ]}
 ];
@@ -992,14 +675,11 @@ function buildTopicCards(){
     card.className="topic-card";
     card.innerHTML=`
       <div class="topic-header">
-        <div class="topic-title-row">
-          <span class="topic-icon">${topic.icon}</span>
-          <span class="topic-name">${topic.name}</span>
-        </div>
+        <span class="topic-name">${topic.name}</span>
         <span class="topic-count-badge">${topic.total.toLocaleString()} Qs</span>
       </div>
       <div class="subtopics-list">
-        ${topic.subtopics.map(s=>`<span class="sub-tag ${s.done?'done':''}">${s.n}</span>`).join('')}
+        ${topic.subtopics.map(s=>`<span class="sub-tag">${s.n}</span>`).join('')}
       </div>`;
     grid.appendChild(card);
   });
@@ -1013,7 +693,7 @@ const params=new URLSearchParams(window.location.search);
 const feature=params.get("feature");
 if(feature){
   const banner=document.createElement("div");
-  banner.style.cssText="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:rgba(108,99,255,0.15);border:1px solid rgba(108,99,255,0.3);border-radius:12px;padding:12px 24px;font-size:13px;color:var(--accent);font-family:var(--fm);z-index:200;backdrop-filter:blur(8px);white-space:nowrap;";
+  banner.style.cssText="position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#fff;border:1.5px solid var(--accent);border-radius:12px;padding:12px 24px;font-size:13.5px;color:var(--accent-dark);font-weight:700;z-index:200;box-shadow:var(--shadow-lg);white-space:nowrap;";
   banner.textContent="🔒 "+decodeURIComponent(feature)+" requires Pro";
   document.body.appendChild(banner);
   setTimeout(()=>banner.remove(),5000);
