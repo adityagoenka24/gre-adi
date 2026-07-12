@@ -14,6 +14,8 @@
 <style>
   .gre-shell.screen{display:none;}
   .gre-shell.screen.active{display:flex;}
+  .gre-svg{text-align:center;margin:8px 0 26px;}
+  .gre-svg svg{max-width:100%;}
 </style>
 </head>
 <body>
@@ -504,12 +506,14 @@ function renderQuestion() {
   closeReview();
 
   const directions = TYPE_DIRECTIONS[q.type] || '';
+  const svgHtml = q.svg ? `<div class="gre-svg">${q.svg}</div>` : '';
   let bodyHtml = '';
 
   if (q.type === 'quantitative_comparison' && /(Column|Quantity)\s*[AB]\s*:/i.test(q.question)) {
     const qc = parseQC(q.question);
     bodyHtml = `
       ${qc.info ? `<div class="gre-qc-info">${escapeHtml(qc.info)}</div>` : ''}
+      ${svgHtml}
       <div class="gre-qc-grid">
         <div class="gre-qc-col"><div class="gre-qc-head">Quantity A</div><div class="gre-qc-val">${escapeHtml(qc.a || '—')}</div></div>
         <div class="gre-qc-col"><div class="gre-qc-head">Quantity B</div><div class="gre-qc-val">${escapeHtml(qc.b || '—')}</div></div>
@@ -524,6 +528,7 @@ function renderQuestion() {
   } else if (q.type === 'numeric_entry') {
     bodyHtml = `
       <div class="gre-qtext">${escapeHtml(q.question)}</div>
+      ${svgHtml}
       <div class="gre-ne">
         <input type="text" id="ne-input" value="${escapeHtml(saved||'')}" inputmode="decimal"
                oninput="saveNE(this.value)" autocomplete="off" aria-label="Your answer">
@@ -532,6 +537,7 @@ function renderQuestion() {
     const sel = Array.isArray(saved) ? saved : [];
     bodyHtml = `
       <div class="gre-qtext">${escapeHtml(q.question)}</div>
+      ${svgHtml}
       <div class="gre-options" role="group" aria-label="Answer choices">${(q.options||[]).map(opt => {
         const letter = opt[0];
         const on = sel.includes(letter);
@@ -543,6 +549,7 @@ function renderQuestion() {
   } else {
     bodyHtml = `
       <div class="gre-qtext">${escapeHtml(q.question)}</div>
+      ${svgHtml}
       <div class="gre-options" role="radiogroup" aria-label="Answer choices">${(q.options||[]).map(opt => {
         const letter = opt[0];
         return `<label class="gre-option${saved===letter?' selected':''}">

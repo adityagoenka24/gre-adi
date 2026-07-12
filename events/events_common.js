@@ -348,7 +348,7 @@ const Events = (() => {
           </div>
           <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);">~${q.estimated_time_seconds || 90}s suggested</span>
         </div>
-        <div class="pq-body">${renderAnswerControl(q, state.answers[state.current])}</div>
+        <div class="pq-body">${q.svg ? `<div class="pq-figure">${q.svg}</div>` : ""}${renderAnswerControl(q, state.answers[state.current])}</div>
         <div class="pq-footer">
           <button class="btn btn-ghost btn-sm" id="prevBtn" onclick="Events.prevQuestion()" ${state.current === 0 || state.config.allow_navigation === false ? "disabled" : ""}>Prev</button>
           <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);" id="examQuestionStatus"></span>
