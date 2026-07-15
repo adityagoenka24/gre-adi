@@ -979,7 +979,7 @@ tbody tr:hover td{background:rgba(91,141,239,.05);color:var(--tx)}
         </div>
       </div>
       <div class="card">
-        <div class="card-head"><div><div class="card-title">HQ vs Extension — Coverage &amp; Strategy Adherence</div><div class="card-sub">Bars = mapped vs active doctors. Adherence = % of revenue in products mapped to at least one of the territory's doctors</div></div></div>
+        <div class="card-head"><div><div class="card-title">HQ vs Extension — Coverage &amp; Strategy Adherence</div><div class="card-sub">Bars = mapped vs product-matched active doctors (billed ≥1 of their own mapped products). Adherence = % of revenue in products mapped to at least one of the territory's doctors</div></div></div>
         <div id="ch-hq-ex" class="chart md"></div>
       </div>
       <div class="watermark">Sales Dashboard · Doctor Universe</div>
@@ -2645,13 +2645,17 @@ function activeDoctorCount() {
 }
 /* HQ vs Extension — coverage & strategy adherence (no city).
  *   Mapped    = scoped doctors, split HQ/EX.
- *   Active    = scoped doctors whose MSR billed (non-return) in scope.
+ *   Active    = PRODUCT-MATCHED active — a doctor counts as active only if at
+ *               least one of THEIR OWN mapped products was actually billed
+ *               (non-return) by their MSR in scope. This replaces the old
+ *               rep-level flag (any doctor active if their MSR billed
+ *               anything at all), which always read ~100% and didn't
+ *               distinguish doctors from each other.
  *   Adherence = of an MSR's revenue, the share in products mapped to its
  *               scoped doctors. Each sale's value is split across HQ/EX by the
  *               MSR's scoped-doctor mix; the mapped numerator counts only the
  *               doctors of that type who actually map the sold product. */
 function hqExCoverage() {
-  const active = activeMSRSet();
   const scoped = scopedDoctors();
 
   const docByMsr = new Map();
@@ -2665,12 +2669,15 @@ function hqExCoverage() {
     EX: { mapped:0, active:0, rev:0, mappedRev:0, reachRev:0 }
   };
 
-  /* Mapped + Active (count-based) */
+  /* Mapped (count-based) */
   for (const d of scoped) {
     const t = (d.terr_type === 'EX') ? 'EX' : 'HQ';
     out[t].mapped += 1;
-    if (active.has(d.msrCanon)) out[t].active += 1;
   }
+
+  /* Per-doctor product-match flag, built alongside the revenue-reach pass so
+   * both use the exact same sale→product→doctor match (productKeyMatch). */
+  const productActive = new Set();
 
   /* Two adherence views (both revenue-based, MSR→product→doctor):
    *   mappedRev (coverage-weighted) — each sale credited by the SHARE of
@@ -2686,7 +2693,10 @@ function hqExCoverage() {
     for (const d of docs) {
       const ex = (d.terr_type === 'EX');
       if (ex) exTot++; else hqTot++;
-      if (productKeyMatch(pkey, d.mapped_products)) { if (ex) exMap++; else hqMap++; }
+      if (productKeyMatch(pkey, d.mapped_products)) {
+        if (ex) exMap++; else hqMap++;
+        productActive.add(d);
+      }
     }
     const n = docs.length;
     out.HQ.rev       += r.sales_value * hqTot / n;
@@ -2695,6 +2705,13 @@ function hqExCoverage() {
     out.EX.mappedRev += r.sales_value * exMap / n;
     if (hqMap > 0) out.HQ.reachRev += r.sales_value * hqTot / n;
     if (exMap > 0) out.EX.reachRev += r.sales_value * exTot / n;
+  }
+
+  for (const d of scoped) {
+    if (productActive.has(d)) {
+      const t = (d.terr_type === 'EX') ? 'EX' : 'HQ';
+      out[t].active += 1;
+    }
   }
 
   ['HQ','EX'].forEach(k => {
@@ -4453,13 +4470,13 @@ function renderDoctorUniverse() {
           text: mappedSeries.map(v => fmtNum(v)), textposition:'outside', textfont:{size:12, color:COLORS.tx2},
           cliponaxis:false,
           hovertemplate:'<b>%{x}</b><br>Mapped: %{y}<extra></extra>' },
-        { type:'bar', name:'Active Doctors',
+        { type:'bar', name:'Active Doctors (Product-Matched)',
           x: labels, y: activeSeries,
           marker:{color: COLORS.acc},
           text: activeSeries.map((v,i) => fmtNum(v) + ' (' + (mappedSeries[i] ? safePct(v, mappedSeries[i]).toFixed(0) : '0') + '%)'),
           textposition:'outside', textfont:{size:12, color:'#fff'},
           cliponaxis:false,
-          hovertemplate:'<b>%{x}</b><br>Active: %{y}<extra></extra>' },
+          hovertemplate:'<b>%{x}</b><br>Active (product-matched): %{y}<br>Billed at least one of their own mapped products<extra></extra>' },
         { type:'scatter', name:'Strategy Adherence %', yaxis:'y2',
           x: labels, y: adherenceSeries,
           mode:'lines+markers+text', line:{color:COLORS.gold, width:3},
