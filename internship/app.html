@@ -151,6 +151,7 @@ const TABLES=['products','events','customers','orders','payments','raw_web_event
 const LS=k=>`shopnow.${k}`;
 const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
 let conn, INDEX, PORTFOLIO, CFG={backendUrl:''}; const cache={};
+let MANAGED_MODE=false, ACTIVE_ASSIGNMENT=null, ASSIGNMENT_HISTORY=[];
 
 /* ---------- boot ---------- */
 async function boot(){
@@ -196,7 +197,9 @@ async function boot(){
   buildRegistry();
   document.getElementById('env').textContent='DuckDB in-browser · 8 views (incl. customers_clean) · ready';
   document.getElementById('boot').style.display='none';
-  renderNav(); openOverview(); cohortInit();
+  await cohortInit();
+  renderNav();
+  if(MANAGED_MODE) openManaged(); else openOverview();
 }
 
 /* flat ticket registry across sprints (excludes brushup drills) */
@@ -225,6 +228,13 @@ function ticketState(id){ if(st(id)==='done')return 'done'; if(attempted(id))ret
 /* ---------- nav ---------- */
 function renderNav(){
   const s=document.getElementById('side'); s.innerHTML='';
+  if(MANAGED_MODE){
+    const asn=document.createElement('div');asn.className='navitem'+(currentView==='managed'?' active':'');
+    asn.innerHTML=`<span>▪ Your Assignment</span>`; asn.onclick=()=>openManaged(); s.appendChild(asn);
+    const pf2=document.createElement('div');pf2.className='navitem'+(currentView==='portfolio'?' active':'');
+    pf2.innerHTML=`<span>▪ Portfolio</span>`; pf2.onclick=()=>openPortfolio(); s.appendChild(pf2);
+    return;
+  }
   const ov=document.createElement('div');ov.className='navitem'+(currentView==='overview'?' active':'');
   ov.innerHTML=`<span>▪ Overview</span>`; ov.onclick=()=>openOverview(); s.appendChild(ov);
   const pf=document.createElement('div');pf.className='navitem'+(currentView==='portfolio'?' active':'');
@@ -300,6 +310,49 @@ function renderOverview(){
     c.onclick=()=>openModule(INDEX.modules.find(x=>x.id===c.dataset.sp), c.dataset.tid);});
 }
 
+/* ---------- managed mode (single assigned ticket) ---------- */
+function openManaged(){
+  currentView='managed'; current=null; renderNav(); renderManaged();
+  document.getElementById('main').scrollTop=0;
+}
+function renderManaged(){
+  const m=document.getElementById('main');
+  let h=`<h1>Your Assignment</h1><div class="goal">Data Analyst Intern · ShopNow India Analytics. Your manager assigns tasks here, one at a time.</div>`;
+  if(!ACTIVE_ASSIGNMENT){
+    h+=`<div class="brief"><div class="from">Status</div>No task assigned yet — check back soon.</div>`;
+  }else{
+    const t=ticketById(ACTIVE_ASSIGNMENT.ticketId);
+    if(!t){
+      h+=`<div class="brief"><div class="from">Status</div>Your assigned ticket (${esc(ACTIVE_ASSIGNMENT.ticketId)}) couldn't be found — let your manager know.</div>`;
+    }else{
+      const due=ACTIVE_ASSIGNMENT.dueAt?new Date(ACTIVE_ASSIGNMENT.dueAt):null;
+      const overdue=due && due.getTime()<Date.now() && st(t.id)!=='done';
+      const dueTxt=due?(' · Due '+due.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})):'';
+      h+=`<div class="brief"><div class="from">${esc(t.sprintName)}${dueTxt}${overdue?' · <span style="color:var(--red)">OVERDUE</span>':''}</div>${ACTIVE_ASSIGNMENT.note?esc(ACTIVE_ASSIGNMENT.note):'Assigned to you.'}</div>`;
+      h+=`<div id="assignedTicket"></div>`;
+    }
+  }
+  if(ASSIGNMENT_HISTORY&&ASSIGNMENT_HISTORY.length){
+    h+=`<h2 class="section">Completed assignments</h2>`;
+    ASSIGNMENT_HISTORY.forEach(a=>{
+      const t=ticketById(a.ticketId);
+      h+=`<div class="chip done" style="cursor:default"><span class="cid2">${esc(a.ticketId)}</span> ${esc(t?t.title:'')}<br><span style="color:var(--mut);font-size:11px">${a.completedAt?new Date(a.completedAt).toLocaleDateString():''}</span></div>`;
+    });
+  }
+  m.innerHTML=h;
+  if(ACTIVE_ASSIGNMENT){
+    const t=ticketById(ACTIVE_ASSIGNMENT.ticketId);
+    if(t){
+      const holder=document.getElementById('assignedTicket');
+      const card=ticketCard(t,true);
+      card.classList.add('open');
+      holder.appendChild(card);
+      const body=card.querySelector('.cbody');
+      buildTicketBody(t,body,true); body.dataset.built='1'; body.dataset.lockedBuilt='0';
+    }
+  }
+}
+
 /* ---------- portfolio ---------- */
 const pname=()=>localStorage.getItem(LS('profile.name'))||'';
 function openPortfolio(){currentView='portfolio';current=null;renderNav();renderPortfolio();document.getElementById('main').scrollTop=0;}
@@ -342,7 +395,7 @@ function downloadPortfolio(){
   const blob=new Blob([b],{type:'text/html'});
   const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${name.replace(/[^a-z0-9]+/gi,'_')}_portfolio.html`;a.click();URL.revokeObjectURL(a.href);
 }
-function rerenderCurrent(){ if(currentView==='overview')renderOverview(); else if(currentView==='portfolio')renderPortfolio(); else if(current)openModule(current); else renderOverview(); }
+function rerenderCurrent(){ if(currentView==='overview')renderOverview(); else if(currentView==='portfolio')renderPortfolio(); else if(currentView==='managed')renderManaged(); else if(current)openModule(current); else (MANAGED_MODE?openManaged():renderOverview()); }
 function gatherProgress(){const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('shopnow.')&&!k.startsWith('shopnow.cohort.'))data[k]=localStorage.getItem(k);}return data;}
 function applyProgress(obj){let n=0;Object.entries(obj||{}).forEach(([k,v])=>{if(typeof k==='string'&&k.startsWith('shopnow.')&&!k.startsWith('shopnow.cohort.')){localStorage.setItem(k,v);n++;}});return n;}
 function exportProgress(){
@@ -367,12 +420,32 @@ function importProgress(e){
 const apiBase=()=>CFG.backendUrl.replace(/\/+$/,'');
 const cohortCreds=()=>({userId:localStorage.getItem('shopnow.cohort.userId'),token:localStorage.getItem('shopnow.cohort.token'),name:localStorage.getItem('shopnow.cohort.name')});
 function cohortOn(){return !!(CFG&&CFG.backendUrl&&localStorage.getItem('shopnow.cohort.token'));}
-function cohortInit(){
+async function cohortInit(){
   const btn=document.getElementById('cohortBtn');
   if(!CFG||!CFG.backendUrl){btn.style.display='none';return;}
   btn.style.display='inline-block';
   updateCohortBtn();
   btn.onclick=()=> cohortOn()? cohortMenu() : openCohortModal();
+  if(cohortOn()) await refreshMe(true);
+}
+/* Pulls mode + active assignment from the server. Called on boot (initial=true, caller
+   handles the first render) and again after sign-in / after a managed student's assigned
+   ticket is marked done (initial=false, re-renders immediately). */
+async function refreshMe(initial){
+  const c=cohortCreds();
+  try{
+    const r=await fetch(apiBase()+'/api/me',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:c.userId,token:c.token})});
+    if(!r.ok){
+      if(r.status===401){ ['userId','token','name'].forEach(k=>localStorage.removeItem('shopnow.cohort.'+k)); updateCohortBtn(); MANAGED_MODE=false; ACTIVE_ASSIGNMENT=null; ASSIGNMENT_HISTORY=[]; }
+      return;
+    }
+    const d=await r.json();
+    MANAGED_MODE = d.mode==='managed';
+    ACTIVE_ASSIGNMENT = d.assignment||null;
+    ASSIGNMENT_HISTORY = d.history||[];
+    if(d.progress && Object.keys(d.progress).length){ applyProgress(d.progress); buildRegistry(); }
+    if(!initial){ renderNav(); rerenderCurrent(); }
+  }catch(_){}
 }
 function updateCohortBtn(){
   const btn=document.getElementById('cohortBtn'); const c=cohortCreds();
@@ -390,13 +463,17 @@ function cohortSync(){
 function cohortRecord(id,status){
   if(!cohortOn())return;
   const c=cohortCreds(); const work=(draft(id)||note(id)||'').slice(0,20000);
-  fetch(apiBase()+'/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:c.userId,token:c.token,ticketId:id,status,work})}).catch(()=>{});
+  fetch(apiBase()+'/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:c.userId,token:c.token,ticketId:id,status,work})})
+    .then(()=>{ if(MANAGED_MODE && ACTIVE_ASSIGNMENT && ACTIVE_ASSIGNMENT.ticketId===id && status==='done') refreshMe(); })
+    .catch(()=>{});
   cohortSync();
 }
 function cohortMenu(){
   const c=cohortCreds();
   if(confirm('Signed in as '+(c.name||'')+'. Sign out on this device? Your progress stays saved locally and on the server.')){
     ['userId','token','name'].forEach(k=>localStorage.removeItem('shopnow.cohort.'+k)); updateCohortBtn();
+    MANAGED_MODE=false; ACTIVE_ASSIGNMENT=null; ASSIGNMENT_HISTORY=[];
+    renderNav(); openOverview();
   }
 }
 function openCohortModal(){
@@ -432,10 +509,14 @@ function openCohortModal(){
       localStorage.setItem('shopnow.cohort.token',d.token);
       localStorage.setItem('shopnow.cohort.name',d.name);
       if(!pname()) localStorage.setItem('shopnow.profile.name',d.name);
+      MANAGED_MODE = d.mode==='managed';
+      ACTIVE_ASSIGNMENT = d.assignment||null;
+      ASSIGNMENT_HISTORY = d.history||[];
       if(d.progress && Object.keys(d.progress).length){ applyProgress(d.progress); buildRegistry(); }
       else { cohortSync(); }
-      ov.remove(); updateCohortBtn(); renderNav(); rerenderCurrent();
-      alert('Signed in as '+d.name+'. Your progress is now syncing to the cohort.');
+      ov.remove(); updateCohortBtn(); renderNav();
+      if(MANAGED_MODE) openManaged(); else rerenderCurrent();
+      alert(MANAGED_MODE ? ('Signed in as '+d.name+'. Your manager will assign your tasks here.') : ('Signed in as '+d.name+'. Your progress is now syncing to the cohort.'));
     }catch(e){ msg.style.color='#ff9a9a'; msg.textContent='Could not reach the server.'; }
   };
 }
@@ -475,12 +556,12 @@ function renderSprint(d){
   d.tickets.forEach(t=>tc.appendChild(ticketCard(t)));
 }
 
-function ticketCard(t){
+function ticketCard(t,forceUnlock){
   const card=document.createElement('div'); card.className='card';
   const done=st(t.id)==='done';
   const modeCls=t.mode==='auto'?'m-auto':t.mode==='free'?'m-free':t.mode==='external'?'m-ext':'m-reveal';
   const modeLbl=t.mode==='auto'?'auto-graded':t.mode==='free'?'written':t.mode==='external'?'Power BI':'self-check';
-  const locked=isLocked(t);
+  const locked=isLocked(t)&&!forceUnlock;
   card.innerHTML=`<div class="chead"><span class="dot ${done?'done':''}"></span>
     <span class="cid">${esc(t.id)}</span><span class="ctitle">${esc(t.title)}${locked?' 🔒':''}</span>
     <span class="pill d${t.difficulty}">L${t.difficulty}</span><span class="mode ${modeCls}">${modeLbl}</span></div>
@@ -489,15 +570,15 @@ function ticketCard(t){
   head.onclick=()=>{
     card.classList.toggle('open');
     if(!card.classList.contains('open'))return;
-    const rebuild = body.dataset.built!=='1' || (body.dataset.lockedBuilt==='1' && !isLocked(t));
-    if(rebuild){ buildTicketBody(t,body); body.dataset.built='1'; body.dataset.lockedBuilt=isLocked(t)?'1':'0';
-      if(!isLocked(t)) head.querySelector('.ctitle').innerHTML=esc(t.title); }
+    const rebuild = body.dataset.built!=='1' || (body.dataset.lockedBuilt==='1' && !(isLocked(t)&&!forceUnlock));
+    if(rebuild){ buildTicketBody(t,body,forceUnlock); body.dataset.built='1'; body.dataset.lockedBuilt=(isLocked(t)&&!forceUnlock)?'1':'0';
+      if(!(isLocked(t)&&!forceUnlock)) head.querySelector('.ctitle').innerHTML=esc(t.title); }
   };
   return card;
 }
 
-function buildTicketBody(t,body){
-  if(isLocked(t)){
+function buildTicketBody(t,body,forceUnlock){
+  if(isLocked(t)&&!forceUnlock){
     const miss=t.requires.filter(r=>st(r)!=='done');
     body.innerHTML=`<div class="locked-note">🔒 Locked by Definition of Done. Pass these first: <b>${miss.map(esc).join(', ')}</b>. Capstone deliverables must build on verified work.</div>`;
     return;
