@@ -194,6 +194,18 @@
   .chip .cid2{font-family:var(--font-mono);font-size:10px;color:var(--mut);font-weight:600;}
   .chip .lk{float:right;}
   .locked-note{background:repeating-linear-gradient(45deg,#EFE9D6 0 10px,#F7F2E2 10px 20px);border:2px dashed var(--ink);border-radius:6px;padding:10px 14px;font-size:12.5px;color:var(--ink);}
+
+  /* ═══ access gate — members-only blur + sign-in ═══ */
+  .wrap{position:relative;}
+  .wrap.gated #side,.wrap.gated #main{filter:blur(7px) saturate(.65);pointer-events:none;user-select:none;}
+  #gateScreen{position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:40;background:rgba(23,24,29,.4);}
+  .wrap.gated #gateScreen{display:flex;}
+  .gatecard{background:var(--paper);border:3px solid var(--ink);border-radius:10px;padding:26px 28px;width:360px;box-shadow:8px 8px 0 var(--ink);transform:rotate(-.4deg);}
+  .gatecard .lock{font-size:26px;margin-bottom:6px;}
+  .gatecard h3{margin:0 0 4px;font-family:var(--font-display);font-size:19px;font-weight:800;}
+  .gatecard .sub{color:var(--mut);font-size:12.5px;margin-bottom:14px;line-height:1.5;}
+  .glabel{display:block;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:12px 0 4px;font-family:var(--font-mono);font-weight:600;}
+  .ginput{width:100%;background:#fffdf6;color:var(--txt);border:2px solid var(--ink);border-radius:6px;padding:9px 11px;font-size:13px;font-family:inherit;box-shadow:2px 2px 0 var(--ink);}
 </style>
 </head>
 <body>
@@ -208,9 +220,21 @@
     <div class="env" id="env" style="margin-left:6px">DuckDB in-browser · loading…</div>
   </div>
 </header>
-<div class="wrap">
+<div class="wrap" id="wrapEl">
   <aside id="side"></aside>
   <main id="main"></main>
+  <div id="gateScreen">
+    <div class="gatecard">
+      <div class="lock">🔒</div>
+      <h3>Members-only workspace</h3>
+      <div class="sub">Sign in with the join code from your welcome email to unlock your tickets and progress. Not enrolled? <a href="./index.html" style="color:var(--accent);font-weight:700">See pricing</a>.</div>
+      <label class="glabel">Join code</label><input id="gCode" class="ginput" placeholder="e.g. SHOPNOW-A">
+      <label class="glabel">Your name</label><input id="gName" class="ginput">
+      <label class="glabel">Email</label><input id="gEmail" class="ginput" type="email">
+      <div id="gMsg" class="note-txt" style="color:#8F1D1D;min-height:14px"></div>
+      <button class="submit" id="gGo" style="width:100%;margin-top:6px">Sign in →</button>
+    </div>
+  </div>
 </div>
 
 <script type="module">
@@ -267,9 +291,10 @@ async function boot(){
   buildRegistry();
   document.getElementById('env').textContent='DuckDB in-browser · 8 views (incl. customers_clean) · ready';
   document.getElementById('boot').style.display='none';
-  await cohortInit();
+  const authed=await cohortInit();
   renderNav();
   if(MANAGED_MODE) openManaged(); else openOverview();
+  if(!authed) showGate(); else hideGate();
 }
 
 /* flat ticket registry across sprints (excludes brushup drills) */
@@ -490,13 +515,14 @@ function importProgress(e){
 const apiBase=()=>CFG.backendUrl.replace(/\/+$/,'');
 const cohortCreds=()=>({userId:localStorage.getItem('shopnow.cohort.userId'),token:localStorage.getItem('shopnow.cohort.token'),name:localStorage.getItem('shopnow.cohort.name')});
 function cohortOn(){return !!(CFG&&CFG.backendUrl&&localStorage.getItem('shopnow.cohort.token'));}
+/* Returns true if the app should be unlocked (either no backend configured — fully local
+   mode — or the visitor has a valid session). Returns false if a backend is configured and
+   the visitor isn't signed in yet, so boot() knows to show the access gate. */
 async function cohortInit(){
-  const btn=document.getElementById('cohortBtn');
-  if(!CFG||!CFG.backendUrl){btn.style.display='none';return;}
-  btn.style.display='inline-block';
-  updateCohortBtn();
-  btn.onclick=()=> cohortOn()? cohortMenu() : openCohortModal();
+  if(!CFG||!CFG.backendUrl){ document.getElementById('cohortBtn').style.display='none'; return true; }
   if(cohortOn()) await refreshMe(true);
+  updateCohortBtn();
+  return cohortOn();
 }
 /* Pulls mode + active assignment from the server. Called on boot (initial=true, caller
    handles the first render) and again after sign-in / after a managed student's assigned
@@ -506,7 +532,11 @@ async function refreshMe(initial){
   try{
     const r=await fetch(apiBase()+'/api/me',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:c.userId,token:c.token})});
     if(!r.ok){
-      if(r.status===401){ ['userId','token','name'].forEach(k=>localStorage.removeItem('shopnow.cohort.'+k)); updateCohortBtn(); MANAGED_MODE=false; ACTIVE_ASSIGNMENT=null; ASSIGNMENT_HISTORY=[]; }
+      if(r.status===401){
+        ['userId','token','name'].forEach(k=>localStorage.removeItem('shopnow.cohort.'+k));
+        updateCohortBtn(); MANAGED_MODE=false; ACTIVE_ASSIGNMENT=null; ASSIGNMENT_HISTORY=[];
+        if(!initial && CFG.backendUrl) showGate(); // session revoked mid-visit (e.g. mentor revoked access) — re-lock
+      }
       return;
     }
     const d=await r.json();
@@ -518,9 +548,15 @@ async function refreshMe(initial){
   }catch(_){}
 }
 function updateCohortBtn(){
-  const btn=document.getElementById('cohortBtn'); const c=cohortCreds();
-  btn.textContent = cohortOn()? ('● '+(c.name||'Signed in')) : 'Sign in to cohort';
-  btn.style.color = cohortOn()? 'var(--green)' : '';
+  const btn=document.getElementById('cohortBtn');
+  if(cohortOn()){
+    btn.style.display='inline-block';
+    btn.textContent='● '+(cohortCreds().name||'Signed in');
+    btn.style.color='var(--green)';
+    btn.onclick=cohortMenu;
+  }else{
+    btn.style.display='none'; // pre-auth, the gate screen is the only sign-in surface
+  }
 }
 let _syncT;
 function cohortSync(){
@@ -544,52 +580,37 @@ function cohortMenu(){
     ['userId','token','name'].forEach(k=>localStorage.removeItem('shopnow.cohort.'+k)); updateCohortBtn();
     MANAGED_MODE=false; ACTIVE_ASSIGNMENT=null; ASSIGNMENT_HISTORY=[];
     renderNav(); openOverview();
+    if(CFG.backendUrl) showGate(); // no session anymore — re-lock behind the sign-in screen
   }
 }
-function openCohortModal(){
-  if(document.getElementById('cohortModal'))return;
-  const inp='width:100%;background:#fffdf6;color:var(--txt);border:2px solid var(--ink);border-radius:6px;padding:9px 11px;font-size:13px;font-family:inherit;box-shadow:2px 2px 0 var(--ink)';
-  const lbl='display:block;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:12px 0 4px;font-family:var(--font-mono);font-weight:600';
-  const ov=document.createElement('div'); ov.id='cohortModal';
-  ov.style.cssText='position:fixed;inset:0;background:rgba(23,24,29,.55);display:flex;align-items:center;justify-content:center;z-index:100';
-  ov.innerHTML=`<div style="background:var(--paper);border:3px solid var(--ink);border-radius:10px;padding:24px 26px;width:352px;box-shadow:8px 8px 0 var(--ink);transform:rotate(-.4deg)">
-    <div style="font-weight:700;font-size:16px;margin-bottom:4px">Sign in to your cohort</div>
-    <div class="note-txt" style="margin-bottom:8px">Enter the join code your mentor gave you. Progress then syncs automatically.</div>
-    <label style="${lbl}">Cohort join code</label><input id="ciCode" style="${inp}" placeholder="e.g. SHOPNOW-A">
-    <label style="${lbl}">Your name</label><input id="ciName" style="${inp}" value="${esc(pname())}">
-    <label style="${lbl}">Email</label><input id="ciEmail" style="${inp}" type="email">
-    <div id="ciMsg" class="note-txt" style="color:#ff9a9a;min-height:14px"></div>
-    <div style="display:flex;gap:8px;margin-top:12px">
-      <button class="submit" id="ciGo" style="flex:1">Sign in</button>
-      <button class="run" id="ciCancel">Cancel</button>
-    </div></div>`;
-  document.body.appendChild(ov);
-  ov.querySelector('#ciCancel').onclick=()=>ov.remove();
-  ov.addEventListener('click',e=>{if(e.target===ov)ov.remove();});
-  ov.querySelector('#ciGo').onclick=async()=>{
-    const joinCode=ov.querySelector('#ciCode').value.trim(), name=ov.querySelector('#ciName').value.trim(), email=ov.querySelector('#ciEmail').value.trim();
-    const msg=ov.querySelector('#ciMsg');
-    if(!joinCode||!name||!email){msg.textContent='All fields are required.';return;}
-    msg.style.color='var(--mut)'; msg.textContent='Signing in…';
-    try{
-      const r=await fetch(apiBase()+'/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({joinCode,name,email})});
-      const d=await r.json();
-      if(!r.ok){msg.style.color='#ff9a9a';msg.textContent=d.error||'Sign in failed.';return;}
-      localStorage.setItem('shopnow.cohort.userId',d.userId);
-      localStorage.setItem('shopnow.cohort.token',d.token);
-      localStorage.setItem('shopnow.cohort.name',d.name);
-      if(!pname()) localStorage.setItem('shopnow.profile.name',d.name);
-      MANAGED_MODE = d.mode==='managed';
-      ACTIVE_ASSIGNMENT = d.assignment||null;
-      ASSIGNMENT_HISTORY = d.history||[];
-      if(d.progress && Object.keys(d.progress).length){ applyProgress(d.progress); buildRegistry(); }
-      else { cohortSync(); }
-      ov.remove(); updateCohortBtn(); renderNav();
-      if(MANAGED_MODE) openManaged(); else rerenderCurrent();
-      alert(MANAGED_MODE ? ('Signed in as '+d.name+'. Your manager will assign your tasks here.') : ('Signed in as '+d.name+'. Your progress is now syncing to the cohort.'));
-    }catch(e){ msg.style.color='#ff9a9a'; msg.textContent='Could not reach the server.'; }
-  };
-}
+
+/* ---------- access gate — blurs the workspace and forces sign-in for unregistered visitors ---------- */
+function showGate(){ document.getElementById('wrapEl').classList.add('gated'); document.getElementById('gCode').focus(); }
+function hideGate(){ document.getElementById('wrapEl').classList.remove('gated'); }
+document.getElementById('gGo').onclick=async()=>{
+  const joinCode=document.getElementById('gCode').value.trim(), name=document.getElementById('gName').value.trim(), email=document.getElementById('gEmail').value.trim();
+  const msg=document.getElementById('gMsg');
+  if(!joinCode||!name||!email){msg.style.color='#8F1D1D';msg.textContent='All fields are required.';return;}
+  msg.style.color='var(--mut)'; msg.textContent='Signing in…';
+  try{
+    const r=await fetch(apiBase()+'/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({joinCode,name,email})});
+    const d=await r.json();
+    if(!r.ok){msg.style.color='#8F1D1D';msg.textContent=d.error||'Sign in failed. Check your join code and make sure this email was added by your mentor.';return;}
+    localStorage.setItem('shopnow.cohort.userId',d.userId);
+    localStorage.setItem('shopnow.cohort.token',d.token);
+    localStorage.setItem('shopnow.cohort.name',d.name);
+    if(!pname()) localStorage.setItem('shopnow.profile.name',d.name);
+    MANAGED_MODE = d.mode==='managed';
+    ACTIVE_ASSIGNMENT = d.assignment||null;
+    ASSIGNMENT_HISTORY = d.history||[];
+    if(d.progress && Object.keys(d.progress).length){ applyProgress(d.progress); buildRegistry(); }
+    else { cohortSync(); }
+    updateCohortBtn(); renderNav();
+    if(MANAGED_MODE) openManaged(); else openOverview();
+    hideGate();
+  }catch(e){ msg.style.color='#8F1D1D'; msg.textContent='Could not reach the server.'; }
+};
+['gCode','gName','gEmail'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('gGo').click(); }));
 
 /* ---------- SQL exec ---------- */
 async function execToRows(sql){
