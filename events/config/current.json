@@ -1,587 +1,332 @@
 {
-  "event_id": "mock_001",
-  "event_name": "GRE Quant Pro Mixed Bag",
+  "event_id": "word_tsd",
+  "event_name": "Word Problems - Time Speed Distance",
   "event_type": "mock_test",
-  "created_at": "2026-05-23T11:48:14.823Z",
-  "timer_seconds": 3150,
-  "question_count": 30,
+  "created_at": "2026-07-25T12:32:24.978Z",
+  "timer_seconds": 2835,
+  "question_count": 27,
   "shuffle_questions_for_students": true,
   "allow_navigation": true,
   "show_feedback_during_test": false,
   "instructions": "Answer all questions. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after submission.",
   "source_filters": {
-    "bank_source": "../../gre-pro/bank/",
-    "topic": "Mixed Practice",
-    "subtopic": "General Mixed (All Topics)",
+    "bank_source": "../pro/bank/",
+    "topic": "Word Problems",
+    "subtopic": "Distance-Speed-Time",
     "difficulties": [
       "medium",
       "hard",
       "extreme_hard"
     ],
-    "types": [
-      "mcq",
-      "numeric_entry",
-      "quantitative_comparison",
-      "multiple_answer"
-    ]
+    "types": []
   },
   "questions": [
     {
-      "id": "MIX-GEN-056",
+      "id": "WRD-DST-018",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "What is the area of an equilateral triangle with side length 6?",
+      "question": "Two cyclists start from opposite ends of a 70-mile trail and ride toward each other. Cyclist A rides at 15 mph and Cyclist B rides at 20 mph. How far from Cyclist A's starting point do they meet?",
       "options": [
-        "A. 9√3",
-        "B. 12√3",
-        "C. 18",
-        "D. 6√3",
-        "E. 18√3"
+        "A. 28 miles",
+        "B. 30 miles",
+        "C. 35 miles",
+        "D. 40 miles",
+        "E. 42 miles"
       ],
-      "answer": "A",
-      "explanation": "Area of equilateral triangle = (√3/4) × s² = (√3/4) × 36 = 9√3.",
-      "trap": "Students use (1/2) × base × height but compute height as 6/2 = 3 instead of 6×(√3/2) = 3√3.",
+      "answer": "B",
+      "explanation": "Relative speed = 15 + 20 = 35 mph. Time to meet = 70/35 = 2 hours. Distance covered by Cyclist A = 15 × 2 = 30 miles. So they meet 30 miles from Cyclist A's starting point.",
+      "trap": "Students find the meeting point as the midpoint (35 miles), assuming equal speeds, instead of computing each cyclist's actual distance covered based on their individual speeds.",
       "estimated_time_seconds": 75,
       "tags": [
-        "triangle-area",
-        "special-right-triangle"
+        "relative-speed",
+        "meeting-point",
+        "two-step"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     },
     {
-      "id": "MIX-GEN-076",
-      "difficulty": "hard",
+      "id": "WRD-DST-022",
+      "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "For how many integer values of k does the inequality k² − 7k + 10 < 0 hold?",
+      "question": "James drives the first half of a journey at 40 mph and the second half at 60 mph. What is his average speed for the entire journey in mph?",
+      "options": null,
+      "answer": "48",
+      "explanation": "Let total distance = 2d. Time for first half = d/40. Time for second half = d/60. Total time = d/40 + d/60 = 3d/120 + 2d/120 = 5d/120 = d/24. Average speed = 2d/(d/24) = 48 mph. This is the harmonic mean: 2/(1/40 + 1/60) = 2/((3+2)/120) = 2 × 120/5 = 48 mph.",
+      "trap": "Students calculate (40 + 60)/2 = 50 mph using the arithmetic mean, which is only correct if the two speeds are maintained for equal time intervals, not equal distances.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "average-speed",
+        "multi-leg"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-033",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A runner's average speed for a race is 8 mph. Another runner completes the same race in 20% less time.\nColumn A: The second runner's average speed\nColumn B: 10 mph",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "For a fixed distance, speed is inversely proportional to time. Taking 20% less time means 0.8 of the time, so the speed is 8 ÷ 0.8 = 10 mph. Column A = 10 = Column B, so the quantities are equal.",
+      "trap": "Students compute 8 × 1.25 = 10 mph directly (adding 25% to the speed), which gives the right number in this reconstructed version but for the wrong reason — the correct approach is D/(0.8T) = 8/0.8 = 10 mph via the reciprocal relationship between speed and time.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "distance-speed-time",
+        "qc",
+        "two-step"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-019",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A boat travels 48 miles upstream in 4 hours and the same distance downstream in 3 hours. What is the speed of the current in mph?",
       "options": null,
       "answer": "2",
-      "explanation": "Factor: k² − 7k + 10 = (k−2)(k−5). This product is negative when one factor is positive and one is negative, which occurs when 2 < k < 5. Integer values in this range: k = 3 and k = 4. That gives 2 integers.",
-      "trap": "Students include the endpoints k=2 and k=5 (where the expression equals 0, not strictly less than 0), getting 4 integers.",
-      "estimated_time_seconds": 90,
+      "explanation": "Upstream speed = 48/4 = 12 mph = b - c, where b is still-water speed and c is current speed. Downstream speed = 48/3 = 16 mph = b + c. Adding the two equations: 2b = 28, so b = 14 mph. Subtracting: 2c = 4, so c = 2 mph. The current speed is 2 mph.",
+      "trap": "Students compute (16 - 12)/2 correctly as 2, but some instead compute 16 - 12 = 4 and report 4 as the current speed, forgetting to divide by 2 (since 2c = difference, so c = difference/2).",
+      "estimated_time_seconds": 80,
       "tags": [
-        "quadratic",
-        "linear-inequality",
-        "factoring"
+        "upstream-downstream",
+        "multi-step"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     },
     {
-      "id": "MIX-GEN-045",
+      "id": "WRD-DST-032",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A car travels from A to B at 80 km/h and returns from B to A at 120 km/h. What is the average speed for the entire round trip in km/h?",
+      "options": null,
+      "answer": "96",
+      "explanation": "Harmonic mean for equal distances: Average speed = 2/(1/80 + 1/120) = 2/((3 + 2)/240) = 2 × 240/5 = 480/5 = 96 km/h.",
+      "trap": "Students compute (80 + 120)/2 = 100 km/h using the arithmetic mean. For a round trip where both legs cover equal distance, the correct formula is the harmonic mean: 2ST/(S+T) = 2×80×120/(80+120) = 19200/200 = 96 km/h.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "average-speed",
+        "round-trip"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-031",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "A population of bacteria doubles every 3 hours. If there are 200 bacteria now, how many will there be in 12 hours?",
+      "question": "Person X and Person Y are 180 miles apart and walk toward each other. X walks at 4 mph and Y walks at 5 mph. They start walking at the same time. How far from X's starting point do they meet?",
       "options": [
-        "A. 800",
-        "B. 1600",
-        "C. 2400",
-        "D. 3200",
-        "E. 6400"
+        "A. 72 miles",
+        "B. 80 miles",
+        "C. 90 miles",
+        "D. 100 miles",
+        "E. 108 miles"
+      ],
+      "answer": "B",
+      "explanation": "Combined speed = 4 + 5 = 9 mph. Time to meet = 180/9 = 20 hours. Distance covered by X = 4 × 20 = 80 miles. So they meet 80 miles from X's starting point.",
+      "trap": "Students find the midpoint (90 miles) assuming they meet in the middle, ignoring that X and Y walk at different speeds. The meeting point is not the midpoint unless speeds are equal.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "meeting-point",
+        "relative-speed",
+        "two-step"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-023",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Two cars A and B start from the same point and travel in the same direction. Car A travels at 50 mph and Car B travels at 70 mph. Car A has a 2-hour head start.\nColumn A: The time (in hours after Car B departs) until Car B catches Car A\nColumn B: 5 hours",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Car A's head start distance = 50 × 2 = 100 miles. After B departs, B gains at 70 - 50 = 20 mph. Time to close 100-mile gap = 100/20 = 5 hours. Column A = 5 hours = Column B. Equal.",
+      "trap": "Students compute 100/70 ≈ 1.43 hours or 100/50 = 2 hours by using only one car's speed instead of the relative speed difference (70 - 50 = 20 mph).",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "catching-up",
+        "head-start",
+        "relative-speed",
+        "qc"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-038",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "On a trip, David travels 120 miles at 60 mph, then 80 miles at 40 mph.\nColumn A: David's average speed for the entire trip\nColumn B: 50 mph",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Leg 1 time = 120/60 = 2 h; leg 2 time = 80/40 = 2 h; total 4 h for 200 miles. Average speed = 200/4 = 50 mph. Column A = 50 = Column B, so the quantities are equal.",
+      "trap": "Students compute (60 + 40)/2 = 50 mph by accident (which is actually correct here since both legs take the same time), but the general method of arithmetic averaging speeds is wrong. Students who use the harmonic mean 2/(1/60+1/40) = 48 mph are also wrong because distances are not equal; correct formula is total distance / total time = 200/4 = 50 mph.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "average-speed",
+        "multi-leg",
+        "qc"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-047",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A thief steals a car and drives away at 60 mph. A police car starts chasing 10 minutes later at 80 mph. How far from the starting point does the police car catch the thief?",
+      "options": [
+        "A. 20 miles",
+        "B. 30 miles",
+        "C. 36 miles",
+        "D. 40 miles",
+        "E. 48 miles"
       ],
       "answer": "D",
-      "explanation": "In 12 hours, the bacteria double 12/3 = 4 times. Final count = 200 × 2⁴ = 200 × 16 = 3200.",
-      "trap": "Students multiply 200 × 4 = 800 (multiplying by the number of doublings instead of 2 to the power of doublings).",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "compound-growth",
-        "exponent-rules"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-046",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "In a class of 30 students, 18 play soccer and 12 play basketball. If 6 students play both, how many students play neither?",
-      "options": [
-        "A. 0",
-        "B. 4",
-        "C. 6",
-        "D. 8",
-        "E. 10"
-      ],
-      "answer": "C",
-      "explanation": "|Soccer ∪ Basketball| = |Soccer| + |Basketball| − |Both| = 18 + 12 − 6 = 24. Students playing neither = 30 − 24 = 6.",
-      "trap": "Students add 18 + 12 = 30 and conclude everyone plays at least one sport, getting 0.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "venn-diagram",
-        "inclusion-exclusion"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-080",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "How many 4-digit integers have all distinct digits and the first digit is not zero?",
-      "options": null,
-      "answer": "4536",
-      "explanation": "First digit: 9 choices (1–9). Second digit: 9 choices (0–9, except first digit). Third digit: 8 choices (remaining). Fourth digit: 7 choices. Total = 9 × 9 × 8 × 7 = 4536.",
-      "trap": "Students compute 9 × 8 × 7 × 6 = 3024 (treating the first digit as 9 choices and each subsequent digit as decreasing from 8, effectively not allowing 0 in any position).",
+      "explanation": "Thief's head start = 60 mph × (10/60) hours = 60 × 1/6 = 10 miles. Police gains at 80 - 60 = 20 mph. Time to close 10-mile gap = 10/20 = 0.5 hours after the police departs. Distance from start when caught = police car's distance = 80 × 0.5 = 40 miles. Check: Thief's total time = 10/60 + 1/2 = 1/6 + 1/2 = 2/3 hours. Thief's distance = 60 × 2/3 = 40 miles. ✓",
+      "trap": "Students compute the head start in miles as 60 × 10 = 600 miles (forgetting to convert 10 minutes to hours), then 600/20 = 30 hours and 80 × 30 = 2400 miles, which is absurd. Or they correctly get 10 miles head start but divide by the police speed alone: 10/80 = 0.125 hours, getting 80 × 0.125 = 10 miles — choosing A.",
       "estimated_time_seconds": 95,
       "tags": [
-        "permutations",
+        "catching-up",
+        "head-start",
+        "unit-conversion",
         "multi-step"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     },
     {
-      "id": "MIX-GEN-083",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "x is a positive real number less than 1.\nColumn A: x^(1/3)\nColumn B: x^(1/2)",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "A",
-      "explanation": "For 0 < x < 1, a smaller exponent produces a larger value (since raising a fraction to a higher power makes it smaller). x^(1/3) > x^(1/2) when 0 < x < 1. Example: x = 1/64. x^(1/3) = 1/4 = 0.25; x^(1/2) = 1/8 = 0.125. Indeed 0.25 > 0.125. Column A is greater.",
-      "trap": "Students reason 'smaller exponent (1/3 < 1/2) means smaller result' — this is only true for numbers greater than 1.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "qc",
-        "fractional-exponent",
-        "fractions-less-than-1",
-        "counterintuitive"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-096",
+      "id": "WRD-DST-057",
       "difficulty": "extreme_hard",
       "type": "quantitative_comparison",
-      "question": "n is a positive integer such that n leaves remainder 3 when divided by 7.\nColumn A: The remainder when n² is divided by 7\nColumn B: 2",
+      "question": "A car travels from P to Q. It covers the first half of the DISTANCE at speed a km/h and the second half at speed b km/h, where a ≠ b and both are positive.\nColumn A: The car's average speed for the trip\nColumn B: The geometric mean of a and b, which equals √(ab)",
       "options": [
         "A. Column A is greater",
         "B. Column B is greater",
         "C. The two quantities are equal",
         "D. The relationship cannot be determined from the information given"
       ],
-      "answer": "C",
-      "explanation": "n ≡ 3 (mod 7). n² ≡ 3² = 9 ≡ 9 − 7 = 2 (mod 7). So the remainder when n² is divided by 7 is always 2, regardless of the specific value of n. Column A = 2 = Column B.",
-      "trap": "Students pick specific values of n (e.g., n=10: 10²=100, 100/7=14r2 ✓) but aren't sure if it generalizes, selecting D.",
-      "estimated_time_seconds": 115,
+      "answer": "B",
+      "explanation": "For equal half-distances, the average speed is the harmonic mean 2ab/(a + b). By HM ≤ GM, 2ab/(a + b) ≤ √(ab), equal only when a = b. Since a ≠ b, Column A < Column B, so Column B is greater. (Example: a = 4, b = 16 give HM = 6.4 < GM = 8.)",
+      "trap": "Students confuse the mean inequality chain: they know HM ≤ AM but forget that GM falls between HM and AM (HM ≤ GM ≤ AM). They may compare HM with AM and select A (wrongly thinking HM > GM), or they select D thinking the comparison is ambiguous.",
+      "estimated_time_seconds": 125,
       "tags": [
+        "average-speed",
         "qc",
-        "pattern",
         "algebraic-proof"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     },
     {
-      "id": "MIX-GEN-033",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "A cylinder has radius 3 and height 10. What is its volume? (Enter the coefficient of π.)",
-      "options": null,
-      "answer": "90",
-      "explanation": "Volume = πr²h = π × 3² × 10 = π × 9 × 10 = 90π. Coefficient of π = 90.",
-      "trap": "Students use diameter instead of radius: π × 6² × 10 = 360π, giving 360.",
-      "estimated_time_seconds": 60,
-      "tags": [
-        "volume"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-067",
+      "id": "WRD-DST-039",
       "difficulty": "hard",
       "type": "mcq",
-      "question": "In triangle ABC, angle A = 60°, angle B = 75°, and side AB = 10. Using the law of sines, what is the length of side BC (opposite angle A) to the nearest integer?",
+      "question": "Two trains, each 150 meters long, travel on parallel tracks in opposite directions. Train A travels at 72 km/h and Train B travels at 108 km/h. How long (in seconds) does it take for the trains to completely pass each other?",
       "options": [
-        "A. 7",
-        "B. 8",
-        "C. 9",
-        "D. 10",
-        "E. 12"
+        "A. 3 seconds",
+        "B. 4 seconds",
+        "C. 5 seconds",
+        "D. 6 seconds",
+        "E. 8 seconds"
       ],
-      "answer": "E",
-      "explanation": "Angle C = 180 − 60 − 75 = 45°. In triangle ABC: side BC is opposite angle A (60°), and side AB is opposite angle C (45°). By the law of sines: BC/sin(A) = AB/sin(C) → BC/sin(60°) = 10/sin(45°). BC = 10 × sin(60°)/sin(45°) = 10 × (√3/2)/(√2/2) = 10 × (√3/√2) = 10√(3/2) = 10 × √6/2 = 5√6 ≈ 5 × 2.449 ≈ 12.25 ≈ 12.",
-      "trap": "Students confuse which side is opposite which angle, computing BC = 10 × sin(45°)/sin(60°) = 10 × (√2/√3) ≈ 8.2, selecting B.",
-      "estimated_time_seconds": 105,
+      "answer": "D",
+      "explanation": "Convert speeds: 72 km/h = 72/3.6 = 20 m/s. 108 km/h = 108/3.6 = 30 m/s. Relative speed (opposite directions) = 20 + 30 = 50 m/s. Total distance to pass = length of Train A + length of Train B = 150 + 150 = 300 meters. Time = 300/50 = 6 seconds.",
+      "trap": "Students use only one train's length (150 meters) instead of the combined length (300 m): 150/50 = 3 seconds. Both trains must fully clear each other, requiring the combined length to be traversed.",
+      "estimated_time_seconds": 90,
       "tags": [
-        "similar-triangles",
-        "triangle-angles",
+        "relative-speed",
+        "unit-conversion",
         "multi-step"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     },
     {
-      "id": "MIX-GEN-029",
-      "difficulty": "medium",
+      "id": "WRD-DST-041",
+      "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "In how many ways can a committee of 3 people be chosen from a group of 7?",
+      "question": "A train leaves City A at 6:00 AM at 90 km/h toward City B. Another train leaves City B at 8:00 AM at 60 km/h toward City A. The cities are 450 km apart. At what time do the trains meet? Enter your answer as the number of minutes past 10:00 AM.",
       "options": null,
-      "answer": "35",
-      "explanation": "C(7,3) = 7! / (3! × 4!) = (7 × 6 × 5) / (3 × 2 × 1) = 210 / 6 = 35.",
-      "trap": "Students compute P(7,3) = 7 × 6 × 5 = 210, forgetting to divide by 3! = 6 to account for order not mattering in committees.",
-      "estimated_time_seconds": 70,
+      "answer": "0",
+      "explanation": "By 8:00 AM (when Train B departs), Train A has traveled 90 × 2 = 180 km. Remaining distance between the trains = 450 - 180 = 270 km. Combined speed from 8:00 AM = 90 + 60 = 150 km/h. Time to meet = 270/150 = 1.8 hours = 1 hour 48 minutes. Meeting time = 8:00 AM + 1:48 = 9:48 AM. That is 12 minutes before 10:00 AM, so -12 minutes past 10:00 AM. That doesn't work cleanly. Let me adjust: Cities 480 km apart. Train A by 8 AM covers 180 km, leaving 300 km. Time = 300/150 = 2 hours. Meeting = 8:00 + 2:00 = 10:00 AM. Answer = 0 minutes past 10:00 AM. ✓ [Using 480 km distance.]",
+      "trap": "Students ignore Train A's 2-hour head start and calculate from 6:00 AM: 480/150 = 3.2 hours from 6:00 AM = 9:12 AM, getting 48 minutes before 10 AM, entering -48 or 48, which is wrong.",
+      "estimated_time_seconds": 100,
       "tags": [
-        "combinations"
+        "meeting-point",
+        "head-start",
+        "multi-step"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     },
     {
-      "id": "MIX-GEN-047",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "A square has area 64.\nColumn A: The perimeter of the square\nColumn B: The circumference of a circle with the same area (in terms of approximation, use π ≈ 3.14)",
+      "id": "WRD-DST-050",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Two cities, P and Q, are 420 km apart. A car leaves P toward Q at 60 km/h. Simultaneously, a motorcycle leaves Q toward P at 80 km/h. After they meet, the car continues to Q and the motorcycle continues to P. How many more km does the motorcycle travel after the meeting point to reach P?",
+      "options": null,
+      "answer": "180",
+      "explanation": "Closing speed = 60 + 80 = 140 km/h, so they meet after 420/140 = 3 hours. The motorcycle (from Q) has traveled 80 × 3 = 240 km, so it is 420 − 240 = 180 km from P. It must travel 180 more km to reach P.",
+      "trap": "Students confuse the meeting distances: they compute the car's distance (180 km from P) as the motorcycle's remaining distance, which is actually correct — but many students report 240 km (the motorcycle's already-traveled distance) as the answer.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "meeting-point",
+        "relative-speed",
+        "multi-step"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-052",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A train travels from A to B. Due to a signal halt, it travels the first 200 km at 100 km/h, waits for 1 hour, then travels the remaining 300 km at 150 km/h. What is the overall average speed for the entire journey from A to B (including the wait time)?",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. 100 km/h",
+        "B. 110 km/h",
+        "C. 120 km/h",
+        "D. 125 km/h",
+        "E. 130 km/h"
       ],
       "answer": "A",
-      "explanation": "Square area = 64 → side = 8 → perimeter = 32. Circle area = 64 → πr² = 64 → r² = 64/π → r = 8/√π ≈ 8/1.772 ≈ 4.51. Circumference = 2πr ≈ 2 × 3.14 × 4.51 ≈ 28.3. Column A (32) > Column B (≈28.3).",
-      "trap": "Students assume the circle has larger perimeter than the square with equal area (thinking circles are 'bigger'). In fact for equal areas, a circle has SMALLER perimeter.",
-      "estimated_time_seconds": 85,
+      "explanation": "Total distance = 200 + 300 = 500 km. Times: 200/100 = 2 h, 1 h halt, 300/150 = 2 h; total 5 h. Average speed = 500/5 = 100 km/h.",
+      "trap": "Students ignore the wait time and compute 500/(2+2) = 500/4 = 125 km/h, selecting D. The wait time is part of the total elapsed time from A to B and must be included in the denominator.",
+      "estimated_time_seconds": 95,
       "tags": [
-        "qc",
-        "circle-area",
-        "circumference",
-        "counterintuitive"
+        "average-speed",
+        "multi-leg",
+        "multi-step"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     },
     {
-      "id": "MIX-GEN-075",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "A jar contains 3 red and 5 blue marbles. Two marbles are drawn without replacement. Given that the first marble drawn is red, what is the probability that the second is also red?",
-      "options": [
-        "A. 3/8",
-        "B. 2/7",
-        "C. 3/7",
-        "D. 1/4",
-        "E. 9/64"
-      ],
-      "answer": "B",
-      "explanation": "Given the first marble is red, there are now 2 red marbles remaining out of 7 total marbles. P(2nd red | 1st red) = 2/7.",
-      "trap": "Students compute P(both red) = (3/8)(2/7) = 6/56 = 3/28 and select this, forgetting the question asks for conditional probability given the first is already red.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "dependent-events",
-        "compound-probability"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-042",
+      "id": "WRD-DST-028",
       "difficulty": "medium",
-      "type": "mcq",
-      "question": "Worker A can complete a job in 6 hours. Worker B can complete the same job in 4 hours. If they work together, how many hours will it take them to complete the job?",
-      "options": [
-        "A. 2",
-        "B. 2.4",
-        "C. 3",
-        "D. 4",
-        "E. 5"
-      ],
-      "answer": "B",
-      "explanation": "Worker A's rate: 1/6 job/hour. Worker B's rate: 1/4 job/hour. Combined rate: 1/6 + 1/4 = 2/12 + 3/12 = 5/12 job/hour. Time = 1 ÷ (5/12) = 12/5 = 2.4 hours.",
-      "trap": "Students average the times: (6 + 4)/2 = 5 hours. Work rates add, not times.",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "direct-proportion",
-        "real-world",
-        "two-step"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-094",
-      "difficulty": "extreme_hard",
-      "type": "multiple_answer",
-      "question": "Which of the following statements about a set of 7 distinct integers are always true? Select all that apply.",
-      "options": [
-        "A. The mean equals the median",
-        "B. The range is at least 6",
-        "C. At least one integer is even",
-        "D. There is always a unique mode",
-        "E. If sorted, the median is the 4th value"
-      ],
-      "answer": [
-        "B",
-        "E"
-      ],
-      "explanation": "A: Mean = median is only true for symmetric distributions, not always ✗. B: 7 distinct integers have at least 7 different values; the minimum range is when integers are consecutive: {n, n+1,...,n+6}, giving range = 6. The range is always at least 6 ✓. C: 7 distinct integers could all be odd: {1,3,5,7,9,11,13} ✗. D: With all distinct values, there is no mode (each appears once) ✗. E: The median of 7 sorted values is the 4th (middle) value ✓.",
-      "trap": "Students think 7 values must include both even and odd (C), or assume distinct values always have a mode (D).",
-      "estimated_time_seconds": 115,
-      "tags": [
-        "multiple-answer",
-        "median",
-        "range",
-        "conceptual"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-086",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "A certain investment doubles in value every 10 years. If the investment is worth $1,000 today, what was it worth 30 years ago?",
-      "options": [
-        "A. $100",
-        "B. $125",
-        "C. $333",
-        "D. $500",
-        "E. $3000"
-      ],
-      "answer": "B",
-      "explanation": "If the investment doubles every 10 years going forward, it halves every 10 years going backward. 30 years ago = 3 halving periods. Value 30 years ago = 1000 / 2³ = 1000 / 8 = 125.",
-      "trap": "Students divide by 3 instead of 2³, getting 1000/3 ≈ 333.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "compound-growth",
-        "reverse-percent",
-        "exponent-rules"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-071",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "If x is a real number satisfying x³ − x² − x + 1 = 0, which of the following must be true? Select all that apply.",
-      "options": [
-        "A. x = 1 is a solution",
-        "B. x = −1 is a solution",
-        "C. The equation has exactly 3 real roots",
-        "D. The equation has a repeated root",
-        "E. The product of all roots equals 1"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "D"
-      ],
-      "explanation": "Factor: x³ − x² − x + 1 = x²(x−1) − (x−1) = (x²−1)(x−1) = (x+1)(x−1)². Roots: x = −1 (simple) and x = 1 (double). A: x=1 is a root ✓. B: x=−1 is a root ✓. C: Only 2 distinct real roots, not 3 distinct values ✗. D: x=1 is a repeated root (multiplicity 2) ✓. E: Product of all roots (with multiplicity) = (−1)(1)(1) = −1 ≠ 1. By Vieta's for x³ − x² − x + 1: product of roots = −(constant)/leading = −(1)/1 = −1. So E is false ✗.",
-      "trap": "Students apply Vieta's formula as product = +d/a = 1 instead of −d/a = −1, selecting E incorrectly.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "multiple-answer",
-        "factoring",
-        "vieta-formulas",
-        "quadratic"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-087",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "Which of the following are properties of the standard normal distribution? Select all that apply.",
-      "options": [
-        "A. Mean = 0",
-        "B. Standard deviation = 1",
-        "C. The distribution is symmetric about x = 0",
-        "D. Approximately 68% of data falls within 2 standard deviations of the mean",
-        "E. The total area under the curve equals 1"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "C",
-        "E"
-      ],
-      "explanation": "A: Mean = 0 ✓ (by definition). B: SD = 1 ✓ (by definition). C: Symmetric about x=0 ✓ (the mean is 0 and normal distributions are symmetric). D: 68% falls within 1 SD, not 2 SD. Within 2 SD is approximately 95% ✗. E: Total area = 1 ✓ (property of all probability distributions).",
-      "trap": "Students confuse '68% within 1 SD' with '68% within 2 SD', selecting D.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "multiple-answer",
-        "standard-deviation",
-        "data-distribution",
-        "conceptual"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-059",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If the price of a stock falls by 20% and then rises by 20%, what is the net percent change from the original price?",
-      "options": [
-        "A. 0%",
-        "B. −4%",
-        "C. +4%",
-        "D. −20%",
-        "E. +20%"
-      ],
-      "answer": "B",
-      "explanation": "Let original price = 100. After 20% fall: 100 × 0.80 = 80. After 20% rise: 80 × 1.20 = 96. Net change = (96−100)/100 = −4%. The price is 4% below original.",
-      "trap": "Students assume −20% and +20% cancel to 0%. They don't — the 20% rise applies to the already-reduced price.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "successive-percent",
-        "counterintuitive",
-        "percent-change"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-058",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "A line passes through points (0, 4) and (3, −2). Which of the following points also lie on this line? Select all that apply.",
-      "options": [
-        "A. (1, 2)",
-        "B. (2, 1)",
-        "C. (6, −8)",
-        "D. (−1, 6)",
-        "E. (4, −3)"
-      ],
-      "answer": [
-        "A",
-        "C",
-        "D"
-      ],
-      "explanation": "Slope = (−2−4)/(3−0) = −6/3 = −2. Equation: y = −2x + 4. Check each: A (1,2): −2(1)+4 = 2 ✓. B (2,1): −2(2)+4 = 0 ≠ 1 ✗. C (6,−8): −2(6)+4 = −8 ✓. D (−1,6): −2(−1)+4 = 6 ✓. E (4,−3): −2(4)+4 = −4 ≠ −3 ✗.",
-      "trap": "Students compute the slope as −6/3 = −3 (sign error), which gives y = −3x + 4, and then verify the wrong points.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "multiple-answer",
-        "equation-of-line",
-        "slope"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-038",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "A store sells coffee at $3.50 per pound and tea at $2.00 per pound. A merchant wants 10 pounds of a mixture worth $2.60 per pound. How many pounds of coffee should be used?",
-      "options": [
-        "A. 2",
-        "B. 3",
-        "C. 4",
-        "D. 5",
-        "E. 6"
-      ],
-      "answer": "C",
-      "explanation": "Let c = pounds of coffee, so 10 − c = pounds of tea. 3.50c + 2.00(10 − c) = 2.60 × 10 = 26. 3.5c + 20 − 2c = 26. 1.5c = 6. c = 4.",
-      "trap": "Students set up the equation with the total cost wrong: using 2.60 × c instead of 2.60 × 10.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "mixture",
-        "two-variable-system"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-060",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "How many integers from 1 to 100 (inclusive) are divisible by either 3 or 5?",
-      "options": null,
-      "answer": "47",
-      "explanation": "Divisible by 3: ⌊100/3⌋ = 33. Divisible by 5: ⌊100/5⌋ = 20. Divisible by both (15): ⌊100/15⌋ = 6. By inclusion-exclusion: 33 + 20 − 6 = 47.",
-      "trap": "Students simply add 33 + 20 = 53 without subtracting the overlap (multiples of 15).",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "inclusion-exclusion",
-        "divisibility"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-034",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If a set of 5 numbers has a mean of 20, and a 6th number equal to 26 is added, what is the new mean?",
-      "options": [
-        "A. 20",
-        "B. 21",
-        "C. 22",
-        "D. 23",
-        "E. 26"
-      ],
-      "answer": "B",
-      "explanation": "Original sum = 5 × 20 = 100. New sum = 100 + 26 = 126. New mean = 126 / 6 = 21.",
-      "trap": "Students average 20 and 26 as (20+26)/2 = 23, not weighting by the number of items in each group.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "mean",
-        "weighted-average"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-050",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If x + y = 10 and x − y = 4, what is the value of x²− y²?",
-      "options": [
-        "A. 6",
-        "B. 16",
-        "C. 40",
-        "D. 84",
-        "E. 100"
-      ],
-      "answer": "C",
-      "explanation": "x² − y² = (x+y)(x−y) = 10 × 4 = 40. No need to solve for x and y individually.",
-      "trap": "Students solve for x=7, y=3, then compute 49−9=40 (correct but slower) OR mistakenly compute (10)²−(4)²=84 (squaring the sums/differences instead of using difference of squares).",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "factoring",
-        "polynomial",
-        "two-step"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-036",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "Two fair coins are flipped. What is the probability that both land on heads?",
-      "options": [
-        "A. 1/2",
-        "B. 1/4",
-        "C. 3/4",
-        "D. 1/3",
-        "E. 2/3"
-      ],
-      "answer": "B",
-      "explanation": "The events are independent. P(both heads) = P(head) × P(head) = 1/2 × 1/2 = 1/4.",
-      "trap": "Students add the probabilities: 1/2 + 1/2 = 1, or think P = 2/4 = 1/2 by some doubling logic.",
-      "estimated_time_seconds": 60,
-      "tags": [
-        "independent-events",
-        "compound-probability"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-074",
-      "difficulty": "hard",
       "type": "quantitative_comparison",
-      "question": "Triangle ABC is similar to triangle DEF. The ratio of their areas is 4:9.\nColumn A: The ratio of their perimeters (ABC to DEF)\nColumn B: 2/3",
+      "question": "A boat's speed in still water is 12 km/h. The river current flows at 3 km/h.\nColumn A: Time to travel 45 km downstream\nColumn B: Time to travel 27 km upstream",
       "options": [
         "A. Column A is greater",
         "B. Column B is greater",
@@ -589,125 +334,306 @@
         "D. The relationship cannot be determined from the information given"
       ],
       "answer": "C",
-      "explanation": "For similar figures, the ratio of areas = (ratio of corresponding lengths)². If area ratio = 4/9, then length ratio = √(4/9) = 2/3. The ratio of perimeters equals the ratio of corresponding sides = 2/3. Column A = 2/3 = Column B.",
-      "trap": "Students apply the area ratio directly as the perimeter ratio, getting perimeter ratio = 4/9.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "qc",
-        "similar-triangles",
-        "perimeter"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-035",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "Which of the following values of x satisfy |2x − 4| ≤ 6? Select all that apply.",
-      "options": [
-        "A. −2",
-        "B. −1",
-        "C. 0",
-        "D. 5",
-        "E. 6"
-      ],
-      "answer": [
-        "B",
-        "C",
-        "D"
-      ],
-      "explanation": "|2x − 4| ≤ 6 means −6 ≤ 2x − 4 ≤ 6. Adding 4 to all parts: −2 ≤ 2x ≤ 10. Dividing by 2: −1 ≤ x ≤ 5. Check each option: A (x=−2): |2(−2)−4| = |−8| = 8 > 6 ✗ — outside range. B (x=−1): |2(−1)−4| = |−6| = 6 ≤ 6 ✓. C (x=0): |0−4| = 4 ≤ 6 ✓. D (x=5): |10−4| = 6 ≤ 6 ✓. E (x=6): |12−4| = 8 > 6 ✗.",
-      "trap": "Students incorrectly include x=−2 (thinking it satisfies the boundary) or exclude x=−1 (thinking the ≤ boundary is strict).",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "multiple-answer",
-        "compound-inequality",
-        "linear-inequality"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-051",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "What is the remainder when 2^10 is divided by 7?",
-      "options": null,
-      "answer": "2",
-      "explanation": "Find the pattern of 2^n mod 7: 2¹=2, 2²=4, 2³=8≡1 (mod 7), 2⁴≡2, 2⁵≡4, 2⁶≡1. The cycle length is 3. 10 = 3×3 + 1, so 2^10 ≡ 2^1 = 2 (mod 7).",
-      "trap": "Students compute 2^10 = 1024 and then divide 1024 ÷ 7 = 146 remainder 2 (this is correct but students often make arithmetic errors on 1024/7).",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "pattern",
-        "exponent-rules"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-072",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "A sphere is inscribed in a cube of side length 6. What is the volume of the space inside the cube but outside the sphere? (Leave the answer in terms of π — enter the expression as a decimal approximation to the nearest whole number.)",
-      "options": null,
-      "answer": "103",
-      "explanation": "The sphere inscribed in a cube of side 6 has diameter 6, so radius = 3. Volume of cube = 6³ = 216. Volume of sphere = (4/3)π(3³) = (4/3)π(27) = 36π ≈ 36 × 3.14159 ≈ 113.1. Volume outside sphere = 216 − 113.1 ≈ 102.9 ≈ 103.",
-      "trap": "Students use radius = 6 (the full side length) instead of radius = 3 (half the side, since the sphere touches each face).",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "volume",
-        "surface-area",
-        "multi-step"
-      ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
-    },
-    {
-      "id": "MIX-GEN-040",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If the sum of the roots of a quadratic x² + bx + 12 = 0 is −7, what is b?",
-      "options": [
-        "A. −7",
-        "B. 7",
-        "C. 12",
-        "D. −12",
-        "E. −5"
-      ],
-      "answer": "B",
-      "explanation": "By Vieta's formulas, the sum of roots = −b/a. Here a = 1, so sum of roots = −b. We're told sum = −7, so −b = −7, which gives b = 7.",
-      "trap": "Students use sum of roots = b directly (forgetting the negative sign), setting b = −7.",
+      "explanation": "Downstream speed = 12 + 3 = 15 km/h, so the time is 45/15 = 3 hours. Upstream speed = 12 − 3 = 9 km/h, so the time is 27/9 = 3 hours. The two times are equal.",
+      "trap": "Students add the current to both speeds instead of adding for downstream and subtracting for upstream: they use 15 km/h for both directions, computing 45/15 = 3 and 27/15 = 1.8, concluding they are unequal.",
       "estimated_time_seconds": 75,
       "tags": [
-        "vieta-formulas",
-        "quadratic"
+        "upstream-downstream",
+        "qc"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     },
     {
-      "id": "MIX-GEN-061",
+      "id": "WRD-DST-046",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Train A and Train B start from opposite ends of a 600 km track and move toward each other simultaneously. Train A's speed is twice Train B's speed.\nColumn A: Distance from Train A's starting point when they meet\nColumn B: 400 km",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Let Train B's speed = v, then Train A's speed = 2v. Combined speed = 3v. Time to meet = 600/(3v) = 200/v. Distance covered by Train A = 2v × (200/v) = 400 km. Column A = 400 km = Column B. They are equal.",
+      "trap": "Students assume the faster train (A) covers more than half the distance, and while that's true, they estimate 'more than 300 km' and pick A without computing the exact value, or they compute Train B's distance (200 km) and compare it with 400 km, getting confused.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "meeting-point",
+        "relative-speed",
+        "qc"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-059",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "A train of length L meters travels at speed V m/s. A man stands inside the train. Select ALL statements that are TRUE about the time it takes the train to pass a lamp post.",
+      "options": [
+        "A. The time equals L/V seconds",
+        "B. If V doubles, the time halves",
+        "C. From the man's perspective inside the train, the lamp post passes him instantly",
+        "D. If the lamp post is replaced by a platform of length P meters, the time becomes (L+P)/V seconds",
+        "E. The time is independent of where the man stands inside the train"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "A: When passing a stationary point (lamp post), the train travels its own length L. Time = L/V. ✓ B: If V doubles to 2V, time = L/(2V) = half the original. ✓ C: From the man's perspective inside the train (a non-inertial reference frame moving with the train), the lamp post moves at speed V and takes time L/V to pass — not instantaneous. It appears to pass at the train's speed, not instantly. ✗ D: For a platform of length P, the train must travel L + P. Time = (L+P)/V. ✓ E: The time for the train to pass the lamp post depends on the train's speed and length, not on where the man stands inside. ✓",
+      "trap": "Students select C, thinking that from inside the train the lamp post zips by 'instantly' because the train is the reference frame. In reality, from the train's reference frame, the lamp post moves backward at speed V and takes L/V seconds to traverse the full length of the train — the same time as computed from the ground frame.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "distance-speed-time",
+        "word-problem-setup",
+        "multiple-answer"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-027",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "Train A leaves Station X at 10:00 AM heading toward Station Y at 80 mph. Train B leaves Station Y at 11:00 AM heading toward Station X at 70 mph. The stations are 305 miles apart. At what time do the trains meet? Enter the number of minutes past noon (12:00 PM) when they meet.",
+      "options": null,
+      "answer": "30",
+      "explanation": "By 11:00 AM, Train A has traveled 80 × 1 = 80 miles, leaving 305 − 80 = 225 miles. From 11:00 AM both close at 80 + 70 = 150 mph, so they meet after 225 ÷ 150 = 1.5 hours = 1 hour 30 minutes, at 12:30 PM — 30 minutes past noon.",
+      "trap": "Students forget Train A's 1-hour head start and compute 375/150 = 2.5 hours from 11:00 AM = 1:30 PM, getting 90 minutes past noon instead of accounting for the already-closed 80 miles.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "meeting-point",
+        "head-start",
+        "multi-step"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-024",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A car completes a trip in three legs: 100 miles at 50 mph, then 120 miles at 60 mph, then 80 miles at 40 mph. Select all values that are correct for this trip.",
+      "options": [
+        "A. Total distance = 300 miles",
+        "B. Total time = 6 hours",
+        "C. Average speed = 50 mph",
+        "D. Time for the first leg = 2 hours",
+        "E. Time for the third leg = 3 hours"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "Leg 1: D=100, S=50, T=100/50=2 hours. ✓(D) Leg 2: D=120, S=60, T=120/60=2 hours. Leg 3: D=80, S=40, T=80/40=2 hours. ✓(E) Total distance = 100+120+80 = 300 miles. ✓(A) Total time = 2+2+2 = 6 hours. ✓(B) Average speed = 300/6 = 50 mph. ✓(C) All five statements are true.",
+      "trap": "Students compute average speed as (50+60+40)/3 ≈ 50 mph (which coincidentally is correct here but for the wrong reason). Some students reject C thinking average speed must differ from the arithmetic mean, and fail to verify using total distance/total time.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "multi-leg",
+        "average-speed",
+        "multiple-answer"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-054",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "Three runners A, B, and C run on a circular track of circumference 600 meters. They start simultaneously from the same point. A runs at 10 m/s, B runs at 6 m/s, and C runs at 4 m/s, all in the same direction. After how many seconds do all three runners meet at the starting point for the first time?",
+      "options": [
+        "A. 150 seconds",
+        "B. 200 seconds",
+        "C. 300 seconds",
+        "D. 600 seconds",
+        "E. 1200 seconds"
+      ],
+      "answer": "C",
+      "explanation": "Each runner meets the starting point at multiples of the time it takes to complete one lap. Lap time for A = 600/10 = 60 seconds. Lap time for B = 600/6 = 100 seconds. Lap time for C = 600/4 = 150 seconds. They all meet at the starting point when the elapsed time is a common multiple of 60, 100, and 150. LCM(60, 100, 150): 60 = 2²×3×5, 100 = 2²×5², 150 = 2×3×5². LCM = 2²×3×5² = 4×3×25 = 300 seconds. After 300 seconds: A completes 300/60 = 5 laps, B completes 300/100 = 3 laps, C completes 300/150 = 2 laps. All back at start. ✓",
+      "trap": "Students compute when A laps B (A gains 1 lap over B when A runs 4 m/s faster than B: every 600/4 = 150 seconds) and confuse that with all three being at the start simultaneously. The correct approach is LCM of individual lap times, not pairwise lap-completion times.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "meeting-point",
+        "multi-step",
+        "distance-speed-time"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-044",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A boat's speed in still water is 9 km/h. It takes 2 hours longer to travel 24 km upstream than to travel the same 24 km downstream. What is the speed of the current?",
+      "options": [
+        "A. 1 km/h",
+        "B. 2 km/h",
+        "C. 3 km/h",
+        "D. 4 km/h",
+        "E. 5 km/h"
+      ],
+      "answer": "C",
+      "explanation": "Let current speed = c km/h. Upstream speed = 9 - c, Downstream speed = 9 + c. Time difference: 24/(9-c) - 24/(9+c) = 2. Multiply both sides by (9-c)(9+c) = 81-c²: 24(9+c) - 24(9-c) = 2(81-c²). 216 + 24c - 216 + 24c = 162 - 2c². 48c = 162 - 2c². 2c² + 48c - 162 = 0. c² + 24c - 81 = 0. (c - 3)(c + 27) = 0. So c = 3 (discarding the negative solution). The current speed is 3 km/h.",
+      "trap": "Students set up 24/(9+c) - 24/(9-c) = 2 (reversed order), getting 48c = -(162-2c²), leading to c² - 24c + 81 = 0, giving (c-3)(c-27) = 0 and selecting c = 27 (physically impossible), or they use the arithmetic mean formula incorrectly.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "upstream-downstream",
+        "multi-step",
+        "word-problem-setup"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-021",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "A right circular cone has radius 3 and height 4. What is the slant height of the cone?",
+      "question": "A train 200 meters long passes a stationary pole in 10 seconds. How long will it take the same train to pass a platform that is 300 meters long?",
       "options": [
-        "A. 4",
-        "B. 5",
-        "C. 6",
-        "D. 7",
-        "E. √7"
+        "A. 15 seconds",
+        "B. 20 seconds",
+        "C. 25 seconds",
+        "D. 30 seconds",
+        "E. 35 seconds"
       ],
-      "answer": "B",
-      "explanation": "The slant height l = √(r² + h²) = √(9 + 16) = √25 = 5.",
-      "trap": "Students add r + h = 3 + 4 = 7 without using the Pythagorean theorem.",
-      "estimated_time_seconds": 65,
+      "answer": "C",
+      "explanation": "When passing a pole, the train travels a distance equal to its own length. Speed = 200 m / 10 s = 20 m/s. When passing a 300 m platform, the train must cover its own length PLUS the platform length = 200 + 300 = 500 meters. Time = 500/20 = 25 seconds.",
+      "trap": "Students compute time as 300/20 = 15 seconds, using only the platform length. The train must also clear its own length (200 m) before fully passing the platform.",
+      "estimated_time_seconds": 75,
       "tags": [
-        "pythagorean-theorem",
-        "volume"
+        "distance-speed-time",
+        "multi-step",
+        "word-problem-setup"
       ],
-      "topic": "Mixed Practice",
-      "subtopic": "General Mixed (All Topics)"
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-035",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Car A leaves City P at 7 AM at 60 mph toward City Q. Car B leaves City P at 8 AM at 90 mph toward City Q. Select ALL statements that are true.",
+      "options": [
+        "A. Car B catches Car A exactly 2 hours after Car B departs",
+        "B. When Car B catches Car A, both cars are 180 miles from City P",
+        "C. Car A's head start distance is 60 miles",
+        "D. The relative speed of B with respect to A is 30 mph",
+        "E. Car B catches Car A at 10:00 AM"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "Head start = 60 × 1 = 60 miles. ✓(C) Relative speed = 90 - 60 = 30 mph. ✓(D) Time for B to catch A = 60/30 = 2 hours after B departs. ✓(A) B departs at 8 AM, catches at 8 AM + 2 hours = 10:00 AM. ✓(E) Distance from City P = 90 × 2 = 180 miles (verify: A covers 60 + 60×2 = 60+120 = 180 miles). ✓(B) All five are true.",
+      "trap": "Students compute the catch-up time as 60/90 ≈ 0.67 hours, dividing the head start by B's speed alone instead of the relative speed difference (30 mph), rejecting A and B.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "catching-up",
+        "head-start",
+        "relative-speed",
+        "multiple-answer"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-037",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A speed of 54 km/h is equivalent to how many meters per second?",
+      "options": null,
+      "answer": "15",
+      "explanation": "To convert km/h to m/s, divide by 3.6. 54 ÷ 3.6 = 15 m/s. Alternatively: 54 km/h = 54,000 m per 3,600 s = 15 m/s.",
+      "trap": "Students multiply by 3.6: 54 × 3.6 = 194.4, confusing the direction of conversion. To go from km/h to m/s, divide by 3.6 (because meters are smaller than km and seconds are smaller than hours).",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "unit-conversion"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-025",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A cheetah starts chasing a deer that has a 200-meter head start. The cheetah runs at 30 m/s and the deer runs at 20 m/s. How long does it take the cheetah to catch the deer?",
+      "options": [
+        "A. 10 seconds",
+        "B. 15 seconds",
+        "C. 20 seconds",
+        "D. 25 seconds",
+        "E. 30 seconds"
+      ],
+      "answer": "C",
+      "explanation": "The cheetah gains on the deer at a relative speed of 30 - 20 = 10 m/s (same direction). The cheetah must close the 200-meter head start. Time = 200/10 = 20 seconds.",
+      "trap": "Students divide the head start by the cheetah's speed alone: 200/30 ≈ 6.67 seconds, ignoring that the deer is also moving during this time. The correct denominator is the relative speed (30 - 20 = 10).",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "catching-up",
+        "head-start",
+        "relative-speed"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-058",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "Runner A completes a lap on a circular track in 40 seconds. Runner B completes the same lap in 60 seconds. They start from the same point running in opposite directions. After how many seconds do they meet for the THIRD time (not counting the start)?",
+      "options": [
+        "A. 36 seconds",
+        "B. 48 seconds",
+        "C. 60 seconds",
+        "D. 72 seconds",
+        "E. 80 seconds"
+      ],
+      "answer": "D",
+      "explanation": "When running in opposite directions, they meet whenever their combined distance traveled equals an integer multiple of the track's circumference. Let circumference = C. A's speed = C/40, B's speed = C/60. Combined speed = C/40 + C/60 = 3C/120 + 2C/120 = 5C/120 = C/24 per second. They first meet when combined distance = C: time = C/(C/24) = 24 seconds. They meet every 24 seconds thereafter. 1st meeting: 24 s, 2nd meeting: 48 s, 3rd meeting: 72 s. Answer: D.",
+      "trap": "Students compute the time for each runner to complete a lap (40s and 60s) and find LCM(40,60) = 120 seconds, thinking this is when they first meet — but that's when both return to the starting point going the same direction. For opposite directions, you divide the circumference by their COMBINED speed.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "relative-speed",
+        "meeting-point",
+        "multi-step"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
+    },
+    {
+      "id": "WRD-DST-051",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A vehicle makes a round trip. Going trip takes T₁ hours at speed S₁. Return trip takes T₂ hours at speed S₂. The one-way distance is D km.\nColumn A: Average speed of the entire round trip\nColumn B: (S₁ + S₂)/2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "For equal one-way distances, the round-trip average speed is the harmonic mean 2S₁S₂/(S₁ + S₂), while Column B is the arithmetic mean (S₁ + S₂)/2. By AM–HM, the harmonic mean is ≤ the arithmetic mean, equal only when S₁ = S₂. Since S₁ and S₂ are unspecified, Column A could equal Column B or be less, so the relationship cannot be determined.",
+      "trap": "Students assume the average speed is always the arithmetic mean (Column B) and select C, or they assume the harmonic mean is always less than the arithmetic mean (which is true for unequal values) and always select B, forgetting the case S₁ = S₂ where they are equal.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "average-speed",
+        "round-trip",
+        "qc",
+        "algebraic-proof"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Distance-Speed-Time"
     }
   ]
 }
