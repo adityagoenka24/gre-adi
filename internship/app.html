@@ -1,0 +1,835 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShopNow Analyst Internship</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ═══ THE SHOPNOW OFFICE — neo-brutalist office sim ═══
+     paper desk · ink borders · hard shadows · sticky notes · rubber stamps */
+  :root{
+    --bg:#F4EEDE;--paper:#FFFDF6;--panel:#FFFDF6;--panel2:#17181D;--surface:#FFFDF6;
+    --ink:#17181D;--line:#17181D;--line2:#17181D;--soft:#E7DFC9;
+    --accent:#2B50F0;--accent2:#1E3ED0;--accenttext:#2B50F0;
+    --yellow:#FFD23F;--yellow2:#FFE066;--pink:#FF5D8F;--orange:#FF8A3D;
+    --green:#00894F;--greenBg:#BFEFD4;--greenDk:#BFEFD4;--amber:#B26B00;--red:#C41E3A;
+    --txt:#17181D;--mut:#6E6857;--blue:#2B50F0;--purple:#7C3AED;
+    --shadow:4px 4px 0 var(--ink);--shadow-sm:3px 3px 0 var(--ink);--shadow-xs:2px 2px 0 var(--ink);
+    --font-display:'Bricolage Grotesque','Archivo',sans-serif;
+    --font-body:'Archivo',-apple-system,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+    --term-bg:#17181D;--term-txt:#F2EFDF;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{font-family:var(--font-body);background:var(--bg);color:var(--txt);font-size:14px;display:flex;flex-direction:column;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(rgba(23,24,29,.055) 1px,transparent 1px);background-size:22px 22px;}
+  ::selection{background:var(--yellow);color:var(--ink);}
+  *{scrollbar-width:thin;scrollbar-color:var(--ink) transparent;}
+  ::-webkit-scrollbar{width:10px;height:10px;}
+  ::-webkit-scrollbar-thumb{background:var(--ink);border:3px solid var(--bg);border-radius:99px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+
+  /* boot */
+  #boot{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;flex-direction:column;z-index:50;gap:18px;
+    background-image:radial-gradient(rgba(23,24,29,.055) 1px,transparent 1px);background-size:22px 22px;}
+  .spinner{width:38px;height:38px;border:3px solid var(--ink);border-radius:8px;background:var(--yellow);box-shadow:var(--shadow-sm);animation:flipspin 1.1s ease-in-out infinite;}
+  @keyframes flipspin{0%{transform:rotate(0)}50%{transform:rotate(180deg) scale(.82)}100%{transform:rotate(360deg)}}
+  #boot .msg{color:var(--mut);font-size:13px;font-family:var(--font-mono);letter-spacing:.5px;}
+  @media(prefers-reduced-motion:reduce){.spinner{animation:none;}}
+
+  /* header — the ink strip */
+  header{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:var(--ink);color:#F4EEDE;border-bottom:3px solid var(--ink);flex:0 0 auto;z-index:5;gap:10px;}
+  header .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;letter-spacing:.2px;font-family:var(--font-display);}
+  header .brand::before{content:"S";width:27px;height:27px;border-radius:6px;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;box-shadow:2px 2px 0 rgba(244,238,222,.35);transform:rotate(-6deg);}
+  header .brand span{color:var(--yellow);}
+  header .env{font-size:11px;color:#A9A290;font-family:var(--font-mono);}
+  .hbtn{border:2px solid var(--ink);border-radius:6px;padding:7px 13px;font-weight:700;cursor:pointer;font-size:12px;font-family:var(--font-body);background:var(--paper);color:var(--ink);box-shadow:2px 2px 0 rgba(244,238,222,.45);transition:transform .08s,box-shadow .08s;}
+  .hbtn:hover{transform:translate(-1px,-1px);box-shadow:3px 3px 0 rgba(244,238,222,.55);}
+  .hbtn:active{transform:translate(1px,1px);box-shadow:0 0 0 rgba(0,0,0,0);}
+
+  .wrap{display:flex;flex:1 1 auto;min-height:0;}
+
+  /* sidebar — the tab wall */
+  #side{width:274px;flex:0 0 auto;border-right:3px solid var(--ink);overflow-y:auto;background:transparent;padding:12px 0 20px;}
+  .navphase{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--mut);padding:18px 18px 6px;font-family:var(--font-mono);font-weight:600;}
+  .navphase::before{content:"■ ";color:var(--pink);font-size:8px;}
+  .navitem{margin:5px 12px;padding:8px 12px;cursor:pointer;display:flex;gap:9px;align-items:center;border:2px solid transparent;border-radius:6px;color:var(--ink);font-weight:500;transition:transform .08s,background .1s;}
+  .navitem:hover{background:var(--paper);border-color:var(--ink);}
+  .navitem.active{background:var(--yellow);border-color:var(--ink);font-weight:700;box-shadow:var(--shadow-xs);transform:rotate(-.5deg);}
+  .navitem .nx{font-size:10.5px;color:var(--mut);font-family:var(--font-mono);font-weight:600;}
+  .navitem.active .nx{color:var(--ink);}
+
+  #main{flex:1 1 auto;overflow-y:auto;padding:28px 36px 60px;min-width:0;}
+  h1{font-family:var(--font-display);font-size:30px;font-weight:800;margin:0 0 6px;letter-spacing:-.5px;line-height:1.1;position:relative;display:inline-block;z-index:0;}
+  h1::after{content:"";position:absolute;left:-4px;right:-8px;bottom:2px;height:12px;background:var(--yellow);z-index:-1;transform:rotate(-.8deg);}
+  h2.section{font-family:var(--font-mono);font-size:12px;text-transform:uppercase;letter-spacing:2px;color:var(--ink);font-weight:700;margin:34px 0 14px;border-bottom:2px solid var(--ink);padding-bottom:7px;}
+  h2.section::before{content:"■ ";color:var(--accent);font-size:9px;}
+  .goal{color:var(--mut);font-size:13.5px;margin:6px 0 4px;line-height:1.6;}
+
+  /* the stakeholder sticky note */
+  .brief{position:relative;background:var(--yellow2);border:2px solid var(--ink);border-radius:2px;padding:20px 18px 15px;margin:22px 0 16px;font-size:13.5px;line-height:1.6;box-shadow:var(--shadow);transform:rotate(-.5deg);}
+  .brief::before{content:"";position:absolute;top:-12px;left:26px;width:88px;height:22px;background:rgba(244,238,222,.75);border:1px solid rgba(23,24,29,.15);transform:rotate(-2.5deg);box-shadow:1px 1px 2px rgba(23,24,29,.12);}
+  .brief .from{font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1.5px;color:var(--ink);margin-bottom:7px;font-weight:700;}
+  .brief .from::before{content:"FROM: ";color:rgba(23,24,29,.5);}
+
+  /* the clinic — taped memo */
+  .clinic{background:#E4EBFF;border:2px solid var(--ink);border-radius:2px;padding:15px 18px;margin:16px 0;font-size:13.5px;line-height:1.6;box-shadow:var(--shadow);transform:rotate(.35deg);}
+  .clinic .h{font-family:var(--font-display);color:var(--accent);font-weight:800;margin-bottom:6px;font-size:14.5px;}
+
+  details{border:2px solid var(--ink);border-radius:6px;margin:12px 0;overflow:hidden;background:var(--paper);box-shadow:var(--shadow-xs);}
+  summary{cursor:pointer;padding:11px 15px;font-weight:700;font-size:13px;background:var(--paper);list-style:none;}
+  summary:hover{background:var(--soft);}
+  summary::-webkit-details-marker{display:none;}
+  summary::before{content:"+ ";font-family:var(--font-mono);font-weight:700;color:var(--accent);}
+  details[open]>summary{border-bottom:2px dashed var(--ink);}
+  details[open]>summary::before{content:"− ";}
+  .dbody{padding:12px 16px;}
+  .step{margin:12px 0;}
+  .step .instr{font-size:13px;margin-bottom:6px;}
+  .cp{font-size:12px;color:var(--green);margin-top:6px;font-weight:600;}
+
+  /* terminal windows on the desk */
+  pre{position:relative;background:var(--term-bg);border:2px solid var(--ink);border-radius:6px;padding:26px 14px 12px;overflow-x:auto;font-family:var(--font-mono);font-size:12.5px;line-height:1.6;margin:10px 0;white-space:pre;color:var(--term-txt);box-shadow:var(--shadow-sm);}
+  pre::before{content:"";position:absolute;top:8px;left:12px;width:9px;height:9px;border-radius:50%;background:var(--pink);box-shadow:15px 0 0 var(--yellow),30px 0 0 var(--greenBg);}
+
+  /* ticket cards — manila job folders */
+  .card{border:2px solid var(--ink);border-radius:8px;margin:16px 0;overflow:hidden;background:var(--paper);box-shadow:var(--shadow);transition:transform .1s,box-shadow .1s;}
+  .card:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--ink);}
+  .card.open{box-shadow:6px 6px 0 var(--accent);transform:none;}
+  .card>.chead{background:var(--paper);padding:13px 16px;display:flex;gap:10px;align-items:center;cursor:pointer;border-bottom:0 solid var(--ink);}
+  .card.open>.chead{border-bottom:2px dashed var(--ink);background:#FBF6E8;}
+  .dot{width:11px;height:11px;border-radius:2px;background:var(--paper);border:2px solid var(--ink);flex:0 0 auto;}
+  .dot.done{background:var(--green);}
+  .cid{font-family:var(--font-mono);font-size:11px;color:var(--mut);font-weight:600;}
+  .ctitle{font-size:13.5px;font-weight:700;flex:1 1 auto;}
+  .pill{display:inline-block;font-family:var(--font-mono);font-size:9.5px;font-weight:700;border:1.5px solid var(--ink);border-radius:4px;padding:2px 7px;letter-spacing:.5px;box-shadow:1.5px 1.5px 0 var(--ink);}
+  .d2{background:var(--greenBg);color:var(--ink);}.d3{background:var(--yellow);color:var(--ink);}.d4{background:var(--orange);color:var(--ink);}.d5{background:var(--pink);color:var(--ink);}
+  .mode{font-family:var(--font-mono);font-size:9.5px;text-transform:uppercase;letter-spacing:.5px;padding:2px 8px;border:1.5px solid var(--ink);border-radius:4px;font-weight:700;box-shadow:1.5px 1.5px 0 var(--ink);}
+  .m-auto{background:var(--accent);color:#fff;}.m-reveal{background:var(--purple);color:#fff;}.m-free{background:var(--paper);color:var(--ink);}.m-ext{background:var(--yellow);color:var(--ink);}
+  .cbody{padding:16px;display:none;}
+  .card.open .cbody{display:block;}
+  .prompt{font-size:13.5px;line-height:1.65;margin-bottom:10px;}
+  .aclist{list-style:none;padding:0;margin:8px 0;}
+  .aclist li{padding:4px 0 4px 26px;position:relative;font-size:12.5px;}
+  .aclist li::before{content:"☐";position:absolute;left:2px;color:var(--ink);font-size:14px;}
+  .aclist li.met::before{content:"☑";color:var(--green);}
+
+  /* SQL editor — your terminal */
+  textarea.ed{width:100%;height:140px;background:var(--term-bg);color:var(--term-txt);border:2px solid var(--ink);border-radius:6px;padding:12px;font-family:var(--font-mono);font-size:12.5px;line-height:1.6;resize:vertical;box-shadow:var(--shadow-sm);transition:box-shadow .12s;caret-color:var(--yellow);}
+  textarea.ed::placeholder{color:#7B776A;}
+  textarea.ed:focus{outline:none;box-shadow:3px 3px 0 var(--accent);border-color:var(--accent);}
+  textarea.note{height:110px;background:var(--paper);color:var(--ink);caret-color:var(--ink);font-family:var(--font-body);font-size:13px;}
+  textarea.note::placeholder{color:var(--mut);}
+
+  .btns{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;align-items:center;}
+  button{border:2px solid var(--ink);border-radius:6px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:12.5px;font-family:var(--font-body);background:var(--paper);color:var(--ink);box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s,background .1s;}
+  button:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink);}
+  button:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink);}
+  .run{background:var(--paper);color:var(--ink);}
+  .run:hover{background:var(--soft);}
+  .submit{background:var(--accent);color:#fff;}
+  .submit:hover{background:var(--accent2);}
+  .ghost{background:none;color:var(--accent);font-weight:700;padding:9px 6px;border:none;box-shadow:none;text-decoration:underline;text-decoration-style:dashed;text-underline-offset:4px;}
+  .ghost:hover{transform:none;box-shadow:none;color:var(--accent2);}
+  .ghost:active{transform:translateY(1px);}
+  .ghost.purple{color:var(--purple);}
+  .markdone{background:var(--greenBg);color:var(--ink);}
+  button:disabled{opacity:.4;cursor:default;box-shadow:none;transform:none;}
+
+  .result{margin-top:14px;overflow:auto;max-height:300px;border:2px solid var(--ink);border-radius:6px;background:var(--paper);box-shadow:var(--shadow-xs);}
+  .result:empty{display:none;}
+  table{width:100%;border-collapse:collapse;font-size:12px;font-family:var(--font-mono);}
+  th,td{padding:6px 10px;border-bottom:1px solid var(--soft);text-align:left;white-space:nowrap;}
+  th{color:var(--yellow);position:sticky;top:0;background:var(--ink);font-weight:600;font-size:11px;letter-spacing:.5px;}
+
+  /* the rubber stamp */
+  .banner{margin-top:13px;padding:10px 16px;border-radius:4px;font-size:13px;font-weight:800;display:none;width:fit-content;}
+  .banner.ok{display:block;background:transparent;border:3px solid var(--green);color:var(--green);font-family:var(--font-display);text-transform:uppercase;letter-spacing:2px;transform:rotate(-1.5deg);box-shadow:none;mask-image:radial-gradient(rgba(0,0,0,.94) 60%,rgba(0,0,0,.75));}
+  .banner.no{display:block;background:#FFD9DE;border:2px solid var(--red);color:#8F1D1D;box-shadow:var(--shadow-xs);}
+  .err{color:#8F1D1D;font-family:var(--font-mono);font-size:12px;white-space:pre-wrap;background:#FFD9DE;padding:10px 12px;display:block;}
+  .hint{background:#E4EBFF;border:2px dashed var(--accent);border-radius:6px;padding:9px 12px;margin:8px 0;font-size:12.5px;color:var(--ink);}
+  .sparknote{background:#FFF3C4;border:2px dashed var(--amber);border-radius:6px;padding:9px 12px;margin:8px 0;font-size:12.5px;color:var(--ink);}
+  .note-txt{font-size:12.5px;color:var(--mut);margin:6px 0;}
+  .revealbox{margin-top:6px;}
+  .scorebar{font-family:var(--font-mono);font-size:12px;color:var(--ink);margin:8px 0 18px;font-weight:600;background:var(--paper);border:2px solid var(--ink);border-radius:6px;display:inline-block;padding:6px 12px;box-shadow:var(--shadow-xs);}
+  .diagq{border:2px solid var(--ink);border-radius:8px;margin:14px 0;padding:14px 16px;background:var(--paper);box-shadow:var(--shadow);}
+  .diagq .qt{font-size:13px;font-weight:700;}
+  .diagq .tests{font-family:var(--font-mono);font-size:11px;color:var(--mut);margin:3px 0 8px;}
+
+  /* overview */
+  .ovhead{display:flex;gap:26px;align-items:center;flex-wrap:wrap;margin:16px 0 8px;}
+  .ring{--pct:0;width:116px;height:116px;border-radius:50%;flex:0 0 auto;background:conic-gradient(var(--accent) calc(var(--pct)*1%), var(--soft) 0);display:flex;align-items:center;justify-content:center;border:3px solid var(--ink);box-shadow:var(--shadow);}
+  .ring .inner{width:84px;height:84px;border-radius:50%;background:var(--paper);border:2px solid var(--ink);display:flex;flex-direction:column;align-items:center;justify-content:center;}
+  .ring .pctn{font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--ink);}
+  .ring .pctl{font-family:var(--font-mono);font-size:8.5px;color:var(--mut);text-transform:uppercase;letter-spacing:1.5px;}
+  .stats{display:flex;gap:16px;flex-wrap:wrap;}
+  .stat{background:var(--paper);border:2px solid var(--ink);border-radius:8px;padding:13px 18px;min-width:118px;box-shadow:var(--shadow);}
+  .stat:nth-child(odd){transform:rotate(-1deg);}
+  .stat:nth-child(even){transform:rotate(1deg);background:var(--yellow);}
+  .stat .n{font-family:var(--font-display);font-size:24px;font-weight:800;color:var(--ink);letter-spacing:-.5px;}
+  .stat .l{font-family:var(--font-mono);font-size:9.5px;color:var(--mut);text-transform:uppercase;letter-spacing:1px;margin-top:3px;}
+  .stat:nth-child(even) .l{color:var(--ink);}
+  .spbars{margin:12px 0;}
+  .spbar{display:flex;align-items:center;gap:12px;margin:10px 0;font-size:12.5px;cursor:pointer;}
+  .spbar:hover .spname{color:var(--accent);text-decoration:underline;text-decoration-style:wavy;text-underline-offset:3px;}
+  .spname{width:220px;flex:0 0 auto;color:var(--ink);font-weight:600;transition:color .12s;}
+  .track{flex:1 1 auto;height:14px;background:var(--paper);border:2px solid var(--ink);border-radius:4px;overflow:hidden;}
+  .fill{height:100%;background:repeating-linear-gradient(-45deg,var(--accent) 0 8px,#5B78F5 8px 16px);}
+  .spcount{width:52px;text-align:right;color:var(--mut);flex:0 0 auto;font-family:var(--font-mono);font-size:11px;font-weight:600;}
+
+  /* the board — index cards on cork */
+  .board{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin:12px 0;}
+  @media(max-width:900px){.board{grid-template-columns:1fr 1fr;}}
+  .col{background:transparent;border:2px dashed #B5AC93;border-radius:8px;padding:10px;min-height:80px;}
+  .col h4{font-family:var(--font-mono);font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--mut);margin:4px 4px 10px;display:flex;justify-content:space-between;font-weight:700;}
+  .chip{background:var(--paper);border:2px solid var(--ink);border-left:6px solid var(--ink);border-radius:4px;padding:8px 10px;margin:8px 0;cursor:pointer;font-size:12px;box-shadow:var(--shadow-xs);transition:transform .08s,box-shadow .08s;}
+  .chip:hover{transform:translate(-1px,-1px) rotate(-.6deg);box-shadow:3px 3px 0 var(--ink);}
+  .chip.done{border-left-color:var(--green);}.chip.wip{border-left-color:var(--yellow);}.chip.review{border-left-color:var(--purple);}
+  .chip.locked{opacity:.45;border-style:dashed;cursor:default;box-shadow:none;}
+  .chip.locked:hover{transform:none;}
+  .chip.paywalled{opacity:.65;border-left-color:var(--accent);border-style:dashed;}
+  .chip .cid2{font-family:var(--font-mono);font-size:10px;color:var(--mut);font-weight:600;}
+  .chip .lk{float:right;}
+  .locked-note{background:repeating-linear-gradient(45deg,#EFE9D6 0 10px,#F7F2E2 10px 20px);border:2px dashed var(--ink);border-radius:6px;padding:10px 14px;font-size:12.5px;color:var(--ink);}
+
+  /* ═══ access gate — members-only blur + sign-in ═══ */
+  .wrap{position:relative;}
+  .wrap.gated #side,.wrap.gated #main{filter:blur(7px) saturate(.65);pointer-events:none;user-select:none;}
+  #gateScreen{position:absolute;inset:0;display:none;align-items:center;justify-content:center;z-index:40;background:rgba(23,24,29,.4);}
+  .wrap.gated #gateScreen{display:flex;}
+  .gatecard{background:var(--paper);border:3px solid var(--ink);border-radius:10px;padding:26px 28px;width:360px;box-shadow:8px 8px 0 var(--ink);transform:rotate(-.4deg);}
+  .gatecard .lock{font-size:26px;margin-bottom:6px;}
+  .gatecard h3{margin:0 0 4px;font-family:var(--font-display);font-size:19px;font-weight:800;}
+  .gatecard .sub{color:var(--mut);font-size:12.5px;margin-bottom:14px;line-height:1.5;}
+  .glabel{display:block;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--mut);margin:12px 0 4px;font-family:var(--font-mono);font-weight:600;}
+  .ginput{width:100%;background:#fffdf6;color:var(--txt);border:2px solid var(--ink);border-radius:6px;padding:9px 11px;font-size:13px;font-family:inherit;box-shadow:2px 2px 0 var(--ink);}
+</style>
+</head>
+<body>
+<div id="boot"><div class="spinner"></div><div class="msg">Booting your workspace…</div></div>
+<header>
+  <div class="brand">ShopNow <span>Analyst Internship</span></div>
+  <div style="display:flex;align-items:center;gap:10px">
+    <button class="hbtn" id="cohortBtn" style="display:none">Sign in to cohort</button>
+    <button class="hbtn" id="saveProg">⬇ Save progress</button>
+    <button class="hbtn" id="loadProg">⬆ Load progress</button>
+    <input type="file" id="loadFile" accept="application/json" style="display:none">
+    <div class="env" id="env" style="margin-left:6px">DuckDB in-browser · loading…</div>
+  </div>
+</header>
+<div class="wrap" id="wrapEl">
+  <aside id="side"></aside>
+  <main id="main"></main>
+  <div id="gateScreen">
+    <div class="gatecard">
+      <div class="lock">🔒</div>
+      <h3>Members-only workspace</h3>
+      <div class="sub">Sign in with the join code from your welcome email to unlock your tickets and progress. Not enrolled? <a href="./index.html" style="color:var(--accent);font-weight:700">See pricing</a>.</div>
+      <label class="glabel">Join code</label><input id="gCode" class="ginput" placeholder="e.g. SHOPNOW-A">
+      <label class="glabel">Your name</label><input id="gName" class="ginput">
+      <label class="glabel">Email</label><input id="gEmail" class="ginput" type="email">
+      <div id="gMsg" class="note-txt" style="color:#8F1D1D;min-height:14px"></div>
+      <button class="submit" id="gGo" style="width:100%;margin-top:6px">Sign in →</button>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+import * as duckdb from 'https://cdn.jsdelivr.net/npm/@duckdb/duckdb-wasm@1.29.0/+esm';
+import { grade } from './canonical.js';
+
+const TABLES=['products','events','customers','orders','payments','raw_web_events','marketing_spend'];
+const LS=k=>`shopnow.${k}`;
+const esc=s=>String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+let conn, INDEX, PORTFOLIO, CFG={backendUrl:''}; const cache={};
+let MANAGED_MODE=false, ACTIVE_ASSIGNMENT=null, ASSIGNMENT_HISTORY=[];
+/* AUTHED=true means "fully unlocked" — either no backend configured (local-only mode) or a
+   valid signed-in session. When false, only modules marked "free" in content/index.json are
+   openable; everything else routes through the sign-in gate instead of a hard wall on load. */
+let AUTHED=true;
+function moduleFree(m){ return !!(m&&m.free); }
+function moduleLocked(m){ return !AUTHED && !moduleFree(m); }
+
+/* ---------- boot ---------- */
+async function boot(){
+  const b=await duckdb.selectBundle(duckdb.getJsDelivrBundles());
+  const wurl=URL.createObjectURL(new Blob([`importScripts("${b.mainWorker}");`],{type:'text/javascript'}));
+  const db=new duckdb.AsyncDuckDB(new duckdb.ConsoleLogger(),new Worker(wurl));
+  await db.instantiate(b.mainModule,b.pthreadWorker); URL.revokeObjectURL(wurl);
+  conn=await db.connect();
+  for(const t of TABLES){
+    const res=await fetch(`./data/${t}.parquet`);
+    if(!res.ok) throw new Error(`fetch ${t}.parquet -> ${res.status}`);
+    await db.registerFileBuffer(`${t}.parquet`,new Uint8Array(await res.arrayBuffer()));
+    await conn.query(`CREATE VIEW ${t} AS SELECT * FROM read_parquet('${t}.parquet')`);
+  }
+  // Pre-build customers_clean so any sprint can use it (DuckDB-safe; no INITCAP)
+  await conn.query(`CREATE OR REPLACE VIEW customers_clean AS
+    WITH ranked AS (SELECT *, ROW_NUMBER() OVER (PARTITION BY CustomerID ORDER BY JoinDate DESC) rn FROM customers)
+    SELECT CustomerID, CustomerName, Email, Phone, TRIM(LOWER(City)) AS City, State,
+      COALESCE(Region,'Unknown') AS Region, SubRegion, AgeGroup, Gender, Segment, JoinDate, PrimeSubscriber
+    FROM ranked WHERE rn=1`);
+  // Pre-build the Phase 2 gold layer (star schema) so S7 tickets work immediately
+  await conn.query(`CREATE OR REPLACE VIEW dim_customer AS
+    SELECT CustomerID AS CustomerKey, CustomerName, Segment, PrimeSubscriber, AgeGroup, Gender, City, State, Region, SubRegion FROM customers_clean`);
+  await conn.query(`CREATE OR REPLACE VIEW dim_product AS
+    SELECT ProductID AS ProductKey, ProductName, Category, SubCategory, Brand, Supplier, Rating FROM products
+    UNION ALL SELECT 'UNKNOWN','Deprecated/Unknown SKU','Unknown','Unknown','Unknown','Unknown',NULL`);
+  await conn.query(`CREATE OR REPLACE VIEW dim_date AS
+    SELECT d AS DateKey, year(d) AS "Year", quarter(d) AS "Quarter", month(d) AS MonthNo, strftime(d,'%b') AS MonthName,
+      strftime(d,'%Y-%m') AS YearMonth, concat(year(d),'-Q',quarter(d)) AS YearQuarter, day(d) AS DayOfMonth,
+      strftime(d,'%a') AS DayName, CASE WHEN isodow(d) IN (6,7) THEN true ELSE false END AS IsWeekend
+    FROM (SELECT unnest(generate_series(DATE '2022-01-01', DATE '2024-12-31', INTERVAL 1 DAY)) AS d)`);
+  await conn.query(`CREATE OR REPLACE VIEW fact_sales AS
+    SELECT o.OrderID, o.CustomerID AS CustomerKey, COALESCE(p.ProductID,'UNKNOWN') AS ProductKey,
+      o.OrderDate AS DateKey, o.Quantity, o.Revenue,
+      CASE WHEN o.ReturnFlag='Yes' THEN 0 ELSE o.Revenue END AS NetRevenue,
+      o.CostOfGoods, o.GrossProfit, o.Discount_Pct, o.ReturnFlag
+    FROM orders o LEFT JOIN products p ON o.ProductID = p.ProductID`);
+  INDEX=await (await fetch('./content/index.json')).json();
+  // prefetch all modules (small JSON) for the overview + gating
+  for(const m of INDEX.modules){ cache[m.id]=await (await fetch('./'+m.file)).json(); }
+  PORTFOLIO=await (await fetch('./content/portfolio.json')).json();
+  try{ CFG=await (await fetch('./config.json')).json(); }catch(_){ CFG={backendUrl:''}; }
+  buildRegistry();
+  document.getElementById('env').textContent='DuckDB in-browser · 8 views (incl. customers_clean) · ready';
+  document.getElementById('boot').style.display='none';
+  AUTHED=await cohortInit();
+  renderNav();
+  if(MANAGED_MODE) openManaged(); else openOverview();
+  // No hard gate on load — Phase 0 + Sprint 1 are a free preview (see moduleLocked()).
+  // openModule() shows the gate itself the moment a guest clicks into paid content.
+}
+
+/* flat ticket registry across sprints (excludes brushup drills) */
+let REGISTRY=[];
+function buildRegistry(){
+  REGISTRY=[];
+  INDEX.modules.forEach(m=>{
+    const d=cache[m.id]; if(!d||d.kind==='brushup')return;
+    (d.tickets||[]).forEach(t=>REGISTRY.push({...t, sprintId:m.id, sprintName:d.name}));
+  });
+}
+function ticketById(id){return REGISTRY.find(t=>t.id===id);}
+function isLocked(t){ if(!t.requires)return false; return t.requires.some(r=>st(r)!=='done'); }
+
+/* ---------- state ---------- */
+const st=id=>localStorage.getItem(LS('status.'+id))||'todo';
+const setSt=(id,s)=>{localStorage.setItem(LS('status.'+id),s);renderNav();cohortRecord(id,s);};
+const draft=id=>localStorage.getItem(LS('draft.'+id))||'';
+const setDraft=(id,v)=>localStorage.setItem(LS('draft.'+id),v);
+const note=id=>localStorage.getItem(LS('note.'+id))||'';
+const setNote=(id,v)=>localStorage.setItem(LS('note.'+id),v);
+const attempted=id=>!!localStorage.getItem(LS('attempt.'+id));
+const setAttempt=id=>{localStorage.setItem(LS('attempt.'+id),'1');cohortRecord(id,'review');};
+function ticketState(id){ if(st(id)==='done')return 'done'; if(attempted(id))return 'review'; if((draft(id)+note(id)).trim())return 'wip'; return 'todo'; }
+
+/* ---------- nav ---------- */
+function renderNav(){
+  const s=document.getElementById('side'); s.innerHTML='';
+  if(MANAGED_MODE){
+    const asn=document.createElement('div');asn.className='navitem'+(currentView==='managed'?' active':'');
+    asn.innerHTML=`<span>▪ Your Assignment</span>`; asn.onclick=()=>openManaged(); s.appendChild(asn);
+    const pf2=document.createElement('div');pf2.className='navitem'+(currentView==='portfolio'?' active':'');
+    pf2.innerHTML=`<span>▪ Portfolio</span>`; pf2.onclick=()=>openPortfolio(); s.appendChild(pf2);
+    return;
+  }
+  const ov=document.createElement('div');ov.className='navitem'+(currentView==='overview'?' active':'');
+  ov.innerHTML=`<span>▪ Overview</span>`; ov.onclick=()=>openOverview(); s.appendChild(ov);
+  const pf=document.createElement('div');pf.className='navitem'+(currentView==='portfolio'?' active':'');
+  pf.innerHTML=`<span>▪ Portfolio</span>`; pf.onclick=()=>openPortfolio(); s.appendChild(pf);
+  let phase=null;
+  INDEX.modules.forEach(m=>{
+    if(m.phase!==phase){phase=m.phase;const p=document.createElement('div');p.className='navphase';p.textContent=phase;s.appendChild(p);}
+    const dn=(cache[m.id]&&cache[m.id].kind!=='brushup')?cache[m.id].tickets.filter(t=>st(t.id)==='done').length:null;
+    const tot=(cache[m.id]&&cache[m.id].kind!=='brushup')?cache[m.id].tickets.length:null;
+    const d=document.createElement('div');d.className='navitem'+(currentView==='module'&&current&&current.id===m.id?' active':'');d.dataset.id=m.id;
+    const pw=moduleLocked(m), freePreview=!AUTHED&&moduleFree(m);
+    let badge=tot!==null?`${dn}/${tot}`:'';
+    if(pw) badge='sign in'; else if(freePreview) badge='free';
+    d.innerHTML=`<span>${pw?'🔒 ':''}${esc(m.name)}</span>`+(badge?`<span class="nx" style="margin-left:auto">${badge}</span>`:'');
+    d.onclick=()=>openModule(m); s.appendChild(d);
+  });
+}
+
+/* ---------- module loading ---------- */
+let current, currentView='overview';
+async function openModule(m, openTicketId){
+  if(moduleLocked(m)){ showGate(); return; }
+  current=m; currentView='module'; renderNav();
+  if(!cache[m.id]) cache[m.id]=await (await fetch('./'+m.file)).json();
+  const data=cache[m.id];
+  if(m.kind==='brushup') renderBrushup(data); else renderSprint(data);
+  document.getElementById('main').scrollTop=0;
+  if(openTicketId){
+    const cards=[...document.querySelectorAll('#tickets .card')];
+    const idx=(data.tickets||[]).findIndex(t=>t.id===openTicketId);
+    if(idx>=0&&cards[idx]){ cards[idx].querySelector('.chead').click(); cards[idx].scrollIntoView({behavior:'smooth',block:'center'}); }
+  }
+}
+
+/* ---------- overview ---------- */
+function openOverview(){
+  currentView='overview'; current=null; renderNav(); renderOverview();
+  document.getElementById('main').scrollTop=0;
+}
+function renderOverview(){
+  const total=REGISTRY.length;
+  const done=REGISTRY.filter(t=>st(t.id)==='done').length;
+  const pct=total?Math.round(done*100/total):0;
+  const sprints=INDEX.modules.filter(m=>cache[m.id]&&cache[m.id].kind!=='brushup');
+  // diagnostic
+  const p0=INDEX.modules.find(m=>cache[m.id]&&cache[m.id].kind==='brushup');
+  let diagPass=0,diagTot=0;
+  if(p0){const qs=cache[p0.id].diagnostic.questions.filter(q=>q.mode==='auto');diagTot=qs.length;diagPass=qs.filter(q=>st(q.id)==='done').length;}
+  const cols=[['todo','Backlog'],['wip','In Progress'],['review','In Review'],['done','Done']];
+  const byState={todo:[],wip:[],review:[],done:[]};
+  REGISTRY.forEach(t=>{const gated=isLocked(t)||moduleLocked(INDEX.modules.find(x=>x.id===t.sprintId));byState[gated&&st(t.id)!=='done'?'todo':ticketState(t.id)].push(t);});
+  let h=`<h1>Your Internship</h1><div class="goal">Data Analyst Intern · ShopNow India Analytics. Progress is saved in this browser.</div>`;
+  if(!AUTHED) h+=`<div class="sparknote">🎟 Free preview — ${INDEX.modules.filter(moduleFree).map(m=>esc(m.name)).join(' + ')} are open to try, no sign-in needed. Sign in with your join code any time to unlock the rest and save your progress to your account.</div>`;
+  h+=`<div class="ovhead"><div class="ring" style="--pct:${pct}"><div class="inner"><span class="pctn">${pct}%</span><span class="pctl">complete</span></div></div>
+    <div class="stats">
+      <div class="stat"><div class="n">${done}/${total}</div><div class="l">Tickets passed</div></div>
+      <div class="stat"><div class="n">${diagPass}/${diagTot}</div><div class="l">Diagnostic (auto)</div></div>
+      <div class="stat"><div class="n">${sprints.length}</div><div class="l">Sprints</div></div>
+    </div></div>`;
+  h+=`<h2 class="section">Sprint progress</h2><div class="spbars">`;
+  sprints.forEach(m=>{const d=cache[m.id];const dn=d.tickets.filter(t=>st(t.id)==='done').length;const tt=d.tickets.length;const p=tt?Math.round(dn*100/tt):0;
+    h+=`<div class="spbar" data-sp="${m.id}"><span class="spname">${esc(m.name)}</span><span class="track"><span class="fill" style="width:${p}%"></span></span><span class="spcount">${dn}/${tt}</span></div>`;});
+  h+=`</div>`;
+  h+=`<h2 class="section">Sprint board</h2><div class="board">`;
+  cols.forEach(([k,label])=>{
+    h+=`<div class="col"><h4>${label}<span>${byState[k].length}</span></h4>`;
+    byState[k].forEach(t=>{
+      const lk=isLocked(t)&&st(t.id)!=='done';
+      const pw=!lk&&moduleLocked(INDEX.modules.find(x=>x.id===t.sprintId))&&st(t.id)!=='done';
+      const cls=lk?'locked':(pw?'paywalled':ticketState(t.id));
+      h+=`<div class="chip ${cls}" data-tid="${t.id}" data-sp="${t.sprintId}">
+        <span class="cid2">${esc(t.id)}</span> ${lk||pw?'<span class="lk">🔒</span>':''}<br>${esc(t.title)}</div>`;
+    });
+    h+=`</div>`;
+  });
+  h+=`</div>`;
+  const m=document.getElementById('main'); m.innerHTML=h;
+  m.querySelectorAll('.spbar').forEach(b=>b.onclick=()=>openModule(INDEX.modules.find(x=>x.id===b.dataset.sp)));
+  m.querySelectorAll('.chip').forEach(c=>{ if(c.classList.contains('locked'))return; // prerequisite-locked: truly inert
+    c.onclick=()=>openModule(INDEX.modules.find(x=>x.id===c.dataset.sp), c.dataset.tid);}); // paywalled chips stay clickable — opens the sign-in gate
+}
+
+/* ---------- managed mode (single assigned ticket) ---------- */
+function openManaged(){
+  currentView='managed'; current=null; renderNav(); renderManaged();
+  document.getElementById('main').scrollTop=0;
+}
+function renderManaged(){
+  const m=document.getElementById('main');
+  let h=`<h1>Your Assignment</h1><div class="goal">Data Analyst Intern · ShopNow India Analytics. Your manager assigns tasks here, one at a time.</div>`;
+  if(!ACTIVE_ASSIGNMENT){
+    h+=`<div class="brief"><div class="from">Status</div>No task assigned yet — check back soon.</div>`;
+  }else{
+    const t=ticketById(ACTIVE_ASSIGNMENT.ticketId);
+    if(!t){
+      h+=`<div class="brief"><div class="from">Status</div>Your assigned ticket (${esc(ACTIVE_ASSIGNMENT.ticketId)}) couldn't be found — let your manager know.</div>`;
+    }else{
+      const due=ACTIVE_ASSIGNMENT.dueAt?new Date(ACTIVE_ASSIGNMENT.dueAt):null;
+      const overdue=due && due.getTime()<Date.now() && st(t.id)!=='done';
+      const dueTxt=due?(' · Due '+due.toLocaleDateString(undefined,{month:'short',day:'numeric',year:'numeric'})):'';
+      h+=`<div class="brief"><div class="from">${esc(t.sprintName)}${dueTxt}${overdue?' · <span style="color:var(--red)">OVERDUE</span>':''}</div>${ACTIVE_ASSIGNMENT.note?esc(ACTIVE_ASSIGNMENT.note):'Assigned to you.'}</div>`;
+      h+=`<div id="assignedTicket"></div>`;
+    }
+  }
+  if(ASSIGNMENT_HISTORY&&ASSIGNMENT_HISTORY.length){
+    h+=`<h2 class="section">Completed assignments</h2>`;
+    ASSIGNMENT_HISTORY.forEach(a=>{
+      const t=ticketById(a.ticketId);
+      h+=`<div class="chip done" style="cursor:default"><span class="cid2">${esc(a.ticketId)}</span> ${esc(t?t.title:'')}<br><span style="color:var(--mut);font-size:11px">${a.completedAt?new Date(a.completedAt).toLocaleDateString():''}</span></div>`;
+    });
+  }
+  m.innerHTML=h;
+  if(ACTIVE_ASSIGNMENT){
+    const t=ticketById(ACTIVE_ASSIGNMENT.ticketId);
+    if(t){
+      const holder=document.getElementById('assignedTicket');
+      const card=ticketCard(t,true);
+      card.classList.add('open');
+      holder.appendChild(card);
+      const body=card.querySelector('.cbody');
+      buildTicketBody(t,body,true); body.dataset.built='1'; body.dataset.lockedBuilt='0';
+    }
+  }
+}
+
+/* ---------- portfolio ---------- */
+const pname=()=>localStorage.getItem(LS('profile.name'))||'';
+function openPortfolio(){currentView='portfolio';current=null;renderNav();renderPortfolio();document.getElementById('main').scrollTop=0;}
+function earnedBullets(){return PORTFOLIO.resumeBullets.map(b=>({...b,earned:b.requires.every(r=>st(r)==='done')}));}
+function doneDeliverables(){return REGISTRY.filter(t=>st(t.id)==='done').map(t=>({...t,work:(draft(t.id)||note(t.id)||'').trim()}));}
+function renderPortfolio(){
+  const total=REGISTRY.length, done=REGISTRY.filter(t=>st(t.id)==='done').length;
+  const bullets=earnedBullets(), earned=bullets.filter(b=>b.earned), dels=doneDeliverables();
+  let h=`<h1>Your Portfolio</h1><div class="goal">${esc(PORTFOLIO.intro)}</div>`;
+  h+=`<div class="ovhead"><div class="stats">
+    <div class="stat"><div class="n">${done}/${total}</div><div class="l">Deliverables</div></div>
+    <div class="stat"><div class="n">${earned.length}/${bullets.length}</div><div class="l">Résumé bullets earned</div></div></div></div>`;
+  h+=`<div class="note-txt" style="margin:8px 0">Your name (for the export): <input id="pfname" value="${esc(pname())}" placeholder="Your name" style="background:#fffdf6;color:var(--txt);border:2px solid var(--ink);border-radius:6px;padding:6px 10px;font-size:13px;font-family:inherit;box-shadow:2px 2px 0 var(--ink)"></div>`;
+  h+=`<div class="btns"><button class="submit" id="dlPortfolio">⬇ Download portfolio (HTML)</button><button class="run" id="exportProg">Export progress</button><button class="run" id="importProg">Import progress</button><input type="file" id="impFile" accept="application/json" style="display:none"></div>`;
+  h+=`<h2 class="section">${esc(PORTFOLIO.role)}</h2>`;
+  h+=`<ul class="aclist">`+bullets.map(b=>`<li class="${b.earned?'met':''}" style="opacity:${b.earned?1:0.45}">${esc(b.text)}</li>`).join('')+`</ul>`;
+  h+=`<div class="note-txt">${esc(PORTFOLIO.note)}</div>`;
+  h+=`<h2 class="section">Completed deliverables (${dels.length})</h2>`;
+  if(!dels.length) h+=`<div class="note-txt">Nothing yet — pass a ticket and it appears here with your query.</div>`;
+  dels.forEach(t=>{h+=`<div class="card open"><div class="chead"><span class="dot done"></span><span class="cid">${esc(t.id)}</span><span class="ctitle">${esc(t.title)}</span><span class="mode m-auto">${esc(t.sprintName)}</span></div><div class="cbody" style="display:block">${t.work?`<pre>${esc(t.work)}</pre>`:'<div class="note-txt">(marked done)</div>'}</div></div>`;});
+  const m=document.getElementById('main');m.innerHTML=h;
+  document.getElementById('pfname').addEventListener('input',e=>localStorage.setItem(LS('profile.name'),e.target.value));
+  document.getElementById('dlPortfolio').onclick=downloadPortfolio;
+  document.getElementById('exportProg').onclick=exportProgress;
+  const impFile=document.getElementById('impFile');
+  document.getElementById('importProg').onclick=()=>impFile.click();
+  impFile.onchange=importProgress;
+}
+function downloadPortfolio(){
+  const name=pname()||'ShopNow Analyst Intern';
+  const bullets=earnedBullets().filter(b=>b.earned), dels=doneDeliverables();
+  const total=REGISTRY.length, done=dels.length;
+  const style=`body{font-family:Georgia,serif;max-width:820px;margin:40px auto;padding:0 20px;color:#1a1a1a;line-height:1.6}h1{margin-bottom:2px}.sub{color:#555;font-family:Arial,sans-serif;font-size:14px}h2{border-bottom:2px solid #1a1a1a;padding-bottom:5px;margin-top:32px;font-size:19px}ul{padding-left:20px}li{margin:6px 0}pre{background:#f4f4f0;border:1px solid #ddd;border-radius:5px;padding:10px;overflow-x:auto;font-size:12.5px;font-family:Consolas,monospace}.d{margin:14px 0}.d .m{font-family:Arial,sans-serif;font-size:12px;color:#666}`;
+  let b=`<!doctype html><html><head><meta charset="utf-8"><title>${esc(name)} — ShopNow Analyst Portfolio</title><style>${style}</style></head><body>`;
+  b+=`<h1>${esc(name)}</h1><div class="sub">${esc(PORTFOLIO.role)} · ${done}/${total} deliverables completed</div>`;
+  b+=`<h2>Résumé bullets (earned)</h2><ul>`+(bullets.length?bullets.map(x=>`<li>${esc(x.text)}</li>`).join(''):'<li>None yet.</li>')+`</ul>`;
+  b+=`<h2>Deliverables & the SQL behind them</h2>`;
+  dels.forEach(t=>{b+=`<div class="d"><b>${esc(t.id)} — ${esc(t.title)}</b><div class="m">${esc(t.sprintName)}</div>`+(t.work?`<pre>${esc(t.work)}</pre>`:'')+`</div>`;});
+  b+=`<hr><div class="sub">Generated from the ShopNow Analyst Internship (simulated).</div></body></html>`;
+  const blob=new Blob([b],{type:'text/html'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`${name.replace(/[^a-z0-9]+/gi,'_')}_portfolio.html`;a.click();URL.revokeObjectURL(a.href);
+}
+function rerenderCurrent(){ if(currentView==='overview')renderOverview(); else if(currentView==='portfolio')renderPortfolio(); else if(currentView==='managed')renderManaged(); else if(current)openModule(current); else (MANAGED_MODE?openManaged():renderOverview()); }
+function gatherProgress(){const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('shopnow.')&&!k.startsWith('shopnow.cohort.'))data[k]=localStorage.getItem(k);}return data;}
+function applyProgress(obj){let n=0;Object.entries(obj||{}).forEach(([k,v])=>{if(typeof k==='string'&&k.startsWith('shopnow.')&&!k.startsWith('shopnow.cohort.')){localStorage.setItem(k,v);n++;}});return n;}
+function exportProgress(){
+  const data=gatherProgress(); data['shopnow.savedAt']=new Date().toISOString();
+  const nm=(pname()||'progress').replace(/[^a-z0-9]+/gi,'_');
+  const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`shopnow_${nm}.json`;a.click();URL.revokeObjectURL(a.href);
+}
+function importProgress(e){
+  const f=e.target.files[0];if(!f)return;const r=new FileReader();
+  r.onload=()=>{try{
+    const n=applyProgress(JSON.parse(r.result));
+    if(!n){alert('No ShopNow progress found in that file.');return;}
+    buildRegistry(); renderNav(); rerenderCurrent(); cohortSync();
+    const nm=pname()||'intern'; const done=REGISTRY.filter(t=>st(t.id)==='done').length;
+    alert(`Welcome back, ${nm}. Restored ${done}/${REGISTRY.length} tickets.`);
+  }catch(err){alert('That file could not be read as progress JSON.');}};
+  r.readAsText(f); e.target.value='';
+}
+
+/* ---------- cohort backend (optional; enabled by config.json backendUrl) ---------- */
+const apiBase=()=>CFG.backendUrl.replace(/\/+$/,'');
+const cohortCreds=()=>({userId:localStorage.getItem('shopnow.cohort.userId'),token:localStorage.getItem('shopnow.cohort.token'),name:localStorage.getItem('shopnow.cohort.name')});
+function cohortOn(){return !!(CFG&&CFG.backendUrl&&localStorage.getItem('shopnow.cohort.token'));}
+/* Returns true if the app should be unlocked (either no backend configured — fully local
+   mode — or the visitor has a valid session). Returns false if a backend is configured and
+   the visitor isn't signed in yet, so boot() knows to show the access gate. */
+async function cohortInit(){
+  if(!CFG||!CFG.backendUrl){ document.getElementById('cohortBtn').style.display='none'; return true; }
+  if(cohortOn()) await refreshMe(true);
+  updateCohortBtn();
+  return cohortOn();
+}
+/* Pulls mode + active assignment from the server. Called on boot (initial=true, caller
+   handles the first render) and again after sign-in / after a managed student's assigned
+   ticket is marked done (initial=false, re-renders immediately). */
+async function refreshMe(initial){
+  const c=cohortCreds();
+  try{
+    const r=await fetch(apiBase()+'/api/me',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:c.userId,token:c.token})});
+    if(!r.ok){
+      if(r.status===401){
+        ['userId','token','name'].forEach(k=>localStorage.removeItem('shopnow.cohort.'+k));
+        updateCohortBtn(); MANAGED_MODE=false; ACTIVE_ASSIGNMENT=null; ASSIGNMENT_HISTORY=[]; AUTHED=false;
+        if(!initial && CFG.backendUrl){ renderNav(); rerenderCurrent(); showGate(); } // session revoked mid-visit (e.g. mentor revoked access) — re-lock
+      }
+      return;
+    }
+    const d=await r.json();
+    MANAGED_MODE = d.mode==='managed';
+    ACTIVE_ASSIGNMENT = d.assignment||null;
+    ASSIGNMENT_HISTORY = d.history||[];
+    AUTHED = true;
+    if(d.progress && Object.keys(d.progress).length){ applyProgress(d.progress); buildRegistry(); }
+    if(!initial){ renderNav(); rerenderCurrent(); }
+  }catch(_){}
+}
+function updateCohortBtn(){
+  const btn=document.getElementById('cohortBtn');
+  if(cohortOn()){
+    btn.style.display='inline-block';
+    btn.textContent='● '+(cohortCreds().name||'Signed in');
+    btn.style.color='var(--green)';
+    btn.onclick=cohortMenu;
+  }else{
+    btn.style.display='none'; // pre-auth, the gate screen is the only sign-in surface
+  }
+}
+let _syncT;
+function cohortSync(){
+  if(!cohortOn())return;
+  clearTimeout(_syncT);
+  _syncT=setTimeout(()=>{const c=cohortCreds();
+    fetch(apiBase()+'/api/sync',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:c.userId,token:c.token,progress:gatherProgress()})}).catch(()=>{});
+  },1200);
+}
+function cohortRecord(id,status){
+  if(!cohortOn())return;
+  const c=cohortCreds(); const work=(draft(id)||note(id)||'').slice(0,20000);
+  fetch(apiBase()+'/api/submit',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userId:c.userId,token:c.token,ticketId:id,status,work})})
+    .then(()=>{ if(MANAGED_MODE && ACTIVE_ASSIGNMENT && ACTIVE_ASSIGNMENT.ticketId===id && status==='done') refreshMe(); })
+    .catch(()=>{});
+  cohortSync();
+}
+function cohortMenu(){
+  const c=cohortCreds();
+  if(confirm('Signed in as '+(c.name||'')+'. Sign out on this device? Your progress stays saved locally and on the server.')){
+    ['userId','token','name'].forEach(k=>localStorage.removeItem('shopnow.cohort.'+k)); updateCohortBtn();
+    MANAGED_MODE=false; ACTIVE_ASSIGNMENT=null; ASSIGNMENT_HISTORY=[]; AUTHED=false;
+    renderNav(); openOverview(); // back to the free preview — Phase 0 + Sprint 1 stay open, the rest re-locks
+  }
+}
+
+/* ---------- access gate — blurs the workspace and forces sign-in for unregistered visitors ---------- */
+function showGate(){ document.getElementById('wrapEl').classList.add('gated'); document.getElementById('gCode').focus(); }
+function hideGate(){ document.getElementById('wrapEl').classList.remove('gated'); }
+document.getElementById('gGo').onclick=async()=>{
+  const joinCode=document.getElementById('gCode').value.trim(), name=document.getElementById('gName').value.trim(), email=document.getElementById('gEmail').value.trim();
+  const msg=document.getElementById('gMsg');
+  if(!joinCode||!name||!email){msg.style.color='#8F1D1D';msg.textContent='All fields are required.';return;}
+  msg.style.color='var(--mut)'; msg.textContent='Signing in…';
+  try{
+    const r=await fetch(apiBase()+'/api/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({joinCode,name,email})});
+    const d=await r.json();
+    if(!r.ok){msg.style.color='#8F1D1D';msg.textContent=d.error||'Sign in failed. Check your join code and make sure this email was added by your mentor.';return;}
+    localStorage.setItem('shopnow.cohort.userId',d.userId);
+    localStorage.setItem('shopnow.cohort.token',d.token);
+    localStorage.setItem('shopnow.cohort.name',d.name);
+    if(!pname()) localStorage.setItem('shopnow.profile.name',d.name);
+    MANAGED_MODE = d.mode==='managed';
+    ACTIVE_ASSIGNMENT = d.assignment||null;
+    ASSIGNMENT_HISTORY = d.history||[];
+    AUTHED = true;
+    if(d.progress && Object.keys(d.progress).length){ applyProgress(d.progress); buildRegistry(); }
+    else { cohortSync(); }
+    updateCohortBtn(); renderNav();
+    if(MANAGED_MODE) openManaged(); else openOverview();
+    hideGate();
+  }catch(e){ msg.style.color='#8F1D1D'; msg.textContent='Could not reach the server.'; }
+};
+['gCode','gName','gEmail'].forEach(id=>document.getElementById(id).addEventListener('keydown',e=>{ if(e.key==='Enter') document.getElementById('gGo').click(); }));
+
+/* ---------- SQL exec ---------- */
+async function execToRows(sql){
+  const res=await conn.query(sql);
+  const cols=res.schema.fields.map(f=>f.name);
+  return {cols,rows:res.toArray().map(r=>cols.map(c=>r[c]))};
+}
+function tableHTML(cols,rows){
+  let h='<table><thead><tr>'+cols.map(c=>`<th>${esc(c)}</th>`).join('')+'</tr></thead><tbody>';
+  rows.slice(0,200).forEach(r=>{h+='<tr>'+r.map(v=>`<td>${v===null?'∅':esc(v)}</td>`).join('')+'</tr>';});
+  h+='</tbody></table>'; if(rows.length>200)h+=`<div class="note-txt">…first 200 of ${rows.length} rows</div>`;
+  return h;
+}
+
+/* ---------- sprint render ---------- */
+function renderSprint(d){
+  const m=document.getElementById('main');
+  let h=`<h1>${esc(d.name)}</h1><div class="goal">${esc(d.goal)} · ${esc(d.est||'')}</div>`;
+  if(d.env) h+=`<div class="sparknote" style="margin:10px 0">${esc(d.env)}</div>`;
+  const done=d.tickets.filter(t=>st(t.id)==='done').length;
+  h+=`<div class="scorebar">${done} / ${d.tickets.length} tickets signed off</div>`;
+  h+=`<div class="brief"><div class="from">${esc(d.brief.from)}</div>${esc(d.brief.body)}</div>`;
+  h+=`<div class="clinic"><div class="h">Clinic · ${esc(d.clinic.title)}</div>${esc(d.clinic.body)}</div>`;
+  if(d.classwork){
+    h+=`<details><summary>Classwork · ${esc(d.classwork.title)} (guided — do together)</summary><div class="dbody">`;
+    (d.classwork.steps||[]).forEach((s,i)=>{h+=`<div class="step"><div class="instr"><b>${i+1}.</b> ${esc(s.instr)}</div><pre>${esc(s.sql)}</pre><div class="cp">✓ ${esc(s.checkpoint)}</div></div>`;});
+    if(d.classwork.reference) h+=`<div class="step"><div class="instr"><b>Reference — full query</b></div><pre>${esc(d.classwork.reference)}</pre></div>`;
+    h+=`</div></details>`;
+  }
+  h+=`<h2 class="section">Tickets</h2><div id="tickets"></div>`;
+  if(d.finalReview) h+=`<div class="brief" style="border-left-color:var(--purple);margin-top:20px"><div class="from" style="color:var(--purple)">${esc(d.finalReview.title)}</div>${esc(d.finalReview.body)}</div>`;
+  m.innerHTML=h;
+  const tc=document.getElementById('tickets');
+  d.tickets.forEach(t=>tc.appendChild(ticketCard(t)));
+}
+
+function ticketCard(t,forceUnlock){
+  const card=document.createElement('div'); card.className='card';
+  const done=st(t.id)==='done';
+  const modeCls=t.mode==='auto'?'m-auto':t.mode==='free'?'m-free':t.mode==='external'?'m-ext':'m-reveal';
+  const modeLbl=t.mode==='auto'?'auto-graded':t.mode==='free'?'written':t.mode==='external'?'Power BI':'self-check';
+  const locked=isLocked(t)&&!forceUnlock;
+  card.innerHTML=`<div class="chead"><span class="dot ${done?'done':''}"></span>
+    <span class="cid">${esc(t.id)}</span><span class="ctitle">${esc(t.title)}${locked?' 🔒':''}</span>
+    <span class="pill d${t.difficulty}">L${t.difficulty}</span><span class="mode ${modeCls}">${modeLbl}</span></div>
+    <div class="cbody"></div>`;
+  const head=card.querySelector('.chead'), body=card.querySelector('.cbody');
+  head.onclick=()=>{
+    card.classList.toggle('open');
+    if(!card.classList.contains('open'))return;
+    const rebuild = body.dataset.built!=='1' || (body.dataset.lockedBuilt==='1' && !(isLocked(t)&&!forceUnlock));
+    if(rebuild){ buildTicketBody(t,body,forceUnlock); body.dataset.built='1'; body.dataset.lockedBuilt=(isLocked(t)&&!forceUnlock)?'1':'0';
+      if(!(isLocked(t)&&!forceUnlock)) head.querySelector('.ctitle').innerHTML=esc(t.title); }
+  };
+  return card;
+}
+
+function buildTicketBody(t,body,forceUnlock){
+  if(isLocked(t)&&!forceUnlock){
+    const miss=t.requires.filter(r=>st(r)!=='done');
+    body.innerHTML=`<div class="locked-note">🔒 Locked by Definition of Done. Pass these first: <b>${miss.map(esc).join(', ')}</b>. Capstone deliverables must build on verified work.</div>`;
+    return;
+  }
+  const done=st(t.id)==='done';
+  let h=`<div class="note-txt">Assigned by <b>${esc(t.from)}</b> · est ${esc(t.est||'')}</div>`;
+  h+=`<div class="prompt">${esc(t.prompt)}</div>`;
+  if(t.acceptanceCriteria){h+=`<div class="note-txt"><b>Acceptance criteria</b></div><ul class="aclist">${t.acceptanceCriteria.map(a=>`<li class="${done?'met':''}">${esc(a)}</li>`).join('')}</ul>`;}
+  if(t.mode==='external'){
+    h+=`<div class="sparknote">🖥 Do this in <b>Power BI Desktop</b> — DAX and visuals don't run in this app. Build it there, then self-check against the criteria and mark it done.</div>`;
+    h+=`<textarea class="ed note" id="note-${t.id}" placeholder="Notes / what you built / your interpretation…">${esc(note(t.id))}</textarea>`;
+    h+=`<div class="btns"><button class="ghost purple" data-reveal>Reveal reference ${t.solution?'DAX':'guidance'}</button><button class="markdone" data-done>Mark done</button></div>`;
+  }else if(t.mode==='free'){
+    h+=`<textarea class="ed note" id="note-${t.id}" placeholder="Write your note here…">${esc(note(t.id))}</textarea>`;
+    h+=`<div class="btns"><button class="run" data-run>▶ Run scratch SQL</button><button class="ghost purple" data-guide>Reveal guidance</button><button class="markdone" data-done>Mark done</button></div>`;
+    h+=`<textarea class="ed" id="scratch-${t.id}" style="height:90px;margin-top:8px" placeholder="Optional: profiling SQL…"></textarea>`;
+  }else{
+    h+=`<textarea class="ed" id="ed-${t.id}" spellcheck="false" placeholder="Write SQL against orders, customers_clean, products…">${esc(draft(t.id))}</textarea>`;
+    h+=`<div class="btns"><button class="run" data-run>▶ Run</button>`;
+    if(t.mode==='auto') h+=`<button class="submit" data-submit>Submit for review</button>`;
+    else h+=`<button class="ghost purple" data-reveal>Reveal model answer</button><button class="markdone" data-done>Mark done</button>`;
+    if(t.hints&&t.hints.length) h+=`<button class="ghost" data-hint>Need a hint?</button>`;
+    h+=`</div><div class="hints" id="hints-${t.id}"></div>`;
+  }
+  if(t.selfCheck) h+=`<div class="note-txt">💡 ${esc(t.selfCheck)}</div>`;
+  h+=`<div class="banner ${done?'ok':''}" id="ban-${t.id}">${done?'✓ Signed off.':''}</div><div class="result" id="res-${t.id}"></div>`;
+  body.innerHTML=h;
+  wireItem(t,body);
+}
+
+/* ---------- shared wiring for tickets & diagnostic ---------- */
+function wireItem(t,scope){
+  const ed=scope.querySelector(`#ed-${cssid(t.id)}`);
+  const scratch=scope.querySelector(`#scratch-${cssid(t.id)}`);
+  const noteEl=scope.querySelector(`#note-${cssid(t.id)}`);
+  const res=scope.querySelector(`#res-${cssid(t.id)}`);
+  const ban=scope.querySelector(`#ban-${cssid(t.id)}`);
+  if(ed) ed.addEventListener('input',e=>setDraft(t.id,e.target.value));
+  if(noteEl) noteEl.addEventListener('input',e=>setNote(t.id,e.target.value));
+  const runBtn=scope.querySelector('[data-run]');
+  if(runBtn) runBtn.onclick=async()=>{
+    const sql=(ed||scratch).value.trim(); ban.className='banner';ban.textContent='';
+    if(!sql){res.innerHTML='<div class="err">Write a query first.</div>';return;}
+    try{const {cols,rows}=await execToRows(sql);res.innerHTML=tableHTML(cols,rows);}catch(e){res.innerHTML=`<div class="err">${esc(e)}</div>`;}
+  };
+  const subBtn=scope.querySelector('[data-submit]');
+  if(subBtn) subBtn.onclick=async()=>{
+    const sql=ed.value.trim(); ban.className='banner';ban.textContent='';
+    if(!sql){res.innerHTML='<div class="err">Write a query first.</div>';return;}
+    let out; try{out=await execToRows(sql);}catch(e){res.innerHTML=`<div class="err">${esc(e)}</div>`;return;}
+    res.innerHTML=tableHTML(out.cols,out.rows);
+    const g=await grade(out.rows,t.grader);
+    if(g.empty){ban.className='banner no';ban.textContent='✗ Your query returned no rows.';return;}
+    if(g.pass){ban.className='banner ok';ban.textContent='✓ Passed — matches the expected result. Signed off.';setSt(t.id,'done');
+      scope.querySelectorAll('.aclist li').forEach(li=>li.classList.add('met'));onProgress();}
+    else{setAttempt(t.id);renderNav();ban.className='banner no';ban.textContent='✗ Not quite — result doesn’t match. Re-check the acceptance criteria and rounding/column order, then resubmit.';}
+  };
+  const revBtn=scope.querySelector('[data-reveal]');
+  if(revBtn) revBtn.onclick=()=>{
+    if(scope.querySelector('.revealbox'))return;
+    const box=document.createElement('div');box.className='revealbox';
+    box.innerHTML=`<div class="note-txt" style="margin-top:8px"><b>Model answer</b></div><pre>${esc(t.solution||'(see notes)')}</pre>`+
+      (t.modelNote?`<div class="note-txt">${esc(t.modelNote)}</div>`:'');
+    revBtn.parentNode.parentNode.insertBefore(box,ban);
+  };
+  const guideBtn=scope.querySelector('[data-guide]');
+  if(guideBtn) guideBtn.onclick=()=>{
+    if(scope.querySelector('.revealbox'))return;
+    const box=document.createElement('div');box.className='revealbox';
+    box.innerHTML=`<div class="note-txt" style="margin-top:8px">${esc(t.modelNote||'')}</div>`;
+    guideBtn.parentNode.parentNode.insertBefore(box,ban);
+  };
+  const doneBtn=scope.querySelector('[data-done]');
+  if(doneBtn) doneBtn.onclick=()=>{setSt(t.id,'done');ban.className='banner ok';ban.textContent='✓ Marked done.';
+    scope.querySelectorAll('.aclist li').forEach(li=>li.classList.add('met'));onProgress();};
+  const hintBtn=scope.querySelector('[data-hint]');
+  if(hintBtn){let i=0;const box=scope.querySelector(`#hints-${cssid(t.id)}`);
+    hintBtn.onclick=()=>{if(i>=t.hints.length)return;const d=document.createElement('div');d.className='hint';d.textContent=`Hint ${i+1}: ${t.hints[i]}`;box.appendChild(d);i++;if(i>=t.hints.length)hintBtn.disabled=true;};}
+}
+function cssid(id){return id.replace(/[^a-zA-Z0-9_-]/g,'');}
+function onProgress(){
+  if(!current||!cache[current.id])return;
+  const d=cache[current.id];
+  if(d.kind==='brushup'){
+    const autoQs=d.diagnostic.questions.filter(q=>q.mode==='auto');
+    const passed=autoQs.filter(q=>st(q.id)==='done').length;
+    const sb=document.getElementById('diagscore');if(sb)sb.textContent=`Auto-graded: ${passed} / ${autoQs.length} correct`;
+  }else{
+    const done=d.tickets.filter(t=>st(t.id)==='done').length;
+    const sb=document.querySelector('.scorebar');if(sb)sb.textContent=`${done} / ${d.tickets.length} tickets signed off`;
+  }
+}
+
+/* ---------- brushup render ---------- */
+function renderBrushup(d){
+  const m=document.getElementById('main');
+  let h=`<h1>${esc(d.name)}</h1><div class="goal">${esc(d.blurb)}</div>`;
+  h+=`<h2 class="section">Drills — attempt first, then reveal</h2>`;
+  d.hours.forEach(hr=>{
+    h+=`<details><summary>Hour ${hr.n} · ${esc(hr.title)}</summary><div class="dbody"><div class="note-txt">${esc(hr.recap)}</div>`;
+    hr.drills.forEach((dr,i)=>{
+      h+=`<div class="step"><div class="instr"><b>${hr.n}.${i+1}</b> ${esc(dr.q)}</div>`;
+      h+=`<details><summary>Show answer</summary><div class="dbody"><pre>${esc(dr.answer)}</pre>`;
+      if(dr.note)h+=`<div class="note-txt">${esc(dr.note)}</div>`;
+      if(dr.sparkNote)h+=`<div class="sparknote">⚡ Spark note — ${esc(dr.sparkNote)}</div>`;
+      h+=`</div></details></div>`;
+    });
+    h+=`</div></details>`;
+  });
+  // diagnostic
+  const dg=d.diagnostic;
+  const autoQs=dg.questions.filter(q=>q.mode==='auto');
+  const passed=autoQs.filter(q=>st(q.id)==='done').length;
+  h+=`<h2 class="section">${esc(dg.title)}</h2><div class="brief"><div class="from">Instructions</div>${esc(dg.intro)}</div>`;
+  h+=`<div class="scorebar" id="diagscore">Auto-graded: ${passed} / ${autoQs.length} correct</div><div id="diag"></div>`;
+  m.innerHTML=h;
+  const dc=document.getElementById('diag');
+  dg.questions.forEach(q=>dc.appendChild(diagCard(q)));
+}
+function diagCard(q){
+  const el=document.createElement('div');el.className='diagq';
+  const done=st(q.id)==='done';
+  const modeLbl=q.mode==='auto'?'<span class="mode m-auto">auto-graded</span>':'<span class="mode m-reveal">self-check</span>';
+  let h=`<div class="qt"><span class="dot ${done?'done':''}" style="display:inline-block;vertical-align:middle;margin-right:6px"></span>${esc(q.id)} — ${esc(q.task)} ${modeLbl}</div>`;
+  h+=`<div class="tests">Tests: ${esc(q.tests)}</div>`;
+  h+=`<textarea class="ed" id="ed-${cssid(q.id)}" spellcheck="false" placeholder="Write SQL…">${esc(draft(q.id))}</textarea>`;
+  h+=`<div class="btns"><button class="run" data-run>▶ Run</button>`;
+  if(q.mode==='auto') h+=`<button class="submit" data-submit>Submit</button>`;
+  else h+=`<button class="ghost purple" data-reveal>Reveal model answer</button><button class="markdone" data-done>Mark done</button>`;
+  h+=`</div>`;
+  if(q.hint) h+=`<div class="hint">Hint: ${esc(q.hint)}</div>`;
+  h+=`<div class="banner ${done?'ok':''}" id="ban-${cssid(q.id)}">${done?'✓ Correct.':''}</div><div class="result" id="res-${cssid(q.id)}"></div>`;
+  el.innerHTML=h;
+  wireItem({...q,solution:q.answer,acceptanceCriteria:null},el);
+  return el;
+}
+
+// header save/load (manual "login" via progress file)
+document.getElementById('saveProg').onclick=exportProgress;
+const _lf=document.getElementById('loadFile');
+document.getElementById('loadProg').onclick=()=>_lf.click();
+_lf.onchange=importProgress;
+
+boot().catch(e=>{document.getElementById('boot').innerHTML=`<div class="err">Boot failed:\n${esc(e.stack||e)}</div>`;});
+</script>
+</body>
+</html>
