@@ -138,8 +138,8 @@
        onclick="if(window.GQP&&window.GQP.track)window.GQP.track('free_topic_of_day_clicked',{from:'free_section'});">
       <div class="free-opt-featured-text">
         <div class="free-opt-kicker" style="color:var(--gold)">Topic Of The Day</div>
-        <div class="free-opt-title">Timed sectional, one focus topic — updated regularly</div>
-        <div class="free-opt-desc">Same GRE-timed interface · instant score &amp; trap review</div>
+        <div class="free-opt-title" id="topicOfDayTitle">Timed sectional, one focus topic — updated regularly</div>
+        <div class="free-opt-desc" id="topicOfDayDesc">Same GRE-timed interface · instant score &amp; trap review</div>
       </div>
       <span class="free-opt-featured-go">Start today's sectional →</span>
     </a>
@@ -694,6 +694,30 @@ function buildTopicCards(){
   });
 }
 buildTopicCards();
+
+// ── TOPIC OF THE DAY — reflect events/config/current.json on the homepage card ──
+(function loadTopicOfDay(){
+  const titleEl = document.getElementById("topicOfDayTitle");
+  const descEl = document.getElementById("topicOfDayDesc");
+  if (!titleEl || !descEl) return;
+  fetch("events/config/current.json", { cache: "no-store" })
+    .then(r => r.ok ? r.json() : Promise.reject())
+    .then(config => {
+      const filters = config.source_filters || {};
+      const topic = filters.topic && filters.topic !== "all" ? filters.topic : null;
+      const subtopic = filters.subtopic && filters.subtopic !== "all" ? filters.subtopic : null;
+      const label = subtopic ? `${topic || "Mixed"} — ${subtopic}` : (topic || config.event_name || "Mixed Topics");
+      titleEl.textContent = `Today's focus: ${label}`;
+      const qCount = config.question_count || (config.questions || []).length;
+      const minutes = config.timer_seconds ? Math.round(config.timer_seconds / 60) : null;
+      const parts = [];
+      if (qCount) parts.push(`${qCount} questions`);
+      if (minutes) parts.push(`${minutes} min`);
+      parts.push("instant score & trap review");
+      descEl.textContent = parts.join(" · ");
+    })
+    .catch(() => { /* keep default fallback copy already in the HTML */ });
+})();
 
 // ?event= and ?config= query params route directly to mock_test.html — no doorway needed on this page.
 
