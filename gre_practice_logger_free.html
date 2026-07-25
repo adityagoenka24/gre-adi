@@ -610,11 +610,11 @@ tr:hover td{background:rgba(26,93,166,0.04);}
   <!-- ── Hero Section (1.1) ── -->
   <div class="hero-section">
     <h2 class="hero-headline">Stop solving <em>random</em> GRE questions</h2>
-    <p class="hero-sub">Practice with real exam timing, trap-based explanations, and score-band calibration — built question by question by a GRE coach.</p>
+    <p class="hero-sub">Practice with real exam timing, trap-based explanations, and score-band calibration — built question by question by a coach who scored 170/170 on GRE Quant.</p>
     <div class="trust-bar">
-      <span class="trust-pill"><strong>8,410+</strong> Practice Questions</span>
-      <span class="trust-pill"><strong>88</strong> Subtopics</span>
-      <span class="trust-pill"><strong>9</strong> Topics</span>
+      <span class="trust-pill"><strong>8,390+</strong> Practice Questions</span>
+      <span class="trust-pill"><strong>95</strong> Subtopics</span>
+      <span class="trust-pill"><strong>8</strong> Topics</span>
       <span class="trust-pill"><strong>4</strong> Difficulty Levels</span>
       <span class="trust-pill">Calibrated <strong>130–170</strong></span>
     </div>
@@ -629,11 +629,11 @@ tr:hover td{background:rgba(26,93,166,0.04);}
       <div>
         <div style="font-family:monospace;font-size:11px;color:#1a5da6;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px;">🎓 Also Free — Full-Length Mock Tests</div>
         <div style="font-size:20px;font-weight:700;margin-bottom:6px;line-height:1.2;">Test yourself under real GRE conditions</div>
-        <div style="font-size:13px;color:#4a545e;line-height:1.65;max-width:480px;">2 full-length mock tests — 2 sections, 27 questions each, 35-minute timer per section. Complete with score analysis, topic breakdown, and a diagnosis of your weak areas.</div>
+        <div style="font-size:13px;color:#4a545e;line-height:1.65;max-width:480px;">2 full-length mock tests — 2 sections (12 questions / 21 minutes, then 15 questions / 26 minutes), matching the current GRE format. Complete with score analysis, topic breakdown, and a diagnosis of your weak areas.</div>
         <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
           <span style="font-size:11px;background:rgba(26,93,166,0.12);color:#1a5da6;border:1px solid rgba(26,93,166,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">2 Free Mocks</span>
-          <span style="font-size:11px;background:rgba(26,93,166,0.12);color:#1a5da6;border:1px solid rgba(26,93,166,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">54 Questions Each</span>
-          <span style="font-size:11px;background:rgba(26,93,166,0.12);color:#1a5da6;border:1px solid rgba(26,93,166,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">Timed · 35 min/section</span>
+          <span style="font-size:11px;background:rgba(26,93,166,0.12);color:#1a5da6;border:1px solid rgba(26,93,166,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">27 Questions Total</span>
+          <span style="font-size:11px;background:rgba(26,93,166,0.12);color:#1a5da6;border:1px solid rgba(26,93,166,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">S1: 21 min · S2: 26 min</span>
           <span style="font-size:11px;background:rgba(26,93,166,0.12);color:#1a5da6;border:1px solid rgba(26,93,166,0.25);border-radius:20px;padding:3px 10px;font-family:monospace;">Score Analysis</span>
         </div>
       </div>
@@ -1643,11 +1643,14 @@ function resetSession(){
   // Destroy any leftover charts
   ['c-donut','c-time','c-topic'].forEach(id=>destroyChart(id));
 
-  // Switch to session tab
+  // Switch back to the primary tab (Practice from Bank; manual session tab is hidden)
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-session').classList.add('active');
-  document.getElementById('tab-btn-session').classList.add('active');
+  const resetPanel = document.getElementById('tab-btn-session') ? 'session' : 'bank';
+  const resetPanelEl = document.getElementById('tab-' + resetPanel);
+  if (resetPanelEl) resetPanelEl.classList.add('active');
+  const resetBtnEl = document.getElementById('tab-btn-' + resetPanel);
+  if (resetBtnEl) resetBtnEl.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -1762,7 +1765,7 @@ function bankSubtopicChanged(){
   }
   el.innerHTML = meta.count + ' questions available in this subtopic'
     + (isFreeTier()
-      ? ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">8,410+ practice questions in Pro across 88 subtopics →</a>'
+      ? ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">8,390+ practice questions in Pro across 95 subtopics →</a>'
       : '');
   el.style.color='var(--success)';
   bankUpdateSummary();
