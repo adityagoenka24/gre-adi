@@ -225,7 +225,8 @@
   <aside id="side"></aside>
   <main id="main"></main>
   <div id="gateScreen">
-    <div class="gatecard">
+    <div class="gatecard" style="position:relative">
+      <button class="hbtn" id="gClose" title="Back to free preview" style="position:absolute;top:-14px;right:-14px;width:30px;height:30px;padding:0;border-radius:50%;">✕</button>
       <div class="lock">🔒</div>
       <h3>Members-only workspace</h3>
       <div class="sub">Sign in with the join code from your welcome email to unlock your tickets and progress. Not enrolled? <a href="./index.html" style="color:var(--accent);font-weight:700">See pricing</a>.</div>
@@ -234,6 +235,7 @@
       <label class="glabel">Email</label><input id="gEmail" class="ginput" type="email">
       <div id="gMsg" class="note-txt" style="color:#8F1D1D;min-height:14px"></div>
       <button class="submit" id="gGo" style="width:100%;margin-top:6px">Sign in →</button>
+      <button class="ghost" id="gBack" style="width:100%;margin-top:4px;text-align:center">← Back to the free preview</button>
     </div>
   </div>
 </div>
@@ -359,10 +361,10 @@ function renderNav(){
 /* ---------- module loading ---------- */
 let current, currentView='overview';
 async function openModule(m, openTicketId){
-  if(moduleLocked(m)){ showGate(); return; }
   current=m; currentView='module'; renderNav();
   if(!cache[m.id]) cache[m.id]=await (await fetch('./'+m.file)).json();
   const data=cache[m.id];
+  if(moduleLocked(m)){ renderLockedTeaser(m,data); return; } // preview, not a hard block — see renderLockedTeaser
   if(m.kind==='brushup') renderBrushup(data); else renderSprint(data);
   document.getElementById('main').scrollTop=0;
   if(openTicketId){
@@ -370,6 +372,38 @@ async function openModule(m, openTicketId){
     const idx=(data.tickets||[]).findIndex(t=>t.id===openTicketId);
     if(idx>=0&&cards[idx]){ cards[idx].querySelector('.chead').click(); cards[idx].scrollIntoView({behavior:'smooth',block:'center'}); }
   }
+}
+
+/* ---------- locked-module teaser (paid sprint, unauthenticated visitor) ----------
+   Full brief + clinic + the first ticket's prompt/acceptance criteria are shown (this
+   content is already fetched client-side for every module regardless of auth — see boot's
+   module prefetch — so this reveals nothing that wasn't already sitting in the browser,
+   just chooses to show one ticket intentionally instead of hiding everything). The SQL
+   editor/run/submit and every other ticket in the sprint stay locked behind sign-in. */
+function renderLockedTeaser(m,data){
+  const tickets=data.tickets||[];
+  let h=`<h1>${esc(data.name)}</h1><div class="goal">${esc(data.goal)} · ${esc(data.est||'')}</div>`;
+  h+=`<div class="sparknote">🔒 This sprint is part of the paid internship — full preview of the first ticket below. Sign in with your join code to unlock all ${tickets.length} tickets, write &amp; run SQL against the live dataset, and get graded.</div>`;
+  if(data.brief) h+=`<div class="brief"><div class="from">${esc(data.brief.from)}</div>${esc(data.brief.body)}</div>`;
+  if(data.clinic) h+=`<div class="clinic"><div class="h">Clinic · ${esc(data.clinic.title)}</div>${esc(data.clinic.body)}</div>`;
+  h+=`<h2 class="section">Tickets (${tickets.length})</h2>`;
+  tickets.forEach((t,i)=>{
+    if(i===0){
+      h+=`<div class="card open"><div class="chead"><span class="dot"></span><span class="cid">${esc(t.id)}</span><span class="ctitle">${esc(t.title)} — full preview</span><span class="pill d${t.difficulty}">L${t.difficulty}</span></div>
+        <div class="cbody" style="display:block">
+          <div class="note-txt">Assigned by <b>${esc(t.from)}</b> · est ${esc(t.est||'')}</div>
+          <div class="prompt">${esc(t.prompt)}</div>
+          ${t.acceptanceCriteria?`<div class="note-txt"><b>Acceptance criteria</b></div><ul class="aclist">${t.acceptanceCriteria.map(a=>`<li>${esc(a)}</li>`).join('')}</ul>`:''}
+          <div class="locked-note" style="margin-top:12px">🔒 Sign in to write &amp; run SQL for this ticket and get graded.</div>
+          <button class="submit" data-signin style="margin-top:10px">Sign in to unlock →</button>
+        </div></div>`;
+    }else{
+      h+=`<div class="card" style="opacity:.6;cursor:pointer" data-signin>
+        <div class="chead"><span class="dot"></span><span class="cid">${esc(t.id)}</span><span class="ctitle">${esc(t.title)} 🔒</span><span class="pill d${t.difficulty}">L${t.difficulty}</span></div></div>`;
+    }
+  });
+  const main=document.getElementById('main'); main.innerHTML=h; main.scrollTop=0;
+  main.querySelectorAll('[data-signin]').forEach(el=>el.addEventListener('click',showGate));
 }
 
 /* ---------- overview ---------- */
@@ -599,9 +633,16 @@ function cohortMenu(){
   }
 }
 
-/* ---------- access gate — blurs the workspace and forces sign-in for unregistered visitors ---------- */
-function showGate(){ document.getElementById('wrapEl').classList.add('gated'); document.getElementById('gCode').focus(); }
+/* ---------- access gate — blurs the workspace and prompts sign-in for locked content ---------- */
+/* Dismissible: clicking a locked module opens this, but a guest always has the free preview
+   (Phase 0 + Sprint 1) to go back to — so ✕ / backdrop click / Escape all just close it,
+   same as any other modal. Nothing forces the visitor to sign in. */
+function showGate(){ document.getElementById('wrapEl').classList.add('gated'); document.getElementById('gCode').focus(); document.getElementById('gMsg').textContent=''; }
 function hideGate(){ document.getElementById('wrapEl').classList.remove('gated'); }
+document.getElementById('gClose').onclick=hideGate;
+document.getElementById('gBack').onclick=hideGate;
+document.getElementById('gateScreen').addEventListener('click',e=>{ if(e.target.id==='gateScreen') hideGate(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape' && document.getElementById('wrapEl').classList.contains('gated')) hideGate(); });
 document.getElementById('gGo').onclick=async()=>{
   const joinCode=document.getElementById('gCode').value.trim(), name=document.getElementById('gName').value.trim(), email=document.getElementById('gEmail').value.trim();
   const msg=document.getElementById('gMsg');
