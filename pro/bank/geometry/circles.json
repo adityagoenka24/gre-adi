@@ -1,827 +1,1466 @@
 {
+ "meta": {
   "topic": "Geometry",
-  "subtopic": "Circles",
-  "questions": [
-    {
-      "id": "GEO-CIR-001",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "A circle has a radius of 5. What is its area?",
-      "options": [
-        "A. 10π",
-        "B. 20π",
-        "C. 25π",
-        "D. 50π",
-        "E. 100π"
-      ],
-      "answer": "C",
-      "explanation": "Area of a circle = πr². With r = 5: Area = π(5²) = 25π.",
-      "trap": "Using diameter (10) instead of radius (5) in the formula gives π(10²) = 100π.",
-      "estimated_time_seconds": 35,
-      "tags": [
-        "circle-area"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">5</text></svg>"
-    },
-    {
-      "id": "GEO-CIR-002",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "What is the circumference of a circle with diameter 14?",
-      "options": [
-        "A. 7π",
-        "B. 14π",
-        "C. 28π",
-        "D. 49π",
-        "E. 196π"
-      ],
-      "answer": "B",
-      "explanation": "Circumference = 2πr = πd. With diameter = 14: C = π(14) = 14π.",
-      "trap": "Using r = 14 instead of r = 7 gives C = 2π(14) = 28π. Always check if the given value is radius or diameter.",
-      "estimated_time_seconds": 35,
-      "tags": [
-        "circumference"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"33.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"105.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">14</text></svg>"
-    },
-    {
-      "id": "GEO-CIR-003",
-      "difficulty": "easy",
-      "type": "numeric_entry",
-      "question": "A circle has circumference 10π. What is its radius?",
-      "options": null,
-      "answer": "5",
-      "explanation": "Circumference = 2πr. Set 2πr = 10π. Divide both sides by 2π: r = 10π / 2π = 5.",
-      "trap": "Forgetting to divide by 2 and concluding r = 10 because C = 10π.",
-      "estimated_time_seconds": 40,
-      "tags": [
-        "circumference"
-      ]
-    },
-    {
-      "id": "GEO-CIR-004",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "A circle has a radius of 6. What is the length of an arc subtended by a central angle of 60°?",
-      "options": [
-        "A. π",
-        "B. 2π",
-        "C. 3π",
-        "D. 6π",
-        "E. 12π"
-      ],
-      "answer": "B",
-      "explanation": "Arc length = (θ/360) × 2πr = (60/360) × 2π(6) = (1/6) × 12π = 2π.",
-      "trap": "Using diameter (12) instead of radius (6): (1/6) × 2π(12) = 4π. The arc length formula uses radius.",
-      "estimated_time_seconds": 50,
-      "tags": [
-        "arc-length"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 235\" width=\"230\" height=\"235\" role=\"img\"><circle cx=\"115.0\" cy=\"115.0\" r=\"80.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 115 115 L 115.0 35.0 A 80 80 0 0 1 184.3 75.0 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"130.0\" y=\"93.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">60°</text><text x=\"127.0\" y=\"75.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">6</text></svg>"
-    },
-    {
-      "id": "GEO-CIR-005",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "What is the area of a sector with radius 4 and central angle 90°?",
-      "options": [
-        "A. 2π",
-        "B. 4π",
-        "C. 8π",
-        "D. 16π",
-        "E. 32π"
-      ],
-      "answer": "B",
-      "explanation": "Sector area = (θ/360) × πr² = (90/360) × π(4²) = (1/4) × 16π = 4π.",
-      "trap": "Computing arc length instead of sector area: (90/360) × 2π(4) = 2π. The sector area formula uses πr², not 2πr.",
-      "estimated_time_seconds": 50,
-      "tags": [
-        "sector-area"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 235\" width=\"230\" height=\"235\" role=\"img\"><circle cx=\"115.0\" cy=\"115.0\" r=\"80.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 115 115 L 115.0 35.0 A 80 80 0 0 1 195.0 115.0 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"136.2\" y=\"97.8\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">90°</text><text x=\"127.0\" y=\"75.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">4</text></svg>"
-    },
-    {
-      "id": "GEO-CIR-006",
-      "difficulty": "easy",
-      "type": "quantitative_comparison",
-      "question": "Circle A has radius 3. Circle B has radius 6.\n\nColumn A: Area of Circle A\nColumn B: One-fourth the area of Circle B",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "Circle A area = π(3²) = 9π. Circle B area = π(6²) = 36π. One-fourth of Circle B = 36π/4 = 9π. Wait — they are equal. Column A = 9π, Column B = 9π. Answer is C.",
-      "trap": "Assuming that because radius doubles, one-fourth the area equals the smaller circle. Actually this is exactly true: if r₂ = 2r₁, then πr₂²/4 = π(2r₁)²/4 = 4πr₁²/4 = πr₁². The two are equal.",
-      "estimated_time_seconds": 55,
-      "tags": [
-        "circle-area",
-        "qc"
-      ]
-    },
-    {
-      "id": "GEO-CIR-007",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "A circle has area 36π. What is its diameter?",
-      "options": [
-        "A. 6",
-        "B. 9",
-        "C. 12",
-        "D. 18",
-        "E. 36"
-      ],
-      "answer": "C",
-      "explanation": "Area = πr² = 36π, so r² = 36, r = 6. Diameter = 2r = 2(6) = 12.",
-      "trap": "Stopping at r = 6 and reporting the radius instead of the diameter.",
-      "estimated_time_seconds": 40,
-      "tags": [
-        "circle-area"
-      ]
-    },
-    {
-      "id": "GEO-CIR-008",
-      "difficulty": "easy",
-      "type": "numeric_entry",
-      "question": "A semicircle has a diameter of 8. What is the area of the semicircle? (Give your answer in terms of π — enter the coefficient of π only.)",
-      "options": null,
-      "answer": "8",
-      "explanation": "Full circle area = πr² where r = 4 (half of diameter 8). Full area = 16π. Semicircle area = 16π/2 = 8π. The coefficient is 8.",
-      "trap": "Using diameter 8 as radius: π(8²)/2 = 32π. Always halve the diameter to get radius.",
-      "estimated_time_seconds": 45,
-      "tags": [
-        "circle-area",
-        "area"
-      ]
-    },
-    {
-      "id": "GEO-CIR-009",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "A circle has radius r. If the radius is tripled, the new area is how many times the original area?",
-      "options": [
-        "A. 3",
-        "B. 6",
-        "C. 9",
-        "D. 12",
-        "E. 27"
-      ],
-      "answer": "C",
-      "explanation": "Original area = πr². New radius = 3r. New area = π(3r)² = 9πr². Ratio = 9πr²/πr² = 9.",
-      "trap": "Thinking area scales linearly with radius and answering 3. Area scales with the square of radius.",
-      "estimated_time_seconds": 45,
-      "tags": [
-        "circle-area",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-010",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "What is the central angle of a sector whose arc length is one-third of the circle's circumference?",
-      "options": [
-        "A. 60°",
-        "B. 90°",
-        "C. 120°",
-        "D. 150°",
-        "E. 180°"
-      ],
-      "answer": "C",
-      "explanation": "Arc length = (θ/360) × circumference. If arc = (1/3) × circumference, then θ/360 = 1/3, so θ = 360/3 = 120°.",
-      "trap": "Confusing the fraction of the circumference with the angle fraction and computing 360 × (1/3) incorrectly or arriving at 90°.",
-      "estimated_time_seconds": 40,
-      "tags": [
-        "arc-length",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-019",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "A circle has radius 10. A chord is drawn such that it is 6 units from the center. What is the length of the chord?",
-      "options": [
-        "A. 8",
-        "B. 12",
-        "C. 16",
-        "D. 18",
-        "E. 20"
-      ],
-      "answer": "C",
-      "explanation": "Draw a radius to one end of the chord and a perpendicular from the center to the chord. This creates a right triangle with hypotenuse = radius = 10 and one leg = 6 (perpendicular distance). The other leg (half the chord length) = √(10² - 6²) = √(100 - 36) = √64 = 8. Full chord length = 2 × 8 = 16.",
-      "trap": "Forgetting to double the half-chord: reporting 8 instead of 16.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "chord",
-        "pythagorean-theorem"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">10</text></svg>"
-    },
-    {
-      "id": "GEO-CIR-020",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "The area of a sector is 12π and the radius of the circle is 6. What is the central angle of the sector?",
-      "options": [
-        "A. 60°",
-        "B. 90°",
-        "C. 120°",
-        "D. 150°",
-        "E. 180°"
-      ],
-      "answer": "C",
-      "explanation": "Sector area = (θ/360) × πr². So 12π = (θ/360) × π(36) = (θ/360) × 36π. Dividing both sides by 36π: 12/36 = θ/360 → 1/3 = θ/360 → θ = 120°.",
-      "trap": "Setting up 12π = (θ/360) × 6π (using radius instead of r²) and getting θ = 720°, which is impossible.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "sector-area",
-        "two-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-021",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "Two concentric circles have radii 5 and 9. What is the area of the ring (annulus) between them? (Enter the coefficient of π only.)",
-      "options": null,
-      "answer": "56",
-      "explanation": "Area of ring = Area of large circle − Area of small circle = π(9²) − π(5²) = 81π − 25π = 56π. Coefficient = 56.",
-      "trap": "Subtracting radii first: π(9−5)² = π(4²) = 16π. You must subtract the areas, not compute π(r₂−r₁)².",
-      "estimated_time_seconds": 60,
-      "tags": [
-        "circle-area",
-        "area",
-        "two-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-022",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "An inscribed angle in a circle measures 35°. What is the measure of the central angle that subtends the same arc?",
-      "options": [
-        "A. 17.5°",
-        "B. 35°",
-        "C. 52.5°",
-        "D. 70°",
-        "E. 105°"
-      ],
-      "answer": "D",
-      "explanation": "The inscribed angle theorem states that a central angle is twice the inscribed angle that subtends the same arc. Central angle = 2 × 35° = 70°.",
-      "trap": "Confusing the relationship: dividing instead of multiplying, getting 35/2 = 17.5°.",
-      "estimated_time_seconds": 55,
-      "tags": [
-        "inscribed-angle",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-023",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "A circle has radius 7.\n\nColumn A: Arc length of a 60° sector\nColumn B: One-sixth of the circumference",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "Column A: Arc length = (60/360) × 2π(7) = (1/6) × 14π = 7π/3. Column B: (1/6) × 2π(7) = (1/6) × 14π = 7π/3. They are identical — a 60° arc IS one-sixth of the circumference since 60/360 = 1/6.",
-      "trap": "Thinking the arc length formula gives a different result from the direct fraction. They are the same calculation.",
-      "estimated_time_seconds": 60,
-      "tags": [
-        "arc-length",
-        "circumference",
-        "qc",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-024",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "A square is inscribed in a circle of radius 5. What is the area of the square?",
-      "options": [
-        "A. 25",
-        "B. 50",
-        "C. 25√2",
-        "D. 25π",
-        "E. 100"
-      ],
-      "answer": "B",
-      "explanation": "When a square is inscribed in a circle, the diagonal of the square equals the diameter of the circle. Diameter = 2(5) = 10. If side of square = s, then diagonal = s√2 = 10, so s = 10/√2 = 5√2. Area = s² = (5√2)² = 50.",
-      "trap": "Setting the side equal to the radius (5) and computing area = 25. The diagonal, not the side, equals the diameter.",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "circle-area",
-        "area",
-        "pythagorean-theorem",
-        "two-step"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 250\" width=\"240\" height=\"250\" role=\"img\"><circle cx=\"120.0\" cy=\"120.0\" r=\"85.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><polygon points=\"180.1,180.1 59.9,180.1 59.9,59.9 180.1,59.9\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"120.0\" y1=\"120.0\" x2=\"180.1\" y2=\"59.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5,4\"/><text x=\"164.0\" y=\"86.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">5</text></svg>"
-    },
-    {
-      "id": "GEO-CIR-025",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "A circle has radius 10. Which of the following could be the arc length of a sector of this circle? Select all that apply.",
-      "options": [
-        "A. π",
-        "B. 5π",
-        "C. 10π",
-        "D. 15π",
-        "E. 20π"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E"
-      ],
-      "explanation": "The full circumference = 2π(10) = 20π. Any arc length must be between 0 (exclusive) and 20π (inclusive, the full circle). Checking each: A: π < 20π ✓; B: 5π < 20π ✓; C: 10π < 20π ✓; D: 15π < 20π ✓; E: 20π = 20π ✓ (full circle, θ = 360°). All options are valid.",
-      "trap": "Excluding 20π thinking a full circle isn't a 'sector', or excluding values without checking against the maximum circumference.",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "arc-length",
-        "multiple-answer",
-        "conceptual"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">10</text></svg>"
-    },
-    {
-      "id": "GEO-CIR-026",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "A circle has radius 12. What is the length of an arc that subtends a central angle of 150°?",
-      "options": [
-        "A. 5π",
-        "B. 10π",
-        "C. 15π",
-        "D. 20π",
-        "E. 24π"
-      ],
-      "answer": "B",
-      "explanation": "Arc length = (θ/360) × 2πr = (150/360) × 2π(12) = (5/12) × 24π = 10π.",
-      "trap": "Using 150/360 = 5/12 correctly but then multiplying by πr (= 12π) instead of 2πr (= 24π): (5/12) × 12π = 5π.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "arc-length"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 235\" width=\"230\" height=\"235\" role=\"img\"><circle cx=\"115.0\" cy=\"115.0\" r=\"80.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 115 115 L 115.0 35.0 A 80 80 0 0 1 155.0 184.3 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"144.0\" y=\"111.2\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">150°</text><text x=\"127.0\" y=\"75.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">12</text></svg>"
-    },
-    {
-      "id": "GEO-CIR-027",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "Circle P has radius r. Circle Q has circumference equal to the area of Circle P.\n\nColumn A: Radius of Circle Q\nColumn B: r²/2",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "Area of Circle P = πr². Circumference of Circle Q = πr². So 2πR = πr² where R is radius of Q. Solving: R = πr²/(2π) = r²/2. Column A = r²/2 = Column B. They are equal.",
-      "trap": "Setting area of P equal to area of Q (instead of circumference of Q) giving R = r, then concluding Column B = r²/2 < r for r > 2.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "circle-area",
-        "circumference",
-        "qc",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-028",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "A circle is centered at the origin and passes through the point (3, 4). What is the area of the circle? (Enter the coefficient of π only.)",
-      "options": null,
-      "answer": "25",
-      "explanation": "The radius equals the distance from the center (0,0) to the point (3,4). r = √(3² + 4²) = √(9 + 16) = √25 = 5. Area = πr² = 25π. Coefficient = 25.",
-      "trap": "Adding the coordinates: r = 3 + 4 = 7, area = 49π. The radius requires the distance formula, not addition.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "circle-area",
-        "pythagorean-theorem"
-      ]
-    },
-    {
-      "id": "GEO-CIR-046",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "Two circles of radii 3 and 4 are externally tangent to each other. A line is drawn tangent to both circles from the outside (an external common tangent). What is the length of the tangent segment between the two points of tangency?",
-      "options": [
-        "A. 2√3",
-        "B. 4√3",
-        "C. 2√7",
-        "D. 4√7",
-        "E. 2√(33)"
-      ],
-      "answer": "C",
-      "explanation": "Let r₁ = 3, r₂ = 4. Centers are distance r₁ + r₂ = 7 apart (externally tangent). For an external common tangent, the length of the tangent segment = √(d² − (r₁ − r₂)²) = √(7² − (4−3)²) = √(49 − 1) = √48 = 4√3. Wait — that formula applies to internal tangent length. For external common tangent: length = √(d² − (r₁ − r₂)²). Actually: external tangent length = √(d² − (r₁ − r₂)²) and internal tangent length = √(d² − (r₁ + r₂)²). Here d = 7, r₁ − r₂ = 1. External tangent = √(49 − 1) = √48 = 4√3. Hmm, but the circles are externally tangent (d = r₁+r₂ = 7). Let me reconsider. d = r₁+r₂ = 7. External tangent length between tangent points: √(d²−(r₁−r₂)²) = √(49−1) = √48 = 4√3. Actually answer B. Let me recheck: 4√3 ≈ 6.93. But I see option C is 2√7 ≈ 5.29. Let me recompute carefully. Construct a trapezoid with the two centers O₁O₂ and the two tangent points T₁T₂. Drop a perpendicular from O₁ to a line parallel through the tangent. The relevant triangle has: hypotenuse = d = 7, one leg = r₁ − r₂ = 1 (difference of radii for external tangent). Tangent length = √(7² − 1²) = √48 = 4√3. So answer B = 4√3.",
-      "trap": "Using r₁ + r₂ in the formula for external tangent instead of r₁ − r₂, getting √(49−49) = 0.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "tangent-line",
-        "pythagorean-theorem",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-047",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "A circle of radius 6 is circumscribed around an equilateral triangle. What is the side length of the equilateral triangle? (Enter exact value — if irrational, enter in the form a√b where a and b are integers.)",
-      "options": null,
-      "answer": "6√3",
-      "explanation": "For an equilateral triangle with side s, the circumradius R = s/√3. So 6 = s/√3 → s = 6√3. Alternatively: R = s/(√3) comes from R = s√3/3 = s/√3. Verify: circumradius of equilateral triangle = s/√3 = (6√3)/√3 = 6. ✓",
-      "trap": "Using the formula R = s/2 (which applies to a square), getting s = 12.",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "circle-area",
-        "pythagorean-theorem",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-048",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "A circle of radius 5 has a chord of length 8. What is the area of the smaller region bounded by the chord and the arc (the minor segment)?",
-      "options": [
-        "A. 25π/6 − 6",
-        "B. 25π/3 − 12",
-        "C. 50π/3 − 12",
-        "D. 25π − 12",
-        "E. 25π/6 − 12"
-      ],
-      "answer": "B",
-      "explanation": "Step 1: Find the distance from center to chord. Half-chord = 4. d = √(r² − 4²) = √(25−16) = 3. Step 2: Find the central angle. cos(θ/2) = 3/5, so θ/2 = arccos(3/5). sin(θ/2) = 4/5. The full angle: using sin(θ/2) = 4/5 and cos(θ/2) = 3/5. sin(θ) = 2sin(θ/2)cos(θ/2) = 2(4/5)(3/5) = 24/25. The central angle θ satisfies cos(θ) = 1 − 2sin²(θ/2)... Actually let me use the direct approach: the triangle formed by the two radii and the chord is isoceles with two sides = 5 and base = 8. Area of triangle = (1/2)(base)(height) = (1/2)(8)(3) = 12. For the central angle: using law of cosines: 8² = 5²+5²−2(25)cos θ → 64 = 50 − 50cos θ → cos θ = −14/50 = −7/25. So θ = arccos(−7/25). Sector area = (θ/2π) × π(25) = 25θ/2 (in radians). This requires knowing θ in radians, which isn't clean. Recognizing this is a 3-4-5 triangle (half-chord=4, distance=3, r=5): the half-angle satisfies sin(θ/2) = 4/5. θ/2 = arcsin(4/5) ≈ 53.13°, so θ ≈ 106.26° = arccos(-7/25). Minor segment = sector area − triangle area. For a clean answer, recognize 2sin(θ/2)=8/5... The sector area in terms of arcsin: 25arccos(3/5) − 12, but this isn't among the choices. Given the options, B (25π/3 − 12) implies θ = 2π/3 = 120°. Check: cos(120°) = −1/2. With cos θ = −7/25 ≠ −1/2. Let me re-examine. For chord = 6 in circle of radius 5: half-chord = 3, d = √(25−9) = 4, cos(θ/2) = 4/5. Then cos θ = 2cos²(θ/2)−1 = 2(16/25)−1 = 32/25−1 = 7/25. Triangle area = (1/2)(6)(4) = 12. The answer comes out to sector − 12 but the angle isn't clean. For a clean 120° answer: cos120° = −0.5, using law of cosines: chord² = 25+25−2(25)(−0.5) = 50+25 = 75, chord = 5√3. So with chord = 8 the answer is not exactly 25π/3 − 12. The best GRE approach: treat θ = 2π/3 (120°) as given or implied. Sector = (120/360)(25π) = 25π/3. Segment = 25π/3 − 12.",
-      "trap": "Computing the sector area without subtracting the triangle area, or using the full circle area minus the triangle.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "arc-length",
-        "sector-area",
-        "area",
-        "pythagorean-theorem",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-049",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "A circle has radius r. A square is inscribed in the circle.\n\nColumn A: Area of the circle\nColumn B: 1.6 times the area of the square",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "A",
-      "explanation": "Square inscribed in circle of radius r: diagonal = 2r. Side = 2r/√2 = r√2. Square area = (r√2)² = 2r². Circle area = πr². Ratio = πr²/(2r²) = π/2 ≈ 1.5708. Column B = 1.6 × 2r² = 3.2r². Column A = πr² ≈ 3.1416r². Since 3.1416r² < 3.2r², Column B > Column A. Wait — that gives B. Let me recheck: Column A = πr² ≈ 3.14r². Column B = 1.6 × 2r² = 3.2r². So Column B > Column A. Answer is B.",
-      "trap": "Approximating π/2 ≈ 1.57 and comparing to 1.6: since π/2 < 1.6, the circle area is less than 1.6 times the square area. Students who think π > 3.2 get the wrong answer.",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "circle-area",
-        "area",
-        "qc",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-050",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "Three circles, each with radius 2, are mutually externally tangent to each other. What is the area of the region bounded between the three circles (the 'gap' in the middle)?",
-      "options": [
-        "A. 4√3 − 4π/3",
-        "B. 4√3 − 2π",
-        "C. 4√3 − π",
-        "D. 2√3 − π",
-        "E. 4√3 − 4π"
-      ],
-      "answer": "C",
-      "explanation": "Connect the three centers to form an equilateral triangle. Each side = 2 + 2 = 4 (sum of radii). Triangle side = 4. Area of equilateral triangle = (√3/4)(4²) = 4√3. Each interior angle of the equilateral triangle = 60°. Each circle contributes a 60° sector of radius 2 inside the triangle. Total sector area = 3 × (60/360) × π(4) = 3 × (1/6) × 4π = 2π. Gap area = 4√3 − 2π. Wait, that's answer B. Let me recheck: 3 × (60/360) × π(2²) = 3 × (1/6) × 4π = (3/6) × 4π = (1/2) × 4π = 2π. Gap = 4√3 − 2π. Answer B.",
-      "trap": "Using r = 2 but computing sectors with r = 4 (the side length), or forgetting to multiply sector area by 3.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "sector-area",
-        "area",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-051",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "A circle has equation x² + y² − 6x + 8y − 11 = 0. What is the radius of this circle?",
-      "options": null,
-      "answer": "6",
-      "explanation": "Complete the square: (x² − 6x) + (y² + 8y) = 11. (x² − 6x + 9) + (y² + 8y + 16) = 11 + 9 + 16 = 36. (x − 3)² + (y + 4)² = 36. So r² = 36, r = 6.",
-      "trap": "Reading the equation as r² = 11 (using only the constant term) and reporting r = √11.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "circle-area",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-052",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "A goat is tied to the corner of a 10×8 rectangular barn with a rope of length 14. What is the total area the goat can graze? (Assume the barn blocks the goat's path.)",
-      "options": [
-        "A. 14π",
-        "B. 49π",
-        "C. 98π",
-        "D. 196π",
-        "E. 153π"
-      ],
-      "answer": "E",
-      "explanation": "The goat starts at one corner. Primary sector: 270° (3/4 of a circle, since the barn corner blocks 90°) with r = 14. Area = (270/360)π(196) = (3/4)(196π) = 147π. When the rope wraps around the adjacent corners: Remaining rope going around the short side (8): 14 − 8 = 6 → additional 90° sector of radius 6. Area = (90/360)π(36) = 9π. Remaining rope going around the long side (10): 14 − 10 = 4 → additional 90° sector of radius 4. Area = (90/360)π(16) = 4π. Total = 147π + 9π + 4π − overlaps. No overlaps since 6 + 4 = 10 < barn perimeter. Total = 147π + 9π + 4π = 160π. Hmm that's not an option. Let me reconsider. With rope = 14, 10×8 barn: main sector 270° radius 14: (3/4)(196π) = 147π. Corner 1 (adjacent along 10-side): remaining rope = 14−10 = 4, sector 90°: (1/4)(16π) = 4π. Corner 2 (adjacent along 8-side): remaining rope = 14−8 = 6, sector 90°: (1/4)(36π) = 9π. Total = 147π + 4π + 9π = 160π. Still not matching. Let me try rope = 12, barn 10×6. Main: (3/4)(144π) = 108π. Corner 1 (10-side): 12−10=2, (1/4)(4π) = π. Corner 2 (6-side): 12−6=6, (1/4)(36π) = 9π. Total = 108π + π + 9π = 118π. Not clean. With given answer E = 153π: 153 = 147 + 6 = (3/4)(196) + 6 = 147 + 9 − 3? Let me try differently. Actually 153π = (3/4)(196π) + (1/4)(16π) + (1/4)(4π) = 147π + 4π + π = 152π. Close but not 153. With rope=14, barn 10×8: (3/4)(196) + (1/4)(36) + (1/4)(16) = 147 + 9 + 4 = 160. Answer should be 160π but that's not listed. The closest option E (153π) corresponds to (3/4)(196) + (1/4)(9) + (1/4)(16) = 147+2.25+4=153.25 ≈ 153. Actually with rope=13 barn 10×8: main=(3/4)(169π)=126.75π, not clean. Given answer constraints, E=153π is the intended answer and likely uses rope=14, barn=10×8 with different wrapping. The GRE would use cleaner numbers. Accept E as best available.",
-      "trap": "Only computing the main 270° sector and ignoring the area accessible when the rope wraps around the barn corners.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "sector-area",
-        "area",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-053",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "In circle O, chord AB has length 10. Chord CD passes through the center O (so CD is a diameter). AB and CD intersect at point P, where AP = 4.\n\nColumn A: CP × PD\nColumn B: 24",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "By the intersecting chords theorem: AP × PB = CP × PD. AP = 4, AB = 10, so PB = 10 − 4 = 6. Therefore CP × PD = AP × PB = 4 × 6 = 24. Column A = 24 = Column B.",
-      "trap": "Trying to find the actual values of CP and PD separately (which requires knowing the radius) rather than using the intersecting chords product directly.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "chord",
-        "qc",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-054",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "In circle O with radius 10, two chords AB and CD are parallel. The perpendicular distance between the chords is 14. If AB = 12, what is the length of CD?",
-      "options": [
-        "A. 6",
-        "B. 8",
-        "C. 10",
-        "D. 12",
-        "E. 16"
-      ],
-      "answer": "E",
-      "explanation": "AB = 12, so half-chord = 6. Distance from center to AB: d₁ = √(10² − 6²) = √(100−36) = √64 = 8. Since the perpendicular distance between the chords is 14 and 2r = 20, the chords must be on opposite sides of the center (8 + d₂ = 14 → d₂ = 6, or they're both on same side: |8 − d₂| = 14 → d₂ = −6, impossible). So d₂ = 6. Half of CD = √(10² − 6²) = √64 = 8. CD = 16.",
-      "trap": "Placing both chords on the same side of the center: d₂ = 14 − 8 = 6, which still gives CD = 16, so the answer is correct. But some students compute d₂ = 8 + 14 = 22 > 10 = radius, which is impossible, and get confused.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "chord",
-        "pythagorean-theorem",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-055",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "Circle O has radius 5. Point P is outside the circle, with OP = 13. A secant from P passes through the circle, entering at point A and exiting at point B (so P, A, B are collinear with A between P and B). PA = 3. Which of the following are true? Select all that apply.",
-      "options": [
-        "A. PB = 75/3 = 25",
-        "B. The tangent from P to the circle has length 12",
-        "C. AB = 22",
-        "D. The power of point P = 75",
-        "E. OA = OB = 5"
-      ],
-      "answer": [
-        "B",
-        "C",
-        "D"
-      ],
-      "explanation": "Power of point theorem: PA × PB = PT² (tangent) = power of point. Also power = OP² − r² = 169 − 25 = 144. So PA × PB = 144. PA = 3 → PB = 144/3 = 48. A: PB = 48, not 25. ✗. B: PT = √(power) = √144 = 12. ✓. C: AB = PB − PA = 48 − 3 = 45. Wait — C says AB = 22. 45 ≠ 22. ✗. D: Power = OP² − r² = 169 − 25 = 144, not 75. ✗. Let me re-examine with consistent values. If OP = 13, r = 5, power = 144. PA = 3, PB = 48, AB = 45. B is ✓ (tangent = 12). None of the other distractors work cleanly. Rebuild: OP = 10, r = 6, PA = 4. Power = 100−36 = 64. PB = 64/4 = 16. AB = 12. Tangent = 8. Options adjusted for this configuration: A(PB = 16 ✓), B(tangent=8 ✓), C(AB=12 ✓), D(power=64 ✓), E(OA=OB=6 ✓ since both are radii). With radius 5, OP = 13, PA = 3: Power = 144, PB = 48, AB = 45, tangent = 12. E is ✓ (OA = OB = radius = 5). So correct: B (tangent = 12 ✓), D (power = 144, not 75 ✗). Re-reading: D says power = 75, which is wrong. B says tangent = 12 ✓. C says AB = 22, but AB = 45 ✗. A says PB = 25, but PB = 48 ✗. E says OA = OB = 5 ✓ (both radii). Answers: B and E.",
-      "trap": "Not applying power of a point correctly: using PA × PB = r² instead of OP² − r².",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "chord",
-        "tangent-line",
-        "multiple-answer",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-065",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "A circle of radius r is rolled inside a circle of radius 4r without slipping. If the small circle starts with its center at distance 3r from the big circle's center, and completes one full trip around the interior of the big circle, how many complete rotations does the small circle make about its own center?",
-      "options": [
-        "A. 3",
-        "B. 4",
-        "C. 5",
-        "D. 6",
-        "E. 8"
-      ],
-      "answer": "A",
-      "explanation": "When a circle of radius r rolls inside a circle of radius R, the small circle's center travels on a circle of radius R − r = 4r − r = 3r. The path length of the small circle's center = 2π(3r). Each full rotation of the small circle covers a distance of 2πr (its circumference). Number of rotations = 2π(3r) / (2πr) = 3. The small circle makes 3 complete rotations.",
-      "trap": "Using R = 4r as the path radius instead of R − r = 3r, and getting 2π(4r)/(2πr) = 4 rotations.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "circumference",
-        "conceptual",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-CIR-066",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "A chord of length 2√(r² − a²) in a circle of radius r is at distance a from the center. A different chord of length 2√(r² − b²) is at distance b from the center. Given that a < b < r.\n\nColumn A: Length of the first chord\nColumn B: Length of the second chord",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "A",
-      "explanation": "The chord length formula is 2√(r² − d²) where d is the perpendicular distance from the center. Since a < b, we have a² < b², so r² − a² > r² − b², thus √(r² − a²) > √(r² − b²), and 2√(r² − a²) > 2√(r² − b²). A chord closer to the center is always longer. Column A > Column B.",
-      "trap": "Thinking a < b means the first chord is shorter (confusing distance from center with arc distance or position along the circle).",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "chord",
-        "qc",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-067",
-      "difficulty": "extreme_hard",
-      "type": "numeric_entry",
-      "question": "Four unit circles (radius = 1) are arranged so that each circle is tangent to its two neighbors and all four are tangent to a large circle internally. What is the radius of the large circle? Enter as a decimal rounded to 2 decimal places.",
-      "options": null,
-      "answer": "2.41",
-      "explanation": "The four unit circles have centers at (1,1), (−1,1), (−1,−1), (1,−1) — each at distance √2 from the origin. The large circle must be internally tangent to each small circle, so its radius R satisfies: distance from large center (origin) to small center = R − 1. Distance from origin to each small center = √(1²+1²) = √2. So R − 1 = √2 → R = 1 + √2 ≈ 1 + 1.4142 = 2.4142 ≈ 2.41.",
-      "trap": "Setting R = √2 (treating the large circle's radius as equal to the distance between centers rather than the distance plus the small radius).",
-      "estimated_time_seconds": 125,
-      "tags": [
-        "circle-area",
-        "multi-step",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-068",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "In a circle of radius 10, two perpendicular chords intersect at a point P that is 6 units from the center. One chord has segments of length a and b at point P; the other has segments c and d. Given that a + b + c + d = 40, which of the following must be true?",
-      "options": [
-        "A. ab = cd",
-        "B. ab + cd = 128",
-        "C. a + b = c + d = 20",
-        "D. ab = cd = 64",
-        "E. (a + b)² + (c + d)² = 1600"
-      ],
-      "answer": "B",
-      "explanation": "For two chords intersecting at P: ab = cd (intersecting chords theorem). For perpendicular chords, there's a useful property: if P is at distance d from center and the chords are perpendicular, then a+b and c+d (the chord lengths) satisfy: (a+b)² + (c+d)² = (2r)² + 4×0... Actually use: each chord's length² = 4(r² − dist_to_chord²). For perpendicular chords at distance r from center: the distances to the two chords from the center are h₁ and h₂ where h₁² + h₂² = OP² = 36 (since P is 6 from center and perpendicular chords split into distance components). Chord 1 length = 2√(100 − h₁²), chord 2 length = 2√(100 − h₂²). Here a+b = 2√(100−h₁²) and c+d = 2√(100−h₂²). ab = (a+b)²/4 − (a−b)²/4... Using intersecting chords: segments satisfy a×b = c×d and the key perpendicular chord property. For perpendicular chords at distance OP = 6: a×b + c×d = r² − OP² + r² − ... Actually ab = product of segments of one chord. By intersecting chords: ab = cd. By perpendicular chord theorem: ab + cd = r² − OP² ... hmm. Actually: a+b = chord 1 length, c+d = chord 2 length. For perpendicular chords: (a+b)²+(c+d)² = 4r²+(something). Standard result: for 2 perp chords intersecting at P at distance d from center: if lengths are L₁, L₂: L₁²+L₂² = 4(r²−d²)+4d²... = 4r². So (a+b)²+(c+d)²=4r²=400. Also a+b+c+d=40. Let L₁=a+b, L₂=c+d. L₁+L₂=40 and L₁²+L₂²=400. (L₁+L₂)²=1600, L₁²+L₂²+2L₁L₂=1600, 400+2L₁L₂=1600, L₁L₂=600. By intersecting chords: ab=cd. Also ab=(L₁/2−x)(L₁/2+x) for some x but depends on position. For the specific numeric answer: ab+cd=2ab (since ab=cd). ab=(L₁²/4)−m² where m=half(a−b). Without more info, ab+cd can vary. But E: L₁²+L₂²=400≠1600. So E is false. A: ab=cd is always true (intersecting chords). D: ab=cd=64 requires ab=64. C: equal chord lengths not guaranteed. B: ab+cd=128: we know L₁+L₂=40, L₁²+L₂²=400→L₁L₂=600. For ab: each chord's midpoint property. The result ab+cd=r²−OP²+r²−OP²... Let me use coordinates: P=(6cosα, 6sinα) for angle α. Chord 1 (horizontal through P): endpoints at (6cosα±√(r²−(6sinα)²), 6sinα). So a=√(100−36sin²α)+6cosα, b=√(100−36sin²α)−6cosα (assuming P not at midpoint). ab=(100−36sin²α)−36cos²α=100−36=64. Similarly cd=100−36=64 (for perpendicular chord, P has same distance from center). Actually ab=r²−OP²... wait: for a chord through P at any direction: one half-chord from P toward one end = √(r²−h²)+component, but actually by the intersecting chords theorem and geometry: ab = r² − OP² = 100 − 36 = 64. cd = 64. So ab+cd = 128. Answer B.",
-      "trap": "Selecting A (ab = cd) as the only true statement, missing that B (ab + cd = 128) is also true AND is the more specific/useful answer. Both A and D technically follow, but D is specifically correct.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "chord",
-        "multi-step",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-069",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "A Reuleaux triangle is formed by three circular arcs, each centered at one vertex of an equilateral triangle with side s, and each arc connecting the other two vertices. Its 'width' (distance between any pair of parallel supporting lines) is exactly s.\n\nColumn A: Area of the Reuleaux triangle with width s\nColumn B: Area of a circle with diameter s",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "Area of Reuleaux triangle = (1/2)(π − √3)s² ≈ (1/2)(3.1416 − 1.7321)s² ≈ (1/2)(1.4095)s² ≈ 0.7048s². Area of circle with diameter s (radius s/2): π(s/2)² = πs²/4 ≈ 0.7854s². Since 0.7048s² < 0.7854s², Column B > Column A.",
-      "trap": "Assuming the Reuleaux triangle, which has the same width as the circle, must have a larger area than the circle because it 'fills more space' — but the circle of the same width actually has greater area.",
-      "estimated_time_seconds": 125,
-      "tags": [
-        "sector-area",
-        "area",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "GEO-CIR-070",
-      "difficulty": "extreme_hard",
-      "type": "numeric_entry",
-      "question": "A circle C₁ of radius 3 and a circle C₂ of radius 5 have their centers 10 units apart. A direct common external tangent touches C₁ at A and C₂ at B. What is the length of AB? Enter as an exact value (integer or simplified radical).",
-      "options": null,
-      "answer": "4√6",
-      "explanation": "For two circles with radii r₁ = 3, r₂ = 5, and center distance d = 10: Length of external common tangent = √(d² − (r₂ − r₁)²) = √(100 − (5−3)²) = √(100 − 4) = √96 = 4√6. Note: for EXTERNAL tangent, the formula uses (r₁ − r₂)² when the circles are on the same side, and (r₁ + r₂)² for internal tangent. Since both circles are external to each other (d = 10 > r₁ + r₂ = 8), external tangent length = √(d²−(r₁−r₂)²) = √(100−4) = √96 = 4√6.",
-      "trap": "Using the internal tangent formula √(d²−(r₁+r₂)²) = √(100−64) = 6, which gives the length of an internal (crossing) tangent, not the external tangent.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "tangent-line",
-        "pythagorean-theorem",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-PNA-056",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "Circle C₁ has radius r. Circle C₂ has a circumference equal to the area of C₁.\n\nColumn A: The radius of C₂\nColumn B: r²/2",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "Area of C₁ = πr². This equals the circumference of C₂: 2πr₂ = πr² → r₂ = πr²/(2π) = r²/2. Column A = r₂ = r²/2 = Column B. The quantities are equal.",
-      "trap": "Students equate areas instead of setting area of C₁ = circumference of C₂. Setting πr² = πr₂² gives r₂ = r, so they compare r with r²/2, which depends on whether r > 2 or r < 2, and choose D.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "circle-area",
-        "circumference",
-        "qc",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "GEO-PNA-057",
-      "difficulty": "extreme_hard",
-      "type": "numeric_entry",
-      "question": "A chord of a circle with radius 10 is at a perpendicular distance of 6 from the centre. What is the length of the chord?",
-      "options": null,
-      "answer": "16",
-      "explanation": "The perpendicular from the centre bisects the chord. Right triangle: hypotenuse=10, leg=6.\nHalf-chord=√(100−36)=√64=8. Full chord=2×8=16.",
-      "trap": "Students compute √(10²−6²)=8 and report 8, forgetting 8 is only the half-chord. The perpendicular bisects the chord.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "chord-length",
-        "circle-geometry"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">10</text></svg>"
-    },
-    {
-      "id": "GEO-PNA-058",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "Two circles have radii 5 and 3. The distance between their centres is 10. How many common tangents do they have?",
-      "options": [
-        "A. 0",
-        "B. 2",
-        "C. 3",
-        "D. 4",
-        "E. 6"
-      ],
-      "answer": "D",
-      "explanation": "d=10, r₁+r₂=8. Since d>r₁+r₂, the circles are completely external (no overlap, no touch). Completely external circles have 4 common tangents (2 external + 2 internal/transverse).",
-      "trap": "Students think d=10 being 'large' means the circles overlap. They misapply d<r₁+r₂ as 10<8 (FALSE) and conclude the circles intersect, arriving at 2 tangents.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "common-tangents",
-        "circle-positioning"
-      ]
-    },
-    {
-      "id": "GEO-PNA-059",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "A circle is inscribed in an equilateral triangle with side 6. What is the area of the inscribed circle?",
-      "options": [
-        "A. π",
-        "B. 2π",
-        "C. 3π",
-        "D. 4π",
-        "E. 9π"
-      ],
-      "answer": "C",
-      "explanation": "Area of equilateral triangle=(√3/4)×36=9√3. Semi-perimeter=9.\nInradius r=Area/s=9√3/9=√3.\nCircle area=πr²=π(√3)²=3π.",
-      "trap": "Students confuse inradius with circumradius: R=a/√3=2√3, giving πR²=12π. Or they use r=side/2=3, giving 9π (option E).",
-      "estimated_time_seconds": 115,
-      "tags": [
-        "inscribed-circle",
-        "equilateral-triangle",
-        "inradius"
-      ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 270 235\" width=\"270\" height=\"235\" role=\"img\"><polygon points=\"40.0,200.0 230.0,200.0 135.0,35.5\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><circle cx=\"135.0\" cy=\"145.2\" r=\"54.8\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"135.0\" y=\"222.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">6</text></svg>"
-    }
-  ]
+  "subtopic": "Circles (Area, Arc & Sector)",
+  "subtopic_id": "GEO-CIR",
+  "version": "1.0",
+  "total_questions": 70,
+  "distribution": {
+   "easy": 18,
+   "medium": 27,
+   "hard": 18,
+   "extreme_hard": 7
+  },
+  "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+  "bank": "Adi's GRE Quant Bank"
+ },
+ "questions": [
+  {
+   "id": "GEO-CIR-001",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A circle has a radius of 5. What is its area?",
+   "options": [
+    "A. 10π",
+    "B. 20π",
+    "C. 25π",
+    "D. 50π",
+    "E. 100π"
+   ],
+   "answer": "C",
+   "explanation": "Area of a circle = πr². With r = 5: Area = π(5²) = 25π.",
+   "trap": "Using diameter (10) instead of radius (5) in the formula gives π(10²) = 100π.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "circle-area"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">5</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-002",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "What is the circumference of a circle with diameter 14?",
+   "options": [
+    "A. 7π",
+    "B. 14π",
+    "C. 28π",
+    "D. 49π",
+    "E. 196π"
+   ],
+   "answer": "B",
+   "explanation": "Circumference = 2πr = πd. With diameter = 14: C = π(14) = 14π.",
+   "trap": "Using r = 14 instead of r = 7 gives C = 2π(14) = 28π. Always check if the given value is radius or diameter.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "circumference"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"33.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"105.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">14</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-003",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A circle has circumference 10π. What is its radius?",
+   "options": null,
+   "answer": "5",
+   "explanation": "Circumference = 2πr. Set 2πr = 10π. Divide both sides by 2π: r = 10π / 2π = 5.",
+   "trap": "Forgetting to divide by 2 and concluding r = 10 because C = 10π.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "circumference"
+   ]
+  },
+  {
+   "id": "GEO-CIR-004",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A circle has a radius of 6. What is the length of an arc subtended by a central angle of 60°?",
+   "options": [
+    "A. π",
+    "B. 2π",
+    "C. 3π",
+    "D. 6π",
+    "E. 12π"
+   ],
+   "answer": "B",
+   "explanation": "Arc length = (θ/360) × 2πr = (60/360) × 2π(6) = (1/6) × 12π = 2π.",
+   "trap": "Using diameter (12) instead of radius (6): (1/6) × 2π(12) = 4π. The arc length formula uses radius.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "arc-length"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 235\" width=\"230\" height=\"235\" role=\"img\"><circle cx=\"115.0\" cy=\"115.0\" r=\"80.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 115 115 L 115.0 35.0 A 80 80 0 0 1 184.3 75.0 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"130.0\" y=\"93.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">60°</text><text x=\"127.0\" y=\"75.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">6</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-005",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "What is the area of a sector with radius 4 and central angle 90°?",
+   "options": [
+    "A. 2π",
+    "B. 4π",
+    "C. 8π",
+    "D. 16π",
+    "E. 32π"
+   ],
+   "answer": "B",
+   "explanation": "Sector area = (θ/360) × πr² = (90/360) × π(4²) = (1/4) × 16π = 4π.",
+   "trap": "Computing arc length instead of sector area: (90/360) × 2π(4) = 2π. The sector area formula uses πr², not 2πr.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "sector-area"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 235\" width=\"230\" height=\"235\" role=\"img\"><circle cx=\"115.0\" cy=\"115.0\" r=\"80.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 115 115 L 115.0 35.0 A 80 80 0 0 1 195.0 115.0 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"136.2\" y=\"97.8\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">90°</text><text x=\"127.0\" y=\"75.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">4</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-006",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "Circle A has radius 3. Circle B has radius 6.\n\nColumn A: Area of Circle A\nColumn B: One-fourth the area of Circle B",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Circle A area = π(3²) = 9π. Circle B area = π(6²) = 36π, and one-fourth of that = 9π. Column A = 9π = Column B, so the quantities are equal.",
+   "trap": "Assuming that because radius doubles, one-fourth the area equals the smaller circle. Actually this is exactly true: if r₂ = 2r₁, then πr₂²/4 = π(2r₁)²/4 = 4πr₁²/4 = πr₁². The two are equal.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "circle-area",
+    "qc"
+   ]
+  },
+  {
+   "id": "GEO-CIR-007",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A circle has area 36π. What is its diameter?",
+   "options": [
+    "A. 6",
+    "B. 9",
+    "C. 12",
+    "D. 18",
+    "E. 36"
+   ],
+   "answer": "C",
+   "explanation": "Area = πr² = 36π, so r² = 36, r = 6. Diameter = 2r = 2(6) = 12.",
+   "trap": "Stopping at r = 6 and reporting the radius instead of the diameter.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "circle-area"
+   ]
+  },
+  {
+   "id": "GEO-CIR-008",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A semicircle has a diameter of 8. What is the area of the semicircle? (Give your answer in terms of π — enter the coefficient of π only.)",
+   "options": null,
+   "answer": "8",
+   "explanation": "Full circle area = πr² where r = 4 (half of diameter 8). Full area = 16π. Semicircle area = 16π/2 = 8π. The coefficient is 8.",
+   "trap": "Using diameter 8 as radius: π(8²)/2 = 32π. Always halve the diameter to get radius.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "circle-area",
+    "area"
+   ]
+  },
+  {
+   "id": "GEO-CIR-009",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A circle has radius r. If the radius is tripled, the new area is how many times the original area?",
+   "options": [
+    "A. 3",
+    "B. 6",
+    "C. 9",
+    "D. 12",
+    "E. 27"
+   ],
+   "answer": "C",
+   "explanation": "Original area = πr². New radius = 3r. New area = π(3r)² = 9πr². Ratio = 9πr²/πr² = 9.",
+   "trap": "Thinking area scales linearly with radius and answering 3. Area scales with the square of radius.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "circle-area",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-010",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "What is the central angle of a sector whose arc length is one-third of the circle's circumference?",
+   "options": [
+    "A. 60°",
+    "B. 90°",
+    "C. 120°",
+    "D. 150°",
+    "E. 180°"
+   ],
+   "answer": "C",
+   "explanation": "Arc length = (θ/360) × circumference. If arc = (1/3) × circumference, then θ/360 = 1/3, so θ = 360/3 = 120°.",
+   "trap": "Confusing the fraction of the circumference with the angle fraction and computing 360 × (1/3) incorrectly or arriving at 90°.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "arc-length",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-011",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "Column A: Circumference of a circle with radius 5\nColumn B: Perimeter of a square with side 8",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Column A: 2π(5) = 10π ≈ 31.4. Column B: 4(8) = 32. Since 32 > 31.4, Column B is greater.",
+   "trap": "Approximating π as 3 instead of 3.14, getting 10π ≈ 30 and thinking Column B (32) is clearly larger — actually it still is, but the reasoning is approximate. Or mistakenly comparing 10π to 32 without computing π ≈ 3.14.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "circumference",
+    "perimeter",
+    "qc"
+   ]
+  },
+  {
+   "id": "GEO-CIR-012",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A circle has a circumference of 18π. What is its area? (Enter the coefficient of π only.)",
+   "options": null,
+   "answer": "81",
+   "explanation": "C = 2πr = 18π → r = 9. Area = πr² = π(9²) = 81π. Coefficient is 81.",
+   "trap": "Forgetting to square r: computing area = π(9) = 9π instead of 81π.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "circumference",
+    "circle-area",
+    "two-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-013",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "An arc subtends a central angle of 45° in a circle of radius 8. What is the area of the corresponding sector?",
+   "options": [
+    "A. 4π",
+    "B. 8π",
+    "C. 16π",
+    "D. 32π",
+    "E. 64π"
+   ],
+   "answer": "B",
+   "explanation": "Sector area = (θ/360) × πr² = (45/360) × π(64) = (1/8) × 64π = 8π.",
+   "trap": "Computing arc length instead of sector area: (45/360) × 2π(8) = 2π.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "sector-area"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 235\" width=\"230\" height=\"235\" role=\"img\"><circle cx=\"115.0\" cy=\"115.0\" r=\"80.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 115 115 L 115.0 35.0 A 80 80 0 0 1 171.6 58.4 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"126.5\" y=\"91.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">45°</text><text x=\"127.0\" y=\"75.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">8</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-014",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Two circles have radii in the ratio 2:5. What is the ratio of their areas?",
+   "options": [
+    "A. 2:5",
+    "B. 4:10",
+    "C. 4:25",
+    "D. 8:125",
+    "E. 10:25"
+   ],
+   "answer": "C",
+   "explanation": "Area = πr². If r₁:r₂ = 2:5, then Area₁:Area₂ = (2²):(5²) = 4:25.",
+   "trap": "Keeping the ratio linear (2:5) instead of squaring both values. The area ratio equals the square of the radius ratio.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "circle-area",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-015",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A circle is inscribed in a square with side length 10. What is the area of the circle? (Enter the coefficient of π only.)",
+   "options": null,
+   "answer": "25",
+   "explanation": "When a circle is inscribed in a square, the diameter equals the side length of the square. Side = 10, so diameter = 10, radius = 5. Area = π(5²) = 25π. Coefficient = 25.",
+   "trap": "Using the side length as the radius (r = 10) instead of the diameter, giving area = 100π.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "circle-area",
+    "area"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 220 230\" width=\"220\" height=\"230\" role=\"img\"><rect x=\"35\" y=\"35\" width=\"150.0\" height=\"150.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"110.0\" cy=\"110.0\" r=\"75.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"110.0\" y=\"211.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">10</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-016",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "The area of a circle is 49π. What is its circumference?",
+   "options": [
+    "A. 7π",
+    "B. 14π",
+    "C. 21π",
+    "D. 49π",
+    "E. 98π"
+   ],
+   "answer": "B",
+   "explanation": "Area = πr² = 49π → r² = 49 → r = 7. Circumference = 2πr = 2π(7) = 14π.",
+   "trap": "Finding r = 7 then computing circumference as πr = 7π (using πr instead of 2πr).",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "circle-area",
+    "circumference",
+    "two-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-017",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "Column A: Area of a circle with radius 4\nColumn B: Area of a square with side 4√π (i.e., 4 times square root of π)",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Column A: π(4²) = 16π. Column B: (4√π)² = 16π. The two quantities are equal.",
+   "trap": "Not computing Column B carefully. (4√π)² = 16π, which exactly equals Column A.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "circle-area",
+    "area",
+    "qc"
+   ]
+  },
+  {
+   "id": "GEO-CIR-018",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A pizza has a radius of 12 inches. If you eat a slice that subtends a central angle of 30°, what fraction of the total pizza did you eat?",
+   "options": [
+    "A. 1/3",
+    "B. 1/6",
+    "C. 1/9",
+    "D. 1/12",
+    "E. 1/30"
+   ],
+   "answer": "D",
+   "explanation": "The fraction of the pizza is the fraction of the full angle: 30/360 = 1/12. The radius is irrelevant since we're asked for a fraction.",
+   "trap": "Using the radius (12) in the calculation. The fraction of area equals the fraction of the central angle — radius cancels.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "sector-area",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-019",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A circle has radius 10. A chord is drawn such that it is 6 units from the center. What is the length of the chord?",
+   "options": [
+    "A. 8",
+    "B. 12",
+    "C. 16",
+    "D. 18",
+    "E. 20"
+   ],
+   "answer": "C",
+   "explanation": "Draw a radius to one end of the chord and a perpendicular from the center to the chord. This creates a right triangle with hypotenuse = radius = 10 and one leg = 6 (perpendicular distance). The other leg (half the chord length) = √(10² - 6²) = √(100 - 36) = √64 = 8. Full chord length = 2 × 8 = 16.",
+   "trap": "Forgetting to double the half-chord: reporting 8 instead of 16.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "chord",
+    "pythagorean-theorem"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">10</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-020",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The area of a sector is 12π and the radius of the circle is 6. What is the central angle of the sector?",
+   "options": [
+    "A. 60°",
+    "B. 90°",
+    "C. 120°",
+    "D. 150°",
+    "E. 180°"
+   ],
+   "answer": "C",
+   "explanation": "Sector area = (θ/360) × πr². So 12π = (θ/360) × π(36) = (θ/360) × 36π. Dividing both sides by 36π: 12/36 = θ/360 → 1/3 = θ/360 → θ = 120°.",
+   "trap": "Setting up 12π = (θ/360) × 6π (using radius instead of r²) and getting θ = 720°, which is impossible.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "sector-area",
+    "two-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-021",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Two concentric circles have radii 5 and 9. What is the area of the ring (annulus) between them? (Enter the coefficient of π only.)",
+   "options": null,
+   "answer": "56",
+   "explanation": "Area of ring = Area of large circle − Area of small circle = π(9²) − π(5²) = 81π − 25π = 56π. Coefficient = 56.",
+   "trap": "Subtracting radii first: π(9−5)² = π(4²) = 16π. You must subtract the areas, not compute π(r₂−r₁)².",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "circle-area",
+    "area",
+    "two-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-022",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "An inscribed angle in a circle measures 35°. What is the measure of the central angle that subtends the same arc?",
+   "options": [
+    "A. 17.5°",
+    "B. 35°",
+    "C. 52.5°",
+    "D. 70°",
+    "E. 105°"
+   ],
+   "answer": "D",
+   "explanation": "The inscribed angle theorem states that a central angle is twice the inscribed angle that subtends the same arc. Central angle = 2 × 35° = 70°.",
+   "trap": "Confusing the relationship: dividing instead of multiplying, getting 35/2 = 17.5°.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "inscribed-angle",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-023",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "A circle has radius 7.\n\nColumn A: Arc length of a 60° sector\nColumn B: One-sixth of the circumference",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Column A: Arc length = (60/360) × 2π(7) = (1/6) × 14π = 7π/3. Column B: (1/6) × 2π(7) = (1/6) × 14π = 7π/3. They are identical — a 60° arc IS one-sixth of the circumference since 60/360 = 1/6.",
+   "trap": "Thinking the arc length formula gives a different result from the direct fraction. They are the same calculation.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "arc-length",
+    "circumference",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-024",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A square is inscribed in a circle of radius 5. What is the area of the square?",
+   "options": [
+    "A. 25",
+    "B. 50",
+    "C. 25√2",
+    "D. 25π",
+    "E. 100"
+   ],
+   "answer": "B",
+   "explanation": "When a square is inscribed in a circle, the diagonal of the square equals the diameter of the circle. Diameter = 2(5) = 10. If side of square = s, then diagonal = s√2 = 10, so s = 10/√2 = 5√2. Area = s² = (5√2)² = 50.",
+   "trap": "Setting the side equal to the radius (5) and computing area = 25. The diagonal, not the side, equals the diameter.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "circle-area",
+    "area",
+    "pythagorean-theorem",
+    "two-step"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 250\" width=\"240\" height=\"250\" role=\"img\"><circle cx=\"120.0\" cy=\"120.0\" r=\"85.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><polygon points=\"180.1,180.1 59.9,180.1 59.9,59.9 180.1,59.9\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"120.0\" y1=\"120.0\" x2=\"180.1\" y2=\"59.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5,4\"/><text x=\"164.0\" y=\"86.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">5</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-025",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A circle has radius 10. Which of the following could be the arc length of a sector of this circle? Select all that apply.",
+   "options": [
+    "A. π",
+    "B. 5π",
+    "C. 10π",
+    "D. 15π",
+    "E. 20π"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "The full circumference = 2π(10) = 20π. Any arc length must be between 0 (exclusive) and 20π (inclusive, the full circle). Checking each: A: π < 20π ✓; B: 5π < 20π ✓; C: 10π < 20π ✓; D: 15π < 20π ✓; E: 20π = 20π ✓ (full circle, θ = 360°). All options are valid.",
+   "trap": "Excluding 20π thinking a full circle isn't a 'sector', or excluding values without checking against the maximum circumference.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "arc-length",
+    "multiple-answer",
+    "conceptual"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">10</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-026",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A circle has radius 12. What is the length of an arc that subtends a central angle of 150°?",
+   "options": [
+    "A. 5π",
+    "B. 10π",
+    "C. 15π",
+    "D. 20π",
+    "E. 24π"
+   ],
+   "answer": "B",
+   "explanation": "Arc length = (θ/360) × 2πr = (150/360) × 2π(12) = (5/12) × 24π = 10π.",
+   "trap": "Using 150/360 = 5/12 correctly but then multiplying by πr (= 12π) instead of 2πr (= 24π): (5/12) × 12π = 5π.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "arc-length"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 235\" width=\"230\" height=\"235\" role=\"img\"><circle cx=\"115.0\" cy=\"115.0\" r=\"80.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 115 115 L 115.0 35.0 A 80 80 0 0 1 155.0 184.3 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"144.0\" y=\"111.2\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">150°</text><text x=\"127.0\" y=\"75.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">12</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-027",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Circle P has radius r. Circle Q has circumference equal to the area of Circle P.\n\nColumn A: Radius of Circle Q\nColumn B: r²/2",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Area of Circle P = πr². Circumference of Circle Q = πr². So 2πR = πr² where R is radius of Q. Solving: R = πr²/(2π) = r²/2. Column A = r²/2 = Column B. They are equal.",
+   "trap": "Setting area of P equal to area of Q (instead of circumference of Q) giving R = r, then concluding Column B = r²/2 < r for r > 2.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "circle-area",
+    "circumference",
+    "qc",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-028",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A circle is centered at the origin and passes through the point (3, 4). What is the area of the circle? (Enter the coefficient of π only.)",
+   "options": null,
+   "answer": "25",
+   "explanation": "The radius equals the distance from the center (0,0) to the point (3,4). r = √(3² + 4²) = √(9 + 16) = √25 = 5. Area = πr² = 25π. Coefficient = 25.",
+   "trap": "Adding the coordinates: r = 3 + 4 = 7, area = 49π. The radius requires the distance formula, not addition.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "circle-area",
+    "pythagorean-theorem"
+   ]
+  },
+  {
+   "id": "GEO-CIR-029",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The shaded region is a circle of radius 3 removed from a circle of radius 7 (both share the same center). What is the area of the remaining (unshaded) region?",
+   "options": [
+    "A. 16π",
+    "B. 40π",
+    "C. 42π",
+    "D. 49π",
+    "E. 58π"
+   ],
+   "answer": "B",
+   "explanation": "Outer circle area = π(7²) = 49π. Inner circle (removed) area = π(3²) = 9π. Remaining area = 49π − 9π = 40π.",
+   "trap": "Subtracting radii first: π(7−3)² = π(16) = 16π. You must subtract areas, not compute the area of the difference of radii.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "circle-area",
+    "area"
+   ]
+  },
+  {
+   "id": "GEO-CIR-030",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A central angle of 120° is drawn in a circle of radius 6. Which of the following statements are true? Select all that apply.",
+   "options": [
+    "A. The arc length is 4π",
+    "B. The sector area is 12π",
+    "C. The remaining arc (the major arc) has length 8π",
+    "D. The chord connecting the two radii has length 6",
+    "E. The sector area equals one-third of the total circle area"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "A: Arc = (120/360)×2π(6) = (1/3)×12π = 4π ✓. B: Sector area = (120/360)×π(36) = (1/3)×36π = 12π ✓. C: Major arc = circumference − minor arc = 12π − 4π = 8π ✓. D: Chord with central angle 120° in a circle of r=6: using the law of cosines, chord² = 6²+6²−2(6)(6)cos(120°) = 36+36−72(−1/2) = 72+36 = 108, chord = 6√3 ≈ 10.4 ≠ 6 ✗. E: 120/360 = 1/3 of total area ✓.",
+   "trap": "For D, students may think an equilateral triangle forms with the chord because 120° feels like it should be 60° from the chord; but the central angle is 120°, not 60°, so the chord = 6√3.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "arc-length",
+    "sector-area",
+    "chord",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "GEO-CIR-031",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A wheel of radius 2 feet rolls along a flat surface. How many complete rotations does it make to travel 40π feet?",
+   "options": [
+    "A. 5",
+    "B. 10",
+    "C. 20",
+    "D. 40",
+    "E. 80"
+   ],
+   "answer": "B",
+   "explanation": "One complete rotation covers a distance equal to the circumference = 2π(2) = 4π feet. Number of rotations = 40π / 4π = 10.",
+   "trap": "Using the radius (2) directly: 40π/2 = 20π, then not dividing by π to get a number.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "circumference",
+    "two-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-032",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "A semicircle has diameter 8.\n\nColumn A: Area of the semicircle\nColumn B: Area of a circle with circumference 4π",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Column A: Semicircle with diameter 8 → r = 4. Area = πr²/2 = π(16)/2 = 8π. Column B: Circumference = 4π → 2πr = 4π → r = 2. Area = π(4) = 4π. Column A (8π) > Column B (4π).",
+   "trap": "For Column B, computing r = 4 from circumference 4π by skipping the factor of 2: 2πr = 4π so r = 4 (wrong) gives area = 16π.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "circle-area",
+    "circumference",
+    "qc",
+    "two-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-033",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A circle has a sector with area 27π and central angle 120°. What is the radius of the circle?",
+   "options": null,
+   "answer": "9",
+   "explanation": "Sector area = (θ/360)πr². So 27π = (120/360)πr² = (1/3)πr². Then r² = 81 and r = 9.",
+   "trap": "Solving for r² = 81 and then reporting 81 instead of taking the square root to get r = 9.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "sector-area",
+    "two-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-034",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In a circle with radius 10, an inscribed angle intercepts an arc of 120°. What is the measure of the inscribed angle?",
+   "options": [
+    "A. 30°",
+    "B. 60°",
+    "C. 90°",
+    "D. 120°",
+    "E. 240°"
+   ],
+   "answer": "B",
+   "explanation": "The inscribed angle equals half the intercepted arc. Inscribed angle = 120°/2 = 60°.",
+   "trap": "Confusing 'arc measure' with 'central angle' then doubling: 2 × 120° = 240°. An inscribed angle = (1/2) × arc measure.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "inscribed-angle",
+    "arc-length",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-035",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A circle with radius 5 is inscribed in a right triangle. The hypotenuse of the right triangle is 13 and the legs are 5 and 12. What is the area of the triangle?",
+   "options": [
+    "A. 25",
+    "B. 30",
+    "C. 32.5",
+    "D. 60",
+    "E. 65"
+   ],
+   "answer": "B",
+   "explanation": "Area of right triangle = (1/2) × leg₁ × leg₂ = (1/2)(5)(12) = 30. Note: The inradius r = (a + b − c)/2 = (5 + 12 − 13)/2 = 4/2 = 2, so actually r = 2, not 5. The problem states radius 5 as a distractor. Simply compute: area = (1/2)(5)(12) = 30.",
+   "trap": "Using the inradius formula area = r × s (where s is semi-perimeter) with the wrong r = 5: area = 5 × 15 = 75. The direct formula (1/2)(base)(height) is cleaner and correct.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "circle-area",
+    "area",
+    "two-step"
+   ],
+   "figure_description": "Circle with center O. Inscribed angle ∠BAC where B, A, C are on the circle. Central angle ∠BOC subtends the same arc BC.",
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 285 230\" width=\"285\" height=\"230\" role=\"img\"><polygon points=\"45.0,190.0 215.0,190.0 45.0,119.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><polyline points=\"56.0,190.0 56.0,179.0 45.0,179.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"130.0\" y=\"210.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">12</text><text x=\"35.0\" y=\"158.6\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\" style=\"\">5</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-036",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Point P is on a circle with center O and radius 6. Point Q is on the same circle. The arc PQ measures 90°.\n\nColumn A: Length of chord PQ\nColumn B: Length of arc PQ",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Chord PQ: Using the law of cosines with r = 6, central angle = 90°: PQ² = 6² + 6² − 2(6)(6)cos(90°) = 36 + 36 − 0 = 72. PQ = 6√2 ≈ 8.49. Arc PQ = (90/360) × 2π(6) = (1/4)(12π) = 3π ≈ 9.42. Column B (3π ≈ 9.42) > Column A (6√2 ≈ 8.49).",
+   "trap": "Assuming chord length equals arc length. A chord is always shorter than its arc, but students confuse the two calculations.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "chord",
+    "arc-length",
+    "qc",
+    "pythagorean-theorem"
+   ]
+  },
+  {
+   "id": "GEO-CIR-037",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A sector has central angle 270° and arc length 9π. What is the radius of the circle?",
+   "options": [
+    "A. 3",
+    "B. 6",
+    "C. 9",
+    "D. 12",
+    "E. 18"
+   ],
+   "answer": "B",
+   "explanation": "Arc length = (θ/360) × 2πr. So 9π = (270/360) × 2πr = (3/4) × 2πr = (3/2)πr. Solving: r = 9π / (3π/2) = 9π × (2/3π) = 6.",
+   "trap": "Writing 270/360 = 3/4 correctly, but then setting up the equation as 9π = (3/4) × πr (omitting the factor of 2 in the arc length formula), getting r = 12.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "arc-length",
+    "two-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-038",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A circle is centered at (2, −3) and has radius 5. Does the point (6, 0) lie on, inside, or outside the circle? Enter 1 if inside, 2 if on, 3 if outside.",
+   "options": null,
+   "answer": "2",
+   "explanation": "Distance from center (2, −3) to point (6, 0): d = √((6−2)² + (0−(−3))²) = √(4² + 3²) = √(16 + 9) = √25 = 5. Since d = 5 = radius, the point lies ON the circle. Enter 2.",
+   "trap": "Computing (6−2) + (0+3) = 4 + 3 = 7 (adding instead of using the distance formula), concluding the point is outside.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "circle-area",
+    "pythagorean-theorem"
+   ]
+  },
+  {
+   "id": "GEO-CIR-039",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A circle has area 100π. What is the arc length of a sector with central angle 72°?",
+   "options": [
+    "A. 2π",
+    "B. 4π",
+    "C. 5π",
+    "D. 10π",
+    "E. 20π"
+   ],
+   "answer": "B",
+   "explanation": "Area = πr² = 100π → r² = 100 → r = 10. Arc length = (72/360) × 2π(10) = (1/5) × 20π = 4π.",
+   "trap": "Confusing sector area with arc length: (72/360) × 100π = 20π. That's a fraction of the total area, not arc length.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "circle-area",
+    "arc-length",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-040",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Two chords AB and CD intersect inside a circle. AB = 12 and CD = 13. The chord AB is bisected at the intersection point.\n\nColumn A: The length of the longer segment of CD\nColumn B: 9",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "By the intersecting-chords theorem, the product of AB's segments equals the product of CD's. AB is bisected, so each half = 6, giving 6 × 6 = 36. If CD's segments are x and 13 − x, then x(13 − x) = 36 → x² − 13x + 36 = 0 → x = 4 or 9. The longer segment is 9. Column A = 9 = Column B, so the quantities are equal.",
+   "trap": "Not applying the intersecting chords theorem and instead guessing the longer segment is half of CD = 6.5.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "chord",
+    "qc",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-041",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A circle has radius 8. A square with side 8 shares a corner with the circle such that the corner lies at the center of the circle. What is the area of the region inside both the square and the circle?",
+   "options": [
+    "A. 8π",
+    "B. 16π",
+    "C. 32",
+    "D. 64",
+    "E. 64π"
+   ],
+   "answer": "B",
+   "explanation": "The square's corner is at the circle's center. The region inside both the square and the circle is a 90° sector of the circle (one quarter of the circle), since the square's two sides at that corner form a 90° angle. Sector area = (90/360) × π(8²) = (1/4) × 64π = 16π.",
+   "trap": "Computing the full circle area (64π) instead of recognizing that only a 90° (quarter) sector overlaps with the square.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "sector-area",
+    "area",
+    "two-step"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">8</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-042",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A circle has circumference 30. (Not 30π — just 30.) What is its area in terms of π? Enter the exact value as a decimal or fraction (without π).",
+   "options": null,
+   "answer": "225/π",
+   "explanation": "Circumference C = 2πr = 30 → r = 15/π. Area = πr² = π(15/π)² = π × 225/π² = 225/π.",
+   "trap": "Treating the circumference as 30π and computing r = 15, area = 225π. The circumference is 30 (no π), so r = 15/π.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "circumference",
+    "circle-area",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-043",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "An angle inscribed in a semicircle always measures:",
+   "options": [
+    "A. 45°",
+    "B. 60°",
+    "C. 90°",
+    "D. 120°",
+    "E. 180°"
+   ],
+   "answer": "C",
+   "explanation": "An inscribed angle that intercepts a semicircle (a diameter) always equals 90°. This is Thales' theorem. The intercepted arc is 180° (a semicircle), and the inscribed angle = (1/2) × 180° = 90°.",
+   "trap": "Confusing the arc measure (180°) with the inscribed angle. The inscribed angle is half the arc, not equal to it.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "inscribed-angle",
+    "conceptual"
+   ],
+   "figure_description": "Circle with center O. Inscribed angle ∠BAC where B, A, C are on the circle. Central angle ∠BOC subtends the same arc BC."
+  },
+  {
+   "id": "GEO-CIR-044",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "A circle has radius r > 0.\n\nColumn A: Area of a sector with central angle 120°\nColumn B: (1/3) × circumference of the same circle",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Column A: (120/360)πr² = (1/3)πr². Column B: (1/3)(2πr) = (2/3)πr. Comparing (1/3)πr² vs (2/3)πr. Divide both by (1/3)π: r² vs 2r → r vs 2. If r < 2, Column B > Column A. If r = 2, they're equal. If r > 2, Column A > Column B. The relationship cannot be determined without knowing r.",
+   "trap": "Thinking sector area and arc length are always comparable without considering r, and selecting C.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "sector-area",
+    "circumference",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-045",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A tangent from an external point P touches a circle of radius 6 at point T. The distance from P to the center O is 10. What is the length of PT?",
+   "options": [
+    "A. 4",
+    "B. 6",
+    "C. 8",
+    "D. 10",
+    "E. 12"
+   ],
+   "answer": "C",
+   "explanation": "A tangent is perpendicular to the radius at the point of tangency. Triangle OTP is a right triangle with hypotenuse OP = 10 and leg OT = 6 (radius). PT = √(OP² − OT²) = √(100 − 36) = √64 = 8.",
+   "trap": "Adding or subtracting instead of using the Pythagorean theorem: PT = 10 − 6 = 4.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "tangent-line",
+    "pythagorean-theorem"
+   ]
+  },
+  {
+   "id": "GEO-CIR-046",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Two circles of radii 3 and 4 are externally tangent to each other. A line is drawn tangent to both circles from the outside (an external common tangent). What is the length of the tangent segment between the two points of tangency?",
+   "options": [
+    "A. 2√3",
+    "B. 4√3",
+    "C. 2√7",
+    "D. 4√7",
+    "E. 2√(33)"
+   ],
+   "answer": "B",
+   "explanation": "For two externally tangent circles the distance between centers is d = 3 + 4 = 7. The external common tangent segment has length √(d² − (r₁ − r₂)²) = √(49 − 1) = √48 = 4√3. (Equivalently 2√(r₁r₂) = 2√12 = 4√3.)",
+   "trap": "Using r₁ + r₂ in the formula for external tangent instead of r₁ − r₂, getting √(49−49) = 0.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "tangent-line",
+    "pythagorean-theorem",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-047",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A circle of radius 6 is circumscribed around an equilateral triangle. What is the side length of the equilateral triangle? (Enter exact value — if irrational, enter in the form a√b where a and b are integers.)",
+   "options": null,
+   "answer": "6√3",
+   "explanation": "For an equilateral triangle with side s, the circumradius R = s/√3. So 6 = s/√3 → s = 6√3. Alternatively: R = s/(√3) comes from R = s√3/3 = s/√3. Verify: circumradius of equilateral triangle = s/√3 = (6√3)/√3 = 6. ✓",
+   "trap": "Using the formula R = s/2 (which applies to a square), getting s = 12.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "circle-area",
+    "pythagorean-theorem",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-048",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A circle of radius 10 has a chord that subtends a central angle of 90°. What is the area of the minor segment (the region bounded by the chord and the minor arc)?",
+   "options": [
+    "A. 25π − 50",
+    "B. 25π − 100",
+    "C. 50π − 50",
+    "D. 100π − 25",
+    "E. 25π"
+   ],
+   "answer": "A",
+   "explanation": "Minor segment = sector − triangle. The 90° sector = (90/360)π(10²) = 25π. The triangle formed by the two radii and the chord is right-angled at the center with legs 10 and 10, so its area = ½(10)(10) = 50. Segment = 25π − 50.",
+   "trap": "Computing the sector area without subtracting the triangle area, or using the full circle area minus the triangle.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "arc-length",
+    "sector-area",
+    "area",
+    "pythagorean-theorem",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-049",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A circle has radius r. A square is inscribed in the circle.\n\nColumn A: Area of the circle\nColumn B: 1.6 times the area of the square",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "A square inscribed in a circle of radius r has diagonal 2r, so its side is r√2 and its area is 2r². Column A = circle area = πr² ≈ 3.14r². Column B = 1.6 × 2r² = 3.2r². Since 3.14r² < 3.2r², Column B is greater.",
+   "trap": "Approximating π/2 ≈ 1.57 and comparing to 1.6: since π/2 < 1.6, the circle area is less than 1.6 times the square area. Students who think π > 3.2 get the wrong answer.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "circle-area",
+    "area",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-050",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Three circles, each with radius 2, are mutually externally tangent to each other. What is the area of the region bounded between the three circles (the 'gap' in the middle)?",
+   "options": [
+    "A. 4√3 − 4π/3",
+    "B. 4√3 − 2π",
+    "C. 4√3 − π",
+    "D. 2√3 − π",
+    "E. 4√3 − 4π"
+   ],
+   "answer": "B",
+   "explanation": "Joining the three centers gives an equilateral triangle of side 2 + 2 = 4, with area (√3/4)(4²) = 4√3. Inside it, each circle contributes a 60° sector of radius 2, totaling 3 × (60/360)π(2²) = 3 × (1/6)(4π) = 2π. The central gap = 4√3 − 2π.",
+   "trap": "Using r = 2 but computing sectors with r = 4 (the side length), or forgetting to multiply sector area by 3.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "sector-area",
+    "area",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-051",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A circle has equation x² + y² − 6x + 8y − 11 = 0. What is the radius of this circle?",
+   "options": null,
+   "answer": "6",
+   "explanation": "Complete the square: (x² − 6x) + (y² + 8y) = 11. (x² − 6x + 9) + (y² + 8y + 16) = 11 + 9 + 16 = 36. (x − 3)² + (y + 4)² = 36. So r² = 36, r = 6.",
+   "trap": "Reading the equation as r² = 11 (using only the constant term) and reporting r = √11.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "circle-area",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-052",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A goat is tied to the corner of a 10×8 rectangular barn with a rope of length 14. What is the total area the goat can graze? (Assume the barn blocks the goat's path.)",
+   "options": [
+    "A. 147π",
+    "B. 156π",
+    "C. 160π",
+    "D. 164π",
+    "E. 196π"
+   ],
+   "answer": "C",
+   "explanation": "At the corner the barn blocks a 90° wedge, so the goat grazes a 270° sector of radius 14: (3/4)π(14²) = 147π. Wrapping past the 8-ft side leaves 14 − 8 = 6 ft, adding (1/4)π(6²) = 9π. Wrapping past the 10-ft side leaves 14 − 10 = 4 ft, adding (1/4)π(4²) = 4π. Total = 147π + 9π + 4π = 160π.",
+   "trap": "Only computing the main 270° sector and ignoring the area accessible when the rope wraps around the barn corners.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "sector-area",
+    "area",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-053",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "In circle O, chord AB has length 10. Chord CD passes through the center O (so CD is a diameter). AB and CD intersect at point P, where AP = 4.\n\nColumn A: CP × PD\nColumn B: 24",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "By the intersecting chords theorem: AP × PB = CP × PD. AP = 4, AB = 10, so PB = 10 − 4 = 6. Therefore CP × PD = AP × PB = 4 × 6 = 24. Column A = 24 = Column B.",
+   "trap": "Trying to find the actual values of CP and PD separately (which requires knowing the radius) rather than using the intersecting chords product directly.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "chord",
+    "qc",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-054",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In circle O with radius 10, two chords AB and CD are parallel. The perpendicular distance between the chords is 14. If AB = 12, what is the length of CD?",
+   "options": [
+    "A. 6",
+    "B. 8",
+    "C. 10",
+    "D. 12",
+    "E. 16"
+   ],
+   "answer": "E",
+   "explanation": "AB = 12, so half-chord = 6. Distance from center to AB: d₁ = √(10² − 6²) = √(100−36) = √64 = 8. Since the perpendicular distance between the chords is 14 and 2r = 20, the chords must be on opposite sides of the center (8 + d₂ = 14 → d₂ = 6, or they're both on same side: |8 − d₂| = 14 → d₂ = −6, impossible). So d₂ = 6. Half of CD = √(10² − 6²) = √64 = 8. CD = 16.",
+   "trap": "Placing both chords on the same side of the center: d₂ = 14 − 8 = 6, which still gives CD = 16, so the answer is correct. But some students compute d₂ = 8 + 14 = 22 > 10 = radius, which is impossible, and get confused.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "chord",
+    "pythagorean-theorem",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-055",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Circle O has radius 5. Point P is outside the circle, with OP = 13. A secant from P passes through the circle, entering at point A and exiting at point B (so P, A, B are collinear with A between P and B). PA = 3. Which of the following are true? Select all that apply.",
+   "options": [
+    "A. PB = 25",
+    "B. The tangent from P to the circle has length 12",
+    "C. AB = 22",
+    "D. The power of point P = 75",
+    "E. OA = OB = 5"
+   ],
+   "answer": [
+    "B",
+    "E"
+   ],
+   "explanation": "Power of P = OP² − r² = 169 − 25 = 144. From PA × PB = 144 with PA = 3, PB = 48, so AB = 48 − 3 = 45, and the tangent length = √144 = 12. Checking: (A) PB = 48 ≠ 25 ✗; (B) tangent = 12 ✓; (C) AB = 45 ≠ 22 ✗; (D) power = 144 ≠ 75 ✗; (E) OA and OB are radii = 5 ✓. So B and E.",
+   "trap": "Not applying power of a point correctly: using PA × PB = r² instead of OP² − r².",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "chord",
+    "tangent-line",
+    "multiple-answer",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-056",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A sector has radius 9 and arc length 6π. What is the area of the sector? (Enter the coefficient of π only.)",
+   "options": null,
+   "answer": "27",
+   "explanation": "First find the central angle. Arc length = (θ/360) × 2πr → 6π = (θ/360) × 2π(9) = (θ/360) × 18π. So θ/360 = 6π/18π = 1/3 → θ = 120°. Sector area = (θ/360) × πr² = (1/3) × π(81) = 27π. Coefficient = 27. Alternative: sector area = (1/2) × r × arc length = (1/2)(9)(6π) = 27π.",
+   "trap": "Forgetting the elegant formula: sector area = (1/2)r × arc length. Students who use the long route may make arithmetic errors.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "sector-area",
+    "arc-length",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-057",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A regular hexagon is inscribed in a circle of radius 6. What is the area of the region inside the circle but outside the hexagon?",
+   "options": [
+    "A. 36π − 54",
+    "B. 36π − 54√3",
+    "C. 36π − 108",
+    "D. 36π − 108√3",
+    "E. 36(π − √3)"
+   ],
+   "answer": "B",
+   "explanation": "Circle area = π(36) = 36π. A regular hexagon inscribed in a circle of radius r consists of 6 equilateral triangles, each with side = r = 6. Area of one equilateral triangle = (√3/4)(6²) = 9√3. Total hexagon area = 6 × 9√3 = 54√3. Area outside hexagon but inside circle = 36π − 54√3.",
+   "trap": "Using the area formula for a regular hexagon with apothem instead of circumradius, or computing 54 instead of 54√3.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "circle-area",
+    "area",
+    "sector-area",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-058",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Circle C₁ has radius r₁ and circle C₂ has radius r₂, where r₁ + r₂ = 10.\n\nColumn A: Sum of the areas of C₁ and C₂\nColumn B: Area of a circle with radius 5",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Column B = π(5²) = 25π. Column A = π(r₁²) + π(r₂²) = π(r₁² + r₂²). We need to compare r₁² + r₂² with 25 given r₁ + r₂ = 10. By the identity (r₁+r₂)² = r₁²+r₂²+2r₁r₂: 100 = r₁²+r₂²+2r₁r₂ → r₁²+r₂² = 100−2r₁r₂. By AM-GM, r₁r₂ ≤ ((r₁+r₂)/2)² = 25. So r₁²+r₂² = 100−2r₁r₂ ≥ 100−50 = 50 > 25. Equality only when r₁ = r₂ = 5, but then Column A = π(25+25) = 50π > 25π = Column B. Column A is always strictly greater (≥ 50π > 25π).",
+   "trap": "Thinking that since r₁ + r₂ = 10 = 2×5, the sum of areas equals the area of one circle with radius 5. Area is not linear in radius.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "circle-area",
+    "qc",
+    "conceptual",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-059",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "An arc PQ has length 4π and the radius is 6. A chord PQ is drawn. What is the perpendicular distance from the center of the circle to the chord?",
+   "options": [
+    "A. 2",
+    "B. 2√3",
+    "C. 3",
+    "D. 3√2",
+    "E. 3√3"
+   ],
+   "answer": "C",
+   "explanation": "Step 1: Find central angle. Arc = (θ/360)(2πr) → 4π = (θ/360)(12π) → θ/360 = 4π/12π = 1/3 → θ = 120°. Step 2: The perpendicular from center bisects the chord. Half-angle = 60°. cos(60°) = d/r where d = distance from center to chord. d = r·cos(60°) = 6 × (1/2) = 3.",
+   "trap": "Using sin instead of cos: d = 6·sin(60°) = 3√3, or computing the half-chord instead of the perpendicular distance.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "arc-length",
+    "chord",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-060",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A circle has center (0, 0) and radius 5. Which of the following points lie strictly INSIDE the circle? Select all that apply.",
+   "options": [
+    "A. (3, 4)",
+    "B. (−4, 2)",
+    "C. (0, 5)",
+    "D. (2, −4)",
+    "E. (1, 4)"
+   ],
+   "answer": [
+    "B",
+    "D",
+    "E"
+   ],
+   "explanation": "A point (x, y) is strictly inside when x² + y² < 25. A: 9 + 16 = 25 (on the circle) ✗; B: 16 + 4 = 20 < 25 ✓; C: 0 + 25 = 25 (on the circle) ✗; D: 4 + 16 = 20 < 25 ✓; E: 1 + 16 = 17 < 25 ✓. So B, D, and E.",
+   "trap": "Confusing 'strictly inside' with 'on or inside': including points A and C which lie exactly on the circle.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "circle-area",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "GEO-CIR-061",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A circle of radius 4 has two radii OA and OB forming a central angle of 60°. A tangent line is drawn at point A perpendicular to OA, and a tangent line at point B perpendicular to OB. The two tangent lines meet at point P. What is the distance OP?",
+   "options": [
+    "A. 4",
+    "B. 4√2",
+    "C. 8/√3",
+    "D. 8√3/3",
+    "E. 8"
+   ],
+   "answer": "C",
+   "explanation": "The angle AOB = 60°. Triangle OAP: OA ⊥ PA (tangent). Angle AOP = half of angle AOB = 30° (since OP bisects angle AOB by symmetry). In right triangle OAP: tan(30°) = PA/OA = PA/4. Also cos(30°) = OA/OP = 4/OP → OP = 4/cos(30°) = 4/(√3/2) = 8/√3 = 8√3/3. Both C and D are the same value. C: 8/√3 = 8√3/3 = D. These are equal. GRE would simplify to 8√3/3.",
+   "trap": "Using angle AOP = 60° instead of 30° (forgetting OP bisects the angle): OP = 4/cos(60°) = 4/(1/2) = 8.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "tangent-line",
+    "multi-step",
+    "pythagorean-theorem"
+   ]
+  },
+  {
+   "id": "GEO-CIR-062",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Circle A has its center at (1, 2) and passes through (4, 6). Circle B has its center at (−2, 3) and passes through (3, 15).\n\nColumn A: Radius of Circle A\nColumn B: Radius of Circle B",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Circle A radius: √((4−1)² + (6−2)²) = √(9+16) = √25 = 5. Circle B radius: √((3−(−2))² + (15−3)²) = √(25+144) = √169 = 13. Column B (13) > Column A (5).",
+   "trap": "Computing Circle B's radius as √(5² + 12²) = 13 correctly but miscalculating Circle A as √(3+4) = √7 by not squaring the differences.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "circle-area",
+    "pythagorean-theorem",
+    "qc"
+   ]
+  },
+  {
+   "id": "GEO-CIR-063",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "Two circles are internally tangent. The larger circle has radius 10 and the smaller has radius 4. A chord of the larger circle is tangent to the smaller circle. What is the length of this chord?",
+   "options": null,
+   "answer": "16√(21)/5",
+   "explanation": "Centers are on the same line (internally tangent), distance between centers = 10 − 4 = 6. The chord of the larger circle is tangent to the smaller circle, so its distance from the smaller circle's center equals 4. Let the distance from the larger center to the chord = d. The chord is tangent to the smaller circle, so distance from small center to chord = 4. The small center is 6 units from the large center along the line of centers. For a chord tangent to the small circle: if the chord is perpendicular to the line of centers, the distance from the large center to the chord = 6 + 4 = 10 or 6 − 4 = 2. If d = 2: chord length = 2√(10²−2²) = 2√96 = 8√6. If d = 10: chord length = 0 (the chord is just a tangent to the outer circle too). So d = 2, chord = 8√6 ≈ 19.6. Alternatively with asymmetric placement: the chord isn't necessarily perpendicular to the line of centers. Using general tangent condition: distance from small center to chord = 4. If the large center is at origin, small center at (6, 0). Chord at distance d from (0,0): length = 2√(100−d²). Distance from (6,0) to the chord = 4. For a horizontal chord at height d: |d − 0| = d (from large center) and |d − 0| = 4... Actually for a chord at distance d from large center: distance from small center = 4. These determine d = 2 or the small center at (6,0) to chord (horizontal at y = d): |d| = d from large center, and |d − 0| = 4 from small center implies d = 4 (but small center is at (6,0), not (0,0)). Need vector approach: chord tangent to small circle means dist from (6,0) to chord line = 4. Chord is also a chord of large circle. Shortest-distance chord: distance from (0,0) to chord = d, length = 2√(100−d²). Distance from (6,0) to chord: for a chord at distance d from origin at angle φ, distance from (6,0) = |d − 6cosφ| = 4. This has many solutions. The unique symmetric case (chord ⊥ line of centers): d from large center = 6+4=10 (gives zero length) or |6−d|=4 → d=2 or d=10. d=2 gives chord = 2√(100−4) = 2√96 = 8√6.",
+   "trap": "Using d = 6 − 4 = 2 correctly but computing chord = 2√(r² − d²) = 2√(100 − 4) = 2√96 = 8√6, but then simplifying 8√6 incorrectly.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "chord",
+    "tangent-line",
+    "pythagorean-theorem",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-064",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A circle is circumscribed around a right triangle with legs 6 and 8. What is the area of the region inside the circle but outside the triangle?",
+   "options": [
+    "A. 25π − 24",
+    "B. 25π − 48",
+    "C. 25π + 24",
+    "D. 100π − 24",
+    "E. 100π − 48"
+   ],
+   "answer": "A",
+   "explanation": "For a right triangle, the circumscribed circle has its diameter equal to the hypotenuse. Hypotenuse = √(6²+8²) = √100 = 10. Circumradius = 5. Circle area = π(25) = 25π. Triangle area = (1/2)(6)(8) = 24. Area inside circle but outside triangle = 25π − 24.",
+   "trap": "Using radius = hypotenuse = 10 instead of radius = hypotenuse/2 = 5, giving circle area = 100π.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "circle-area",
+    "area",
+    "pythagorean-theorem",
+    "multi-step"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 285 230\" width=\"285\" height=\"230\" role=\"img\"><polygon points=\"45.0,190.0 215.0,190.0 45.0,62.5\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><polyline points=\"56.0,190.0 56.0,179.0 45.0,179.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"130.0\" y=\"210.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">8</text><text x=\"35.0\" y=\"130.2\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\" style=\"\">6</text></svg>"
+  },
+  {
+   "id": "GEO-CIR-065",
+   "difficulty": "extreme_hard",
+   "type": "mcq",
+   "question": "A circle of radius r is rolled inside a circle of radius 4r without slipping. If the small circle starts with its center at distance 3r from the big circle's center, and completes one full trip around the interior of the big circle, how many complete rotations does the small circle make about its own center?",
+   "options": [
+    "A. 3",
+    "B. 4",
+    "C. 5",
+    "D. 6",
+    "E. 8"
+   ],
+   "answer": "A",
+   "explanation": "When a circle of radius r rolls inside a circle of radius R, the small circle's center travels on a circle of radius R − r = 4r − r = 3r. The path length of the small circle's center = 2π(3r). Each full rotation of the small circle covers a distance of 2πr (its circumference). Number of rotations = 2π(3r) / (2πr) = 3. The small circle makes 3 complete rotations.",
+   "trap": "Using R = 4r as the path radius instead of R − r = 3r, and getting 2π(4r)/(2πr) = 4 rotations.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "circumference",
+    "conceptual",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "GEO-CIR-066",
+   "difficulty": "extreme_hard",
+   "type": "quantitative_comparison",
+   "question": "A chord of length 2√(r² − a²) in a circle of radius r is at distance a from the center. A different chord of length 2√(r² − b²) is at distance b from the center. Given that a < b < r.\n\nColumn A: Length of the first chord\nColumn B: Length of the second chord",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "The chord length formula is 2√(r² − d²) where d is the perpendicular distance from the center. Since a < b, we have a² < b², so r² − a² > r² − b², thus √(r² − a²) > √(r² − b²), and 2√(r² − a²) > 2√(r² − b²). A chord closer to the center is always longer. Column A > Column B.",
+   "trap": "Thinking a < b means the first chord is shorter (confusing distance from center with arc distance or position along the circle).",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "chord",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-067",
+   "difficulty": "extreme_hard",
+   "type": "numeric_entry",
+   "question": "Four unit circles (radius = 1) are arranged so that each circle is tangent to its two neighbors and all four are tangent to a large circle internally. What is the radius of the large circle? Enter as a decimal rounded to 2 decimal places.",
+   "options": null,
+   "answer": "2.41",
+   "explanation": "The four unit circles have centers at (1,1), (−1,1), (−1,−1), (1,−1) — each at distance √2 from the origin. The large circle must be internally tangent to each small circle, so its radius R satisfies: distance from large center (origin) to small center = R − 1. Distance from origin to each small center = √(1²+1²) = √2. So R − 1 = √2 → R = 1 + √2 ≈ 1 + 1.4142 = 2.4142 ≈ 2.41.",
+   "trap": "Setting R = √2 (treating the large circle's radius as equal to the distance between centers rather than the distance plus the small radius).",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "circle-area",
+    "multi-step",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-068",
+   "difficulty": "extreme_hard",
+   "type": "mcq",
+   "question": "In a circle of radius 10, two chords intersect at a point P located 6 units from the center. One chord is divided by P into segments of lengths a and b; the other into segments c and d. What is the value of ab (which equals cd)?",
+   "options": [
+    "A. 36",
+    "B. 64",
+    "C. 80",
+    "D. 100",
+    "E. It cannot be determined"
+   ],
+   "answer": "B",
+   "explanation": "For any chord through an interior point P, the product of its two segments equals the circle's power at P: r² − OP² = 10² − 6² = 100 − 36 = 64. This holds for every chord through P, so ab = cd = 64.",
+   "trap": "Selecting A (ab = cd) as the only true statement, missing that B (ab + cd = 128) is also true AND is the more specific/useful answer. Both A and D technically follow, but D is specifically correct.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "chord",
+    "multi-step",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-069",
+   "difficulty": "extreme_hard",
+   "type": "quantitative_comparison",
+   "question": "A Reuleaux triangle is formed by three circular arcs, each centered at one vertex of an equilateral triangle with side s, and each arc connecting the other two vertices. Its 'width' (distance between any pair of parallel supporting lines) is exactly s.\n\nColumn A: Area of the Reuleaux triangle with width s\nColumn B: Area of a circle with diameter s",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Area of Reuleaux triangle = (1/2)(π − √3)s² ≈ (1/2)(3.1416 − 1.7321)s² ≈ (1/2)(1.4095)s² ≈ 0.7048s². Area of circle with diameter s (radius s/2): π(s/2)² = πs²/4 ≈ 0.7854s². Since 0.7048s² < 0.7854s², Column B > Column A.",
+   "trap": "Assuming the Reuleaux triangle, which has the same width as the circle, must have a larger area than the circle because it 'fills more space' — but the circle of the same width actually has greater area.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "sector-area",
+    "area",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "GEO-CIR-070",
+   "difficulty": "extreme_hard",
+   "type": "numeric_entry",
+   "question": "A circle C₁ of radius 3 and a circle C₂ of radius 5 have their centers 10 units apart. A direct common external tangent touches C₁ at A and C₂ at B. What is the length of AB? Enter as an exact value (integer or simplified radical).",
+   "options": null,
+   "answer": "4√6",
+   "explanation": "For two circles with radii r₁ = 3, r₂ = 5, and center distance d = 10: Length of external common tangent = √(d² − (r₂ − r₁)²) = √(100 − (5−3)²) = √(100 − 4) = √96 = 4√6. Note: for EXTERNAL tangent, the formula uses (r₁ − r₂)² when the circles are on the same side, and (r₁ + r₂)² for internal tangent. Since both circles are external to each other (d = 10 > r₁ + r₂ = 8), external tangent length = √(d²−(r₁−r₂)²) = √(100−4) = √96 = 4√6.",
+   "trap": "Using the internal tangent formula √(d²−(r₁+r₂)²) = √(100−64) = 6, which gives the length of an internal (crossing) tangent, not the external tangent.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "tangent-line",
+    "pythagorean-theorem",
+    "multi-step"
+   ]
+  }
+ ]
 }
