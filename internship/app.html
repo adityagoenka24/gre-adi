@@ -542,6 +542,11 @@ function downloadPortfolio(){
 function rerenderCurrent(){ if(currentView==='overview')renderOverview(); else if(currentView==='portfolio')renderPortfolio(); else if(currentView==='managed')renderManaged(); else if(current)openModule(current); else (MANAGED_MODE?openManaged():renderOverview()); }
 function gatherProgress(){const data={};for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('shopnow.')&&!k.startsWith('shopnow.cohort.'))data[k]=localStorage.getItem(k);}return data;}
 function applyProgress(obj){let n=0;Object.entries(obj||{}).forEach(([k,v])=>{if(typeof k==='string'&&k.startsWith('shopnow.')&&!k.startsWith('shopnow.cohort.')){localStorage.setItem(k,v);n++;}});return n;}
+// Wipes every locally-cached progress key (status/draft/note/attempt/profile — everything
+// gatherProgress would collect) but leaves shopnow.cohort.* (the signed-in session) alone.
+// Called before mirroring the server's progress into this browser, so a returning account
+// never keeps stale local data the server no longer has (e.g. right after a mentor reset).
+function clearLocalProgress(){const keys=[];for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k&&k.startsWith('shopnow.')&&!k.startsWith('shopnow.cohort.'))keys.push(k);}keys.forEach(k=>localStorage.removeItem(k));}
 function exportProgress(){
   const data=gatherProgress(); data['shopnow.savedAt']=new Date().toISOString();
   const nm=(pname()||'progress').replace(/[^a-z0-9]+/gi,'_');
@@ -593,7 +598,20 @@ async function refreshMe(initial){
     ACTIVE_ASSIGNMENT = d.assignment||null;
     ASSIGNMENT_HISTORY = d.history||[];
     AUTHED = true;
-    if(d.progress && Object.keys(d.progress).length){ applyProgress(d.progress); buildRegistry(); }
+    if(initial){
+      // Fresh page load — nothing pending locally yet, so the server is fully authoritative.
+      // Wipe the local mirror first so a mentor's reset (or any other server-side change made
+      // while this browser was closed) actually takes effect, instead of the stale local copy
+      // silently winning.
+      clearLocalProgress();
+      if(d.progress && Object.keys(d.progress).length) applyProgress(d.progress);
+      buildRegistry();
+    } else if(d.progress && Object.keys(d.progress).length){
+      // Mid-session ping (e.g. right after completing an assigned ticket) — a local edit may
+      // not have reached the server yet (cohortSync is debounced ~1.2s), so only overlay what
+      // the server has, never wipe what's already on screen.
+      applyProgress(d.progress); buildRegistry();
+    }
     if(!initial){ renderNav(); rerenderCurrent(); }
   }catch(_){}
 }
@@ -655,13 +673,24 @@ document.getElementById('gGo').onclick=async()=>{
     localStorage.setItem('shopnow.cohort.userId',d.userId);
     localStorage.setItem('shopnow.cohort.token',d.token);
     localStorage.setItem('shopnow.cohort.name',d.name);
-    if(!pname()) localStorage.setItem('shopnow.profile.name',d.name);
     MANAGED_MODE = d.mode==='managed';
     ACTIVE_ASSIGNMENT = d.assignment||null;
     ASSIGNMENT_HISTORY = d.history||[];
     AUTHED = true;
-    if(d.progress && Object.keys(d.progress).length){ applyProgress(d.progress); buildRegistry(); }
-    else { cohortSync(); }
+    if(d.isNew){
+      // Brand-new account — no server progress exists yet. Keep whatever this browser already
+      // has (e.g. from local/guest use before signing up) as the starting point and push it up.
+      if(!pname()) localStorage.setItem('shopnow.profile.name',d.name);
+      cohortSync();
+    } else {
+      // Returning account — server is authoritative. Wipe the local mirror first (so e.g. a
+      // mentor's "Reset progress" actually sticks instead of stale local data quietly winning),
+      // then apply exactly what the server has.
+      clearLocalProgress();
+      if(d.progress && Object.keys(d.progress).length) applyProgress(d.progress);
+      if(!pname()) localStorage.setItem('shopnow.profile.name',d.name);
+      buildRegistry();
+    }
     updateCohortBtn(); renderNav();
     if(MANAGED_MODE) openManaged(); else openOverview();
     hideGate();
