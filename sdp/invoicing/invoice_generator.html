@@ -652,6 +652,12 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   <div id="historySection">
     <div class="card">
       <h2>Invoice History <span class="hint">saved automatically each time you download a PDF</span></h2>
+      <div class="calc-note" id="jsonIoBox" style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+        <span>Back up or restore this history as a JSON file:</span>
+        <button class="secondary small" id="jsonDownloadBtn" type="button">Download JSON</button>
+        <button class="secondary small" id="jsonUploadBtn" type="button">Upload JSON</button>
+        <input type="file" id="jsonFileInput" accept="application/json,.json" style="display:none;">
+      </div>
       <div class="row" style="align-items:flex-end;">
         <div class="field" style="flex:2 1 260px;">
           <label>Search (invoice no. / client / month)</label>
@@ -792,6 +798,54 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     for(var i=0;i<list.length;i++){ if(list[i].invNum === invoice.invNum){ idx = i; break; } }
     if(idx >= 0) list[idx] = entry; else list.push(entry);
     saveHistoryList(list);
+  }
+
+  /* ---------------- Manual JSON backup / restore ----------------
+     Fully manual and works in any browser: Download JSON saves a snapshot of the
+     current history to a file (you choose where and what to name it in your
+     browser's save dialog -- there is no required filename). Upload JSON reads
+     any JSON file you pick (again, any name is fine) and merges its entries into
+     what is already saved here -- matching invoice numbers keep whichever copy
+     was saved more recently, so uploading an older backup can't accidentally
+     erase newer invoices. Nothing here talks to the network. */
+  function mergeHistoryLists(a, b){
+    var map = {}, order = [];
+    a.concat(b).forEach(function(r){
+      if(!map[r.invNum]) order.push(r.invNum);
+      var existing = map[r.invNum];
+      if(!existing || new Date(r.savedAt||0) >= new Date(existing.savedAt||0)) map[r.invNum] = r;
+    });
+    return order.map(function(k){ return map[k]; });
+  }
+
+  function downloadHistoryJson(){
+    var blob = new Blob([JSON.stringify(loadHistory(), null, 2)], {type:"application/json"});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "invoice_history.json";
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+  }
+
+  function uploadHistoryJson(file){
+    return file.text().then(function(text){
+      var incoming;
+      try{ incoming = JSON.parse(text); } catch(e){
+        alert("That file doesn't look like a valid JSON history file.");
+        return;
+      }
+      if(!Array.isArray(incoming)){
+        alert("That JSON file doesn't contain an invoice history list.");
+        return;
+      }
+      var merged = mergeHistoryLists(loadHistory(), incoming);
+      saveHistoryList(merged);
+      renderHistory();
+      alert("Loaded " + incoming.length + " invoice(s) from the file. History now has " + merged.length + " total.");
+    });
   }
 
   /* ---------------- Fiscal year helpers ---------------- */
@@ -1511,6 +1565,17 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     historySectionEl.style.display = "none";
     document.getElementById("formSection").style.display = "block";
     document.title = ORIGINAL_TITLE;
+  });
+
+  document.getElementById("jsonDownloadBtn").addEventListener("click", downloadHistoryJson);
+  document.getElementById("jsonUploadBtn").addEventListener("click", function(){
+    document.getElementById("jsonFileInput").click();
+  });
+  document.getElementById("jsonFileInput").addEventListener("change", function(e){
+    var file = e.target.files && e.target.files[0];
+    e.target.value = ""; // reset so choosing the same file again still fires "change"
+    if(!file) return;
+    uploadHistoryJson(file);
   });
 
   /* ---------------- init ---------------- */
