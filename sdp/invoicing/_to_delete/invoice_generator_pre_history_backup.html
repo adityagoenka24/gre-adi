@@ -80,8 +80,6 @@
 
   /* ---------- Printable invoice ---------- */
   #invoicePreview{display:none;}
-  #historySection{display:none;}
-  table.hist-table td.num{text-align:right; font-variant-numeric:tabular-nums;}
   .sheet{
     background:#fff; border:1px solid var(--line); border-radius:8px; padding:26px 30px;
     font-size:12.5px; color:#000;
@@ -530,9 +528,6 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   <div id="appHeader" class="no-print">
     <h1>Invoice Generator</h1>
     <p class="app-sub">S.D. Pharmaceuticals — pick a client, fill in the numbers, then Generate.</p>
-    <div class="toolbar" style="margin-top:2px;">
-      <button class="secondary" id="historyBtn" type="button">Invoice History</button>
-    </div>
   </div>
 
   <div id="formSection">
@@ -648,40 +643,6 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     <div class="sheet" id="sheetContent"></div>
   </div>
 
-  <!-- INVOICE HISTORY -->
-  <div id="historySection">
-    <div class="card">
-      <h2>Invoice History <span class="hint">saved automatically each time you download a PDF</span></h2>
-      <div class="row" style="align-items:flex-end;">
-        <div class="field" style="flex:2 1 260px;">
-          <label>Search (invoice no. / client / month)</label>
-          <input id="histSearch" type="text" placeholder="e.g. Mankind, SD/03/26-27, JUNE-26">
-        </div>
-        <div class="field" style="flex:1 1 180px;">
-          <label>Client</label>
-          <select id="histClientFilter">
-            <option value="">All clients</option>
-            <option value="sidmark">Sidmark Sales Enterprise</option>
-            <option value="mankind">Mankind Pharma</option>
-            <option value="panacea">Panacea Biotec</option>
-          </select>
-        </div>
-      </div>
-      <table class="items hist-table">
-        <thead>
-          <tr>
-            <th>Invoice No</th><th>Date</th><th>Client</th><th>Billing Month</th><th>Total (₹)</th><th></th>
-          </tr>
-        </thead>
-        <tbody id="historyBody"></tbody>
-      </table>
-      <p id="historyEmpty" class="app-sub" style="display:none; margin-top:10px;">No invoices saved yet — generate and download a PDF, and it'll appear here.</p>
-      <div class="toolbar" style="margin-top:14px;">
-        <button class="secondary" id="historyBackBtn" type="button">← Back to invoice form</button>
-      </div>
-    </div>
-  </div>
-
 </div>
 
 <script>
@@ -764,35 +725,6 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     try{ return JSON.parse(localStorage.getItem(LS_META)) || null; }catch(e){ return null; }
   }
   function saveMeta(meta){ localStorage.setItem(LS_META, JSON.stringify(meta)); }
-
-  /* ---------------- Invoice history (browser-local; lets you retrieve any past invoice) ---------------- */
-  var LS_HISTORY = "invGen_history"; // array of saved invoice records, keyed by invoice number
-
-  function loadHistory(){
-    try{ var a = JSON.parse(localStorage.getItem(LS_HISTORY)); return Array.isArray(a) ? a : []; }
-    catch(e){ return []; }
-  }
-  function saveHistoryList(list){ localStorage.setItem(LS_HISTORY, JSON.stringify(list)); }
-
-  function recordInvoiceHistory(invoice){
-    var list = loadHistory();
-    var entry = {
-      invNum: invoice.invNum,
-      invDate: invoice.invDate,
-      billingMonth: billingMonthEl.value,
-      filename: invoice.filename,
-      client: invoice.client,
-      calc: invoice.calc,
-      words: invoice.words,
-      grandRounded: invoice.grandRounded,
-      rowsData: invoice.rowsData,
-      savedAt: new Date().toISOString()
-    };
-    var idx = -1;
-    for(var i=0;i<list.length;i++){ if(list[i].invNum === invoice.invNum){ idx = i; break; } }
-    if(idx >= 0) list[idx] = entry; else list.push(entry);
-    saveHistoryList(list);
-  }
 
   /* ---------------- Fiscal year helpers ---------------- */
   function fyForDate(d){
@@ -1228,8 +1160,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     doc.text(value, startX + lw, y);
   }
 
-  function downloadInvoicePDF(record){
-    if(record) lastInvoice = record;
+  function downloadInvoicePDF(){
     if(!lastInvoice){ alert("Generate the invoice first."); return; }
     var client = lastInvoice.client, calc = lastInvoice.calc;
     var { jsPDF } = window.jspdf;
@@ -1429,11 +1360,9 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     footLines.forEach(function(line){ doc.text(line, marginX, y); y += 3.6; });
 
     doc.save(lastInvoice.filename + ".pdf");
-    recordInvoiceHistory(lastInvoice);
-    renderHistory();
   }
 
-  document.getElementById("printBtn").addEventListener("click", function(){ downloadInvoicePDF(); });
+  document.getElementById("printBtn").addEventListener("click", downloadInvoicePDF);
   document.getElementById("editBtn").addEventListener("click", function(){
     document.getElementById("appHeader").style.display = "block";
     document.getElementById("formSection").style.display = "block";
@@ -1446,71 +1375,6 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
     else if(activeClientKey === "mankind"){ mkNetSalesEl.value=""; mkSalesReturnEl.value="0"; }
     else { pnTier1El.value=""; pnTier2El.value=""; }
     recalcActive();
-  });
-
-  /* ---------------- Invoice history: view / search / re-download / delete ---------------- */
-  var historySectionEl = document.getElementById("historySection");
-  var historyBody = document.getElementById("historyBody");
-  var historyEmpty = document.getElementById("historyEmpty");
-  var histSearchEl = document.getElementById("histSearch");
-  var histClientFilterEl = document.getElementById("histClientFilter");
-
-  function renderHistory(){
-    var list = loadHistory().slice().sort(function(a,b){
-      return new Date(b.savedAt) - new Date(a.savedAt);
-    });
-    var q = (histSearchEl.value || "").trim().toLowerCase();
-    var clientKey = histClientFilterEl.value;
-    var filtered = list.filter(function(r){
-      if(clientKey && r.client.key !== clientKey) return false;
-      if(!q) return true;
-      var hay = (r.invNum+" "+r.client.name+" "+(r.billingMonth||"")).toLowerCase();
-      return hay.indexOf(q) !== -1;
-    });
-    historyBody.innerHTML = filtered.map(function(r){
-      return '<tr>' +
-        '<td>'+escapeHtml(r.invNum)+'</td>' +
-        '<td>'+formatDateDDMMYY(r.invDate)+'</td>' +
-        '<td>'+escapeHtml(r.client.name)+'</td>' +
-        '<td>'+escapeHtml(r.billingMonth||"")+'</td>' +
-        '<td class="num">'+inr(r.calc.grand)+'</td>' +
-        '<td style="white-space:nowrap;">' +
-          '<button class="secondary small" data-hist-download="'+escapeHtml(r.invNum)+'" type="button">Download PDF</button> ' +
-          '<button class="danger small" data-hist-delete="'+escapeHtml(r.invNum)+'" type="button">Delete</button>' +
-        '</td>' +
-      '</tr>';
-    }).join("");
-    historyEmpty.style.display = filtered.length ? "none" : "block";
-  }
-
-  historyBody.addEventListener("click", function(e){
-    var dlKey = e.target.getAttribute("data-hist-download");
-    var delKey = e.target.getAttribute("data-hist-delete");
-    if(dlKey){
-      var rec = loadHistory().filter(function(r){ return r.invNum === dlKey; })[0];
-      if(rec) downloadInvoicePDF(rec);
-      return;
-    }
-    if(delKey){
-      if(!confirm("Remove invoice "+delKey+" from history? This only removes the history entry - any PDF you already saved to disk is untouched.")) return;
-      saveHistoryList(loadHistory().filter(function(r){ return r.invNum !== delKey; }));
-      renderHistory();
-    }
-  });
-  histSearchEl.addEventListener("input", renderHistory);
-  histClientFilterEl.addEventListener("change", renderHistory);
-
-  document.getElementById("historyBtn").addEventListener("click", function(){
-    document.getElementById("formSection").style.display = "none";
-    document.getElementById("invoicePreview").style.display = "none";
-    historySectionEl.style.display = "block";
-    renderHistory();
-    window.scrollTo(0,0);
-  });
-  document.getElementById("historyBackBtn").addEventListener("click", function(){
-    historySectionEl.style.display = "none";
-    document.getElementById("formSection").style.display = "block";
-    document.title = ORIGINAL_TITLE;
   });
 
   /* ---------------- init ---------------- */
