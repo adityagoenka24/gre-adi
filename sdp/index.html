@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.D. Pharmaceuticals — Control Center</title>
+<style>
+  :root{
+    --navy:#142744; --navy-dark:#0a1830; --navy-mid:#1e3a63;
+    --gold:#c9973f; --gold-bright:#e0b563;
+    --paper:#faf7f0; --card:#ffffff;
+    --ink:#1c2430; --muted:#6b7280; --line:#e5e0d3;
+    --shadow: 0 1px 2px rgba(20,39,68,.04), 0 8px 24px rgba(20,39,68,.06);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--paper); color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;
+  }
+  .sans{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;}
+
+  /* ---------- Hero ---------- */
+  .hero{
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(ellipse at 15% 0%, rgba(224,181,99,.10), transparent 55%),
+      linear-gradient(160deg, var(--navy) 0%, var(--navy-dark) 100%);
+    color:#f4f0e6;
+    padding:56px 32px 64px;
+  }
+  .hero::before{
+    content:""; position:absolute; inset:0; pointer-events:none; opacity:.5;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0 1px, transparent 1px 42px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,.025) 0 1px, transparent 1px 42px);
+  }
+  .hero::after{
+    content:""; position:absolute; right:-60px; top:-60px; width:340px; height:340px;
+    border-radius:50%; background:radial-gradient(circle, rgba(224,181,99,.14), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; max-width:1080px; margin:0 auto;}
+  .kicker{
+    font-family:inherit; font:600 11px/1 -apple-system,sans-serif; letter-spacing:.24em; text-transform:uppercase;
+    color:var(--gold-bright); margin:0 0 14px; display:flex; align-items:center; gap:10px;
+  }
+  .kicker .dash{width:28px; height:1px; background:var(--gold-bright); display:inline-block;}
+  h1{
+    margin:0; font-weight:400; font-size:clamp(32px,4.8vw,50px); letter-spacing:.01em;
+    color:#fbf8f1;
+  }
+  h1 em{font-style:italic; color:var(--gold-bright);}
+  .hero-sub{
+    margin:14px 0 0; max-width:560px; font-family:inherit; font-size:16px; line-height:1.6;
+    color:#c7cede;
+  }
+  .hero-meta{
+    margin-top:30px; display:flex; gap:28px; flex-wrap:wrap; font-family:inherit; font-size:12.5px; color:#9fabc4;
+    border-top:1px solid rgba(255,255,255,.12); padding-top:18px; letter-spacing:.02em;
+  }
+  .hero-meta b{color:#e7eaf2; font-weight:600;}
+
+  /* ---------- Main ---------- */
+  main{max-width:1080px; margin:-30px auto 0; padding:0 32px 60px; position:relative;}
+  .section-label{
+    font-family:inherit; font-size:11px; font-weight:700; letter-spacing:.2em; text-transform:uppercase;
+    color:var(--muted); margin:44px 0 16px; display:flex; align-items:center; gap:10px;
+  }
+  .section-label::after{content:""; flex:1; height:1px; background:var(--line);}
+  .section-label:first-of-type{margin-top:0;}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(300px,1fr)); gap:18px;}
+
+  .card{
+    position:relative; background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:26px 24px 22px; box-shadow:var(--shadow); text-decoration:none; color:inherit;
+    display:flex; flex-direction:column; transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+  }
+  .card:hover{transform:translateY(-3px); box-shadow:0 4px 8px rgba(20,39,68,.06), 0 16px 32px rgba(20,39,68,.10); border-color:#d8cba5;}
+  .card-top{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
+  .icon{
+    width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg, var(--navy-mid), var(--navy-dark)); color:var(--gold-bright); flex:none;
+  }
+  .icon svg{width:22px; height:22px;}
+  .status{
+    font-family:-apple-system,sans-serif; font-size:10.5px; font-weight:700; letter-spacing:.08em; text-transform:uppercase;
+    padding:4px 9px; border-radius:20px; white-space:nowrap; align-self:flex-start;
+  }
+  .status.active{background:#e7f3ea; color:#2b7a4b;}
+  .status.soon{background:#f1efe8; color:var(--muted); border:1px dashed #cfc7b0;}
+  .card h2{font-size:19px; margin:16px 0 6px; font-weight:500; color:var(--navy);}
+  .card p{
+    font-family:-apple-system,sans-serif; font-size:13px; line-height:1.55; color:var(--muted);
+    margin:0 0 18px; flex:1;
+  }
+  .card .go{
+    font-family:-apple-system,sans-serif; font-size:12.5px; font-weight:700; letter-spacing:.02em;
+    color:var(--navy-mid); display:inline-flex; align-items:center; gap:6px; margin-top:auto;
+  }
+  .card .go svg{width:13px; height:13px; transition:transform .15s ease;}
+  .card:hover .go svg{transform:translateX(3px);}
+
+  .card.placeholder{
+    background:transparent; border:1.5px dashed #d6cfba; box-shadow:none; cursor:default;
+  }
+  .card.placeholder:hover{transform:none; box-shadow:none; border-color:#c9973f;}
+  .card.placeholder .icon{background:transparent; border:1.5px dashed #cfc7b0; color:#b9ac82;}
+  .card.placeholder h2{color:#8f8266;}
+  .card.placeholder p{color:#a89d84;}
+
+  footer{
+    max-width:1080px; margin:20px auto 0; padding:22px 32px 40px; font-family:-apple-system,sans-serif;
+    color:var(--muted); font-size:12px; line-height:1.7; border-top:1px solid var(--line);
+  }
+  footer code{background:#f1efe8; padding:1px 6px; border-radius:4px; font-size:11.5px;}
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <p class="kicker"><span class="dash"></span>S.D. Pharmaceuticals</p>
+      <h1>Operations <em>Control Center</em></h1>
+      <!--
+      <div class="hero-meta">
+        <span><b>2</b> tools active</span>
+        <span id="todayLine"></span>
+      </div>
+      -->
+    </div>
+  </div>
+
+  <main>
+    <div class="section-label"><br><br></div>
+    <div class="grid" id="moduleGrid"></div>
+<!--
+    <div class="section-label">On the Horizon</div>
+    <div class="grid">
+      <div class="card placeholder">
+        <div class="card-top">
+          <div class="icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 5v14M5 12h14"/></svg>
+          </div>
+          <span class="status soon">Not built yet</span>
+        </div>
+        <h2>Next automation</h2>
+        <p>Any future tool — inventory, expense tracking, GST filing prep, supplier ledgers — gets its own folder and shows up here as a new card.</p>
+      </div>
+    </div>
+
+    <div class="section-label">Notes</div>
+    <div class="grid">
+      <div class="card placeholder" style="grid-column: 1 / -1;">
+        <p style="margin:0; color:var(--muted);">Each tool below is a self-contained offline webpage living in its own subfolder — no server, no install, no internet connection needed. This page is just a launcher: it opens the relevant file in a new tab and keeps this hub open in the background.</p>
+      </div>
+    </div>
+-->
+  </main>
+
+  <footer>
+    Built for S.D. Pharmaceuticals. To add a new tool later: drop its folder alongside <code>invoicing/</code> and <code>salary/</code>, then add one entry to the <code>MODULES</code> list near the top of the script in <code>index.html</code>.
+  </footer>
+
+<script>
+  // ---- MODULES: add a new entry here whenever a new tool is built ----
+  const MODULES = [
+    {
+      title: "Invoice Generator",
+      desc: "",
+      href: "invoicing/invoice_generator.html",
+      status: "active",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 3h8l4 4v14H5V3z"/><path d="M15 3v4h4"/><path d="M8.5 12h7M8.5 15h7M8.5 9h3"/></svg>`
+    },
+    {
+      title: "Payroll & Attendance",
+      desc: "",
+      href: "salary/Payroll_App.html",
+      status: "active",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="18" cy="7" r="2.2"/><path d="M15.5 13.5c2.8.3 5 2.6 5 5.5"/></svg>`
+    }
+  ];
+
+  const grid = document.getElementById("moduleGrid");
+  MODULES.forEach(m => {
+    const a = document.createElement("a");
+    a.href = m.href;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.className = "card";
+    a.innerHTML = `
+      <div class="card-top">
+        <div class="icon">${m.icon}</div>
+        <span class="status ${m.status}">${m.status === "active" ? "Active" : "Coming soon"}</span>
+      </div>
+      <h2>${m.title}</h2>
+      <p>${m.desc}</p>
+      <span class="go">Open tool
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </span>
+    `;
+    grid.appendChild(a);
+  });
+
+  document.getElementById("todayLine").textContent = new Date().toLocaleDateString("en-IN", {
+    weekday: "long", year: "numeric", month: "long", day: "numeric"
+  });
+</script>
+
+</body>
+</html>
