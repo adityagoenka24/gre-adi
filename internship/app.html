@@ -702,11 +702,28 @@ document.getElementById('gGo').onclick=async()=>{
 async function execToRows(sql){
   const res=await conn.query(sql);
   const cols=res.schema.fields.map(f=>f.name);
-  return {cols,rows:res.toArray().map(r=>cols.map(c=>r[c]))};
+  // DuckDB-Wasm/Arrow hands back DATE (typeId 8) and TIMESTAMP (typeId 10) columns
+  // as raw epoch-millisecond numbers, not JS Date objects. We keep `rows` exactly
+  // as DuckDB returns them (grade() / canonical.js hashes these raw values, so they
+  // must stay byte-identical to what the answerHash was computed against) and only
+  // hand back which columns are date/timestamp-typed so the HTML renderer can
+  // display them nicely without touching the values used for grading.
+  const dateCols=new Set(res.schema.fields.filter(f=>f.type.typeId===8).map(f=>f.name));
+  const tsCols=new Set(res.schema.fields.filter(f=>f.type.typeId===10).map(f=>f.name));
+  return {cols,rows:res.toArray().map(r=>cols.map(c=>r[c])),dateCols,tsCols};
 }
-function tableHTML(cols,rows){
+function fmtCell(col,v,dateCols,tsCols){
+  if(v===null) return '∅';
+  if((dateCols&&dateCols.has(col)) || (tsCols&&tsCols.has(col))){
+    const ms=typeof v==='bigint'?Number(v):v;
+    const dt=new Date(ms);
+    if(!isNaN(dt.getTime())) return esc(tsCols&&tsCols.has(col) ? dt.toISOString().replace('T',' ').slice(0,19) : dt.toISOString().slice(0,10));
+  }
+  return esc(v);
+}
+function tableHTML(cols,rows,dateCols,tsCols){
   let h='<table><thead><tr>'+cols.map(c=>`<th>${esc(c)}</th>`).join('')+'</tr></thead><tbody>';
-  rows.slice(0,200).forEach(r=>{h+='<tr>'+r.map(v=>`<td>${v===null?'∅':esc(v)}</td>`).join('')+'</tr>';});
+  rows.slice(0,200).forEach(r=>{h+='<tr>'+r.map((v,i)=>`<td>${fmtCell(cols[i],v,dateCols,tsCols)}</td>`).join('')+'</tr>';});
   h+='</tbody></table>'; if(rows.length>200)h+=`<div class="note-txt">…first 200 of ${rows.length} rows</div>`;
   return h;
 }
@@ -799,14 +816,14 @@ function wireItem(t,scope){
   if(runBtn) runBtn.onclick=async()=>{
     const sql=(ed||scratch).value.trim(); ban.className='banner';ban.textContent='';
     if(!sql){res.innerHTML='<div class="err">Write a query first.</div>';return;}
-    try{const {cols,rows}=await execToRows(sql);res.innerHTML=tableHTML(cols,rows);}catch(e){res.innerHTML=`<div class="err">${esc(e)}</div>`;}
+    try{const {cols,rows,dateCols,tsCols}=await execToRows(sql);res.innerHTML=tableHTML(cols,rows,dateCols,tsCols);}catch(e){res.innerHTML=`<div class="err">${esc(e)}</div>`;}
   };
   const subBtn=scope.querySelector('[data-submit]');
   if(subBtn) subBtn.onclick=async()=>{
     const sql=ed.value.trim(); ban.className='banner';ban.textContent='';
     if(!sql){res.innerHTML='<div class="err">Write a query first.</div>';return;}
     let out; try{out=await execToRows(sql);}catch(e){res.innerHTML=`<div class="err">${esc(e)}</div>`;return;}
-    res.innerHTML=tableHTML(out.cols,out.rows);
+    res.innerHTML=tableHTML(out.cols,out.rows,out.dateCols,out.tsCols);
     const g=await grade(out.rows,t.grader);
     if(g.empty){ban.className='banner no';ban.textContent='✗ Your query returned no rows.';return;}
     if(g.pass){ban.className='banner ok';ban.textContent='✓ Passed — matches the expected result. Signed off.';setSt(t.id,'done');
