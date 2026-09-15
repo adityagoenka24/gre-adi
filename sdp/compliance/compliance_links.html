@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.D. Pharmaceuticals - Compliance Desk</title>
+<style>
+  :root{
+    --ink:#17202c; --muted:#667085; --line:#d9e0e8; --bg:#f5f7fa; --card:#ffffff;
+    --green:#226f54; --green-dark:#184f3d; --blue:#1f4f82; --amber:#a66500;
+    --red:#b42318; --soft-green:#e8f4ef; --soft-blue:#eaf1f8; --soft-amber:#fff3d6;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
+  }
+  header{
+    background:linear-gradient(135deg,#173a55,#1d5b48);
+    color:#fff; padding:22px 24px;
+  }
+  .header-inner{max-width:1120px; margin:0 auto; display:flex; justify-content:space-between; gap:16px; align-items:flex-end;}
+  h1{margin:0; font-size:22px; letter-spacing:.01em;}
+  .sub{margin:4px 0 0; color:#d7e6e0; font-size:13px;}
+  .month-box{min-width:190px;}
+  label{display:block; font-size:11px; font-weight:700; letter-spacing:.06em; text-transform:uppercase; color:var(--muted); margin-bottom:5px;}
+  header label{color:#d7e6e0;}
+  input, select, textarea{
+    width:100%; border:1px solid var(--line); border-radius:6px; background:#fff;
+    color:var(--ink); font:inherit; font-size:13px; padding:8px 10px;
+  }
+  textarea{min-height:70px; resize:vertical;}
+  main{max-width:1120px; margin:0 auto; padding:22px 20px 52px;}
+  .grid{display:grid; grid-template-columns:1.1fr .9fr; gap:18px; align-items:start;}
+  .card{
+    background:var(--card); border:1px solid var(--line); border-radius:8px;
+    padding:18px; box-shadow:0 1px 2px rgba(23,32,44,.04);
+  }
+  .card + .card{margin-top:18px;}
+  h2{font-size:15px; margin:0 0 14px; color:#173a55;}
+  h3{font-size:12px; margin:18px 0 8px; color:var(--muted); text-transform:uppercase; letter-spacing:.08em;}
+  .links-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:10px;}
+  .link-card{
+    display:flex; gap:10px; align-items:flex-start; min-height:78px;
+    border:1px solid var(--line); border-radius:8px; padding:12px;
+    text-decoration:none; color:inherit; background:#fff;
+  }
+  .link-card:hover{border-color:#9ab5c5; background:#f8fbfd;}
+  .icon{
+    width:34px; height:34px; border-radius:8px; display:flex; align-items:center; justify-content:center;
+    flex:none; background:var(--soft-blue); color:var(--blue);
+  }
+  .icon svg{width:18px; height:18px;}
+  .link-title{font-size:13.5px; font-weight:700; margin:0 0 3px;}
+  .link-url{font-size:11.5px; color:var(--muted); word-break:break-word; line-height:1.35;}
+  .check-row{
+    display:grid; grid-template-columns:42px 1fr auto; gap:10px; align-items:center;
+    border:1px solid transparent; border-bottom-color:#eef1f4; padding:11px 0;
+    transition:background .15s ease, border-color .15s ease, padding .15s ease;
+  }
+  .check-row:last-child{border-bottom:none;}
+  .check-row.done{
+    background:#f6fbf8;
+    border-color:#d6eadf; border-radius:8px; padding:11px 10px;
+    margin:7px 0;
+    opacity:.68;
+  }
+  .day{
+    width:38px; height:38px; border-radius:8px; background:var(--soft-amber); color:var(--amber);
+    display:flex; align-items:center; justify-content:center; font-weight:800; font-size:13px;
+  }
+  .check-row.done .day{background:var(--green); color:#fff;}
+  .task-name{font-size:13.5px; font-weight:700;}
+  .check-row.done .task-name{color:var(--muted);}
+  .task-note{font-size:12px; color:var(--muted); margin-top:2px;}
+  .check-actions{display:flex; gap:6px; justify-content:flex-end; flex-wrap:wrap;}
+  .status-btn{
+    border:1px solid var(--line); background:#fff; color:var(--muted); border-radius:18px;
+    padding:6px 11px; font-size:12px; font-weight:700; cursor:pointer; min-width:82px;
+  }
+  .status-btn.done{background:var(--soft-green); color:var(--green); border-color:#b7ddcd;}
+  .check-summary{
+    border:1px solid var(--line); border-radius:8px; padding:11px 12px; margin-bottom:8px;
+    background:#fbfcfd;
+  }
+  .summary-top{display:flex; justify-content:space-between; gap:10px; align-items:center; font-size:13px; font-weight:700;}
+  .summary-count{color:var(--green);}
+  .progress-track{height:8px; border-radius:99px; background:#e8edf2; overflow:hidden; margin-top:9px;}
+  .progress-fill{height:100%; width:0; background:linear-gradient(90deg,var(--green),#47a579); border-radius:99px;}
+  .task-form{border-top:1px solid #eef1f4; margin-top:14px; padding-top:14px;}
+  .task-form .form-grid{grid-template-columns:78px 1fr;}
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:10px;}
+  .form-grid .full{grid-column:1 / -1;}
+  .toolbar{display:flex; gap:8px; flex-wrap:wrap; margin-top:12px;}
+  button{
+    border:1px solid var(--green); background:var(--green); color:#fff; border-radius:6px;
+    padding:8px 13px; font-size:13px; font-weight:700; cursor:pointer;
+  }
+  button:hover{background:var(--green-dark); border-color:var(--green-dark);}
+  button.secondary{background:#fff; color:var(--green-dark); border-color:var(--line);}
+  button.secondary:hover{background:#eef5f2;}
+  button.danger{background:#fff; color:var(--red); border-color:#f2c1bc;}
+  button.danger:hover{background:#fff1ef;}
+  .custom-list{display:grid; gap:9px;}
+  .custom-item{
+    display:grid; grid-template-columns:1fr auto; gap:10px; align-items:center;
+    border:1px solid var(--line); border-radius:8px; padding:10px 12px;
+  }
+  .custom-actions{display:flex; gap:6px; flex-wrap:wrap;}
+  .small{padding:5px 9px; font-size:12px;}
+  .empty{color:var(--muted); font-size:13px; margin:0;}
+  .flash{
+    display:none; margin-bottom:14px; padding:9px 12px; border-radius:6px;
+    font-size:13px; border:1px solid #b7ddcd; color:var(--green); background:var(--soft-green);
+  }
+  .flash.show{display:block;}
+  footer{max-width:1120px; margin:0 auto; padding:0 20px 30px; color:var(--muted); font-size:11.5px;}
+  @media(max-width:820px){
+    .header-inner{display:block;}
+    .month-box{margin-top:16px;}
+    .grid{grid-template-columns:1fr;}
+    .form-grid{grid-template-columns:1fr;}
+    .form-grid .full{grid-column:auto;}
+    .check-row{grid-template-columns:38px 1fr; align-items:start;}
+    .check-actions{grid-column:2; justify-content:flex-start;}
+    .task-form .form-grid{grid-template-columns:1fr;}
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="header-inner">
+    <div>
+      <h1>Compliance Desk</h1>
+      <p class="sub">S.D. Pharmaceuticals</p>
+    </div>
+    <div class="month-box">
+      <label for="activeMonth">Month</label>
+      <input id="activeMonth" type="month">
+    </div>
+  </div>
+</header>
+
+<main>
+  <div id="flash" class="flash"></div>
+
+  <div class="grid">
+    <section>
+      <div class="card">
+        <h2>Payment Portals</h2>
+        <div class="links-grid" id="portalLinks"></div>
+      </div>
+
+      <div class="card">
+        <h2>Bank URLs</h2>
+        <div class="links-grid" id="bankLinks"></div>
+      </div>
+
+      <div class="card">
+        <h2>Saved Links</h2>
+        <div class="custom-list" id="customLinks"></div>
+      </div>
+    </section>
+
+    <aside>
+      <div class="card">
+        <h2>Monthly Checklist</h2>
+        <div id="checkSummary" class="check-summary"></div>
+        <div id="checklist"></div>
+        <div class="task-form">
+          <h3>Add Checklist Item</h3>
+          <div class="form-grid">
+            <div>
+              <label for="taskDay">Due day</label>
+              <input id="taskDay" type="number" min="1" max="31" step="1" placeholder="7">
+            </div>
+            <div>
+              <label for="taskName">Task</label>
+              <input id="taskName" type="text" placeholder="e.g. PF payment">
+            </div>
+            <div class="full">
+              <label for="taskNote">Note</label>
+              <input id="taskNote" type="text" placeholder="Optional reminder">
+            </div>
+          </div>
+          <div class="toolbar">
+            <button id="addTaskBtn" type="button">Add Item</button>
+            <button class="secondary" id="resetTasksBtn" type="button">Restore Defaults</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h2>Add Link</h2>
+        <div class="form-grid">
+          <div>
+            <label for="linkName">Name</label>
+            <input id="linkName" type="text" placeholder="e.g. Kotak salary payment">
+          </div>
+          <div>
+            <label for="linkGroup">Section</label>
+            <select id="linkGroup">
+              <option value="Direct Tax">Direct Tax</option>
+              <option value="GST">GST</option>
+              <option value="State Tax">State Tax</option>
+              <option value="Banking">Banking</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="full">
+            <label for="linkUrl">URL</label>
+            <input id="linkUrl" type="url" placeholder="https://">
+          </div>
+          <div class="full">
+            <label for="linkNote">Note</label>
+            <textarea id="linkNote" placeholder="Login ID, challan type, or internal reminder"></textarea>
+          </div>
+        </div>
+        <div class="toolbar">
+          <button id="saveLinkBtn" type="button">Save Link</button>
+          <button class="secondary" id="resetFormBtn" type="button">Clear</button>
+        </div>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<footer>
+  Verify due dates with your CA/accountant before payment. This page stores saved links and checklist status only in this browser.
+</footer>
+
+<script>
+(function(){
+  "use strict";
+
+  const STORAGE_KEY = "sdpharma_compliance_links_v1";
+  const STATUS_KEY = "sdpharma_compliance_status_v1";
+  const CHECKLIST_KEY = "sdpharma_compliance_checklist_v1";
+  const portalIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 20h16"/><path d="M6 20V9l6-4 6 4v11"/><path d="M9 20v-6h6v6"/></svg>';
+
+  const defaultPortals = [
+    { group:"Direct Tax", name:"Income Tax e-Filing Portal", url:"https://eportal.incometax.gov.in/iec/foservices/?language=en", note:"TDS/TCS challan payment through TAN login / e-Pay Tax." },
+    { group:"Direct Tax", name:"TRACES", url:"https://www.tdscpc.gov.in/app/login.xhtml", note:"TDS statements, defaults, Form 16/16A, challan mapping." },
+    { group:"GST", name:"GST Portal", url:"https://www.gst.gov.in/", note:"GST returns, ledgers, challan creation and payment." },
+    { group:"GST", name:"e-Way Bill Portal", url:"https://ewaybillgst.gov.in/", note:"E-way bills and transport compliance." },
+    { group:"State Tax", name:"West Bengal Profession Tax", url:"https://professiontax.wb.gov.in/quick-pay/quickpay-landing/", note:"Quick Pay / registered employer payment." },
+    { group:"State Tax", name:"WB Commercial Taxes", url:"https://comtax.wb.gov.in/", note:"State tax notices, updates and support links." }
+  ];
+
+  const bankPortals = [
+    { group:"Banking", name:"Kotak Netbanking", url:"https://netbanking.kotak.bank.in/knb2/", note:"KMBL login for payments, statements and banking work." },
+    { group:"Banking", name:"PNB Internet Banking", url:"https://iretail.pnb.bank.in/corp/AuthenticationController?FORMSGROUP_ID__=AuthenticationFG&START_TRAN_FLAG=Y&FG_BUTTONS=LOAD&ACTION.LOAD=Y&AuthenticationFG.LOGIN_FLAG=1&BANK_ID=024", note:"Punjab National Bank retail/corporate internet banking." }
+  ];
+
+  const checklistDefaults = [
+    { id:"tds", day:7, name:"TDS payment", note:"Previous month's deducted TDS." },
+    { id:"gstr1", day:11, name:"GSTR-1", note:"Outward supplies return, where applicable." },
+    { id:"ptax", day:15, name:"Professional Tax", note:"Employer payment, if payable monthly." },
+    { id:"gstr3b", day:20, name:"GSTR-3B", note:"Monthly GST summary and tax payment." }
+  ];
+
+  let editingId = null;
+  const monthInput = document.getElementById("activeMonth");
+  const portalLinks = document.getElementById("portalLinks");
+  const bankLinks = document.getElementById("bankLinks");
+  const customLinks = document.getElementById("customLinks");
+  const checklist = document.getElementById("checklist");
+  const checkSummary = document.getElementById("checkSummary");
+  const flashEl = document.getElementById("flash");
+
+  function monthStr(d){
+    return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0");
+  }
+  function escapeHtml(s){
+    return String(s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  }
+  function uid(){
+    return "l_" + Date.now().toString(36) + "_" + Math.random().toString(36).slice(2, 8);
+  }
+  function flash(msg){
+    flashEl.textContent = msg;
+    flashEl.className = "flash show";
+    setTimeout(() => { flashEl.className = "flash"; }, 2600);
+  }
+  function loadLinks(){
+    try{
+      const parsed = JSON.parse(localStorage.getItem(STORAGE_KEY));
+      return Array.isArray(parsed) ? parsed : [];
+    }catch(e){ return []; }
+  }
+  function saveLinks(list){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+  function loadStatus(){
+    try{
+      const parsed = JSON.parse(localStorage.getItem(STATUS_KEY));
+      return parsed && typeof parsed === "object" ? parsed : {};
+    }catch(e){ return {}; }
+  }
+  function saveStatus(status){
+    localStorage.setItem(STATUS_KEY, JSON.stringify(status));
+  }
+  function cloneDefaultChecklist(){
+    return checklistDefaults.map(task => Object.assign({}, task));
+  }
+  function loadChecklistItems(){
+    try{
+      const parsed = JSON.parse(localStorage.getItem(CHECKLIST_KEY));
+      if(Array.isArray(parsed) && parsed.length) return parsed.map(normalizeTask).filter(Boolean);
+    }catch(e){}
+    const defaults = cloneDefaultChecklist();
+    saveChecklistItems(defaults);
+    return defaults;
+  }
+  function saveChecklistItems(items){
+    localStorage.setItem(CHECKLIST_KEY, JSON.stringify(items));
+  }
+  function normalizeTask(task){
+    if(!task || !task.name) return null;
+    const day = Math.min(31, Math.max(1, parseInt(task.day, 10) || 1));
+    return {
+      id: String(task.id || uid()),
+      day,
+      name: String(task.name).trim(),
+      note: String(task.note || "").trim()
+    };
+  }
+  function normalizeUrl(url){
+    url = String(url || "").trim();
+    if(!url) return "";
+    if(!/^https?:\/\//i.test(url)) return "https://" + url;
+    return url;
+  }
+  function renderLinkCard(link){
+    const a = document.createElement("a");
+    a.className = "link-card";
+    a.href = link.url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    a.innerHTML = `
+      <span class="icon">${portalIcon}</span>
+      <span>
+        <span class="link-title">${escapeHtml(link.name)}</span>
+        <span class="link-url">${escapeHtml(link.note || link.url)}</span>
+      </span>`;
+    return a;
+  }
+  function renderPortals(){
+    portalLinks.innerHTML = "";
+    defaultPortals.forEach(link => portalLinks.appendChild(renderLinkCard(link)));
+  }
+  function renderBanks(){
+    bankLinks.innerHTML = "";
+    bankPortals.forEach(link => bankLinks.appendChild(renderLinkCard(link)));
+  }
+  function renderCustomLinks(){
+    const list = loadLinks().sort((a,b) => (a.group + a.name).localeCompare(b.group + b.name));
+    customLinks.innerHTML = "";
+    if(!list.length){
+      customLinks.innerHTML = '<p class="empty">No saved links yet.</p>';
+      return;
+    }
+    let currentGroup = "";
+    list.forEach(link => {
+      if(link.group !== currentGroup){
+        currentGroup = link.group;
+        const h = document.createElement("h3");
+        h.textContent = currentGroup;
+        customLinks.appendChild(h);
+      }
+      const item = document.createElement("div");
+      item.className = "custom-item";
+      item.innerHTML = `
+        <div>
+          <div class="link-title">${escapeHtml(link.name)}</div>
+          <div class="link-url">${escapeHtml(link.url)}</div>
+          ${link.note ? `<div class="task-note">${escapeHtml(link.note)}</div>` : ""}
+        </div>
+        <div class="custom-actions">
+          <button class="secondary small" data-open="${link.id}" type="button">Open</button>
+          <button class="secondary small" data-edit="${link.id}" type="button">Edit</button>
+          <button class="danger small" data-delete="${link.id}" type="button">Delete</button>
+        </div>`;
+      customLinks.appendChild(item);
+    });
+    customLinks.querySelectorAll("[data-open]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const link = loadLinks().find(x => x.id === btn.dataset.open);
+        if(link) window.open(link.url, "_blank", "noopener");
+      });
+    });
+    customLinks.querySelectorAll("[data-edit]").forEach(btn => {
+      btn.addEventListener("click", () => startEdit(btn.dataset.edit));
+    });
+    customLinks.querySelectorAll("[data-delete]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const link = loadLinks().find(x => x.id === btn.dataset.delete);
+        if(!link || !confirm("Delete " + link.name + "?")) return;
+        saveLinks(loadLinks().filter(x => x.id !== link.id));
+        renderCustomLinks();
+        flash("Link deleted.");
+      });
+    });
+  }
+  function renderChecklist(){
+    const status = loadStatus();
+    const m = monthInput.value;
+    if(!status[m]) status[m] = {};
+    const items = loadChecklistItems().sort((a,b) => {
+      const aDone = !!status[m][a.id], bDone = !!status[m][b.id];
+      if(aDone !== bDone) return aDone ? 1 : -1;
+      return a.day - b.day || a.name.localeCompare(b.name);
+    });
+    const doneCount = items.filter(task => !!status[m][task.id]).length;
+    const pct = items.length ? Math.round((doneCount / items.length) * 100) : 0;
+    checkSummary.innerHTML = `
+      <div class="summary-top">
+        <span>${pct}% complete</span>
+        <span class="summary-count">${doneCount} of ${items.length} done</span>
+      </div>
+      <div class="progress-track"><div class="progress-fill" style="width:${pct}%"></div></div>`;
+    checklist.innerHTML = "";
+    if(!items.length){
+      checklist.innerHTML = '<p class="empty">No checklist items yet.</p>';
+      return;
+    }
+    items.forEach(task => {
+      const done = !!status[m][task.id];
+      const row = document.createElement("div");
+      row.className = "check-row" + (done ? " done" : "");
+      row.innerHTML = `
+        <div class="day">${task.day}</div>
+        <div>
+          <div class="task-name">${escapeHtml(task.name)}</div>
+          <div class="task-note">${escapeHtml(task.note)}</div>
+        </div>
+        <div class="check-actions">
+          <button class="status-btn ${done ? "done" : ""}" data-task="${task.id}" type="button">${done ? "Done" : "Pending"}</button>
+        </div>`;
+      checklist.appendChild(row);
+    });
+    checklist.querySelectorAll("[data-task]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const all = loadStatus();
+        if(!all[m]) all[m] = {};
+        all[m][btn.dataset.task] = !all[m][btn.dataset.task];
+        saveStatus(all);
+        renderChecklist();
+      });
+    });
+  }
+  function clearForm(){
+    editingId = null;
+    document.getElementById("linkName").value = "";
+    document.getElementById("linkGroup").value = "Direct Tax";
+    document.getElementById("linkUrl").value = "";
+    document.getElementById("linkNote").value = "";
+    document.getElementById("saveLinkBtn").textContent = "Save Link";
+  }
+  function startEdit(id){
+    const link = loadLinks().find(x => x.id === id);
+    if(!link) return;
+    editingId = id;
+    document.getElementById("linkName").value = link.name;
+    document.getElementById("linkGroup").value = link.group;
+    document.getElementById("linkUrl").value = link.url;
+    document.getElementById("linkNote").value = link.note || "";
+    document.getElementById("saveLinkBtn").textContent = "Update Link";
+    window.scrollTo({top:0, behavior:"smooth"});
+  }
+  document.getElementById("saveLinkBtn").addEventListener("click", () => {
+    const name = document.getElementById("linkName").value.trim();
+    const group = document.getElementById("linkGroup").value;
+    const url = normalizeUrl(document.getElementById("linkUrl").value);
+    const note = document.getElementById("linkNote").value.trim();
+    if(!name){ flash("Name is required."); return; }
+    if(!url){ flash("URL is required."); return; }
+    const list = loadLinks();
+    if(editingId){
+      const link = list.find(x => x.id === editingId);
+      if(link){ link.name = name; link.group = group; link.url = url; link.note = note; }
+      flash("Link updated.");
+    }else{
+      list.push({ id:uid(), name, group, url, note });
+      flash("Link saved.");
+    }
+    saveLinks(list);
+    clearForm();
+    renderCustomLinks();
+  });
+  document.getElementById("resetFormBtn").addEventListener("click", clearForm);
+  document.getElementById("addTaskBtn").addEventListener("click", () => {
+    const day = parseInt(document.getElementById("taskDay").value, 10);
+    const name = document.getElementById("taskName").value.trim();
+    const note = document.getElementById("taskNote").value.trim();
+    if(!day || day < 1 || day > 31){ flash("Enter a due day between 1 and 31."); return; }
+    if(!name){ flash("Checklist task name is required."); return; }
+    const items = loadChecklistItems();
+    items.push({ id:uid(), day, name, note });
+    saveChecklistItems(items);
+    document.getElementById("taskDay").value = "";
+    document.getElementById("taskName").value = "";
+    document.getElementById("taskNote").value = "";
+    renderChecklist();
+    flash("Checklist item added.");
+  });
+  document.getElementById("resetTasksBtn").addEventListener("click", () => {
+    if(!confirm("Restore the original checklist items? This removes custom checklist items and their saved completion status.")) return;
+    const currentIds = loadChecklistItems().map(task => task.id);
+    saveChecklistItems(cloneDefaultChecklist());
+    const defaultIds = checklistDefaults.map(task => task.id);
+    const all = loadStatus();
+    Object.keys(all).forEach(month => {
+      currentIds.forEach(id => {
+        if(defaultIds.indexOf(id) === -1 && all[month]) delete all[month][id];
+      });
+    });
+    saveStatus(all);
+    renderChecklist();
+    flash("Default checklist restored.");
+  });
+  monthInput.addEventListener("change", renderChecklist);
+
+  monthInput.value = monthStr(new Date());
+  renderPortals();
+  renderBanks();
+  renderCustomLinks();
+  renderChecklist();
+})();
+</script>
+</body>
+</html>
