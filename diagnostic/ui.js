@@ -1,6 +1,15 @@
 /* ============================================================
    GRE Quant Pro — Diagnostic Planner UI
-   Phase 3.  Four screens: landing -> parsing -> confirm -> report.
+
+   A clean parse (right question counts, sane time totals) goes
+   straight from parsing to the report — no review step in between.
+   The confirm grid still exists, but only for the two cases that
+   actually need it: a parse whose structure doesn't add up (routed
+   there to be fixed by hand) and manual entry (there is no data
+   without it). Target score and plan length used to live only on
+   that grid; they now live as adjustable pills at the top of the
+   report itself, so removing the grid from the common path didn't
+   remove the ability to personalise.
 
    Scope is the lean v1 that was agreed: verdict + archetype,
    gap-to-target with a student-chosen target, content-area bars,
@@ -165,8 +174,22 @@ async function run(files) {
     warnings: result.validation.warnings.length,
     clean: result.validation.clean,
   });
-  renderConfirm(result.validation, false);
-  show('dxConfirm');
+
+  if (!result.validation.ok) {
+    // The numbers don't add up (wrong question count for a section, or an
+    // impossible time total) — that needs a human to fix the specific row,
+    // so it still goes to the grid rather than a plan built on bad data.
+    track('diagnostic_parse_needs_fix', { errors: result.validation.errors.map((e) => e.code) });
+    renderConfirm(result.validation, false);
+    show('dxConfirm');
+    return;
+  }
+
+  // Structure is sound — skip the review step and go straight to the plan.
+  // Any individual cells the parser wasn't fully sure of are used as its
+  // best read and flagged in the report's own guard note instead of
+  // gating the whole flow on them.
+  await buildAndShowReport();
 }
 
 function fail(title, detail) {
@@ -177,9 +200,9 @@ function fail(title, detail) {
 
 /* ============================================================
    Confirm grid
-   Always shown, even on a perfect parse: five seconds of scanning
-   buys the student's trust in every number that follows, and it is
-   the first time they look at their own data.
+   Only reached now via manual entry, or a parse whose structure
+   didn't add up and needs a row fixed by hand — a clean parse skips
+   straight past this to the report.
    ============================================================ */
 
 function renderConfirm(validation, manual) {
@@ -262,20 +285,57 @@ function segment(host, values, current, onPick, fmt = String) {
   };
 }
 
+/** Target score and plan length, now living on the report itself rather
+ *  than gating it — changing either instantly rebuilds the plan in place,
+ *  the same pattern the topic-narrowing chips already use below. */
+function renderPersonalize() {
+  segment($('#dxTargetR'), TARGETS, state.target, (v) => {
+    if (v === state.target) return;
+    state.target = v;
+    computeAnalysisAndPlan();
+    renderReport();
+  });
+  segment($('#dxWeeksR'), WEEK_OPTIONS, state.weeks, (v) => {
+    if (v === state.weeks) return;
+    state.weeks = v;
+    computeAnalysisAndPlan();
+    renderReport();
+  }, (v) => `${v} weeks`);
+}
+
 /* ============================================================
    Report
    ============================================================ */
 
-async function generate() {
-  const missing = state.rows.filter((r) => !r.difficulty).length;
-  if (missing > 3) {
-    if (!confirm(`${missing} questions still have no difficulty level. The difficulty read will be weaker. Carry on anyway?`)) return;
-  }
+async function ensureTaxonomy() {
   if (!state.taxonomy) {
     state.taxonomy = await fetch('./diagnostic/taxonomy.json').then((r) => r.json());
   }
+}
+
+/** Analyse + build the plan from the current rows/target/weeks/narrow.
+ *  Anything the parser wasn't fully sure of (an unread cell, a missing
+ *  difficulty level) used to block behind a popup; now it is folded into
+ *  the report's own "what this does not tell you" guard note instead —
+ *  informative, but never in the way. */
+function computeAnalysisAndPlan() {
   state.analysis = analyse(state.rows, { target: state.target });
+  const unread = state.rows.filter((r) => r.needsReview?.length).length;
+  const noDifficulty = state.rows.filter((r) => !r.difficulty).length;
+  if (unread || noDifficulty) {
+    const bits = [];
+    if (unread) bits.push(`${unread} answer${unread === 1 ? '' : 's'} it wasn't fully sure it read right`);
+    if (noDifficulty) bits.push(`${noDifficulty} question${noDifficulty === 1 ? '' : 's'} with no difficulty level`);
+    state.analysis.guards.push(
+      `The reader flagged ${bits.join(' and ')} — its best guess was used, so double-check that area below if something looks off.`
+    );
+  }
   state.plan = buildPlan(state.analysis, state.taxonomy, { weeks: state.weeks, narrow: state.narrow });
+}
+
+async function buildAndShowReport() {
+  await ensureTaxonomy();
+  computeAnalysisAndPlan();
   track('diagnostic_plan_generated', {
     target: state.target, weeks: state.weeks,
     archetype: state.analysis.archetypes[0].key,
@@ -285,12 +345,19 @@ async function generate() {
   show('dxReport');
 }
 
+/** Still the confirm-grid's own button handler — manual entry, and a
+ *  parse that needed a row fixed by hand, both land here. */
+async function generate() {
+  await buildAndShowReport();
+}
+
 function renderReport() {
   const a = state.analysis, p = state.plan;
   const [primary, secondary] = a.archetypes;
 
   /* --- verdict --- */
   stampPrintHeader();
+  renderPersonalize();
   $('#dxArch').textContent = primary.label;
   $('#dxHead').textContent = primary.headline;
   $('#dxEvidence').textContent = primary.evidence;
