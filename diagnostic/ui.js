@@ -26,7 +26,7 @@ import { parseDiagnostic, QUESTION_TYPES, SETTINGS } from './parser.js';
 import { analyse } from './analysis.js';
 import { buildPlan, WEEK_OPTIONS, AREA_TO_TOPICS } from './plan.js';
 import { gapMeter, areaBars, timingMap, timingLegend, timingTable, hideTip,
-         paperGrid, paperLegend, difficultyLadder, typeBars } from './charts.js';
+         paperGrid, paperLegend, difficultyLadder, typeBars, planRoadmap } from './charts.js';
 import { take } from './handoff.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = './diagnostic/vendor/pdf.worker.min.mjs';
@@ -468,6 +468,7 @@ function renderReport() {
     (focus.length
       ? `<br><span style="display:inline-block;margin-top:10px;padding:6px 13px;background:var(--accent-soft);border-radius:999px;font-size:14px;font-weight:700;color:var(--accent-dark)">Focused on ${esc(focus.join(' and '))}</span>`
       : '');
+  renderRoadmap();
   $('#dxWeekList').innerHTML = p.weeks.map((wk) => `
     <article class="dx-week">
       <div class="dx-week-n">Week ${wk.n}</div>
@@ -675,6 +676,111 @@ function renderSections() {
   $('#dxSectionNote').textContent =
     'GRE Quant is section-adaptive: how you do in Section 1 chooses how hard Section 2 is. ' +
     'That makes Section 1 worth more than its share of questions — which is why the plan front-loads accuracy over speed.';
+}
+
+/* ============================================================
+   Plan roadmap
+   The week list is the instruction manual; this is the map. It has
+   to read in one glance, so the weeks are folded into three or four
+   PHASES rather than redrawn one per week — a 12-week plan and a
+   4-week plan then produce the same shape, and the milestones are
+   the checkpoints the plan already sets for itself.
+   ============================================================ */
+
+/** Fold plan.weeks into 3–4 phases. plan.js always builds week 1 as the
+ *  discipline week and the final week as the simulation, so those two are
+ *  phases in their own right; whatever sits between them is the content
+ *  work, split in half once it is long enough to warrant it. */
+function derivePhases(plan) {
+  const weeks = plan.weeks;
+  if (!weeks.length) return [];
+  const range = (a, b) => (a === b ? `Week ${a}` : `Weeks ${a}–${b}`);
+
+  // The week titles read "Geometry — the foundations", which is right in
+  // the detail below but truncates to "Geometry — the…" inside a phase
+  // card. The part before the dash is the phase's real name.
+  const shortLabel = (t) => String(t).split(/\s+[—–-]\s+/)[0].trim();
+
+  const describe = (group, label) => {
+    const items = group.flatMap((w) => w.items || []);
+    const drills = items.filter((i) => i.kind === 'drill').length;
+    const reads = items.filter((i) => i.kind === 'capsule').length;
+    const locked = items.some((i) => i.locked || i.partial);
+    // Kept terse on purpose: this line shares a ~140px card with the PRO
+    // badge, so "6 read · 6 drills" survives where the longer phrasing did not.
+    const bits = [];
+    if (reads) bits.push(`${reads} read`);
+    if (drills) bits.push(`${drills} drill${drills === 1 ? '' : 's'}`);
+    if (!bits.length) bits.push(`${items.length} item${items.length === 1 ? '' : 's'}`);
+    // The checkpoint that closes the phase is its milestone.
+    const cp = [...group].reverse().find((w) => w.checkpoint)?.checkpoint || null;
+    // A phase can span weeks on different areas, and its checkpoint comes
+    // from the last of them. Labelling it after the first week alone
+    // produced a "Geometry" phase whose milestone named Statistics codes,
+    // so name every area the phase actually covers.
+    const names = [];
+    for (const w of group) {
+      const nm = shortLabel(w.title);
+      if (nm && !names.includes(nm)) names.push(nm);
+    }
+    const spanLabel = names.length > 2
+      ? `${names[0]} & ${names.length - 1} more`
+      : names.join(' & ');
+
+    // Two forms: the full one when the card can hold it, and a single-token
+    // fallback for a narrow locked card, so the number never cuts to "6…".
+    const short = drills ? `${drills} drill${drills === 1 ? '' : 's'}`
+      : reads ? `${reads} read` : `${items.length} item${items.length === 1 ? '' : 's'}`;
+
+    return {
+      metaShort: short + (locked ? '' : ''),
+      label: label ? shortLabel(label) : spanLabel,
+      fullTitle: group.map((w) => w.title).join(' · '),
+      range: range(group[0].n, group[group.length - 1].n),
+      meta: bits.join(' · ') + (locked ? ' · Pro' : ''),
+      checkpoint: cp, locked,
+    };
+  };
+
+  if (weeks.length <= 2) return weeks.map((w) => describe([w]));
+
+  const first = weeks[0], last = weeks[weeks.length - 1];
+  const middle = weeks.slice(1, -1);
+  const out = [describe([first], first.title)];
+  if (middle.length >= 4) {
+    const half = Math.ceil(middle.length / 2);
+    out.push(describe(middle.slice(0, half)));
+    out.push(describe(middle.slice(half)));
+  } else if (middle.length) {
+    out.push(describe(middle));
+  }
+  out.push(describe([last], last.title));
+  return out;
+}
+
+function renderRoadmap() {
+  const host = $('#dxRoadmapChart');
+  if (!host) return;
+  const phases = derivePhases(state.plan);
+  $('#dxRoadmapWeeks').textContent =
+    `${state.plan.meta.weeks} weeks · ${phases.length} phases` +
+    (state.testDate && daysUntil(state.testDate) > 0 ? ` · ${daysUntil(state.testDate)} days left` : '');
+  host.innerHTML = '';
+  host.appendChild(planRoadmap(state.analysis, phases));
+
+  // Milestones live in HTML, not in the SVG. Four captions of running text
+  // inside a 720-wide drawing collided into each other; HTML wraps.
+  const miles = $('#dxRoadmapMiles');
+  if (miles) {
+    miles.innerHTML = phases.map((p, i) => p.checkpoint ? `
+      <li class="dx-mile-item">
+        <span class="dx-mile-n">${i + 1}</span>
+        <span class="dx-mile-b">
+          <span class="dx-mile-t">${esc(p.range)} · ${esc(p.label)}</span>
+          <span class="dx-mile-d">${esc(p.checkpoint)}</span>
+        </span>
+      </li>` : '').join('');
+  }
 }
 
 /* ============================================================

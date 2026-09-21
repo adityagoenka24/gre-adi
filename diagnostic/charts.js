@@ -499,3 +499,107 @@ export function typeBars(analysis) {
   }));
   return svg;
 }
+
+/* ============================================================
+   8. Plan roadmap — the summarised journey, with milestones
+   Shown ABOVE the week-by-week detail. Its job is to make the plan
+   comprehensible in one glance before the student reads any of it:
+   where they are, the three or four phases between here and the
+   test, what each phase is for, and the checkpoint that proves it
+   worked. It summarises rather than repeats — the detail is below.
+
+   Drawn as SVG so it survives the PDF at full resolution, and laid
+   out from a phase list rather than a week list so a 4-week plan
+   and a 12-week plan produce the same shape.
+   ============================================================ */
+
+export function planRoadmap(analysis, phases) {
+  var W = 720;
+  var capW = 92, gap = 10;
+  var n = phases.length;
+  var innerX = capW + 16, innerW = W - (capW + 16) * 2;
+  var cardW = (innerW - gap * (n - 1)) / n;
+  var cardH = 104, H = 150, railY = 78, cardY = railY - cardH / 2;
+  // Character budgets, measured against the actual weights rather than
+  // guessed: the label is 15px/800 (~8.2px a glyph) and the meta line is
+  // 10.5px/600 (~5.6px). The first cut used 7.0 for both, which is why
+  // "Geometry & Data Analysis" pushed past its card.
+  var labelChars = Math.max(8, Math.floor((cardW - 26) / 8.2));
+
+  var svg = el('svg', {
+    viewBox: '0 0 ' + W + ' ' + H, class: 'dx-svg', role: 'img',
+    'aria-label': 'Your study plan in ' + n + ' phases, from today to test day.',
+  });
+
+  svg.appendChild(el('line', {
+    x1: capW / 2, y1: railY, x2: W - capW / 2, y2: railY, stroke: C.line2, 'stroke-width': 2,
+  }));
+
+  function cap(cx, label, value, isTarget) {
+    var g = el('g');
+    g.appendChild(el('rect', {
+      x: cx - capW / 2, y: railY - 30, width: capW, height: 60, rx: 12,
+      fill: isTarget ? C.wrong : C.correct,
+    }));
+    g.appendChild(txt(label, { x: cx, y: railY - 8, 'text-anchor': 'middle', class: 'dx-tick', fill: '#fff', opacity: 0.85 }));
+    g.appendChild(txt(value, { x: cx, y: railY + 16, 'text-anchor': 'middle', class: 'dx-cap-v', fill: '#fff' }));
+    svg.appendChild(g);
+  }
+  cap(capW / 2, 'TODAY', analysis.score.label, false);
+  cap(W - capW / 2, 'TARGET', String(analysis.gap.target), true);
+
+  phases.forEach(function (p, i) {
+    var x = innerX + i * (cardW + gap);
+    var g = el('g');
+
+    g.appendChild(el('rect', {
+      x: x, y: cardY, width: cardW, height: cardH, rx: 10,
+      fill: C.surface, stroke: p.locked ? C.gold : C.line2, 'stroke-width': 1.5,
+    }));
+    // The number badge straddles the top edge; everything else stays inside
+    // the card, which is what the first cut got wrong — the week range sat
+    // on the border and the meta line ran into the next phase.
+    g.appendChild(el('circle', { cx: x + 19, cy: cardY, r: 12.5, fill: C.bar }));
+    g.appendChild(txt(String(i + 1), { x: x + 19, y: cardY + 5, 'text-anchor': 'middle', class: 'dx-lbl-strong', fill: '#fff' }));
+
+    g.appendChild(txt(p.range, { x: x + 12, y: cardY + 32, class: 'dx-tick', fill: C.ink3 }));
+
+    wrapText(p.label, labelChars, 2).forEach(function (ln, k) {
+      g.appendChild(txt(ln, { x: x + 12, y: cardY + 55 + k * 17, class: 'dx-lbl-strong', fill: C.ink }));
+    });
+
+    // The PRO badge owns the right end of the meta line, so the meta text
+    // has to be budgeted around it or the two print on top of each other.
+    var metaChars = Math.max(6, Math.floor((cardW - 22 - (p.locked ? 36 : 0)) / 5.6));
+    var metaText = (p.meta && p.meta.length <= metaChars) ? p.meta : (p.metaShort || p.meta);
+    wrapText(metaText, metaChars, 1).forEach(function (ln) {
+      g.appendChild(txt(ln, { x: x + 12, y: cardY + cardH - 12, class: 'dx-mile', fill: C.ink3 }));
+    });
+    if (p.locked) {
+      g.appendChild(txt('PRO', { x: x + cardW - 12, y: cardY + cardH - 12, 'text-anchor': 'end', class: 'dx-mile', fill: C.gold }));
+    }
+
+    svg.appendChild(hoverable(g, '<b>' + (p.fullTitle || p.label) + '</b><br>' + p.range + ' · ' + p.meta +
+      (p.checkpoint ? '<br><br><b>Checkpoint:</b> ' + p.checkpoint : '')));
+  });
+
+  return svg;
+}
+
+/** Greedy word wrap for SVG text, which has none of its own. */
+function wrapText(s, maxChars, maxLines) {
+  var words = String(s).split(/\s+/), lines = [], cur = '';
+  for (var i = 0; i < words.length; i++) {
+    var next = cur ? cur + ' ' + words[i] : words[i];
+    if (next.length > maxChars && cur) { lines.push(cur); cur = words[i]; }
+    else cur = next;
+    if (lines.length === maxLines) break;
+  }
+  if (lines.length < maxLines && cur) lines.push(cur);
+  if (lines.length === maxLines) {
+    var last = lines[maxLines - 1];
+    var consumed = lines.join(' ').length;
+    if (consumed < String(s).length - 1) lines[maxLines - 1] = last.replace(/[,.;:]?$/, '') + '…';
+  }
+  return lines;
+}

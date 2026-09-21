@@ -30,7 +30,7 @@
     // fraction: operand / operand
     { re: new RegExp('(' + OPERAND + ')\\s*/\\s*(' + OPERAND + ')', 'g'), type: 'frac' },
     // caret exponent: x^2, 2^(10), (a+b)^2, y^(3/4), (y^3)^(1/4)
-    { re: new RegExp('(\\([^()]{1,40}\\)|[0-9a-zA-Z.]{1,12})\\^(\\([^()]{1,16}\\)|-?[0-9a-zA-Z.]{1,8})', 'g'), type: 'caret' },
+    { re: new RegExp('(\\([^()]{1,40}\\)|\\|[^|]{1,20}\\||[0-9a-zA-Z.]{1,12})\\^(\\([^()]{1,16}\\)|-?[0-9a-zA-Z.]{1,8})', 'g'), type: 'caret' },
     // unicode superscript exponent: 13², x³, (a+b)²
     { re: /(\([^()]{1,40}\)|[0-9a-zA-Z.]{1,12})([⁰¹²³⁴⁵⁶⁷⁸⁹]+)/g, type: 'usup' }
   ];
@@ -87,6 +87,9 @@
   // otherwise KaTeX would produce y^{3}^{1/4} (double superscript error)
   function texBase(raw) {
     raw = String(raw).trim();
+    if (raw[0] === '|' && raw[raw.length - 1] === '|') {
+      return '\\left|' + innerTex(raw.slice(1, -1)) + '\\right|';
+    }
     if (raw[0] === '(') {
       var inner = stripParens(raw);
       if (HAS_OP.test(inner)) return '\\left(' + innerTex(inner) + '\\right)';
@@ -166,10 +169,16 @@
   }
 
   function processTextNode(node) {
-    var text = node.nodeValue;
-    if (!text || text.length < 3) return;
+    var raw = node.nodeValue;
+    if (!raw || raw.length < 2) return;
+    var text = normalizeSymbols(raw);
     var segs = findSegments(text);
-    if (!segs.length) return;
+    if (!segs.length) {
+      // No expression to typeset, but the symbols may still have changed
+      // ("x <= 5" → "x ≤ 5"), and that is half the point of this pass.
+      if (text !== raw) node.nodeValue = text;
+      return;
+    }
     var frag = document.createDocumentFragment();
     var pos = 0;
     segs.forEach(function (seg) {
@@ -179,6 +188,80 @@
     });
     if (pos < text.length) frag.appendChild(document.createTextNode(text.slice(pos)));
     node.parentNode.replaceChild(frag, node);
+  }
+
+  /** sqrt( … ) → √( … ), counting brackets so nested radicals survive.
+   *  Works inside-out by scanning left to right and matching each
+   *  "sqrt(" to its own closing bracket. */
+  function replaceSqrtWord(s) {
+    var out = '', i = 0;
+    var re = /\bsqrt\s*\(/gi, m;
+    while ((m = re.exec(s)) !== null) {
+      var open = m.index + m[0].length - 1;   // index of the '('
+      var depth = 0, close = -1;
+      for (var j = open; j < s.length; j++) {
+        if (s[j] === '(') depth++;
+        else if (s[j] === ')') { depth--; if (depth === 0) { close = j; break; } }
+      }
+      if (close === -1) break;                // unbalanced — leave it alone
+      out += s.slice(i, m.index) + '√(' + replaceSqrtWord(s.slice(open + 1, close)) + ')';
+      i = close + 1;
+      re.lastIndex = i;
+    }
+    return out + s.slice(i);
+  }
+
+  /* ------------------------------------------------------------
+     Notation normaliser
+
+     The bank was written over many months and is genuinely mixed:
+     11,568 caret exponents against 10,771 unicode superscripts,
+     4,851 "√" against 998 "sqrt(", 701 "≤" against 531 "<=". The
+     same inequality therefore looked different from one question to
+     the next depending on which batch wrote it.
+
+     Rather than rewrite 8,462 questions — which risks the content
+     itself — every ASCII form is folded into the unicode form the
+     typesetter below already understands. One pass, at display time,
+     and every surface that calls renderIn() gets identical output.
+     The JSON on disk is never touched, so the practice sheets stay
+     plain ASCII for WhatsApp and print, which is what they need.
+     ------------------------------------------------------------ */
+  function normalizeSymbols(text) {
+    var s = text;
+
+    // sqrt(…) → √(…). A plain regex cannot do this: the bank contains
+    // nested radicals like sqrt(6 + sqrt(6 + √6)), where [^()] can never
+    // match the outer argument. So walk to the matching bracket instead.
+    s = replaceSqrtWord(s);
+    s = s.replace(/\bsqrt\s*(\d+(?:\.\d+)?|[a-zA-Z])\b/gi, function (_, a) { return '√' + a; });
+
+    // relational operators
+    s = s.replace(/<=/g, '≤').replace(/>=/g, '≥')
+         .replace(/!=/g, '≠').replace(/<>/g, '≠')
+         .replace(/\+\/-/g, '±');
+
+    // pi → π, both standalone and attached to a coefficient (2pi → 2π).
+    // Case-sensitive: "PI" can be an abbreviation, "pi" in GRE quant is not.
+    s = s.replace(/(^|[^A-Za-z0-9_])pi\b/g, function (_, pre) { return pre + 'π'; });
+    s = s.replace(/(\d)\s*pi\b/g, function (_, d) { return d + 'π'; });
+
+    /* Explicit multiplication — the one rule here that can do real damage,
+       because the bank writes products as "12 x 5" while also using x as
+       its commonest variable. Counted across the bank: 4,121 "digit x
+       digit", 144 ") x (", 132 "digit x (" — all unambiguously products —
+       against 1,337 "letter x letter", which is overwhelmingly prose such
+       as "compute x from an equation". Turning that into "compute × from"
+       would corrupt a sentence the student reads, so the left side must be
+       a digit, a closing bracket or π, and the right side must open a new
+       operand. The ~178 "pi x 3" cases are caught because pi has already
+       become π by this point. A missed × costs nothing; a wrong one does. */
+    s = s.replace(/(\d)\s*\*\s*(?=[\d(a-zA-Z])/g, function (_, d) { return d + ' × '; });
+    s = s.replace(/([\d)π])\s+x\s+(?=[\d(√π])/g, function (_, a) { return a + ' × '; });
+    // "2x2 table" — a dimension, never algebra (you would write 2x² for that)
+    s = s.replace(/\b(\d)x(\d)\b/g, function (_, a, b) { return a + '×' + b; });
+
+    return s;
   }
 
   var SKIP_TAGS = { SCRIPT: 1, STYLE: 1, INPUT: 1, TEXTAREA: 1, SELECT: 1, SVG: 1, BUTTON: 0 };
@@ -203,5 +286,42 @@
     nodes.forEach(processTextNode);
   }
 
-  window.GREMath = { renderIn: renderIn };
+  /* ------------------------------------------------------------
+     Fallback styles, injected by the renderer itself.
+
+     When KaTeX is unavailable — a slow connection, a blocked CDN, an
+     offline tab — renderSeg() falls back to .mfrac/.msqrt/sup.mexp
+     markup. Those rules previously lived only in gre-exam-theme.css,
+     so the mocks styled them and nothing else did: on the practice
+     loggers and all 111 /learn/ pages a fraction collapsed to its
+     two digits run together, turning "1/3 of 90" into "13 of 90".
+     That is a wrong question, not an ugly one.
+
+     The renderer emits this markup, so the renderer ships its styles.
+     Every surface that includes this file is now correct by default,
+     including any added later.
+     ------------------------------------------------------------ */
+  function injectFallbackStyles() {
+    if (!document.head || document.getElementById('gre-math-fallback')) return;
+    var st = document.createElement('style');
+    st.id = 'gre-math-fallback';
+    st.textContent = [
+      '.gre-math{white-space:normal}',
+      '.mfrac{display:inline-flex;flex-direction:column;align-items:center;vertical-align:middle;margin:0 2px;line-height:1.15;font-size:.92em}',
+      '.mfrac .mnum{padding:0 4px;border-bottom:1.2px solid currentColor}',
+      '.mfrac .mden{padding:0 4px}',
+      '.msqrt{display:inline-flex;align-items:stretch;vertical-align:middle}',
+      '.msqrt .rad{font-size:1.1em;line-height:1;align-self:flex-end}',
+      '.msqrt .arg{border-top:1.2px solid currentColor;padding:0 3px}',
+      'sup.mexp{font-size:.72em;vertical-align:super;line-height:0}'
+    ].join('');
+    document.head.appendChild(st);
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', injectFallbackStyles);
+  } else {
+    injectFallbackStyles();
+  }
+
+  window.GREMath = { renderIn: renderIn, normalize: normalizeSymbols };
 })();

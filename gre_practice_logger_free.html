@@ -602,6 +602,93 @@ tr:hover td{background:rgba(26,93,166,0.04);}
   .exam-sidebar .exam-dots-wrap{gap:4px;}
   .exam-sidebar .exam-dot{width:22px;height:22px;font-size:10px;}
 }
+
+/* ============================================================
+   ETS EXAM SKIN — topic-wise practice
+   Adi's call: the question should look like the real test screen,
+   while the instant trap feedback that makes practice worth doing
+   stays exactly as it is.
+
+   This restyles the existing .pq-* markup rather than rewriting it
+   into the .gre-* markup the mocks use, and it deliberately does
+   NOT link gre-exam-theme.css: that file carries a global reset
+   (* {margin:0} plus its own body rules) which would reach far
+   outside the question card and take the rest of this 3,800-line
+   app with it. The values below are copied from it verbatim, so
+   the question area matches full_mock and sectional pixel for
+   pixel, and nothing else in the logger moves.
+   ============================================================ */
+.practice-q-card{
+  --ets-surface:#ffffff; --ets-text:#16191d; --ets-text2:#4a545e; --ets-text3:#77828c;
+  --ets-border:#c9d2da; --ets-border-soft:#e2e8ee; --ets-selected:#e8f1fa;
+  --ets-blue:#1a5da6; --ets-success:#1e7e46; --ets-danger:#c0392b;
+  --ets-font:Arial, Helvetica, "Segoe UI", sans-serif;
+  background:var(--ets-surface);
+}
+.practice-q-card .pq-body{font-family:var(--ets-font);}
+.practice-q-card .pq-question-text{
+  font-family:var(--ets-font);font-size:18px;line-height:1.7;
+  color:var(--ets-text);margin-bottom:30px;white-space:pre-wrap;
+}
+
+/* Options — the ETS radio row */
+.practice-q-card .pq-options{display:flex;flex-direction:column;gap:6px;max-width:640px;margin-bottom:22px;}
+.practice-q-card .pq-option{
+  display:flex;align-items:flex-start;gap:14px;padding:12px 14px;
+  background:transparent;border:1px solid transparent;border-radius:4px;
+  font-family:var(--ets-font);font-size:16.5px;line-height:1.55;
+  color:var(--ets-text);font-weight:400;min-height:48px;
+  text-align:left;width:100%;transition:background .12s;
+}
+.practice-q-card .pq-option:hover:not(:disabled){background:#f3f6f9;border-color:transparent;color:var(--ets-text);}
+.practice-q-card .pq-option.selected{background:var(--ets-selected);border-color:#b7d0e8;color:var(--ets-text);font-weight:400;}
+.practice-q-card .pq-option:disabled{cursor:default;}
+
+/* The letter badge stands in for the ETS radio: same size and position,
+   but it keeps the letter, which the feedback below refers to by name. */
+.practice-q-card .pq-opt-letter{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:21px;height:21px;min-width:21px;border-radius:50%;
+  border:1.5px solid #8a949e;background:#fff;color:var(--ets-text2);
+  font-family:var(--ets-font);font-size:11.5px;font-weight:700;margin-top:2px;
+}
+.practice-q-card .pq-option.selected .pq-opt-letter{border-color:var(--ets-blue);background:var(--ets-blue);color:#fff;}
+
+/* Quantitative Comparison — centred columns, underlined heads */
+.practice-q-card .pq-qc-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:0;
+  max-width:620px;margin:0 auto 34px;background:transparent;border:none;
+}
+.practice-q-card .pq-qc-col{text-align:center;padding:0 18px;background:transparent;border:none;}
+.practice-q-card .pq-qc-label{
+  font-family:var(--ets-font);font-size:16px;font-weight:700;text-decoration:underline;
+  text-transform:none;letter-spacing:normal;color:var(--ets-text);margin-bottom:14px;
+}
+.practice-q-card .pq-qc-content{font-family:var(--ets-font);font-size:18px;line-height:1.6;color:var(--ets-text);font-weight:400;}
+/* the four QC choices are full sentences on the real test, so they stack
+   as ordinary option rows rather than sitting in a 2x2 grid */
+.practice-q-card .pq-qc-options{display:flex;flex-direction:column;gap:6px;max-width:640px;margin:0 auto 22px;}
+.practice-q-card .pq-qc-options .pq-option{justify-content:flex-start;text-align:left;font-weight:400;}
+
+/* Numeric entry */
+.practice-q-card .pq-numeric-wrap input{
+  max-width:180px;font-size:20px;text-align:center;padding:12px;
+  border:1px solid var(--ets-text3);border-radius:3px;font-family:var(--ets-font)!important;
+}
+.practice-q-card .pq-numeric-wrap input:focus{border-color:var(--ets-blue);box-shadow:0 0 0 3px rgba(26,93,166,.15);}
+
+/* Feedback — the part the real exam never gives you. Kept, but recoloured
+   onto the ETS palette so it reads as part of the same screen. */
+.practice-q-card .pq-option.correct-reveal{background:#eaf5ee!important;border-color:var(--ets-success)!important;color:var(--ets-text)!important;}
+.practice-q-card .pq-option.wrong-reveal{background:#fbecea!important;border-color:var(--ets-danger)!important;color:var(--ets-text)!important;}
+.practice-q-card .pq-option.correct-reveal .pq-opt-letter{background:var(--ets-success);border-color:var(--ets-success);color:#fff;}
+.practice-q-card .pq-option.wrong-reveal .pq-opt-letter{background:var(--ets-danger);border-color:var(--ets-danger);color:#fff;}
+
+@media (max-width:640px){
+  .practice-q-card .pq-qc-grid{grid-template-columns:1fr;gap:10px;}
+  .practice-q-card .pq-question-text{font-size:16.5px;}
+  .practice-q-card .pq-option{font-size:15.5px;}
+}
 </style>
 </head>
 <body>

@@ -100,6 +100,15 @@
   </main>
   <script src="events_common.js"></script>
   <script>Events.initStudentPage({ teamMode:false });</script>
+  <script>
+  /* This page renders its wrong-answer review asynchronously, so typeset
+     once the content has landed. Same renderer as every other surface —
+     the notation has to look identical here too. */
+  (function () {
+    function typeset() { if (window.GREMath) window.GREMath.renderIn(document.querySelector('main') || document.body); }
+    window.addEventListener('load', function () { typeset(); setTimeout(typeset, 600); });
+  })();
+  </script>
   <script src="../ads-config.js"></script>
   <script src="../analytics.js"></script>
 </body>
