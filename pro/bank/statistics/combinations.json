@@ -1,1235 +1,1273 @@
 {
- "meta": {
-  "topic": "Statistics",
-  "subtopic": "Combinations",
-  "subtopic_id": "STA-CMB",
-  "version": "1.0",
-  "total_questions": 60,
-  "distribution": {
-   "easy": 15,
-   "medium": 23,
-   "hard": 15,
-   "extreme_hard": 7
+  "meta": {
+    "topic": "Statistics",
+    "subtopic": "Combinations",
+    "subtopic_id": "STA-CMB",
+    "version": "1.0",
+    "total_questions": 61,
+    "distribution": {
+      "easy": 15,
+      "medium": 21,
+      "hard": 18,
+      "extreme_hard": 7
+    },
+    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+    "bank": "Adi's GRE Quant Bank"
   },
-  "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
- },
- "questions": [
-  {
-   "id": "STA-CMB-001",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "How many ways can 3 books be chosen from a shelf of 7 books, if the order of selection does not matter?",
-   "options": [
-    "A. 21",
-    "B. 35",
-    "C. 42",
-    "D. 210",
-    "E. 840"
-   ],
-   "answer": "B",
-   "explanation": "We need C(7,3) since order does not matter.\nC(7,3) = 7! / (3! × 4!) = (7 × 6 × 5) / (3 × 2 × 1) = 210 / 6 = 35.",
-   "trap": "Students compute 7 × 6 × 5 = 210, which counts ordered selections (permutations). Since order doesn't matter, divide by 3! = 6 to get 35.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-002",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "What is the value of C(8, 0)?",
-   "options": [
-    "A. 0",
-    "B. 1",
-    "C. 8",
-    "D. 40320",
-    "E. Undefined"
-   ],
-   "answer": "B",
-   "explanation": "C(n, 0) = n! / (0! × n!) = 1 / 1 = 1 for any non-negative integer n.\nHere C(8, 0) = 1. This makes sense: there is exactly one way to choose 0 items from 8 — choose nothing.",
-   "trap": "Students answer 0 thinking 'choosing nothing means zero ways.' But there is exactly 1 way to choose an empty subset — by convention and by the formula, C(n,0) = 1.",
-   "estimated_time_seconds": 35,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-003",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A committee of 2 people is to be formed from a group of 6 people. How many different committees are possible?",
-   "options": [
-    "A. 12",
-    "B. 15",
-    "C. 30",
-    "D. 36",
-    "E. 60"
-   ],
-   "answer": "B",
-   "explanation": "Order does not matter for committees (a committee {A, B} is the same as {B, A}).\nC(6, 2) = 6! / (2! × 4!) = (6 × 5) / (2 × 1) = 30 / 2 = 15.",
-   "trap": "Students compute 6 × 5 = 30 (permutations), forgetting to divide by 2! = 2 since the order of selecting committee members doesn't matter.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-004",
-   "difficulty": "easy",
-   "type": "numeric_entry",
-   "question": "What is the value of C(5, 5)?",
-   "options": null,
-   "answer": "1",
-   "explanation": "C(n, n) = 1 for any non-negative integer n.\nC(5, 5) = 5! / (5! × 0!) = 1 / 1 = 1.\nIntuitively, there is exactly one way to choose all 5 items from a group of 5.",
-   "trap": "Students compute 5! = 120, confusing C(5,5) with 5!. The formula requires dividing by both r! and (n-r)!, so C(5,5) = 5!/(5! × 0!) = 1.",
-   "estimated_time_seconds": 35,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-005",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "C(9, 1) = ?",
-   "options": [
-    "A. 1",
-    "B. 8",
-    "C. 9",
-    "D. 72",
-    "E. 362880"
-   ],
-   "answer": "C",
-   "explanation": "C(n, 1) = n for any positive integer n.\nC(9, 1) = 9! / (1! × 8!) = 9 / 1 = 9.\nIntuitively, there are 9 ways to choose exactly 1 item from 9 items.",
-   "trap": "Students apply the full factorial formula and make arithmetic errors, or confuse C(9,1) with C(9,8). Both equal 9 by symmetry, but students sometimes compute 9!/8! = 9 (correct) then forget nothing more is needed.",
-   "estimated_time_seconds": 35,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-006",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A pizza shop offers 8 toppings. A customer wants to choose exactly 2 toppings. How many different topping combinations are possible?",
-   "options": [
-    "A. 16",
-    "B. 24",
-    "C. 28",
-    "D. 56",
-    "E. 64"
-   ],
-   "answer": "C",
-   "explanation": "The customer selects 2 toppings from 8, and the order doesn't matter (the pizza is the same regardless of which topping was picked first).\nC(8, 2) = 8! / (2! × 6!) = (8 × 7) / (2 × 1) = 56 / 2 = 28.",
-   "trap": "Students compute 8 × 7 = 56 without dividing by 2!, treating the selection as ordered (as if 'pepperoni then mushroom' differs from 'mushroom then pepperoni').",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-007",
-   "difficulty": "easy",
-   "type": "numeric_entry",
-   "question": "How many different 3-person subsets can be formed from a group of 10 people?",
-   "options": null,
-   "answer": "120",
-   "explanation": "We need C(10, 3) since we are forming subsets (order doesn't matter).\nC(10, 3) = 10! / (3! × 7!) = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120.",
-   "trap": "Students compute 10 × 9 × 8 = 720 (permutations) without dividing by 3! = 6 to account for the fact that groups {A,B,C} and {B,A,C} are the same subset.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "combinations"
-   ]
-  },
-  {
-   "id": "STA-CMB-008",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "Column A: C(6, 2)\nColumn B: C(6, 4)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Using the symmetry property of combinations: C(n, r) = C(n, n-r).\nC(6, 2) = C(6, 6-2) = C(6, 4).\nVerification: C(6,2) = (6×5)/(2×1) = 15. C(6,4) = (6×5×4×3)/(4×3×2×1) = 360/24 = 15.\nBoth are equal.",
-   "trap": "Students compute C(6,2) = 15 but then guess C(6,4) is larger because 4 > 2, without computing. The symmetry C(n,r) = C(n,n-r) makes them equal.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-009",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A set has 4 elements. How many subsets does it have in total (including the empty set and the full set)?",
-   "options": [
-    "A. 4",
-    "B. 8",
-    "C. 12",
-    "D. 16",
-    "E. 24"
-   ],
-   "answer": "D",
-   "explanation": "The total number of subsets of a set with n elements is 2^n.\nHere n = 4, so total subsets = 2^4 = 16.\nEach element is either included or excluded, giving 2 choices per element: 2 × 2 × 2 × 2 = 16.",
-   "trap": "Students list only the non-empty proper subsets: C(4,1)+C(4,2)+C(4,3) = 4+6+4 = 14, forgetting to add the empty set (1) and the full set (1) for a total of 16.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-010",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "From a class of 5 boys and 4 girls, one student is to be selected as class representative. In how many ways can this be done?",
-   "options": [
-    "A. 9",
-    "B. 20",
-    "C. 36",
-    "D. 45",
-    "E. 126"
-   ],
-   "answer": "A",
-   "explanation": "We are choosing 1 student from 9 total students (5 boys + 4 girls).\nC(9, 1) = 9.\nAlternatively: there are 9 students and any one of them can be selected, so 9 ways.",
-   "trap": "Students multiply 5 × 4 = 20, thinking the problem requires choosing one from each group. The problem says ONE representative from the entire class of 9.",
-   "estimated_time_seconds": 40,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-011",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "Column A: The number of ways to choose 3 items from 5 items\nColumn B: The number of ways to arrange 3 items chosen from 5 items in a row",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "B",
-   "explanation": "Column A: C(5,3) = 5!/(3!×2!) = 10. (Combinations — order does not matter.)\nColumn B: P(5,3) = 5!/(5-3)! = 5×4×3 = 60. (Permutations — order matters.)\nColumn B (60) > Column A (10).",
-   "trap": "Students may think the two quantities are the same since both involve 'choosing 3 from 5.' But arranging in a row makes order matter, so Column B counts each combination multiple times (3! = 6 times each).",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "combinations",
-    "permutations",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-CMB-012",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "What is C(10, 2)?",
-   "options": [
-    "A. 20",
-    "B. 25",
-    "C. 40",
-    "D. 45",
-    "E. 90"
-   ],
-   "answer": "D",
-   "explanation": "C(10, 2) = 10! / (2! × 8!) = (10 × 9) / (2 × 1) = 90 / 2 = 45.",
-   "trap": "Students compute 10 × 9 = 90 and select E, forgetting to divide by 2! = 2 since choosing items A then B is the same as choosing B then A when order doesn't matter.",
-   "estimated_time_seconds": 40,
-   "tags": [
-    "combinations"
-   ]
-  },
-  {
-   "id": "STA-CMB-013",
-   "difficulty": "easy",
-   "type": "numeric_entry",
-   "question": "A coach must select 5 players from a roster of 12 to start a game. How many different starting lineups are possible? (Assume all players play the same position and order does not matter.)",
-   "options": null,
-   "answer": "792",
-   "explanation": "C(12, 5) = 12! / (5! × 7!) = (12 × 11 × 10 × 9 × 8) / (5 × 4 × 3 × 2 × 1)\n= 95040 / 120 = 792.",
-   "trap": "Students may compute 12 × 11 × 10 × 9 × 8 = 95040 (permutations) without dividing by 5! = 120, since starting lineup order doesn't matter.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-014",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "Column A: C(7, 3)\nColumn B: C(7, 3) + C(7, 4)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "B",
-   "explanation": "Column A = C(7,3) = 35.\nColumn B = C(7,3) + C(7,4) = 35 + 35 = 70.\n(Note: C(7,4) = C(7,3) = 35 by symmetry.)\nSince C(7,4) > 0, Column B is strictly greater than Column A.",
-   "trap": "Students may recognize that C(7,3) + C(7,4) = C(8,4) by Pascal's identity, but still need to compare. C(8,4) = 70 > 35 = C(7,3), so Column B is greater.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-015",
-   "difficulty": "easy",
-   "type": "multiple_answer",
-   "question": "Which of the following expressions are equal to C(8, 3)? Select all that apply.",
-   "options": [
-    "A. C(8, 5)",
-    "B. 8! / (3! × 5!)",
-    "C. (8 × 7 × 6) / 6",
-    "D. 8 × 7 × 6",
-    "E. C(7, 2) + C(7, 3)"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "E"
-   ],
-   "explanation": "C(8,3) = 8!/(3! × 5!) = (8×7×6)/(3×2×1) = 336/6 = 56.\nA: C(8,5) = C(8,8-3) = C(8,3) = 56. Correct by symmetry.\nB: 8!/(3!×5!) is the definition of C(8,3). Correct.\nC: (8×7×6)/6 = (8×7×6)/(3!) = 336/6 = 56. Correct.\nD: 8×7×6 = 336 ≠ 56. This is P(8,3), not C(8,3).\nE: C(7,2)+C(7,3) = 21+35 = 56 = C(8,3) by Pascal's identity. Correct.\nAnswers: A, B, C, E.",
-   "trap": "Students may include D (= 336) thinking the numerator alone equals C(8,3), forgetting to divide by 3! = 6. Also, students unfamiliar with Pascal's identity may exclude E.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "combinations",
-    "multiple-answer",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-016",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A committee of 4 must be chosen from 6 men and 4 women. How many committees contain exactly 2 men and 2 women?",
-   "options": [
-    "A. 36",
-    "B. 60",
-    "C. 90",
-    "D. 120",
-    "E. 210"
-   ],
-   "answer": "C",
-   "explanation": "Choose 2 men from 6 AND 2 women from 4. Since these are independent selections, multiply.\nMen: C(6,2) = 15\nWomen: C(4,2) = 6\nTotal = 15 × 6 = 90.",
-   "trap": "Students add instead of multiply: C(6,2) + C(4,2) = 15 + 6 = 21. Independent selections from separate groups must be multiplied (multiplication principle), not added.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-017",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A group of 8 people includes Alice and Bob. In how many ways can a 3-person team be chosen that includes Alice but NOT Bob?",
-   "options": [
-    "A. 10",
-    "B. 15",
-    "C. 20",
-    "D. 25",
-    "E. 30"
-   ],
-   "answer": "B",
-   "explanation": "Alice is fixed (included). Bob is excluded. We choose the remaining 2 team members from the remaining 8 - 1 (Alice) - 1 (Bob) = 6 people.\nC(6, 2) = (6 × 5) / (2 × 1) = 15.",
-   "trap": "Students compute C(7,2) = 21 by excluding only Bob (choosing 2 from 7 remaining after fixing Alice), forgetting that Alice is also removed from the pool of available candidates, leaving only 6.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-018",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "How many ways can a 4-person delegation be selected from 9 candidates if two specific candidates, Priya and Raj, must BOTH be included?",
-   "options": null,
-   "answer": "21",
-   "explanation": "Fix Priya and Raj on the team. We need 2 more from the remaining 9 - 2 = 7 candidates.\nC(7, 2) = (7 × 6) / (2 × 1) = 42 / 2 = 21.",
-   "trap": "Students compute C(9,4) = 126 (ignoring the restriction) or C(9,2) = 36 (choosing 2 from all 9 instead of from the remaining 7 after fixing Priya and Raj).",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-019",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A student must answer exactly 4 questions from a test that has 5 questions in Section A and 4 questions in Section B. If the student must answer at least 2 questions from Section A, how many different selections are possible?",
-   "options": [
-    "A. 60",
-    "B. 80",
-    "C. 100",
-    "D. 105",
-    "E. 126"
-   ],
-   "answer": "D",
-   "explanation": "The student picks 4 total with at least 2 from Section A. Three cases:\nCase 1: Exactly 2 from A, 2 from B → C(5,2) × C(4,2) = 10 × 6 = 60\nCase 2: Exactly 3 from A, 1 from B → C(5,3) × C(4,1) = 10 × 4 = 40\nCase 3: Exactly 4 from A, 0 from B → C(5,4) × C(4,0) = 5 × 1 = 5\nTotal = 60 + 40 + 5 = 105.",
-   "trap": "Students forget Case 3 (all 4 from Section A) and compute only 60 + 40 = 100, or they add within groups instead of multiplying the independent selections from each section.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-020",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A group of 10 students includes 4 from Grade 11 and 6 from Grade 12. How many 3-person committees can be formed with exactly 1 student from Grade 11?",
-   "options": [
-    "A. 40",
-    "B. 60",
-    "C. 75",
-    "D. 80",
-    "E. 120"
-   ],
-   "answer": "B",
-   "explanation": "Choose 1 from Grade 11 AND 2 from Grade 12.\nGrade 11: C(4,1) = 4\nGrade 12: C(6,2) = 15\nTotal = 4 × 15 = 60.",
-   "trap": "Students add C(4,1) + C(6,2) = 4 + 15 = 19, applying addition instead of the multiplication principle for independent selections from separate groups.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-021",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "Column A: The number of ways to select a team of 3 from 7 people\nColumn B: The number of ways to select a team of 4 from 7 people",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Column A: C(7,3) = 7!/(3!×4!) = (7×6×5)/(3×2×1) = 210/6 = 35.\nColumn B: C(7,4) = 7!/(4!×3!) = 35 (by symmetry, C(7,4) = C(7,7-4) = C(7,3)).\nBoth quantities equal 35.",
-   "trap": "Students assume C(7,4) > C(7,3) because 4 > 3, without recognizing the symmetry property C(n,r) = C(n,n-r). Here C(7,4) = C(7,3) = 35.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-022",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "A basket contains 6 red balls and 5 blue balls. In how many ways can 3 balls be selected so that at least 1 ball is red?",
-   "options": null,
-   "answer": "155",
-   "explanation": "Use complementary counting.\nTotal ways to choose 3 from 11 balls: C(11,3) = (11×10×9)/(3×2×1) = 990/6 = 165.\nWays with NO red balls (all 3 blue): C(5,3) = (5×4×3)/(3×2×1) = 60/6 = 10.\nWays with at least 1 red = 165 - 10 = 155.",
-   "trap": "Students enumerate all red-inclusive cases: (1R,2B)+(2R,1B)+(3R,0B) = C(6,1)×C(5,2) + C(6,2)×C(5,1) + C(6,3)×C(5,0) = 60+75+20 = 155. This is correct but slower; the complementary method is faster. Common error: forgetting a case.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "combinations",
-    "complementary-probability",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-023",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "Using Pascal's triangle identity C(n,r) + C(n,r+1) = C(n+1,r+1), what is C(7,3) + C(7,4)?",
-   "options": [
-    "A. 56",
-    "B. 70",
-    "C. 84",
-    "D. 105",
-    "E. 120"
-   ],
-   "answer": "B",
-   "explanation": "By Pascal's identity: C(7,3) + C(7,4) = C(8,4).\nC(8,4) = 8!/(4!×4!) = (8×7×6×5)/(4×3×2×1) = 1680/24 = 70.",
-   "trap": "Students compute C(7,3) = 35 and C(7,4) = 35 separately, then add to get 70 — which is correct! But students who don't know Pascal's identity may try to compute each term and make arithmetic errors.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-024",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "n is a positive integer greater than 2.\nColumn A: C(n, 2)\nColumn B: C(n-1, 2) + (n-1)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Column A: C(n,2) = n(n-1)/2.\nColumn B: C(n-1,2) + (n-1) = (n-1)(n-2)/2 + (n-1) = (n-1)[(n-2)/2 + 1] = (n-1)[(n-2+2)/2] = (n-1)(n/2) = n(n-1)/2.\nBoth expressions equal n(n-1)/2, so they are always equal.\nVerification with n=4: C(4,2)=6; C(3,2)+(3) = 3+3 = 6. Equal.",
-   "trap": "Students test n=4 and find both equal 6, then assume D (cannot be determined) without proving it holds for all n. But algebraic proof confirms they're always equal.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-025",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "A set S has exactly n elements where n ≥ 1. Select all statements that are always true.",
-   "options": [
-    "A. The total number of subsets of S is 2^n",
-    "B. C(n, 0) + C(n, 1) + ... + C(n, n) = 2^n",
-    "C. The number of subsets of size 2 equals n(n+1)/2",
-    "D. C(n, 1) = n",
-    "E. C(n, n-1) = n"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "D",
-    "E"
-   ],
-   "explanation": "A: Total subsets = 2^n. Always true.\nB: Sum of all C(n,k) from k=0 to n equals 2^n (binomial theorem with x=1). Always true.\nC: Number of 2-element subsets = C(n,2) = n(n-1)/2, NOT n(n+1)/2. This is false.\nD: C(n,1) = n!/(1!(n-1)!) = n. Always true.\nE: C(n,n-1) = C(n,1) = n by symmetry. Always true.\nCorrect answers: A, B, D, E.",
-   "trap": "Students may select C, confusing C(n,2) = n(n-1)/2 with n(n+1)/2. The numerator is n×(n-1), not n×(n+1).",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "combinations",
-    "multiple-answer",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-026",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "From a deck of 52 playing cards, how many different 5-card hands contain exactly 3 aces? (A deck has 4 aces and 48 non-aces.)",
-   "options": [
-    "A. 48",
-    "B. 192",
-    "C. 4512",
-    "D. 4560",
-    "E. 2162160"
-   ],
-   "answer": "C",
-   "explanation": "Choose 3 aces from 4: C(4,3) = 4.\nChoose 2 non-aces from 48: C(48,2) = (48×47)/2 = 2256/2 = 1128.\nTotal = 4 × 1128 = 4512.",
-   "trap": "Students compute C(4,3) × C(48,2) = 4 × 1128 correctly but may make arithmetic errors: 48×47 = 2256, divided by 2 = 1128, then 4 × 1128 = 4512.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-027",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "In how many ways can a student choose 4 courses from 7 available courses if one particular course (Course X) must NOT be chosen?",
-   "options": null,
-   "answer": "15",
-   "explanation": "Exclude Course X from the pool. The student now chooses 4 from the remaining 7 - 1 = 6 courses.\nC(6, 4) = 6!/(4!×2!) = (6×5)/(2×1) = 15.",
-   "trap": "Students compute C(7,4) = 35 (ignoring the restriction) or C(7,4) - C(6,3) = 35 - 20 = 15 (correct via complementary but more complex). The direct method is faster: exclude Course X first, choose 4 from 6.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-028",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "Column A: The number of 3-element subsets of {1, 2, 3, 4, 5, 6, 7}\nColumn B: The number of 4-element subsets of {1, 2, 3, 4, 5, 6, 7}",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Column A: C(7,3) = 7!/(3!×4!) = 35.\nColumn B: C(7,4) = 7!/(4!×3!) = 35.\nC(7,3) = C(7,4) by the symmetry property C(n,r) = C(n,n-r). Here n=7, r=3, n-r=4.",
-   "trap": "Students assume larger subset size gives a larger count, choosing B. The symmetry C(7,3)=C(7,4) makes them equal — choosing which 3 to INCLUDE is the same as choosing which 4 to INCLUDE (equivalently, which 3 to EXCLUDE).",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-029",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A club has 12 members. The club must form two separate committees: a finance committee of 3 members and a social committee of 4 members. The committees cannot share members. How many ways can both committees be formed?",
-   "options": [
-    "A. 220",
-    "B. 495",
-    "C. 27720",
-    "D. 60060",
-    "E. 665280"
-   ],
-   "answer": "C",
-   "explanation": "First, choose 3 members for the finance committee from 12: C(12,3) = 220.\nThen, choose 4 members for the social committee from the remaining 9: C(9,4) = 126.\nTotal = 220 × 126 = 27720.",
-   "trap": "Students choose the finance committee (C(12,3)=220) and the social committee from all 12 instead of the remaining 9 (C(12,4)=495 instead of C(9,4)=126), getting 220×495=108900.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-030",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "How many diagonals does a convex polygon with 8 vertices have? (A diagonal connects two non-adjacent vertices.)",
-   "options": null,
-   "answer": "20",
-   "explanation": "Total line segments between any 2 vertices = C(8,2) = 28.\nSides of the polygon = 8 (each connects adjacent vertices).\nDiagonals = 28 - 8 = 20.",
-   "trap": "Students compute C(8,2) = 28 and think that is the answer, forgetting to subtract the 8 sides of the polygon (which are not diagonals). Alternatively, students use n(n-3)/2 = 8×5/2 = 20, which is correct via the formula.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-031",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A store offers 8 ice cream flavors. A customer wants to choose 2 different flavors to create a custom combination cup, where the order of selection does not matter (vanilla+chocolate is the same as chocolate+vanilla). How many different combination cups are possible?",
-   "options": [
-    "A. 16",
-    "B. 28",
-    "C. 48",
-    "D. 56",
-    "E. 64"
-   ],
-   "answer": "B",
-   "explanation": "We choose 2 flavors from 8 where order doesn't matter.\nC(8,2) = (8 × 7) / (2 × 1) = 56 / 2 = 28.",
-   "trap": "Students compute 8 × 7 = 56 (treating the selection as ordered — as if 'vanilla first, then chocolate' is a different cup from 'chocolate first, then vanilla'). Since order doesn't matter, divide by 2! = 2 to get 28.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-032",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "A committee of 4 is chosen from 5 men and 5 women. Which of the following values are possible counts for the number of all-male or all-female committees? Select all that apply.",
-   "options": [
-    "A. 5 (all-male only)",
-    "B. 5 (all-female only)",
-    "C. 10 (combined all-male + all-female)",
-    "D. 25 (combined)",
-    "E. 0 (neither is possible)"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C"
-   ],
-   "explanation": "All-male committees: C(5,4) = 5.\nAll-female committees: C(5,4) = 5.\nCombined all-male or all-female = 5 + 5 = 10.\nA: 5 all-male committees — correct.\nB: 5 all-female committees — correct.\nC: 10 combined — correct.\nD: 25 — incorrect (5+5=10, not 25).\nE: Incorrect — both are possible.",
-   "trap": "Students may compute C(5,4)×C(5,4) = 25 by multiplying instead of adding when counting OR (not AND) scenarios. All-male OR all-female = addition, not multiplication.",
-   "estimated_time_seconds": 75,
-   "tags": [
-    "combinations",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "STA-CMB-033",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "If C(n, 2) = 21, what is the value of n?",
-   "options": [
-    "A. 5",
-    "B. 6",
-    "C. 7",
-    "D. 8",
-    "E. 9"
-   ],
-   "answer": "C",
-   "explanation": "C(n,2) = n(n-1)/2 = 21.\nSo n(n-1) = 42.\nWe need two consecutive integers whose product is 42: 7 × 6 = 42.\nTherefore n = 7.",
-   "trap": "Students set up n(n-1)/2 = 21 correctly but then try n²-n-42=0 using the quadratic formula, risking arithmetic errors. Faster: factor 42 = 7×6, so n=7.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-034",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "Column A: Number of ways to choose a 3-person subcommittee from a 10-person committee\nColumn B: Number of ways to choose 7 people from a 10-person committee to NOT be on the subcommittee",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Column A: C(10,3) = 10!/(3!×7!) = 120.\nColumn B: C(10,7) = 10!/(7!×3!) = 120.\nChoosing 3 to include is equivalent to choosing 7 to exclude. C(10,3) = C(10,7) = 120 by symmetry.",
-   "trap": "Students compute Column A correctly as 120 but then compute Column B as C(10,7) and get confused by the larger number 7, assuming it yields a different result. The symmetry property makes them equal.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-035",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A hand of 5 cards is dealt from a standard 52-card deck. How many hands contain exactly 2 kings? (There are 4 kings in a deck.)",
-   "options": [
-    "A. 1128",
-    "B. 6768",
-    "C. 103776",
-    "D. 6768",
-    "E. 25344"
-   ],
-   "answer": "C",
-   "explanation": "Choose 2 kings from 4: C(4,2) = 6.\nChoose 3 non-kings from 48: C(48,3) = (48×47×46)/(3×2×1) = 103776/6... let me compute: 48×47=2256, 2256×46=103776, 103776/6 = 17296.\nTotal = 6 × 17296 = 103776.",
-   "trap": "Students compute C(4,2) = 6 and C(52,3) = 22100 (choosing 3 from all 52 cards, not from the 48 non-kings), getting 6 × 22100 = 132600, which overcounts hands with 3 or more kings.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-036",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "A set has 5 elements. How many subsets have at least 2 elements?",
-   "options": null,
-   "answer": "26",
-   "explanation": "Total subsets of a 5-element set = 2^5 = 32.\nSubsets with 0 elements: C(5,0) = 1.\nSubsets with 1 element: C(5,1) = 5.\nSubsets with at least 2 elements = 32 - 1 - 5 = 26.",
-   "trap": "Students sum C(5,2)+C(5,3)+C(5,4)+C(5,5) = 10+10+5+1 = 26 (correct but longer). Common error: forgetting to use complementary counting and computing C(5,2) alone (= 10), ignoring larger subsets.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "combinations",
-    "complementary-probability"
-   ]
-  },
-  {
-   "id": "STA-CMB-037",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "Column A: C(12, 4)\nColumn B: C(12, 4) - C(11, 3)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "C(12,4) = 495. C(11,3) = 165.\nColumn A = 495.\nColumn B = 495 - 165 = 330.\nSince C(11,3) = 165 > 0, Column A > Column B.\nNote: C(12,4) - C(11,3) = C(11,4) = 330 by Pascal's identity (C(n+1,r) = C(n,r)+C(n,r-1) → C(12,4) = C(11,4)+C(11,3) → C(11,4) = C(12,4)-C(11,3) = 330).",
-   "trap": "Students may not compute the values and try to determine the answer conceptually, incorrectly concluding they are equal or that Column B is greater.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "combinations",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-CMB-038",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "A company has 8 employees and needs to form a project team of 3. Which of the following correctly computes the number of possible teams? Select all that apply.",
-   "options": [
-    "A. 8! / (3! × 5!)",
-    "B. (8 × 7 × 6) / (3 × 2 × 1)",
-    "C. C(8,5)",
-    "D. 8 × 7 × 6",
-    "E. P(8,3) / 3!"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "E"
-   ],
-   "explanation": "The number of 3-person teams from 8 = C(8,3) = 56.\nA: 8!/(3!×5!) = definition of C(8,3) = 56. Correct.\nB: (8×7×6)/6 = 336/6 = 56. Correct.\nC: C(8,5) = C(8,3) = 56 by symmetry. Correct.\nD: 8×7×6 = 336 = P(8,3), the number of ordered arrangements. Incorrect for teams.\nE: P(8,3)/3! = 336/6 = 56. Correct (permutations divided by r! gives combinations).\nAnswers: A, B, C, E.",
-   "trap": "Students may include D, thinking 8×7×6 directly counts teams. It counts ordered selections (permutations). Dividing by 3!=6 removes the ordering to give combinations.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "combinations",
-    "multiple-answer",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-039",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A group of 10 people consists of 5 married couples (each couple has 2 people). In how many ways can a committee of 4 be chosen such that no two people from the same couple are both on the committee?",
-   "options": [
-    "A. 80",
-    "B. 112",
-    "C. 120",
-    "D. 168",
-    "E. 210"
-   ],
-   "answer": "A",
-   "explanation": "The 10 people form 5 couples. We need 4 people with at most 1 from each couple.\nStep 1: Choose which 4 of the 5 couples will be represented: C(5,4) = 5 ways.\nStep 2: From each chosen couple, choose 1 of 2 people: 2 choices per couple, so 2^4 = 16 ways.\nTotal = C(5,4) × 2^4 = 5 × 16 = 80.",
-   "trap": "Students attempt complementary counting (total C(10,4)=210 minus cases with at least one couple together) but make inclusion-exclusion errors. The direct method — choose 4 couples from 5, then 1 person from each — is cleaner and avoids errors.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-040",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "How many integers between 1 and 1000 inclusive are divisible by at least one of 3, 5, or 7? Use the inclusion-exclusion principle. (Note: ⌊x⌋ denotes the floor function.)",
-   "options": null,
-   "answer": "543",
-   "explanation": "Let A = multiples of 3: ⌊1000/3⌋ = 333.\nLet B = multiples of 5: ⌊1000/5⌋ = 200.\nLet C = multiples of 7: ⌊1000/7⌋ = 142.\n|A∩B| = multiples of 15: ⌊1000/15⌋ = 66.\n|A∩C| = multiples of 21: ⌊1000/21⌋ = 47.\n|B∩C| = multiples of 35: ⌊1000/35⌋ = 28.\n|A∩B∩C| = multiples of 105: ⌊1000/105⌋ = 9.\n|A∪B∪C| = 333+200+142-66-47-28+9 = 675-141+9 = 543.",
-   "trap": "Students forget to add back |A∩B∩C| at the end of inclusion-exclusion, getting 543-9=534. The full formula is |A|+|B|+|C|-|A∩B|-|A∩C|-|B∩C|+|A∩B∩C|.",
-   "estimated_time_seconds": 110,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-041",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "If C(n, 3) = 4 × C(n, 2), find n.",
-   "options": [
-    "A. 8",
-    "B. 10",
-    "C. 12",
-    "D. 14",
-    "E. 16"
-   ],
-   "answer": "D",
-   "explanation": "C(n,3) = n(n-1)(n-2)/6 and C(n,2) = n(n-1)/2.\nSet up the equation: n(n-1)(n-2)/6 = 4 × n(n-1)/2.\nDivide both sides by n(n-1) (valid since n > 1):\n(n-2)/6 = 4/2 = 2.\nn-2 = 12.\nn = 14.",
-   "trap": "Students expand the factorials fully and try to solve a cubic equation instead of dividing both sides by the common factor n(n-1), making the algebra much harder than necessary.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-042",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "A committee of 4 is formed from n people (n ≥ 4).\nColumn A: The number of committees containing a specific person P\nColumn B: C(n-1, 3)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "If person P must be on the committee, we fix P and choose the remaining 3 from the other n-1 people.\nCommittees containing P = C(n-1, 3).\nColumn A = C(n-1,3) = Column B.\nThey are always equal.",
-   "trap": "Students compute Column A as C(n,4)/n = C(n-1,3) (by symmetry argument) or guess Column A = C(n,3) without fixing P. The correct reasoning: fix P in, choose 3 from remaining n-1.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-043",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A bookshelf has 6 math books and 4 science books. In how many ways can 4 books be chosen if at least 2 must be math books?",
-   "options": [
-    "A. 115",
-    "B. 185",
-    "C. 195",
-    "D. 205",
-    "E. 210"
-   ],
-   "answer": "B",
-   "explanation": "Cases for 'at least 2 math books' in a selection of 4:\nCase 1: Exactly 2 math, 2 science: C(6,2) × C(4,2) = 15 × 6 = 90\nCase 2: Exactly 3 math, 1 science: C(6,3) × C(4,1) = 20 × 4 = 80\nCase 3: Exactly 4 math, 0 science: C(6,4) × C(4,0) = 15 × 1 = 15\nTotal = 90 + 80 + 15 = 185.",
-   "trap": "Students omit Case 3 (all 4 math books) and get 90 + 80 = 170, or confuse 'at least 2' with 'exactly 2' and only compute Case 1 (getting 90).",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-044",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "In a group of 12 students, 5 are in the debate club and 7 are not. A team of 5 is to be selected. How many teams contain exactly 3 debate club members?",
-   "options": null,
-   "answer": "210",
-   "explanation": "Choose 3 debate members from 5: C(5,3) = 10.\nChoose 2 non-debate members from 7: C(7,2) = 21.\nTotal = 10 × 21 = 210.",
-   "trap": "Students compute C(5,3) × C(7,2) = 10 × 21 = 210 correctly, but may accidentally use C(12,5) = 792 as the answer (choosing any 5 from all 12 without applying the restriction).",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "combinations",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-045",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A panel of 6 judges is to be selected from 8 judges experienced in criminal law and 5 judges experienced in civil law. The panel must include at least 4 criminal-law judges. How many panels are possible?",
-   "options": [
-    "A. 700",
-    "B. 980",
-    "C. 1008",
-    "D. 1260",
-    "E. 1456"
-   ],
-   "answer": "C",
-   "explanation": "Case 1: Exactly 4 criminal, 2 civil: C(8,4) × C(5,2) = 70 × 10 = 700.\nCase 2: Exactly 5 criminal, 1 civil: C(8,5) × C(5,1) = 56 × 5 = 280.\nCase 3: Exactly 6 criminal, 0 civil: C(8,6) × C(5,0) = 28 × 1 = 28.\nTotal = 700 + 280 + 28 = 1008.",
-   "trap": "Students compute only Case 1 (700) and Case 2 (280) for a total of 980, omitting Case 3 where all 6 panel members are criminal-law judges.",
-   "estimated_time_seconds": 105,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-046",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "Column A: The number of ways to form a 3-person committee from 8 people, where person A must be included\nColumn B: The number of ways to form a 3-person committee from 8 people, where person A must be excluded",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "B",
-   "explanation": "Column A (A included): Fix A, choose 2 from remaining 7: C(7,2) = 21.\nColumn B (A excluded): Choose 3 from remaining 7: C(7,3) = 35.\nColumn B (35) > Column A (21).\nThis makes sense: restricting A's inclusion gives fewer choices than restricting to only exclude A.",
-   "trap": "Students intuit that 'must be included' and 'must be excluded' are symmetric and guess equal. But they yield C(7,2)=21 vs C(7,3)=35 — not equal. Excluding a person leaves more freedom for the remaining 3 spots.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-047",
-   "difficulty": "hard",
-   "type": "multiple_answer",
-   "question": "C(n, r) = C(n, n-r) for all valid n, r. Using this identity, which of the following pairs are equal? Select all that apply.",
-   "options": [
-    "A. C(15, 6) and C(15, 9)",
-    "B. C(20, 8) and C(20, 12)",
-    "C. C(10, 3) and C(10, 8)",
-    "D. C(7, 2) and C(7, 5)",
-    "E. C(n, 0) and C(n, n) for any positive integer n"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "D",
-    "E"
-   ],
-   "explanation": "Using C(n,r) = C(n,n-r):\nA: C(15,6) = C(15,15-6) = C(15,9). True.\nB: C(20,8) = C(20,20-8) = C(20,12). True.\nC: C(10,3) = C(10,10-3) = C(10,7), NOT C(10,8). False — 10-3=7, not 8.\nD: C(7,2) = C(7,7-2) = C(7,5). True.\nE: C(n,0) = 1 and C(n,n) = 1 for any n. True.",
-   "trap": "Students may include C, miscomputing 10-3=8 instead of 7. The symmetry partner of C(10,3) is C(10,7), not C(10,8).",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "combinations",
-    "multiple-answer",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-048",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A school has 15 students: 6 in band, 5 in choir, and 4 in both. A 4-person group must be formed where at least 1 student is in both band and choir. How many such groups are possible?",
-   "options": [
-    "A. 330",
-    "B. 715",
-    "C. 1035",
-    "D. 1218",
-    "E. 1365"
-   ],
-   "answer": "C",
-   "explanation": "Total ways to choose 4 from 15: C(15,4) = 1365.\nUse complementary counting: subtract groups with NO student who is in both band AND choir.\nStudents NOT in both = 15 - 4 = 11.\nWays to choose 4 from these 11: C(11,4) = (11×10×9×8)/(4×3×2×1) = 7920/24 = 330.\nGroups with at least 1 from 'both' = 1365 - 330 = 1035.",
-   "trap": "Students confuse 'at least 1 from the intersection' with 'at least 1 from band or choir.' The complementary set consists of students NOT in both groups.",
-   "estimated_time_seconds": 105,
-   "tags": [
-    "combinations",
-    "complementary-probability",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-049",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "If C(n+1, 3) = 2 × C(n, 2), find n.",
-   "options": null,
-   "answer": "5",
-   "explanation": "C(n+1,3) = (n+1)n(n-1)/6.\nC(n,2) = n(n-1)/2.\nSet up: (n+1)n(n-1)/6 = 2 × n(n-1)/2 = n(n-1).\nDivide both sides by n(n-1) (valid for n ≥ 2):\n(n+1)/6 = 1.\nn+1 = 6.\nn = 5.\nVerification: C(6,3) = 20. C(5,2) = 10. 20 = 2 × 10. Correct.",
-   "trap": "Students expand fully and solve a cubic equation, missing the simplification of dividing both sides by the common factor n(n-1).",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-050",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "From a group of 9 people, two specific people (Alice and Bob) cannot be on the same committee. How many 4-person committees are possible?",
-   "options": [
-    "A. 84",
-    "B. 91",
-    "C. 105",
-    "D. 119",
-    "E. 126"
-   ],
-   "answer": "C",
-   "explanation": "Total committees: C(9,4) = 126.\nCommittees where Alice AND Bob are both included: fix both, choose 2 from remaining 7: C(7,2) = 21.\nValid committees = 126 - 21 = 105.",
-   "trap": "Students compute C(9,4) - C(9,2) = 126 - 36 = 90, incorrectly computing the 'bad' cases as C(9,2) instead of C(7,2). The 'bad' committees fix Alice and Bob on the team, then choose 2 more from the other 7.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "combinations",
-    "complementary-probability",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-051",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "A 5-card hand is dealt from a standard 52-card deck.\nColumn A: Number of hands with exactly 2 hearts\nColumn B: Number of hands with exactly 3 hearts",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "Column A (exactly 2 hearts): C(13,2) × C(39,3) = 78 × 9139 = 712842.\nColumn B (exactly 3 hearts): C(13,3) × C(39,2) = 286 × 741 = 211926.\nColumn A (712842) > Column B (211926).",
-   "trap": "Students intuit that getting fewer hearts (2 instead of 3) in 5 cards is more likely, which is correct. But many students compute C(13,2)×C(39,3) vs C(13,3)×C(39,2) and make arithmetic errors that lead them to choose the wrong column.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "combinations",
-    "qc",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-052",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A coding system uses strings of length 4 formed from the letters {A, B, C, D, E}, where each letter can be used at most once and the order matters. But a codeword is considered 'invalid' if it contains both A and B. How many valid codewords are there?",
-   "options": [
-    "A. 96",
-    "B. 72",
-    "C. 48",
-    "D. 36",
-    "E. 24"
-   ],
-   "answer": "C",
-   "explanation": "Total codewords (no restriction): P(5,4) = 5×4×3×2 = 120.\nInvalid codewords (contain both A and B): Choose 2 positions from 4 for A and B, then arrange A and B in those positions: P(4,2) = 4×3 = 12 ways. Fill the remaining 2 positions from {C,D,E}: P(3,2) = 3×2 = 6 ways.\nInvalid = 12 × 6 = 72.\nValid = 120 - 72 = 48.",
-   "trap": "Students use combinations instead of permutations for codewords (since order matters in coding strings), computing C(5,4)=5 instead of P(5,4)=120.",
-   "estimated_time_seconds": 110,
-   "tags": [
-    "combinations",
-    "permutations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-053",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "A row of 8 seats has 8 people who will sit randomly. Alex and Beth must not sit adjacent to each other. How many valid seating arrangements are there?",
-   "options": null,
-   "answer": "30240",
-   "explanation": "Total arrangements of 8 people: 8! = 40320.\nArrangements where Alex and Beth ARE adjacent: Treat Alex+Beth as a single block → 7 entities, arranged in 7! ways. Alex and Beth can swap within the block: 2 ways.\nAdjacent arrangements = 7! × 2 = 5040 × 2 = 10080.\nValid arrangements = 40320 - 10080 = 30240.",
-   "trap": "Students use combinations rather than permutations (since seating order matters), computing C(8,2)×6! = 28×720 = 20160 for the adjacent case. The adjacent block method (7!×2) is correct.",
-   "estimated_time_seconds": 110,
-   "tags": [
-    "combinations",
-    "permutations",
-    "complementary-probability"
-   ]
-  },
-  {
-   "id": "STA-CMB-054",
-   "difficulty": "extreme_hard",
-   "type": "mcq",
-   "question": "A committee of 5 is chosen from 4 doctors, 3 lawyers, and 2 engineers. If the committee must have at least 1 doctor and at least 1 lawyer, how many such committees are possible?",
-   "options": [
-    "A. 80",
-    "B. 100",
-    "C. 107",
-    "D. 119",
-    "E. 126"
-   ],
-   "answer": "D",
-   "explanation": "Total ways to choose 5 from 9: C(9,5) = 126.\nUse complementary counting (inclusion-exclusion):\nLet A = committees with NO doctors → choose all 5 from 5 non-doctors (3 lawyers + 2 engineers): C(5,5) = 1.\nLet B = committees with NO lawyers → choose all 5 from 6 non-lawyers (4 doctors + 2 engineers): C(6,5) = 6.\nA∩B = committees with neither doctors nor lawyers → choose 5 from 2 engineers only: C(2,5) = 0 (impossible).\n|A∪B| = 1 + 6 - 0 = 7.\nValid committees = 126 - 7 = 119.",
-   "trap": "Students compute the complement without including the intersection term of inclusion-exclusion, getting 126-1-6=119 (which is actually correct) or incorrectly adding A and B without subtracting the overlap.",
-   "estimated_time_seconds": 115,
-   "tags": [
-    "combinations",
-    "complementary-probability",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-055",
-   "difficulty": "extreme_hard",
-   "type": "numeric_entry",
-   "question": "In how many ways can 6 people be divided into TWO groups of 3, where the groups are unlabeled (i.e., {ABC} vs {DEF} is the same split as {DEF} vs {ABC})?",
-   "options": null,
-   "answer": "10",
-   "explanation": "First count as if groups are labeled: C(6,3) = 20 ways to choose the first group (the second group is determined).\nSince the groups are unlabeled, each split is counted twice (once for each way of labeling the two halves).\nDistinct splits = C(6,3) / 2 = 20 / 2 = 10.",
-   "trap": "Students answer C(6,3) = 20, forgetting to divide by 2 for unlabeled groups. Each partition {A,B,C},{D,E,F} and {D,E,F},{A,B,C} is the same division when groups have no labels.",
-   "estimated_time_seconds": 110,
-   "tags": [
-    "combinations",
-    "conceptual",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-056",
-   "difficulty": "extreme_hard",
-   "type": "quantitative_comparison",
-   "question": "n is a positive integer ≥ 3.\nColumn A: C(2n, n)\nColumn B: 2 × C(2n-1, n-1)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Use the identity: C(2n, n) = C(2n-1, n-1) + C(2n-1, n) = 2 × C(2n-1, n-1) since C(2n-1, n-1) = C(2n-1, n) by symmetry (n-1 and n sum to 2n-1).\nSo C(2n, n) = 2 × C(2n-1, n-1) always.\nVerification with n=3: C(6,3) = 20. C(5,2) = 10. 20 = 2 × 10. Equal.",
-   "trap": "Students test n=2 to check: C(4,2)=6, C(3,1)=3, 6=2×3. Equal. Students may then guess 'cannot be determined' without proving the general identity, or may not recognize the Pascal's identity connection.",
-   "estimated_time_seconds": 120,
-   "tags": [
-    "combinations",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-057",
-   "difficulty": "extreme_hard",
-   "type": "mcq",
-   "question": "A group of 10 people is to be divided into one group of 4 and one group of 6 (groups are distinguishable by their size). Among the 10 people, 3 are close friends who insist that all 3 of them be in the same group. In how many valid ways can the groups be formed?",
-   "options": [
-    "A. 42",
-    "B. 56",
-    "C. 84",
-    "D. 105",
-    "E. 210"
-   ],
-   "answer": "A",
-   "explanation": "The 3 friends must all be in the same group. Two cases:\nCase 1: All 3 friends in the group of 4. Choose 1 more from the remaining 7 others: C(7,1) = 7. The group of 6 is then fully determined.\nCase 2: All 3 friends in the group of 6. Choose 3 more from the remaining 7 others: C(7,3) = 35. The group of 4 is then fully determined (the remaining 4 people).\nTotal = 7 + 35 = 42.",
-   "trap": "Students may compute C(7,3) + C(7,1) correctly as 35+7=42 but then double-count by also considering arrangements within groups (which don't matter for unlabeled group membership).",
-   "estimated_time_seconds": 120,
-   "tags": [
-    "combinations",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-CMB-058",
-   "difficulty": "extreme_hard",
-   "type": "numeric_entry",
-   "question": "For what value of r is C(10, r) maximized?",
-   "options": null,
-   "answer": "5",
-   "explanation": "C(n, r) is maximized when r = n/2 for even n, or r = (n±1)/2 for odd n.\nHere n = 10 (even), so C(10, r) is maximized at r = 10/2 = 5.\nVerification: C(10,4)=210, C(10,5)=252, C(10,6)=210. Indeed C(10,5) is the maximum.\nIntuition: The middle coefficient of the binomial expansion is always the largest.",
-   "trap": "Students guess r=1 (giving C(10,1)=10) or r=10 (giving C(10,10)=1) as extreme cases, without recognizing the binomial coefficients peak in the middle.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "combinations",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-059",
-   "difficulty": "extreme_hard",
-   "type": "multiple_answer",
-   "question": "Let f(n) = C(2n, n) for positive integers n. Which of the following are true? Select all that apply.",
-   "options": [
-    "A. f(1) = 2",
-    "B. f(n) is always even for n ≥ 1",
-    "C. f(2) = 6",
-    "D. f(n) = 2 × C(2n-1, n) for all n ≥ 1",
-    "E. f(3) = 20"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "D",
-    "E"
-   ],
-   "explanation": "f(n) = C(2n,n).\nA: f(1) = C(2,1) = 2. True.\nB: C(2n,n) is always even because C(2n,n) = 2×C(2n-1,n-1) (by Pascal's identity + symmetry), so it is explicitly twice an integer. True.\nC: f(2) = C(4,2) = 6. True.\nD: C(2n-1,n-1) = C(2n-1,n) by symmetry (since (n-1)+n = 2n-1). So 2×C(2n-1,n-1) = 2×C(2n-1,n) = f(n). True.\nE: f(3) = C(6,3) = 20. True.\nAll five statements are true.",
-   "trap": "Students may be uncertain about whether B ('always even') is provable, and leave it unselected. The proof is: C(2n,n) = 2×C(2n-1,n-1), which is explicitly twice an integer, hence always even.",
-   "estimated_time_seconds": 125,
-   "tags": [
-    "combinations",
-    "multiple-answer",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-CMB-060",
-   "difficulty": "extreme_hard",
-   "type": "mcq",
-   "question": "In a tournament with 8 teams, each pair of teams plays exactly once (round-robin). After all games are played, 3 teams are chosen to advance to the finals. In how many ways can the 3 advancing teams be chosen AND a schedule of the round-robin games have been completed, where the schedule is just the set of all games played (order of games doesn't matter)?",
-   "options": [
-    "A. 56 × 28",
-    "B. C(8,3) × C(8,2)",
-    "C. C(8,2) × C(8,3)",
-    "D. 56 × C(8,2)",
-    "E. All of the above are equivalent"
-   ],
-   "answer": "E",
-   "explanation": "Number of round-robin games: Each pair plays once, so total games = C(8,2) = 28.\nNumber of ways to choose 3 advancing teams from 8: C(8,3) = 56.\nThese are independent, so total = C(8,3) × C(8,2) = 56 × 28 = 1568.\nA: 56 × 28 = C(8,3) × C(8,2). Correct expression.\nB: C(8,3) × C(8,2). Same as A.\nC: C(8,2) × C(8,3). Multiplication is commutative — same as B.\nD: 56 × C(8,2) = C(8,3) × C(8,2). Same.\nAll four options (A, B, C, D) are equivalent, so E is the correct choice.",
-   "trap": "Students may select only A or B, not realizing all options are mathematically identical expressions for the same quantity. The question tests whether students recognize commutativity and equivalent forms.",
-   "estimated_time_seconds": 125,
-   "tags": [
-    "combinations",
-    "conceptual",
-    "multi-step"
-   ]
-  }
- ]
+  "questions": [
+    {
+      "id": "STA-CMB-001",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "How many ways can 3 books be chosen from a shelf of 7 books, if the order of selection does not matter?",
+      "options": [
+        "A. 21",
+        "B. 35",
+        "C. 42",
+        "D. 210",
+        "E. 840"
+      ],
+      "answer": "B",
+      "explanation": "We need C(7,3) since order does not matter.\nC(7,3) = 7! / (3! × 4!) = (7 × 6 × 5) / (3 × 2 × 1) = 210 / 6 = 35.",
+      "trap": "Students compute 7 × 6 × 5 = 210, which counts ordered selections (permutations). Since order doesn't matter, divide by 3! = 6 to get 35.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "combinations",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-002",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "What is the value of C(8, 0)?",
+      "options": [
+        "A. 0",
+        "B. 1",
+        "C. 8",
+        "D. 40320",
+        "E. Undefined"
+      ],
+      "answer": "B",
+      "explanation": "C(n, 0) = n! / (0! × n!) = 1 / 1 = 1 for any non-negative integer n.\nHere C(8, 0) = 1. This makes sense: there is exactly one way to choose 0 items from 8 — choose nothing.",
+      "trap": "Students answer 0 thinking 'choosing nothing means zero ways.' But there is exactly 1 way to choose an empty subset — by convention and by the formula, C(n,0) = 1.",
+      "estimated_time_seconds": 35,
+      "tags": [
+        "combinations",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-003",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A committee of 2 people is to be formed from a group of 6 people. How many different committees are possible?",
+      "options": [
+        "A. 12",
+        "B. 15",
+        "C. 30",
+        "D. 36",
+        "E. 60"
+      ],
+      "answer": "B",
+      "explanation": "Order does not matter for committees (a committee {A, B} is the same as {B, A}).\nC(6, 2) = 6! / (2! × 4!) = (6 × 5) / (2 × 1) = 30 / 2 = 15.",
+      "trap": "Students compute 6 × 5 = 30 (permutations), forgetting to divide by 2! = 2 since the order of selecting committee members doesn't matter.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "combinations",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-004",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "What is the value of C(5, 5)?",
+      "options": null,
+      "answer": "1",
+      "explanation": "C(n, n) = 1 for any non-negative integer n.\nC(5, 5) = 5! / (5! × 0!) = 1 / 1 = 1.\nIntuitively, there is exactly one way to choose all 5 items from a group of 5.",
+      "trap": "Students compute 5! = 120, confusing C(5,5) with 5!. The formula requires dividing by both r! and (n-r)!, so C(5,5) = 5!/(5! × 0!) = 1.",
+      "estimated_time_seconds": 35,
+      "tags": [
+        "combinations",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-005",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "C(9, 1) = ?",
+      "options": [
+        "A. 1",
+        "B. 8",
+        "C. 9",
+        "D. 72",
+        "E. 362880"
+      ],
+      "answer": "C",
+      "explanation": "C(n, 1) = n for any positive integer n.\nC(9, 1) = 9! / (1! × 8!) = 9 / 1 = 9.\nIntuitively, there are 9 ways to choose exactly 1 item from 9 items.",
+      "trap": "Students apply the full factorial formula and make arithmetic errors, or confuse C(9,1) with C(9,8). Both equal 9 by symmetry, but students sometimes compute 9!/8! = 9 (correct) then forget nothing more is needed.",
+      "estimated_time_seconds": 35,
+      "tags": [
+        "combinations",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-006",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A pizza shop offers 8 different toppings. A customer chooses exactly 2 different toppings for a single pizza. Both toppings go on the same pizza, so the order in which they are chosen does not matter, and no topping may be repeated. How many different 2-topping pizzas are possible?",
+      "options": [
+        "A. 16",
+        "B. 28",
+        "C. 36",
+        "D. 56",
+        "E. 64"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — decide P or C. The two toppings sit on one pizza, so mushroom-then-olive is the same pizza as olive-then-mushroom. Order does not matter, so this is a combination.\nStep 2 — apply C(n,2) = n(n-1)/2.\nC(8,2) = (8 x 7)/2 = 56/2 = 28.\nCheck by listing the pattern: topping 1 pairs with 7 others, topping 2 with 6 new ones, and so on: 7 + 6 + 5 + 4 + 3 + 2 + 1 = 28. Correct.\nAnswer: 28.",
+      "trap": "Answering 56, which is P(8,2) = 8 x 7 - the count of ORDERED pairs. That counts every pizza twice, once for each order of naming the toppings, so you must divide by 2! = 2. Choice E, 64 = 8^2, comes from allowing both order and repetition; choice C, 36 = C(9,2), is an off-by-one on n.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "combinations",
+        "pairs",
+        "order-does-not-matter"
+      ]
+    },
+    {
+      "id": "STA-CMB-007",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "How many different 3-person subsets can be formed from a group of 10 people?",
+      "options": null,
+      "answer": "120",
+      "explanation": "We need C(10, 3) since we are forming subsets (order doesn't matter).\nC(10, 3) = 10! / (3! × 7!) = (10 × 9 × 8) / (3 × 2 × 1) = 720 / 6 = 120.",
+      "trap": "Students compute 10 × 9 × 8 = 720 (permutations) without dividing by 3! = 6 to account for the fact that groups {A,B,C} and {B,A,C} are the same subset.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "combinations"
+      ]
+    },
+    {
+      "id": "STA-CMB-008",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Column A: C(6, 2)\nColumn B: C(6, 4)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Using the symmetry property of combinations: C(n, r) = C(n, n-r).\nC(6, 2) = C(6, 6-2) = C(6, 4).\nVerification: C(6,2) = (6×5)/(2×1) = 15. C(6,4) = (6×5×4×3)/(4×3×2×1) = 360/24 = 15.\nBoth are equal.",
+      "trap": "Students compute C(6,2) = 15 but then guess C(6,4) is larger because 4 > 2, without computing. The symmetry C(n,r) = C(n,n-r) makes them equal.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "combinations",
+        "qc",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-009",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A set has 4 distinct elements. How many subsets does it have in total, counting the empty set and the set itself?",
+      "options": [
+        "A. 4",
+        "B. 8",
+        "C. 15",
+        "D. 16",
+        "E. 24"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — every element is independently either in a subset or out of it, which is 2 choices per element.\nStep 2 — with 4 elements that gives 2 x 2 x 2 x 2 = 2^4 = 16 subsets.\nStep 3 — the same answer as a sum of combinations: C(4,0) + C(4,1) + C(4,2) + C(4,3) + C(4,4) = 1 + 4 + 6 + 4 + 1 = 16. Correct.\nAnswer: 16.",
+      "trap": "Choice C, 15, comes from subtracting the empty set - but the question explicitly counts it. Choice E, 24 = 4!, comes from arranging the 4 elements instead of selecting subsets of them; a subset has no internal order at all.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "subsets",
+        "power-set",
+        "two-to-the-n"
+      ]
+    },
+    {
+      "id": "STA-CMB-010",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "From a class of 5 boys and 4 girls, one student is to be selected as class representative. In how many ways can this be done?",
+      "options": [
+        "A. 9",
+        "B. 20",
+        "C. 36",
+        "D. 45",
+        "E. 126"
+      ],
+      "answer": "A",
+      "explanation": "We are choosing 1 student from 9 total students (5 boys + 4 girls).\nC(9, 1) = 9.\nAlternatively: there are 9 students and any one of them can be selected, so 9 ways.",
+      "trap": "Students multiply 5 × 4 = 20, thinking the problem requires choosing one from each group. The problem says ONE representative from the entire class of 9.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "combinations",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-011",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "There are 5 distinct books. In each column no book may be used more than once.\nColumn A: The number of ways to choose 3 of the books to donate, where the order of choice does not matter\nColumn B: The number of ways to place 3 of the books into display slots labelled 1, 2 and 3, where the slot each book occupies does matter",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Column A - order does not matter, so this is a combination.\nC(5,3) = (5 x 4 x 3)/(3 x 2 x 1) = 60/6 = 10.\nColumn B - the slots are labelled, so the same 3 books in different slots are different displays. This is a permutation.\nP(5,3) = 5 x 4 x 3 = 60.\n60 > 10, so Column B is greater.\nThe general link: P(n,r) = C(n,r) x r!, so Column B = Column A x 3! = 10 x 6 = 60. A permutation count is never smaller than the matching combination count.",
+      "trap": "Reading both columns as 'pick 3 from 5' and choosing C. The words that decide it are 'order does not matter' versus 'labelled slots'. Whenever the r selected items get distinct roles or positions, multiply the combination by r! to get the permutation.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "combination-vs-permutation",
+        "qc",
+        "order-matters"
+      ]
+    },
+    {
+      "id": "STA-CMB-012",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "What is C(10, 2)?",
+      "options": [
+        "A. 20",
+        "B. 25",
+        "C. 40",
+        "D. 45",
+        "E. 90"
+      ],
+      "answer": "D",
+      "explanation": "C(10, 2) = 10! / (2! × 8!) = (10 × 9) / (2 × 1) = 90 / 2 = 45.",
+      "trap": "Students compute 10 × 9 = 90 and select E, forgetting to divide by 2! = 2 since choosing items A then B is the same as choosing B then A when order doesn't matter.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "combinations"
+      ]
+    },
+    {
+      "id": "STA-CMB-013",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "A coach must select 5 players from a roster of 12 distinct players to start a game. All starters play the same position and hold no distinct roles, so the order of selection does not matter, and no player may be selected twice. How many different starting lineups are possible? Enter your answer as a number.",
+      "options": null,
+      "answer": "792",
+      "explanation": "Step 1 — order does not matter and no repetition is allowed, so this is C(12,5).\nStep 2 — write the formula and cancel before multiplying.\nC(12,5) = (12 x 11 x 10 x 9 x 8)/(5 x 4 x 3 x 2 x 1)\nCancel: 12/(4 x 3) = 1, and 10/5 = 2.\nWhat is left: 11 x 2 x 9 x 8 / 2 = 11 x 9 x 8 = 792.\nStep 3 — sanity check with the symmetry rule: C(12,5) = C(12,7), and both must be whole numbers less than P(12,5) = 95040. 792 passes.\nAnswer: 792.",
+      "trap": "Computing P(12,5) = 12 x 11 x 10 x 9 x 8 = 95040 and stopping there. That treats the five starters as an ordered list; since they hold identical roles you must divide by 5! = 120, and 95040/120 = 792.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "combinations",
+        "committee-selection",
+        "cancel-before-multiplying"
+      ]
+    },
+    {
+      "id": "STA-CMB-014",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Column A: C(7, 3)\nColumn B: C(7, 3) + C(7, 4)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Column A = C(7,3) = 35.\nColumn B = C(7,3) + C(7,4) = 35 + 35 = 70.\n(Note: C(7,4) = C(7,3) = 35 by symmetry.)\nSince C(7,4) > 0, Column B is strictly greater than Column A.",
+      "trap": "Students may recognize that C(7,3) + C(7,4) = C(8,4) by Pascal's identity, but still need to compare. C(8,4) = 70 > 35 = C(7,3), so Column B is greater.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "combinations",
+        "qc",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-015",
+      "difficulty": "easy",
+      "type": "multiple_answer",
+      "question": "Which of the following expressions are equal to C(8, 3)? Select all that apply.",
+      "options": [
+        "A. C(8, 5)",
+        "B. 8! / (3! x 5!)",
+        "C. (8 x 7 x 6) / 6",
+        "D. 8 x 7 x 6",
+        "E. C(7, 2) + C(7, 3)"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "First compute the target: C(8,3) = (8 x 7 x 6)/(3 x 2 x 1) = 336/6 = 56.\nA - symmetry rule C(n,r) = C(n, n-r), and 8 - 3 = 5, so C(8,5) = C(8,3) = 56. TRUE.\nB - this is the definition n!/[r!(n-r)!] with n = 8, r = 3, since 8 - 3 = 5. It equals 56. TRUE.\nC - (8 x 7 x 6)/6 = 336/6 = 56, the cancelled form of the same formula (the 6 in the denominator is 3!). TRUE.\nD - 8 x 7 x 6 = 336 = P(8,3), the ordered count. It is 3! = 6 times too big. FALSE.\nE - Pascal's identity: C(7,2) + C(7,3) = 21 + 35 = 56. TRUE.\nAnswer: A, B, C, E.",
+      "trap": "Selecting D because 8 x 7 x 6 is where every combination computation starts. That numerator is the permutation count; the division by 3! is what turns ordered selections into unordered ones. The other slip is rejecting A - students expect C(8,5) to be larger than C(8,3) because 5 > 3, but the symmetry rule makes them identical.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "symmetry-rule",
+        "pascal-identity",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-CMB-016",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A committee of 4 must be chosen from 6 men and 4 women, all 10 people distinct. The committee members hold no distinct roles, so order does not matter, and no person may serve twice. How many committees contain exactly 2 men and exactly 2 women?",
+      "options": [
+        "A. 21",
+        "B. 60",
+        "C. 90",
+        "D. 180",
+        "E. 210"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — the committee is built from two separate pools, so choose from each pool and MULTIPLY.\nStep 2 — men: C(6,2) = (6 x 5)/2 = 15.\nStep 3 — women: C(4,2) = (4 x 3)/2 = 6.\nStep 4 — total = 15 x 6 = 90.\nCheck the size: 90 is well under C(10,4) = 210, the number of committees with no composition requirement. Correct.\nAnswer: 90.",
+      "trap": "Choice A, 21, comes from ADDING the pools (15 + 6) instead of multiplying - but each of the 15 pairs of men can be paired with each of the 6 pairs of women, so the counts multiply. Choice B, 60, is C(6,2) x C(4,1) = 15 x 4, from choosing only one woman. Choice E, 210 = C(10,4), ignores the 2-and-2 requirement altogether, and choice D, 180, is P(6,2) x C(4,2) = 30 x 6, from ordering the two men.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "two-pools",
+        "multiply-independent-choices",
+        "committee-selection"
+      ]
+    },
+    {
+      "id": "STA-CMB-017",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A group of 8 people includes Alice and Bob. In how many ways can a 3-person team be chosen that includes Alice but NOT Bob?",
+      "options": [
+        "A. 10",
+        "B. 15",
+        "C. 20",
+        "D. 25",
+        "E. 30"
+      ],
+      "answer": "B",
+      "explanation": "Alice is fixed (included). Bob is excluded. We choose the remaining 2 team members from the remaining 8 - 1 (Alice) - 1 (Bob) = 6 people.\nC(6, 2) = (6 × 5) / (2 × 1) = 15.",
+      "trap": "Students compute C(7,2) = 21 by excluding only Bob (choosing 2 from 7 remaining after fixing Alice), forgetting that Alice is also removed from the pool of available candidates, leaving only 6.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "combinations",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-018",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A 4-person delegation is to be selected from 9 distinct candidates. Two particular candidates, Priya and Raj, must both be included. The delegates hold no distinct roles, so order does not matter, and no candidate may be selected twice. In how many ways can the delegation be selected? Enter your answer as a number.",
+      "options": null,
+      "answer": "21",
+      "explanation": "Step 1 — lock in the forced members. Priya and Raj take 2 of the 4 seats, and there is only 1 way to place them since order does not matter.\nStep 2 — that leaves 4 - 2 = 2 seats to fill from the 9 - 2 = 7 remaining candidates.\nStep 3 — C(7,2) = (7 x 6)/2 = 21.\nCheck: total delegations with no restriction = C(9,4) = 126, and the fraction that contain both Priya and Raj should be small. 21/126 = 1/6, which is plausible. Correct.\nAnswer: 21.",
+      "trap": "Computing C(9,2) = 36 by remembering to reduce the number of seats but forgetting to remove Priya and Raj from the candidate pool - they cannot be chosen again. The other error is C(7,4) = 35, which reduces the pool but not the number of open seats.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "required-member",
+        "reduce-the-pool",
+        "committee-selection"
+      ]
+    },
+    {
+      "id": "STA-CMB-019",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A test has 5 questions in Section A and 4 questions in Section B; all 9 questions are distinct. A student must answer exactly 4 of the 9 questions, and at least 2 of them must come from Section A. Only the set of questions answered matters, not the order in which they are answered. How many different selections are possible?",
+      "options": [
+        "A. 60",
+        "B. 100",
+        "C. 105",
+        "D. 125",
+        "E. 126"
+      ],
+      "answer": "C",
+      "explanation": "Method 1 - sum the cases by how many come from Section A. There are three cases: 2, 3 or 4 from A.\nExactly 2 from A: C(5,2) x C(4,2) = 10 x 6 = 60.\nExactly 3 from A: C(5,3) x C(4,1) = 10 x 4 = 40.\nExactly 4 from A: C(5,4) x C(4,0) = 5 x 1 = 5.\nTotal = 60 + 40 + 5 = 105.\nMethod 2 - complement, which is faster here. Total selections = C(9,4) = 126. The forbidden cases are 0 or 1 from Section A:\n0 from A: C(5,0) x C(4,4) = 1 x 1 = 1.\n1 from A: C(5,1) x C(4,3) = 5 x 4 = 20.\n126 - (1 + 20) = 126 - 21 = 105. Both methods agree.\nAnswer: 105.",
+      "trap": "Choice B, 100, is 60 + 40 - the classic 'at least' error of summing the cases and forgetting the last one (all 4 from Section A). Choice E, 126, is C(9,4) with the constraint ignored, and choice D, 125, is 126 - 1, subtracting only the zero-from-A case while forgetting the 20 selections with exactly one.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "at-least",
+        "case-sum",
+        "complementary-counting"
+      ]
+    },
+    {
+      "id": "STA-CMB-020",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A group of 10 students includes 4 from Grade 11 and 6 from Grade 12. How many 3-person committees can be formed with exactly 1 student from Grade 11?",
+      "options": [
+        "A. 40",
+        "B. 60",
+        "C. 75",
+        "D. 80",
+        "E. 120"
+      ],
+      "answer": "B",
+      "explanation": "Choose 1 from Grade 11 AND 2 from Grade 12.\nGrade 11: C(4,1) = 4\nGrade 12: C(6,2) = 15\nTotal = 4 × 15 = 60.",
+      "trap": "Students add C(4,1) + C(6,2) = 4 + 15 = 19, applying addition instead of the multiplication principle for independent selections from separate groups.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "combinations",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-021",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Column A: The number of ways to select a team of 3 from 7 people\nColumn B: The number of ways to select a team of 4 from 7 people",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Column A: C(7,3) = 7!/(3!×4!) = (7×6×5)/(3×2×1) = 210/6 = 35.\nColumn B: C(7,4) = 7!/(4!×3!) = 35 (by symmetry, C(7,4) = C(7,7-4) = C(7,3)).\nBoth quantities equal 35.",
+      "trap": "Students assume C(7,4) > C(7,3) because 4 > 3, without recognizing the symmetry property C(n,r) = C(n,n-r). Here C(7,4) = C(7,3) = 35.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "combinations",
+        "qc",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-022",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A basket contains 6 red balls and 5 blue balls; all 11 balls are distinguishable. Four balls are selected at once, so order does not matter and no ball may be selected twice. In how many ways can the selection contain at least 1 red ball AND at least 1 blue ball? Enter your answer as a number.",
+      "options": null,
+      "answer": "310",
+      "explanation": "Two conditions, so take the complement of each and subtract both.\nStep 1 — total selections of 4 from 11: C(11,4) = (11 x 10 x 9 x 8)/24 = 7920/24 = 330.\nStep 2 — selections with NO blue ball (all 4 red): C(6,4) = C(6,2) = 15.\nStep 3 — selections with NO red ball (all 4 blue): C(5,4) = C(5,1) = 5.\nStep 4 — those two bad families cannot overlap: a selection of 4 cannot be all-red and all-blue at once, so there is nothing to add back.\n330 - 15 - 5 = 310.\nCheck by summing the allowed splits (red, blue): (3,1) C(6,3)C(5,1) = 20 x 5 = 100; (2,2) C(6,2)C(5,2) = 15 x 10 = 150; (1,3) C(6,1)C(5,3) = 6 x 10 = 60. Total = 100 + 150 + 60 = 310. Correct.\nAnswer: 310.",
+      "trap": "Subtracting only one complement and answering 315 (330 - 15) or 325 (330 - 5). Two separate 'at least one' conditions each rule out their own family of selections, and both must be removed. The other error is over-correcting by adding back an overlap of 'all red and all blue', which is empty here - inclusion-exclusion only adds a term back when the two bad families can actually share a member.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "at-least-one",
+        "double-complement",
+        "two-pools"
+      ]
+    },
+    {
+      "id": "STA-CMB-023",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Using Pascal's triangle identity C(n,r) + C(n,r+1) = C(n+1,r+1), what is C(7,3) + C(7,4)?",
+      "options": [
+        "A. 56",
+        "B. 70",
+        "C. 84",
+        "D. 105",
+        "E. 120"
+      ],
+      "answer": "B",
+      "explanation": "By Pascal's identity: C(7,3) + C(7,4) = C(8,4).\nC(8,4) = 8!/(4!×4!) = (8×7×6×5)/(4×3×2×1) = 1680/24 = 70.",
+      "trap": "Students compute C(7,3) = 35 and C(7,4) = 35 separately, then add to get 70 — which is correct! But students who don't know Pascal's identity may try to compute each term and make arithmetic errors.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "combinations",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-024",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "n is an integer greater than 2.\nColumn A: C(n, 2)\nColumn B: C(n-1, 2) + (n - 1)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Column A: C(n,2) = n(n-1)/2.\nColumn B: C(n-1,2) + (n-1) = (n-1)(n-2)/2 + (n-1).\nFactor out (n-1)/2 from Column B: (n-1)/2 x [(n-2) + 2] = (n-1)/2 x n = n(n-1)/2.\nThat is exactly Column A, for every n > 2, so the two quantities are equal.\nThe counting reason (Pascal's identity, C(n,r) = C(n-1,r) + C(n-1,r-1)): to pick 2 people from n, either both come from the first n-1 people, which is C(n-1,2) ways, or one of them is the nth person and the partner is any of the other n-1, which is n-1 ways.\nCheck with n = 5: Column A = C(5,2) = 10; Column B = C(4,2) + 4 = 6 + 4 = 10. Equal. Test n = 8 too: 28 versus 21 + 7 = 28. Equal.\nAnswer: C.",
+      "trap": "Choosing D because n is unknown. The identity holds for EVERY integer n > 2, so the variable never gets a chance to make the columns differ - plug in two different values of n and both give equality. The other error is expecting Column B to be smaller because it starts from C(n-1,2); the added (n-1) is exactly the shortfall.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "pascal-identity",
+        "qc",
+        "algebraic-identity"
+      ]
+    },
+    {
+      "id": "STA-CMB-025",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A set S has exactly n distinct elements, where n >= 1. Which of the following are true for every such n? Select all that apply.",
+      "options": [
+        "A. The total number of subsets of S is 2^n",
+        "B. C(n, 0) + C(n, 1) + ... + C(n, n) = 2^n",
+        "C. The number of 2-element subsets of S is n(n+1)/2",
+        "D. C(n, 1) = n",
+        "E. C(n, n-1) = n"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "A - each element is independently in or out, giving 2^n subsets. TRUE.\nB - the left side counts subsets by size (size 0, size 1, ... , size n), and the right side counts them all at once, so the two must agree. Test n = 4: 1 + 4 + 6 + 4 + 1 = 16 = 2^4. TRUE.\nC - the number of 2-element subsets is C(n,2) = n(n-1)/2, not n(n+1)/2. Test n = 5: C(5,2) = 10, but 5 x 6/2 = 15. FALSE.\nD - there are exactly n ways to pick one element. TRUE.\nE - by the symmetry rule C(n, n-1) = C(n, 1) = n; picking n-1 elements is the same as picking the single element left out. TRUE.\nAnswer: A, B, D, E.",
+      "trap": "C is the live error: the pairing formula is n(n-1)/2, and writing n(n+1)/2 (the sum-of-first-n-integers formula) gives 15 instead of 10 for a 5-element set. The two formulas look almost identical, so check them on a small case before trusting either.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "two-to-the-n",
+        "symmetry-rule",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-CMB-026",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "From a deck of 52 playing cards, how many different 5-card hands contain exactly 3 aces? (A deck has 4 aces and 48 non-aces.)",
+      "options": [
+        "A. 48",
+        "B. 192",
+        "C. 4512",
+        "D. 4560",
+        "E. 2162160"
+      ],
+      "answer": "C",
+      "explanation": "Choose 3 aces from 4: C(4,3) = 4.\nChoose 2 non-aces from 48: C(48,2) = (48×47)/2 = 2256/2 = 1128.\nTotal = 4 × 1128 = 4512.",
+      "trap": "Students compute C(4,3) × C(48,2) = 4 × 1128 correctly but may make arithmetic errors: 48×47 = 2256, divided by 2 = 1128, then 4 × 1128 = 4512.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "combinations",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-027",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In how many ways can a student choose 4 courses from 7 available courses if one particular course (Course X) must NOT be chosen?",
+      "options": null,
+      "answer": "15",
+      "explanation": "Exclude Course X from the pool. The student now chooses 4 from the remaining 7 - 1 = 6 courses.\nC(6, 4) = 6!/(4!×2!) = (6×5)/(2×1) = 15.",
+      "trap": "Students compute C(7,4) = 35 (ignoring the restriction) or C(7,4) - C(6,3) = 35 - 20 = 15 (correct via complementary but more complex). The direct method is faster: exclude Course X first, choose 4 from 6.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "combinations",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-028",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Column A: The number of 3-element subsets of {1, 2, 3, 4, 5, 6, 7}\nColumn B: The number of 4-element subsets of {1, 2, 3, 4, 5, 6, 7}",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Column A: C(7,3) = 7!/(3!×4!) = 35.\nColumn B: C(7,4) = 7!/(4!×3!) = 35.\nC(7,3) = C(7,4) by the symmetry property C(n,r) = C(n,n-r). Here n=7, r=3, n-r=4.",
+      "trap": "Students assume larger subset size gives a larger count, choosing B. The symmetry C(7,3)=C(7,4) makes them equal — choosing which 3 to INCLUDE is the same as choosing which 4 to INCLUDE (equivalently, which 3 to EXCLUDE).",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "combinations",
+        "qc",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-029",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A club has 12 distinct members. It must form a finance committee of 3 members and a social committee of 4 members. No member may serve on both committees, and within each committee all members hold identical roles, so order does not matter. In how many ways can the two committees be formed?",
+      "options": [
+        "A. 220",
+        "B. 495",
+        "C. 27720",
+        "D. 108900",
+        "E. 3991680"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — choose the finance committee from all 12: C(12,3) = (12 x 11 x 10)/6 = 220.\nStep 2 — those 3 are used up, so the social committee is chosen from the remaining 9: C(9,4) = (9 x 8 x 7 x 6)/24 = 3024/24 = 126.\nStep 3 — the two choices are made in sequence, so multiply: 220 x 126 = 27720.\nCheck by reversing the order: C(12,4) x C(8,3) = 495 x 56 = 27720. Same answer, as it must be - the committees are distinguishable by name, so the order in which you fill them does not change the count.\nAnswer: 27720.",
+      "trap": "Choice D, 108900 = C(12,3) x C(12,4), is the live error: choosing the second committee from all 12 again, which lets people sit on both committees when the stem forbids it. Choices A and B stop after one committee. Choice E, 3991680 = P(12,3) x P(9,4), treats each committee as an ordered list of office-holders.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "sequential-selection",
+        "disjoint-groups",
+        "committee-selection"
+      ]
+    },
+    {
+      "id": "STA-CMB-030",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A convex polygon has 8 vertices. A diagonal is a segment joining two vertices that are not adjacent. How many diagonals does the polygon have? Enter your answer as a number.",
+      "options": null,
+      "answer": "20",
+      "explanation": "Step 1 — every segment between two vertices is an unordered pair of vertices, so the total number of segments is the handshake count C(8,2) = (8 x 7)/2 = 28.\nStep 2 — 8 of those segments are the sides of the polygon, and sides are not diagonals.\nStep 3 — diagonals = 28 - 8 = 20.\nGeneral formula: n(n-3)/2 = 8 x 5/2 = 20. Correct.\nAnswer: 20.",
+      "trap": "Answering 28, which counts every vertex pair and so includes the 8 sides. The second error is treating the segment from vertex 1 to vertex 5 as different from the segment from vertex 5 to vertex 1 - a segment is an unordered pair, so P(8,2) = 56 double counts everything.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "handshake-formula",
+        "pairs",
+        "geometry-application"
+      ]
+    },
+    {
+      "id": "STA-CMB-031",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A store offers 8 ice cream flavors. A customer wants to choose 2 different flavors to create a custom combination cup, where the order of selection does not matter (vanilla+chocolate is the same as chocolate+vanilla). How many different combination cups are possible?",
+      "options": [
+        "A. 16",
+        "B. 28",
+        "C. 48",
+        "D. 56",
+        "E. 64"
+      ],
+      "answer": "B",
+      "explanation": "We choose 2 flavors from 8 where order doesn't matter.\nC(8,2) = (8 × 7) / (2 × 1) = 56 / 2 = 28.",
+      "trap": "Students compute 8 × 7 = 56 (treating the selection as ordered — as if 'vanilla first, then chocolate' is a different cup from 'chocolate first, then vanilla'). Since order doesn't matter, divide by 2! = 2 to get 28.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "combinations",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-032",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A committee of 4 is chosen from 5 men and 5 women. Which of the following values are possible counts for the number of all-male or all-female committees? Select all that apply.",
+      "options": [
+        "A. 5 (all-male only)",
+        "B. 5 (all-female only)",
+        "C. 10 (combined all-male + all-female)",
+        "D. 25 (combined)",
+        "E. 0 (neither is possible)"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "All-male committees: C(5,4) = 5.\nAll-female committees: C(5,4) = 5.\nCombined all-male or all-female = 5 + 5 = 10.\nA: 5 all-male committees — correct.\nB: 5 all-female committees — correct.\nC: 10 combined — correct.\nD: 25 — incorrect (5+5=10, not 25).\nE: Incorrect — both are possible.",
+      "trap": "Students may compute C(5,4)×C(5,4) = 25 by multiplying instead of adding when counting OR (not AND) scenarios. All-male OR all-female = addition, not multiplication.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "combinations",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-CMB-033",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If C(n, 2) = 21, what is the value of n?",
+      "options": [
+        "A. 5",
+        "B. 6",
+        "C. 7",
+        "D. 8",
+        "E. 9"
+      ],
+      "answer": "C",
+      "explanation": "C(n,2) = n(n-1)/2 = 21.\nSo n(n-1) = 42.\nWe need two consecutive integers whose product is 42: 7 × 6 = 42.\nTherefore n = 7.",
+      "trap": "Students set up n(n-1)/2 = 21 correctly but then try n²-n-42=0 using the quadratic formula, risking arithmetic errors. Faster: factor 42 = 7×6, so n=7.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "combinations",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-034",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A 10-person committee must pick a 3-person subcommittee. All 10 people are distinct, and in both columns order does not matter.\nColumn A: The number of ways to choose the 3 people who WILL serve on the subcommittee\nColumn B: The number of ways to choose the 7 people who will NOT serve on the subcommittee",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Column A: C(10,3) = (10 x 9 x 8)/(3 x 2 x 1) = 720/6 = 120.\nColumn B: C(10,7) = C(10,3) = 120 by the symmetry rule.\nThe reason is a one-to-one match: naming the 3 who serve automatically names the 7 who do not, and naming the 7 who do not automatically names the 3 who do. Every choice in Column A corresponds to exactly one choice in Column B, so the counts must be equal.\nThat is the identity C(n,r) = C(n, n-r), with 3 + 7 = 10.\nAnswer: C.",
+      "trap": "Assuming Column B is larger because 7 > 3, and choosing B. Choosing which people to leave out is the same act as choosing which people to take. When r is large, convert with the symmetry rule and compute the smaller one: C(10,7) should always be evaluated as C(10,3).",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "symmetry-rule",
+        "qc",
+        "complement-selection"
+      ]
+    },
+    {
+      "id": "STA-CMB-035",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A hand of 5 cards is dealt from a standard 52-card deck. How many hands contain exactly 2 kings? (There are 4 kings in a deck.)",
+      "options": [
+        "A. 1128",
+        "B. 6768",
+        "C. 103776",
+        "D. 6768",
+        "E. 25344"
+      ],
+      "answer": "C",
+      "explanation": "Choose 2 kings from 4: C(4,2) = 6.\nChoose 3 non-kings from 48: C(48,3) = (48×47×46)/(3×2×1) = 103776/6... let me compute: 48×47=2256, 2256×46=103776, 103776/6 = 17296.\nTotal = 6 × 17296 = 103776.",
+      "trap": "Students compute C(4,2) = 6 and C(52,3) = 22100 (choosing 3 from all 52 cards, not from the 48 non-kings), getting 6 × 22100 = 132600, which overcounts hands with 3 or more kings.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "combinations",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-036",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A set has 8 distinct elements. How many of its subsets contain at least 3 elements? Enter your answer as a number.",
+      "options": null,
+      "answer": "219",
+      "explanation": "Step 1 — the total number of subsets of an 8-element set is 2^8 = 256.\nStep 2 — 'at least 3' has six cases (sizes 3 through 8), while its complement 'fewer than 3' has only three (sizes 0, 1, 2). Take the complement.\nC(8,0) = 1 (the empty set)\nC(8,1) = 8\nC(8,2) = (8 x 7)/2 = 28\nComplement total = 1 + 8 + 28 = 37.\nStep 3 — 256 - 37 = 219.\nCheck by direct summation: C(8,3) + C(8,4) + C(8,5) + C(8,6) + C(8,7) + C(8,8) = 56 + 70 + 56 + 28 + 8 + 1 = 219. Correct.\nAnswer: 219.",
+      "trap": "Forgetting the empty set and subtracting only 8 + 28 = 36, which gives 220. C(8,0) = 1: there is exactly one way to choose nothing, and it is a genuine subset with fewer than 3 elements. A second error is computing 2^8 as 8^2 = 64 or as 2 x 8 = 16 - the count of subsets is 2 raised to the number of elements.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "two-to-the-n",
+        "complementary-counting",
+        "subsets"
+      ]
+    },
+    {
+      "id": "STA-CMB-037",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Column A: C(12, 4)\nColumn B: C(12, 4) - C(11, 3)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "C(12,4) = 495. C(11,3) = 165.\nColumn A = 495.\nColumn B = 495 - 165 = 330.\nSince C(11,3) = 165 > 0, Column A > Column B.\nNote: C(12,4) - C(11,3) = C(11,4) = 330 by Pascal's identity (C(n+1,r) = C(n,r)+C(n,r-1) → C(12,4) = C(11,4)+C(11,3) → C(11,4) = C(12,4)-C(11,3) = 330).",
+      "trap": "Students may not compute the values and try to determine the answer conceptually, incorrectly concluding they are equal or that Column B is greater.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "combinations",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-CMB-038",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A company has 8 employees and needs to form a project team of 3. Which of the following correctly computes the number of possible teams? Select all that apply.",
+      "options": [
+        "A. 8! / (3! × 5!)",
+        "B. (8 × 7 × 6) / (3 × 2 × 1)",
+        "C. C(8,5)",
+        "D. 8 × 7 × 6",
+        "E. P(8,3) / 3!"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "The number of 3-person teams from 8 = C(8,3) = 56.\nA: 8!/(3!×5!) = definition of C(8,3) = 56. Correct.\nB: (8×7×6)/6 = 336/6 = 56. Correct.\nC: C(8,5) = C(8,3) = 56 by symmetry. Correct.\nD: 8×7×6 = 336 = P(8,3), the number of ordered arrangements. Incorrect for teams.\nE: P(8,3)/3! = 336/6 = 56. Correct (permutations divided by r! gives combinations).\nAnswers: A, B, C, E.",
+      "trap": "Students may include D, thinking 8×7×6 directly counts teams. It counts ordered selections (permutations). Dividing by 3!=6 removes the ordering to give combinations.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "combinations",
+        "multiple-answer",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-039",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A group of 10 people consists of 5 married couples. A committee of 4 is to be chosen; the members hold no distinct roles, so order does not matter, and no person may be chosen twice. In how many ways can the committee be chosen if no two people who are married to each other both serve on it?",
+      "options": [
+        "A. 70",
+        "B. 80",
+        "C. 130",
+        "D. 210",
+        "E. 1920"
+      ],
+      "answer": "B",
+      "explanation": "Direct method - build the committee couple by couple.\nStep 1 — the 4 members must come from 4 DIFFERENT couples, so first choose which 4 of the 5 couples are represented: C(5,4) = 5.\nStep 2 — from each chosen couple, take exactly one of the 2 spouses: 2 x 2 x 2 x 2 = 2^4 = 16.\nStep 3 — multiply: 5 x 16 = 80.\nComplement method as a check. Total committees = C(10,4) = 210. Committees containing at least one married pair: choose the pair, C(5,1) = 5, then 2 more from the remaining 8 people, C(8,2) = 28, giving 5 x 28 = 140 - but this counts each committee made of TWO complete couples twice, and there are C(5,2) = 10 of those. So committees with at least one pair = 140 - 10 = 130, and 210 - 130 = 80. Both methods give 80. Correct.\nAnswer: 80.",
+      "trap": "Choice A, 70, is the complement done carelessly: 210 - 140, forgetting that the 140 double counts the 10 committees made of two whole couples. Choice C, 130, answers the opposite question - how many committees DO contain a married pair. Choice D, 210, is C(10,4) with the restriction dropped, and choice E, 1920 = 80 x 4!, orders the four members.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "restricted-selection",
+        "complementary-counting",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "STA-CMB-040",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "How many integers between 1 and 1000 inclusive are divisible by at least one of 3, 5, or 7? Use the inclusion-exclusion principle. (Note: ⌊x⌋ denotes the floor function.)",
+      "options": null,
+      "answer": "543",
+      "explanation": "Let A = multiples of 3: ⌊1000/3⌋ = 333.\nLet B = multiples of 5: ⌊1000/5⌋ = 200.\nLet C = multiples of 7: ⌊1000/7⌋ = 142.\n|A∩B| = multiples of 15: ⌊1000/15⌋ = 66.\n|A∩C| = multiples of 21: ⌊1000/21⌋ = 47.\n|B∩C| = multiples of 35: ⌊1000/35⌋ = 28.\n|A∩B∩C| = multiples of 105: ⌊1000/105⌋ = 9.\n|A∪B∪C| = 333+200+142-66-47-28+9 = 675-141+9 = 543.",
+      "trap": "Students forget to add back |A∩B∩C| at the end of inclusion-exclusion, getting 543-9=534. The full formula is |A|+|B|+|C|-|A∩B|-|A∩C|-|B∩C|+|A∩B∩C|.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "combinations",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-041",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "For a certain integer n >= 3, C(n, 3) = 4 x C(n, 2). What is the value of n?",
+      "options": [
+        "A. 6",
+        "B. 12",
+        "C. 13",
+        "D. 14",
+        "E. 16"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — write both sides in cancelled form.\nC(n,3) = n(n-1)(n-2)/6 and C(n,2) = n(n-1)/2.\nStep 2 — take the ratio rather than expanding. Divide C(n,3) by C(n,2):\nC(n,3)/C(n,2) = [n(n-1)(n-2)/6] x [2/(n(n-1))] = (n-2)/3.\nThe n(n-1) cancels completely - this is the whole trick.\nStep 3 — the equation becomes (n-2)/3 = 4.\nStep 4 — n - 2 = 12, so n = 14.\nCheck: C(14,3) = (14 x 13 x 12)/6 = 2184/6 = 364, and C(14,2) = (14 x 13)/2 = 91. Is 364 = 4 x 91? Yes, 4 x 91 = 364. Correct.\nAnswer: 14.",
+      "trap": "Choice B, 12, is stopping at n - 2 = 12 and reporting that value as n. Choice A, 6, comes from solving n - 2 = 4, dropping the 3 in the denominator. Choice E, 16, comes from writing the ratio as (n-4)/3 by mishandling the (n-3)! term. The safeguard is the general fact C(n,r+1)/C(n,r) = (n-r)/(r+1): here (n-2)/3.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "solve-for-n",
+        "ratio-of-combinations",
+        "algebraic"
+      ]
+    },
+    {
+      "id": "STA-CMB-042",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A committee of 4 is formed from n people (n ≥ 4).\nColumn A: The number of committees containing a specific person P\nColumn B: C(n-1, 3)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "If person P must be on the committee, we fix P and choose the remaining 3 from the other n-1 people.\nCommittees containing P = C(n-1, 3).\nColumn A = C(n-1,3) = Column B.\nThey are always equal.",
+      "trap": "Students compute Column A as C(n,4)/n = C(n-1,3) (by symmetry argument) or guess Column A = C(n,3) without fixing P. The correct reasoning: fix P in, choose 3 from remaining n-1.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "combinations",
+        "qc",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-043",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A bookshelf has 6 math books and 4 science books. In how many ways can 4 books be chosen if at least 2 must be math books?",
+      "options": [
+        "A. 115",
+        "B. 185",
+        "C. 195",
+        "D. 205",
+        "E. 210"
+      ],
+      "answer": "B",
+      "explanation": "Cases for 'at least 2 math books' in a selection of 4:\nCase 1: Exactly 2 math, 2 science: C(6,2) × C(4,2) = 15 × 6 = 90\nCase 2: Exactly 3 math, 1 science: C(6,3) × C(4,1) = 20 × 4 = 80\nCase 3: Exactly 4 math, 0 science: C(6,4) × C(4,0) = 15 × 1 = 15\nTotal = 90 + 80 + 15 = 185.",
+      "trap": "Students omit Case 3 (all 4 math books) and get 90 + 80 = 170, or confuse 'at least 2' with 'exactly 2' and only compute Case 1 (getting 90).",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "combinations",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-044",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A group of 12 students contains 5 members of the debate club and 7 non-members. A team of 5 students is to be selected; the team members hold no distinct roles, so order does not matter, and no student may be selected twice. How many teams contain exactly 3 debate club members? Enter your answer as a number.",
+      "options": null,
+      "answer": "210",
+      "explanation": "Step 1 — 'exactly 3 debate members' fixes the split: 3 come from the 5 debate members and the other 5 - 3 = 2 come from the 7 non-members.\nStep 2 — debate members: C(5,3) = C(5,2) = (5 x 4)/2 = 10 (symmetry rule used to make r smaller).\nStep 3 — non-members: C(7,2) = (7 x 6)/2 = 21.\nStep 4 — the two pools are independent, so multiply: 10 x 21 = 210.\nCheck the size: the unrestricted total is C(12,5) = 792, and 210 is a reasonable share of it. Correct.\nAnswer: 210.",
+      "trap": "Choosing 3 debate members and then filling the last 2 seats from all 9 remaining students, C(5,3) x C(9,2) = 10 x 36 = 360. That allows a fourth debate member to slip into the team, which the word 'exactly' forbids; once the split is fixed at 3 and 2, the remaining seats must come only from the non-member pool.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "exactly-k",
+        "two-pools",
+        "multiply-independent-choices"
+      ]
+    },
+    {
+      "id": "STA-CMB-045",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A panel of 6 judges must be selected from 8 judges experienced in criminal law and 5 judges experienced in civil law. All 13 judges are distinct and no judge has both kinds of experience. The panel must include at least 4 criminal-law judges. Panel members hold no distinct roles, so order does not matter. How many different panels are possible?",
+      "options": [
+        "A. 700",
+        "B. 980",
+        "C. 1008",
+        "D. 1716",
+        "E. 2520"
+      ],
+      "answer": "C",
+      "explanation": "'At least 4 criminal' allows 4, 5 or 6 criminal-law judges. There are only three cases, so summing is faster than the complement here.\nCase 1 - 4 criminal, 2 civil: C(8,4) x C(5,2) = 70 x 10 = 700.\nCase 2 - 5 criminal, 1 civil: C(8,5) x C(5,1) = 56 x 5 = 280.\nCase 3 - 6 criminal, 0 civil: C(8,6) x C(5,0) = 28 x 1 = 28.\nTotal = 700 + 280 + 28 = 1008.\nCheck: 1008 is below the unrestricted total C(13,6) = 1716, as it must be. Correct.\nAnswer: 1008.",
+      "trap": "Choice E, 2520, is the seductive shortcut: pick 4 criminal judges first, C(8,4) = 70, then fill the last 2 seats from anyone left, C(9,2) = 36, giving 2520. That over-counts badly, because a panel with 5 criminal judges gets counted once for each choice of which 4 were the 'required' ones. Choice B, 980 = 700 + 280, drops the all-criminal case; choice A, 700, keeps only the first case; choice D, 1716 = C(13,6), ignores the requirement.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "at-least",
+        "case-sum",
+        "two-pools"
+      ]
+    },
+    {
+      "id": "STA-CMB-046",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A committee of 3 is to be chosen from 8 distinct people, one of whom is person A. The members hold no distinct roles, so order does not matter.\nColumn A: The number of such committees that include person A\nColumn B: The number of such committees that exclude person A",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Column A - person A takes one seat, so 2 seats remain and they are filled from the other 7 people: C(7,2) = (7 x 6)/2 = 21.\nColumn B - person A is out, so all 3 seats are filled from the other 7: C(7,3) = (7 x 6 x 5)/6 = 210/6 = 35.\n35 > 21, so Column B is greater.\nCheck that the two columns partition everything: 21 + 35 = 56 = C(8,3), the total number of 3-person committees. Correct.\nThe structural reason: including A costs a seat, leaving fewer ways to finish; excluding A costs a person but leaves all 3 seats free, and with 8 people and a committee this small the extra seat is worth more than the extra person.",
+      "trap": "Choosing C on the feeling that 'in' and 'out' are symmetric. They are not: the two counts are C(7,2) = 21 and C(7,3) = 35, and they are only equal when the numbers happen to make C(n-1, r-1) = C(n-1, r), which needs n = 2r. Here n = 8 and r = 3, so 2r = 6 is not 8 and the columns differ. Note the answer is not D either - both columns are fully determined numbers.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "required-member",
+        "forbidden-member",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-CMB-047",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Which of the following pairs of values are equal? Select all that apply.",
+      "options": [
+        "A. C(15, 6) and C(15, 9)",
+        "B. C(20, 8) and C(20, 12)",
+        "C. C(10, 3) and C(10, 8)",
+        "D. C(7, 2) and C(7, 5)",
+        "E. C(n, 0) and C(n, n), for any positive integer n"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "The test is the symmetry rule C(n,r) = C(n, n-r): two combinations with the same top number are equal exactly when their bottom numbers ADD UP to the top number.\nA - 6 + 9 = 15, which matches the top. Equal. TRUE.\nB - 8 + 12 = 20, which matches the top. Equal. TRUE.\nC - 3 + 8 = 11, but the top is 10, so the rule does not apply. Compute: C(10,3) = 120 and C(10,8) = C(10,2) = 45. Not equal. FALSE.\nD - 2 + 5 = 7, which matches the top. Equal (both are 21). TRUE.\nE - choosing none and choosing all are both single acts, so C(n,0) = C(n,n) = 1 for every positive integer n; also 0 + n = n. TRUE.\nAnswer: A, B, D, E.",
+      "trap": "Selecting C because the numbers look like the others and 8 = 10 - 2 'feels' symmetric with 3. The partner of C(10,3) is C(10,7), not C(10,8). Always add the two lower numbers and check the sum against the upper number before declaring a pair equal.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "symmetry-rule",
+        "multiple-answer",
+        "identity-check"
+      ]
+    },
+    {
+      "id": "STA-CMB-048",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A school club has 15 students. Exactly 6 of them are in the band and exactly 5 are in the choir, and exactly 4 students are in both the band and the choir (those 4 are counted inside both the 6 and the 5). A group of 4 students is to be chosen; order does not matter and no student may be chosen twice. How many such groups contain at least 1 student who is in both the band and the choir?",
+      "options": [
+        "A. 330",
+        "B. 1035",
+        "C. 1295",
+        "D. 1365",
+        "E. 1456"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — identify the target set. 'In both' is exactly 4 students. The other 15 - 4 = 11 students are not in both.\nStep 2 — 'at least 1' is a signal to use the complement.\nTotal groups of 4 from 15: C(15,4) = (15 x 14 x 13 x 12)/24 = 32760/24 = 1365.\nStep 3 — groups with NO 'both' student are chosen entirely from the other 11: C(11,4) = (11 x 10 x 9 x 8)/24 = 7920/24 = 330.\nStep 4 — at least 1 = 1365 - 330 = 1035.\nCheck by summing cases: exactly 1: C(4,1)C(11,3) = 4 x 165 = 660; exactly 2: C(4,2)C(11,2) = 6 x 55 = 330; exactly 3: C(4,3)C(11,1) = 4 x 11 = 44; exactly 4: C(4,4) = 1. Sum = 660 + 330 + 44 + 1 = 1035. Correct.\nAnswer: 1035.",
+      "trap": "Choice E, 1456 = C(4,1) x C(14,3) = 4 x 364, is the 'reserve one seat' over-count: a group containing 2 of the 4 both-students is counted twice, once for each of them in the reserved seat. Choice A, 330, is the complement itself - the answer to 'how many groups contain none'. Choice C, 1295 = 1365 - C(8,4), answers a different question, 'at least one student in band OR choir', since 15 - (6 + 5 - 4) = 8 students are in neither.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "at-least-one",
+        "complementary-counting",
+        "overlapping-groups"
+      ]
+    },
+    {
+      "id": "STA-CMB-049",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "If C(n+1, 3) = 2 × C(n, 2), find n.",
+      "options": null,
+      "answer": "5",
+      "explanation": "C(n+1,3) = (n+1)n(n-1)/6.\nC(n,2) = n(n-1)/2.\nSet up: (n+1)n(n-1)/6 = 2 × n(n-1)/2 = n(n-1).\nDivide both sides by n(n-1) (valid for n ≥ 2):\n(n+1)/6 = 1.\nn+1 = 6.\nn = 5.\nVerification: C(6,3) = 20. C(5,2) = 10. 20 = 2 × 10. Correct.",
+      "trap": "Students expand fully and solve a cubic equation, missing the simplification of dividing both sides by the common factor n(n-1).",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "combinations",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-050",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A committee of 4 is to be chosen from a group of 9 distinct people. The members hold no distinct roles, so order does not matter. Two of the nine, Alice and Bob, refuse to serve together, so no committee may contain both of them. How many committees are possible?",
+      "options": [
+        "A. 70",
+        "B. 84",
+        "C. 105",
+        "D. 119",
+        "E. 126"
+      ],
+      "answer": "C",
+      "explanation": "Complement method.\nStep 1 — total committees with no restriction: C(9,4) = (9 x 8 x 7 x 6)/24 = 3024/24 = 126.\nStep 2 — committees that DO contain both Alice and Bob: lock them in, then fill the other 2 seats from the remaining 7 people: C(7,2) = 21.\nStep 3 — subtract: 126 - 21 = 105.\nCase check. Neither Alice nor Bob: C(7,4) = 35. Alice but not Bob: C(7,3) = 35. Bob but not Alice: C(7,3) = 35. Total 35 + 35 + 35 = 105. Correct.\nAnswer: 105.",
+      "trap": "Choice A, 70, is the case sum with one case dropped - students count 'neither' and 'Alice only' but forget 'Bob only'. Choice B, 84, is 126 - 42, subtracting the 21 forbidden committees twice (once 'for Alice' and once 'for Bob'), but those are the same 21 committees. Choice D, 119 = 126 - 7, removes C(7,1) instead of C(7,2), forgetting that two seats remain after Alice and Bob are seated. Choice E, 126, ignores the restriction.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "forbidden-pair",
+        "complementary-counting",
+        "committee-selection"
+      ]
+    },
+    {
+      "id": "STA-CMB-051",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A 5-card hand is dealt from a standard 52-card deck containing 13 hearts and 39 non-hearts. The order of the cards within a hand does not matter.\nColumn A: The number of hands containing exactly 2 hearts\nColumn B: The number of hands containing exactly 3 hearts",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Each hand splits into hearts and non-hearts, so each column is a product of two combinations.\nColumn A = C(13,2) x C(39,3) = 78 x 9139.\nColumn B = C(13,3) x C(39,2) = 286 x 741.\nDo not multiply these out - compare by ratio.\nColumn A / Column B = [C(13,2)/C(13,3)] x [C(39,3)/C(39,2)]\nC(13,2)/C(13,3) = 78/286 = 3/11.\nC(39,3)/C(39,2) = [39 x 38 x 37/6] / [39 x 38/2] = 37/3.\nRatio = (3/11) x (37/3) = 37/11, which is about 3.4 and clearly greater than 1.\nSo Column A is greater. (The exact values are 712842 and 211926.)\nThe intuition: only about a quarter of the deck is hearts, so hands lean toward having FEWER hearts; moving from 2 hearts to 3 hearts trades a plentiful non-heart for a scarce heart.",
+      "trap": "Choosing C because both columns 'use the same numbers' - C(13,2)C(39,3) and C(13,3)C(39,2) look like mirror images, but the two pools have very different sizes, so swapping which pool supplies the extra card changes the count by a factor of about 3.4. Choosing B by reasoning that 3 hearts is 'a stronger hand' confuses rarity with count: the rarer event has the SMALLER count.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "two-pools",
+        "qc",
+        "compare-by-ratio"
+      ]
+    },
+    {
+      "id": "STA-CMB-052",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A coding system uses strings of length 4 formed from the letters {A, B, C, D, E}, where each letter can be used at most once and the order matters. But a codeword is considered 'invalid' if it contains both A and B. How many valid codewords are there?",
+      "options": [
+        "A. 96",
+        "B. 72",
+        "C. 48",
+        "D. 36",
+        "E. 24"
+      ],
+      "answer": "C",
+      "explanation": "Total codewords (no restriction): P(5,4) = 5×4×3×2 = 120.\nInvalid codewords (contain both A and B): Choose 2 positions from 4 for A and B, then arrange A and B in those positions: P(4,2) = 4×3 = 12 ways. Fill the remaining 2 positions from {C,D,E}: P(3,2) = 3×2 = 6 ways.\nInvalid = 12 × 6 = 72.\nValid = 120 - 72 = 48.",
+      "trap": "Students use combinations instead of permutations for codewords (since order matters in coding strings), computing C(5,4)=5 instead of P(5,4)=120.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "combinations",
+        "permutations",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-053",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A row of 8 seats has 8 people who will sit randomly. Alex and Beth must not sit adjacent to each other. How many valid seating arrangements are there?",
+      "options": null,
+      "answer": "30240",
+      "explanation": "Total arrangements of 8 people: 8! = 40320.\nArrangements where Alex and Beth ARE adjacent: Treat Alex+Beth as a single block → 7 entities, arranged in 7! ways. Alex and Beth can swap within the block: 2 ways.\nAdjacent arrangements = 7! × 2 = 5040 × 2 = 10080.\nValid arrangements = 40320 - 10080 = 30240.",
+      "trap": "Students use combinations rather than permutations (since seating order matters), computing C(8,2)×6! = 28×720 = 20160 for the adjacent case. The adjacent block method (7!×2) is correct.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "combinations",
+        "permutations",
+        "complementary-probability"
+      ]
+    },
+    {
+      "id": "STA-CMB-054",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A committee of 5 is to be chosen from a pool of 4 doctors, 3 lawyers and 2 engineers; all 9 people are distinct and each belongs to exactly one profession. The committee must contain at least 1 doctor and at least 1 lawyer. Committee members hold no distinct roles, so order does not matter. How many such committees are possible?",
+      "options": [
+        "A. 119",
+        "B. 120",
+        "C. 125",
+        "D. 126",
+        "E. 420"
+      ],
+      "answer": "A",
+      "explanation": "Two 'at least one' conditions, so use inclusion-exclusion on the complement.\nStep 1 — total committees of 5 from 9: C(9,5) = C(9,4) = (9 x 8 x 7 x 6)/24 = 126.\nStep 2 — committees with NO doctor: choose all 5 from the 3 lawyers and 2 engineers, that is 5 people. C(5,5) = 1.\nStep 3 — committees with NO lawyer: choose all 5 from the 4 doctors and 2 engineers, that is 6 people. C(6,5) = 6.\nStep 4 — committees with neither a doctor nor a lawyer: all 5 would come from the 2 engineers, and C(2,5) = 0, so there is nothing to add back.\nStep 5 — 126 - 1 - 6 + 0 = 119.\nCheck the structure: the only banned committees are the single all-lawyer-and-engineer committee and the six that use 4 doctors plus 1 engineer or 3 doctors plus 2 engineers - listing them gives C(4,3)C(2,2) = 4 and C(4,4)C(2,1) = 2, which is 6. Total banned = 7, and 126 - 7 = 119. Correct.\nAnswer: 119.",
+      "trap": "Choice E, 420, is the reserve-a-seat over-count: pick 1 doctor (4 ways) and 1 lawyer (3 ways), then fill the remaining 3 seats from the other 7 people, C(7,3) = 35, giving 4 x 3 x 35 = 420. A committee with two doctors is then counted twice, once for each doctor in the 'reserved' seat. Choice B, 120, subtracts only the 6 no-lawyer committees; choice C, 125, subtracts only the 1 no-doctor committee; choice D, 126, is the unrestricted total.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "at-least-one",
+        "inclusion-exclusion",
+        "three-pools"
+      ]
+    },
+    {
+      "id": "STA-CMB-055",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "Six distinct people are to be divided into two groups of 3. The groups are unlabelled: the split {A, B, C} with {D, E, F} is the same division as {D, E, F} with {A, B, C}, and order within a group does not matter. In how many different ways can the division be made? Enter your answer as a number.",
+      "options": null,
+      "answer": "10",
+      "explanation": "Step 1 — first count as if the groups were labelled 'Group 1' and 'Group 2'. Choosing the 3 people for Group 1 fixes everything: C(6,3) = (6 x 5 x 4)/6 = 20.\nStep 2 — the groups are NOT labelled, so each division has been counted twice: once with a given trio as Group 1, and once with the same trio as Group 2.\nStep 3 — divide by 2: 20/2 = 10.\nCheck by anchoring on one person. Fix person A; A's group is determined by which 2 of the other 5 people join A, which is C(5,2) = 10 - and this counts each division exactly once, because A lands in exactly one group. 10 confirms the answer.\nAnswer: 10.",
+      "trap": "Answering 20, from C(6,3), which is the count when the two groups are distinguishable (say, 'the morning shift' and 'the evening shift'). The stem says the groups are unlabelled, so the division must be halved. The reverse error is over-dividing by 3! or by 2! twice - the only over-count here is the single swap of the two groups, so the divisor is 2.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "unlabelled-groups",
+        "divide-out-overcounting",
+        "group-division"
+      ]
+    },
+    {
+      "id": "STA-CMB-056",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "n is an integer greater than or equal to 3.\nColumn A: C(2n, n)\nColumn B: 2 x C(2n-1, n-1)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — split Column A with Pascal's identity C(m, r) = C(m-1, r-1) + C(m-1, r), taking m = 2n and r = n:\nC(2n, n) = C(2n-1, n-1) + C(2n-1, n).\nStep 2 — apply the symmetry rule to the second term. In C(2n-1, n), the top is 2n-1 and (2n-1) - n = n-1, so\nC(2n-1, n) = C(2n-1, n-1).\nStep 3 — the two pieces are therefore identical, so\nC(2n, n) = C(2n-1, n-1) + C(2n-1, n-1) = 2 x C(2n-1, n-1),\nwhich is exactly Column B. This holds for every n, so the columns are equal.\nNumerical check, n = 3: Column A = C(6,3) = 20; Column B = 2 x C(5,2) = 2 x 10 = 20. And n = 4: C(8,4) = 70; 2 x C(7,3) = 2 x 35 = 70. Equal both times.\nAnswer: C.",
+      "trap": "Choosing D because n is a variable, or choosing A on the feeling that C(2n, n) is 'much bigger' than a combination with a smaller top number - the factor of 2 in Column B closes the gap exactly. Testing one value of n and getting equality should push you to prove it rather than guess D; the identity is Pascal's rule plus symmetry, and it holds for every n.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "pascal-identity",
+        "symmetry-rule",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-CMB-057",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "Ten distinct people are to be divided into one group of 4 and one group of 6. The two groups are distinguishable by their sizes, and within each group order does not matter. Three of the ten people are close friends who insist that all three of them end up in the same group. In how many ways can the division be made?",
+      "options": [
+        "A. 7",
+        "B. 35",
+        "C. 42",
+        "D. 84",
+        "E. 210"
+      ],
+      "answer": "C",
+      "explanation": "The whole division is determined once the group of 4 is named, since everyone else falls into the group of 6. So count the valid groups of 4.\nCase 1 - the 3 friends are all in the group of 4. Then 1 more seat is left and it is filled from the other 7 people: C(7,1) = 7.\nCase 2 - the 3 friends are all in the group of 6. Then the group of 4 contains none of them, so all 4 come from the other 7: C(7,4) = C(7,3) = 35.\nThese cases cannot overlap - the friends are either all in the four or all in the six.\nTotal = 7 + 35 = 42.\nCheck: the unrestricted total is C(10,4) = 210, so 42 is exactly one fifth of all divisions. Correct.\nAnswer: 42.",
+      "trap": "Choices A and B are the two cases taken alone - stopping after 'the friends are in the small group' gives 7, and stopping after 'the friends are in the big group' gives 35. Choice D, 84, doubles the answer by counting each division twice, as though naming the group of 6 were a separate outcome from naming the group of 4; it is not, because the two groups have different sizes and each choice of four fixes the six. Choice E, 210 = C(10,4), ignores the friends entirely.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "case-split",
+        "group-division",
+        "restricted-selection"
+      ]
+    },
+    {
+      "id": "STA-CMB-058",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "For what value of r is C(10, r) maximized?",
+      "options": null,
+      "answer": "5",
+      "explanation": "C(n, r) is maximized when r = n/2 for even n, or r = (n±1)/2 for odd n.\nHere n = 10 (even), so C(10, r) is maximized at r = 10/2 = 5.\nVerification: C(10,4)=210, C(10,5)=252, C(10,6)=210. Indeed C(10,5) is the maximum.\nIntuition: The middle coefficient of the binomial expansion is always the largest.",
+      "trap": "Students guess r=1 (giving C(10,1)=10) or r=10 (giving C(10,10)=1) as extreme cases, without recognizing the binomial coefficients peak in the middle.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "combinations",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-CMB-059",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "Let f(n) = C(2n, n) for positive integers n. Which of the following are true? Select all that apply.",
+      "options": [
+        "A. f(1) = 2",
+        "B. f(2) = 6",
+        "C. f(n+1) = 4 x f(n) for every n >= 1",
+        "D. f(n) = 2 x C(2n-1, n) for every n >= 1",
+        "E. f(3) = 15"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Compute the first few values: f(1) = C(2,1) = 2, f(2) = C(4,2) = 6, f(3) = C(6,3) = 20, f(4) = C(8,4) = 70.\nA - f(1) = C(2,1) = 2. TRUE.\nB - f(2) = C(4,2) = (4 x 3)/2 = 6. TRUE.\nC - test at n = 1: f(2) = 6, but 4 x f(1) = 4 x 2 = 8. The claim fails immediately. FALSE. (The true ratio is f(n+1)/f(n) = 2(2n+1)/(n+1), which is 3 at n = 1, then 10/3, then 3.5 - it only approaches 4 as n grows.)\nD - by Pascal's identity C(2n, n) = C(2n-1, n-1) + C(2n-1, n), and by symmetry C(2n-1, n-1) = C(2n-1, n) because (n-1) + n = 2n-1. So C(2n, n) = 2 x C(2n-1, n). Check n = 3: 2 x C(5,3) = 2 x 10 = 20 = f(3). TRUE.\nE - f(3) = C(6,3) = (6 x 5 x 4)/(3 x 2 x 1) = 120/6 = 20, not 15. FALSE.\nAnswer: A, B, D.",
+      "trap": "E is the arithmetic bait: computing C(6,3) with the pairing formula n(n-1)/2 = (6 x 5)/2 = 15 instead of the three-item formula, which needs the extra factor 4/3. C is the pattern bait: the ratios 3, 3.33, 3.5, ... creep toward 4 without ever reaching it, so a student who checks only large n or trusts the 'doubling the top doubles the exponent' feeling will accept it.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "central-binomial",
+        "pascal-identity",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-CMB-060",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "In a tournament with 8 teams, each pair of teams plays exactly once (round-robin). After all games are played, 3 teams are chosen to advance to the finals. In how many ways can the 3 advancing teams be chosen AND a schedule of the round-robin games have been completed, where the schedule is just the set of all games played (order of games doesn't matter)?",
+      "options": [
+        "A. 56 × 28",
+        "B. C(8,3) × C(8,2)",
+        "C. C(8,2) × C(8,3)",
+        "D. 56 × C(8,2)",
+        "E. All of the above are equivalent"
+      ],
+      "answer": "E",
+      "explanation": "Number of round-robin games: Each pair plays once, so total games = C(8,2) = 28.\nNumber of ways to choose 3 advancing teams from 8: C(8,3) = 56.\nThese are independent, so total = C(8,3) × C(8,2) = 56 × 28 = 1568.\nA: 56 × 28 = C(8,3) × C(8,2). Correct expression.\nB: C(8,3) × C(8,2). Same as A.\nC: C(8,2) × C(8,3). Multiplication is commutative — same as B.\nD: 56 × C(8,2) = C(8,3) × C(8,2). Same.\nAll four options (A, B, C, D) are equivalent, so E is the correct choice.",
+      "trap": "Students may select only A or B, not realizing all options are mathematically identical expressions for the same quantity. The question tests whether students recognize commutativity and equivalent forms.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "combinations",
+        "conceptual",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "STA-CMB-061",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "In a league of n teams (n >= 2), every team plays every other team exactly once, and a game between two teams counts once regardless of which team is named first. Let G be the total number of games played. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. G = n(n-1)/2",
+        "B. If n = 15, then G = 105",
+        "C. If G = 45, then n = 10",
+        "D. Doubling the number of teams doubles G",
+        "E. G = P(n, 2)"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "A game is an unordered pair of distinct teams, so G = C(n,2) = n(n-1)/2 - the handshake formula.\nA - that is the formula itself. TRUE.\nB - C(15,2) = (15 x 14)/2 = 210/2 = 105. TRUE.\nC - solve n(n-1)/2 = 45, so n(n-1) = 90. Since 10 x 9 = 90, n = 10. (The other root, n = -9, is rejected.) TRUE.\nD - test n = 5: G = C(5,2) = 10, and doubling to 10 teams gives C(10,2) = 45, not 20. In general C(2n,2) = n(2n-1), while 2 x C(n,2) = n(n-1), and these are equal only when 2n - 1 = n - 1, which is impossible for n >= 2. FALSE.\nE - P(n,2) = n(n-1) counts ORDERED pairs, which is exactly twice G. For n = 5 that is 20 rather than 10. FALSE.\nAnswer: A, B, C.",
+      "trap": "E is the permutation-versus-combination trap in disguise: a game between Team X and Team Y is one game, not two, so the ordered count n(n-1) must be halved. D punishes linear thinking - the number of games grows roughly with the SQUARE of the number of teams, so doubling the league roughly quadruples the schedule (10 games becomes 45, not 20).",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "handshake-formula",
+        "pairs",
+        "multiple-answer"
+      ]
+    }
+  ]
 }

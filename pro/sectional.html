@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="alternate icon" type="image/x-icon" href="favicon.ico">
+<link rel="apple-touch-icon" href="favicon-256.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Timed single-topic GRE Quant sectional tests in an ETS-replica interface. 12 questions, 21 minutes, instant answer review with the trap behind every wrong answer.">
+<link rel="canonical" href="https://grequantpro.com/pro/sectional.html">
+<meta name="robots" content="noindex, nofollow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GRE Quant Pro">
+<meta property="og:title" content="GRE Quant Sectional Tests — Coach Aditya Goenka">
+<meta property="og:description" content="Drill one topic at a time under real GRE timing. 12 questions in 21 minutes, in a pixel-accurate ETS-replica interface.">
+<meta property="og:url" content="https://grequantpro.com/sectional.html">
+<meta property="og:image" content="https://grequantpro.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GRE Quant Sectional Tests — Coach Aditya Goenka">
+<meta name="twitter:description" content="Drill one topic at a time under real GRE timing. 12 questions in 21 minutes.">
+<meta name="twitter:image" content="https://grequantpro.com/og-image.png">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": "GRE Quant Sectional Tests",
+  "url": "https://grequantpro.com/sectional.html",
+  "description": "Timed single-topic GRE Quantitative sectional tests. Each set is 12 questions in 21 minutes in an ETS-replica interface, with a worked explanation and the named trap behind every question.",
+  "learningResourceType": "Practice test",
+  "educationalLevel": "Graduate admissions",
+  "teaches": "GRE Quantitative Reasoning",
+  "isAccessibleForFree": true,
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "GRE Quant Pro",
+    "url": "https://grequantpro.com/"
+  },
+  "author": { "@type": "Person", "name": "Aditya Goenka" }
+}
+</script>
+<title>GRE Quant Sectional Tests — Coach Aditya Goenka</title>
+<link rel="stylesheet" href="../gre-exam-theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="../gre-math.js"></script>
+<script defer src="../ads-config.js"></script>
+<script defer src="../analytics.js"></script>
+<style>
+  .gre-shell.screen{display:none;}
+  .gre-shell.screen.active{display:flex;}
+  .gre-svg{text-align:center;margin:8px 0 26px;}
+  .gre-svg svg{max-width:100%;}
+
+  /* Sectional-specific layer on top of gre-exam-theme.css */
+  .sx-intro{max-width:760px;margin:0 auto 30px;text-align:center;}
+  .sx-intro h2{font-size:26px;color:var(--gre-text);margin:0 0 10px;}
+  .sx-intro p{color:var(--gre-text2);font-size:15px;line-height:1.65;margin:0 0 6px;}
+  .sx-rule{display:inline-flex;gap:18px;flex-wrap:wrap;justify-content:center;margin-top:16px;
+           background:var(--gre-surface);border:1px solid var(--gre-border);border-radius:10px;padding:12px 20px;}
+  .sx-rule span{font-size:13px;color:var(--gre-text2);font-weight:600;}
+  .sx-rule b{color:var(--gre-text);}
+
+  .topic-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px;margin-bottom:34px;}
+  .topic-card{position:relative;background:var(--gre-surface);border:1px solid var(--gre-border);
+              border-radius:12px;padding:20px 18px 18px;cursor:pointer;transition:border-color .15s,box-shadow .15s,transform .15s;}
+  .topic-card:hover:not(.locked){border-color:var(--gre-blue);box-shadow:0 6px 20px rgba(26,93,166,.13);transform:translateY(-2px);}
+  .topic-card:focus-visible{outline:3px solid var(--gre-blue);outline-offset:2px;}
+  .topic-card.locked{cursor:not-allowed;opacity:.72;background:#f7f9fb;}
+  .tc-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:10px;}
+  .tc-name{font-size:16px;font-weight:700;color:var(--gre-text);line-height:1.35;}
+  .tc-pill{flex:none;font-size:10px;font-weight:800;letter-spacing:.06em;padding:4px 8px;border-radius:5px;text-transform:uppercase;}
+  .tc-pill.free{background:#e5f2ea;color:var(--gre-success);}
+  .tc-pill.pro{background:#f7efdb;color:#a97b12;}
+  .tc-pill.soon{background:#eef1f4;color:var(--gre-text3);}
+  .tc-count{font-size:13px;color:var(--gre-text2);margin-bottom:12px;}
+  .tc-count b{color:var(--gre-text);}
+  .tc-mix{display:flex;height:6px;border-radius:3px;overflow:hidden;background:#eef1f4;margin-bottom:9px;}
+  .tc-mix i{display:block;height:100%;}
+  .tc-legend{font-size:11.5px;color:var(--gre-text3);display:flex;gap:14px;}
+  .tc-legend s{text-decoration:none;display:inline-flex;align-items:center;gap:5px;}
+  .tc-legend em{width:8px;height:8px;border-radius:2px;display:inline-block;font-style:normal;}
+
+  .sx-back{background:none;border:none;color:var(--gre-blue);font-size:14px;font-weight:700;
+           cursor:pointer;padding:6px 0;margin-bottom:14px;font-family:inherit;}
+  .sx-back:hover{text-decoration:underline;}
+  .set-list{display:flex;flex-direction:column;gap:12px;max-width:720px;margin:0 auto 30px;}
+  .set-row{display:flex;align-items:center;gap:16px;background:var(--gre-surface);border:1px solid var(--gre-border);
+           border-radius:10px;padding:16px 18px;}
+  .set-row.locked{background:#f7f9fb;opacity:.78;}
+  .set-num{flex:none;width:44px;height:44px;border-radius:9px;background:var(--gre-selected);color:var(--gre-blue);
+           display:grid;place-items:center;font-weight:800;font-size:15px;}
+  .set-row.locked .set-num{background:#eef1f4;color:var(--gre-text3);}
+  .set-info{flex:1;min-width:0;}
+  .set-info h4{margin:0 0 3px;font-size:15px;color:var(--gre-text);font-weight:700;}
+  .set-info p{margin:0;font-size:13px;color:var(--gre-text2);}
+  .set-row .btn{flex:none;}
+
+  .sx-score{text-align:center;padding:10px 0 4px;}
+  .sx-score-big{font-size:52px;font-weight:800;color:var(--gre-blue);line-height:1;}
+  .sx-score-big small{font-size:22px;color:var(--gre-text3);font-weight:700;}
+  .sx-band{display:inline-block;margin-top:12px;padding:7px 18px;border-radius:20px;font-size:13.5px;font-weight:700;}
+
+  @media (max-width:640px){
+    .app{padding:0 12px 40px;}
+    .topic-grid{grid-template-columns:1fr;gap:12px;}
+    .sx-intro h2{font-size:21px;}
+    .sx-rule{flex-direction:column;gap:7px;padding:12px 16px;width:100%;}
+    .set-row{flex-wrap:wrap;gap:12px;}
+    .set-row .btn{width:100%;}
+    .sx-score-big{font-size:42px;}
+    .gre-topbar{flex-wrap:wrap;gap:4px;}
+    .gre-topbar-btns{width:100%;justify-content:space-between;}
+    .gre-tb-btn{flex:1;min-width:0;font-size:11px;padding:8px 4px;}
+    .gre-qc-grid{grid-template-columns:1fr;gap:10px;}
+    .gre-qwrap{padding:16px 14px 40px;}
+    .gre-strip{flex-wrap:wrap;gap:6px;}
+    .gre-strip-title{font-size:12px;}
+  }
+</style>
+</head>
+<body>
+<script src="pro-gate.js"></script>
+<div class="app">
+  <div class="app-header">
+    <div class="logo">
+      <h1>GRE Quant <span>Pro</span></h1>
+      <p>Sectional Tests · Pro · Coach Aditya Goenka</p>
+    </div>
+    <span class="badge-free">PRO · SECTIONALS</span>
+  </div>
+
+  <!-- SCREEN: TOPICS -->
+  <div id="screen-topics" class="screen active">
+    <div class="sx-intro">
+      <h2>Sectional Tests</h2>
+      <p>One topic. One timed section. Every set in your Pro library. Built from hard, exam-level questions for the push from the high 150s past 165.</p>
+      <div class="sx-rule">
+        <span><b>12</b> questions</span>
+        <span><b>21</b> minutes</span>
+        <span><b>Every</b> answer explained</span>
+      </div>
+    </div>
+    <div class="topic-grid" id="topic-grid"></div>
+  </div>
+
+  <!-- SCREEN: SETS -->
+  <div id="screen-sets" class="screen">
+    <button class="sx-back" onclick="goTo('screen-topics')">&larr; All topics</button>
+    <div class="sx-intro">
+      <h2 id="sets-title">Topic</h2>
+      <p id="sets-sub"></p>
+    </div>
+    <div class="set-list" id="set-list"></div>
+  </div>
+
+  <!-- SCREEN: INSTRUCTIONS -->
+  <div id="screen-instructions" class="screen">
+    <div class="instr-card">
+      <h2 id="instr-title">Sectional Test</h2>
+      <ul class="instr-list">
+        <li>This section contains <strong id="instr-count">12</strong> questions and you have <strong id="instr-time">21 minutes</strong> to complete it.</li>
+        <li>You may move freely between questions with <strong>Back</strong> and <strong>Next</strong>, and change any answer before you exit.</li>
+        <li>Use <strong>Mark</strong> to flag a question, and <strong>Review</strong> to see the status of every question and jump to any of them.</li>
+        <li>Question types vary. Read the directions above each question: some ask for one answer, some for all that apply, and some for a typed value.</li>
+        <li class="instr-highlight">Unanswered questions are scored as incorrect. The timer force-displays in the final 5 minutes.</li>
+        <li>When the timer reaches zero the section submits automatically.</li>
+      </ul>
+      <button class="btn btn-primary" onclick="beginSection()">Begin Section</button>
+    </div>
+  </div>
+
+  <!-- SCREEN: EXAM -->
+  <div id="screen-exam" class="screen gre-shell" role="application" aria-label="GRE sectional test screen">
+    <div class="gre-topbar">
+      <div class="gre-topbar-left">
+        <b id="gre-sec-label">Sectional</b>
+        <span id="gre-q-label">Question 1 of 12</span>
+      </div>
+      <div class="gre-topbar-btns">
+        <button class="gre-tb-btn" id="btn-exit" onclick="confirmExitSection()" aria-label="Exit Section">Exit</button>
+        <button class="gre-tb-btn" id="btn-help" onclick="showHelp()" aria-label="Help">Help</button>
+        <button class="gre-tb-btn" id="btn-mark" onclick="toggleMark()" aria-label="Mark question for review" aria-pressed="false">Mark</button>
+        <button class="gre-tb-btn" id="btn-review" onclick="openReview()" aria-label="Review section">Review</button>
+        <button class="gre-tb-btn" id="btn-prev" onclick="prevQ()" aria-label="Back">Back</button>
+        <button class="gre-tb-btn" id="btn-next" onclick="nextQ()" aria-label="Next">Next</button>
+      </div>
+    </div>
+    <div class="gre-strip">
+      <div class="gre-strip-title">GRE<sup>&reg;</sup> Sectional &mdash; Quantitative Reasoning <span id="gre-strip-topic"></span></div>
+      <div class="gre-strip-right">
+        <div class="gre-timer" id="exam-timer" aria-live="off"><span id="exam-timer-text">00:21:00</span></div>
+        <button class="gre-hide-time" id="btn-hide-time" onclick="toggleTimer()">Hide Time</button>
+      </div>
+    </div>
+    <div class="gre-body" id="gre-body">
+      <div class="gre-qwrap" id="question-area"></div>
+      <div class="gre-review" id="gre-review-area" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- SCREEN: RESULTS -->
+  <div id="screen-results" class="screen">
+    <div class="results-header">
+      <h2 id="res-title">Section Complete</h2>
+      <p id="res-subtitle"></p>
+    </div>
+    <div class="sx-score">
+      <div class="sx-score-big"><span id="res-correct">0</span><small>/<span id="res-total">12</span></small></div>
+      <div><span class="sx-band" id="res-band"></span></div>
+    </div>
+    <div class="stats-grid" id="res-stats"></div>
+    <div class="topic-bars" id="res-concepts"></div>
+    <div class="diagnosis-card" id="res-diagnosis"></div>
+    <div class="result-actions">
+      <button class="btn btn-primary" onclick="toggleReview()">Review Every Question</button>
+      <button class="btn btn-outline" onclick="restartSet()">Retake This Set</button>
+      <button class="btn btn-outline" onclick="downloadResults()">Download Results (JSON)</button>
+      <button class="btn btn-ghost" onclick="backToTopics()">All Topics</button>
+    </div>
+    <div class="review-section" id="review-section" style="display:none;">
+      <h3>Answer Review</h3>
+      <div class="review-list" id="review-list"></div>
+    </div>
+    <div class="result-upgrade" id="result-upgrade"></div>
+  </div>
+
+</div>
+
+<div class="gre-modal-backdrop" id="gre-modal" role="dialog" aria-modal="true" aria-labelledby="gre-modal-title">
+  <div class="gre-modal">
+    <div class="gre-modal-head" id="gre-modal-title">Notice</div>
+    <div class="gre-modal-body" id="gre-modal-body"></div>
+    <div class="gre-modal-actions" id="gre-modal-actions"></div>
+  </div>
+</div>
+
+<script>
+// ─── SECTIONAL INDEX ──────────────────────────────────────────────────────────
+// `sets` = how many 12-question sets the keyed pool supports.
+// `built` = the sets that actually exist as JSON today.
+let SECTION_SECONDS = 1260;   // default; overridden by the catalogue
+let SECTION_SIZE      = 12;   // default; overridden by the catalogue
+
+// Filled from bank/sectional/index.json — the single source of truth for the
+// sectional catalogue. Editing the JSON is enough; neither page carries its own copy.
+let TOPICS = [];
+
+// Pro build: every built set is unlocked, so the per-topic `free` counts are ignored here.
+
+const TYPE_DIRECTIONS = {
+  mcq: 'Select one answer choice.',
+  quantitative_comparison: 'Compare Quantity A and Quantity B, using additional information given, if any. Select one answer choice.',
+  numeric_entry: 'Enter your answer in the box.',
+  multiple_answer: 'Select one or more answer choices. Select all that apply.'
+};
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+let state = {
+  topic:null, setNo:null, data:null,
+  qIndex:0, answers:{}, timings:{}, marked:{},
+  timeLeft:SECTION_SECONDS, timerInterval:null, timerHidden:false,
+  sectionStart:null, qStart:null, result:null, loadError:null
+};
+
+function track(ev, props){ try{ if(window.GQP && window.GQP.track) window.GQP.track(ev, props||{}); }catch(e){} }
+
+// ─── NAVIGATION ───────────────────────────────────────────────────────────────
+function goTo(id){
+  document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
+  document.getElementById(id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function showModal(title, bodyHtml, buttons){
+  document.getElementById('gre-modal-title').textContent = title;
+  document.getElementById('gre-modal-body').innerHTML = bodyHtml;
+  var actions = document.getElementById('gre-modal-actions');
+  actions.innerHTML = '';
+  buttons.forEach(function(b){
+    var btn = document.createElement('button');
+    btn.className = 'btn ' + (b.cls || 'btn-ghost');
+    btn.textContent = b.label;
+    btn.onclick = function(){ closeModal(); if(b.action) b.action(); };
+    actions.appendChild(btn);
+  });
+  document.getElementById('gre-modal').classList.add('open');
+}
+function closeModal(){ document.getElementById('gre-modal').classList.remove('open'); }
+
+function escapeHtml(s){
+  return String(s === null || s === undefined ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ─── TOPIC GRID ───────────────────────────────────────────────────────────────
+function renderTopicGrid(){
+  document.getElementById('topic-grid').innerHTML = TOPICS.map(function(t){
+    var live = t.built.length > 0;
+    var total = t.medium + t.hard;
+    var medPct = total ? Math.round(t.medium/total*100) : 0;
+    var pill = live ? '<span class="tc-pill pro">Included</span>'
+                    : '<span class="tc-pill soon">Coming soon</span>';
+    var sub = live
+      ? '<b>' + t.built.length + '</b> of ' + t.sets + ' sets ready &middot; ' + t.pool + ' questions in pool'
+      : t.sets + ' set' + (t.sets>1?'s':'') + ' planned &middot; ' + t.pool + ' questions in pool';
+    var openAttrs = live
+      ? 'onclick="openTopic(\'' + t.id + '\')" tabindex="0" onkeydown="if(event.key===\'Enter\')openTopic(\'' + t.id + '\')" role="button"'
+      : 'aria-disabled="true"';
+    return '<div class="topic-card' + (live?'':' locked') + '" ' + openAttrs + '>' +
+      '<div class="tc-top"><div class="tc-name">' + escapeHtml(t.name) + '</div>' + pill + '</div>' +
+      '<div class="tc-count">' + sub + '</div>' +
+      '<div class="tc-mix"><i style="width:' + medPct + '%;background:#7aa7d4"></i><i style="width:' + (100-medPct) + '%;background:var(--gre-mark)"></i></div>' +
+      '<div class="tc-legend">' +
+        '<s><em style="background:#7aa7d4"></em>' + t.medium + ' medium</s>' +
+        '<s><em style="background:var(--gre-mark)"></em>' + t.hard + ' hard</s>' +
+      '</div></div>';
+  }).join('');
+}
+
+function openTopic(id){
+  var t = TOPICS.filter(function(x){ return x.id===id; })[0];
+  if(!t || !t.built.length) return;
+  state.topic = t;
+  document.getElementById('sets-title').textContent = t.name;
+  document.getElementById('sets-sub').textContent =
+    t.built.length + ' of ' + t.sets + ' sets are ready. Each set is ' + SECTION_SIZE + ' questions in ' + (SECTION_SECONDS/60) + ' minutes.';
+  var rows = [];
+  for(var n=1; n<=t.sets; n++){
+    var isBuilt = t.built.indexOf(n) !== -1;
+    var isFree = true;
+    var right, cls = '', note;
+    if(isBuilt && isFree){
+      right = '<button class="btn btn-primary btn-sm" onclick="chooseSet(' + n + ')">Start Set ' + n + '</button>';
+      note = SECTION_SIZE + ' questions &middot; ' + (SECTION_SECONDS/60) + ' minutes &middot; free';
+    } else if(isBuilt){
+      right = '<a class="btn btn-outline btn-sm" href="https://grequantpro.com/#plans" target="_blank" rel="noopener" onclick="track(\'pro_cta_clicked\',{from:\'sectional_set\'})">Unlock with Pro</a>';
+      cls = ' locked'; note = SECTION_SIZE + ' questions &middot; Pro only';
+    } else {
+      right = '<span class="tc-pill soon">Coming soon</span>';
+      cls = ' locked'; note = 'Not built yet';
+    }
+    rows.push('<div class="set-row' + cls + '"><div class="set-num">' + n + '</div>' +
+      '<div class="set-info"><h4>Set ' + n + '</h4><p>' + note + '</p></div>' + right + '</div>');
+  }
+  document.getElementById('set-list').innerHTML = rows.join('');
+  track('sectional_topic_opened', {topic:t.id});
+  goTo('screen-sets');
+}
+
+// ─── LOAD A SET ───────────────────────────────────────────────────────────────
+function chooseSet(n){
+  state.setNo = n; state.data = null; state.loadError = null;
+  var file = 'bank/sectional/' + state.topic.file + '_set' + n + '.json';
+  fetch(file).then(function(res){
+    if(!res.ok) throw new Error('HTTP ' + res.status);
+    return res.json();
+  }).then(function(json){
+    state.data = json;
+    var list = json.questions || [];
+    document.getElementById('instr-title').textContent = state.topic.name + ' — Set ' + n;
+    document.getElementById('instr-count').textContent = list.length;
+    var secs = (json.meta && json.meta.time_limit_seconds) || SECTION_SECONDS;
+    document.getElementById('instr-time').textContent = Math.round(secs/60) + ' minutes';
+    track('sectional_set_selected', {topic:state.topic.id, set:n});
+    goTo('screen-instructions');
+  }).catch(function(e){
+    state.loadError = e.message;
+    showModal('Could not load this set',
+      'This set could not be loaded (' + escapeHtml(e.message) + ').<br><br>If you opened this page directly from your computer, serve it through a local web server instead — browsers block file reads from <code>file://</code> pages.',
+      [{label:'OK', cls:'btn-primary'}]);
+  });
+}
+
+// ─── SECTION ──────────────────────────────────────────────────────────────────
+function qlist(){ return (state.data && state.data.questions) || []; }
+
+function beginSection(){
+  clearInterval(state.timerInterval);
+  state.qIndex = 0; state.answers = {}; state.timings = {}; state.marked = {};
+  state.timeLeft = (state.data.meta && state.data.meta.time_limit_seconds) || SECTION_SECONDS;
+  state.sectionStart = Date.now(); state.qStart = Date.now();
+  state.timerHidden = false;
+  document.getElementById('btn-hide-time').textContent = 'Hide Time';
+  document.getElementById('gre-strip-topic').textContent = '· ' + state.topic.name + ' Set ' + state.setNo;
+  document.getElementById('gre-sec-label').textContent = state.topic.name;
+  closeReview(); renderQuestion(); goTo('screen-exam'); startTimer();
+  track('sectional_started', {topic:state.topic.id, set:state.setNo});
+}
+
+function startTimer(){
+  updateTimerDisplay();
+  state.timerInterval = setInterval(function(){
+    state.timeLeft--; updateTimerDisplay();
+    if(state.timeLeft<=0){ clearInterval(state.timerInterval); submitSection(true); }
+  }, 1000);
+}
+function updateTimerDisplay(){
+  var t = Math.max(0, state.timeLeft);
+  var h = Math.floor(t/3600), m = Math.floor((t%3600)/60), s = t%60;
+  function pad(x){ return String(x).padStart(2,'0'); }
+  document.getElementById('exam-timer-text').textContent = pad(h)+':'+pad(m)+':'+pad(s);
+  var el = document.getElementById('exam-timer');
+  el.classList.toggle('urgent', t<=300);
+  el.classList.toggle('hidden-time', state.timerHidden && t>300);
+}
+function toggleTimer(){
+  state.timerHidden = !state.timerHidden;
+  document.getElementById('btn-hide-time').textContent = state.timerHidden ? 'Show Time' : 'Hide Time';
+  updateTimerDisplay();
+}
+
+// ─── QUESTION RENDER (same contract as full_mock.html) ────────────────────────
+function parseQC(text){
+  var lines = String(text||'').split('\n'); var a=null, b=null; var rest=[];
+  lines.forEach(function(line){
+    var t = line.trim();
+    if(/^(Column|Quantity)\s*A\s*:/i.test(t)) a = t.replace(/^(Column|Quantity)\s*A\s*:/i,'').trim();
+    else if(/^(Column|Quantity)\s*B\s*:/i.test(t)) b = t.replace(/^(Column|Quantity)\s*B\s*:/i,'').trim();
+    else rest.push(line);
+  });
+  return {info:rest.join('\n').trim(), a:a, b:b};
+}
+function qcOptionText(opt){
+  return String(opt).replace(/^[A-E]\.\s*/,'')
+    .replace(/Column\s+A/g,'Quantity A').replace(/Column\s+B/g,'Quantity B')
+    .replace(/The two columns are equal/i,'The two quantities are equal');
+}
+
+function renderQuestion(){
+  var list = qlist(), q = list[state.qIndex];
+  state.qStart = Date.now();
+  var saved = state.answers[state.qIndex];
+  closeReview();
+  var directions = TYPE_DIRECTIONS[q.type] || '';
+  var svgHtml = q.svg ? '<div class="gre-svg">' + q.svg + '</div>' : '';
+  var bodyHtml = '';
+  var opts = q.options || [];
+
+  if(q.type==='quantitative_comparison' && /(Column|Quantity)\s*[AB]\s*:/i.test(q.question)){
+    var qc = parseQC(q.question);
+    bodyHtml =
+      (qc.info ? '<div class="gre-qc-info">' + escapeHtml(qc.info) + '</div>' : '') + svgHtml +
+      '<div class="gre-qc-grid">' +
+        '<div class="gre-qc-col"><div class="gre-qc-head">Quantity A</div><div class="gre-qc-val">' + escapeHtml(qc.a||'—') + '</div></div>' +
+        '<div class="gre-qc-col"><div class="gre-qc-head">Quantity B</div><div class="gre-qc-val">' + escapeHtml(qc.b||'—') + '</div></div>' +
+      '</div>' +
+      '<div class="gre-options" role="radiogroup" aria-label="Answer choices">' + opts.map(function(opt){
+        var letter = opt[0];
+        return '<label class="gre-option' + (saved===letter?' selected':'') + '">' +
+          '<input type="radio" name="gre-q" value="' + letter + '" ' + (saved===letter?'checked':'') + ' onchange="selectOption(\'' + letter + '\',this)">' +
+          '<span class="opt-body">' + escapeHtml(qcOptionText(opt)) + '</span></label>';
+      }).join('') + '</div>';
+  } else if(q.type==='numeric_entry'){
+    bodyHtml = '<div class="gre-qtext">' + escapeHtml(q.question) + '</div>' + svgHtml +
+      '<div class="gre-ne"><input type="text" id="ne-input" value="' + escapeHtml(saved||'') + '" inputmode="text" oninput="saveNE(this.value)" autocomplete="off" aria-label="Your answer"></div>';
+  } else if(q.type==='multiple_answer'){
+    var sel = Array.isArray(saved) ? saved : [];
+    bodyHtml = '<div class="gre-qtext">' + escapeHtml(q.question) + '</div>' + svgHtml +
+      '<div class="gre-options" role="group" aria-label="Answer choices">' + opts.map(function(opt){
+        var letter = opt[0], on = sel.indexOf(letter) !== -1;
+        return '<label class="gre-option' + (on?' selected':'') + '">' +
+          '<input type="checkbox" value="' + letter + '" ' + (on?'checked':'') + ' onchange="toggleMA(\'' + letter + '\',this)">' +
+          '<span class="opt-body">' + escapeHtml(opt.slice(3)) + '</span></label>';
+      }).join('') + '</div>';
+  } else {
+    bodyHtml = '<div class="gre-qtext">' + escapeHtml(q.question) + '</div>' + svgHtml +
+      '<div class="gre-options" role="radiogroup" aria-label="Answer choices">' + opts.map(function(opt){
+        var letter = opt[0];
+        return '<label class="gre-option' + (saved===letter?' selected':'') + '">' +
+          '<input type="radio" name="gre-q" value="' + letter + '" ' + (saved===letter?'checked':'') + ' onchange="selectOption(\'' + letter + '\',this)">' +
+          '<span class="opt-body">' + escapeHtml(opt.slice(3)) + '</span></label>';
+      }).join('') + '</div>';
+  }
+
+  var area = document.getElementById('question-area');
+  area.innerHTML = (directions ? '<div class="gre-directions">' + directions + '</div>' : '') + bodyHtml;
+  if(window.GREMath) GREMath.renderIn(area);
+  document.getElementById('btn-prev').disabled = state.qIndex===0;
+  document.getElementById('btn-next').disabled = state.qIndex===list.length-1;
+  document.getElementById('gre-q-label').textContent = 'Question ' + (state.qIndex+1) + ' of ' + list.length;
+  updateMarkButton();
+  document.getElementById('gre-body').scrollTop = 0;
+}
+
+function updateMarkButton(){
+  var btn = document.getElementById('btn-mark'), on = !!state.marked[state.qIndex];
+  btn.classList.toggle('marked', on);
+  btn.setAttribute('aria-pressed', on?'true':'false');
+}
+function toggleMark(){ state.marked[state.qIndex] = !state.marked[state.qIndex]; updateMarkButton(); }
+
+// ─── ANSWERS ──────────────────────────────────────────────────────────────────
+function saveQTime(){
+  var el = Math.round((Date.now()-state.qStart)/1000);
+  state.timings[state.qIndex] = (state.timings[state.qIndex]||0) + el;
+}
+function selectOption(letter, el){
+  saveQTime();
+  state.answers[state.qIndex] = letter;
+  el.closest('.gre-options').querySelectorAll('.gre-option').forEach(function(o){ o.classList.remove('selected'); });
+  el.closest('.gre-option').classList.add('selected');
+  state.qStart = Date.now();
+}
+function saveNE(val){ state.answers[state.qIndex] = val; }
+function toggleMA(letter, el){
+  var cur = state.answers[state.qIndex];
+  var sel = Array.isArray(cur) ? cur.slice() : [];
+  var at = sel.indexOf(letter);
+  if(at !== -1) sel.splice(at,1); else sel.push(letter);
+  state.answers[state.qIndex] = sel;
+  el.closest('.gre-option').classList.toggle('selected', el.checked);
+}
+function prevQ(){ if(state.qIndex>0){ saveQTime(); state.qIndex--; renderQuestion(); } }
+function nextQ(){ if(state.qIndex < qlist().length-1){ saveQTime(); state.qIndex++; renderQuestion(); } }
+
+// ─── REVIEW (in-exam) ─────────────────────────────────────────────────────────
+function isAnswered(i){
+  var a = state.answers[i];
+  return a !== undefined && a !== '' && !(Array.isArray(a) && a.length===0);
+}
+function openReview(){
+  saveQTime();
+  var list = qlist();
+  var rows = list.map(function(q,i){
+    return '<tr onclick="jumpTo(' + i + ')" tabindex="0" onkeydown="if(event.key===\'Enter\')jumpTo(' + i + ')" aria-label="Go to question ' + (i+1) + '">' +
+      '<td>Question ' + (i+1) + (i===state.qIndex?' (current)':'') + '</td>' +
+      '<td class="' + (isAnswered(i)?'st-answered':'st-unanswered') + '">' + (isAnswered(i)?'Answered':'Not Answered') + '</td>' +
+      '<td>' + (state.marked[i]?'<span class="mark-flag">⚑ Marked</span>':'') + '</td></tr>';
+  }).join('');
+  var answered = list.filter(function(_,i){ return isAnswered(i); }).length;
+  document.getElementById('gre-review-area').innerHTML =
+    '<h2>Review — ' + escapeHtml(state.topic.name) + ' Set ' + state.setNo + '</h2>' +
+    '<p>Below is the status of each question. Select a question to return to it. ' + answered + ' of ' + list.length + ' answered.</p>' +
+    '<table class="gre-review-table"><thead><tr><th scope="col">Question</th><th scope="col">Status</th><th scope="col">Marked</th></tr></thead>' +
+    '<tbody>' + rows + '</tbody></table>' +
+    '<div class="gre-review-actions">' +
+      '<button class="btn btn-primary" onclick="closeReviewToQuestion()">Return to Question</button>' +
+      '<button class="btn btn-outline" onclick="confirmExitSection()">Exit Section</button></div>';
+  document.getElementById('question-area').style.display = 'none';
+  document.getElementById('gre-review-area').style.display = 'block';
+  state.qStart = Date.now();
+}
+function closeReview(){
+  document.getElementById('gre-review-area').style.display = 'none';
+  document.getElementById('question-area').style.display = 'block';
+}
+function closeReviewToQuestion(){ closeReview(); state.qStart = Date.now(); }
+function jumpTo(i){ state.qIndex = i; renderQuestion(); }
+
+function showHelp(){
+  showModal('Test Help',
+    '<strong>Back / Next</strong> — move between questions in this section.<br>' +
+    '<strong>Mark</strong> — flag the current question so you can find it on the Review screen.<br>' +
+    '<strong>Review</strong> — see the answered and marked status of every question, and jump to any of them.<br>' +
+    '<strong>Exit Section</strong> — submit and see your results. You cannot return afterwards.<br><br>' +
+    'Unanswered questions are scored as incorrect. The timer force-displays in the final 5 minutes.',
+    [{label:'Return to Test', cls:'btn-primary'}]);
+}
+
+// ─── SUBMIT + SCORE ───────────────────────────────────────────────────────────
+function confirmExitSection(){
+  var list = qlist();
+  var answered = list.filter(function(_,i){ return isAnswered(i); }).length;
+  var un = list.length - answered;
+  showModal('Exit Section',
+    'Are you sure you want to exit this section?' +
+    (un>0 ? '<br><br><strong>You have ' + un + ' unanswered question' + (un>1?'s':'') + '.</strong>' : '') +
+    '<br><br>Once you exit you cannot return to it.',
+    [{label:'Cancel', cls:'btn-ghost'},
+     {label:'Exit Section', cls:'btn-primary', action:function(){ submitSection(false); }}]);
+}
+
+// Numeric entry: forgive spaces, thousands commas and a leading +
+function normaliseNE(v){
+  return String(v).trim().replace(/\s+/g,'').replace(/,/g,'').replace(/^\+/,'');
+}
+function checkAnswer(q, given){
+  if(!given && given !== 0) return false;
+  if(q.type==='multiple_answer'){
+    if(!Array.isArray(given)) return false;
+    var correct = Array.isArray(q.answer) ? q.answer : [q.answer];
+    return given.length === correct.length && given.every(function(l){ return correct.indexOf(l) !== -1; });
+  }
+  if(q.type==='numeric_entry') return normaliseNE(given) === normaliseNE(q.answer);
+  return given === q.answer;
+}
+
+function submitSection(autoSubmit){
+  clearInterval(state.timerInterval);
+  saveQTime(); closeReview();
+  var list = qlist();
+  var perQ = list.map(function(q,i){
+    var given = state.answers[i];
+    return { q:q, i:i, given:given,
+             correct: checkAnswer(q, given),
+             skipped: !isAnswered(i),
+             time: state.timings[i]||0 };
+  });
+  var correct = perQ.filter(function(r){ return r.correct; }).length;
+  var limit = (state.data.meta && state.data.meta.time_limit_seconds) || SECTION_SECONDS;
+  var timeUsed = limit - Math.max(0, state.timeLeft);
+  state.result = { perQ:perQ, correct:correct, total:list.length, timeUsed:timeUsed, limit:limit, autoSubmit:autoSubmit };
+  saveAttempt(buildSubmissionPayload());
+  renderResults();
+  track('sectional_completed', {topic:state.topic.id, set:state.setNo, correct:correct, total:list.length});
+  goTo('screen-results');
+}
+
+// ─── ATTEMPT SUBMISSION (same contract as full_mock.html) ─────────────────────
+const SUBMISSION_ENDPOINT = 'https://gre-auth.goenka-aditya-kol.workers.dev/mock/submission';
+
+function buildSubmissionPayload(){
+  var r = state.result;
+  var results = r.perQ.map(function(x){
+    return {
+      id: x.q.id,
+      correct: x.correct,
+      skipped: x.skipped,
+      time_taken_seconds: x.time,
+      topic: (x.q.tags && x.q.tags[0]) || 'general',
+      subtopic: (x.q.tags && x.q.tags[1]) || '',
+      difficulty: x.q.difficulty,
+      type: x.q.type,
+      given_answer: Array.isArray(x.given) ? x.given.join(',') : (x.given == null ? '' : x.given),
+      correct_answer: Array.isArray(x.q.answer) ? x.q.answer.join(',') : x.q.answer
+    };
+  });
+  var skipped = results.filter(function(x){ return x.skipped; }).length;
+  var pct = Math.round(r.correct / r.total * 100);
+  return {
+    event_id: 'sectional_' + state.topic.id + '_set' + state.setNo,
+    event_name: state.topic.name + ' — Sectional Set ' + state.setNo,
+    event_type: 'sectional',
+    submitted_at: new Date().toISOString(),
+    student: { name: '', email: '', batch: '' },
+    score: pct,
+    total_questions: r.total,
+    accuracy: pct,
+    correct: r.correct,
+    incorrect: r.total - r.correct - skipped,
+    skipped: skipped,
+    total_time_seconds: r.timeUsed,
+    average_time_seconds: Math.round(r.timeUsed / r.total),
+    sectional: { topic: state.topic.id, topic_name: state.topic.name, set: state.setNo, time_limit_seconds: r.limit, auto_submitted: !!r.autoSubmit },
+    diagnosis: null,
+    results: results
+  };
+}
+
+function saveAttempt(payload){
+  try {
+    fetch(SUBMISSION_ENDPOINT, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ result: payload })
+    }).catch(function(e){ console.warn('Could not save sectional attempt', e); });
+  } catch(e) { console.warn('Could not save sectional attempt', e); }
+}
+
+// Export the attempt in the shape gre-pro/analytics.html ingests.
+function downloadResults(){
+  var payload = buildSubmissionPayload();
+  var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
+  var a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  var d = new Date();
+  var stamp = d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+  a.download = 'sectional_' + state.topic.id + '_set' + state.setNo + '_' + stamp + '.json';
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(a.href); }, 1000);
+  track('sectional_results_downloaded', { topic: state.topic.id, set: state.setNo });
+}
+
+function bandFor(pct){
+  if(pct>=90) return {label:'Exam ready on this topic', bg:'#e5f2ea', fg:'#1e7e46'};
+  if(pct>=75) return {label:'Strong — tighten the edge cases', bg:'#e8f1fa', fg:'#1a5da6'};
+  if(pct>=50) return {label:'Developing — work the traps', bg:'#f7efdb', fg:'#a97b12'};
+  return {label:'Needs foundation work', bg:'#f9e9e6', fg:'#b3402e'};
+}
+function fmtTime(s){
+  var m = Math.floor(s/60), r = s%60;
+  return m + 'm ' + String(r).padStart(2,'0') + 's';
+}
+
+function renderResults(){
+  var r = state.result, pct = Math.round(r.correct/r.total*100), band = bandFor(pct);
+  document.getElementById('res-title').textContent = state.topic.name + ' — Set ' + state.setNo;
+  document.getElementById('res-subtitle').textContent = r.autoSubmit
+    ? 'Time expired — the section submitted automatically.'
+    : 'Section submitted.';
+  document.getElementById('res-correct').textContent = r.correct;
+  document.getElementById('res-total').textContent = r.total;
+  var bandEl = document.getElementById('res-band');
+  bandEl.textContent = pct + '% · ' + band.label;
+  bandEl.style.background = band.bg; bandEl.style.color = band.fg;
+
+  var skipped = r.perQ.filter(function(x){ return x.skipped; }).length;
+  var wrong = r.total - r.correct - skipped;
+  var avg = Math.round(r.timeUsed/r.total);
+  var cards = [['Correct', r.correct], ['Incorrect', wrong], ['Skipped', skipped],
+               ['Time used', fmtTime(r.timeUsed)], ['Avg / question', fmtTime(avg)]];
+  document.getElementById('res-stats').innerHTML = cards.map(function(c){
+    return '<div class="stat-card"><div class="stat-val">' + c[1] + '</div><div class="stat-lbl">' + c[0] + '</div></div>';
+  }).join('');
+
+  // Concept breakdown from the first tag on each question
+  var byTag = {};
+  r.perQ.forEach(function(x){
+    var tag = (x.q.tags && x.q.tags[0]) || 'general';
+    if(!byTag[tag]) byTag[tag] = {n:0, c:0};
+    byTag[tag].n++; if(x.correct) byTag[tag].c++;
+  });
+  var tagRows = Object.keys(byTag).map(function(k){ return [k, byTag[k]]; })
+    .sort(function(a,b){ return (a[1].c/a[1].n) - (b[1].c/b[1].n); })
+    .map(function(e){
+      var tag = e[0], v = e[1], p = Math.round(v.c/v.n*100);
+      var col = p>=75 ? 'var(--gre-success)' : (p>=50 ? 'var(--gre-blue)' : 'var(--gre-mark)');
+      return '<div class="topic-row"><div class="topic-name">' + escapeHtml(tag.replace(/-/g,' ')) + '</div>' +
+        '<div class="topic-bar-bg"><div class="topic-bar-fill" style="width:' + p + '%;background:' + col + '"></div></div>' +
+        '<div class="topic-pct">' + v.c + '/' + v.n + '</div></div>';
+    }).join('');
+  document.getElementById('res-concepts').innerHTML =
+    '<h3 style="font-size:15px;margin:0 0 12px;color:var(--gre-text);">By concept</h3>' + tagRows;
+
+  // Diagnosis
+  var misses = r.perQ.filter(function(x){ return !x.correct; });
+  var diag;
+  if(!misses.length){
+    diag = '<div class="diag-text"><strong>Clean sweep.</strong> Every question correct, with ' +
+      fmtTime(r.limit - r.timeUsed) + ' left on the clock. This topic is not what is holding your score down — move to a harder set or a different topic.</div>';
+  } else {
+    var worst = misses.slice().sort(function(a,b){ return b.time - a.time; })[0];
+    var sk = misses.filter(function(x){ return x.skipped; }).length;
+    diag = '<div class="diag-text"><strong>Where this section went.</strong> You missed ' + misses.length + ' of ' + r.total +
+      (sk ? ', and ' + sk + ' of those you never answered' : '') +
+      '. The one that cost you most time was <strong>Q' + (worst.i+1) + '</strong> at ' + fmtTime(worst.time) + '.' +
+      (worst.q.trap ? '<br><br><em>The trap there:</em> ' + escapeHtml(worst.q.trap) : '') +
+      '<br><br>Read every explanation below — on a drill set the review is the point, not the score.</div>';
+  }
+  document.getElementById('res-diagnosis').innerHTML = diag;
+
+  document.getElementById('result-upgrade').innerHTML = '';
+
+  document.getElementById('review-section').style.display = 'none';
+  document.querySelector('.result-actions .btn-primary').textContent = 'Review Every Question';
+}
+
+function toggleReview(){
+  var sec = document.getElementById('review-section');
+  var btn = document.querySelector('.result-actions .btn-primary');
+  if(sec.style.display === 'none'){
+    var r = state.result;
+    document.getElementById('review-list').innerHTML = r.perQ.map(function(x){
+      var status = x.skipped ? 'skipped' : (x.correct ? 'correct' : 'incorrect');
+      var givenStr = Array.isArray(x.given) ? x.given.join(', ') : (x.given || '—');
+      var correctStr = Array.isArray(x.q.answer) ? x.q.answer.join(', ') : x.q.answer;
+      var optsHtml = (x.q.options && x.q.options.length)
+        ? '<div class="review-answers" style="flex-direction:column;align-items:flex-start;gap:3px;">' +
+          x.q.options.map(function(o){ return '<span style="font-size:13px;color:var(--gre-text2)">' + escapeHtml(o) + '</span>'; }).join('') +
+          '</div>'
+        : '';
+      return '<div class="review-item ' + status + '">' +
+        '<div class="review-q"><strong>Q' + (x.i+1) + '.</strong> ' + escapeHtml(x.q.question) + '</div>' +
+        optsHtml +
+        '<div class="review-answers">' +
+          '<span>Your answer: <span class="' + (x.correct?'correct-ans':'wrong-ans') + '">' + escapeHtml(givenStr) + '</span></span>' +
+          '<span>Correct: <span class="correct-ans">' + escapeHtml(correctStr) + '</span></span>' +
+          '<span style="color:var(--gre-text3)">' + fmtTime(x.time) + '</span>' +
+        '</div>' +
+        (x.q.explanation ? '<div class="review-exp">' + escapeHtml(x.q.explanation) + '</div>' : '') +
+        (x.q.trap ? '<div class="review-trap">⚠ Trap: ' + escapeHtml(x.q.trap) + '</div>' : '') +
+      '</div>';
+    }).join('');
+    if(window.GREMath) GREMath.renderIn(document.getElementById('review-list'));
+    sec.style.display = 'block';
+    btn.textContent = 'Hide Review';
+    sec.scrollIntoView({behavior:'smooth'});
+  } else {
+    sec.style.display = 'none';
+    btn.textContent = 'Review Every Question';
+  }
+}
+
+function restartSet(){ beginSection(); }
+function backToTopics(){ clearInterval(state.timerInterval); goTo('screen-topics'); }
+
+// Guard against losing an in-progress section
+window.addEventListener('beforeunload', function(e){
+  if(document.getElementById('screen-exam').classList.contains('active')){
+    e.preventDefault(); e.returnValue = '';
+  }
+});
+
+function loadCatalogue(){
+  fetch('bank/sectional/index.json')
+    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    .then(function(idx){
+      TOPICS = idx.topics || [];
+      if(idx.section_size) SECTION_SIZE = idx.section_size;
+      if(idx.time_limit_seconds) SECTION_SECONDS = idx.time_limit_seconds;
+      renderTopicGrid();
+    })
+    .catch(function(e){
+      document.getElementById('topic-grid').innerHTML =
+        '<div class="error-box">Could not load the sectional catalogue (' + escapeHtml(e.message) + ').' +
+        '<br><br>If you opened this page directly from your computer, serve it through a local web server instead — browsers block file reads from <code>file://</code> pages.</div>';
+    });
+}
+
+loadCatalogue();
+</script>
+</body>
+</html>

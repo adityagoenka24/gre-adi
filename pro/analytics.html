@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Analytics — GRE Quant Pro</title>
 <meta name="description" content="Upload your GRE Quant Pro session and mock result files to see your combined analytics: accuracy, topic breakdown, timing, and weak areas.">
-<link rel="stylesheet" href="gre-exam-theme.css">
+<link rel="stylesheet" href="../gre-exam-theme.css">
 <style>
   .an-wrap{max-width:1000px;margin:0 auto;padding:28px 20px 80px;}
   .an-sub{color:var(--gre-text2);font-size:15px;max-width:620px;margin-bottom:28px;}
@@ -115,7 +115,7 @@ function normalize(obj, fileName) {
     }));
     out.push(...recs);
     store.sessions.push({
-      source: obj.event_type === 'full_mock' ? 'Full Mock' : 'Event Mock',
+      source: SOURCE_LABELS[obj.event_type] || 'Event Mock',
       title: obj.event_name || obj.event_id || fileName,
       name: obj.student?.name || '', date: fmtDate(obj.submitted_at),
       score: (obj.correct ?? recs.filter(r=>r.correct).length) + ' / ' + (obj.total_questions ?? recs.length),
@@ -156,6 +156,7 @@ function normalize(obj, fileName) {
   return out;
 }
 
+const SOURCE_LABELS = { full_mock: 'Full Mock', sectional: 'Sectional Test', team_battle: 'Team Battle' };
 const cap = s => s ? String(s).replace(/_/g,' ').replace(/\b\w/g,c=>c.toUpperCase()).trim() : '';
 const normDiff = d => d ? cap(d) : '';
 const normType = t => ({mcq:'Multiple Choice',quantitative_comparison:'Quant Comparison',numeric_entry:'Numeric Entry',multiple_answer:'Multiple Answer'})[t] || cap(t);

@@ -1,0 +1,298 @@
+/* ============================================================
+   GRE Quant Pro — Diagnostic Planner
+   Extends site.css. Every colour is a site.css token; nothing new
+   is invented here except the two validated chart hues in charts.js.
+   Light only — the site has no dark mode.
+   ============================================================ */
+
+.dx { max-width: 880px; margin: 0 auto; padding: 0 24px }
+.dx-wide { max-width: 1040px }
+
+/* ---------- screens ---------- */
+.dx-screen { display: none; animation: dxIn .4s ease both }
+.dx-screen.is-on { display: block }
+@keyframes dxIn { from { opacity: 0; transform: translateY(8px) } to { opacity: 1; transform: none } }
+
+/* ---------- landing ---------- */
+.dx-hero { text-align: center; padding: 56px 0 8px }
+.dx-hero h1 {
+  font-family: var(--fd); font-weight: 600; letter-spacing: -.02em;
+  font-size: clamp(30px, 5.2vw, 50px); line-height: 1.1; color: var(--navy);
+}
+.dx-hero h1 em { font-style: italic; color: var(--accent) }
+.dx-hero p { margin: 18px auto 0; max-width: 620px; font-size: 18px; color: var(--ink2) }
+
+/* Visually hidden but still focusable and still clickable by its label.
+   display:none would break both the label click in Safari and keyboard
+   access. */
+.dx-file {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+.dx-file:focus-visible + .dx-drop { outline: 3px solid #b7d0e8; outline-offset: 2px }
+
+.dx-drop {
+  display: block;
+  margin: 34px 0 18px; padding: 46px 28px; text-align: center; cursor: pointer;
+  background: var(--card); border: 2px dashed var(--line2); border-radius: var(--radius-lg);
+  transition: border-color .15s, background .15s, transform .15s;
+}
+.dx-drop:hover, .dx-drop:focus-visible { border-color: var(--accent); background: var(--accent-soft); transform: translateY(-2px) }
+.dx-drop.is-over { border-color: var(--accent); background: var(--accent-soft); border-style: solid }
+.dx-drop-icon { display: block; color: var(--accent); margin-bottom: 14px }
+.dx-drop-title { display: block; font-size: 20px; font-weight: 800; color: var(--navy) }
+.dx-drop-sub { display: block; margin-top: 6px; font-size: 15px; color: var(--ink3) }
+.dx-drop-or { margin-top: -4px; margin-bottom: 18px; text-align: center; font-size: 14px; color: var(--ink3) }
+.dx-drop-or button {
+  background: none; border: none; color: var(--blue); font-weight: 700;
+  text-decoration: underline; font-size: 14px; padding: 0;
+}
+
+.dx-trust { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px 26px; margin-top: 4px }
+.dx-trust span { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; color: var(--ink2); font-weight: 600 }
+.dx-trust svg { color: var(--green); flex: none }
+
+.dx-help { margin-top: 34px; border-top: 1px solid var(--line); padding-top: 22px }
+.dx-help summary { cursor: pointer; font-weight: 700; color: var(--navy); font-size: 15px }
+.dx-help p { margin-top: 12px; color: var(--ink2); font-size: 15px; line-height: 1.7 }
+
+/* ---------- parsing ---------- */
+.dx-parse { padding: 80px 0; text-align: center }
+.dx-steps { max-width: 380px; margin: 28px auto 0; text-align: left }
+.dx-step {
+  display: flex; align-items: center; gap: 12px; padding: 9px 0;
+  font-size: 15px; color: var(--ink3); opacity: .45; transition: opacity .3s, color .3s;
+}
+.dx-step.is-on { opacity: 1; color: var(--ink) }
+.dx-step.is-done { opacity: 1; color: var(--ink2) }
+.dx-dot { width: 18px; height: 18px; flex: none; border-radius: 50%; border: 2px solid var(--line2); position: relative }
+.dx-step.is-on .dx-dot { border-color: var(--accent); animation: dxPulse 1.1s ease-in-out infinite }
+.dx-step.is-done .dx-dot { border-color: var(--green); background: var(--green) }
+.dx-step.is-done .dx-dot::after {
+  content: ''; position: absolute; left: 4px; top: 1px; width: 4px; height: 8px;
+  border: solid #fff; border-width: 0 2px 2px 0; transform: rotate(45deg);
+}
+@keyframes dxPulse { 0%,100% { box-shadow: 0 0 0 0 rgba(198,93,33,.35) } 50% { box-shadow: 0 0 0 6px rgba(198,93,33,0) } }
+.dx-bar { max-width: 380px; height: 5px; margin: 26px auto 0; background: var(--line); border-radius: 3px; overflow: hidden }
+.dx-bar i { display: block; height: 100%; width: 0; background: var(--accent); border-radius: 3px; transition: width .35s ease }
+
+/* ---------- confirm grid ---------- */
+.dx-confirm-head { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; justify-content: space-between; margin-bottom: 18px }
+.dx-flag {
+  display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px;
+  font-size: 14px; font-weight: 700;
+}
+.dx-flag.ok { background: var(--green-soft); color: var(--green) }
+.dx-flag.warn { background: var(--gold-soft); color: var(--gold) }
+.dx-flag.bad { background: var(--red-soft); color: var(--red) }
+
+.dx-grid { width: 100%; border-collapse: collapse; font-size: 14px; background: var(--card); border-radius: var(--radius); overflow: hidden }
+.dx-grid th {
+  text-align: left; padding: 11px 10px; background: var(--paper2); color: var(--ink2);
+  font-size: 12px; text-transform: uppercase; letter-spacing: .06em; font-weight: 800;
+  position: sticky; top: 0; z-index: 2;
+}
+.dx-grid td { padding: 6px 10px; border-top: 1px solid var(--line) }
+.dx-grid tr.dx-sec td { background: var(--blue-soft); font-weight: 800; color: var(--navy); font-size: 13px }
+.dx-grid select, .dx-grid input {
+  width: 100%; padding: 6px 8px; border: 1px solid var(--line2); border-radius: 6px;
+  font-family: var(--ff); font-size: 14px; background: #fff; color: var(--ink);
+}
+.dx-grid input { font-family: var(--fm) }
+.dx-grid .needs select, .dx-grid .needs input { border-color: var(--gold); background: var(--gold-soft); border-width: 2px }
+.dx-grid-scroll { max-height: 62vh; overflow: auto; border: 1px solid var(--line); border-radius: var(--radius) }
+
+.dx-opts { display: flex; flex-wrap: wrap; gap: 20px; margin: 22px 0; padding: 20px; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius) }
+.dx-opt { flex: 1 1 200px }
+.dx-opt label { display: block; font-size: 13px; font-weight: 800; color: var(--ink2); margin-bottom: 7px; text-transform: uppercase; letter-spacing: .05em }
+.dx-seg { display: flex; gap: 6px; flex-wrap: wrap }
+.dx-seg button {
+  padding: 9px 15px; border: 1.5px solid var(--line2); background: #fff; border-radius: 8px;
+  font-weight: 700; font-size: 14px; color: var(--ink2); font-family: var(--ff);
+}
+.dx-seg button[aria-pressed="true"] { border-color: var(--navy); background: var(--navy); color: #fff }
+.dx-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px }
+
+/* ---------- report ---------- */
+.dx-band { padding: 44px 0; border-bottom: 1px solid var(--line) }
+.dx-band:last-child { border-bottom: none }
+.dx-band h2 {
+  font-family: var(--fd); font-weight: 600; font-size: clamp(22px, 3.2vw, 30px);
+  color: var(--navy); letter-spacing: -.01em; margin-bottom: 8px;
+}
+.dx-band .dx-sub { color: var(--ink2); font-size: 16px; line-height: 1.7; max-width: 68ch }
+
+.dx-verdict { text-align: center; padding: 52px 0 40px }
+.dx-arch { font-family: var(--fm); font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--accent); font-weight: 500 }
+.dx-verdict h1 {
+  font-family: var(--fd); font-weight: 600; font-size: clamp(27px, 4.6vw, 44px);
+  line-height: 1.15; color: var(--navy); margin: 12px auto 0; max-width: 20ch; letter-spacing: -.02em;
+}
+.dx-verdict .dx-ev { margin: 18px auto 0; max-width: 60ch; color: var(--ink2); font-size: 16.5px; line-height: 1.7 }
+
+.dx-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: 14px; margin-top: 32px }
+.dx-tile { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 20px 18px; text-align: center }
+.dx-tile-v {
+  /* Hero/stat figures use the sans, never the display serif, and
+     proportional figures — tabular-nums looks loose at this size. */
+  font-family: var(--ff); font-weight: 800; font-size: 34px; color: var(--navy); line-height: 1;
+}
+.dx-tile-l { margin-top: 8px; font-size: 13px; color: var(--ink3); font-weight: 600 }
+.dx-tile.alert .dx-tile-v { color: var(--accent) }
+
+.dx-second { margin-top: 26px; padding: 18px 20px; background: var(--paper2); border-radius: var(--radius); border-left: 3px solid var(--accent) }
+.dx-second b { color: var(--navy) }
+.dx-second p { color: var(--ink2); font-size: 15px; line-height: 1.65; margin-top: 4px }
+
+/* charts */
+.dx-svg { width: 100%; height: auto; display: block; margin-top: 18px; overflow: visible }
+.dx-lbl { font-family: var(--ff); font-size: 14px; font-weight: 600 }
+.dx-lbl-strong { font-family: var(--ff); font-size: 14px; font-weight: 800 }
+.dx-tick { font-family: var(--ff); font-size: 12px; font-weight: 600 }
+.dx-zone { font-family: var(--fm); font-size: 11px; letter-spacing: .08em; text-transform: uppercase }
+.dx-pt { cursor: pointer }
+.dx-pt:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px }
+.dx-pt:hover circle:last-child { r: 7 }
+
+.dx-tip {
+  position: fixed; z-index: 999; display: none; pointer-events: none;
+  background: var(--navy-deep); color: #f3efe7; padding: 9px 12px; border-radius: 8px;
+  font-size: 13px; line-height: 1.5; box-shadow: var(--shadow-lg); max-width: 250px;
+}
+.dx-tip b { color: #fff }
+.dx-legend { display: flex; flex-wrap: wrap; gap: 8px 20px; align-items: center; margin-top: 14px }
+.dx-key { display: inline-flex; align-items: center; gap: 7px; font-size: 14px; font-weight: 700; color: var(--ink2) }
+.dx-key-note { font-size: 13px; color: var(--ink3) }
+
+.dx-toggle { margin-top: 16px }
+.dx-toggle summary { cursor: pointer; font-size: 14px; font-weight: 700; color: var(--blue) }
+.dx-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px }
+.dx-table caption { text-align: left; font-size: 13px; color: var(--ink3); padding-bottom: 8px }
+.dx-table th { text-align: left; padding: 8px; border-bottom: 2px solid var(--line2); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink2) }
+.dx-table td { padding: 7px 8px; border-bottom: 1px solid var(--line); font-variant-numeric: tabular-nums }
+
+.dx-note { margin-top: 20px; font-size: 14px; color: var(--ink3); line-height: 1.7 }
+.dx-note ul { margin: 8px 0 0 18px }
+.dx-note li { margin-top: 4px }
+
+/* narrowing chips */
+.dx-chips { display: flex; flex-wrap: wrap; gap: 9px; margin-top: 16px }
+.dx-chip {
+  padding: 10px 16px; border: 1.5px solid var(--line2); background: #fff; border-radius: 999px;
+  font-weight: 700; font-size: 14px; color: var(--ink2); font-family: var(--ff); cursor: pointer;
+  transition: border-color .15s, background .15s, color .15s;
+}
+.dx-chip:hover { border-color: var(--accent) }
+.dx-chip[aria-pressed="true"] { border-color: var(--accent); background: var(--accent); color: #fff }
+
+/* weeks */
+.dx-week { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; margin-top: 16px }
+.dx-week-n { font-family: var(--fm); font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); font-weight: 500 }
+.dx-week h3 { font-family: var(--fd); font-weight: 600; font-size: 22px; color: var(--navy); margin-top: 5px }
+.dx-why { margin-top: 10px; color: var(--ink2); font-size: 15.5px; line-height: 1.7; padding-left: 14px; border-left: 3px solid var(--blue-soft) }
+.dx-items { list-style: none; margin-top: 18px; display: grid; gap: 9px }
+.dx-item { display: flex; gap: 12px; align-items: flex-start; padding: 12px 14px; background: var(--paper); border-radius: var(--radius-sm) }
+.dx-item.is-locked { background: var(--gold-soft) }
+.dx-ico { flex: none; width: 26px; height: 26px; border-radius: 7px; display: grid; place-items: center; background: var(--blue-soft); color: var(--blue); font-size: 13px; font-weight: 800 }
+.dx-item.is-rule .dx-ico { background: var(--accent-soft); color: var(--accent) }
+.dx-item.is-locked .dx-ico { background: #f0e3c2; color: var(--gold) }
+.dx-item-b { min-width: 0; flex: 1 }
+/* these are spans inside a span, so they need to be made block or the
+   title and its detail run together on one line */
+.dx-item-t { display: block; font-weight: 700; color: var(--ink); font-size: 15px }
+.dx-item-d { display: block }
+.dx-item-t a { color: var(--navy); text-decoration-color: var(--line2) }
+.dx-item-d { margin-top: 3px; font-size: 14px; color: var(--ink3); line-height: 1.55 }
+.dx-lock { display: inline-block; margin-left: 7px; padding: 2px 8px; border-radius: 999px; background: var(--gold); color: #fff; font-size: 11px; font-weight: 800; letter-spacing: .03em; vertical-align: 1px }
+.dx-check { margin-top: 16px; padding: 12px 14px; background: var(--green-soft); border-radius: var(--radius-sm); font-size: 14.5px; color: #146a3c; line-height: 1.6 }
+.dx-check b { color: var(--green) }
+
+.dx-upsell { margin-top: 26px; padding: 26px; background: var(--navy); border-radius: var(--radius-lg); color: #e8dfd0; text-align: center }
+.dx-upsell p { font-size: 16.5px; line-height: 1.7; max-width: 60ch; margin: 0 auto }
+.dx-upsell b { color: #fff }
+.dx-upsell .btn { margin-top: 18px }
+
+.dx-foot-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 30px }
+
+/* ---------- mobile ---------- */
+@media (max-width: 700px) {
+  .dx, .dx-wide { padding: 0 16px }
+  .dx-hero { padding: 34px 0 4px }
+  .dx-drop { padding: 34px 18px }
+  .dx-tiles { grid-template-columns: repeat(2, 1fr) }
+  .dx-week { padding: 18px }
+  .dx-verdict { padding: 34px 0 28px }
+  /* the 27-row grid becomes cards rather than a sideways-scrolling table */
+  .dx-grid-scroll { max-height: none; border: none }
+  .dx-grid, .dx-grid tbody, .dx-grid tr, .dx-grid td { display: block; width: 100% }
+  .dx-grid thead { display: none }
+  .dx-grid tr { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 12px; margin-bottom: 10px }
+  .dx-grid tr.dx-sec { background: var(--blue-soft); padding: 9px 12px }
+  .dx-grid td { border: none; padding: 5px 0; display: grid; grid-template-columns: 96px 1fr; gap: 10px; align-items: center }
+  .dx-grid td::before { content: attr(data-l); font-size: 12px; font-weight: 800; color: var(--ink3); text-transform: uppercase; letter-spacing: .05em }
+  .dx-grid tr.dx-sec td { grid-template-columns: 1fr }
+  .dx-grid tr.dx-sec td::before { content: none }
+}
+
+/* ---------- print / PDF ----------
+   "Download as PDF" is the browser's own print-to-PDF. That keeps the
+   whole plan as real selectable text at full resolution, with no
+   library and no server — html2canvas would give a fuzzier, heavier
+   result. So the print sheet IS the PDF design, not an afterthought. */
+
+/* the masthead exists only on paper */
+.dx-print-head { display: none }
+
+@media print {
+  nav, footer, .top-bar, .mobile-menu, .hamburger,
+  .dx-foot-actions, #dxPrintHint, .dx-upsell, .glow-1, .glow-2,
+  .dx-key-note,           /* "hover for detail" means nothing on paper */
+  #dxNarrowBand           /* tap-to-narrow chips are interactive only */
+  { display: none !important }
+
+  body { background: #fff; font-size: 11pt }
+  @page { margin: 14mm 12mm }
+  .dx, .dx-wide { max-width: none; padding: 0 }
+
+  .dx-print-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 16px; padding-bottom: 9px; margin-bottom: 6px;
+    border-bottom: 2px solid var(--navy);
+  }
+  .dx-print-brand { font-family: var(--fd); font-weight: 600; font-size: 16px; color: var(--navy) }
+  .dx-print-brand em { font-style: italic; color: var(--accent) }
+  .dx-print-meta { font-size: 10px; color: var(--ink3); display: flex; gap: 10px }
+
+  .dx-verdict { padding: 16px 0 12px }
+  .dx-band { padding: 16px 0 }
+  .dx-band h2 { break-after: avoid }
+
+  /* four across, so they never wrap 3 + 1 */
+  .dx-tiles { grid-template-columns: repeat(4, 1fr); gap: 8px; margin-top: 14px }
+  .dx-tile { padding: 12px 8px; border: 1px solid var(--line2) }
+  .dx-tile-v { font-size: 21px }
+  .dx-tile-l { font-size: 9.5px }
+
+  .dx-week, .dx-tile, .dx-item, .dx-second, .dx-svg { break-inside: avoid }
+  .dx-week { border: 1px solid var(--line2); box-shadow: none; margin-top: 10px; padding: 14px }
+
+  /* the question table prints only if the reader opened it */
+  .dx-toggle summary { display: none }
+  .dx-toggle:not([open]) { display: none }
+
+  a { text-decoration: none; color: var(--navy) }
+  a[href]::after { content: '' }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dx-screen, .dx-grow { animation: none !important }
+}
+.dx-grow { animation: dxGrow .55s cubic-bezier(.2,.7,.3,1) both }
+@keyframes dxGrow { from { width: 0 } }
+
+/* ---------- boot failure ---------- */
+.dx-boot{max-width:660px;margin:28px auto 0;padding:16px 20px;background:var(--red-soft);
+  border:1px solid #e9c4bc;border-radius:var(--radius);color:var(--red);font-size:15px;line-height:1.6}
+.dx-boot b{display:block;margin-bottom:4px}
+.dx-boot span{color:var(--ink2)}
+.dx-boot a{color:var(--blue);font-weight:700}

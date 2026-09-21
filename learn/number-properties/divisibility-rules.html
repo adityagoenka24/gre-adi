@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Divisibility Rules · GRE Quant Concept Notes</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/x-icon" href="/favicon.ico">
+<link rel="canonical" href="https://grequantpro.com/learn/number-properties/divisibility-rules.html">
+<meta name="description" content="Divisibility Rules — GRE Quant concept note: core idea, must-know rules, worked examples, the traps and speed tricks.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GRE Quant Pro">
+<meta property="og:title" content="Divisibility Rules · GRE Quant Concept Notes">
+<meta property="og:description" content="Divisibility Rules — GRE Quant concept note: core idea, must-know rules, worked examples, the traps and speed tricks.">
+<meta property="og:url" content="https://grequantpro.com/learn/number-properties/divisibility-rules.html">
+<meta property="og:image" content="https://grequantpro.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450..700;1,9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/learn/learn.css">
+</head>
+<body>
+<div class="glow-1"></div><div class="glow-2"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GRE Quant <em>Pro</em></a>
+    <div class="nav-links">
+      <a href="/index.html#how">How it works</a>
+      <a href="/learn/">Concept Notes</a>
+      <a href="/diagnostic.html">Diagnostic</a>
+      <a href="/index.html#free">Free Practice</a>
+      <a href="/sectional.html">Sectionals</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/pro" class="nav-cta-ghost">Log in</a>
+      <a href="/pricing.html" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — ₹499</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/index.html#how">How it works</a>
+  <a href="/learn/">Concept Notes</a>
+  <a href="/diagnostic.html">Diagnostic</a>
+  <a href="/index.html#free">Free Practice</a>
+  <a href="/sectional.html">Sectional Tests</a>
+  <a href="/pricing.html">Pricing</a>
+  <a href="/pro">Log in to Pro</a>
+  <a href="/pricing.html" style="color:var(--accent);font-weight:800">Get Pro — ₹499 →</a>
+</div>
+
+<main class="lrn-main">
+  <div class="lrn-wrap">
+    <nav class="lrn-crumb" aria-label="Breadcrumb">
+      <a href="/learn/">Concept Notes</a> <span>/</span>
+      <a href="/learn/#number-properties">Number Properties</a>
+    </nav>
+    <article class="lrn-doc">
+      <header class="lrn-head">
+        <h1>Divisibility Rules</h1>
+        <div class="lrn-chips"><span class="lrn-chip">Section: <b>Number Properties</b></span><span class="lrn-chip">GRE frequency: <b>High</b></span></div>
+      </header>
+      <div class="lrn-body"><h2>1. Core Idea</h2>
+<p>A divisibility rule is a shortcut for testing whether <code>d</code> divides <code>N</code> without doing the division. Knowing them turns 30-second computations into 3-second observations.</p>
+<hr />
+<h2>2. Must-Know Rules</h2>
+<table>
+<thead>
+<tr>
+<th>Divisor</th>
+<th>Test</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td>Last digit is even (0, 2, 4, 6, 8)</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Digit sum is divisible by 3</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Last <strong>two</strong> digits form a number divisible by 4</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Last digit is 0 or 5</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Divisible by both 2 and 3</td>
+</tr>
+<tr>
+<td>8</td>
+<td>Last <strong>three</strong> digits form a number divisible by 8</td>
+</tr>
+<tr>
+<td>9</td>
+<td>Digit sum is divisible by 9</td>
+</tr>
+<tr>
+<td>10</td>
+<td>Last digit is 0</td>
+</tr>
+<tr>
+<td>11</td>
+<td>Alternating digit sum is divisible by 11</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Divisible by both 3 and 4</td>
+</tr>
+<tr>
+<td>25</td>
+<td>Last two digits are 00, 25, 50 or 75</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The 11 rule in detail.</strong> Add digits in odd positions, subtract digits in even positions (from the right). If the result is 0 or a multiple of 11, the number is divisible by 11.</p>
+<p>For 82,918: (8 + 9 + 8) - (2 + 1) = 25 - 3 = 22. 22 is a multiple of 11, so <strong>82,918 is divisible by 11</strong>.</p>
+<p><strong>Combining rules — the essential caution.</strong> To test divisibility by a composite d, split it into <strong>coprime</strong> factors.</p>
+<ul>
+<li>12 = 3 x 4 (coprime) -&gt; test 3 and 4. Valid.</li>
+<li>12 = 2 x 6 (NOT coprime) -&gt; testing 2 and 6 is not sufficient. 18 passes both but 18/12 is not an integer.</li>
+</ul>
+<p><strong>Divisibility of expressions.</strong> If d divides a and d divides b, then d divides a + b, a - b, and ka for any integer k.</p>
+<hr />
+<h2>3. Worked Examples</h2>
+<h3>Example 1 — Finding a missing digit</h3>
+<p><em>For what digit x is the number 4,3x2 divisible by 9?</em></p>
+<p>Digit sum = 4 + 3 + x + 2 = 9 + x.</p>
+<p>For divisibility by 9, 9 + x must be a multiple of 9. So x = 0 or x = 9.</p>
+<p><strong>x = 0 or 9.</strong></p>
+<h3>Example 2 — Composite divisor</h3>
+<p><em>Is 3,624 divisible by 12?</em></p>
+<p>Test 3: digit sum = 3 + 6 + 2 + 4 = 15, divisible by 3. Yes.</p>
+<p>Test 4: last two digits are 24, divisible by 4. Yes.</p>
+<p>3 and 4 are coprime, so <strong>yes, 3,624 is divisible by 12</strong>. (3624/12 = 302.)</p>
+<h3>Example 3 — Divisibility of an expression</h3>
+<p><em>If n is divisible by 6, is n^2 + 3n divisible by 6?</em></p>
+<p>n = 6k, so n^2 + 3n = n(n + 3) = 6k(6k + 3) = 6 x k(6k+3).</p>
+<p>The factor 6 is explicit, so <strong>yes</strong>.</p>
+<hr />
+<h2>4. GRE Traps</h2>
+<ul>
+<li><strong>Testing 12 as 2 and 6.</strong> The factors must be coprime. Use 3 and 4.</li>
+<li><strong>Confusing the 4 rule with the 2 rule.</strong> Divisibility by 4 needs the last <em>two</em> digits, not just the last.</li>
+<li><strong>Digit sum rule applied to 4 or 8.</strong> It only works for 3 and 9.</li>
+<li><strong>Assuming divisibility of a sum implies divisibility of each term.</strong> 7 divides 3 + 4 but divides neither 3 nor 4.</li>
+<li><strong>Zero.</strong> 0 is divisible by every non-zero integer. It is also even.</li>
+<li><strong>Negative numbers.</strong> -12 is divisible by 3. Divisibility is about the remainder being 0, and sign doesn't affect that.</li>
+<li><strong>"Divisible by" vs "a divisor of".</strong> "6 is divisible by 3" and "3 is a divisor of 6" say the same thing; students reverse them under time pressure.</li>
+</ul>
+<hr />
+<h2>5. Speed Tricks</h2>
+<ul>
+<li><strong>Digit sum first.</strong> It settles 3, 9 and (with the 2-test) 6 in one glance.</li>
+<li><strong>For 8, halve three times</strong> or just check the last three digits.</li>
+<li><strong>To test large numbers by 7,</strong> there is a rule (double the last digit, subtract from the rest) but on the GRE it is usually faster to just divide.</li>
+<li><strong>Prime factorise the divisor,</strong> then check each prime power separately: 72 = 8 x 9, so check the last three digits for 8 and the digit sum for 9.</li>
+<li><strong>In "which of the following must be divisible by" questions, prime factorise the given expression</strong> rather than plugging numbers.</li>
+</ul>
+<hr />
+<h2>6. Self-Check</h2>
+<p><strong>Q1.</strong> Is 5,148 divisible by 11?</p>
+<p><strong>Q2.</strong> What is the smallest digit d that makes 27,d4 divisible by 4? (The number is 2, 7, d, 4.)</p>
+<p><strong>Q3.</strong> If n is divisible by both 4 and 6, must n be divisible by 24?</p>
+<details>
+<summary>Answers</summary>
+<p><strong>A1.</strong> Alternating sum from the right: (8 + 1) - (4 + 5) = 9 - 9 = 0. <strong>Yes</strong> (5148 = 11 x 468).</p>
+<p><strong>A2.</strong> Last two digits are "d4". Need d4 divisible by 4: 04, 24, 44, 64, 84 work. Smallest d = <strong>0</strong>.</p>
+<p><strong>A3.</strong> <strong>No.</strong> 12 is divisible by 4 and 6 but not by 24. The correct conclusion is divisibility by LCM(4,6) = 12.</p>
+</details>
+<hr />
+<h2>7. One-Line Summary for the Board</h2>
+<blockquote>
+<p>Digit sum for 3 and 9; last two digits for 4; last three for 8. Split composite divisors into COPRIME factors.</p>
+</blockquote></div>
+      <div class="lrn-res-row"><a class="lrn-res" href="/learn/practice/divisibility-rules.html"><span class="lrn-res-k">Practice sheet</span><span class="lrn-res-t">30 questions, level-wise, full solutions</span></a><a class="lrn-res" href="/gre_practice_logger_free.html?topic=NUM-DIV"><span class="lrn-res-k">Drill this subtopic</span><span class="lrn-res-t">NUM-DIV — timed practice with named traps</span></a></div>
+      <div class="lrn-pn-row"><a class="lrn-pn" href="/learn/number-properties/primes-prime-factorization.html"><span>← Previous</span><b>Primes &amp; Prime Factorization</b></a><a class="lrn-pn lrn-pn-next" href="/learn/number-properties/gcd-lcm.html"><span>Next →</span><b>GCD &amp; LCM</b></a></div>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">GRE Quant <em>Pro</em></div>
+    <div class="footer-links">
+      <a href="/learn/">Concept Notes</a>
+      <a href="/diagnostic.html">Diagnostic</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="mailto:goenka.aditya.kol@gmail.com">Contact</a>
+    </div>
+    <div class="footer-copy">Built by Coach Aditya Goenka · <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById('mobileMenu');
+  var o=m.classList.toggle('open');
+  var h=document.querySelector('.hamburger'); if(h) h.setAttribute('aria-expanded',String(o));
+}
+document.addEventListener('click',function(e){
+  var m=document.getElementById('mobileMenu');
+  if(m.classList.contains('open')&&!m.contains(e.target)&&!e.target.closest('.hamburger')) m.classList.remove('open');
+});
+</script>
+<script src="/analytics.js"></script>
+</body>
+</html>

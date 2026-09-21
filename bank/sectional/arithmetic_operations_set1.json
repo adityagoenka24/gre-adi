@@ -1,0 +1,178 @@
+{
+  "meta": {
+    "topic": "Arithmetic Operations",
+    "subtopic": "Sectional Set 1",
+    "subtopic_id": "SEC-AO",
+    "version": "1.0",
+    "set_number": 1,
+    "access": "free",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": { "easy": 0, "medium": 7, "hard": 5, "extreme_hard": 0 },
+    "type_distribution": { "mcq": 5, "quantitative_comparison": 3, "numeric_entry": 2, "multiple_answer": 2 },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AO-001",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The first term of an infinite sequence is 9, and each term after the first is 6 greater than the preceding term. What is the 48th term of the sequence?",
+      "options": ["A. 279", "B. 285", "C. 291", "D. 297", "E. 333"],
+      "answer": "C",
+      "explanation": "In an arithmetic sequence the nth term equals the first term plus (n - 1) steps of the common difference. Here that gives 9 + (48 - 1) x 6 = 9 + 47 x 6 = 9 + 282 = 291.",
+      "trap": "Students multiply by 48 rather than 47 and answer 297. The 48th term sits only 47 steps past the first, because the first term itself takes no step.",
+      "estimated_time_seconds": 70,
+      "tags": ["sequences", "arithmetic-series"]
+    },
+    {
+      "id": "SEC-AO-002",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If the median of 21 consecutive odd integers is w, what is the least of the 21 integers?",
+      "options": ["A. w - 21", "B. w - 20", "C. w - 19", "D. w - 11", "E. w - 10"],
+      "answer": "B",
+      "explanation": "With 21 numbers listed in order, the median is the 11th, so there are 10 integers below it. Consecutive odd integers step by 2 each time, so the least is w - 10 x 2 = w - 20.",
+      "trap": "Students subtract 10 instead of 20, forgetting that consecutive odd integers step by 2 rather than 1. The same slip makes w - 21 look plausible by treating the count of terms as the distance travelled.",
+      "estimated_time_seconds": 75,
+      "tags": ["consecutive-integers", "median"]
+    },
+    {
+      "id": "SEC-AO-003",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "When the integer n is divided by 45, the remainder is 18. Which of the following must be a divisor of n?\n\nIndicate all such numbers.",
+      "options": ["A. 2", "B. 3", "C. 5", "D. 9", "E. 15"],
+      "answer": ["B", "D"],
+      "explanation": "Write n = 45k + 18 for some integer k. The greatest common divisor of 45 and 18 is 9, so n = 9(5k + 2). That makes 9 a divisor of n for every k, and since 3 divides 9, 3 is always a divisor too. The rest fail on a single counterexample: taking k = 1 gives n = 63, which is odd (ruling out 2), not a multiple of 5 (ruling out 5), and not a multiple of 15.",
+      "trap": "Students factor out only 3 and select B alone, or they test the convenient value k = 0, where n = 18 happens to be even, and wrongly include 2. The guaranteed divisors are exactly the factors of gcd(45, 18) = 9.",
+      "estimated_time_seconds": 90,
+      "tags": ["remainders", "divisibility"]
+    },
+    {
+      "id": "SEC-AO-004",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "n is a positive integer.\nColumn A: The remainder when 7^(4n) is divided by 10\nColumn B: 1",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "The units digit of the powers of 7 cycles with period 4: 7^1 ends in 7, 7^2 in 9, 7^3 in 3, 7^4 in 1, and the pattern then repeats. The remainder on division by 10 is exactly the units digit. Since 4n is a multiple of 4 for every positive integer n, 7^(4n) always lands on the fourth position of the cycle, so its remainder is 1. The quantities are equal.",
+      "trap": "Students test n = 1, find 7^4 = 2,401 with remainder 1, then pick 'cannot be determined' because they are unsure it holds for larger n. The exponent 4n is locked to a multiple of 4, so the cycle position never moves.",
+      "estimated_time_seconds": 85,
+      "tags": ["units-digit", "exponents"]
+    },
+    {
+      "id": "SEC-AO-005",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In a sequence, b(1) = 5, and for each integer n greater than 1:\n\nif n is even, then b(n) = 4 + b(n - 1);\nif n is odd, then b(n) = -9 + b(n - 1).\n\nWhat is the value of b(8)?",
+      "options": null,
+      "answer": "-6",
+      "explanation": "Apply the rule term by term, checking the parity of the index each time. b(1) = 5. b(2) is even-indexed: 4 + 5 = 9. b(3) is odd-indexed: -9 + 9 = 0. b(4) = 4 + 0 = 4. b(5) = -9 + 4 = -5. b(6) = 4 + (-5) = -1. b(7) = -9 + (-1) = -10. b(8) = 4 + (-10) = -6.",
+      "trap": "Students switch rules based on whether the previous term's value is odd or even rather than the index n. The subscript decides which rule applies, not the number sitting in that position.",
+      "estimated_time_seconds": 90,
+      "tags": ["sequences", "recursion"]
+    },
+    {
+      "id": "SEC-AO-006",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "N is an integer between 20 and 100. When N is divided by 6, by 8, and by 9, the remainder is 5 in each case.\nColumn A: The remainder when N is divided by 13\nColumn B: 12",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "If N leaves remainder 5 on division by 6, 8 and 9, then N - 5 is a common multiple of all three. The least common multiple of 6, 8 and 9 is 2^3 x 3^2 = 72, so N = 72k + 5. Between 20 and 100 the only such value is N = 77, since k = 0 gives 5 (too small) and k = 2 gives 149 (too large). Then 77 = 5 x 13 + 12, so the remainder is 12 and the quantities are equal.",
+      "trap": "Students take the least common multiple of 6, 8 and 9 to be 24 or 36 by covering only two of the three divisors, and land on a different N. Building the LCM from prime factors — 2^3 from the 8, 3^2 from the 9 — is what produces 72.",
+      "estimated_time_seconds": 95,
+      "tags": ["lcm", "remainders"]
+    },
+    {
+      "id": "SEC-AO-007",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "k is an integer greater than 1. Which of the following expressions must be divisible by 2?\n\nIndicate all such expressions.",
+      "options": ["A. k^2 + k", "B. k^2 - 1", "C. k^3 - k", "D. k^2 + k + 1", "E. k^4 + k^2"],
+      "answer": ["A", "C", "E"],
+      "explanation": "A factors as k(k + 1), the product of two consecutive integers, so exactly one factor is even and the product is always even. C factors as (k - 1)k(k + 1), three consecutive integers, which likewise must contain an even factor. E factors as k^2(k^2 + 1), and k^2 and k^2 + 1 are consecutive, so one of them is even. B fails: k^2 - 1 = (k - 1)(k + 1), and when k is even both factors are odd — at k = 4 it gives 15. D fails for every k: k(k + 1) is always even, so adding 1 always produces an odd number.",
+      "trap": "Students test only an odd k such as k = 3, where B gives 8 and looks reliably even, and accept it on that single case. Any even k — k = 4 is enough — makes B odd at once.",
+      "estimated_time_seconds": 100,
+      "tags": ["consecutive-integers", "divisibility"]
+    },
+    {
+      "id": "SEC-AO-008",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "What is the remainder when (871,434)^2 is divided by 50?",
+      "options": null,
+      "answer": "6",
+      "explanation": "A number and its remainder behave identically under squaring modulo 50, so reduce the base first. 871,434 = 50 x 17,428 + 34, so it leaves remainder 34. Then 34^2 = 1,156, and 1,156 = 50 x 23 + 6. The remainder is 6.",
+      "trap": "Students try to square 871,434 in full, a twelve-digit computation the GRE never intends, or they reduce modulo 50 only after squaring. Reducing the base to 34 before squaring turns the whole problem into 34^2.",
+      "estimated_time_seconds": 100,
+      "tags": ["remainders", "modular-arithmetic"]
+    },
+    {
+      "id": "SEC-AO-009",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Let q be a prime number less than 100. When q is divided by 5 the remainder is 4, and when q is divided by 7 the remainder is 3. What is the remainder when q is divided by 8?",
+      "options": ["A. 1", "B. 2", "C. 3", "D. 5", "E. 7"],
+      "answer": "C",
+      "explanation": "Handle both conditions together. The integers leaving remainder 3 on division by 7 are 3, 10, 17, 24, 31, ... and the first of these leaving remainder 4 on division by 5 is 24. So q is 24 more than a multiple of 35, giving the candidates 24, 59 and 94 below 100. Of those, 24 = 2^3 x 3 and 94 = 2 x 47 are composite, leaving q = 59, which is prime. Finally 59 = 7 x 8 + 3, so the remainder on division by 8 is 3.",
+      "trap": "Students find one value satisfying both remainder conditions and answer straight from it without testing primality, or they stop at the first candidate, 24. The word 'prime' is what narrows three candidates down to one.",
+      "estimated_time_seconds": 110,
+      "tags": ["remainders", "prime-numbers"]
+    },
+    {
+      "id": "SEC-AO-010",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "The sequence Z(1), Z(2), Z(3), ... is defined by Z(1) = 3 and Z(i + 1) = (1/3)Z(i) for each positive integer i.\nColumn A: Z(5)\nColumn B: (9^4)Z(13)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Each term is one third of the previous one, so Z(i) = 3 x (1/3)^(i - 1) = 3^(2 - i). Column A is therefore Z(5) = 3^(2 - 5) = 3^(-3) = 1/27. For Column B, Z(13) = 3^(2 - 13) = 3^(-11), and 9^4 = (3^2)^4 = 3^8, so Column B = 3^8 x 3^(-11) = 3^(-3) = 1/27. The two quantities are equal.",
+      "trap": "Students see an early term compared against a much later one in a decreasing sequence and assume Column A must win, without converting 9^4 into 3^8 to notice it cancels the eight extra divisions exactly. Rewriting both sides on a common base is what collapses the comparison.",
+      "estimated_time_seconds": 105,
+      "tags": ["exponents", "sequences"]
+    },
+    {
+      "id": "SEC-AO-011",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In a sequence of 79 terms, each term after the first is 1 greater than the preceding term. If the sum of all 79 terms is 79, what is the value of the first term?",
+      "options": ["A. -41", "B. -40", "C. -39", "D. -38", "E. -37"],
+      "answer": "D",
+      "explanation": "Let the first term be a. The terms are a, a + 1, a + 2, ..., a + 78, so their sum is 79a + (0 + 1 + ... + 78) = 79a + (78 x 79)/2 = 79a + 3,081. Setting that equal to 79 gives 79a = 79 - 3,081 = -3,002, so a = -38. A faster route: for an evenly spaced list the sum equals the number of terms times the median, so the median (the 40th term) is 79/79 = 1, and the first term is 1 - 39 = -38.",
+      "trap": "Students using the median shortcut subtract 40 steps instead of 39 to get back to the first term, landing on -39. There are 39 gaps between the 1st and the 40th term, not 40.",
+      "estimated_time_seconds": 115,
+      "tags": ["sequences", "arithmetic-series"]
+    },
+    {
+      "id": "SEC-AO-012",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Let S be the sequence of consecutive even integers from 2 to 100. Sequence T is obtained from S by removing the integer 6 and then removing every 4th integer after 6. Sequence V is obtained from T by removing the integer 12 and then removing every 5th integer after 12. Which of the following integers is in V?",
+      "options": ["A. 6", "B. 12", "C. 22", "D. 26", "E. 28"],
+      "answer": "E",
+      "explanation": "Write S as 2, 4, 6, 8, ..., 100. The integer 6 sits third in S, so removing 6 and every 4th integer after it removes positions 3, 7, 11, 15, ... — the values 6, 14, 22, 30, 38, ... That leaves T = 2, 4, 8, 10, 12, 16, 18, 20, 24, 26, 28, 32, ... In T, the integer 12 sits fifth, so removing 12 and every 5th integer after it removes T-positions 5, 10, 15, ... — the values 12, 26, 40, ... So V = 2, 4, 8, 10, 16, 18, 20, 24, 28, 32, ... Of the options, 6 and 22 were removed in building T, and 12 and 26 were removed in building V. Only 28 survives.",
+      "trap": "Students read 'every 4th integer after 6' as every 4th value rather than every 4th position, removing 6, 10, 14, 18 instead of 6, 14, 22, 30. Because S already steps by 2, the fourth position after 6 is 14. The same confusion recurs on the second pass, where the surviving terms of T are no longer evenly spaced.",
+      "estimated_time_seconds": 125,
+      "tags": ["sequences", "counting"]
+    }
+  ]
+}

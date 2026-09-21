@@ -1,0 +1,213 @@
+/* ============================================================
+   GRE Quant Pro — /learn/ concept notes
+   Extends site.css; every colour is a site.css token.
+   A reading surface: one column, generous measure, quiet furniture.
+   ============================================================ */
+
+.lrn-main { position: relative; z-index: 1 }
+.lrn-wrap { max-width: 780px; margin: 0 auto; padding: 0 24px }
+.lrn-wide { max-width: 1060px }
+
+/* ---------- breadcrumb ---------- */
+.lrn-crumb { padding: 26px 0 0; font-size: 14px; color: var(--ink3) }
+.lrn-crumb a { color: var(--blue); font-weight: 600; text-decoration: none }
+.lrn-crumb a:hover { text-decoration: underline }
+.lrn-crumb span { margin: 0 7px; color: var(--line2) }
+
+/* ---------- document head ---------- */
+.lrn-head { padding: 18px 0 22px; border-bottom: 1px solid var(--line); margin-bottom: 26px }
+.lrn-head h1 {
+  font-family: var(--fd); font-weight: 600; letter-spacing: -.02em;
+  font-size: clamp(27px, 4vw, 40px); line-height: 1.15; color: var(--navy);
+}
+.lrn-chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px }
+.lrn-chip {
+  font-family: var(--fm); font-size: 11.5px; letter-spacing: .04em;
+  padding: 5px 11px; border-radius: 999px; background: var(--paper2);
+  color: var(--ink2); border: 1px solid var(--line);
+}
+.lrn-chip b { color: var(--navy); font-weight: 500 }
+.lrn-chip-pro { background: var(--gold-soft); border-color: #e8d29c; color: var(--gold); font-weight: 700 }
+
+/* ---------- the note body ---------- */
+.lrn-body { font-size: 17px; line-height: 1.75; color: var(--ink) }
+.lrn-body > :first-child { margin-top: 0 }
+
+.lrn-body h2 {
+  font-family: var(--fd); font-weight: 600; font-size: 25px; color: var(--navy);
+  margin: 40px 0 14px; padding-top: 22px; border-top: 1px solid var(--line);
+  letter-spacing: -.01em; scroll-margin-top: 86px;
+}
+.lrn-body h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0 }
+.lrn-body h3 {
+  font-family: var(--ff); font-weight: 800; font-size: 17.5px; color: var(--navy);
+  margin: 28px 0 10px;
+}
+.lrn-body h4 { font-weight: 800; font-size: 16px; color: var(--ink); margin: 20px 0 8px }
+.lrn-body p { margin: 14px 0 }
+.lrn-body strong { color: var(--navy); font-weight: 700 }
+
+.lrn-body ul, .lrn-body ol { margin: 14px 0 14px 22px }
+.lrn-body li { margin: 7px 0 }
+
+/* every capsule puts `---` before each `##`, and .lrn-body h2 already
+   draws a top rule — keeping both gives a doubled line */
+.lrn-body hr { display: none }
+
+/* maths is written as plain text, so it needs the mono face to stay legible */
+.lrn-body code {
+  font-family: var(--fm); font-size: .92em; background: var(--paper2);
+  padding: 2px 6px; border-radius: 5px; color: var(--navy);
+  border: 1px solid var(--line);
+}
+.lrn-body pre {
+  background: var(--navy-deep); color: #e8dfd0; padding: 16px 18px;
+  border-radius: var(--radius); overflow-x: auto; margin: 18px 0; font-size: 14.5px;
+}
+.lrn-body pre code { background: none; border: none; color: inherit; padding: 0 }
+
+.lrn-body blockquote {
+  margin: 20px 0; padding: 14px 18px; background: var(--blue-soft);
+  border-left: 3px solid var(--blue); border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--ink2);
+}
+.lrn-body blockquote p { margin: 6px 0 }
+.lrn-body blockquote strong { color: var(--navy) }
+
+/* tables carry the formula sheets — they are the densest thing on the page */
+.lrn-body table {
+  width: 100%; border-collapse: collapse; margin: 20px 0; font-size: 15.5px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+  overflow: hidden; display: table;
+}
+.lrn-body thead th {
+  background: var(--paper2); text-align: left; padding: 11px 14px;
+  font-size: 12.5px; text-transform: uppercase; letter-spacing: .05em;
+  color: var(--ink2); font-weight: 800; border-bottom: 1px solid var(--line);
+}
+.lrn-body tbody td { padding: 10px 14px; border-top: 1px solid var(--line); vertical-align: top }
+.lrn-body tbody tr:first-child td { border-top: none }
+.lrn-table-scroll { overflow-x: auto; margin: 20px 0 }
+.lrn-table-scroll table { margin: 0 }
+
+/* self-check answers */
+.lrn-body details {
+  margin: 18px 0; padding: 14px 18px; background: var(--green-soft);
+  border-radius: var(--radius); border: 1px solid #c6e2d1;
+}
+.lrn-body details summary {
+  cursor: pointer; font-weight: 800; color: var(--green); font-size: 15.5px;
+  list-style: none;
+}
+.lrn-body details summary::-webkit-details-marker { display: none }
+.lrn-body details summary::before { content: '▸ '; font-size: 13px }
+.lrn-body details[open] summary::before { content: '▾ ' }
+.lrn-body details > *:not(summary) { margin-top: 10px }
+
+/* ---------- Pro gate ---------- */
+.lrn-gate {
+  margin: 10px 0 30px; padding: 34px 28px; text-align: center;
+  background: var(--card); border: 1px solid var(--line2);
+  border-radius: var(--radius-lg); box-shadow: var(--shadow);
+  position: relative;
+}
+/* the teaser fades into the gate rather than stopping dead */
+.lrn-gate::before {
+  content: ''; position: absolute; left: 0; right: 0; top: -90px; height: 90px;
+  background: linear-gradient(180deg, rgba(250,248,244,0) 0%, var(--paper) 88%);
+  pointer-events: none;
+}
+.lrn-lock {
+  width: 52px; height: 52px; margin: 0 auto 14px; border-radius: 50%;
+  display: grid; place-items: center; background: var(--gold-soft); color: var(--gold);
+}
+.lrn-gate h2 {
+  font-family: var(--fd); font-weight: 600; font-size: 24px; color: var(--navy);
+  border: none; padding: 0; margin: 0;
+}
+.lrn-gate p { margin: 12px auto 0; max-width: 52ch; color: var(--ink2); font-size: 16px; line-height: 1.7 }
+.lrn-gate-btns { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; margin-top: 22px }
+.lrn-gate-free { font-size: 14.5px; color: var(--ink3) }
+.lrn-gate-free a { color: var(--blue); font-weight: 700 }
+.lrn-gate.is-checking { opacity: .6 }
+
+/* ---------- resources + prev/next ---------- */
+.lrn-res-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px; margin: 34px 0 0 }
+.lrn-res {
+  display: block; padding: 16px 18px; background: var(--card);
+  border: 1.5px solid var(--line); border-radius: var(--radius);
+  text-decoration: none; transition: border-color .15s, transform .15s;
+}
+.lrn-res:hover { border-color: var(--blue); transform: translateY(-2px) }
+.lrn-res-k { display: block; font-family: var(--fm); font-size: 11px; letter-spacing: 1.4px; text-transform: uppercase; color: var(--blue); font-weight: 500 }
+.lrn-res-t { display: block; margin-top: 5px; font-size: 14.5px; color: var(--ink2) }
+
+.lrn-pn-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 16px 0 60px }
+.lrn-pn {
+  padding: 14px 16px; background: var(--paper2); border-radius: var(--radius);
+  text-decoration: none; border: 1px solid var(--line);
+}
+.lrn-pn:hover { border-color: var(--line2) }
+.lrn-pn span { display: block; font-size: 12.5px; color: var(--ink3); font-weight: 700 }
+.lrn-pn b { display: block; margin-top: 3px; color: var(--navy); font-size: 15px; font-weight: 700 }
+.lrn-pn-next { text-align: right; grid-column: 2 }
+
+/* ---------- index / concept map ---------- */
+.lrn-hero { padding: 44px 0 30px; border-bottom: 1px solid var(--line) }
+.lrn-eyebrow { font-family: var(--fm); font-size: 11px; letter-spacing: 1.8px; text-transform: uppercase; color: var(--accent); font-weight: 500 }
+.lrn-hero h1 {
+  font-family: var(--fd); font-weight: 600; font-size: clamp(30px, 4.6vw, 44px);
+  color: var(--navy); margin-top: 12px; letter-spacing: -.02em; line-height: 1.12;
+}
+.lrn-hero p { margin-top: 14px; font-size: 17px; line-height: 1.7; color: var(--ink2); max-width: 62ch }
+.lrn-hero-free { font-size: 16px }
+.lrn-hero-free b { color: var(--green) }
+.lrn-hero-free a { color: var(--blue); font-weight: 700 }
+
+.lrn-group { padding: 30px 0; border-bottom: 1px solid var(--line); scroll-margin-top: 86px }
+.lrn-group:last-child { border-bottom: none }
+.lrn-group h2 {
+  font-family: var(--fd); font-weight: 600; font-size: 24px; color: var(--navy);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 12px;
+}
+.lrn-count { font-family: var(--ff); font-size: 13px; font-weight: 600; color: var(--ink3) }
+
+.lrn-list { list-style: none; margin-top: 16px; display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 8px }
+.lrn-item {
+  display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius-sm);
+  transition: border-color .15s;
+}
+.lrn-item:hover { border-color: var(--blue) }
+.lrn-item.is-pro { background: var(--paper2) }
+.lrn-item a { flex: 1; min-width: 0; color: var(--navy); font-weight: 700; font-size: 15px; text-decoration: none }
+.lrn-item a:hover { text-decoration: underline }
+.lrn-item code {
+  font-family: var(--fm); font-size: 11px; color: var(--ink3);
+  background: var(--paper); padding: 2px 6px; border-radius: 4px; border: 1px solid var(--line);
+}
+.lrn-pro-tag {
+  font-size: 10.5px; font-weight: 800; letter-spacing: .04em; padding: 3px 8px;
+  border-radius: 999px; background: var(--gold); color: #fff;
+}
+
+/* ---------- mobile ---------- */
+@media (max-width: 700px) {
+  .lrn-wrap { padding: 0 16px }
+  .lrn-body { font-size: 16px }
+  .lrn-body h2 { font-size: 21px; margin-top: 30px }
+  .lrn-body table { font-size: 14px }
+  .lrn-body thead th, .lrn-body tbody td { padding: 9px 10px }
+  .lrn-pn-row { grid-template-columns: 1fr }
+  .lrn-pn-next { grid-column: 1; text-align: left }
+  .lrn-list { grid-template-columns: 1fr }
+  .lrn-gate { padding: 26px 18px }
+}
+
+@media print {
+  nav, footer, .mobile-menu, .hamburger, .lrn-crumb, .lrn-pn-row,
+  .lrn-gate, .glow-1, .glow-2 { display: none !important }
+  body { background: #fff }
+  .lrn-body details { break-inside: avoid }
+  a[href]::after { content: '' }
+}

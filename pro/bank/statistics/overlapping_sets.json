@@ -1,1064 +1,1058 @@
 {
- "meta": {
-  "topic": "Statistics",
-  "subtopic": "Overlapping Sets (Venn Diagrams)",
-  "subtopic_id": "STA-OVL",
-  "version": "1.0",
-  "total_questions": 50,
-  "distribution": {
-   "easy": 13,
-   "medium": 20,
-   "hard": 12,
-   "extreme_hard": 5
+  "meta": {
+    "topic": "Statistics",
+    "subtopic": "Overlapping Sets (Venn Diagrams)",
+    "subtopic_id": "STA-OVL",
+    "version": "1.0",
+    "total_questions": 50,
+    "distribution": {
+      "easy": 13,
+      "medium": 20,
+      "hard": 12,
+      "extreme_hard": 5
+    },
+    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+    "bank": "Adi's GRE Quant Bank"
   },
-  "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
- },
- "questions": [
-  {
-   "id": "STA-OVL-001",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "In a class of 40 students, 25 play soccer and 20 play basketball. If 10 students play both sports, how many students play at least one of the two sports?",
-   "options": [
-    "A. 30",
-    "B. 35",
-    "C. 45",
-    "D. 55",
-    "E. 25"
-   ],
-   "answer": "B",
-   "explanation": "Use inclusion-exclusion: |Soccer ∪ Basketball| = |Soccer| + |Basketball| - |Soccer ∩ Basketball| = 25 + 20 - 10 = 35. So 35 students play at least one sport.",
-   "trap": "Students add 25 + 20 = 45 without subtracting the overlap of 10, double-counting students who play both sports.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion"
-   ]
-  },
-  {
-   "id": "STA-OVL-002",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A survey of 50 people found that 30 like coffee and 25 like tea. If 12 people like both, how many people like neither coffee nor tea?",
-   "options": [
-    "A. 5",
-    "B. 7",
-    "C. 12",
-    "D. 13",
-    "E. 17"
-   ],
-   "answer": "B",
-   "explanation": "First find those who like at least one: |Coffee ∪ Tea| = 30 + 25 - 12 = 43. Then neither = Total - at least one = 50 - 43 = 7.",
-   "trap": "Students forget the 'neither' group and answer 12 (the overlap) or compute 50 - 30 - 25 + 12 = 7 correctly but then second-guess themselves.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion"
-   ]
-  },
-  {
-   "id": "STA-OVL-003",
-   "difficulty": "easy",
-   "type": "numeric_entry",
-   "question": "In a group of 60 students, 35 study French and 28 study Spanish. Every student studies at least one language. How many students study both French and Spanish?",
-   "options": null,
-   "answer": "3",
-   "explanation": "Since every student studies at least one language, neither = 0. So Total = |French| + |Spanish| - |Both|. 60 = 35 + 28 - |Both|. |Both| = 63 - 60 = 3.",
-   "trap": "Students add 35 + 28 = 63 and subtract 60 correctly but check if the 'every student studies at least one' constraint was used — without it, you cannot determine the overlap.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "inclusion-exclusion",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-004",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "In a class, 18 students play chess and 14 students play checkers. If 6 students play both games, how many students play only chess (not checkers)?",
-   "options": [
-    "A. 6",
-    "B. 8",
-    "C. 12",
-    "D. 14",
-    "E. 18"
-   ],
-   "answer": "C",
-   "explanation": "Students who play only chess = |Chess| - |Both| = 18 - 6 = 12. The 6 students who play both are counted in the chess group but must be excluded to find 'only chess.'",
-   "trap": "Students answer 18 thinking |Chess| = 'only chess.' But |Chess| includes those who also play checkers. 'Only chess' = 18 - 6 = 12.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "venn-diagram",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-005",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A gym has 100 members. 60 members use the pool, 50 members use the gym floor, and 20 members use both. How many members use neither facility?",
-   "options": [
-    "A. 5",
-    "B. 10",
-    "C. 20",
-    "D. 30",
-    "E. 40"
-   ],
-   "answer": "B",
-   "explanation": "At least one facility: 60 + 50 - 20 = 90. Neither = 100 - 90 = 10.",
-   "trap": "Students compute 100 - 60 - 50 + 20 = 10 but others mistakenly compute 100 - 60 - 50 = -10 (ignoring overlap) and choose an incorrect option.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion"
-   ]
-  },
-  {
-   "id": "STA-OVL-006",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "In a school of 80 students, 45 are in the math club and 40 are in the science club. Every student is in at least one club.\n\nColumn A: Number of students in both clubs\nColumn B: 5",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Since every student is in at least one club, neither = 0. So Total = |Math| + |Science| - |Both|. 80 = 45 + 40 - |Both|. |Both| = 85 - 80 = 5. Column A = 5 and Column B = 5, so the two quantities are equal.",
-   "trap": "Students may rush and say Column A is greater without computing the exact value. Careful calculation shows |Both| = 5, which equals Column B.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-OVL-007",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "Of 30 people surveyed, 20 own a car, 15 own a bicycle, and 5 own neither. How many people own both a car and a bicycle?",
-   "options": [
-    "A. 5",
-    "B. 8",
-    "C. 10",
-    "D. 12",
-    "E. 15"
-   ],
-   "answer": "C",
-   "explanation": "Those who own at least one = 30 - 5 = 25. By inclusion-exclusion: 25 = 20 + 15 - |Both|. |Both| = 35 - 25 = 10.",
-   "trap": "Students forget to subtract 'neither' first. They use Total = 30 instead of 25 (those with at least one), leading to |Both| = 20 + 15 - 30 = 5 (wrong).",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion"
-   ]
-  },
-  {
-   "id": "STA-OVL-008",
-   "difficulty": "easy",
-   "type": "numeric_entry",
-   "question": "In a survey of 200 people, 120 read newspaper A and 90 read newspaper B. If 40 people read both newspapers, how many people read at least one newspaper?",
-   "options": null,
-   "answer": "170",
-   "explanation": "|A ∪ B| = |A| + |B| - |A ∩ B| = 120 + 90 - 40 = 170.",
-   "trap": "Students add 120 + 90 = 210 without subtracting 40, getting 210 instead of 170. The 40 who read both are counted in both the 120 and the 90.",
-   "estimated_time_seconds": 40,
-   "tags": [
-    "inclusion-exclusion",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-009",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A club has 50 members. 30 speak English, 25 speak French, and 10 speak both. How many members speak only French?",
-   "options": [
-    "A. 10",
-    "B. 15",
-    "C. 20",
-    "D. 25",
-    "E. 30"
-   ],
-   "answer": "B",
-   "explanation": "Only French = |French| - |Both| = 25 - 10 = 15.",
-   "trap": "Students confuse |French| (which is 25) with 'only French' (which is 15). The 10 bilingual speakers are included in the 25 French speakers.",
-   "estimated_time_seconds": 40,
-   "tags": [
-    "venn-diagram",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-010",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "A class of 50 students: 28 like math, 22 like science, and 10 like both.\n\nColumn A: Number of students who like only math\nColumn B: Number of students who like only science",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "Only math = 28 - 10 = 18. Only science = 22 - 10 = 12. Column A (18) > Column B (12).",
-   "trap": "Students compare 28 vs 22 directly (total math vs total science) instead of computing 'only' values. The subtraction of the overlap changes which is larger relative to each other but the direction stays the same here.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "venn-diagram",
-    "overlapping-sets",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-OVL-011",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "100 students were surveyed. 55 have a dog, 40 have a cat, and 15 have both a dog and a cat. How many students have neither a dog nor a cat?",
-   "options": [
-    "A. 5",
-    "B. 10",
-    "C. 15",
-    "D. 20",
-    "E. 25"
-   ],
-   "answer": "D",
-   "explanation": "At least one pet: 55 + 40 - 15 = 80. Neither = 100 - 80 = 20.",
-   "trap": "Students compute 100 - 55 - 40 = 5 (subtracting both groups from total without accounting for overlap). Adding back the intersection: 100 - 55 - 40 + 15 = 20.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion"
-   ]
-  },
-  {
-   "id": "STA-OVL-012",
-   "difficulty": "easy",
-   "type": "multiple_answer",
-   "question": "In a group of 40 people, 24 own smartphones and 18 own tablets. Select all values that the number of people who own both a smartphone and a tablet COULD equal.",
-   "options": [
-    "A. 0",
-    "B. 2",
-    "C. 10",
-    "D. 18",
-    "E. 20"
-   ],
-   "answer": [
-    "B",
-    "C",
-    "D"
-   ],
-   "explanation": "Let x = number who own both. Constraints: x ≥ 0; x ≤ min(24, 18) = 18; and the union cannot exceed 40: 24 + 18 - x ≤ 40, so x ≥ 2. Thus 2 ≤ x ≤ 18. Check options: A (0): fails x ≥ 2. B (2): valid. C (10): valid. D (18): valid. E (20): fails x ≤ 18.",
-   "trap": "Students only apply the upper bound (x ≤ 18) and miss the lower bound from the union constraint. Since 24 + 18 = 42 > 40, at least 2 must be in both groups.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "STA-OVL-013",
-   "difficulty": "easy",
-   "type": "numeric_entry",
-   "question": "In a school, 40% of 200 students play a sport, 30% play a musical instrument, and 10% do both. How many students do neither?",
-   "options": null,
-   "answer": "80",
-   "explanation": "Convert percentages to counts: Sport = 40% × 200 = 80; Instrument = 30% × 200 = 60; Both = 10% × 200 = 20. At least one = 80 + 60 - 20 = 120. Neither = 200 - 120 = 80.",
-   "trap": "Students add 40% + 30% - 10% = 60%, then compute neither as 40% of 200 = 80 — actually correct! But some students compute 100% - 60% = 40%, then 40% × 200 = 80. Others forget to convert and work with raw percentages throughout.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-014",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "In a survey of 150 people, 80 like Action movies, 70 like Comedy movies, and 30 like neither genre. How many people like both Action and Comedy?",
-   "options": [
-    "A. 20",
-    "B. 25",
-    "C. 30",
-    "D. 35",
-    "E. 40"
-   ],
-   "answer": "C",
-   "explanation": "Those who like at least one genre = 150 - 30 = 120. By inclusion-exclusion: 120 = 80 + 70 - |Both|. |Both| = 150 - 120 = 30.",
-   "trap": "Students use 150 instead of 120 as the union, computing |Both| = 80 + 70 - 150 = 0. Must subtract 'neither' from total first to get the 'at least one' count.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-015",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "Of 120 employees at a company, 75 have health insurance, 60 have dental insurance, and 20 have neither. How many employees have only health insurance (not dental)?",
-   "options": [
-    "A. 35",
-    "B. 40",
-    "C. 45",
-    "D. 55",
-    "E. 60"
-   ],
-   "answer": "B",
-   "explanation": "At least one = 120 - 20 = 100. |Both| = 75 + 60 - 100 = 35. Only health insurance = 75 - 35 = 40.",
-   "trap": "Students answer 75 - 20 = 55 (subtracting 'neither' from |Health| instead of the overlap of 35). The correct two-step approach: first find |Both| using the union formula, then subtract from |Health|.",
-   "estimated_time_seconds": 75,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-016",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "A group of 90 people: 50 drink coffee, 45 drink tea, and 15 drink neither.\n\nColumn A: Number who drink only coffee\nColumn B: Number who drink only tea",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "At least one drink = 90 - 15 = 75. |Both| = 50 + 45 - 75 = 20. Only coffee = 50 - 20 = 30. Only tea = 45 - 20 = 25. Column A (30) > Column B (25).",
-   "trap": "Students compare 50 vs 45 directly and assume the same ordering holds for 'only' values, but neglect to actually subtract the same overlap from each. The computation confirms Column A is greater: 30 vs 25.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-OVL-017",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "In a class of 80 students, 60% study Biology, 50% study Chemistry, and 20% study neither. What percentage of students study both Biology and Chemistry?",
-   "options": null,
-   "answer": "30",
-   "explanation": "At least one subject = 100% - 20% = 80%. By inclusion-exclusion: 80% = 60% + 50% - both%. Both% = 110% - 80% = 30%.",
-   "trap": "Students compute 60% + 50% = 110%, observe it exceeds 100%, and subtract 100% to get 10%. They forget to first account for the 20% who study neither (the union is 80%, not 100%).",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-018",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A survey asked 200 people about two social media platforms. 130 use Facebook, 95 use Instagram, and 25 use neither. How many people use exactly one of the two platforms?",
-   "options": [
-    "A. 95",
-    "B. 100",
-    "C. 125",
-    "D. 150",
-    "E. 175"
-   ],
-   "answer": "C",
-   "explanation": "At least one platform = 200 - 25 = 175. |Both| = 130 + 95 - 175 = 50. Only Facebook = 130 - 50 = 80. Only Instagram = 95 - 50 = 45. Exactly one = 80 + 45 = 125. (Equivalently: 175 - 50 = 125.)",
-   "trap": "Students compute 'exactly one' as the union (175) or as |Facebook| + |Instagram| = 225, forgetting to subtract the 50 who use both platforms.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-019",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "In a group of 100 workers, 60 can operate machine A, 47 can operate machine B, and 18 can operate neither. How many workers can operate exactly one machine?",
-   "options": [
-    "A. 45",
-    "B. 57",
-    "C. 64",
-    "D. 73",
-    "E. 82"
-   ],
-   "answer": "B",
-   "explanation": "At least one machine = 100 - 18 = 82. |Both| = 60 + 47 - 82 = 25. Only machine A = 60 - 25 = 35. Only machine B = 47 - 25 = 22. Exactly one = 35 + 22 = 57. (Equivalently: 82 - 25 = 57.)",
-   "trap": "Students add |A| + |B| = 107 and treat that as the 'exactly one' count, or they compute union - neither = 82 and report 82 as the answer, forgetting to subtract those who operate both machines.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-020",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "In a class, 40% of students passed Math, 35% passed Science, and 15% passed both.\n\nColumn A: Percentage who passed at least one subject\nColumn B: 60%",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "|Math ∪ Science| = 40% + 35% - 15% = 60%. Column A = 60% = Column B.",
-   "trap": "Students add 40% + 35% = 75% and choose Column A is greater (75% > 60%). They forget to subtract the 15% overlap.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-OVL-021",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "In a survey of 100 people, 70 like Brand X and 60 like Brand Y. Select all values that COULD represent the number of people who like neither brand.",
-   "options": [
-    "A. 0",
-    "B. 5",
-    "C. 20",
-    "D. 30",
-    "E. 35"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "D"
-   ],
-   "explanation": "Let n = neither. Then at least one = 100 - n. By inclusion-exclusion: both = 70 + 60 - (100 - n) = 30 + n. Constraints: both ≥ 0 → always true; both ≤ min(70, 60) = 60 → 30 + n ≤ 60 → n ≤ 30; and n ≥ 0. So 0 ≤ n ≤ 30. Check: A(0): valid. B(5): valid. C(20): valid. D(30): valid — gives both = 60, which equals min(70,60). E(35): 30 + 35 = 65 > 60 = min(70,60). Invalid. Answer: A, B, C, D.",
-   "trap": "Students only check the lower bound (both ≥ 0) and miss the upper bound from the smaller set: both cannot exceed min(70,60) = 60, which caps neither at 30. Option E (n=35) would require both = 65 > 60, which is impossible.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "STA-OVL-022",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "A school offers Drama and Art clubs. Of 90 students, 48 are in Drama, 36 are in Art, and 12 are in both. How many students are in neither club?",
-   "options": null,
-   "answer": "18",
-   "explanation": "At least one club = 48 + 36 - 12 = 72. Neither = 90 - 72 = 18.",
-   "trap": "Students compute 90 - 48 - 36 = 6 (subtracting both groups from total without adding back the overlap of 12). Must use the formula: neither = 90 - (48 + 36 - 12) = 18.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "inclusion-exclusion",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-023",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "In a neighborhood of 250 households, 60% subscribe to a streaming service and 45% subscribe to a cable service. If 20% subscribe to both, what percent subscribe to neither?",
-   "options": [
-    "A. 5%",
-    "B. 10%",
-    "C. 15%",
-    "D. 20%",
-    "E. 25%"
-   ],
-   "answer": "C",
-   "explanation": "At least one = 60% + 45% - 20% = 85%. Neither = 100% - 85% = 15%.",
-   "trap": "Students compute 100% - 60% - 45% = -5% (ignoring the overlap), resulting in an impossible negative, and then choose a nearby positive option. Must subtract groups after accounting for the overlap.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-024",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "In a study, 70% of participants exercise regularly, 60% maintain a healthy diet, and 10% do neither.\n\nColumn A: Percentage who both exercise regularly AND maintain a healthy diet\nColumn B: 40%",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "At least one healthy habit = 100% - 10% = 90%. Both = 70% + 60% - 90% = 40%. Column A = 40% = Column B.",
-   "trap": "Students add 70% + 60% = 130% and try to subtract 100% to get 30%, ignoring the 'neither' group. The union is 90% (not 100%), so both = 130% - 90% = 40%.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-OVL-025",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A bookstore surveyed 180 customers. 110 bought fiction books and 85 bought non-fiction books. If 45 bought both types, how many customers bought only fiction?",
-   "options": [
-    "A. 50",
-    "B. 60",
-    "C. 65",
-    "D. 70",
-    "E. 80"
-   ],
-   "answer": "C",
-   "explanation": "Only fiction = |Fiction| - |Both| = 110 - 45 = 65.",
-   "trap": "Students answer 110 (the full fiction count) or 110 - 85 = 25 (subtracting the entire non-fiction group). 'Only fiction' means fiction buyers who did NOT buy non-fiction: 110 - 45 = 65.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "venn-diagram",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-026",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "In a class, 30 students study French and 25 study German. The class has 50 students total, and every student studies at least one language. Which of the following must be true? Select all that apply.",
-   "options": [
-    "A. Exactly 5 students study both languages",
-    "B. At least 5 students study both languages",
-    "C. At most 25 students study both languages",
-    "D. The number studying only French is greater than the number studying only German",
-    "E. Exactly 20 students study only French"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "D"
-   ],
-   "explanation": "Since every student studies at least one language, neither = 0. So: 50 = 30 + 25 - both → both = 5. This value is uniquely determined. A: Exactly 5 study both. TRUE. B: At least 5 study both (5 ≥ 5). TRUE. C: At most 25 (5 ≤ 25). TRUE. D: Only French = 30 - 5 = 25; only German = 25 - 5 = 20. 25 > 20. TRUE. E: Only French = 25, not 20. FALSE.",
-   "trap": "Students miss that 'every student studies at least one language' uniquely pins both = 5, making statement A true (not just 'at least 5'). They may also confuse 'only French' (25) with 'both' (5) for statement E.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "STA-OVL-027",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "A hotel surveyed guests: 40% ordered room service, 35% used the spa, and 25% used neither service. What percentage of guests used both room service and the spa?",
-   "options": null,
-   "answer": "0",
-   "explanation": "At least one service = 100% - 25% = 75%. Both = 40% + 35% - 75% = 75% - 75% = 0%. So no guest used both services.",
-   "trap": "Students expect a positive answer and compute 40% + 35% - 100% = -25% (using 100% as the union), getting a nonsensical result. The correct union is 75%, giving both = 0%.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "overlapping-sets"
-   ]
-  },
-  {
-   "id": "STA-OVL-028",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "Group of 60 people: 35 like jazz, 30 like classical, 5 like neither.\n\nColumn A: Number who like jazz but NOT classical\nColumn B: Number who like classical but NOT jazz",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "At least one = 60 - 5 = 55. Both = 35 + 30 - 55 = 10. Jazz only = 35 - 10 = 25. Classical only = 30 - 10 = 20. Column A (25) > Column B (20).",
-   "trap": "Students compare 35 vs 30 directly and conclude Column A is greater for the wrong reason — but the computation confirms it. The risk is not computing 'only' values and comparing raw totals.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-OVL-029",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "In a survey of 500 people, 55% said they watch TV daily and 40% said they use social media daily. If 20% do neither, what percentage watch TV daily but do NOT use social media daily?",
-   "options": [
-    "A. 35%",
-    "B. 40%",
-    "C. 45%",
-    "D. 50%",
-    "E. 55%"
-   ],
-   "answer": "B",
-   "explanation": "At least one = 100% - 20% = 80%. Both = 55% + 40% - 80% = 15%. TV only (not social media) = 55% - 15% = 40%.",
-   "trap": "Students answer 55% (the full TV percentage) without subtracting the 15% who also use social media. 'TV but NOT social media' requires subtracting the overlap: 55% - 15% = 40%.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-030",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "Of 240 athletes, some run and some swim. 150 run, 120 swim, and 30 do neither. How many athletes both run and swim?",
-   "options": null,
-   "answer": "60",
-   "explanation": "At least one activity = 240 - 30 = 210. Both = 150 + 120 - 210 = 270 - 210 = 60.",
-   "trap": "Students forget to subtract 'neither' from the total and use 240 as the union: 150 + 120 - 240 = 30. The correct union is 210 (those with at least one activity), giving both = 60.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "inclusion-exclusion",
-    "overlapping-sets",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-031",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "In a city, 45% of residents speak English, 30% speak Spanish, and 10% speak both. What percentage of residents speak exactly one of these two languages?",
-   "options": [
-    "A. 40%",
-    "B. 55%",
-    "C. 65%",
-    "D. 70%",
-    "E. 75%"
-   ],
-   "answer": "B",
-   "explanation": "Only English = 45% - 10% = 35%. Only Spanish = 30% - 10% = 20%. Exactly one language = 35% + 20% = 55%. (Cross-check: union = 45+30-10 = 65%; exactly one = union - both = 65% - 10% = 55%. ✓)",
-   "trap": "Students add 45% + 30% = 75% and treat that as 'at least one,' then compute exactly one as 75% - 10% = 65%. But the correct union is 45+30-10 = 65%, and exactly one = 65% - 10% = 55%.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-032",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "In a group of 100 people: 60 own a laptop, 50 own a tablet, and 20 own neither.\n\nColumn A: Number who own both a laptop and a tablet\nColumn B: 30",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "At least one = 100 - 20 = 80. Both = 60 + 50 - 80 = 30. Column A = 30 = Column B.",
-   "trap": "Students compute 60 + 50 - 100 = 10 (using total instead of the union of 80), concluding Column B is greater. The union is 80, not 100, because 20 people own neither.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-OVL-033",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "In a group of 80 students, 50 study Math and 40 study Physics. Some study both and some study neither. Which of the following are possible values for the number studying both? Select all that apply.",
-   "options": [
-    "A. 5",
-    "B. 10",
-    "C. 20",
-    "D. 35",
-    "E. 40"
-   ],
-   "answer": [
-    "B",
-    "C",
-    "D",
-    "E"
-   ],
-   "explanation": "Let b = both. The union = 50 + 40 - b = 90 - b must be ≤ 80 (cannot exceed total group), so b ≥ 10. Also b ≤ min(50, 40) = 40. So 10 ≤ b ≤ 40. Check: A(5): fails b ≥ 10. B(10): valid — union = 80, neither = 0. C(20): valid — union = 70, neither = 10. D(35): valid — union = 55, neither = 25. E(40): valid — union = 50, neither = 30 (all physics students also study math). Answer: B, C, D, E.",
-   "trap": "Students only apply the upper bound b ≤ 40 and choose all options except E (thinking b cannot equal the smaller set). They miss that b can equal min(50,40)=40. They also miss the lower bound: since 90 - b ≤ 80, b ≥ 10, ruling out A.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "STA-OVL-034",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "In a school of 300 students, every student studies at least one of three subjects: Math, Science, or History. 160 study Math, 140 study Science, 130 study History. 60 study both Math and Science, 50 study both Math and History, 40 study both Science and History, and 20 study all three. How many students study exactly one subject?",
-   "options": [
-    "A. 130",
-    "B. 150",
-    "C. 170",
-    "D. 190",
-    "E. 210"
-   ],
-   "answer": "D",
-   "explanation": "First verify the union: 160+140+130 - 60-50-40 + 20 = 430 - 150 + 20 = 300. ✓ Now use the formula for exactly one subject: Exactly one = (M+S+H) - 2(M∩S + M∩H + S∩H) + 3(M∩S∩H) = 430 - 2(150) + 3(20) = 430 - 300 + 60 = 190.",
-   "trap": "Students try to compute exactly one by subtracting from the union step by step, making arithmetic errors. The direct formula is: exactly one = sum of singles - 2×(sum of pairwise) + 3×(all three). Students often forget the multipliers 2 and 3.",
-   "estimated_time_seconds": 105,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-035",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "In a survey of 200 people about three streaming services (X, Y, Z): 110 use X, 95 use Y, 80 use Z. 45 use both X and Y, 35 use both X and Z, 30 use both Y and Z. Everyone uses at least one service. How many use all three services?",
-   "options": null,
-   "answer": "25",
-   "explanation": "Using three-set inclusion-exclusion with union = 200 (everyone uses at least one): 200 = 110+95+80 - 45-35-30 + |X∩Y∩Z|. 200 = 285 - 110 + |X∩Y∩Z|. 200 = 175 + |X∩Y∩Z|. |X∩Y∩Z| = 25.",
-   "trap": "Students set up the formula but forget to add |X∩Y∩Z| back at the end. They write 200 = 285 - 110 = 175 and conclude zero people use all three, when in fact the formula requires adding the triple intersection to reach 200.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-036",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "Of 500 adults surveyed, 60% drink coffee, 45% drink tea, and 25% drink both. If a person is chosen at random from those who drink at least one beverage, what is the probability they drink tea?",
-   "options": [
-    "A. 9/16",
-    "B. 3/8",
-    "C. 9/20",
-    "D. 1/2",
-    "E. 45/80"
-   ],
-   "answer": "A",
-   "explanation": "At least one beverage = 60% + 45% - 25% = 80% of 500 = 400 people. Tea drinkers = 45% × 500 = 225 people. P(tea | at least one) = 225/400 = 45/80 = 9/16.",
-   "trap": "Students compute P(tea) = 225/500 = 45% = 9/20 (option C), using the full survey population as the denominator. The question restricts to those who drink at least one beverage (400 people), so the denominator must be 400, not 500.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "probability-basic",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-037",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "In a class, 70% of students passed Exam A and 80% passed Exam B.\n\nColumn A: Minimum possible percentage who passed both exams\nColumn B: Maximum possible percentage who passed neither exam",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "Column A (min both): |A∩B| ≥ |A| + |B| - 100% = 70+80-100 = 50%. So minimum both = 50%. Column B (max neither): neither = 100% - (A∪B). To maximize neither, minimize the union. Min union = max(70%,80%) = 80%. So max neither = 100% - 80% = 20%. Column A (50%) > Column B (20%).",
-   "trap": "Students confuse 'minimum both' with 'maximum both' (which would be min(70,80)=70%), or they confuse 'maximum neither' with some other derived quantity. The Bonferroni inequality gives min overlap = A+B-100% when sum exceeds 100%.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-038",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "In a group of 120 people, 75 have taken a cooking class, 60 have taken a pottery class, and 45 have taken a painting class. 30 have taken both cooking and pottery, 25 have taken both cooking and painting, 20 have taken both pottery and painting, and 10 have taken all three. How many people have taken exactly two of the three classes?",
-   "options": null,
-   "answer": "45",
-   "explanation": "The pairwise intersection sums: |C∩Po| + |C∩Pa| + |Po∩Pa| = 30+25+20 = 75. This sum counts each 'exactly-two' person once and each 'all-three' person three times (since they appear in all three pairwise intersections). So: exactly two = 75 - 3×10 = 45.",
-   "trap": "Students compute 75 - 10 = 65 (subtracting all-three just once). But each of the 10 all-three people is counted three times in the pairwise sum, so must be subtracted 3 times: 75 - 3×10 = 45.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-039",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A company has 400 employees. 50% work in the city office, 35% work remotely, and the rest work at a satellite office. Each employee works from exactly one location. Of city office workers, 30% lead a team. Of remote workers, 20% lead a team. Of satellite workers, 25% lead a team. How many employees total lead a team?",
-   "options": [
-    "A. 95",
-    "B. 103",
-    "C. 110",
-    "D. 118",
-    "E. 125"
-   ],
-   "answer": "B",
-   "explanation": "City = 50% × 400 = 200. Remote = 35% × 400 = 140. Satellite = 400 - 200 - 140 = 60. Team leaders: City = 30% × 200 = 60. Remote = 20% × 140 = 28. Satellite = 25% × 60 = 15. Total = 60 + 28 + 15 = 103.",
-   "trap": "Students apply 30% + 20% + 25% = 75% to 400, getting 300 team leaders. Each percentage applies only to its specific subgroup — the percentages cannot be added and applied to the full total.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "overlapping-sets",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-040",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "In a group, 65% like product A and 55% like product B. No information is given about 'neither.'\n\nColumn A: Minimum percentage who like both A and B\nColumn B: 20%",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Minimum both = |A| + |B| - 100% = 65% + 55% - 100% = 20%. Column A = 20% = Column B.",
-   "trap": "Students think the minimum overlap could be 0% because 'no information is given about neither.' But since 65% + 55% = 120% > 100%, the two groups must overlap by at least 20% regardless of the 'neither' count. The Bonferroni inequality guarantees this.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-OVL-041",
-   "difficulty": "hard",
-   "type": "multiple_answer",
-   "question": "In a group of 100 people, 70 speak Language A and 60 speak Language B. Which of the following statements must be true? Select all that apply.",
-   "options": [
-    "A. At least 30 people speak both languages",
-    "B. At most 60 people speak both languages",
-    "C. At least 10 people speak neither language",
-    "D. At most 30 people speak neither language",
-    "E. Exactly 30 people speak both languages if no one speaks neither"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "D",
-    "E"
-   ],
-   "explanation": "Min both = max(0, 70+60-100) = 30. Max both = min(70,60) = 60. Min neither = 0 (all can speak at least one). Max neither: minimize union = max(70,60) = 70, so max neither = 30. A: at least 30 speak both. TRUE. B: at most 60 speak both. TRUE. C: neither could be 0 — not necessarily ≥ 10. FALSE. D: at most 30 speak neither. TRUE. E: if neither=0, both = 70+60-100 = 30. TRUE.",
-   "trap": "Students select C thinking that since 70+60=130>100, there must be at least 10 who speak neither. But the overlap absorbs the excess — if 30 speak both, the union is exactly 100 with neither=0. 'Neither' can be as low as 0.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multiple-answer",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-042",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "Three clubs A, B, C have 40, 35, and 30 members respectively in a school of 80 students. Every student belongs to at least one club. |A∩B| = 15, |A∩C| = 12, |B∩C| = 10. How many students belong to all three clubs?",
-   "options": null,
-   "answer": "12",
-   "explanation": "Using three-set inclusion-exclusion: |A∪B∪C| = |A|+|B|+|C| - |A∩B| - |A∩C| - |B∩C| + |A∩B∩C|. 80 = 40+35+30 - 15-12-10 + |A∩B∩C|. 80 = 105 - 37 + |A∩B∩C|. 80 = 68 + |A∩B∩C|. |A∩B∩C| = 12.",
-   "trap": "Students forget to add |A∩B∩C| back in the formula and instead write: union = 105 - 37 = 68, concluding there are 0 in all three. The three-set formula always adds back the triple intersection at the end.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-043",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "In a survey of 500 people, 55% like red, 45% like blue, and 30% like green. 20% like both red and blue, 15% like both red and green, 12% like both blue and green, and 8% like all three colors. What percentage like none of the three colors?",
-   "options": [
-    "A. 5%",
-    "B. 8%",
-    "C. 9%",
-    "D. 11%",
-    "E. 15%"
-   ],
-   "answer": "C",
-   "explanation": "|R∪B∪G| = 55+45+30 - 20-15-12 + 8 = 130 - 47 + 8 = 91%. Neither = 100% - 91% = 9%.",
-   "trap": "Students add all percentages: 55+45+30+20+15+12+8=185% and try to compute 'neither' from that. The three-set inclusion-exclusion formula must be applied: sum singles, subtract pairwise, add triple.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-044",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "In a class of 60 students: 35 study art, 28 study music. Some study both, some study neither.\n\nColumn A: Maximum number of students who study neither art nor music\nColumn B: Minimum number of students who study both art and music",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "Column A (max neither): To maximize neither, minimize the union. Min union = max(35,28) = 35. Max neither = 60 - 35 = 25. Column B (min both): Min both = max(0, 35+28-60) = max(0,3) = 3. Column A (25) > Column B (3).",
-   "trap": "Students confuse min/max. They may compute max both = min(35,28) = 28 and max neither = 60 - 28 = 32, mixing up which optimization applies to which quantity.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-045",
-   "difficulty": "hard",
-   "type": "multiple_answer",
-   "question": "In a class, 60% passed Test 1 and 50% passed Test 2. Select all statements that are necessarily true.",
-   "options": [
-    "A. At least 10% passed both tests",
-    "B. At most 50% passed both tests",
-    "C. At most 40% failed both tests",
-    "D. At least 60% passed at least one test",
-    "E. Exactly 10% passed both if the passing rates are independent"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "D"
-   ],
-   "explanation": "A: Min both = 60+50-100=10%. TRUE. B: Max both = min(60,50)=50%. TRUE. C: Max neither = 100% - max(60,50) = 100%-60%=40%. So at most 40% failed both. TRUE. D: Min union = max(60,50)=60%. So at least 60% passed at least one. TRUE. E: If independent, P(both) = 0.6×0.5=30%, not 10%. FALSE.",
-   "trap": "Students think statement E is true because min both = 10% and independence gives exactly 10%. But independence gives 30% (0.6×0.5), not 10%. The minimum of 10% occurs only in the most extreme overlap scenario, not under independence.",
-   "estimated_time_seconds": 105,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multiple-answer",
-    "probability-basic"
-   ]
-  },
-  {
-   "id": "STA-OVL-046",
-   "difficulty": "extreme_hard",
-   "type": "mcq",
-   "question": "At a conference with 200 attendees, every person speaks at least one of three languages: English (E), French (F), or Mandarin (M). The number speaking exactly one language is 90, the number speaking exactly two languages is 80, and the rest speak all three. What is |E| + |F| + |M|?",
-   "options": [
-    "A. 200",
-    "B. 260",
-    "C. 300",
-    "D. 340",
-    "E. 380"
-   ],
-   "answer": "D",
-   "explanation": "All-three speakers = 200 - 90 - 80 = 30. When computing |E|+|F|+|M|, each person is counted once per language they speak: exactly-one speakers contribute 1 each, exactly-two speakers contribute 2 each, all-three speakers contribute 3 each. So |E|+|F|+|M| = 90×1 + 80×2 + 30×3 = 90 + 160 + 90 = 340.",
-   "trap": "Students assume |E|+|F|+|M| = 200 (total attendees). But someone who speaks two languages is counted in two of the three sets, and someone who speaks all three is counted in all three. The sum inflates beyond 200 because multilingual people are multiply counted.",
-   "estimated_time_seconds": 120,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-047",
-   "difficulty": "extreme_hard",
-   "type": "numeric_entry",
-   "question": "In a survey, 60% like product A, 50% like product B, and 35% like product C. 25% like both A and B, 20% like both A and C, 15% like both B and C, and 5% like all three. What percentage like none of the three products? (Enter a whole number.)",
-   "options": null,
-   "answer": "10",
-   "explanation": "|A∪B∪C| = 60+50+35 - 25-20-15 + 5 = 145 - 60 + 5 = 90%. Neither = 100% - 90% = 10%.",
-   "trap": "Students forget to add back the triple intersection (5%). Without it: 145 - 60 = 85%, giving neither = 15%. The triple intersection must always be added back as the final step of the three-set formula.",
-   "estimated_time_seconds": 115,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-048",
-   "difficulty": "extreme_hard",
-   "type": "quantitative_comparison",
-   "question": "In a group of 100 students: 50 are in Club X, 40 are in Club Y, 30 are in Club Z. |X∩Y| = 20, |X∩Z| = 15, |Y∩Z| = 10. Every student is in at least one club.\n\nColumn A: |X∩Y∩Z|\nColumn B: 5",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "Using three-set inclusion-exclusion with union = 100 (every student in at least one club): 100 = 50+40+30 - 20-15-10 + |X∩Y∩Z|. 100 = 120 - 45 + |X∩Y∩Z|. 100 = 75 + |X∩Y∩Z|. |X∩Y∩Z| = 25. Column A = 25 > Column B = 5.",
-   "trap": "Students omit the +|X∩Y∩Z| term and compute 120 - 45 = 75, assuming the triple intersection is 0 or irrelevant. They might then answer B (thinking |X∩Y∩Z| < 5). The formula requires adding the triple intersection to reach the correct union of 100.",
-   "estimated_time_seconds": 120,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "qc",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-049",
-   "difficulty": "extreme_hard",
-   "type": "multiple_answer",
-   "question": "In a class of 100 students, 55% passed Math, 50% passed English, and 45% passed Science. 25% passed Math and English, 20% passed Math and Science, 18% passed English and Science, and x% passed all three. Some students may have passed none. Which of the following are possible values of x? Select all that apply.",
-   "options": [
-    "A. 8",
-    "B. 13",
-    "C. 18",
-    "D. 20",
-    "E. 25"
-   ],
-   "answer": [
-    "A",
-    "B"
-   ],
-   "explanation": "From the three-set formula: union% = 55+50+45 - 25-20-18 + x = 87+x. Since union ≤ 100%, we need 87+x ≤ 100, so x ≤ 13. Also x ≥ 0 and x ≤ min(25,20,18) = 18, but the tighter constraint is x ≤ 13. The 'neither' group = 100% - (87+x) = 13-x ≥ 0 confirms x ≤ 13. Valid range: 0 ≤ x ≤ 13. Among options: A(8): valid (neither=5%). B(13): valid (neither=0%). C(18): invalid — union = 87+18=105% > 100%. D(20) and E(25) also invalid. Answer: A, B.",
-   "trap": "Students see x ≤ min(pairwise) = 18 and select C(18) as valid. But the union constraint (87+x ≤ 100) is the tighter bound, capping x at 13. Option C would require 105% of students to pass at least one subject — impossible.",
-   "estimated_time_seconds": 125,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multiple-answer",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-OVL-050",
-   "difficulty": "extreme_hard",
-   "type": "numeric_entry",
-   "question": "A company has 300 employees. Each employee speaks at least one of three languages: English, Spanish, or French. The number speaking exactly English only is twice the number speaking exactly Spanish only, which is twice the number speaking exactly French only. Exactly 30 speak English and Spanish but not French, 10 speak English and French but not Spanish, 5 speak Spanish and French but not English, and 10 speak all three. How many employees speak exactly English only?",
-   "options": null,
-   "answer": "140",
-   "explanation": "Let French only = f, Spanish only = 2f, English only = 4f. Exactly-two groups sum to: 30 + 10 + 5 = 45. All three = 10. Total: 4f + 2f + f + 45 + 10 = 7f + 55 = 300. So 7f = 245, f = 35. English only = 4 × 35 = 140. Verify: French only=35, Spanish only=70, English only=140, exactly-two=45, all-three=10. Total = 35+70+140+45+10 = 300. ✓",
-   "trap": "Students set up 7f + 55 = 300 correctly but make arithmetic errors solving for f (e.g., computing 7f = 300 - 45 - 10 = 245 but then dividing 245/7 incorrectly). Alternatively, they confuse 'exactly two' counts (specified as 'but not [third language]') with full pairwise intersections that would include all-three speakers.",
-   "estimated_time_seconds": 130,
-   "tags": [
-    "venn-diagram",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  }
- ]
+  "questions": [
+    {
+      "id": "STA-OVL-001",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "In a class of 40 students, 25 play soccer and 20 play basketball. If 10 students play both sports, how many students play at least one of the two sports?",
+      "options": [
+        "A. 30",
+        "B. 35",
+        "C. 45",
+        "D. 55",
+        "E. 25"
+      ],
+      "answer": "B",
+      "explanation": "Use inclusion-exclusion: |Soccer ∪ Basketball| = |Soccer| + |Basketball| - |Soccer ∩ Basketball| = 25 + 20 - 10 = 35. So 35 students play at least one sport.",
+      "trap": "Students add 25 + 20 = 45 without subtracting the overlap of 10, double-counting students who play both sports.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "STA-OVL-002",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A survey of 50 people found that 30 like coffee and 25 like tea. If 12 people like both, how many people like neither coffee nor tea?",
+      "options": [
+        "A. 5",
+        "B. 7",
+        "C. 12",
+        "D. 13",
+        "E. 17"
+      ],
+      "answer": "B",
+      "explanation": "First find those who like at least one: |Coffee ∪ Tea| = 30 + 25 - 12 = 43. Then neither = Total - at least one = 50 - 43 = 7.",
+      "trap": "Students forget the 'neither' group and answer 12 (the overlap) or compute 50 - 30 - 25 + 12 = 7 correctly but then second-guess themselves.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "STA-OVL-003",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "In a group of 60 students, 35 study French and 28 study Spanish. Every student studies at least one of the two languages. How many students study both French and Spanish? Enter your answer as a number.",
+      "options": null,
+      "answer": "3",
+      "explanation": "Step 1 — read the 'every student studies at least one' clause. It says neither = 0, so the union is the whole group: French or Spanish = 60.\nStep 2 — inclusion-exclusion: (French or Spanish) = French + Spanish - both.\n60 = 35 + 28 - both\nStep 3 — solve: both = 63 - 60 = 3.\nCheck the four regions: French only 32, Spanish only 25, both 3, neither 0. Total 32 + 25 + 3 = 60. Correct.\nAnswer: 3.",
+      "trap": "Answering 63, the raw sum 35 + 28, and treating it as a headcount. Sixty-three people cannot exist in a group of 60 - the 3-person excess IS the overlap, because those 3 were counted once in each language.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "inclusion-exclusion",
+        "two-sets",
+        "no-neither"
+      ]
+    },
+    {
+      "id": "STA-OVL-004",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "In a class, 18 students play chess and 14 students play checkers. Exactly 6 students play both games. How many students play chess but not checkers?",
+      "options": [
+        "A. 6",
+        "B. 8",
+        "C. 12",
+        "D. 14",
+        "E. 18"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — the 18 is a TOTAL, not an 'only'. It already contains the 6 who also play checkers.\nStep 2 — chess only = chess total - both = 18 - 6 = 12.\nCheck: chess only 12 + both 6 = 18, the full chess count. Correct.\nAnswer: 12.",
+      "trap": "Choosing 18 by reading 'play chess' as 'play only chess'. Choice B, 8, is the same mistake made on the other set: 14 - 6 = 8 is checkers only, the wrong circle. Choice A, 6, reports the overlap itself.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "only-vs-total",
+        "two-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-005",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A gym has 100 members. 60 members use the pool, 50 members use the gym floor, and 20 members use both. How many members use neither facility?",
+      "options": [
+        "A. 5",
+        "B. 10",
+        "C. 20",
+        "D. 30",
+        "E. 40"
+      ],
+      "answer": "B",
+      "explanation": "At least one facility: 60 + 50 - 20 = 90. Neither = 100 - 90 = 10.",
+      "trap": "Students compute 100 - 60 - 50 + 20 = 10 but others mistakenly compute 100 - 60 - 50 = -10 (ignoring overlap) and choose an incorrect option.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "STA-OVL-006",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "In a school of 80 students, 45 are in the math club and 40 are in the science club. Every student is in at least one club.\n\nColumn A: Number of students in both clubs\nColumn B: 5",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Since every student is in at least one club, neither = 0. So Total = |Math| + |Science| - |Both|. 80 = 45 + 40 - |Both|. |Both| = 85 - 80 = 5. Column A = 5 and Column B = 5, so the two quantities are equal.",
+      "trap": "Students may rush and say Column A is greater without computing the exact value. Careful calculation shows |Both| = 5, which equals Column B.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-007",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Of 30 people surveyed, 20 own a car, 15 own a bicycle, and 5 own neither. How many people own both a car and a bicycle?",
+      "options": [
+        "A. 5",
+        "B. 8",
+        "C. 10",
+        "D. 12",
+        "E. 15"
+      ],
+      "answer": "C",
+      "explanation": "Those who own at least one = 30 - 5 = 25. By inclusion-exclusion: 25 = 20 + 15 - |Both|. |Both| = 35 - 25 = 10.",
+      "trap": "Students forget to subtract 'neither' first. They use Total = 30 instead of 25 (those with at least one), leading to |Both| = 20 + 15 - 30 = 5 (wrong).",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "STA-OVL-008",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "In a survey of 200 people, 120 read newspaper A and 90 read newspaper B. If 40 people read both newspapers, how many people read at least one newspaper?",
+      "options": null,
+      "answer": "170",
+      "explanation": "|A ∪ B| = |A| + |B| - |A ∩ B| = 120 + 90 - 40 = 170.",
+      "trap": "Students add 120 + 90 = 210 without subtracting 40, getting 210 instead of 170. The 40 who read both are counted in both the 120 and the 90.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "inclusion-exclusion",
+        "overlapping-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-009",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A club has 50 members. 30 speak English, 25 speak French, and 10 speak both. How many members speak only French?",
+      "options": [
+        "A. 10",
+        "B. 15",
+        "C. 20",
+        "D. 25",
+        "E. 30"
+      ],
+      "answer": "B",
+      "explanation": "Only French = |French| - |Both| = 25 - 10 = 15.",
+      "trap": "Students confuse |French| (which is 25) with 'only French' (which is 15). The 10 bilingual speakers are included in the 25 French speakers.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "venn-diagram",
+        "overlapping-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-010",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "In a class of 50 students, 28 like math, 22 like science, and 10 like both subjects.\nColumn A: The number of students who like math but not science\nColumn B: The number of students who like science but not math",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — math only = 28 - 10 = 18.\nStep 2 — science only = 22 - 10 = 12.\nStep 3 — 18 > 12, so Column A is greater.\nCheck the whole class: 18 + 12 + 10 = 40 in at least one subject, so 10 like neither. All regions are non-negative, so the data is consistent.\nAnswer: A.",
+      "trap": "Choosing C on the idea that removing the same 10 from each set leaves them tied. Subtracting the SAME number from two different totals preserves the gap: 28 - 22 = 6 before, 18 - 12 = 6 after. The difference never disappears.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "only-vs-total",
+        "two-sets",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-011",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Of 100 students surveyed, 55 have a dog, 40 have a cat, and 15 have both a dog and a cat. How many students have neither a dog nor a cat?",
+      "options": [
+        "A. 5",
+        "B. 10",
+        "C. 15",
+        "D. 20",
+        "E. 25"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — union first: dog or cat = 55 + 40 - 15 = 80.\nStep 2 — neither is everything outside that union: 100 - 80 = 20.\nCheck the four regions: dog only 40, cat only 25, both 15, neither 20. They sum to 100. Correct.\nAnswer: 20.",
+      "trap": "Computing 100 - 55 - 40 = 5, choice A. That subtracts the 15 double-counted pet owners twice, so it removes too much. Either subtract the union (80) once, or write 100 - 55 - 40 + 15 = 20 to add the overlap back. Choice B, 10, is the sign error on that last term: 100 - 55 - 40 - 15 = -10, reported as 10. Choice C, 15, copies the overlap itself, and choice E, 25, is the cat-only region, 40 - 15, which answers a different question.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "neither",
+        "inclusion-exclusion",
+        "two-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-012",
+      "difficulty": "easy",
+      "type": "multiple_answer",
+      "question": "In a group of 40 people, 24 own a smartphone and 18 own a tablet. Which of the following could be the number of people who own both a smartphone and a tablet? Select all that apply.",
+      "options": [
+        "A. 0",
+        "B. 2",
+        "C. 10",
+        "D. 18",
+        "E. 20"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "Let x be the number who own both. Two bounds squeeze x.\nUpper bound: the overlap cannot be larger than the smaller set, so x <= min(24, 18) = 18.\nLower bound: the union is 24 + 18 - x = 42 - x, and the union cannot exceed the 40 people who exist, so 42 - x <= 40, giving x >= 2.\nSo 2 <= x <= 18.\nA - 0 is below 2. FALSE.\nB - 2 is exactly the minimum, reached when nobody owns neither. TRUE.\nC - 10 is inside the range. TRUE.\nD - 18 is exactly the maximum, reached when every tablet owner also owns a smartphone. TRUE.\nE - 20 exceeds the 18 tablet owners. FALSE.\nAnswer: B, C, D.",
+      "trap": "Selecting A because 'they might not overlap at all'. Since 24 + 18 = 42 is greater than 40, there is not enough room to keep the two groups apart: at least 42 - 40 = 2 people must be in both. Selecting E is the mirror error - forgetting that the overlap lives inside the smaller set.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "overlap-bounds",
+        "two-sets",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-OVL-013",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "In a school, 40% of 200 students play a sport, 30% play a musical instrument, and 10% do both. How many students do neither?",
+      "options": null,
+      "answer": "80",
+      "explanation": "Convert percentages to counts: Sport = 40% × 200 = 80; Instrument = 30% × 200 = 60; Both = 10% × 200 = 20. At least one = 80 + 60 - 20 = 120. Neither = 200 - 120 = 80.",
+      "trap": "Students add 40% + 30% - 10% = 60%, then compute neither as 40% of 200 = 80 — actually correct! But some students compute 100% - 60% = 40%, then 40% × 200 = 80. Others forget to convert and work with raw percentages throughout.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "overlapping-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-014",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a survey of 150 people, 85 like action movies, 70 like comedy movies, and 30 like neither genre. How many people like both action and comedy?",
+      "options": [
+        "A. 5",
+        "B. 30",
+        "C. 35",
+        "D. 50",
+        "E. 120"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — strip out the 'neither' group before touching the formula. People who like at least one genre = 150 - 30 = 120.\nStep 2 — inclusion-exclusion on that union: 120 = 85 + 70 - both.\nStep 3 — both = 155 - 120 = 35.\nCheck the four regions: action only 50, comedy only 35, both 35, neither 30. Total 150. Correct.\nAnswer: 35.",
+      "trap": "Using the grand total 150 as the union: 85 + 70 - 150 = 5, choice A. The 30 who like neither are inside the 150 but outside the union, so the union is 120. Choice B, 30, is copying the 'neither' count; choice D, 50, is the action-only region, 85 - 35, which answers a different question; choice E, 120, stops at the union itself.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "neither",
+        "inclusion-exclusion",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-OVL-015",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Of 120 employees at a company, 75 have health insurance, 60 have dental insurance, and 20 have neither. How many employees have only health insurance (not dental)?",
+      "options": [
+        "A. 35",
+        "B. 40",
+        "C. 45",
+        "D. 55",
+        "E. 60"
+      ],
+      "answer": "B",
+      "explanation": "At least one = 120 - 20 = 100. |Both| = 75 + 60 - 100 = 35. Only health insurance = 75 - 35 = 40.",
+      "trap": "Students answer 75 - 20 = 55 (subtracting 'neither' from |Health| instead of the overlap of 35). The correct two-step approach: first find |Both| using the union formula, then subtract from |Health|.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-OVL-016",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A group of 90 people: 50 drink coffee, 45 drink tea, and 15 drink neither.\n\nColumn A: Number who drink only coffee\nColumn B: Number who drink only tea",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "At least one drink = 90 - 15 = 75. |Both| = 50 + 45 - 75 = 20. Only coffee = 50 - 20 = 30. Only tea = 45 - 20 = 25. Column A (30) > Column B (25).",
+      "trap": "Students compare 50 vs 45 directly and assume the same ordering holds for 'only' values, but neglect to actually subtract the same overlap from each. The computation confirms Column A is greater: 30 vs 25.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-017",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In a class of 80 students, 60% study Biology, 50% study Chemistry, and 20% study neither. What percentage of students study both Biology and Chemistry?",
+      "options": null,
+      "answer": "30",
+      "explanation": "At least one subject = 100% - 20% = 80%. By inclusion-exclusion: 80% = 60% + 50% - both%. Both% = 110% - 80% = 30%.",
+      "trap": "Students compute 60% + 50% = 110%, observe it exceeds 100%, and subtract 100% to get 10%. They forget to first account for the 20% who study neither (the union is 80%, not 100%).",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "overlapping-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-018",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A survey asked 200 people about two social media platforms. 130 use Facebook, 95 use Instagram, and 25 use neither platform. How many people use exactly one of the two platforms?",
+      "options": [
+        "A. 75",
+        "B. 80",
+        "C. 125",
+        "D. 150",
+        "E. 175"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — union: at least one platform = 200 - 25 = 175.\nStep 2 — overlap: 175 = 130 + 95 - both, so both = 225 - 175 = 50.\nStep 3 — 'exactly one' is the union minus the people counted in both circles: 175 - 50 = 125.\nLong route, same answer: Facebook only = 130 - 50 = 80, Instagram only = 95 - 50 = 45, and 80 + 45 = 125.\nCheck: 80 + 45 + 50 + 25 = 200. Correct.\nAnswer: 125.",
+      "trap": "Answering 175, choice E - that is 'at least one', which still contains the 50 dual users. Choice A, 75, comes from subtracting the overlap twice (175 - 100); choice B, 80, stops at Facebook only; choice D, 150, subtracts the 50 from the grand total 200 instead of from the union.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "exactly-one",
+        "inclusion-exclusion",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-OVL-019",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a group of 100 workers, 60 can operate machine A, 47 can operate machine B, and 18 can operate neither. How many workers can operate exactly one machine?",
+      "options": [
+        "A. 45",
+        "B. 57",
+        "C. 64",
+        "D. 73",
+        "E. 82"
+      ],
+      "answer": "B",
+      "explanation": "At least one machine = 100 - 18 = 82. |Both| = 60 + 47 - 82 = 25. Only machine A = 60 - 25 = 35. Only machine B = 47 - 25 = 22. Exactly one = 35 + 22 = 57. (Equivalently: 82 - 25 = 57.)",
+      "trap": "Students add |A| + |B| = 107 and treat that as the 'exactly one' count, or they compute union - neither = 82 and report 82 as the answer, forgetting to subtract those who operate both machines.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-OVL-020",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "In a class, 40% of students passed Math, 35% passed Science, and 15% passed both.\n\nColumn A: Percentage who passed at least one subject\nColumn B: 60%",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "|Math ∪ Science| = 40% + 35% - 15% = 60%. Column A = 60% = Column B.",
+      "trap": "Students add 40% + 35% = 75% and choose Column A is greater (75% > 60%). They forget to subtract the 15% overlap.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-021",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "In a survey of 100 people, 70 like Brand X and 60 like Brand Y. Select all values that COULD represent the number of people who like neither brand.",
+      "options": [
+        "A. 0",
+        "B. 5",
+        "C. 20",
+        "D. 30",
+        "E. 35"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "Let n = neither. Then at least one = 100 - n. By inclusion-exclusion: both = 70 + 60 - (100 - n) = 30 + n. Constraints: both ≥ 0 → always true; both ≤ min(70, 60) = 60 → 30 + n ≤ 60 → n ≤ 30; and n ≥ 0. So 0 ≤ n ≤ 30. Check: A(0): valid. B(5): valid. C(20): valid. D(30): valid — gives both = 60, which equals min(70,60). E(35): 30 + 35 = 65 > 60 = min(70,60). Invalid. Answer: A, B, C, D.",
+      "trap": "Students only check the lower bound (both ≥ 0) and miss the upper bound from the smaller set: both cannot exceed min(70,60) = 60, which caps neither at 30. Option E (n=35) would require both = 65 > 60, which is impossible.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-OVL-022",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A school offers Drama and Art clubs. Of 90 students, 48 are in Drama, 36 are in Art, and 12 are in both. How many students are in neither club?",
+      "options": null,
+      "answer": "18",
+      "explanation": "At least one club = 48 + 36 - 12 = 72. Neither = 90 - 72 = 18.",
+      "trap": "Students compute 90 - 48 - 36 = 6 (subtracting both groups from total without adding back the overlap of 12). Must use the formula: neither = 90 - (48 + 36 - 12) = 18.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "inclusion-exclusion",
+        "overlapping-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-023",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a neighborhood of 250 households, 60 percent subscribe to a streaming service. Of the households that subscribe to a streaming service, one third also subscribe to a cable service. 40 households subscribe to neither service. How many households subscribe to a cable service?",
+      "options": [
+        "A. 50",
+        "B. 60",
+        "C. 100",
+        "D. 110",
+        "E. 150"
+      ],
+      "answer": "D",
+      "explanation": "Build the 2x2 table; the cable total is a column sum, so find both cells of that column.\nStep 1 — streaming households = 0.60 x 250 = 150.\nStep 2 — the one third is taken of the STREAMING group, not of the neighborhood: both = (1/3) x 150 = 50. So streaming but no cable = 150 - 50 = 100.\nStep 3 — the non-streaming row has 250 - 150 = 100 households, of which 40 have neither service, so cable but no streaming = 100 - 40 = 60.\nStep 4 — cable total = 50 + 60 = 110.\nCheck the table: 50 + 100 + 60 + 40 = 250. Correct.\nAnswer: 110.",
+      "trap": "Answering 60, choice B - that is cable-only, and it omits the 50 cable subscribers who also stream. Choice A, 50, reports the overlap; choice C, 100, reports streaming-only; choice E, 150, applies the one third to the wrong base by treating the whole streaming count as the cable count.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "double-matrix",
+        "percent-of-subgroup",
+        "two-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-024",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "In a study, 70 percent of participants exercise regularly, 60 percent maintain a healthy diet, and 10 percent do neither.\nColumn A: The percent of participants who both exercise regularly and maintain a healthy diet\nColumn B: 40%",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — union: at least one healthy habit = 100% - 10% = 90%.\nStep 2 — inclusion-exclusion: 90 = 70 + 60 - both.\nStep 3 — both = 130 - 90 = 40%.\nColumn A = 40% = Column B, so the quantities are equal.\nCheck the four regions: exercise only 30, diet only 20, both 40, neither 10. They sum to 100. Correct.\nAnswer: C.",
+      "trap": "Computing 70 + 60 - 100 = 30 by treating the whole population as the union and choosing B. The union is only 90%, because the 10% who do neither sit outside both circles. Every extra percent in 'neither' pushes the overlap UP by the same amount.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "neither",
+        "inclusion-exclusion",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-025",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A bookstore surveyed 180 customers about two categories of books. 110 customers bought fiction, and 45 of those 110 also bought non-fiction. Of the customers who did not buy fiction, 40 percent bought non-fiction. How many of the 180 customers bought neither category?",
+      "options": [
+        "A. 25",
+        "B. 28",
+        "C. 42",
+        "D. 45",
+        "E. 72"
+      ],
+      "answer": "C",
+      "explanation": "Set up the 2x2 table with fiction as the rows and non-fiction as the columns.\nStep 1 — the fiction row: 110 total, 45 of them also bought non-fiction, so fiction-only = 110 - 45 = 65.\nStep 2 — the no-fiction row: 180 - 110 = 70 customers.\nStep 3 — the 40 percent belongs to that row, not to the whole survey: non-fiction only = 0.40 x 70 = 28.\nStep 4 — neither = 70 - 28 = 42.\nCheck the table: both 45 + fiction only 65 + non-fiction only 28 + neither 42 = 180. Correct.\nAnswer: 42.",
+      "trap": "Applying the 40 percent to all 180 customers: 0.40 x 180 = 72, choice E. The percent is stated for the customers who did NOT buy fiction, a 70-person row. Choice B, 28, stops at the non-fiction-only cell; choice A, 25, comes from 180 - 110 - 45, which subtracts the overlap out of the wrong row.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "double-matrix",
+        "percent-of-subgroup",
+        "neither"
+      ]
+    },
+    {
+      "id": "STA-OVL-026",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "In a class of 50 students, 30 study French and 25 study German. Every student studies at least one of the two languages. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. Exactly 5 students study both languages",
+        "B. At least 5 students study both languages",
+        "C. More students study only French than study only German",
+        "D. Exactly 20 students study only French",
+        "E. Exactly 45 students study only French"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "Step 1 — 'every student studies at least one' forces neither = 0, so the union is 50.\nStep 2 — 50 = 30 + 25 - both, so both = 55 - 50 = 5. The overlap is pinned exactly, not merely bounded.\nStep 3 — French only = 30 - 5 = 25; German only = 25 - 5 = 20; exactly one language = 25 + 20 = 45.\nA - both is exactly 5. TRUE.\nB - 5 >= 5, so 'at least 5' also holds. TRUE.\nC - 25 > 20. TRUE.\nD - French only is 25; 20 is GERMAN only. FALSE.\nE - 45 is the number who study exactly one language, not French only. FALSE.\nAnswer: A, B, C.",
+      "trap": "Rejecting A because the stem never says 'exactly'. The clause 'every student studies at least one' removes the last free variable, so the overlap is determined, not a range. D and E are the two nearby region values - German only (20) and exactly-one (45) - which catch students who compute the right numbers and then attach them to the wrong label.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "region-labels",
+        "no-neither",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-OVL-027",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A hotel surveyed its guests: 40 percent ordered room service, 35 percent used the spa, and 25 percent used neither service. What percent of guests used both room service and the spa? Enter your answer as a number.",
+      "options": null,
+      "answer": "0",
+      "explanation": "Step 1 — union: used at least one service = 100% - 25% = 75%.\nStep 2 — inclusion-exclusion: 75 = 40 + 35 - both.\nStep 3 — both = 75 - 75 = 0%.\nSo no guest used both services: the 40% and the 35% happen to fit into the 75% union with nothing left over.\nCheck the four regions: room service only 40, spa only 35, both 0, neither 25. They sum to 100. Correct.\nAnswer: 0.",
+      "trap": "Refusing to accept 0 and forcing a positive overlap, usually by computing 40 + 35 - 100 = -25 and reporting 25. Zero overlap is a legitimate outcome whenever the two sets exactly fill the union; the formula tells you so, and 0 is a valid entry.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "neither",
+        "inclusion-exclusion",
+        "zero-overlap"
+      ]
+    },
+    {
+      "id": "STA-OVL-028",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Group of 60 people: 35 like jazz, 30 like classical, 5 like neither.\n\nColumn A: Number who like jazz but NOT classical\nColumn B: Number who like classical but NOT jazz",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "At least one = 60 - 5 = 55. Both = 35 + 30 - 55 = 10. Jazz only = 35 - 10 = 25. Classical only = 30 - 10 = 20. Column A (25) > Column B (20).",
+      "trap": "Students compare 35 vs 30 directly and conclude Column A is greater for the wrong reason — but the computation confirms it. The risk is not computing 'only' values and comparing raw totals.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-029",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a survey of 500 people, 55 percent watch TV daily and 40 percent use social media daily. If 20 percent do neither, what percent watch TV daily but do NOT use social media daily?",
+      "options": [
+        "A. 15%",
+        "B. 25%",
+        "C. 35%",
+        "D. 40%",
+        "E. 55%"
+      ],
+      "answer": "D",
+      "explanation": "Work entirely in percents; the 500 never enters the arithmetic because the answer is a percent.\nStep 1 — union: at least one daily habit = 100 - 20 = 80%.\nStep 2 — overlap: 80 = 55 + 40 - both, so both = 95 - 80 = 15%.\nStep 3 — TV but not social media = TV total - both = 55 - 15 = 40%.\nCheck the four regions: TV only 40, social only 25, both 15, neither 20. They sum to 100. Correct.\nAnswer: 40%.",
+      "trap": "Answering 55%, choice E, by reading 'watch TV' as 'watch TV only'. Choice C, 35%, subtracts the 20% who do neither from the 55% - the wrong quantity: 'neither' sits outside both circles and never comes out of the TV count. Choice A is the overlap and choice B is social-media only.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "only-vs-total",
+        "percent",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-OVL-030",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "Of 240 athletes, some run and some swim. 150 run, 120 swim, and 30 do neither. How many athletes both run and swim?",
+      "options": null,
+      "answer": "60",
+      "explanation": "At least one activity = 240 - 30 = 210. Both = 150 + 120 - 210 = 270 - 210 = 60.",
+      "trap": "Students forget to subtract 'neither' from the total and use 240 as the union: 150 + 120 - 240 = 30. The correct union is 210 (those with at least one activity), giving both = 60.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "inclusion-exclusion",
+        "overlapping-sets",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-OVL-031",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a city, 45% of residents speak English, 30% speak Spanish, and 10% speak both. What percentage of residents speak exactly one of these two languages?",
+      "options": [
+        "A. 40%",
+        "B. 55%",
+        "C. 65%",
+        "D. 70%",
+        "E. 75%"
+      ],
+      "answer": "B",
+      "explanation": "Only English = 45% - 10% = 35%. Only Spanish = 30% - 10% = 20%. Exactly one language = 35% + 20% = 55%. (Cross-check: union = 45+30-10 = 65%; exactly one = union - both = 65% - 10% = 55%. ✓)",
+      "trap": "Students add 45% + 30% = 75% and treat that as 'at least one,' then compute exactly one as 75% - 10% = 65%. But the correct union is 45+30-10 = 65%, and exactly one = 65% - 10% = 55%.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-OVL-032",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "In a group of 100 people: 60 own a laptop, 50 own a tablet, and 20 own neither.\n\nColumn A: Number who own both a laptop and a tablet\nColumn B: 30",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "At least one = 100 - 20 = 80. Both = 60 + 50 - 80 = 30. Column A = 30 = Column B.",
+      "trap": "Students compute 60 + 50 - 100 = 10 (using total instead of the union of 80), concluding Column B is greater. The union is 80, not 100, because 20 people own neither.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-033",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "In a group of 80 students, 50 study Math and 40 study Physics. Some study both and some study neither. Which of the following are possible values for the number studying both? Select all that apply.",
+      "options": [
+        "A. 5",
+        "B. 10",
+        "C. 20",
+        "D. 35",
+        "E. 40"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "Let b = both. The union = 50 + 40 - b = 90 - b must be ≤ 80 (cannot exceed total group), so b ≥ 10. Also b ≤ min(50, 40) = 40. So 10 ≤ b ≤ 40. Check: A(5): fails b ≥ 10. B(10): valid — union = 80, neither = 0. C(20): valid — union = 70, neither = 10. D(35): valid — union = 55, neither = 25. E(40): valid — union = 50, neither = 30 (all physics students also study math). Answer: B, C, D, E.",
+      "trap": "Students only apply the upper bound b ≤ 40 and choose all options except E (thinking b cannot equal the smaller set). They miss that b can equal min(50,40)=40. They also miss the lower bound: since 90 - b ≤ 80, b ≥ 10, ruling out A.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "venn-diagram",
+        "inclusion-exclusion",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-OVL-034",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In a school of 300 students, every student studies at least one of three subjects: math, science, or history. 160 study math, 140 study science, and 130 study history. 60 study both math and science, 50 study both math and history, and 40 study both science and history; each of these three pairwise counts includes the 20 students who study all three subjects. How many students study exactly one subject?",
+      "options": [
+        "A. 130",
+        "B. 150",
+        "C. 170",
+        "D. 190",
+        "E. 210"
+      ],
+      "answer": "D",
+      "explanation": "The pairwise numbers are TOTAL intersections, so each one already contains the 20 triple students.\nStep 1 — confirm the data is consistent by computing the union: 160 + 140 + 130 - 60 - 50 - 40 + 20 = 430 - 150 + 20 = 300. That matches the 300 students, so nobody is left out. Correct.\nStep 2 — peel the pairwise counts down to exactly-two regions: math and science only = 60 - 20 = 40; math and history only = 50 - 20 = 30; science and history only = 40 - 20 = 20. Exactly two = 40 + 30 + 20 = 90.\nStep 3 — exactly one = total - exactly two - exactly three = 300 - 90 - 20 = 190.\nDirect formula, same answer: exactly one = (sum of the three sets) - 2(sum of the pairwise) + 3(triple) = 430 - 300 + 60 = 190.\nCheck by region: math only = 160 - 60 - 50 + 20 = 70; science only = 140 - 60 - 40 + 20 = 60; history only = 130 - 50 - 40 + 20 = 60. 70 + 60 + 60 = 190. Correct.\nAnswer: 190.",
+      "trap": "Choice E, 210, comes from 300 - 90: removing the exactly-two students but leaving the 20 all-three students inside the 'exactly one' count. Choice A, 130, is 430 - 300, the formula run without the +3(triple) term; choice C, 170, uses +2(triple) instead of +3. Choice B, 150, is 300 - (60 + 50 + 40): treating the three pairwise counts as disjoint blocks of two-subject students and subtracting them straight from the total, which strips out the 20 all-three students three times over.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "three-sets",
+        "exactly-one",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "STA-OVL-035",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "In a survey of 200 people about three streaming services X, Y, and Z, 110 use X, 95 use Y, and 80 use Z. 45 use both X and Y, 35 use both X and Z, and 30 use both Y and Z; each of these pairwise counts includes everyone who uses all three services. Every person surveyed uses at least one of the three services. How many people use all three services? Enter your answer as a number.",
+      "options": null,
+      "answer": "25",
+      "explanation": "Step 1 — 'every person uses at least one' means the union is the whole survey: |X or Y or Z| = 200.\nStep 2 — three-set inclusion-exclusion, with the pairwise numbers taken as full intersections:\n200 = 110 + 95 + 80 - 45 - 35 - 30 + T\nStep 3 — collect: 110 + 95 + 80 = 285 and 45 + 35 + 30 = 110, so 200 = 285 - 110 + T = 175 + T.\nStep 4 — T = 200 - 175 = 25.\nCheck every region: X only = 110 - 45 - 35 + 25 = 55; Y only = 95 - 45 - 30 + 25 = 45; Z only = 80 - 35 - 30 + 25 = 40; XY only = 20; XZ only = 10; YZ only = 5; all three = 25. Sum = 55 + 45 + 40 + 20 + 10 + 5 + 25 = 200. Correct.\nAnswer: 25.",
+      "trap": "Stopping at 285 - 110 = 175 and reporting 175, or concluding that 0 people use all three because the formula 'came out' at 175. The triple term is the one unknown in the equation, and the 25-person gap between 175 and the 200-person union IS that term. The pairs subtract; the triple adds back.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "three-sets",
+        "inclusion-exclusion",
+        "solve-for-triple"
+      ]
+    },
+    {
+      "id": "STA-OVL-036",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Of 500 adults surveyed, 60 percent drink coffee, 45 percent drink tea, and 25 percent drink both. One adult is chosen at random from among those who drink at least one of the two beverages. What is the probability that the chosen adult drinks tea?",
+      "options": [
+        "A. 1/4",
+        "B. 5/16",
+        "C. 9/20",
+        "D. 9/16",
+        "E. 3/4"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — convert to counts: coffee = 0.60 x 500 = 300; tea = 0.45 x 500 = 225; both = 0.25 x 500 = 125.\nStep 2 — the sample space is restricted to 'at least one beverage', so find that union: 300 + 225 - 125 = 400.\nStep 3 — the favourable group is ALL tea drinkers, 225 of them, including the 125 who also drink coffee.\nStep 4 — probability = 225/400 = 9/16.\nCheck the regions: coffee only 175, tea only 100, both 125, neither 100. They sum to 500, and 175 + 100 + 125 = 400. Correct.\nAnswer: 9/16.",
+      "trap": "Choice C, 9/20, uses all 500 adults as the denominator; the stem restricts the draw to the 400 who drink something. Choice A, 1/4, is 100/400, the probability of drinking ONLY tea; choice B, 5/16, is 125/400, the probability of drinking both; choice E, 3/4, is 300/400, the coffee answer.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "conditional-probability",
+        "inclusion-exclusion",
+        "two-sets"
+      ]
+    },
+    {
+      "id": "STA-OVL-037",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "In a class, 70 percent of the students passed exam A and 80 percent passed exam B. Nothing else is known about how the two groups overlap.\nColumn A: The smallest possible percent of the class that passed both exams\nColumn B: The largest possible percent of the class that passed neither exam",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — minimise the overlap for Column A. The union can never exceed 100%, so 70 + 80 - both <= 100, giving both >= 50%. The smallest possible overlap is 50%, reached when nobody fails both exams.\nStep 2 — maximise 'neither' for Column B. Neither = 100 - union, so making 'neither' as large as possible means making the union as small as possible. The union can never be smaller than the larger of the two sets, so union >= 80%. The smallest union is 80%, reached when every exam-A passer also passed exam B, and then neither = 100 - 80 = 20%.\nStep 3 — compare: 50% > 20%, so Column A is greater.\nNote that the two scenarios describe different classes; each column is optimised on its own, which is exactly what 'smallest possible' and 'largest possible' ask for.\nAnswer: A.",
+      "trap": "Reading Column A as the LARGEST possible overlap, which is min(70, 80) = 70%, or reading Column B as the smallest 'neither', which is 0%. A second slip is computing the maximum 'neither' as 100 - 70 = 30% by shrinking the union to the wrong set - the union must contain the bigger set, 80%, not the smaller one.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "overlap-bounds",
+        "maximise-minimise",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-038",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "In a group of 120 people, 75 have taken a cooking class, 60 have taken a pottery class, and 45 have taken a painting class. 30 have taken both cooking and pottery, 25 have taken both cooking and painting, and 20 have taken both pottery and painting; each of these three pairwise counts includes the 10 people who have taken all three classes. Some people have taken none of the three. How many people have taken exactly two of the three classes? Enter your answer as a number.",
+      "options": null,
+      "answer": "45",
+      "explanation": "Step 1 — add the pairwise intersections: 30 + 25 + 20 = 75.\nStep 2 — see what that sum actually counts. Someone in exactly two classes appears in exactly one of the three pairwise groups, so they are counted once. Someone in all three appears in all three pairwise groups, so they are counted three times.\nSo 75 = (exactly two) + 3 x (all three).\nStep 3 — exactly two = 75 - 3 x 10 = 75 - 30 = 45.\nCheck by region: cooking only = 75 - 30 - 25 + 10 = 30; pottery only = 60 - 30 - 20 + 10 = 20; painting only = 45 - 25 - 20 + 10 = 10. Exactly-two regions: 20, 15, 10, which sum to 45. Union = 60 + 45 + 10 = 115, so 5 people took none - consistent with 120. Correct.\nAnswer: 45.",
+      "trap": "Answering 65, from 75 - 10: subtracting the all-three group once instead of three times. Each of those 10 people sits inside cooking-and-pottery, cooking-and-painting AND pottery-and-painting, so they are triple-counted in the 75 and must be removed three times over.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "three-sets",
+        "exactly-two",
+        "pairwise-sums"
+      ]
+    },
+    {
+      "id": "STA-OVL-039",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A company has 400 employees, each of whom works at exactly one of three locations: the city office, remotely, or the satellite office. 50 percent work at the city office and 35 percent work remotely. Of the city office workers, 30 percent lead a team; of the remote workers, 20 percent lead a team; of the satellite office workers, 20 percent lead a team. What percent of the company's team leaders work at the city office?",
+      "options": [
+        "A. 20%",
+        "B. 25%",
+        "C. 30%",
+        "D. 50%",
+        "E. 60%"
+      ],
+      "answer": "E",
+      "explanation": "This is a double matrix: location down the side, leads-a-team across the top. Fill the leader column one row at a time, because each percent applies to its own row.\nStep 1 — row sizes: city = 0.50 x 400 = 200; remote = 0.35 x 400 = 140; satellite = 400 - 200 - 140 = 60.\nStep 2 — leaders in each row: city = 0.30 x 200 = 60; remote = 0.20 x 140 = 28; satellite = 0.20 x 60 = 12.\nStep 3 — total leaders = 60 + 28 + 12 = 100.\nStep 4 — the question asks for a share OF THE LEADERS, so the base is 100, not 400: 60/100 = 60%.\nCheck: 60 + 28 + 12 = 100 leaders and 140 + 112 + 48 = 300 non-leaders, and 100 + 300 = 400. Correct.\nAnswer: 60%.",
+      "trap": "Choice D, 50%, assumes leaders are spread through the company in the same proportion as employees - but the city office has the highest leadership rate, so it is over-represented among leaders. Choice C, 30%, quotes the city leadership RATE instead of the city share of leaders; choice B, 25%, answers a different question (100 leaders out of 400 employees); choice A, 20%, is the remote rate.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "double-matrix",
+        "percent-of-subgroup",
+        "reverse-share"
+      ]
+    },
+    {
+      "id": "STA-OVL-040",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "In a large group of people, 65 percent like product A. Of the people who like product A, 40 percent also like product B. 10 percent of the group like neither product.\nColumn A: The percent of the group who like product B but not product A\nColumn B: 20%",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Set the group to 100 people and build the 2x2 table.\nStep 1 — like A = 65.\nStep 2 — the 40 percent is taken of the A group, not of the whole group: both = 0.40 x 65 = 26. So A but not B = 65 - 26 = 39.\nStep 3 — the not-A row has 100 - 65 = 35 people. Of those, 10 like neither product, so B but not A = 35 - 10 = 25.\nStep 4 — 25 > 20, so Column A is greater.\nCheck the table: both 26 + A only 39 + B only 25 + neither 10 = 100. Correct. (For reference, B's total is 26 + 25 = 51, which the stem never had to give.)\nAnswer: A.",
+      "trap": "Subtracting the wrong cell from the not-A row. That row holds 35 people and it is the 10 who like NEITHER product that come out of it; a student who subtracts the 26 'both' instead gets 35 - 26 = 9, which is below 20 and gives choice B. Choosing D on the grounds that B's overall percentage is never stated is the other slip - B's total is never needed, because the not-A row settles B-only in one subtraction. Remember too that the 40 percent is taken of the A group, not of the whole group, so 'both' is 26 and not 40.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "double-matrix",
+        "percent-of-subgroup",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-041",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "In a group of 100 people, 70 speak language A and 60 speak language B. No other information is given. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. At least 30 people speak both languages",
+        "B. At most 60 people speak both languages",
+        "C. At least 10 people speak neither language",
+        "D. At most 30 people speak neither language",
+        "E. If no one in the group speaks neither language, then exactly 30 people speak both"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "Let x be the number who speak both. Union = 70 + 60 - x = 130 - x, and neither = 100 - (130 - x) = x - 30.\nA - the union cannot exceed 100, so 130 - x <= 100 and x >= 30. TRUE.\nB - the overlap cannot exceed the smaller set, so x <= 60. TRUE.\nC - neither = x - 30, and x can be exactly 30, which makes neither = 0. So 'at least 10 speak neither' is not forced. FALSE.\nD - neither = x - 30 and x <= 60, so neither <= 30. TRUE.\nE - if neither = 0 then the union is 100, so 130 - x = 100 and x = 30 exactly. TRUE.\nAnswer: A, B, D, E.",
+      "trap": "Selecting C by reasoning that 70 + 60 = 130 overshoots 100 by 30, so 30 people must be 'left over' outside the sets. The excess is absorbed by the OVERLAP, not by the 'neither' region: when exactly 30 speak both, the union is exactly 100 and nobody is left out. Note also that neither = both - 30 here, so the two regions move together, one always 30 behind the other.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "overlap-bounds",
+        "must-be-true",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-OVL-042",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "In a school of 80 students, every student belongs to at least one of three clubs: A, B, or C. Club A has 50 members, club B has 45 members, and club C has 38 members. Exactly 15 students belong to A and B but not C, exactly 12 belong to A and C but not B, and exactly 10 belong to B and C but not A. How many students belong to all three clubs? Enter your answer as a number.",
+      "options": null,
+      "answer": "8",
+      "explanation": "The three given numbers are EXACTLY-TWO counts, not full pairwise intersections, so the standard inclusion-exclusion formula does not apply as written. Use the membership-counting identity instead.\nStep 1 — name the regions: let T be the number in all three. Exactly two = 15 + 12 + 10 = 37. Since every student is in at least one club, exactly one = 80 - 37 - T = 43 - T.\nStep 2 — count club memberships. Adding the three club sizes counts a one-club student once, a two-club student twice, and a three-club student three times:\n50 + 45 + 38 = (exactly one) + 2(exactly two) + 3T\n133 = (43 - T) + 2(37) + 3T\n133 = 43 - T + 74 + 3T = 117 + 2T\nStep 3 — 2T = 16, so T = 8.\nCheck each club: A only = 50 - 15 - 12 - 8 = 15; B only = 45 - 15 - 10 - 8 = 12; C only = 38 - 12 - 10 - 8 = 8. Exactly one = 15 + 12 + 8 = 35, and 35 + 37 + 8 = 80. Correct.\nAnswer: 8.",
+      "trap": "Answering 16 by writing 133 - 117 = 16 and forgetting that T carries a coefficient of 2 in that equation. The bigger trap is feeding the exactly-two numbers into the standard formula as if they were full intersections: 80 = 133 - 37 + T gives T = -16, and a negative region is the signal that the counts were the wrong kind.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "three-sets",
+        "exactly-two-given",
+        "membership-count"
+      ]
+    },
+    {
+      "id": "STA-OVL-043",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In a survey of 500 people, 55 percent like red, 45 percent like blue, and 30 percent like green. 20 percent like both red and blue, 15 percent like both red and green, and 12 percent like both blue and green; each of these pairwise percents includes the 8 percent who like all three colors. What percent of the people surveyed like none of the three colors?",
+      "options": [
+        "A. 1%",
+        "B. 8%",
+        "C. 9%",
+        "D. 17%",
+        "E. 25%"
+      ],
+      "answer": "C",
+      "explanation": "Work in percents; the 500 is never needed because the answer is a percent.\nStep 1 — three-set inclusion-exclusion: singles add, pairs subtract, the triple adds back.\nunion = 55 + 45 + 30 - 20 - 15 - 12 + 8\nStep 2 — 55 + 45 + 30 = 130 and 20 + 15 + 12 = 47, so union = 130 - 47 + 8 = 91%.\nStep 3 — none = 100 - 91 = 9%.\nCheck every region: red only = 55 - 20 - 15 + 8 = 28; blue only = 45 - 20 - 12 + 8 = 21; green only = 30 - 15 - 12 + 8 = 11; red-blue only = 12; red-green only = 7; blue-green only = 4; all three = 8. Sum = 28 + 21 + 11 + 12 + 7 + 4 + 8 = 91. Correct.\nAnswer: 9%.",
+      "trap": "Choice D, 17%, drops the +8 term and stops at a union of 83%. Choice E, 25%, subtracts the triple instead of adding it (130 - 47 - 8 = 75). Choice A, 1%, adds it back twice. Choice B, 8%, mistakes the all-three region for the outside region - the 8% who like every color are the innermost part of the union, not the part beyond it. The rule is one sign per level: plus, minus, plus.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "three-sets",
+        "inclusion-exclusion",
+        "percent"
+      ]
+    },
+    {
+      "id": "STA-OVL-044",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "In a class of 60 students, 35 study art and 28 study music. No information is given about how many study both.\nColumn A: The number of students who study both art and music\nColumn B: The number of students who study neither art nor music",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Do not guess D just because 'both' is unknown - write the algebra and see whether the unknown cancels.\nStep 1 — let b be the number who study both. Union = 35 + 28 - b = 63 - b.\nStep 2 — neither = 60 - union = 60 - (63 - b) = b - 3.\nStep 3 — compare: Column A - Column B = b - (b - 3) = 3.\nThe unknown b cancels, so Column A exceeds Column B by exactly 3 no matter what b is. Column A is greater.\nRange check: neither >= 0 forces b >= 3, and b <= min(35, 28) = 28. Test the endpoints - b = 3 gives neither = 0 (3 vs 0), and b = 28 gives neither = 25 (28 vs 25). Column A wins at both ends and everywhere between.\nAnswer: A.",
+      "trap": "Choosing D because the overlap is never stated. The two quantities are locked together: since 35 + 28 = 63 exceeds the class size by 3, 'both' is always exactly 3 more than 'neither'. Whenever the two set totals overshoot the group total by d, both - neither = d for every legal configuration.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "invariant",
+        "two-sets",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-045",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "In a group of 100 people, 80 like product A, 70 like product B, and 60 like product C. Which of the following could be the number of people who like all three products? Select all that apply.",
+      "options": [
+        "A. 5",
+        "B. 10",
+        "C. 30",
+        "D. 60",
+        "E. 70"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "Bound the triple overlap from both sides.\nUpper bound: everyone in all three is in C, so the triple cannot exceed the smallest set: at most 60. That is reachable - put all 60 C-likers inside both A and B.\nLower bound: count the people who are MISSING something. 20 do not like A, 30 do not like B, 40 do not like C, and 20 + 30 + 40 = 90. At most 90 people can be missing at least one product, so at least 100 - 90 = 10 people like all three. Equivalently 80 + 70 + 60 - 2(100) = 10.\nThat minimum is reachable: make the three 'missing' groups disjoint, and the remaining 10 people like everything.\nSo the triple overlap runs from 10 to 60.\nA - 5 is below the minimum of 10. FALSE.\nB - 10 is exactly the minimum. TRUE.\nC - 30 is inside the range. TRUE.\nD - 60 is exactly the maximum. TRUE.\nE - 70 exceeds the 60 people who like C. FALSE.\nAnswer: B, C, D.",
+      "trap": "Selecting A because 'a small overlap seems possible' - with three sets this large there is not enough room outside them: only 90 person-slots exist for people missing something, so 10 people are forced into all three. Selecting E is the opposite error, forgetting that the triple intersection is a subset of the smallest set.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "three-sets",
+        "overlap-bounds",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-OVL-046",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "At a conference with 200 attendees, every person speaks at least one of three languages: English, French, or Mandarin. 140 speak English, 120 speak French, and 90 speak Mandarin. What is the greatest possible number of attendees who speak all three languages?",
+      "options": [
+        "A. 50",
+        "B. 60",
+        "C. 75",
+        "D. 90",
+        "E. 150"
+      ],
+      "answer": "C",
+      "explanation": "The insight: compare the number of PEOPLE with the number of language memberships.\nStep 1 — let e1, e2, e3 be the numbers speaking exactly one, exactly two, and all three languages. Since everyone speaks at least one:\ne1 + e2 + e3 = 200\nStep 2 — adding the three language totals counts a one-language speaker once, a two-language speaker twice, and a three-language speaker three times:\ne1 + 2e2 + 3e3 = 140 + 120 + 90 = 350\nStep 3 — subtract the first equation from the second:\ne2 + 2e3 = 350 - 200 = 150\nStep 4 — maximise e3. Since e2 cannot be negative, 2e3 <= 150, so e3 <= 75.\nStep 5 — check that 75 is achievable. Put e2 = 0 and e3 = 75. Then English only = 140 - 75 = 65, French only = 120 - 75 = 45, Mandarin only = 90 - 75 = 15, all non-negative, and 65 + 45 + 15 + 75 = 200. It works.\nAnswer: 75.",
+      "trap": "Choice D, 90, is the standard two-set instinct - 'the overlap cannot exceed the smallest set' - which gives a valid upper bound but not a reachable one: 90 people in all three would force 350 - 270 = 80 memberships across the remaining 110 people, which is impossible since each of them needs at least one. Choice E, 150, is the raw excess e2 + 2e3; choice A, 50, divides that excess by 3 instead of 2. Choice B, 60, is the two-set formula 140 + 120 - 200 read as a ceiling; that number is the SMALLEST possible English-and-French overlap, not the largest, and it says nothing about Mandarin.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "three-sets",
+        "maximise-overlap",
+        "membership-count"
+      ]
+    },
+    {
+      "id": "STA-OVL-047",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "In a survey of 400 people, 60 percent like product A, 50 percent like product B, and 35 percent like product C. Every person likes at least one of the three products, and the number of people who like exactly two of the products is three times the number who like all three. How many people like exactly one product? Enter your answer as a number.",
+      "options": null,
+      "answer": "256",
+      "explanation": "Step 1 — convert to counts: A = 0.60 x 400 = 240; B = 0.50 x 400 = 200; C = 0.35 x 400 = 140. Their sum is 580 product-likes.\nStep 2 — name the regions. Let t be the number who like all three; then exactly two = 3t, and since everyone likes at least one, exactly one = 400 - 3t - t = 400 - 4t.\nStep 3 — write the membership identity. One-product people contribute 1 each, two-product people 2 each, three-product people 3 each:\n580 = (400 - 4t) + 2(3t) + 3t\n580 = 400 - 4t + 6t + 3t = 400 + 5t\nStep 4 — 5t = 180, so t = 36. Then exactly two = 108 and exactly one = 400 - 144 = 256.\nCheck both equations: 256 + 108 + 36 = 400 people, and 256 + 2(108) + 3(36) = 256 + 216 + 108 = 580 memberships. Correct.\nAnswer: 256.",
+      "trap": "Answering 45 by solving 4t = 180 - that treats the 180-membership excess as if all of it came from the exactly-one shortfall, when in fact each two-product person contributes 1 extra membership and each three-product person contributes 2. The other slip is stopping at t = 36 or at 3t = 108 and reporting a region the question did not ask for.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "three-sets",
+        "membership-count",
+        "region-ratio"
+      ]
+    },
+    {
+      "id": "STA-OVL-048",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "In a group of 100 students, 50 belong to club X, 40 belong to club Y, and 30 belong to club Z. Every student belongs to at least one of the three clubs. Nothing is given about the pairwise overlaps.\nColumn A: The number of students who belong to all three clubs\nColumn B: 5",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — let e1, e2, e3 be the numbers in exactly one, exactly two, and all three clubs. Everyone is in at least one club, so e1 + e2 + e3 = 100.\nStep 2 — the club totals count memberships: e1 + 2e2 + 3e3 = 50 + 40 + 30 = 120.\nStep 3 — subtract: e2 + 2e3 = 20. That single equation is ALL the data pins down; e3 is not determined.\nStep 4 — test the two extremes.\ne3 = 0 (so e2 = 20): let X-and-Y-only = 10, X-and-Z-only = 5, Y-and-Z-only = 5. Then X only = 50 - 15 = 35, Y only = 40 - 15 = 25, Z only = 30 - 10 = 20. Regions: 35 + 25 + 20 + 20 = 100. Valid, and Column A = 0 < 5.\ne3 = 10 (so e2 = 0): X only = 40, Y only = 30, Z only = 20, all three = 10. Regions: 40 + 30 + 20 + 10 = 100. Valid, and Column A = 10 > 5.\nSince Column A can be below 5 and above 5, the relationship cannot be determined.\nAnswer: D.",
+      "trap": "Feeding the numbers into the three-set formula as though the pairwise intersections were known and reporting a single value for the triple. Compare a problem that DOES give |X and Y|, |X and Z|, |Y and Z|: there the triple is forced. Here only the combination e2 + 2e3 = 20 is fixed, so the triple ranges from 0 to 10 and both C and A are wrong.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "three-sets",
+        "underdetermined",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-OVL-049",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "In a class of 100 students, 55 passed math, 50 passed English, and 45 passed science. 25 passed both math and English, 20 passed both math and science, and 18 passed both English and science; each of these three pairwise counts includes the x students who passed all three subjects. Some students may have passed none of the three. Which of the following could be the value of x? Select all that apply.",
+      "options": [
+        "A. 8",
+        "B. 13",
+        "C. 18",
+        "D. 20",
+        "E. 25"
+      ],
+      "answer": [
+        "A",
+        "B"
+      ],
+      "explanation": "Step 1 — write the union with x left as an unknown:\nunion = 55 + 50 + 45 - 25 - 20 - 18 + x = 150 - 63 + x = 87 + x\nStep 2 — the union cannot exceed the class, so 87 + x <= 100, giving x <= 13. (Equivalently, the number who passed none is 100 - (87 + x) = 13 - x, which must be at least 0.)\nStep 3 — check the other constraints. The exactly-two regions are 25 - x, 20 - x and 18 - x, all of which must be non-negative, so x <= 18. The exactly-one regions are math only = 55 - 25 - 20 + x = 10 + x, English only = 50 - 25 - 18 + x = 7 + x and science only = 45 - 20 - 18 + x = 7 + x, all non-negative for x >= 0.\nStep 4 — the binding constraint is the union one: 0 <= x <= 13.\nA - 8 is inside the range; 5 students passed none. TRUE.\nB - 13 is the maximum; 0 students passed none. TRUE.\nC - 18 would make the union 105, more than the whole class. FALSE.\nD - 20 exceeds both 13 and the 18-student English-and-science overlap. FALSE.\nE - 25 fails for the same reasons. FALSE.\nAnswer: A, B.",
+      "trap": "Selecting C because 18 is the smallest of the three pairwise counts, so 'the triple can be as big as the smallest pair'. That bound is real but slack here: the union constraint bites first at 13. An x of 18 would put 105 percent of the class into the union, which the roster cannot supply.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "three-sets",
+        "overlap-bounds",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-OVL-050",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "A company has 300 employees, each of whom speaks at least one of three languages: English, Spanish, and French. The number who speak English only is twice the number who speak Spanish only, and the number who speak Spanish only is twice the number who speak French only. Exactly 30 speak English and Spanish but not French, exactly 10 speak English and French but not Spanish, exactly 5 speak Spanish and French but not English, and exactly 10 speak all three languages. How many employees speak English? Enter your answer as a number.",
+      "options": null,
+      "answer": "190",
+      "explanation": "All seven regions of the Venn diagram are either given or expressible in one variable, so build them and add.\nStep 1 — let f be the number who speak French only. Then Spanish only = 2f and English only = 4f.\nStep 2 — the four multilingual regions are given outright: 30 + 10 + 5 = 45 speak exactly two, and 10 speak all three.\nStep 3 — everyone speaks at least one language, so the seven regions fill the company:\n4f + 2f + f + 45 + 10 = 300\n7f + 55 = 300, so 7f = 245 and f = 35.\nStep 4 — the regions: French only 35, Spanish only 70, English only 140.\nStep 5 — the question asks for the ENGLISH SET, which is four regions, not one:\nEnglish = English only + (English and Spanish only) + (English and French only) + (all three)\nEnglish = 140 + 30 + 10 + 10 = 190\nCheck the whole company: 140 + 70 + 35 + 30 + 10 + 5 + 10 = 300. Correct.\nAnswer: 190.",
+      "trap": "Answering 140 - that is English ONLY, the centre-most region of the English circle rather than the whole circle. Answering 180 is the same error stopped one step short: adding the two exactly-two English regions but forgetting the 10 who speak all three, who are also English speakers.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "three-sets",
+        "region-ratio",
+        "set-vs-region"
+      ]
+    }
+  ]
 }

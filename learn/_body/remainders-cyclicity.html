@@ -1,0 +1,133 @@
+<h2>2. Must-Know Rules</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Division algorithm</td>
+<td>N = dq + r, with 0 &lt;= r &lt; d</td>
+</tr>
+<tr>
+<td>Remainder range</td>
+<td>A remainder is always less than the divisor; 0 is allowed</td>
+</tr>
+<tr>
+<td>Sum</td>
+<td>rem(a+b) = rem( rem(a) + rem(b) )</td>
+</tr>
+<tr>
+<td>Product</td>
+<td>rem(a x b) = rem( rem(a) x rem(b) )</td>
+</tr>
+<tr>
+<td>Power</td>
+<td>rem(a^n) = rem( (rem a)^n ), then use cycling</td>
+</tr>
+<tr>
+<td>Last digit</td>
+<td>the remainder on division by 10</td>
+</tr>
+<tr>
+<td>Form of the number</td>
+<td>"leaves remainder 3 when divided by 7" means N = 7k + 3</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Cyclicity of units digits (powers):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Units digit of base</th>
+<th>Cycle</th>
+<th>Length</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0, 1, 5, 6</td>
+<td>itself</td>
+<td>1</td>
+</tr>
+<tr>
+<td>4, 9</td>
+<td>4,6 / 9,1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2, 4, 8, 6</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3, 9, 7, 1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>7</td>
+<td>7, 9, 3, 1</td>
+<td>4</td>
+</tr>
+<tr>
+<td>8</td>
+<td>8, 4, 2, 6</td>
+<td>4</td>
+</tr>
+</tbody>
+</table>
+<p>To find the units digit of a^n where the cycle length is 4: compute n mod 4. If the result is 0, use the 4th entry in the cycle.</p>
+<hr />
+<h2>3. Worked Examples</h2>
+<h3>Example 1 — Building a number from its remainder</h3>
+<p><em>When n is divided by 5, the remainder is 3. What is the remainder when 3n is divided by 5?</em></p>
+<p>n = 5k + 3, so 3n = 15k + 9 = 15k + 5 + 4 = 5(3k + 1) + 4.</p>
+<p>Remainder = <strong>4</strong>.</p>
+<p>Faster: rem(3 x 3) = rem(9) = 4.</p>
+<h3>Example 2 — Units digit of a large power</h3>
+<p><em>What is the units digit of 7^83?</em></p>
+<p>Cycle for 7 is 7, 9, 3, 1 (length 4).</p>
+<p>83 divided by 4 leaves remainder 3, so we want the 3rd entry: <strong>3</strong>.</p>
+<h3>Example 3 — Two conditions</h3>
+<p><em>A number leaves remainder 2 when divided by 5 and remainder 2 when divided by 7. What is the smallest such positive number greater than 2?</em></p>
+<p>If the remainder is the same for both, the number is 2 more than a common multiple.</p>
+<p>LCM(5, 7) = 35, so the numbers are 35k + 2: 2, 37, 72, ...</p>
+<p>Smallest above 2 is <strong>37</strong>.</p>
+<hr />
+<h2>4. GRE Traps</h2>
+<ul>
+<li><strong>Assuming remainder 0 is "no remainder" and therefore invalid.</strong> Zero is a perfectly good remainder — it means divisible.</li>
+<li><strong>Remainder greater than or equal to the divisor.</strong> If you compute a remainder of 9 on division by 7, you are not finished; reduce to 2.</li>
+<li><strong>Adding remainders without re-reducing.</strong> rem(4) + rem(5) mod 7 = 9, which must reduce to 2.</li>
+<li><strong>Negative remainders.</strong> The GRE uses non-negative remainders. -3 divided by 5 leaves remainder 2, not -3.</li>
+<li><strong>Off-by-one on cycles.</strong> For 2^12, 12 mod 4 = 0, so use the <strong>4th</strong> entry (6), not the 0th.</li>
+<li><strong>Assuming a unique answer.</strong> "n leaves remainder 3 on division by 7" describes infinitely many n; on quantitative comparison, test at least two of them.</li>
+</ul>
+<hr />
+<h2>5. Speed Tricks</h2>
+<ul>
+<li><strong>Write N = dq + r immediately.</strong> Almost every remainder word problem becomes algebra once you do.</li>
+<li><strong>Pick the smallest valid number.</strong> If n leaves remainder 3 mod 7, just try n = 3 (then n = 10 to confirm). Fast and usually decisive.</li>
+<li><strong>Reduce before you multiply.</strong> To find rem(97 x 98) mod 5, use 2 x 3 = 6 -&gt; 1.</li>
+<li><strong>Same remainder for two divisors -&gt; LCM + r.</strong> Different remainders -&gt; list one sequence and test against the other.</li>
+<li><strong>Last two digits</strong> work the same way as last digits, but mod 100.</li>
+</ul>
+<hr />
+<h2>6. Self-Check</h2>
+<p><strong>Q1.</strong> What is the remainder when 2^30 is divided by 10?</p>
+<p><strong>Q2.</strong> n leaves remainder 4 when divided by 9. What is the remainder when n + 8 is divided by 9?</p>
+<p><strong>Q3.</strong> What is the units digit of 3^47?</p>
+<details>
+<summary>Answers</summary>
+<p><strong>A1.</strong> Remainder mod 10 = units digit. Cycle for 2 is 2,4,8,6; 30 mod 4 = 2, so 2nd entry = <strong>4</strong>.</p>
+<p><strong>A2.</strong> 4 + 8 = 12, and 12 mod 9 = <strong>3</strong>.</p>
+<p><strong>A3.</strong> Cycle for 3 is 3,9,7,1; 47 mod 4 = 3, so 3rd entry = <strong>7</strong>.</p>
+</details>
+<hr />
+<h2>7. One-Line Summary for the Board</h2>
+<blockquote>
+<p>Write N = dq + r. Reduce at every step. Powers repeat with period 4 (or less).</p>
+</blockquote>

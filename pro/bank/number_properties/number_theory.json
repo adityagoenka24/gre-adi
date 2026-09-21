@@ -1,867 +1,920 @@
 {
- "meta": {
-  "topic": "Number Properties",
-  "subtopic": "Number Theory",
-  "subtopic_id": "NUM-NTH",
-  "version": "1.0",
-  "total_questions": 40,
-  "distribution": {
-   "easy": 10,
-   "medium": 16,
-   "hard": 10,
-   "extreme_hard": 4
+  "meta": {
+    "topic": "Number Properties",
+    "subtopic": "Number Theory",
+    "subtopic_id": "NUM-NTH",
+    "version": "1.0",
+    "total_questions": 43,
+    "distribution": {
+      "easy": 10,
+      "medium": 16,
+      "hard": 12,
+      "extreme_hard": 5
+    },
+    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+    "bank": "Adi's GRE Quant Bank"
   },
-  "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
- },
- "questions": [
-  {
-   "id": "NUM-NTH-001",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "Which of the following is NOT a prime number?",
-   "options": [
-    "A. 2",
-    "B. 11",
-    "C. 23",
-    "D. 27",
-    "E. 31"
-   ],
-   "answer": "D",
-   "explanation": "A prime number has exactly two distinct positive factors: 1 and itself. Check 27: 27 = 3 × 9 = 3 × 3 × 3. Since 27 is divisible by 3 (and 9), it has more than two factors and is NOT prime. All others — 2, 11, 23, 31 — have no divisors other than 1 and themselves, so they are prime.",
-   "trap": "Students often identify 27 as prime because it is odd and ends in 7 (like the prime 17, 37, 47). The key test: can 27 be divided evenly by any integer other than 1 and 27? Yes — 27 ÷ 3 = 9.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "primes",
-    "conceptual",
-    "memorisation"
-   ]
-  },
-  {
-   "id": "NUM-NTH-002",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "For any integer n, which of the following is always even?",
-   "options": [
-    "A. n + 1",
-    "B. n² + 1",
-    "C. n(n + 1)",
-    "D. 2n + 1",
-    "E. n² - n + 1"
-   ],
-   "answer": "C",
-   "explanation": "n(n + 1) is a product of two consecutive integers, one of which is always even, so the product is always even. The others fail: n + 1 and n² + 1 depend on the parity of n, 2n + 1 is always odd, and n² − n + 1 = n(n − 1) + 1 is always odd. So C.",
-   "trap": "Students think n(n+1) depends on whether n is even or odd. It doesn't — one of n or n+1 is always even, making the product always even regardless of n's parity.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "consecutive-integers",
-    "even-odd",
-    "algebraic-proof"
-   ]
-  },
-  {
-   "id": "NUM-NTH-003",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "How many positive factors does 36 have?",
-   "options": [
-    "A. 5",
-    "B. 6",
-    "C. 7",
-    "D. 8",
-    "E. 9"
-   ],
-   "answer": "E",
-   "explanation": "36 = 2² × 3². The number of factors = (2+1)(2+1) = 3 × 3 = 9. The 9 factors are: 1, 2, 3, 4, 6, 9, 12, 18, 36. Verify by listing: 36÷1=36 ✓, 36÷2=18 ✓, 36÷3=12 ✓, 36÷4=9 ✓, 36÷6=6 ✓, 36÷9=4 (repeat), 36÷12=3 (repeat), 36÷18=2 (repeat), 36÷36=1 (repeat). Exactly 9 distinct factors.",
-   "trap": "Students stop listing factors once they reach the square root (6) and count only 5 factors: 1, 2, 3, 4, 6. They forget each factor below the square root pairs with one above it, and the square root (6) pairs with itself.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "factors",
-    "prime-factorization",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "NUM-NTH-004",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "n is a positive integer.\n\nColumn A: The number of factors of n²\nColumn B: The number of factors of n",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "D",
-   "explanation": "Test cases: If n=2, n² = 4. Factors of 2: {1,2} → 2 factors. Factors of 4: {1,2,4} → 3 factors. Column A > Column B. If n=4, n² = 16. Factors of 4: {1,2,4} → 3 factors. Factors of 16: {1,2,4,8,16} → 5 factors. Column A > Column B. So far A always wins — but try n=1: n²=1. Factors of 1: {1} → 1 factor. Factors of 1: {1} → 1 factor. Column A = Column B. Since we get A > B for some values and A = B for others, the relationship cannot be determined.",
-   "trap": "Students assume n² always has more factors than n, choosing A. But when n=1, n²=1 has exactly the same number of factors as n=1. The answer is D.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "factors",
-    "perfect-squares",
-    "qc"
-   ]
-  },
-  {
-   "id": "NUM-NTH-005",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "Which of the following is always true for any integer n?",
-   "options": [
-    "A. n² > 0",
-    "B. n² ≥ 0",
-    "C. n² > n",
-    "D. n² is odd",
-    "E. n³ > 0"
-   ],
-   "answer": "B",
-   "explanation": "n² is the square of any integer, and squaring always yields a non-negative result: n² ≥ 0 for all integers n. When n=0, n²=0, so n²>0 (option A) is false. When n=1, n²=1=n, so n²>n (option C) is false. When n=2, n²=4 which is even, so n² is always odd (option D) is false. When n=-1, n³=-1<0, so n³>0 (option E) is false. Only B holds for ALL integers.",
-   "trap": "Students choose A, writing that n² > 0 is always true. They forget the case n=0, where n² = 0, which is NOT greater than 0 — it equals 0. The correct statement is n² ≥ 0 (non-negative, not necessarily positive).",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "perfect-squares",
-    "conceptual",
-    "algebraic-proof"
-   ]
-  },
-  {
-   "id": "NUM-NTH-006",
-   "difficulty": "easy",
-   "type": "numeric_entry",
-   "question": "What is the remainder when 47 is divided by 6?",
-   "options": null,
-   "answer": "5",
-   "explanation": "Divide 47 by 6: 6 × 7 = 42. 47 - 42 = 5. So 47 = 6 × 7 + 5, and the remainder is 5. Verify: 6 × 8 = 48 > 47, confirming that 7 is the correct quotient and 5 is the remainder.",
-   "trap": "Students compute 47 ÷ 6 = 7.833... and write 0.833 or 7 as the answer. The remainder is the integer left over: 47 - 6×7 = 47 - 42 = 5.",
-   "estimated_time_seconds": 40,
-   "tags": [
-    "remainders",
-    "divisibility",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "NUM-NTH-007",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "Which of the following numbers is divisible by both 4 and 6?",
-   "options": [
-    "A. 14",
-    "B. 18",
-    "C. 24",
-    "D. 28",
-    "E. 34"
-   ],
-   "answer": "C",
-   "explanation": "A number divisible by both 4 and 6 must be divisible by their LCM. LCM(4,6) = 12. Check each: 14÷12 ≈ 1.17 (no). 18÷12 = 1.5 (no). 24÷12 = 2 (yes! 24 is divisible by 12, hence by both 4 and 6). 28÷12 ≈ 2.33 (no). 34÷12 ≈ 2.83 (no). Only 24 works.",
-   "trap": "Students multiply 4×6=24 and think any multiple of 24 works — that's partially right for 24, but they may miss that LCM(4,6)=12, so 12 would also work. More commonly, students check divisibility by 4 alone (which 28 passes: 28÷4=7) and forget to also check divisibility by 6 (28÷6≈4.67, fails).",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "divisibility",
-    "lcm",
-    "two-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-008",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "p is a prime number greater than 2.\n\nColumn A: p²\nColumn B: p + 2",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "Since p is prime and greater than 2, the smallest valid value is p=3. Column A = p² = 9. Column B = p+2 = 5. Column A > Column B. For any prime p > 2: p ≥ 3. Is p² > p+2 always? p² - p - 2 = (p-2)(p+1). For p > 2, both (p-2) > 0 and (p+1) > 0, so p² - p - 2 > 0, meaning p² > p+2 always. Column A is always greater.",
-   "trap": "Students test p=3 and get 9 vs 5, then might wonder if some larger prime could flip this. They miss that the gap p² - (p+2) grows with p, so Column A only gets more dominant. Once you prove it algebraically for all p > 2, the answer is definitively A.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "primes",
-    "qc",
-    "algebraic-proof"
-   ]
-  },
-  {
-   "id": "NUM-NTH-009",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "The integer n is divisible by 3 and by 5. Which of the following must also be a divisor of n?",
-   "options": [
-    "A. 6",
-    "B. 8",
-    "C. 15",
-    "D. 30",
-    "E. 45"
-   ],
-   "answer": "C",
-   "explanation": "If n is divisible by both 3 and 5, then n is divisible by LCM(3,5) = 15. Since GCD(3,5)=1 (they share no common factors), LCM(3,5) = 3×5 = 15. So 15 must divide n. The other options are not guaranteed: n=15 is not divisible by 6, 8, 30, or 45. So only C (15) must be a divisor.",
-   "trap": "Students choose D (30), thinking that if n is divisible by 3 and 5 it must be divisible by 2 as well. But n could be 15, which is odd. Divisibility by 3 and 5 guarantees only divisibility by 15, not 30.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "divisibility",
-    "lcm",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "NUM-NTH-010",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "Which of the following must be true if n is an odd integer?",
-   "options": [
-    "A. n² is odd",
-    "B. n² is even",
-    "C. n + 1 is odd",
-    "D. 2n is odd",
-    "E. n/2 is an integer"
-   ],
-   "answer": "A",
-   "explanation": "If n is odd, then n = 2k+1 for some integer k. Then n² = (2k+1)² = 4k²+4k+1 = 2(2k²+2k)+1, which is odd. So A is always true. Check others: B is false (n²=9 is odd). C is false: n=3 → n+1=4 (even). D is false: 2n = 2×(odd) = even, not odd. E is false: n=3 → 3/2=1.5, not an integer. Only A must be true.",
-   "trap": "Students may doubt option A, thinking squaring might change parity. It doesn't — odd × odd = odd, always. Parity is preserved under multiplication: odd^n is always odd for any positive integer n.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "even-odd",
-    "conceptual",
-    "algebraic-proof"
-   ]
-  },
-  {
-   "id": "NUM-NTH-011",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "If p is a prime number and p divides the product ab (where a and b are positive integers), which of the following must be true?",
-   "options": [
-    "A. p divides a and p divides b",
-    "B. p divides a or p divides b (or both)",
-    "C. p² divides ab",
-    "D. p divides a + b",
-    "E. a and b are both prime"
-   ],
-   "answer": "B",
-   "explanation": "This is a fundamental theorem of number theory: if a prime p divides a product ab, then p must divide at least one of the factors. This is known as Euclid's Lemma. Option A says p divides BOTH — this is too strong. Example: p=3, a=3, b=5. 3|15 but 3 does not divide 5. Option C: p=3, a=3, b=5. p|ab=15 but 9 does not divide 15. Option D: 3+5=8, not divisible by 3. Option E: clearly not required. Only B is always true.",
-   "trap": "Students choose A, thinking if p divides ab then p must divide BOTH a and b. Counterexample: p=3 divides 3×5=15. 3|3 (yes) but 3 does not divide 5. Note: this property holds for PRIMES — it breaks for composites. 4 divides 2×6=12, but 4 divides neither 2 nor 6 individually.",
-   "estimated_time_seconds": 75,
-   "tags": [
-    "primes",
-    "divisibility",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "NUM-NTH-012",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "n is an integer.\n\nColumn A: n³\nColumn B: n²",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "D",
-   "explanation": "Test multiple values. n=2: n³=8, n²=4. Column A > Column B. n=1: n³=1, n²=1. Column A = Column B. n=0: n³=0, n²=0. Column A = Column B. n=-1: n³=-1, n²=1. Column B > Column A. n=½: n³=1/8, n²=1/4. Column B > Column A. Since Column A is greater for some values (n=2) and Column B is greater for others (n=-1), the relationship cannot be determined.",
-   "trap": "Students test only positive integers and conclude Column A is always greater. They must test n=0, n=-1, and fractions — all of which give different results. Always test the critical cases: negatives, zero, and fractions between 0 and 1.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "perfect-squares",
-    "cubes",
-    "qc"
-   ]
-  },
-  {
-   "id": "NUM-NTH-013",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "For any integer n, the expression n³ - n can be written as a product of three consecutive integers. What is the smallest positive integer that always divides n³ - n for every integer n?",
-   "options": null,
-   "answer": "6",
-   "explanation": "Factor n³ - n: n³ - n = n(n² - 1) = n(n-1)(n+1) = (n-1)·n·(n+1). This is the product of three consecutive integers. Among any three consecutive integers, at least one is divisible by 2 and at least one is divisible by 3. Therefore, the product is always divisible by 2×3 = 6. Check: n=1: (0)(1)(2)=0, divisible by 6. n=2: (1)(2)(3)=6, divisible by 6. n=3: (2)(3)(4)=24, divisible by 6. n=4: (3)(4)(5)=60, divisible by 6. The answer is 6.",
-   "trap": "Students factor partially to n(n²-1) and conclude only 2 divides it (since n(n+1) covers consecutive integers), missing that (n-1)n(n+1) gives THREE consecutive integers covering a multiple of 3 as well. The full factoring reveals divisibility by 6, not just 2.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "consecutive-integers",
-    "divisibility",
-    "algebraic-proof"
-   ]
-  },
-  {
-   "id": "NUM-NTH-014",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "Which of the following statements are always true for any integer n? Select all that apply.",
-   "options": [
-    "A. n(n+1) is even",
-    "B. n(n+1)(n+2) is divisible by 6",
-    "C. n² + n is divisible by 2",
-    "D. n² is always positive",
-    "E. n² - n is always non-negative"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "E"
-   ],
-   "explanation": "A: n(n+1) = product of two consecutive integers → one is always even, so the product is always even. TRUE. B: n(n+1)(n+2) = product of 3 consecutive integers → always contains a multiple of 2 and a multiple of 3, so always divisible by 6. TRUE. C: n² + n = n(n+1) — identical to A — always divisible by 2. TRUE. D: n² is always NON-NEGATIVE (≥ 0), but NOT always positive. When n=0, n²=0, which is not positive. FALSE — D is wrong. E: n² - n = n(n-1) = product of (n-1) and n, two consecutive integers. For n=0: 0. For n=1: 0. For n=2: 2. For n=-1: (-1)(-2)=2. The product of any two consecutive integers is always ≥ 0. TRUE. Correct answers: A, B, C, E.",
-   "trap": "Students choose D, writing that n² > 0 is always true. When n=0, n²=0, which is non-negative but NOT positive — so D is the false statement. Students may also hesitate on E, incorrectly thinking n(n-1) could be negative for some negative integer n; in fact n(n-1) is the product of two consecutive integers and is always ≥ 0.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "consecutive-integers",
-    "even-odd",
-    "algebraic-proof",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "NUM-NTH-015",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A perfect square is defined as the square of an integer. How many perfect squares between 1 and 200 (inclusive) have an odd number of positive factors?",
-   "options": [
-    "A. 7",
-    "B. 8",
-    "C. 14",
-    "D. 13",
-    "E. 15"
-   ],
-   "answer": "C",
-   "explanation": "A number has an odd number of factors if and only if it is a perfect square (because factors pair up, except when a factor multiplied by itself gives the number). So among 1 to 200, we want perfect squares — since perfect squares always have an odd number of factors. The perfect squares from 1 to 200: 1², 2², 3², ..., 14² = 196 (since 14²=196 ≤ 200 and 15²=225 > 200). That's 14 perfect squares: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196. Each of these has an odd number of factors. The answer is 14.",
-   "trap": "Students misread the question and count perfect squares with specific factor counts, or they think only odd perfect squares have an odd number of factors. In fact, EVERY perfect square has an odd number of factors, because the square root pairs with itself. All 14 perfect squares from 1 to 200 qualify.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "perfect-squares",
-    "factors",
-    "pattern"
-   ]
-  },
-  {
-   "id": "NUM-NTH-016",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "x and y are positive integers with x > y.\n\nColumn A: x² - y²\nColumn B: (x - y)(x + y)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "This tests knowledge of the difference of squares identity: x² - y² = (x-y)(x+y). This is an algebraic identity — it holds for ALL values of x and y, not just specific cases. Column A = x² - y². Column B = (x-y)(x+y) = x² - y² (by FOIL). They are identically equal. The constraint x > y > 0 is irrelevant — the equality holds regardless.",
-   "trap": "Students plug in specific numbers like x=3, y=2: Column A = 9-4=5, Column B = (1)(5)=5. Equal. They confirm with another pair: x=5, y=3: A = 25-9=16, B = (2)(8)=16. Still equal. But a student who knows the identity immediately sees C without calculation. Students who don't know the identity may guess D thinking it varies.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "difference-of-squares",
-    "algebraic-proof",
-    "qc"
-   ]
-  },
-  {
-   "id": "NUM-NTH-017",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "If n is a positive integer, which of the following expressions is always divisible by 4?",
-   "options": [
-    "A. n² + n",
-    "B. 2n + 2",
-    "C. n(n+1)(n+2)(n+3)",
-    "D. n² + 2n",
-    "E. n(n+2)"
-   ],
-   "answer": "C",
-   "explanation": "n(n+1)(n+2)(n+3) is the product of 4 consecutive integers. Among any 4 consecutive integers, at least two are even (in fact, exactly two or they include a multiple of 4). More precisely: among 4 consecutive integers, at least one is divisible by 4 and at least one other is divisible by 2, so the product is divisible by 4×2=8. Even more simply: the product contains at least two even factors, making it divisible by at least 4. Check others: A: n=1 → 1×2=2, not divisible by 4. B: n=1 → 4 ✓, n=3 → 8 ✓... but B = 2(n+1): for n=1 → 4, for n=3 → 8, but for n=2 → 6, which is NOT divisible by 4. So B fails. D: n=1 → 3, not divisible by 4. E: n=1 → 3. Only C is always divisible by 4.",
-   "trap": "Students may choose B (2n+2 = 2(n+1)) thinking it's always even and thus divisible by 4. But 2(n+1) is only divisible by 4 when n+1 is even, i.e., when n is odd. For even n, 2(n+1) is divisible by 2 but not necessarily 4.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "consecutive-integers",
-    "divisibility",
-    "algebraic-proof"
-   ]
-  },
-  {
-   "id": "NUM-NTH-018",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "What is the units digit of 7⁴⁷?",
-   "options": null,
-   "answer": "3",
-   "explanation": "Find the pattern of units digits of powers of 7: 7¹=7 (units digit 7), 7²=49 (units digit 9), 7³=343 (units digit 3), 7⁴=2401 (units digit 1), 7⁵=...7 (units digit 7). The cycle repeats every 4: 7, 9, 3, 1, 7, 9, 3, 1, ... To find the units digit of 7⁴⁷, find 47 mod 4: 47 = 4×11 + 3, so 47 mod 4 = 3. The 3rd position in the cycle (7, 9, 3, 1) is 3. Therefore, the units digit of 7⁴⁷ is 3.",
-   "trap": "Students might guess the units digit cycles with period related to the last digit only and write 7 (position 1) by computing 47 mod 4 = 3 but then picking position 3 incorrectly. Or they compute 47÷4=11 remainder 3, then count 3 steps into the cycle starting from 1 rather than 7, landing on 1 instead of 3.",
-   "estimated_time_seconds": 75,
-   "tags": [
-    "pattern",
-    "remainders",
-    "cyclical-units-digit"
-   ]
-  },
-  {
-   "id": "NUM-NTH-019",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "n is a positive integer greater than 1.\n\nColumn A: The number of prime factors of n²\nColumn B: The number of prime factors of n",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "The prime factors of n² are exactly the same as the prime factors of n — squaring does not introduce new prime factors. If n = p₁^a₁ × p₂^a₂ × ... × pₖ^aₖ, then n² = p₁^(2a₁) × p₂^(2a₂) × ... × pₖ^(2aₖ). The set of distinct prime factors is identical. Example: n=12=2²×3. Prime factors of 12: {2,3}. n²=144=2⁴×3². Prime factors of 144: {2,3}. Same count (2). The two quantities are always equal.",
-   "trap": "Students confuse the COUNT of prime factors (i.e., the number of distinct primes) with the total count of prime factors with multiplicity. The number of DISTINCT prime factors of n² always equals that of n. Only the exponents double.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "prime-factorization",
-    "perfect-squares",
-    "qc"
-   ]
-  },
-  {
-   "id": "NUM-NTH-020",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "Which of the following expressions can NEVER be prime for any integer n > 2?",
-   "options": [
-    "A. n + 1",
-    "B. n - 1",
-    "C. n² - 1",
-    "D. 2n - 1",
-    "E. n² + 1"
-   ],
-   "answer": "C",
-   "explanation": "For n > 2, factor n² - 1 = (n-1)(n+1). Since n > 2, we have n-1 ≥ 2 and n+1 ≥ 4. Both factors are greater than 1, so n²-1 is a product of two integers each greater than 1 — therefore n²-1 is composite (never prime) for n > 2. Check the other options can be prime for some n > 2: A: n=2 (excluded), n=4 → 5 (prime) ✓. B: n=3 → 2 (prime) ✓. D: n=3 → 5 (prime) ✓. E: n=4 → 17 (prime) ✓. Only C is never prime for n > 2.",
-   "trap": "Students may pick E (n²+1), thinking that a square plus 1 can never be prime. But n=4 gives 17 (prime). The key insight for C is the difference of squares factorization: n²-1 = (n-1)(n+1). When n > 2, both (n-1) and (n+1) are greater than 1, guaranteeing a composite product.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "primes",
-    "difference-of-squares",
-    "factoring"
-   ]
-  },
-  {
-   "id": "NUM-NTH-021",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "When a positive integer N is divided by 7, the remainder is 4. What is the remainder when 3N is divided by 7?",
-   "options": null,
-   "answer": "5",
-   "explanation": "Given: N = 7q + 4 for some non-negative integer q. Then 3N = 3(7q + 4) = 21q + 12. Divide 21q + 12 by 7: 21q is divisible by 7 (21q ÷ 7 = 3q). The remainder comes from 12 ÷ 7 = 1 remainder 5. So 3N = 7(3q+1) + 5, and the remainder is 5. Verify with a specific value: N=11 (11 = 7×1 + 4). 3N=33. 33 ÷ 7 = 4 remainder 5. ✓",
-   "trap": "Students multiply the remainder: 3 × 4 = 12, then think 12 is the remainder. They forget that the remainder must be less than the divisor. 12 ÷ 7 = 1 remainder 5. The correct approach is to reduce 3×4=12 modulo 7 to get 5.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "remainders",
-    "modular-arithmetic",
-    "two-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-022",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "n is a positive integer. Which of the following statements must be true? Select all that apply.",
-   "options": [
-    "A. If n is divisible by 6, then n is divisible by both 2 and 3",
-    "B. If n is divisible by both 2 and 3, then n is divisible by 6",
-    "C. If n is divisible by 4 and by 6, then n is divisible by 24",
-    "D. If n is divisible by 9, then n is divisible by 3",
-    "E. If n is divisible by 3 and by 4, then n is divisible by 12"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "D",
-    "E"
-   ],
-   "explanation": "A: If 6|n, then since 2|6 and 3|6, both 2|n and 3|n. TRUE. B: If 2|n and 3|n, then since GCD(2,3)=1, their LCM = 6 divides n. TRUE. C: LCM(4,6) = 12, not 24. Example: n=12 is divisible by 4 (12÷4=3) and by 6 (12÷6=2), but 12÷24=0.5, not an integer. FALSE. D: If 9|n, then 3|9|n, so 3|n. TRUE. E: If 3|n and 4|n, LCM(3,4)=12 (since GCD(3,4)=1). So 12|n. TRUE. Correct answers: A, B, D, E.",
-   "trap": "Students choose C, reasoning that if n is divisible by 4 and 6, it should be divisible by 4×6=24. But LCM(4,6)=12, not 24. Divisibility by both 4 and 6 only guarantees divisibility by their LCM=12.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "divisibility",
-    "lcm",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "NUM-NTH-023",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "a and b are positive integers and GCD(a, b) = 1.\n\nColumn A: LCM(a, b)\nColumn B: a × b",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "The fundamental relationship: GCD(a,b) × LCM(a,b) = a × b for any two positive integers. If GCD(a,b) = 1, then 1 × LCM(a,b) = a × b, which means LCM(a,b) = a × b. So Column A = Column B always, whenever GCD(a,b) = 1. Example: a=4, b=9. GCD(4,9)=1. LCM(4,9)=36=4×9. ✓",
-   "trap": "Students may not know the identity GCD(a,b) × LCM(a,b) = a×b and guess D or B. Also, some students apply this identity to three or more numbers — it only holds for exactly two numbers.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "gcd",
-    "lcm",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "NUM-NTH-024",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "The sum of three consecutive odd integers is 51. What is the largest of the three integers?",
-   "options": [
-    "A. 15",
-    "B. 17",
-    "C. 19",
-    "D. 21",
-    "E. 23"
-   ],
-   "answer": "C",
-   "explanation": "Let the three consecutive odd integers be n-2, n, n+2 (consecutive odd integers differ by 2). Their sum: (n-2) + n + (n+2) = 3n = 51, so n = 17. The largest is n+2 = 19. Verify: 15 + 17 + 19 = 51. ✓",
-   "trap": "Students set up consecutive integers as n, n+1, n+2 (differing by 1) instead of n, n+2, n+4 (differing by 2 for odd integers). Using n, n+1, n+2: sum=3n+3=51 → n=16, and 16 is not odd. Consecutive odd integers must differ by 2.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "consecutive-integers",
-    "odd-integers",
-    "two-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-025",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "The positive integer n has exactly 3 positive factors. How many positive factors does n² have?",
-   "options": null,
-   "answer": "5",
-   "explanation": "A positive integer has exactly 3 factors if and only if it is the square of a prime. If n = p² for some prime p, then the factors of n are: 1, p, p². Now n² = p⁴. The factors of p⁴ are: 1, p, p², p³, p⁴ — exactly 5 factors. Using the formula: if n = p², then n has (2+1) = 3 factors. n² = p⁴ has (4+1) = 5 factors. The answer is 5.",
-   "trap": "Students think any n with 3 factors could be prime or any other form. A number with exactly 3 factors must be p² (prime squared). Students who know this may still miscalculate n²'s factors by doubling the factor count from 3 to 6, forgetting that only the exponent doubles.",
-   "estimated_time_seconds": 75,
-   "tags": [
-    "factors",
-    "prime-factorization",
-    "perfect-squares"
-   ]
-  },
-  {
-   "id": "NUM-NTH-026",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "k is a positive integer.\n\nColumn A: The remainder when (7k + 3) is divided by 7\nColumn B: 3",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "7k + 3 = 7·k + 3. When divided by 7: the term 7k is divisible by 7 with no remainder, and 3 < 7. So the remainder is always exactly 3, regardless of the value of k. Column A = 3 = Column B always. The two quantities are equal.",
-   "trap": "Students substitute specific values of k and happen to get 3 each time, then choose C without understanding why. More dangerously, students might add the remainders and compute something like 7k remainder = 0, 3 remainder = 3, total remainder = 3 — which is correct, but they might doubt it changes for different k values and choose D.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "remainders",
-    "modular-arithmetic",
-    "qc"
-   ]
-  },
-  {
-   "id": "NUM-NTH-027",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "If n is a positive integer, which of the following is always a perfect square?",
-   "options": [
-    "A. n² + 2n",
-    "B. n² + 4n + 4",
-    "C. n² + n",
-    "D. 4n² + 2n",
-    "E. n² + 2n + 2"
-   ],
-   "answer": "B",
-   "explanation": "B: n² + 4n + 4 = (n + 2)². Since (n+2) is an integer whenever n is a positive integer, (n+2)² is always a perfect square. Check others: A: n² + 2n = n(n+2). For n=1: 1×3=3, not a perfect square. C: n² + n = n(n+1). For n=2: 2×3=6, not a perfect square. D: 4n² + 2n = 2n(2n+1). For n=1: 2×3=6, not a perfect square. E: n² + 2n + 2 = (n+1)² + 1. This is always 1 more than a perfect square, never a perfect square itself (since no two perfect squares differ by 1 except 0 and 1). Only B is always a perfect square.",
-   "trap": "Students choose A (n²+2n), thinking it looks like part of (n+1)²=n²+2n+1. But n²+2n is missing the +1 to complete the square. Students who complete the square recognize that n²+4n+4=(n+2)² is the only option that factors as a perfect trinomial square.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "perfect-squares",
-    "algebraic-proof",
-    "factoring"
-   ]
-  },
-  {
-   "id": "NUM-NTH-028",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "p and q are distinct prime numbers greater than 2.\n\nColumn A: p + q\nColumn B: p × q",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "B",
-   "explanation": "Since p and q are both prime and greater than 2, they are both odd integers ≥ 3. Is p×q always > p+q for distinct primes p,q ≥ 3? Test: p=3, q=5: p×q=15, p+q=8. Column B > Column A. p=3, q=7: 21 vs 10. Column B > Column A. p=5, q=7: 35 vs 12. Column B > Column A. Prove generally: p×q > p+q ⟺ pq - p - q > 0 ⟺ pq - p - q + 1 > 1 ⟺ (p-1)(q-1) > 1. Since p ≥ 3 and q ≥ 5 (distinct primes > 2), (p-1) ≥ 2 and (q-1) ≥ 4, so (p-1)(q-1) ≥ 8 > 1. Column B is always greater.",
-   "trap": "Students test p=3, q=5 and find B>A, but wonder if some edge case reverses this. They might try p=3, q=3 but the problem says DISTINCT primes. The smallest case is p=3, q=5, and (p-1)(q-1)=(2)(4)=8>1, so the product always exceeds the sum. The algebraic proof via (p-1)(q-1)>1 is the elegant path.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "primes",
-    "algebraic-proof",
-    "qc"
-   ]
-  },
-  {
-   "id": "NUM-NTH-029",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "How many integers from 1 to 100 are divisible by 3 or 5 (or both)?",
-   "options": null,
-   "answer": "47",
-   "explanation": "Use inclusion-exclusion. Count integers from 1 to 100 divisible by 3: ⌊100/3⌋ = 33. Count divisible by 5: ⌊100/5⌋ = 20. Count divisible by both (i.e., by LCM(3,5)=15): ⌊100/15⌋ = 6. By inclusion-exclusion: |div by 3 or 5| = 33 + 20 - 6 = 47.",
-   "trap": "Students add 33 + 20 = 53 and forget to subtract the overlap (numbers divisible by both 3 and 5, i.e., divisible by 15). Numbers like 15, 30, 45, 60, 75, 90 are counted twice in 33+20 and must be subtracted once. Forgetting this double-count leads to the wrong answer of 53.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "divisibility",
-    "inclusion-exclusion",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-030",
-   "difficulty": "hard",
-   "type": "multiple_answer",
-   "question": "n is an integer such that n² < 50. Which of the following could be the value of n? Select all that apply.",
-   "options": [
-    "A. -8",
-    "B. -7",
-    "C. 0",
-    "D. 7",
-    "E. 8"
-   ],
-   "answer": [
-    "B",
-    "C",
-    "D"
-   ],
-   "explanation": "We need n² < 50. Check each: A: (-8)² = 64. 64 < 50? No. ✗. B: (-7)² = 49. 49 < 50? Yes. ✓. C: 0² = 0. 0 < 50? Yes. ✓. D: 7² = 49. 49 < 50? Yes. ✓. E: 8² = 64. 64 < 50? No. ✗. The values -7, 0, and 7 all satisfy n² < 50. (Note: all integers from -7 to 7 satisfy this.)",
-   "trap": "Students may exclude negative values like -7, thinking n² for negative n gives a negative result. n² is always non-negative — (-7)² = 49, same as 7². Students unfamiliar with squaring negatives may incorrectly exclude option B.",
-   "estimated_time_seconds": 75,
-   "tags": [
-    "perfect-squares",
-    "even-odd",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "NUM-NTH-031",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "The integer m leaves a remainder of 3 when divided by 7, and leaves a remainder of 2 when divided by 5. What is the smallest positive integer value of m?",
-   "options": [
-    "A. 17",
-    "B. 24",
-    "C. 31",
-    "D. 38",
-    "E. 45"
-   ],
-   "answer": "A",
-   "explanation": "We need m ≡ 3 (mod 7) and m ≡ 2 (mod 5). From the first condition: m = 7k + 3 for integer k ≥ 0. Values: k=0: m=3; k=1: m=10; k=2: m=17; k=3: m=24; ... Check each mod 5: m=3: 3 mod 5 = 3 ≠ 2. m=10: 10 mod 5 = 0 ≠ 2. m=17: 17 = 5×3 + 2. 17 mod 5 = 2. ✓ So m=17 satisfies both conditions. Verify: 17 ÷ 7 = 2 remainder 3 ✓. 17 ÷ 5 = 3 remainder 2 ✓. The smallest positive integer is 17.",
-   "trap": "Students try to add the remainders: 3 + 2 = 5, or multiply: 7×2 + 3 = 17 (accidentally correct formula). The correct method is to list values from one congruence and check against the other. Some students also start checking option A first (17) without verifying it satisfies BOTH conditions.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "remainders",
-    "modular-arithmetic",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-032",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "n is a positive integer. The prime factorization of n is 2² × 3 × p, where p is a prime number different from 2 and 3.\n\nColumn A: The number of positive factors of n\nColumn B: 12",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "n = 2² × 3¹ × p¹, where p is a prime ≠ 2, 3. Using the factor-counting formula: number of factors = (2+1)(1+1)(1+1) = 3 × 2 × 2 = 12. This is true regardless of which prime p is (as long as it's distinct from 2 and 3), because the exponents determine the factor count, not the actual prime values. So Column A = 12 = Column B always.",
-   "trap": "Students think the identity of p matters and might choose D, believing the answer could change based on whether p=5, 7, 11, etc. But the NUMBER of factors depends only on the exponents in the prime factorization, not the specific prime values. The formula (2+1)(1+1)(1+1)=12 applies regardless of p.",
-   "estimated_time_seconds": 85,
-   "tags": [
-    "factors",
-    "prime-factorization",
-    "qc"
-   ]
-  },
-  {
-   "id": "NUM-NTH-033",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "For how many positive integers n ≤ 30 is n³ - n divisible by 6?",
-   "options": [
-    "A. 15",
-    "B. 18",
-    "C. 20",
-    "D. 25",
-    "E. 30"
-   ],
-   "answer": "E",
-   "explanation": "Factor: n³ - n = n(n²-1) = (n-1)n(n+1), the product of three consecutive integers. Claim: (n-1)n(n+1) is ALWAYS divisible by 6, for every positive integer n. Divisibility by 2: among any three consecutive integers, at least one is even. Divisibility by 3: among any three consecutive integers, exactly one is divisible by 3 (since they span one complete residue cycle mod 3 in at least part). Therefore, the product is always divisible by 2 × 3 = 6. Since this holds for ALL positive integers, every n from 1 to 30 satisfies the condition. The count is 30.",
-   "trap": "Students who know the product of 3 consecutive integers is divisible by 6 may second-guess themselves and start listing exceptions, wasting time. There are NO exceptions — the divisibility by 6 is guaranteed for every integer n. Students may also confuse this with divisibility by 12, which does NOT always hold (e.g., n=2 gives 1×2×3=6, not divisible by 12).",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "consecutive-integers",
-    "divisibility",
-    "algebraic-proof",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-034",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "The GCD of two positive integers a and b is 12, and their LCM is 180. If a = 36, what is b?",
-   "options": null,
-   "answer": "60",
-   "explanation": "Use the identity: GCD(a,b) × LCM(a,b) = a × b. Substituting: 12 × 180 = 36 × b. 2160 = 36b. b = 2160 ÷ 36 = 60. Verify: GCD(36, 60). 36 = 2²×3², 60 = 2²×3×5. GCD = 2²×3 = 12. ✓ LCM = 2²×3²×5 = 4×9×5 = 180. ✓",
-   "trap": "Students apply GCD × LCM = a × b but mis-identify which number is a and which is b, computing b = (12 × 180) ÷ 12 = 180 instead of using a=36. The formula is GCD × LCM = a × b (the product of the two numbers), not GCD × LCM = LCM².",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "gcd",
-    "lcm",
-    "prime-factorization",
-    "two-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-035",
-   "difficulty": "hard",
-   "type": "multiple_answer",
-   "question": "Which of the following statements about prime numbers are true? Select all that apply.",
-   "options": [
-    "A. If p is prime and p > 2, then p is odd",
-    "B. The sum of two prime numbers is always even",
-    "C. There are infinitely many prime numbers",
-    "D. If p and q are prime and p × q = r, then r has exactly 4 positive factors",
-    "E. Every integer greater than 1 has a unique prime factorization"
-   ],
-   "answer": [
-    "A",
-    "C",
-    "D",
-    "E"
-   ],
-   "explanation": "A: All primes > 2 are odd (2 is the only even prime). TRUE. B: The sum of two primes is always even — FALSE. Counterexample: 2 + 3 = 5 (odd). Two odd primes sum to even, but 2 + any odd prime = odd. FALSE. C: Euclid's theorem: there are infinitely many primes. TRUE. D: If p and q are distinct primes and p×q = r, then r = p¹ × q¹. Factors: (1+1)(1+1) = 4. If p = q (same prime), r = p², which has 3 factors. But the problem says p and q are both prime without requiring them to be distinct — if p=q, r has 3 factors. So D is not always true if p=q. However, on GRE, p and q being separate variables typically implies they are distinct. If distinct: 4 factors. TRUE (assuming distinct). E: The Fundamental Theorem of Arithmetic: every integer > 1 has a unique prime factorization. TRUE. Correct answers: A, C, D, E (with D assuming distinct primes).",
-   "trap": "Students choose B, thinking two primes must both be odd and so their sum is even. They forget that 2 is prime, and 2 + 3 = 5 is odd. This is a classic trap — the only even prime is 2, and it breaks many 'always even' statements about primes.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "primes",
-    "conceptual",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "NUM-NTH-036",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "x is an integer such that x² = 4x.\n\nColumn A: x\nColumn B: 4",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "D",
-   "explanation": "Solve x² = 4x: x² - 4x = 0. x(x-4) = 0. So x = 0 or x = 4. If x = 0: Column A = 0, Column B = 4. Column B > Column A. If x = 4: Column A = 4, Column B = 4. Column A = Column B. Since Column A < Column B when x=0, and Column A = Column B when x=4, the relationship cannot be determined (it depends on which solution x takes).",
-   "trap": "Students divide both sides of x²=4x by x to get x=4, then choose C. This is the classic error of dividing by a variable without checking if it equals zero. Dividing by x is only valid if x≠0. Since x=0 is also a valid solution, the answer is D.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "quadratic",
-    "factoring",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "NUM-NTH-037",
-   "difficulty": "extreme_hard",
-   "type": "mcq",
-   "question": "How many positive integers less than 500 have an odd number of positive factors?",
-   "options": [
-    "A. 20",
-    "B. 21",
-    "C. 22",
-    "D. 23",
-    "E. 25"
-   ],
-   "answer": "C",
-   "explanation": "A positive integer has an odd number of factors if and only if it is a perfect square. This is because factors pair up (d and n/d), except when d = n/d, i.e., d = √n, which only happens when n is a perfect square. So we count perfect squares less than 500. The perfect squares: 1², 2², 3², ..., 22² = 484 (< 500), 23² = 529 (≥ 500). So there are 22 perfect squares less than 500: 1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121, 144, 169, 196, 225, 256, 289, 324, 361, 400, 441, 484. The answer is 22.",
-   "trap": "Students may include 500 in the count (the problem says 'less than 500') or include 23²=529, thinking 529 < 500. They may also miscount by starting from 0² = 0 (but 0 is not a positive integer). The correct count is floor(√499) = floor(22.33...) = 22.",
-   "estimated_time_seconds": 110,
-   "tags": [
-    "perfect-squares",
-    "factors",
-    "pattern",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-038",
-   "difficulty": "extreme_hard",
-   "type": "numeric_entry",
-   "question": "If 10! (ten factorial) is written in the form 2^a × 3^b × 5^c × 7^d × (other primes), what is the value of a + b + c + d?",
-   "options": null,
-   "answer": "15",
-   "explanation": "Find the prime factorization of 10! = 1×2×3×4×5×6×7×8×9×10. Count the power of each prime: Power of 2 in 10!: ⌊10/2⌋ + ⌊10/4⌋ + ⌊10/8⌋ = 5 + 2 + 1 = 8. So a = 8. Power of 3 in 10!: ⌊10/3⌋ + ⌊10/9⌋ = 3 + 1 = 4. So b = 4. Power of 5 in 10!: ⌊10/5⌋ = 2. So c = 2. Power of 7 in 10!: ⌊10/7⌋ = 1. So d = 1. a + b + c + d = 8 + 4 + 2 + 1 = 15. Verify: 2⁸×3⁴×5²×7¹ = 256×81×25×7 = 256×81×175 = 256×14175 = 3,628,800 = 10!. ✓",
-   "trap": "Students list the prime factors of each number from 1 to 10 without using Legendre's formula (repeated floor division). They often miscount powers of 2: forgetting that 4=2², 8=2³, and 10=2×5 each contribute powers of 2. Common wrong answer: students count a=5 by just listing 2,4,6,8,10 without accounting for the extra powers within 4=2² and 8=2³.",
-   "estimated_time_seconds": 120,
-   "tags": [
-    "prime-factorization",
-    "factorial",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "NUM-NTH-039",
-   "difficulty": "extreme_hard",
-   "type": "quantitative_comparison",
-   "question": "k is a positive integer.\n\nColumn A: The units digit of 3^(4k)\nColumn B: The units digit of 9^(2k)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Column A: Units digit of 3^(4k). The units digits of powers of 3 cycle: 3¹=3, 3²=9, 3³=27(7), 3⁴=81(1), 3⁵=243(3), ... period 4. Since 4k is always divisible by 4, 3^(4k) always has units digit 1. Column A = 1. Column B: Units digit of 9^(2k). Units digits of powers of 9 cycle: 9¹=9, 9²=81(1), 9³=...9, 9⁴=...1, period 2. Since 2k is always even, 9^(2k) always has units digit 1. Column B = 1. Column A = Column B = 1 always. Note: 3^(4k) = (3⁴)^k = 81^k, and 9^(2k) = (9²)^k = 81^k. They are identically equal, confirming units digit 1.",
-   "trap": "Students compute the units digit of 3^(4k) for k=1: 3⁴=81, units digit 1. Then for 9^(2k) with k=1: 9²=81, units digit 1. They choose C. But the genuine insight is recognizing 3^(4k) = 81^k = 9^(2k), making them literally equal — not just having equal units digits. Students who don't see this algebraic identity may attempt to prove it via cycles and get confused by the modular arithmetic.",
-   "estimated_time_seconds": 115,
-   "tags": [
-    "pattern",
-    "cyclical-units-digit",
-    "exponent-rules",
-    "qc"
-   ]
-  },
-  {
-   "id": "NUM-NTH-040",
-   "difficulty": "extreme_hard",
-   "type": "mcq",
-   "question": "Let S = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10}. How many two-element subsets {a, b} of S (where a < b) have the property that a × b is divisible by 6?",
-   "options": [
-    "A. 13",
-    "B. 15",
-    "C. 17",
-    "D. 19",
-    "E. 21"
-   ],
-   "answer": "C",
-   "explanation": "We need a×b divisible by 6 = 2 × 3, so the product must be divisible by both 2 and 3. Strategy: count using complementary counting. Total two-element subsets of S: C(10,2) = 45. Count subsets where a×b is NOT divisible by 6, i.e., not divisible by 2 OR not divisible by 3. Let A = subsets where a×b is not divisible by 2 (both a and b are odd). Let B = subsets where a×b is not divisible by 3 (neither a nor b is divisible by 3). We want |A ∪ B| = |A| + |B| - |A ∩ B|. |A|: odd numbers in S = {1,3,5,7,9} — 5 numbers. C(5,2) = 10. |B|: numbers not divisible by 3 in S = {1,2,4,5,7,8,10} — 7 numbers. C(7,2) = 21. |A ∩ B|: both odd AND neither divisible by 3 = odd numbers not divisible by 3 = {1,5,7} — 3 numbers. C(3,2) = 3. |A ∪ B| = 10 + 21 - 3 = 28. Subsets where a×b IS divisible by 6 = 45 - 28 = 17. Verify by direct count: pairs containing 3 with even partner: (2,3),(3,4),(3,6),(3,8),(3,10) = 5. Pairs containing 9 with even partner: (2,9),(4,9),(6,9),(8,9),(9,10) = 5. Pairs containing 6 only (partner is not 3 or 9): (1,6),(2,6),(4,6),(5,6),(6,7),(6,8),(6,10) = 7. Total: 5 + 5 + 7 = 17. ✓",
-   "trap": "Students who use complementary counting correctly get 45 - 28 = 17 but then doubt their answer because it seems high. The more common error is computing |A ∪ B| = 10 + 21 = 31 (forgetting to subtract |A ∩ B| = 3), giving 45 - 31 = 14 — a plausible-looking but wrong answer. Always subtract the overlap in inclusion-exclusion.",
-   "estimated_time_seconds": 130,
-   "tags": [
-    "divisibility",
-    "inclusion-exclusion",
-    "multi-step",
-    "counting"
-   ]
-  }
- ]
+  "questions": [
+    {
+      "id": "NUM-NTH-001",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which of the following is NOT a rational number?",
+      "options": [
+        "A. 0",
+        "B. -7/4",
+        "C. sqrt(10)",
+        "D. 0.666...",
+        "E. 3.25"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — a number is rational when it can be written as a/b with a and b integers and b not 0.\nStep 2 — test each option.\nA - 0 = 0/1. Rational.\nB - -7/4 is already a ratio of integers. Rational.\nC - 10 is not a perfect square (3^2 = 9, 4^2 = 16), so sqrt(10) = 3.1622... never terminates and never repeats. Irrational.\nD - 0.666... repeats, and a repeating decimal is always rational: 0.666... = 2/3.\nE - 3.25 terminates, so 3.25 = 325/100 = 13/4. Rational.\nCheck: only C fails to be a ratio of two integers.\nAnswer: C.",
+      "trap": "Choosing D because 0.666... never ends. Non-terminating is not the same as irrational - irrational means non-terminating AND non-repeating. A repeating block always converts to a fraction (0.666... = 2/3), which is why D is rational and C is not.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "rational-numbers",
+        "irrational-numbers",
+        "number-families"
+      ]
+    },
+    {
+      "id": "NUM-NTH-002",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "For any integer n, which of the following is always even?",
+      "options": [
+        "A. n + 1",
+        "B. n² + 1",
+        "C. n(n + 1)",
+        "D. 2n + 1",
+        "E. n² - n + 1"
+      ],
+      "answer": "C",
+      "explanation": "n(n + 1) is a product of two consecutive integers, one of which is always even, so the product is always even. The others fail: n + 1 and n² + 1 depend on the parity of n, 2n + 1 is always odd, and n² − n + 1 = n(n − 1) + 1 is always odd. So C.",
+      "trap": "Students think n(n+1) depends on whether n is even or odd. It doesn't — one of n or n+1 is always even, making the product always even regardless of n's parity.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "consecutive-integers",
+        "even-odd",
+        "algebraic-proof"
+      ]
+    },
+    {
+      "id": "NUM-NTH-003",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The integer 0 is a factor of the integer k. Which of the following must be true?",
+      "options": [
+        "A. k = 1",
+        "B. k = 0",
+        "C. k can be any integer, because 0 is a multiple of every integer",
+        "D. k can be any even integer, because 0 is even",
+        "E. No such integer k exists, because 0 is a factor of no non-zero integer"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — work from the definition, not from a remembered slogan. 'd is a factor of N' means N = d x m for some integer m.\nStep 2 — put d = 0. The condition becomes k = 0 x m, and 0 x m = 0 for every integer m. So k must be 0, and 0 does qualify: 0 = 0 x 1. TRUE.\nStep 3 — test A. k = 1 would need 1 = 0 x m, and no integer m gives 1. FALSE.\nStep 4 — test C. This swaps the two words. 0 = n x 0 says 0 is a MULTIPLE of every integer; it says nothing about 0 being a factor. FALSE.\nStep 5 — test D. The evenness of 0 is irrelevant here: k = 4 would need 4 = 0 x m, which has no solution. FALSE.\nStep 6 — test E. Its reason is right for every non-zero k, but it overreaches. 0 is a factor of no NON-ZERO integer, yet 0 = 0 x 1 makes 0 a factor of 0. So exactly one integer k works, rather than none. FALSE.\nCheck: 0 x m runs through the single value 0 as m runs through the integers, so the set of integers having 0 as a factor is exactly {0}. Correct.\nAnswer: B.",
+      "trap": "Choosing E by quoting 'zero is a factor of nothing' as an absolute. The true form is that 0 is a factor of no non-zero integer, and k = 0 itself survives, since 0 = 0 x 1. Choosing C by reading the sentence backwards: 0 is a multiple of every integer, which is the reverse of what the stem states.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "zero-properties",
+        "multiples-and-factors",
+        "definitions"
+      ]
+    },
+    {
+      "id": "NUM-NTH-004",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Column A: The number of integers n with -2.5 < n < 3.5\nColumn B: 6",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — the endpoints are not integers, so simply list the integers strictly inside the interval.\nStep 2 — they are -2, -1, 0, 1, 2, 3.\nStep 3 — count them: 6 integers. Do not forget 0 - it is an integer.\nColumn A = 6, Column B = 6.\nCheck: -3 is below -2.5 and 4 is above 3.5, so nothing else qualifies.\nAnswer: C.",
+      "trap": "Forgetting that 0 is an integer and counting only 5, which makes Column B look greater (choice B). A second route to 5 is counting the positive integers 1, 2, 3 and the negative integers -1, -2 and stopping there.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "integers",
+        "number-families",
+        "counting"
+      ]
+    },
+    {
+      "id": "NUM-NTH-005",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which of the following is true for every integer n?",
+      "options": [
+        "A. n^2 > 0",
+        "B. n^2 >= 0",
+        "C. n^2 > n",
+        "D. n^2 is odd",
+        "E. n^3 > 0"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — test each statement against the three dangerous inputs: a negative, zero, and one.\nA - n = 0 gives n^2 = 0, which is not greater than 0. FALSE.\nB - a square is a product of two equal numbers, so it is positive when n is not 0 and equals 0 when n = 0. Never negative. TRUE.\nC - n = 1 gives n^2 = 1 = n, not greater. n = 0 gives 0 = 0. FALSE.\nD - n = 2 gives n^2 = 4, even. FALSE.\nE - n = -2 gives n^3 = -8 < 0. A cube keeps the sign of its base. FALSE.\nCheck: B survives n = -3 (9 >= 0), n = 0 (0 >= 0) and n = 5 (25 >= 0).\nAnswer: B.",
+      "trap": "Picking A by forgetting that n = 0 is an integer, so n^2 can equal 0 rather than exceed it. Picking C assumes squaring always enlarges, which fails at n = 0 and n = 1 (and for every number strictly between 0 and 1).",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "squares",
+        "zero-and-one",
+        "must-be-true"
+      ]
+    },
+    {
+      "id": "NUM-NTH-006",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "The repeating decimal 0.135135135... is equal to a/b, where a and b are positive integers with no common factor greater than 1. What is a + b? Enter your answer as a number.",
+      "options": null,
+      "answer": "42",
+      "explanation": "Step 1 — a repeating decimal is rational. A repeating block of three digits converts directly by writing the block over 999: 0.135135135... = 135/999.\nStep 2 — factor both parts. 135 = 3^3 x 5 and 999 = 3^3 x 37, so the common factor is 27.\nStep 3 — divide both by 27: 135/999 = 5/37.\nStep 4 — 5 and 37 are both prime and unequal, so the fraction is in lowest terms and a + b = 5 + 37 = 42.\nCheck: 5/37 = 0.135135135..., and 5 and 37 share no factor greater than 1. Correct.\nAnswer: 42.",
+      "trap": "Answering 1,134 by using the unreduced fraction 135/999 (135 + 999 = 1,134). The stem demands lowest terms, so the common factor 27 must be cancelled first. Answering 227 comes from writing the block over 1,000 instead of 999: 135/1,000 reduces to 27/200, giving 27 + 200 = 227, but 0.135 is not the same number as 0.135135135...",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "repeating-decimals",
+        "rational-numbers",
+        "fractions"
+      ]
+    },
+    {
+      "id": "NUM-NTH-007",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which of the following numbers is divisible by both 4 and 6?",
+      "options": [
+        "A. 14",
+        "B. 18",
+        "C. 24",
+        "D. 28",
+        "E. 34"
+      ],
+      "answer": "C",
+      "explanation": "A number divisible by both 4 and 6 must be divisible by their LCM. LCM(4,6) = 12. Check each: 14÷12 ≈ 1.17 (no). 18÷12 = 1.5 (no). 24÷12 = 2 (yes! 24 is divisible by 12, hence by both 4 and 6). 28÷12 ≈ 2.33 (no). 34÷12 ≈ 2.83 (no). Only 24 works.",
+      "trap": "Students multiply 4×6=24 and think any multiple of 24 works — that's partially right for 24, but they may miss that LCM(4,6)=12, so 12 would also work. More commonly, students check divisibility by 4 alone (which 28 passes: 28÷4=7) and forget to also check divisibility by 6 (28÷6≈4.67, fails).",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "divisibility",
+        "lcm",
+        "two-step"
+      ]
+    },
+    {
+      "id": "NUM-NTH-008",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "p is a prime number greater than 2.\n\nColumn A: p²\nColumn B: p + 2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Since p is prime and greater than 2, the smallest valid value is p=3. Column A = p² = 9. Column B = p+2 = 5. Column A > Column B. For any prime p > 2: p ≥ 3. Is p² > p+2 always? p² - p - 2 = (p-2)(p+1). For p > 2, both (p-2) > 0 and (p+1) > 0, so p² - p - 2 > 0, meaning p² > p+2 always. Column A is always greater.",
+      "trap": "Students test p=3 and get 9 vs 5, then might wonder if some larger prime could flip this. They miss that the gap p² - (p+2) grows with p, so Column A only gets more dominant. Once you prove it algebraically for all p > 2, the answer is definitively A.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "primes",
+        "qc",
+        "algebraic-proof"
+      ]
+    },
+    {
+      "id": "NUM-NTH-009",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The integer n is divisible by 3 and by 5. Which of the following must also be a divisor of n?",
+      "options": [
+        "A. 6",
+        "B. 8",
+        "C. 15",
+        "D. 30",
+        "E. 45"
+      ],
+      "answer": "C",
+      "explanation": "If n is divisible by both 3 and 5, then n is divisible by LCM(3,5) = 15. Since GCD(3,5)=1 (they share no common factors), LCM(3,5) = 3×5 = 15. So 15 must divide n. The other options are not guaranteed: n=15 is not divisible by 6, 8, 30, or 45. So only C (15) must be a divisor.",
+      "trap": "Students choose D (30), thinking that if n is divisible by 3 and 5 it must be divisible by 2 as well. But n could be 15, which is odd. Divisibility by 3 and 5 guarantees only divisibility by 15, not 30.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "divisibility",
+        "lcm",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "NUM-NTH-010",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which of the following must be true if n is an odd integer?",
+      "options": [
+        "A. n² is odd",
+        "B. n² is even",
+        "C. n + 1 is odd",
+        "D. 2n is odd",
+        "E. n/2 is an integer"
+      ],
+      "answer": "A",
+      "explanation": "If n is odd, then n = 2k+1 for some integer k. Then n² = (2k+1)² = 4k²+4k+1 = 2(2k²+2k)+1, which is odd. So A is always true. Check others: B is false (n²=9 is odd). C is false: n=3 → n+1=4 (even). D is false: 2n = 2×(odd) = even, not odd. E is false: n=3 → 3/2=1.5, not an integer. Only A must be true.",
+      "trap": "Students may doubt option A, thinking squaring might change parity. It doesn't — odd × odd = odd, always. Parity is preserved under multiplication: odd^n is always odd for any positive integer n.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "even-odd",
+        "conceptual",
+        "algebraic-proof"
+      ]
+    },
+    {
+      "id": "NUM-NTH-011",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Which of the following numbers is irrational?",
+      "options": [
+        "A. 0.474747...",
+        "B. sqrt(49)",
+        "C. 22/7",
+        "D. sqrt(45)",
+        "E. -3/8"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — irrational means the decimal never terminates and never repeats; equivalently, the number is not a ratio of two integers.\nStep 2 — test each option.\nA - the block 47 repeats, so 0.474747... = 47/99. Rational.\nB - 49 = 7^2, so sqrt(49) = 7, an integer. Rational.\nC - 22/7 is a ratio of integers by construction. Rational. (It is a famous approximation of pi, but it is not pi.)\nD - 45 = 3^2 x 5, so sqrt(45) = 3 x sqrt(5). Since 5 is not a perfect square, sqrt(5) is irrational, and a non-zero rational (3) times an irrational is irrational. Irrational.\nE - -3/8 = -0.375, terminating. Rational.\nCheck: the square root of a positive integer is rational only when that integer is a perfect square. 49 is; 45 is not.\nAnswer: D.",
+      "trap": "Choosing C because 22/7 is used as a stand-in for pi. A fraction of two integers is rational no matter what it approximates. Choosing A because the decimal never stops - repeating decimals are always rational.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "irrational-numbers",
+        "square-roots",
+        "rational-numbers"
+      ]
+    },
+    {
+      "id": "NUM-NTH-012",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "n is an integer.\nColumn A: n^3\nColumn B: n^2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — n is an integer with no sign restriction, so run the FROZEN cases: zero, one, a negative, and a large value.\nStep 2 — n = 2: Column A = 8, Column B = 4. Column A is greater.\nStep 3 — n = -2: Column A = -8, Column B = 4. Column B is greater.\nStep 4 — two cases disagree, so the relationship is not fixed. (n = 0 and n = 1 even make them equal.)\nCheck: a cube keeps the sign of the base while a square never does, so any negative n reverses the comparison found for positive n.\nAnswer: D.",
+      "trap": "Testing only n = 2, 3, 4 and concluding Column A is greater (choice A). The stem says integer, not positive integer, so n = -2 is legal and flips the result; n = 0 and n = 1 make the two columns equal.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "cubes",
+        "squares",
+        "must-be-true"
+      ]
+    },
+    {
+      "id": "NUM-NTH-013",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "How many positive integers n less than 30 have the property that n^2 has units digit 4? Enter your answer as a number.",
+      "options": null,
+      "answer": "6",
+      "explanation": "Step 1 — the units digit of n^2 depends only on the units digit of n, because every other digit of n feeds only the tens column and higher.\nStep 2 — square each possible units digit: 0->0, 1->1, 2->4, 3->9, 4->6, 5->5, 6->6, 7->9, 8->4, 9->1.\nStep 3 — units digit 4 comes only from n ending in 2 or in 8.\nStep 4 — list those n below 30: 2, 8, 12, 18, 22, 28. That is 6 values.\nCheck: 2^2 = 4, 8^2 = 64, 12^2 = 144, 18^2 = 324, 22^2 = 484, 28^2 = 784 - all end in 4.\nAnswer: 6.",
+      "trap": "Finding only n ending in 2 and answering 3 (2, 12, 22), forgetting that 8^2 = 64 also ends in 4. Two different units digits always map to the same square ending (2 and 8, 3 and 7, 4 and 6, 1 and 9).",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "units-digit",
+        "perfect-squares",
+        "counting"
+      ]
+    },
+    {
+      "id": "NUM-NTH-014",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "n is an integer. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. n^3 >= n",
+        "B. n^2 >= n",
+        "C. n^3 >= n^2",
+        "D. (n + 1)^2 > n^2",
+        "E. |n^3| >= |n|"
+      ],
+      "answer": [
+        "B",
+        "E"
+      ],
+      "explanation": "The statements differ on NEGATIVE integers, so a negative test value does the work here; zero settles nothing.\nA - n = -2 gives n^3 = -8 and n = -2, and -8 >= -2 is false. A cube keeps the sign of its base and pushes a negative further from 0. FALSE.\nB - n^2 - n = n(n - 1), a product of two consecutive integers. Consecutive integers are never one positive and one negative at the same time with a gap between them: either both are >= 0 or both are <= 0, so the product is >= 0. Check n = -3 (9 >= -3), n = 0 (0 >= 0), n = 1 (1 >= 1), n = 4 (16 >= 4). TRUE.\nC - n = -1 gives n^3 = -1 and n^2 = 1, and -1 >= 1 is false. A cube can be negative while the square is positive. FALSE.\nD - expand: (n + 1)^2 - n^2 = 2n + 1, which is positive only when n >= 0. At n = -1 it is -1, and indeed (n + 1)^2 = 0 while n^2 = 1. FALSE.\nE - absolute value strips the sign first: |n^3| = |n|^3, so the claim is |n|^3 >= |n| with |n| a non-negative integer. If |n| = 0 both sides are 0; if |n| >= 1 then multiplying |n| by |n|^2 >= 1 cannot shrink it. Check n = -4 (64 >= 4), n = 0 (0 >= 0), n = 1 (1 >= 1). TRUE.\nAnswer: B and E.",
+      "trap": "Accepting A and C by testing only positive n, where cubes do dominate; both die at a single negative (n = -2 for A, n = -1 for C). Accepting D because 'adding 1 before squaring must enlarge it' - squaring is not order-preserving on negatives, and n = -1 turns 1 into 0. Rejecting B on the ground that squaring shrinks numbers between 0 and 1: true for numbers, but no INTEGER lies strictly between 0 and 1.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "squares-and-cubes",
+        "negative-numbers",
+        "must-be-true"
+      ]
+    },
+    {
+      "id": "NUM-NTH-015",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "a is a number with a > 1. Which of the following is the SMALLEST?",
+      "options": [
+        "A. a",
+        "B. a^2",
+        "C. sqrt(a)",
+        "D. 1/a",
+        "E. 1/a^2"
+      ],
+      "answer": "E",
+      "explanation": "Step 1 — for a > 1, raising to a higher power increases the value: sqrt(a) < a < a^2.\nStep 2 — taking reciprocals of positive numbers reverses order, so 1/a^2 < 1/a < 1/sqrt(a) < 1.\nStep 3 — combine: 1/a^2 < 1/a < 1 < sqrt(a) < a < a^2. The smallest is 1/a^2.\nStep 4 — confirm with a = 4: a = 4, a^2 = 16, sqrt(a) = 2, 1/a = 0.25, 1/a^2 = 0.0625. The smallest is 0.0625.\nCheck with a = 1.44: 1/a^2 = 0.482, 1/a = 0.694, sqrt(a) = 1.2, a = 1.44, a^2 = 2.07. Same order.\nAnswer: E.",
+      "trap": "Choosing D because 1/a is the only option that obviously looks small, forgetting that squaring a number already between 0 and 1 makes it smaller still. Choosing C by importing the rule for 0 < a < 1, where sqrt(a) is larger than a, not smaller.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "ordering",
+        "reciprocals",
+        "exponent-ordering"
+      ]
+    },
+    {
+      "id": "NUM-NTH-016",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "x and y are positive integers with x > y.\n\nColumn A: x² - y²\nColumn B: (x - y)(x + y)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "This tests knowledge of the difference of squares identity: x² - y² = (x-y)(x+y). This is an algebraic identity — it holds for ALL values of x and y, not just specific cases. Column A = x² - y². Column B = (x-y)(x+y) = x² - y² (by FOIL). They are identically equal. The constraint x > y > 0 is irrelevant — the equality holds regardless.",
+      "trap": "Students plug in specific numbers like x=3, y=2: Column A = 9-4=5, Column B = (1)(5)=5. Equal. They confirm with another pair: x=5, y=3: A = 25-9=16, B = (2)(8)=16. Still equal. But a student who knows the identity immediately sees C without calculation. Students who don't know the identity may guess D thinking it varies.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "difference-of-squares",
+        "algebraic-proof",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-NTH-017",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "n is a positive integer that is not a perfect square. Which of the following must be true of sqrt(n)?",
+      "options": [
+        "A. sqrt(n) is irrational",
+        "B. sqrt(n) is rational but not an integer",
+        "C. sqrt(n) is an integer",
+        "D. sqrt(n) is not a real number",
+        "E. sqrt(n) may be rational or irrational, depending on n"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — suppose sqrt(n) were rational, so sqrt(n) = p/q with p and q integers, q not 0, and the fraction in lowest terms.\nStep 2 — square both sides: n = p^2/q^2. Since p/q is in lowest terms, so is p^2/q^2, so for n to be an integer we need q^2 = 1, i.e. q = 1.\nStep 3 — then n = p^2, making n a perfect square - contradicting the stem.\nStep 4 — so sqrt(n) cannot be rational. It is irrational.\nCheck: n = 45 is not a square and sqrt(45) = 6.708..., non-terminating and non-repeating. n = 49 IS a square and sqrt(49) = 7. The rule has no exceptions.\nAnswer: A.",
+      "trap": "Choosing B because sqrt(45) = 6.708... 'looks like a decimal, so it must be a fraction'. There is no middle ground: the square root of a positive integer is either an integer or irrational, never a non-integer fraction. Choosing E treats the outcome as case-dependent, but the stem has already ruled out the only rational case.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "irrational-numbers",
+        "square-roots",
+        "perfect-squares"
+      ]
+    },
+    {
+      "id": "NUM-NTH-018",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "What is the units digit of 7⁴⁷?",
+      "options": null,
+      "answer": "3",
+      "explanation": "Find the pattern of units digits of powers of 7: 7¹=7 (units digit 7), 7²=49 (units digit 9), 7³=343 (units digit 3), 7⁴=2401 (units digit 1), 7⁵=...7 (units digit 7). The cycle repeats every 4: 7, 9, 3, 1, 7, 9, 3, 1, ... To find the units digit of 7⁴⁷, find 47 mod 4: 47 = 4×11 + 3, so 47 mod 4 = 3. The 3rd position in the cycle (7, 9, 3, 1) is 3. Therefore, the units digit of 7⁴⁷ is 3.",
+      "trap": "Students might guess the units digit cycles with period related to the last digit only and write 7 (position 1) by computing 47 mod 4 = 3 but then picking position 3 incorrectly. Or they compute 47÷4=11 remainder 3, then count 3 steps into the cycle starting from 1 rather than 7, landing on 1 instead of 3.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "pattern",
+        "remainders",
+        "cyclical-units-digit"
+      ]
+    },
+    {
+      "id": "NUM-NTH-019",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "n is a positive integer greater than 1.\n\nColumn A: The number of prime factors of n²\nColumn B: The number of prime factors of n",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "The prime factors of n² are exactly the same as the prime factors of n — squaring does not introduce new prime factors. If n = p₁^a₁ × p₂^a₂ × ... × pₖ^aₖ, then n² = p₁^(2a₁) × p₂^(2a₂) × ... × pₖ^(2aₖ). The set of distinct prime factors is identical. Example: n=12=2²×3. Prime factors of 12: {2,3}. n²=144=2⁴×3². Prime factors of 144: {2,3}. Same count (2). The two quantities are always equal.",
+      "trap": "Students confuse the COUNT of prime factors (i.e., the number of distinct primes) with the total count of prime factors with multiplicity. The number of DISTINCT prime factors of n² always equals that of n. Only the exponents double.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "prime-factorization",
+        "perfect-squares",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-NTH-020",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Which of the following expressions can NEVER be prime for any integer n > 2?",
+      "options": [
+        "A. n + 1",
+        "B. n - 1",
+        "C. n² - 1",
+        "D. 2n - 1",
+        "E. n² + 1"
+      ],
+      "answer": "C",
+      "explanation": "For n > 2, factor n² - 1 = (n-1)(n+1). Since n > 2, we have n-1 ≥ 2 and n+1 ≥ 4. Both factors are greater than 1, so n²-1 is a product of two integers each greater than 1 — therefore n²-1 is composite (never prime) for n > 2. Check the other options can be prime for some n > 2: A: n=2 (excluded), n=4 → 5 (prime) ✓. B: n=3 → 2 (prime) ✓. D: n=3 → 5 (prime) ✓. E: n=4 → 17 (prime) ✓. Only C is never prime for n > 2.",
+      "trap": "Students may pick E (n²+1), thinking that a square plus 1 can never be prime. But n=4 gives 17 (prime). The key insight for C is the difference of squares factorization: n²-1 = (n-1)(n+1). When n > 2, both (n-1) and (n+1) are greater than 1, guaranteeing a composite product.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "primes",
+        "difference-of-squares",
+        "factoring"
+      ]
+    },
+    {
+      "id": "NUM-NTH-021",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "When a positive integer N is divided by 7, the remainder is 4. What is the remainder when 3N is divided by 7?",
+      "options": null,
+      "answer": "5",
+      "explanation": "Given: N = 7q + 4 for some non-negative integer q. Then 3N = 3(7q + 4) = 21q + 12. Divide 21q + 12 by 7: 21q is divisible by 7 (21q ÷ 7 = 3q). The remainder comes from 12 ÷ 7 = 1 remainder 5. So 3N = 7(3q+1) + 5, and the remainder is 5. Verify with a specific value: N=11 (11 = 7×1 + 4). 3N=33. 33 ÷ 7 = 4 remainder 5. ✓",
+      "trap": "Students multiply the remainder: 3 × 4 = 12, then think 12 is the remainder. They forget that the remainder must be less than the divisor. 12 ÷ 7 = 1 remainder 5. The correct approach is to reduce 3×4=12 modulo 7 to get 5.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "remainders",
+        "modular-arithmetic",
+        "two-step"
+      ]
+    },
+    {
+      "id": "NUM-NTH-022",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Which of the following integers have a number of positive factors that is itself a perfect square? Select all that apply.",
+      "options": [
+        "A. 24",
+        "B. 36",
+        "C. 225",
+        "D. 512",
+        "E. 1,000"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "Two separate steps: first the factor COUNT, from the prime factorisation - if N = p^a x q^b x ..., the count is (a + 1)(b + 1)... - and only then the perfect-square test on that count.\nA - 24 = 2^3 x 3^1. Count = (3 + 1)(1 + 1) = 8. 8 is not a perfect square (4 and 9 straddle it). FALSE.\nB - 36 = 2^2 x 3^2. Count = 3 x 3 = 9 = 3^2. TRUE.\nC - 225 = 3^2 x 5^2. Count = 3 x 3 = 9 = 3^2. TRUE.\nD - 512 = 2^9, a single prime power. Count = 9 + 1 = 10. 10 is not a perfect square (9 and 16 straddle it), even though the exponent 9 is. FALSE.\nE - 1,000 = 2^3 x 5^3. Count = 4 x 4 = 16 = 4^2. TRUE. Note 1,000 is NOT a perfect square - its exponents are odd, and an odd exponent means an even factor count - yet 16 is a perfect square all the same. The question is about the count, not about N.\nCheck by the pairing rule: a factor count is odd exactly when N is a perfect square, so 36 and 225 must have odd counts (9 and 9) and 24, 512 and 1,000 must have even counts (8, 10 and 16). That matches, and of the even counts only 16 is itself a square. Correct.\nAnswer: B, C and E.",
+      "trap": "Choice D is the exponent trap: reading 512 = 2^9 and calling the exponent 9 the factor count, or simply seeing the square number 9 in the exponent, gives 'perfect square' when the count is 9 + 1 = 10 and the +1 for the exponent 0 is what breaks it. Testing whether the INTEGER is a perfect square instead of whether its factor count is: that keeps 36 and 225, correctly drops 512, but wrongly discards 1,000 = 2^3 x 5^3, whose 16 factors are 4^2. Including A by squaring one bracket instead of multiplying the brackets, reading 24 = 2^3 x 3 as (3 + 1)^2 = 16 factors rather than (3 + 1)(1 + 1) = 8.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "factor-count",
+        "perfect-squares",
+        "prime-factorisation"
+      ]
+    },
+    {
+      "id": "NUM-NTH-023",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "a and b are positive integers and GCD(a, b) = 1.\n\nColumn A: LCM(a, b)\nColumn B: a × b",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "The fundamental relationship: GCD(a,b) × LCM(a,b) = a × b for any two positive integers. If GCD(a,b) = 1, then 1 × LCM(a,b) = a × b, which means LCM(a,b) = a × b. So Column A = Column B always, whenever GCD(a,b) = 1. Example: a=4, b=9. GCD(4,9)=1. LCM(4,9)=36=4×9. ✓",
+      "trap": "Students may not know the identity GCD(a,b) × LCM(a,b) = a×b and guess D or B. Also, some students apply this identity to three or more numbers — it only holds for exactly two numbers.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "gcd",
+        "lcm",
+        "qc",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "NUM-NTH-024",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The sum of three consecutive odd integers is 51. What is the largest of the three integers?",
+      "options": [
+        "A. 15",
+        "B. 17",
+        "C. 19",
+        "D. 21",
+        "E. 23"
+      ],
+      "answer": "C",
+      "explanation": "Let the three consecutive odd integers be n-2, n, n+2 (consecutive odd integers differ by 2). Their sum: (n-2) + n + (n+2) = 3n = 51, so n = 17. The largest is n+2 = 19. Verify: 15 + 17 + 19 = 51. ✓",
+      "trap": "Students set up consecutive integers as n, n+1, n+2 (differing by 1) instead of n, n+2, n+4 (differing by 2 for odd integers). Using n, n+1, n+2: sum=3n+3=51 → n=16, and 16 is not odd. Consecutive odd integers must differ by 2.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "consecutive-integers",
+        "odd-integers",
+        "two-step"
+      ]
+    },
+    {
+      "id": "NUM-NTH-025",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "For how many integers n with -5 <= n <= 5 is n^3 < n? Enter your answer as a number.",
+      "options": null,
+      "answer": "4",
+      "explanation": "Step 1 — rewrite: n^3 < n means n^3 - n < 0, that is n(n - 1)(n + 1) < 0.\nStep 2 — test the eleven integers in range.\nn = -5: -125 < -5. TRUE.\nn = -4: -64 < -4. TRUE.\nn = -3: -27 < -3. TRUE.\nn = -2: -8 < -2. TRUE.\nn = -1: -1 < -1 is false.\nn = 0: 0 < 0 is false.\nn = 1: 1 < 1 is false.\nn = 2: 8 < 2 is false.\nn = 3, 4, 5: cubes exceed the base. False.\nStep 3 — count the true cases: n = -5, -4, -3, -2, which is 4 values.\nCheck: cubing drags a number below -1 further from zero, so n^3 < n exactly when n < -1 (among integers). The boundary values -1, 0 and 1 give equality, not inequality.\nAnswer: 4.",
+      "trap": "Answering 7 by counting -5, -4, -3, -2, -1, 0, 1 - the three boundary values -1, 0 and 1 satisfy n^3 = n, not n^3 < n, and a strict inequality excludes them. Answering 5 comes from including -1 alone.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "cubes",
+        "zero-and-one",
+        "ordering"
+      ]
+    },
+    {
+      "id": "NUM-NTH-026",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "k is a positive integer.\n\nColumn A: The remainder when (7k + 3) is divided by 7\nColumn B: 3",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "7k + 3 = 7·k + 3. When divided by 7: the term 7k is divisible by 7 with no remainder, and 3 < 7. So the remainder is always exactly 3, regardless of the value of k. Column A = 3 = Column B always. The two quantities are equal.",
+      "trap": "Students substitute specific values of k and happen to get 3 each time, then choose C without understanding why. More dangerously, students might add the remainders and compute something like 7k remainder = 0, 3 remainder = 3, total remainder = 3 — which is correct, but they might doubt it changes for different k values and choose D.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "remainders",
+        "modular-arithmetic",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-NTH-027",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Which of the following integers CANNOT be written as the difference of the squares of two integers?",
+      "options": [
+        "A. 1,000",
+        "B. 1,001",
+        "C. 1,002",
+        "D. 1,004",
+        "E. 1,005"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — factor the form: p^2 - q^2 = (p - q)(p + q). Write the target as a product of two factors f x g with f = p - q and g = p + q.\nStep 2 — solving gives p = (f + g)/2 and q = (g - f)/2, so p and q are integers exactly when f and g have the SAME parity (both odd or both even).\nStep 3 — an odd target factors as odd x odd, so every odd integer works. An even target needs even x even, so it must be divisible by 4.\nStep 4 — the impossible case is therefore any integer that is even but NOT a multiple of 4, i.e. any integer 2 more than a multiple of 4.\nStep 5 — test: 1,000 = 4 x 250, multiple of 4. 1,001 is odd. 1,002 = 4 x 250 + 2, even and not a multiple of 4. 1,004 = 4 x 251. 1,005 is odd.\nCheck by construction: 1,000 = 500 x 2 gives 251^2 - 249^2 = 63001 - 62001 = 1,000. 1,001 = 1001 x 1 gives 501^2 - 500^2 = 251001 - 250000 = 1,001. 1,004 = 502 x 2 gives 252^2 - 250^2 = 63504 - 62500 = 1,004. 1,005 = 201 x 5 gives 103^2 - 98^2 = 10609 - 9604 = 1,005. Only 1,002 has no representation.\nAnswer: C.",
+      "trap": "Assuming odd numbers are the hard case and picking B or E. Every odd integer is a difference of squares (n = ((n+1)/2)^2 - ((n-1)/2)^2). The real obstruction is parity of the two factors, which rules out exactly the even numbers that are not multiples of 4 - here 1,002.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "perfect-squares",
+        "difference-of-squares",
+        "parity-of-factors"
+      ]
+    },
+    {
+      "id": "NUM-NTH-028",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "a is a number with 0 < a < 1.\nColumn A: sqrt(a)\nColumn B: a^2 + a",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — on the interval 0 < a < 1 the standard chain is a^2 < a < sqrt(a) < 1, so sqrt(a) beats a alone. But Column B adds a^2 on top of a, so the chain does not settle it.\nStep 2 — test a small value: a = 0.25. Column A = sqrt(0.25) = 0.5. Column B = 0.0625 + 0.25 = 0.3125. Column A is greater.\nStep 3 — test a value near 1: a = 0.81. Column A = sqrt(0.81) = 0.9. Column B = 0.6561 + 0.81 = 1.4661. Column B is greater.\nStep 4 — the two cases disagree, so no fixed relationship holds on the whole interval.\nCheck: at a = 0.25 the gap is +0.19 for Column A, at a = 0.81 it is +0.57 for Column B, so the comparison genuinely crosses over inside (0, 1).\nAnswer: D.",
+      "trap": "Applying the memorised chain a^2 < a < sqrt(a) and answering A, as if adding a^2 to a could not push the sum past sqrt(a). Near a = 1 all four of a^2, a, sqrt(a) crowd toward 1, so a^2 + a approaches 2 while sqrt(a) approaches 1, and Column B wins.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "ordering",
+        "fractional-interval",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-NTH-029",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "For how many integers n with 1 <= n <= 90 does the fraction n/90 have a terminating decimal expansion? Enter your answer as a number.",
+      "options": null,
+      "answer": "10",
+      "explanation": "Step 1 — a fraction IN LOWEST TERMS terminates exactly when the only primes in its denominator are 2 and 5. Any other prime left downstairs forces a repeating block.\nStep 2 — factor the denominator: 90 = 2 x 3^2 x 5. The 2 and the 5 are harmless; the 3^2 is the obstruction.\nStep 3 — reducing n/90 can only cancel primes that n itself supplies. To clear BOTH factors of 3, n must be divisible by 3^2 = 9. One factor of 3 is not enough, since a 3 would survive in the denominator.\nStep 4 — count the multiples of 9 from 1 to 90: 9, 18, 27, 36, 45, 54, 63, 72, 81, 90. That is 90/9 = 10 values.\nCheck both directions: n = 9 gives 9/90 = 1/10 = 0.1, terminating. n = 3 gives 3/90 = 1/30 = 0.0333..., repeating, because one 3 is still there. n = 45 gives 45/90 = 1/2 = 0.5. Correct.\nAnswer: 10.",
+      "trap": "Answering 30 by requiring only a single factor of 3 and counting every multiple of 3. That cancels just one of the two 3s: 3/90 = 1/30 = 0.0333..., which does not terminate. Answering 90 assumes every ratio of integers terminates - only those whose REDUCED denominator has the form 2^a x 5^b do. Answering 9 counts 9 through 81 and forgets the endpoint n = 90.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "terminating-decimals",
+        "prime-factorisation",
+        "rational-numbers"
+      ]
+    },
+    {
+      "id": "NUM-NTH-030",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "a is a number (not necessarily an integer) with a^3 < a. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. a < 1",
+        "B. a^2 < 1",
+        "C. a is not an integer",
+        "D. a^5 < a",
+        "E. 1/a > a"
+      ],
+      "answer": [
+        "A",
+        "D",
+        "E"
+      ],
+      "explanation": "First pin down every a the stem allows. a^3 < a means a^3 - a < 0, and a^3 - a = a(a - 1)(a + 1). The sign flips at -1, 0 and 1, and testing one point in each interval shows the product is negative exactly on a < -1 and on 0 < a < 1. A statement must hold on BOTH windows to be must-be-true.\nA - on a < -1 certainly a < 1, and on 0 < a < 1 certainly a < 1. TRUE.\nB - take a = -2, which is allowed since (-2)^3 = -8 < -2. Then a^2 = 4 and 4 < 1 is false. FALSE.\nC - a = -2 is an integer and satisfies the stem, so a need not be a fraction. FALSE.\nD - a^5 - a = a(a^4 - 1) = a(a^2 - 1)(a^2 + 1). The factor a^2 + 1 is positive for every real a, so a^5 - a carries the same sign as a(a^2 - 1) = a^3 - a, which the stem makes negative. Hence a^5 < a. Test a = -2: -32 < -2. Test a = 0.5: 0.03125 < 0.5. TRUE.\nE - on 0 < a < 1 multiply 1/a > a by the positive number a: the claim becomes 1 > a^2, true because 0 < a < 1. On a < -1 multiply by the negative number a, which REVERSES the inequality: the claim becomes 1 < a^2, true because |a| > 1. Either way 1/a > a. Test a = -2: -0.5 > -2. Test a = 0.5: 2 > 0.5. TRUE.\nCheck: the single witness a = -2 kills both B and C, and the two windows together confirm A, D and E.\nAnswer: A, D and E.",
+      "trap": "Selecting B and C by picturing only the window 0 < a < 1 and forgetting that every a < -1 also satisfies a^3 < a: at a = -2 the cube is -8, which really is smaller than -2, and there a^2 = 4 and a is an integer. Rejecting D by assuming a fifth power behaves differently from a cube; a^5 - a has the same sign as a^3 - a because the extra factor a^2 + 1 is always positive.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "cubes",
+        "sign-analysis",
+        "must-be-true"
+      ]
+    },
+    {
+      "id": "NUM-NTH-031",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "a is a number such that a^2 is rational. Which of the following must also be rational?",
+      "options": [
+        "A. a",
+        "B. a^3",
+        "C. a^4",
+        "D. a + a^2",
+        "E. sqrt(a)"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — the rationals are closed under multiplication, so any expression built from a^2 alone by multiplying is forced to be rational.\nStep 2 — a^4 = (a^2)^2 = (rational) x (rational), which is rational. C must be true.\nStep 3 — kill the others with one counterexample. Take a = sqrt(2); then a^2 = 2 is rational, as the stem allows.\nA - a = sqrt(2) is irrational. Not forced.\nB - a^3 = 2 x sqrt(2), a non-zero rational times an irrational, so irrational. Not forced.\nD - a + a^2 = sqrt(2) + 2 = rational + irrational = irrational. Not forced.\nE - sqrt(a) = 2^(1/4) = 1.189..., irrational. Not forced.\nCheck: a^4 with a = sqrt(2) is 4, rational, as predicted; with a = 3 it is 81, rational. Only even powers of a are guaranteed, because only they can be written in terms of a^2.\nAnswer: C.",
+      "trap": "Choosing A by reasoning 'if a^2 is rational then a must be too'. Squaring can turn an irrational into a rational (sqrt(2) squared is 2) but square-rooting cannot be undone, so a itself is unconstrained. Choosing D forgets that rational + irrational is always irrational.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "rational-numbers",
+        "closure",
+        "irrational-numbers"
+      ]
+    },
+    {
+      "id": "NUM-NTH-032",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "a and b are non-zero numbers with a x b > 0 and a > b.\nColumn A: 1/b\nColumn B: 1/a",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — a x b > 0 forces a and b to have the SAME sign. That is the condition that makes reciprocals behave predictably.\nStep 2 — subtract: 1/b - 1/a = (a - b)/(a x b).\nStep 3 — the numerator a - b is positive because a > b, and the denominator a x b is positive by the stem.\nStep 4 — so 1/b - 1/a > 0, i.e. 1/b > 1/a, in every allowed case.\nCheck both signs. Positives: a = 3, b = 1 gives 1/b = 1 and 1/a = 0.333 - Column A greater. Negatives: a = -1, b = -3 gives 1/b = -0.333 and 1/a = -1, and -0.333 > -1 - Column A greater again.\nAnswer: A.",
+      "trap": "Answering D on the grounds that a and b might be negative. Negativity is exactly what a x b > 0 controls: with a common sign, taking reciprocals always reverses the order, so the larger number a has the smaller reciprocal. D would be right only if the signs could differ (e.g. a = 2, b = -1 would give 1/b = -1 < 1/a = 0.5).",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "reciprocals",
+        "ordering",
+        "sign-analysis"
+      ]
+    },
+    {
+      "id": "NUM-NTH-033",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "For how many positive integers n with 1 <= n <= 75 do n^2 and n^5 have the same units digit?",
+      "options": [
+        "A. 15",
+        "B. 28",
+        "C. 29",
+        "D. 30",
+        "E. 32"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — kill the fifth power first. Units digits of powers repeat with a cycle of length 1, 2 or 4, and every one of those lengths divides 4, so d^5 = d^(4 + 1) ends in the same digit as d itself. Spot-check: 2^5 = 32, 3^5 = 243, 7^5 = 16,807, 8^5 = 32,768 - each ends in its own base digit.\nStep 2 — the condition therefore reduces from 'n^2 and n^5 agree' to 'n^2 and n agree' in the units place.\nStep 3 — solve that on digits: d^2 and d end in the same digit means d^2 - d = d(d - 1) is a multiple of 10. Testing d = 0..9, the survivors are d = 0 (0 and 0), d = 1 (1 and 1), d = 5 (25 and 5) and d = 6 (36 and 6). So n must end in 0, 1, 5 or 6: 4 digits out of every 10.\nStep 4 — count, and mind the ragged end. 1 to 70 is 7 complete blocks of ten, giving 7 x 4 = 28 values. The range does not stop there: 71 to 75 still has to be swept by hand, and it contributes 71 and 75, two more.\nStep 5 — 28 + 2 = 30.\nCheck n = 6: 6^2 = 36 and 6^5 = 7,776, both ending in 6. Check n = 4: 4^2 = 16 ends in 6 but 4^5 = 1,024 ends in 4, so 4 correctly fails. Correct.\nAnswer: D.",
+      "trap": "Answering 28 by treating 1 to 75 as 7 clean blocks of ten and never sweeping the 71-75 tail, which holds two more qualifying values. Answering 32 makes the opposite error, rounding the range up to 8 full blocks and crediting 76 and 80, which lie outside 1 <= n <= 75. Answering 29 sweeps the tail but finds only one of 71 and 75. Answering 15 discards the digits 0 and 5 as 'special cases' and keeps only n ending in 1 or 6.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "units-digit",
+        "power-cycles",
+        "counting"
+      ]
+    },
+    {
+      "id": "NUM-NTH-034",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "a is a positive number such that a + 1/a = 5. What is the value of a^2 + 1/a^2? Enter your answer as a number.",
+      "options": null,
+      "answer": "23",
+      "explanation": "Step 1 — do not solve for a. Square the given equation instead.\nStep 2 — (a + 1/a)^2 = a^2 + 2 x a x (1/a) + 1/a^2 = a^2 + 2 + 1/a^2, because a x (1/a) = 1 exactly.\nStep 3 — so 5^2 = a^2 + 1/a^2 + 2, giving 25 = a^2 + 1/a^2 + 2.\nStep 4 — therefore a^2 + 1/a^2 = 25 - 2 = 23.\nCheck numerically: a + 1/a = 5 gives a^2 - 5a + 1 = 0, so a = (5 + sqrt(21))/2 = 4.7913. Then 1/a = 0.2087, a^2 = 22.957 and 1/a^2 = 0.0436, and 22.957 + 0.0436 = 23.00. Correct.\nAnswer: 23.",
+      "trap": "Answering 25 by squaring the left side term by term, as if (a + 1/a)^2 were a^2 + 1/a^2. The cross term 2 x a x (1/a) = 2 is exactly what a reciprocal pair contributes, and it must be subtracted off.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "reciprocals",
+        "algebraic-identity",
+        "squares"
+      ]
+    },
+    {
+      "id": "NUM-NTH-035",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Which of the following statements must be true for all numbers a and b? Select all that apply.",
+      "options": [
+        "A. If a is irrational, then 1/a is irrational",
+        "B. If a^2 is irrational, then a is irrational",
+        "C. If a is irrational, then a^2 is irrational",
+        "D. If a and b are irrational, then a + b is irrational",
+        "E. If a is irrational and r is a non-zero rational, then a/r is irrational"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "E"
+      ],
+      "explanation": "A - an irrational number is never 0, so 1/a exists. Suppose 1/a = r were rational; r is not 0, so a = 1/r would be a ratio of two rationals, hence rational - contradicting that a is irrational. So 1/a is irrational. TRUE.\nB - contrapositive: if a were rational, a^2 would be a product of two rationals, hence rational. So an irrational a^2 forces an irrational a. TRUE.\nC - a = sqrt(2) is irrational but a^2 = 2 is rational. FALSE.\nD - a = sqrt(2) and b = 3 - sqrt(2) are both irrational, yet a + b = 3 is rational. FALSE.\nE - suppose a/r = s were rational. Then a = r x s, a product of two rationals, hence rational - contradicting that a is irrational. So a/r is irrational. TRUE.\nCheck the pattern: combining an irrational with a RATIONAL (E) or inverting it (A) can never produce a rational, but combining two IRRATIONALS (C, D) often does.\nAnswer: A, B and E.",
+      "trap": "Selecting C and D by treating the irrationals as if they were closed under multiplication and addition. They are not: sqrt(2) x sqrt(2) = 2 and sqrt(2) + (3 - sqrt(2)) = 3. Rejecting A is the mirror error - if 1/a were rational then a = 1/(1/a) would be rational too, so inverting cannot manufacture a rational out of an irrational.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "irrational-numbers",
+        "closure",
+        "must-be-true"
+      ]
+    },
+    {
+      "id": "NUM-NTH-036",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "a is a number such that a^5 = a^3.\nColumn A: a^2\nColumn B: a^4",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — solve the condition without dividing by a. a^5 - a^3 = 0 gives a^3(a^2 - 1) = 0, so a^3 = 0 or a^2 = 1.\nStep 2 — the complete solution set is a = 0, a = 1, a = -1. Dividing by a^3 at the start would have lost a = 0.\nStep 3 — evaluate both columns at each root.\na = 0: Column A = 0, Column B = 0. Equal.\na = 1: Column A = 1, Column B = 1. Equal.\na = -1: Column A = (-1)^2 = 1, Column B = (-1)^4 = 1. Equal.\nStep 4 — all three allowed values give equality, so the relationship is fixed.\nCheck algebraically: a^4 = a^2 x a^2 and the condition forces a^2 to be 0 or 1, and both of those satisfy a^2 = (a^2)^2. So Column A always equals Column B.\nAnswer: C.",
+      "trap": "Answering D because 'a could be negative'. Raising to the even powers 2 and 4 erases the sign, so a = -1 gives the same pair of values as a = 1. Answering A after testing only a = -1 and misreading (-1)^4 as -1 - a fourth power is never negative.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "zero-and-one",
+        "even-powers",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-NTH-037",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "For how many integers n with 1 <= n <= 51 is 12^n x 75 both a perfect square and a multiple of 6^12?",
+      "options": [
+        "A. 20",
+        "B. 21",
+        "C. 23",
+        "D. 26",
+        "E. 46"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — put everything into primes. 12 = 2^2 x 3, so 12^n = 2^(2n) x 3^n; and 75 = 3 x 5^2. Multiplying: 12^n x 75 = 2^(2n) x 3^(n + 1) x 5^2.\nStep 2 — square condition: every exponent even. 2n is even for every n and 5's exponent is 2, so the only live requirement is that n + 1 be even, i.e. n is ODD.\nStep 3 — divisibility condition: 6^12 = 2^12 x 3^12, so the expression must carry at least 2^12 and at least 3^12. That is 2n >= 12, i.e. n >= 6, AND n + 1 >= 12, i.e. n >= 11.\nStep 4 — compare the two size bars. n >= 11 is stricter than n >= 6, so the 2-exponent condition is already implied and n >= 11 is what binds. Note n = 11 is allowed: n + 1 = 12 reaches 3^12 exactly.\nStep 5 — intersect with 'n odd': n = 11, 13, 15, ..., 51, which is (51 - 11)/2 + 1 = 21 values.\nCheck: n = 11 gives 2^22 x 3^12 x 5^2 = (2^11 x 3^6 x 5)^2, a square, and it contains 2^12 x 3^12. n = 9 is odd but its 3-exponent is only 10, short of 12, so it fails the multiple test. n = 12 clears both size bars but gives 3^13, an odd exponent, so it is not a square. Correct.\nAnswer: B.",
+      "trap": "Answering 26 by imposing only the square condition and counting all 26 odd n in the range. Answering 23 by reading the divisibility bound off the 2-exponent alone, 2n >= 12 giving n >= 6, and never checking that 3^(n + 1) needs the stricter n >= 11: that admits the odd values 7 and 9. Answering 46 imposes only n >= 6 and drops the square condition. Answering 20 loses n = 11 by demanding n + 1 > 12 instead of n + 1 >= 12.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "perfect-squares",
+        "prime-exponents",
+        "counting"
+      ]
+    },
+    {
+      "id": "NUM-NTH-038",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "How many integers n with 1 <= n <= 1,000 are neither a perfect square, nor a perfect cube, nor a perfect fifth power? Enter your answer as a number.",
+      "options": null,
+      "answer": "960",
+      "explanation": "Step 1 — count each family up to 1,000. Squares: 31^2 = 961 and 32^2 = 1,024, so there are 31. Cubes: 10^3 = 1,000 and 11^3 = 1,331, so there are 10. Fifth powers: 1, 32 and 243, since 4^5 = 1,024 is too big, so there are 3.\nStep 2 — find the pairwise overlaps. A number that is both an a-th power and a b-th power is a power whose exponent is a common multiple of a and b. Square AND cube = sixth powers: 1, 64, 729 (4^6 = 4,096 is too big), so 3. Square AND fifth power = tenth powers: only 1, since 2^10 = 1,024 is too big, so 1. Cube AND fifth power = fifteenth powers: only 1, since 2^15 = 32,768, so 1.\nStep 3 — the triple overlap is the thirtieth powers: only 1. So 1.\nStep 4 — three-set inclusion-exclusion: 31 + 10 + 3 - 3 - 1 - 1 + 1 = 40 integers are a square or a cube or a fifth power.\nStep 5 — subtract from the whole range: 1,000 - 40 = 960.\nCheck the formula on two numbers. 1 sits in all three families and the formula counts it 3 - 3 + 1 = 1 time. 64 = 8^2 = 4^3 is a square and a cube but not a fifth power, and the formula counts it 2 - 1 = 1 time. Correct.\nAnswer: 960.",
+      "trap": "Answering 956 by adding 31 + 10 + 3 = 44 with no overlaps removed. Answering 959 by removing only the square-and-cube overlap (the 3 sixth powers) and missing that 1 is also a tenth power and a fifteenth power. Answering 961 by subtracting all three pairwise overlaps but forgetting to add the triple overlap back, which strips 1 out once too often. Answering 40 reports the count of perfect powers rather than the complement the stem asks for.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "perfect-squares",
+        "perfect-cubes",
+        "inclusion-exclusion"
+      ]
+    },
+    {
+      "id": "NUM-NTH-039",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "a and b are positive numbers with a + b = 1 and a is not equal to b.\nColumn A: 1/a + 1/b\nColumn B: 4",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — combine Column A over a common denominator: 1/a + 1/b = (a + b)/(a x b) = 1/(a x b), using a + b = 1.\nStep 2 — so the comparison reduces to 1/(a x b) against 4, i.e. to a x b against 1/4.\nStep 3 — with b = 1 - a, the product is a x (1 - a) = a - a^2 = 1/4 - (a - 1/2)^2.\nStep 4 — the squared term is never negative, and it is zero only when a = 1/2 - which would force b = 1/2 and a = b, excluded by the stem. So (a - 1/2)^2 > 0 strictly and a x b < 1/4 strictly.\nStep 5 — since 0 < a x b < 1/4, taking reciprocals reverses the inequality: 1/(a x b) > 4. Column A is greater, always.\nCheck: a = 0.25, b = 0.75 gives 4 + 1.333 = 5.333 > 4. a = 0.49, b = 0.51 gives 2.0408 + 1.9608 = 4.0016 > 4. Even pressed right up against a = b the value stays above 4.\nAnswer: A.",
+      "trap": "Answering C after testing only a = b = 1/2, which gives exactly 2 + 2 = 4 - but the stem forbids a = b, so that value is never attained. Answering D on the belief that a could be large enough to drag the sum below 4; both a and b lie in (0, 1), so both reciprocals exceed 1 and the sum is bounded below by 4.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "reciprocals",
+        "bounded-product",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-NTH-040",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "a and b are non-zero numbers with a/b > 1. Which of the following must be true?",
+      "options": [
+        "A. a > b",
+        "B. a - b > 0",
+        "C. a^2 > b^2",
+        "D. a > 0",
+        "E. 1/a < 1/b"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — decode a/b > 1. Subtracting 1 gives (a - b)/b > 0, so a - b and b share a sign.\nStep 2 — that leaves two regimes.\nCase 1: b > 0. Then a - b > 0, so a > b > 0 and both are positive.\nCase 2: b < 0. Then a - b < 0, so a < b < 0 and both are negative.\nStep 3 — in Case 1, a > b > 0 gives |a| > |b|. In Case 2, a < b < 0 also gives |a| > |b| (a is further from zero). Either way |a| > |b|, so a^2 > b^2. C must be true.\nStep 4 — knock out the rest with the Case 2 witness a = -3, b = -1, for which a/b = 3 > 1.\nA - is -3 > -1? No. FALSE.\nB - is -3 - (-1) = -2 > 0? No. FALSE.\nD - is a = -3 > 0? No. FALSE.\nE - 1/a = -1/3 and 1/b = -1, and -1/3 < -1 is false. FALSE.\nCheck C on both witnesses: a = 3, b = 1 gives 9 > 1; a = -3, b = -1 gives 9 > 1. Correct.\nAnswer: C.",
+      "trap": "Reading a/b > 1 as 'a is bigger than b' and picking A (or its restatement B). That is only the b > 0 half of the picture; when b is negative the inequality forces a BELOW b, and a = -3, b = -1 satisfies a/b = 3 > 1 while a < b. The one invariant across both regimes is |a| > |b|, which is exactly option C.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "ordering",
+        "sign-analysis",
+        "must-be-true"
+      ]
+    },
+    {
+      "id": "NUM-NTH-041",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "N is an integer greater than 10^6 that is both a perfect square and a perfect cube, and N has more than one distinct prime factor. What is the least possible value of N? Enter your answer as a number.",
+      "options": null,
+      "answer": "2985984",
+      "explanation": "Step 1 — a perfect square has every prime exponent a multiple of 2; a perfect cube has every prime exponent a multiple of 3. Both at once forces every exponent to be a multiple of 6, so N is a perfect sixth power: N = k^6 for some integer k.\nStep 2 — raising to the sixth power changes exponents but not which primes appear, so the distinct primes of k^6 are exactly those of k. The condition therefore says k itself must have at least two distinct prime factors.\nStep 3 — turn the size bound into a bound on k. N > 10^6 means k^6 > 10^6, that is k > 10. The boundary matters: k = 10 gives N = 1,000,000 exactly, which is NOT greater than 10^6, so it is excluded even though 10 = 2 x 5 has two distinct primes.\nStep 4 — walk up from k = 11. k = 11 is prime, so 11^6 = 1,771,561 has the single prime factor 11 and fails. k = 12 = 2^2 x 3 has two distinct primes and qualifies.\nStep 5 — N = 12^6 = 2,985,984.\nCheck: 12^6 = (12^3)^2 = 1,728^2, so it is a square; 12^6 = (12^2)^3 = 144^3, so it is a cube; 12^6 = 2^12 x 3^6, so its distinct primes are 2 and 3; and 2,985,984 > 1,000,000. The only sixth power strictly between 10^6 and 2,985,984 is 11^6, a single prime power, so nothing smaller works.\nAnswer: 2985984.",
+      "trap": "Answering 1000000 by finding k = 10 and ignoring that the bound is strict: 10^6 is not greater than 10^6. Answering 46656 = 6^6 solves the two-distinct-primes part correctly but forgets the size bound entirely. Answering 1771561 = 11^6 clears the size bound but has one prime factor, since 11 is prime. Answering 4096 = 4^6 = 2^12 misses both extra conditions.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "perfect-squares",
+        "perfect-cubes",
+        "prime-exponents"
+      ]
+    },
+    {
+      "id": "NUM-NTH-042",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "n is an integer with -6 <= n <= 6. For how many of these values of n is the expression (n^4 - 13n^2 + 36)/(n^2 - 5n + 6) defined and not equal to 0?",
+      "options": [
+        "A. 6",
+        "B. 7",
+        "C. 8",
+        "D. 9",
+        "E. 11"
+      ],
+      "answer": "D",
+      "explanation": "Two conditions have to be imposed in the right order: defined (denominator not 0) and then non-zero (numerator not 0).\nStep 1 — factor the numerator as a quadratic in n^2: n^4 - 13n^2 + 36 = (n^2 - 4)(n^2 - 9) = (n - 2)(n + 2)(n - 3)(n + 3). It vanishes at n = 2, -2, 3 and -3.\nStep 2 — factor the denominator: n^2 - 5n + 6 = (n - 2)(n - 3). It vanishes at n = 2 and n = 3.\nStep 3 — the range -6 to 6 holds 6 - (-6) + 1 = 13 integers.\nStep 4 — remove the undefined values. At n = 2 and n = 3 the denominator is 0; the numerator is 0 there too, so the expression reads 0/0, which is undefined, not 0. 13 - 2 = 11 values are defined.\nStep 5 — now remove the zeros from those 11. The numerator's remaining roots are n = -2 and n = -3, and both have non-zero denominators: at n = -2 the denominator is 4 + 10 + 6 = 20, at n = -3 it is 9 + 15 + 6 = 30. Each gives a defined value of exactly 0, so both are excluded: 11 - 2 = 9.\nCheck: n = 0 gives 36/6 = 6, defined and non-zero, so it survives - a zero value of n is not a zero value of the expression. The nine survivors are -6, -5, -4, -1, 0, 1, 4, 5 and 6. Correct.\nAnswer: D.",
+      "trap": "Answering 11 by imposing only the 'defined' condition and forgetting that n = -2 and n = -3 make the expression a perfectly defined 0. Answering 8 by also striking out n = 0 on reflex; there the expression is 36/6 = 6. Answering 7 by subtracting all four numerator roots after already subtracting n = 2 and n = 3 as undefined, removing those two twice (13 - 2 - 4). Answering 6 combines that double removal with striking out n = 0.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "division-by-zero",
+        "undefined-expressions",
+        "counting"
+      ]
+    },
+    {
+      "id": "NUM-NTH-043",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "a is a number with 0 < a < 1. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. 1/(1 - a) > 1",
+        "B. sqrt(1 - a^2) > 1 - a",
+        "C. a^2 + a^3 > a",
+        "D. a^2 + 1/a^2 > 2",
+        "E. a + 1/a < 2"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Every statement below uses only that a is positive and strictly less than 1.\nA - since 0 < a < 1, the denominator satisfies 0 < 1 - a < 1. A positive number smaller than 1 has a reciprocal larger than 1, so 1/(1 - a) > 1. Test a = 0.2: 1/0.8 = 1.25 > 1. Test a = 0.99: 1/0.01 = 100 > 1. TRUE.\nB - both sides are positive (1 - a^2 > 0 and 1 - a > 0), so compare their squares. Left: 1 - a^2 = (1 - a)(1 + a). Right: (1 - a)^2. Divide both by the positive quantity 1 - a and the comparison becomes 1 + a against 1 - a; since a > 0, the left side wins. So sqrt(1 - a^2) > 1 - a. Test a = 0.6: sqrt(0.64) = 0.8 > 0.4. TRUE.\nC - this one depends on where a sits, so it is not forced. Test a = 0.5: a^2 + a^3 = 0.25 + 0.125 = 0.375, and 0.375 > 0.5 is false. (At a = 0.9 it reads 0.81 + 0.729 = 1.539 > 0.9 and holds, which is exactly why one test value proves nothing.) FALSE.\nD - let t = a^2, so 0 < t < 1 and the claim is t + 1/t > 2. Since t + 1/t - 2 = (t - 1)^2/t and t is not 1, the numerator is strictly positive and so is the denominator. Test a = 0.5: 0.25 + 4 = 4.25 > 2. Test a = 0.99: 0.9801 + 1.0203 = 2.0004 > 2. TRUE.\nE - the same identity applies to a itself: a + 1/a - 2 = (a - 1)^2/a > 0, so a + 1/a is always GREATER than 2, never less. Test a = 0.5: 0.5 + 2 = 2.5, which is not less than 2. FALSE.\nCheck: as a approaches 1 both D and E approach the boundary value 2, and the strict inequality in each case is decided by (a - 1)^2 > 0, which holds for every a in (0, 1).\nAnswer: A, B and D.",
+      "trap": "Selecting C after testing a single value near 1: at a = 0.9 the claim reads 1.539 > 0.9 and looks safe, but at a = 0.5 it reads 0.375 > 0.5 and fails, so it is not must-be-true. Rejecting B by squaring carelessly and comparing 1 - a^2 with 1 - a instead of with (1 - a)^2. Selecting E by assuming that because a < 1 the sum a + 1/a must be small; the reciprocal blows up as a shrinks, so the sum exceeds 2 for every a in (0, 1) - at a = 0.1 it is 10.1.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "ordering",
+        "reciprocals",
+        "fractional-interval"
+      ]
+    }
+  ]
 }

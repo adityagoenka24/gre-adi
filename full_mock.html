@@ -6,6 +6,19 @@
   <link rel="alternate icon" type="image/x-icon" href="favicon.ico">
   <link rel="apple-touch-icon" href="favicon-256.png">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Take a free full-length GRE Quant mock in a pixel-accurate ETS-replica interface. Get an instant diagnosis of your weakest subtopics and the trap pattern behind your errors.">
+<link rel="canonical" href="https://grequantpro.com/full_mock.html">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="GRE Quant Pro">
+<meta property="og:title" content="GRE Quant Pro — Free Mocks — Coach Aditya Goenka">
+<meta property="og:description" content="Take a free full-length GRE Quant mock in a pixel-accurate ETS-replica interface. Get an instant diagnosis of your weakest subtopics and the trap pattern behind your errors.">
+<meta property="og:url" content="https://grequantpro.com/full_mock.html">
+<meta property="og:image" content="https://grequantpro.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="GRE Quant Pro — Free Mocks — Coach Aditya Goenka">
+<meta name="twitter:description" content="Take a free full-length GRE Quant mock in a pixel-accurate ETS-replica interface. Get an instant diagnosis of your weakest subtopics and the trap pattern behind your errors.">
+<meta name="twitter:image" content="https://grequantpro.com/og-image.png">
 <title>GRE Quant Pro — Free Mocks — Coach Aditya Goenka</title>
 <link rel="stylesheet" href="gre-exam-theme.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
@@ -723,6 +736,11 @@ function submitSection(autoSubmit) {
   }
 }
 
+// Numeric entry: forgive surrounding spaces, thousands commas and a leading +
+function normaliseNE(v) {
+  return String(v).trim().replace(/\s+/g,'').replace(/,/g,'').replace(/^\+/,'');
+}
+
 function checkAnswer(q, given) {
   if (!given && given !== 0) return false;
   if (q.type === 'multiple_answer') {
@@ -730,7 +748,7 @@ function checkAnswer(q, given) {
     const correct = Array.isArray(q.answer) ? q.answer : [q.answer];
     return given.length === correct.length && given.every(l => correct.includes(l));
   }
-  if (q.type === 'numeric_entry') return String(given).trim() === String(q.answer).trim();
+  if (q.type === 'numeric_entry') return normaliseNE(given) === normaliseNE(q.answer);
   return given === q.answer;
 }
 

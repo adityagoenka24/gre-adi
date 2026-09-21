@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRE Quant Full Mock Tests — Coach Aditya Goenka</title>
-<link rel="stylesheet" href="gre-exam-theme.css">
+<link rel="stylesheet" href="../gre-exam-theme.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
-<script defer src="gre-math.js"></script>
+<script defer src="../gre-math.js"></script>
 <style>
   .gre-shell.screen{display:none;}
   .gre-shell.screen.active{display:flex;}
@@ -16,6 +16,7 @@
 </style>
 </head>
 <body>
+<script src="pro-gate.js"></script>
 <div class="app">
   <div class="app-header">
     <div class="logo">
@@ -36,7 +37,7 @@
   <!-- SCREEN: SELECT MOCK -->
   <div id="screen-select" class="screen">
     <h2 class="section-title">Full Mock Tests</h2>
-    <p class="section-sub">10 full-length GRE Quant mocks · 2 sections · 35 min per section · Real-GRE test interface</p>
+    <p class="section-sub">10 full-length GRE Quant mocks · Section 1: 12 Q / 21 min · Section 2: 15 Q / 26 min · Real-GRE test interface</p>
     <div class="mocks-grid" id="mocks-grid"></div>
   </div>
 
@@ -66,11 +67,11 @@
       <h2>Before You Begin</h2>
       <div class="instr-highlight">
         <strong>This is a timed, full-length GRE Quant mock — real interface.</strong><br>
-        Each section has 27 questions and 35 minutes. The timer starts automatically when you proceed to each section.
+        Section 1 has 12 questions in 21 minutes. Section 2 has 15 questions in 26 minutes. The timer starts automatically when you proceed to each section.
       </div>
       <ul class="instr-list">
         <li>The test screen replicates the real GRE: use <strong>Back / Next</strong> to move, <strong>Mark</strong> to flag a question, and <strong>Review</strong> to see the status of every question in the section.</li>
-        <li>You have <strong>35 minutes per section</strong>. Time does not carry over between sections.</li>
+        <li><strong>Section 1: 21 minutes. Section 2: 26 minutes.</strong> Time does not carry over between sections.</li>
         <li>You can change your answer any time before exiting the section.</li>
         <li>When time runs out, the section is auto-submitted.</li>
         <li>There is a short break between Section 1 and Section 2.</li>
@@ -137,7 +138,7 @@
     <div class="gre-topbar-left">
       <b id="gre-sec-label">Section 1 of 2</b>
       <span aria-hidden="true">&nbsp;|&nbsp;</span>
-      <span id="gre-q-label">Question 1 of 27</span>
+      <span id="gre-q-label">Question 1 of 12</span>
     </div>
     <div class="gre-topbar-btns">
       <button class="gre-tb-btn" id="btn-exit" onclick="confirmExitSection()" aria-label="Exit Section">
@@ -171,7 +172,7 @@
     <div class="gre-strip-right">
       <div class="gre-timer" id="exam-timer" aria-live="off">
         <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-        <span id="exam-timer-text">00:35:00</span>
+        <span id="exam-timer-text">00:21:00</span>
       </div>
       <button class="gre-hide-time" id="btn-hide-time" onclick="toggleTimer()">Hide Time</button>
     </div>
@@ -206,7 +207,7 @@ const MOCK_INDEX = [
   { id:'mock_10', title:'Mock Test 10', difficulty:'Expert', tags:['All Topics','Expert','170 Level'] },
 ];
 const DIFF_COLORS = { Balanced:'#1a5da6', Moderate:'#1e7e46', 'Moderate-Hard':'#b06000', Hard:'#c0392b', 'Very Hard':'#8e44ad', Expert:'#6b1f6e' };
-const SECTION_TIME = 35 * 60;
+const SECTION_TIMES = { 1: 21 * 60, 2: 26 * 60 }; // real GRE: S1=21min, S2=26min
 
 const TYPE_DIRECTIONS = {
   mcq: 'Select one answer choice.',
@@ -224,7 +225,7 @@ let state = {
   marked: { 1: {}, 2: {} },
   sectionStart: null, qStart: null,
   timerInterval: null, breakInterval: null,
-  timeLeft: SECTION_TIME,
+  timeLeft: SECTION_TIMES[1],
   timerHidden: false,
   student: { name:'', email:'' },
   sectionResults: {},
@@ -310,7 +311,7 @@ function startSection(num) {
   clearInterval(state.breakInterval);
   state.currentSection = num;
   state.currentQIndex = 0;
-  state.timeLeft = SECTION_TIME;
+  state.timeLeft = SECTION_TIMES[num];
   state.sectionStart = Date.now();
   state.qStart = Date.now();
   document.getElementById('gre-strip-mock').textContent = '· ' + (state.mockMeta?.title || '');
@@ -588,12 +589,17 @@ function submitSection(autoSubmit) {
   });
   state.sectionResults[state.currentSection] = {
     correct, total: qs.length,
-    timeUsed: SECTION_TIME - state.timeLeft,
+    timeUsed: SECTION_TIMES[state.currentSection] - state.timeLeft,
     autoSubmit
   };
 
   if (state.currentSection === 1) showBreak();
   else showResults();
+}
+
+// Numeric entry: forgive surrounding spaces, thousands commas and a leading +
+function normaliseNE(v) {
+  return String(v).trim().replace(/\s+/g,'').replace(/,/g,'').replace(/^\+/,'');
 }
 
 function checkAnswer(q, given) {
@@ -604,7 +610,7 @@ function checkAnswer(q, given) {
     return given.length === correct.length && given.every(l => correct.includes(l));
   }
   if (q.type === 'numeric_entry') {
-    return String(given).trim() === String(q.answer).trim();
+    return normaliseNE(given) === normaliseNE(q.answer);
   }
   return given === q.answer;
 }

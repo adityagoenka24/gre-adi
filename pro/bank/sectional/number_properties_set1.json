@@ -1,0 +1,185 @@
+{
+  "meta": {
+    "topic": "Number Properties",
+    "subtopic": "Sectional Set 1",
+    "subtopic_id": "SEC-NP",
+    "version": "1.0",
+    "set_number": 1,
+    "access": "free",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": { "easy": 0, "medium": 6, "hard": 6, "extreme_hard": 0 },
+    "type_distribution": { "mcq": 6, "quantitative_comparison": 2, "numeric_entry": 3, "multiple_answer": 1 },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-NP-001",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "(7^3)a + (7^2)b + 7c + d = 1000, where a, b, c, and d are non-negative integers each less than 7. What is the value of a + b + c + d?",
+      "options": ["A. 12", "B. 14", "C. 16", "D. 18", "E. 20"],
+      "answer": "C",
+      "explanation": "The condition that a, b, c, d are non-negative integers each less than 7 means this equation writes 1000 in base 7, and that representation is unique. Since 7^3 = 343: 1000 = 2(343) + 314, so a = 2. Since 7^2 = 49: 314 = 6(49) + 20, so b = 6. Then 20 = 2(7) + 6, so c = 2 and d = 6. Check: 686 + 294 + 14 + 6 = 1000. Therefore a + b + c + d = 2 + 6 + 2 + 6 = 16.",
+      "trap": "Students hunt for any combination that sums to 1000 instead of recognising the base-7 structure, and settle on values like a = 1, b = 13 that satisfy the equation but violate the 'each less than 7' condition. That digit bound is exactly what makes the answer unique.",
+      "estimated_time_seconds": 105,
+      "tags": ["place-value", "base-conversion"]
+    },
+    {
+      "id": "SEC-NP-002",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "If s and t are distinct digits and s > t, which of the following is greatest?",
+      "options": [
+        "A. 0.tststs... (the block ts repeating)",
+        "B. 0.ststst... (the block st repeating)",
+        "C. 0.tsttsttst... (the block tst repeating)",
+        "D. 0.sttsttstt... (the block stt repeating)",
+        "E. 0.tsstsstss... (the block tss repeating)"
+      ],
+      "answer": "B",
+      "explanation": "Compare place by place. The first decimal digit dominates: options A, C and E all begin with t, and options B and D begin with s. Since s > t, the answer must be B or D. Now compare B = 0.ststst... against D = 0.sttsttstt... The first place is s in both and the second place is t in both. At the third place B has s while D has t. Since s > t, B is greater.",
+      "trap": "Students assume a longer repeating block produces a larger number, or they compare the blocks as whole numbers (st versus stt) and pick D because 'stt is bigger than st'. Repeating decimals are compared place by place, and block length is irrelevant.",
+      "estimated_time_seconds": 100,
+      "tags": ["repeating-decimals", "place-value"]
+    },
+    {
+      "id": "SEC-NP-003",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "What is the sum of all repeating decimals of the form 0.abab... (the two-digit block ab repeating), where a and b are digits such that a < b and a + b = 7?\n\nGive your answer as a fraction.",
+      "options": null,
+      "answer": "82/99",
+      "explanation": "A repeating two-digit block equals that block over 99. The digit pairs with a < b and a + b = 7 are (0,7), (1,6), (2,5) and (3,4). The corresponding decimals are 07/99, 16/99, 25/99 and 34/99. The numerators sum to 7 + 16 + 25 + 34 = 82, so the total is 82/99. This is already in lowest terms, since 82 = 2 x 41 and 99 = 9 x 11 share no common factor.",
+      "trap": "Students drop the pair (0,7) because 0.070707... looks like a single-digit case, and answer 75/99. The condition only requires a and b to be digits with a < b; 0 is a digit and 0 < 7, so that pair counts.",
+      "estimated_time_seconds": 110,
+      "tags": ["repeating-decimals", "fractions"]
+    },
+    {
+      "id": "SEC-NP-004",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "When an odd integer m is rounded to the nearest 100, the result is 4,700. What is the greatest possible value of m?",
+      "options": null,
+      "answer": "4749",
+      "explanation": "Rounding to the nearest 100 produces 4,700 for every integer m with 4,650 <= m < 4,750: anything below 4,650 rounds down to 4,600, and 4,750 rounds up to 4,800. The greatest integer in that interval is 4,749, and 4,749 is odd, so it satisfies the condition. Therefore m = 4,749.",
+      "trap": "Students read 'rounds to 4,700' as 'is in the 4,700s' and answer 4,799. Rounding to the nearest 100 gives an interval centred on 4,700 that runs from 4,650 up to just under 4,750 — it does not run from 4,700 to 4,799.",
+      "estimated_time_seconds": 70,
+      "tags": ["rounding", "odd-even"]
+    },
+    {
+      "id": "SEC-NP-005",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "For each positive integer n, the function g(n) is defined by g(n) = 3^(n(-1)^(n+1)).\nColumn A: g(n + 1) - g(n)\nColumn B: 0",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "The exponent n(-1)^(n+1) equals +n when n is odd and -n when n is even. Test n = 1: g(1) = 3^1 = 3 and g(2) = 3^(-2) = 1/9, so g(2) - g(1) = 1/9 - 3, which is negative — Column B would be greater. Test n = 2: g(2) = 1/9 and g(3) = 3^3 = 27, so g(3) - g(2) = 27 - 1/9, which is positive — Column A would be greater. The comparison reverses with the parity of n, so it cannot be determined.",
+      "trap": "Students evaluate a single value of n, almost always n = 1, and conclude Column B is always greater. When an exponent alternates in sign, the difference flips with the parity of n, so one test case can never settle the comparison.",
+      "estimated_time_seconds": 105,
+      "tags": ["exponents", "odd-even"]
+    },
+    {
+      "id": "SEC-NP-006",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "List X consists of the integers from 1 to p, inclusive, where p is odd. List Y consists of the integers from 1 to q, inclusive, where q is even.\nColumn A: The percent of the integers in List X that are even\nColumn B: The percent of the integers in List Y that are odd",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "In List Y, q is even, so the integers 1 through q divide exactly evenly: q/2 of them are odd and q/2 are even. Column B is therefore exactly 50%. In List X, p is odd, so the list begins and ends on an odd integer; it contains (p + 1)/2 odd integers and only (p - 1)/2 even ones. The percent that are even is (p - 1)/(2p) x 100, which is less than 50% for every positive odd p. So Column B is greater.",
+      "trap": "Students assume any run of consecutive integers splits half even and half odd and select 'the two quantities are equal'. That only holds when the run contains an even count of integers; an odd-length run starts and ends on the same parity, which tips the balance.",
+      "estimated_time_seconds": 85,
+      "tags": ["odd-even", "consecutive-integers"]
+    },
+    {
+      "id": "SEC-NP-007",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "How many integers between 50 and 2,000 are squares of odd integers?",
+      "options": ["A. Fifteen", "B. Sixteen", "C. Seventeen", "D. Eighteen", "E. Twenty-two"],
+      "answer": "D",
+      "explanation": "We need odd integers k with 50 < k^2 < 2,000. At the low end, 7^2 = 49 is too small and 9^2 = 81 works, so k starts at 9. At the high end, 43^2 = 1,849 works and 45^2 = 2,025 is too large, so k ends at 43. The odd integers from 9 to 43 inclusive number (43 - 9)/2 + 1 = 17 + 1 = 18.",
+      "trap": "Students list the squares themselves rather than counting their roots, lose the thread partway through, and land on seventeen. Others include 7^2 = 49, which is below 50, or 45^2 = 2,025, which is above 2,000. Counting the odd roots in a range is both faster and harder to miscount.",
+      "estimated_time_seconds": 80,
+      "tags": ["perfect-squares", "counting"]
+    },
+    {
+      "id": "SEC-NP-008",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Which of the following statements are true for all integers m and n?\n\nIndicate all such statements.",
+      "options": [
+        "A. If mn is odd, then m + n must be even.",
+        "B. If m + n is odd, then m - n must be odd.",
+        "C. If m - n is even, then mn must be even.",
+        "D. If m + n is even, then m - n must be even.",
+        "E. If mn is even, then m + n must be even."
+      ],
+      "answer": ["A", "B", "D"],
+      "explanation": "A is true: a product of two integers is odd only when both factors are odd, and two odd integers sum to an even integer. B is true: if m + n is odd then exactly one of m and n is even, and subtracting an even from an odd (or an odd from an even) also gives an odd result. C is false: m - n even means m and n share a parity, but they could both be odd — take m = 3 and n = 1, where m - n = 2 is even while mn = 3 is odd. D is true: m + n even means m and n share a parity, and same-parity integers always have an even difference. E is false: take m = 2 and n = 3, where mn = 6 is even but m + n = 5 is odd.",
+      "trap": "Students accept C after testing only the both-even case (m = 4, n = 2 gives mn = 8) and never check the both-odd case, which is the half of 'same parity' that breaks the statement. The same shortcut makes E look plausible.",
+      "estimated_time_seconds": 90,
+      "tags": ["odd-even"]
+    },
+    {
+      "id": "SEC-NP-009",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If y is an integer, which of the following must be divisible by 2?",
+      "options": ["A. y^2 + 5", "B. y^2 + 6y + 9", "C. y^2 + 5y + 6", "D. 9y^2 + 6y + 1", "E. y^3 + 3"],
+      "answer": "C",
+      "explanation": "Option C factors as (y + 2)(y + 3), the product of two consecutive integers. Exactly one of any two consecutive integers is even, so the product is always even. Every other option fails at y = 0: A gives 5, B = (y + 3)^2 gives 9, D = (3y + 1)^2 gives 1, and E gives 3 — all odd.",
+      "trap": "Students test only y = 1, where A gives 6, B gives 16, C gives 12, D gives 16 and E gives 4 — every option is even — and then pick A because it is first. Any even value of y eliminates all four wrong answers at once.",
+      "estimated_time_seconds": 85,
+      "tags": ["consecutive-integers", "divisibility"]
+    },
+    {
+      "id": "SEC-NP-010",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A number is to be randomly selected from the set of prime numbers less than 40. What is the probability that the number selected will be less than 13?",
+      "options": ["A. 1/3", "B. 5/12", "C. 1/2", "D. 5/11", "E. 7/12"],
+      "answer": "B",
+      "explanation": "The primes less than 40 are 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31 and 37 — twelve numbers in all. Of those, the ones less than 13 are 2, 3, 5, 7 and 11 — five numbers. The probability is therefore 5/12.",
+      "trap": "Students leave 2 out of the prime list, treating 'prime' as 'odd prime', and get 4/11. Others include 13 itself because it appears in the cutoff, giving 6/12 = 1/2. The phrase 'less than 13' excludes 13, and 2 is prime.",
+      "estimated_time_seconds": 75,
+      "tags": ["prime-numbers", "probability"]
+    },
+    {
+      "id": "SEC-NP-011",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "If p and n are prime numbers, p - n = 8, and 3/2 < p/n < 2, what is the value of p?",
+      "options": null,
+      "answer": "19",
+      "explanation": "Since p = n + 8, the ratio p/n = (n + 8)/n = 1 + 8/n. The condition 3/2 < 1 + 8/n < 2 gives 1/2 < 8/n < 1, which rearranges to 8 < n < 16. The primes strictly between 8 and 16 are 11 and 13. If n = 11 then p = 19, which is prime, so this works. If n = 13 then p = 21 = 3 x 7, which is not prime, so it fails. Therefore n = 11 and p = 19.",
+      "trap": "Students solve the inequality, find 8 < n < 16, and stop at the first prime in range without checking that p = n + 8 is also prime. n = 13 satisfies the ratio condition perfectly but produces p = 21, which is composite. Both numbers are required to be prime.",
+      "estimated_time_seconds": 110,
+      "tags": ["prime-numbers", "inequalities"]
+    },
+    {
+      "id": "SEC-NP-012",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The integer j is the product of four different prime numbers. If the result when j is divided by 6 is a multiple of 5, which of the following could be the result when j is divided by 3?",
+      "options": ["A. 20", "B. 30", "C. 50", "D. 70", "E. 90"],
+      "answer": "D",
+      "explanation": "For j/6 to be an integer, j must include both 2 and 3 among its prime factors. For j/6 to be a multiple of 5, j must include 5 as well. So j = 2 x 3 x 5 x q, where q is a fourth prime different from 2, 3 and 5. Dividing by 3 leaves j/3 = 2 x 5 x q = 10q. Testing the options: 20 requires q = 2, 30 requires q = 3 and 50 requires q = 5 — each repeats a prime already used, violating 'four different primes'. 90 requires q = 9, which is not prime. 70 requires q = 7, a prime distinct from 2, 3 and 5, so j = 210 and j/3 = 70.",
+      "trap": "Students check only that the option is a multiple of 10 and choose the first one that qualifies, usually 20. The constraint doing the real work is the word 'different': q must be a prime that is not already a factor of j.",
+      "estimated_time_seconds": 105,
+      "tags": ["prime-factorization", "divisibility"]
+    }
+  ]
+}

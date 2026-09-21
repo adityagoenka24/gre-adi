@@ -1,867 +1,920 @@
 {
- "meta": {
-  "topic": "Statistics",
-  "subtopic": "Independent & Dependent Events",
-  "subtopic_id": "STA-IDE",
-  "version": "1.0",
-  "total_questions": 40,
-  "distribution": {
-   "easy": 10,
-   "medium": 16,
-   "hard": 10,
-   "extreme_hard": 4
+  "meta": {
+    "topic": "Statistics",
+    "subtopic": "Independent & Dependent Events",
+    "subtopic_id": "STA-IDE",
+    "version": "1.0",
+    "total_questions": 43,
+    "distribution": {
+      "easy": 10,
+      "medium": 16,
+      "hard": 12,
+      "extreme_hard": 5
+    },
+    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+    "bank": "Adi's GRE Quant Bank"
   },
-  "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
- },
- "questions": [
-  {
-   "id": "STA-IDE-001",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A fair coin is flipped and a fair six-sided die is rolled. What is the probability of getting heads on the coin AND a 4 on the die?",
-   "options": [
-    "A. 1/12",
-    "B. 1/6",
-    "C. 1/4",
-    "D. 2/6",
-    "E. 1/3"
-   ],
-   "answer": "A",
-   "explanation": "The coin flip and die roll are independent events — neither affects the other. P(heads) = 1/2. P(rolling a 4) = 1/6. For independent events: P(A and B) = P(A) × P(B) = (1/2) × (1/6) = 1/12.",
-   "trap": "Students add the probabilities (1/2 + 1/6 = 4/6) instead of multiplying them. The rule for 'and' with independent events is multiplication, not addition.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "independent-events",
-    "compound-probability",
-    "probability-basic"
-   ]
-  },
-  {
-   "id": "STA-IDE-002",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A bag contains 3 red marbles and 7 blue marbles. One marble is drawn, its color is noted, and it is placed back in the bag. A second marble is then drawn. What is the probability that both marbles are red?",
-   "options": [
-    "A. 3/100",
-    "B. 6/100",
-    "C. 9/100",
-    "D. 3/10",
-    "E. 6/90"
-   ],
-   "answer": "C",
-   "explanation": "Because the marble is replaced, the two draws are independent. P(first red) = 3/10. P(second red) = 3/10 (same bag composition). P(both red) = (3/10) × (3/10) = 9/100.",
-   "trap": "Students compute 3/10 × 2/9 = 6/90, treating this as a without-replacement problem. The key phrase 'placed back in the bag' means replacement — the events are independent.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "independent-events",
-    "compound-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-003",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A bag contains 4 green marbles and 6 yellow marbles. One marble is drawn and NOT replaced. What is the probability that the first marble is green AND the second marble is green?",
-   "options": [
-    "A. 4/25",
-    "B. 2/15",
-    "C. 4/10",
-    "D. 8/100",
-    "E. 16/100"
-   ],
-   "answer": "B",
-   "explanation": "Without replacement, the draws are dependent. P(first green) = 4/10 = 2/5. After removing one green marble, the bag has 3 green and 6 yellow (9 total). P(second green | first green) = 3/9 = 1/3. P(both green) = (2/5) × (1/3) = 2/15.",
-   "trap": "Students compute (4/10) × (4/10) = 16/100 using the same denominator for both draws, forgetting that without replacement the bag composition changes after the first draw.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "dependent-events",
-    "compound-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-004",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "Events A and B are independent. P(A) = 0.4 and P(B) = 0.5. What is P(A and B)?",
-   "options": [
-    "A. 0.1",
-    "B. 0.2",
-    "C. 0.45",
-    "D. 0.9",
-    "E. 0.6"
-   ],
-   "answer": "B",
-   "explanation": "For independent events, P(A and B) = P(A) × P(B). P(A and B) = 0.4 × 0.5 = 0.20.",
-   "trap": "Students compute P(A) + P(B) - P(A)×P(B) = 0.4 + 0.5 - 0.2 = 0.7, which is P(A or B), not P(A and B).",
-   "estimated_time_seconds": 40,
-   "tags": [
-    "independent-events",
-    "probability-basic"
-   ]
-  },
-  {
-   "id": "STA-IDE-005",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "A fair die is rolled twice.\nColumn A: Probability of rolling a 6 on both rolls\nColumn B: Probability of rolling a 1 on the first roll and a 6 on the second roll",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "The two rolls are independent. Column A: P(6) × P(6) = (1/6) × (1/6) = 1/36. Column B: P(1) × P(6) = (1/6) × (1/6) = 1/36. The two quantities are equal.",
-   "trap": "Students think Column A is more likely because 'getting a 6 twice' feels like a special outcome. But each specific pair of outcomes (e.g., 6-6 or 1-6) has the same probability of 1/36.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "independent-events",
-    "qc",
-    "probability-basic"
-   ]
-  },
-  {
-   "id": "STA-IDE-006",
-   "difficulty": "easy",
-   "type": "numeric_entry",
-   "question": "Two fair coins are flipped simultaneously. What is the probability of getting exactly two heads? Enter your answer as a fraction in the form a/b (e.g., 1/4).",
-   "options": null,
-   "answer": "1/4",
-   "explanation": "The two coin flips are independent. P(heads on coin 1) = 1/2. P(heads on coin 2) = 1/2. P(both heads) = (1/2) × (1/2) = 1/4. Alternatively, list all outcomes: {HH, HT, TH, TT}. Only 1 of 4 outcomes is HH, so probability = 1/4.",
-   "trap": "Students list 3 outcomes (2 heads, 1 head + 1 tail, 2 tails) and assign probability 1/3 to each, treating the cases as equally likely without recognizing that HT and TH are two distinct outcomes.",
-   "estimated_time_seconds": 45,
-   "tags": [
-    "independent-events",
-    "probability-basic"
-   ]
-  },
-  {
-   "id": "STA-IDE-007",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "Which of the following scenarios involves INDEPENDENT events?",
-   "options": [
-    "A. Drawing two cards from a standard deck without replacement",
-    "B. Drawing a marble from a bag, not replacing it, then drawing again",
-    "C. Rolling a die and flipping a coin",
-    "D. Picking a student from a class, then picking another student (without replacement)",
-    "E. Selecting a ball from an urn, keeping it, and selecting again from the same urn"
-   ],
-   "answer": "C",
-   "explanation": "Independent events are those where the outcome of one does not affect the probability of the other. Rolling a die and flipping a coin are completely separate physical processes — neither affects the other. All other options involve drawing without replacement, which changes the composition of the remaining pool and creates dependent events.",
-   "trap": "Students may choose E, thinking 'same urn' implies independence. But 'keeping it' (not replacing) means the urn changes, making events dependent.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "independent-events",
-    "dependent-events",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-IDE-008",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "P(A) = 1/3, P(B) = 1/4, and A and B are independent. What is P(A and B)?",
-   "options": [
-    "A. 1/7",
-    "B. 7/12",
-    "C. 1/12",
-    "D. 2/7",
-    "E. 5/12"
-   ],
-   "answer": "C",
-   "explanation": "For independent events: P(A and B) = P(A) × P(B) = (1/3) × (1/4) = 1/12.",
-   "trap": "Students add the fractions: 1/3 + 1/4 = 7/12, which is P(A or B) — not P(A and B).",
-   "estimated_time_seconds": 40,
-   "tags": [
-    "independent-events",
-    "probability-basic"
-   ]
-  },
-  {
-   "id": "STA-IDE-009",
-   "difficulty": "easy",
-   "type": "quantitative_comparison",
-   "question": "A jar has 5 red and 5 blue chips. One chip is drawn and replaced before a second is drawn.\nColumn A: P(red on first draw)\nColumn B: P(red on second draw | red on first draw)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "C",
-   "explanation": "Because the chip is replaced, the draws are independent. P(red on first draw) = 5/10 = 1/2. Since the first chip is replaced, the jar composition is unchanged. P(red on second draw | red on first draw) = 5/10 = 1/2. Both quantities equal 1/2.",
-   "trap": "Students think the conditional probability P(red on second | red on first) must be different, applying without-replacement logic despite the explicit statement that the chip is replaced.",
-   "estimated_time_seconds": 50,
-   "tags": [
-    "independent-events",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-IDE-010",
-   "difficulty": "easy",
-   "type": "mcq",
-   "question": "A standard deck of 52 cards has 4 aces. A card is drawn, returned to the deck, and the deck is shuffled. A second card is drawn. What is the probability that both cards are aces?",
-   "options": [
-    "A. 1/169",
-    "B. 1/221",
-    "C. 4/52",
-    "D. 8/52",
-    "E. 4/51"
-   ],
-   "answer": "A",
-   "explanation": "The card is replaced and the deck reshuffled, so the draws are independent. P(ace on first draw) = 4/52 = 1/13. P(ace on second draw) = 4/52 = 1/13 (deck is fully restored). P(both aces) = (1/13) × (1/13) = 1/169.",
-   "trap": "Students compute (4/52) × (3/51) = 12/2652 = 1/221, treating this as a without-replacement problem. The phrase 'returned to the deck' signals replacement, making the events independent.",
-   "estimated_time_seconds": 55,
-   "tags": [
-    "independent-events",
-    "compound-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-011",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A bag contains 5 red, 3 blue, and 2 green marbles. Two marbles are drawn without replacement. What is the probability that the first is red and the second is blue?",
-   "options": [
-    "A. 1/6",
-    "B. 5/30",
-    "C. 15/90",
-    "D. 5/33",
-    "E. 1/4"
-   ],
-   "answer": "A",
-   "explanation": "Without replacement, the draws are dependent. Total marbles = 5 + 3 + 2 = 10. P(first is red) = 5/10 = 1/2. After removing a red marble, 9 marbles remain (4 red, 3 blue, 2 green). P(second is blue | first is red) = 3/9 = 1/3. P(first red AND second blue) = (1/2) × (1/3) = 1/6.",
-   "trap": "Students use 3/10 for the second draw instead of 3/9, failing to reduce the total from 10 to 9 after the first marble is removed.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-012",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "P(A) = 0.6, P(B) = 0.5, and P(A and B) = 0.3. Are events A and B independent? Enter 1 for Yes, 0 for No.",
-   "options": null,
-   "answer": "1",
-   "explanation": "To test independence, check whether P(A and B) = P(A) × P(B). P(A) × P(B) = 0.6 × 0.5 = 0.30. Since P(A and B) = 0.30 = P(A) × P(B), events A and B ARE independent. Enter 1.",
-   "trap": "Students confuse the test for independence. They may check if P(A) = P(B), or compute P(A) + P(B) = 1.1 and think that's relevant. The only test is: does P(A∩B) = P(A) × P(B)?",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "independent-events",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-IDE-013",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "A box has 3 black and 7 white balls. Two balls are drawn without replacement.\nColumn A: P(first black AND second black)\nColumn B: P(first white AND second white)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "B",
-   "explanation": "Column A: P(first black) = 3/10. P(second black | first black) = 2/9. P(both black) = (3/10) × (2/9) = 6/90 = 1/15 ≈ 0.0667. Column B: P(first white) = 7/10. P(second white | first white) = 6/9 = 2/3. P(both white) = (7/10) × (2/3) = 14/30 = 7/15 ≈ 0.4667. Column B is greater.",
-   "trap": "Students see more white balls and know Column B should be greater intuitively, but compute both incorrectly by keeping the denominator at 10 for both draws instead of reducing to 9.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-IDE-014",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "Events A and B are independent. P(A) = 0.3 and P(B) = 0.4. What is P(A or B)?",
-   "options": [
-    "A. 0.12",
-    "B. 0.58",
-    "C. 0.7",
-    "D. 0.88",
-    "E. 0.70"
-   ],
-   "answer": "B",
-   "explanation": "P(A or B) = P(A) + P(B) - P(A and B). Since A and B are independent, P(A and B) = P(A) × P(B) = 0.3 × 0.4 = 0.12. P(A or B) = 0.3 + 0.4 - 0.12 = 0.58.",
-   "trap": "Students compute P(A or B) = P(A) + P(B) = 0.3 + 0.4 = 0.7, forgetting to subtract P(A and B) to avoid double-counting the overlap.",
-   "estimated_time_seconds": 75,
-   "tags": [
-    "independent-events",
-    "compound-probability",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-015",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "Events A and B satisfy P(A) = 0.5, P(B) = 0.4, and P(A and B) = 0.2. Select all statements that are TRUE.",
-   "options": [
-    "A. Events A and B are independent",
-    "B. P(A | B) = 0.5",
-    "C. P(B | A) = 0.4",
-    "D. Events A and B are mutually exclusive",
-    "E. P(A or B) = 0.7"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "E"
-   ],
-   "explanation": "Test independence: P(A) × P(B) = 0.5 × 0.4 = 0.20 = P(A and B). So A and B are independent. ✓ A is true. P(A|B) = P(A∩B)/P(B) = 0.20/0.40 = 0.5 = P(A). ✓ B is true. P(B|A) = P(A∩B)/P(A) = 0.20/0.50 = 0.4 = P(B). ✓ C is true. Mutually exclusive means P(A∩B) = 0, but P(A∩B) = 0.2 ≠ 0. ✗ D is false. P(A or B) = 0.5 + 0.4 - 0.2 = 0.7. ✓ E is true.",
-   "trap": "Students select D (mutually exclusive) because A and B being independent sounds like they have 'nothing in common.' In reality, independent and mutually exclusive are opposite concepts when P(A) > 0 and P(B) > 0 — mutually exclusive events can never be independent.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "independent-events",
-    "compound-probability",
-    "multiple-answer",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-IDE-016",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "A deck of 52 cards is used. Two cards are drawn without replacement. What is the probability that both cards are hearts? Express your answer as a decimal rounded to 4 decimal places.",
-   "options": null,
-   "answer": "0.0588",
-   "explanation": "There are 13 hearts in 52 cards. P(first card is heart) = 13/52 = 1/4. After drawing one heart, 12 hearts remain in 51 cards. P(second card is heart | first is heart) = 12/51 = 4/17. P(both hearts) = (1/4) × (4/17) = 4/68 = 1/17 ≈ 0.05882 ≈ 0.0588.",
-   "trap": "Students compute (13/52) × (13/52) = 169/2704 = 0.0625, treating the draws as independent (with replacement) instead of recognizing that 'without replacement' makes them dependent.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "dependent-events",
-    "compound-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-017",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "P(A) = 0.4, P(B) = 0.6. Events A and B are independent.\nColumn A: P(A and B)\nColumn B: P(A) × P(not B)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "Column A: P(A and B) = P(A) × P(B) = 0.4 × 0.6 = 0.24. Column B: P(A) × P(not B) = P(A) × (1 - P(B)) = 0.4 × (1 - 0.6) = 0.4 × 0.4 = 0.16. Column A (0.24) > Column B (0.16). Column A is greater.",
-   "trap": "Students confuse P(B) with P(not B). Since P(B) = 0.6 > 0.5, we have P(B) > P(not B), so P(A)×P(B) > P(A)×P(not B).",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "independent-events",
-    "complementary-probability",
-    "qc"
-   ]
-  },
-  {
-   "id": "STA-IDE-018",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "A box has 6 red and 4 blue balls. Two balls are drawn without replacement. What is the probability that the second ball is red, given that the first ball drawn was blue?",
-   "options": [
-    "A. 6/10",
-    "B. 2/3",
-    "C. 5/9",
-    "D. 4/9",
-    "E. 3/5"
-   ],
-   "answer": "B",
-   "explanation": "This asks for P(second red | first blue). After the first blue ball is removed, the box contains 6 red + 3 blue = 9 balls. Of these 9 balls, 6 are red. P(second red | first blue) = 6/9 = 2/3.",
-   "trap": "Students compute 5/9 (choosing answer C), thinking a red ball was already removed. But the first ball drawn was BLUE, so the number of red balls (6) is unchanged. Only the total decreases from 10 to 9.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "dependent-events",
-    "compound-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-019",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "A bag contains 4 red, 3 blue, and 3 green marbles. One marble is drawn and NOT replaced. Select all outcomes whose probability equals 4/30.",
-   "options": [
-    "A. P(first red, second blue)",
-    "B. P(first blue, second red)",
-    "C. P(first red, second green)",
-    "D. P(first green, second red)",
-    "E. P(first blue, second blue)"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "D"
-   ],
-   "explanation": "Total = 10 marbles. A: P(first red) × P(second blue | first red) = (4/10) × (3/9) = 12/90 = 4/30. ✓ B: P(first blue) × P(second red | first blue) = (3/10) × (4/9) = 12/90 = 4/30. ✓ C: P(first red) × P(second green | first red) = (4/10) × (3/9) = 12/90 = 4/30. ✓ D: P(first green) × P(second red | first green) = (3/10) × (4/9) = 12/90 = 4/30. ✓ E: P(first blue) × P(second blue | first blue) = (3/10) × (2/9) = 6/90 = 2/30. ✗",
-   "trap": "Students miscalculate E by using 3/9 for the second blue marble instead of 2/9, forgetting that one blue marble was already removed without replacement.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "STA-IDE-020",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "If P(A) = 0.5, P(B|A) = 0.4, and P(B|not A) = 0.4, are events A and B independent?",
-   "options": [
-    "A. Yes, because P(B|A) = P(B|not A)",
-    "B. No, because P(A) ≠ P(B)",
-    "C. Yes, because P(A) = 0.5",
-    "D. No, because P(A) and P(B) are different",
-    "E. Cannot be determined without knowing P(B)"
-   ],
-   "answer": "A",
-   "explanation": "If P(B|A) = P(B|not A), then knowing whether A occurred gives no information about whether B occurs — exactly the definition of independence. We can also compute P(B): P(B) = P(B|A)×P(A) + P(B|not A)×P(not A) = 0.4×0.5 + 0.4×0.5 = 0.4. Since P(B|A) = 0.4 = P(B), event B's probability is unaffected by A. A and B are independent.",
-   "trap": "Students choose E, thinking they cannot determine independence without explicitly knowing P(B). But when P(B|A) = P(B|not A), independence is proven by definition — knowing A gives no new information about B.",
-   "estimated_time_seconds": 75,
-   "tags": [
-    "independent-events",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-IDE-021",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "A bag has 5 red and 5 blue marbles. Two marbles are drawn one at a time without replacement. What is the probability that the two marbles are different colors? Enter your answer as a fraction a/b.",
-   "options": null,
-   "answer": "5/9",
-   "explanation": "Two different colors means (red then blue) OR (blue then red). P(red then blue) = (5/10) × (5/9) = 25/90. P(blue then red) = (5/10) × (5/9) = 25/90. P(different colors) = 25/90 + 25/90 = 50/90 = 5/9. Alternatively: P(same color) = P(red, red) + P(blue, blue) = (5/10)(4/9) + (5/10)(4/9) = 20/90 + 20/90 = 40/90 = 4/9. P(different) = 1 - 4/9 = 5/9.",
-   "trap": "Students compute (5/10) × (5/10) = 25/100 = 1/4 for each ordered pair without replacement, failing to reduce the denominator to 9 for the second draw.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "complementary-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-022",
-   "difficulty": "medium",
-   "type": "quantitative_comparison",
-   "question": "A standard deck of 52 cards (26 red, 26 black). One card is drawn at random.\nColumn A: P(drawing a red card | the card is a heart)\nColumn B: P(drawing a heart | the card is red)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "A",
-   "explanation": "Column A: P(red | heart). All 13 hearts are red cards, so if the card is a heart, it is definitely red. P(red | heart) = 13/13 = 1. Column B: P(heart | red). There are 26 red cards, of which 13 are hearts. P(heart | red) = 13/26 = 1/2. Column A (1) > Column B (1/2). Column A is greater.",
-   "trap": "Students confuse the two conditional probabilities and conclude they must be equal by symmetry. But P(A|B) ≠ P(B|A) in general — these are very different conditional probabilities.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "dependent-events",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-IDE-023",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "Three fair coins are flipped. What is the probability that all three show the same face (all heads or all tails)?",
-   "options": [
-    "A. 1/8",
-    "B. 1/4",
-    "C. 3/8",
-    "D. 1/2",
-    "E. 1/6"
-   ],
-   "answer": "B",
-   "explanation": "The three coin flips are independent. P(all heads) = (1/2)³ = 1/8. P(all tails) = (1/2)³ = 1/8. P(all same) = P(all heads) + P(all tails) = 1/8 + 1/8 = 2/8 = 1/4.",
-   "trap": "Students compute only P(all heads) = 1/8 and stop, forgetting that 'all same' includes the all-tails outcome as well.",
-   "estimated_time_seconds": 65,
-   "tags": [
-    "independent-events",
-    "compound-probability",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-024",
-   "difficulty": "medium",
-   "type": "mcq",
-   "question": "P(A and B) = 0.12, P(A) = 0.4. What is P(B|A)?",
-   "options": [
-    "A. 0.048",
-    "B. 0.3",
-    "C. 0.333",
-    "D. 0.52",
-    "E. 0.12"
-   ],
-   "answer": "B",
-   "explanation": "By definition: P(B|A) = P(A and B) / P(A) = 0.12 / 0.4 = 0.3.",
-   "trap": "Students compute P(A) × P(A and B) = 0.4 × 0.12 = 0.048 (multiplying instead of dividing), inverting the conditional probability formula.",
-   "estimated_time_seconds": 60,
-   "tags": [
-    "dependent-events",
-    "probability-basic"
-   ]
-  },
-  {
-   "id": "STA-IDE-025",
-   "difficulty": "medium",
-   "type": "multiple_answer",
-   "question": "Events A and B are mutually exclusive, and both have positive probability. Select all statements that must be TRUE.",
-   "options": [
-    "A. P(A and B) = 0",
-    "B. A and B are independent",
-    "C. P(A or B) = P(A) + P(B)",
-    "D. P(A | B) = 0",
-    "E. A and B cannot both occur simultaneously"
-   ],
-   "answer": [
-    "A",
-    "C",
-    "D",
-    "E"
-   ],
-   "explanation": "Mutually exclusive means A and B cannot both occur. A: P(A and B) = 0 by definition of mutually exclusive. ✓ B: For independence, P(A and B) = P(A)×P(B) must hold. Since P(A)>0 and P(B)>0, P(A)×P(B)>0, but P(A and B)=0. So they are NOT independent. ✗ C: P(A or B) = P(A) + P(B) - P(A and B) = P(A) + P(B) - 0 = P(A) + P(B). ✓ D: P(A|B) = P(A and B)/P(B) = 0/P(B) = 0. ✓ E: This is the definition of mutually exclusive. ✓",
-   "trap": "Students select B, assuming that if two events 'have nothing in common' they must be independent. This is the opposite of the truth: mutually exclusive events with positive probability are always dependent.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "independent-events",
-    "dependent-events",
-    "multiple-answer",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-IDE-026",
-   "difficulty": "medium",
-   "type": "numeric_entry",
-   "question": "A factory produces items. The probability that a randomly selected item is defective is 0.05. If two items are selected independently, what is the probability that neither is defective? Enter as a decimal rounded to 4 decimal places.",
-   "options": null,
-   "answer": "0.9025",
-   "explanation": "P(one item is not defective) = 1 - 0.05 = 0.95. Since the items are selected independently: P(neither is defective) = P(first not defective) × P(second not defective) = 0.95 × 0.95 = 0.9025.",
-   "trap": "Students compute P(both defective) = 0.05 × 0.05 = 0.0025 and then compute 1 - 0.0025 = 0.9975, confusing 'neither defective' with 'not both defective.' These are different events.",
-   "estimated_time_seconds": 70,
-   "tags": [
-    "independent-events",
-    "complementary-probability",
-    "compound-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-027",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A bag contains 4 red and 6 blue marbles. Three marbles are drawn without replacement. What is the probability that exactly two are red?",
-   "options": [
-    "A. 6/25",
-    "B. 3/10",
-    "C. 1/4",
-    "D. 3/25",
-    "E. 2/5"
-   ],
-   "answer": "B",
-   "explanation": "Total = 10 marbles. We want exactly 2 red and 1 blue in 3 draws without replacement. This can happen in 3 ways: (R, R, B), (R, B, R), (B, R, R). P(R,R,B) = (4/10)(3/9)(6/8) = 72/720. P(R,B,R) = (4/10)(6/9)(3/8) = 72/720. P(B,R,R) = (6/10)(4/9)(3/8) = 72/720. Total = 216/720 = 3/10. Alternatively using combinations: C(4,2)×C(6,1)/C(10,3) = 6×6/120 = 36/120 = 3/10.",
-   "trap": "Students compute only one arrangement — e.g., P(R,R,B) = 72/720 = 1/10 — and forget there are 3 distinct orderings. The word 'exactly' signals that order doesn't matter but all orderings must be counted.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-028",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "A box has 3 red and 3 blue balls. Two balls are drawn without replacement.\nColumn A: P(both same color)\nColumn B: P(both different color)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "B",
-   "explanation": "Column A (same color): P(R,R) + P(B,B) = (3/6)(2/5) + (3/6)(2/5) = 6/30 + 6/30 = 12/30 = 2/5. Column B (different color): 1 - 2/5 = 3/5. Alternatively: P(R,B) + P(B,R) = (3/6)(3/5) + (3/6)(3/5) = 9/30 + 9/30 = 18/30 = 3/5. Column B (3/5) > Column A (2/5).",
-   "trap": "With equal numbers of red and blue, students intuit that same-color and different-color must be equally likely. They are not — in a 6-ball bag, different-color pairs are more common than same-color pairs.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "qc",
-    "counterintuitive"
-   ]
-  },
-  {
-   "id": "STA-IDE-029",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "P(A) = 0.6, P(B) = 0.5, P(A or B) = 0.8. Are A and B independent? If yes, enter 1. If no, enter 0.",
-   "options": null,
-   "answer": "1",
-   "explanation": "First, find P(A and B): P(A or B) = P(A) + P(B) - P(A and B), so 0.8 = 0.6 + 0.5 - P(A and B), giving P(A and B) = 0.3. Now test independence: P(A) × P(B) = 0.6 × 0.5 = 0.30. Since P(A and B) = 0.3 = P(A) × P(B), the events ARE independent. Enter 1.",
-   "trap": "Students may incorrectly add the given probabilities: 0.6 + 0.5 + 0.8 = 1.9, and conclude something is wrong. The correct approach is to use the inclusion-exclusion formula to first recover P(A and B), then test independence.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "independent-events",
-    "compound-probability",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-030",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A machine has two independent components. Component A fails with probability 0.1. Component B fails with probability 0.2. The machine fails if either component fails. What is the probability the machine does NOT fail?",
-   "options": [
-    "A. 0.7",
-    "B. 0.72",
-    "C. 0.78",
-    "D. 0.80",
-    "E. 0.82"
-   ],
-   "answer": "B",
-   "explanation": "The machine does not fail only if BOTH components work. P(A works) = 1 - 0.1 = 0.9. P(B works) = 1 - 0.2 = 0.8. Since the components are independent: P(machine works) = P(A works) × P(B works) = 0.9 × 0.8 = 0.72.",
-   "trap": "Students compute P(machine fails) = P(A fails) + P(B fails) = 0.1 + 0.2 = 0.3, then P(machine works) = 0.7. This incorrectly adds the failure probabilities using inclusion-exclusion without subtracting the overlap P(both fail) = 0.02.",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "independent-events",
-    "compound-probability",
-    "complementary-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-031",
-   "difficulty": "hard",
-   "type": "multiple_answer",
-   "question": "A deck of 52 cards (13 spades, 13 hearts, 13 diamonds, 13 clubs). Two cards are drawn without replacement. Select all true statements.",
-   "options": [
-    "A. P(both spades) = 1/17",
-    "B. P(first spade, second heart) = 13/204",
-    "C. P(at least one spade) = 1 - (39/52)(38/51)",
-    "D. P(second card is a spade | first card is a spade) = 12/51",
-    "E. The two draws are independent events"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "C",
-    "D"
-   ],
-   "explanation": "A: P(both spades) = (13/52)(12/51) = 156/2652 = 1/17. ✓ B: P(first spade, second heart) = (13/52)(13/51) = 169/2652 = 13/204. ✓ C: P(at least one spade) = 1 - P(no spade on either draw) = 1 - (39/52)(38/51). ✓ D: After one spade is drawn, 12 spades remain in 51 cards. P(second spade | first spade) = 12/51. ✓ E: Without replacement, draws are DEPENDENT — the first draw changes the deck composition. ✗",
-   "trap": "Students may mark E as true, thinking that since each individual card has the same probability across draws, the events must be independent. Independence fails because removing one card changes the conditional probabilities for the next draw.",
-   "estimated_time_seconds": 110,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "multiple-answer",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-032",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "A bag has 5 red and 3 blue balls. Balls are drawn without replacement until a blue ball appears. What is the probability that the first blue ball appears on exactly the second draw?",
-   "options": [
-    "A. 5/28",
-    "B. 15/56",
-    "C. 3/8",
-    "D. 5/24",
-    "E. 3/7"
-   ],
-   "answer": "B",
-   "explanation": "The first blue appears on the second draw means: draw 1 is red AND draw 2 is blue. P(draw 1 is red) = 5/8. Given draw 1 is red, the bag now has 4 red and 3 blue (7 total). P(draw 2 is blue | draw 1 is red) = 3/7. P(first blue on draw 2) = (5/8) × (3/7) = 15/56.",
-   "trap": "Students compute (3/8) × (3/7) = 9/56, incorrectly using the probability of blue for the first draw instead of red. The first draw must be red (not blue) for the first blue to appear on the second draw.",
-   "estimated_time_seconds": 95,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-033",
-   "difficulty": "hard",
-   "type": "quantitative_comparison",
-   "question": "Events A and B are independent with P(A) = p and P(B) = q, where 0 < p < 1 and 0 < q < 1.\nColumn A: P(A or B)\nColumn B: P(A) + P(B)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "B",
-   "explanation": "P(A or B) = P(A) + P(B) - P(A and B). Since A and B are independent with positive probabilities, P(A and B) = P(A)×P(B) = pq > 0. Therefore P(A or B) = P(A) + P(B) - pq < P(A) + P(B). Column B is always greater.",
-   "trap": "Students think the answer is C, applying the formula P(A or B) = P(A) + P(B) for mutually exclusive events. But independent events with positive probability are NOT mutually exclusive — P(A and B) > 0, so P(A or B) < P(A) + P(B).",
-   "estimated_time_seconds": 90,
-   "tags": [
-    "independent-events",
-    "compound-probability",
-    "qc",
-    "conceptual"
-   ]
-  },
-  {
-   "id": "STA-IDE-034",
-   "difficulty": "hard",
-   "type": "numeric_entry",
-   "question": "A box contains 4 red, 3 blue, and 2 green balls. Two balls are drawn without replacement. Given that the first ball drawn was red, what is the probability that the second ball drawn is also red? Enter as a fraction a/b.",
-   "options": null,
-   "answer": "3/8",
-   "explanation": "This is a conditional probability question. Given the first ball is red, after the first draw: 3 red remain, 3 blue remain, 2 green remain — total 8 balls. P(second red | first red) = 3/8.",
-   "trap": "Students compute P(second red) = 4/9 without conditioning on the first ball being red, keeping the original count of 4 red and total of 9 (9 = 4+3+2, after removing one but not specifying which color). The conditioning on 'first was red' reduces the red count from 4 to 3.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "dependent-events",
-    "compound-probability"
-   ]
-  },
-  {
-   "id": "STA-IDE-035",
-   "difficulty": "hard",
-   "type": "mcq",
-   "question": "At a school, 60% of students play sports, 40% play music, and 30% play both. A student is chosen at random and found to play sports. What is the probability that this student also plays music?",
-   "options": [
-    "A. 0.4",
-    "B. 0.3",
-    "C. 0.5",
-    "D. 0.75",
-    "E. 0.2"
-   ],
-   "answer": "C",
-   "explanation": "P(music | sports) = P(music and sports) / P(sports) = 0.30 / 0.60 = 0.5. Given the student plays sports, there is a 50% chance they also play music.",
-   "trap": "Students answer 0.4 (choice A), giving the unconditional P(music) rather than the conditional P(music | sports). The conditional probability here is different — among sports-players specifically, half also play music.",
-   "estimated_time_seconds": 80,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "two-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-036",
-   "difficulty": "hard",
-   "type": "multiple_answer",
-   "question": "A fair die is rolled three times. Select all probabilities that equal 1/216.",
-   "options": [
-    "A. P(rolling 6 on all three rolls)",
-    "B. P(rolling 1, 2, 3 in that exact order)",
-    "C. P(rolling any three different numbers in any order)",
-    "D. P(rolling exactly two 6s and then one non-6)",
-    "E. P(rolling the sequence 4, 4, 4)"
-   ],
-   "answer": [
-    "A",
-    "B",
-    "E"
-   ],
-   "explanation": "Each roll is independent with 6 equally likely outcomes. Any specific sequence of three values has probability (1/6)³ = 1/216. A: P(6,6,6) = (1/6)³ = 1/216. ✓ B: P(1,2,3 in order) = (1/6)(1/6)(1/6) = 1/216. ✓ C: This is NOT a single sequence — there are many such sequences, so the combined probability is much higher. ✗ D: P(6,6,non-6) in that exact order = (1/6)(1/6)(5/6) = 5/216 ≠ 1/216. ✗ E: P(4,4,4) = (1/6)³ = 1/216. ✓",
-   "trap": "Students select C, reasoning that any ordered triple has probability 1/216. But 'any three different numbers in any order' means the union of multiple sequences. Students also select D without accounting for the (5/6) probability of rolling a non-6.",
-   "estimated_time_seconds": 100,
-   "tags": [
-    "independent-events",
-    "compound-probability",
-    "multiple-answer"
-   ]
-  },
-  {
-   "id": "STA-IDE-037",
-   "difficulty": "extreme_hard",
-   "type": "mcq",
-   "question": "A bag contains 3 red and 5 blue marbles. Marbles are drawn one at a time without replacement. What is the probability that the third marble drawn is the FIRST red marble?",
-   "options": [
-    "A. 3/28",
-    "B. 5/28",
-    "C. 1/8",
-    "D. 15/56",
-    "E. 3/8"
-   ],
-   "answer": "B",
-   "explanation": "For the third draw to be the FIRST red marble, the sequence must be: Blue, Blue, Red. P(1st blue) = 5/8. P(2nd blue | 1st blue) = 4/7 (only 4 blue left among 7 remaining). P(3rd red | first two blue) = 3/6 = 1/2 (all 3 red still in bag, 6 total remaining). P(B,B,R) = (5/8) × (4/7) × (3/6) = 60/336 = 5/28.",
-   "trap": "Students compute (5/8)(4/7)(3/6) correctly but then simplify incorrectly, or confuse this with P(at least one red in first three draws). The key is recognizing that the first two draws MUST be blue (not just any arrangement with one red in position 3).",
-   "estimated_time_seconds": 110,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-038",
-   "difficulty": "extreme_hard",
-   "type": "quantitative_comparison",
-   "question": "A bag has n red and n blue marbles (n ≥ 2). Two marbles are drawn without replacement.\nColumn A: P(both same color)\nColumn B: P(both different color)",
-   "options": [
-    "A. Column A is greater",
-    "B. Column B is greater",
-    "C. The two quantities are equal",
-    "D. The relationship cannot be determined from the information given"
-   ],
-   "answer": "B",
-   "explanation": "Total marbles = 2n. P(both red) = (n/(2n)) × ((n-1)/(2n-1)) = n(n-1)/(2n(2n-1)). P(both blue) = same = n(n-1)/(2n(2n-1)). P(same color) = 2n(n-1)/(2n(2n-1)) = (n-1)/(2n-1). P(different color) = 1 - (n-1)/(2n-1) = (2n-1-(n-1))/(2n-1) = n/(2n-1). Since n > n-1 for all n ≥ 2, we have n/(2n-1) > (n-1)/(2n-1). Column B is always greater, for all n ≥ 2.",
-   "trap": "Students test n=2: P(same color) = (2/4)(1/3) + (2/4)(1/3) = 2/12 = 1/6 each, total = 1/3. P(different) = 2/3. Column B > Column A. But students may think the answer is 'cannot be determined' because n is a variable, not realizing the inequality holds for ALL valid n.",
-   "estimated_time_seconds": 120,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "qc",
-    "algebraic-proof"
-   ]
-  },
-  {
-   "id": "STA-IDE-039",
-   "difficulty": "extreme_hard",
-   "type": "numeric_entry",
-   "question": "A bag has 4 white and 6 black balls. Balls are drawn without replacement. What is the probability that the 4th ball drawn is the 2nd white ball? Enter as a fraction a/b in lowest terms.",
-   "options": null,
-   "answer": "3/14",
-   "explanation": "For the 4th draw to be the 2nd white ball, exactly 1 white must appear among draws 1-3, and draw 4 must be white. There are C(3,1) = 3 arrangements: (W,B,B,W), (B,W,B,W), (B,B,W,W). Each has the same probability by symmetry. Take (W,B,B,W): P = (4/10)(6/9)(5/8)(3/7) = 360/5040 = 1/14. Total = 3 × (1/14) = 3/14. Verification: C(4,1)×C(6,2) = 4×15 = 60 ways to choose which white and which 2 blacks appear in draws 1-3, times C(3,1)=3 ways to arrange them, all divided by P(10,4) = 5040. This gives 60×3×(4×3)/(5040)... using the ordered approach: 3 × 360/5040 = 1080/5040 = 3/14.",
-   "trap": "Students use a combinations approach but misconstruct the numerator: they might compute C(4,2)×C(6,2) for choosing 2 whites and 2 blacks in 4 draws without the constraint on position. The critical constraint is that the 4th draw specifically must be white (the 2nd white).",
-   "estimated_time_seconds": 130,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "multi-step"
-   ]
-  },
-  {
-   "id": "STA-IDE-040",
-   "difficulty": "extreme_hard",
-   "type": "multiple_answer",
-   "question": "P(A) = 1/3, P(B) = 1/2, and P(A|B) = 1/4. Select all true statements.",
-   "options": [
-    "A. P(A and B) = 1/8",
-    "B. Events A and B are independent",
-    "C. P(B|A) = 3/8",
-    "D. P(A or B) = 17/24",
-    "E. P(not A and not B) = 7/24"
-   ],
-   "answer": [
-    "A",
-    "C",
-    "D",
-    "E"
-   ],
-   "explanation": "P(A and B) = P(A|B) × P(B) = (1/4)(1/2) = 1/8. ✓ A is true. Test independence: P(A) × P(B) = (1/3)(1/2) = 1/6. But P(A and B) = 1/8 ≠ 1/6. So A and B are NOT independent. ✗ B is false. P(B|A) = P(A and B)/P(A) = (1/8)/(1/3) = (1/8)(3/1) = 3/8. ✓ C is true. P(A or B) = P(A) + P(B) - P(A and B) = 1/3 + 1/2 - 1/8 = 8/24 + 12/24 - 3/24 = 17/24. ✓ D is true. P(not A and not B) = 1 - P(A or B) = 1 - 17/24 = 7/24. ✓ E is true.",
-   "trap": "Students select B (independence) because P(A|B) = 1/4, which looks 'close' to P(A) = 1/3. But closeness is irrelevant — independence requires exact equality P(A|B) = P(A), and 1/4 ≠ 1/3. Students also often compute P(B|A) by inverting as P(A|B) = 1/4 → P(B|A) = 4/1, a complete reversal of reasoning.",
-   "estimated_time_seconds": 125,
-   "tags": [
-    "dependent-events",
-    "compound-probability",
-    "multiple-answer",
-    "multi-step"
-   ]
-  }
- ]
+  "questions": [
+    {
+      "id": "STA-IDE-001",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A fair coin is flipped and a fair six-sided die is rolled. What is the probability of getting heads on the coin and a 4 on the die?",
+      "options": [
+        "A. 1/12",
+        "B. 1/6",
+        "C. 1/2",
+        "D. 7/12",
+        "E. 2/3"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — decide independent or dependent. Flipping a coin does nothing to the die, so the pool of die outcomes is unchanged. The events are independent.\nStep 2 — for independent events, P(A and B) = P(A) x P(B).\nP(heads) = 1/2. P(rolling a 4) = 1/6.\nStep 3 — multiply: (1/2) x (1/6) = 1/12.\nCheck by listing: there are 2 x 6 = 12 equally likely coin-die pairs, and exactly one of them is (heads, 4). 1/12. Correct.",
+      "trap": "Adding instead of multiplying: 1/2 + 1/6 = 2/3, which is choice E. 'And' calls for multiplication; addition answers a different question. Choice D, 7/12, is P(heads or a 4) = 1/2 + 1/6 - 1/12, and choice B is the die probability alone.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "independent-events",
+        "multiplication-rule"
+      ]
+    },
+    {
+      "id": "STA-IDE-002",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A bag contains 3 red marbles and 7 blue marbles. One marble is drawn, its color is noted, and it is placed back in the bag. A second marble is then drawn. What is the probability that both marbles are red?",
+      "options": [
+        "A. 3/100",
+        "B. 6/100",
+        "C. 9/100",
+        "D. 3/10",
+        "E. 6/90"
+      ],
+      "answer": "C",
+      "explanation": "Because the marble is replaced, the two draws are independent. P(first red) = 3/10. P(second red) = 3/10 (same bag composition). P(both red) = (3/10) × (3/10) = 9/100.",
+      "trap": "Students compute 3/10 × 2/9 = 6/90, treating this as a without-replacement problem. The key phrase 'placed back in the bag' means replacement — the events are independent.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "independent-events",
+        "compound-probability"
+      ]
+    },
+    {
+      "id": "STA-IDE-003",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A bag contains 4 green marbles and 6 yellow marbles. One marble is drawn and NOT replaced. What is the probability that the first marble is green AND the second marble is green?",
+      "options": [
+        "A. 4/25",
+        "B. 2/15",
+        "C. 4/10",
+        "D. 8/100",
+        "E. 16/100"
+      ],
+      "answer": "B",
+      "explanation": "Without replacement, the draws are dependent. P(first green) = 4/10 = 2/5. After removing one green marble, the bag has 3 green and 6 yellow (9 total). P(second green | first green) = 3/9 = 1/3. P(both green) = (2/5) × (1/3) = 2/15.",
+      "trap": "Students compute (4/10) × (4/10) = 16/100 using the same denominator for both draws, forgetting that without replacement the bag composition changes after the first draw.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "dependent-events",
+        "compound-probability"
+      ]
+    },
+    {
+      "id": "STA-IDE-004",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Events A and B are independent. P(A) = 0.4 and P(B) = 0.5. What is P(A and B)?",
+      "options": [
+        "A. 0.1",
+        "B. 0.2",
+        "C. 0.45",
+        "D. 0.9",
+        "E. 0.6"
+      ],
+      "answer": "B",
+      "explanation": "For independent events, P(A and B) = P(A) × P(B). P(A and B) = 0.4 × 0.5 = 0.20.",
+      "trap": "Students compute P(A) + P(B) - P(A)×P(B) = 0.4 + 0.5 - 0.2 = 0.7, which is P(A or B), not P(A and B).",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "independent-events",
+        "probability-basic"
+      ]
+    },
+    {
+      "id": "STA-IDE-005",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "A fair die is rolled twice.\nColumn A: Probability of rolling a 6 on both rolls\nColumn B: Probability of rolling a 1 on the first roll and a 6 on the second roll",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "The two rolls are independent. Column A: P(6) × P(6) = (1/6) × (1/6) = 1/36. Column B: P(1) × P(6) = (1/6) × (1/6) = 1/36. The two quantities are equal.",
+      "trap": "Students think Column A is more likely because 'getting a 6 twice' feels like a special outcome. But each specific pair of outcomes (e.g., 6-6 or 1-6) has the same probability of 1/36.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "independent-events",
+        "qc",
+        "probability-basic"
+      ]
+    },
+    {
+      "id": "STA-IDE-006",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "The probability that Maya's train is late on any given day is 1/5, and the days are independent of one another. What is the probability that her train is late on both of the next two days? Enter your answer as a fraction in lowest terms.",
+      "options": null,
+      "answer": "1/25",
+      "explanation": "Step 1 — independence means day 2 is unaffected by day 1: whatever happened yesterday, P(late) is still 1/5 today. So no number needs updating between the stages.\nStep 2 — AND across independent stages multiplies: (1/5) x (1/5) = 1/25.\nCheck by listing the four combinations: late-late (1/5)(1/5) = 1/25, late-on time (1/5)(4/5) = 4/25, on time-late (4/5)(1/5) = 4/25, on time-on time (4/5)(4/5) = 16/25. Those add to (1 + 4 + 4 + 16)/25 = 1. Correct.\nAnswer: 1/25.",
+      "trap": "Adding the two probabilities: 1/5 + 1/5 = 2/5. Addition belongs to 'late on at least one of the two days', and even there the overlap must come out: 2/5 - 1/25 = 9/25. The other error is treating the two days as mutually exclusive - as if being late twice were impossible - and answering 0; independent events with positive probabilities can and do both happen.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "independent-events",
+        "and-rule"
+      ]
+    },
+    {
+      "id": "STA-IDE-007",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which of the following describes a pair of INDEPENDENT events?",
+      "options": [
+        "A. Drawing two cards from a standard deck without replacement",
+        "B. Drawing a marble from a bag, keeping it, then drawing a second marble",
+        "C. Rolling a fair die and flipping a fair coin",
+        "D. Selecting two different students from one class, one at a time",
+        "E. Dealing a card, setting it aside, and dealing a second card from the rest of the deck"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — apply the diagnostic: after the first event happens, has the pool changed?\nA - one card is gone, so the second draw comes from 51 cards. The pool changed. Dependent.\nB - the marble is kept, so the bag is one marble smaller. Dependent.\nC - a die and a coin are separate physical objects. Rolling the die removes nothing from the coin's two faces, so P(heads) is 1/2 either way. Independent.\nD - the first student cannot be selected again, so the class is one person smaller. Dependent.\nE - the card is set aside, so the deck has shrunk. Dependent.\nAnswer: C.",
+      "trap": "Choosing E because the second card comes from 'the same deck', which sounds like nothing has changed. Setting the first card aside is exactly what removes it: same source, smaller pool, therefore dependent. Every option except C contains the phrase 'without replacement' in some disguise.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "independent-events",
+        "dependent-events",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-IDE-008",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "P(A) = 1/3, P(B) = 1/4, and A and B are independent. What is P(A and B)?",
+      "options": [
+        "A. 1/7",
+        "B. 7/12",
+        "C. 1/12",
+        "D. 2/7",
+        "E. 5/12"
+      ],
+      "answer": "C",
+      "explanation": "For independent events: P(A and B) = P(A) × P(B) = (1/3) × (1/4) = 1/12.",
+      "trap": "Students add the fractions: 1/3 + 1/4 = 7/12, which is P(A or B) — not P(A and B).",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "independent-events",
+        "probability-basic"
+      ]
+    },
+    {
+      "id": "STA-IDE-009",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "A jar holds 5 red and 5 blue chips. One chip is drawn at random, its color is noted, and it is returned to the jar before a second chip is drawn.\nColumn A: P(the first chip is red)\nColumn B: P(the second chip is red, given that the first chip was red)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — read the mechanism. The chip is returned, so the jar is back to 5 red and 5 blue before the second draw. The draws are independent.\nStep 2 — Column A: P(first red) = 5/10 = 1/2.\nStep 3 — Column B: the conditioning event is 'the first chip was red', but that chip went back in. The jar the second draw sees is identical, so P(second red | first red) = 5/10 = 1/2.\nBoth columns equal 1/2, so the quantities are equal.\nThis is the formal test for independence in action: P(B | A) = P(B).",
+      "trap": "Assuming a conditional probability must differ from the plain probability, and answering B or A on the grounds that 'a red one is already gone'. Nothing is gone - the stem says the chip is returned. The vertical bar signals a condition, not automatically a change.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "independent-events",
+        "with-replacement",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-IDE-010",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A standard 52-card deck contains 4 aces. A card is drawn at random, returned to the deck, and the deck is shuffled; then a second card is drawn. What is the probability that both cards drawn are aces?",
+      "options": [
+        "A. 3/676",
+        "B. 1/221",
+        "C. 1/169",
+        "D. 1/13",
+        "E. 2/13"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — the card is returned and the deck reshuffled, so the second draw faces a full 52-card deck. The draws are independent.\nStep 2 — P(ace on one draw) = 4/52 = 1/13, and this is the same on both draws.\nStep 3 — multiply: (1/13) x (1/13) = 1/169.\nCheck: 1/169 is about 0.0059, a little larger than the without-replacement value 1/221 = 0.0045, exactly as it should be - putting the ace back makes a second ace easier.\nAnswer: 1/169.",
+      "trap": "Computing (4/52) x (3/51) = 1/221, choice B, which is the without-replacement answer. The words 'returned to the deck' are the whole question. Choice A, 3/676, comes from dropping the ace count to 3 but leaving the total at 52; choice D is one ace only; choice E adds 1/13 + 1/13.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "independent-events",
+        "with-replacement",
+        "multiplication-rule"
+      ]
+    },
+    {
+      "id": "STA-IDE-011",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A bag contains 5 red, 3 blue, and 2 green marbles. Two marbles are drawn at random one at a time, without replacement. What is the probability that the first is red and the second is blue?",
+      "options": [
+        "A. 1/9",
+        "B. 3/20",
+        "C. 1/6",
+        "D. 1/3",
+        "E. 1/2"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — total marbles = 5 + 3 + 2 = 10. Without replacement means dependent draws, so use P(A) x P(B | A).\nStep 2 — P(first is red) = 5/10 = 1/2.\nStep 3 — after a red marble leaves, the bag holds 4 red, 3 blue, 2 green = 9 marbles. The blue count is untouched.\nP(second is blue | first is red) = 3/9 = 1/3.\nStep 4 — multiply: (1/2) x (1/3) = 1/6.\nAnswer: 1/6.",
+      "trap": "Keeping the denominator at 10 for the second draw: (5/10) x (3/10) = 3/20, choice B. That is the with-replacement answer, and the stem says the marble is not replaced. Choice A, 1/9, comes from shrinking the blue count to 2 as well - but the marble removed was red, so only the total drops. Choice D, 1/3, is P(one red and one blue in either order). Choice E, 1/2, is the first factor P(first is red) = 5/10 handed in alone, with the second stage never priced.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "conditional-probability"
+      ]
+    },
+    {
+      "id": "STA-IDE-012",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "P(A) = 0.6, P(B) = 0.5, and P(A and B) = 0.3. Are events A and B independent? Enter 1 for Yes, 0 for No.",
+      "options": null,
+      "answer": "1",
+      "explanation": "To test independence, check whether P(A and B) = P(A) × P(B). P(A) × P(B) = 0.6 × 0.5 = 0.30. Since P(A and B) = 0.30 = P(A) × P(B), events A and B ARE independent. Enter 1.",
+      "trap": "Students confuse the test for independence. They may check if P(A) = P(B), or compute P(A) + P(B) = 1.1 and think that's relevant. The only test is: does P(A∩B) = P(A) × P(B)?",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "independent-events",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-IDE-013",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A box has 3 black and 7 white balls. Two balls are drawn without replacement.\nColumn A: P(first black AND second black)\nColumn B: P(first white AND second white)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Column A: P(first black) = 3/10. P(second black | first black) = 2/9. P(both black) = (3/10) × (2/9) = 6/90 = 1/15 ≈ 0.0667. Column B: P(first white) = 7/10. P(second white | first white) = 6/9 = 2/3. P(both white) = (7/10) × (2/3) = 14/30 = 7/15 ≈ 0.4667. Column B is greater.",
+      "trap": "Students see more white balls and know Column B should be greater intuitively, but compute both incorrectly by keeping the denominator at 10 for both draws instead of reducing to 9.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "dependent-events",
+        "compound-probability",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-IDE-014",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Events A and B are independent. P(A) = 0.3 and P(B) = 0.4. What is P(A or B)?",
+      "options": [
+        "A. 0.12",
+        "B. 0.58",
+        "C. 0.7",
+        "D. 0.88",
+        "E. 0.70"
+      ],
+      "answer": "B",
+      "explanation": "P(A or B) = P(A) + P(B) - P(A and B). Since A and B are independent, P(A and B) = P(A) × P(B) = 0.3 × 0.4 = 0.12. P(A or B) = 0.3 + 0.4 - 0.12 = 0.58.",
+      "trap": "Students compute P(A or B) = P(A) + P(B) = 0.3 + 0.4 = 0.7, forgetting to subtract P(A and B) to avoid double-counting the overlap.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "independent-events",
+        "compound-probability",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-IDE-015",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Events A and B satisfy P(A) = 0.5, P(B) = 0.4, and P(A and B) = 0.2. Select all statements that are TRUE.",
+      "options": [
+        "A. Events A and B are independent",
+        "B. P(A | B) = 0.5",
+        "C. P(B | A) = 0.4",
+        "D. Events A and B are mutually exclusive",
+        "E. P(A or B) = 0.7"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C",
+        "E"
+      ],
+      "explanation": "Test independence: P(A) × P(B) = 0.5 × 0.4 = 0.20 = P(A and B). So A and B are independent. ✓ A is true. P(A|B) = P(A∩B)/P(B) = 0.20/0.40 = 0.5 = P(A). ✓ B is true. P(B|A) = P(A∩B)/P(A) = 0.20/0.50 = 0.4 = P(B). ✓ C is true. Mutually exclusive means P(A∩B) = 0, but P(A∩B) = 0.2 ≠ 0. ✗ D is false. P(A or B) = 0.5 + 0.4 - 0.2 = 0.7. ✓ E is true.",
+      "trap": "Students select D (mutually exclusive) because A and B being independent sounds like they have 'nothing in common.' In reality, independent and mutually exclusive are opposite concepts when P(A) > 0 and P(B) > 0 — mutually exclusive events can never be independent.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "independent-events",
+        "compound-probability",
+        "multiple-answer",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-IDE-016",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "Two cards are drawn at random from a standard 52-card deck (26 red cards and 26 black cards), without replacement. What is the probability that both cards are red? Enter your answer as a fraction in lowest terms, in the form a/b.",
+      "options": null,
+      "answer": "25/102",
+      "explanation": "Step 1 — 26 of the 52 cards are red, and the draws are dependent because the first card is not replaced.\nStep 2 — P(first is red) = 26/52 = 1/2.\nStep 3 — one red card is now gone, so 25 reds remain among 51 cards.\nP(second is red | first is red) = 25/51.\nStep 4 — multiply: (1/2) x (25/51) = 25/102.\nCheck with combinations: C(26,2)/C(52,2) = 325/1326, and dividing top and bottom by 13 gives 25/102. Correct.\nAnswer: 25/102.",
+      "trap": "Using 26/52 twice: (1/2) x (1/2) = 1/4. That is the with-replacement value, and it is larger than the true 25/102 = 0.245 - a useful sanity check, since removing a red card must make a second red less likely, never more. The other slip is reducing the reds to 25 but leaving the total at 52, giving 25/104.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "cards"
+      ]
+    },
+    {
+      "id": "STA-IDE-017",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "P(A) = 0.4, P(B) = 0.6. Events A and B are independent.\nColumn A: P(A and B)\nColumn B: P(A) × P(not B)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Column A: P(A and B) = P(A) × P(B) = 0.4 × 0.6 = 0.24. Column B: P(A) × P(not B) = P(A) × (1 - P(B)) = 0.4 × (1 - 0.6) = 0.4 × 0.4 = 0.16. Column A (0.24) > Column B (0.16). Column A is greater.",
+      "trap": "Students confuse P(B) with P(not B). Since P(B) = 0.6 > 0.5, we have P(B) > P(not B), so P(A)×P(B) > P(A)×P(not B).",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "independent-events",
+        "complementary-probability",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-IDE-018",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A box holds 6 red and 4 blue balls. Two balls are drawn one at a time, without replacement. Given that the first ball drawn was blue, what is the probability that the second ball is red?",
+      "options": [
+        "A. 4/15",
+        "B. 1/3",
+        "C. 5/9",
+        "D. 3/5",
+        "E. 2/3"
+      ],
+      "answer": "E",
+      "explanation": "Step 1 — a conditional probability restricts the universe. The condition says one BLUE ball has already been removed.\nStep 2 — rebuild the box after that removal: 6 red and 3 blue, so 9 balls remain.\nStep 3 — the red count never changed, because the ball removed was blue.\nP(second is red | first is blue) = 6/9 = 2/3.\nAnswer: 2/3.",
+      "trap": "Answering 5/9, choice C, by reflexively subtracting one from the red count. Only the colour actually drawn loses a ball; here that was blue, so red stays at 6 and only the total falls from 10 to 9. Choice A, 4/15, is the JOINT probability P(first blue and second red) = (4/10)(6/9); the condition already fixes the first ball as blue, so the 4/10 factor does not belong. Choice D, 3/5 = 6/10, ignores the removal entirely, and choice B, 1/3, is P(second is blue | first is blue) - the wrong colour.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "conditional-probability",
+        "dependent-events",
+        "without-replacement"
+      ]
+    },
+    {
+      "id": "STA-IDE-019",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A bag contains 4 red, 3 blue, and 3 green marbles. Two marbles are drawn one at a time, without replacement. Select all of the following whose probability equals 2/15.",
+      "options": [
+        "A. P(first red, then blue)",
+        "B. P(first blue, then red)",
+        "C. P(first green, then green)",
+        "D. P(first green, then red)",
+        "E. P(first blue, then blue)"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "There are 10 marbles, and each probability is P(first) x P(second | first) with the total dropping to 9.\nA - (4/10) x (3/9) = 12/90 = 2/15. TRUE.\nB - (3/10) x (4/9) = 12/90 = 2/15. TRUE.\nC - one green is already out, so the second green has only 2 chances left: (3/10) x (2/9) = 6/90 = 1/15. FALSE.\nD - (3/10) x (4/9) = 12/90 = 2/15. TRUE.\nE - one blue is already out: (3/10) x (2/9) = 6/90 = 1/15. FALSE.\nAnswer: A, B, D.\nNotice what A and B show: for two draws without replacement, P(red then blue) = P(blue then red). The order of the two colors does not change the product, because the same two numbers just swap places.",
+      "trap": "Marking C and E true by using 3/9 for the second marble of the same color. When the second draw repeats the first color, BOTH numbers drop - 3 goes to 2 and 10 goes to 9 - which halves the product to 1/15. The mirror error is rejecting B or D on the belief that drawing the rarer color first must give a different answer.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-IDE-020",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "For two events A and B, P(A) = 0.5, P(B | A) = 0.4, and P(B | not A) = 0.4. Which statement about A and B is correct?",
+      "options": [
+        "A. They are independent, because P(B | A) = P(B | not A)",
+        "B. They are independent, because P(A) = 0.5",
+        "C. They are not independent, because P(B | A) is not equal to P(A)",
+        "D. They are not independent, because P(A and B) = 0.2, which is not 0",
+        "E. Independence cannot be decided without being told P(B)"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — independence means that learning whether A happened tells you nothing new about B. Here B has probability 0.4 whether A happened or not, so knowing A carries no information. That is independence.\nStep 2 — confirm with the formal test by first recovering P(B):\nP(B) = P(B | A) x P(A) + P(B | not A) x P(not A) = 0.4 x 0.5 + 0.4 x 0.5 = 0.20 + 0.20 = 0.40.\nStep 3 — the test is P(B | A) = P(B): 0.4 = 0.4. Independent.\nEquivalently P(A and B) = P(B | A) x P(A) = 0.4 x 0.5 = 0.20 = P(A) x P(B) = 0.5 x 0.4.\nAnswer: A.",
+      "trap": "Choosing E on the grounds that P(B) was never stated. It does not need to be stated - P(B | A) = P(B | not A) forces P(B) to equal that common value, since P(B) is the weighted average of the two conditionals. Choice C compares P(B | A) with P(A), which is not the test; the test compares P(B | A) with P(B). Choice D is the mutually-exclusive confusion: independence does not require a zero overlap, it requires P(A and B) = P(A) x P(B), and 0.20 is exactly 0.5 x 0.4.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "independent-events",
+        "conditional-probability",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-IDE-021",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A bag holds 5 red and 5 blue marbles. Two marbles are drawn one at a time, without replacement. What is the probability that the two marbles are of different colors? Enter your answer as a fraction in lowest terms, in the form a/b.",
+      "options": null,
+      "answer": "5/9",
+      "explanation": "Step 1 — 'different colors' happens two ways: red then blue, or blue then red.\nStep 2 — P(red then blue) = (5/10) x (5/9) = 25/90. The second fraction keeps 5 blue on top because a RED marble left; only the total drops to 9.\nStep 3 — P(blue then red) = (5/10) x (5/9) = 25/90.\nStep 4 — add the two disjoint routes: 25/90 + 25/90 = 50/90 = 5/9.\nCheck by the complement: P(same color) = (5/10)(4/9) + (5/10)(4/9) = 20/90 + 20/90 = 4/9, and 1 - 4/9 = 5/9. Correct.\nAnswer: 5/9.",
+      "trap": "Computing (5/10) x (5/9) = 5/18 and stopping, which counts only 'red then blue' and forgets that 'blue then red' is a second, equally likely route to two different colors. The other error is using 5/10 twice, the with-replacement value, giving 1/2.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "complementary-probability"
+      ]
+    },
+    {
+      "id": "STA-IDE-022",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "One card is drawn at random from a standard 52-card deck, which has 26 red cards and 13 hearts, all hearts being red.\nColumn A: P(the card is red, given that it is a heart)\nColumn B: P(the card is a heart, given that it is red)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "A conditional probability restricts the universe to the condition, so the two columns count within different universes.\nColumn A - restrict to the 13 hearts. Every heart is red, so 13 of 13 qualify: P(red | heart) = 13/13 = 1.\nColumn B - restrict to the 26 red cards. Of these, 13 are hearts and 13 are diamonds: P(heart | red) = 13/26 = 1/2.\n1 > 1/2, so Column A is greater.\nBoth columns use the same joint probability P(red and heart) = 13/52; only the denominator changes, and a smaller denominator gives a bigger conditional.",
+      "trap": "Answering C because the two expressions look like mirror images. P(X | Y) and P(Y | X) are not interchangeable: they divide the same overlap by two different totals. Here the hearts sit entirely inside the reds, so one direction is certainty and the other is a coin flip.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "conditional-probability",
+        "qc",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-IDE-023",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Three fair coins are flipped. What is the probability that all three show the same face (all heads or all tails)?",
+      "options": [
+        "A. 1/8",
+        "B. 1/4",
+        "C. 3/8",
+        "D. 1/2",
+        "E. 1/6"
+      ],
+      "answer": "B",
+      "explanation": "The three coin flips are independent. P(all heads) = (1/2)³ = 1/8. P(all tails) = (1/2)³ = 1/8. P(all same) = P(all heads) + P(all tails) = 1/8 + 1/8 = 2/8 = 1/4.",
+      "trap": "Students compute only P(all heads) = 1/8 and stop, forgetting that 'all same' includes the all-tails outcome as well.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "independent-events",
+        "compound-probability",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-IDE-024",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "P(A and B) = 0.12, P(A) = 0.4. What is P(B|A)?",
+      "options": [
+        "A. 0.048",
+        "B. 0.3",
+        "C. 0.333",
+        "D. 0.52",
+        "E. 0.12"
+      ],
+      "answer": "B",
+      "explanation": "By definition: P(B|A) = P(A and B) / P(A) = 0.12 / 0.4 = 0.3.",
+      "trap": "Students compute P(A) × P(A and B) = 0.4 × 0.12 = 0.048 (multiplying instead of dividing), inverting the conditional probability formula.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "dependent-events",
+        "probability-basic"
+      ]
+    },
+    {
+      "id": "STA-IDE-025",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Events A and B are mutually exclusive, and P(A) > 0 and P(B) > 0. Select all statements that must be true.",
+      "options": [
+        "A. P(A and B) = 0",
+        "B. A and B are independent",
+        "C. P(A or B) = P(A) + P(B)",
+        "D. P(A | B) = 0",
+        "E. P(B | A) = P(B)"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "Mutually exclusive means A and B cannot both occur, so their overlap is empty.\nA - an empty overlap is exactly P(A and B) = 0. TRUE.\nB - independence requires P(A and B) = P(A) x P(B). Here the left side is 0, but P(A) > 0 and P(B) > 0 make the right side strictly positive. The equation fails, so the events are NOT independent. FALSE.\nC - P(A or B) = P(A) + P(B) - P(A and B) = P(A) + P(B) - 0. TRUE.\nD - P(A | B) = P(A and B)/P(B) = 0/P(B) = 0. TRUE.\nE - P(B | A) = P(A and B)/P(A) = 0, while P(B) > 0. So P(B | A) is not P(B) - and that inequality is precisely why they are dependent. FALSE.\nAnswer: A, C, D.",
+      "trap": "Selecting B because 'mutually exclusive' sounds like 'unrelated'. It is the opposite: mutually exclusive events with nonzero probability are always dependent, because learning that A occurred drops B's probability all the way to 0. Selecting E is the same mistake stated numerically.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "mutually-exclusive",
+        "independent-events",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-IDE-026",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A factory produces items. The probability that a randomly selected item is defective is 0.05. If two items are selected independently, what is the probability that neither is defective? Enter as a decimal rounded to 4 decimal places.",
+      "options": null,
+      "answer": "0.9025",
+      "explanation": "P(one item is not defective) = 1 - 0.05 = 0.95. Since the items are selected independently: P(neither is defective) = P(first not defective) × P(second not defective) = 0.95 × 0.95 = 0.9025.",
+      "trap": "Students compute P(both defective) = 0.05 × 0.05 = 0.0025 and then compute 1 - 0.0025 = 0.9975, confusing 'neither defective' with 'not both defective.' These are different events.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "independent-events",
+        "complementary-probability",
+        "compound-probability"
+      ]
+    },
+    {
+      "id": "STA-IDE-027",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A bag contains 4 red and 6 blue marbles. Three marbles are drawn at random, one at a time, without replacement. What is the probability that exactly two of them are red?",
+      "options": [
+        "A. 1/20",
+        "B. 1/10",
+        "C. 36/125",
+        "D. 3/10",
+        "E. 1/3"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — 'exactly two red' does not fix the order, so count every arrangement of two reds and one blue: RRB, RBR, BRR.\nStep 2 — price one of them, updating both numbers at each stage:\nP(RRB) = (4/10)(3/9)(6/8) = 72/720 = 1/10.\nStep 3 — the other two arrangements use the same four factors in a different order, so each is also 72/720:\nP(RBR) = (4/10)(6/9)(3/8) = 72/720.\nP(BRR) = (6/10)(4/9)(3/8) = 72/720.\nStep 4 — add the three disjoint arrangements: 3 x 72/720 = 216/720 = 3/10.\nCheck with combinations, which ignore order automatically: C(4,2) x C(6,1) / C(10,3) = 6 x 6 / 120 = 36/120 = 3/10. Correct.",
+      "trap": "Computing one ordering, (4/10)(3/9)(6/8) = 1/10, and stopping - that is choice B, exactly one third of the right answer. Choice A, 1/20, is C(4,2)/C(10,3), which forgets to choose which blue marble joins them. Choice C, 36/125, treats the draws as independent: 3 x (0.4)^2 x (0.6) = 0.288, the with-replacement value. Choice E, 1/3, is P(at least two red).",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "arrangements"
+      ]
+    },
+    {
+      "id": "STA-IDE-028",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A jar holds 4 red marbles and 6 green marbles and no others. In each column below, two marbles are drawn at random, one at a time.\nColumn A: P(the second marble is red, given that the first marble is green), when the draws are made WITHOUT replacement\nColumn B: P(the second marble is red), when the draws are made WITH replacement",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Column A - the condition says a GREEN marble has left the jar and stayed out. Rebuild the jar: 4 red and 5 green, 9 marbles in all. The red count never moved, because the marble removed was green.\nP(second is red | first is green) = 4/9.\nColumn B - with replacement the jar is identical for the second draw, so the two draws are independent and the first one carries no information: P(second is red) = 4/10 = 2/5.\nCompare over the denominator 45: 4/9 = 20/45 and 2/5 = 18/45.\n20/45 > 18/45, so Column A is greater.\nThe mechanism: replacement is what makes draws independent. Without it, removing a green marble raises red's share of what is left, from 4 out of 10 to 4 out of 9.\nAnswer: Column A is greater.",
+      "trap": "Answering C on the symmetry rule 'the second draw is just as likely to be red as the first, 4/10, whatever the mechanism'. That rule is about the UNCONDITIONAL second draw; Column A has already been told a green marble is gone, which lifts it to 4/9. Answering B is the mirror error - assuming that removing a marble must lower the chance of red. It lowers it only for the colour actually removed; a green leaving makes red relatively more plentiful.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "dependent-events",
+        "with-replacement",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-IDE-029",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "For two events A and B, P(A) = 0.6, P(B) = 0.5, and P(A or B) = 0.8. What is P(A | not B)? Enter your answer as a decimal.",
+      "options": null,
+      "answer": "0.6",
+      "explanation": "Step 1 — recover the overlap from inclusion-exclusion:\nP(A or B) = P(A) + P(B) - P(A and B)\n0.8 = 0.6 + 0.5 - P(A and B), so P(A and B) = 1.1 - 0.8 = 0.3.\nStep 2 — the part of A that lies outside B:\nP(A and not B) = P(A) - P(A and B) = 0.6 - 0.3 = 0.3.\nStep 3 — the condition 'not B' has probability P(not B) = 1 - 0.5 = 0.5.\nStep 4 — divide: P(A | not B) = 0.3/0.5 = 0.6.\nCheck the meaning: P(A) is also 0.6, so knowing that B did NOT occur leaves A exactly as likely as before. That is independence, and the formal test confirms it: P(A) x P(B) = 0.6 x 0.5 = 0.30 = P(A and B).\nAnswer: 0.6.",
+      "trap": "Stopping at 0.3, which is P(A and not B) - the size of that region, not its share of the 'not B' world. A conditional probability must be divided by the probability of the condition. The other slip is inverting the conditional: 0.3/0.6 = 0.5 computes P(not B | A) instead of P(A | not B). Note also that independence is a CONCLUSION here, not an assumption: it had to be earned from P(A or B) = 0.8, which could just as easily have contradicted it.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "conditional-probability",
+        "inclusion-exclusion",
+        "independence-test"
+      ]
+    },
+    {
+      "id": "STA-IDE-030",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A machine contains two components that fail independently of each other. Component A fails with probability 0.1 and component B fails with probability 0.2. The machine fails if at least one component fails. What is the probability that the machine does NOT fail?",
+      "options": [
+        "A. 0.28",
+        "B. 0.70",
+        "C. 0.72",
+        "D. 0.90",
+        "E. 0.98"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — translate the condition. The machine survives only if BOTH components work, so an 'or' about failure becomes an 'and' about working.\nStep 2 — P(A works) = 1 - 0.1 = 0.9 and P(B works) = 1 - 0.2 = 0.8.\nStep 3 — the components are independent, so multiply: 0.9 x 0.8 = 0.72.\nCheck the long way: P(machine fails) = P(A fails) + P(B fails) - P(both fail) = 0.1 + 0.2 - (0.1)(0.2) = 0.3 - 0.02 = 0.28, and 1 - 0.28 = 0.72. Correct.\nAnswer: 0.72.",
+      "trap": "Adding the failure rates as 0.1 + 0.2 = 0.3 and answering 0.70, choice B. That double-counts the 0.02 chance that both fail, which is why the union is 0.28 rather than 0.30. Choice A, 0.28, is P(machine fails) - the question asked for its complement. Choice D, 0.90, is P(component A works) = 1 - 0.1 on its own, stopping after the first component instead of multiplying in component B's 0.8. Choice E, 0.98, comes from reading 'at least one fails' as 'both fail' and computing 1 - (0.1)(0.2).",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "independent-events",
+        "complementary-probability",
+        "at-least-one"
+      ]
+    },
+    {
+      "id": "STA-IDE-031",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Two cards are drawn at random from a standard 52-card deck (13 cards in each of the four suits), without replacement. Select all statements that are true.",
+      "options": [
+        "A. P(both cards are spades) = 1/17",
+        "B. P(the first card is a spade and the second is a heart) = 1/16",
+        "C. P(at least one card is a spade) = 1 - (39/52)(38/51)",
+        "D. P(the second card is a spade, given that the first card is a spade) = 4/17",
+        "E. The two draws are independent events"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A - (13/52)(12/51) = (1/4)(12/51) = 12/204 = 1/17. TRUE.\nB - the correct value is (13/52)(13/51) = (1/4)(13/51) = 13/204, which is about 0.0637. The stated 1/16 = 0.0625 is what you get from (13/52)(13/52), i.e. from treating the deck as restored. FALSE.\nC - 'at least one spade' is the complement of 'no spade on either draw'. There are 39 non-spades, so P(no spade) = (39/52)(38/51), and the complement is 1 minus that. TRUE.\nD - once a spade is removed, 12 spades sit among 51 remaining cards, so the conditional probability is 12/51, which reduces by 3 to 4/17. TRUE.\nE - without replacement the first card changes the deck. Statement D shows P(second spade | first spade) = 4/17, which is about 0.235, while the unconditional P(the second card is a spade) is 1/4, by symmetry with the first card. Since 4/17 is not 1/4, knowing the first card changes the second one's odds, so the draws are dependent. FALSE.\nAnswer: A, C, D.",
+      "trap": "B and E are the same mistake wearing different clothes: both come from treating drawing without replacement as if the deck reset between draws. B is that error given a number to hide behind - 1/16 is close enough to the true 13/204 that it survives a careless glance. Whenever a suit's count stays at 13 out of 52 on the second draw, the calculation has quietly assumed replacement.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-IDE-032",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A bag holds 5 red and 3 blue balls. Balls are drawn at random one at a time, without replacement, until a blue ball appears. What is the probability that the first blue ball appears on exactly the second draw?",
+      "options": [
+        "A. 9/56",
+        "B. 15/64",
+        "C. 15/56",
+        "D. 3/8",
+        "E. 3/7"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — turn the wording into a fixed sequence. 'The first blue appears on draw 2' means draw 1 was red AND draw 2 was blue. There is only one such sequence.\nStep 2 — P(draw 1 is red) = 5/8.\nStep 3 — a red ball is gone, so 4 red and 3 blue remain, 7 in all. The blue count is untouched.\nP(draw 2 is blue | draw 1 is red) = 3/7.\nStep 4 — multiply: (5/8) x (3/7) = 15/56.\nCheck: 15/56 is about 0.268, comfortably below P(blue on draw 1) = 3/8 = 0.375, as it must be, since this outcome requires a specific miss first.\nAnswer: 15/56.",
+      "trap": "Using blue for the first draw as well: (3/8)(3/7) = 9/56, choice A. The whole point of 'first blue on draw 2' is that draw 1 must NOT be blue. Choice B, 15/64, keeps the denominator at 8 for the second draw, the with-replacement value; choice D is P(blue on the first draw) and choice E is the conditional second factor on its own.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "first-success"
+      ]
+    },
+    {
+      "id": "STA-IDE-033",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Events A and B are independent, with P(A) = p and P(B) = q, where 0 < p < 1 and 0 < q < 1.\nColumn A: P(A or B)\nColumn B: p + q",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — the general addition rule always holds:\nP(A or B) = P(A) + P(B) - P(A and B).\nStep 2 — independence supplies the overlap: P(A and B) = pq.\nStep 3 — so Column A = p + q - pq, and Column B = p + q. The columns differ by exactly pq.\nStep 4 — the constraints 0 < p < 1 and 0 < q < 1 make pq strictly positive, so p + q - pq < p + q for every allowed p and q.\nColumn B is greater, and the conclusion does not depend on the particular values, so D is wrong.\nSpot-check p = 0.5, q = 0.4: Column A = 0.5 + 0.4 - 0.20 = 0.70, Column B = 0.90.",
+      "trap": "Answering C by using P(A or B) = P(A) + P(B), which is the addition rule for MUTUALLY EXCLUSIVE events. Independent events with positive probabilities are never mutually exclusive: their overlap pq is strictly positive, so it must be subtracted once. A second temptation is D, since p and q are unnamed - but pq > 0 holds throughout the stated range, so the comparison is settled.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "independent-events",
+        "mutually-exclusive",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-IDE-034",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A box contains 4 red, 3 blue, and 2 green balls. Two balls are drawn at random, without replacement. Given that the two balls drawn are the same color, what is the probability that both are red? Enter your answer as a fraction in lowest terms, in the form a/b.",
+      "options": null,
+      "answer": "3/5",
+      "explanation": "Step 1 — a conditional probability restricts the universe to the pairs that are the same color, so count only those.\nStep 2 — count unordered pairs. Total pairs = C(9,2) = 36.\nSame-color pairs: red C(4,2) = 6, blue C(3,2) = 3, green C(2,2) = 1, giving 6 + 3 + 1 = 10.\nStep 3 — of those 10 matching pairs, 6 are red-red.\nP(both red | same color) = 6/10 = 3/5.\nCheck with the formula P(X | Y) = P(X and Y)/P(Y). P(both red) = 6/36 = 1/6 and P(same color) = 10/36 = 5/18, so (1/6)/(5/18) = (1/6)(18/5) = 3/5. Correct.\nAnswer: 3/5.",
+      "trap": "Answering 1/6, the unconditional P(both red), and ignoring the condition entirely. The condition throws away all 26 mixed pairs, so the denominator collapses from 36 to 10 and the probability rises sharply. The other error is answering 4/9, the raw share of red balls, which is the answer to 'what is the probability one drawn ball is red' - a different question.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "conditional-probability",
+        "dependent-events",
+        "restricted-universe"
+      ]
+    },
+    {
+      "id": "STA-IDE-035",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "At a school, 70% of students play a sport and 40% play a musical instrument. Playing a sport and playing an instrument are independent. If one student is chosen at random, what is the probability that the student does exactly one of the two activities?",
+      "options": [
+        "A. 0.28",
+        "B. 0.30",
+        "C. 0.46",
+        "D. 0.54",
+        "E. 0.82"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — independence lets you multiply, so build all four cells of the table from the two rates.\nP(sport) = 0.7, P(no sport) = 0.3, P(instrument) = 0.4, P(no instrument) = 0.6.\nStep 2 — 'exactly one' is two disjoint cells: sport but no instrument, or instrument but no sport.\nP(sport and no instrument) = 0.7 x 0.6 = 0.42.\nP(instrument and no sport) = 0.4 x 0.3 = 0.12.\nStep 3 — add: 0.42 + 0.12 = 0.54.\nCheck all four cells: both = 0.7 x 0.4 = 0.28, neither = 0.3 x 0.6 = 0.18, and 0.28 + 0.42 + 0.12 + 0.18 = 1.00. Correct.\nAnswer: 0.54.",
+      "trap": "Answering 0.82, choice E, which is P(at least one) = 1 - 0.18. 'At least one' includes the 28% who do both; 'exactly one' excludes them, and 0.82 - 0.28 = 0.54. Choice A, 0.28, is P(both); choice C, 0.46, is 1 - 0.54, the probability of doing both or neither; choice B is the difference 0.7 - 0.4.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "independent-events",
+        "exactly-one",
+        "two-way-table"
+      ]
+    },
+    {
+      "id": "STA-IDE-036",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A fair six-sided die is rolled three times. Select all of the following probabilities that equal 1/216.",
+      "options": [
+        "A. P(a 6 on all three rolls)",
+        "B. P(the rolls are 1, then 2, then 3, in that order)",
+        "C. P(the three rolls are all different numbers, in any order)",
+        "D. P(a 6 on the first two rolls and a non-6 on the third)",
+        "E. P(the rolls are 4, then 4, then 4)"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "E"
+      ],
+      "explanation": "The rolls are independent, so any one fully specified ordered triple has probability (1/6)^3 = 1/216. There are 6^3 = 216 equally likely triples.\nA - (6,6,6) is a single triple. (1/6)(1/6)(1/6) = 1/216. TRUE.\nB - (1,2,3) is a single triple. 1/216. TRUE.\nC - this is not one triple but many: 6 x 5 x 4 = 120 of them, so the probability is 120/216 = 5/9. FALSE.\nD - the third roll is only restricted to 'not a 6', which 5 faces satisfy: (1/6)(1/6)(5/6) = 5/216. FALSE.\nE - (4,4,4) is a single triple. 1/216. TRUE.\nAnswer: A, B, E.",
+      "trap": "Selecting C on the rule 'every outcome of three rolls has probability 1/216'. That rule is about a single specified sequence; 'all different, in any order' bundles 120 sequences together. D is the mirror error - a slot described by a WORD rather than a number ('non-6') is not one outcome but five, so its factor is 5/6, not 1/6. Independence tells you to multiply, but you must still count how many faces each stage allows.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "independent-events",
+        "multiple-answer",
+        "sequence-vs-set"
+      ]
+    },
+    {
+      "id": "STA-IDE-037",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A bag contains 3 red and 5 blue marbles and no others. Two marbles are drawn at random, one at a time, without replacement. Given that the SECOND marble drawn is red, what is the probability that the first marble drawn was also red?",
+      "options": [
+        "A. 3/28",
+        "B. 1/4",
+        "C. 2/7",
+        "D. 3/8",
+        "E. 3/7"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — the condition sits on the LATER draw, so run the definition rather than intuition: P(first red | second red) = P(both red) / P(second red).\nStep 2 — numerator: P(both red) = (3/8)(2/7) = 6/56 = 3/28.\nStep 3 — denominator: P(second red) = 3/8. By symmetry each of the 8 marbles is equally likely to occupy position 2, and 3 of them are red. The long route agrees: (3/8)(2/7) + (5/8)(3/7) = 6/56 + 15/56 = 21/56 = 3/8.\nStep 4 — divide: (3/28) / (3/8) = (3/28) x (8/3) = 8/28 = 2/7.\nCheck by counting ordered draws: there are 8 x 7 = 56 of them, 21 have a red second, and 6 of those 21 have a red first as well, so 6/21 = 2/7. Correct.\nAnswer: 2/7.",
+      "trap": "Choice D, 3/8, is the unconditional P(first is red), which throws away the information about the second draw. Dependence runs backwards as well as forwards: learning that a red came out second must pull the first-draw estimate DOWN, from 3/8 to 2/7. Choice A, 3/28, is P(both red) - the numerator handed in without dividing by P(second red). Choice B, 1/4, removes a red from the count but not from the total, 2/8. Choice E, 3/7, is P(first red | second BLUE), conditioning on the wrong colour.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "conditional-probability",
+        "dependent-events",
+        "reverse-conditioning"
+      ]
+    },
+    {
+      "id": "STA-IDE-038",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "A bag contains n red and n blue marbles, where n is an integer and n >= 2. Two marbles are drawn at random, without replacement.\nColumn A: P(the two marbles are the same color)\nColumn B: P(the two marbles are different colors)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — the insight: fix the first marble, whatever color it turns out to be. The bag then holds 2n - 1 marbles, of which n - 1 match it and n do not.\nStep 2 — so P(same color) = (n - 1)/(2n - 1) and P(different colors) = n/(2n - 1). The two columns have the SAME denominator.\nStep 3 — compare the numerators: n > n - 1 for every n, so Column B is greater. Nothing about the size of n can change this, so D is wrong.\nThe algebraic route agrees: P(same) = 2 x [n/(2n)][(n-1)/(2n-1)] = (n-1)/(2n-1).\nSpot-check n = 2: same = 1/3, different = 2/3. Spot-check n = 10: same = 9/19, different = 10/19.\nNote that as n grows the two columns approach 1/2 each, but they never meet - the gap 1/(2n-1) stays positive.",
+      "trap": "Answering C from the equal counts of red and blue. The colors are balanced only for the FIRST draw; after it, the drawn color is one short, so a match is always the less likely outcome. Answering D because n is unspecified is the second temptation - but the comparison reduces to n vs n - 1 over a common denominator, which is settled for every n >= 2.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "algebraic-proof"
+      ]
+    },
+    {
+      "id": "STA-IDE-039",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "A bag contains 4 white and 6 black balls. Balls are drawn at random one at a time, without replacement. What is the probability that the fourth ball drawn is the second white ball? Enter your answer as a fraction in lowest terms, in the form a/b.",
+      "options": null,
+      "answer": "3/14",
+      "explanation": "Step 1 — decode the condition. Draw 4 must be white, and exactly one white must appear among draws 1 to 3 (so that draw 4 is the SECOND white, not the first or the third).\nStep 2 — list the qualifying patterns for the first three draws: the single white sits in position 1, 2 or 3, so there are C(3,1) = 3 patterns - WBBW, BWBW, BBWW.\nStep 3 — price one of them, updating both numbers at every stage:\nP(WBBW) = (4/10)(6/9)(5/8)(3/7) = 360/5040 = 1/14.\nStep 4 — the other two patterns use the same four numerators (4, 6, 5, 3) in a different order over the same denominators, so each is also 1/14.\nP(BWBW) = (6/10)(4/9)(5/8)(3/7) = 360/5040 = 1/14.\nP(BBWW) = (6/10)(5/9)(4/8)(3/7) = 360/5040 = 1/14.\nStep 5 — add the three disjoint patterns: 3 x 1/14 = 3/14.\nCheck by counting ordered 4-draw sequences: favourable = 3 x (4 x 6 x 5 x 3) = 3 x 360 = 1080, total = 10 x 9 x 8 x 7 = 5040, and 1080/5040 = 3/14. Correct.\nAnswer: 3/14.",
+      "trap": "Computing P(exactly two white among the first four draws) = C(4,2)C(6,2)/C(10,4) = 6 x 15/210 = 3/7, which is exactly twice the right answer. That count allows the second white to land in position 1, 2 or 3; the stem pins it to position 4, which keeps only half the sequences. The other error is pricing WBBW and stopping at 1/14, forgetting that the lone early white has three places to sit.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "dependent-events",
+        "without-replacement",
+        "position-constraint"
+      ]
+    },
+    {
+      "id": "STA-IDE-040",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "For two events A and B, P(A) = 1/3, P(B) = 1/2, and P(A | B) = 1/4. Select all statements that are true.",
+      "options": [
+        "A. P(A and B) = 1/8",
+        "B. A and B are independent",
+        "C. P(B | A) = 3/8",
+        "D. P(A or B) = 5/6",
+        "E. P(neither A nor B) = 7/24"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "E"
+      ],
+      "explanation": "Start by converting the conditional into a joint probability, since everything else follows from it.\nP(A and B) = P(A | B) x P(B) = (1/4)(1/2) = 1/8.\nA - that is the computation just made. TRUE.\nB - the test is P(A and B) = P(A) x P(B). Here P(A) x P(B) = (1/3)(1/2) = 1/6, but P(A and B) = 1/8. Since 1/8 is not 1/6, the events are dependent. FALSE.\nC - P(B | A) = P(A and B)/P(A) = (1/8)/(1/3) = (1/8)(3/1) = 3/8. TRUE.\nD - P(A or B) = P(A) + P(B) - P(A and B) = 1/3 + 1/2 - 1/8 = 8/24 + 12/24 - 3/24 = 17/24, not 5/6 = 20/24. The stated 5/6 is 1/3 + 1/2 with no overlap subtracted. FALSE.\nE - 'neither' is the complement of the union: 1 - 17/24 = 7/24. TRUE.\nAnswer: A, C, E.\nNotice the direction of the conditionals: P(A | B) = 1/4 while P(B | A) = 3/8. They are different numbers, as they almost always are.",
+      "trap": "Selecting B because 1/4 looks near enough to P(A) = 1/3. Independence is an exact equality, and 1/8 against 1/6 fails it - in fact P(A | B) = 1/4 < 1/3 = P(A) means B makes A LESS likely. D is the other bait: adding 1/3 + 1/2 = 5/6 forgets that the overlap of 1/8 is counted twice, and a student who takes D also gets E wrong, since E is built on the correct union of 17/24.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "conditional-probability",
+        "independence-test",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-IDE-041",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A box holds 3 red and 3 blue balls. Two balls are drawn at random, one at a time, without replacement.\nColumn A: P(the second ball is red, given that the first ball is red)\nColumn B: P(the second ball is red)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Column A - the condition removes one red ball, leaving 2 red among 5. P(second red | first red) = 2/5 = 0.4.\nColumn B - here nothing is known about the first ball, so both cases must be weighted:\nP(second red) = P(first red)P(second red | first red) + P(first blue)P(second red | first blue)\n= (3/6)(2/5) + (3/6)(3/5) = 6/30 + 9/30 = 15/30 = 1/2.\n1/2 > 2/5, so Column B is greater.\nThe short route to Column B: before any ball is drawn, every one of the 6 balls is equally likely to be the one that lands in the second position, and 3 of the 6 are red, so the answer is 3/6 = 1/2 by symmetry - the same as P(the first ball is red).\nThe gap between the columns, 1/2 against 2/5, is precisely the dependence created by not replacing the first ball.",
+      "trap": "Answering C by reasoning that the draws are 'symmetric', so the second ball must behave like the first. Column B is indeed 1/2 by that symmetry, but Column A is not an unconditional probability - it has already been told a red ball is gone, which leaves the box 2 red against 3 blue. The reverse error is answering A, from a vague sense that conditioning on red should make red more likely; without replacement it does the opposite.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "conditional-probability",
+        "dependent-events",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-IDE-042",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Two fair six-sided dice, one red and one white, are rolled. Given that at least one of the dice shows a 3, what is the probability that both dice show a 3? Enter your answer as a fraction in lowest terms, in the form a/b.",
+      "options": null,
+      "answer": "1/11",
+      "explanation": "Step 1 — the two rolls are independent, but the CONDITION links them, so work inside the restricted universe.\nStep 2 — count the outcomes with at least one 3. Writing them as (red, white):\nred = 3: (3,1), (3,2), (3,3), (3,4), (3,5), (3,6) - 6 outcomes.\nwhite = 3: (1,3), (2,3), (3,3), (4,3), (5,3), (6,3) - 6 outcomes.\n(3,3) appears in both lists, so the count is 6 + 6 - 1 = 11.\nStep 3 — of those 11 outcomes, exactly one is (3,3).\nP(both 3 | at least one 3) = 1/11.\nCheck with the formula: P(both 3) = 1/36 and P(at least one 3) = 1 - (5/6)^2 = 11/36, so (1/36)/(11/36) = 1/11.\nAnswer: 1/11.",
+      "trap": "Answering 1/6 by reasoning 'one die is a 3, so I only need the other one to be a 3'. That would be right if the stem named a die - 'the red die shows a 3' gives 1/6. 'At least one' names no die, so it admits 11 outcomes rather than 6, and the extra 5 all fail. Answering 1/36 ignores the condition altogether.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "conditional-probability",
+        "restricted-universe",
+        "at-least-one"
+      ]
+    },
+    {
+      "id": "STA-IDE-043",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A fair six-sided die is rolled twice. Exactly one of the following pairs of events is independent. Which one?",
+      "options": [
+        "A. 'The first roll is even' and 'the sum of the two rolls is 8'",
+        "B. 'The first roll is even' and 'the sum of the two rolls is 7'",
+        "C. 'The first roll is a 6' and 'the product of the two rolls is even'",
+        "D. 'Both rolls are even' and 'the sum of the two rolls is even'",
+        "E. 'The sum of the two rolls is 7' and 'the sum of the two rolls is 8'"
+      ],
+      "answer": "B",
+      "explanation": "There are 36 equally likely ordered pairs. Apply the one test that decides independence: P(A and B) = P(A) x P(B).\nA - P(first even) = 18/36 = 1/2. Sum 8 happens 5 ways: (2,6),(3,5),(4,4),(5,3),(6,2), so P = 5/36. Both: (2,6),(4,4),(6,2) = 3/36 = 1/12. But (1/2)(5/36) = 5/72, and 1/12 = 6/72. Not equal, so DEPENDENT.\nB - P(first even) = 1/2. Sum 7 happens 6 ways: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1), so P = 6/36 = 1/6. Both: (2,5),(4,3),(6,1) = 3/36 = 1/12. And (1/2)(1/6) = 1/12. Equal, so INDEPENDENT.\nC - P(first is 6) = 1/6. P(product even) = 1 - P(both odd) = 1 - 9/36 = 3/4. Both: if the first roll is a 6 the product is automatically even, so P = 1/6. But (1/6)(3/4) = 1/8, and 1/6 is not 1/8. DEPENDENT.\nD - P(both even) = 9/36 = 1/4. P(sum even) = 18/36 = 1/2. Both even forces an even sum, so P(both) = 1/4. But (1/4)(1/2) = 1/8. DEPENDENT.\nE - the two sums cannot both happen, so P(both) = 0, while P(sum 7) x P(sum 8) = (1/6)(5/36) > 0. DEPENDENT.\nAnswer: B.\nWhy B works: whatever the first roll is, exactly one face on the second die completes a sum of 7. So P(sum 7 | first roll) = 1/6 no matter what the first roll was, which is independence by definition. Only 7 has this property, because it is the one total reachable from every starting face.",
+      "trap": "Choice E is the headline trap: mutually exclusive events feel maximally 'unrelated', but a zero overlap against two positive probabilities is the strongest possible dependence - if the sum is 7 you know for certain it is not 8. Choice D catches the belief that independence means 'built from different-looking descriptions'; in fact 'both even' guarantees 'sum even', which is again as dependent as events get. Choice A is the near miss: it differs from the correct B only in the target sum, and 8 fails precisely because it is not reachable from every first roll.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "independent-events",
+        "mutually-exclusive",
+        "independence-test"
+      ]
+    }
+  ]
 }

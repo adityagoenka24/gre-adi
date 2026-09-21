@@ -1,0 +1,109 @@
+<h2>2. Must-Know Rules</h2>
+<p><strong>Arithmetic sequence</strong> (first term a, common difference d):</p>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nth term</td>
+<td>a_n = a + (n - 1)d</td>
+</tr>
+<tr>
+<td>Sum of first n terms</td>
+<td>S_n = n/2 x (first + last) = n/2 x [2a + (n-1)d]</td>
+</tr>
+<tr>
+<td>Average of the terms</td>
+<td>(first + last)/2</td>
+</tr>
+<tr>
+<td>Number of terms from a to L</td>
+<td>(L - a)/d + 1</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Geometric sequence</strong> (first term a, common ratio r):</p>
+<table>
+<thead>
+<tr>
+<th>Quantity</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>nth term</td>
+<td>a_n = a x r^(n-1)</td>
+</tr>
+<tr>
+<td>Sum of first n terms</td>
+<td>S_n = a(r^n - 1)/(r - 1), for r not 1</td>
+</tr>
+<tr>
+<td>Infinite sum (only if |r| &lt; 1)</td>
+<td>S = a/(1 - r)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Useful summation results:</strong></p>
+<ul>
+<li>1 + 2 + ... + n = n(n+1)/2</li>
+<li>Sum of the first n odd numbers = n^2</li>
+<li>Sum of the first n even numbers = n(n+1)</li>
+</ul>
+<p><strong>Recursive sequences.</strong> Given <code>a_1 = 3</code> and <code>a_(n+1) = 2a_n - 1</code>, just generate terms: 3, 5, 9, 17, 33. GRE recursive questions rarely go beyond 6-8 terms — computing is usually faster than finding a closed form.</p>
+<hr />
+<h2>3. Worked Examples</h2>
+<h3>Example 1 — nth term</h3>
+<p><em>In an arithmetic sequence, the 4th term is 14 and the 9th term is 34. Find the first term.</em></p>
+<p>From term 4 to term 9 is 5 steps: 34 - 14 = 20, so d = 4.</p>
+<p>a_4 = a + 3d = 14 -&gt; a + 12 = 14 -&gt; <strong>a = 2</strong>.</p>
+<h3>Example 2 — Sum of a series</h3>
+<p><em>Find the sum of all multiples of 6 between 20 and 200.</em></p>
+<p>First multiple: 24. Last: 198. Common difference 6.</p>
+<p>Number of terms = (198 - 24)/6 + 1 = 29 + 1 = 30.</p>
+<p>Sum = 30/2 x (24 + 198) = 15 x 222 = <strong>3,330</strong>.</p>
+<h3>Example 3 — Infinite geometric series</h3>
+<p><em>Find the sum of 8 + 4 + 2 + 1 + ... continuing forever.</em></p>
+<p>a = 8, r = 1/2, and |r| &lt; 1, so the sum converges.</p>
+<p>S = 8/(1 - 1/2) = 8/(1/2) = <strong>16</strong>.</p>
+<hr />
+<h2>4. GRE Traps</h2>
+<ul>
+<li><strong>Off by one in the nth term.</strong> It is a + (n-1)d, not a + nd. The 1st term uses no d at all.</li>
+<li><strong>Off by one in counting terms.</strong> From 24 to 198 in steps of 6 there are 30 terms, not 29.</li>
+<li><strong>Confusing arithmetic with geometric.</strong> Check differences <em>and</em> ratios before choosing a formula.</li>
+<li><strong>Applying the infinite-sum formula when |r| &gt;= 1.</strong> The series diverges; there is no finite sum.</li>
+<li><strong>Assuming a pattern from three terms.</strong> 1, 2, 4 could be doubling (8 next) or could be +1, +2, +3 (7 next). The GRE exploits this — look for a stated rule.</li>
+<li><strong>Sum vs term.</strong> "What is the 10th term" and "what is the sum of the first 10 terms" are very different questions.</li>
+</ul>
+<hr />
+<h2>5. Speed Tricks</h2>
+<ul>
+<li><strong>Sum = count x average</strong>, and for arithmetic sequences the average is (first + last)/2. This one line replaces both sum formulas.</li>
+<li><strong>Count terms with (last - first)/step + 1.</strong> Say the "+1" out loud every time.</li>
+<li><strong>For "how many terms until X", solve a + (n-1)d = X for n.</strong></li>
+<li><strong>For recursive sequences, just list terms</strong> — it is almost always faster than algebra.</li>
+<li><strong>Look for telescoping.</strong> Sums like 1/(1x2) + 1/(2x3) + ... collapse because each term is 1/n - 1/(n+1).</li>
+<li><strong>Geometric growth doubles fast:</strong> if the ratio is 2, the 11th term is 1024 times the first. Useful for estimating.</li>
+</ul>
+<hr />
+<h2>6. Self-Check</h2>
+<p><strong>Q1.</strong> What is the 20th term of the sequence 5, 9, 13, 17, ...?</p>
+<p><strong>Q2.</strong> How many multiples of 7 lie between 50 and 400?</p>
+<p><strong>Q3.</strong> Find the sum of the infinite series 27 + 9 + 3 + 1 + ...</p>
+<details>
+<summary>Answers</summary>
+<p><strong>A1.</strong> a = 5, d = 4. a_20 = 5 + 19(4) = <strong>81</strong>.</p>
+<p><strong>A2.</strong> First 56 (7x8), last 399 (7x57). Count = 57 - 8 + 1 = <strong>50</strong>.</p>
+<p><strong>A3.</strong> a = 27, r = 1/3. S = 27/(1 - 1/3) = 27/(2/3) = <strong>40.5</strong>.</p>
+</details>
+<hr />
+<h2>7. One-Line Summary for the Board</h2>
+<blockquote>
+<p>Differences constant = arithmetic; ratios constant = geometric. nth term uses (n-1). Count = (last - first)/step + 1.</p>
+</blockquote>

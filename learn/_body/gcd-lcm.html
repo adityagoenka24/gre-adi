@@ -1,0 +1,105 @@
+<h2>2. Must-Know Rules</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Rule</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GCD from prime factorisation</td>
+<td>Take the <strong>lowest</strong> power of each <strong>shared</strong> prime</td>
+</tr>
+<tr>
+<td>LCM from prime factorisation</td>
+<td>Take the <strong>highest</strong> power of <strong>every</strong> prime present</td>
+</tr>
+<tr>
+<td>Key identity</td>
+<td>GCD(a,b) x LCM(a,b) = a x b</td>
+</tr>
+<tr>
+<td>Coprime numbers</td>
+<td>GCD = 1, and then LCM = a x b</td>
+</tr>
+<tr>
+<td>GCD range</td>
+<td>1 &lt;= GCD &lt;= min(a, b)</td>
+</tr>
+<tr>
+<td>LCM range</td>
+<td>max(a, b) &lt;= LCM &lt;= a x b</td>
+</tr>
+<tr>
+<td>GCD divides LCM</td>
+<td>always</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Worked mechanic.</strong> For 84 and 120:</p>
+<ul>
+<li>84 = 2^2 x 3 x 7</li>
+<li>120 = 2^3 x 3 x 5</li>
+</ul>
+<p>GCD = 2^2 x 3^1 = <strong>12</strong> (lowest power of shared primes 2 and 3; 5 and 7 are not shared).</p>
+<p>LCM = 2^3 x 3 x 5 x 7 = <strong>840</strong> (highest power of every prime).</p>
+<p>Check the identity: 12 x 840 = 10,080 and 84 x 120 = 10,080. Correct.</p>
+<p><strong>Three numbers.</strong> GCD and LCM extend the same way, but note the identity <code>GCD x LCM = product</code> is <strong>only valid for two numbers</strong>.</p>
+<hr />
+<h2>3. Worked Examples</h2>
+<h3>Example 1 — GCD word problem</h3>
+<p><em>A florist has 48 roses and 36 tulips. She wants to make identical bouquets using all the flowers. What is the greatest number of bouquets she can make, and what does each contain?</em></p>
+<p>"Greatest number of identical groups using all" -&gt; GCD.</p>
+<p>48 = 2^4 x 3, 36 = 2^2 x 3^2. GCD = 2^2 x 3 = 12.</p>
+<p><strong>12 bouquets</strong>, each with 48/12 = 4 roses and 36/12 = 3 tulips.</p>
+<h3>Example 2 — LCM word problem</h3>
+<p><em>Three bells ring every 12, 18 and 30 minutes. If they ring together at noon, when do they next ring together?</em></p>
+<p>"Next coincide" -&gt; LCM.</p>
+<ul>
+<li>12 = 2^2 x 3</li>
+<li>18 = 2 x 3^2</li>
+<li>30 = 2 x 3 x 5</li>
+</ul>
+<p>LCM = 2^2 x 3^2 x 5 = 180 minutes = 3 hours.</p>
+<p><strong>They next ring together at 3:00 pm.</strong></p>
+<h3>Example 3 — Using the identity</h3>
+<p><em>Two numbers have GCD 6 and LCM 90. If one number is 18, what is the other?</em></p>
+<p>GCD x LCM = product: 6 x 90 = 540.</p>
+<p>Other number = 540/18 = <strong>30</strong>.</p>
+<p>Check: GCD(18, 30) = 6 and LCM(18, 30) = 90. Correct.</p>
+<hr />
+<h2>4. GRE Traps</h2>
+<ul>
+<li><strong>Swapping GCD and LCM.</strong> GCD is small (at most the smaller number); LCM is large (at least the larger number). If your GCD exceeds either number, you've computed the LCM.</li>
+<li><strong>Using the highest power for GCD.</strong> GCD takes the <em>lowest</em> power, and only of <em>shared</em> primes.</li>
+<li><strong>Applying GCD x LCM = product to three numbers.</strong> It fails. For 2, 4, 8: GCD = 2, LCM = 8, product of the two is 16, but 2 x 4 x 8 = 64.</li>
+<li><strong>Assuming divisible by 4 and 6 means divisible by 24.</strong> It means divisible by LCM(4, 6) = 12.</li>
+<li><strong>Forgetting a prime that appears in only one number</strong> when computing LCM.</li>
+<li><strong>Word-problem misread.</strong> "Same number of items in each group" is GCD; "smallest length both can be cut into" is LCM.</li>
+</ul>
+<hr />
+<h2>5. Speed Tricks</h2>
+<ul>
+<li><strong>Prime factorise in a column.</strong> Write the primes down the side and the exponents across; GCD is the row minimum, LCM the row maximum.</li>
+<li><strong>Euclid's algorithm for two big numbers.</strong> GCD(a,b) = GCD(b, a mod b), repeat until 0. GCD(252, 105) -&gt; GCD(105, 42) -&gt; GCD(42, 21) -&gt; GCD(21, 0) = 21.</li>
+<li><strong>If one number divides the other,</strong> GCD is the smaller and LCM is the larger. Instant.</li>
+<li><strong>Consecutive integers are always coprime</strong> — GCD = 1, LCM = product.</li>
+<li><strong>LCM of a set is a multiple of every element</strong> — use it as a sanity check.</li>
+</ul>
+<hr />
+<h2>6. Self-Check</h2>
+<p><strong>Q1.</strong> Find GCD and LCM of 60 and 144.</p>
+<p><strong>Q2.</strong> Two runners complete a lap in 40 and 60 seconds. They start together. After how long are they together at the start line again?</p>
+<p><strong>Q3.</strong> If GCD(a, b) = 8 and LCM(a, b) = 96, what is a x b?</p>
+<details>
+<summary>Answers</summary>
+<p><strong>A1.</strong> 60 = 2^2 x 3 x 5; 144 = 2^4 x 3^2. GCD = 2^2 x 3 = <strong>12</strong>. LCM = 2^4 x 3^2 x 5 = <strong>720</strong>.</p>
+<p><strong>A2.</strong> LCM(40, 60) = 120 seconds = <strong>2 minutes</strong>.</p>
+<p><strong>A3.</strong> 8 x 96 = <strong>768</strong>.</p>
+</details>
+<hr />
+<h2>7. One-Line Summary for the Board</h2>
+<blockquote>
+<p>GCD = lowest powers of shared primes (grouping). LCM = highest powers of all primes (coinciding). GCD x LCM = product, for two numbers only.</p>
+</blockquote>

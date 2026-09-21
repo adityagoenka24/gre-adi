@@ -1,0 +1,96 @@
+<h2>2. Must-Know Rules</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Fundamental counting principle</td>
+<td>multiply the choices at each stage</td>
+</tr>
+<tr>
+<td>Factorial</td>
+<td>n! = n(n-1)(n-2)...(1); 0! = 1</td>
+</tr>
+<tr>
+<td>Arrangements of n distinct items</td>
+<td>n!</td>
+</tr>
+<tr>
+<td>Permutations of r from n</td>
+<td>P(n,r) = n!/(n-r)!</td>
+</tr>
+<tr>
+<td>Arrangements with repeats</td>
+<td>n! / (a! b! c! ...) for repeated items</td>
+</tr>
+<tr>
+<td>Circular arrangements of n</td>
+<td>(n-1)!</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Factorial values to know:</strong> 1, 2, 6, 24, 120, 720, 5040 for 1! through 7!.</p>
+<p><strong>Arrangements with repeated letters.</strong> The word BANANA has 6 letters with A appearing 3 times and N twice:</p>
+<p>6!/(3! x 2!) = 720/12 = <strong>60</strong> distinct arrangements.</p>
+<p><strong>Restrictions — two standard techniques:</strong></p>
+<ol>
+<li><strong>Glue method</strong> (items must be together): treat the block as one item, arrange, then multiply by the internal arrangements of the block.</li>
+<li><strong>Complement method</strong> (items must be apart): total arrangements minus the arrangements where they are together.</li>
+</ol>
+<p><strong>Circular arrangements</strong> lose one degree of freedom because rotations are equivalent: n people around a round table can be seated in (n-1)! ways.</p>
+<hr />
+<h2>3. Worked Examples</h2>
+<h3>Example 1 — Counting principle</h3>
+<p><em>A menu has 4 starters, 6 mains and 3 desserts. How many three-course meals are possible?</em></p>
+<p>4 x 6 x 3 = <strong>72</strong>.</p>
+<h3>Example 2 — Permutation with restriction (glue)</h3>
+<p><em>In how many ways can 5 people be seated in a row if two particular people must sit together?</em></p>
+<p>Glue the pair into one block: now arrange 4 items -&gt; 4! = 24.</p>
+<p>The pair can be internally ordered in 2! = 2 ways.</p>
+<p>Total = 24 x 2 = <strong>48</strong>.</p>
+<p>(Check with the complement: total 5! = 120, so 120 - 48 = 72 arrangements have them apart.)</p>
+<h3>Example 3 — Repeated letters</h3>
+<p><em>How many distinct arrangements are there of the letters in LEVEL?</em></p>
+<p>5 letters: L appears twice, E twice, V once.</p>
+<p>5!/(2! x 2!) = 120/4 = <strong>30</strong>.</p>
+<hr />
+<h2>4. GRE Traps</h2>
+<ul>
+<li><strong>Using a permutation where order does not matter.</strong> "How many committees of 3" is a combination, not a permutation.</li>
+<li><strong>Forgetting to divide by repeats.</strong> BANANA has 60 arrangements, not 720.</li>
+<li><strong>Adding instead of multiplying.</strong> Sequential independent choices multiply. Only mutually exclusive alternatives add ("or" adds, "and" multiplies).</li>
+<li><strong>0! treated as 0.</strong> It equals 1.</li>
+<li><strong>Circular arrangements counted as n!.</strong> Rotations are the same arrangement, so it is (n-1)!.</li>
+<li><strong>Double counting</strong> in restriction problems — glue <em>or</em> complement, not both at once.</li>
+<li><strong>Assuming repetition is allowed.</strong> "A 3-digit code from digits 0-9" allows repeats (1000 options) unless the problem says digits are distinct (10 x 9 x 8 = 720).</li>
+</ul>
+<hr />
+<h2>5. Speed Tricks</h2>
+<ul>
+<li><strong>Ask "does order matter?" out loud</strong> before writing anything.</li>
+<li><strong>Draw slots.</strong> One blank per position, fill in the number of choices, multiply. This handles most GRE counting questions without any formula.</li>
+<li><strong>"At least one" almost always means use the complement:</strong> total minus none.</li>
+<li><strong>Glue for together, complement for apart.</strong></li>
+<li><strong>Cancel factorials rather than expanding.</strong> 10!/8! = 10 x 9 = 90.</li>
+<li><strong>Check the size of your answer.</strong> Counting answers grow fast; if yours is suspiciously small, you probably added where you should have multiplied.</li>
+</ul>
+<hr />
+<h2>6. Self-Check</h2>
+<p><strong>Q1.</strong> How many 4-letter arrangements can be made from the letters of MATH (no repeats)?</p>
+<p><strong>Q2.</strong> How many distinct arrangements does the word SUCCESS have?</p>
+<p><strong>Q3.</strong> In how many ways can 6 people sit around a circular table?</p>
+<details>
+<summary>Answers</summary>
+<p><strong>A1.</strong> 4! = <strong>24</strong>.</p>
+<p><strong>A2.</strong> 7 letters: S appears 3 times, C twice. 7!/(3! x 2!) = 5040/12 = <strong>420</strong>.</p>
+<p><strong>A3.</strong> (6-1)! = 5! = <strong>120</strong>.</p>
+</details>
+<hr />
+<h2>7. One-Line Summary for the Board</h2>
+<blockquote>
+<p>Order matters = permutation. Draw slots and multiply. Divide by the factorial of each repeat.</p>
+</blockquote>

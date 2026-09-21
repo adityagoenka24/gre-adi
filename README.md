@@ -4,8 +4,8 @@
 
 A free GRE Quant practice tool with access to 2 subtopics, Easy + Medium difficulty, and up to 10 questions per session.
 
-🔗 **Live app:** https://[YOUR-USERNAME].github.io/gre-free/gre_practice_logger_free.html  
-💰 **Upgrade to Pro:** https://[YOUR-USERNAME].github.io/gre-free/pricing.html
+🔗 **Live app:** https://grequantpro.com/gre_practice_logger_free.html  
+💰 **Upgrade to Pro:** https://grequantpro.com/#plans
 
 ## What's Included (Free)
 - Practice from Bank: Percentages + Fractions & Decimals
