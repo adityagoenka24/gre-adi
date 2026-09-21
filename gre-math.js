@@ -13,26 +13,39 @@
 
   var SUP_MAP = { '⁰':'0','¹':'1','²':'2','³':'3','⁴':'4','⁵':'5','⁶':'6','⁷':'7','⁸':'8','⁹':'9','⁻':'-' };
 
-  // exponent chunk: ^2, ^-2, ^(10), ^(3/4), ^(-1/2), ^(n+1)
-  var EXP = '\\^(?:\\([^()]{1,16}\\)|-?[0-9a-zA-Z.]{1,8})';
+  /* Balanced parenthesised group, up to 3 levels deep.
+     A plain `\([^()]{1,N}\)` (the shape every one of these patterns used
+     to use) breaks the moment its content contains its own parens — which
+     normalizeSymbols() now produces routinely: "sqrt(5)" becomes "√(5)",
+     so what used to be "(sqrt(5) - sqrt(3))^2" — content with no parens —
+     is now "(√(5) - √(3))^2", where the exponent's base has one. Same for
+     naturally-authored forms like "(9^n)^(1/(2n))". Three levels covers
+     every case seen in the bank while staying a bounded, non-backtracking
+     pattern (each level is itself bounded, so there's no blow-up risk). */
+  var PGROUP1 = '\\([^()]{0,40}\\)';
+  var PGROUP2 = '\\((?:[^()]|' + PGROUP1 + '){0,80}\\)';
+  var PGROUP = '\\((?:[^()]|' + PGROUP2 + '){0,120}\\)';
+
+  // exponent chunk: ^2, ^-2, ^(10), ^(3/4), ^(-1/2), ^(n+1), ^(1/(2n))
+  var EXP = '\\^(?:' + PGROUP + '|-?[0-9a-zA-Z.]{1,8})';
   // Operand for fractions — order matters: exponentiated forms first so
   // "x^4" isn't consumed as just "x".
   var OPERAND = '(?:' + [
-    '\\([^()]{1,60}\\)(?:' + EXP + ')?',                 // (…), (…)^k
+    PGROUP + '(?:' + EXP + ')?',                         // (…), (…)^k
     '\\d+(?:\\.\\d+)?[a-zA-Z]{0,3}(?:' + EXP + ')?',     // 12, 3.5, 2ab, 2x^3
     '[a-zA-Z]{1,3}(?:' + EXP + '|[⁰¹²³⁴⁵⁶⁷⁸⁹]+)?'        // x, ab, x^4, x²
   ].join('|') + ')';
 
   // Patterns that count as "math worth typesetting", tried in order.
   var PATTERNS = [
-    // √(expr) or √expr   e.g. √194, √(a²+b²), √2x
-    { re: new RegExp('√\\s*(\\([^()]{1,60}\\)|[0-9a-zA-Z.]{1,20}[⁰¹²³⁴⁵⁶⁷⁸⁹]?)', 'g'), type: 'sqrt' },
+    // √(expr) or √expr   e.g. √194, √(a²+b²), √2x, √(6 + √6)
+    { re: new RegExp('√\\s*(' + PGROUP + '|[0-9a-zA-Z.]{1,20}[⁰¹²³⁴⁵⁶⁷⁸⁹]?)', 'g'), type: 'sqrt' },
     // fraction: operand / operand
     { re: new RegExp('(' + OPERAND + ')\\s*/\\s*(' + OPERAND + ')', 'g'), type: 'frac' },
-    // caret exponent: x^2, 2^(10), (a+b)^2, y^(3/4), (y^3)^(1/4)
-    { re: new RegExp('(\\([^()]{1,40}\\)|\\|[^|]{1,20}\\||[0-9a-zA-Z.]{1,12})\\^(\\([^()]{1,16}\\)|-?[0-9a-zA-Z.]{1,8})', 'g'), type: 'caret' },
+    // caret exponent: x^2, 2^(10), (a+b)^2, y^(3/4), (y^3)^(1/4), (9^n)^(1/(2n))
+    { re: new RegExp('(' + PGROUP + '|\\|[^|]{1,20}\\||[0-9a-zA-Z.]{1,12})\\^(' + PGROUP + '|-?[0-9a-zA-Z.]{1,8})', 'g'), type: 'caret' },
     // unicode superscript exponent: 13², x³, (a+b)²
-    { re: /(\([^()]{1,40}\)|[0-9a-zA-Z.]{1,12})([⁰¹²³⁴⁵⁶⁷⁸⁹]+)/g, type: 'usup' }
+    { re: new RegExp('(' + PGROUP + '|[0-9a-zA-Z.]{1,12})([⁰¹²³⁴⁵⁶⁷⁸⁹]+)', 'g'), type: 'usup' }
   ];
 
   var WORDY = /^(and|or|per|km|mph|hr|min|sec|[A-Z]{2,})$/; // guard rails
@@ -62,8 +75,8 @@
     s = s.replace(/([0-9a-zA-Z)])([⁰¹²³⁴⁵⁶⁷⁸⁹]+)/g, function (_, base, sup) {
       return base + '^{' + unicodeSupToNum(sup) + '}';
     });
-    // nested caret: a^2 / a^(2) / a^(3/4) → a^{…}
-    s = s.replace(/\^(\([^()]{1,16}\)|-?[0-9a-zA-Z.]{1,8})/g, function (_, e) {
+    // nested caret: a^2 / a^(2) / a^(3/4) / a^(1/(2n)) → a^{…}
+    s = s.replace(new RegExp('\\^(' + PGROUP + '|-?[0-9a-zA-Z.]{1,8})', 'g'), function (_, e) {
       var inner = stripParens(e);
       // fraction inside an exponent: 3/4 → \frac{3}{4}
       inner = inner.replace(/(\d+(?:\.\d+)?|[a-zA-Z])\s*\/\s*(\d+(?:\.\d+)?|[a-zA-Z])/g, '\\frac{$1}{$2}');
@@ -115,9 +128,9 @@
   // -------- HTML fallback (no KaTeX) --------
   function fallbackHtml(match, type) {
     function esc(s) { return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
-    function expify(s) { // a^2 / a^(3/4) / a² → a<sup>…</sup>
+    function expify(s) { // a^2 / a^(3/4) / a^(1/(2n)) / a² → a<sup>…</sup>
       return esc(s)
-        .replace(/\^\(([^()]{1,16})\)/g, '<sup class="mexp">$1</sup>')
+        .replace(new RegExp('\\^\\(((?:[^()]|' + PGROUP1 + '){0,80})\\)', 'g'), '<sup class="mexp">$1</sup>')
         .replace(/\^(-?[0-9a-zA-Z.]+)/g, '<sup class="mexp">$1</sup>')
         .replace(/([0-9a-zA-Z)])([⁰¹²³⁴⁵⁶⁷⁸⁹]+)/g, function (_, b, s2) { return b + '<sup class="mexp">' + unicodeSupToNum(s2) + '</sup>'; });
     }

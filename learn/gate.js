@@ -33,6 +33,11 @@
       .then(function (html) {
         body.insertAdjacentHTML('beforeend', html);
         gate.remove();
+        // The unlocked continuation is plain-ASCII math like the free half
+        // above it (see gre-math.js) — it just arrived after the page's own
+        // load-time typeset pass already ran, so run it again on what we
+        // just inserted.
+        if (window.GREMath) window.GREMath.renderIn(body);
         if (window.GQP && window.GQP.track) window.GQP.track('learn_unlocked', { slug: slug });
       })
       .catch(function () {
