@@ -20,6 +20,10 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450..700;1,9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/site.css">
 <link rel="stylesheet" href="/learn/learn.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="/gre-math.js"></script>
+<style>.gre-math{white-space:normal}.katex{font-size:1.06em!important}</style>
 </head>
 <body>
 <div class="glow-1"></div><div class="glow-2"></div>
@@ -294,6 +298,23 @@ document.addEventListener('click',function(e){
 });
 </script>
 <script src="/analytics.js"></script>
+<script>
+/* The capsules are written in plain ASCII deliberately: they are also read
+   in WhatsApp, in print and in plain markdown viewers, where no renderer
+   exists. So the maths is typeset here, at display time, from the same
+   source — nothing in the .md files has to change. */
+(function () {
+  function typeset() {
+    if (!window.GREMath) return;
+    var main = document.querySelector('main') || document.body;
+    window.GREMath.renderIn(main);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(typeset, 0); });
+  else setTimeout(typeset, 0);
+  // KaTeX is deferred, so run again once it has actually landed.
+  window.addEventListener('load', typeset);
+})();
+</script>
 <script src="/learn/gate.js" data-slug="practice-digits-place-value"></script>
 </body>
 </html>
