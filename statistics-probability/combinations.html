@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Combinations · GRE Quant Concept Notes</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="alternate icon" type="image/x-icon" href="/favicon.ico">
+<link rel="canonical" href="https://grequantpro.com/learn/statistics-probability/combinations.html">
+<meta name="description" content="Combinations — GRE Quant concept note: core idea, must-know rules, worked examples, the traps and speed tricks.">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="GRE Quant Pro">
+<meta property="og:title" content="Combinations · GRE Quant Concept Notes">
+<meta property="og:description" content="Combinations — GRE Quant concept note: core idea, must-know rules, worked examples, the traps and speed tricks.">
+<meta property="og:url" content="https://grequantpro.com/learn/statistics-probability/combinations.html">
+<meta property="og:image" content="https://grequantpro.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450..700;1,9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/site.css">
+<link rel="stylesheet" href="/learn/learn.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+<script defer src="/gre-math.js"></script>
+<style>.gre-math{white-space:normal}.katex{font-size:1.06em!important}</style>
+</head>
+<body>
+<div class="glow-1"></div><div class="glow-2"></div>
+
+<nav>
+  <div class="nav-inner">
+    <a href="/" class="nav-logo">GRE Quant <em>Pro</em></a>
+    <div class="nav-links">
+      <a href="/index.html#how">How it works</a>
+      <a href="/learn/">Concept Notes</a>
+      <a href="/diagnostic.html">Diagnostic</a>
+      <a href="/index.html#free">Free Practice</a>
+      <a href="/sectional.html">Sectionals</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="/pro" class="nav-cta-ghost">Log in</a>
+      <a href="/pricing.html" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — ₹499</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="/index.html#how">How it works</a>
+  <a href="/learn/">Concept Notes</a>
+  <a href="/diagnostic.html">Diagnostic</a>
+  <a href="/index.html#free">Free Practice</a>
+  <a href="/sectional.html">Sectional Tests</a>
+  <a href="/pricing.html">Pricing</a>
+  <a href="/pro">Log in to Pro</a>
+  <a href="/pricing.html" style="color:var(--accent);font-weight:800">Get Pro — ₹499 →</a>
+</div>
+
+<main class="lrn-main">
+  <div class="lrn-wrap">
+    <nav class="lrn-crumb" aria-label="Breadcrumb">
+      <a href="/learn/">Concept Notes</a> <span>/</span>
+      <a href="/learn/#statistics-probability">Statistics &amp; Probability</a>
+    </nav>
+    <article class="lrn-doc">
+      <header class="lrn-head">
+        <h1>Combinations</h1>
+        <div class="lrn-chips"><span class="lrn-chip">Section: <b>Statistics &amp; Probability</b></span><span class="lrn-chip">Bank code: <b>STA-CMB</b></span><span class="lrn-chip">GRE frequency: <b>High</b></span></div>
+      </header>
+      <div class="lrn-body"><h2>1. Core Idea</h2>
+<p>A <strong>combination</strong> is a selection where <strong>order does not matter</strong>. Choosing Amit, Bina and Chetan for a committee is the same committee no matter what sequence you name them in.</p>
+<p>The formula comes straight from permutations: count the ordered selections, then divide out the orderings you have over-counted.</p>
+<p><code>C(n,r) = P(n,r)/r! = n! / [r! (n-r)!]</code></p>
+<hr />
+<h2>2. Must-Know Rules</h2>
+<table>
+<thead>
+<tr>
+<th>Concept</th>
+<th>Formula</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Combinations of r from n</td>
+<td>C(n,r) = n!/[r!(n-r)!]</td>
+</tr>
+<tr>
+<td>Symmetry</td>
+<td>C(n,r) = C(n, n-r)</td>
+</tr>
+<tr>
+<td>Choose 0 or all</td>
+<td>C(n,0) = C(n,n) = 1</td>
+</tr>
+<tr>
+<td>Choose 1</td>
+<td>C(n,1) = n</td>
+</tr>
+<tr>
+<td>Choose 2</td>
+<td>C(n,2) = n(n-1)/2</td>
+</tr>
+<tr>
+<td>Total subsets of an n-set</td>
+<td>2^n</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The symmetry rule saves real time.</strong> C(10,8) = C(10,2) = 45. Always convert to the smaller r.</p>
+<p><strong>Values worth recognising:</strong></p>
+<table>
+<thead>
+<tr>
+<th>C(n,2)</th>
+<th>n(n-1)/2</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C(5,2)</td>
+<td>10</td>
+</tr>
+<tr>
+<td>C(6,2)</td>
+<td>15</td>
+</tr>
+<tr>
+<td>C(8,2)</td>
+<td>28</td>
+</tr>
+<tr>
+<td>C(10,2)</td>
+<td>45</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Handshake problems</strong> are always C(n,2): n people each shaking hands once with every other gives n(n-1)/2 handshakes.</p>
+<p><strong>Multiple groups.</strong> If you must choose from separate pools, multiply: choosing 2 from 5 men and 3 from 6 women gives C(5,2) x C(6,3) = 10 x 20 = 200.</p>
+<p><strong>"At least" problems.</strong> Either sum the individual cases, or subtract the complement from the total — the complement is usually faster.</p>
+<hr />
+<h2>3. Worked Examples</h2>
+<h3>Example 1 — Basic committee</h3>
+<p><em>From 9 people, how many committees of 4 can be formed?</em></p>
+<p>C(9,4) = 9!/(4! 5!) = (9 x 8 x 7 x 6)/(4 x 3 x 2 x 1) = 3024/24 = <strong>126</strong>.</p>
+<h3>Example 2 — Two pools</h3>
+<p><em>A team of 3 must include 2 engineers from 6 and 1 designer from 4. How many teams?</em></p>
+<p>C(6,2) x C(4,1) = 15 x 4 = <strong>60</strong>.</p>
+<h3>Example 3 — At least</h3>
+<p><em>From 5 men and 4 women, a committee of 3 is chosen. In how many ways can it include at least one woman?</em></p>
+<p>Total committees = C(9,3) = 84.</p>
+<p>All-men committees = C(5,3) = 10.</p>
+<p>At least one woman = 84 - 10 = <strong>74</strong>.</p>
+<hr />
+<h2>4. GRE Traps</h2>
+<ul>
+<li><strong>Using permutations for selections.</strong> A committee of 3 from 9 is 126, not P(9,3) = 504.</li>
+<li><strong>Forgetting the symmetry shortcut</strong> and grinding C(12,10) the long way.</li>
+<li><strong>Adding when you should multiply.</strong> Independent selections from separate pools multiply.</li>
+<li><strong>Summing "at least" cases and missing one.</strong> Use the complement.</li>
+<li><strong>Treating identical items as distinct</strong> (or vice versa). Read whether the objects are distinguishable.</li>
+<li><strong>Double counting</strong> when a person could belong to two categories.</li>
+<li><strong>Choosing "3 out of 9 in order" for a ranked list</strong> — that <em>is</em> a permutation. Re-read whether roles differ (president/secretary vs plain members).</li>
+</ul>
+<hr />
+<h2>5. Speed Tricks</h2>
+<ul>
+<li><strong>Order matters -&gt; P. Order doesn't -&gt; C.</strong> Decide before writing.</li>
+<li><strong>Use the symmetry rule</strong> to make r as small as possible.</li>
+<li><strong>C(n,2) = n(n-1)/2</strong> covers handshakes, pairings, line segments between points, and diagonals.</li>
+<li><strong>Cancel before multiplying</strong> in the factorial expression — never compute 9! outright.</li>
+<li><strong>"At least one" -&gt; total minus none.</strong></li>
+<li><strong>A quick sanity check:</strong> C(n,r) is always a whole number, and always less than or equal to P(n,r).</li>
+</ul>
+<hr />
+<h2>6. Self-Check</h2>
+<p><strong>Q1.</strong> How many ways can 3 books be chosen from 7?</p>
+<p><strong>Q2.</strong> How many handshakes occur if 12 people each shake hands once with every other?</p>
+<p><strong>Q3.</strong> From 4 boys and 5 girls, how many groups of 4 contain exactly 2 boys?</p>
+<details>
+<summary>Answers</summary>
+<p><strong>A1.</strong> C(7,3) = (7x6x5)/6 = <strong>35</strong>.</p>
+<p><strong>A2.</strong> C(12,2) = 12x11/2 = <strong>66</strong>.</p>
+<p><strong>A3.</strong> C(4,2) x C(5,2) = 6 x 10 = <strong>60</strong>.</p>
+</details>
+<hr />
+<h2>7. One-Line Summary for the Board</h2>
+<blockquote>
+<p>Combination = selection without order. C(n,r) = C(n, n-r). Handshakes are always n(n-1)/2.</p>
+</blockquote></div>
+      <div class="lrn-res-row"><a class="lrn-res" href="/learn/practice/combinations.html"><span class="lrn-res-k">Practice sheet</span><span class="lrn-res-t">30 questions, level-wise, full solutions</span></a><a class="lrn-res" href="/gre_practice_logger_free.html?topic=STA-CMB"><span class="lrn-res-k">Drill this subtopic</span><span class="lrn-res-t">STA-CMB — timed practice with named traps</span></a></div>
+      <div class="lrn-pn-row"><a class="lrn-pn" href="/learn/statistics-probability/counting-permutations.html"><span>← Previous</span><b>Counting Principle &amp; Permutations</b></a><a class="lrn-pn lrn-pn-next" href="/learn/statistics-probability/basic-probability.html"><span>Next →</span><b>Basic Probability</b></a></div>
+    </article>
+  </div>
+</main>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">GRE Quant <em>Pro</em></div>
+    <div class="footer-links">
+      <a href="/learn/">Concept Notes</a>
+      <a href="/diagnostic.html">Diagnostic</a>
+      <a href="/pricing.html">Pricing</a>
+      <a href="mailto:goenka.aditya.kol@gmail.com">Contact</a>
+    </div>
+    <div class="footer-copy">Built by Coach Aditya Goenka · <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a></div>
+  </div>
+</footer>
+
+<script>
+function toggleMenu(){
+  var m=document.getElementById('mobileMenu');
+  var o=m.classList.toggle('open');
+  var h=document.querySelector('.hamburger'); if(h) h.setAttribute('aria-expanded',String(o));
+}
+document.addEventListener('click',function(e){
+  var m=document.getElementById('mobileMenu');
+  if(m.classList.contains('open')&&!m.contains(e.target)&&!e.target.closest('.hamburger')) m.classList.remove('open');
+});
+</script>
+<script src="/analytics.js"></script>
+<script>
+/* The capsules are written in plain ASCII deliberately: they are also read
+   in WhatsApp, in print and in plain markdown viewers, where no renderer
+   exists. So the maths is typeset here, at display time, from the same
+   source — nothing in the .md files has to change. */
+(function () {
+  function typeset() {
+    if (!window.GREMath) return;
+    var main = document.querySelector('main') || document.body;
+    window.GREMath.renderIn(main);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', function () { setTimeout(typeset, 0); });
+  else setTimeout(typeset, 0);
+  // KaTeX is deferred, so run again once it has actually landed.
+  window.addEventListener('load', typeset);
+})();
+</script>
+</body>
+</html>
