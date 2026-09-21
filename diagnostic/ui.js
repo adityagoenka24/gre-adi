@@ -25,7 +25,8 @@ import * as pdfjsLib from './vendor/pdf.min.mjs';
 import { parseDiagnostic, QUESTION_TYPES, SETTINGS } from './parser.js';
 import { analyse } from './analysis.js';
 import { buildPlan, WEEK_OPTIONS, AREA_TO_TOPICS } from './plan.js';
-import { gapMeter, areaBars, timingMap, timingLegend, timingTable, hideTip } from './charts.js';
+import { gapMeter, areaBars, timingMap, timingLegend, timingTable, hideTip,
+         paperGrid, paperLegend, difficultyLadder, typeBars } from './charts.js';
 import { take } from './handoff.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = './diagnostic/vendor/pdf.worker.min.mjs';
@@ -43,7 +44,7 @@ const mmss = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
 const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const track = (n, d) => { try { window.GQP?.track?.(n, d); } catch {} };
 
-const state = { rows: [], analysis: null, plan: null, taxonomy: null, target: 165, weeks: 8, narrow: [] };
+const state = { rows: [], analysis: null, plan: null, taxonomy: null, target: 165, weeks: 8, narrow: [], testDate: null };
 
 /* ---------- screens ---------- */
 function show(id) {
@@ -301,6 +302,57 @@ function renderPersonalize() {
     computeAnalysisAndPlan();
     renderReport();
   }, (v) => `${v} weeks`);
+
+  // The real date is optional and sits beside the week pills rather than
+  // in front of the report: a student who gives it gets the plan sized to
+  // the time they actually have, and one who doesn't loses nothing.
+  const date = $('#dxTestDate');
+  if (date && !date.dataset.wired) {
+    date.dataset.wired = '1';
+    date.min = isoDay(new Date());
+    date.addEventListener('change', () => {
+      state.testDate = date.value || null;
+      const days = daysUntil(state.testDate);
+      if (days !== null && days > 0) {
+        // Use as much of the runway as the plan lengths allow.
+        const fits = WEEK_OPTIONS.filter((w) => w * 7 <= days);
+        const chosen = fits.length ? Math.max(...fits) : Math.min(...WEEK_OPTIONS);
+        state.weeks = chosen;
+        track('diagnostic_test_date_set', { days, weeks: chosen });
+        computeAnalysisAndPlan();
+        renderReport();
+        return;
+      }
+      renderCountdown();
+    });
+  }
+  if (date && state.testDate && date.value !== state.testDate) date.value = state.testDate;
+  renderCountdown();
+}
+
+const isoDay = (d) => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+
+function daysUntil(iso) {
+  if (!iso) return null;
+  const then = new Date(`${iso}T00:00:00`);
+  if (Number.isNaN(+then)) return null;
+  const now = new Date(); now.setHours(0, 0, 0, 0);
+  return Math.round((then - now) / 86400000);
+}
+
+function renderCountdown() {
+  const el = $('#dxCountdown');
+  if (!el) return;
+  const days = daysUntil(state.testDate);
+  if (days === null) { el.innerHTML = ''; return; }
+  if (days <= 0) { el.textContent = 'That date has gone — pick the next one.'; return; }
+  const sessions = Math.floor((days / 7) * 4);
+  const slack = days - state.weeks * 7;
+  el.innerHTML =
+    `<b>${days} day${days === 1 ? '' : 's'}</b> — about ${sessions} sessions at four a week. ` +
+    (slack >= 0
+      ? `Your ${state.weeks}-week plan finishes ${slack} day${slack === 1 ? '' : 's'} before it.`
+      : `Your ${state.weeks}-week plan runs ${Math.abs(slack)} day${Math.abs(slack) === 1 ? '' : 's'} past it.`);
 }
 
 /* ============================================================
@@ -365,21 +417,24 @@ function renderReport() {
     ? `<b>Also: ${esc(secondary.label)}</b><p>${esc(secondary.evidence)}</p>` : '';
   $('#dxSecond').style.display = secondary ? '' : 'none';
 
+  // The estimated score leads. It is the number they opened the page for,
+  // and everything after it is the explanation of how it got that way.
   const tiles = [
+    { v: a.score.label, l: 'estimated Quant score', alert: false },
     { v: `${a.overall.correct}/${a.overall.n}`, l: 'correct', alert: false },
     { v: `${a.gap.questionsAway}`, l: `questions from ${a.gap.target}`, alert: true },
     { v: mmss(a.timing.sunkSeconds), l: 'lost to questions you got wrong', alert: a.timing.sunkSeconds > 300 },
-    { v: `${a.timing.totalSpare}s`, l: 'spare across the whole test', alert: a.timing.totalSpare < 60 },
   ];
   $('#dxTiles').innerHTML = tiles.map((t) =>
     `<div class="dx-tile${t.alert ? ' alert' : ''}"><div class="dx-tile-v">${esc(t.v)}</div><div class="dx-tile-l">${esc(t.l)}</div></div>`).join('');
 
-  /* --- gap --- */
-  $('#dxGapText').innerHTML = a.gap.reached
-    ? `You are already at <b>${a.gap.target}</b> on this diagnostic. The plan below holds it there under pressure.`
-    : `You got <b>${a.gap.have} of ${a.overall.n}</b>. A ${a.gap.target} needs about <b>${a.gap.need}</b>. That is <b>${a.gap.questionsAway} questions</b>${a.gap.named ? ` — and <b>${a.gap.named}</b> of them are already named below` : ''}.`;
-  const gapHost = $('#dxGapChart'); gapHost.innerHTML = ''; gapHost.appendChild(gapMeter(a));
-  $('#dxGapCaveat').textContent = a.gap.estimateCaveat;
+  /* --- the paper, priced --- */
+  renderPaper();
+
+  /* --- the ceiling, the formats, the two sections --- */
+  renderCeiling();
+  renderFormat();
+  renderSections();
 
   /* --- areas --- */
   const barHost = $('#dxAreaChart'); barHost.innerHTML = ''; barHost.appendChild(areaBars(a));
@@ -433,9 +488,243 @@ function renderReport() {
   $('#dxUpsell').style.display = p.meta.upgradeLine ? '' : 'none';
   if (p.meta.upgradeLine) $('#dxUpsellText').innerHTML = esc(p.meta.upgradeLine);
 
+  /* --- what the ETS report structurally cannot answer --- */
+  renderMoat();
+
   /* --- what we did not conclude --- */
   $('#dxGuards').innerHTML =
     `<b>What this does not tell you.</b><ul>${a.guards.map((g) => `<li>${esc(g)}</li>`).join('')}</ul>`;
+}
+
+/* ============================================================
+   The paper, priced
+   The centre of the upgraded report. The ETS table is 27 rows of
+   grey; this turns it into 27 objects with a price on each, and
+   then spends them against the student's own target.
+   ============================================================ */
+
+function renderPaper() {
+  const a = state.analysis, L = a.ledger;
+
+  $('#dxPaperIntro').innerHTML =
+    `You got <b>${a.overall.correct} of ${a.overall.n}</b> — about <b>${esc(a.score.label)}</b> on the 130–170 scale. ` +
+    `Every box below is one question, coloured by what it would actually cost you to own it. ` +
+    `The number inside is ETS's difficulty level for that question.`;
+
+  const gridHost = $('#dxPaperChart'); gridHost.innerHTML = ''; gridHost.appendChild(paperGrid(a));
+  const legHost = $('#dxPaperLegend'); legHost.innerHTML = ''; legHost.appendChild(paperLegend(a));
+  // The gap meter used to sit in a band of its own that restated these
+  // very numbers a paragraph later. It belongs with the route.
+  const gapHost = $('#dxGapChart'); gapHost.innerHTML = ''; gapHost.appendChild(gapMeter(a));
+
+  const host = $('#dxRoute');
+  if (a.gap.reached) {
+    host.innerHTML =
+      `<div class="dx-route-foot">You already cleared <b>${a.gap.target}</b> on this paper. ` +
+      `The plan below is about holding it when the questions are unfamiliar and the clock is real.</div>`;
+    $('#dxRouteNote').textContent = a.gap.estimateCaveat;
+    return;
+  }
+
+  const head =
+    `<div class="dx-route-foot"><b>${a.gap.target} needs about ${a.gap.need} of ${a.overall.n}.</b> ` +
+    `You got ${a.gap.have}. Here is where the missing ${a.gap.questionsAway} ` +
+    `${a.gap.questionsAway === 1 ? 'question comes' : 'questions come'} from — cheapest first.</div>`;
+
+  const rows = L.route.map((s) => `
+    <div class="dx-route-row${s.key === 'careless' ? ' is-free' : ''}">
+      <div class="dx-route-n">${s.take}</div>
+      <div class="dx-route-b">
+        <div class="dx-route-t">${esc(s.label)}${s.take < s.available ? ` <span style="font-weight:600;color:var(--ink3)">(${s.available} available)</span>` : ''}</div>
+        <div class="dx-route-d">${esc(s.why)}</div>
+      </div>
+    </div>`).join('');
+
+  const tail = L.shortfall > 0
+    ? `<div class="dx-route-foot">The last <b>${L.shortfall}</b> cannot come from this paper's mistakes — ` +
+      `they are questions you have not shown you can do yet. That is new ground, and it is what the later weeks of the plan are for.</div>`
+    : L.perfectRequired
+      ? `<div class="dx-route-foot">Worth saying plainly: a <b>${a.gap.target}</b> on this estimate means <b>every question</b>. ` +
+        `There is no slack anywhere in that route.</div>`
+      : `<div class="dx-route-foot">Every one of those ${a.gap.questionsAway} is a question you got wrong on a paper you have already sat — ` +
+        `not a harder test you have yet to face.</div>`;
+
+  host.innerHTML = head + rows + tail;
+  $('#dxRouteNote').textContent = a.gap.estimateCaveat +
+    ' This route shows where the missing questions sit, not a promise that every one of them converts.';
+}
+
+/* ============================================================
+   The ceiling — the chart the ETS report implies and never draws
+   ============================================================ */
+
+function renderCeiling() {
+  const a = state.analysis, d = a.difficulty, proven = a.ledger.provenLevel;
+  const provenRow = d.levels.find((l) => l.level === proven);
+  const above = d.levels.filter((l) => l.level > proven && l.n >= 2);
+  const aboveN = above.reduce((x, l) => x + l.n, 0);
+  const aboveC = above.reduce((x, l) => x + l.correct, 0);
+
+  // A ceiling is only a ceiling when the curve actually falls. On an
+  // erratic curve, saying "you hold level 4" while the student is 50% at
+  // level 3 would be plainly wrong — and the honest read there is the
+  // more useful one anyway, because holes close faster than ceilings rise.
+  const holes = d.levels.filter((l) => l.n >= 2 && l.pct < a.config.CEILING_PCT);
+  const held = d.levels.filter((l) => l.n >= 2 && l.pct >= a.config.CEILING_PCT);
+  const listLevels = (ls) => ls.map((l) => `level ${l.level} (${l.pct}%)`).join(', ');
+
+  $('#dxCeilingRead').innerHTML = !d.monotonic && holes.length && held.length
+    ? `Your accuracy does not track difficulty. You are strong at ${listLevels(held)} ` +
+      `but fall away at ${listLevels(holes)} — <b>below</b> some of the levels you handle well. ` +
+      `A real ceiling fails upward in order; yours does not. That means specific topic gaps rather than a level limit, ` +
+      `and gaps close a great deal faster than a ceiling rises.`
+    : proven
+      ? `You hold <b>level ${proven}</b> — ${provenRow.correct} of ${provenRow.n}, ${provenRow.pct}%.` +
+        (aboveN
+          ? ` Above it you are <b>${aboveC} of ${aboveN}</b>. That line is where your score is decided: the distance between a 160 and a 165 is almost entirely level 4 and 5 questions.`
+          : ' There were too few questions above it here to read where the fall begins.')
+      : `No difficulty level here cleared the reliable line, so this is about rebuilding the base rather than raising a ceiling.`;
+
+  const host = $('#dxCeilingChart'); host.innerHTML = ''; host.appendChild(difficultyLadder(a));
+  // On an erratic curve the read above already says what d.read says, so
+  // printing both puts the same sentence twice in a row.
+  $('#dxCeilingNote').textContent =
+    (d.monotonic ? `${d.read} ` : '') +
+    `The dashed line is ${a.config.CEILING_PCT}% — the bar a level has to clear before it counts as one you hold. ` +
+    `Faded bars had too few questions behind them to read.`;
+}
+
+/* ============================================================
+   Formats — QC is a third of the section and a different skill
+   ============================================================ */
+
+function renderFormat() {
+  const a = state.analysis;
+  const overall = a.overall.pct;
+  const readable = a.types.filter((t) => !t.thin);
+
+  // Only three of the four formats carry a method of their own. Plain
+  // multiple choice is the default wrapper for most of the section, so
+  // being a little below average on it is just where the questions live
+  // — calling that a "format problem" would send a student to fix
+  // something that isn't broken. QC leads when it is down at all,
+  // because it is the one format that is a genuinely separate skill.
+  const METHOD_NOTE = {
+    QC: 'Quantitative Comparison is about a third of every Quant section, and it is a different skill from the algebra underneath it — you are comparing, not solving, and a good chunk of them never need a full calculation. It trains on its own, and it trains fast.',
+    MCM: 'Select-one-or-more gives no partial credit, so a single missed option costs the whole question. It is a checking discipline — test every option independently — rather than harder maths.',
+    NE: 'Numeric Entry takes away the options, so you cannot work backwards or eliminate. Set up once and commit; re-deriving is what eats the clock here.',
+  };
+  const qc = readable.find((t) => t.key === 'QC');
+  const methodTypes = readable.filter((t) => METHOD_NOTE[t.key]);
+  const material = a.config.TYPE_MATERIAL_GAP;
+  const pick = (qc && qc.pct < overall - material)
+    ? qc
+    : methodTypes.slice().sort((x, y) => x.pct - y.pct)[0];
+
+  $('#dxFormatRead').innerHTML = pick && !pick.thin && pick.pct < overall - material
+    ? `<b>${esc(pick.label)}</b> is ${pick.pct}% for you against ${overall}% overall — ${pick.correct} of ${pick.n}. ${METHOD_NOTE[pick.key]}`
+    : `No single question format is costing you points here — your accuracy holds across all four, so the work below is about content and the clock rather than format technique.`;
+
+  const host = $('#dxFormatChart'); host.innerHTML = ''; host.appendChild(typeBars(a));
+
+  const s = a.settings;
+  const weak = s.favours === 'real' ? 'pure' : 'real';
+  const card = (k, t, v, d) => `
+    <div class="dx-split-card${s.significant && k === weak ? ' is-weak' : ''}">
+      <div class="dx-split-v">${v}</div>
+      <div class="dx-split-l">${t}</div>
+      <div class="dx-split-d">${d}</div>
+    </div>`;
+  $('#dxSettingSplit').innerHTML =
+    card('pure', 'Abstract questions', `${s.pure.correct}/${s.pure.n}`, 'Pure symbols — an equation, a ratio, a figure with no story around it.') +
+    card('real', 'Real-life questions', `${s.real.correct}/${s.real.n}`, 'The same maths wrapped in a situation you have to translate first.') +
+    `<div class="dx-split-card"><div class="dx-split-v">${Math.abs(s.gap)}</div>
+       <div class="dx-split-l">point gap</div>
+       <div class="dx-split-d">${s.significant
+         ? `Real and worth naming — it points at ${s.favours === 'real' ? 'symbolic fluency' : 'translating the words into maths'}, not at the topics themselves.`
+         : 'Too small to read as a real split — the two sit within noise of each other.'}</div></div>`;
+}
+
+/* ============================================================
+   Section 1 vs Section 2 — the adaptive read
+   Most students never learn that the second section's difficulty is
+   chosen by how the first one went, so they read a lower second
+   score as failure. Often it is the opposite.
+   ============================================================ */
+
+function renderSections() {
+  const a = state.analysis, [s1, s2] = a.sections;
+  $('#dxSectionRead').innerHTML = esc(a.stamina.read);
+
+  const card = (s, label) => `
+    <div class="dx-sec-card">
+      <div class="dx-sec-h">${label}</div>
+      <div class="dx-sec-v">${s.correct}/${s.n} · ${s.pct}%</div>
+      <div class="dx-sec-m">Average difficulty <b>${s.meanDifficulty.toFixed(1)}</b> of 5<br>
+        Used <b>${mmss(s.seconds)}</b> of ${mmss(s.budget)}${s.spare >= 0 ? ` — ${mmss(Math.abs(s.spare))} spare` : ''}</div>
+    </div>`;
+  $('#dxSectionStats').innerHTML = card(s1, 'Section 1') + card(s2, 'Section 2') + `
+    <div class="dx-sec-card">
+      <div class="dx-sec-h">Difficulty shift</div>
+      <div class="dx-sec-v">${a.stamina.difficultyRise > 0 ? '+' : ''}${a.stamina.difficultyRise}</div>
+      <div class="dx-sec-m">${a.stamina.secondSectionHarder
+        ? 'The engine raised the level because Section 1 went well. Some of the accuracy drop is the reward, not a fault.'
+        : 'Both sections sat at a similar level, so the change in accuracy is about stamina rather than a harder paper.'}</div>
+    </div>`;
+
+  $('#dxSectionNote').textContent =
+    'GRE Quant is section-adaptive: how you do in Section 1 chooses how hard Section 2 is. ' +
+    'That makes Section 1 worth more than its share of questions — which is why the plan front-loads accuracy over speed.';
+}
+
+/* ============================================================
+   The honest moat
+   Every line here is a real, structural limit of the ETS report —
+   not a sales claim dressed as one. That is the point: the gap is
+   genuine, so naming it plainly is both the truthful thing to do
+   and the strongest argument for the thing that closes it.
+   ============================================================ */
+
+function renderMoat() {
+  const a = state.analysis, p = state.plan;
+  const w = a.weakestArea;
+  const inArea = Object.entries(state.taxonomy || {})
+    .filter(([, v]) => (AREA_TO_TOPICS[w.key] || []).includes(v.topic))
+    .map(([, v]) => v);
+  const subs = inArea.length;
+  // Example subtopics must come from the student's OWN weakest area —
+  // an earlier draft hardcoded them and cheerfully offered "ratios or
+  // remainders" as examples of Geometry.
+  const egs = inArea.slice().sort((x, y) => (y.count || 0) - (x.count || 0))
+    .slice(0, 2).map((v) => v.name);
+
+  $('#dxMoatLead').innerHTML =
+    `Everything above came out of a single ETS table, and that table has hard limits. ` +
+    `These are the questions it cannot answer about you — worth knowing whether or not you ever pay us a rupee.`;
+
+  const items = [
+    `<b>It names four areas, never a topic.</b> It can tell you ${esc(w.label)} is ${w.correct} of ${w.n}. ` +
+    `It cannot tell you which of the <b>${subs || 'dozen-odd'} ${esc(w.label)} subtopics</b> actually broke` +
+    (egs.length === 2 ? ` — ${esc(egs[0])} or ${esc(egs[1])}, or one of the ${Math.max(0, subs - 2)} others. ` : '. ') +
+    `No tool reading this file can, including this one. Only questions tagged at subtopic level can.`,
+
+    `<b>It says you got it wrong. It never says why.</b> A wrong answer on this report is one bit of information. ` +
+    `It does not know whether you misread the question, fell for the trap answer, or never knew the rule — and those three need completely different fixes.`,
+
+    `<b>It is one sitting, frozen.</b> There is no second data point, so nothing here can tell you whether a fix held, ` +
+    `or whether the ${a.timing.sunk.length} question${a.timing.sunk.length === 1 ? '' : 's'} you sank time into ${a.timing.sunk.length === 1 ? 'is' : 'are'} a habit or a bad morning.`,
+
+    `<b>It cannot put a question in front of you.</b> It is a record of a paper you have already sat. ` +
+    `Reading it changes nothing by itself — the points come from the reps afterwards.`,
+  ];
+  $('#dxMoatList').innerHTML = items.map((t) => `<li>${t}</li>`).join('');
+
+  // The price lives in the band directly below this one, so this note
+  // is the bridge into it rather than a second pitch with a second ask.
+  const m = p?.meta;
+  $('#dxMoatNote').innerHTML = m && m.proQuestions
+    ? `Each of those four is a data problem, and all four are fixed the same way — by questions tagged at subtopic level, by the trap each one punishes, and by sitting more than once. That is what the bank underneath your plan is: <b>${m.proQuestions} more questions</b> across the ${m.gatedCodes.length} subtopics it already named for you, plus the mocks and sectionals that give you the second reading.`
+    : `Each of those four is a data problem, and all four are fixed the same way — by questions tagged at subtopic level, by the trap each one punishes, and by sitting more than once.`;
 }
 
 /** One tap that turns the ETS-area inference into a fact. The report

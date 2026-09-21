@@ -27,6 +27,9 @@ export const CONFIG = {
   ADAPTIVE_DELTA: 0.4,      // mean-difficulty rise that counts as "harder S2"
   FADER_DROP: 12,           // S1->S2 accuracy drop, in points
   SETTING_GAP: 20,          // Pure/Real gap worth naming
+  TYPE_MATERIAL_GAP: 5,     // points below overall before a format is worth naming
+                            // — the chart paints by this too, so a bar is never
+                            //   coloured as a problem the copy then calls noise
   WALL_MIN_ERRORS: 3,
   SINKER_MIN_COUNT: 2,
   SINKER_MIN_SECONDS: 420,
@@ -49,6 +52,40 @@ export const CONFIG = {
  *  by form, so these are estimates and the UI must label them as
  *  such. Kept here so they are tuned in one place. */
 export const RAW_FOR_SCALED = { 160: 21, 162: 22, 165: 24, 168: 26, 170: 27 };
+
+/** The same estimate read the other way — what a given raw score is
+ *  worth — extended across the full range so a student can be told what
+ *  their paper scored, not only how far it sits from a target. Anchored
+ *  on exactly the five points above (21->160, 22->162, 24->165, 26->168,
+ *  27->170) and filled in at roughly 1.5 scaled points per question
+ *  below that band, which is where real Quant conversions sit: the
+ *  scale compresses near the top and spreads out lower down.
+ *
+ *  It is an ESTIMATE. ETS publishes no conversion table and it moves by
+ *  form, so nothing may print a bare number from this — always the band
+ *  from scoreBand(), always with the caveat alongside. */
+export const SCALED_FOR_RAW = {
+  27: 170, 26: 168, 25: 166, 24: 165, 23: 163, 22: 162, 21: 160,
+  20: 159, 19: 157, 18: 156, 17: 154, 16: 153, 15: 151, 14: 150,
+  13: 148, 12: 147, 11: 145, 10: 144, 9: 142, 8: 141, 7: 139,
+  6: 138, 5: 136, 4: 135, 3: 133, 2: 132, 1: 131, 0: 130,
+};
+
+/** Half-width of the printed band. +/-2 is honest about form-to-form
+ *  movement without being so wide the number stops meaning anything. */
+export const SCORE_BAND_WIDTH = 2;
+
+/** raw correct -> { mid, low, high, label } on the 130-170 scale. */
+export function scoreBand(raw) {
+  const n = Math.max(0, Math.min(27, Math.round(raw)));
+  const mid = SCALED_FOR_RAW[n] ?? 130;
+  return {
+    raw: n, mid,
+    low: Math.max(130, mid - SCORE_BAND_WIDTH),
+    high: Math.min(170, mid + SCORE_BAND_WIDTH),
+    get label() { return this.low === this.high ? `${this.mid}` : `${this.low}\u2013${this.high}`; },
+  };
+}
 
 export const AREA_LABELS = {
   Arithmetic: 'Arithmetic', Algebra: 'Algebra',
@@ -169,10 +206,18 @@ export function analyse(rows, opts = {}) {
   const rushed = errors.filter((r) => r.seconds <= cfg.RUSHED_SECONDS)
     .sort((a, b) => a.seconds - b.seconds);
   const rightRows = rows.filter((r) => r.verdict === 'R');
+  // What one question is actually worth in time on this paper: 12 in 21
+  // minutes and 15 in 26 is about 1:45 each. Sunk time is far easier to
+  // feel as "that was N questions' worth" than as a number of seconds.
+  const perQuestionBudget = rows.length
+    ? Math.round((SECTION_BUDGETS[1] + SECTION_BUDGETS[2]) / rows.length) : 0;
+  const sunkSecondsTotal = sum(sunk, (r) => r.seconds);
   const timing = {
     avgWrong: errors.length ? Math.round(mean(errors, (r) => r.seconds)) : null,
     avgRight: rightRows.length ? Math.round(mean(rightRows, (r) => r.seconds)) : null,
-    sunk, sunkSeconds: sum(sunk, (r) => r.seconds),
+    sunk, sunkSeconds: sunkSecondsTotal,
+    perQuestionBudget,
+    sunkInQuestions: perQuestionBudget ? round1(sunkSecondsTotal / perQuestionBudget) : 0,
     rushed, totalSpare,
     // Scatter data for the timing map — the one chart that must ship.
     points: rows.map((r) => ({
@@ -292,6 +337,102 @@ export function analyse(rows, opts = {}) {
     estimateCaveat: 'ETS publishes no raw-to-scaled table and it varies by form, so this is an estimate.',
   };
 
+  /* --- the ledger: every error priced by what it costs to fix ---
+
+     The job of this block is to turn "you are 8 questions short" into a
+     ROUTE made of the student's own errors. It deliberately does not
+     predict a future score: an earlier draft projected one from the
+     hardest question each student got right, and because both verified
+     students got a single level-5 correct, it happily promised them
+     both a perfect paper. Prefer the true finding to the flattering one.
+
+       provenLevel  the hardest level they hold RELIABLY — at or above
+                    CEILING_PCT on a real sample. One lucky level-5 is
+                    not command of level 5.
+       careless     wrong, under a minute, at or below provenLevel.
+                    They have shown they can do this level. Already theirs.
+       sunk         wrong after two minutes or more. The claim here is
+                    the CLOCK, never the key: that time belonged to
+                    other questions.
+       areaGap      wrong, in the weakest area — the one the plan leads
+                    with. Named, targeted work.
+       other        everything else wrong. Real ground, no promises. */
+  const provenLevel = [...levels].reverse()
+    .find((l) => l.n >= 2 && l.pct >= cfg.CEILING_PCT)?.level ?? 0;
+
+  const sunkSet = new Set(sunk);
+  const careless = errors.filter((r) => !sunkSet.has(r)
+    && r.seconds <= cfg.RUSHED_SECONDS
+    && r.difficulty && r.difficulty <= provenLevel);
+  const carelessSet = new Set(careless);
+  const areaGap = errors.filter((r) => !sunkSet.has(r) && !carelessSet.has(r)
+    && r.area === weakest.key);
+  const areaGapSet = new Set(areaGap);
+  const other = errors.filter((r) => !sunkSet.has(r) && !carelessSet.has(r) && !areaGapSet.has(r));
+
+  const bucketOf = (r) => {
+    if (r.verdict === 'R') return 'correct';
+    if (sunkSet.has(r)) return 'sunk';
+    if (carelessSet.has(r)) return 'careless';
+    if (areaGapSet.has(r)) return 'areaGap';
+    return 'other';
+  };
+
+  /* The route: spend the cheapest questions first, never claim more
+     from a bucket than it actually holds, and say plainly when the
+     buckets cannot cover the whole gap. */
+  const supply = [
+    { key: 'careless', available: careless.length,
+      label: 'Already yours',
+      why: provenLevel
+        ? `wrong in under a minute, at a level you are otherwise ${levels.find((l) => l.level === provenLevel)?.pct ?? 0}% on. You can already do these.`
+        : 'wrong in under a minute — rushed rather than unknown.' },
+    { key: 'sunk', available: sunk.length,
+      label: 'Locked in the clock',
+      why: `${sunk.length} question${sunk.length === 1 ? '' : 's'} took ${Math.floor(timing.sunkSeconds / 60)}:${String(timing.sunkSeconds % 60).padStart(2, '0')} between them and returned nothing \u2014 ${timing.sunkInQuestions} questions' worth of the paper. Walking away at the two-minute mark does not make these right on its own; it buys back the only thing that can, which is a real attempt at them and at whatever you rushed instead.` },
+    { key: 'areaGap', available: areaGap.length,
+      label: `Named ${weakest.label} gaps`,
+      why: `${weakest.label} is your weakest area at ${weakest.correct} of ${weakest.n}. These are the errors the plan below works on first.` },
+    { key: 'other', available: other.length,
+      label: 'The rest of the paper',
+      why: 'Spread across areas with no single pattern — volume work rather than surgery.' },
+  ];
+
+  let remaining = questionsAway;
+  const route = [];
+  for (const s of supply) {
+    if (remaining <= 0 || s.available <= 0) continue;
+    const take = Math.min(remaining, s.available);
+    route.push({ ...s, take });
+    remaining -= take;
+  }
+
+  const ledger = {
+    provenLevel,
+    careless, sunk, areaGap, other,
+    counts: {
+      correct: have, careless: careless.length, sunk: sunk.length,
+      areaGap: areaGap.length, other: other.length,
+    },
+    today: scoreBand(have),
+    alreadyYours: scoreBand(have + careless.length),
+    gainAlready: careless.length,
+    route,
+    // A 170 needs every question on this estimate. A student aiming there
+    // deserves to be told the route has no slack in it rather than being
+    // shown a tidy plan that quietly assumes a perfect paper.
+    perfectRequired: need >= rows.length,
+    routeCovers: questionsAway - remaining,
+    shortfall: remaining,           // gap the student's own errors cannot cover
+    coversGap: remaining === 0,
+    // One cell per question, for the 27-box "your paper at a glance".
+    cells: rows.map((r) => ({
+      bucket: bucketOf(r), section: r.section, area: r.area,
+      difficulty: r.difficulty, seconds: r.seconds, verdict: r.verdict,
+      qtype: r.qtype, ref: r.ref,
+    })),
+  };
+
   /* --- what was deliberately not said --- */
   const guards = [];
   for (const t of types) if (t.thin) guards.push(`${t.label}: only ${t.n} question${t.n === 1 ? '' : 's'} — too few to read`);
@@ -304,7 +445,8 @@ export function analyse(rows, opts = {}) {
   return {
     overall: tally(rows, cfg),
     sections, areas, difficulty, types, settings, timing, stamina,
-    archetypes, gap, guards,
+    archetypes, gap, guards, ledger,
+    score: ledger.today,
     weakestArea: weakest,
     config: cfg,
   };

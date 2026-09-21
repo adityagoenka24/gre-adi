@@ -113,6 +113,78 @@
 .dx-seg button[aria-pressed="true"] { border-color: var(--navy); background: var(--navy); color: #fff }
 .dx-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 22px }
 
+/* ---------- upgraded report: date, route, splits, moat ---------- */
+
+/* the legend swatch for the paper grid (the timing legend draws its own SVG) */
+.dx-key i {
+  width: 15px; height: 15px; border-radius: 4px; border: 1.6px solid transparent;
+  display: inline-block; flex: none;
+}
+
+.dx-date {
+  width: 100%; padding: 8px 11px; border: 1.5px solid var(--line2); border-radius: 8px;
+  font-family: var(--ff); font-size: 14px; font-weight: 700; color: var(--ink); background: #fff;
+}
+.dx-countdown { margin-top: 7px; font-size: 13px; font-weight: 700; color: var(--accent-dark); min-height: 17px }
+
+/* --- the route: how the gap gets closed, cheapest questions first --- */
+.dx-route { margin-top: 24px; border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden }
+.dx-route-row { display: flex; gap: 16px; align-items: flex-start; padding: 16px 18px; border-top: 1px solid var(--line) }
+.dx-route-row:first-child { border-top: none }
+.dx-route-row.is-free { background: var(--gold-soft) }
+.dx-route-n {
+  flex: none; width: 42px; height: 42px; border-radius: 10px; display: flex;
+  align-items: center; justify-content: center; font-family: var(--ff);
+  font-weight: 800; font-size: 19px; color: #fff; background: var(--navy);
+}
+.dx-route-row.is-free .dx-route-n { background: var(--gold) }
+.dx-route-b { flex: 1; min-width: 0 }
+.dx-route-t { font-weight: 800; font-size: 15.5px; color: var(--navy) }
+.dx-route-d { margin-top: 4px; font-size: 14.5px; color: var(--ink2); line-height: 1.6 }
+.dx-route-foot {
+  padding: 15px 18px; background: var(--paper2); border-top: 1px solid var(--line);
+  font-size: 14.5px; color: var(--ink2); line-height: 1.6;
+}
+.dx-route-foot b { color: var(--navy) }
+
+/* --- abstract vs real-life, two stat cards --- */
+.dx-split { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 20px }
+.dx-split-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px }
+.dx-split-card.is-weak { border-color: var(--accent); background: var(--accent-soft) }
+.dx-split-v { font-family: var(--ff); font-weight: 800; font-size: 27px; color: var(--navy); line-height: 1 }
+.dx-split-l { margin-top: 6px; font-size: 13.5px; color: var(--ink2); font-weight: 700 }
+.dx-split-d { margin-top: 7px; font-size: 13px; color: var(--ink3); line-height: 1.6 }
+
+/* --- section 1 vs 2 --- */
+.dx-sections { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; margin-top: 20px }
+.dx-sec-card { background: var(--card); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px }
+.dx-sec-h { font-size: 12px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--ink3) }
+.dx-sec-v { margin-top: 8px; font-family: var(--ff); font-weight: 800; font-size: 27px; color: var(--navy); line-height: 1 }
+.dx-sec-m { margin-top: 8px; font-size: 13px; color: var(--ink2); line-height: 1.6 }
+.dx-sec-m b { color: var(--navy) }
+
+/* --- the honest moat: what the ETS report structurally cannot say --- */
+.dx-moat {
+  margin-top: 30px; padding: 30px; border-radius: var(--radius-lg);
+  background: var(--card); border: 1px solid var(--line2); border-left: 4px solid var(--accent);
+}
+.dx-moat h3 {
+  font-family: var(--fd); font-weight: 600; font-size: 23px; color: var(--navy); letter-spacing: -.01em;
+}
+.dx-moat-lead { margin-top: 10px; font-size: 15.5px; color: var(--ink2); line-height: 1.7; max-width: 64ch }
+.dx-moat-list { margin: 18px 0 0; padding: 0; list-style: none }
+.dx-moat-list li {
+  position: relative; padding: 0 0 0 30px; margin-top: 13px;
+  font-size: 15px; color: var(--ink2); line-height: 1.65;
+}
+.dx-moat-list li::before {
+  content: ''; position: absolute; left: 4px; top: 7px; width: 9px; height: 9px;
+  border-radius: 50%; border: 2.5px solid var(--accent);
+}
+.dx-moat-list li b { color: var(--navy) }
+.dx-moat-cta { margin-top: 24px; display: flex; flex-wrap: wrap; gap: 14px; align-items: center }
+.dx-moat-note { font-size: 13.5px; color: var(--ink3); line-height: 1.6 }
+
 /* ---------- report ---------- */
 .dx-band { padding: 44px 0; border-bottom: 1px solid var(--line) }
 .dx-band:last-child { border-bottom: none }
@@ -166,6 +238,10 @@
 
 .dx-toggle { margin-top: 16px }
 .dx-toggle summary { cursor: pointer; font-size: 14px; font-weight: 700; color: var(--blue) }
+/* Six columns of numbers will not fit a phone. Scroll the table rather
+   than letting it push the whole page sideways (pre-existing bug, found
+   by the 390px overflow check). */
+#dxTimingTable { overflow-x: auto; -webkit-overflow-scrolling: touch }
 .dx-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 12px }
 .dx-table caption { text-align: left; font-size: 13px; color: var(--ink3); padding-bottom: 8px }
 .dx-table th { text-align: left; padding: 8px; border-bottom: 2px solid var(--line2); font-size: 12px; text-transform: uppercase; letter-spacing: .05em; color: var(--ink2) }
@@ -248,7 +324,8 @@
   .dx-foot-actions, #dxPrintHint, .dx-upsell, .glow-1, .glow-2,
   .dx-key-note,           /* "hover for detail" means nothing on paper */
   #dxNarrowBand,          /* tap-to-narrow chips are interactive only */
-  #dxPersonalizeBand      /* tap-to-change target/weeks is interactive only */
+  #dxPersonalizeBand,     /* tap-to-change target/weeks is interactive only */
+  .dx-moat                /* the upgrade pitch does not belong on their plan */
   { display: none !important }
 
   body { background: #fff; font-size: 11pt }
@@ -275,6 +352,7 @@
   .dx-tile-l { font-size: 9.5px }
 
   .dx-week, .dx-tile, .dx-item, .dx-second, .dx-svg { break-inside: avoid }
+  #dxTimingTable { overflow: visible }   /* never clip the numbers on paper */
   .dx-week { border: 1px solid var(--line2); box-shadow: none; margin-top: 10px; padding: 14px }
 
   /* the question table prints only if the reader opened it */

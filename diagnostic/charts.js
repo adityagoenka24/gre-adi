@@ -285,3 +285,217 @@ export function timingTable(analysis) {
     }</tbody>`;
   return t;
 }
+
+/* ============================================================
+   5. Paper grid — your 27 questions, priced
+   The hero of the upgraded report: one cell per question, coloured
+   by what it would cost to own it. A student sees their whole test
+   in one glance and, more to the point, sees how much of the orange
+   is the cheap kind.
+
+   COLOUR — same discipline as the rest of the file. Three solid
+   fills, all existing brand tokens, well separated in hue AND
+   lightness: navy (correct) / gold (already yours) / accent (sunk).
+   The two remaining buckets are drawn EMPTY with different strokes
+   rather than given two more hues, because five solid fills would
+   collapse under CVD and in greyscale print. Fill-vs-outline is a
+   second, independent channel — the same trick the timing map uses
+   with filled dots and hollow rings.
+   ============================================================ */
+
+export const BUCKETS = {
+  correct:  { label: 'Right',                fill: C.correct, stroke: C.correct, text: '#fff' },
+  careless: { label: 'Already yours',        fill: C.gold,    stroke: C.gold,    text: '#fff' },
+  sunk:     { label: 'Lost to the clock',    fill: C.wrong,   stroke: C.wrong,   text: '#fff' },
+  areaGap:  { label: 'Named gap',            fill: '#fff',    stroke: C.wrong,   text: C.wrong },
+  other:    { label: 'Everything else',      fill: C.paper,   stroke: C.line2,   text: C.ink3 },
+};
+
+export function paperGrid(analysis) {
+  const cells = analysis.ledger.cells;
+  const cw = 38, gap = 6, x0 = 6;
+  const blocks = [1, 2].map((s) => ({ section: s, cells: cells.filter((c) => c.section === s) }));
+  const blockH = 22 + cw + 20;
+  const W = 720, H = blocks.length * blockH + 6;
+  const svg = el('svg', {
+    viewBox: `0 0 ${W} ${H}`, class: 'dx-svg', role: 'img',
+    'aria-label': `Your ${cells.length} questions, coloured by what it would take to get each one right.`,
+  });
+
+  blocks.forEach((b, bi) => {
+    const top = bi * blockH;
+    svg.appendChild(txt(`Section ${b.section}`, {
+      x: x0, y: top + 14, class: 'dx-tick', fill: C.ink3,
+    }));
+    b.cells.forEach((c, i) => {
+      const st = BUCKETS[c.bucket] || BUCKETS.other;
+      const x = x0 + i * (cw + gap), y = top + 22;
+      const g = el('g');
+      g.appendChild(el('rect', {
+        x, y, width: cw, height: cw, rx: 7,
+        fill: st.fill, stroke: st.stroke, 'stroke-width': 1.6,
+      }));
+      // The difficulty level rides inside the cell: it is the single
+      // most useful thing to know about a question at a glance.
+      if (c.difficulty) {
+        g.appendChild(txt(String(c.difficulty), {
+          x: x + cw / 2, y: y + cw / 2 + 5, 'text-anchor': 'middle',
+          class: 'dx-lbl-strong', fill: st.text,
+        }));
+      }
+      const t = `${Math.floor(c.seconds / 60)}:${String(c.seconds % 60).padStart(2, '0')}`;
+      svg.appendChild(hoverable(g,
+        `<b>${st.label}</b><br>${c.area} · level ${c.difficulty || '?'} · ${t}<br>` +
+        (c.bucket === 'careless' ? 'Wrong in under a minute, at a level you hold. This one is already yours.'
+         : c.bucket === 'sunk' ? 'Over two minutes and still wrong — the clock, not the concept.'
+         : c.bucket === 'areaGap' ? 'In your weakest area. The plan works on these first.'
+         : c.bucket === 'correct' ? 'Correct.' : 'Wrong, with no single pattern behind it.')));
+    });
+  });
+  return svg;
+}
+
+/** Legend for the paper grid — HTML, not SVG, so it wraps on a phone. */
+export function paperLegend(analysis) {
+  const c = analysis.ledger.counts;
+  const wrap = document.createElement('div');
+  wrap.className = 'dx-legend';
+  wrap.innerHTML = Object.entries(BUCKETS)
+    .filter(([k]) => (c[k] || 0) > 0)
+    .map(([k, s]) => `<span class="dx-key"><i style="background:${s.fill};border-color:${s.stroke}"></i>${s.label} · <b>${c[k]}</b></span>`)
+    .join('');
+  return wrap;
+}
+
+/* ============================================================
+   6. Difficulty ladder — where the wall actually is
+   The chart every student wants and almost no prep tool draws:
+   accuracy at each of ETS's five levels, with the highest level
+   they hold reliably marked. Levels with too small a sample are
+   drawn recessive rather than hidden, so the thin evidence is
+   visible as thin rather than silently dropped.
+   ============================================================ */
+
+export function difficultyLadder(analysis) {
+  const rows = [...analysis.difficulty.levels].reverse();   // hardest at the top
+  const proven = analysis.ledger.provenLevel;
+  const rowH = 44, padT = 8, padB = 26, labelW = 92, valueW = 58;
+  const W = 720, H = padT + rows.length * rowH + padB;
+  const plotX = labelW, plotW = W - labelW - valueW;
+  const svg = el('svg', {
+    viewBox: `0 0 ${W} ${H}`, class: 'dx-svg', role: 'img',
+    'aria-label': 'Accuracy at each difficulty level, hardest first.',
+  });
+
+  for (let p = 0; p <= 100; p += 25) {
+    const x = plotX + (plotW * p) / 100;
+    svg.appendChild(el('line', {
+      x1: x, y1: padT, x2: x, y2: padT + rows.length * rowH, stroke: C.line, 'stroke-width': 1,
+    }));
+    svg.appendChild(txt(`${p}%`, { x, y: H - 8, 'text-anchor': 'middle', class: 'dx-tick', fill: C.ink3 }));
+  }
+
+  rows.forEach((r, i) => {
+    const y = padT + i * rowH, barH = 20, by = y + (rowH - barH) / 2;
+    const thin = r.n < 2;
+    const held = !thin && r.pct >= analysis.config.CEILING_PCT;
+    svg.appendChild(txt(`Level ${r.level}`, {
+      x: labelW - 14, y: by + barH - 5, 'text-anchor': 'end',
+      class: r.level === proven ? 'dx-lbl-strong' : 'dx-lbl', fill: r.level === proven ? C.ink : C.ink2,
+    }));
+    svg.appendChild(el('rect', { x: plotX, y: by, width: plotW, height: barH, rx: 4, fill: C.paper }));
+    const w = Math.max(3, (plotW * r.pct) / 100);
+    // A level with one question behind it is unknown, not failed. Painting
+    // it in the "wrong" hue would show a 1-for-1 level as a weakness.
+    const bar = el('rect', {
+      x: plotX, y: by, width: w, height: barH, rx: 4,
+      fill: thin ? C.line2 : (held ? C.correct : C.wrong),
+      opacity: thin ? 0.55 : 1, class: 'dx-grow',
+    });
+    bar.style.setProperty('--w', `${w}px`);
+    svg.appendChild(hoverable(bar,
+      `<b>Level ${r.level}</b><br>${r.correct} of ${r.n} correct · ${r.pct}%` +
+      (thin ? '<br>only one question at this level — too thin to read'
+            : held ? '<br>you hold this level' : '<br>below the reliable line')));
+    const label = `${r.correct}/${r.n}`;
+    const outside = plotX + w + 10 + label.length * 9 < W;
+    svg.appendChild(txt(label, {
+      x: outside ? plotX + w + 10 : plotX + w - 10, y: by + barH - 5,
+      'text-anchor': outside ? 'start' : 'end',
+      class: 'dx-lbl-strong', fill: outside ? C.ink : '#fff',
+    }));
+  });
+
+  // The reliable line, drawn once and labelled — it is the rule the
+  // whole "proven level" claim rests on, so the student can see it.
+  const cx = plotX + (plotW * analysis.config.CEILING_PCT) / 100;
+  svg.appendChild(el('line', {
+    x1: cx, y1: padT, x2: cx, y2: padT + rows.length * rowH,
+    stroke: C.ink3, 'stroke-width': 1.5, 'stroke-dasharray': '4 4',
+  }));
+  return svg;
+}
+
+/* ============================================================
+   7. Type bars — accuracy by question format
+   Quantitative Comparison is about a third of the section and is a
+   different skill from the algebra underneath it. A student who is
+   fine on multiple choice and lost on QC cannot see that anywhere
+   in the ETS report; it falls straight out of this one.
+   The dashed rule is their own overall accuracy, so each bar reads
+   as better or worse than their own average, not against a stranger.
+   ============================================================ */
+
+export function typeBars(analysis) {
+  const rows = [...analysis.types].sort((a, b) => a.pct - b.pct);
+  const overall = analysis.overall.pct;
+  const rowH = 46, padT = 8, padB = 30, labelW = 178, valueW = 58;
+  const W = 720, H = padT + rows.length * rowH + padB;
+  const plotX = labelW, plotW = W - labelW - valueW;
+  const svg = el('svg', {
+    viewBox: `0 0 ${W} ${H}`, class: 'dx-svg', role: 'img',
+    'aria-label': 'Accuracy by question format, weakest first.',
+  });
+
+  for (let p = 0; p <= 100; p += 25) {
+    const x = plotX + (plotW * p) / 100;
+    svg.appendChild(el('line', { x1: x, y1: padT, x2: x, y2: padT + rows.length * rowH, stroke: C.line, 'stroke-width': 1 }));
+    svg.appendChild(txt(`${p}%`, { x, y: H - 14, 'text-anchor': 'middle', class: 'dx-tick', fill: C.ink3 }));
+  }
+
+  rows.forEach((r, i) => {
+    const y = padT + i * rowH, barH = 20, by = y + (rowH - barH) / 2;
+    svg.appendChild(txt(r.label, { x: labelW - 14, y: by + barH - 5, 'text-anchor': 'end', class: 'dx-lbl', fill: C.ink }));
+    svg.appendChild(el('rect', { x: plotX, y: by, width: plotW, height: barH, rx: 4, fill: C.paper }));
+    const w = Math.max(3, (plotW * r.pct) / 100);
+    // Only a MATERIAL shortfall is painted as one: a bar two points under
+    // the student's own average is noise, and colouring it as a problem
+    // would contradict the sentence above the chart.
+    const bar = el('rect', {
+      x: plotX, y: by, width: w, height: barH, rx: 4,
+      fill: (!r.thin && r.pct < overall - analysis.config.TYPE_MATERIAL_GAP) ? C.wrong : C.bar,
+      opacity: r.thin ? 0.4 : 1, class: 'dx-grow',
+    });
+    bar.style.setProperty('--w', `${w}px`);
+    svg.appendChild(hoverable(bar,
+      `<b>${r.label}</b><br>${r.correct} of ${r.n} correct · ${r.pct}%` +
+      (r.avgSeconds ? `<br>averaging ${r.avgSeconds}s each` : '') +
+      (r.thin ? '<br>too few to read as a weakness' : '')));
+    const label = `${r.correct}/${r.n}`;
+    const outside = plotX + w + 10 + label.length * 9 < W;
+    svg.appendChild(txt(label, {
+      x: outside ? plotX + w + 10 : plotX + w - 10, y: by + barH - 5,
+      'text-anchor': outside ? 'start' : 'end', class: 'dx-lbl-strong', fill: outside ? C.ink : '#fff',
+    }));
+  });
+
+  const ox = plotX + (plotW * overall) / 100;
+  svg.appendChild(el('line', {
+    x1: ox, y1: padT, x2: ox, y2: padT + rows.length * rowH,
+    stroke: C.ink, 'stroke-width': 1.5, 'stroke-dasharray': '4 4',
+  }));
+  svg.appendChild(txt(`your overall ${overall}%`, {
+    x: ox, y: H - 1, 'text-anchor': 'middle', class: 'dx-tick', fill: C.ink,
+  }));
+  return svg;
+}
