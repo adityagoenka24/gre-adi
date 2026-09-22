@@ -28,7 +28,7 @@
   }
 
   function unlock() {
-    fetch('/learn/_body/' + slug + '.html', { cache: 'no-store' })
+    fetch('/learn/pro-body/' + slug + '.html', { cache: 'no-store' })
       .then(function (r) { return r.ok ? r.text() : Promise.reject(r.status); })
       .then(function (html) {
         body.insertAdjacentHTML('beforeend', html);
