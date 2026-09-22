@@ -48,26 +48,36 @@
       });
   }
 
-  var auth = stored();
-  if (!auth || !auth.email || !auth.fingerprint) return;   // show the gate
+  function checkAndUnlock() {
+    var auth = stored();
+    if (!auth || !auth.email || !auth.fingerprint) return;   // show the gate
 
-  gate.classList.add('is-checking');
-  fetch(WORKER + '/validate', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: auth.email, fingerprint: auth.fingerprint }),
-  })
-    .then(function (r) { return r.json(); })
-    .then(function (d) {
-      if (d && d.status === 'ok') unlock();
-      else { gate.classList.remove('is-checking'); }
+    gate.classList.add('is-checking');
+    fetch(WORKER + '/validate', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: auth.email, fingerprint: auth.fingerprint }),
     })
-    .catch(function () { gate.classList.remove('is-checking'); });
+      .then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d && d.status === 'ok') unlock();
+        else { gate.classList.remove('is-checking'); }
+      })
+      .catch(function () { gate.classList.remove('is-checking'); });
+  }
+
+  checkAndUnlock();
 
   var btn = document.getElementById('lrnLogin');
   if (btn) btn.addEventListener('click', function () {
-    // The Pro app owns sign-in; come back here once it has run.
-    sessionStorage.setItem('gqp_return_to', location.pathname);
-    location.href = '/pro';
+    // Open the shared login popup right here instead of sending the
+    // student away to /pro (which has no login form of its own — the
+    // practice logger is where sign-in actually happens). On success,
+    // re-check and unlock this note in place.
+    if (window.GQPLogin) {
+      window.GQPLogin.open(checkAndUnlock);
+    } else {
+      location.href = '/pro';
+    }
   });
 })();
