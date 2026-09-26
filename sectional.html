@@ -245,8 +245,9 @@ let SECTION_SIZE      = 12;   // default; overridden by the catalogue
 // sectional catalogue. Editing the JSON is enough; neither page carries its own copy.
 let TOPICS = [];
 
-// Free sets are counted per topic (see `free:` above): the three launch topics
-// give Set 1 away; every other topic is Pro-only. Change a topic's `free` to open it up.
+// Free sets are counted per topic (see `free:` above): any topic with more than
+// three sectional sets gives Set 1 away; topics with three sets or fewer are all Pro.
+// Change a topic's `free` count in bank/sectional/index.json to adjust.
 
 const TYPE_DIRECTIONS = {
   mcq: 'Select one answer choice.',
@@ -745,7 +746,7 @@ function renderResults(){
     '<div class="ru-inner">' +
       '<div class="ru-kicker">Keep drilling</div>' +
       '<div class="ru-headline">More sets across <span>10 topics</span>, escalating in difficulty.</div>' +
-      '<div class="ru-sub">Set 1 of each topic is free. Pro opens every remaining set, all ten full-length mocks, and the coach review workflow.</div>' +
+      '<div class="ru-sub">Set 1 is free for every topic with more than three sectional sets. Pro opens every remaining set, all ten full-length mocks, and the coach review workflow.</div>' +
       '<a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" rel="noopener" onclick="track(\'pro_cta_clicked\',{from:\'sectional_result\'})">See Pro — ₹499 →</a>' +
     '</div>';
 
