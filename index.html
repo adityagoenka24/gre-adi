@@ -415,11 +415,11 @@
         <li class="locked"><span class="f-lock">🔒</span> Send to Coach</li>
       </ul>
     </div>
-    <!-- PRO PLAN — pick your own combination -->
-    <div class="plan-card pro">
-      <div class="popular-badge">Build your plan</div>
+    <!-- PRO PLAN — defaults to the full bundle; uncheck to build a cheaper custom plan -->
+    <div class="plan-card pro is-best-value" id="proPlanCard">
+      <div class="popular-badge">🏆 Best Value</div>
       <div class="plan-name">Pro</div>
-      <div class="plan-tagline">Tick what you want. The price updates automatically — mix any two features and save, or get all three for ₹999.</div>
+      <div class="plan-tagline">All three features are ticked by default — that's the best value per rupee. Untick anything you don't need to build a cheaper custom plan.</div>
 
       <div class="feature-picker">
         <label class="feature-toggle">
@@ -431,7 +431,7 @@
           <span class="feature-toggle-price">₹499</span>
         </label>
         <label class="feature-toggle">
-          <input type="checkbox" class="feature-check" data-feature="sectional">
+          <input type="checkbox" class="feature-check" data-feature="sectional" checked>
           <span class="feature-toggle-text">
             <span class="feature-toggle-name">Sectional Tests</span>
             <span class="feature-toggle-desc">Every topic's exam-timed sectional sets</span>
@@ -439,7 +439,7 @@
           <span class="feature-toggle-price">₹399</span>
         </label>
         <label class="feature-toggle">
-          <input type="checkbox" class="feature-check" data-feature="mocks">
+          <input type="checkbox" class="feature-check" data-feature="mocks" checked>
           <span class="feature-toggle-text">
             <span class="feature-toggle-name">Full-Length Mocks</span>
             <span class="feature-toggle-desc">All 10 mocks, Balanced to Expert (170)</span>
@@ -448,10 +448,15 @@
         </label>
       </div>
 
-      <div class="price-wrap"><span class="price-currency">₹</span><span class="price-amount" id="proSelectedPrice">499</span></div>
-      <div class="price-note" id="proSelectedNote">One-time · 1-year access · Selected features included</div>
-      <div class="price-vs" id="proBundleHint">&nbsp;</div>
-      <a href="https://rzp.io/rzp/ORSwVJu" id="pro-buy-btn" class="plan-cta pro-cta" target="_blank" rel="noopener" data-track="buy_pro_clicked" data-track-from="pricing">Checkout — ₹499 →</a>
+      <div class="pro-nudge" id="proNudge"></div>
+
+      <div class="price-wrap">
+        <span class="price-currency">₹</span><span class="price-amount" id="proSelectedPrice">999</span>
+        <span class="price-was" id="proPriceWas">₹1,497</span>
+        <span class="price-save-badge" id="proSaveBadge">Save ₹498</span>
+      </div>
+      <div class="price-note" id="proSelectedNote">One-time · 1-year access · Everything included</div>
+      <a href="https://rzp.io/rzp/HPH7R8Nj" id="pro-buy-btn" class="plan-cta pro-cta" target="_blank" rel="noopener" data-track="buy_pro_clicked" data-track-from="pricing">Checkout — ₹999 →</a>
       <div class="plan-guarantee">7-day money-back guarantee. No questions asked.</div>
 
       <div class="features-label">Everything in Free, plus</div>
@@ -805,6 +810,9 @@ buildSectionalChips();
 // server-side mirror of this table). Practice+Mocks intentionally shares
 // the Full bundle's price/link — the webhook can't tell them apart by
 // amount, so a Practice+Mocks buyer simply gets Sectional included free.
+// All three boxes start CHECKED (₹999) — the default is the best-value
+// bundle; unchecking anything reveals honest savings math and a nudge
+// back to completing the set, never a dark-pattern discount countdown.
 const PLAN_LINKS = {
   'practice':                 { price: 499, url: 'https://rzp.io/rzp/ORSwVJu' },
   'sectional':                { price: 399, url: 'https://rzp.io/rzp/sDBetIc6' },
@@ -814,19 +822,44 @@ const PLAN_LINKS = {
   'practice,mocks':           { price: 999, url: 'https://rzp.io/rzp/HPH7R8Nj' },
   'practice,sectional,mocks': { price: 999, url: 'https://rzp.io/rzp/HPH7R8Nj' },
 };
+const INDIVIDUAL_PRICES = { practice: 499, sectional: 399, mocks: 599 };
+const FULL_PRICE = 999;
 const FEATURE_ORDER = ['practice', 'sectional', 'mocks'];
 const FEATURE_LABELS = {
-  practice: 'Topic-wise Practice — all 95 subtopics, unlimited questions',
-  sectional: 'Sectional Tests — every topic, exam timing',
-  mocks: 'Full-Length Mocks — all 10 mocks',
+  practice: 'Topic-wise Practice',
+  sectional: 'Sectional Tests',
+  mocks: 'Full-Length Mocks',
 };
+const FEATURE_DESCS = {
+  practice: 'all 95 subtopics, unlimited questions',
+  sectional: 'every topic, exam timing',
+  mocks: 'all 10 mocks',
+};
+
+function setFeature(f, checked){
+  const cb = document.querySelector('.feature-check[data-feature="'+f+'"]');
+  if(cb){ cb.checked = checked; }
+}
+function addAllFeatures(){
+  FEATURE_ORDER.forEach(f => setFeature(f, true));
+  updateProSelector();
+}
+function addFeature(f){
+  setFeature(f, true);
+  updateProSelector();
+}
+window.addAllFeatures = addAllFeatures;
+window.addFeature = addFeature;
 
 function updateProSelector(){
   const priceEl = document.getElementById('proSelectedPrice');
+  const wasEl = document.getElementById('proPriceWas');
+  const saveBadgeEl = document.getElementById('proSaveBadge');
   const noteEl = document.getElementById('proSelectedNote');
-  const hintEl = document.getElementById('proBundleHint');
+  const nudgeEl = document.getElementById('proNudge');
   const btn = document.getElementById('pro-buy-btn');
   const listEl = document.getElementById('proFeatureList');
+  const cardEl = document.getElementById('proPlanCard');
   if(!priceEl || !btn) return;
 
   const selected = FEATURE_ORDER.filter(f => {
@@ -836,30 +869,59 @@ function updateProSelector(){
 
   if(selected.length === 0){
     priceEl.textContent = '—';
+    wasEl.style.display = 'none';
+    saveBadgeEl.style.display = 'none';
     noteEl.textContent = 'Select at least one feature above';
-    hintEl.innerHTML = '&nbsp;';
+    nudgeEl.className = 'pro-nudge';
+    nudgeEl.innerHTML = '';
     btn.textContent = 'Select a feature →';
     btn.removeAttribute('href');
     listEl.innerHTML = '';
+    cardEl.classList.remove('is-best-value');
     return;
   }
 
   const key = selected.join(',');
   const plan = PLAN_LINKS[key];
+  const sumSeparate = selected.reduce((s, f) => s + INDIVIDUAL_PRICES[f], 0);
+  const savings = sumSeparate - plan.price;
+  const isBestValue = plan.price === FULL_PRICE;
+  const isFullThree = selected.length === 3;
+
   priceEl.textContent = plan.price;
-  noteEl.textContent = 'One-time · 1-year access · Selected features included';
   btn.href = plan.url;
   btn.textContent = 'Checkout — ₹' + plan.price + ' →';
 
-  if(key === 'practice,mocks'){
-    hintEl.innerHTML = '<strong style="color:var(--green)">Sectional Tests included free</strong> at this price';
-  } else if(selected.length === 3){
-    hintEl.innerHTML = '<strong style="color:var(--green)">Full Pro bundle</strong> — everything included';
+  if(savings > 0){
+    wasEl.textContent = '₹' + sumSeparate.toLocaleString('en-IN');
+    wasEl.style.display = '';
+    saveBadgeEl.textContent = 'Save ₹' + savings;
+    saveBadgeEl.style.display = '';
   } else {
-    hintEl.innerHTML = '&nbsp;';
+    wasEl.style.display = 'none';
+    saveBadgeEl.style.display = 'none';
   }
 
-  listEl.innerHTML = selected.map(f => '<li><span class="f-check">✓</span> '+FEATURE_LABELS[f]+'</li>').join('')
+  cardEl.classList.toggle('is-best-value', isBestValue);
+
+  if(isFullThree){
+    noteEl.textContent = 'One-time · 1-year access · Everything included';
+    nudgeEl.className = 'pro-nudge pro-nudge-success';
+    nudgeEl.innerHTML = '🎉 <strong>Best value!</strong> All 3 features included — you save ₹' + savings + ' vs buying separately (₹' + sumSeparate + ').';
+  } else if(isBestValue){
+    noteEl.textContent = 'One-time · 1-year access · Practice + Mocks included';
+    nudgeEl.className = 'pro-nudge pro-nudge-success';
+    nudgeEl.innerHTML = '💡 You’re already paying the full-bundle price — <button type="button" class="pro-nudge-btn" onclick="addFeature(\'sectional\')">add Sectional Tests free →</button>';
+  } else {
+    noteEl.textContent = 'One-time · 1-year access · Selected features included';
+    const remaining = FULL_PRICE - plan.price;
+    const missing = FEATURE_ORDER.filter(f => !selected.includes(f));
+    const missingLabel = missing.map(f => FEATURE_LABELS[f]).join(' + ');
+    nudgeEl.className = 'pro-nudge pro-nudge-upsell';
+    nudgeEl.innerHTML = 'Add <strong>' + missingLabel + '</strong> for just <strong>₹' + remaining + ' more</strong> to unlock everything (₹' + FULL_PRICE + ' total) — <button type="button" class="pro-nudge-btn" onclick="addAllFeatures()">Complete the bundle →</button>';
+  }
+
+  listEl.innerHTML = selected.map(f => '<li><span class="f-check">✓</span> ' + FEATURE_LABELS[f] + ' — ' + FEATURE_DESCS[f] + '</li>').join('')
     + '<li><span class="f-check">✓</span> All future questions in your selected features included</li>';
 }
 
