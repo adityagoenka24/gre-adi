@@ -125,9 +125,9 @@
     </div>
     <!-- PRO PLAN — defaults to the full bundle; uncheck to build a cheaper custom plan -->
     <div class="plan-card pro is-best-value" id="proPlanCard">
-      <div class="popular-badge">🏆 Best Value</div>
+      <div class="popular-badge">Best Value</div>
       <div class="plan-name">Pro</div>
-      <div class="plan-tagline">All three features are ticked by default — that's the best value per rupee. Untick anything you don't need to build a cheaper custom plan.</div>
+      <div class="plan-tagline">Everything you need to hit your target score — practice, sectionals, and mocks in one plan. Untick anything you don't need to build a cheaper plan.</div>
 
       <div class="feature-picker">
         <label class="feature-toggle">
@@ -474,14 +474,17 @@ function updateProSelector(){
   cardEl.classList.toggle('is-best-value', isBestValue);
 
   if(isFullThree){
+    // Best value, nothing left to nudge toward — the gold badge, crossed-out
+    // price and save badge already say it; a banner here would be a second,
+    // redundant "best value" message in the same glance.
     noteEl.textContent = 'One-time · 1-year access · Everything included';
-    nudgeEl.className = 'pro-nudge pro-nudge-success';
-    nudgeEl.innerHTML = '🎉 <strong>Best value!</strong> All 3 features included — you save ₹' + savings + ' vs buying separately (₹' + sumSeparate + ').';
+    nudgeEl.className = 'pro-nudge';
+    nudgeEl.innerHTML = '';
   } else if(isBestValue){
     // practice+mocks only — same ₹999 price as the full bundle, sectional missing
     noteEl.textContent = 'One-time · 1-year access · Practice + Mocks included';
     nudgeEl.className = 'pro-nudge pro-nudge-success';
-    nudgeEl.innerHTML = '💡 You’re already paying the full-bundle price — <button type="button" class="pro-nudge-btn" onclick="addFeature(\'sectional\')">add Sectional Tests free →</button>';
+    nudgeEl.innerHTML = 'You’re already paying the full-bundle price — <button type="button" class="pro-nudge-btn" onclick="addFeature(\'sectional\')">add Sectional Tests free →</button>';
   } else {
     noteEl.textContent = 'One-time · 1-year access · Selected features included';
     const remaining = FULL_PRICE - plan.price;
