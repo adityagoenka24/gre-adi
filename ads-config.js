@@ -15,11 +15,11 @@
  *     Category: Lead · Count: One · Value: ₹0 · Window: 30 days
  *
  *   Action 2: "Purchase Intent - Pro"
- *     Category: Add to cart · Count: One · Value: ₹499 · Window: 30 days
+ *     Category: Add to cart · Count: One · Value: ₹399 · Window: 30 days
  *
  *   Action 3: "Purchase"
- *     Category: Purchase · Count: One · Value: use different values for each
- *     (Pro = ₹499, Coach = ₹1499) · Window: 30 days
+ *     Category: Purchase · Count: One · Value: use the actual amount paid
+ *     (₹399 / ₹499 / ₹599 / ₹799 / ₹899 / ₹999 depending on plan) · Window: 30 days
  *
  * Step 3 — Copy each conversion ID (looks like AW-123456789/AbCdEfGhIjK)
  *   and paste into the conversions object below.
@@ -41,8 +41,12 @@ window.GQP_ADS = {
 
   // Purchase values by plan — used when firing the purchase conversion
   values: {
-    pro:   499,
-    coach: 1499,
+    sectional: 399,
+    practice: 499,
+    mocks: 599,
+    practice_sectional: 799,
+    sectional_mocks: 899,
+    full: 999,
   },
 
   // Currency

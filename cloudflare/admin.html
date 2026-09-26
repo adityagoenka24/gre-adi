@@ -445,7 +445,6 @@ async function loadEvents() {
       mock_result: 'Mock result page',
     };
     const buyPro   = g('buy_pro_clicked');
-    const buyCoach = g('buy_coach_clicked');
 
     const buyProSources = Object.entries(buyPro.sources || {})
       .sort((a, b) => b[1] - a[1])
@@ -458,18 +457,12 @@ async function loadEvents() {
 
     const intentRows = `
       <tr>
-        <td><strong>Buy Pro — ₹999</strong></td>
+        <td><strong>Buy Pro clicked (any plan, ₹399–₹999)</strong></td>
         <td><span class="badge badge-ok">${buyPro.count}</span></td>
         <td><span class="badge badge-warn">${pct(buyPro.count, started)}</span></td>
         <td style="font-size:12px;color:var(--text3);">of mock starters</td>
       </tr>
-      ${buyProSources}
-      <tr>
-        <td><strong>Buy Pro + Coach — ₹1,499</strong></td>
-        <td><span class="badge badge-ok">${buyCoach.count}</span></td>
-        <td><span class="badge badge-warn">${pct(buyCoach.count, started)}</span></td>
-        <td style="font-size:12px;color:var(--text3);">of mock starters</td>
-      </tr>`;
+      ${buyProSources}`;
 
     // ── Section 3: Top-of-funnel ────────────────────────────────────────────
     const tofNames = ['start_mock_clicked', 'try_free_clicked', 'upgrade_to_pro_clicked'];
@@ -494,7 +487,7 @@ async function loadEvents() {
     // ── Section 4: Any other events not already shown ───────────────────────
     const knownEvents = new Set([
       'mock_started','mock_submitted','pro_cta_clicked',
-      'buy_pro_clicked','buy_coach_clicked',
+      'buy_pro_clicked',
       'start_mock_clicked','try_free_clicked','upgrade_to_pro_clicked',
     ]);
     const otherRows = events
@@ -521,7 +514,6 @@ async function loadEvents() {
       ${otherRows ? section('Other Events', otherRows) : ''}
       <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-top:16px;">
         Full conversion: Mock Started → Buy Pro clicked = ${pct(buyPro.count, started)}
-        &nbsp;·&nbsp; Mock Started → Buy Coach clicked = ${pct(buyCoach.count, started)}
       </p>`;
   } catch (e) {
     el.innerHTML = `<div class="empty">Network error: ${escapeHtml(e.message)}</div>`;
