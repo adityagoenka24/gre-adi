@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRE Pro — Admin Panel</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a28; --border:#2a2a45;
+  --accent:#6c63ff; --success:#43e97b; --danger:#ff6584; --warning:#f7971e;
+  --text:#e8e8f0; --text2:#9898b8; --text3:#5a5a7a;
+  --font-body:'Outfit',sans-serif; --font-mono:'DM Mono',monospace;
+  --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;padding:32px 20px;}
+.wrapper{max-width:820px;margin:0 auto;}
+h1{font-size:24px;font-weight:700;margin-bottom:4px;}
+.subtitle{font-size:13px;color:var(--text3);font-family:var(--font-mono);margin-bottom:32px;}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;}
+.card h2{font-size:14px;font-weight:600;margin-bottom:16px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-mono);}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:0;}
+label{font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;}
+input{background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--font-body);font-size:14px;padding:10px 14px;outline:none;width:100%;}
+input:focus{border-color:var(--accent);}
+.btn{padding:10px 20px;border:none;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
+.btn-primary{background:var(--accent);color:white;}
+.btn-success{background:#1a7a3a;color:white;}
+.btn-danger{background:var(--danger);color:white;}
+.btn-ghost{background:var(--surface2);color:var(--text2);border:1px solid var(--border);}
+.btn:hover{opacity:0.85;}
+.row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+.row .field{flex:1;min-width:180px;}
+.result{margin-top:12px;padding:12px;border-radius:8px;font-family:var(--font-mono);font-size:13px;display:none;}
+.result.success{background:rgba(67,233,123,0.1);border:1px solid rgba(67,233,123,0.3);color:var(--success);}
+.result.error{background:rgba(255,101,132,0.1);border:1px solid rgba(255,101,132,0.3);color:var(--danger);}
+.result.show{display:block;}
+.config-bar{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:12px 16px;margin-bottom:24px;display:flex;gap:20px;align-items:center;flex-wrap:wrap;}
+.config-bar span{font-size:12px;color:var(--text3);font-family:var(--font-mono);}
+.config-bar strong{color:var(--warning);}
+table{width:100%;border-collapse:collapse;font-size:13px;}
+th{text-align:left;padding:10px 12px;font-family:var(--font-mono);font-size:11px;color:var(--text3);text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border);}
+td{padding:10px 12px;border-bottom:1px solid rgba(42,42,69,0.5);vertical-align:middle;}
+td:last-child{white-space:nowrap;}
+.badge{display:inline-block;padding:3px 10px;border-radius:20px;font-size:11px;font-family:var(--font-mono);}
+.badge-ok{background:rgba(67,233,123,0.15);color:var(--success);}
+.badge-warn{background:rgba(247,151,30,0.15);color:var(--warning);}
+.badge-revoked{background:rgba(255,101,132,0.15);color:var(--danger);}
+.empty{text-align:center;padding:32px;color:var(--text3);font-family:var(--font-mono);font-size:13px;}
+.action-btns{display:flex;gap:6px;align-items:center;}
+.btn-sm{padding:4px 12px;font-size:12px;border-radius:6px;}
+.access-row{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-bottom:16px;}
+.access-check{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);font-family:var(--font-mono);cursor:pointer;}
+.access-check input{width:auto;accent-color:var(--accent);}
+.badge-access{margin-right:4px;margin-bottom:2px;display:inline-block;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <h1>🔐 GRE Pro — Admin Panel</h1>
+  <p class="subtitle">Coach Aditya Goenka &nbsp;·&nbsp; Student Access Management</p>
+
+  <div class="config-bar">
+    <span>Worker URL: <strong id="display-url">not set</strong></span>
+    <span>Admin Secret: <strong id="display-secret">not set</strong></span>
+  </div>
+
+  <!-- Setup -->
+  <div class="card">
+    <h2>⚙️ Setup</h2>
+    <div class="row">
+      <div class="field">
+        <label>Cloudflare Worker URL</label>
+        <input type="text" id="worker-url" placeholder="https://gre-auth.goenka-aditya-kol.workers.dev">
+      </div>
+      <div class="field">
+        <label>Admin Secret</label>
+        <input type="password" id="admin-secret" placeholder="your-admin-secret">
+      </div>
+      <button class="btn btn-ghost" onclick="saveConfig()">Save</button>
+    </div>
+  </div>
+
+  <!-- Add Student -->
+  <div class="card">
+    <h2>📈 Website Analytics</h2>
+    <div class="row">
+      <div class="field">
+        <label>Days to show</label>
+        <input type="number" id="analytics-days" min="1" max="180" value="1">
+      </div>
+      <button class="btn btn-primary" onclick="loadAnalytics()">Refresh Analytics</button>
+    </div>
+    <div id="analytics-table" style="margin-top:16px;"><div class="empty">Click "Refresh Analytics" to load daily visitors.</div></div>
+  </div>
+
+  <!-- Event Funnel -->
+  <div class="card">
+    <h2>🎯 Conversion Funnel</h2>
+    <div class="row">
+      <div class="field">
+        <label>Days to show</label>
+        <input type="number" id="event-days" min="1" max="180" value="1">
+      </div>
+      <button class="btn btn-primary" onclick="loadEvents()">Refresh Events</button>
+    </div>
+    <div id="event-table" style="margin-top:16px;"><div class="empty">Click "Refresh Events" to load funnel data.</div></div>
+  </div>
+
+  <!-- Mock Attempts -->
+  <div class="card">
+    <h2>📝 Mock Attempts</h2>
+    <div class="row">
+      <div class="field">
+        <label>Days to show</label>
+        <input type="number" id="attempt-days" min="1" max="180" value="1">
+      </div>
+      <button class="btn btn-primary" onclick="loadMockAttempts()">Refresh Attempts</button>
+      <button class="btn btn-ghost" onclick="downloadAttemptsCsv()">Download CSV</button>
+      <button class="btn btn-ghost" onclick="downloadAttemptsJson()">Download JSON</button>
+    </div>
+    <div id="attempt-table" style="margin-top:16px;"><div class="empty">Click "Refresh Attempts" to load completed mocks.</div></div>
+  </div>
+
+  <!-- Add Student -->
+  <div class="card">
+    <h2>➕ Add Paying Student</h2>
+    <div class="row">
+      <div class="field">
+        <label>Student Email</label>
+        <input type="email" id="add-email" placeholder="student@gmail.com">
+      </div>
+      <div class="field">
+        <label>Student Name (optional)</label>
+        <input type="text" id="add-name" placeholder="Rahul Sharma">
+      </div>
+    </div>
+    <label style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;display:block;margin:16px 0 8px;">Access</label>
+    <div class="access-row">
+      <label class="access-check"><input type="checkbox" id="add-access-practice" checked> Topic-wise Practice</label>
+      <label class="access-check"><input type="checkbox" id="add-access-sectional" checked> Sectional Tests</label>
+      <label class="access-check"><input type="checkbox" id="add-access-mocks" checked> Full-Length Mocks</label>
+    </div>
+    <button class="btn btn-primary" onclick="addStudent()">Add Student</button>
+    <div class="result" id="add-result"></div>
+  </div>
+
+  <!-- Set Access -->
+  <div class="card" id="access-card">
+    <h2>🎚️ Set Access (Existing Student)</h2>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+      Dial an existing student's plan up or down — e.g. limit someone to sectional-only, or give a beta tester just topic-wise practice. Unchecking everything is not allowed; leave all three checked for full access.
+    </p>
+    <div class="row">
+      <div class="field">
+        <label>Student Email</label>
+        <input type="email" id="access-email" placeholder="student@gmail.com">
+      </div>
+      <button class="btn btn-primary" onclick="setAccess()">Update Access</button>
+    </div>
+    <label style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;display:block;margin:16px 0 8px;">Access</label>
+    <div class="access-row">
+      <label class="access-check"><input type="checkbox" id="access-access-practice" checked> Topic-wise Practice</label>
+      <label class="access-check"><input type="checkbox" id="access-access-sectional" checked> Sectional Tests</label>
+      <label class="access-check"><input type="checkbox" id="access-access-mocks" checked> Full-Length Mocks</label>
+    </div>
+    <div class="result" id="access-result"></div>
+  </div>
+
+  <!-- Reset Device -->
+  <div class="card" id="reset-card">
+    <h2>🔄 Reset Device (Student Changed Phone / Laptop)</h2>
+    <div class="row">
+      <div class="field">
+        <label>Student Email</label>
+        <input type="email" id="reset-email" placeholder="student@gmail.com">
+      </div>
+      <button class="btn btn-ghost" onclick="resetDevice()">Reset Device</button>
+    </div>
+    <div class="result" id="reset-result"></div>
+  </div>
+
+  <!-- Revoke Access -->
+  <div class="card" id="revoke-card">
+    <h2>🚫 Revoke Access</h2>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+      Blocks the student immediately on their next app load. Use for expired subscriptions or refunds.<br>
+      You can re-add them at any time using the Add Student section above.
+    </p>
+    <div class="row">
+      <div class="field">
+        <label>Student Email</label>
+        <input type="email" id="remove-email" placeholder="student@gmail.com">
+      </div>
+      <button class="btn btn-danger" onclick="removeStudent()">Revoke Access</button>
+    </div>
+    <div class="result" id="remove-result"></div>
+  </div>
+
+  <!-- Webhook Payments -->
+  <div class="card">
+    <h2>💳 Webhook Payments</h2>
+    <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+      Auto-provisioned students come from Razorpay webhooks (₹499 payments). Manual review items need you to provision access yourself — use "Add Student" above. No-email payments couldn't be auto-provisioned because Razorpay didn't include an email.
+    </p>
+    <button class="btn btn-primary" onclick="loadWebhookQueue()">🔄 Refresh Queue</button>
+    <div id="webhook-queue" style="margin-top:16px;"><div class="empty">Click "Refresh Queue" to load.</div></div>
+  </div>
+
+  <!-- Student List -->
+  <div class="card">
+    <h2>📋 All Students</h2>
+    <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+      <button class="btn btn-ghost" onclick="loadStudents()">🔄 Refresh List</button>
+    </div>
+    <div id="student-table"><div class="empty">Click "Refresh List" to load students</div></div>
+  </div>
+
+</div>
+
+<script>
+let latestAttempts = [];
+
+// ─── Config ───────────────────────────────────────────────────────────────────
+function saveConfig() {
+  const url = document.getElementById('worker-url').value.trim();
+  const secret = document.getElementById('admin-secret').value.trim();
+  if (!url || !secret) return alert('Both fields required.');
+  localStorage.setItem('gre_admin_url', url);
+  localStorage.setItem('gre_admin_secret', secret);
+  document.getElementById('display-url').textContent = url;
+  document.getElementById('display-secret').textContent = '••••••••';
+  alert('Config saved!');
+}
+
+function getConfig() {
+  return {
+    url: localStorage.getItem('gre_admin_url') || '',
+    secret: localStorage.getItem('gre_admin_secret') || '',
+  };
+}
+
+function loadConfig() {
+  const { url, secret } = getConfig();
+  if (url) { document.getElementById('worker-url').value = url; document.getElementById('display-url').textContent = url; }
+  if (secret) { document.getElementById('admin-secret').value = secret; document.getElementById('display-secret').textContent = '••••••••'; }
+}
+
+// ─── Analytics ───────────────────────────────────────────────────────────────
+async function loadAnalytics() {
+  const { url, secret } = getConfig();
+  const days = Math.min(Math.max(Number(document.getElementById('analytics-days').value) || 30, 1), 180);
+  const el = document.getElementById('analytics-table');
+  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
+  el.innerHTML = '<div class="empty">Loading analytics…</div>';
+  try {
+    const res = await fetch(`${url}/admin/analytics?days=${days}`, {
+      headers: { 'X-Admin-Secret': secret }
+    });
+    const data = await res.json();
+    if (data.error) { el.innerHTML = `<div class="empty">Error: ${data.error}</div>`; return; }
+    const rows = (data.daily || []).slice().reverse().map(day => {
+      const topPages = (day.pages || []).slice(0, 3).map(p => `${p.path} (${p.views})`).join('<br>') || '<span style="color:var(--text3)">—</span>';
+      return `<tr>
+        <td style="font-family:var(--font-mono);">${day.date}</td>
+        <td><span class="badge badge-ok">${day.uniqueVisitors}</span></td>
+        <td><span class="badge badge-warn">${day.pageviews}</span></td>
+        <td style="font-size:12px;color:var(--text3);line-height:1.6;">${topPages}</td>
+      </tr>`;
+    }).join('');
+    el.innerHTML = `
+      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+        <span class="badge badge-ok">${data.totals?.uniqueDailyVisitors || 0} summed daily uniques</span>
+        <span class="badge badge-warn">${data.totals?.pageviews || 0} pageviews</span>
+        <span class="badge">Timezone: ${data.timezone || 'Asia/Kolkata'}</span>
+      </div>
+      <table>
+        <thead><tr><th>Date</th><th>Unique Visitors</th><th>Pageviews</th><th>Top Pages</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table>`;
+  } catch (e) {
+    el.innerHTML = `<div class="empty">Network error: ${e.message}</div>`;
+  }
+}
+
+// ─── Mock Attempts ───────────────────────────────────────────────────────────
+async function loadMockAttempts() {
+  const { url, secret } = getConfig();
+  const days = Math.min(Math.max(Number(document.getElementById('attempt-days').value) || 30, 1), 180);
+  const el = document.getElementById('attempt-table');
+  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
+  el.innerHTML = '<div class="empty">Loading attempts…</div>';
+  try {
+    const res = await fetch(`${url}/admin/mock-attempts?days=${days}`, {
+      headers: { 'X-Admin-Secret': secret }
+    });
+    const data = await res.json();
+    if (data.error) { el.innerHTML = `<div class="empty">Error: ${escapeHtml(data.error)}</div>`; return; }
+    latestAttempts = data.attempts || [];
+    renderMockAttempts(latestAttempts, data);
+  } catch (e) {
+    el.innerHTML = `<div class="empty">Network error: ${escapeHtml(e.message)}</div>`;
+  }
+}
+
+function renderMockAttempts(attempts, data) {
+  const el = document.getElementById('attempt-table');
+  if (!attempts.length) {
+    el.innerHTML = '<div class="empty">No completed mock attempts found for this period.</div>';
+    return;
+  }
+  const rows = attempts.map(a => {
+    const student = a.student || {};
+    const diagnosis = a.diagnosis || {};
+    const weak = diagnosis.weak_area?.label || '—';
+    const band = diagnosis.band?.label || '—';
+    const submitted = a.submitted_at ? new Date(a.submitted_at).toLocaleString('en-IN') : '—';
+    return `<tr>
+      <td>
+        <strong>${escapeHtml(student.name || 'Unknown')}</strong><br>
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(student.email || '—')}</span>
+      </td>
+      <td>
+        ${escapeHtml(a.event_name || a.event_id || 'Mock')}<br>
+        <span style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(submitted)}</span>
+      </td>
+      <td><span class="badge badge-ok">${Number(a.score || 0)}/${Number(a.total_questions || 0)}</span></td>
+      <td><span class="badge badge-warn">${Number(a.accuracy || 0)}%</span></td>
+      <td style="font-size:12px;color:var(--text3);">${escapeHtml(band)}<br>${escapeHtml(weak)}</td>
+    </tr>`;
+  }).join('');
+  el.innerHTML = `
+    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+      <span class="badge badge-ok">${data.count || attempts.length} attempts</span>
+      <span class="badge">Timezone: ${escapeHtml(data.timezone || 'Asia/Kolkata')}</span>
+    </div>
+    <table>
+      <thead><tr><th>Student</th><th>Event / Time</th><th>Score</th><th>Accuracy</th><th>Diagnosis</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>`;
+}
+
+function attemptsCsv(attempts) {
+  const headers = ['submitted_at','name','email','batch','event_id','event_name','team','score','total_questions','accuracy','correct','incorrect','skipped','total_time_seconds','diagnosis_band','weak_area'];
+  const esc = value => `"${String(value ?? '').replaceAll('"','""')}"`;
+  const rows = attempts.map(a => {
+    const s = a.student || {};
+    return {
+      submitted_at: a.submitted_at || '',
+      name: s.name || '',
+      email: s.email || '',
+      batch: s.batch || '',
+      event_id: a.event_id || '',
+      event_name: a.event_name || '',
+      team: a.team || '',
+      score: a.score || 0,
+      total_questions: a.total_questions || 0,
+      accuracy: a.accuracy || 0,
+      correct: a.correct || 0,
+      incorrect: a.incorrect || 0,
+      skipped: a.skipped || 0,
+      total_time_seconds: a.total_time_seconds || 0,
+      diagnosis_band: a.diagnosis?.band?.label || '',
+      weak_area: a.diagnosis?.weak_area?.label || '',
+    };
+  });
+  return [headers.join(','), ...rows.map(row => headers.map(h => esc(row[h])).join(','))].join('\n');
+}
+
+function downloadBlob(filename, text, type) {
+  const blob = new Blob([text], { type });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = filename;
+  a.click();
+  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+}
+
+function downloadAttemptsCsv() {
+  if (!latestAttempts.length) return alert('Load attempts first.');
+  downloadBlob('mock_attempts.csv', attemptsCsv(latestAttempts), 'text/csv');
+}
+
+async function downloadAttemptsJson() {
+  const { url, secret } = getConfig();
+  const days = Math.min(Math.max(Number(document.getElementById('attempt-days').value) || 30, 1), 180);
+  if (!url || !secret) return alert('Set Worker URL and Admin Secret first.');
+  try {
+    const res = await fetch(`${url}/admin/mock-attempts?days=${days}&include_results=1`, {
+      headers: { 'X-Admin-Secret': secret }
+    });
+    const data = await res.json();
+    if (data.error) return alert(`Error: ${data.error}`);
+    downloadBlob('mock_attempts_full.json', JSON.stringify(data, null, 2), 'application/json');
+  } catch (e) {
+    alert(`Network error: ${e.message}`);
+  }
+}
+
+// ─── Event Funnel ────────────────────────────────────────────────────────────
+async function loadEvents() {
+  const { url, secret } = getConfig();
+  const days = Math.min(Math.max(Number(document.getElementById('event-days').value) || 7, 1), 180);
+  const el = document.getElementById('event-table');
+  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
+  el.innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    const res = await fetch(`${url}/admin/analytics/events?days=${days}`, {
+      headers: { 'X-Admin-Secret': secret }
+    });
+    const data = await res.json();
+    if (data.error) { el.innerHTML = `<div class="empty">Error: ${escapeHtml(data.error)}</div>`; return; }
+
+    const events = data.events || [];
+    const byName = Object.fromEntries(events.map(e => [e.event, e]));
+    const pct = (num, den) => den > 0 ? Math.round((num / den) * 100) + '%' : '—';
+    const g = (name) => byName[name] || { count: 0, unique_visitors: 0, sources: {} };
+
+    // ── Section 1: Mock Funnel ──────────────────────────────────────────────
+    const started   = g('mock_started').count;
+    const submitted = g('mock_submitted').count;
+    const ctaClick  = g('pro_cta_clicked').count;
+
+    const funnelRows = [
+      { step: '1. Mock Started',    count: started,   rate: '—',                     note: 'Filled name/email & clicked Start' },
+      { step: '2. Mock Submitted',  count: submitted, rate: pct(submitted, started),  note: 'Completed & submitted the mock' },
+      { step: '3. Pro CTA Clicked', count: ctaClick,  rate: pct(ctaClick, submitted), note: '"Unlock My Practice Plan" on result page' },
+    ].map(r => `<tr>
+      <td>${escapeHtml(r.step)}</td>
+      <td><span class="badge badge-ok">${r.count}</span></td>
+      <td><span class="badge badge-warn">${r.rate}</span></td>
+      <td style="font-size:12px;color:var(--text3);">${escapeHtml(r.note)}</td>
+    </tr>`).join('');
+
+    // ── Section 2: Purchase Intent — Buy Pro breakdown by source ───────────
+    const SOURCE_LABELS = {
+      nav: 'Nav bar',
+      hero: 'Hero section',
+      mock_section: 'Mock section ("See what Pro unlocks")',
+      cta_strip: 'CTA strip (mid-page)',
+      pricing: 'Pricing section',
+      bottom_cta: 'Bottom CTA',
+      mock_result: 'Mock result page',
+    };
+    const buyPro   = g('buy_pro_clicked');
+    const buyCoach = g('buy_coach_clicked');
+
+    const buyProSources = Object.entries(buyPro.sources || {})
+      .sort((a, b) => b[1] - a[1])
+      .map(([src, cnt]) => `<tr>
+        <td style="padding-left:20px;font-size:12px;color:var(--text2);">↳ ${escapeHtml(SOURCE_LABELS[src] || src)}</td>
+        <td><span class="badge badge-ok">${cnt}</span></td>
+        <td><span class="badge badge-warn">${pct(cnt, buyPro.count)}</span></td>
+        <td style="font-size:12px;color:var(--text3);">of Buy Pro clicks</td>
+      </tr>`).join('');
+
+    const intentRows = `
+      <tr>
+        <td><strong>Buy Pro — ₹999</strong></td>
+        <td><span class="badge badge-ok">${buyPro.count}</span></td>
+        <td><span class="badge badge-warn">${pct(buyPro.count, started)}</span></td>
+        <td style="font-size:12px;color:var(--text3);">of mock starters</td>
+      </tr>
+      ${buyProSources}
+      <tr>
+        <td><strong>Buy Pro + Coach — ₹1,499</strong></td>
+        <td><span class="badge badge-ok">${buyCoach.count}</span></td>
+        <td><span class="badge badge-warn">${pct(buyCoach.count, started)}</span></td>
+        <td style="font-size:12px;color:var(--text3);">of mock starters</td>
+      </tr>`;
+
+    // ── Section 3: Top-of-funnel ────────────────────────────────────────────
+    const tofNames = ['start_mock_clicked', 'try_free_clicked', 'upgrade_to_pro_clicked'];
+    const TOF_LABELS = {
+      start_mock_clicked:    'Start Free Mock (landing page)',
+      try_free_clicked:      'Try Free App (any button)',
+      upgrade_to_pro_clicked:'Upgrade to Pro (free app)',
+    };
+    const tofRows = tofNames.map(name => {
+      const ev = g(name);
+      const srcs = Object.entries(ev.sources || {}).sort((a,b) => b[1]-a[1]);
+      const srcDetail = srcs.length
+        ? srcs.map(([s,c]) => `${SOURCE_LABELS[s]||s}: ${c}`).join(' · ')
+        : '';
+      return `<tr>
+        <td>${escapeHtml(TOF_LABELS[name] || name)}</td>
+        <td><span class="badge badge-ok">${ev.count}</span></td>
+        <td style="font-size:12px;color:var(--text3);" colspan="2">${escapeHtml(srcDetail) || '—'}</td>
+      </tr>`;
+    }).join('');
+
+    // ── Section 4: Any other events not already shown ───────────────────────
+    const knownEvents = new Set([
+      'mock_started','mock_submitted','pro_cta_clicked',
+      'buy_pro_clicked','buy_coach_clicked',
+      'start_mock_clicked','try_free_clicked','upgrade_to_pro_clicked',
+    ]);
+    const otherRows = events
+      .filter(e => !knownEvents.has(e.event))
+      .map(e => `<tr>
+        <td style="font-family:var(--font-mono);font-size:12px;">${escapeHtml(e.event)}</td>
+        <td><span class="badge badge-ok">${e.count}</span></td>
+        <td><span class="badge">${e.unique_visitors || 0} uniq</span></td>
+        <td style="font-size:12px;color:var(--text3);">—</td>
+      </tr>`).join('');
+
+    const section = (title, tableBody) => `
+      <p style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin:20px 0 8px;">${title}</p>
+      <table>
+        <thead><tr><th>Event</th><th>Count</th><th>Rate</th><th>Detail</th></tr></thead>
+        <tbody>${tableBody}</tbody>
+      </table>`;
+
+    el.innerHTML = `
+      <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:4px;">Last ${days} days · ${escapeHtml(data.timezone || 'Asia/Kolkata')}</p>
+      ${section('Mock Funnel', funnelRows)}
+      ${section('Purchase Intent', intentRows)}
+      ${section('Top of Funnel', tofRows)}
+      ${otherRows ? section('Other Events', otherRows) : ''}
+      <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-top:16px;">
+        Full conversion: Mock Started → Buy Pro clicked = ${pct(buyPro.count, started)}
+        &nbsp;·&nbsp; Mock Started → Buy Coach clicked = ${pct(buyCoach.count, started)}
+      </p>`;
+  } catch (e) {
+    el.innerHTML = `<div class="empty">Network error: ${escapeHtml(e.message)}</div>`;
+  }
+}
+
+// ─── Access helpers ───────────────────────────────────────────────────────────
+const ACCESS_FEATURES = ['practice', 'sectional', 'mocks'];
+const ACCESS_LABELS = { practice: 'Practice', sectional: 'Sectional', mocks: 'Mocks' };
+
+function getCheckedAccess(prefix) {
+  return ACCESS_FEATURES.filter(f => document.getElementById(`${prefix}-${f}`).checked);
+}
+
+function setCheckedAccess(prefix, access) {
+  const arr = (access && access.length) ? access : ACCESS_FEATURES;
+  ACCESS_FEATURES.forEach(f => { document.getElementById(`${prefix}-${f}`).checked = arr.includes(f); });
+}
+
+function accessBadges(access) {
+  const arr = (access && access.length) ? access : ACCESS_FEATURES;
+  if (ACCESS_FEATURES.every(f => arr.includes(f))) {
+    return '<span class="badge badge-ok badge-access">Full Access</span>';
+  }
+  return arr.map(f => `<span class="badge badge-warn badge-access">${ACCESS_LABELS[f] || f}</span>`).join('');
+}
+
+// ─── Add Student ──────────────────────────────────────────────────────────────
+async function addStudent() {
+  const { url, secret } = getConfig();
+  const email  = document.getElementById('add-email').value.trim();
+  const name   = document.getElementById('add-name').value.trim();
+  const access = getCheckedAccess('add-access');
+  const el     = document.getElementById('add-result');
+  if (!url || !secret) return showResult(el, 'error', 'Set your Worker URL and Admin Secret first.');
+  if (!email) return showResult(el, 'error', 'Email is required.');
+  if (!access.length) return showResult(el, 'error', 'Check at least one access option.');
+  try {
+    const res  = await fetch(`${url}/admin/add-student`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify({ email, name, access }),
+    });
+    const data = await res.json();
+    if (data.status === 'added') {
+      showResult(el, 'success', `✅ Student added: ${data.email}`);
+      document.getElementById('add-email').value = '';
+      document.getElementById('add-name').value  = '';
+      setCheckedAccess('add-access', ACCESS_FEATURES);
+      loadStudents();
+    } else if (data.status === 'reactivated') {
+      showResult(el, 'success', `✅ Access restored for: ${data.email}`);
+      document.getElementById('add-email').value = '';
+      document.getElementById('add-name').value  = '';
+      setCheckedAccess('add-access', ACCESS_FEATURES);
+      loadStudents();
+    } else if (data.status === 'already_exists') {
+      showResult(el, 'error', `⚠️ This email is already registered and active.`);
+    } else {
+      showResult(el, 'error', JSON.stringify(data));
+    }
+  } catch (e) { showResult(el, 'error', `Network error: ${e.message}`); }
+}
+
+// ─── Set Access (existing student) ───────────────────────────────────────────
+async function setAccess() {
+  const { url, secret } = getConfig();
+  const email  = document.getElementById('access-email').value.trim();
+  const access = getCheckedAccess('access-access');
+  const el     = document.getElementById('access-result');
+  if (!url || !secret) return showResult(el, 'error', 'Set your Worker URL and Admin Secret first.');
+  if (!email) return showResult(el, 'error', 'Email is required.');
+  if (!access.length) return showResult(el, 'error', 'Check at least one access option.');
+  try {
+    const res  = await fetch(`${url}/admin/set-access`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify({ email, access }),
+    });
+    const data = await res.json();
+    if (data.status === 'ok') {
+      showResult(el, 'success', `✅ Access updated for ${data.email}: ${data.access.map(f => ACCESS_LABELS[f] || f).join(', ')}`);
+      loadStudents();
+    } else {
+      showResult(el, 'error', data.error || JSON.stringify(data));
+    }
+  } catch (e) { showResult(el, 'error', `Network error: ${e.message}`); }
+}
+
+// Called from the student list's "Edit Access" button — prefills this card.
+function editAccessFor(email, access) {
+  document.getElementById('access-email').value = email;
+  setCheckedAccess('access-access', access);
+  document.getElementById('access-card').scrollIntoView({ behavior: 'smooth' });
+}
+
+// ─── Reactivate (called directly from list Re-add button) ─────────────────────
+async function reactivateStudent(email) {
+  const { url, secret } = getConfig();
+  if (!url || !secret) return alert('Set your Worker URL and Admin Secret first.');
+  if (!confirm(`Re-add access for ${email}?\n\nThey will need to re-authenticate on their next app load.`)) return;
+  try {
+    const res  = await fetch(`${url}/admin/add-student`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+    if (data.status === 'reactivated' || data.status === 'added') {
+      alert(`✅ Access restored for ${email}`);
+      loadStudents();
+    } else {
+      alert(`Error: ${data.error || JSON.stringify(data)}`);
+    }
+  } catch (e) { alert(`Network error: ${e.message}`); }
+}
+
+// ─── Reset Device ─────────────────────────────────────────────────────────────
+async function resetDevice() {
+  const { url, secret } = getConfig();
+  const email = document.getElementById('reset-email').value.trim();
+  const el    = document.getElementById('reset-result');
+  if (!url || !secret) return showResult(el, 'error', 'Set your Worker URL and Admin Secret first.');
+  if (!email) return showResult(el, 'error', 'Email is required.');
+  if (!confirm(`Reset all devices for ${email}?\nThey will need to re-authenticate on next load.`)) return;
+  try {
+    const res  = await fetch(`${url}/admin/reset-device`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+    if (data.status === 'reset') {
+      showResult(el, 'success', `✅ Devices reset for: ${data.email}`);
+      document.getElementById('reset-email').value = '';
+      loadStudents();
+    } else { showResult(el, 'error', JSON.stringify(data)); }
+  } catch (e) { showResult(el, 'error', `Network error: ${e.message}`); }
+}
+
+// ─── Remove Student ───────────────────────────────────────────────────────────
+async function removeStudent() {
+  const { url, secret } = getConfig();
+  const email = document.getElementById('remove-email').value.trim();
+  const el    = document.getElementById('remove-result');
+  if (!url || !secret) return showResult(el, 'error', 'Set your Worker URL and Admin Secret first.');
+  if (!email) return showResult(el, 'error', 'Email is required.');
+  if (!confirm(`Revoke access for ${email}?\n\nThey will be blocked immediately on their next app load.\nYou can re-add them anytime using the Add Student section.`)) return;
+  try {
+    const res  = await fetch(`${url}/admin/remove-student`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify({ email }),
+    });
+    const data = await res.json();
+    if (data.status === 'revoked') {
+      showResult(el, 'success', `✅ Access revoked for: ${data.email}`);
+      document.getElementById('remove-email').value = '';
+      loadStudents();
+    } else { showResult(el, 'error', data.error || JSON.stringify(data)); }
+  } catch (e) { showResult(el, 'error', `Network error: ${e.message}`); }
+}
+
+// ─── List Students ────────────────────────────────────────────────────────────
+async function loadWebhookQueue() {
+  const { url, secret } = getConfig();
+  const el = document.getElementById('webhook-queue');
+  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
+  el.innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    const res = await fetch(`${url}/admin/webhook-queue`, { headers: { 'X-Admin-Secret': secret } });
+    const data = await res.json();
+
+    const fmtDate = iso => iso ? new Date(iso).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' }) : '—';
+    const fmtAmount = paise => paise ? `₹${(paise / 100).toLocaleString('en-IN')}` : '—';
+
+    const autoRows = (data.auto_provisioned || []).map(s => `
+      <tr>
+        <td style="font-family:var(--font-mono);font-size:12px;">${escapeHtml(s.email)}</td>
+        <td style="font-size:12px;">${escapeHtml(s.plan)}</td>
+        <td style="font-size:12px;color:var(--text3);">${fmtDate(s.paidAt)}</td>
+        <td style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(s.paymentId)}</td>
+        <td>${s.revoked ? '<span class="badge badge-revoked">Revoked</span>' : '<span class="badge badge-ok">Active</span>'}</td>
+      </tr>`).join('') || '<tr><td colspan="5" style="color:var(--text3);text-align:center;">None yet</td></tr>';
+
+    const manualRows = (data.manual_review || []).map(m => `
+      <tr>
+        <td style="font-family:var(--font-mono);font-size:12px;">${escapeHtml(m.email)}</td>
+        <td style="font-size:12px;">${fmtAmount(m.amount)}</td>
+        <td style="font-size:12px;color:var(--text3);">${fmtDate(m.paidAt)}</td>
+        <td style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(m.paymentId)}</td>
+        <td><button class="btn btn-primary btn-sm" onclick="quickProvision('${escapeHtml(m.email)}')">Provision Pro</button></td>
+      </tr>`).join('') || '<tr><td colspan="5" style="color:var(--text3);text-align:center;">None</td></tr>';
+
+    const noEmailRows = (data.no_email || []).map(n => `
+      <tr>
+        <td style="font-family:var(--font-mono);font-size:12px;">${escapeHtml(n.contact || '—')}</td>
+        <td style="font-size:12px;color:var(--text3);">${fmtDate(n.paidAt)}</td>
+        <td style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(n.paymentId)}</td>
+        <td style="font-size:12px;color:var(--warning);">Email missing — provision manually after confirming email</td>
+      </tr>`).join('') || '<tr><td colspan="4" style="color:var(--text3);text-align:center;">None</td></tr>';
+
+    el.innerHTML = `
+      <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:12px;">
+        ${data.counts.auto_provisioned} auto-provisioned &nbsp;·&nbsp;
+        <span style="color:${data.counts.manual_review > 0 ? 'var(--warning)' : 'var(--text3)'};">${data.counts.manual_review} manual review</span> &nbsp;·&nbsp;
+        <span style="color:${data.counts.no_email > 0 ? 'var(--warning)' : 'var(--text3)'};">${data.counts.no_email} no-email</span>
+      </p>
+
+      <p style="font-size:12px;font-weight:600;margin:16px 0 8px;">✅ Auto-Provisioned (₹499 webhook)</p>
+      <table><thead><tr><th>Email</th><th>Plan</th><th>Paid At</th><th>Payment ID</th><th>Status</th></tr></thead>
+      <tbody>${autoRows}</tbody></table>
+
+      <p style="font-size:12px;font-weight:600;margin:20px 0 8px;color:var(--warning);">⚠️ Manual Review Required (non-₹499 amount)</p>
+      <table><thead><tr><th>Email</th><th>Amount</th><th>Paid At</th><th>Payment ID</th><th>Action</th></tr></thead>
+      <tbody>${manualRows}</tbody></table>
+
+      <p style="font-size:12px;font-weight:600;margin:20px 0 8px;color:var(--warning);">⚠️ No Email in Payment</p>
+      <table><thead><tr><th>Contact</th><th>Paid At</th><th>Payment ID</th><th>Note</th></tr></thead>
+      <tbody>${noEmailRows}</tbody></table>`;
+  } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
+}
+
+async function quickProvision(email) {
+  const { url, secret } = getConfig();
+  if (!url || !secret) { alert('Set Worker URL and Admin Secret first.'); return; }
+  if (!confirm(`Provision Pro access for ${email}?`)) return;
+  try {
+    const res = await fetch(`${url}/admin/add-student`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify({ email, name: '' }),
+    });
+    const data = await res.json();
+    if (data.status === 'added' || data.status === 'reactivated') {
+      alert(`✅ Provisioned: ${email}`);
+      loadWebhookQueue();
+    } else {
+      alert(`Response: ${JSON.stringify(data)}`);
+    }
+  } catch (e) { alert(`Error: ${e.message}`); }
+}
+
+async function loadStudents() {
+  const { url, secret } = getConfig();
+  const el = document.getElementById('student-table');
+  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
+  el.innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    const res  = await fetch(`${url}/admin/list`, { headers: { 'X-Admin-Secret': secret } });
+    const data = await res.json();
+    const students = data.students || [];
+    if (!students.length) { el.innerHTML = '<div class="empty">No students yet.</div>'; return; }
+
+    const rows = students.map(s => `
+      <tr>
+        <td>${s.name || '<span style="color:var(--text3)">—</span>'}</td>
+        <td style="font-family:var(--font-mono);font-size:12px;">${s.email}</td>
+        <td>
+          ${s.revoked
+            ? '<span class="badge badge-revoked">🚫 Revoked</span>'
+            : `<span class="badge ${s.devices > 0 ? 'badge-ok' : 'badge-warn'}">${s.devices} device${s.devices !== 1 ? 's' : ''}</span>`}
+        </td>
+        <td style="font-size:12px;color:var(--text3);">${s.addedAt ? new Date(s.addedAt).toLocaleDateString('en-IN') : '—'}</td>
+        <td style="font-size:12px;color:var(--text3);">${s.lastSeen ? new Date(s.lastSeen).toLocaleDateString('en-IN') : 'Never'}</td>
+        <td style="font-size:11px;color:var(--text3);">
+          ${s.source === 'razorpay_webhook'
+            ? '<span style="color:var(--success);font-weight:600;">⚡ webhook</span>'
+            : '<span style="color:var(--text3);">manual</span>'}
+        </td>
+        <td>${accessBadges(s.access)}</td>
+        <td>
+          <div class="action-btns">
+            <button class="btn btn-ghost btn-sm" onclick='editAccessFor("${s.email}", ${JSON.stringify(s.access || [])})'>
+              Edit Access
+            </button>
+            <button class="btn btn-ghost btn-sm"
+              onclick="document.getElementById('reset-email').value='${s.email}';document.getElementById('reset-email').focus();document.getElementById('reset-card').scrollIntoView({behavior:'smooth'})">
+              Reset Device
+            </button>
+            ${s.revoked
+              ? `<button class="btn btn-success btn-sm" onclick="reactivateStudent('${s.email}')">Re-add</button>`
+              : `<button class="btn btn-danger btn-sm" onclick="document.getElementById('remove-email').value='${s.email}';document.getElementById('remove-email').focus();document.getElementById('revoke-card').scrollIntoView({behavior:'smooth'})">Revoke</button>`
+            }
+          </div>
+        </td>
+      </tr>`).join('');
+
+    el.innerHTML = `
+      <table>
+        <thead><tr>
+          <th>Name</th><th>Email</th><th>Status</th><th>Added</th><th>Last Seen</th><th>Source</th><th>Access</th><th>Actions</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+      </table>
+      <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-top:12px;">
+        ${students.length} student${students.length !== 1 ? 's' : ''} total
+        · ${students.filter(s=>!s.revoked).length} active
+        · ${students.filter(s=>s.revoked).length} revoked
+      </p>`;
+  } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
+}
+
+// ─── Helper ───────────────────────────────────────────────────────────────────
+function showResult(el, type, msg) {
+  el.textContent = msg;
+  el.className = `result ${type} show`;
+  setTimeout(() => el.classList.remove('show'), 6000);
+}
+
+function escapeHtml(value) {
+  return String(value ?? '').replace(/[&<>"']/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[m]));
+}
+
+loadConfig();
+</script>
+</body>
+</html>
