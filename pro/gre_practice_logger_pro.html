@@ -1197,9 +1197,15 @@ async function submitAuthToWorker(email, fp) {
           body: JSON.stringify({ email, fingerprint: fp }),
         });
       }
-      // Save to localStorage and unlock
-      saveAuth(email, fp);
-      unlockApp();
+      // Save to localStorage, then unlock only if this plan includes practice
+      const access = (data.access && data.access.length) ? data.access : ['practice', 'sectional', 'mocks'];
+      saveAuth(email, fp, access);
+      if (access.includes('practice')) {
+        unlockApp();
+      } else {
+        showFeatureLocked(access);
+        resetAuthBtn();
+      }
 
     } else if (data.status === 'revoked') {
       // Clear any cached session immediately
@@ -1225,9 +1231,12 @@ async function submitAuthToWorker(email, fp) {
     // Network failure — if they have a stored session, let them in offline
     // (revoked students are blocked at the Worker level; offline is a genuine network issue)
     const stored = getStoredAuth();
-    if (stored && stored.email === email) {
+    if (stored && stored.email === email && (!stored.access || stored.access.includes('practice'))) {
       setAuthStatus('Offline — using cached access.');
       setTimeout(unlockApp, 1200);
+    } else if (stored && stored.email === email) {
+      showFeatureLocked(stored.access);
+      resetAuthBtn();
     } else {
       showAuthGate();
       showAuthError('Could not reach the server. Please check your internet connection and try again.');
@@ -1272,12 +1281,47 @@ function resetAuthBtn() {
 }
 
 /* ============================================================
+   AUTH — SELECTIVE ACCESS
+   A validated student whose plan doesn't include 'practice' is
+   logged in correctly but not entitled to this specific app —
+   e.g. a sectional-only or mocks-only plan. Keep the gate up and
+   swap its content instead of unlocking.
+   ============================================================ */
+const FEATURE_LABELS = {
+  practice: 'Topic-wise Practice',
+  sectional: 'Sectional Tests',
+  mocks: 'Full-Length Mocks',
+};
+
+function showFeatureLocked(access) {
+  document.getElementById('auth-gate').style.display = 'flex';
+  const have = (access && access.length)
+    ? access.map(a => FEATURE_LABELS[a] || a).join(', ')
+    : 'none';
+  const card = document.querySelector('#auth-gate .auth-card');
+  card.innerHTML = `
+    <div class="auth-logo">GRE <span>Quant</span> Pro</div>
+    <div class="auth-subtitle">by Coach Aditya Goenka &nbsp;·&nbsp; Licensed Access</div>
+    <div class="auth-error show">Topic-wise Practice isn't part of your plan.</div>
+    <div class="auth-status" style="margin-top:0;margin-bottom:16px;">Your current Pro access includes: ${have}</div>
+    <a class="auth-btn" style="display:block;text-decoration:none;box-sizing:border-box;"
+       href="mailto:goenka.aditya.kol@gmail.com?subject=Upgrade%20GRE%20Pro%20Access">
+      Email Coach Aditya to Upgrade
+    </a>
+    <div class="auth-footer">
+      <a href="#" onclick="location.reload();return false;">Log in with a different email</a>
+    </div>
+  `;
+}
+
+/* ============================================================
    AUTH — LOCALSTORAGE HELPERS
    ============================================================ */
-function saveAuth(email, fingerprint) {
+function saveAuth(email, fingerprint, access) {
   localStorage.setItem(AUTH_CONFIG.STORAGE_KEY, JSON.stringify({
     email,
     fingerprint,
+    access: access || ['practice', 'sectional', 'mocks'],
     savedAt: Date.now(),
   }));
 }
