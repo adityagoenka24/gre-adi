@@ -224,8 +224,11 @@ nav{position:sticky;top:0;background:rgba(250,248,244,.92);backdrop-filter:blur(
 .plan-card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius-lg);padding:38px;position:relative;box-shadow:var(--shadow);transition:border-color .2s,box-shadow .2s}
 .plan-card.pro{border:2px solid var(--accent);box-shadow:var(--shadow-lg)}
 .plan-card.pro.is-best-value{border-color:var(--gold);box-shadow:0 0 0 4px rgba(169,123,18,.14),var(--shadow-lg)}
-.popular-badge{position:absolute;top:-13px;left:38px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;font-family:var(--fm);letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:20px;transition:background .2s}
+.popular-badge{position:absolute;top:-13px;left:38px;background:var(--accent);color:#fff;font-size:11px;font-weight:800;font-family:var(--fm);letter-spacing:1.5px;text-transform:uppercase;padding:6px 14px;border-radius:20px;transition:background .2s,opacity .2s}
 .plan-card.pro.is-best-value .popular-badge{background:var(--gold)}
+/* Only claim "Best Value" while the current selection actually is ₹999 —
+   never leave it showing over a cheaper, non-bundle price. */
+.plan-card.pro:not(.is-best-value) .popular-badge{opacity:0;pointer-events:none}
 .plan-name{font-family:var(--fd);font-weight:640;font-size:27px;margin-bottom:6px;color:var(--navy)}
 .plan-tagline{font-size:14.5px;color:var(--ink2);margin-bottom:26px;line-height:1.6;max-width:380px}
 .price-wrap{display:flex;align-items:baseline;gap:8px;margin-bottom:6px;flex-wrap:wrap}
