@@ -39,8 +39,16 @@
  *   2. URL: https://gre-auth.goenka-aditya-kol.workers.dev/razorpay/webhook
  *   3. Secret: copy the value you set as RAZORPAY_WEBHOOK_SECRET in Worker env
  *   4. Events: check "payment.captured"
- *   5. Amount mapping: ₹499 (49900 paise) → Pro plan (auto-provisioned)
- *                      ₹1,499/mo → Pro + Coach (logged but NOT auto-provisioned — manual)
+ *   5. Amount mapping — each is a static Razorpay Payment Link at a fixed
+ *      price, auto-provisioning the matching feature access (see
+ *      AMOUNT_ACCESS below):
+ *        ₹399 (39900 paise)  → Sectional Tests only
+ *        ₹499 (49900 paise)  → Topic-wise Practice only
+ *        ₹599 (59900 paise)  → Full-Length Mocks only
+ *        ₹799 (79900 paise)  → Practice + Sectional
+ *        ₹899 (89900 paise)  → Sectional + Mocks
+ *        ₹999 (99900 paise)  → Full Pro (all three)
+ *      Any other amount is logged for manual review, not auto-provisioned.
  */
 
 const CORS_HEADERS = {
@@ -120,6 +128,18 @@ export default {
 // surfaces instead of the full app. See the KV key structure note at the
 // top of this file.
 const ALL_FEATURES = ['practice', 'sectional', 'mocks'];
+
+// Amount (in paise) → feature access that payment grants. Each key is the
+// fixed price of one static Razorpay Payment Link used on pricing.html —
+// see the doc comment at the top of this file for the price list.
+const AMOUNT_ACCESS = {
+  39900: ['sectional'],
+  49900: ['practice'],
+  59900: ['mocks'],
+  79900: ['practice', 'sectional'],
+  89900: ['sectional', 'mocks'],
+  99900: ['practice', 'sectional', 'mocks'],
+};
 
 // Returns the effective feature list for a student record. Missing/empty/
 // 'full' all mean "everything" so pre-existing students are never narrowed
@@ -623,7 +643,7 @@ async function handleAdminList(request, env) {
 // ─── ADMIN: WEBHOOK QUEUE ────────────────────────────────────────────────────
 // GET /admin/webhook-queue
 // Returns items that need manual attention:
-//   manual[]   — payments received but not ₹499 (e.g. Pro+Coach ₹1,499)
+//   manual[]   — payments received at an amount not in AMOUNT_ACCESS
 //   noemail[]  — payments with no email address in the Razorpay payload
 // Also returns recent auto-provisioned students for visibility.
 async function handleAdminWebhookQueue(request, env) {
@@ -685,14 +705,15 @@ async function handleAdminWebhookQueue(request, env) {
 
 // ─── RAZORPAY WEBHOOK ────────────────────────────────────────────────────────
 // POST /razorpay/webhook
-// Verifies signature, provisions Pro access on payment.captured for ₹499.
-// Pro + Coach (₹1,499/mo) is intentionally NOT auto-provisioned — manual only.
+// Verifies signature, provisions Pro access on payment.captured. The paid
+// amount is looked up in AMOUNT_ACCESS to determine which features to grant —
+// any amount not in that table is logged for manual review instead.
 //
 // Razorpay sends:  X-Razorpay-Signature: HMAC-SHA256(rawBody, webhookSecret) as hex
 // The body is the raw JSON string (must be read before .json() parsing).
 //
 // KV record written: student:{email} → { email, name, fingerprints:[], addedAt,
-//   lastSeen:null, plan:'pro', paidAt, paymentId, source:'razorpay_webhook' }
+//   lastSeen:null, plan:'pro', paidAt, paymentId, source:'razorpay_webhook', access }
 async function handleRazorpayWebhook(request, env) {
   // Read raw body first — signature is computed over the raw bytes
   const rawBody = await request.text();
@@ -744,9 +765,9 @@ async function handleRazorpayWebhook(request, env) {
     return jsonResponse({ status: 'no_email', paymentId });
   }
 
-  // ₹499 = 49900 paise → Pro (1 year)
-  if (amount !== 49900) {
-    // Different amount (e.g. Pro + Coach ₹1,499) — log for manual review, don't auto-provision
+  const access = AMOUNT_ACCESS[amount];
+  if (!access) {
+    // Unrecognized amount — log for manual review, don't auto-provision
     await env.GRE_AUTH.put(
       `webhook_manual:${paymentId}`,
       JSON.stringify({ paymentId, email, amount, paidAt }),
@@ -771,22 +792,23 @@ async function handleRazorpayWebhook(request, env) {
       student.paidAt = paidAt;
       student.paymentId = paymentId;
       student.source = 'razorpay_webhook';
+      student.access = access.slice();
       await env.GRE_AUTH.put(key, JSON.stringify(student));
-      return jsonResponse({ status: 'reactivated', email, plan });
+      return jsonResponse({ status: 'reactivated', email, plan, access: student.access });
     }
-    // Already has access — update payment metadata but leave fingerprints/access intact
+    // Already has access — merge in whatever this payment adds (e.g. an
+    // upgrade from a single feature to a combo), never narrowing existing access.
+    const merged = new Set([...resolveAccess(student), ...access]);
+    student.access = merged.size >= ALL_FEATURES.length ? ALL_FEATURES.slice() : [...merged];
     student.plan = plan;
     student.paidAt = paidAt;
     student.paymentId = paymentId;
     student.source = 'razorpay_webhook';
     await env.GRE_AUTH.put(key, JSON.stringify(student));
-    return jsonResponse({ status: 'already_exists', email, plan });
+    return jsonResponse({ status: 'already_exists', email, plan, access: student.access });
   }
 
-  // New student — create full record and grant Pro access
-  // (a ₹499 payment always grants full access to every feature; selective/
-  // partial access is a manual-only grant via /admin/add-student or
-  // /admin/set-access, never something Razorpay provisions on its own)
+  // New student — create record and grant exactly the access this payment paid for.
   const record = {
     email,
     name: '', // Razorpay doesn't reliably carry the buyer's name; can be updated manually
@@ -797,11 +819,11 @@ async function handleRazorpayWebhook(request, env) {
     paidAt,
     paymentId,
     source: 'razorpay_webhook',
-    access: ALL_FEATURES.slice(),
+    access: access.slice(),
   };
 
   await env.GRE_AUTH.put(key, JSON.stringify(record));
-  return jsonResponse({ status: 'provisioned', email, plan });
+  return jsonResponse({ status: 'provisioned', email, plan, access: record.access });
 }
 
 // Verify Razorpay webhook signature.

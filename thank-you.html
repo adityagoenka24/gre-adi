@@ -118,7 +118,19 @@ h1{font-family:var(--fd);font-weight:640;font-size:28px;margin-bottom:10px;line-
   const params = new URLSearchParams(location.search);
   const status = params.get('razorpay_payment_link_status');
   const paymentId = params.get('razorpay_payment_id') || '';
-  const plan = params.get('plan') || 'pro'; // 'pro' or 'coach'
+  // 'plan' matches the redirect URL configured on each Razorpay Payment
+  // Link (Razorpay dashboard → that link → after-payment redirect) — keep
+  // these keys in sync with ads-config.js `values` and worker.js AMOUNT_ACCESS.
+  const PLAN_INFO = {
+    sectional:          { label: 'Sectional Tests',      price: '₹399' },
+    practice:           { label: 'Topic-wise Practice',  price: '₹499' },
+    mocks:              { label: 'Full-Length Mocks',    price: '₹599' },
+    practice_sectional: { label: 'Practice + Sectional', price: '₹799' },
+    sectional_mocks:    { label: 'Sectional + Mocks',    price: '₹899' },
+    full:               { label: 'Full Pro (all features)', price: '₹999' },
+  };
+  const plan = params.get('plan') || 'full';
+  const planInfo = PLAN_INFO[plan] || PLAN_INFO.full;
   const isPaid = status === 'paid';
 
   const card = document.getElementById('mainCard');
@@ -138,13 +150,9 @@ h1{font-family:var(--fd);font-weight:640;font-size:28px;margin-bottom:10px;line-
   }
 
   // ── Real payment confirmed ──────────────────────────────────────────────────
-  const isPro   = plan === 'pro';
-  const planLabel   = isPro ? 'Pro' : 'Pro + Coach Review';
-  const planPrice   = isPro ? '₹499' : '₹1,499/mo';
-  const loginUrl    = 'https://grequantpro.com/pro';
-  const loginFallback = 'https://grequantpro.com/pro'; // used until domain is confirmed live
+  const loginUrl = 'https://grequantpro.com/pro';
 
-  const proSteps = `
+  const steps = `
     <div class="step">
       <div class="step-num">1</div>
       <div class="step-body">
@@ -167,38 +175,15 @@ h1{font-family:var(--fd);font-weight:640;font-size:28px;margin-bottom:10px;line-
       </div>
     </div>`;
 
-  const coachSteps = `
-    <div class="step">
-      <div class="step-num">1</div>
-      <div class="step-body">
-        <div class="step-title">Your access is being activated automatically</div>
-        <div class="step-desc">Pro access activates <strong>instantly</strong>, automatically. Coach Aditya will also reach out directly to set up your first session review.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">2</div>
-      <div class="step-body">
-        <div class="step-title">Open the Pro app and do your first session</div>
-        <div class="step-desc">Visit <a href="${loginUrl}" target="_blank">grequantpro.com/pro</a> and complete at least one session. Use "Send to Coach" to share your session data.</div>
-      </div>
-    </div>
-    <div class="step">
-      <div class="step-num">3</div>
-      <div class="step-body">
-        <div class="step-title">Receive your personalised review within 24 hours</div>
-        <div class="step-desc">Coach Aditya reviews your session data and sends a targeted feedback note on what to fix next.</div>
-      </div>
-    </div>`;
-
   card.innerHTML = `
     <div class="check-ring">✓</div>
-    <div class="plan-badge">${planLabel} — ${planPrice}</div>
+    <div class="plan-badge">${planInfo.label} — ${planInfo.price}</div>
     <h1>You're in. Welcome to GRE Quant Pro.</h1>
     <p class="subtitle">Your payment is confirmed. Here's exactly what happens next.</p>
     ${paymentId ? `<div class="payment-id">Payment ID: ${paymentId}</div>` : ''}
     <div class="steps">
       <div class="steps-title">What happens next</div>
-      ${isPro ? proSteps : coachSteps}
+      ${steps}
     </div>
     <a href="${loginUrl}" class="btn-primary" target="_blank">Open Pro App →</a>
     <br>
@@ -213,7 +198,6 @@ h1{font-family:var(--fd);font-weight:640;font-size:28px;margin-bottom:10px;line-
   if (window.GQP && window.GQP.track) {
     window.GQP.track('purchase_completed', {
       plan: plan,
-      value: plan === 'pro' ? 499 : 1499,
       payment_id: paymentId.slice(0, 40) || '',
     });
   }
