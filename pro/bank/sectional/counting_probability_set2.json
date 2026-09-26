@@ -1,0 +1,281 @@
+{
+  "meta": {
+    "topic": "Counting & Probability",
+    "subtopic": "Sectional Set 2",
+    "subtopic_id": "SEC-CP",
+    "version": "1.0",
+    "set_number": 2,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Original questions written by Claude; concept coverage and difficulty calibration informed by the KMF/GREmlin's GRE Counting and Probability image set. No source text, figures, wording or numbers reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-CP-013",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Six different trophies, all of different heights, are to be placed in a row on a shelf. The tallest trophy must be placed at one of the two ends of the row. How many different arrangements of the six trophies are possible?",
+      "options": [
+        "A. 120",
+        "B. 240",
+        "C. 360",
+        "D. 720",
+        "E. 1440"
+      ],
+      "answer": "B",
+      "explanation": "Place the restricted item first. The tallest trophy has 2 choices of position, the left end or the right end. Once it is placed, the remaining 5 distinct trophies fill the remaining 5 positions in 5! = 120 orders. Multiply the two stages: 2 * 120 = 240.",
+      "trap": "A student who pins the tallest trophy to a single end and never doubles for the other end answers 120, choice A. That counts only the arrangements with the tallest trophy on one particular side, which is exactly half of the arrangements the stem allows.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "permutations",
+        "restricted-position"
+      ]
+    },
+    {
+      "id": "SEC-CP-014",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "At a language institute, 120 students are enrolled. Of these, 62 study French, 48 study German, and 40 study Spanish. In addition, 20 students study both French and German, 14 study both German and Spanish, 18 study both French and Spanish, and 8 students study all three languages. How many of the 120 students study none of these three languages?",
+      "options": null,
+      "answer": "14",
+      "explanation": "Apply inclusion-exclusion for three sets. Add the individual totals: 62 + 48 + 40 = 150. Subtract each pairwise overlap, since students in two languages were counted twice: 150 - 20 - 14 - 18 = 98. The 8 students taking all three were added three times and subtracted three times, so add them back once: 98 + 8 = 106 students study at least one language. The remainder is 120 - 106 = 14.",
+      "trap": "A student who stops after subtracting the three pairwise overlaps gets a union of 98 and answers 22. Subtracting each pair removes the all-three group one time too many, so that group has to be added back before the union is correct.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "inclusion-exclusion",
+        "three-sets"
+      ]
+    },
+    {
+      "id": "SEC-CP-015",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A committee of 9 people will choose a chairperson, a secretary, and a treasurer from among its members. No person may hold more than one of the three posts.\nColumn A: The number of different ways the three posts can be filled\nColumn B: 500",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "The three posts are distinct, so who holds which post matters and this is a permutation. There are 9 candidates for chairperson, 8 remaining for secretary, and 7 remaining for treasurer: 9 * 8 * 7 = 504. Since 504 is greater than 500, Column A is greater.",
+      "trap": "A student who treats the three officers as an unlabeled group of 3 computes C(9,3) = 84 and answers B. Dividing by 3! is correct only when the three selected people are interchangeable; here swapping the secretary and the treasurer produces a genuinely different outcome.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "permutations",
+        "qc",
+        "order-matters"
+      ]
+    },
+    {
+      "id": "SEC-CP-016",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "At a recreation club, 40 percent of the members play chess and 30 percent of the members play go. Of the members who play chess, 25 percent also play go. If a member is selected at random from those who play go, what is the probability that the selected member also plays chess?",
+      "options": [
+        "A. 1/10",
+        "B. 1/4",
+        "C. 3/10",
+        "D. 1/3",
+        "E. 3/4"
+      ],
+      "answer": "D",
+      "explanation": "First find the joint percentage. The members who play both are 25 percent of the 40 percent who play chess, which is 0.25 * 0.40 = 0.10, so 10 percent of all members play both games. The question restricts attention to go players, who are 30 percent of the membership, so the probability is the both-games group divided by the go group: 0.10 / 0.30 = 1/3.",
+      "trap": "A student who reports the joint probability instead of the conditional one answers 1/10, choice A. That is the chance a randomly chosen member of the whole club plays both games; once the member is known to play go, the denominator shrinks from the full membership to the 30 percent who play go.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "conditional-probability",
+        "joint-probability",
+        "percent"
+      ]
+    },
+    {
+      "id": "SEC-CP-017",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A machine produces parts one at a time. Each part is defective with probability 1/4, independently of every other part. If the machine produces 3 parts, what is the probability that at least one of the 3 parts is defective? Give your answer as a fraction in lowest terms.",
+      "options": null,
+      "answer": "37/64",
+      "explanation": "At least one defective covers three separate cases, so use the complement. A single part is non-defective with probability 1 - 1/4 = 3/4, and because the parts are independent the probability that all 3 are non-defective is (3/4)^3 = 27/64. Therefore the probability of at least one defective part is 1 - 27/64 = 37/64, which is already in lowest terms.",
+      "trap": "A student who adds the per-part risk computes 3 * (1/4) = 3/4. Adding double counts the runs with two or three defective parts, and the method is plainly unsound because it would give a probability above 1 for five or more parts.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "complement",
+        "independence",
+        "at-least-one"
+      ]
+    },
+    {
+      "id": "SEC-CP-018",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A firm employs 600 people. Exactly 150 of them work remotely, and exactly 360 of them are salaried. Which of the following statements must be true? Indicate all such statements.",
+      "options": [
+        "A. At most 150 employees both work remotely and are salaried.",
+        "B. At least 210 salaried employees do not work remotely.",
+        "C. At least 90 employees neither work remotely nor are salaried.",
+        "D. Exactly 90 employees both work remotely and are salaried.",
+        "E. At least 150 of the employees who work remotely are salaried.",
+        "F. More than 400 employees either work remotely or are salaried or both."
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "Let b be the number who are both remote and salaried. Choice A holds because the overlap cannot exceed the 150 remote employees. Choice B holds because the salaried employees who are not remote number 360 - b, and b is at most 150, so that count is at least 210. Choice C holds because 450 employees are not remote and 240 are not salaried, and 450 + 240 - 600 = 90 of them must fall in both groups. Choices D and E fail because b could be as low as 0, since 150 remote and 360 salaried can fit inside 600 people with no overlap. Choice F fails because the union can be as small as 360, which happens when every remote employee is salaried.",
+      "trap": "A student who assumes the two categories are spread evenly computes 150 * 360 / 600 = 90 and selects D as a certainty. That calculation assumes remote status and salaried status are independent, which the stem never states; the true overlap can be anything from 0 to 150.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "overlapping-sets",
+        "bounds",
+        "must-be-true"
+      ]
+    },
+    {
+      "id": "SEC-CP-019",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "X and Y are independent events with 0 < P(X) < 1 and 0 < P(Y) < 1.\nColumn A: The probability that X or Y or both occur\nColumn B: P(X) + P(Y)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "For any two events, P(X or Y) = P(X) + P(Y) - P(X and Y), and independence makes P(X and Y) = P(X)*P(Y). So Column A equals P(X) + P(Y) - P(X)*P(Y), which is Column B minus the quantity P(X)*P(Y). Since both probabilities are strictly between 0 and 1, their product is strictly positive, so Column A is strictly less than Column B for every allowed pair of values.",
+      "trap": "A student who applies the addition rule for mutually exclusive events writes P(X or Y) = P(X) + P(Y) and answers C. That shortcut is valid only when the events cannot both occur; independent events with nonzero probabilities can and do overlap, and the overlap is counted twice by plain addition.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "independence",
+        "union",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-CP-020",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A nursery must distribute 8 identical seedlings among 3 distinct plots, and every plot must receive at least 1 seedling. Two distributions are different only if some plot receives a different number of seedlings. In how many different ways can the seedlings be distributed?",
+      "options": [
+        "A. 15",
+        "B. 21",
+        "C. 28",
+        "D. 45",
+        "E. 56"
+      ],
+      "answer": "B",
+      "explanation": "Line the 8 identical seedlings up in a row, which creates 7 gaps between neighboring seedlings. Choosing 2 of those gaps as dividers splits the row into 3 nonempty groups, one per plot, and every such choice gives a different distribution. The count is C(7,2) = (7*6)/(2*1) = 21. A quick check agrees: the ordered triples of positive integers summing to 8 number 21.",
+      "trap": "A student who allows a plot to receive nothing uses the empty-bins-allowed count C(8 + 3 - 1, 2) = C(10,2) = 45, choice D. That counts distributions such as 8-0-0, which the stem's at-least-one requirement forbids.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "identical-items",
+        "partitions",
+        "counting"
+      ]
+    },
+    {
+      "id": "SEC-CP-021",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A fair six-sided die with faces numbered 1 through 6 is rolled twice.\nColumn A: The probability that the two rolls show the same number\nColumn B: 1/6",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "There are 6 * 6 = 36 equally likely ordered outcomes, and the matching ones are (1,1), (2,2), (3,3), (4,4), (5,5), (6,6), which is 6 outcomes. The probability is 6/36 = 1/6. A faster route gives the same value: the first roll can be anything, and the second roll must match it, which happens with probability 1/6.",
+      "trap": "A student who requires a specific matching value, such as two 4s, computes (1/6)*(1/6) = 1/36 and answers B. The stem does not name the repeated number, so all six matching outcomes count, and the total is six times 1/36.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "dice",
+        "probability",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-CP-022",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A library shelf holds 10 different books, exactly 2 of which are reference volumes. A reader will choose 4 of the 10 books to borrow. How many different selections of 4 books include at least 1 of the 2 reference volumes?",
+      "options": null,
+      "answer": "140",
+      "explanation": "Count the complement. The total number of 4-book selections is C(10,4) = 210, and the number that avoid both reference volumes entirely is the number of ways to take 4 books from the other 8, which is C(8,4) = 70. The selections that include at least 1 reference volume are 210 - 70 = 140.",
+      "trap": "A student who reasons that one reference volume is picked first and the other 3 books come from the remaining 9 computes 2 * C(9,3) = 168. That double counts every selection containing both reference volumes, once for each one taken as the designated pick.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "combinations",
+        "complement",
+        "at-least-one"
+      ]
+    },
+    {
+      "id": "SEC-CP-023",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A bin contains 4 green balls and 6 red balls. Two balls are drawn from the bin at random and without replacement. What is the probability that both balls drawn are green?",
+      "options": [
+        "A. 2/15",
+        "B. 3/20",
+        "C. 1/5",
+        "D. 4/25",
+        "E. 2/5"
+      ],
+      "answer": "A",
+      "explanation": "The first ball is green with probability 4/10. After a green ball is removed, 3 green balls remain among 9 balls, so the second is green with probability 3/9. Multiply the two stages: (4/10)*(3/9) = 12/90 = 2/15. Counting selections gives the same result: C(4,2)/C(10,2) = 6/45 = 2/15.",
+      "trap": "A student who treats the draws as independent computes (4/10)^2 = 4/25, choice D. Because the first green ball is not put back, both the green count and the total count drop by one before the second draw.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "without-replacement",
+        "dependent-events",
+        "probability"
+      ]
+    },
+    {
+      "id": "SEC-CP-024",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "In a probability experiment, A and B are events with P(A) = 0.7 and P(B) = 0.6. No other information about A and B is given. Which of the following could be the value of the probability that both A and B occur? Indicate all such values.",
+      "options": [
+        "A. 0.2",
+        "B. 0.3",
+        "C. 0.42",
+        "D. 0.55",
+        "E. 0.6",
+        "F. 0.7"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "Let j be the probability that both occur. Since the overlap cannot be larger than either event, j <= 0.6. For the lower bound, note that P(A or B) = 0.7 + 0.6 - j can be at most 1, which forces j >= 0.3. Every value in the interval from 0.3 to 0.6 is attainable, so 0.3, 0.42, 0.55 and 0.6 all qualify, while 0.2 falls below the minimum and 0.7 exceeds P(B).",
+      "trap": "A student who checks only the upper limit j <= 0.6 also selects 0.2, choice A. The lower limit comes from the fact that two events covering 0.7 and 0.6 of the sample space cannot fit inside it without sharing at least 0.3, and skipping that check lets an impossible value through.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "joint-probability",
+        "bounds",
+        "inclusion-exclusion"
+      ]
+    }
+  ]
+}

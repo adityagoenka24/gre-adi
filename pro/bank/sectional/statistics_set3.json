@@ -1,0 +1,278 @@
+{
+  "meta": {
+    "topic": "Statistics",
+    "subtopic": "Sectional Set 3",
+    "subtopic_id": "SEC-ST",
+    "version": "1.0",
+    "set_number": 3,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Original questions written by Claude; concept coverage and difficulty calibration informed by the KMF/GREmlin's GRE Statistics image set. No source text, figures, wording or numbers reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-ST-025",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Consider the list of integers 63, 58, 71, 66, 54, 80, 75, 61, 69, and 57. For which integer in the list are exactly 80 percent of the integers in the list less than that integer?",
+      "options": [
+        "A. 66",
+        "B. 69",
+        "C. 71",
+        "D. 75",
+        "E. 80"
+      ],
+      "answer": "D",
+      "explanation": "Sort the list: 54, 57, 58, 61, 63, 66, 69, 71, 75, 80. There are 10 integers, so 80 percent of them is 8 integers. The value with exactly 8 integers below it is the 9th value in sorted order, which is 75. Checking directly, the integers below 75 are 54, 57, 58, 61, 63, 66, 69, and 71, exactly 8 of them, which is 80 percent of 10.",
+      "trap": "A student who counts the target value itself among those below it looks for the 8th sorted value and answers 71. Only the values strictly below the target are counted, so the answer sits one position higher in the sorted list, at 75.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "percentile",
+        "ordering"
+      ]
+    },
+    {
+      "id": "SEC-ST-026",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "The table above shows how many of 50 inspected units had each possible number of defects. What is the average (arithmetic mean) number of defects per inspected unit?",
+      "svg": "<svg viewBox=\"0 0 380 228\" width=\"380\" height=\"228\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"30\" y=\"42\" width=\"320\" height=\"174\" fill=\"#ffffff\"/><rect x=\"30\" y=\"42\" width=\"320\" height=\"29\" fill=\"#e5edf7\"/><line x1=\"30\" y1=\"71\" x2=\"350\" y2=\"71\"/><line x1=\"30\" y1=\"100\" x2=\"350\" y2=\"100\"/><line x1=\"30\" y1=\"129\" x2=\"350\" y2=\"129\"/><line x1=\"30\" y1=\"158\" x2=\"350\" y2=\"158\"/><line x1=\"30\" y1=\"187\" x2=\"350\" y2=\"187\"/><line x1=\"230\" y1=\"42\" x2=\"230\" y2=\"216\"/></g><g font-family=\"Georgia, serif\" fill=\"#1f2937\" text-anchor=\"middle\"><text x=\"190\" y=\"26\" font-size=\"15\">Defects Found in 50 Inspected Units</text><text x=\"130\" y=\"62\" font-size=\"13\">Number of Defects</text><text x=\"290\" y=\"62\" font-size=\"13\">Number of Units</text><text x=\"130\" y=\"91\" font-size=\"14\">0</text><text x=\"290\" y=\"91\" font-size=\"14\">18</text><text x=\"130\" y=\"120\" font-size=\"14\">1</text><text x=\"290\" y=\"120\" font-size=\"14\">14</text><text x=\"130\" y=\"149\" font-size=\"14\">2</text><text x=\"290\" y=\"149\" font-size=\"14\">9</text><text x=\"130\" y=\"178\" font-size=\"14\">3</text><text x=\"290\" y=\"178\" font-size=\"14\">6</text><text x=\"130\" y=\"207\" font-size=\"14\">4</text><text x=\"290\" y=\"207\" font-size=\"14\">3</text></g></svg>",
+      "options": null,
+      "answer": "1.24",
+      "explanation": "Weight each defect count by how many units had it. The total number of defects is 0(18) + 1(14) + 2(9) + 3(6) + 4(3) = 0 + 14 + 18 + 18 + 12 = 62. The 50 units share those 62 defects, so the average is 62/50 = 1.24 defects per unit.",
+      "trap": "A student who averages the five defect values in the left column, ignoring how many units fall in each row, computes (0 + 1 + 2 + 3 + 4)/5 = 2. The rows are far from equally populated, with 18 units at zero defects, so the weighted average is 1.24 rather than 2.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "mean",
+        "weighted-average",
+        "frequency-table"
+      ]
+    },
+    {
+      "id": "SEC-ST-027",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "The random variable X takes the values 1, 2, 3, and 4 with probabilities 0.1, 0.2, 0.3, and 0.4, respectively. The random variable Y takes each of the values 1, 2, 3, 4, and 5 with probability 0.2.\nColumn A: The expected value of X\nColumn B: The expected value of Y",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Multiply each value by its probability and add. For X: 1(0.1) + 2(0.2) + 3(0.3) + 4(0.4) = 0.1 + 0.4 + 0.9 + 1.6 = 3.0. For Y every outcome carries the same probability 0.2, so the expected value is just the ordinary average of the five values: (1 + 2 + 3 + 4 + 5)/5 = 3.0. Both probability lists sum to 1, so both computations are complete, and the two expected values are equal.",
+      "trap": "A student who notices that Y can reach 5 while X stops at 4 concludes that Y must have the larger expected value and picks B. X puts most of its probability on its largest outcomes, with 0.4 on the value 4, which lifts its expected value to exactly 3.0 and matches the symmetric variable Y.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "data-distribution",
+        "mean",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-ST-028",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Each of 32 students answered 6, 7, 8, 9, or 10 questions correctly on a short quiz. Exactly 12 students answered 6 correctly, 6 students answered 7 correctly, 4 students answered 8 correctly, 6 students answered 9 correctly, and 4 students answered 10 correctly. What is the median number of questions answered correctly?",
+      "options": [
+        "A. 6",
+        "B. 6.5",
+        "C. 7",
+        "D. 7.5",
+        "E. 8"
+      ],
+      "answer": "C",
+      "explanation": "List the 32 responses in increasing order using the running totals. The 12 students who scored 6 occupy positions 1 through 12, the 6 who scored 7 occupy positions 13 through 18, the 4 who scored 8 occupy positions 19 through 22, the 6 who scored 9 occupy positions 23 through 28, and the 4 who scored 10 occupy positions 29 through 32. With 32 values the median is the average of the 16th and 17th values, and both fall in the block of 7s, so the median is (7 + 7)/2 = 7.",
+      "trap": "A student who ignores the frequencies and takes the middle of the five listed scores 6, 7, 8, 9, 10 answers 8. The scores are not equally common; 12 of the 32 students scored only 6, which pushes the middle of the ordered data down into the block of 7s.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "median",
+        "frequency-table",
+        "data-distribution"
+      ]
+    },
+    {
+      "id": "SEC-ST-029",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "An instructor scored 29 assignments, and exactly 14 of the 29 scores were greater than 70. Which of the following statements, considered individually, would provide sufficient additional information to determine the median of the 29 scores? Indicate all such statements.",
+      "options": [
+        "A. Exactly one of the 29 scores was equal to 70.",
+        "B. The average (arithmetic mean) of the 29 scores was 70.",
+        "C. Exactly 14 of the 29 scores were less than 65.",
+        "D. Exactly 15 of the 29 scores were equal to 70.",
+        "E. The range of the 29 scores was 45."
+      ],
+      "answer": [
+        "A",
+        "D"
+      ],
+      "explanation": "With 29 scores the median is the 15th score in increasing order. Since 14 scores exceed 70, exactly 15 scores are 70 or below, so the median is the largest of those 15. Statement A says exactly one score equals 70; that score must be the largest of the 15 that are at most 70, so the median is 70, and A is sufficient. Statement D says 15 scores equal 70; together with the 14 above 70 that accounts for all 29, so the 15th score is 70, and D is sufficient. Statement B fixes only the total and says nothing about position. Statement C leaves the 15th score somewhere from 65 to 70 without pinning it down. Statement E fixes only the spread between the extremes.",
+      "trap": "A student who reads statement C as locating the median counts 14 scores below 65 and concludes the 15th must be 65. Nothing forces that score down to 65; it can be any value from 65 up to 70, so C leaves the median undetermined while A and D fix it at 70.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "median",
+        "data-distribution",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "SEC-ST-030",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Set V consists of all the integers from -18 through 42, inclusive.\nColumn A: The average (arithmetic mean) of the integers in set V\nColumn B: The median of the integers in set V",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Set V is a list of consecutive integers, so it is evenly spaced and symmetric about its centre. For any evenly spaced list the mean equals the median, and both equal the average of the first and last terms: (-18 + 42)/2 = 12. As a check, the set contains 42 - (-18) + 1 = 61 integers, so the median is the 31st value, which is -18 + 30 = 12, matching the mean.",
+      "trap": "A student who is unsettled by the negative values assumes the mean gets dragged down relative to the median and picks B. Negative entries do not break the symmetry of consecutive integers; the list is evenly spaced, so both statistics land on 12.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "mean",
+        "median",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-ST-031",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "In a survey, each respondent reported how many pets he or she owns. Exactly 4 respondents reported 0 pets, x respondents reported 1 pet, 21 respondents reported 2 pets, 30 respondents reported 3 pets, and 5 respondents reported 4 or more pets. If x is a nonnegative integer and the median number of pets reported is 3, what is the greatest possible value of x?",
+      "options": null,
+      "answer": "9",
+      "explanation": "The total number of respondents is 60 + x. In increasing order, the reports of 0, 1, and 2 pets fill the first 4 + x + 21 = 25 + x positions, and the reports of 3 pets fill positions 26 + x through 55 + x. For the median to be 3, the middle position or positions must land inside that block. Taking x = 9 gives 69 respondents, so the median is the 35th value; the block of 3s runs from position 35 to position 64, so the median is 3. Taking x = 10 gives 70 respondents, so the median is the average of the 35th and 36th values; the block of 3s now starts at position 36, and the 35th value is a 2, giving a median of 2.5 rather than 3. Every larger x pushes the block further right, so the greatest value is 9.",
+      "trap": "A student who only requires that the 3s be the most numerous category answers 29, keeping x below 30 so that 3 remains the mode. The mode and the median are different statistics: once x reaches 10 the middle position slips back into the block of 2s even though 3 is still the most common report.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "median",
+        "data-distribution",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "SEC-ST-032",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "List K consists of the nine numbers 4, 6, 6, 9, 11, 14, 14, 18, and 25. The number 25 in list K is replaced by 40, and no other change is made. Which of the following describes the resulting list compared with list K?",
+      "options": [
+        "A. The average (arithmetic mean) increases and the median increases.",
+        "B. The average increases and the median is unchanged.",
+        "C. The average is unchanged and the median increases.",
+        "D. The average increases and the range is unchanged.",
+        "E. The average and the median are both unchanged."
+      ],
+      "answer": "B",
+      "explanation": "The original nine numbers sum to 107, so the mean is 107/9, about 11.89. Replacing 25 with 40 raises the sum to 122, so the new mean is 122/9, about 13.56; the mean increases. The median of nine numbers is the 5th value in increasing order. In list K that is 11, and since the replacement only moves the largest value further out, the 5th value is still 11; the median is unchanged. The range does change, from 25 - 4 = 21 to 40 - 4 = 36, which rules out choice D.",
+      "trap": "A student who assumes that raising a value must raise both centre measures picks A. The median depends only on position, and 25 and 40 both sit above the 5th value, so the 5th value stays at 11 while the mean climbs from about 11.89 to about 13.56.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "mean",
+        "median",
+        "range"
+      ]
+    },
+    {
+      "id": "SEC-ST-033",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Maya's score on a certification exam is at the 85th percentile of the scores at her test centre. Ravi's score on the same exam is at the 60th percentile of the scores at a different test centre. The score at the 70th percentile at Maya's centre is higher than the score at the 60th percentile at Ravi's centre.\nColumn A: Maya's score\nColumn B: Ravi's score",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Percentile scores never decrease as the percentile rises, so within Maya's centre the 85th percentile score is at least the 70th percentile score; therefore Maya's score is at least the 70th percentile score at her centre. The extra fact says that 70th percentile score is strictly higher than the 60th percentile score at Ravi's centre, and Ravi's score is exactly that 60th percentile score. Chaining the three relations gives Maya's score >= the 70th percentile at her centre > the 60th percentile at Ravi's centre = Ravi's score, so Maya's score is greater.",
+      "trap": "A student who treats percentiles from two different centres as incomparable, noting that the two score distributions are unrelated, picks D. The extra sentence is exactly the bridge between the centres, and once it is used the chain of inequalities settles the comparison.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "percentile",
+        "ordering",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-ST-034",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A list consists of 11 integers. The average (arithmetic mean) of the integers is 30 and the median is 24. Which of the following must be true? Indicate all such statements.",
+      "options": [
+        "A. At least one integer in the list is greater than 30.",
+        "B. At least one integer in the list is less than 24.",
+        "C. The sum of the 11 integers is 330.",
+        "D. At least 6 of the integers are less than or equal to 24.",
+        "E. The greatest integer in the list is at least 90."
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "C is true because a mean of 30 over 11 integers forces a sum of 11(30) = 330. D is true because with 11 values the median is the 6th in increasing order, so the first 6 values are all at most 24. A follows from C and D: the 6 smallest sum to at most 6(24) = 144, so the remaining 5 sum to at least 186, and their largest is at least 186/5 = 37.2, which exceeds 30. B and E both fail on the single list 24, 24, 24, 24, 24, 24, 30, 36, 40, 40, 40, which has sum 330 and median 24 while containing nothing below 24 and nothing as large as 90.",
+      "trap": "A student who pictures the data as spread on both sides of the median marks B, assuming some value must fall below 24. The median only requires six values at or below 24, and they can all equal 24 exactly, so no integer in the list need be smaller than 24.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "mean",
+        "median",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "SEC-ST-035",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A set of 40 measurements has an average (arithmetic mean) of 62. When the two largest measurements are removed from the set, the average of the remaining 38 measurements is 60. When instead only the single largest measurement is removed from the original set, the average of the remaining 39 measurements is 61. What is the value of the second-largest measurement?",
+      "options": null,
+      "answer": "99",
+      "explanation": "Convert every average to a total. All 40 measurements sum to 40(62) = 2480. Removing the single largest leaves 39 measurements summing to 39(61) = 2379, so the largest measurement is 2480 - 2379 = 101. Removing the two largest leaves 38 measurements summing to 38(60) = 2280, so the two largest together are 2480 - 2280 = 200. The second largest is therefore 200 - 101 = 99.",
+      "trap": "A student who correctly finds that the two largest measurements sum to 2480 - 2280 = 200 but then assumes the two are equal and answers 200/2 = 100. The third condition is what separates them: removing only the largest shows it equals 101, which forces the second largest down to 99, not 100.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "mean",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "SEC-ST-036",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A shipment contains boxes of two grades of bolts. There are 15 boxes of Grade I bolts, with an average (arithmetic mean) mass of 24 kilograms per box, and some number of boxes of Grade II bolts, with an average mass of 32 kilograms per box. The average mass of all the boxes in the shipment is 29 kilograms per box. How many boxes of Grade II bolts are in the shipment?",
+      "options": [
+        "A. 9",
+        "B. 25",
+        "C. 30",
+        "D. 40",
+        "E. 45"
+      ],
+      "answer": "B",
+      "explanation": "Let n be the number of Grade II boxes. Total mass gives 15(24) + 32n = 29(15 + n), so 360 + 32n = 435 + 29n, hence 3n = 75 and n = 25. The deviation method agrees: Grade I sits 29 - 24 = 5 kilograms below the overall average and Grade II sits 32 - 29 = 3 kilograms above, so the counts must be in the inverse ratio 3 to 5, and 15 boxes of Grade I correspond to 15(5/3) = 25 boxes of Grade II.",
+      "trap": "A student who applies the deviation ratio the wrong way round uses 5 to 3 instead of 3 to 5 and computes 15(3/5) = 9. The group that is further from the overall average must be the smaller group, so the heavier Grade II boxes, only 3 kilograms above the average, must outnumber the Grade I boxes, giving 25.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "weighted-average",
+        "mean",
+        "ratio-word-problem"
+      ]
+    }
+  ]
+}

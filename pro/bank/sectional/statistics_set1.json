@@ -1,0 +1,279 @@
+{
+  "meta": {
+    "topic": "Statistics",
+    "subtopic": "Sectional Set 1",
+    "subtopic_id": "SEC-ST",
+    "version": "1.0",
+    "set_number": 1,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Original questions written by Claude; concept coverage and difficulty calibration informed by the KMF/GREmlin's GRE Statistics image set. No source text, figures, wording or numbers reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-ST-001",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "An inspector records the mass, in grams, of 9 metal castings, and the average (arithmetic mean) of the 9 masses is t grams. One casting is then set aside, and the average of the 8 remaining masses is t + 3 grams. In terms of t, what was the mass, in grams, of the casting that was set aside?",
+      "options": [
+        "A. t - 24",
+        "B. t - 21",
+        "C. t - 3",
+        "D. t",
+        "E. t + 24"
+      ],
+      "answer": "A",
+      "explanation": "The total mass of all 9 castings is 9t. After one casting is removed, 8 castings remain with average t + 3, so their total is 8(t + 3) = 8t + 24. The mass removed is the difference between the two totals: 9t - (8t + 24) = t - 24. A check confirms the direction: removing a casting lighter than the mean must pull the average up, and t - 24 is indeed below t.",
+      "trap": "A student who mis-tracks the counts writes 8t - 7(t + 3) = t - 21, using 8 as the original number of castings and 7 as the number remaining. That off-by-one in both counts produces choice B, which is not the correct answer.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "mean",
+        "find-original",
+        "two-step"
+      ]
+    },
+    {
+      "id": "SEC-ST-002",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A cycling club has exactly 40 members: 24 in the junior division and 16 in the senior division. The average (arithmetic mean) age of the junior members is 15 years, and the average age of all 40 members is 21 years. What is the average age, in years, of the senior members?",
+      "options": null,
+      "answer": "30",
+      "explanation": "Convert every average into a total. All 40 members together account for 40 * 21 = 840 member-years. The 24 junior members account for 24 * 15 = 360 member-years. The 16 senior members therefore account for 840 - 360 = 480 member-years, so their average age is 480 / 16 = 30 years.",
+      "trap": "A student who averages the two group figures directly computes 2 * 21 - 15 = 27, treating the divisions as though they were the same size. Because the junior division is larger, the seniors must sit further above 21 than the juniors sit below it, and the true answer is 30, not 27.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "weighted-average",
+        "mean"
+      ]
+    },
+    {
+      "id": "SEC-ST-003",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "List L consists of 7 distinct integers. The median of the integers in L is 40 and the greatest integer in L is 46.\nColumn A: The average (arithmetic mean) of the integers in L\nColumn B: 40",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "The median pins only the 4th value at 40 and the maximum at 46; the three values below the median are bounded only from above. Take 37, 38, 39, 40, 44, 45, 46: the sum is 289 and the mean is about 41.29, above 40. Now take 1, 2, 3, 40, 41, 42, 46: the sum is 175 and the mean is 25, below 40. Both lists satisfy every condition, so the mean can land on either side of 40.",
+      "trap": "A student who assumes the values are symmetric about the median concludes the mean must equal the median and selects C. Median is a position statistic and mean is a total statistic; three unbounded low values can drag the mean far below 40 while leaving the median untouched.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "median",
+        "mean",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-ST-004",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In a study of study habits, 40 percent of the respondents were first-year students and the remaining 60 percent were returning students. The first-year students studied an average (arithmetic mean) of 9 hours per week, and all of the respondents together studied an average of 12.6 hours per week. What was the average number of hours per week that the returning students studied?",
+      "options": [
+        "A. 12.6",
+        "B. 15.0",
+        "C. 16.2",
+        "D. 18.0",
+        "E. 22.5"
+      ],
+      "answer": "B",
+      "explanation": "Let r be the returning students' average. Weighting by group share gives 0.40(9) + 0.60(r) = 12.6, so 3.6 + 0.6r = 12.6, giving 0.6r = 9.0 and r = 15.0. A deviation check agrees: the first-year group sits 3.6 hours below the overall mean with weight 4, so the returning group must sit 4(3.6)/6 = 2.4 hours above it, and 12.6 + 2.4 = 15.0.",
+      "trap": "A student who exchanges the two weights solves 0.60(9) + 0.40(r) = 12.6 and gets r = 18.0, choice D. The 9-hour figure belongs to the 40 percent group, so it must carry the weight 0.40, and the correct value is 15.0.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "weighted-average",
+        "mean",
+        "percent-of-percent"
+      ]
+    },
+    {
+      "id": "SEC-ST-005",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A warehouse logged the weights of 30 shipments, and the average (arithmetic mean) weight of the 30 shipments was 48 kilograms. The average weight of the first 12 shipments logged was strictly between 40 and 45 kilograms. Which of the following could be the average weight, in kilograms, of the remaining 18 shipments? Indicate all such values.",
+      "options": [
+        "A. 49",
+        "B. 50",
+        "C. 51",
+        "D. 52",
+        "E. 53",
+        "F. 54"
+      ],
+      "answer": [
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "All 30 shipments total 30 * 48 = 1440 kilograms. The first 12 total strictly between 12 * 40 = 480 and 12 * 45 = 540 kilograms, so the remaining 18 total strictly between 1440 - 540 = 900 and 1440 - 480 = 960 kilograms. Dividing by 18, the average of the last 18 lies strictly between 50 and 53 1/3. Of the choices, 51, 52 and 53 fall in that open interval; 49 and 50 are too small and 54 is too large.",
+      "trap": "A student who treats the excluded endpoint 45 as attainable admits an average of exactly 50 for the last 18 shipments and adds choice B. A student who instead forgets that the two group sizes differ maps the interval 40 to 45 onto an interval of the same width on the other side of 48 and accepts values as high as 56. Because 12 and 18 are unequal, the width shrinks by the factor 12/18, and 50 itself is excluded because the endpoint 45 is excluded.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "weighted-average",
+        "mean",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "SEC-ST-006",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A data set consists of k values whose average (arithmetic mean) is positive. One additional value, equal to 40 percent of that average, is then included to form a new data set of k + 1 values. The average of the new data set is 4 percent less than the average of the original data set. What is the value of k?",
+      "options": [
+        "A. 9",
+        "B. 10",
+        "C. 14",
+        "D. 15",
+        "E. 24"
+      ],
+      "answer": "C",
+      "explanation": "Let the original average be m, so the original total is km and the value added is 0.40m. The new total is km + 0.40m and the new count is k + 1, and the new average is 0.96m. So km + 0.40m = 0.96m(k + 1). Since m is positive it divides out, leaving k + 0.40 = 0.96k + 0.96, so 0.04k = 0.56 and k = 14. Checking with m = 100 and k = 14: the new average is (1400 + 40)/15 = 96, which is 4 percent below 100.",
+      "trap": "A student who drops the added term and writes km = 0.96m(k + 1) gets 0.04k = 0.96 and k = 24, choice E. The value 0.40m must stay in the numerator; leaving it out is what inflates the answer from 14 to 24.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "mean",
+        "percent-change",
+        "algebraic-percent"
+      ]
+    },
+    {
+      "id": "SEC-ST-007",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "At a conference, 45 delegates attended only the morning session and 30 delegates attended only the afternoon session; no delegate attended both. The average (arithmetic mean) number of years of professional experience was 11 for the morning delegates and 16 for the afternoon delegates.\nColumn A: The average number of years of experience of all 75 delegates\nColumn B: 13",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Both group sizes and both group averages are given, so the combined average is fully determined. The morning delegates account for 45 * 11 = 495 delegate-years and the afternoon delegates for 30 * 16 = 480 delegate-years, a total of 975 delegate-years across 75 delegates. The combined average is 975 / 75 = 13, exactly matching Column B.",
+      "trap": "A student who takes the unweighted average of 11 and 16 gets 13.5 and selects A, since 13.5 is greater than 13. The morning group is larger, so it pulls the combined average below the midpoint, and the weighted value lands exactly on 13.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "weighted-average",
+        "mean",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-ST-008",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "The rainfall, in millimetres, recorded at a weather station on five consecutive days was 62, 44, 58, 50, and d, where d is a positive number. What is the greatest possible value of d for which the average (arithmetic mean) of the five readings is equal to their median?",
+      "options": null,
+      "answer": "76",
+      "explanation": "The four known readings sum to 214. To make d as large as possible, suppose d is the largest reading. The sorted list is then 44, 50, 58, 62, d, so the median is 58. Setting the mean equal to 58 gives (214 + d)/5 = 58, so 214 + d = 290 and d = 76. Since 76 is indeed greater than 62, this case is consistent. The other two cases give smaller values: if d is the median then (214 + d)/5 = d gives d = 53.5, and if d is among the two smallest the median is 50 and d = 36. The greatest value is therefore 76.",
+      "trap": "A student who assumes d must be the middle value solves (214 + d)/5 = d and answers 53.5. That is a genuine solution, but it is not the largest one; the question asks for the greatest d, which requires placing d at the top of the list so that 58 becomes the median.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "median",
+        "mean",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "SEC-ST-009",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "p, q, r, and s are numbers such that p <= q <= r <= s.\nColumn A: The average (arithmetic mean) of p, q, r, and s\nColumn B: The average of q and r",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Column B is the median of the four ordered values, and Column A is their mean. With p = q = r = s = 1 both columns equal 1. With p = 0, q = 1, r = 1, s = 10, Column A is 12/4 = 3 while Column B is 1, so A is greater. With p = -10, q = 1, r = 1, s = 2, Column A is -6/4 = -1.5 while Column B is 1, so B is greater. All three assignments respect p <= q <= r <= s, so no fixed relationship holds.",
+      "trap": "A student who reasons that the two outer values are symmetric about the two inner ones concludes the mean and median always coincide and selects C. Nothing here forces symmetry: stretching s upward makes the mean exceed the median, and stretching p downward makes the mean fall below it.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "mean",
+        "median",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-ST-010",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Thirteen students each received a score on a lab practical, and every score was an integer from 0 through 20, inclusive. The average (arithmetic mean) of the 13 scores was 19, exactly one student received the lowest score, and the sum of the 12 scores above the lowest score was 235. What was the range of the 13 scores?",
+      "options": null,
+      "answer": "8",
+      "explanation": "The 13 scores total 13 * 19 = 247, so the single lowest score is 247 - 235 = 12. For the maximum, note that the 12 scores above the lowest sum to 235. If every one of those 12 were at most 19, their total could be at most 12 * 19 = 228, which is less than 235, so at least one score must be 20. Since 20 is the stated ceiling, the greatest score is exactly 20, and the range is 20 - 12 = 8. Such a set exists, for example 12, 15, and eleven scores of 20; the total is 247, the top twelve sum to 235, and the lowest score 12 is unique.",
+      "trap": "A student who treats the average of 19 as the largest score present reports a range of 19 - 12 = 7. Nothing caps a score at the mean, and it is the bound 12 * 19 = 228 falling short of 235 that forces a 20 into the set, making the range 8 rather than 7.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "range",
+        "mean",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "SEC-ST-011",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The average (arithmetic mean) of the six numbers in list R is 24. Every number in list R is multiplied by 3, and then 10 is subtracted from each resulting product, forming list W. What is the average of the six numbers in list W?",
+      "options": [
+        "A. 14",
+        "B. 42",
+        "C. 62",
+        "D. 72",
+        "E. 82"
+      ],
+      "answer": "C",
+      "explanation": "A linear transformation applied to every element carries straight through to the mean. If each value x becomes 3x - 10, then the new mean is 3 times the old mean minus 10, that is 3(24) - 10 = 72 - 10 = 62. Checking with totals gives the same result: the original total is 6 * 24 = 144, the new total is 3(144) - 6(10) = 432 - 60 = 372, and 372 / 6 = 62.",
+      "trap": "A student who applies the operations in the wrong order computes 3(24 - 10) = 42, choice B, subtracting 10 before multiplying. The stem multiplies first, so the 10 is never scaled by 3, and the answer is 62 rather than 42.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "mean",
+        "manipulation"
+      ]
+    },
+    {
+      "id": "SEC-ST-012",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Over a 6-week period, Depot P shipped an average (arithmetic mean) of 820 crates per week and Depot Q shipped an average of 750 crates per week. Which of the following statements must be true? Indicate all such statements.",
+      "options": [
+        "A. Depot P shipped more crates than Depot Q in at least one of the 6 weeks.",
+        "B. Depot P shipped more crates than Depot Q in at least two of the 6 weeks.",
+        "C. Depot P's greatest weekly crate count for the 6 weeks was greater than Depot Q's greatest weekly crate count.",
+        "D. The two depots together shipped a total of 9,420 crates over the 6 weeks.",
+        "E. In at least one of the 6 weeks, Depot P shipped at least 820 crates."
+      ],
+      "answer": [
+        "A",
+        "D",
+        "E"
+      ],
+      "explanation": "Depot P's 6-week total is 6 * 820 = 4,920 and Depot Q's is 6 * 750 = 4,500, so D is true: the combined total is 9,420. A is true because if P never out-shipped Q in any week, P's total could not exceed Q's. E is true because if every one of P's six weeks were below 820, the average would be below 820. B fails on the counterexample P = 4,920 in week 1 and 0 thereafter against Q = 0 in week 1 and 900 in each later week, where P wins only once. C fails on P = 820 every week against Q = 4,500 in week 1 and 0 thereafter, where Q's peak of 4,500 exceeds P's peak of 820.",
+      "trap": "A student who reads the higher average as a week-by-week guarantee of dominance selects B and C along with A. An average constrains only the total, so a single enormous week can carry P's total past Q's while P loses every other week and never reaches Q's peak.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "mean",
+        "data-distribution",
+        "multiple-answer"
+      ]
+    }
+  ]
+}

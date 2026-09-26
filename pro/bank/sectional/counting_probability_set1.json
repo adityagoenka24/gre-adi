@@ -1,0 +1,280 @@
+{
+  "meta": {
+    "topic": "Counting & Probability",
+    "subtopic": "Sectional Set 1",
+    "subtopic_id": "SEC-CP",
+    "version": "1.0",
+    "set_number": 1,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Original questions written by Claude; concept coverage and difficulty calibration informed by the KMF/GREmlin's GRE Counting and Probability image set. No source text, figures, wording or numbers reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-CP-001",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A gardening club has 9 members, one of whom is the club treasurer. A subcommittee of 3 members is to be formed, and the subcommittee must include the treasurer. The three members of a subcommittee serve as equals, with no titles. How many different subcommittees are possible?",
+      "options": [
+        "A. 24",
+        "B. 28",
+        "C. 56",
+        "D. 84",
+        "E. 168"
+      ],
+      "answer": "B",
+      "explanation": "The treasurer occupies one of the three seats automatically, so the only real choice is which 2 of the remaining 8 members fill the other two seats. Because the three members serve as equals, order does not matter, so the count is C(8,2) = (8*7)/(2*1) = 28.",
+      "trap": "A student who reads the restriction backwards removes the treasurer from the pool and computes C(8,3) = 56, choice C. That counts the subcommittees that exclude the treasurer, which is the opposite of what the stem requires.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "combinations",
+        "restricted-selection"
+      ]
+    },
+    {
+      "id": "SEC-CP-002",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "How many distinct arrangements can be made using all 7 letters of the word TRESTLE?",
+      "options": null,
+      "answer": "1260",
+      "explanation": "TRESTLE has 7 letters, with T appearing twice and E appearing twice and R, S, L appearing once each. If all 7 letters were distinct there would be 7! = 5040 orderings, but swapping the two T's produces the same word, as does swapping the two E's. Divide out both repetitions: 5040 / (2! * 2!) = 5040 / 4 = 1260.",
+      "trap": "A student who forgets that repeated letters are indistinguishable answers 5040, counting every ordering of 7 objects as different. That overcounts each distinct arrangement exactly 4 times.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "permutations",
+        "repeated-letters"
+      ]
+    },
+    {
+      "id": "SEC-CP-003",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A hiking club has 8 members.\nColumn A: The number of different 3-member groups that can be chosen from the club\nColumn B: The number of different 5-member groups that can be chosen from the club",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Column A is C(8,3) = (8*7*6)/(3*2*1) = 56. Column B is C(8,5) = (8*7*6*5*4)/(5*4*3*2*1) = 56. The two counts must match, because every 3-member group chosen leaves behind a unique 5-member group, and that pairing is one-to-one in both directions. In general C(n,k) = C(n, n-k).",
+      "trap": "A student who reasons that a larger group must be selectable in more ways picks B. Group size alone does not drive the count: C(8,k) rises to a peak at k = 4 and then falls, so 5-member groups are exactly as numerous as 3-member groups.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "combinations",
+        "symmetry",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-CP-004",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A bin holds 6 red chips and 4 white chips. Three chips are drawn from the bin at random and without replacement. What is the probability that at least one of the three chips drawn is white?",
+      "options": [
+        "A. 1/6",
+        "B. 2/5",
+        "C. 3/5",
+        "D. 98/125",
+        "E. 5/6"
+      ],
+      "answer": "E",
+      "explanation": "Counting the ways to get at least one white directly means adding three separate cases, so use the complement instead. The number of 3-chip selections is C(10,3) = 120, and the number containing no white chip at all is C(6,3) = 20. So the probability of no white chip is 20/120 = 1/6, and the probability of at least one white chip is 1 - 1/6 = 5/6.",
+      "trap": "A student who treats the draws as independent computes 1 - (6/10)^3 = 1 - 216/1000 = 98/125, choice D. That is the with-replacement answer; because the chips are not replaced, the chance of drawing red falls after each red chip is removed.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "complement",
+        "without-replacement",
+        "at-least-one"
+      ]
+    },
+    {
+      "id": "SEC-CP-005",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "In a town of 200 residents, 130 residents own a bicycle and 95 residents own a scooter. Which of the following could be the number of residents who own both a bicycle and a scooter? Indicate all such numbers.",
+      "options": [
+        "A. 15",
+        "B. 25",
+        "C. 60",
+        "D. 95",
+        "E. 110",
+        "F. 130"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "Let b be the number who own both. The overlap can never exceed the smaller group, so b <= 95. For the lower bound, note that the number owning at least one is 130 + 95 - b, and that count cannot exceed the 200 residents: 225 - b <= 200, so b >= 25. Every integer from 25 through 95 is achievable, so 25, 60 and 95 all work, while 15 is below the minimum and 110 and 130 are above the maximum.",
+      "trap": "A student who checks only the upper bound b <= 95 accepts 15 as well, since 15 is a perfectly ordinary-looking overlap. Forcing the union to fit inside 200 residents is what rules 15 out, and skipping that step adds choice A to the answer.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "inclusion-exclusion",
+        "overlapping-sets",
+        "bounds"
+      ]
+    },
+    {
+      "id": "SEC-CP-006",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Events M and N are mutually exclusive, P(M) = 0.4, and P(N) = 0.3.\nColumn A: The probability that both M and N occur\nColumn B: 0.12",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Mutually exclusive means the two events cannot both happen on the same trial, so the event 'M and N' is impossible and its probability is exactly 0. Column B is 0.12, which is greater than 0.",
+      "trap": "A student who confuses mutually exclusive with independent multiplies 0.4 * 0.3 = 0.12 and answers C. Multiplying is valid only for independent events; mutually exclusive events are about as far from independent as possible, since M occurring guarantees N does not.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "mutually-exclusive",
+        "independence",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-CP-007",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Seven delegates are to be seated around a circular table with 7 chairs, one delegate per chair. Two of the delegates, Rao and Sethi, must be seated next to each other. Two seatings are considered the same if one can be obtained from the other by rotating the table. How many different seatings are possible?",
+      "options": null,
+      "answer": "240",
+      "explanation": "Treat Rao and Sethi as a single block, which leaves 6 units to place around the circle. Arrangements of n units in a circle that differ only by rotation are the same, so there are (6 - 1)! = 5! = 120 distinct circular arrangements of the 6 units. Within the block, Rao and Sethi can sit in 2 orders. The total is 120 * 2 = 240.",
+      "trap": "A student who arranges the 6 units in a line instead of a circle gets 6! * 2 = 1440, counting each seating 6 times over, because laying the 6 units in a line fixes an arbitrary unit as the first one and any of the 6 units could have played that role.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "circular-arrangements",
+        "adjacency",
+        "permutations"
+      ]
+    },
+    {
+      "id": "SEC-CP-008",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The figure shows a street grid. A courier starts at intersection P and travels to intersection R, moving only east (to the right) or north (upward) along the streets shown. The intersection marked as closed is under repair and cannot be used. How many different routes from P to R are available to the courier?",
+      "svg": "<svg viewBox=\"0 0 400 240\" width=\"400\" height=\"240\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><line x1=\"40\" y1=\"200\" x2=\"320\" y2=\"200\"/><line x1=\"40\" y1=\"145\" x2=\"320\" y2=\"145\"/><line x1=\"40\" y1=\"90\" x2=\"320\" y2=\"90\"/><line x1=\"40\" y1=\"35\" x2=\"320\" y2=\"35\"/><line x1=\"40\" y1=\"35\" x2=\"40\" y2=\"200\"/><line x1=\"110\" y1=\"35\" x2=\"110\" y2=\"200\"/><line x1=\"180\" y1=\"35\" x2=\"180\" y2=\"200\"/><line x1=\"250\" y1=\"35\" x2=\"250\" y2=\"200\"/><line x1=\"320\" y1=\"35\" x2=\"320\" y2=\"200\"/><circle cx=\"180\" cy=\"145\" r=\"7\" fill=\"#e5edf7\"/><line x1=\"175\" y1=\"140\" x2=\"185\" y2=\"150\"/><line x1=\"175\" y1=\"150\" x2=\"185\" y2=\"140\"/><circle cx=\"40\" cy=\"200\" r=\"4\" fill=\"#1f2937\"/><circle cx=\"320\" cy=\"35\" r=\"4\" fill=\"#1f2937\"/></g><text x=\"20\" y=\"222\" font-family=\"Georgia, serif\" font-size=\"16\" fill=\"#1f2937\">P</text><text x=\"330\" y=\"30\" font-family=\"Georgia, serif\" font-size=\"16\" fill=\"#1f2937\">R</text><text x=\"192\" y=\"137\" font-family=\"Georgia, serif\" font-size=\"15\" fill=\"#1f2937\">closed</text></svg>",
+      "options": [
+        "A. 12",
+        "B. 17",
+        "C. 18",
+        "D. 23",
+        "E. 35"
+      ],
+      "answer": "B",
+      "explanation": "Every route from P to R consists of 4 eastward blocks and 3 northward blocks in some order, so the number of unrestricted routes is C(7,3) = 35. A route through the closed intersection, which sits 2 blocks east and 1 block north of P, splits into a first leg of 2 east and 1 north and a second leg of 2 east and 2 north: C(3,1) * C(4,2) = 3 * 6 = 18 such routes. Subtract: 35 - 18 = 17.",
+      "trap": "A student who computes the blocked routes and stops there answers 18, choice C. That number counts exactly the routes the courier cannot take; the question asks for the ones that remain, so the count must be subtracted from 35 rather than reported on its own.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "path-counting",
+        "combinations",
+        "complement"
+      ]
+    },
+    {
+      "id": "SEC-CP-009",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A cafe builds a breakfast order from three trays: a tray of 4 pastries, a tray of 3 juices, and a tray of 5 fruits. A customer may take at most one item from each tray, and may skip any tray entirely. Including the case in which the customer takes nothing at all, how many different breakfast orders are possible?",
+      "options": [
+        "A. 12",
+        "B. 60",
+        "C. 72",
+        "D. 119",
+        "E. 120"
+      ],
+      "answer": "E",
+      "explanation": "Handle each tray separately. From the pastry tray the customer has 4 pastries plus the option of taking none, which is 5 outcomes. The juice tray gives 3 + 1 = 4 outcomes, and the fruit tray gives 5 + 1 = 6 outcomes. The three choices are made independently of one another, so multiply: 5 * 4 * 6 = 120.",
+      "trap": "A student who forgets that each tray can be skipped multiplies 4 * 3 * 5 = 60, choice B. That counts only the orders containing one item from every tray and leaves out every order in which a tray is passed over, including the empty order. A student who multiplies correctly but then throws out the empty order reports 119, choice D.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "multiplication-principle",
+        "counting"
+      ]
+    },
+    {
+      "id": "SEC-CP-010",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "In a probability experiment, G and H are events with P(G) = 0.6 and P(H) = 0.5.\nColumn A: The probability that both G and H occur\nColumn B: 0.3",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Nothing in the stem says how G and H are related, so the joint probability is only bounded, not fixed. It can be as large as the smaller individual probability, 0.5, which happens when H is contained in G; that value exceeds 0.3. It can also be as small as 0.6 + 0.5 - 1 = 0.1, which happens when G and H together cover the whole sample space; that value is below 0.3. Since Column A can land on either side of 0.3, no comparison holds.",
+      "trap": "A student who assumes the events are independent computes 0.6 * 0.5 = 0.3 and answers C. Independence is an extra condition that has to be stated; without it the product is merely one of the many values in the range 0.1 to 0.5 that the joint probability may take.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "joint-probability",
+        "independence",
+        "qc"
+      ]
+    },
+    {
+      "id": "SEC-CP-011",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "Two fair six-sided dice, each with faces numbered 1 through 6, are rolled once. What is the probability that the sum of the two numbers rolled is a multiple of 5? Give your answer as a fraction in lowest terms.",
+      "options": null,
+      "answer": "7/36",
+      "explanation": "There are 6 * 6 = 36 equally likely ordered outcomes. The only sums that are multiples of 5 are 5 and 10, since the sum ranges from 2 to 12. A sum of 5 occurs as (1,4), (2,3), (3,2), (4,1), which is 4 outcomes, and a sum of 10 occurs as (4,6), (5,5), (6,4), which is 3 outcomes. That is 7 favorable outcomes out of 36, and 7/36 is already in lowest terms.",
+      "trap": "A student who treats (1,4) and (4,1) as the same outcome counts only unordered pairs and reports 4 favorable out of 21, or 4/21. Two distinguishable dice produce ordered outcomes, and the 36-outcome sample space is the one in which every outcome is equally likely.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "dice",
+        "sample-space",
+        "probability"
+      ]
+    },
+    {
+      "id": "SEC-CP-012",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A fair coin is tossed 5 times. Which of the following are equal to the probability that the coin lands heads exactly 3 times? Indicate all such expressions.",
+      "options": [
+        "A. C(5,3)*(1/2)^5",
+        "B. C(5,2)*(1/2)^5",
+        "C. 5/16",
+        "D. (1/2)^5",
+        "E. 5/8",
+        "F. 3/5"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "Each of the 2^5 = 32 sequences of five tosses is equally likely, and the number with exactly 3 heads is C(5,3) = 10, so the probability is C(5,3)*(1/2)^5 = 10/32 = 5/16. Choice A is that expression. Choice B equals it as well, because C(5,2) = 10 = C(5,3): choosing which 3 tosses are heads is the same as choosing which 2 are tails. Choice C is the reduced value 10/32 = 5/16.",
+      "trap": "A student who writes down the probability of one particular sequence and forgets to multiply by the number of sequences selects D, (1/2)^5 = 1/32. That is the chance of a single named outcome such as HHHTT, which is one tenth of the correct probability.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "binomial",
+        "combinations",
+        "symmetry"
+      ]
+    }
+  ]
+}
