@@ -16,12 +16,26 @@
    <body> opens, so the lock overlay paints before any page content
    is visible:
      <script src="pro-gate.js"></script>
+
+   Selective access: a student's Pro plan can be limited to a subset of
+   {practice, sectional, mocks} (see worker.js). Tag the include with
+   data-feature so this page is checked against that list, not just
+   "are they Pro at all":
+     <script src="pro-gate.js" data-feature="sectional"></script>
+     <script src="pro-gate.js" data-feature="mocks"></script>
+   Omit data-feature to only require /any/ valid Pro login (no feature check).
    ============================================================ */
 
 (function () {
   var WORKER_URL = 'https://gre-auth.goenka-aditya-kol.workers.dev';
   var STORAGE_KEY = 'gre_pro_auth';
   var LOGIN_PAGE = 'gre_practice_logger_pro.html';
+  var FEATURE = (document.currentScript && document.currentScript.dataset.feature) || '';
+  var FEATURE_LABELS = {
+    practice: 'Topic-wise Practice',
+    sectional: 'Sectional Tests',
+    mocks: 'Full-Length Mocks',
+  };
 
   // ---------- overlay, built and inserted before anything else paints ----------
   var style = document.createElement('style');
@@ -76,6 +90,20 @@
     );
   }
 
+  function showFeatureLocked(access) {
+    var label = FEATURE_LABELS[FEATURE] || 'This page';
+    var have = (access && access.length)
+      ? access.map(function (a) { return FEATURE_LABELS[a] || a; }).join(', ')
+      : 'none';
+    setMessage(
+      label + ' isn’t part of your plan',
+      'Your current Pro access includes: ' + have + '. Email Coach Aditya to add ' + label + ' to your plan.',
+      false
+    );
+    document.getElementById('pg-status').innerHTML =
+      '<a href="mailto:goenka.aditya.kol@gmail.com?subject=Upgrade%20GRE%20Pro%20Access" style="color:#1a5da6;">Email Coach Aditya →</a>';
+  }
+
   // ---------- same fingerprint algorithm as the practice logger ----------
   function generateFingerprint() {
     var signals = [
@@ -128,7 +156,17 @@
     return res.json();
   }).then(function (data) {
     if (data && data.status === 'ok') {
-      unlock();
+      var access = (data.access && data.access.length) ? data.access : ['practice', 'sectional', 'mocks'];
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(
+          Object.assign({}, stored, { access: access })
+        ));
+      } catch (e) {}
+      if (FEATURE && access.indexOf(FEATURE) === -1) {
+        showFeatureLocked(access);
+      } else {
+        unlock();
+      }
     } else if (data && data.status === 'revoked') {
       try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
       setMessage(
