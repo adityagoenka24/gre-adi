@@ -1,0 +1,196 @@
+{
+  "meta": {
+    "topic": "Algebra Fundamentals",
+    "subtopic": "Sectional Set 1",
+    "subtopic_id": "SEC-AL",
+    "version": "1.0",
+    "set_number": 1,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": { "easy": 0, "medium": 6, "hard": 6, "extreme_hard": 0 },
+    "type_distribution": { "mcq": 5, "quantitative_comparison": 3, "numeric_entry": 2, "multiple_answer": 2 },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AL-001",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "The function f is defined by f(x) = x^2 - 22x + 105 for all numbers x. If r and t are two different numbers such that f(r) = f(t) = 0, what is the value of (r + t)/2?",
+      "options": null,
+      "answer": "11",
+      "explanation": "Since f(r) = f(t) = 0, the numbers r and t are the two roots of x^2 - 22x + 105 = 0. For a quadratic of the form x^2 + bx + c, the roots sum to -b, so r + t = 22 and (r + t)/2 = 11. Factoring confirms it: x^2 - 22x + 105 = (x - 15)(x - 7), whose roots 15 and 7 sum to 22.",
+      "trap": "Students factor to find the roots 15 and 7 and then answer one of them, or they compute the product over 2 instead of the sum. The sum-of-roots relation answers this without factoring at all.",
+      "estimated_time_seconds": 80,
+      "tags": ["quadratics", "roots"]
+    },
+    {
+      "id": "SEC-AL-002",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If 1/3 is one solution of the equation 9x^2 + 6x - k = 0, where k is a constant, what is the other solution of the equation?",
+      "options": ["A. -3", "B. -1", "C. -1/3", "D. 1/3", "E. 1"],
+      "answer": "B",
+      "explanation": "For ax^2 + bx + c = 0 the two roots sum to -b/a, which here is -6/9 = -2/3. Since one root is 1/3, the other is -2/3 - 1/3 = -1. Checking directly: substituting x = 1/3 gives 1 + 2 - k = 0, so k = 3, and 9x^2 + 6x - 3 = 3(3x - 1)(x + 1), whose roots are 1/3 and -1.",
+      "trap": "Students solve for k = 3 and then re-factor the quadratic from scratch, dropping a sign along the way and landing on 1. The sum-of-roots relation reaches the answer in one step with far less to fumble.",
+      "estimated_time_seconds": 85,
+      "tags": ["quadratics", "roots"]
+    },
+    {
+      "id": "SEC-AL-003",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Which of the following values of x satisfies the equation x/3 = n! for some positive integer n?",
+      "options": ["A. 90", "B. 240", "C. 360", "D. 900", "E. 1,080"],
+      "answer": "C",
+      "explanation": "The equation rearranges to x = 3 x n!, so x must be three times a factorial. The factorials are 1, 2, 6, 24, 120, 720, ..., which give x values of 3, 6, 18, 72, 360, 2,160, ... Of the options only 360 appears on that list: 360 = 3 x 120 = 3 x 5!.",
+      "trap": "Students divide each option by 3 and judge whether the result 'looks like' a factorial without listing them, accepting 80 (from 240) or 300 (from 900) because both factor into small integers. Only 1, 2, 6, 24, 120 and 720 are factorials in this range.",
+      "estimated_time_seconds": 85,
+      "tags": ["factorials", "equations"]
+    },
+    {
+      "id": "SEC-AL-004",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "x is an integer, and 1/8 < 2^x < 300.\nColumn A: The number of possible values of x\nColumn B: 11",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Write both bounds as powers of 2. Since 1/8 = 2^(-3), the left inequality gives 2^x > 2^(-3), so x > -3 and therefore x is at least -2. On the right, 2^8 = 256 is below 300 while 2^9 = 512 is above it, so x is at most 8. The integers from -2 to 8 inclusive number 8 - (-2) + 1 = 11, so the quantities are equal.",
+      "trap": "Students count the integers from -2 to 8 as 10 by subtracting the endpoints and forgetting to add 1, or they drop x = -2 by reading the strict inequality on the power as excluding the first integer above -3. Both endpoints satisfy the condition.",
+      "estimated_time_seconds": 90,
+      "tags": ["exponents", "inequalities"]
+    },
+    {
+      "id": "SEC-AL-005",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "If r = p^n, where p is a prime number and n is a positive integer, define r# = (r)(n). For example, 49 = 7^2, so 49# = (49)(2) = 98.\n\nWhat is the value of 243#?",
+      "options": null,
+      "answer": "1215",
+      "explanation": "The rule multiplies the number by the exponent in its prime-power form. Here 243 = 3^5, since 3 x 3 x 3 x 3 x 3 = 243, so n = 5 and 243# = 243 x 5 = 1,215.",
+      "trap": "Students take n to be the prime base rather than the exponent and compute 243 x 3 = 729, or they read n as the count of distinct prime factors, which is 1, and answer 243. The worked example settles it — 49 = 7^2 used the 2, not the 7.",
+      "estimated_time_seconds": 85,
+      "tags": ["exponents", "defined-operations"]
+    },
+    {
+      "id": "SEC-AL-006",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Which of the following describes the complete solution set of the inequality x^2 - 9x + 20 <= 0?",
+      "options": [
+        "A. x <= 4 or x >= 5",
+        "B. 4 <= x <= 5",
+        "C. -5 <= x <= -4",
+        "D. x <= -5 or x >= -4",
+        "E. All real numbers x"
+      ],
+      "answer": "B",
+      "explanation": "Factor the quadratic: x^2 - 9x + 20 = (x - 4)(x - 5). A product of two factors is negative or zero exactly when the factors have opposite signs or one is zero, which happens only between the roots, inclusive. So the solution set is 4 <= x <= 5. Checking inside, x = 4.5 gives (0.5)(-0.5) = -0.25, which is at most 0; checking outside, x = 6 gives (2)(1) = 2, which is not.",
+      "trap": "Students factor correctly and then take the solution as everything outside the roots, x <= 4 or x >= 5. That is the solution set for the >= 0 version of the inequality. For the product to be at most zero the two factors must disagree in sign, and that only happens between the roots.",
+      "estimated_time_seconds": 90,
+      "tags": ["quadratics", "inequalities"]
+    },
+    {
+      "id": "SEC-AL-007",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "If j and m are each positive integers between 10 and 40, then (4 + j)/(9 + m) will be equal to 4/9 for how many pairs (j, m)?",
+      "options": ["A. Two", "B. Three", "C. Four", "D. Seven", "E. Twelve"],
+      "answer": "A",
+      "explanation": "Cross-multiplying gives 9(4 + j) = 4(9 + m), so 36 + 9j = 36 + 4m and therefore 9j = 4m. That forces j/m = 4/9, so j = 4t and m = 9t for some positive integer t. For j to lie strictly between 10 and 40, t must run from 3 to 9. For m = 9t to lie strictly between 10 and 40, t must be 2, 3 or 4. Only t = 3 and t = 4 satisfy both, giving the pairs (12, 27) and (16, 36).",
+      "trap": "Students derive 9j = 4m and then count every multiple of 4 that j could be, arriving at seven, without checking that the matching m = 9j/4 also falls between 10 and 40. The range on the second variable is the binding constraint.",
+      "estimated_time_seconds": 115,
+      "tags": ["ratios", "integer-solutions"]
+    },
+    {
+      "id": "SEC-AL-008",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "z > 2,001\nColumn A: The square root of z\nColumn B: z/40",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "The two expressions are equal when the square root of z equals z/40, that is when 40 times the square root of z equals z. Dividing through, the square root of z is 40, so z = 1,600. Past that point z/40 grows in proportion to z while the square root grows far more slowly, so z/40 is the larger of the two for every z above 1,600. Since z > 2,001, Column B is greater. Checking the smallest allowed case: at z = 2,001 the square root is about 44.7 while z/40 is about 50.0.",
+      "trap": "Students test a small convenient value such as z = 100, where the square root is 10 and z/40 is only 2.5, and generalise to Column A. The comparison flips at z = 1,600 — comfortably below the range the question specifies.",
+      "estimated_time_seconds": 105,
+      "tags": ["roots", "inequalities"]
+    },
+    {
+      "id": "SEC-AL-009",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "If -1 < w < 0, which of the following correctly orders w, w^2, w^3 and w^4 from least to greatest?",
+      "options": [
+        "A. w < w^2 < w^3 < w^4",
+        "B. w^3 < w < w^2 < w^4",
+        "C. w^3 < w < w^4 < w^2",
+        "D. w < w^3 < w^4 < w^2",
+        "E. w < w^3 < w^2 < w^4"
+      ],
+      "answer": "D",
+      "explanation": "Test w = -1/2. Then w = -0.5, w^2 = 0.25, w^3 = -0.125 and w^4 = 0.0625. The odd powers stay negative and the even powers turn positive, and every power shrinks in absolute value because |w| is less than 1. Ordering the four values: -0.5 < -0.125 < 0.0625 < 0.25, which is w < w^3 < w^4 < w^2.",
+      "trap": "Students apply the habit that higher powers are larger — true only for numbers above 1 — and choose the plain ascending order. For a fraction between -1 and 0 every successive power moves closer to zero, so the odd powers climb toward zero from below while the even powers fall toward zero from above.",
+      "estimated_time_seconds": 100,
+      "tags": ["exponents", "inequalities"]
+    },
+    {
+      "id": "SEC-AL-010",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "For all integers x and y, the operation < > is defined by <x, y> = (-1)^(x + y).\nColumn A: <6a, 2b>\nColumn B: <2a, 6b + 1>",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "A power of -1 equals 1 when the exponent is even and -1 when it is odd. In Column A the exponent is 6a + 2b, a sum of two even numbers, so it is even for every a and b and Column A equals 1. In Column B the exponent is 2a + 6b + 1: the first two terms are even, and adding 1 makes the total odd, so Column B equals -1. Since 1 is greater than -1, Column A is greater no matter what a and b are.",
+      "trap": "Students see unknown integers a and b in both columns and choose 'cannot be determined'. Every coefficient here is even, so each exponent's parity is fixed regardless of a and b — the only thing that changes anything is the trailing +1.",
+      "estimated_time_seconds": 100,
+      "tags": ["exponents", "odd-even"]
+    },
+    {
+      "id": "SEC-AL-011",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "If |x - 2| < 4 and |y| < 5, which of the following inequalities must be true for all possible values of the product xy?\n\nIndicate all such inequalities.",
+      "options": [
+        "A. -30 < xy < 30",
+        "B. -40 < xy < 40",
+        "C. -10 < xy < 10",
+        "D. 0 < xy < 30",
+        "E. -30 < xy < 10"
+      ],
+      "answer": ["A", "B"],
+      "explanation": "From |x - 2| < 4, x lies strictly between -2 and 6. From |y| < 5, y lies strictly between -5 and 5. The product is most extreme at the corners of that rectangle: 6 x 5 = 30, 6 x (-5) = -30, (-2) x 5 = -10 and (-2) x (-5) = 10. So xy lies strictly between -30 and 30. A states exactly that and is true; B states a wider bound, which is therefore also always true. C is too narrow since xy can approach 30, D wrongly rules out negative products, and E cuts off at 10 when xy can approach 30.",
+      "trap": "Students solve |x - 2| < 4 as -4 < x < 4, forgetting to add 2 to every part, and build the product range from the wrong interval. Others reject B because it is not the tightest bound — but the question asks what must be true, and a looser correct bound still qualifies.",
+      "estimated_time_seconds": 120,
+      "tags": ["absolute-value", "inequalities"]
+    },
+    {
+      "id": "SEC-AL-012",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "The operation @ is defined by a @ b = 4a - 3b for all integers a and b. If x and y are two integers such that x @ y = 26, which of the following could be the value of y?\n\nIndicate all such values.",
+      "options": ["A. 2", "B. 3", "C. 4", "D. 6", "E. 7"],
+      "answer": ["A", "D"],
+      "explanation": "The condition is 4x - 3y = 26, so 4x = 26 + 3y and x = (26 + 3y)/4. For x to be an integer, 26 + 3y must be divisible by 4. Testing each option: y = 2 gives 32, and 32/4 = 8, an integer; y = 3 gives 35; y = 4 gives 38; y = 6 gives 44, and 44/4 = 11, an integer; y = 7 gives 47. Only y = 2 and y = 6 produce an integer x.",
+      "trap": "Students rearrange for y instead of x, getting y = (4x - 26)/3, and then test which options make that expression an integer — but the options are values of y, not x. The divisibility condition that matters is on 26 + 3y, and substituting each option directly avoids the mix-up entirely.",
+      "estimated_time_seconds": 110,
+      "tags": ["defined-operations", "integer-solutions"]
+    }
+  ]
+}

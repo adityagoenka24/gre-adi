@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "topic": "Plane Geometry",
+    "subtopic": "Sectional Set 1",
+    "subtopic_id": "SEC-PG",
+    "version": "1.0",
+    "set_number": 1,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options, all explanations and all figures are original. No source text or artwork reproduced. Several questions recast into numeric-entry and multiple-answer form, since the Plane Geometry source pool skews to single-answer MCQ and quantitative comparison.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-PG-001",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Angle T measures t degrees. The complement of angle T measures 90 - t degrees and the supplement of angle T measures 180 - t degrees. If the measure of angle T is less than twice the measure of its complement and greater than one-third the measure of its supplement, which of the following gives all possible values of t?",
+      "options": [
+        "A. 0 < t < 45",
+        "B. 30 < t < 45",
+        "C. 45 < t < 60",
+        "D. 45 < t < 90",
+        "E. 60 < t < 90"
+      ],
+      "answer": "C",
+      "explanation": "Turn each condition into an inequality. 'Less than twice its complement' gives t < 2(90 - t), so t < 180 - 2t, so 3t < 180 and t < 60. 'Greater than one-third its supplement' gives t > (180 - t)/3, so 3t > 180 - t, so 4t > 180 and t > 45. Both must hold at once, so 45 < t < 60.",
+      "trap": "Students solve only the first condition and pick 0 < t < 45 or 45 < t < 90, forgetting that the two conditions must be satisfied simultaneously. The lower bound 45 comes entirely from the supplement condition and the upper bound 60 entirely from the complement condition, so dropping either one widens the interval incorrectly.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "angles",
+        "complement-supplement",
+        "inequalities"
+      ]
+    },
+    {
+      "id": "SEC-PG-002",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "An equilateral triangle has an altitude of length 9. What is the perimeter of the triangle?",
+      "options": [
+        "A. 6*sqrt(3)",
+        "B. 18",
+        "C. 27",
+        "D. 18*sqrt(3)",
+        "E. 27*sqrt(3)"
+      ],
+      "answer": "D",
+      "explanation": "An altitude of an equilateral triangle splits it into two 30-60-90 triangles whose sides are in the ratio 1 : sqrt(3) : 2. The altitude is the sqrt(3) leg and the full side is the hypotenuse, so altitude = side * sqrt(3)/2. Setting side * sqrt(3)/2 = 9 gives side = 18/sqrt(3) = 6*sqrt(3). The perimeter is three times that: 18*sqrt(3).",
+      "trap": "Students treat the altitude as if it were a side and answer 27, or they correctly find the side 6*sqrt(3) and then forget to triple it, answering 6*sqrt(3). The altitude is always shorter than the side, so any answer at or below 9 per side is impossible.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "equilateral-triangle",
+        "special-right-triangles"
+      ]
+    },
+    {
+      "id": "SEC-PG-003",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In the figure above, angle W is a right angle, angle B measures 30 degrees, and UH is perpendicular to VB. Also, VW = 25, VU = 25, UA = 26, and UH = 24. What is the length of AB?\n\nNote: Figure not drawn to scale.",
+      "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><line x1=\"40\" y1=\"120\" x2=\"240\" y2=\"120\"/><line x1=\"40\" y1=\"120\" x2=\"90\" y2=\"33\"/><line x1=\"90\" y1=\"33\" x2=\"240\" y2=\"120\"/><line x1=\"40\" y1=\"120\" x2=\"75\" y2=\"195\"/><line x1=\"75\" y1=\"195\" x2=\"115\" y2=\"120\"/><line x1=\"75\" y1=\"195\" x2=\"75\" y2=\"120\"/><polyline points=\"85,42 94,47 99,38\"/><polyline points=\"75,130 85,130 85,120\"/><path d=\"M212 120 A28 28 0 0 1 216 106\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"28\" y=\"134\">V</text><text x=\"85\" y=\"26\">W</text><text x=\"245\" y=\"134\">B</text><text x=\"110\" y=\"112\">A</text><text x=\"68\" y=\"210\">U</text><text x=\"60\" y=\"134\">H</text><text x=\"50\" y=\"76\">25</text><text x=\"28\" y=\"172\">25</text><text x=\"79\" y=\"152\">24</text><text x=\"106\" y=\"166\">26</text><text x=\"186\" y=\"112\">30°</text></g></svg>",
+      "options": [
+        "A. 26",
+        "B. 33",
+        "C. 36",
+        "D. 40",
+        "E. 50"
+      ],
+      "answer": "B",
+      "explanation": "Work the two halves separately. Below the line, UH = 24 is a leg of two right triangles. In triangle VHU, VU = 25 and UH = 24, so VH = sqrt(625 - 576) = 7. In triangle AHU, UA = 26 and UH = 24, so HA = sqrt(676 - 576) = 10. Therefore VA = 7 + 10 = 17. Above the line, triangle VWB has a right angle at W and a 30-degree angle at B, so it is a 30-60-90 triangle in which VW is the side opposite the 30-degree angle. The hypotenuse VB is twice that side: VB = 2(25) = 50. Finally AB = VB - VA = 50 - 17 = 33.",
+      "trap": "Students find HA = 10 from the 10-24-26 triangle but forget that A is 7 units to the right of V, subtracting only 10 from 50 and answering 40. The point V sits 7 units left of H, so the whole segment VA is 17, not 10.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "pythagorean-triples",
+        "special-right-triangles",
+        "composite-figures"
+      ]
+    },
+    {
+      "id": "SEC-PG-004",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The figure above shows a square with four interior line segments drawn in it. Each segment joins a vertex of the square to the midpoint of a side that does not contain that vertex, and the four segments bound the shaded quadrilateral in the middle. If the area of the square is 45, what is the area of the shaded quadrilateral?",
+      "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"142,56 214,92 178,164 106,128\" fill=\"#e5edf7\" stroke=\"none\"/><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"70\" y=\"20\" width=\"180\" height=\"180\"/><line x1=\"70\" y1=\"200\" x2=\"160\" y2=\"20\"/><line x1=\"70\" y1=\"20\" x2=\"250\" y2=\"110\"/><line x1=\"250\" y1=\"20\" x2=\"160\" y2=\"200\"/><line x1=\"250\" y1=\"200\" x2=\"70\" y2=\"110\"/><polygon points=\"142,56 214,92 178,164 106,128\"/></g></svg>",
+      "options": [
+        "A. 5",
+        "B. 9",
+        "C. 11.25",
+        "D. 15",
+        "E. 22.5"
+      ],
+      "answer": "B",
+      "explanation": "Put the square on a grid with side 1, corners at (0,0), (1,0), (1,1) and (0,1). The four segments are then the lines through (0,0) and (0.5,1), through (1,0) and (0,0.5), through (1,1) and (0.5,0), and through (0,1) and (1,0.5). Solving the four pairs of adjacent lines gives the corners of the middle quadrilateral, and its side turns out to be 1/sqrt(5) of the way across, so its area is 1/5 of the unit square. That fraction is the same for a square of any size, so the shaded area is 45/5 = 9.",
+      "trap": "Students eyeball the middle region as about a quarter of the square and answer 11.25. The four segments are steeper than the diagonals, which squeezes the middle region down to exactly one fifth, not one quarter.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "squares",
+        "area-ratio",
+        "midpoints"
+      ]
+    },
+    {
+      "id": "SEC-PG-005",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Points P, Q and R lie on a line, with Q between P and R. Point S does not lie on that line. Ray QM bisects angle PQS and ray QN bisects angle SQR.\nColumn A: The measure, in degrees, of angle MQN\nColumn B: 90",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Because P, Q and R are collinear with Q in the middle, angles PQS and SQR are supplementary: their measures add to 180. Ray QM lies inside angle PQS and ray QN lies inside angle SQR, so angle MQN is made up of half of angle PQS plus half of angle SQR. That is (1/2)(angle PQS + angle SQR) = (1/2)(180) = 90 degrees, no matter where S sits.",
+      "trap": "Students see that neither angle PQS nor angle SQR is given a value and choose 'cannot be determined'. The individual angles really are unknown, but their sum is pinned at 180 by the straight line, and only the sum of the two halves is being asked for.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "angle-bisectors",
+        "supplementary-angles"
+      ]
+    },
+    {
+      "id": "SEC-PG-006",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Polygon J has k sides, where k is greater than 4. Polygon K has k + 3 sides.\nColumn A: The sum of the measures of the interior angles of polygon K, in degrees\nColumn B: The sum of the measures of the interior angles of polygon J, in degrees, plus 480",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "The interior angles of an n-sided polygon sum to (n - 2)(180) degrees. Column A is therefore (k + 3 - 2)(180) = (k + 1)(180) = 180k + 180. Column B is (k - 2)(180) + 480 = 180k - 360 + 480 = 180k + 120. Subtracting, Column A minus Column B equals 60, a positive constant, so Column A is greater for every allowed k.",
+      "trap": "Students select 'cannot be determined' because k is unknown. The k terms cancel: adding three sides always adds exactly 3(180) = 540 degrees, and 540 is more than the 480 that Column B adds, so the gap is a fixed 60 degrees regardless of k.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "polygons",
+        "interior-angles"
+      ]
+    },
+    {
+      "id": "SEC-PG-007",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "In the figure above, PQ = QR, point X lies on side PQ, point Y lies on side PR, and XY is perpendicular to PR. The area of triangle PXY is 1/8 the area of triangle PQR.\n\nNote: Figure not drawn to scale.\nColumn A: The length of PY\nColumn B: (1/8)(PR)",
+      "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"30,190 95,190 95,115\" fill=\"#e5edf7\" stroke=\"none\"/><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"30,190 290,190 160,40\"/><line x1=\"95\" y1=\"190\" x2=\"95\" y2=\"115\"/><polyline points=\"95,178 107,178 107,190\"/><line x1=\"90\" y1=\"110\" x2=\"100\" y2=\"120\"/><line x1=\"221\" y1=\"110\" x2=\"231\" y2=\"120\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"18\" y=\"204\">P</text><text x=\"155\" y=\"32\">Q</text><text x=\"294\" y=\"204\">R</text><text x=\"78\" y=\"110\">X</text><text x=\"90\" y=\"206\">Y</text></g></svg>",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Let M be the midpoint of PR. Since PQ = QR, the segment QM is the altitude from Q, so triangle PQM is a right triangle with legs PM = PR/2 and QM. Triangle PXY is similar to triangle PQM, because both have a right angle on PR and share the angle at P. If PY = k(PM), then the areas scale by k squared: area PXY = k^2 * area PQM. And area PQM is exactly half of area PQR. So area PXY = (k^2)/2 * area PQR. Setting (k^2)/2 = 1/8 gives k^2 = 1/4, so k = 1/2 and PY = (1/2)(PR/2) = PR/4. Since PR/4 is larger than PR/8, Column A is greater.",
+      "trap": "Students assume the area fraction transfers straight to the base and conclude PY = PR/8, choosing 'equal'. Shrinking a similar triangle by a factor k cuts its area by k squared, so an area of one eighth corresponds to a length factor of one half, not one eighth.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "similar-triangles",
+        "area-ratio",
+        "isosceles-triangle"
+      ]
+    },
+    {
+      "id": "SEC-PG-008",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "All angles in the figure above are right angles, and the lengths of the six segments are as marked. What is the straight-line distance from point P to point Q?",
+      "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polyline points=\"30,190 90,190 90,150 130,150 130,90 190,90 190,70\"/></g><circle cx=\"30\" cy=\"190\" r=\"4\" fill=\"#1f2937\"/><circle cx=\"190\" cy=\"70\" r=\"4\" fill=\"#1f2937\"/><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"14\" y=\"196\">P</text><text x=\"196\" y=\"64\">Q</text><text x=\"55\" y=\"206\">3</text><text x=\"96\" y=\"174\">2</text><text x=\"103\" y=\"143\">2</text><text x=\"136\" y=\"124\">3</text><text x=\"155\" y=\"83\">3</text><text x=\"196\" y=\"86\">1</text></g></svg>",
+      "options": null,
+      "answer": "10",
+      "explanation": "Ignore the staircase shape and track only the net displacement. Moving from P to Q, the horizontal steps are 3, 2 and 3, for a total of 8 to the right. The vertical steps are 2, 3 and 1, for a total of 6 upward. The straight-line distance from P to Q is the hypotenuse of a right triangle with legs 8 and 6, which is a 6-8-10 triangle, so the distance is 10.",
+      "trap": "Students add all six segment lengths and answer 14, which is the length of the path walked, not the straight-line distance. The question asks for the direct segment PQ, so only the totals in each direction matter.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "pythagorean-triples",
+        "coordinate-reasoning"
+      ]
+    },
+    {
+      "id": "SEC-PG-009",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "The figure above shows a park bounded by a right triangle whose horizontal side is 1,200 metres and whose vertical side is 900 metres. Five straight paths run through the park: the three vertical segments shown, the horizontal side, and the slanted side. The three vertical paths are parallel to one another, and the points where they meet the horizontal path are equally spaced 400 metres apart. If paving costs $84 per metre of path, what is the total cost, in dollars, of paving all five paths?\n\nNote: Figure not drawn to scale.",
+      "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"15,180 255,180 255,60\"/><line x1=\"95\" y1=\"180\" x2=\"95\" y2=\"140\"/><line x1=\"175\" y1=\"180\" x2=\"175\" y2=\"100\"/><polyline points=\"243,180 243,168 255,168\"/><polyline points=\"95,168 107,168 107,180\"/><polyline points=\"175,168 187,168 187,180\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"93\" y=\"202\">1,200 metres</text><text x=\"261\" y=\"116\">900</text><text x=\"261\" y=\"132\">metres</text></g></svg>",
+      "options": null,
+      "answer": "378000",
+      "explanation": "The bounding right triangle has legs 1,200 and 900, so its hypotenuse is sqrt(1,200^2 + 900^2) = sqrt(1,440,000 + 810,000) = 1,500. The two interior vertical paths cut off triangles similar to the whole one. The first stands 400 metres along the base, so its height is 900(400/1200) = 300; the second stands 800 metres along, so its height is 900(800/1200) = 600. The five paths therefore measure 1,200 + 900 + 1,500 + 300 + 600 = 4,500 metres. At $84 per metre the cost is 4,500 x 84 = $378,000.",
+      "trap": "Students forget the hypotenuse, or they guess the interior heights as 450 and 600 by halving rather than by similarity. Each interior vertical is to 900 as its distance from the left corner is to 1,200, which gives 300 and 600, and the slanted path is a full 1,500 metres of paving.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "similar-triangles",
+        "pythagorean-triples",
+        "perimeter"
+      ]
+    },
+    {
+      "id": "SEC-PG-010",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A rectangular garden has a perimeter of 84 metres, and its length and width are both integer numbers of metres. What is the difference between the greatest possible area and the least possible area, in square metres, of the garden?",
+      "options": null,
+      "answer": "400",
+      "explanation": "A perimeter of 84 means the length and width sum to 42. For a fixed sum, the product is largest when the two numbers are as close together as possible and smallest when they are as far apart as possible. The closest integer pair is 21 and 21, giving an area of 441. The farthest apart is 1 and 41, giving an area of 41. The difference is 441 - 41 = 400.",
+      "trap": "Students report 441 as the answer, stopping at the maximum, or they allow a side of 0 and claim a minimum area of 0, giving 441. A garden must have positive integer sides, so the thinnest allowed rectangle is 1 by 41, not 0 by 42.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "rectangles",
+        "area-perimeter",
+        "optimization"
+      ]
+    },
+    {
+      "id": "SEC-PG-011",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "In triangle DEF, DE = 7 and EF = 16. Which of the following could be the perimeter of triangle DEF?\n\nIndicate all such values.",
+      "options": [
+        "A. 30",
+        "B. 34",
+        "C. 38",
+        "D. 44",
+        "E. 46",
+        "F. 52"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "The third side DF must be greater than the difference of the two known sides and less than their sum: 16 - 7 = 9 and 16 + 7 = 23, so 9 < DF < 23. Adding the two known sides, the perimeter is DF + 23, which must satisfy 32 < perimeter < 46. Of the choices, 34, 38 and 44 fall strictly inside that interval. 30 is too small, and 46 and 52 are too large, with 46 excluded because the bound is strict.",
+      "trap": "Students include 46, forgetting that the inequality is strict. A third side of exactly 23 would make D, E and F collinear, which is not a triangle, so a perimeter of exactly 46 is impossible.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "triangle-inequality",
+        "perimeter"
+      ]
+    },
+    {
+      "id": "SEC-PG-012",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A rectangular photograph has a diagonal 25 centimetres long. One side of the photograph is longer than 7 centimetres and shorter than 15 centimetres. Which of the following could be the area, in square centimetres, of the photograph?\n\nIndicate all such values.",
+      "options": [
+        "A. 150",
+        "B. 180",
+        "C. 240",
+        "D. 294",
+        "E. 300",
+        "F. 320"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "Call the given side s. The other side is sqrt(625 - s^2) and the area is s * sqrt(625 - s^2). At s = 7 the other side is sqrt(625 - 49) = 24, giving area 168. At s = 15 the other side is sqrt(625 - 225) = 20, giving area 300. The area of a rectangle with a fixed diagonal grows as the rectangle moves toward a square, and a square with diagonal 25 would have side about 17.7, so on the whole interval 7 < s < 15 the area is still increasing. The area therefore runs strictly between 168 and 300. Of the choices, 180, 240 and 294 qualify; 150 is below the range, and 300 and 320 are at or above it.",
+      "trap": "Students include 300, which is the value at exactly s = 15, an endpoint the problem excludes. Others cap the area at 312.5, the largest possible for a diagonal of 25, and wrongly admit 300 and even 320 on that basis; the side restriction pulls the ceiling down to 300 and makes it unreachable.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "rectangles",
+        "pythagorean-theorem",
+        "area-range"
+      ]
+    }
+  ]
+}
