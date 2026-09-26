@@ -1,0 +1,269 @@
+{
+  "meta": {
+    "topic": "Algebra Fundamentals",
+    "subtopic": "Sectional Set 6",
+    "subtopic_id": "SEC-AL",
+    "version": "1.0",
+    "set_number": 6,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced. Two questions recast into multiple-answer form and two into numeric-entry form, since the Algebra source pool contains almost none of either.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AL-061",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "What is the value of\n\n1 / (1 - 1/(2 - 1/(3 - 1/5))) ?\n\nGive your answer as a fraction.",
+      "options": null,
+      "answer": "23/9",
+      "explanation": "Work strictly from the inside out. First 3 - 1/5 = 14/5. Then 1 divided by 14/5 is 5/14, so 2 - 5/14 = 28/14 - 5/14 = 23/14. Then 1 divided by 23/14 is 14/23, so 1 - 14/23 = 23/23 - 14/23 = 9/23. Finally 1 divided by 9/23 is 23/9.",
+      "trap": "Students start at the outermost bar and work down, or they invert a level and forget to subtract before inverting again. A nested fraction has exactly one legal starting point — the innermost expression — and every level must be fully simplified before the next inversion.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "fractions",
+        "order of operations"
+      ]
+    },
+    {
+      "id": "SEC-AL-062",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "(4.2)(7^30) - (0.5)(7^31) =",
+      "options": [
+        "A. (0.7)(7^29)",
+        "B. (0.7)(7^30)",
+        "C. (0.7)(7^31)",
+        "D. (3.7)(7^30)",
+        "E. (3.7)(7^31)"
+      ],
+      "answer": "B",
+      "explanation": "Factor out the smaller power, 7^30. Since 7^31 = (7)(7^30), the expression becomes 7^30 times (4.2 - (0.5)(7)) = 7^30 times (4.2 - 3.5) = (0.7)(7^30).",
+      "trap": "Students subtract the decimal coefficients directly and answer (3.7)(7^30), forgetting that the second term carries an extra factor of 7 that must be absorbed into its coefficient before the coefficients can be combined.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "exponents",
+        "factoring"
+      ]
+    },
+    {
+      "id": "SEC-AL-063",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Column A: (3^20 - 3^18) / (9^20 - 9^19)\nColumn B: 3^(-20)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Factor each part separately. The numerator is 3^18(3^2 - 1) = (3^18)(8). The denominator is 9^19(9 - 1) = (9^19)(8), and 9^19 = (3^2)^19 = 3^38. The factors of 8 cancel, leaving 3^18 / 3^38 = 3^(18 - 38) = 3^(-20), which is exactly Column B.",
+      "trap": "Students try to subtract the exponents term by term, getting something like 3^2/9^1, or they convert 9^19 to 3^19 instead of 3^38. Rewriting base 9 as base 3 doubles the exponent.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "exponents",
+        "factoring"
+      ]
+    },
+    {
+      "id": "SEC-AL-064",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "n is a positive integer.\nColumn A: 1/3^n\nColumn B: 4/5^n",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Cross-multiplying by the positive quantities 3^n and 5^n turns the comparison into 5^n against (4)(3^n). At n = 1 that is 5 against 12, so Column B is greater. At n = 2 it is 25 against 36, still Column B. At n = 3 it is 125 against 108, so Column A is now greater. Because 5^n grows faster than 3^n, the constant factor of 4 is eventually overtaken, and the relationship flips.",
+      "trap": "Students test n = 1 and n = 2, see Column B win both times, and answer B. A fixed multiplier only delays the crossover between two exponentials with different bases — it never prevents it.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "exponents",
+        "growth rates"
+      ]
+    },
+    {
+      "id": "SEC-AL-065",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Column A: (3^4)(11^6)\nColumn B: ((3)(11))^(4 + 6)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Column B is 33^10, which expands to (3^10)(11^10). Column A is (3^4)(11^6). Dividing Column B by Column A gives (3^6)(11^4), a number far greater than 1, so Column B is much larger. Both quantities are positive, so no sign issues arise.",
+      "trap": "Students see the exponents 4 and 6 on the left and the sum 4 + 6 on the right and assume the rule for multiplying powers of the same base applies. That rule needs a common base; here the two bases are different, so the exponents cannot simply be added.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "exponents",
+        "powers"
+      ]
+    },
+    {
+      "id": "SEC-AL-066",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "For all values of a and b, (a + b)^3 = a^3 + 3a^2*b + 3a*b^2 + b^3.\n\nIf (m - 4)^3 + 3(m - 4)^2(4) + 3(m - 4)(16) + 64 = 125, what is the value of m ?",
+      "options": null,
+      "answer": "5",
+      "explanation": "Match the given expression against the identity with a = m - 4 and b = 4. The four terms are then a^3, 3a^2*b, 3a*b^2 (since b^2 = 16) and b^3 (since b^3 = 64), so the whole left side collapses to (a + b)^3 = ((m - 4) + 4)^3 = m^3. Setting m^3 = 125 gives m = 5.",
+      "trap": "Students expand every bracket term by term and drown in arithmetic, often losing a sign on the (m - 4) powers. The identity is printed at the top precisely so the left side can be recognised as a single cube.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "algebraic identities",
+        "cubes"
+      ]
+    },
+    {
+      "id": "SEC-AL-067",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If 3/x = y/3, and x and y are positive integers with x > y, what is the value of x - y ?",
+      "options": [
+        "A. 0",
+        "B. 2",
+        "C. 6",
+        "D. 8",
+        "E. 9"
+      ],
+      "answer": "D",
+      "explanation": "Cross-multiplying 3/x = y/3 gives xy = 9. The positive integer pairs whose product is 9 are (1, 9), (3, 3) and (9, 1). The condition x > y rules out (3, 3), where the two are equal, and rules out (1, 9), where x is smaller. That leaves x = 9 and y = 1, so x - y = 8.",
+      "trap": "Students cross-multiply to xy = 9 and then assume x and y must be equal, since the original equation looks symmetric, and answer 0. The equation only fixes the product; the extra conditions pick out which factor pair applies.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "proportions",
+        "integers"
+      ]
+    },
+    {
+      "id": "SEC-AL-068",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Which of the following inequalities states that the time it took car P to travel d miles at a constant rate of v miles per hour is less than the time it took car Q to travel m miles at a constant rate of w miles per hour?",
+      "options": [
+        "A. dw - mv > 0",
+        "B. mv - dw > 0",
+        "C. dm - vw > 0",
+        "D. vw - dm > 0",
+        "E. dv - mw > 0"
+      ],
+      "answer": "B",
+      "explanation": "Time equals distance divided by rate, so car P takes d/v hours and car Q takes m/w hours. The statement is d/v < m/w. Multiplying both sides by the positive product vw clears the denominators: dw < mv. Moving everything to one side gives mv - dw > 0.",
+      "trap": "Students cross-multiply and pair the wrong letters, producing dw - mv > 0 with the inequality backwards, or they multiply distance by rate instead of dividing and land on dv - mw > 0. Each quantity must pair a distance with the *other* car's rate.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "rates",
+        "inequalities"
+      ]
+    },
+    {
+      "id": "SEC-AL-069",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "a < b\n\nWhich of the following must be true?\n\nIndicate all such statements.",
+      "options": [
+        "A. 3a - b < 2b",
+        "B. 2a < b",
+        "C. a^2 < b^2",
+        "D. a - 5 < b - 5",
+        "E. -a > -b"
+      ],
+      "answer": [
+        "A",
+        "D",
+        "E"
+      ],
+      "explanation": "A is true: adding b to both sides turns 3a - b < 2b into 3a < 3b, which divides down to a < b. D is true because subtracting the same number from both sides never changes an inequality. E is true because multiplying both sides by -1 reverses the direction, turning a < b into -a > -b. B is false: taking a = 1 and b = 2 gives 2a = 2 and b = 2, so 2a < b fails. C is false: taking a = -3 and b = 1 gives a^2 = 9 and b^2 = 1, so the squares reverse the order.",
+      "trap": "C is the reliable trap. Squaring preserves an inequality only when both sides are known to be non-negative; with a negative on the left, the larger absolute value sits on the smaller number.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "inequalities",
+        "must be true"
+      ]
+    },
+    {
+      "id": "SEC-AL-070",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "x, y and x + y are all nonzero. Which of the following is equal to x^(-3) + y^(-3) ?",
+      "options": [
+        "A. (x + y)^(-3)",
+        "B. (x^3 + y^3)/(x^3*y^3)",
+        "C. (x + y)^3/(x*y)^3",
+        "D. 1/(x + y)^3",
+        "E. (x + y)/(x*y)^3"
+      ],
+      "answer": "B",
+      "explanation": "A negative exponent means a reciprocal, so the expression is 1/x^3 + 1/y^3. Putting the two fractions over the common denominator x^3*y^3 gives (y^3 + x^3)/(x^3*y^3), which is choice B. Note that x^3 + y^3 is not the same as (x + y)^3, so choice C is a different quantity.",
+      "trap": "Students distribute the exponent across the sum and answer (x + y)^(-3) or 1/(x + y)^3. Exponents distribute over products, never over sums — a quick check with x = y = 1 gives 2 for the original and 1/8 for that answer.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "exponents",
+        "rational expressions"
+      ]
+    },
+    {
+      "id": "SEC-AL-071",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "a and b are integers, and a^2 + b^2 = 100.\n\nWhich of the following could be the value of a + b ?\n\nIndicate all such values.",
+      "options": [
+        "A. -14",
+        "B. -6",
+        "C. 0",
+        "D. 4",
+        "E. 10",
+        "F. 14"
+      ],
+      "answer": [
+        "A",
+        "E",
+        "F"
+      ],
+      "explanation": "The integer pairs whose squares add to 100 come from 0 + 100 and 36 + 64, so up to sign and order the possibilities are (0, 10) and (6, 8). Allowing every sign and order, the achievable sums are 10 and -10 from the first pair, and 14, -14, 2 and -2 from the second. That set is {-14, -10, -2, 2, 10, 14}. Among the choices, -14, 10 and 14 appear in it; -6, 0 and 4 do not.",
+      "trap": "Students treat a^2 + b^2 = 100 as if it forced a + b = 10, reasoning from the familiar 6-8-10 triangle, and select only 10 and 14. Negative integers square to the same value, so every sign combination is available.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "integers",
+        "squares"
+      ]
+    },
+    {
+      "id": "SEC-AL-072",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "n is an integer and (3/5)^n * (5/3)^(-n) = 9/25.\n\nWhat is the value of n ?",
+      "options": null,
+      "answer": "1",
+      "explanation": "A negative exponent inverts the base, so (5/3)^(-n) = (3/5)^n. The left side is therefore (3/5)^n times (3/5)^n = (3/5)^(2n). The right side is 9/25 = (3/5)^2. Matching the exponents on the same base gives 2n = 2, so n = 1.",
+      "trap": "Students treat (3/5)^n and (5/3)^(-n) as reciprocals of each other and cancel them to 1, concluding the equation has no solution. Both the base inversion and the negative exponent flip, and the two flips cancel — leaving two identical factors, not reciprocal ones.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "exponents",
+        "reciprocals"
+      ]
+    }
+  ]
+}

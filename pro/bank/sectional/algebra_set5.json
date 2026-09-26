@@ -1,0 +1,268 @@
+{
+  "meta": {
+    "topic": "Algebra Fundamentals",
+    "subtopic": "Sectional Set 5",
+    "subtopic_id": "SEC-AL",
+    "version": "1.0",
+    "set_number": 5,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced. Two questions recast into multiple-answer form and two into numeric-entry form, since the Algebra source pool contains almost none of either.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AL-049",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "If x > 0 and 2x^2 - 5x - 12 = 0, what is the value of x ?",
+      "options": null,
+      "answer": "4",
+      "explanation": "Factor the quadratic: 2x^2 - 5x - 12 = (2x + 3)(x - 4), which can be checked by expanding back to 2x^2 - 8x + 3x - 12. Setting each factor to zero gives x = -3/2 and x = 4. The condition x > 0 rules out the negative root, leaving x = 4.",
+      "trap": "Students solve correctly but enter the negative root, or enter both. The sign condition is there to select exactly one of the two solutions.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "quadratics",
+        "factoring"
+      ]
+    },
+    {
+      "id": "SEC-AL-050",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "M, p and q are positive numbers.\nColumn A: M(p^2 + q^2)/15\nColumn B: M(p + q)^2/15",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Both columns carry the same positive factor M/15, so the comparison reduces to p^2 + q^2 against (p + q)^2. Expanding the square gives (p + q)^2 = p^2 + 2pq + q^2, which exceeds p^2 + q^2 by exactly 2pq. Since p and q are both positive, 2pq is positive, so Column B is greater for every allowed choice of M, p and q.",
+      "trap": "Students recall that squaring a sum is not the sum of squares but cannot pin the direction, and answer 'cannot be determined'. The positivity of p and q fixes the sign of the 2pq gap, which settles it.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "algebraic identities",
+        "inequalities"
+      ]
+    },
+    {
+      "id": "SEC-AL-051",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If w = k^2 - 3 and k is an integer from -6 to 3, inclusive, then the greatest possible value of w is how much more than the least possible value of w ?",
+      "options": [
+        "A. 27",
+        "B. 30",
+        "C. 33",
+        "D. 36",
+        "E. 39"
+      ],
+      "answer": "D",
+      "explanation": "Since w depends on k only through k^2, look at the range of k^2 as k runs over -6, -5, ..., 2, 3. The largest square comes from the endpoint furthest from zero, k = -6, giving k^2 = 36 and w = 33. The smallest square is k^2 = 0 at k = 0, giving w = -3. The difference is 33 - (-3) = 36.",
+      "trap": "Students take the endpoints of the k interval as the endpoints of the w interval, comparing k = -6 with k = 3 and reporting 33 - 6 = 27. Squaring is not increasing across a range that straddles zero — the minimum sits at k = 0, in the middle.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "quadratics",
+        "ranges"
+      ]
+    },
+    {
+      "id": "SEC-AL-052",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "If -6 <= p <= 9 and p + q = -3, what is the least possible value of pq ?",
+      "options": [
+        "A. -108",
+        "B. -81",
+        "C. -54",
+        "D. -18",
+        "E. 0"
+      ],
+      "answer": "A",
+      "explanation": "From p + q = -3 we get q = -3 - p, so the product is pq = p(-3 - p) = -p^2 - 3p. As a function of p this is a downward-opening parabola, so it has a maximum in the middle and its smallest values at the ends of the allowed interval. At p = -6 the product is -36 + 18 = -18. At p = 9 the product is -81 - 27 = -108. The least possible value is -108.",
+      "trap": "Students hunt for the minimum where the parabola turns, at p = -1.5, but that point is the maximum. For a downward parabola the smallest value on a closed interval always sits at one of the two endpoints.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "quadratics",
+        "optimization"
+      ]
+    },
+    {
+      "id": "SEC-AL-053",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "3^(-7) - 3^(-8) =",
+      "options": [
+        "A. 3^(-1)",
+        "B. 3^(-8)",
+        "C. (2)(3^(-8))",
+        "D. 3^(-15)",
+        "E. (2)(3^(-15))"
+      ],
+      "answer": "C",
+      "explanation": "Pull out the smaller power as a common factor: 3^(-7) - 3^(-8) = 3^(-8)(3^1 - 1) = 3^(-8)(2) = (2)(3^(-8)). Checking numerically, 3^(-7) is 1/2187 and 3^(-8) is 1/6561, and their difference is 2/6561, which matches.",
+      "trap": "Students subtract the exponents and answer 3^(-15), or recall the base-2 version of this problem where the leftover factor is 2 - 1 = 1 and answer 3^(-8). Factoring leaves 3 - 1 = 2 here, so the coefficient does not disappear.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "exponents",
+        "factoring"
+      ]
+    },
+    {
+      "id": "SEC-AL-054",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "If x > 0, y < 0, and xy = -12, what is the value of (x - y)^2 - (x^2 + y^2) ?",
+      "options": null,
+      "answer": "24",
+      "explanation": "Expand the square: (x - y)^2 = x^2 - 2xy + y^2. Subtracting x^2 + y^2 leaves exactly -2xy. Substituting xy = -12 gives -2(-12) = 24. The individual values of x and y are never needed.",
+      "trap": "Students try to find x and y separately from xy = -12 and stall, or drop the sign and answer -24. The whole expression collapses to a single multiple of the product that was handed to them.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "algebraic identities",
+        "expression value"
+      ]
+    },
+    {
+      "id": "SEC-AL-055",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "0 < x^y < 1, and y is an integer.\nColumn A: y\nColumn B: 0",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "A power lands strictly between 0 and 1 in two different ways. Taking x = 1/2 and y = 1 gives x^y = 1/2, which satisfies the condition with y positive. Taking x = 2 and y = -1 gives x^y = 1/2 as well, satisfying the same condition with y negative. So y can sit on either side of 0 and the relationship cannot be determined.",
+      "trap": "Students reason that a result below 1 means the exponent must be negative, picking B. That holds only when the base exceeds 1 — a base between 0 and 1 produces a small result from a positive exponent.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "exponents",
+        "inequalities"
+      ]
+    },
+    {
+      "id": "SEC-AL-056",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The function f is defined by f(x) = |x - a| - |b - x| for all numbers x, where a and b are positive constants. What is the value of f(-6) ?",
+      "options": [
+        "A. a + b",
+        "B. a - b",
+        "C. a - b - 12",
+        "D. -a - b",
+        "E. -a - b + 12"
+      ],
+      "answer": "B",
+      "explanation": "Substitute x = -6. The first term is |-6 - a|. Since a is positive, -6 - a is negative, so its absolute value is 6 + a. The second term is |b - (-6)| = |b + 6|. Since b is positive, b + 6 is positive, so its absolute value is b + 6. Therefore f(-6) = (6 + a) - (b + 6) = a - b. The 6 cancels.",
+      "trap": "Students strip the absolute value bars without checking signs, getting (-6 - a) - (b + 6) = -a - b - 12. The sign conditions on a and b are given precisely so that both expressions inside the bars have a determinate sign.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "functions",
+        "absolute value"
+      ]
+    },
+    {
+      "id": "SEC-AL-057",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "x is a negative integer.\nColumn A: (3^x)^2\nColumn B: (x^2)^x",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Both columns simplify to a power with exponent 2x: Column A is 3^(2x) and Column B is x^(2x). Since 2x is negative, each is the reciprocal of a positive power, so the column with the larger base is the smaller quantity. At x = -1, Column A is 3^(-2) = 1/9 while Column B is 1^(-1) = 1, so B is greater. At x = -3, Column A is 3^(-6) = 1/729 and Column B is 9^(-3) = 1/729, so they are equal. At x = -4, Column A is 3^(-8) = 1/6561 and Column B is 16^(-4) = 1/65536, so A is greater. All three outcomes occur.",
+      "trap": "Students test a single value, usually x = -1, and lock in B. Because the base of Column B is x^2, which grows as x moves further from zero while the base of Column A stays at 3, the two cross over as x decreases.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "exponents",
+        "negative exponents"
+      ]
+    },
+    {
+      "id": "SEC-AL-058",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "y equals x percent of x, where 0 < x < 100.\n\nWhich of the following must be true?\n\nIndicate all such statements.",
+      "options": [
+        "A. y < x",
+        "B. y percent of y is less than x percent of x",
+        "C. y < 100",
+        "D. y > 1",
+        "E. y > x"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "Taking x percent of x means y = x^2/100. A is true: y < x is the same as x^2/100 < x, which for positive x reduces to x < 100, exactly what is given. C follows for the same reason — since x < 100, we get y = x^2/100 < 10000/100 = 100. B is true: y percent of y is y^2/100, and x percent of x is y itself, so the comparison is y^2/100 < y, which holds because y < 100. D is false: taking x = 0.5 gives y = 0.0025, well below 1. E is false because it contradicts A.",
+      "trap": "D looks safe because the phrase 'x percent of x' suggests a sizeable number, but x is allowed anywhere in (0, 100), including values near zero where y becomes tiny. Any statement with a fixed lower bound fails at the small end of the range.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "percents",
+        "inequalities"
+      ]
+    },
+    {
+      "id": "SEC-AL-059",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "An integer n is to be selected at random from the integers between -4 and 4, inclusive. What is the probability that |n - 3| > 0 ?\n\nGive your answer as a fraction.",
+      "options": null,
+      "answer": "8/9",
+      "explanation": "The integers from -4 to 4 inclusive are -4, -3, -2, -1, 0, 1, 2, 3, 4 — nine values in all. An absolute value is greater than 0 for every input except the one that makes the inside zero, so |n - 3| > 0 fails only at n = 3. That leaves 8 of the 9 values, giving a probability of 8/9.",
+      "trap": "Students read |n - 3| > 0 as |n| > 3 and count only -4 and 4, answering 2/9. They may also miscount the range as 8 integers by forgetting that an inclusive span from -4 to 4 contains zero as well.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "absolute value",
+        "probability"
+      ]
+    },
+    {
+      "id": "SEC-AL-060",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "p^2*r - p*q*r < 0, where p < 0 and r > 0.\n\nWhich of the following must be true?\n\nIndicate all such statements.",
+      "options": [
+        "A. p > q",
+        "B. q > 0",
+        "C. pq > 0",
+        "D. q < r",
+        "E. p - q > r"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "Factor the left side: p^2*r - p*q*r = p*r*(p - q). Since p is negative and r is positive, the product p*r is negative. For the whole expression to be negative, the remaining factor (p - q) must be positive, so p > q — statement A. Because q is below p and p is already below zero, q is negative too, which makes B false and makes pq a product of two negatives, hence positive — statement C. Statement D follows since q is negative and r is positive. E is not forced: taking p = -1, q = -2 and r = 100 satisfies everything given while p - q = 1 is far below r.",
+      "trap": "Students divide both sides by p*r to isolate (p - q) and forget that dividing by a negative flips the inequality, concluding p < q and inverting every downstream deduction.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "inequalities",
+        "factoring"
+      ]
+    }
+  ]
+}

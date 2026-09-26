@@ -1,0 +1,270 @@
+{
+  "meta": {
+    "topic": "Number Properties",
+    "subtopic": "Sectional Set 2",
+    "subtopic_id": "SEC-NP",
+    "version": "1.0",
+    "set_number": 2,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-NP-013",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Which of the following integers has more even divisors than odd divisors?",
+      "options": [
+        "A. 18",
+        "B. 21",
+        "C. 28",
+        "D. 30",
+        "E. 50"
+      ],
+      "answer": "C",
+      "explanation": "Write each number as 2^a times an odd part. Every odd divisor is a divisor of the odd part, and every even divisor is 2^i times a divisor of the odd part for some i from 1 to a. So the number of even divisors is a times the number of odd divisors, and there are more even than odd divisors exactly when a is at least 2. Checking the options: 18 = 2 x 3^2 has a = 1, so its 3 even divisors (2, 6, 18) match its 3 odd ones (1, 3, 9). 21 = 3 x 7 has a = 0 and no even divisors at all. 28 = 2^2 x 7 has a = 2, giving 4 even divisors (2, 4, 14, 28) against 2 odd ones (1, 7). 30 = 2 x 3 x 5 has a = 1, giving 4 and 4. 50 = 2 x 5^2 has a = 1, giving 3 and 3. Only 28 works.",
+      "trap": "Students pick 30 because it is the largest number with several even divisors, or 18 because it 'looks even'. Both have exactly one factor of 2, which forces the even and odd divisors into a one-to-one pairing and makes the counts equal. What decides the question is the exponent on 2, not the size of the number.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "divisors",
+        "prime-factorization"
+      ]
+    },
+    {
+      "id": "SEC-NP-014",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "k and n are consecutive odd positive integers with k < n, and the least common multiple of k and n is 899. What is the value of k + n?",
+      "options": [
+        "A. 56",
+        "B. 58",
+        "C. 60",
+        "D. 62",
+        "E. 64"
+      ],
+      "answer": "C",
+      "explanation": "Consecutive odd integers differ by 2, so n = k + 2 and any common divisor of k and n must divide their difference of 2. Since both are odd, that common divisor cannot be 2, so the greatest common divisor is 1. For two numbers whose greatest common divisor is 1, the least common multiple equals their product, so k(k + 2) = 899. Adding 1 to both sides gives k^2 + 2k + 1 = 900, that is (k + 1)^2 = 900, so k + 1 = 30. Then k = 29 and n = 31, and k + n = 60. Check: 29 and 31 are both odd and prime, and 29 x 31 = 899.",
+      "trap": "Students assume two odd numbers must share a factor, divide 899 by some guessed common divisor, and land on 58 or 62. Two odd integers that differ by 2 are always coprime, so their least common multiple is simply their product. A second trap is answering 899 itself, forgetting the question asks for the sum.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "lcm-gcd",
+        "consecutive-integers"
+      ]
+    },
+    {
+      "id": "SEC-NP-015",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "p and r are different prime numbers, each greater than 3. What is the least possible number of positive factors of (p + 3)(r + 3)?",
+      "options": [
+        "A. 6",
+        "B. 8",
+        "C. 9",
+        "D. 10",
+        "E. 12"
+      ],
+      "answer": "B",
+      "explanation": "Every prime greater than 3 is odd, so p + 3 and r + 3 are both even, and each is at least 5 + 3 = 8. The product is therefore at least 8 x 10 = 80. A number has few factors when its prime factorisation is concentrated on one prime, so try making the product a power of 2. Taking p = 5 gives p + 3 = 8 and taking r = 13 gives r + 3 = 16, so the product is 128 = 2^7, which has 7 + 1 = 8 factors. Nothing smaller is available: 7 factors would require the form 2^6 = 64, which is below the minimum of 80, and 6 factors would require 2^5 = 32 or a form 4q with q prime, neither of which can be built from two even numbers that are each at least 8. Every other small pairing does worse, for example 8 x 10 = 80 = 2^4 x 5 with 10 factors and 10 x 14 = 140 = 2^2 x 5 x 7 with 12 factors. So the least possible count is 8.",
+      "trap": "Students compute the factor count of p x r^2 or of a generic product of two primes, get (1 + 1)(2 + 1) = 6, and choose A. Adding 3 to an odd prime destroys the primality: p + 3 and r + 3 are even composites, so the product carries a high power of 2 and has far more factors than a product of two primes would.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "prime-factorization",
+        "divisors"
+      ]
+    },
+    {
+      "id": "SEC-NP-016",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "If j is a positive integer, which of the following must be a divisor of j(j + 1)(j + 2)(j + 3)(j + 4)?",
+      "options": [
+        "A. 100",
+        "B. 120",
+        "C. 144",
+        "D. 180",
+        "E. 240"
+      ],
+      "answer": "B",
+      "explanation": "Among any 5 consecutive integers, at least one is a multiple of 5, at least one is a multiple of 3, and at least two are even with one of those divisible by 4, so the product always carries 2^3, 3 and 5. That gives 8 x 3 x 5 = 120 as a guaranteed divisor; in fact the product of any 5 consecutive integers is always divisible by 5! = 120. To eliminate the rest, test j = 1, where the product is 1 x 2 x 3 x 4 x 5 = 120. None of 100, 144, 180 or 240 divides 120, so none of them must divide the product.",
+      "trap": "Students reason that 5 consecutive integers contain a multiple of 5 and a multiple of 4, conclude the product carries 100, and select A. A multiple of 100 needs two factors of 5, but 5 consecutive integers are guaranteed only one multiple of 5. Testing j = 1 kills all four wrong options at once.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "consecutive-integers",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "SEC-NP-017",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "m is a positive integer that is divisible by 12. q is a positive integer that is divisible by 6 but is not divisible by 12.\nColumn A: The remainder when m + q is divided by 12\nColumn B: 6",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Since m is divisible by 12, it leaves a remainder of 0 when divided by 12. Since q is divisible by 6, it is either a multiple of 12 or 6 more than a multiple of 12; the condition that q is not divisible by 12 rules out the first case, so q leaves a remainder of 6. Remainders add, so m + q leaves a remainder of 0 + 6 = 6 when divided by 12. For example m = 24 and q = 18 give m + q = 42 = 3(12) + 6. Column A is always 6, so the two quantities are equal.",
+      "trap": "Students see that both m and q are even multiples of 6, add the two conditions loosely, and answer D on the grounds that q is not pinned down. Being a multiple of 6 but not of 12 pins the remainder exactly: the multiples of 6 alternate between remainder 0 and remainder 6 modulo 12, and excluding the multiples of 12 leaves only remainder 6.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "remainders",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "SEC-NP-018",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "12 <= x <= 30 and 2 <= y <= 7. x and y are integers.\nColumn A: The greatest possible value of 20/(x - y)\nColumn B: 3",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "The numerator 20 is fixed and positive, so the fraction is largest when the denominator x - y is positive and as small as possible. Since x is at least 12 and y is at most 7, the difference x - y is always at least 12 - 7 = 5, and that smallest difference is actually attainable by taking x = 12 and y = 7. Because x and y are integers, no value of x - y between 0 and 5 exists. The greatest possible value is therefore 20/5 = 4. Since 4 is greater than 3, Column A is greater.",
+      "trap": "Students try to 'maximise' by pushing x to its largest value and y to its smallest, taking x = 30 and y = 2 to get 20/28, which is less than 1, and then choose B. With a fixed positive numerator the fraction grows as the denominator shrinks, so the goal is to make x - y as small as possible, not as large as possible.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "inequalities",
+        "fractions"
+      ]
+    },
+    {
+      "id": "SEC-NP-019",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "p is a prime number and a divisor of 315.\nColumn A: p\nColumn B: 6",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Factor 315 into primes: 315 = 5 x 63 = 5 x 7 x 9 = 3^2 x 5 x 7. The prime divisors of 315 are therefore 3, 5 and 7. If p = 3 or p = 5, then p is less than 6 and Column B is greater. If p = 7, then p is greater than 6 and Column A is greater. Because the comparison changes depending on which prime divisor p is, the relationship cannot be determined.",
+      "trap": "Students find one prime divisor, usually the smallest one, 3, conclude that Column B is greater and stop. The condition names p as 'a' prime divisor, not 'the' prime divisor, so every prime in the factorisation must be tested. Once two admissible values fall on opposite sides of 6, the answer is D.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "prime-factorization",
+        "divisors"
+      ]
+    },
+    {
+      "id": "SEC-NP-020",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "What is the sum of all the integers between 200 and 800 that have exactly three positive divisors?",
+      "options": null,
+      "answer": "1179",
+      "explanation": "An integer has exactly three positive divisors only when it is the square of a prime: the divisors of p^2 are 1, p and p^2, which is exactly three, while any other structure produces either two divisors (a prime) or four or more. So we need the squares of primes strictly between 200 and 800. Since 13^2 = 169 is too small and 29^2 = 841 is too large, the candidates are 17^2 = 289, 19^2 = 361 and 23^2 = 529. Their sum is 289 + 361 = 650, and 650 + 529 = 1,179.",
+      "trap": "Students hunt for numbers with three prime factors, such as 2 x 3 x 5 = 30 scaled into range, and collect numbers like 210 or 330. Those have eight divisors, not three. Exactly three divisors forces the number to be a prime squared, which makes the search a short list of primes rather than a long list of products.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "divisors",
+        "perfect-squares"
+      ]
+    },
+    {
+      "id": "SEC-NP-021",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Working continuously for a total of 90 hours, a machine first assembled x units of product G and then assembled y units of product H, where x and y are positive integers. It took the machine 6 hours to assemble each unit of product G and 11 hours to assemble each unit of product H. What is the total number of units of products G and H that the machine assembled in the 90 hours?",
+      "options": null,
+      "answer": "10",
+      "explanation": "The hours must account exactly: 6x + 11y = 90, with x and y both positive integers. Solve for x: 6x = 90 - 11y, so 90 - 11y must be positive and divisible by 6. Test the possible values of y from 1 upward: y = 1 leaves 79, y = 2 leaves 68, y = 3 leaves 57, y = 4 leaves 46 and y = 5 leaves 35, none divisible by 6. y = 6 leaves 90 - 66 = 24, which gives x = 4. Beyond that, y = 7 leaves 13 and y = 8 leaves 2, neither divisible by 6. So the only solution is x = 4 and y = 6, and the total number of units is 4 + 6 = 10. Check: 6(4) + 11(6) = 24 + 66 = 90.",
+      "trap": "Students divide 90 by an average time, say by (6 + 11)/2 = 8.5, and report about 11 units. The two products take different amounts of time and the counts must both be whole numbers, so the total is fixed by the one integer solution of the equation, not by an average.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "integer-solutions",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "SEC-NP-022",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A certain list consists of 40 different positive integers, each of which is a multiple of the positive integer m. The greatest integer in the list is 600. What is the greatest possible value of m?",
+      "options": null,
+      "answer": "15",
+      "explanation": "Two conditions constrain m. First, 600 is in the list and every member is a multiple of m, so m must be a divisor of 600. Second, every member is a positive multiple of m that is at most 600, and there are only 600/m such multiples in total, so we need 600/m to be at least 40, which gives m at most 15. The largest divisor of 600 that is at most 15 is 15 itself, and it works: the multiples 15, 30, 45, ..., 600 number exactly 600/15 = 40, so a list of 40 different multiples of 15 with greatest member 600 exists. Therefore the greatest possible value of m is 15.",
+      "trap": "Students use only the divisibility condition and answer with a large divisor of 600 such as 60 or 100. A larger m means fewer available multiples below 600: with m = 60 there are only 10 multiples of 60 up to 600, far short of the 40 different integers the list requires. Both conditions have to hold at once.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "multiples",
+        "divisors"
+      ]
+    },
+    {
+      "id": "SEC-NP-023",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "In sequence T, the first term t1 is a positive integer and tn = 2*t(n-1) for every integer n greater than 1. If no term of sequence T is a multiple of 150, which of the following could be the value of t1?\n\nIndicate all such values.",
+      "options": [
+        "A. 15",
+        "B. 25",
+        "C. 50",
+        "D. 75",
+        "E. 150",
+        "F. 300"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "Every term has the form t1 times a power of 2. Since 150 = 2 x 3 x 5^2, a term can be a multiple of 150 only if the odd part 3 x 5^2 = 75 is already present in t1, because repeatedly multiplying by 2 never supplies a factor of 3 or of 5. So some term is a multiple of 150 exactly when 75 divides t1. Testing: 15 is not a multiple of 75, and its terms 15, 30, 60, 120, ... never gain a second factor of 5, so it is safe. 25 is not a multiple of 75, and its terms 25, 50, 100, ... never gain a factor of 3, so it is safe. 50 is not a multiple of 75, and its terms 50, 100, 200, ... never gain a factor of 3, so it is safe. 75 fails, since 75 x 2 = 150. 150 fails immediately, as the first term itself is 150. 300 fails, since 300 = 2 x 150. The values that work are 15, 25 and 50.",
+      "trap": "Students rule out 50 because 50 x 3 = 150, imagining that the sequence can reach 150 by tripling. The rule only doubles, so the odd part of every term is the odd part of t1, unchanged forever. A starting value is unsafe only when it already contains the full odd part 75 of 150.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "sequences",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "SEC-NP-024",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "s and t are different positive integers. Which of the following conditions guarantees that t/s is an integer?\n\nIndicate all such statements.",
+      "options": [
+        "A. s is a factor of t - s",
+        "B. s = t^2 + t",
+        "C. s^3 is a factor of t^3",
+        "D. t = (s + 1)(s - 1)",
+        "E. s is prime and s is a factor of t^2",
+        "F. s + 1 is a factor of t + 1"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "E"
+      ],
+      "explanation": "A works: if s divides t - s, then t - s = ms for some integer m, so t = s(m + 1) and t/s = m + 1, an integer. B fails: s = t^2 + t = t(t + 1), so t/s = 1/(t + 1), which is less than 1 and never an integer for positive t. C works: compare prime exponents. If s^3 divides t^3, then for every prime the exponent satisfies 3 times its exponent in s is at most 3 times its exponent in t, so its exponent in s is at most its exponent in t, which is exactly the statement that s divides t. D fails: t = s^2 - 1, so t/s = s - 1/s, which is not an integer for any s greater than 1, and s = 1 would force t = 0, which is not positive. E works: a prime that divides t^2 must divide t, so s divides t. F fails: take s = 2 and t = 5, where s + 1 = 3 does divide t + 1 = 6, yet t/s = 5/2 is not an integer.",
+      "trap": "Students accept F by pattern-matching, assuming that a divisibility relation between s + 1 and t + 1 transfers down to s and t. It does not: adding 1 to each number scrambles the factorisations completely, and s = 2, t = 5 breaks it. The same loose reasoning makes D look plausible, since s^2 - 1 is 'almost' a multiple of s.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "divisibility",
+        "prime-factorization"
+      ]
+    }
+  ]
+}

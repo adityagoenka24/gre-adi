@@ -1,0 +1,282 @@
+{
+  "meta": {
+    "topic": "Algebra Fundamentals",
+    "subtopic": "Sectional Set 8",
+    "subtopic_id": "SEC-AL",
+    "version": "1.0",
+    "set_number": 8,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced. Some questions recast into multiple-answer and numeric-entry form, since the Algebra source pool contains almost none of either.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AL-085",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Which of the following is closest to (24.6 * 10^5) / (0.41 * 10^(-8))?",
+      "options": [
+        "A. 6.0 * 10^12",
+        "B. 6.0 * 10^13",
+        "C. 6.0 * 10^14",
+        "D. 6.0 * 10^15",
+        "E. 6.0 * 10^16"
+      ],
+      "answer": "C",
+      "explanation": "Split the calculation into the decimal part and the power of ten. The decimal part is 24.6 / 0.41. Multiplying numerator and denominator by 100 gives 2460 / 41 = 60 exactly. The power of ten part is 10^5 / 10^(-8) = 10^(5 - (-8)) = 10^13. Multiplying the pieces gives 60 * 10^13. That is not yet in standard form, since 60 = 6.0 * 10, so 60 * 10^13 = 6.0 * 10^14.",
+      "trap": "Computing 24.6 / 0.41 = 60 and 10^5 / 10^(-8) = 10^13 correctly, then writing the answer as 6.0 * 10^13 and picking B. The leftover factor of 10 hidden inside 60 must be carried into the exponent. The other trap is subtracting the exponents as 5 - 8 = -3 instead of 5 - (-8) = 13.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "scientific-notation",
+        "exponents",
+        "estimation"
+      ]
+    },
+    {
+      "id": "SEC-AL-086",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Which of the following conditions, by itself, guarantees that x > 1?",
+      "options": [
+        "A. x > 0",
+        "B. x^2 > 1",
+        "C. x^2 > x",
+        "D. x^3 > x^2",
+        "E. x^5 > x^3"
+      ],
+      "answer": "D",
+      "explanation": "Test each condition to see whether it forces x > 1 and nothing else.\nA fails: x = 0.5 is positive but not greater than 1.\nB fails: x^2 > 1 means x > 1 or x < -1, so x = -3 qualifies.\nC fails: x^2 > x rearranges to x*(x - 1) > 0, which holds when x > 1 or when x < 0, so x = -2 qualifies.\nD works: x^3 > x^2 rearranges to x^2*(x - 1) > 0. Since x^2 is positive for every x other than 0, the inequality forces x - 1 > 0, that is x > 1. And every x > 1 does satisfy it, so the condition is exactly x > 1.\nE fails: x^5 > x^3 rearranges to x^3*(x^2 - 1) > 0, which is satisfied by x > 1 but also by -1 < x < 0, since x = -0.5 gives -0.03125 > -0.125.",
+      "trap": "Choosing C because x^2 > x looks like it says x is large. Dividing both sides by x to reach x > 1 is only valid when x is positive; for negative x the division flips the inequality, and every negative number slips through. Always factor rather than divide by a variable of unknown sign.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "inequalities",
+        "sign-analysis",
+        "factoring"
+      ]
+    },
+    {
+      "id": "SEC-AL-087",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If 0 < p < q < r, which of the following is equal to |p - q - r| - |q + r|?",
+      "options": [
+        "A. p",
+        "B. -p",
+        "C. p - 2q - 2r",
+        "D. -p + 2q + 2r",
+        "E. 2q + 2r - p"
+      ],
+      "answer": "B",
+      "explanation": "Handle each absolute value by first deciding the sign of what is inside. Since q and r are both positive, q + r is positive, so |q + r| = q + r. For the other one, p - q - r = p - (q + r). Because p < q and r > 0, the quantity q + r is larger than p, so p - (q + r) is negative and its absolute value flips the sign: |p - q - r| = (q + r) - p. Now subtract: [(q + r) - p] - (q + r) = -p.",
+      "trap": "Dropping the absolute value bars as written and computing (p - q - r) - (q + r) = p - 2q - 2r, which is choice C. The expression inside the first bars is negative, so removing the bars requires negating every term inside it, not copying them.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "absolute-value",
+        "sign-analysis",
+        "simplification"
+      ]
+    },
+    {
+      "id": "SEC-AL-088",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "0 < m < n < 1, and j and k are positive integers with j < k.\nWhich of the following must be true?",
+      "options": [
+        "A. m^(j - k) < 1",
+        "B. n^(k - j) > 1",
+        "C. m^(j - k) > 1 > n^(k - j)",
+        "D. m^(j - k) = n^(k - j)",
+        "E. n^(k - j) > m^(j - k)"
+      ],
+      "answer": "C",
+      "explanation": "Evaluate each expression separately by checking the sign of its exponent.\nFor m^(j - k): since j < k, the exponent j - k is a negative integer, so m^(j - k) = 1/m^(k - j). Now k - j is a positive integer and 0 < m < 1, so m^(k - j) is a positive number less than 1. The reciprocal of a number strictly between 0 and 1 is greater than 1, so m^(j - k) > 1.\nFor n^(k - j): the exponent k - j is a positive integer and 0 < n < 1, so raising n to that power shrinks it, giving n^(k - j) < 1.\nPutting the two together, m^(j - k) > 1 > n^(k - j), which is choice C. That also shows A and B are false, D is false since one side exceeds 1 and the other does not, and E reverses the true order.",
+      "trap": "Choosing E because n > m and assuming the larger base produces the larger value. The bases barely matter here; the signs of the exponents do all the work. One expression is pinned above 1 and the other below 1, so the order is fixed regardless of how close m and n are.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "negative-exponents",
+        "fractional-bases",
+        "inequalities"
+      ]
+    },
+    {
+      "id": "SEC-AL-089",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "0 < z < 1\nColumn A: z^(-3)\nColumn B: z^3",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Because z lies strictly between 0 and 1, multiplying copies of z together shrinks the product, so z^3 is a positive number less than 1. Column A is z^(-3), which by the definition of a negative exponent equals 1/z^3. Taking the reciprocal of a positive number smaller than 1 produces a number larger than 1. So Column A > 1 > Column B for every allowed z. Check with z = 1/2: Column A = 1/(1/8) = 8 and Column B = 1/8.",
+      "trap": "Reading the minus sign in z^(-3) as making the quantity negative and concluding that the positive Column B must win. A negative exponent signals a reciprocal, not a change of sign, so z^(-3) is positive and in fact very large as z approaches 0.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "negative-exponents",
+        "fractions",
+        "reciprocals"
+      ]
+    },
+    {
+      "id": "SEC-AL-090",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "m < 0 and n is not equal to 0\nColumn A: |n^4 + m|\nColumn B: |m - n^4|",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Since n is nonzero and 4 is even, n^4 is a strictly positive number. Since m is negative, write |m| = -m, a positive number. Now handle each column. In Column B, m - n^4 is a negative number minus a positive number, so it is negative, and removing the bars flips the sign: |m - n^4| = n^4 - m = n^4 + |m|. That is the sum of two positive quantities. In Column A, n^4 + m = n^4 - |m|, so Column A = |n^4 - |m||, the absolute difference of the same two positive quantities. For any two positive numbers P and Q, |P - Q| is strictly less than P + Q. Therefore Column A is always less than Column B.",
+      "trap": "Testing one convenient case such as m = -1 and n = 1, getting Column A = 0 and Column B = 2, and then answering D because absolute values feel unpredictable. The two columns are structurally the difference and the sum of the same pair of positive numbers, so the sum always wins no matter what m and n are.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "absolute-value",
+        "even-powers",
+        "sign-analysis"
+      ]
+    },
+    {
+      "id": "SEC-AL-091",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "p and q are positive numbers and p is not equal to q\nColumn A: p/q + q/p\nColumn B: 2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Combine Column A over the common denominator p*q, which is positive since both p and q are positive: Column A = (p^2 + q^2)/(p*q). Comparing that with 2 is the same as comparing p^2 + q^2 with 2*p*q, because multiplying both sides by the positive quantity p*q preserves direction. Their difference is p^2 - 2*p*q + q^2 = (p - q)^2. Since p is not equal to q, that square is strictly positive, so p^2 + q^2 > 2*p*q and Column A > 2. Check with p = 3, q = 1: Column A = 3 + 1/3 = 10/3, which exceeds 2.",
+      "trap": "Testing p = 2, q = 1 to get 2.5, then swapping to p = 1, q = 2 to get 2.5 again and answering D on the suspicion that some other pair might dip below 2. The expression is symmetric in p and q, and the difference from 2 is always the perfect square (p - q)^2 divided by p*q, which is positive for every unequal pair.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "rational-expressions",
+        "perfect-squares",
+        "comparison"
+      ]
+    },
+    {
+      "id": "SEC-AL-092",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "The equation 4*x^2 - 26*x + 30 = 0 has two solutions. What is their product? Give your answer as a fraction.",
+      "options": null,
+      "answer": "15/2",
+      "explanation": "For a quadratic written as a*x^2 + b*x + c = 0, the product of the two roots is c/a. Here a = 4 and c = 30, so the product is 30/4, which reduces to 15/2. Confirm by solving outright: the discriminant is (-26)^2 - 4*4*30 = 676 - 480 = 196, and the square root of 196 is 14, so x = (26 +/- 14)/8. That gives x = 40/8 = 5 and x = 12/8 = 3/2. Their product is 5 * 3/2 = 15/2.",
+      "trap": "Attaching a minus sign and answering -15/2. The sum-of-roots formula is -b/a and does carry a sign flip, but the product formula is simply c/a with no flip. The other common slip is computing the sum instead, 26/4 = 13/2, which is a different number entirely.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "quadratic-equations",
+        "roots",
+        "vieta"
+      ]
+    },
+    {
+      "id": "SEC-AL-093",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "The integers u and v satisfy 3 <= u <= 9 and 6 <= v <= 20, and u is not equal to v. What is the greatest possible value of 12/(u - v)?",
+      "options": null,
+      "answer": "12",
+      "explanation": "The fraction 12/(u - v) is largest when u - v is positive and as small as possible, since a small positive denominator makes the quotient big. Any negative value of u - v makes the whole fraction negative and therefore not a candidate for the maximum. Because u and v are integers, the smallest positive value u - v can take is 1. That value is attainable inside the stated ranges: u = 7 and v = 6 gives u - v = 1, with both 3 <= 7 <= 9 and 6 <= 6 <= 20 satisfied and u not equal to v. The resulting value is 12/1 = 12, and no larger value is possible.",
+      "trap": "Pushing u and v to the far endpoints, u = 9 and v = 6, to get 12/3 = 4, or u = 9 and v = 20 to get a negative value. The endpoints do not maximize this expression; the smallest positive integer gap does. The reverse trap is imagining the denominator can slide toward 0 for an unbounded answer, but integers cannot produce a gap between 0 and 1.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "optimization",
+        "integer-constraints",
+        "fractions"
+      ]
+    },
+    {
+      "id": "SEC-AL-094",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "n is an integer, n - 4 > -9, and 3*n + 7 < -2. What is the value of n?",
+      "options": null,
+      "answer": "-4",
+      "explanation": "Solve each inequality separately, then intersect. From n - 4 > -9, add 4 to both sides to get n > -5. From 3*n + 7 < -2, subtract 7 to get 3*n < -9, then divide by the positive number 3 to get n < -3. Combining, -5 < n < -3. The only integer strictly between -5 and -3 is -4. Verify in the originals: -4 - 4 = -8, and -8 > -9 holds; 3*(-4) + 7 = -12 + 7 = -5, and -5 < -2 holds.",
+      "trap": "Including -5 or -3 by treating the strict inequalities as if they allowed equality. At n = -5 the first condition gives exactly -9, which is not greater than -9, and at n = -3 the second gives exactly -2, which is not less than -2. Both endpoints are excluded, leaving a single integer.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "inequalities",
+        "integer-constraints",
+        "solving-systems"
+      ]
+    },
+    {
+      "id": "SEC-AL-095",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "a^2 = 16, b^2 = 9, and c^2 = 1.\n\nWhich of the following could be the value of a + b + c?\n\nIndicate all such values.",
+      "options": [
+        "A. -6",
+        "B. -4",
+        "C. 0",
+        "D. 3",
+        "E. 6",
+        "F. 7"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "E"
+      ],
+      "explanation": "Each equation has two solutions, so a = 4 or -4, b = 3 or -3, and c = 1 or -1. That gives eight sign combinations. Listing every sum: 4 + 3 + 1 = 8, 4 + 3 - 1 = 6, 4 - 3 + 1 = 2, 4 - 3 - 1 = 0, -4 + 3 + 1 = 0, -4 + 3 - 1 = -2, -4 - 3 + 1 = -6, -4 - 3 - 1 = -8. The attainable set is therefore {-8, -6, -2, 0, 2, 6, 8}.\nChoice A, -6, is reached by a = -4, b = -3, c = 1.\nChoice C, 0, is reached by a = 4, b = -3, c = -1.\nChoice E, 6, is reached by a = 4, b = 3, c = -1.\nChoices B, D and F are not in the set: -4 never appears, and 3 and 7 are odd while every attainable sum is even.",
+      "trap": "Taking only the positive square roots, computing 4 + 3 + 1 = 8, and concluding that no listed choice works. Each square root carries two signs, and the sign choices are independent. A useful shortcut on the odd choices: 4 is even and 3 plus or minus 1 is always even, so every possible sum is even, which kills 3 and 7 immediately.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "square-roots",
+        "sign-cases",
+        "parity"
+      ]
+    },
+    {
+      "id": "SEC-AL-096",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "The numbers g and h satisfy g - h > g and g + h < h.\n\nWhich of the following must be true?\n\nIndicate all such statements.",
+      "options": [
+        "A. h < 0",
+        "B. g < 0",
+        "C. g*h > 0",
+        "D. g < h",
+        "E. g + h > 0",
+        "F. g - h > 0"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "Strip each given condition down. From g - h > g, subtract g from both sides to get -h > 0, which means h < 0. From g + h < h, subtract h from both sides to get g < 0. So both numbers are negative, and that is all the information available.\nA and B are exactly those two conclusions, so both must be true.\nC must be true as well: the product of two negative numbers is positive.\nD need not be true: g = -1 and h = -5 satisfy both givens, and there g > h.\nE is false: the sum of two negative numbers is negative.\nF need not be true: g = -5 with h = -1 gives g - h = -4, which is negative, while g = -1 with h = -5 gives g - h = 4, which is positive, so the sign is not forced.",
+      "trap": "Reading g - h > g as saying the subtraction increased the value and concluding that h must be positive. Subtracting g from both sides leaves -h > 0, so h is negative, which is what makes the subtraction increase the value in the first place. Guessing the sign instead of doing the one-step subtraction reverses the conclusion.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "inequalities",
+        "sign-deduction",
+        "must-be-true"
+      ]
+    }
+  ]
+}

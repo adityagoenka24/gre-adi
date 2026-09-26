@@ -1,0 +1,191 @@
+{
+  "meta": {
+    "topic": "Arithmetic Operations",
+    "subtopic": "Sectional Set 4",
+    "subtopic_id": "SEC-AO",
+    "version": "1.0",
+    "set_number": 4,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": { "easy": 0, "medium": 5, "hard": 7, "extreme_hard": 0 },
+    "type_distribution": { "mcq": 4, "quantitative_comparison": 3, "numeric_entry": 3, "multiple_answer": 2 },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AO-037",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "For every integer n greater than 1, B(n) = n/(n + 2). For every integer n greater than 2, C(n) = B(n) + B(n - 1). If k is an integer greater than 2, which of the following is equal to C(k)?",
+      "options": [
+        "A. (2k^2 + 2k - 2)/(k^2 + 3k + 2)",
+        "B. (2k^2 - 2)/(k^2 + 3k + 2)",
+        "C. (2k - 1)/(2k + 3)",
+        "D. (2k^2 + 2k - 2)/(2k + 3)",
+        "E. (k^2 + k - 2)/(k^2 + 3k + 2)"
+      ],
+      "answer": "A",
+      "explanation": "Substitute the definition twice. B(k) = k/(k + 2) and B(k - 1) = (k - 1)/((k - 1) + 2) = (k - 1)/(k + 1). Adding them over the common denominator (k + 2)(k + 1) gives [k(k + 1) + (k - 1)(k + 2)]/[(k + 2)(k + 1)]. The numerator expands to (k^2 + k) + (k^2 + k - 2) = 2k^2 + 2k - 2, and the denominator expands to k^2 + 3k + 2. So C(k) = (2k^2 + 2k - 2)/(k^2 + 3k + 2). Checking at k = 3: B(3) = 3/5 and B(2) = 2/4, summing to 1.1, and the formula gives 22/20 = 1.1.",
+      "trap": "Students add the two fractions by adding numerators and denominators straight across, producing (2k - 1)/(2k + 3). That is never how fractions add. The other frequent slip is evaluating B(k - 1) as (k - 1)/(k + 2), reusing the old denominator instead of shifting it, which yields the numerator 2k^2 + k - 1 and no matching option.",
+      "estimated_time_seconds": 120,
+      "tags": ["sequences", "fractions", "substitution"]
+    },
+    {
+      "id": "SEC-AO-038",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "When the positive integer t is divided by 5, the remainder is 3, and when t is divided by 6, the remainder is 2. If 40 < t < 90, what is the value of t?",
+      "options": ["A. 43", "B. 53", "C. 62", "D. 68", "E. 83"],
+      "answer": "D",
+      "explanation": "Handle the two conditions together. The integers leaving remainder 2 on division by 6 are 2, 8, 14, 20, 26, 32, 38, 44, ... and the first of these that also leaves remainder 3 on division by 5 is 8. So t is 8 more than a multiple of 30, the least common multiple of 5 and 6, giving the candidates 8, 38, 68 and 98. The only one strictly between 40 and 90 is 68. Verifying: 68 = 5 x 13 + 3 and 68 = 6 x 11 + 2. Each wrong option satisfies exactly one condition: 43 and 83 leave remainder 3 on division by 5 but not 2 on division by 6, and 62 leaves remainder 2 on division by 6 but remainder 2, not 3, on division by 5.",
+      "trap": "Students check only the first condition, find that 43, 53, 68 and 83 all end in a digit that leaves remainder 3 on division by 5, and pick whichever appears first. Both conditions must hold at once, and the qualifying values repeat every 30, not every 5 or 6.",
+      "estimated_time_seconds": 105,
+      "tags": ["remainders", "lcm"]
+    },
+    {
+      "id": "SEC-AO-039",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "For how many digits X is the three-digit integer 76X divisible by 3, where X is the units digit?",
+      "options": ["A. Two", "B. Three", "C. Four", "D. Five", "E. Six"],
+      "answer": "B",
+      "explanation": "An integer is divisible by 3 exactly when the sum of its digits is divisible by 3. Here the digit sum is 7 + 6 + X = 13 + X. For 13 + X to be a multiple of 3 with X a single digit from 0 to 9, we need 13 + X to equal 15, 18 or 21, giving X = 2, 5 or 8. That is three values, and the corresponding integers 762, 765 and 768 are all multiples of 3.",
+      "trap": "Students test only X = 0, 3, 6, 9, assuming the units digit itself must be a multiple of 3, and answer Four. Divisibility by 3 constrains the digit sum, not the units digit. Others extend the list past 9 to X = 11 and answer Four that way; X is a single digit, so the run stops at 8.",
+      "estimated_time_seconds": 75,
+      "tags": ["divisibility", "digits"]
+    },
+    {
+      "id": "SEC-AO-040",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What is the tens digit of (4^30)(5^57)?",
+      "options": ["A. 0", "B. 2", "C. 4", "D. 5", "E. 8"],
+      "answer": "A",
+      "explanation": "Rewrite everything in terms of primes so the factors of 10 become visible. 4^30 = (2^2)^30 = 2^60, so the product is 2^60 x 5^57. Pair off 57 twos with the 57 fives: 2^57 x 5^57 = 10^57, leaving 2^3 = 8 unpaired. So the product equals 8 x 10^57, which is the digit 8 followed by 57 zeros. Every digit after the leading 8 is a zero, so the tens digit is 0.",
+      "trap": "Students see a factor of 5 raised to a large power and assume the number ends in 25 or 75, answering 2 or 5. Others notice the leftover 8 and report it as the tens digit. The leftover factor becomes the leading digit, not a trailing one, because all 57 pairs of 2 and 5 push it to the front of a long block of zeros.",
+      "estimated_time_seconds": 105,
+      "tags": ["digits", "exponents", "trailing-zeros"]
+    },
+    {
+      "id": "SEC-AO-041",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "a and b are positive even integers.\nColumn A: The remainder when a^2 + b is divided by 2\nColumn B: The remainder when a^b is divided by 2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Work with parity rather than with specific numbers. Since a is even, a^2 is even, and since b is even as well, the sum a^2 + b is even plus even, which is even. An even number divided by 2 leaves remainder 0, so Column A is 0. For Column B, a^b is a product of copies of the even number a, so it too is even, and its remainder on division by 2 is also 0. Both columns equal 0 regardless of which even values a and b take. Testing a = 4 and b = 2 gives 18 and 16, both even.",
+      "trap": "Students see the exponent b in Column B, worry that a large power might behave differently, and choose 'cannot be determined.' Any positive power of an even number stays even, so the exponent never changes the parity. The opposite error is to assume a^2 + b must be odd because two different terms are being combined.",
+      "estimated_time_seconds": 80,
+      "tags": ["parity", "remainders"]
+    },
+    {
+      "id": "SEC-AO-042",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "y > 8,001\nColumn A: y^(1/3)\nColumn B: y/400",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Both quantities are positive, so divide Column B by Column A to see which dominates: (y/400) / y^(1/3) = y^(2/3)/400. Column B beats Column A exactly when y^(2/3) > 400, that is when y > 400^(3/2) = 8,000. Since the setup guarantees y > 8,001, that threshold is already cleared for every allowed value, so Column B is greater throughout. Checking the tightest case, y = 8,001: the cube root is about 20.0008 while 8,001/400 = 20.0025.",
+      "trap": "Students test a value just above the boundary, get 20.0008 against 20.0025, decide the two are effectively the same, and choose 'equal.' They are never equal on the allowed range; the crossover sits at y = 8,000, just below where the domain starts. Testing y = 8,000 itself, where the two really do tie, and then concluding 'cannot be determined' is the other trap the boundary is built to catch.",
+      "estimated_time_seconds": 115,
+      "tags": ["roots", "comparison"]
+    },
+    {
+      "id": "SEC-AO-043",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "s > t\nColumn A: |t| - |-s|\nColumn B: |s| - |-t|",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "First simplify the absolute values: |-s| = |s| and |-t| = |t|, so Column A is |t| - |s| and Column B is |s| - |t|. The two columns are exact negatives of each other, so whichever of |s| and |t| is larger decides the comparison. The given fact s > t orders the numbers themselves, not their distances from zero. With s = 5 and t = 2, Column A is 2 - 5 = -3 and Column B is 5 - 2 = 3, so Column B wins. With s = 2 and t = -7, which still satisfies s > t, Column A is 7 - 2 = 5 and Column B is 2 - 7 = -5, so Column A wins. No fixed relationship exists.",
+      "trap": "Students read s > t and conclude that |s| > |t|, then pick Column B. A negative t with large magnitude satisfies s > t while making |t| the larger absolute value. The minus signs inside the bars are pure decoration here, and treating |-s| as -|s| leads to a different wrong simplification altogether.",
+      "estimated_time_seconds": 100,
+      "tags": ["absolute-value", "inequalities"]
+    },
+    {
+      "id": "SEC-AO-044",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "If x = 3, y = 4, and z = 5, what is the value of x^(-1) * y * z^(-2)? Give your answer as a fraction.",
+      "options": null,
+      "answer": "4/75",
+      "explanation": "A negative exponent means a reciprocal, so x^(-1) = 1/3 and z^(-2) = 1/5^2 = 1/25. The expression becomes (1/3) x 4 x (1/25). Multiplying the numerators gives 4 and multiplying the denominators gives 3 x 25 = 75, so the value is 4/75. Note that only x and z move into the denominator; y carries no negative exponent and stays on top.",
+      "trap": "Students read the negative exponent as a negative sign and compute -3 x 4 x -25, or they apply the exponent to the whole product and send y downstairs as well, getting 1/300. A negative exponent flips only the base it is attached to, and it never makes the value negative.",
+      "estimated_time_seconds": 75,
+      "tags": ["negative-exponents", "fractions"]
+    },
+    {
+      "id": "SEC-AO-045",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "x and y are positive integers and x = 10y + 6. If the units digit of y is 7, what is the tens digit of x?",
+      "options": null,
+      "answer": "7",
+      "explanation": "Multiplying y by 10 shifts every one of its digits one place to the left, so the units digit of y becomes the tens digit of 10y. Adding 6 then fills the units place of x without carrying, because 6 is less than 10. The tens digit of x is therefore exactly the units digit of y, which is 7. Concrete checks: y = 7 gives x = 76, y = 17 gives x = 176, and y = 27 gives x = 276, each with tens digit 7.",
+      "trap": "Students add the 6 to the 7 and answer 3 after carrying, or they answer 6 by confusing the tens digit with the units digit of x. Since 10y always ends in 0, adding a single digit less than 10 can never disturb the tens place.",
+      "estimated_time_seconds": 80,
+      "tags": ["place-value", "digits"]
+    },
+    {
+      "id": "SEC-AO-046",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "n is a positive even integer. What is the units digit of 45*n^3 + 9?",
+      "options": null,
+      "answer": "9",
+      "explanation": "Because n is even, n^3 is even, so write n^3 = 2m for some integer m. Then 45n^3 = 45 x 2m = 90m, which is a multiple of 10 and therefore has units digit 0. Adding 9 to a number ending in 0 produces a number ending in 9. So the units digit is 9 for every positive even n. Spot checks: n = 2 gives 45(8) + 9 = 369, and n = 4 gives 45(64) + 9 = 2,889.",
+      "trap": "Students test n = 2, compute 369, and then worry that a larger n might change things, or they compute the units digit of 45 as 5 and answer 5 + 9 = 14 reduced to 4. The factor of 5 inside 45 pairs with the guaranteed factor of 2 inside an even cube, and that pairing forces a trailing zero before the 9 is ever added.",
+      "estimated_time_seconds": 85,
+      "tags": ["units-digit", "parity"]
+    },
+    {
+      "id": "SEC-AO-047",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "When the positive integer n is divided by 5, the remainder is 2. Which of the following could be the remainder when n is divided by 15?\n\nIndicate all such values.",
+      "options": ["A. 1", "B. 2", "C. 5", "D. 7", "E. 10", "F. 12"],
+      "answer": ["B", "D", "F"],
+      "explanation": "Since 15 is a multiple of 5, the remainder on division by 15 already determines the remainder on division by 5. If n leaves remainder r on division by 15, then n = 15q + r, and because 15q is a multiple of 5, n and r leave the same remainder on division by 5. So r must itself leave remainder 2 on division by 5, and r must lie between 0 and 14. The values satisfying both are r = 2, 7 and 12. Each is achievable: n = 2 gives remainder 2, n = 7 gives remainder 7, and n = 12 gives remainder 12, and all three of those n values leave remainder 2 on division by 5.",
+      "trap": "Students assume that because 15 is the bigger divisor the remainder must also be bigger, and rule out 2. Others reason that the remainder is somehow fixed and pick only 2, the value that matches the given remainder exactly. The remainder on division by 15 is not pinned down, but it is confined to the three numbers below 15 that are themselves 2 more than a multiple of 5.",
+      "estimated_time_seconds": 110,
+      "tags": ["remainders", "modular-arithmetic"]
+    },
+    {
+      "id": "SEC-AO-048",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "3 < x < 6 and 1/12 < y < 1/6. Which of the following must be true?\n\nIndicate all such statements.",
+      "options": [
+        "A. x + y < 1/x + 1/y",
+        "B. xy > 1",
+        "C. x/y > 18",
+        "D. x + y > 6",
+        "E. 1/y > x",
+        "F. x/y < 60"
+      ],
+      "answer": ["A", "C", "E"],
+      "explanation": "Convert the bound on y into a bound on 1/y: since 1/12 < y < 1/6, taking reciprocals reverses the inequality and gives 6 < 1/y < 12. Likewise 1/6 < 1/x < 1/3. Now test each statement on the extremes. A: x + y is less than 6 + 1/6, while 1/x + 1/y is greater than 1/6 + 6, so x + y is always below that shared value and 1/x + 1/y is always above it, making A true. B: xy is less than 6 x 1/6 = 1, so xy > 1 is never true, and B is false. C: x is greater than 3 and 1/y is greater than 6, so x/y = x times 1/y exceeds 3 x 6 = 18, making C true. D: x = 3.5 with y = 0.1 gives x + y = 3.6, which is not greater than 6, so D is false. E: 1/y is greater than 6 while x is less than 6, so 1/y > x always, and E is true. F: taking x = 5.9 and y just above 1/12 makes x/y roughly 70, so F is false.",
+      "trap": "Students see that both x and 1/y sit near 6 and conclude that x + y and 1/x + 1/y must be about the same size, rejecting statement A. In fact the small piece added on each side is what separates them: y is tiny and 1/x is tiny, but the large pieces, 6 and 6, are the same, so the comparison is decided at the boundary and both inequalities are strict. Another common error is accepting B because x is large and forgetting that y is a small fraction.",
+      "estimated_time_seconds": 125,
+      "tags": ["inequalities", "reciprocals", "ranges"]
+    }
+  ]
+}

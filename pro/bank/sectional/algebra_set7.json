@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "topic": "Algebra Fundamentals",
+    "subtopic": "Sectional Set 7",
+    "subtopic_id": "SEC-AL",
+    "version": "1.0",
+    "set_number": 7,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced. Some questions recast into multiple-answer and numeric-entry form, since the Algebra source pool contains almost none of either.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AL-073",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Which of the following quantities is the greatest?",
+      "options": [
+        "A. 4^80 + 3^80",
+        "B. 12^8 + 3^8",
+        "C. (12 + 3)^8",
+        "D. (4 + 12)^8",
+        "E. (4 + 3)^80"
+      ],
+      "answer": "E",
+      "explanation": "Sort by the size of the exponent first. Choices B, C and D all sit at the 8th power of a number no bigger than 16, so each is at most about 16^8 = 2^32, roughly 4.3 * 10^9. Choices A and E carry an 80th power. Choice A is 4^80 + 3^80, which is less than 2 * 4^80 because 3^80 < 4^80. Choice E is 7^80, and 7^80 / 4^80 = (7/4)^80 = 1.75^80, a number astronomically larger than 2. So 7^80 > 2 * 4^80 > 4^80 + 3^80, and both dwarf anything at the 8th power. Choice E is greatest.",
+      "trap": "Choosing D because 16 is the largest visible base. The exponent, not the base, drives the size here: 16^8 = 2^32 is about four billion, while 4^80 = 2^160 is larger than that by a factor of 2^128. A second trap is choosing A on the idea that adding two 80th powers beats a single one, but the sum is under 2 * 4^80 while 7^80 exceeds it by the factor 1.75^80.",
+      "estimated_time_seconds": 110,
+      "tags": ["exponents", "comparing-powers", "estimation"]
+    },
+    {
+      "id": "SEC-AL-074",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "If 8^(2k + 1) = 32^k, what is the value of k?",
+      "options": null,
+      "answer": "-3",
+      "explanation": "Rewrite both sides with base 2. Since 8 = 2^3, the left side is 2^(3(2k + 1)) = 2^(6k + 3). Since 32 = 2^5, the right side is 2^(5k). With the bases equal, the exponents must be equal: 6k + 3 = 5k, so k = -3. Check: 8^(2(-3) + 1) = 8^(-5) = (2^3)^(-5) = 2^(-15), and 32^(-3) = (2^5)^(-3) = 2^(-15). The two sides match.",
+      "trap": "Equating the exponents as written, 2k + 1 = k, to get k = -1. That skips the base conversion, and it fails the check: 8^(-1) = 1/8 but 32^(-1) = 1/32. Both sides must be expressed in the same base before exponents can be compared.",
+      "estimated_time_seconds": 80,
+      "tags": ["exponents", "common-base", "solving-equations"]
+    },
+    {
+      "id": "SEC-AL-075",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "p is the greatest prime number such that |p - 46| < 5. What is the value of p?",
+      "options": null,
+      "answer": "47",
+      "explanation": "The absolute value inequality |p - 46| < 5 means -5 < p - 46 < 5. Adding 46 throughout gives 41 < p < 51. The integers strictly inside that window are 42 through 50. Test each for primality: 42, 44, 46, 48 and 50 are even; 45 = 9 * 5; 49 = 7^2. That leaves 43 and 47 as the primes in range. The greater of the two is 47.",
+      "trap": "Answering 51 by taking the top of the range and assuming it is prime. First, 51 is excluded because the inequality is strict, and second, 51 = 3 * 17 is not prime at all. Another trap is answering 49, which looks prime but is 7 squared.",
+      "estimated_time_seconds": 85,
+      "tags": ["absolute-value", "prime-numbers", "inequalities"]
+    },
+    {
+      "id": "SEC-AL-076",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "If t = (-1/23)^18, which of the following is equal to 23^(-18)?",
+      "options": [
+        "A. 1/t",
+        "B. -1/t",
+        "C. -t",
+        "D. t",
+        "E. sqrt(t)"
+      ],
+      "answer": "D",
+      "explanation": "The exponent 18 is even, so the negative sign inside the parentheses disappears when the power is taken: (-1/23)^18 = (1/23)^18. Next, (1/23)^18 = 1/(23^18), and by the definition of a negative exponent 1/(23^18) is exactly 23^(-18). So t itself equals 23^(-18), and the answer is t.",
+      "trap": "Choosing -t on the belief that the minus sign inside the parentheses survives the exponentiation. An even exponent always produces a nonnegative result, so the sign is destroyed. Choosing 1/t is the other common slip: 1/t = 23^18, an enormous positive number rather than the tiny one asked for.",
+      "estimated_time_seconds": 75,
+      "tags": ["exponents", "negative-exponents", "even-powers"]
+    },
+    {
+      "id": "SEC-AL-077",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "u < v < 0\nColumn A: (1/3)*(u + v)\nColumn B: (1/3)*u + v",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Distribute Column A: (1/3)*(u + v) = (1/3)*u + (1/3)*v. Now subtract Column B from Column A. The (1/3)*u terms cancel, leaving (1/3)*v - v = -(2/3)*v. Since v < 0, the quantity -(2/3)*v is positive. So Column A exceeds Column B. Sanity check with u = -6, v = -3: Column A = (1/3)(-9) = -3, Column B = -2 + (-3) = -5, and -3 > -5.",
+      "trap": "Assuming the 1/3 already applies to both terms in Column B and answering C. In Column B only u is scaled by 1/3 while v is taken at full size, and since v is negative that extra two-thirds of v drags Column B down.",
+      "estimated_time_seconds": 75,
+      "tags": ["distributing", "negative-numbers", "comparison"]
+    },
+    {
+      "id": "SEC-AL-078",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "s > 0\nColumn A: s/(s^2 + 4)\nColumn B: 1/s",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Both quantities are positive because s > 0 and s^2 + 4 > 0, so cross-multiplication is safe and preserves the direction. Multiply both columns by the positive quantity s*(s^2 + 4). Column A becomes s * s = s^2, and Column B becomes s^2 + 4. Since s^2 < s^2 + 4 for every real s, Column B is greater for every allowed value of s. Check with s = 2: Column A = 2/8 = 0.25 and Column B = 0.5.",
+      "trap": "Answering D on the hunch that a large enough s flips the comparison. It never does: as s grows, both quantities shrink toward 0, but their ratio is Column B divided by Column A, which equals (s^2 + 4)/s^2, a number always greater than 1. The gap narrows but never closes.",
+      "estimated_time_seconds": 80,
+      "tags": ["rational-expressions", "cross-multiplication", "comparison"]
+    },
+    {
+      "id": "SEC-AL-079",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "k > 0 and w is not equal to 0\nColumn A: k*w^6\nColumn B: (k*w)^6",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Expand Column B: (k*w)^6 = k^6 * w^6. Since w is nonzero and 6 is even, w^6 is strictly positive, so dividing both columns by w^6 is legal and preserves the direction. The comparison reduces to k versus k^6. Now test values of k in the allowed range k > 0. If k = 1, then 1 versus 1, equal. If k = 2, then 2 versus 64, so Column B is greater. If k = 1/2, then 1/2 versus 1/64, so Column A is greater. Three different outcomes occur, so the relationship is not determined.",
+      "trap": "Assuming that raising the whole product to the 6th power must give the bigger number, and answering B. That reasoning holds only when k > 1. For 0 < k < 1, raising k to the 6th power shrinks it dramatically, and Column A wins. The constraint k > 0 deliberately allows fractions.",
+      "estimated_time_seconds": 100,
+      "tags": ["exponents", "testing-values", "fractions"]
+    },
+    {
+      "id": "SEC-AL-080",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "The integers x and y satisfy x^2 + y^2 = 169, and x > y.\n\nWhich of the following could be the value of x?\n\nIndicate all such values.",
+      "options": [
+        "A. -13",
+        "B. -12",
+        "C. -5",
+        "D. 5",
+        "E. 11",
+        "F. 12"
+      ],
+      "answer": ["C", "D", "F"],
+      "explanation": "First list every integer pair on x^2 + y^2 = 169. The perfect-square splits of 169 are 0 + 169 and 25 + 144, so the solutions are (0, +/-13), (+/-5, +/-12), (+/-12, +/-5) and (+/-13, 0). Now test each choice against the extra condition x > y.\nx = -13 forces y = 0, and -13 > 0 is false, so A fails.\nx = -12 allows y = 5 or y = -5, and -12 is smaller than both, so B fails.\nx = -5 allows y = 12 or y = -12; taking y = -12 gives -5 > -12, which holds, so C works.\nx = 5 with y = -12 gives 5 > -12, so D works.\nx = 11 requires y^2 = 169 - 121 = 48, which is not a perfect square, so no integer y exists and E fails.\nx = 12 with y = -5 gives 12 > -5, so F works.",
+      "trap": "Assuming x > y forces x to be positive and discarding C. The condition only says x outranks its own partner, and the partner y = -12 is smaller than -5, so x = -5 is legitimate. Choice E is the other trap: 11 sits comfortably under 13 and feels like it should fit, but 169 - 121 = 48 is not a perfect square, so no integer partner exists.",
+      "estimated_time_seconds": 120,
+      "tags": ["integer-solutions", "sum-of-squares", "inequalities"]
+    },
+    {
+      "id": "SEC-AL-081",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "t > 1, P = 36*t^2, and Q = 100*(t^2 - 1).\n\nWhich of the following could be true for some value of t?\n\nIndicate all such statements.",
+      "options": [
+        "A. P > Q",
+        "B. P = Q",
+        "C. P < Q",
+        "D. Q < 0",
+        "E. P < 0",
+        "F. Q - P > 64*t^2"
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "Work with the difference. Q - P = 100*t^2 - 100 - 36*t^2 = 64*t^2 - 100, and its sign depends on t.\nAt t = 1.1: 64*(1.21) - 100 = 77.44 - 100 = -22.56, which is negative, so P > Q. Statement A is possible.\nSetting 64*t^2 - 100 = 0 gives t^2 = 100/64 = 25/16, so t = 5/4, which satisfies t > 1. There P = Q, so B is possible.\nAt t = 2: 64*4 - 100 = 156, which is positive, so P < Q. Statement C is possible.\nD fails: t > 1 makes t^2 - 1 positive, so Q = 100*(t^2 - 1) is always positive.\nE fails: P = 36*t^2 is a positive constant times a square, so it is positive for every t > 1.\nF fails: Q - P equals 64*t^2 - 100, which is exactly 100 less than 64*t^2, so it can never exceed 64*t^2.",
+      "trap": "Testing a single convenient value such as t = 2, finding P < Q, and selecting only C. The difference 64*t^2 - 100 changes sign at t = 5/4, so on the interval 1 < t < 5/4 the inequality runs the other way and at t = 5/4 the two are equal. All three order relations genuinely occur.",
+      "estimated_time_seconds": 125,
+      "tags": ["quadratic-comparison", "sign-analysis", "testing-values"]
+    },
+    {
+      "id": "SEC-AL-082",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "How many distinct real values of x satisfy (x - 2)*(x + 8) = -25?",
+      "options": null,
+      "answer": "1",
+      "explanation": "Expand the left side: (x - 2)*(x + 8) = x^2 + 6x - 16. Setting that equal to -25 gives x^2 + 6x - 16 = -25, and moving everything to one side gives x^2 + 6x + 9 = 0. That factors as (x + 3)^2 = 0, so x = -3 is a repeated root and there is exactly one distinct real value. The discriminant confirms it: 6^2 - 4*1*9 = 36 - 36 = 0. Check the original: (-3 - 2)*(-3 + 8) = (-5)*(5) = -25.",
+      "trap": "Answering 2 on the reflex that a quadratic always has two roots. It has two roots counted with multiplicity, but here the discriminant is 0, so both coincide at x = -3 and only one distinct value exists. Answering 0 is the opposite error, assuming that a negative right-hand side rules out real solutions.",
+      "estimated_time_seconds": 85,
+      "tags": ["quadratic-equations", "discriminant", "repeated-roots"]
+    },
+    {
+      "id": "SEC-AL-083",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "For which values of the constant c is the expression (2x - c)^2 + 7 positive for every real number x?",
+      "options": [
+        "A. c > 0",
+        "B. c >= 7",
+        "C. -7 <= c <= 7",
+        "D. c <= 2x",
+        "E. All real numbers c"
+      ],
+      "answer": "E",
+      "explanation": "The square of any real quantity is never negative, so (2x - c)^2 >= 0 for every real x and every real c. Adding 7 gives (2x - c)^2 + 7 >= 7, and 7 is positive. The smallest the expression can ever be is exactly 7, reached when 2x = c. Since that lower bound is positive no matter what c is, no restriction on c is needed at all.",
+      "trap": "Choosing C because the 7 in the expression suggests c must be bounded by 7. The 7 is added after the squaring, so it only lifts the floor of the expression from 0 to 7 and never interacts with the size of c. Choice D is the other trap: it constrains the constant c using the variable x, which is meaningless since the condition must hold for every x at once.",
+      "estimated_time_seconds": 75,
+      "tags": ["perfect-squares", "positivity", "quadratics"]
+    },
+    {
+      "id": "SEC-AL-084",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The numbers p, q and r satisfy p is not equal to q, q is not equal to r, and r is not equal to p. Let\nS = 1/((p - q)*(q - r)) + 1/((q - r)*(r - p)) + 1/((r - p)*(p - q)).\nWhat is the value of S?",
+      "options": [
+        "A. -1",
+        "B. 0",
+        "C. 1",
+        "D. 1/((p - q)*(q - r)*(r - p))",
+        "E. It cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Use the common denominator D = (p - q)*(q - r)*(r - p), which is nonzero because all three differences are nonzero. Each term is missing exactly one of the three factors, so rewriting each one over D just restores the missing factor in the numerator. The first term lacks (r - p), so it becomes (r - p)/D. The second lacks (p - q), so it becomes (p - q)/D. The third lacks (q - r), so it becomes (q - r)/D. Adding the numerators: (r - p) + (p - q) + (q - r). Every letter appears once positively and once negatively, so the whole numerator collapses to 0. With a nonzero denominator, S = 0.",
+      "trap": "Choosing E because no numbers are supplied for p, q and r. The three numerators telescope to 0 regardless of the values, so the expression is identically zero. Choice D is the other trap: it reports the common denominator itself rather than the completed sum.",
+      "estimated_time_seconds": 130,
+      "tags": ["algebraic-identities", "common-denominator", "telescoping"]
+    }
+  ]
+}

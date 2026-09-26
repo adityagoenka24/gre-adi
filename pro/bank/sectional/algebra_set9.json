@@ -1,0 +1,226 @@
+{
+  "meta": {
+    "topic": "Algebra Fundamentals",
+    "subtopic": "Sectional Set 9",
+    "subtopic_id": "SEC-AL",
+    "version": "1.0",
+    "set_number": 9,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced. Some questions recast into multiple-answer and numeric-entry form, since the Algebra source pool contains almost none of either.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AL-097",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "If -m < n < 0, which of the following correctly orders the three quantities (m + n)^2, n^2 - m^2 and m^2 - n^2 from least to greatest?",
+      "options": [
+        "A. m^2 - n^2 < n^2 - m^2 < (m + n)^2",
+        "B. m^2 - n^2 < (m + n)^2 < n^2 - m^2",
+        "C. (m + n)^2 < n^2 - m^2 < m^2 - n^2",
+        "D. n^2 - m^2 < m^2 - n^2 < (m + n)^2",
+        "E. n^2 - m^2 < (m + n)^2 < m^2 - n^2"
+      ],
+      "answer": "E",
+      "explanation": "First unpack the condition. From n < 0, n is negative. From -m < n, adding m to both sides gives 0 < m + n, so m + n is positive, and m is positive and larger in size than n.\nNow evaluate each quantity. Since m + n > 0 and m > |n|, we have m^2 > n^2, so n^2 - m^2 is negative and m^2 - n^2 is positive. That makes n^2 - m^2 the smallest of the three, since the other two are positive.\nTo rank the two positive quantities, factor both with the common factor (m + n): m^2 - n^2 = (m + n)*(m - n) and (m + n)^2 = (m + n)*(m + n). Since m + n is positive, the comparison comes down to m - n against m + n. Because n is negative, m - n = m + |n| while m + n = m - |n|, so m - n is the larger factor. Therefore m^2 - n^2 > (m + n)^2.\nThe full order from least to greatest is n^2 - m^2 < (m + n)^2 < m^2 - n^2.",
+      "trap": "Choosing D on the assumption that a perfect square must be the largest of the three quantities. Both positive expressions share the factor (m + n), and the difference of squares carries the strictly larger second factor (m - n), so the square is the middle value, not the top one.",
+      "estimated_time_seconds": 125,
+      "tags": ["difference-of-squares", "inequalities", "ordering"]
+    },
+    {
+      "id": "SEC-AL-098",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "3 < x < 6 and 1/9 < y < 1/6\n\nWhich of the following must be true?",
+      "options": [
+        "A. x + y > 1/x + 1/y",
+        "B. x + y = 1/x + 1/y",
+        "C. x + y < 1/x + 1/y",
+        "D. x + y > 6",
+        "E. 1/x + 1/y < 6"
+      ],
+      "answer": "C",
+      "explanation": "Bound each expression at its extreme. For x + y: x < 6 and y < 1/6, so x + y < 6 + 1/6 = 37/6, and the sum can never reach that ceiling.\nFor 1/x + 1/y: taking reciprocals of positive numbers reverses the inequalities. From x < 6 we get 1/x > 1/6, and from y < 1/6 we get 1/y > 6. Adding, 1/x + 1/y > 1/6 + 6 = 37/6, so this sum never dips to that floor.\nThe first quantity stays strictly below 37/6 and the second stays strictly above it, so x + y < 1/x + 1/y for every allowed pair. Choice D fails because x = 3.5 and y = 0.12 give x + y = 3.62, which is under 6. Choice E fails because 1/x + 1/y always exceeds 37/6, which is about 6.17.",
+      "trap": "Testing one pair such as x = 4 and y = 1/8, seeing 4.125 against 8.25, then doubting the conclusion because x can climb to nearly 6. Even at the extreme the two sums approach the same value 37/6 from opposite sides and never cross, so the direction is locked.",
+      "estimated_time_seconds": 105,
+      "tags": ["inequalities", "reciprocals", "bounding"]
+    },
+    {
+      "id": "SEC-AL-099",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If -7 < x < 3 and -3 < x < 9, which of the following gives the complete set of possible values of x?",
+      "options": [
+        "A. -7 < x < 9",
+        "B. -7 < x < 3",
+        "C. -3 < x < 3",
+        "D. -3 < x < 9",
+        "E. 3 < x < 9"
+      ],
+      "answer": "C",
+      "explanation": "A value of x must satisfy both conditions at the same time, so take the overlap of the two intervals rather than their combination. On the lower side the two floors are -7 and -3; the binding one is the higher of the two, -3, since x must clear both. On the upper side the two ceilings are 3 and 9; the binding one is the lower of the two, 3, since x must stay under both. The overlap is therefore -3 < x < 3. Spot check: x = 5 satisfies the second condition but violates the first, and x = -5 satisfies the first but violates the second, so neither belongs.",
+      "trap": "Choosing A by stitching together the outermost endpoints, -7 and 9. That is the union, which describes values satisfying at least one condition. When both conditions are imposed simultaneously, the narrower bound on each side wins, producing the intersection instead.",
+      "estimated_time_seconds": 70,
+      "tags": ["inequalities", "intervals", "intersection"]
+    },
+    {
+      "id": "SEC-AL-100",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "If -4 < w < 0, which of the following describes all possible values of 1/w?",
+      "options": [
+        "A. 1/w < -4",
+        "B. 1/w > -1/4",
+        "C. -4 < 1/w < -1/4",
+        "D. 1/w < -1/4",
+        "E. 1/w > -4"
+      ],
+      "answer": "D",
+      "explanation": "Since w is negative throughout the interval, 1/w is negative as well. Trace the reciprocal across the interval. At the left end, w near -4, the reciprocal is near -1/4. As w moves rightward toward 0, the size of w shrinks, so the size of 1/w grows without bound in the negative direction. So the reciprocal starts just below -1/4 and runs down toward negative infinity, giving 1/w < -1/4 with no lower bound. Spot checks: w = -2 gives 1/w = -0.5, which is less than -0.25; w = -0.1 gives 1/w = -10; w = -0.01 gives 1/w = -100.",
+      "trap": "Choosing C on the assumption that the reciprocal stays inside the original interval. It does not, because w values near 0 blow the reciprocal far past -4, as w = -0.01 giving -100 shows. Choice A is the opposite overreach: it demands every reciprocal be below -4, but w = -2 gives only -0.5.",
+      "estimated_time_seconds": 85,
+      "tags": ["reciprocals", "negative-numbers", "intervals"]
+    },
+    {
+      "id": "SEC-AL-101",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "-1 < c < d < 0\nColumn A: 3*c\nColumn B: d",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Since c is negative, multiplying it by 3 moves it further from zero in the negative direction, so 3*c < c. The given chain already says c < d. Chaining the two facts, 3*c < c < d, so Column B is greater for every allowed pair. Check with c = -0.6 and d = -0.2: Column A = -1.8 and Column B = -0.2, and -1.8 is smaller. Check again with c very close to d, say c = -0.3 and d = -0.29: Column A = -0.9, still smaller.",
+      "trap": "Reasoning that 3*c has a larger size than d and is therefore the bigger quantity. On the number line, a negative number with a larger size sits further left, which makes it smaller. The bound c > -1 is a deliberate distraction: 3*c may fall below -1, and that is perfectly consistent with the given information.",
+      "estimated_time_seconds": 75,
+      "tags": ["negative-numbers", "inequalities", "scaling"]
+    },
+    {
+      "id": "SEC-AL-102",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "v <= -48\nColumn A: v^2 - 48*v\nColumn B: 0",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Factor Column A: v^2 - 48*v = v*(v - 48). Now check the sign of each factor using the constraint v <= -48. The first factor v is negative, since v is at most -48. The second factor v - 48 is at most -48 - 48 = -96, so it is negative as well. The product of two negative numbers is positive, so Column A is strictly greater than 0. Check at the boundary v = -48: (-48)*(-48 - 48) = (-48)*(-96) = 4608, which is positive.",
+      "trap": "Testing v = -48 and computing v^2 - 48*v as 2304 - 2304 = 0, then answering C. The second term is -48*v with v = -48, so it evaluates to +2304 rather than -2304, giving 2304 + 2304 = 4608. Substituting a negative value into a term that already carries a minus sign flips that term positive.",
+      "estimated_time_seconds": 80,
+      "tags": ["factoring", "sign-analysis", "quadratics"]
+    },
+    {
+      "id": "SEC-AL-103",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "j and k are integers with 1 < j < k\nColumn A: j^k\nColumn B: k^j",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Test the smallest allowed integer pairs, since j must be at least 2.\nWith j = 2 and k = 3: Column A = 2^3 = 8 and Column B = 3^2 = 9, so Column B is greater.\nWith j = 2 and k = 4: Column A = 2^4 = 16 and Column B = 4^2 = 16, so the two are equal.\nWith j = 3 and k = 4: Column A = 3^4 = 81 and Column B = 4^3 = 64, so Column A is greater.\nAll three outcomes occur under the stated constraints, so no fixed relationship holds and the answer is D.",
+      "trap": "Stopping after the first pair, j = 2 and k = 3, and committing to B. The behaviour changes once j reaches 3: from there on the smaller base with the larger exponent takes over and Column A wins. The opposite trap is assuming the larger exponent always dominates and choosing A, which fails at j = 2, k = 3.",
+      "estimated_time_seconds": 100,
+      "tags": ["exponents", "testing-values", "integer-constraints"]
+    },
+    {
+      "id": "SEC-AL-104",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "If 5^n + 5^n + 5^n + 5^n + 5^n = 25^(n - 3), what is the value of n?",
+      "options": null,
+      "answer": "7",
+      "explanation": "The left side is five copies of the same term, so it equals 5 * 5^n. Since 5 is 5^1, that product is 5^(n + 1). On the right side, 25 = 5^2, so 25^(n - 3) = (5^2)^(n - 3) = 5^(2n - 6). With both sides now written as a power of 5, the exponents must be equal: n + 1 = 2n - 6. Subtracting n from both sides gives 1 = n - 6, so n = 7. Check: the left side is 5 * 5^7 = 5^8, and the right side is 25^(7 - 3) = 25^4 = (5^2)^4 = 5^8.",
+      "trap": "Adding the exponents of the five like terms to write the left side as 5^(5n). Adding identical powers multiplies by the count, which raises the exponent by only 1; it does not multiply the exponent. That error yields 5n = 2n - 6 and n = -2, which fails the check since 5 * 5^(-2) = 5^(-1) but 25^(-5) = 5^(-10).",
+      "estimated_time_seconds": 90,
+      "tags": ["exponents", "common-base", "like-terms"]
+    },
+    {
+      "id": "SEC-AL-105",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Positive integers a and b satisfy a/5 < b < a/4. What is the least possible value of b?",
+      "options": null,
+      "answer": "2",
+      "explanation": "Clear the fractions so the condition is easier to test. From a/5 < b, multiplying by 5 gives a < 5*b. From b < a/4, multiplying by 4 gives 4*b < a. Together, 4*b < a < 5*b, so a must be an integer strictly between 4*b and 5*b.\nTry b = 1: a must satisfy 4 < a < 5, and there is no integer in that gap, so b = 1 is impossible.\nTry b = 2: a must satisfy 8 < a < 10, and a = 9 fits. Verify against the original: 9/5 = 1.8 and 1.8 < 2 holds, and 9/4 = 2.25 and 2 < 2.25 holds.\nSo the least possible value of b is 2.",
+      "trap": "Answering 1 because b is a positive integer and 1 is the smallest positive integer available. The value of b is only legal when some integer a actually fits strictly between 4*b and 5*b, and for b = 1 that window is the open interval from 4 to 5, which contains no integer at all.",
+      "estimated_time_seconds": 110,
+      "tags": ["inequalities", "integer-constraints", "existence"]
+    },
+    {
+      "id": "SEC-AL-106",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "If p^3 / q^6 = 1/64 and q^2 = 12, what is the value of p?",
+      "options": null,
+      "answer": "3",
+      "explanation": "The left side is a perfect cube in disguise. Note that q^6 = (q^2)^3, so p^3 / q^6 = (p/q^2)^3. The equation becomes (p/q^2)^3 = 1/64. Taking the cube root of both sides gives p/q^2 = 1/4, since the cube root of 64 is 4. Therefore p = q^2 / 4. Substituting the given q^2 = 12 gives p = 12/4 = 3. Check: p^3 = 27 and q^6 = (q^2)^3 = 12^3 = 1728, and 27/1728 = 1/64.",
+      "trap": "Reading q^6 as (q^3)^2 and trying to take a square root, which produces p^(3/2) / q^3 relations that need a value of q^3 the problem never supplies. The exponent 3 on p is the signal to take a cube root, and doing so turns q^6 cleanly into q^2, which is exactly the quantity given.",
+      "estimated_time_seconds": 100,
+      "tags": ["exponents", "cube-roots", "substitution"]
+    },
+    {
+      "id": "SEC-AL-107",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "|z| < 4 - z\n\nWhich of the following could be the value of z?\n\nIndicate all such values.",
+      "options": [
+        "A. -6",
+        "B. -0.5",
+        "C. 1.5",
+        "D. 2",
+        "E. 3",
+        "F. 8"
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "Split on the sign of z, since that is what controls the absolute value.\nIf z >= 0 then |z| = z, and the inequality reads z < 4 - z. Adding z to both sides gives 2*z < 4, so z < 2. Combined with z >= 0, this branch contributes 0 <= z < 2.\nIf z < 0 then |z| = -z, and the inequality reads -z < 4 - z. Adding z to both sides gives 0 < 4, which is true no matter what z is. So every negative z satisfies the condition.\nCombining the branches, the solution set is simply z < 2.\nChecking the choices: -6, -0.5 and 1.5 are all below 2 and qualify. z = 2 fails because |2| = 2 and 4 - 2 = 2, and the inequality is strict. z = 3 fails since 3 is not less than 1, and z = 8 fails badly since 8 is not less than -4.",
+      "trap": "Reading |z| < 4 - z as though it meant |z| < 4 and concluding that z must lie between -4 and 4, which wrongly throws out z = -6. The right side is not a constant; it grows as z becomes more negative, so large negative values satisfy the inequality easily. Every negative number is a solution here.",
+      "estimated_time_seconds": 110,
+      "tags": ["absolute-value", "inequalities", "case-analysis"]
+    },
+    {
+      "id": "SEC-AL-108",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "The numbers r, s and t satisfy r < 0 < s < t.\n\nWhich of the following could be true?\n\nIndicate all such statements.",
+      "options": [
+        "A. r*t/s > r*t",
+        "B. r*t/s = r*t",
+        "C. r*t/s < r*t",
+        "D. r*t > 0",
+        "E. r*t/s > 0",
+        "F. s/t > 1"
+      ],
+      "answer": ["A", "B", "C"],
+      "explanation": "Start with the three that can be settled outright. Since r is negative and t is positive, r*t is negative, so D is impossible. Dividing that negative number by the positive number s keeps it negative, so E is impossible. And 0 < s < t forces s/t < 1, so F is impossible.\nFor the first three, examine the difference: r*t/s - r*t = r*t*(1/s - 1) = r*t*(1 - s)/s, where r*t < 0 and s > 0.\nIf s > 1, then 1 - s is negative, so the whole expression is negative times negative over positive, which is positive, giving r*t/s > r*t. Example: r = -1, s = 2, t = 3 gives r*t/s = -1.5 and r*t = -3, and -1.5 > -3. So A is possible.\nIf s = 1, the expression is 0 and the two are equal. Example: r = -1, s = 1, t = 2 gives -2 and -2. So B is possible.\nIf 0 < s < 1, then 1 - s is positive and the expression is negative, giving r*t/s < r*t. Example: r = -1, s = 0.5, t = 1 gives r*t/s = -2 and r*t = -1, and -2 < -1. So C is possible.",
+      "trap": "Assuming that dividing by the positive number s must shrink the quantity, and selecting only C. Dividing a negative number by a value between 0 and 1 does push it further below zero, but dividing by a value above 1 pulls it toward zero, which makes it larger. Since s is only known to be positive, both behaviours are available.",
+      "estimated_time_seconds": 115,
+      "tags": ["sign-analysis", "division-by-fractions", "could-be-true"]
+    }
+  ]
+}

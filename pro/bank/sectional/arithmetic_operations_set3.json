@@ -1,0 +1,271 @@
+{
+  "meta": {
+    "topic": "Arithmetic Operations",
+    "subtopic": "Sectional Set 3",
+    "subtopic_id": "SEC-AO",
+    "version": "1.0",
+    "set_number": 3,
+    "access": "pro",
+    "total_questions": 12,
+    "time_limit_seconds": 1260,
+    "distribution": {
+      "easy": 0,
+      "medium": 5,
+      "hard": 7,
+      "extreme_hard": 0
+    },
+    "type_distribution": {
+      "mcq": 4,
+      "quantitative_comparison": 3,
+      "numeric_entry": 3,
+      "multiple_answer": 2
+    },
+    "generated_by": "Claude Opus 5 (original rewrites, Adi-reviewed)",
+    "provenance": "Concepts and trap structures derived from KMF/Gremlin's GRE source set; every stem, all numbers, all options and all explanations are original. No source text reproduced.",
+    "bank": "Adi's GRE Quant Bank"
+  },
+  "questions": [
+    {
+      "id": "SEC-AO-025",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "N is an integer between 400 and 500 whose tens digit is d and whose units digit is 5. What is the value of N/5 ?",
+      "options": [
+        "A. 80 + 2d",
+        "B. 81 + 2d",
+        "C. 81 + d",
+        "D. 85 + 2d",
+        "E. 405 + 2d"
+      ],
+      "answer": "B",
+      "explanation": "Write N in expanded form. Its hundreds digit must be 4, so N = 400 + 10d + 5 = 405 + 10d. Dividing by 5 splits across the sum: 405/5 = 81 and 10d/5 = 2d, so N/5 = 81 + 2d. Checking with d = 3 gives N = 435 and 435/5 = 87, which matches 81 + 2(3) = 87.",
+      "trap": "Students divide 400 by 5 to get 80 and forget that the units digit 5 contributes another whole 1, answering 80 + 2d. Others divide only the digit d rather than the value 10d and answer 81 + d, which fails immediately at d = 3.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "place-value",
+        "digits"
+      ]
+    },
+    {
+      "id": "SEC-AO-026",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Let P be the product of all 60 numbers of the form (m + 2)/m, where m is an integer and 1 <= m <= 60. What is the value of P?",
+      "options": [
+        "A. 61",
+        "B. 62",
+        "C. 1,891",
+        "D. 1,922",
+        "E. 3,782"
+      ],
+      "answer": "C",
+      "explanation": "Write the product out as one big fraction. The numerators run 3, 4, 5, ..., 62 and the denominators run 1, 2, 3, ..., 60. Every integer from 3 through 60 appears once on top and once on the bottom, so all of those cancel. What survives on top is 61 x 62 and what survives on the bottom is 1 x 2. Therefore P = (61 x 62)/2 = 3,782/2 = 1,891.",
+      "trap": "Students cancel correctly on top but forget that two denominators, the 1 and the 2, are left behind, and answer 3,782. Others treat the product as telescoping one step at a time and stop at 62/1, answering 62. Because each numerator is two ahead of its denominator, exactly two terms survive at each end, not one.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "telescoping",
+        "fractions"
+      ]
+    },
+    {
+      "id": "SEC-AO-027",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In the sequence a(1), a(2), a(3), ..., the nth term a(n) is the distance in the xy-plane between the point (0, 3) and the point (n, 0), for each positive integer n. What is the value of a(24)?",
+      "options": [
+        "A. sqrt(27)",
+        "B. sqrt(75)",
+        "C. sqrt(567)",
+        "D. sqrt(585)",
+        "E. sqrt(633)"
+      ],
+      "answer": "D",
+      "explanation": "The two points differ by 24 in the x-direction and by 3 in the y-direction, so they are the legs of a right triangle with the distance as its hypotenuse. By the distance formula, a(n) = sqrt((n - 0)^2 + (0 - 3)^2) = sqrt(n^2 + 9). Substituting n = 24 gives a(24) = sqrt(24^2 + 9) = sqrt(576 + 9) = sqrt(585).",
+      "trap": "Students subtract the squares instead of adding them, treating 24 as the hypotenuse, and answer sqrt(567). Others add the coordinates directly to get 24 + 3 = 27 and choose sqrt(27). The point (0, 3) sits on the y-axis and (24, 0) on the x-axis, so both coordinate gaps are legs and both squares must be added.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "sequences",
+        "distance-formula"
+      ]
+    },
+    {
+      "id": "SEC-AO-028",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The sequence c(1), c(2), c(3), ... is defined by c(n) = 6/2^n for every positive integer n. If S is the sum of the first 20 terms of the sequence, which of the following is true?",
+      "options": [
+        "A. S < 3",
+        "B. S = 3",
+        "C. 3 < S < 6",
+        "D. S = 6",
+        "E. S > 6"
+      ],
+      "answer": "C",
+      "explanation": "Factor out the 6: S = 6(1/2 + 1/4 + 1/8 + ... + 1/2^20). The bracket is a halving sum whose partial totals are 1/2, 3/4, 7/8, 15/16, and in general 1 - 1/2^n after n terms. After 20 terms the bracket equals 1 - 1/2^20, which is just under 1 but comfortably more than 1/2. So S = 6(1 - 1/2^20), which is less than 6 and greater than 3. In fact S is about 5.999994, but it never reaches 6.",
+      "trap": "Students recognize the halving pattern, treat the sum as if it ran forever, and answer S = 6. A finite sum always falls short of that limit by the size of the last missing piece. The opposite error is to stop at the very first term, see 3, and pick S < 3 — forgetting that every later term still adds something.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "geometric-sequence",
+        "series"
+      ]
+    },
+    {
+      "id": "SEC-AO-029",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "p is not 0, q is not 0, and p + q is not 0.\nColumn A: p^(-2) + q^(-2)\nColumn B: (p + q)^(-2)",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Rewrite both columns as ordinary fractions: Column A is 1/p^2 + 1/q^2 and Column B is 1/(p + q)^2. Both are positive, and which one wins depends on how big p + q is compared with p and q individually. Take p = q = 1: Column A is 1 + 1 = 2 while Column B is 1/4, so Column A is greater. Now take p = 10 and q = -9.9, which is allowed since their sum is 0.1, not 0: Column A is 1/100 + 1/98.01, roughly 0.02, while Column B is 1/(0.1)^2 = 100, so Column B is greater. Both orderings occur.",
+      "trap": "Students treat the negative exponent as distributing over the sum and write (p + q)^(-2) = p^(-2) + q^(-2), then choose 'equal.' Exponents never distribute across addition. The setup also quietly permits one variable to be negative, which is what lets p + q become tiny and blow Column B up.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "negative-exponents",
+        "comparison"
+      ]
+    },
+    {
+      "id": "SEC-AO-030",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "n is an integer greater than 1.\nColumn A: 7/n\nColumn B: (7/(n + 1) + 7/(n - 1))/2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Simplify Column B first. Adding the two fractions over the common denominator (n + 1)(n - 1) = n^2 - 1 gives 7[(n - 1) + (n + 1)]/(n^2 - 1) = 14n/(n^2 - 1), and halving that leaves 7n/(n^2 - 1). Now compare 7/n with 7n/(n^2 - 1). Both denominators are positive because n is at least 2, so cross multiply: 7(n^2 - 1) versus 7n x n, that is 7n^2 - 7 versus 7n^2. The left side is smaller, so Column A is smaller and Column B is greater for every allowed n. Testing n = 3 confirms it: Column A is 7/3, about 2.333, and Column B is (1.75 + 3.5)/2 = 2.625.",
+      "trap": "Students assume that averaging the two neighbours of 7/n must land back on 7/n and choose 'equal.' Averaging works that way for the denominators, not for the fractions themselves: the reciprocal function curves upward, so the fraction with the smaller denominator gains more than the one with the larger denominator loses.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "fractions",
+        "comparison"
+      ]
+    },
+    {
+      "id": "SEC-AO-031",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "When the positive integer n is divided by 5, the remainder is 4; when n is divided by 4, the remainder is 3.\nColumn A: The least possible value of n\nColumn B: 20",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "List the integers that satisfy each condition and find where the lists first meet. Leaving remainder 4 on division by 5 gives 4, 9, 14, 19, 24, ... and leaving remainder 3 on division by 4 gives 3, 7, 11, 15, 19, 23, ... The first value in both lists is 19. A faster route: in each case the remainder is one less than the divisor, so n is one less than a common multiple of 5 and 4, that is n = 20k - 1, whose least positive value is 19. Since 19 is less than 20, Column B is greater.",
+      "trap": "Students spot that n must be one less than a multiple of 20 and then read off 20 itself as the answer, choosing 'equal.' The value is 20 - 1 = 19, not 20. A different slip is to add the remainders or the divisors and land on 20 by coincidence.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "remainders",
+        "lcm"
+      ]
+    },
+    {
+      "id": "SEC-AO-032",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "What is the units digit of 1! + 3! + 5! + 7! + 9! + 11! ?",
+      "options": null,
+      "answer": "7",
+      "explanation": "Only the units digit of each factorial matters. 1! = 1 and 3! = 6. From 5! onward every factorial contains both a factor of 5 and a factor of 2, so each is a multiple of 10 and contributes a units digit of 0: 5! = 120, 7! = 5,040, and 9! and 11! are larger multiples of 10. So the units digits to add are 1 + 6 + 0 + 0 + 0 + 0 = 7, and the units digit of the whole sum is 7.",
+      "trap": "Students try to compute 11! in full, which the question never requires, and run out of time or slip a digit. Others forget that 5! already ends in 0 and start adding real values for 5! and 7!, producing a units digit of 1 from 120 + 5,040 mishandled. Once a factorial reaches 5, a factor of 10 is locked in forever.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "units-digit",
+        "factorials"
+      ]
+    },
+    {
+      "id": "SEC-AO-033",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "When the positive integer n is divided by 9, the remainder is 4. What is the remainder when 3n + 2 is divided by 9?",
+      "options": null,
+      "answer": "5",
+      "explanation": "Write n = 9k + 4. Then 3n + 2 = 3(9k + 4) + 2 = 27k + 12 + 2 = 27k + 14. The term 27k is a multiple of 9, so the remainder comes from 14, and 14 = 9 x 1 + 5, giving 5. The shortcut is to run the arithmetic on the remainder alone: 3 x 4 + 2 = 14, then reduce 14 modulo 9 to get 5. Checking with n = 13 gives 3(13) + 2 = 41 = 9 x 4 + 5.",
+      "trap": "Students compute 3 x 4 + 2 = 14 and enter 14 as the remainder. A remainder on division by 9 must be less than 9, so the intermediate value has to be reduced one final time. Entering 12, by forgetting the added 2, is the other common slip.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "remainders",
+        "modular-arithmetic"
+      ]
+    },
+    {
+      "id": "SEC-AO-034",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "k is an integer greater than 1. What is the remainder when k^3 - k is divided by 6?",
+      "options": null,
+      "answer": "0",
+      "explanation": "Factor the expression: k^3 - k = k(k^2 - 1) = (k - 1)k(k + 1). That is a product of three consecutive integers. Among any three consecutive integers at least one is even, so the product is divisible by 2, and exactly one is a multiple of 3, so the product is divisible by 3. Since 2 and 3 share no factor, the product is divisible by 2 x 3 = 6 and the remainder is 0. Spot checks: k = 2 gives 6, k = 3 gives 24, k = 5 gives 120, all multiples of 6.",
+      "trap": "Students test only k = 2, get 6, and worry that the result is a coincidence, or they test an odd k such as k = 3, see 24, and conclude the answer depends on the parity of k. The three-consecutive-integers factorization is what makes the divisibility automatic for every k.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "consecutive-integers",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "SEC-AO-035",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "z is a positive integer. When 59 is divided by z, the remainder is 4. Which of the following could be the value of z?\n\nIndicate all such values.",
+      "options": [
+        "A. 4",
+        "B. 5",
+        "C. 10",
+        "D. 11",
+        "E. 22",
+        "F. 55"
+      ],
+      "answer": [
+        "B",
+        "D",
+        "F"
+      ],
+      "explanation": "If dividing 59 by z leaves remainder 4, then 59 - 4 = 55 is exactly divisible by z, so z must be a divisor of 55. The divisors of 55 = 5 x 11 are 1, 5, 11 and 55. On top of that, a remainder is always smaller than its divisor, so z must be greater than 4, which rules out 1. That leaves z = 5, 11 or 55. Checking: 59 = 5 x 11 + 4, 59 = 11 x 5 + 4, and 59 = 55 x 1 + 4. The options 4, 10 and 22 all fail because none of them divides 55.",
+      "trap": "Students include 4 itself, forgetting that a remainder must be strictly less than the divisor, and they include 10 or 22 because those numbers feel related to 55 without actually dividing it. Subtracting the remainder first and then listing divisors is the move that makes the candidate set finite and exact.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "remainders",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "SEC-AO-036",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "r is a positive integer, k = 2r + 1, and h = 5k - 3. Which of the following must be true?\n\nIndicate all such statements.",
+      "options": [
+        "A. h is even",
+        "B. The units digit of h is 2",
+        "C. h is a multiple of 5",
+        "D. h - 2 is a multiple of 10",
+        "E. h is a multiple of 3",
+        "F. h is odd"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Substitute and simplify before testing anything. h = 5(2r + 1) - 3 = 10r + 5 - 3 = 10r + 2. That single expression settles every statement. A is true because 10r + 2 is 2 more than a multiple of 10, hence even. B is true because 10r contributes nothing to the units place, leaving a units digit of 2. D is true because h - 2 = 10r exactly. C is false: dividing 10r + 2 by 5 always leaves remainder 2. E fails at r = 2, where h = 22, which is not a multiple of 3. F contradicts A and is false.",
+      "trap": "Students see the factor of 5 in h = 5k - 3 and select 'h is a multiple of 5,' but subtracting 3 destroys that property. Others test r = 1, get h = 12, notice it is divisible by 3, and include statement E on the strength of one case; r = 2 kills it at once. Collapsing the definitions into 10r + 2 first is what turns a testing exercise into a reading exercise.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "units-digit",
+        "substitution",
+        "divisibility"
+      ]
+    }
+  ]
+}
