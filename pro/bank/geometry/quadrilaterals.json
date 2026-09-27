@@ -4,15 +4,16 @@
   "subtopic": "Quadrilaterals",
   "subtopic_id": "GEO-QDL",
   "version": "1.0",
-  "total_questions": 60,
+  "total_questions": 65,
   "distribution": {
    "easy": 15,
-   "medium": 23,
-   "hard": 15,
+   "medium": 24,
+   "hard": 19,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26"
  },
  "questions": [
   {
@@ -1274,6 +1275,111 @@
     "multi-step",
     "two-step"
    ]
+  },
+  {
+   "id": "SEC-PG-004",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "The figure above shows a square with four interior line segments drawn in it. Each segment joins a vertex of the square to the midpoint of a side that does not contain that vertex, and the four segments bound the shaded quadrilateral in the middle. If the area of the square is 45, what is the area of the shaded quadrilateral?",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"142,56 214,92 178,164 106,128\" fill=\"#e5edf7\" stroke=\"none\"/><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"70\" y=\"20\" width=\"180\" height=\"180\"/><line x1=\"70\" y1=\"200\" x2=\"160\" y2=\"20\"/><line x1=\"70\" y1=\"20\" x2=\"250\" y2=\"110\"/><line x1=\"250\" y1=\"20\" x2=\"160\" y2=\"200\"/><line x1=\"250\" y1=\"200\" x2=\"70\" y2=\"110\"/><polygon points=\"142,56 214,92 178,164 106,128\"/></g></svg>",
+   "options": [
+    "A. 5",
+    "B. 9",
+    "C. 11.25",
+    "D. 15",
+    "E. 22.5"
+   ],
+   "answer": "B",
+   "explanation": "Put the square on a grid with side 1, corners at (0,0), (1,0), (1,1) and (0,1). The four segments are then the lines through (0,0) and (0.5,1), through (1,0) and (0,0.5), through (1,1) and (0.5,0), and through (0,1) and (1,0.5). Solving the four pairs of adjacent lines gives the corners of the middle quadrilateral, and its side turns out to be 1/sqrt(5) of the way across, so its area is 1/5 of the unit square. That fraction is the same for a square of any size, so the shaded area is 45/5 = 9.",
+   "trap": "Students eyeball the middle region as about a quarter of the square and answer 11.25. The four segments are steeper than the diagonals, which squeezes the middle region down to exactly one fifth, not one quarter.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "squares",
+    "area-ratio",
+    "midpoints"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set1"
+  },
+  {
+   "id": "SEC-PG-020",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "What is the ratio of the area of a square region with diagonal 6 to the area of a square region with diagonal 15? Give your answer as a fraction.",
+   "options": null,
+   "answer": "4/25",
+   "explanation": "A square with diagonal d has side d/sqrt(2), so its area is d^2/2. The first square has area 36/2 = 18 and the second has area 225/2 = 112.5. The ratio is 18/112.5 = 4/25. More directly, area scales as the square of any single length measurement, so the ratio of areas is (6/15)^2 = (2/5)^2 = 4/25.",
+   "trap": "Students report 6/15 = 2/5, giving the ratio of the diagonals rather than the ratio of the areas. Areas of similar figures scale as the square of the length ratio, so the 2/5 must be squared.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "squares",
+    "diagonals",
+    "area-ratio"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-030",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "In the figure above, EFGH is a convex quadrilateral and EG and FH are its diagonals.\n\nNote: Figure not drawn to scale.\nColumn A: The perimeter of EFGH\nColumn B: EG + FH",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"50,60 160,25 275,110 140,195\"/><line x1=\"50\" y1=\"60\" x2=\"275\" y2=\"110\"/><line x1=\"160\" y1=\"25\" x2=\"140\" y2=\"195\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"34\" y=\"56\">E</text><text x=\"158\" y=\"18\">F</text><text x=\"281\" y=\"108\">G</text><text x=\"136\" y=\"212\">H</text></g></svg>",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Each diagonal splits the quadrilateral into two triangles, and in every triangle the sum of two sides exceeds the third. Using diagonal EG: EF + FG > EG and GH + HE > EG. Using diagonal FH: EF + HE > FH and FG + GH > FH. Adding all four inequalities, the left side gives 2(EF + FG + GH + HE), which is twice the perimeter, and the right side gives 2(EG + FH). Dividing by 2 shows the perimeter is greater than EG + FH, for every convex quadrilateral.",
+   "trap": "Students test one square, find perimeter 4s against diagonals 2s*sqrt(2) which is about 2.83s, then worry that a long thin quadrilateral could reverse it and pick D. Stretching the shape stretches the sides at least as fast as the diagonals; the four triangle inequalities hold in every case, so the ordering never flips.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "quadrilaterals",
+    "triangle-inequality",
+    "diagonals"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "SEC-PG-034",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "The figure above shows a square tile 20 centimetres on a side. In the centre of the tile is a square region 15 centimetres on a side, divided into nine congruent smaller squares. Five of those nine smaller squares are grey, as shown, and the rest of the tile is white. What fraction of the area of the tile is grey? Give your answer as a fraction.",
+   "svg": "<svg viewBox=\"0 0 280 280\" width=\"280\" height=\"280\" xmlns=\"http://www.w3.org/2000/svg\"><g fill=\"#e5edf7\" stroke=\"none\"><rect x=\"55\" y=\"45\" width=\"50\" height=\"50\"/><rect x=\"155\" y=\"45\" width=\"50\" height=\"50\"/><rect x=\"105\" y=\"95\" width=\"50\" height=\"50\"/><rect x=\"55\" y=\"145\" width=\"50\" height=\"50\"/><rect x=\"155\" y=\"145\" width=\"50\" height=\"50\"/></g><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"30\" y=\"20\" width=\"200\" height=\"200\"/><rect x=\"55\" y=\"45\" width=\"150\" height=\"150\"/><line x1=\"105\" y1=\"45\" x2=\"105\" y2=\"195\"/><line x1=\"155\" y1=\"45\" x2=\"155\" y2=\"195\"/><line x1=\"55\" y1=\"95\" x2=\"205\" y2=\"95\"/><line x1=\"55\" y1=\"145\" x2=\"205\" y2=\"145\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"96\" y=\"242\">20 cm</text><text x=\"98\" y=\"214\">15 cm</text></g></svg>",
+   "options": null,
+   "answer": "5/16",
+   "explanation": "Work in two steps. First, the inner square compared with the whole tile: their sides are 15 and 20, and areas scale as the square of the side ratio, so the inner square is (15/20)^2 = (3/4)^2 = 9/16 of the tile. Second, the grey part of the inner square: 5 of the 9 congruent small squares are grey, so that is 5/9 of the inner square. The grey share of the whole tile is therefore (5/9)(9/16) = 5/16.",
+   "trap": "Students report 5/9, the grey fraction of the inner square only, or they scale by 15/20 instead of its square and get (5/9)(3/4) = 5/12. The inner square covers only 9/16 of the tile, not 3/4 of it, because the 3/4 applies to lengths.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "area-ratio",
+    "squares",
+    "nested-figures"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "SEC-PG-046",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "In the figure above, ACEG is a square. Square ABIH shares vertex A with it, with B on side AC and H on side AG. Square JDEF shares vertex E with it, with D on side CE and F on side EG. Squares ABIH and JDEF have equal areas, and the area of square ACEG is 25 times the area of square ABIH. BJFI is a parallelogram. If the area of square ABIH is 20, what is the area of parallelogram BJFI?\n\nNote: Figure not drawn to scale.",
+   "svg": "<svg viewBox=\"0 0 300 260\" width=\"300\" height=\"260\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"40,180 200,60 240,60 80,180\" fill=\"#e5edf7\" stroke=\"none\"/><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"40\" y=\"20\" width=\"200\" height=\"200\"/><rect x=\"40\" y=\"180\" width=\"40\" height=\"40\"/><rect x=\"200\" y=\"20\" width=\"40\" height=\"40\"/><polygon points=\"40,180 200,60 240,60 80,180\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"26\" y=\"234\">A</text><text x=\"24\" y=\"186\">B</text><text x=\"26\" y=\"16\">C</text><text x=\"192\" y=\"14\">D</text><text x=\"244\" y=\"16\">E</text><text x=\"246\" y=\"64\">F</text><text x=\"244\" y=\"234\">G</text><text x=\"74\" y=\"236\">H</text><text x=\"87\" y=\"197\">I</text><text x=\"185\" y=\"48\">J</text></g></svg>",
+   "options": null,
+   "answer": "60",
+   "explanation": "Let each small square have side s, so its area is s^2 = 20. Since square ACEG has 25 times that area, its side is 5s. Put A at the origin with AG along one axis and AC along the other. Then B is s from A along AC and I is the far corner of the small square, so segment BI is horizontal with length s and sits s from side AG. The far small square at E puts J and F at a height of 5s - s = 4s, with JF horizontal of length s. So BJFI has base BI = s and its opposite side JF parallel to it at a height of 4s - s = 3s. Its area is base times height = s(3s) = 3s^2 = 3(20) = 60.",
+   "trap": "Students take the parallelogram's height to be the full 4s that separates the two small squares' far edges and answer 80, or they slide the slanted side BJ into the area formula and use it as a height. The height of a parallelogram is the perpendicular distance between the two parallel sides BI and JF, which is 3s, not 4s and not the slant.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "parallelogram-area",
+    "squares",
+    "composite-figures"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set4"
   }
  ]
 }

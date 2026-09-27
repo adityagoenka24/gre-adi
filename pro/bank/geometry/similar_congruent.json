@@ -4,15 +4,16 @@
   "subtopic": "Similar & Congruent Figures",
   "subtopic_id": "GEO-SCF",
   "version": "1.0",
-  "total_questions": 50,
+  "total_questions": 55,
   "distribution": {
    "easy": 13,
-   "medium": 20,
-   "hard": 12,
+   "medium": 21,
+   "hard": 16,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26"
  },
  "questions": [
   {
@@ -1124,6 +1125,117 @@
     "multiple-answer",
     "multi-step"
    ]
+  },
+  {
+   "id": "SEC-PG-007",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "In the figure above, PQ = QR, point X lies on side PQ, point Y lies on side PR, and XY is perpendicular to PR. The area of triangle PXY is 1/8 the area of triangle PQR.\n\nNote: Figure not drawn to scale.\nColumn A: The length of PY\nColumn B: (1/8)(PR)",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"30,190 95,190 95,115\" fill=\"#e5edf7\" stroke=\"none\"/><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"30,190 290,190 160,40\"/><line x1=\"95\" y1=\"190\" x2=\"95\" y2=\"115\"/><polyline points=\"95,178 107,178 107,190\"/><line x1=\"90\" y1=\"110\" x2=\"100\" y2=\"120\"/><line x1=\"221\" y1=\"110\" x2=\"231\" y2=\"120\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"18\" y=\"204\">P</text><text x=\"155\" y=\"32\">Q</text><text x=\"294\" y=\"204\">R</text><text x=\"78\" y=\"110\">X</text><text x=\"90\" y=\"206\">Y</text></g></svg>",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Let M be the midpoint of PR. Since PQ = QR, the segment QM is the altitude from Q, so triangle PQM is a right triangle with legs PM = PR/2 and QM. Triangle PXY is similar to triangle PQM, because both have a right angle on PR and share the angle at P. If PY = k(PM), then the areas scale by k squared: area PXY = k^2 * area PQM. And area PQM is exactly half of area PQR. So area PXY = (k^2)/2 * area PQR. Setting (k^2)/2 = 1/8 gives k^2 = 1/4, so k = 1/2 and PY = (1/2)(PR/2) = PR/4. Since PR/4 is larger than PR/8, Column A is greater.",
+   "trap": "Students assume the area fraction transfers straight to the base and conclude PY = PR/8, choosing 'equal'. Shrinking a similar triangle by a factor k cuts its area by k squared, so an area of one eighth corresponds to a length factor of one half, not one eighth.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "similar-triangles",
+    "area-ratio",
+    "isosceles-triangle"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set1"
+  },
+  {
+   "id": "SEC-PG-009",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "The figure above shows a park bounded by a right triangle whose horizontal side is 1,200 metres and whose vertical side is 900 metres. Five straight paths run through the park: the three vertical segments shown, the horizontal side, and the slanted side. The three vertical paths are parallel to one another, and the points where they meet the horizontal path are equally spaced 400 metres apart. If paving costs $84 per metre of path, what is the total cost, in dollars, of paving all five paths?\n\nNote: Figure not drawn to scale.",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"15,180 255,180 255,60\"/><line x1=\"95\" y1=\"180\" x2=\"95\" y2=\"140\"/><line x1=\"175\" y1=\"180\" x2=\"175\" y2=\"100\"/><polyline points=\"243,180 243,168 255,168\"/><polyline points=\"95,168 107,168 107,180\"/><polyline points=\"175,168 187,168 187,180\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"93\" y=\"202\">1,200 metres</text><text x=\"261\" y=\"116\">900</text><text x=\"261\" y=\"132\">metres</text></g></svg>",
+   "options": null,
+   "answer": "378000",
+   "explanation": "The bounding right triangle has legs 1,200 and 900, so its hypotenuse is sqrt(1,200^2 + 900^2) = sqrt(1,440,000 + 810,000) = 1,500. The two interior vertical paths cut off triangles similar to the whole one. The first stands 400 metres along the base, so its height is 900(400/1200) = 300; the second stands 800 metres along, so its height is 900(800/1200) = 600. The five paths therefore measure 1,200 + 900 + 1,500 + 300 + 600 = 4,500 metres. At $84 per metre the cost is 4,500 x 84 = $378,000.",
+   "trap": "Students forget the hypotenuse, or they guess the interior heights as 450 and 600 by halving rather than by similarity. Each interior vertical is to 900 as its distance from the left corner is to 1,200, which gives 300 and 600, and the slanted path is a full 1,500 metres of paving.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "similar-triangles",
+    "pythagorean-triples",
+    "perimeter"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set1"
+  },
+  {
+   "id": "SEC-PG-018",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "In the figure above, line BD is parallel to line AE, point B lies on segment AC, and point D lies on segment CE. Point F lies below line AE. The distance from C to line BD, marked y, equals the distance from F to line AE, marked x.\n\nNote: Figure not drawn to scale.\nColumn A: The area of triangular region ACE\nColumn B: The area of triangular region BDF",
+   "svg": "<svg viewBox=\"0 0 320 190\" width=\"320\" height=\"190\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"35,120 160,20 285,120\"/><line x1=\"110\" y1=\"60\" x2=\"210\" y2=\"60\"/><line x1=\"110\" y1=\"60\" x2=\"160\" y2=\"160\"/><line x1=\"210\" y1=\"60\" x2=\"160\" y2=\"160\"/><line x1=\"160\" y1=\"20\" x2=\"160\" y2=\"60\" stroke-dasharray=\"4 3\"/><line x1=\"160\" y1=\"120\" x2=\"160\" y2=\"160\" stroke-dasharray=\"4 3\"/><polyline points=\"160,50 170,50 170,60\"/><polyline points=\"160,130 170,130 170,120\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"22\" y=\"134\">A</text><text x=\"96\" y=\"56\">B</text><text x=\"155\" y=\"14\">C</text><text x=\"214\" y=\"56\">D</text><text x=\"290\" y=\"134\">E</text><text x=\"152\" y=\"178\">F</text><text x=\"166\" y=\"42\">y</text><text x=\"150\" y=\"133\">x</text></g></svg>",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Let d be the distance between the two parallel lines BD and AE. The height of triangle ACE, measured from C down to base AE, is y + d. The height of triangle BDF, measured from F up to base BD, is x + d. Since x = y, those two heights are equal, so the areas are decided entirely by the bases. Now BD is a segment cut across triangle ACE parallel to AE with B on AC and D on CE, so BD is strictly shorter than AE. A larger base with the same height gives a larger area, so triangle ACE is greater.",
+   "trap": "Students compare only x with y, see that they are equal, and choose 'equal'. The two triangles do share a common height, but their bases differ: BD is a shortened copy of AE produced by the parallel cut, so equal heights leave ACE strictly bigger.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "parallel-lines",
+    "triangle-area",
+    "similar-triangles"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-022",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A plank 26 feet long rests horizontally on a support placed at the plank's midpoint, and the top of the support is 5 feet above level ground, as shown above. The plank is then tilted about the support, which stays at the plank's midpoint, until the left end of the plank just touches the ground. How many feet above the ground is the right end of the plank at that moment?\n\nNote: Figure not drawn to scale.",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><line x1=\"15\" y1=\"195\" x2=\"305\" y2=\"195\"/><line x1=\"20\" y1=\"195\" x2=\"221\" y2=\"128\"/><polygon points=\"125,195 155,195 140,155\"/><line x1=\"140\" y1=\"155\" x2=\"190\" y2=\"155\" stroke-dasharray=\"4 3\"/><line x1=\"190\" y1=\"155\" x2=\"190\" y2=\"195\" stroke-dasharray=\"4 3\"/><line x1=\"221\" y1=\"128\" x2=\"221\" y2=\"195\" stroke-dasharray=\"4 3\"/><polyline points=\"211,195 211,185 221,185\"/></g><circle cx=\"140\" cy=\"155\" r=\"4\" fill=\"#1f2937\"/><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"70\" y=\"159\">26 ft</text><text x=\"152\" y=\"177\">5 ft</text><text x=\"229\" y=\"165\">?</text><text x=\"246\" y=\"212\">Ground</text></g></svg>",
+   "options": null,
+   "answer": "10",
+   "explanation": "The support touches the plank at its midpoint, so each half of the plank is 13 feet long. Look at the left half: it runs from the support, 5 feet above the ground, down to the ground, so it is the hypotenuse of a right triangle with vertical leg 5 and hypotenuse 13 (a 5-12-13 triangle). The right half is the same 13-foot length tilted by the same angle in the opposite direction, so its far end rises 5 feet above the support. The support is already 5 feet up, so the right end is 5 + 5 = 10 feet above the ground.",
+   "trap": "Students answer 5, reading off only the height gained above the support, or they answer 13 by treating the half-plank as vertical. The two halves are mirror images about the support, so the right end climbs as far above the support as the left end dropped below it, and the support's own 5 feet must be added on.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "pythagorean-triples",
+    "similar-triangles",
+    "symmetry"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-038",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The figure above represents a marsh and the dry land around it. A surveyor needs the distance from point A to point B, which lie on opposite edges of the marsh and cannot be measured directly. She chooses a point R on dry land, extends line AR beyond R to a point D, and extends line BR beyond R to a point C, placing C and D so that segment CD is parallel to segment AB. She then measures RD and DC. Of the following, which additional measurement would be sufficient to determine the distance from A to B?",
+   "svg": "<svg viewBox=\"0 0 320 240\" width=\"320\" height=\"240\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"260,75 300,120 295,175 240,210 160,215 130,190 105,150 140,105 200,70\" fill=\"#e5edf7\" stroke=\"#1f2937\" stroke-width=\"2\"/><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><line x1=\"260\" y1=\"75\" x2=\"130\" y2=\"190\"/><line x1=\"260\" y1=\"75\" x2=\"33\" y2=\"121\"/><line x1=\"130\" y1=\"190\" x2=\"72\" y2=\"86\"/><line x1=\"33\" y1=\"121\" x2=\"72\" y2=\"86\"/></g><g fill=\"#1f2937\"><circle cx=\"260\" cy=\"75\" r=\"3\"/><circle cx=\"130\" cy=\"190\" r=\"3\"/><circle cx=\"85\" cy=\"110\" r=\"3\"/><circle cx=\"72\" cy=\"86\" r=\"3\"/><circle cx=\"33\" cy=\"121\" r=\"3\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"266\" y=\"70\">A</text><text x=\"116\" y=\"204\">B</text><text x=\"68\" y=\"130\">R</text><text x=\"64\" y=\"78\">C</text><text x=\"18\" y=\"132\">D</text></g></svg>",
+   "options": [
+    "A. The distance from A to R",
+    "B. The distance from B to R",
+    "C. The distance from C to R",
+    "D. The measure of angle ARB",
+    "E. The measure of angle RAB"
+   ],
+   "answer": "A",
+   "explanation": "Because CD is parallel to AB, the transversals give equal alternate interior angles, and angles DRC and ARB are vertical angles, so triangle RDC is similar to triangle RAB. Corresponding sides are then in proportion: RD/RA = DC/AB, which rearranges to AB = DC(RA)/RD. The surveyor already has DC and RD, so the one missing piece is RA, the distance from A to R. Knowing BR or CR instead would give the other proportion RC/RB = DC/AB, in which two of the three needed lengths would still be unknown, and an angle alone never fixes a length.",
+   "trap": "Students pick the measure of angle ARB, reasoning that an angle plus two sides determines a triangle. Angle ARB is already equal to angle DRC and so adds nothing new; similarity has already been established, and what is missing is the scale factor, which only a length along the same pair of corresponding sides can supply.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "similar-triangles",
+    "parallel-lines",
+    "indirect-measurement"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set4"
   }
  ]
 }

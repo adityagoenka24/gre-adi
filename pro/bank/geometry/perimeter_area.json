@@ -4,15 +4,16 @@
   "subtopic": "Perimeter & Area",
   "subtopic_id": "GEO-PNA",
   "version": "1.0",
-  "total_questions": 60,
+  "total_questions": 68,
   "distribution": {
    "easy": 15,
-   "medium": 23,
-   "hard": 15,
+   "medium": 29,
+   "hard": 17,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26"
  },
  "questions": [
   {
@@ -1256,6 +1257,191 @@
     "qc",
     "multi-step"
    ]
+  },
+  {
+   "id": "SEC-PG-010",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A rectangular garden has a perimeter of 84 metres, and its length and width are both integer numbers of metres. What is the difference between the greatest possible area and the least possible area, in square metres, of the garden?",
+   "options": null,
+   "answer": "400",
+   "explanation": "A perimeter of 84 means the length and width sum to 42. For a fixed sum, the product is largest when the two numbers are as close together as possible and smallest when they are as far apart as possible. The closest integer pair is 21 and 21, giving an area of 441. The farthest apart is 1 and 41, giving an area of 41. The difference is 441 - 41 = 400.",
+   "trap": "Students report 441 as the answer, stopping at the maximum, or they allow a side of 0 and claim a minimum area of 0, giving 441. A garden must have positive integer sides, so the thinnest allowed rectangle is 1 by 41, not 0 by 42.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "rectangles",
+    "area-perimeter",
+    "optimization"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set1"
+  },
+  {
+   "id": "SEC-PG-014",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A rectangular hall floor is to be covered completely by square tiles whose sides are 6 inches long. The tiles are laid edge to edge with no gaps, and no tile is cut. If exactly 1,200 tiles are used, which of the following could be the dimensions of the floor? (Note: 12 inches = 1 foot.)",
+   "options": [
+    "A. 12 feet by 20 feet",
+    "B. 15 feet by 20 feet",
+    "C. 15 feet by 25 feet",
+    "D. 20 feet by 20 feet",
+    "E. 20 feet by 30 feet"
+   ],
+   "answer": "B",
+   "explanation": "A tile 6 inches on a side is half a foot on a side, so each tile covers (1/2)(1/2) = 0.25 square foot. Using 1,200 tiles covers 1,200 x 0.25 = 300 square feet. Checking the products: 12 x 20 = 240, 15 x 20 = 300, 15 x 25 = 375, 20 x 20 = 400, and 20 x 30 = 600. Only 15 feet by 20 feet gives 300 square feet, and both 15 and 20 are whole numbers of half-feet, so the tiles fit without cutting.",
+   "trap": "Students convert the side correctly to 0.5 foot but then use 0.5 square foot as the tile's area, doubling the total to 600 square feet and choosing 20 feet by 30 feet. Halving a length quarters the area, so the conversion factor is 0.25, not 0.5.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "area",
+    "unit-conversion",
+    "rectangles"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-017",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "In the figure above, WXYZ is a rectangle and T is a point on side XY.\n\nNote: Figure not drawn to scale.\nColumn A: The area of triangular region WTZ\nColumn B: The sum of the areas of triangular regions WXT and TYZ",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"40\" y=\"50\" width=\"230\" height=\"130\"/><line x1=\"40\" y1=\"180\" x2=\"150\" y2=\"50\"/><line x1=\"150\" y1=\"50\" x2=\"270\" y2=\"180\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"26\" y=\"196\">W</text><text x=\"28\" y=\"44\">X</text><text x=\"272\" y=\"44\">Y</text><text x=\"272\" y=\"196\">Z</text><text x=\"146\" y=\"42\">T</text></g></svg>",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Let the rectangle have base WZ = b and height XW = h. Triangle WTZ has base WZ = b, and its apex T sits on the opposite side, so its height is the full h. Its area is (1/2)(b)(h), exactly half the rectangle's area bh. The two corner triangles WXT and TYZ together make up whatever is left of the rectangle, which is the other half. So the two quantities are equal, wherever T sits on XY.",
+   "trap": "Students try to compute the corner triangles separately, notice that T is not marked as a midpoint, and choose 'cannot be determined'. Sliding T along XY changes the two corner triangles individually but never changes their total, because the big triangle always claims exactly half the rectangle.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "rectangles",
+    "triangle-area",
+    "area-decomposition"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-025",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A town ordinance requires that a room used for an indoor gathering provide at least 24 square feet of floor space for every 3 people attending. A gathering is to be held in a rectangular hall whose floor measures 36 feet by 60 feet. According to the ordinance, what is the greatest number of people permitted to attend?",
+   "options": [
+    "A. 90",
+    "B. 135",
+    "C. 180",
+    "D. 270",
+    "E. 540"
+   ],
+   "answer": "D",
+   "explanation": "The floor area is 36 x 60 = 2,160 square feet. The ordinance allots 24 square feet to every group of 3 people, so the hall supports 2,160/24 = 90 such groups. Each group is 3 people, so the maximum attendance is 90 x 3 = 270. Equivalently, the rule is 8 square feet per person, and 2,160/8 = 270.",
+   "trap": "Students divide 2,160 by 24 and stop, answering 90. That count is the number of 3-person groups, not the number of people, so it must still be tripled. Dividing by 3 instead of multiplying gives 30, which is far too small to appear as a trap but reflects the same slip.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "area",
+    "rectangles",
+    "rate-per-area"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "SEC-PG-028",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "The figure above is a scale drawing of the floor of a workshop in which all the walls meet at right angles. The measurements shown on the drawing, including the two sides of length x, are in centimetres, and the drawing uses a scale of 1 centimetre to 2 metres. If the perimeter of the drawing is 45.2 centimetres, approximately what is the area, in square metres, of the workshop floor?\n\nNote: Figure not drawn to scale.",
+   "svg": "<svg viewBox=\"0 0 320 160\" width=\"320\" height=\"160\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polyline points=\"40,130 263,130 263,35 175,35 175,75 75,75 75,35 40,35 40,130\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"138\" y=\"148\">12.4</text><text x=\"114\" y=\"94\">3.5</text><text x=\"181\" y=\"59\">1.6</text><text x=\"26\" y=\"87\">x</text><text x=\"270\" y=\"87\">x</text></g></svg>",
+   "options": [
+    "A. 202",
+    "B. 303",
+    "C. 404",
+    "D. 427",
+    "E. 808"
+   ],
+   "answer": "C",
+   "explanation": "Trace the perimeter. The bottom is 12.4 and the two vertical sides are each x. Along the top, the two flat pieces plus the notch's own floor still add up to 12.4 horizontally, and the notch contributes two extra vertical pieces of 1.6 each. So the perimeter is 12.4 + 2x + 12.4 + 2(1.6) = 28 + 2x. Setting 28 + 2x = 45.2 gives x = 8.6. The area on the drawing is the full rectangle minus the notch: 12.4 x 8.6 - 3.5 x 1.6 = 106.64 - 5.6 = 101.04 square centimetres. Since 1 centimetre represents 2 metres, 1 square centimetre represents 4 square metres, so the floor is 101.04 x 4 = 404.16, or about 404 square metres.",
+   "trap": "Students scale the area by 2 instead of by 4 and answer 202, or they forget to subtract the notch and answer about 427. A linear scale factor of 2 becomes a factor of 2 squared when areas are converted, and the notch really is missing from the floor.",
+   "estimated_time_seconds": 115,
+   "tags": [
+    "composite-figures",
+    "perimeter",
+    "scale-drawing"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "SEC-PG-032",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A farm is made up of two fields whose areas are 2.5 acres and 1.5 acres. What is the total area, in square feet, of the two fields combined? (Note: 1 acre = 4,840 square yards, and 1 yard = 3 feet.)",
+   "options": null,
+   "answer": "174240",
+   "explanation": "The two fields total 2.5 + 1.5 = 4 acres. In square yards that is 4 x 4,840 = 19,360. Since 1 yard is 3 feet, 1 square yard is 3 x 3 = 9 square feet, so the total in square feet is 19,360 x 9 = 174,240.",
+   "trap": "Students multiply by 3 rather than 9 when converting square yards to square feet and answer 58,080. A length conversion factor of 3 becomes 3 squared when areas are converted.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "area",
+    "unit-conversion"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "SEC-PG-035",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A triangle is drawn inside a rectangle so that one side of the triangle is an entire side of the rectangle and the opposite vertex of the triangle lies on the opposite side of the rectangle. The rectangle has perimeter 28, and its length and width are both integers. Which of the following could be the area of the triangle?\n\nIndicate all such values.",
+   "options": [
+    "A. 6.5",
+    "B. 10",
+    "C. 16.5",
+    "D. 20",
+    "E. 26",
+    "F. 28"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "D"
+   ],
+   "explanation": "A perimeter of 28 means the length and width sum to 14. The triangle has base equal to one side of the rectangle and height equal to the other side, so its area is half the rectangle's area. Running through the integer pairs whose sum is 14 gives areas of (1)(13)/2 = 6.5, (2)(12)/2 = 12, (3)(11)/2 = 16.5, (4)(10)/2 = 20, (5)(9)/2 = 22.5, (6)(8)/2 = 24 and (7)(7)/2 = 24.5. Of the choices, 6.5, 16.5 and 20 appear on that list; 10, 26 and 28 do not.",
+   "trap": "Students forget the halving and look for products of integer pairs summing to 14, picking 28 (which would be 2 x 12 halved wrongly) or 26. The triangle is always exactly half the rectangle, and the largest possible value is 24.5, so anything above that is impossible.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "rectangles",
+    "triangle-area",
+    "integer-constraints"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "SEC-PG-037",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A gallery wall is covered by 48 flat rectangular panels. If each panel measures 5 feet by 4.5 feet, what is the total area, in square yards, of the panels? (Note: 1 yard = 3 feet.)",
+   "options": [
+    "A. 120",
+    "B. 240",
+    "C. 360",
+    "D. 1,080",
+    "E. 3,240"
+   ],
+   "answer": "A",
+   "explanation": "Each panel covers 5 x 4.5 = 22.5 square feet, so 48 panels cover 48 x 22.5 = 1,080 square feet. Since 1 yard is 3 feet, 1 square yard is 3 x 3 = 9 square feet. Converting, 1,080/9 = 120 square yards.",
+   "trap": "Students divide the square-foot total by 3 instead of 9 and answer 360, or they leave the answer in square feet and choose 1,080. Converting an area between feet and yards uses the square of the length factor, so the divisor is 9.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "area",
+    "unit-conversion",
+    "rectangles"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set4"
   }
  ]
 }

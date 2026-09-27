@@ -4,15 +4,16 @@
   "subtopic": "Lines & Angles",
   "subtopic_id": "GEO-LNA",
   "version": "1.0",
-  "total_questions": 60,
+  "total_questions": 65,
   "distribution": {
    "easy": 15,
-   "medium": 23,
-   "hard": 15,
+   "medium": 26,
+   "hard": 17,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26"
  },
  "questions": [
   {
@@ -1296,6 +1297,126 @@
     "conceptual"
    ],
    "figure_description": "Two angles sharing a common vertex and ray. In a figure, AB ∥ CD"
+  },
+  {
+   "id": "SEC-PG-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Angle T measures t degrees. The complement of angle T measures 90 - t degrees and the supplement of angle T measures 180 - t degrees. If the measure of angle T is less than twice the measure of its complement and greater than one-third the measure of its supplement, which of the following gives all possible values of t?",
+   "options": [
+    "A. 0 < t < 45",
+    "B. 30 < t < 45",
+    "C. 45 < t < 60",
+    "D. 45 < t < 90",
+    "E. 60 < t < 90"
+   ],
+   "answer": "C",
+   "explanation": "Turn each condition into an inequality. 'Less than twice its complement' gives t < 2(90 - t), so t < 180 - 2t, so 3t < 180 and t < 60. 'Greater than one-third its supplement' gives t > (180 - t)/3, so 3t > 180 - t, so 4t > 180 and t > 45. Both must hold at once, so 45 < t < 60.",
+   "trap": "Students solve only the first condition and pick 0 < t < 45 or 45 < t < 90, forgetting that the two conditions must be satisfied simultaneously. The lower bound 45 comes entirely from the supplement condition and the upper bound 60 entirely from the complement condition, so dropping either one widens the interval incorrectly.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "angles",
+    "complement-supplement",
+    "inequalities"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set1"
+  },
+  {
+   "id": "SEC-PG-005",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Points P, Q and R lie on a line, with Q between P and R. Point S does not lie on that line. Ray QM bisects angle PQS and ray QN bisects angle SQR.\nColumn A: The measure, in degrees, of angle MQN\nColumn B: 90",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Because P, Q and R are collinear with Q in the middle, angles PQS and SQR are supplementary: their measures add to 180. Ray QM lies inside angle PQS and ray QN lies inside angle SQR, so angle MQN is made up of half of angle PQS plus half of angle SQR. That is (1/2)(angle PQS + angle SQR) = (1/2)(180) = 90 degrees, no matter where S sits.",
+   "trap": "Students see that neither angle PQS nor angle SQR is given a value and choose 'cannot be determined'. The individual angles really are unknown, but their sum is pinned at 180 by the straight line, and only the sum of the two halves is being asked for.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "angle-bisectors",
+    "supplementary-angles"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set1"
+  },
+  {
+   "id": "SEC-PG-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "J and K are two distinct points in a plane. Which of the following best describes the set of all points in that plane that are the same distance from J as they are from K?",
+   "options": [
+    "A. The set contains no points",
+    "B. The set contains exactly one point",
+    "C. The set contains exactly two points",
+    "D. The set is a line",
+    "E. The set is a circle"
+   ],
+   "answer": "D",
+   "explanation": "The midpoint of segment JK is one such point, so the set is not empty. Take any point M off the line JK with MJ = MK: triangle JMK is isosceles, and the perpendicular dropped from M to JK lands exactly on the midpoint. Conversely, every point on the line through the midpoint perpendicular to JK is equidistant from J and K, by the two congruent right triangles it creates. So the set is precisely the perpendicular bisector of JK, which is a line.",
+   "trap": "Students picture only the midpoint and answer 'exactly one point', or they think of 'equal distances from a point' and answer 'a circle'. A circle is the set of points a fixed distance from one centre; here the distances to two different points are being matched, and that produces a straight line.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "perpendicular-bisector",
+    "locus"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-019",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Line segment AD has length 40. Point B lies on AD, and segment BD has length 22. Point C also lies on AD, and segment BC has length 5.\nColumn A: The length of AC\nColumn B: The length of AB",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Since B is on AD with BD = 22, we get AB = 40 - 22 = 18, so Column B is fixed at 18. But C is only pinned down as a point of AD that is 5 units from B, and there are two such points: one 5 units toward A, giving AC = 13, and one 5 units toward D, giving AC = 23. Both lie within the segment, since 13 and 23 are both between 0 and 40. So Column A can be less than 18 or greater than 18, and the relationship cannot be determined.",
+   "trap": "Students place C automatically on the far side of B, compute AC = 23, and answer that Column A is greater. Saying that C is on the segment and 5 units from B leaves two legitimate positions, and the two give opposite comparisons.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "segments",
+    "ambiguous-position"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-024",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A cycling route runs in a straight line from a trailhead to a lookout 62.5 kilometres away. A water station stands on the route 47.2 kilometres from the trailhead, and a ranger is always within 0.8 kilometre of the water station, measured along the route. A cyclist's bicycle broke down on the route at a point less than 0.6 kilometre before the lookout. Which of the following could be the distance, in kilometres, along the route between the bicycle and the ranger?\n\nIndicate all such values.",
+   "options": [
+    "A. 13.5",
+    "B. 14.0",
+    "C. 14.8",
+    "D. 15.6",
+    "E. 16.1",
+    "F. 16.5"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "Measure everything from the trailhead. The bicycle sits strictly between 62.5 - 0.6 = 61.9 and 62.5, since 'less than 0.6 kilometre before the lookout' excludes both endpoints. The ranger sits somewhere from 47.2 - 0.8 = 46.4 to 47.2 + 0.8 = 48.0. The gap between them is smallest when the bicycle is as far back as possible and the ranger as far forward as possible: 61.9 - 48.0 = 13.9. It is largest when the bicycle is as far forward as possible and the ranger as far back as possible: 62.5 - 46.4 = 16.1. Both extremes come from the bicycle's excluded endpoints, so the distance runs strictly between 13.9 and 16.1. Only 14.0, 14.8 and 15.6 qualify.",
+   "trap": "Students take 16.1 because it looks like the stated maximum. Reaching 16.1 would require the bicycle to be exactly at the lookout, which the phrase 'less than 0.6 kilometre before the lookout' forbids, so the top of the range is open. Others compute the centre gap 62.5 - 47.2 = 15.3 and spread it only by 0.8, missing the 0.6 from the bicycle's own uncertainty.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "distance",
+    "interval-reasoning",
+    "collinear-points"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
   }
  ]
 }

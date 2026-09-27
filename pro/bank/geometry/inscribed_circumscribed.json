@@ -4,15 +4,16 @@
   "subtopic": "Inscribed & Circumscribed Shapes",
   "subtopic_id": "GEO-INS",
   "version": "1.0",
-  "total_questions": 50,
+  "total_questions": 58,
   "distribution": {
    "easy": 13,
-   "medium": 20,
-   "hard": 12,
+   "medium": 25,
+   "hard": 15,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26"
  },
  "questions": [
   {
@@ -1113,6 +1114,195 @@
     "multi-step"
    ],
    "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 220 230\" width=\"220\" height=\"230\" role=\"img\"><rect x=\"35\" y=\"35\" width=\"150.0\" height=\"150.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"110.0\" cy=\"110.0\" r=\"75.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"110.0\" y=\"211.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">4</text></svg>"
+  },
+  {
+   "id": "SEC-CS-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Quadrilateral WXYZ is inscribed in a circle. The measure of angle Y is 24 degrees less than three times the measure of angle W. What is the measure of angle W, in degrees?",
+   "options": [
+    "A. 36",
+    "B. 39",
+    "C. 45",
+    "D. 51",
+    "E. 63"
+   ],
+   "answer": "D",
+   "explanation": "In a quadrilateral inscribed in a circle, opposite angles are supplementary, and W and Y are opposite, so W + Y = 180. The second condition gives Y = 3W - 24. Substituting, W + 3W - 24 = 180, so 4W = 204 and W = 51. As a check, Y = 3(51) - 24 = 129, and 51 + 129 = 180.",
+   "trap": "Students who treat W and Y as adjacent angles, or who solve for Y instead of W, land on 129 or on the value 63 that comes from misreading 'three times' as 'three more than'. Only opposite angles of a cyclic quadrilateral are supplementary, and W and Y are the opposite pair here.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "cyclic-quadrilateral",
+    "angles"
+   ],
+   "origin": "sectional",
+   "origin_set": "circles_solids_set1"
+  },
+  {
+   "id": "SEC-CS-015",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Triangle RST is inscribed in a circle with center O and radius k.\nColumn A: the perimeter of triangle RST\nColumn B: 6k",
+   "svg": "<svg viewBox=\"0 0 320 240\" width=\"320\" height=\"240\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"160\" cy=\"120\" r=\"88\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"86\" y1=\"72\" x2=\"245\" y2=\"97\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"245\" y1=\"97\" x2=\"127\" y2=\"202\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"127\" y1=\"202\" x2=\"86\" y2=\"72\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"160\" y1=\"120\" x2=\"245\" y2=\"97\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><circle cx=\"160\" cy=\"120\" r=\"3\" fill=\"#1f2937\"/><text x=\"148\" y=\"136\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">O</text><text x=\"70\" y=\"66\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">R</text><text x=\"252\" y=\"95\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">S</text><text x=\"116\" y=\"220\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">T</text><text x=\"198\" y=\"104\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">k</text></svg>",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Every side of triangle RST is a chord of the circle, and no chord can be longer than the diameter, which is 2k. Each of the three sides is therefore at most 2k, so the perimeter is at most 3 x 2k = 6k — and since all three sides cannot be diameters at once, the perimeter is strictly less than 6k. The bound holds for every position of R, S and T, so Column B is greater. For the record, the largest perimeter any inscribed triangle can reach is the equilateral one at 3*sqrt(3)*k, about 5.2k, which is comfortably below 6k.",
+   "trap": "Students hunt for a particular triangle, try the equilateral case, and get bogged down computing 3*sqrt(3)*k, about 5.2k, before concluding anything. The bound is much cheaper: every chord is shorter than the diameter, so three of them cannot reach 6k.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "chords",
+    "perimeter"
+   ],
+   "origin": "sectional",
+   "origin_set": "circles_solids_set2"
+  },
+  {
+   "id": "SEC-CS-018",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A regular hexagon is inscribed in a circle of radius r. What is the perimeter of the hexagon, in terms of r?",
+   "options": [
+    "A. 3r",
+    "B. 6r",
+    "C. 3*sqrt(3)*r",
+    "D. 2*pi*r",
+    "E. 6*sqrt(3)*r"
+   ],
+   "answer": "B",
+   "explanation": "Join the center of the circle to all six vertices. This cuts the hexagon into six triangles, each having two sides equal to the radius r and a central angle of 360/6 = 60 degrees. A triangle with two equal sides and a 60 degree angle between them is equilateral, so the third side, which is a side of the hexagon, also equals r. Six sides of length r give a perimeter of 6r.",
+   "trap": "Students remember the rule as 'the side equals half the radius of the circle' or confuse radius with diameter and answer 3r. The correct statement is that the side of a regular hexagon equals the radius of its circumscribed circle, so the perimeter is six radii, not three.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "hexagon",
+    "inscribed-polygon"
+   ],
+   "origin": "sectional",
+   "origin_set": "circles_solids_set2"
+  },
+  {
+   "id": "SEC-CS-025",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Triangle DEF is inscribed in a semicircle of radius t, with DF the flat edge of the semicircle and E on the curved edge. DE = a and EF = b.\nColumn A: a^2 + b^2\nColumn B: 4t^2",
+   "svg": "<svg viewBox=\"0 0 320 240\" width=\"320\" height=\"240\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M65 175 A95 95 0 0 1 255 175\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"65\" y1=\"175\" x2=\"255\" y2=\"175\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"65\" y1=\"175\" x2=\"200\" y2=\"89\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"200\" y1=\"89\" x2=\"255\" y2=\"175\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><polyline points=\"192,94 197,103 205,97\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"1.5\"/><circle cx=\"160\" cy=\"175\" r=\"3\" fill=\"#1f2937\"/><text x=\"152\" y=\"196\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">O</text><text x=\"50\" y=\"192\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">D</text><text x=\"200\" y=\"78\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">E</text><text x=\"258\" y=\"192\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">F</text><text x=\"116\" y=\"126\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">a</text><text x=\"240\" y=\"126\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">b</text><text x=\"204\" y=\"192\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">t</text></svg>",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "The flat edge DF of a semicircle is a diameter, so DF = 2t. Because E lies on the curved edge, angle DEF is inscribed in a semicircle and is therefore a right angle, with DF as the hypotenuse of right triangle DEF. The Pythagorean theorem then gives a^2 + b^2 = DF^2 = (2t)^2 = 4t^2. The two quantities are equal wherever E sits on the arc.",
+   "trap": "Students take DF to be t rather than 2t and compare a^2 + b^2 with t^2, concluding that Column A is greater. The radius is t, so the diameter that serves as the hypotenuse is twice that, and squaring it brings in the factor of 4.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "semicircle",
+    "pythagorean"
+   ],
+   "origin": "sectional",
+   "origin_set": "circles_solids_set3"
+  },
+  {
+   "id": "SEC-CS-028",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Equilateral triangle PQR is inscribed in a circle whose area is 36*pi. What is the length of an altitude of triangle PQR?",
+   "svg": "<svg viewBox=\"0 0 320 240\" width=\"320\" height=\"240\" xmlns=\"http://www.w3.org/2000/svg\"><circle cx=\"160\" cy=\"120\" r=\"85\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"160\" y1=\"35\" x2=\"86\" y2=\"163\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"86\" y1=\"163\" x2=\"234\" y2=\"163\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"234\" y1=\"163\" x2=\"160\" y2=\"35\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><line x1=\"160\" y1=\"35\" x2=\"160\" y2=\"163\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"1.5\" stroke-dasharray=\"5 4\"/><polyline points=\"148,163 148,151 160,151\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"1.5\"/><circle cx=\"160\" cy=\"120\" r=\"3\" fill=\"#1f2937\"/><text x=\"166\" y=\"116\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">O</text><text x=\"154\" y=\"26\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">P</text><text x=\"68\" y=\"176\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">Q</text><text x=\"240\" y=\"176\" font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\">R</text></svg>",
+   "options": [
+    "A. 6",
+    "B. 9",
+    "C. 6*sqrt(3)",
+    "D. 12",
+    "E. 18"
+   ],
+   "answer": "B",
+   "explanation": "From area 36*pi we get pi*r^2 = 36*pi, so the radius is 6. For an equilateral triangle the center of the circumscribed circle is also the centroid, and the centroid divides each altitude in a 2 to 1 ratio measured from the vertex. The longer piece is the circumradius, so 6 is two thirds of the altitude. That makes the altitude 6 x (3/2) = 9.",
+   "trap": "Students take the altitude to be the diameter, 12, imagining it stretching from the top of the circle to the bottom. The altitude ends at the midpoint of the opposite side, which is inside the circle, not at the circle itself, so it falls short of the diameter by the one-third piece below the center.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "equilateral-triangle",
+    "circumscribed-circle"
+   ],
+   "origin": "sectional",
+   "origin_set": "circles_solids_set3"
+  },
+  {
+   "id": "SEC-PG-016",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In the figure above, square JKLM is inscribed in rectangle ABCD so that J is the midpoint of AB and L is the midpoint of DC. Points P and Q are the midpoints of AD and BC, and K and M lie on segment PQ with PM = KQ = 6. If the area of square JKLM is 98, what is the area of rectangle ABCD?\n\nNote: Figure not drawn to scale.",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"30\" y=\"35\" width=\"260\" height=\"140\"/><line x1=\"30\" y1=\"105\" x2=\"290\" y2=\"105\" stroke-width=\"1\"/><polygon points=\"160,35 230,105 160,175 90,105\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"18\" y=\"30\">A</text><text x=\"288\" y=\"30\">B</text><text x=\"288\" y=\"192\">C</text><text x=\"18\" y=\"192\">D</text><text x=\"156\" y=\"28\">J</text><text x=\"234\" y=\"102\">K</text><text x=\"156\" y=\"192\">L</text><text x=\"76\" y=\"102\">M</text><text x=\"16\" y=\"118\">P</text><text x=\"292\" y=\"118\">Q</text><text x=\"55\" y=\"98\">6</text><text x=\"253\" y=\"98\">6</text></g></svg>",
+   "options": [
+    "A. 196",
+    "B. 280",
+    "C. 336",
+    "D. 364",
+    "E. 392"
+   ],
+   "answer": "D",
+   "explanation": "For a square, area equals half the square of a diagonal, so if the diagonals of JKLM have length d then d^2/2 = 98, giving d^2 = 196 and d = 14. Segment JL is one diagonal; since J and L are the midpoints of the opposite sides AB and DC, JL runs straight across the rectangle and equals the rectangle's height, so AD = 14. The other diagonal KM lies along PQ and also has length 14, so the rectangle's width is PM + MK + KQ = 6 + 14 + 6 = 26. The area is 14 x 26 = 364.",
+   "trap": "Students drop the two 6-unit pieces and answer 14 x 14 = 196, or they use the square's side 7*sqrt(2) as the rectangle's height. The rectangle's height is the square's diagonal, not its side, because J and L are opposite vertices of the square.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "squares",
+    "inscribed-figures",
+    "rectangles"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-026",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A regular hexagon is inscribed in a circle whose diameter is 18. What is the perimeter of the hexagon?",
+   "options": [
+    "A. 27",
+    "B. 36",
+    "C. 54",
+    "D. 54*sqrt(3)",
+    "E. 108"
+   ],
+   "answer": "C",
+   "explanation": "Join the centre of the circle to each of the six vertices. This splits the hexagon into six triangles, each with two sides equal to the radius and a central angle of 360/6 = 60 degrees. A triangle with two equal sides and a 60-degree angle between them is equilateral, so each side of the hexagon equals the radius. The diameter is 18, so the radius and therefore each side is 9, and the perimeter is 6 x 9 = 54.",
+   "trap": "Students set the side equal to the diameter and answer 108, or they bring in a sqrt(3) from the equilateral triangle's altitude and answer 54*sqrt(3). The equilateral triangles here give side = radius exactly, with no radical involved; the sqrt(3) belongs to the hexagon's height, not its side.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "regular-polygons",
+    "inscribed-figures",
+    "equilateral-triangle"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "SEC-PG-031",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "In the figure above, angle B of triangle ABC is a right angle and AB = BC. Square DEFG is inscribed in the triangle, with D and G on side AC, E on side AB, and F on side BC.\n\nNote: Figure not drawn to scale.\nColumn A: The area of triangular region ADE\nColumn B: (1/4) of the area of triangular region ABC",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"28,180 116,180 116,92\" fill=\"#e5edf7\" stroke=\"none\"/><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"28,180 292,180 160,48\"/><rect x=\"116\" y=\"92\" width=\"88\" height=\"88\"/><polyline points=\"150,58 160,68 170,58\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"16\" y=\"194\">A</text><text x=\"155\" y=\"40\">B</text><text x=\"296\" y=\"194\">C</text><text x=\"109\" y=\"196\">D</text><text x=\"98\" y=\"88\">E</text><text x=\"208\" y=\"88\">F</text><text x=\"199\" y=\"196\">G</text></g></svg>",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Let the hypotenuse AC have length a. Since AB = BC and angle B is 90 degrees, angles A and C each measure 45 degrees, and the altitude from B to AC is a/2. Let the square have side s. Because angle A is 45 degrees and ED is perpendicular to AC, triangle ADE is an isosceles right triangle, so AD = ED = s. By the same argument at C, GC = s. Then AC = AD + DG + GC = s + s + s = 3s, so s = a/3. The area of ADE is (1/2)(a/3)(a/3) = a^2/18. The area of ABC is (1/2)(a)(a/2) = a^2/4, so Column B is (1/4)(a^2/4) = a^2/16. Since a^2/16 is larger than a^2/18, Column B is greater.",
+   "trap": "Students assume the inscribed square sits symmetrically enough that the corner triangle is a clean quarter of the whole and choose 'equal'. The square's side is a full third of the hypotenuse, which makes each corner triangle 2/9 of the big triangle, slightly less than a quarter.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "inscribed-figures",
+    "isosceles-right-triangle",
+    "area-ratio"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
   }
  ]
 }

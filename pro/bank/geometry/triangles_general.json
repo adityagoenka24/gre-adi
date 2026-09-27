@@ -4,15 +4,16 @@
   "subtopic": "Triangles (General)",
   "subtopic_id": "GEO-TRI",
   "version": "1.0",
-  "total_questions": 70,
+  "total_questions": 76,
   "distribution": {
    "easy": 18,
-   "medium": 27,
-   "hard": 18,
+   "medium": 31,
+   "hard": 20,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26"
  },
  "questions": [
   {
@@ -1508,6 +1509,162 @@
     "multi-step"
    ],
    "figure_description": "Triangle with vertices labeled A, B, C. In right triangle ABC with the right angle at B, AB = 5 and BC = 12. A circle is inscribed in the tr."
+  },
+  {
+   "id": "SEC-PG-011",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "In triangle DEF, DE = 7 and EF = 16. Which of the following could be the perimeter of triangle DEF?\n\nIndicate all such values.",
+   "options": [
+    "A. 30",
+    "B. 34",
+    "C. 38",
+    "D. 44",
+    "E. 46",
+    "F. 52"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "The third side DF must be greater than the difference of the two known sides and less than their sum: 16 - 7 = 9 and 16 + 7 = 23, so 9 < DF < 23. Adding the two known sides, the perimeter is DF + 23, which must satisfy 32 < perimeter < 46. Of the choices, 34, 38 and 44 fall strictly inside that interval. 30 is too small, and 46 and 52 are too large, with 46 excluded because the bound is strict.",
+   "trap": "Students include 46, forgetting that the inequality is strict. A third side of exactly 23 would make D, E and F collinear, which is not a triangle, so a perimeter of exactly 46 is impossible.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "triangle-inequality",
+    "perimeter"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set1"
+  },
+  {
+   "id": "SEC-PG-023",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A surveyor measures the distance from a marker M to post P as 18 metres and the distance from M to post Q as 11 metres. The three points are not in a straight line. Which of the following could be the distance, in metres, between P and Q?\n\nIndicate all such values.",
+   "options": [
+    "A. 5",
+    "B. 7",
+    "C. 12",
+    "D. 20",
+    "E. 28",
+    "F. 31"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "Because M, P and Q form a genuine triangle, the side PQ must be greater than the difference of the other two sides and less than their sum: 18 - 11 = 7 and 18 + 11 = 29, so 7 < PQ < 29. Of the choices, 12, 20 and 28 lie strictly inside that range. 5 is too small, 7 is the excluded lower bound, and 31 exceeds the upper bound.",
+   "trap": "Students admit 7, forgetting that a distance of exactly 7 would put all three points on one line, which the problem rules out. The two bounds 7 and 29 are the collinear cases and are never attainable for a real triangle.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "triangle-inequality",
+    "distance"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set2"
+  },
+  {
+   "id": "SEC-PG-036",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "On a map drawn to scale, the point marking town A is 6 inches from the point marking town B, and the point marking town B is 2.5 inches from the point marking town C. The actual distance from town A to town B is 210 kilometres, and the three towns are not in a straight line. Which of the following could be the actual distance, in kilometres, from town A to town C?\n\nIndicate all such values.",
+   "options": [
+    "A. 105",
+    "B. 140",
+    "C. 210",
+    "D. 280",
+    "E. 297.5",
+    "F. 350"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "First fix the scale: 6 inches represents 210 kilometres, so 1 inch represents 35 kilometres. Then town B to town C is 2.5 x 35 = 87.5 kilometres. Since the three towns form a genuine triangle, AC must lie strictly between the difference and the sum of the other two sides: 210 - 87.5 = 122.5 and 210 + 87.5 = 297.5, so 122.5 < AC < 297.5. Of the choices, 140, 210 and 280 fall inside. 105 is below the range, 350 is above it, and 297.5 is the excluded upper bound.",
+   "trap": "Students select 297.5, the exact sum of the two sides, which would place the three towns on one line and is ruled out by the problem. Others skip the scale conversion and use 2.5 kilometres for BC, producing the far narrower range 207.5 to 212.5 and admitting only 210.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "triangle-inequality",
+    "scale-drawing",
+    "distance"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "SEC-PG-039",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In triangle JKL above, the three angle bisectors meet at point N. If angle NLJ measures 21 degrees and angle NJL measures 34 degrees, what is the measure, in degrees, of angle JKN?\n\nNote: Figure not drawn to scale.",
+   "svg": "<svg viewBox=\"0 0 320 220\" width=\"320\" height=\"220\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"35,190 140,35 285,190\"/><line x1=\"35\" y1=\"190\" x2=\"147\" y2=\"130\"/><line x1=\"140\" y1=\"35\" x2=\"147\" y2=\"130\"/><line x1=\"285\" y1=\"190\" x2=\"147\" y2=\"130\"/><path d=\"M81 190 A46 46 0 0 0 76 168\"/><path d=\"M235 190 A50 50 0 0 1 239 170\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"22\" y=\"204\">J</text><text x=\"134\" y=\"28\">K</text><text x=\"290\" y=\"204\">L</text><text x=\"152\" y=\"126\">N</text><text x=\"90\" y=\"181\">34°</text><text x=\"206\" y=\"184\">21°</text></g></svg>",
+   "options": [
+    "A. 27.5",
+    "B. 35",
+    "C. 55",
+    "D. 70",
+    "E. 110"
+   ],
+   "answer": "B",
+   "explanation": "Since JN bisects angle J, the full angle J is 2(34) = 68 degrees. Since LN bisects angle L, the full angle L is 2(21) = 42 degrees. The three angles of triangle JKL sum to 180, so angle K = 180 - 68 - 42 = 70 degrees. KN bisects angle K, so angle JKN is half of that: 35 degrees.",
+   "trap": "Students find angle K = 70 and stop, choosing 70 without halving it for the bisector. Others forget to double the two given half-angles, computing 180 - 34 - 21 = 125 and then halving to 62.5. The two given angles are halves and the answer is a half, so both doublings and one halving are needed.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "angle-bisectors",
+    "triangle-angle-sum"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "SEC-PG-044",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "In triangle ABC above, angle A is a right angle, AB = 20 and AC = 48. Point D lies on side AC with AD = (5/12)(AC). What is the measure, in degrees, of angle BDC?\n\nNote: Figure not drawn to scale.",
+   "svg": "<svg viewBox=\"0 0 320 230\" width=\"320\" height=\"230\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><polygon points=\"40,170 40,60 290,170\"/><line x1=\"40\" y1=\"60\" x2=\"144\" y2=\"170\"/><polyline points=\"40,158 52,158 52,170\"/><line x1=\"40\" y1=\"196\" x2=\"290\" y2=\"196\"/><line x1=\"40\" y1=\"190\" x2=\"40\" y2=\"202\"/><line x1=\"290\" y1=\"190\" x2=\"290\" y2=\"202\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"24\" y=\"186\">A</text><text x=\"26\" y=\"54\">B</text><text x=\"294\" y=\"186\">C</text><text x=\"138\" y=\"188\">D</text><text x=\"20\" y=\"118\">20</text><text x=\"157\" y=\"220\">48</text></g></svg>",
+   "options": null,
+   "answer": "135",
+   "explanation": "First locate D: AD = (5/12)(48) = 20. So in triangle ABD the two legs at the right angle A are AB = 20 and AD = 20, making it an isosceles right triangle. Its two acute angles are therefore 45 degrees each, so angle ADB = 45. Since D lies on segment AC, angles ADB and BDC together form a straight angle, so angle BDC = 180 - 45 = 135 degrees.",
+   "trap": "Students compute angle ADB = 45 and submit that, answering the wrong angle. Angle BDC is the one on the far side of D, the supplement of angle ADB, so it is obtuse at 135 degrees.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "right-triangles",
+    "isosceles-triangle",
+    "supplementary-angles"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "SEC-PG-047",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The distance from the centre of tree P to the centre of tree Q is 30 feet, and the distance from the centre of tree P to the centre of tree R is 18 feet. The centres of the three trees are not in a straight line. Which of the following could be the distance, in feet, from the centre of tree Q to the centre of tree R?\n\nIndicate all such values.",
+   "options": [
+    "A. 10",
+    "B. 12",
+    "C. 20",
+    "D. 36",
+    "E. 45",
+    "F. 48"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "The three centres form a triangle, so QR must be greater than the difference of the other two sides and less than their sum: 30 - 18 = 12 and 30 + 18 = 48, giving 12 < QR < 48. Of the choices, 20, 36 and 45 lie strictly inside. 10 is below the range, and 12 and 48 are the excluded endpoints.",
+   "trap": "Students include 12 or 48, the two boundary values. Each of those would place the three centres on a single line, which the problem explicitly rules out, so both bounds are open.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "triangle-inequality",
+    "distance"
+   ],
+   "origin": "sectional",
+   "origin_set": "plane_geometry_set4"
   }
  ]
 }

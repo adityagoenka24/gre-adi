@@ -4,36 +4,38 @@
   "subtopic": "Word Problem Modelling",
   "subtopic_id": "ALG-WPM",
   "version": "1.0",
-  "total_questions": 50,
+  "total_questions": 53,
   "distribution": {
-   "easy": 13,
-   "medium": 20,
-   "hard": 12,
-   "extreme_hard": 5
+   "easy": 11,
+   "medium": 21,
+   "hard": 17,
+   "extreme_hard": 4
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26"
  },
  "questions": [
   {
    "id": "ALG-WPM-001",
-   "difficulty": "easy",
+   "difficulty": "hard",
    "type": "mcq",
-   "question": "A number is 7 more than twice another number. If the smaller number is 5, what is the larger number?",
+   "question": "The larger of two numbers is 7 more than twice the smaller, and the average of the two numbers is 8 more than the smaller. What is the sum of the two numbers?",
    "options": [
-    "A. 12",
-    "B. 15",
-    "C. 17",
-    "D. 19",
-    "E. 22"
+    "A. 9",
+    "B. 16",
+    "C. 20",
+    "D. 25",
+    "E. 34"
    ],
-   "answer": "C",
-   "explanation": "Let the smaller number = 5. The larger number = twice the smaller + 7 = 2(5) + 7 = 10 + 7 = 17.",
-   "trap": "Students compute 2(5) + 7 correctly but then pick 'twice the number is 12' (answer A), confusing the intermediate step 2×5=10 with the final answer.",
-   "estimated_time_seconds": 40,
+   "answer": "E",
+   "explanation": "Step 1 — name the unknowns. Let s = the smaller number and L = the larger.\nStep 2 — translate the first sentence. 'Twice the smaller' is 2s, and '7 more than' that is 2s + 7, so L = 2s + 7.\nStep 3 — translate the second sentence. The average of the two is (L + s)/2, and '8 more than the smaller' is s + 8, so\n(L + s)/2 = s + 8\nL + s = 2s + 16\nL = s + 16\nStep 4 — set the two expressions for L equal and solve.\n2s + 7 = s + 16\ns = 9, so L = 2(9) + 7 = 25\nStep 5 — answer what was asked: the SUM.\n9 + 25 = 34\nCheck: 25 is 7 more than 2 * 9 = 18; the average of 9 and 25 is 17, which is 8 more than 9. Correct.\nAnswer: E.",
+   "trap": "Choices A and D are the two numbers themselves, 9 and 25, reported instead of their sum, and choice B, 16, is their difference. Choice C, 20, is the sum you get from the parenthesis error: reading '7 more than twice the smaller' as 'twice the sum of the smaller and 7', L = 2(s + 7), which gives s = 2, L = 18 and a sum of 20.",
+   "estimated_time_seconds": 100,
    "tags": [
-    "word-problem-setup",
-    "linear-equation"
+    "twice-the-sum",
+    "two-conditions",
+    "answer-asked"
    ]
   },
   {
@@ -75,44 +77,46 @@
   },
   {
    "id": "ALG-WPM-004",
-   "difficulty": "easy",
+   "difficulty": "hard",
    "type": "mcq",
-   "question": "A car travels at a constant speed of 60 miles per hour. Which equation correctly models the distance d (in miles) the car travels in t hours?",
+   "question": "A car moves along a straight highway at a constant speed of 60 miles per hour, directly away from a town. At the instant a timer is started the car is already 45 miles from the town. Which of the following equations must be solved to find the time t, in hours, at which the car is 5 times as far from the town as it was when the timer started?",
    "options": [
-    "A. t = 60d",
-    "B. d = t + 60",
-    "C. d = 60t",
-    "D. d = 60/t",
-    "E. 60 = d × t"
+    "A. 60t = 225",
+    "B. 60t + 45 = 5 * 60",
+    "C. 5(60t + 45) = 45",
+    "D. 60t + 45 = 45 + 5",
+    "E. 60t + 45 = 225"
    ],
-   "answer": "C",
-   "explanation": "Using the formula Distance = Rate × Time: d = 60 × t = 60t. For example, in 2 hours: d = 60(2) = 120 miles. This confirms choice C.",
-   "trap": "Students confuse the formula and write t = 60d (choice A), which would mean time equals 60 times the distance — a dimensional mismatch.",
-   "estimated_time_seconds": 40,
+   "answer": "E",
+   "explanation": "Step 1 — build the distance model first. 60 is miles per HOUR, so it multiplies the time t; 45 is a distance already covered, so it is added once and never multiplied by t. After t hours the car is d = 60t + 45 miles from the town.\nStep 2 — translate the target distance. 'When the timer started' means t = 0, where d = 45. 5 times as far is 5 * 45 = 225 miles.\nStep 3 — set the model equal to the target distance, not to a rescaled rate.\n60t + 45 = 225\nStep 4 — confirm this is the equation that answers the question. It gives 60t = 180, t = 3.\nCheck: at t = 3 the car is 60(3) + 45 = 225 miles from the town, and 225 = 5 * 45, its distance at t = 0. Substituting t = 3 into the other four equations fails every one of them. Correct.\nAnswer: E.",
+   "trap": "Choice A, 60t = 225, drops the 45-mile head start from the model and solves to t = 3.75. Choice B scales the SPEED by 5 instead of the distance, giving 60t + 45 = 300 and t = 4.25. Choice C multiplies the wrong side, setting 5 times the car's distance equal to the head start, which forces a negative time. Choice D reads '5 times as far' as '5 more miles', giving 60t + 45 = 50 and t = 1/12 of an hour.",
+   "estimated_time_seconds": 85,
    "tags": [
-    "word-problem-setup",
-    "conceptual"
+    "equation-modelling",
+    "rate-template",
+    "multiple-of-a-quantity"
    ]
   },
   {
    "id": "ALG-WPM-005",
    "difficulty": "easy",
    "type": "mcq",
-   "question": "Kevin has 4 more marbles than Lisa. Lisa has 11 marbles. Which equation represents the number of marbles Kevin has (k)?",
+   "question": "Kevin has 4 more marbles than Lisa, and Lisa has 11 marbles. Which of the following equations correctly models the number of marbles Kevin has, k?",
    "options": [
-    "A. k = 11 − 4",
-    "B. k = 4 − 11",
-    "C. k = 11 + 4",
-    "D. k + 4 = 11",
-    "E. k = 11 × 4"
+    "A. k = 11 + 4",
+    "B. k + 4 = 11",
+    "C. k = 4 - 11",
+    "D. k = 4 * 11",
+    "E. 11 = 4 * k"
    ],
-   "answer": "C",
-   "explanation": "'Kevin has 4 more than Lisa' translates directly to k = Lisa's count + 4 = 11 + 4 = 15. The equation is k = 11 + 4.",
-   "trap": "Students reverse the direction: 'more than' sometimes triggers subtraction, leading them to write k = 11 − 4 (choice A), but 'A is 4 more than B' means A = B + 4.",
+   "answer": "A",
+   "explanation": "Step 1 — name the unknown. k = the number of marbles Kevin has. Lisa's count, 11, is already known, so it is a constant, not a variable.\nStep 2 — translate one phrase at a time. 'Kevin has 4 more marbles than Lisa' means Kevin's count is Lisa's count increased by 4, so k = 11 + 4.\nStep 3 — check the direction. Kevin is the one with more, so the 4 must be ADDED to Lisa's 11, and the sum must sit on Kevin's side of the equals sign.\nCheck: A gives k = 15, and 15 is indeed 4 more than 11. Correct.\nAnswer: A.",
+   "trap": "Choice B, k + 4 = 11, adds the 4 to Kevin instead of to Lisa; it gives k = 7, which makes Kevin the one with FEWER marbles. Choice C reverses the subtraction order into 4 - 11 = -7, the classic 'less than' order error applied to the wrong operation. Choice D reads '4 more' as '4 times', giving 44, and choice E makes that same substitution and then reverses who has more, giving k = 11/4.",
    "estimated_time_seconds": 40,
    "tags": [
-    "word-problem-setup",
-    "conceptual"
+    "translation-dictionary",
+    "more-than",
+    "equation-modelling"
    ]
   },
   {
@@ -161,7 +165,7 @@
    "id": "ALG-WPM-008",
    "difficulty": "easy",
    "type": "quantitative_comparison",
-   "question": "A father is 30 years older than his son. The son is currently 10 years old.\n\nColumn A: The father's age in 5 years\nColumn B: 45",
+   "question": "A father is 30 years older than his son, and the son is currently 10 years old.\nColumn A: The father's age in 5 years\nColumn B: 45",
    "options": [
     "A. Column A is greater",
     "B. Column B is greater",
@@ -169,13 +173,13 @@
     "D. The relationship cannot be determined from the information given"
    ],
    "answer": "C",
-   "explanation": "Father's current age = son's age + 30 = 10 + 30 = 40. Father's age in 5 years = 40 + 5 = 45. Column A = 45 = Column B = 45. The two quantities are equal.",
-   "trap": "Students compute the father's current age (40) as Column A, forgetting to add 5 more years, and then choose B (Column B = 45 is greater).",
-   "estimated_time_seconds": 50,
+   "explanation": "Step 1 — translate 'is 30 years older than'. Father's age now = son's age now + 30 = 10 + 30 = 40.\nStep 2 — translate 'in 5 years'. Five years from now the father will be 40 + 5 = 45.\nStep 3 — compare. Column A = 45 and Column B = 45, so the two quantities are equal.\nCheck: in 5 years the son is 15 and the father is 45, and 45 - 15 = 30, the stated gap. Correct.\nAnswer: C.",
+   "trap": "Reading '30 years older' backwards gives a father of 10 - 30 = -20 now, or 30 - 10 = 20 now and 25 in five years, both pointing to choice B. A second route to B is adding the 5 years to the son instead of the father, getting a father of 40 against Column B's 45.",
+   "estimated_time_seconds": 40,
    "tags": [
-    "word-problem-setup",
-    "qc",
-    "two-step"
+    "comparison-template",
+    "age-translation",
+    "qc"
    ]
   },
   {
@@ -224,16 +228,16 @@
    "id": "ALG-WPM-011",
    "difficulty": "easy",
    "type": "numeric_entry",
-   "question": "A shop sells apples for $2 each and oranges for $3 each. If a customer buys x apples and (x + 1) oranges for a total of $23, what is the value of x?",
+   "question": "A shop sells apples for $2 each and oranges for $3 each. A customer buys x apples and (x + 1) oranges, spending $23 in total. What is the value of x? Enter your answer as a number.",
    "options": null,
    "answer": "4",
-   "explanation": "Total cost: 2x + 3(x + 1) = 23 → 2x + 3x + 3 = 23 → 5x + 3 = 23 → 5x = 20 → x = 4. (Check: 4 apples cost $8 and 5 oranges cost $15, total $23.)",
-   "trap": "Students set up 2x + 3x + 1 = 28 (forgetting to distribute the $3 price to the entire (x+1) oranges quantity), getting 5x = 27, which gives a non-integer.",
+   "explanation": "Step 1 — translate each purchase into a cost. The apples cost 2x dollars and the oranges cost 3(x + 1) dollars.\nStep 2 — translate 'spending $23 in total' as part + part = whole.\n2x + 3(x + 1) = 23\nStep 3 — expand and solve. The parentheses matter: the 3 multiplies the whole count x + 1.\n2x + 3x + 3 = 23\n5x + 3 = 23\n5x = 20\nx = 4\nCheck: 4 apples cost $8 and 5 oranges cost $15, and 8 + 15 = $23. Correct.\nAnswer: 4.",
+   "trap": "Dropping the parentheses and writing 2x + 3x + 1 = 23 gives 5x = 22 and x = 4.4, a non-integer that should immediately signal the slip. The 3 is a price per orange, so it must multiply the entire orange count x + 1, not just the x.",
    "estimated_time_seconds": 55,
    "tags": [
-    "word-problem-setup",
-    "linear-equation",
-    "two-step"
+    "parentheses",
+    "part-part-whole",
+    "translation"
    ]
   },
   {
@@ -242,20 +246,20 @@
    "type": "mcq",
    "question": "The sum of two consecutive even integers is 54. What is the smaller of the two integers?",
    "options": [
-    "A. 24",
+    "A. 25",
     "B. 26",
     "C. 27",
     "D. 28",
-    "E. 30"
+    "E. 52"
    ],
    "answer": "B",
-   "explanation": "Let the two consecutive even integers be n and n + 2. Their sum: n + (n + 2) = 54 → 2n + 2 = 54 → 2n = 52 → n = 26. The smaller integer is 26. Verify: 26 + 28 = 54. Correct.",
-   "trap": "Students write consecutive integers as n and n+1 instead of n and n+2, getting 2n+1=54 → n=26.5, then round to 27 (choice C).",
-   "estimated_time_seconds": 50,
+   "explanation": "Step 1 — name the unknown. Let n = the smaller integer. Consecutive EVEN integers differ by 2, so the two integers are n and n + 2.\nStep 2 — translate 'the sum is 54'.\nn + (n + 2) = 54\n2n + 2 = 54\nStep 3 — solve.\n2n = 52\nn = 26\nStep 4 — answer what was asked. The question wants the SMALLER integer, which is n = 26.\nCheck: the two integers are 26 and 28, both even, consecutive even, and 26 + 28 = 54. Correct.\nAnswer: B.",
+   "trap": "Writing the pair as n and n + 1 gives 2n + 1 = 54 and n = 26.5, and a student who rounds it reports 27, choice C - but 27 is not even. Choice D, 28, is the larger integer rather than the smaller one, and choice E, 52, is the value of 2n reported before the final division by 2. Choice A comes from taking the average 54/2 = 27 and then subtracting the whole gap of 2 instead of half of it.",
+   "estimated_time_seconds": 45,
    "tags": [
-    "word-problem-setup",
-    "linear-equation",
-    "two-step"
+    "consecutive-even",
+    "setup-choice",
+    "answer-asked"
    ]
   },
   {
@@ -305,38 +309,38 @@
    "id": "ALG-WPM-015",
    "difficulty": "medium",
    "type": "numeric_entry",
-   "question": "A number is divided into two parts such that one part is 3 times the other. If the sum of the two parts is 84, what is the value of the larger part?",
+   "question": "A number is divided into two parts so that one part is 3 times the other. The sum of the two parts is 84. What is the value of the larger part? Enter your answer as a number.",
    "options": null,
    "answer": "63",
-   "explanation": "Let the smaller part = x. Then the larger part = 3x. Sum equation: x + 3x = 84 → 4x = 84 → x = 21. The larger part = 3x = 3(21) = 63.",
-   "trap": "Students solve for x = 21 and report that as the answer, but the question asks for the larger part (3x = 63), not the smaller part.",
+   "explanation": "Step 1 — name the SMALLER part as the variable, so that no fractions appear. Let x = the smaller part; then the larger part is 3x.\nStep 2 — translate 'the sum of the two parts is 84' as part + part = whole.\nx + 3x = 84\n4x = 84\nx = 21\nStep 3 — answer what was asked. The question wants the LARGER part: 3x = 3 * 21 = 63.\nCheck: 21 + 63 = 84, and 63 = 3 * 21. Correct.\nAnswer: 63.",
+   "trap": "Reporting 21, the value of x. The variable was deliberately attached to the smaller part to keep the algebra clean, so x is not the answer here. Naming the larger part x instead gives x + x/3 = 84 and the same 63, but with a fraction to clear - which is why the capsule says to let x be the simplest quantity.",
    "estimated_time_seconds": 65,
    "tags": [
-    "word-problem-setup",
-    "linear-equation",
-    "two-step"
+    "choosing-the-variable",
+    "answer-asked",
+    "part-part-whole"
    ]
   },
   {
    "id": "ALG-WPM-016",
    "difficulty": "medium",
    "type": "mcq",
-   "question": "A plumber charges a flat fee of $50 for any job plus $40 per hour of work. An electrician charges $60 per hour with no flat fee. For how many hours of work will both charge the same total amount?",
+   "question": "A plumber charges a flat fee of $50 for a job plus $40 for each hour of work. An electrician charges $60 for each hour of work and no flat fee. For how many hours of work do the two tradespeople charge the same total amount?",
    "options": [
-    "A. 1.5 hours",
-    "B. 2 hours",
-    "C. 2.5 hours",
-    "D. 3 hours",
-    "E. 4 hours"
+    "A. 0.5",
+    "B. 1.25",
+    "C. 2.5",
+    "D. 3",
+    "E. 5"
    ],
    "answer": "C",
-   "explanation": "Let h = hours. Plumber: 50 + 40h. Electrician: 60h. Set equal: 50 + 40h = 60h → 50 = 20h → h = 2.5 hours. (Check: plumber 50 + 40(2.5) = $150; electrician 60(2.5) = $150.)",
-   "trap": "Students set up the equation correctly but forget the flat fee on one side, writing 40h = 60h and concluding they are never equal.",
-   "estimated_time_seconds": 80,
+   "explanation": "Step 1 — name the unknown. Let h = the number of hours of work.\nStep 2 — translate each charge. The flat fee is paid once, not per hour.\nPlumber: 50 + 40h\nElectrician: 60h\nStep 3 — translate 'charge the same total amount' as one equation.\n50 + 40h = 60h\n50 = 20h\nh = 2.5\nCheck: plumber 50 + 40(2.5) = 50 + 100 = $150; electrician 60(2.5) = $150. Equal. Correct.\nAnswer: C.",
+   "trap": "Choice A, 0.5, comes from dividing 50 by the SUM of the two hourly rates, 40 + 60 = 100, instead of by their difference. Choice B, 1.25, comes from solving 40h = 50, ignoring the electrician entirely. Choice E, 5, comes from dividing the flat fee by 60 - 50 = 10, differencing a fee and a rate instead of the two rates. Choice D, 3, is where a student lands who insists the answer must be a whole number of hours and rounds 2.5 up; hours are a continuous quantity here, so 2.5 is a legitimate answer.",
+   "estimated_time_seconds": 75,
    "tags": [
-    "word-problem-setup",
-    "linear-equation",
-    "two-variable-system"
+    "equal-cost-model",
+    "fixed-plus-rate",
+    "translation"
    ]
   },
   {
@@ -363,18 +367,18 @@
   },
   {
    "id": "ALG-WPM-018",
-   "difficulty": "medium",
+   "difficulty": "hard",
    "type": "numeric_entry",
-   "question": "Five years ago, Maria was 3 times as old as her son Carlos. Today, Maria is 2.5 times as old as Carlos. How old is Carlos today?",
+   "question": "Five years ago Maria was 3 times as old as her son Carlos was then. Today Maria is 2.5 times as old as Carlos. What is the sum of their present ages, in years? Enter your answer as a number.",
    "options": null,
-   "answer": "20",
-   "explanation": "Let Carlos = c, so Maria = 2.5c. Five years ago: Carlos = c − 5, Maria = 2.5c − 5, with 2.5c − 5 = 3(c − 5). Expand: 2.5c − 5 = 3c − 15 → 10 = 0.5c → c = 20. (Check: five years ago Carlos = 15 and Maria = 45 = 3 × 15.)",
-   "trap": "Students set up the five-years-ago equation as 2.5c − 5 = 3(c − 5) correctly but then make an algebra sign error when moving terms, getting c = 10 or c = 15 instead of 20.",
-   "estimated_time_seconds": 90,
+   "answer": "70",
+   "explanation": "Step 1 — name the unknowns as present ages. Let C = Carlos's age today and M = Maria's age today.\nStep 2 — translate today's sentence.\nM = 2.5C\nStep 3 — translate 'five years ago', subtracting 5 from BOTH ages.\nM - 5 = 3(C - 5)\nM - 5 = 3C - 15, so M = 3C - 10\nStep 4 — set the two expressions for M equal.\n2.5C = 3C - 10\n0.5C = 10, so C = 20 and M = 2.5(20) = 50\nStep 5 — answer what was asked: the SUM of the present ages.\n20 + 50 = 70\nCheck: five years ago they were 15 and 45, and 45 = 3 * 15; today 50 = 2.5 * 20. Correct.\nAnswer: 70.",
+   "trap": "Subtracting 5 from only Maria's age, writing M - 5 = 3C, gives 2.5C - 5 = 3C, so C = -10 - a negative age that signals the slip. Reporting 20 (Carlos) or 50 (Maria) instead of their sum is the other error: the equation solves for C, but the question asks for C + M.",
+   "estimated_time_seconds": 100,
    "tags": [
-    "word-problem-setup",
-    "two-variable-system",
-    "multi-step"
+    "age-shift",
+    "two-conditions",
+    "answer-asked"
    ]
   },
   {
@@ -402,47 +406,48 @@
    "id": "ALG-WPM-020",
    "difficulty": "medium",
    "type": "mcq",
-   "question": "A jar contains quarters (25 cents) and dimes (10 cents). There are 20 coins in total worth $3.80. How many quarters are in the jar?",
+   "question": "A jar contains only quarters (25 cents each) and dimes (10 cents each). There are 20 coins in the jar and they are worth $3.80 in total. How many dimes are in the jar?",
    "options": [
     "A. 8",
     "B. 10",
     "C. 12",
-    "D. 14",
-    "E. 16"
+    "D. 15",
+    "E. 20"
    ],
-   "answer": "C",
-   "explanation": "Let q = number of quarters, d = number of dimes. Equation 1 (count): q + d = 20. Equation 2 (value in cents): 25q + 10d = 380. From equation 1: d = 20 − q. Substituting into equation 2: 25q + 10(20 − q) = 380 → 25q + 200 − 10q = 380 → 15q = 180 → q = 12. Verify: 12 quarters + 8 dimes = 20 coins. Value: 12(25) + 8(10) = 300 + 80 = 380 cents = $3.80. Correct.",
-   "trap": "Students set up 25q + 10d = 3.80 (mixing dollars and cents units) instead of 380 cents, leading to a fractional wrong answer.",
-   "estimated_time_seconds": 80,
+   "answer": "A",
+   "explanation": "Step 1 — name the unknowns. Let q = the number of quarters and d = the number of dimes.\nStep 2 — translate the two sentences into two equations, working in cents so the units match.\nq + d = 20 (a count of coins)\n25q + 10d = 380 (a value in cents)\nStep 3 — substitute d = 20 - q.\n25q + 10(20 - q) = 380\n25q + 200 - 10q = 380\n15q = 180\nq = 12\nStep 4 — answer what was asked. The question wants DIMES: d = 20 - 12 = 8.\nCheck: 12 quarters = 300 cents, 8 dimes = 80 cents, total 380 cents = $3.80, and 12 + 8 = 20 coins. Correct.\nAnswer: A.",
+   "trap": "Choice C, 12, is the number of quarters - the value you solve for first, not the one the question asks for. Swapping the two coin values into 10q + 25d = 380 also produces 12 and lands on C. Choice B, 10, assumes the 20 coins split evenly between the two kinds, using neither the $3.80 nor any equation; choice D, 15, comes from treating the whole $3.80 as quarters, 380/25 = 15.2, and truncating to 15 coins; and choice E is the total number of coins reported by mistake.",
+   "estimated_time_seconds": 85,
    "tags": [
-    "word-problem-setup",
-    "two-variable-system",
-    "substitution-method"
+    "two-conditions",
+    "units-cents",
+    "answer-asked"
    ]
   },
   {
    "id": "ALG-WPM-021",
    "difficulty": "medium",
    "type": "multiple_answer",
-   "question": "A movie theater sells adult tickets for $12 and student tickets for $8. One evening the total ticket revenue was exactly $1,560, with at least one of each type sold. Select all values below that could be the number of adult tickets sold.",
+   "question": "A theatre sells adult tickets for $12 each and student tickets for $8 each, and sells nothing else. One evening its total ticket revenue was exactly $1,560, and at least one ticket of each type was sold. Which of the following could be the number of adult tickets sold that evening? Select all that apply.",
    "options": [
     "A. 25",
     "B. 30",
-    "C. 45",
-    "D. 60",
-    "E. 75"
+    "C. 60",
+    "D. 100",
+    "E. 130"
    ],
    "answer": [
     "B",
+    "C",
     "D"
    ],
-   "explanation": "With 12a + 8s = 1560, divide by 4: 3a + 2s = 390, so s = (390 − 3a)/2. For s to be a positive integer, 390 − 3a must be even (so a is even) and positive (a < 130). Among the choices, only the even values work: a = 30 gives s = 150 ✓; a = 60 gives s = 105 ✓. The odd values 25, 45, 75 make s a non-integer.",
-   "trap": "Students solve for a unique solution using both equations simultaneously without recognizing that the question only constrains revenue to a range, allowing multiple valid values of adult tickets.",
+   "explanation": "Step 1 — translate the revenue sentence. With a adult tickets and s student tickets, 12a + 8s = 1560.\nStep 2 — solve for s so each candidate can be tested. s = (1560 - 12a)/8 = 195 - 1.5a.\nStep 3 — state the two hidden conditions. Tickets are counted, so s must be a whole number, and 'at least one of each type' forces s >= 1 and a >= 1.\nA - a = 25: s = 195 - 37.5 = 157.5, not a whole number of tickets. FALSE.\nB - a = 30: s = 195 - 45 = 150, a whole number and at least 1. TRUE.\nC - a = 60: s = 195 - 90 = 105. TRUE.\nD - a = 100: s = 195 - 150 = 45. TRUE.\nE - a = 130: s = 195 - 195 = 0, but at least one student ticket was sold. FALSE.\nCheck: 12(30) + 8(150) = 360 + 1200 = 1560; 12(60) + 8(105) = 720 + 840 = 1560; 12(100) + 8(45) = 1200 + 360 = 1560. Correct.\nAnswer: B, C and D.",
+   "trap": "Choice A survives only if the whole-number condition is ignored: 25 adult tickets leaves $1,260, which is not divisible by 8, so half a student ticket would have to be sold. Because s = 195 - 1.5a, a must be even. Choice E fails for a different reason - it is even and gives a whole number, but it uses up the entire $1,560 on adults and leaves no student ticket at all, which the stem forbids.",
    "estimated_time_seconds": 90,
    "tags": [
-    "word-problem-setup",
-    "two-variable-system",
-    "multiple-answer"
+    "integer-condition",
+    "two-conditions",
+    "could-be-true"
    ]
   },
   {
@@ -458,20 +463,20 @@
     "E. 25"
    ],
    "answer": "C",
-   "explanation": "Let the four consecutive odd integers be n, n+2, n+4, n+6. Sum: n + (n+2) + (n+4) + (n+6) = 80 → 4n + 12 = 80 → 4n = 68 → n = 17. The four integers are 17, 19, 21, 23. The second-largest is 21.",
-   "trap": "Students find n = 17 (the smallest) and report it as the answer, or they find the largest (23) without identifying which is second-largest.",
-   "estimated_time_seconds": 70,
+   "explanation": "Step 1 — name the unknown. Let n = the smallest integer. Consecutive ODD integers differ by 2, so the four are n, n + 2, n + 4 and n + 6.\nStep 2 — translate 'the sum is 80'.\nn + (n + 2) + (n + 4) + (n + 6) = 80\n4n + 12 = 80\nStep 3 — solve.\n4n = 68\nn = 17\nStep 4 — list and answer what was asked. The integers are 17, 19, 21, 23. The second-largest is 21.\nCheck: 17 + 19 + 21 + 23 = 80, and all four are odd and consecutive odd. Correct.\nAnswer: C.",
+   "trap": "Choice B, 19, is where the n, n + 1, n + 2, n + 3 setup leads: it gives 4n + 6 = 80, so n = 18.5, and a student who rounds to 19 reports the second term of the wrong list. Choice A, 17, is n itself, choice D, 23, is the largest rather than the second-largest, and choice E, 25, is one term further along the list than the largest.",
+   "estimated_time_seconds": 80,
    "tags": [
-    "word-problem-setup",
-    "linear-equation",
-    "two-step"
+    "consecutive-odd",
+    "answer-asked",
+    "setup-choice"
    ]
   },
   {
    "id": "ALG-WPM-023",
    "difficulty": "medium",
    "type": "quantitative_comparison",
-   "question": "Three consecutive integers have a sum of 3k, where k is a positive integer.\n\nColumn A: The middle integer\nColumn B: k",
+   "question": "Three consecutive integers have a sum of 3k, where k is a positive integer.\nColumn A: The middle integer\nColumn B: k",
    "options": [
     "A. Column A is greater",
     "B. Column B is greater",
@@ -479,29 +484,29 @@
     "D. The relationship cannot be determined from the information given"
    ],
    "answer": "C",
-   "explanation": "Let the three consecutive integers be n−1, n, n+1. Their sum = 3n = 3k, so n = k. The middle integer is n = k. Column A = k = Column B = k. The two quantities are always equal regardless of the value of k.",
-   "trap": "Students pick specific values (e.g., k=5, integers 4,5,6) and confirm equality for that case but worry that it might not hold generally, choosing D. The algebraic proof shows it always holds.",
-   "estimated_time_seconds": 70,
+   "explanation": "Step 1 — name the unknown around the MIDDLE term, which is the efficient choice here. Let the three integers be m - 1, m and m + 1.\nStep 2 — translate 'have a sum of 3k'.\n(m - 1) + m + (m + 1) = 3m = 3k\nStep 3 — solve. The -1 and +1 cancel, so 3m = 3k gives m = k exactly, for every allowed k.\nColumn A = m = k = Column B, so the two quantities are equal.\nCheck with k = 5: the sum is 15, and the three integers are 4, 5, 6, whose middle term is 5 = k. Try k = 100: the sum is 300 and the integers are 99, 100, 101, middle 100 = k. Correct.\nAnswer: C.",
+   "trap": "Choosing D on the grounds that the actual integers are never named. They do not need to be: the sum of three consecutive integers is always 3 times the middle one, so the middle term is pinned to k no matter which k is used. Setting the integers up as n, n + 1, n + 2 instead gives 3n + 3 = 3k, so n = k - 1; a student who then compares n rather than the middle term n + 1 wrongly concludes that Column B is greater.",
+   "estimated_time_seconds": 80,
    "tags": [
-    "word-problem-setup",
-    "qc",
-    "conceptual"
+    "consecutive-integers",
+    "middle-term",
+    "qc"
    ]
   },
   {
    "id": "ALG-WPM-024",
    "difficulty": "medium",
    "type": "numeric_entry",
-   "question": "The difference between two positive integers is 14, and their sum is 46. What is the product of the two integers?",
+   "question": "The difference between two positive integers is 14 and their sum is 46. What is the product of the two integers? Enter your answer as a number.",
    "options": null,
    "answer": "480",
-   "explanation": "Let the two integers be x and y with x > y. Equation 1: x − y = 14. Equation 2: x + y = 46. Adding the two equations: 2x = 60 → x = 30. Subtracting: 2y = 32 → y = 16. Product = x × y = 30 × 16 = 480. Verify: 30 − 16 = 14 ✓, 30 + 16 = 46 ✓.",
-   "trap": "Students solve correctly for x = 30 and y = 16 but then report their sum (46) instead of their product (480), confusing the final step.",
+   "explanation": "Step 1 — name the unknowns. Let a = the larger integer and b = the smaller, so a > b.\nStep 2 — translate both sentences.\na - b = 14\na + b = 46\nStep 3 — add the two equations; the b terms cancel.\n2a = 60, so a = 30\nThen b = 46 - 30 = 16.\nStep 4 — answer what was asked: the PRODUCT, not either integer.\n30 * 16 = 480\nCheck: 30 - 16 = 14 and 30 + 16 = 46, and 30 * 16 = 480. Correct.\nAnswer: 480.",
+   "trap": "Reporting 30 or 16, the integers themselves, instead of their product; or writing b - a = 14, which gives a = 16 and b = 30 and contradicts 'a is the larger'. The sum-and-difference pair is fastest solved by adding the equations: the larger is always (sum + difference)/2 = (46 + 14)/2 = 30.",
    "estimated_time_seconds": 75,
    "tags": [
-    "word-problem-setup",
-    "two-variable-system",
-    "multi-step"
+    "sum-and-difference",
+    "answer-asked",
+    "two-conditions"
    ]
   },
   {
@@ -696,22 +701,22 @@
    "id": "ALG-WPM-034",
    "difficulty": "hard",
    "type": "mcq",
-   "question": "A company sells two products, X and Y. Product X sells for $30 and costs $18 to produce. Product Y sells for $50 and costs $35 to produce. In one month, the company sold a total of 200 items and earned a total profit of $2,625. How many units of Product X were sold?",
+   "question": "A company sells two products. Product X sells for $30 and costs $18 to produce; Product Y sells for $50 and costs $35 to produce. In one month the company sold 200 items in total, all of them Product X or Product Y, and earned a total profit of $2,625. How many units of Product X were sold?",
    "options": [
-    "A. 50",
-    "B. 75",
-    "C. 100",
-    "D. 125",
-    "E. 150"
+    "A. 75",
+    "B. 100",
+    "C. 125",
+    "D. 175",
+    "E. 200"
    ],
-   "answer": "D",
-   "explanation": "Profit per X = 30 − 18 = $12; profit per Y = 50 − 35 = $15. With x + y = 200 and 12x + 15y = 2625, substitute y = 200 − x: 12x + 15(200 − x) = 2625 → -3x + 3000 = 2625 → 3x = 375 → x = 125. (Then y = 75; check 12·125 + 15·75 = 2625.)",
-   "trap": "Students set up the system correctly but substitute back incorrectly, making a sign error in elimination: subtracting equations gives 3x = 900 but students flip the sign to get x = −300 or x = 75 (choice B).",
-   "estimated_time_seconds": 95,
+   "answer": "C",
+   "explanation": "Step 1 — convert prices into the quantity the question is really about: profit per unit.\nProduct X: 30 - 18 = $12 per unit.\nProduct Y: 50 - 35 = $15 per unit.\nStep 2 — name the unknowns and translate the two sentences.\nx + y = 200 (a count of items)\n12x + 15y = 2625 (a total profit in dollars)\nStep 3 — substitute y = 200 - x.\n12x + 15(200 - x) = 2625\n12x + 3000 - 15x = 2625\n-3x = -375\nx = 125\nCheck: 125 units of X give 125 * 12 = $1,500 profit; the other 75 units of Y give 75 * 15 = $1,125; and 1500 + 1125 = $2,625 on 200 items. Correct.\nAnswer: C.",
+   "trap": "Choice A, 75, is the number of Product Y units - the value you get if you substitute x = 200 - y instead and then forget which letter you solved for. Choice B, 100, assumes the 200 items split evenly and never uses the $2,625. Choice D, 175, is 2625/15, the total profit divided by one product's margin as though only Product Y were sold, and choice E is the total item count reported as the answer.",
+   "estimated_time_seconds": 100,
    "tags": [
-    "word-problem-setup",
-    "two-variable-system",
-    "multi-step"
+    "two-conditions",
+    "profit-per-unit",
+    "answer-asked"
    ]
   },
   {
@@ -902,25 +907,25 @@
    "id": "ALG-WPM-044",
    "difficulty": "hard",
    "type": "multiple_answer",
-   "question": "Positive integers a, b, and c satisfy a + b + c = 12 with a < b < c. Which of the following must be true? Select all that apply.",
+   "question": "The positive integers a, b and c satisfy a + b + c = 12 and a < b < c. Which of the following must be true? Select all that apply.",
    "options": [
-    "A. a ≤ 3",
+    "A. a <= 3",
     "B. c > a + b",
-    "C. c ≥ 5",
-    "D. b ≥ 4",
+    "C. c >= 5",
+    "D. b >= 4",
     "E. a = 1"
    ],
    "answer": [
     "A",
     "C"
    ],
-   "explanation": "With a < b < c positive integers summing to 12: (A) if a ≥ 4 then b ≥ 5 and c ≥ 6, giving sum ≥ 15 > 12, so a ≤ 3 — must be true. (C) if c ≤ 4 then a + b + c ≤ 2 + 3 + 4 = 9 < 12, so c ≥ 5 — must be true. The rest can fail: (B) fails for (3, 4, 5) since 5 < 7; (D) fails for (1, 2, 9); (E) fails for (3, 4, 5).",
-   "trap": "Students test specific small values (a=2, b=5, c=10: sum=17≠30, product≠c) without systematically finding all valid triples, then guess about which statements hold universally.",
-   "estimated_time_seconds": 110,
+   "explanation": "Step 1 — translate the conditions into a complete list. Positive integers, strictly increasing, summing to 12:\n(1, 2, 9), (1, 3, 8), (1, 4, 7), (1, 5, 6), (2, 3, 7), (2, 4, 6), (3, 4, 5).\nA - the a values are 1, 1, 1, 1, 2, 2, 3, so a never exceeds 3. TRUE.\nB - take (3, 4, 5): c = 5 and a + b = 7, so c > a + b fails. FALSE.\nC - the c values are 9, 8, 7, 6, 7, 6, 5, so c is never below 5. TRUE.\nD - take (1, 2, 9): b = 2, so b >= 4 fails. FALSE.\nE - take (2, 3, 7): a = 2, so a = 1 fails. FALSE.\nCheck on the boundary case (3, 4, 5): a = 3 satisfies A, c = 5 satisfies C, and it is exactly the triple that kills B. Correct.\nAnswer: A and C.",
+   "trap": "B looks safe because c is the largest of the three, but 'largest' does not mean 'larger than the other two combined' - (3, 4, 5) is the counterexample, and it is also the triple that makes A and C tight. D and E come from testing only the spread-out triples such as (1, 2, 9), where a really is 1; one balanced triple destroys both.",
+   "estimated_time_seconds": 105,
    "tags": [
-    "word-problem-setup",
-    "multi-step",
-    "multiple-answer"
+    "must-be-true",
+    "integer-conditions",
+    "boundary-case"
    ]
   },
   {
@@ -947,18 +952,18 @@
   },
   {
    "id": "ALG-WPM-046",
-   "difficulty": "extreme_hard",
+   "difficulty": "hard",
    "type": "numeric_entry",
-   "question": "Alex, Beth, and Carlos divide a prize. Alex receives $200 more than Beth. Carlos receives twice as much as Beth minus $50. If the total prize is $1,550, how much does Beth receive?",
+   "question": "Alex, Beth and Carlos divide a prize of $1,550 among themselves and nothing is left over. Alex receives $200 more than Beth, and Carlos receives $50 less than twice what Beth receives. How many more dollars does Carlos receive than Alex? Enter your answer as a number.",
    "options": null,
-   "answer": "350",
-   "explanation": "Let Beth = b. Then Alex = b + 200 and Carlos = 2b − 50. Total: b + (b + 200) + (2b − 50) = 1550 → 4b + 150 = 1550 → 4b = 1400 → b = 350. (Check: Beth 350, Alex 550, Carlos 650, sum 1550.)",
-   "trap": "Students translate 'Carlos receives twice as much as Beth minus $50' as Carlos = 2(b − 50) = 2b − 100 rather than Carlos = 2b − 50, due to ambiguous parsing of the phrase. The intended reading is (2×Beth) − 50.",
-   "estimated_time_seconds": 110,
+   "answer": "100",
+   "explanation": "Step 1 — name the quantity every other share is described against. Let B = Beth's share, in dollars.\nStep 2 — translate each relationship.\nAlex: A = B + 200\nCarlos: '$50 less than twice what Beth receives' is 2B - 50, so C = 2B - 50\nStep 3 — translate 'divide a prize of $1,550' as part + part + part = whole.\n(B + 200) + B + (2B - 50) = 1550\n4B + 150 = 1550\n4B = 1400, so B = 350\nStep 4 — compute the other two shares.\nA = 350 + 200 = 550\nC = 2(350) - 50 = 650\nStep 5 — answer what was asked: a difference of shares, not a share.\n650 - 550 = 100\nCheck: 550 + 350 + 650 = 1,550. Alex has $200 more than Beth, Carlos has $650 = 700 - 50. Correct.\nAnswer: 100.",
+   "trap": "Reporting 350 (Beth's share, the variable you solved for) or 650 (Carlos's share) instead of the difference the question asks for. The other trap is the order in '$50 less than twice what Beth receives': it is 2B - 50, not 50 - 2B, and not 2(B - 50), which would give 4B + 100 = 1550, so B = 362.50 - a share in half-cents that should signal the misreading.",
+   "estimated_time_seconds": 100,
    "tags": [
-    "word-problem-setup",
-    "linear-equation",
-    "multi-step"
+    "three-relationships",
+    "less-than",
+    "answer-asked"
    ]
   },
   {
@@ -1033,23 +1038,80 @@
    "id": "ALG-WPM-050",
    "difficulty": "extreme_hard",
    "type": "mcq",
-   "question": "A factory produces widgets at a constant rate. It starts with a full warehouse of W widgets. Each day, the factory produces p widgets and ships out s widgets (with s > p, so inventory decreases). On Day 1, inventory = W + p − s. The warehouse becomes empty on exactly Day 30. A new contract requires the factory to ship twice as many widgets per day (2s instead of s) while keeping production at p. Starting from the same full warehouse W, on which day does the warehouse become empty under the new contract?",
+   "question": "A warehouse begins completely full, holding W widgets. On each day a factory adds p widgets to the warehouse and ships 3p widgets out of it, where p > 0. Under this schedule the warehouse holds exactly 0 widgets at the end of Day 30. A new contract doubles the daily shipments to 6p widgets while production stays at p widgets per day. Starting again from the same full warehouse of W widgets, at the end of which day does the warehouse hold exactly 0 widgets?",
    "options": [
     "A. Day 10",
     "B. Day 12",
-    "C. Day 14",
-    "D. Day 15",
+    "C. Day 15",
+    "D. Day 18",
     "E. Day 20"
    ],
-   "answer": "D",
-   "explanation": "Under original contract: each day, net change = p − s (negative, since s > p). Starting inventory = W. After n days, inventory = W + n(p − s). Warehouse empty when W + n(p − s) = 0 → n = W/(s − p) = 30. So W = 30(s − p). Under new contract: each day, net change = p − 2s. Starting inventory = W. Empty when W + m(p − 2s) = 0 → m = W/(2s − p). Now W = 30(s − p), so m = 30(s − p)/(2s − p). This depends on p and s values. We need additional info to get a unique numerical answer. However, if we assume p = 0 (factory produces nothing, only ships): m = 30s/(2s) = 15. Answer: Day 15. Alternatively, a clean answer of 15 emerges when p is negligible. The intended insight: if p << s, the daily depletion roughly doubles under the new contract, halving the number of days: 30/2 = 15. This gives answer D. Formal check with p=0: W=30s, new contract depletes 2s/day, days = 30s/(2s) = 15. If p=s/2: W=30(s−s/2)=15s, new daily loss=2s−s/2=3s/2, days=15s/(3s/2)=10. This gives Day 10 (choice A). With p=s/3: W=30(2s/3)=20s, loss=2s−s/3=5s/3, days=20s/(5s/3)=12. Day 12 (choice B). The answer depends on p. This is a D (cannot be determined) situation — but that's not offered. The question implies a unique answer exists, suggesting p=0 is intended.",
-   "trap": "Students assume the number of days simply halves (30/2 = 15) because shipping doubled, without accounting for the fact that production p partially offsets the extra shipping. Only when p = 0 does halving hold exactly. Students who recognize this dependency may think the answer is D (cannot be determined), but no such choice exists, nudging them toward the p=0 case.",
-   "estimated_time_seconds": 125,
+   "answer": "B",
+   "explanation": "Step 1 — translate one day, not one event. Each day the stock changes by (added) - (shipped) = p - 3p = -2p widgets.\nStep 2 — translate 'holds exactly 0 at the end of Day 30'.\nW - 30(2p) = 0, so W = 60p.\nStep 3 — translate the new contract as a new daily change. Production is still p and shipments are 6p, so the daily change is p - 6p = -5p.\nStep 4 — solve for the new number of days n.\nW - n(5p) = 0\n60p = 5pn\nn = 12, since p > 0 lets p cancel.\nCheck: at 2p a day for 30 days the warehouse loses 60p, exactly W; at 5p a day it loses 60p in 12 days. Correct.\nAnswer: B.",
+   "trap": "Choice C, Day 15, is the answer of a student who reasons that doubling the shipments halves the time: the shipments doubled, but the DAILY NET drain went from 2p only to 5p, a factor of 2.5, not 2, because production keeps offsetting it. Choice A, Day 10, keeps W = 60p but uses 6p as the new drain, forgetting that production continues; choice D, Day 18, sets W = 30(3p) = 90p by forgetting production in the first phase and then divides by the correct 5p; choice E, Day 20, uses a net drain of 3p by confusing the shipment rate with the net rate.",
+   "estimated_time_seconds": 120,
    "tags": [
-    "word-problem-setup",
-    "multi-step",
-    "conceptual"
+    "net-rate-model",
+    "translation",
+    "parameter-cancellation"
    ]
+  },
+  {
+   "id": "SEC-NP-021",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "Working continuously for a total of 90 hours, a machine first assembled x units of product G and then assembled y units of product H, where x and y are positive integers. It took the machine 6 hours to assemble each unit of product G and 11 hours to assemble each unit of product H. What is the total number of units of products G and H that the machine assembled in the 90 hours?",
+   "options": null,
+   "answer": "10",
+   "explanation": "The hours must account exactly: 6x + 11y = 90, with x and y both positive integers. Solve for x: 6x = 90 - 11y, so 90 - 11y must be positive and divisible by 6. Test the possible values of y from 1 upward: y = 1 leaves 79, y = 2 leaves 68, y = 3 leaves 57, y = 4 leaves 46 and y = 5 leaves 35, none divisible by 6. y = 6 leaves 90 - 66 = 24, which gives x = 4. Beyond that, y = 7 leaves 13 and y = 8 leaves 2, neither divisible by 6. So the only solution is x = 4 and y = 6, and the total number of units is 4 + 6 = 10. Check: 6(4) + 11(6) = 24 + 66 = 90.",
+   "trap": "Students divide 90 by an average time, say by (6 + 11)/2 = 8.5, and report about 11 units. The two products take different amounts of time and the counts must both be whole numbers, so the total is fixed by the one integer solution of the equation, not by an average.",
+   "estimated_time_seconds": 115,
+   "tags": [
+    "integer-solutions",
+    "divisibility"
+   ],
+   "origin": "sectional",
+   "origin_set": "number_properties_set2"
+  },
+  {
+   "id": "SEC-PR-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A customer bought m items at a stationery shop, where m is greater than 4. If 4 of the m items cost $6 each and each of the remaining items cost $11 each, what was the total cost, in dollars, of the m items purchased, in terms of m?",
+   "options": [
+    "A. 11m - 20",
+    "B. 11m - 44",
+    "C. 11m + 20",
+    "D. 6m + 20",
+    "E. 17m - 44"
+   ],
+   "answer": "A",
+   "explanation": "The four cheaper items cost 4 x 6 = 24 dollars in total. The remaining m - 4 items cost 11 dollars each, so they cost 11(m - 4) = 11m - 44 dollars. Adding the two parts gives 24 + 11m - 44 = 11m - 20.",
+   "trap": "Students compute 11(m - 4) = 11m - 44 for the expensive items and forget to add back the $24 the four cheaper items cost, choosing B. A quick numerical check settles it: with m = 5 the true total is 4(6) + 1(11) = 35, and only 11m - 20 gives 35.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "algebraic-expressions",
+    "unit-cost"
+   ],
+   "origin": "sectional",
+   "origin_set": "percentages_set2"
+  },
+  {
+   "id": "SEC-PR-020",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "At a market, plums cost $4.00 per kilogram, pears cost $2.00 per kilogram, and figs cost $5.00 per kilogram. A shopper bought 2 kilograms more of plums than of pears, and 1 kilogram fewer of figs than of pears. The shopper spent a total of $52.50 on plums, pears and figs. How many kilograms of pears did the shopper buy?",
+   "options": null,
+   "answer": "4.5",
+   "explanation": "Let x be the number of kilograms of pears. Then the shopper bought x + 2 kilograms of plums and x - 1 kilograms of figs. The total cost is 4(x + 2) + 2(x) + 5(x - 1) = 4x + 8 + 2x + 5x - 5 = 11x + 3. Setting that equal to 52.50 gives 11x = 49.50, so x = 4.5. Check: 6.5 kilograms of plums cost $26.00, 4.5 kilograms of pears cost $9.00, and 3.5 kilograms of figs cost $17.50, which totals $52.50.",
+   "trap": "Students set up the three quantities correctly but attach them to the wrong prices, writing the plum term as 4x and the pear term as 2(x + 2). The relationships are stated relative to pears, so pears is the variable and the other two quantities are adjusted, each then multiplied by its own price.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "unit-cost",
+    "linear-equations"
+   ],
+   "origin": "sectional",
+   "origin_set": "percentages_set2"
   }
  ]
 }
