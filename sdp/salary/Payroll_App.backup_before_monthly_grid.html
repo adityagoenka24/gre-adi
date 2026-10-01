@@ -96,17 +96,6 @@
     .payslip-grid{height:100%; min-height:0;}
     @page{size:A4; margin:10mm;}
   }
-  .att-grid-wrap{overflow-x:auto; margin:12px 0; border:1px solid var(--border); border-radius:6px;}
-  table.att-grid{border-collapse:separate; border-spacing:0; font-size:12px; min-width:100%;}
-  table.att-grid th, table.att-grid td{border-bottom:1px solid var(--border); border-right:1px solid var(--border); padding:4px 2px; text-align:center; min-width:30px; background:#fff;}
-  table.att-grid thead th{background:#eef1f6; position:sticky; top:0; z-index:1; line-height:1.2;}
-  table.att-grid th.att-name, table.att-grid td.att-name{position:sticky; left:0; z-index:2; text-align:left; min-width:140px; padding:4px 8px; background:#f7f8fb; font-weight:600; white-space:nowrap;}
-  table.att-grid thead th.att-name{z-index:3; background:#eef1f6;}
-  table.att-grid th.att-total, table.att-grid td.att-total{min-width:54px; font-weight:700; background:#f7f8fb;}
-  table.att-grid .att-dow{display:block; font-weight:400; color:#6b7280; font-size:10px;}
-  table.att-grid th.att-off, table.att-grid td.att-off{background:#e5e7eb; color:#9ca3af;}
-  table.att-grid td.att-absent{background:#fdecea;}
-  table.att-grid input[type=checkbox]{width:16px; height:16px; cursor:pointer; margin:0;}
 </style>
 <script>
 /* Vendored jsPDF 2.5.1 — bundled offline, no CDN/internet dependency. Used to generate payslip PDFs directly in-browser, bypassing each browser's native print engine for consistent output across Chrome, Safari, Firefox. */
@@ -615,19 +604,19 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   <section id="tab-attendance">
     <div class="card">
       <h2>Mark Attendance</h2>
-      <p class="hint">Pick a month. Everyone is <strong>present</strong> by default &mdash; tick the box only on the days someone was <strong>absent</strong>, then save once for the whole month. Sundays, public holidays, future dates and days before an employee joined are greyed out. Re-saving a month overwrites it.</p>
+      <p class="hint">Check anyone who was ABSENT on the selected date. Everyone unchecked is treated as present. Re-saving a date overwrites that day's record.</p>
       <div class="row" style="max-width:260px;">
         <div>
-          <label>Month</label>
-          <input type="month" id="att-month">
+          <label>Date</label>
+          <input type="date" id="att-date">
         </div>
       </div>
-      <div id="att-grid-wrap" class="att-grid-wrap"></div>
+      <div id="att-holiday-note" class="holiday-note" style="display:none;"></div>
+      <div class="checklist" id="att-checklist"></div>
       <div class="btn-row">
-        <button class="btn" id="btn-save-attendance">Save Attendance for this Month</button>
-        <button class="btn secondary" id="btn-mark-all-present">Clear All Ticks (Everyone Present)</button>
+        <button class="btn" id="btn-save-attendance">Save Attendance for this Date</button>
+        <button class="btn secondary" id="btn-mark-all-present">Mark Everyone Present</button>
       </div>
-      <p class="muted" id="att-dirty-note" style="display:none;margin-top:8px;">You have unsaved changes.</p>
     </div>
 
     <div class="card">
@@ -638,7 +627,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
 
     <div class="card">
       <h2>Recent Absences</h2>
-      <p class="hint">Last 15 dates with at least one absence logged. Click Edit to open that month in the grid above.</p>
+      <p class="hint">Last 15 dates with at least one absence logged. Click a date to load and edit it above.</p>
       <div id="recent-attendance"></div>
     </div>
   </section>
@@ -1062,127 +1051,62 @@ function deleteEmployeePermanently(id){
 }
 
 /* ===================== Attendance ===================== */
-const attMonthInput=document.getElementById("att-month");
-attMonthInput.value=currentMonthStr();
-let attPrevMonth=attMonthInput.value;
-let attDirty=false;
-function setAttDirty(v){
-  attDirty=v;
-  document.getElementById("att-dirty-note").style.display=v?"block":"none";
-}
-attMonthInput.addEventListener("change", ()=>{
-  if(!attMonthInput.value){ attMonthInput.value=attPrevMonth; return; }
-  if(attDirty && !confirm("You have unsaved changes for "+monthLabelPretty(attPrevMonth)+". Discard them and switch month?")){
-    attMonthInput.value=attPrevMonth; return;
-  }
-  setAttDirty(false);
-  attPrevMonth=attMonthInput.value;
-  renderAttendanceChecklist();
-});
-// Used by the "Edit" / "Fill In" links below: jump the grid to the month containing a date.
-function gotoAttendanceDate(ds){
-  if(attDirty && ds.slice(0,7)!==attPrevMonth && !confirm("You have unsaved changes for "+monthLabelPretty(attPrevMonth)+". Discard them and switch month?")) return;
-  setAttDirty(false);
-  attMonthInput.value=ds.slice(0,7);
-  attPrevMonth=attMonthInput.value;
-  renderAttendanceChecklist();
-  window.scrollTo({top:0, behavior:"smooth"});
-}
-
-const DOW_LETTERS=["S","M","T","W","T","F","S"];
-// Which days of the selected month are editable, and which are greyed out (and why).
-function attDayInfo(year, month){
-  const n=new Date(year,month,0).getDate();
-  const today=new Date(); today.setHours(0,0,0,0);
-  const days=[];
-  for(let d=1; d<=n; d++){
-    const dt=new Date(year,month-1,d);
-    const ds=toDateStr(dt);
-    let off=null;
-    if(dt.getDay()===0) off="Sunday";
-    else if(isHoliday(ds)) off="Holiday: "+state.holidays[ds];
-    else if(dt>today) off="Future date";
-    days.push({d, ds, dow:dt.getDay(), off});
-  }
-  return days;
-}
+const attDateInput=document.getElementById("att-date");
+attDateInput.value=toDateStr(new Date());
+attDateInput.addEventListener("change", renderAttendanceChecklist);
 
 function renderAttendanceChecklist(){
-  const m=attMonthInput.value;
-  const wrap=document.getElementById("att-grid-wrap");
-  if(!m){ wrap.innerHTML=""; return; }
-  const {year,month}=parseMonthStr(m);
-  const days=attDayInfo(year,month);
+  const dateStr=attDateInput.value;
+  const noteEl=document.getElementById("att-holiday-note");
+  if(isHoliday(dateStr)){
+    noteEl.style.display="block";
+    noteEl.textContent="🎉 "+dateStr+" is marked as a public holiday: "+state.holidays[dateStr]+". No attendance is expected — leave everyone unchecked and save (or skip this date entirely).";
+  }else{
+    noteEl.style.display="none";
+  }
+  const absentSet=new Set(state.attendance[dateStr]||[]);
+  const wrap=document.getElementById("att-checklist");
+  wrap.innerHTML="";
   const active=state.employees.filter(e=>e.active);
-  if(active.length===0){ wrap.innerHTML='<p class="muted" style="padding:10px;">No active employees yet — add one in the Employees tab.</p>'; return; }
-
-  let html='<table class="att-grid"><thead><tr><th class="att-name">Employee</th>';
-  days.forEach(x=>{
-    html+=`<th class="${x.off?"att-off":""}" title="${x.off?escapeHtml(x.off):""}">${x.d}<span class="att-dow">${DOW_LETTERS[x.dow]}</span></th>`;
-  });
-  html+='<th class="att-total">Absent</th></tr></thead><tbody>';
+  if(active.length===0){ wrap.innerHTML='<p class="muted">No active employees yet — add one in the Employees tab.</p>'; return; }
   active.forEach(emp=>{
-    html+=`<tr data-emp="${emp.id}"><td class="att-name">${escapeHtml(emp.name)}</td>`;
-    let count=0;
-    days.forEach(x=>{
-      const joined = !emp.joiningDate || x.ds>=emp.joiningDate;
-      if(x.off || !joined){
-        html+=`<td class="att-off" title="${escapeHtml(x.off || "Before joining date")}"></td>`;
-      }else{
-        const absent=(state.attendance[x.ds]||[]).indexOf(emp.id)!==-1;
-        if(absent) count++;
-        html+=`<td class="${absent?"att-absent":""}"><input type="checkbox" data-id="${emp.id}" data-date="${x.ds}" ${absent?"checked":""}></td>`;
-      }
-    });
-    html+=`<td class="att-total">${count}</td></tr>`;
+    const isAbsent=absentSet.has(emp.id);
+    const div=document.createElement("label");
+    div.className="check-item"+(isAbsent?" checked":"");
+    div.innerHTML=`<input type="checkbox" data-id="${emp.id}" ${isAbsent?"checked":""}> ${escapeHtml(emp.name)} <span class="muted">(absent)</span>`;
+    wrap.appendChild(div);
   });
-  html+='</tbody></table>';
-  wrap.innerHTML=html;
   wrap.querySelectorAll('input[type=checkbox]').forEach(cb=>{
     cb.addEventListener("change", ()=>{
-      cb.closest("td").classList.toggle("att-absent", cb.checked);
-      const tr=cb.closest("tr");
-      tr.querySelector(".att-total").textContent=tr.querySelectorAll("input:checked").length;
-      setAttDirty(true);
+      cb.closest(".check-item").classList.toggle("checked", cb.checked);
     });
   });
 }
 document.getElementById("btn-mark-all-present").addEventListener("click", ()=>{
-  document.querySelectorAll("#att-grid-wrap input[type=checkbox]").forEach(cb=>{
+  document.querySelectorAll("#att-checklist input[type=checkbox]").forEach(cb=>{
     cb.checked=false;
-    cb.closest("td").classList.remove("att-absent");
+    cb.closest(".check-item").classList.remove("checked");
   });
-  document.querySelectorAll("#att-grid-wrap .att-total").forEach(t=>{ t.textContent="0"; });
-  setAttDirty(true);
 });
 document.getElementById("btn-save-attendance").addEventListener("click", ()=>{
-  const m=attMonthInput.value;
-  if(!m){ flash("Pick a month first.","err"); return; }
-  const {year,month}=parseMonthStr(m);
-  const days=attDayInfo(year,month);
-  let totalAbsences=0, daysWithAbsence=0, savedDays=0;
-  days.forEach(x=>{
-    if(x.off) return; // Sundays, holidays and future dates are never touched
-    const boxes=[...document.querySelectorAll(`#att-grid-wrap input[data-date="${x.ds}"]`)];
-    const gridIds=new Set(boxes.map(cb=>cb.dataset.id));
-    const checked=boxes.filter(cb=>cb.checked).map(cb=>cb.dataset.id);
-    // keep any existing absences for people who aren't shown in the grid (inactive / not yet joined)
-    const keep=(state.attendance[x.ds]||[]).filter(id=>!gridIds.has(id));
-    const finalIds=keep.concat(checked);
-    if(finalIds.length===0) delete state.attendance[x.ds];
-    else state.attendance[x.ds]=finalIds;
-    state.confirmedDates[x.ds]=true;
-    savedDays++;
-    totalAbsences+=checked.length;
-    if(checked.length) daysWithAbsence++;
-  });
+  const dateStr=attDateInput.value;
+  if(!dateStr){ flash("Pick a date first.","err"); return; }
+  const absentIds=[...document.querySelectorAll("#att-checklist input[type=checkbox]:checked")].map(cb=>cb.dataset.id);
+  if(absentIds.length===0){
+    delete state.attendance[dateStr];
+  }else{
+    state.attendance[dateStr]=absentIds;
+  }
+  state.confirmedDates[dateStr]=true;
   saveState();
-  setAttDirty(false);
   renderRecentAttendance();
   renderMissedAttendance();
   renderEmployeeTable();
+  flash(`Attendance saved for ${dateStr} (${absentIds.length} absent).`,"ok");
+
+  // Auto-advance to the next working day (skips Sundays and public holidays) for faster consecutive entry
+  attDateInput.value=nextWorkingDay(dateStr);
   renderAttendanceChecklist();
-  flash(`Attendance saved for ${monthLabelPretty(m)}: ${totalAbsences} absence(s) on ${daysWithAbsence} day(s), ${savedDays} working day(s) recorded.`,"ok");
 });
 
 function renderRecentAttendance(){
@@ -1202,7 +1126,9 @@ function renderRecentAttendance(){
   });
   wrap.querySelectorAll(".link").forEach(l=>{
     l.addEventListener("click", ()=>{
-      gotoAttendanceDate(l.dataset.date);
+      attDateInput.value=l.dataset.date;
+      renderAttendanceChecklist();
+      window.scrollTo({top:0, behavior:"smooth"});
     });
   });
 }
@@ -1245,7 +1171,9 @@ function renderMissedAttendance(){
 
   wrap.querySelectorAll(".link").forEach(l=>{
     l.addEventListener("click", ()=>{
-      gotoAttendanceDate(l.dataset.date);
+      attDateInput.value=l.dataset.date;
+      renderAttendanceChecklist();
+      window.scrollTo({top:0, behavior:"smooth"});
     });
   });
   document.getElementById("btn-mark-all-missed-present").addEventListener("click", ()=>{

@@ -70,7 +70,7 @@ function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
   // 7. Test attendance checklist excludes inactive
   doc.getElementById("tab-attendance").style.display = "block";
   window.renderAttendanceChecklist();
-  const checklistNames = [...doc.querySelectorAll("#att-checklist .check-item")].map(x=>x.textContent);
+  const checklistNames = [...doc.querySelectorAll("#att-grid-wrap td.att-name")].map(x=>x.textContent);
   console.log("Attendance checklist has Test New Emp?", checklistNames.some(n=>n.includes("Test New Emp")));
 
   // 8. Sanity: leavesUsedTillDate for Samir as of Aug 1 2026 (should be 25+8=33)

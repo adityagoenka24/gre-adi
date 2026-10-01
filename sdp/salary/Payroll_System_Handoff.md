@@ -118,3 +118,7 @@ All files live in the "Salary SD" folder that was connected for this project.
 ## 9. Data Safety Notes
 
 `Payroll_App.html` stores everything in that browser's local storage — it is tied to the specific browser and computer used to open the file. It will **not** sync automatically to another device or browser. Use Export Backup / Restore from Backup in the Backup tab to move data between machines or to recover from a cleared browser cache.
+
+
+## Update 1 Oct 2026 — Monthly attendance grid
+The Attendance tab now uses a month picker with a grid (employees = rows, days = columns). Everyone is present by default; tick a box for each absence and save once per month. Sundays, public holidays, future dates and days before an employee's joining date are greyed out and untouched. Storage format is unchanged (state.attendance[date] = [absent employee ids]). Backup of the previous version: Payroll_App.backup_before_monthly_grid.html.
