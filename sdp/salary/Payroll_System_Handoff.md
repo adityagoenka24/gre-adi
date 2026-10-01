@@ -48,8 +48,8 @@ A single HTML file with six tabs. Double-click it to open in any browser; no ins
 - "Download PDF" builds the PDF directly in-browser (via a bundled offline PDF library), so it works identically across Chrome/Safari/Firefox without relying on the browser's print dialog.
 
 ### Bonus tab (new — September 2026)
-- Set the Financial Year (its April start year, e.g. 2026 for FY2026). The table lists every active employee employed at some point in that FY, with their Basic and a Default Bonus of 1.5 × Basic (1.5 months' salary).
-- Type an amount in the Override column to set a specific employee's bonus manually — e.g. for someone who joined partway through the year and shouldn't get the full 1.5×. Leave it blank to use the default; overrides are remembered per employee per FY.
+- Set the Financial Year (its April start year, e.g. 2026 for FY2026). The table lists every active employee employed at some point in that FY, with their Basic and a Default Bonus of 2 × Basic (2 months' salary).
+- Type an amount in the Override column to set a specific employee's bonus manually — e.g. for someone who joined partway through the year and shouldn't get the full 2×. Leave it blank to use the default; overrides are remembered per employee per FY.
 - Employees who joined after the selected FY ended are left out of the table entirely; anyone who joined mid-FY is flagged with a note suggesting an override.
 - "Generate Bonus Slips" produces the same 6-up printable card layout as payslips (firm name, employee name, Basic, the bonus amount and how it was calculated), and "Download PDF" saves it the same offline-PDF way as payslips.
 
@@ -69,7 +69,7 @@ A single HTML file with six tabs. Double-click it to open in any browser; no ins
 7. "Opening Leaves" on each employee record captures any leave already taken before this system started tracking (currently 0 for all six employees for FY2026, since tracking begins 1 July 2026).
 8. Total Payout = (Basic − any leave-quota deduction) + (Daily Allowance × Days Present).
 9. Public holidays (Holidays tab) are never treated as a working day: they're subtracted from the suggested Total Working Days for a month, and a date marked as a holiday never counts as a leave/absence in the leave-quota or deduction math, even if attendance was accidentally marked on it.
-10. Yearly bonus defaults to 1.5 months' salary (1.5 × Basic) per employee for the financial year, editable per employee via an override on the Bonus tab (e.g. for someone who joined partway through the year). An employee who joined after the selected FY ended is not offered a bonus for that year.
+10. Yearly bonus defaults to 2 months' salary (2 × Basic) per employee for the financial year, editable per employee via an override on the Bonus tab (e.g. for someone who joined partway through the year). An employee who joined after the selected FY ended is not offered a bonus for that year.
 
 ## 5. Current Employee Data (as seeded)
 
@@ -103,7 +103,7 @@ All files live in the "Salary SD" folder that was connected for this project.
 3. Periodically check the "Missed Attendance Days" panel to catch any days that were skipped.
 4. On or after the 1st of the new month, go to the Payslips tab, select last month (Total Working Days is pre-filled from calendar days minus Sundays minus holidays — adjust if needed), click Generate, review the summary, then Download PDF.
 5. When someone joins or leaves, update the Employees tab (add a new employee with their Date of Joining, or Remove a departing employee to deactivate them without losing history).
-6. When bonus season arrives, go to the Bonus tab, set the financial year, review the default 1.5×-Basic amounts, type an override for anyone who needs a different figure, then Generate Bonus Slips and Download PDF.
+6. When bonus season arrives, go to the Bonus tab, set the financial year, review the default 2×-Basic amounts, type an override for anyone who needs a different figure, then Generate Bonus Slips and Download PDF.
 7. Export a backup from the Backup tab periodically, and especially before switching computers or browsers.
 
 ## 8. Outstanding Items

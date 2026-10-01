@@ -682,7 +682,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
   <section id="tab-bonus" style="display:none;">
     <div class="card no-print">
       <h2>Yearly Bonus</h2>
-      <p class="hint">Default bonus is 1.5 months' salary (1.5 × Basic) per employee for the financial year. Type an amount in the Override column to set a specific employee's bonus manually — e.g. for someone who joined partway through the year; leave it blank to use the default.</p>
+      <p class="hint">Default bonus is 2 months' salary (2 × Basic) per employee for the financial year. Type an amount in the Override column to set a specific employee's bonus manually — e.g. for someone who joined partway through the year; leave it blank to use the default.</p>
       <div class="row" style="max-width:260px;">
         <div>
           <label>Financial Year (start year)</label>
@@ -691,7 +691,7 @@ function(t){t.__bidiEngine__=t.prototype.__bidiEngine__=function(t){var r,n,i,a,
       </div>
       <table style="margin-top:14px;">
         <thead>
-          <tr><th>Employee</th><th class="num">Basic</th><th class="num">Default Bonus (1.5×)</th><th class="num">Override</th><th class="num">Final Bonus</th></tr>
+          <tr><th>Employee</th><th class="num">Basic</th><th class="num">Default Bonus (2×)</th><th class="num">Override</th><th class="num">Final Bonus</th></tr>
         </thead>
         <tbody id="bonus-table-body"></tbody>
       </table>
@@ -837,7 +837,7 @@ function holidaysInMonth(monthStr){
 
 /* ===================== Bonus ===================== */
 function defaultBonusAmount(emp){
-  return (Number(emp.basic)||0) * ((state.bonus && state.bonus.multiplier) || 1.5);
+  return (Number(emp.basic)||0) * ((state.bonus && state.bonus.multiplier) || 2);
 }
 
 /* ===================== State ===================== */
@@ -859,7 +859,7 @@ function defaultState(){
     trackingStartDate:"2026-07-01",
     workingDays:{"2026-07":26},
     holidays:{},
-    bonus:{multiplier:1.5, overrides:{}},
+    bonus:{multiplier:2, overrides:{}},
     editingId:null
   };
 }
@@ -879,9 +879,10 @@ function normalizeState(s){
   if(!s.confirmedDates) s.confirmedDates={};
   if(!s.trackingStartDate) s.trackingStartDate="2026-07-01";
   if(!s.holidays) s.holidays={};
-  if(!s.bonus) s.bonus={multiplier:1.5, overrides:{}};
+  if(!s.bonus) s.bonus={multiplier:2, overrides:{}};
   if(!s.bonus.overrides) s.bonus.overrides={};
-  if(s.bonus.multiplier===undefined || s.bonus.multiplier===null) s.bonus.multiplier=1.5;
+  if(s.bonus.multiplier===undefined || s.bonus.multiplier===null) s.bonus.multiplier=2;
+  if(s.bonus.multiplier===1.5) s.bonus.multiplier=2; // migrate old saved default (1.5x) to the new 2x default
   // Any date that already has attendance records clearly had attendance taken that day.
   Object.keys(s.attendance||{}).forEach(d=>{ s.confirmedDates[d]=true; });
   return s;
@@ -1582,7 +1583,7 @@ document.getElementById("btn-generate-bonus").addEventListener("click", ()=>{
     const def=defaultBonusAmount(emp);
     const hasOverride = overrides[emp.id]!==undefined && overrides[emp.id]!==null && overrides[emp.id]!=="";
     const amount = hasOverride ? Number(overrides[emp.id]) : def;
-    return { employee:emp, basic:Number(emp.basic)||0, multiplier:(state.bonus.multiplier||1.5), defaultAmount:def, isOverride:hasOverride, amount };
+    return { employee:emp, basic:Number(emp.basic)||0, multiplier:(state.bonus.multiplier||2), defaultAmount:def, isOverride:hasOverride, amount };
   });
   if(rows.length===0){ flash("No employees eligible for a bonus in "+fy+".","err"); return; }
   lastBonusFY=fy;

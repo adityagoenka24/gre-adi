@@ -79,9 +79,9 @@ function workingDaysInMonth(monthStr, holidays) {
   return count;
 }
 
-// Yearly bonus default: 1.5 x Basic. Callers may override this per employee per FY.
+// Yearly bonus default: 2 x Basic. Callers may override this per employee per FY.
 function defaultBonusAmount(employee, multiplier) {
-  return (Number(employee.basic) || 0) * (multiplier || 1.5);
+  return (Number(employee.basic) || 0) * (multiplier || 2);
 }
 
 function openingLeavesFor(employee, fyLabel) {
