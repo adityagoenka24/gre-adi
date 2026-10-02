@@ -705,7 +705,7 @@ async function loadWebhookQueue() {
         <td style="font-size:12px;">${fmtAmount(m.amount)}</td>
         <td style="font-size:12px;color:var(--text3);">${fmtDate(m.paidAt)}</td>
         <td style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(m.paymentId)}</td>
-        <td><button class="btn btn-primary btn-sm" onclick="quickProvision('${escapeHtml(m.email)}')">Provision Pro</button></td>
+        <td><button class="btn btn-primary btn-sm" onclick="quickProvision('${escapeHtml(m.email)}', '${escapeHtml(m.paymentId)}')">Provision Pro</button></td>
       </tr>`).join('') || '<tr><td colspan="5" style="color:var(--text3);text-align:center;">None</td></tr>';
 
     const noEmailRows = (data.no_email || []).map(n => `
@@ -737,7 +737,7 @@ async function loadWebhookQueue() {
   } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
 }
 
-async function quickProvision(email) {
+async function quickProvision(email, paymentId) {
   const { url, secret } = getConfig();
   if (!url || !secret) { alert('Set Worker URL and Admin Secret first.'); return; }
   if (!confirm(`Provision Pro access for ${email}?`)) return;
@@ -749,6 +749,13 @@ async function quickProvision(email) {
     });
     const data = await res.json();
     if (data.status === 'added' || data.status === 'reactivated') {
+      if (paymentId) {
+        await fetch(`${url}/admin/dismiss-webhook-item`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+          body: JSON.stringify({ type: 'manual', paymentId }),
+        });
+      }
       alert(`✅ Provisioned: ${email}`);
       loadWebhookQueue();
     } else {
