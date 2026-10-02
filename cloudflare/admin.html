@@ -54,6 +54,12 @@ td:last-child{white-space:nowrap;}
 .access-check{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--text2);font-family:var(--font-mono);cursor:pointer;}
 .access-check input{width:auto;accent-color:var(--accent);}
 .badge-access{margin-right:4px;margin-bottom:2px;display:inline-block;}
+.tabs{display:flex;gap:4px;margin-bottom:24px;border-bottom:1px solid var(--border);flex-wrap:wrap;}
+.tab-btn{background:none;border:none;color:var(--text2);font-family:var(--font-mono);font-size:13px;font-weight:600;padding:12px 18px;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s;}
+.tab-btn:hover{color:var(--text);}
+.tab-btn.active{color:var(--accent);border-bottom-color:var(--accent);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
 </style>
 </head>
 <body>
@@ -83,145 +89,179 @@ td:last-child{white-space:nowrap;}
     </div>
   </div>
 
-  <!-- Add Student -->
-  <div class="card">
-    <h2>📈 Website Analytics</h2>
-    <div class="row">
-      <div class="field">
-        <label>Days to show</label>
-        <input type="number" id="analytics-days" min="1" max="180" value="1">
-      </div>
-      <button class="btn btn-primary" onclick="loadAnalytics()">Refresh Analytics</button>
-    </div>
-    <div id="analytics-table" style="margin-top:16px;"><div class="empty">Click "Refresh Analytics" to load daily visitors.</div></div>
+  <div class="tabs">
+    <button class="tab-btn" data-tab="students" onclick="switchTab('students')">👥 Students</button>
+    <button class="tab-btn" data-tab="access" onclick="switchTab('access')">🎚️ Access &amp; Devices</button>
+    <button class="tab-btn" data-tab="webhooks" onclick="switchTab('webhooks')">💳 Webhooks</button>
+    <button class="tab-btn" data-tab="analytics" onclick="switchTab('analytics')">📊 Analytics</button>
   </div>
 
-  <!-- Event Funnel -->
-  <div class="card">
-    <h2>🎯 Conversion Funnel</h2>
-    <div class="row">
-      <div class="field">
-        <label>Days to show</label>
-        <input type="number" id="event-days" min="1" max="180" value="1">
+  <!-- ═══ STUDENTS ═══ -->
+  <div class="tab-panel" id="tab-students" data-tab-panel="students">
+
+    <!-- Add Student -->
+    <div class="card">
+      <h2>➕ Add Paying Student</h2>
+      <div class="row">
+        <div class="field">
+          <label>Student Email</label>
+          <input type="email" id="add-email" placeholder="student@gmail.com">
+        </div>
+        <div class="field">
+          <label>Student Name (optional)</label>
+          <input type="text" id="add-name" placeholder="Rahul Sharma">
+        </div>
       </div>
-      <button class="btn btn-primary" onclick="loadEvents()">Refresh Events</button>
+      <label style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;display:block;margin:16px 0 8px;">Access</label>
+      <div class="access-row">
+        <label class="access-check"><input type="checkbox" id="add-access-practice" checked> Topic-wise Practice</label>
+        <label class="access-check"><input type="checkbox" id="add-access-sectional" checked> Sectional Tests</label>
+        <label class="access-check"><input type="checkbox" id="add-access-mocks" checked> Full-Length Mocks</label>
+      </div>
+      <button class="btn btn-primary" onclick="addStudent()">Add Student</button>
+      <div class="result" id="add-result"></div>
     </div>
-    <div id="event-table" style="margin-top:16px;"><div class="empty">Click "Refresh Events" to load funnel data.</div></div>
+
+    <!-- Student List -->
+    <div class="card">
+      <h2>📋 All Students</h2>
+      <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
+        <button class="btn btn-ghost" onclick="loadStudents()">🔄 Refresh List</button>
+      </div>
+      <div id="student-table"><div class="empty">Click "Refresh List" to load students</div></div>
+    </div>
+
   </div>
 
-  <!-- Mock Attempts -->
-  <div class="card">
-    <h2>📝 Mock Attempts</h2>
-    <div class="row">
-      <div class="field">
-        <label>Days to show</label>
-        <input type="number" id="attempt-days" min="1" max="180" value="1">
+  <!-- ═══ ACCESS & DEVICES ═══ -->
+  <div class="tab-panel" id="tab-access" data-tab-panel="access">
+
+    <!-- Set Access -->
+    <div class="card" id="access-card">
+      <h2>🎚️ Set Access (Existing Student)</h2>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+        Dial an existing student's plan up or down — e.g. limit someone to sectional-only, or give a beta tester just topic-wise practice. Unchecking everything is not allowed; leave all three checked for full access.
+      </p>
+      <div class="row">
+        <div class="field">
+          <label>Student Email</label>
+          <input type="email" id="access-email" placeholder="student@gmail.com">
+        </div>
+        <button class="btn btn-primary" onclick="setAccess()">Update Access</button>
       </div>
-      <button class="btn btn-primary" onclick="loadMockAttempts()">Refresh Attempts</button>
-      <button class="btn btn-ghost" onclick="downloadAttemptsCsv()">Download CSV</button>
-      <button class="btn btn-ghost" onclick="downloadAttemptsJson()">Download JSON</button>
+      <label style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;display:block;margin:16px 0 8px;">Access</label>
+      <div class="access-row">
+        <label class="access-check"><input type="checkbox" id="access-access-practice" checked> Topic-wise Practice</label>
+        <label class="access-check"><input type="checkbox" id="access-access-sectional" checked> Sectional Tests</label>
+        <label class="access-check"><input type="checkbox" id="access-access-mocks" checked> Full-Length Mocks</label>
+      </div>
+      <div class="result" id="access-result"></div>
     </div>
-    <div id="attempt-table" style="margin-top:16px;"><div class="empty">Click "Refresh Attempts" to load completed mocks.</div></div>
+
+    <!-- Reset Device -->
+    <div class="card" id="reset-card">
+      <h2>🔄 Reset Device (Student Changed Phone / Laptop)</h2>
+      <div class="row">
+        <div class="field">
+          <label>Student Email</label>
+          <input type="email" id="reset-email" placeholder="student@gmail.com">
+        </div>
+        <button class="btn btn-ghost" onclick="resetDevice()">Reset Device</button>
+      </div>
+      <div class="result" id="reset-result"></div>
+    </div>
+
+    <!-- Revoke Access -->
+    <div class="card" id="revoke-card">
+      <h2>🚫 Revoke Access</h2>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+        Blocks the student immediately on their next app load. Use for expired subscriptions or refunds.<br>
+        You can re-add them at any time from the Students tab.
+      </p>
+      <div class="row">
+        <div class="field">
+          <label>Student Email</label>
+          <input type="email" id="remove-email" placeholder="student@gmail.com">
+        </div>
+        <button class="btn btn-danger" onclick="removeStudent()">Revoke Access</button>
+      </div>
+      <div class="result" id="remove-result"></div>
+    </div>
+
   </div>
 
-  <!-- Add Student -->
-  <div class="card">
-    <h2>➕ Add Paying Student</h2>
-    <div class="row">
-      <div class="field">
-        <label>Student Email</label>
-        <input type="email" id="add-email" placeholder="student@gmail.com">
-      </div>
-      <div class="field">
-        <label>Student Name (optional)</label>
-        <input type="text" id="add-name" placeholder="Rahul Sharma">
-      </div>
+  <!-- ═══ WEBHOOKS ═══ -->
+  <div class="tab-panel" id="tab-webhooks" data-tab-panel="webhooks">
+
+    <!-- Webhook Payments -->
+    <div class="card">
+      <h2>💳 Webhook Payments</h2>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+        Auto-provisioned students come from Razorpay webhooks at a recognized price (₹399/₹499/₹599/₹799/₹899/₹999). Manual review items need you to provision access yourself — use the Students tab's "Add Student" card. No-email payments couldn't be auto-provisioned because Razorpay didn't include an email.
+      </p>
+      <button class="btn btn-primary" onclick="loadWebhookQueue()">🔄 Refresh Queue</button>
+      <div id="webhook-queue" style="margin-top:16px;"><div class="empty">Click "Refresh Queue" to load.</div></div>
     </div>
-    <label style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;display:block;margin:16px 0 8px;">Access</label>
-    <div class="access-row">
-      <label class="access-check"><input type="checkbox" id="add-access-practice" checked> Topic-wise Practice</label>
-      <label class="access-check"><input type="checkbox" id="add-access-sectional" checked> Sectional Tests</label>
-      <label class="access-check"><input type="checkbox" id="add-access-mocks" checked> Full-Length Mocks</label>
-    </div>
-    <button class="btn btn-primary" onclick="addStudent()">Add Student</button>
-    <div class="result" id="add-result"></div>
+
   </div>
 
-  <!-- Set Access -->
-  <div class="card" id="access-card">
-    <h2>🎚️ Set Access (Existing Student)</h2>
-    <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
-      Dial an existing student's plan up or down — e.g. limit someone to sectional-only, or give a beta tester just topic-wise practice. Unchecking everything is not allowed; leave all three checked for full access.
-    </p>
-    <div class="row">
-      <div class="field">
-        <label>Student Email</label>
-        <input type="email" id="access-email" placeholder="student@gmail.com">
+  <!-- ═══ ANALYTICS ═══ -->
+  <div class="tab-panel" id="tab-analytics" data-tab-panel="analytics">
+
+    <!-- Website Analytics -->
+    <div class="card">
+      <h2>📈 Website Analytics</h2>
+      <div class="row">
+        <div class="field">
+          <label>Days to show</label>
+          <input type="number" id="analytics-days" min="1" max="180" value="1">
+        </div>
+        <button class="btn btn-primary" onclick="loadAnalytics()">Refresh Analytics</button>
       </div>
-      <button class="btn btn-primary" onclick="setAccess()">Update Access</button>
+      <div id="analytics-table" style="margin-top:16px;"><div class="empty">Click "Refresh Analytics" to load daily visitors.</div></div>
     </div>
-    <label style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;display:block;margin:16px 0 8px;">Access</label>
-    <div class="access-row">
-      <label class="access-check"><input type="checkbox" id="access-access-practice" checked> Topic-wise Practice</label>
-      <label class="access-check"><input type="checkbox" id="access-access-sectional" checked> Sectional Tests</label>
-      <label class="access-check"><input type="checkbox" id="access-access-mocks" checked> Full-Length Mocks</label>
-    </div>
-    <div class="result" id="access-result"></div>
-  </div>
 
-  <!-- Reset Device -->
-  <div class="card" id="reset-card">
-    <h2>🔄 Reset Device (Student Changed Phone / Laptop)</h2>
-    <div class="row">
-      <div class="field">
-        <label>Student Email</label>
-        <input type="email" id="reset-email" placeholder="student@gmail.com">
+    <!-- Event Funnel -->
+    <div class="card">
+      <h2>🎯 Conversion Funnel</h2>
+      <div class="row">
+        <div class="field">
+          <label>Days to show</label>
+          <input type="number" id="event-days" min="1" max="180" value="1">
+        </div>
+        <button class="btn btn-primary" onclick="loadEvents()">Refresh Events</button>
       </div>
-      <button class="btn btn-ghost" onclick="resetDevice()">Reset Device</button>
+      <div id="event-table" style="margin-top:16px;"><div class="empty">Click "Refresh Events" to load funnel data.</div></div>
     </div>
-    <div class="result" id="reset-result"></div>
-  </div>
 
-  <!-- Revoke Access -->
-  <div class="card" id="revoke-card">
-    <h2>🚫 Revoke Access</h2>
-    <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
-      Blocks the student immediately on their next app load. Use for expired subscriptions or refunds.<br>
-      You can re-add them at any time using the Add Student section above.
-    </p>
-    <div class="row">
-      <div class="field">
-        <label>Student Email</label>
-        <input type="email" id="remove-email" placeholder="student@gmail.com">
+    <!-- Mock Attempts -->
+    <div class="card">
+      <h2>📝 Mock Attempts</h2>
+      <div class="row">
+        <div class="field">
+          <label>Days to show</label>
+          <input type="number" id="attempt-days" min="1" max="180" value="1">
+        </div>
+        <button class="btn btn-primary" onclick="loadMockAttempts()">Refresh Attempts</button>
+        <button class="btn btn-ghost" onclick="downloadAttemptsCsv()">Download CSV</button>
+        <button class="btn btn-ghost" onclick="downloadAttemptsJson()">Download JSON</button>
       </div>
-      <button class="btn btn-danger" onclick="removeStudent()">Revoke Access</button>
+      <div id="attempt-table" style="margin-top:16px;"><div class="empty">Click "Refresh Attempts" to load completed mocks.</div></div>
     </div>
-    <div class="result" id="remove-result"></div>
-  </div>
 
-  <!-- Webhook Payments -->
-  <div class="card">
-    <h2>💳 Webhook Payments</h2>
-    <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
-      Auto-provisioned students come from Razorpay webhooks at a recognized price (₹399/₹499/₹599/₹799/₹899/₹999). Manual review items need you to provision access yourself — use "Add Student" above. No-email payments couldn't be auto-provisioned because Razorpay didn't include an email.
-    </p>
-    <button class="btn btn-primary" onclick="loadWebhookQueue()">🔄 Refresh Queue</button>
-    <div id="webhook-queue" style="margin-top:16px;"><div class="empty">Click "Refresh Queue" to load.</div></div>
-  </div>
-
-  <!-- Student List -->
-  <div class="card">
-    <h2>📋 All Students</h2>
-    <div style="display:flex;justify-content:flex-end;margin-bottom:16px;">
-      <button class="btn btn-ghost" onclick="loadStudents()">🔄 Refresh List</button>
-    </div>
-    <div id="student-table"><div class="empty">Click "Refresh List" to load students</div></div>
   </div>
 
 </div>
 
 <script>
 let latestAttempts = [];
+
+// ─── Tabs ─────────────────────────────────────────────────────────────────────
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tabPanel === name));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  try { localStorage.setItem('gre_admin_tab', name); } catch {}
+}
 
 // ─── Config ───────────────────────────────────────────────────────────────────
 function saveConfig() {
@@ -605,9 +645,19 @@ async function setAccess() {
 
 // Called from the student list's "Edit Access" button — prefills this card.
 function editAccessFor(email, access) {
+  switchTab('access');
   document.getElementById('access-email').value = email;
   setCheckedAccess('access-access', access);
   document.getElementById('access-card').scrollIntoView({ behavior: 'smooth' });
+}
+
+// Called from the student list's "Reset Device" / "Revoke" buttons — switches
+// to the Access & Devices tab, prefills the right card, and scrolls to it.
+function goToAccessCard(cardId, inputId, email) {
+  switchTab('access');
+  document.getElementById(inputId).value = email;
+  document.getElementById(inputId).focus();
+  document.getElementById(cardId).scrollIntoView({ behavior: 'smooth' });
 }
 
 // ─── Reactivate (called directly from list Re-add button) ─────────────────────
@@ -820,13 +870,12 @@ async function loadStudents() {
             <button class="btn btn-ghost btn-sm" onclick='editAccessFor("${s.email}", ${JSON.stringify(s.access || [])})'>
               Edit Access
             </button>
-            <button class="btn btn-ghost btn-sm"
-              onclick="document.getElementById('reset-email').value='${s.email}';document.getElementById('reset-email').focus();document.getElementById('reset-card').scrollIntoView({behavior:'smooth'})">
+            <button class="btn btn-ghost btn-sm" onclick="goToAccessCard('reset-card', 'reset-email', '${s.email}')">
               Reset Device
             </button>
             ${s.revoked
               ? `<button class="btn btn-success btn-sm" onclick="reactivateStudent('${s.email}')">Re-add</button>`
-              : `<button class="btn btn-danger btn-sm" onclick="document.getElementById('remove-email').value='${s.email}';document.getElementById('remove-email').focus();document.getElementById('revoke-card').scrollIntoView({behavior:'smooth'})">Revoke</button>`
+              : `<button class="btn btn-danger btn-sm" onclick="goToAccessCard('revoke-card', 'remove-email', '${s.email}')">Revoke</button>`
             }
           </div>
         </td>
@@ -859,6 +908,10 @@ function escapeHtml(value) {
 }
 
 loadConfig();
+let initialTab = 'students';
+try { initialTab = localStorage.getItem('gre_admin_tab') || 'students'; } catch {}
+if (!document.querySelector(`.tab-btn[data-tab="${initialTab}"]`)) initialTab = 'students';
+switchTab(initialTab);
 </script>
 </body>
 </html>
