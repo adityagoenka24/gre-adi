@@ -700,12 +700,12 @@ async function loadWebhookQueue() {
       </tr>`).join('') || '<tr><td colspan="5" style="color:var(--text3);text-align:center;">None yet</td></tr>';
 
     const manualRows = (data.manual_review || []).map(m => `
-      <tr>
+      <tr data-payment-id="${escapeHtml(m.paymentId)}">
         <td style="font-family:var(--font-mono);font-size:12px;">${escapeHtml(m.email)}</td>
         <td style="font-size:12px;">${fmtAmount(m.amount)}</td>
         <td style="font-size:12px;color:var(--text3);">${fmtDate(m.paidAt)}</td>
         <td style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(m.paymentId)}</td>
-        <td><button class="btn btn-primary btn-sm" onclick="quickProvision('${escapeHtml(m.email)}', '${escapeHtml(m.paymentId)}')">Provision Pro</button></td>
+        <td><button class="btn btn-primary btn-sm" onclick="quickProvision('${escapeHtml(m.email)}', '${escapeHtml(m.paymentId)}', this)">Provision Pro</button></td>
       </tr>`).join('') || '<tr><td colspan="5" style="color:var(--text3);text-align:center;">None</td></tr>';
 
     const noEmailRows = (data.no_email || []).map(n => `
@@ -719,7 +719,7 @@ async function loadWebhookQueue() {
     el.innerHTML = `
       <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:12px;">
         ${data.counts.auto_provisioned} auto-provisioned &nbsp;·&nbsp;
-        <span style="color:${data.counts.manual_review > 0 ? 'var(--warning)' : 'var(--text3)'};">${data.counts.manual_review} manual review</span> &nbsp;·&nbsp;
+        <span id="manual-review-count" style="color:${data.counts.manual_review > 0 ? 'var(--warning)' : 'var(--text3)'};">${data.counts.manual_review} manual review</span> &nbsp;·&nbsp;
         <span style="color:${data.counts.no_email > 0 ? 'var(--warning)' : 'var(--text3)'};">${data.counts.no_email} no-email</span>
       </p>
 
@@ -729,7 +729,7 @@ async function loadWebhookQueue() {
 
       <p style="font-size:12px;font-weight:600;margin:20px 0 8px;color:var(--warning);">⚠️ Manual Review Required (unrecognized amount)</p>
       <table><thead><tr><th>Email</th><th>Amount</th><th>Paid At</th><th>Payment ID</th><th>Action</th></tr></thead>
-      <tbody>${manualRows}</tbody></table>
+      <tbody id="manual-review-tbody">${manualRows}</tbody></table>
 
       <p style="font-size:12px;font-weight:600;margin:20px 0 8px;color:var(--warning);">⚠️ No Email in Payment</p>
       <table><thead><tr><th>Contact</th><th>Paid At</th><th>Payment ID</th><th>Note</th></tr></thead>
@@ -737,7 +737,7 @@ async function loadWebhookQueue() {
   } catch (e) { el.innerHTML = `<div class="empty">Error: ${e.message}</div>`; }
 }
 
-async function quickProvision(email, paymentId) {
+async function quickProvision(email, paymentId, btn) {
   const { url, secret } = getConfig();
   if (!url || !secret) { alert('Set Worker URL and Admin Secret first.'); return; }
   if (!confirm(`Provision Pro access for ${email}?`)) return;
@@ -748,20 +748,43 @@ async function quickProvision(email, paymentId) {
       body: JSON.stringify({ email, name: '' }),
     });
     const data = await res.json();
-    if (data.status === 'added' || data.status === 'reactivated') {
-      if (paymentId) {
-        await fetch(`${url}/admin/dismiss-webhook-item`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
-          body: JSON.stringify({ type: 'manual', paymentId }),
-        });
-      }
-      alert(`✅ Provisioned: ${email}`);
-      loadWebhookQueue();
-    } else {
+    if (data.error) {
       alert(`Response: ${JSON.stringify(data)}`);
+      return;
     }
+    // Any non-error response (added / reactivated / already_exists) means the
+    // student is accounted for — the admin has reviewed and approved this
+    // payment, so drop it from the queue regardless of which branch fired.
+    if (paymentId) {
+      await fetch(`${url}/admin/dismiss-webhook-item`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+        body: JSON.stringify({ type: 'manual', paymentId }),
+      });
+    }
+    alert(`✅ Provisioned: ${email}`);
+    // Remove the row directly instead of re-fetching the queue — Cloudflare
+    // KV deletes can take a few seconds to propagate, so an immediate
+    // re-fetch can still show the row we just dismissed.
+    removeQueueRow(paymentId, btn);
   } catch (e) { alert(`Error: ${e.message}`); }
+}
+
+function removeQueueRow(paymentId, btn) {
+  const row = btn ? btn.closest('tr') : document.querySelector(`tr[data-payment-id="${CSS.escape(paymentId || '')}"]`);
+  if (!row) return;
+  row.remove();
+
+  const tbody = document.getElementById('manual-review-tbody');
+  const countEl = document.getElementById('manual-review-count');
+  if (!tbody || !countEl) return;
+
+  const remaining = tbody.querySelectorAll('tr').length;
+  countEl.textContent = `${remaining} manual review`;
+  countEl.style.color = remaining > 0 ? 'var(--warning)' : 'var(--text3)';
+  if (remaining === 0) {
+    tbody.innerHTML = '<tr><td colspan="5" style="color:var(--text3);text-align:center;">None</td></tr>';
+  }
 }
 
 async function loadStudents() {
