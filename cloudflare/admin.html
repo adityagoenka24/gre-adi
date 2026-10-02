@@ -203,7 +203,7 @@ td:last-child{white-space:nowrap;}
   <div class="card">
     <h2>💳 Webhook Payments</h2>
     <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
-      Auto-provisioned students come from Razorpay webhooks (₹499 payments). Manual review items need you to provision access yourself — use "Add Student" above. No-email payments couldn't be auto-provisioned because Razorpay didn't include an email.
+      Auto-provisioned students come from Razorpay webhooks at a recognized price (₹399/₹499/₹599/₹799/₹899/₹999). Manual review items need you to provision access yourself — use "Add Student" above. No-email payments couldn't be auto-provisioned because Razorpay didn't include an email.
     </p>
     <button class="btn btn-primary" onclick="loadWebhookQueue()">🔄 Refresh Queue</button>
     <div id="webhook-queue" style="margin-top:16px;"><div class="empty">Click "Refresh Queue" to load.</div></div>
@@ -723,11 +723,11 @@ async function loadWebhookQueue() {
         <span style="color:${data.counts.no_email > 0 ? 'var(--warning)' : 'var(--text3)'};">${data.counts.no_email} no-email</span>
       </p>
 
-      <p style="font-size:12px;font-weight:600;margin:16px 0 8px;">✅ Auto-Provisioned (₹499 webhook)</p>
+      <p style="font-size:12px;font-weight:600;margin:16px 0 8px;">✅ Auto-Provisioned (recognized-price webhook)</p>
       <table><thead><tr><th>Email</th><th>Plan</th><th>Paid At</th><th>Payment ID</th><th>Status</th></tr></thead>
       <tbody>${autoRows}</tbody></table>
 
-      <p style="font-size:12px;font-weight:600;margin:20px 0 8px;color:var(--warning);">⚠️ Manual Review Required (non-₹499 amount)</p>
+      <p style="font-size:12px;font-weight:600;margin:20px 0 8px;color:var(--warning);">⚠️ Manual Review Required (unrecognized amount)</p>
       <table><thead><tr><th>Email</th><th>Amount</th><th>Paid At</th><th>Payment ID</th><th>Action</th></tr></thead>
       <tbody>${manualRows}</tbody></table>
 
