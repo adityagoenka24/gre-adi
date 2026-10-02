@@ -28,6 +28,7 @@
  *   GET  /admin/mock-attempts   — list saved mock/team attempts (protected by ADMIN_SECRET)
  *   POST /razorpay/webhook      — Razorpay webhook: auto-provisions Pro on payment.captured
  *   GET  /admin/webhook-queue   — list auto-provisioned, manual-review, and no-email payments (protected by ADMIN_SECRET)
+ *   POST /admin/dismiss-webhook-item — remove a resolved item from the manual-review/no-email queue (protected by ADMIN_SECRET)
  *
  * Environment variables to set in Cloudflare dashboard:
  *   ADMIN_SECRET             — a strong random secret string only you know (set via `wrangler secret put`, never checked into git)
@@ -113,6 +114,9 @@ export default {
       }
       if (path === '/admin/webhook-queue' && request.method === 'GET') {
         return await handleAdminWebhookQueue(request, env);
+      }
+      if (path === '/admin/dismiss-webhook-item' && request.method === 'POST') {
+        return await handleAdminDismissWebhookItem(request, env);
       }
 
       return jsonResponse({ error: 'Not found' }, 404);
@@ -701,6 +705,24 @@ async function handleAdminWebhookQueue(request, env) {
       no_email: noemail.length,
     },
   });
+}
+
+// ─── ADMIN: DISMISS WEBHOOK QUEUE ITEM ───────────────────────────────────────
+// Call this once a manual-review or no-email item has been handled (e.g. right
+// after "Provision Pro" succeeds) so it stops showing up in the queue.
+// Body: { type: 'manual' | 'noemail', paymentId }
+async function handleAdminDismissWebhookItem(request, env) {
+  if (!isAdmin(request, env)) {
+    return jsonResponse({ error: 'Unauthorized' }, 401);
+  }
+
+  const { type, paymentId } = await request.json();
+  if (!paymentId || (type !== 'manual' && type !== 'noemail')) {
+    return jsonResponse({ error: 'Missing or invalid type/paymentId' }, 400);
+  }
+
+  await env.GRE_AUTH.delete(`webhook_${type}:${paymentId}`);
+  return jsonResponse({ status: 'dismissed', type, paymentId });
 }
 
 // ─── RAZORPAY WEBHOOK ────────────────────────────────────────────────────────
