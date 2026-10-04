@@ -1,0 +1,1312 @@
+{
+ "meta": {
+  "topic": "Statistics",
+  "subtopic": "Interquartile Range & Percentiles",
+  "subtopic_id": "STA-IQR",
+  "version": "1.0",
+  "total_questions": 53,
+  "distribution": {
+   "easy": 11,
+   "medium": 21,
+   "hard": 16,
+   "extreme_hard": 5
+  },
+  "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 22,
+   "multiple_answer": 9,
+   "numeric_entry": 12,
+   "quantitative_comparison": 10
+  },
+  "kmf1804_merged": "2026-10-03"
+ },
+ "questions": [
+  {
+   "id": "STA-IQR-001",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "The data set 3, 7, 9, 12, 15, 18, 21 is listed in increasing order. Using the standard method, in which the median is excluded from each half, what is the interquartile range?",
+   "options": [
+    "A. 8.5",
+    "B. 11",
+    "C. 12",
+    "D. 18",
+    "E. 25"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — the list is already sorted and has 7 values, so the median is the 4th value: Q2 = 12.\nStep 2 — Q1 is the median of the values BELOW the median. Lower half = {3, 7, 9}, so Q1 = 7.\nStep 3 — Q3 is the median of the values ABOVE the median. Upper half = {15, 18, 21}, so Q3 = 18.\nStep 4 — IQR = Q3 - Q1 = 18 - 7 = 11.\nCheck: the middle 50% of the seven values runs from 7 up to 18, a span of 11. Correct.\nAnswer: 11.",
+   "trap": "Choice D, 18, is the full range (21 - 3), not the interquartile range. Choice E, 25, is Q3 + Q1 instead of Q3 - Q1. Choice A, 8.5, comes from the inclusive convention, which keeps the median 12 in BOTH halves: lower {3, 7, 9, 12} gives Q1 = 8, upper {12, 15, 18, 21} gives Q3 = 16.5, and 16.5 - 8 = 8.5. With an odd count the median belongs to neither half.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "quartile",
+    "iqr",
+    "exclusive-method"
+   ]
+  },
+  {
+   "id": "STA-IQR-002",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A data set listed in increasing order is 2, 5, 8, 11, 14. Using the standard method, in which the median is excluded from each half, what is Q1?",
+   "options": [
+    "A. 2",
+    "B. 3.5",
+    "C. 5",
+    "D. 8",
+    "E. 12.5"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — there are 5 values, so the median is the 3rd value: Q2 = 8.\nStep 2 — the lower half is everything strictly below the median: {2, 5}. The median 8 is not included.\nStep 3 — Q1 is the median of that half: (2 + 5)/2 = 3.5.\nCheck: Q3 by the same rule is the median of {11, 14} = 12.5, so the middle 50% runs 3.5 to 12.5. Correct.\nAnswer: 3.5.",
+   "trap": "Choice C, 5, is the second-lowest value of the whole list, picked as if Q1 were simply 'the value a quarter of the way in'; it is also what the inclusive convention gives, since that method uses the lower half {2, 5, 8} and takes 5. Choice E, 12.5, is Q3, not Q1. Choice A, 2, is the minimum.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "quartile",
+    "median-of-halves",
+    "exclusive-method"
+   ]
+  },
+  {
+   "id": "STA-IQR-003",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A data set listed in increasing order is 4, 8, 12, 16, 20, 24. What is its interquartile range? Enter your answer as a number.",
+   "options": null,
+   "answer": "12",
+   "explanation": "Step 1 — there are 6 values, an even count, so there is no single middle value to set aside. Split the list straight down the middle into two halves of 3.\nStep 2 — lower half = {4, 8, 12}, so Q1 = 8.\nStep 3 — upper half = {16, 20, 24}, so Q3 = 20.\nStep 4 — IQR = 20 - 8 = 12.\nCheck: the median is (12 + 16)/2 = 14, and 8 < 14 < 20 as required. Correct.\nAnswer: 12.",
+   "trap": "Putting the two middle values 12 and 16 into BOTH halves - the rule 'the median belongs to neither half' misremembered as 'the median belongs to both' - builds {4, 8, 12, 16} and {12, 16, 20, 24}, giving Q1 = 10, Q3 = 18 and IQR = 8. With an even count there is no middle data value to place anywhere: the halves are simply the first three and the last three values.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "quartile",
+    "iqr",
+    "even-count"
+   ]
+  },
+  {
+   "id": "STA-IQR-004",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "In a sorted list of 9 values, Q1 = 10 and Q3 = 34. What is the IQR?",
+   "options": [
+    "A. 44",
+    "B. 24",
+    "C. 34",
+    "D. 17",
+    "E. 12"
+   ],
+   "answer": "B",
+   "explanation": "IQR = Q3 − Q1 = 34 − 10 = 24.",
+   "trap": "Students compute Q3 + Q1 = 44 (option A), confusing the subtraction formula with addition. The correct formula is always IQR = Q3 − Q1.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "quartile",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-IQR-005",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A dataset has the following 5-number summary: Minimum = 5, Q1 = 15, Median = 25, Q3 = 35, Maximum = 50. What is the interquartile range?",
+   "options": [
+    "A. 45",
+    "B. 10",
+    "C. 20",
+    "D. 25",
+    "E. 30"
+   ],
+   "answer": "C",
+   "explanation": "IQR = Q3 − Q1 = 35 − 15 = 20.",
+   "trap": "Students subtract Min from Max (50 − 5 = 45) to get the full range, confusing 'range' with 'interquartile range.' The IQR specifically uses Q3 − Q1, not the endpoints of the dataset.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "quartile",
+    "conceptual",
+    "data-distribution"
+   ]
+  },
+  {
+   "id": "STA-IQR-006",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "If a value is at the 75th percentile in a dataset, which of the following best describes its position?",
+   "options": [
+    "A. It is greater than 25% of all values",
+    "B. It is less than 75% of all values",
+    "C. At least 75% of all values are at or below it",
+    "D. Exactly 75% of the values equal this value",
+    "E. It equals Q1"
+   ],
+   "answer": "C",
+   "explanation": "The 75th percentile is the value at or below which 75% of the data falls. Equivalently, at least 75% of all values are at or below it. This corresponds to Q3. Option A is too weak (it's greater than 75%, not just 25%). Option B has the direction reversed.",
+   "trap": "Students confuse '75th percentile' with 'only 25% of data is below it' — that would be the 25th percentile (Q1). The 75th percentile means 75% of the data falls at or below this value, not above it.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "percentile",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-IQR-007",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A sorted dataset is: 10, 20, 30, 40, 50, 60, 70, 80, 90, 100. What is Q3?",
+   "options": null,
+   "answer": "80",
+   "explanation": "The dataset has 10 values (even count). Split into two equal halves of 5. Lower half: {10, 20, 30, 40, 50} → Q1 = median = 30. Upper half: {60, 70, 80, 90, 100} → Q3 = median = 80 (the 3rd value of the 5-element upper half). Q3 = 80.",
+   "trap": "Students average the 7th and 8th values of the full dataset (70 and 80) to get 75, treating Q3 as the average of the global positions 7.5. The correct method takes the median of the upper half {60,70,80,90,100}, which is 80.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "quartile",
+    "median"
+   ]
+  },
+  {
+   "id": "STA-IQR-008",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A sorted dataset is: 1, 3, 5, 7, 9, 11, 13, 15. What is the median (Q2)?",
+   "options": [
+    "A. 7",
+    "B. 8",
+    "C. 9",
+    "D. 7.5",
+    "E. 10"
+   ],
+   "answer": "B",
+   "explanation": "The dataset has 8 values (even count). The median is the average of the 4th and 5th values. 4th value = 7, 5th value = 9. Median = (7 + 9) / 2 = 8.",
+   "trap": "Students pick the 4th value (7) as the median, forgetting that for an even-count dataset the median is the average of the two middle values, not just one of them.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "median",
+    "quartile"
+   ]
+  },
+  {
+   "id": "STA-IQR-009",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "On a class test, a score of 60 is at the 40th percentile, where the pth percentile is the score at or below which exactly p percent of the scores fall. Which of the following must be true?",
+   "options": [
+    "A. The student who scored 60 answered 40% of the questions correctly",
+    "B. 40% of the students scored above 60",
+    "C. 40% of the students scored 60 or below",
+    "D. 60% of the students scored 60 or below",
+    "E. 60 is the median score for the class"
+   ],
+   "answer": "C",
+   "explanation": "The stem gives the convention: the pth percentile is the value at or below which p percent of the data falls.\nStep 1 — p = 40 here, so exactly 40% of the scores are at or below 60. That is choice C.\nStep 2 — check the others.\nA - a percentile is a RANK among test takers, not a share of questions answered correctly. FALSE.\nB - the 40% sit at or below 60, so the students above 60 are the other 60%, not 40%. FALSE.\nD - 60% is the share ABOVE, not the share at or below. FALSE.\nE - the median is the 50th percentile, and 60 sits at the 40th. FALSE.\nAnswer: C.",
+   "trap": "Choice A is the classic misread that the capsule warns about: 'the 40th percentile' is a position in the line-up, not a mark out of 100. Choice D flips the direction, reporting the 60% who are above as if they were below.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "percentile",
+    "rank-not-score",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-IQR-010",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "Data set A: 2, 4, 6, 8, 10\nQuartiles are found by the standard method, with the median excluded from each half.\nColumn A: The interquartile range of Data set A\nColumn B: The range of Data set A",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — Column B first, because it is quicker: range = max - min = 10 - 2 = 8.\nStep 2 — Column A. With 5 values the median is the 3rd value, 6. Lower half = {2, 4}, so Q1 = 3. Upper half = {8, 10}, so Q3 = 9.\nStep 3 — IQR = 9 - 3 = 6.\nStep 4 — compare: 6 < 8, so Column B is greater.\nCheck: the IQR covers only the middle two of the four gaps in this evenly spaced list, so it must be smaller. Correct.",
+   "trap": "Choosing C by treating the IQR as 'the range of the middle part' and assuming it matches the range. Q1 is always at or above the minimum and Q3 is always at or below the maximum, so IQR is never greater than the range; here the two whiskers eat 2 units, one at each end.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "iqr",
+    "range",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-IQR-011",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A sorted dataset is: 5, 8, 12, 15, 18, 22, 27, 31, 35, 40. Using the standard method (split the 10 values evenly and take the median of each half), what is the IQR?",
+   "options": [
+    "A. 19",
+    "B. 20",
+    "C. 22",
+    "D. 23",
+    "E. 17"
+   ],
+   "answer": "A",
+   "explanation": "10 values split into two halves of 5. Lower half: {5, 8, 12, 15, 18} → Q1 = median = 12. Upper half: {22, 27, 31, 35, 40} → Q3 = median = 31. IQR = 31 − 12 = 19.",
+   "trap": "Students average the two middle values of the full dataset (positions 5 and 6: 18 and 22) to find the 'median' and use that as a pivot, computing Q1 = (15+18)/2 = 16.5 and Q3 = (31+35)/2 = 33, giving IQR = 16.5. The correct method splits all 10 values into two groups of 5 and takes each group's median independently.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "quartile",
+    "range",
+    "two-step"
+   ]
+  },
+  {
+   "id": "STA-IQR-012",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A data set is listed in no particular order: 14, 22, 9, 37, 5, 28, 16, 41, 3, 19, 33, 7. What is its interquartile range? Enter your answer as a number.",
+   "options": null,
+   "answer": "22.5",
+   "explanation": "Step 1 — sort first. Quartiles are positions, and positions mean nothing until the list is ordered.\nSorted: 3, 5, 7, 9, 14, 16, 19, 22, 28, 33, 37, 41.\nStep 2 — 12 values, an even count, so split into two halves of 6.\nLower half: 3, 5, 7, 9, 14, 16.\nUpper half: 19, 22, 28, 33, 37, 41.\nStep 3 — Q1 = median of the lower half = (7 + 9)/2 = 8.\nStep 4 — Q3 = median of the upper half = (28 + 33)/2 = 30.5.\nStep 5 — IQR = 30.5 - 8 = 22.5.\nCheck: the overall median is (16 + 19)/2 = 17.5, and 8 < 17.5 < 30.5. Correct.\nAnswer: 22.5.",
+   "trap": "Reading quartiles straight off the unsorted list. Taking positions 3 and 4 of the printed order gives (9 + 37)/2 = 23 for 'Q1' and positions 9 and 10 give (3 + 19)/2 = 11 for 'Q3', producing a negative IQR - a sure sign the sort was skipped.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "quartile",
+    "sort-first",
+    "iqr"
+   ]
+  },
+  {
+   "id": "STA-IQR-013",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Data set X: 10, 20, 30, 40, 50\nData set Y is formed by adding 100 to every value in Data set X.\nColumn A: The interquartile range of Data set Y\nColumn B: The interquartile range of Data set X",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — Data set X. Median = 30. Lower half {10, 20} gives Q1 = 15; upper half {40, 50} gives Q3 = 45. IQR = 45 - 15 = 30.\nStep 2 — Data set Y = 110, 120, 130, 140, 150. Median = 130. Lower half {110, 120} gives Q1 = 115; upper half {140, 150} gives Q3 = 145. IQR = 145 - 115 = 30.\nStep 3 — the two are equal.\nThe one-line reason: adding a constant c moves every value, so Q1 becomes Q1 + c and Q3 becomes Q3 + c. In Q3 - Q1 the c cancels: (Q3 + c) - (Q1 + c) = Q3 - Q1.\nAnswer: the two quantities are equal.",
+   "trap": "Choosing A because the numbers in Y are all much bigger, so the data 'must' be more spread out. Bigger values are not wider spread. A shift changes every measure of LOCATION (mean, median, quartiles) and no measure of SPREAD (range, IQR, standard deviation).",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "iqr",
+    "shift-invariance",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-IQR-014",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A dataset has Q1 = 20 and Q3 = 50. Using the standard outlier rule (a value is an outlier if it is strictly less than Q1 − 1.5 × IQR or strictly greater than Q3 + 1.5 × IQR), which of the following values is an outlier?",
+   "options": [
+    "A. −25",
+    "B. 10",
+    "C. 65",
+    "D. 97",
+    "E. −25 and 97"
+   ],
+   "answer": "D",
+   "explanation": "IQR = Q3 − Q1 = 50 − 20 = 30. Lower fence = Q1 − 1.5 × IQR = 20 − 45 = −25. Upper fence = Q3 + 1.5 × IQR = 50 + 45 = 95. A value is an outlier only if it falls STRICTLY outside these fences. −25 sits exactly on the lower fence, so it is NOT an outlier. 10 and 65 are within [−25, 95]. 97 > 95, so 97 is an outlier. Answer: D.",
+   "trap": "Students apply the 1.5×IQR rule using the mean as the center instead of Q1 and Q3. Also, students may classify −25 as an outlier because it equals the fence — but values AT the fence are not classified as outliers (only values strictly beyond it are).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "quartile",
+    "data-distribution"
+   ]
+  },
+  {
+   "id": "STA-IQR-015",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A data set has Q1 = 15 and Q3 = 45. By the 1.5 x IQR rule, a value is an outlier only if it is strictly less than Q1 - 1.5 x IQR or strictly greater than Q3 + 1.5 x IQR. Which of the following values are outliers? Select all that apply.",
+   "options": [
+    "A. -35",
+    "B. -10",
+    "C. 0",
+    "D. 92",
+    "E. 100"
+   ],
+   "answer": [
+    "A",
+    "D",
+    "E"
+   ],
+   "explanation": "Step 1 — IQR = Q3 - Q1 = 45 - 15 = 30, so 1.5 x IQR = 45.\nStep 2 — lower fence = Q1 - 45 = 15 - 45 = -30. Upper fence = Q3 + 45 = 45 + 45 = 90.\nStep 3 — anything strictly outside [-30, 90] is an outlier. Test each option.\nA - -35 < -30. Outlier. TRUE.\nB - -10 lies inside [-30, 90]. Not an outlier. FALSE.\nC - 0 lies inside [-30, 90]. Not an outlier. FALSE.\nD - 92 > 90. Outlier. TRUE.\nE - 100 > 90. Outlier. TRUE.\nAnswer: A, D, E.",
+   "trap": "Flagging B (-10) and C (0) because they look small or negative next to Q1 = 15. Size has nothing to do with it; only the fences matter, and the lower fence sits at -30, well below both. The other slip is measuring 1.5 x IQR from the median instead of from Q1 and Q3.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "outlier-rule",
+    "iqr",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-IQR-016",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "A sorted dataset of 7 values has IQR = 18.\nColumn A: Q3 − Q1\nColumn B: 18",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "IQR is defined as Q3 − Q1. If IQR = 18, then by definition Q3 − Q1 = 18. Column A = Column B = 18. These are two expressions for the same quantity.",
+   "trap": "Students think 'IQR' and 'Q3 − Q1' might differ because IQR could involve some additional correction factor. IQR is exactly Q3 − Q1, with no adjustment.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "quartile",
+    "conceptual",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-IQR-017",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A data set listed in increasing order is 2, 4, 6, 8, 10, 12, 14. The value 14 is deleted. Using the standard method, with the median excluded from each half, how does the interquartile range change?",
+   "options": [
+    "A. It increases by 2",
+    "B. It increases by 4",
+    "C. It stays the same",
+    "D. It decreases by 2",
+    "E. It decreases by 4"
+   ],
+   "answer": "D",
+   "explanation": "Step 1 — original set, 7 values. Median = 4th value = 8. Lower half {2, 4, 6} gives Q1 = 4; upper half {10, 12, 14} gives Q3 = 12. IQR = 12 - 4 = 8.\nStep 2 — after deleting 14 the set is 2, 4, 6, 8, 10, 12, an even count of 6. Split into halves of 3.\nLower half {2, 4, 6} gives Q1 = 4; upper half {8, 10, 12} gives Q3 = 10. IQR = 10 - 4 = 6.\nStep 3 — the change is 6 - 8 = -2, a decrease of 2.\nAnswer: it decreases by 2.",
+   "trap": "Choosing C on the reasoning that Q3 is not the maximum, so deleting the maximum cannot touch it. Q3 is the median of the upper half, and deleting a value re-cuts the halves: the upper half slides from {10, 12, 14} to {8, 10, 12}, dragging Q3 from 12 down to 10. Choice E, a decrease of 4, comes from putting both middle values of the new 6-value set into both halves - {2, 4, 6, 8} and {6, 8, 10, 12} give Q1 = 5, Q3 = 9 and IQR = 4, so the change looks like 4 - 8 = -4. Choices A and B are those same two magnitudes with the direction reversed, from subtracting old minus new (8 - 6 = 2, or 8 - 4 = 4) and reporting the result as an increase.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "quartile",
+    "data-change",
+    "iqr"
+   ]
+  },
+  {
+   "id": "STA-IQR-018",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A sorted dataset is: 5, 10, 15, 20, 25, 30, 35, 40. A value of 100 is added to the dataset. What is the new IQR?",
+   "options": null,
+   "answer": "25",
+   "explanation": "After adding 100 (9 values total): 5,10,15,20,25,30,35,40,100. The new median (5th value) = 25. Lower half (below median): {5,10,15,20} → Q1 = (10+15)/2 = 12.5. Upper half (above median): {30,35,40,100} → Q3 = (35+40)/2 = 37.5. New IQR = 37.5 − 12.5 = 25.",
+   "trap": "Students assume adding a large outlier doesn't affect IQR because 'it only affects the maximum.' In fact, adding 100 restructures the upper half from {25,30,35,40} to {30,35,40,100}, shifting Q3 from 32.5 to 37.5 and increasing IQR from 20 to 25.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "quartile",
+    "data-distribution",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-IQR-019",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A box plot shows: Min = 10, Q1 = 30, Median = 50, Q3 = 70, Max = 90. A new value of 52 is added to the dataset. Assuming no quartile positions shift due to the added value, which statement is most accurate?",
+   "options": [
+    "A. The IQR increases because 52 is above the median",
+    "B. The IQR decreases because 52 is inside the box",
+    "C. The IQR is unchanged because 52 is between Q1 and Q3",
+    "D. The IQR definitely changes — it is impossible to predict without the full dataset",
+    "E. The IQR doubles"
+   ],
+   "answer": "C",
+   "explanation": "The IQR = Q3 − Q1 = 70 − 30 = 40. When a value falling between Q1 and Q3 is added, it lands inside the existing box. If the quartile boundary positions don't shift (which can happen when the dataset is large enough), Q1 and Q3 remain unchanged and IQR stays at 40. For this conceptual question, option C captures the key insight: values added within the IQR interval are least likely to change Q1 or Q3.",
+   "trap": "Students assume any added value must change the IQR. Values inserted strictly between Q1 and Q3 do not necessarily shift Q1 or Q3, especially in larger datasets where the quartile-defining positions remain occupied by the same values.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "quartile",
+    "data-distribution",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-IQR-020",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Dataset P: 1, 3, 5, 7, 9, 11, 13\nDataset Q: 2, 4, 6, 8, 10, 12, 14\nColumn A: IQR of Dataset P\nColumn B: IQR of Dataset Q",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Dataset P (7 values): Median=7. Lower half {1,3,5} → Q1=3. Upper half {9,11,13} → Q3=11. IQR=8. Dataset Q (7 values): Median=8. Lower half {2,4,6} → Q1=4. Upper half {10,12,14} → Q3=12. IQR=12−4=8. Both IQRs equal 8. Dataset Q is Dataset P with every value increased by 1; adding a constant does not change the IQR.",
+   "trap": "Students see that every value in Q is larger than the corresponding value in P and assume Q has a larger IQR. Shifting all values by a constant changes position measures (mean, median) but not spread measures (IQR, range, standard deviation).",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "quartile",
+    "data-distribution",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-IQR-021",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Eight exam scores, listed in increasing order, are 55, 62, 68, 74, 79, 85, 91, 97. Using the standard method, what score is Q3, the 75th percentile? Enter your answer as a number.",
+   "options": null,
+   "answer": "88",
+   "explanation": "Step 1 — 8 values, an even count, so split into two halves of 4.\nLower half: 55, 62, 68, 74. Upper half: 79, 85, 91, 97.\nStep 2 — Q3 is the median of the upper half: (85 + 91)/2 = 176/2 = 88.\nCheck: Q1 = (62 + 68)/2 = 65 and the median is (74 + 79)/2 = 76.5, so 65 < 76.5 < 88 as required. Correct.\nAnswer: 88.",
+   "trap": "Computing 0.75 x 8 = 6 and reading off the 6th score, 85. Multiplying a percentile by n gives a COUNT of data points, not a value to look up directly; the 75th percentile is the median of the upper half, which lands between the 6th and 7th scores at 88.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "percentile",
+    "quartile",
+    "position-vs-value"
+   ]
+  },
+  {
+   "id": "STA-IQR-022",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A large data set has this five-number summary: minimum = 8, Q1 = 26, median = 40, Q3 = 62, maximum = 90. Which of the following statements are true? Select all that apply.",
+   "options": [
+    "A. The range is 82",
+    "B. The interquartile range is 41",
+    "C. About 25% of the values are greater than 62",
+    "D. About half of the values lie between 26 and 62",
+    "E. The mean of the data set is 40"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "D"
+   ],
+   "explanation": "First compute the two spreads: range = 90 - 8 = 82, and IQR = Q3 - Q1 = 62 - 26 = 36.\nA - the range is 82. TRUE.\nB - the IQR is 36, not 41. (41 is half the range, 82/2.) FALSE.\nC - Q3 = 62 is the 75th percentile, so about 75% of the values are at or below it and about 25% are above it. TRUE.\nD - Q1 to Q3 is by definition the middle 50% of the data. TRUE.\nE - 40 is the median, the 50th percentile. The mean is a different statistic and cannot be read off a five-number summary. FALSE.\nAnswer: A, C, D.",
+   "trap": "Choice B rests on the belief that the IQR is half the range - true only for special symmetric data, and here it gives 41 instead of 36. Choice E is the capsule's warning that the 50th percentile is the median, not the mean; a right-skewed set with maximum 90 would have a mean well above 40.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "five-number-summary",
+    "iqr",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-IQR-023",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "A dataset of 7 values has IQR = 14 and range = 30.\nColumn A: Q3 − Q1\nColumn B: (Max − Min) / 2",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Column A = Q3 − Q1 = IQR = 14 (by definition). Column B = (Max − Min) / 2 = 30 / 2 = 15. Column B (15) > Column A (14).",
+   "trap": "Students assume IQR = range/2, which would make the two columns equal. This is only true for specific symmetric datasets. Here, 14 ≠ 15.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "quartile",
+    "range",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-IQR-024",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In a box plot of a large data set, the left edge of the box is at Q1 = 30 and the right edge is at Q3 = 54. The whiskers reach the minimum, 5, and the maximum, 70. Approximately what fraction of the data values lie between 30 and 54?",
+   "options": [
+    "A. 1/4",
+    "B. 3/8",
+    "C. 1/2",
+    "D. 3/4",
+    "E. It cannot be determined without the individual data values"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — Q1 is the 25th percentile and Q3 is the 75th percentile.\nStep 2 — the share of data between them is 75% - 25% = 50%.\nStep 3 — so the box always holds about half the data values: 1/2.\nThis is true for every box plot, whatever the numbers on the axis: the lower whisker covers the bottom 25%, the box the middle 50%, the upper whisker the top 25%.\nAnswer: 1/2.",
+   "trap": "Choice B comes from measuring the picture instead of counting the data: (54 - 30)/(70 - 5) = 24/65, about 3/8. That is the fraction of the numeric RANGE the box covers, not the fraction of data POINTS inside it. Quartiles cut the data into four equal counts, not four equal numeric widths - which is exactly why a narrow box next to a long whisker signals skew, and why E is wrong.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "boxplot",
+    "percentile",
+    "counts-not-widths"
+   ]
+  },
+  {
+   "id": "STA-IQR-025",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A sorted dataset of 20 values has the value 18 at position 5 and the value 42 at position 15. Using the formula Q1 = value at position 0.25(n+1) and Q3 = value at position 0.75(n+1), where n = 20, what is the IQR? (Use position 5 for Q1 and position 15 for Q3.)",
+   "options": null,
+   "answer": "24",
+   "explanation": "For n = 20: Q1 position = 0.25 × (20+1) = 0.25 × 21 = 5.25. Q3 position = 0.75 × (20+1) = 0.75 × 21 = 15.75. Rounding to the nearest integer positions: Q1 ≈ position 5 = 18. Q3 ≈ position 15 = 42. IQR = Q3 − Q1 = 42 − 18 = 24.",
+   "trap": "Students use Q1 position = 0.25 × 20 = 5 and Q3 position = 0.75 × 20 = 15 (omitting the '+1'). Here the result happens to be the same, but the +1 adjustment is important in other cases and the correct formula includes it.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "quartile",
+    "percentile",
+    "two-step"
+   ]
+  },
+  {
+   "id": "STA-IQR-026",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Which of the following statements about the interquartile range are true for EVERY data set? Select all that apply.",
+   "options": [
+    "A. IQR >= 0",
+    "B. IQR <= the range of the data set",
+    "C. IQR = 0 whenever every value in the data set is equal",
+    "D. IQR = the range only when every value in the data set is equal",
+    "E. Multiplying every value by 2 doubles the IQR"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "A - Q3 is at or above Q1 in every sorted data set, so IQR = Q3 - Q1 >= 0. TRUE.\nB - Q1 is at or above the minimum and Q3 is at or below the maximum, so Q3 - Q1 <= max - min. TRUE.\nC - if every value equals k then Q1 = Q3 = k and IQR = 0. TRUE.\nD - a counterexample: 1, 1, 3, 9, 9. Median = 3, lower half {1, 1} gives Q1 = 1 = minimum, upper half {9, 9} gives Q3 = 9 = maximum. IQR = 8 = range, yet the values are not all equal. FALSE.\nE - multiplying by the positive constant 2 preserves the sorted order, so Q1 becomes 2 x Q1 and Q3 becomes 2 x Q3, giving new IQR = 2Q3 - 2Q1 = 2 x IQR. TRUE.\nAnswer: A, B, C, E.",
+   "trap": "Choice D is the one that catches people: IQR = range looks like it should force a single repeated value, but all it forces is that the bottom quarter and the top quarter be flat, as in 1, 1, 3, 9, 9, where the middle value is free. The other slip is rejecting E on the grounds that quartiles are positions rather than values: multiplying by 2 leaves the sorted positions alone but doubles the values sitting at them, so the IQR doubles. ADDING a constant is the operation that would leave the IQR untouched.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "iqr",
+    "invariance",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-IQR-027",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A data set consists of 9 positive integers. Its first quartile is 20 and its third quartile is 50, found by the standard method with the median excluded from each half. What is the least possible value of the range of this data set?",
+   "options": [
+    "A. 0",
+    "B. 30",
+    "C. 31",
+    "D. 49",
+    "E. 60"
+   ],
+   "answer": "B",
+   "explanation": "Write the sorted values as v1 <= v2 <= ... <= v9.\nStep 1 — locate the quartiles. With 9 values the median is v5. The lower half is v1..v4, so Q1 = (v2 + v3)/2 = 20. The upper half is v6..v9, so Q3 = (v7 + v8)/2 = 50.\nStep 2 — to make the range v9 - v1 small, push v1 up and pull v9 down.\nSince v1 <= v2 <= v3 and v2 + v3 = 40, the largest v1 can be is 20 (take v2 = v3 = 20).\nSince v7 <= v8 <= v9 and v7 + v8 = 100, the smallest v9 can be is 50 (take v7 = v8 = 50).\nStep 3 — so the range is at least 50 - 20 = 30.\nStep 4 — 30 is achievable: 20, 20, 20, 20, 20, 50, 50, 50, 50 has Q1 = (20 + 20)/2 = 20, Q3 = (50 + 50)/2 = 50, and range 50 - 20 = 30.\nAnswer: 30.",
+   "trap": "Choice C, 31, comes from assuming the minimum must sit strictly below Q1 and the maximum strictly above Q3, so the range has to beat the IQR by at least 1. Repeated values are allowed, and once ties are permitted the extremes can sit exactly on the quartiles. Choice D, 49, keeps the maximum at 50 but drops the minimum to 1, the smallest positive integer, forgetting that v1 is free to rise all the way to 20. Choice A, 0, is the reflex that the least possible range is always 0 because all values could be equal; Q1 = 20 and Q3 = 50 already rule that out. Choice E, 60, is range = 2 x IQR, a rule that does not exist.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "quartile",
+    "extremal-reasoning",
+    "range"
+   ]
+  },
+  {
+   "id": "STA-IQR-028",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "Seven numbers listed in increasing order are 3, k, 15, 20, 28, m, 42, where 3 < k < 15 and 28 < m < 42. Quartiles are found by the standard method, with the median excluded from each half. The interquartile range of the seven numbers is 20 and their mean is 22. What is the value of m? Enter your answer as a number.",
+   "options": null,
+   "answer": "33",
+   "explanation": "Step 1 — locate the quartiles. With 7 values the median is the 4th, namely 20, and the standard method drops it from both halves. The lower half is {3, k, 15} and the upper half is {28, m, 42}.\nStep 2 — since 3 < k < 15, the middle value of the lower half is k, so Q1 = k. Since 28 < m < 42, the middle value of the upper half is m, so Q3 = m.\nStep 3 — IQR = Q3 - Q1 gives m - k = 20.\nStep 4 — the mean gives the second equation: 3 + k + 15 + 20 + 28 + m + 42 = 7 x 22 = 154, so 108 + k + m = 154 and k + m = 46.\nStep 5 — solve. Adding m - k = 20 and m + k = 46 gives 2m = 66, so m = 33 and k = 13.\nCheck: 3, 13, 15, 20, 28, 33, 42 is increasing, Q1 = 13, Q3 = 33, IQR = 20, and the sum is 154 so the mean is 22. Correct.\nAnswer: 33.",
+   "trap": "Taking Q3 to be the maximum, 42, and solving 42 - k = 20 to get k = 22 - which is not even in the allowed range 3 < k < 15. Q3 is the median of the upper half {28, m, 42}, so it is m, not 42. The other slip is forgetting that the mean supplies a second, independent equation and trying to pin down m from the IQR alone.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "quartile",
+    "simultaneous-equations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-IQR-029",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Data set A consists of 9 numbers. Data set B is formed from A by replacing the largest number in A with a number that is 100 greater. Quartiles are found by the standard method, with the median excluded from each half.\nColumn A: The interquartile range of Data set A\nColumn B: The interquartile range of Data set B",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Write A sorted as v1 <= v2 <= ... <= v9.\nStep 1 — with 9 values the median is v5, the lower half is v1..v4 and the upper half is v6..v9.\nSo Q1 = (v2 + v3)/2 and Q3 = (v7 + v8)/2.\nStep 2 — B replaces v9 by v9 + 100. Since v9 was already the largest, v9 + 100 is still the largest, so the sorted order of the other eight values is unchanged and the new list is v1, ..., v8, v9 + 100.\nStep 3 — the new Q1 is still (v2 + v3)/2 and the new Q3 is still (v7 + v8)/2, because v9 does not appear in either formula.\nStep 4 — so IQR(B) = IQR(A). The two quantities are equal.\nExample: A = 1, 2, 3, 4, 5, 6, 7, 8, 9 has Q1 = 2.5, Q3 = 7.5, IQR = 5; B = 1, 2, 3, 4, 5, 6, 7, 8, 109 has the same Q1 and Q3, so IQR = 5.",
+   "trap": "Choosing B on the slogan 'a bigger outlier means more spread'. The IQR is built only from the values sitting at the quartile positions, and with 9 values Q3 = (v7 + v8)/2 never involves the maximum at all. Contrast this with a 5-value set, where the upper half is only {v4, v5} and the maximum DOES sit inside Q3 - the count of values decides whether the extreme reaches a quartile.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "quartile",
+    "outlier-resistance",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-IQR-030",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A data set of 12 values has mean 50, median 48, Q1 = 35 and Q3 = 63. Every value in the data set is multiplied by 1.5 and then decreased by 6. What are the new interquartile range and the new median?",
+   "options": [
+    "A. IQR = 42, median = 66",
+    "B. IQR = 36, median = 66",
+    "C. IQR = 42, median = 72",
+    "D. IQR = 28, median = 66",
+    "E. IQR = 36, median = 72"
+   ],
+   "answer": "A",
+   "explanation": "The transformation is x -> 1.5x - 6, which is increasing, so the sorted order is preserved and every order statistic transforms the same way.\nStep 1 — new Q1 = 1.5 x 35 - 6 = 52.5 - 6 = 46.5.\nStep 2 — new Q3 = 1.5 x 63 - 6 = 94.5 - 6 = 88.5.\nStep 3 — new IQR = 88.5 - 46.5 = 42. Notice the -6 cancels: (1.5Q3 - 6) - (1.5Q1 - 6) = 1.5(Q3 - Q1) = 1.5 x 28 = 42.\nStep 4 — new median = 1.5 x 48 - 6 = 72 - 6 = 66.\nAnswer: IQR = 42, median = 66.",
+   "trap": "Choice B applies the -6 to the IQR as well, giving 42 - 6 = 36; the shift cancels in a difference, so only the multiplier touches the IQR. Choice C forgets the -6 on the median, giving 72. Choice D leaves the IQR unscaled at 28, confusing the rule for adding a constant (spread unchanged) with the rule for multiplying (spread scaled).",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "linear-transformation",
+    "iqr",
+    "median"
+   ]
+  },
+  {
+   "id": "STA-IQR-031",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "In a certain data set Q1 = 24 and Q3 = 60. By the 1.5 x IQR rule, a value is an outlier only if it is strictly beyond a fence. Let w be the least integer that is an upper outlier and let u be the greatest integer that is a lower outlier. What is w - u? Enter your answer as a number.",
+   "options": null,
+   "answer": "146",
+   "explanation": "Step 1 — IQR = Q3 - Q1 = 60 - 24 = 36, so 1.5 x IQR = 54.\nStep 2 — upper fence = Q3 + 54 = 60 + 54 = 114. An upper outlier must be strictly greater than 114, so the least integer that qualifies is w = 115.\nStep 3 — lower fence = Q1 - 54 = 24 - 54 = -30. A lower outlier must be strictly less than -30, so the greatest integer that qualifies is u = -31.\nStep 4 — w - u = 115 - (-31) = 115 + 31 = 146.\nCheck: 114 and -30 are both non-outliers because the rule requires strict inequality; stepping one integer past each fence gives 115 and -31. Correct.\nAnswer: 146.",
+   "trap": "Two errors dominate. First, anchoring both fences to the same quartile - using Q1 + 54 = 78 as the upper fence instead of Q3 + 54 = 114. Second, treating the fences themselves as outliers, which would give w = 114 and u = -30 and the answer 144. A value sitting exactly on a fence is not an outlier.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "outlier-rule",
+    "fences",
+    "strict-inequality"
+   ]
+  },
+  {
+   "id": "STA-IQR-032",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Data set A: 10, 20, 30, 40, 50\nData set B is Data set A with the value 50 replaced by 500.\nQuartiles are found by the standard method, with the median excluded from each half.\nColumn A: The interquartile range of Data set A\nColumn B: The interquartile range of Data set B",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — Data set A. Median = 30. Lower half {10, 20} gives Q1 = 15; upper half {40, 50} gives Q3 = 45. IQR = 45 - 15 = 30.\nStep 2 — Data set B = 10, 20, 30, 40, 500. Median is still 30. Lower half {10, 20} still gives Q1 = 15; upper half is now {40, 500}, so Q3 = (40 + 500)/2 = 270.\nStep 3 — IQR of B = 270 - 15 = 255.\nStep 4 — 255 > 30, so Column B is greater.\nWhy the IQR moved so much: with only 5 values the upper half holds just two numbers, so the MAXIMUM is one of the two values averaged to make Q3. In a small data set the extreme value is a quartile ingredient.",
+   "trap": "Choosing C on the rule of thumb that the IQR ignores outliers. That rule holds when the data set is large enough that the extreme sits beyond the quartile positions; here n = 5 and Q3 = (v4 + v5)/2 uses the maximum directly, so replacing 50 with 500 drags Q3 from 45 to 270. Compare STA-IQR-029, where 9 values do keep the maximum out of Q3.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "quartile",
+    "outlier-sensitivity",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-IQR-033",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A data set of 11 values, listed in increasing order, is 2, 5, 6, 8, 11, 13, 15, 16, 19, 22, 48. Quartiles are found by the standard method, with the median excluded from each half, and the 1.5 x IQR rule marks a value as an outlier only if it is strictly beyond a fence. Which of the following statements are true? Select all that apply.",
+   "options": [
+    "A. The interquartile range is 13",
+    "B. The data set contains exactly one outlier",
+    "C. The range is more than three times the interquartile range",
+    "D. Deleting the value 48 leaves the interquartile range unchanged",
+    "E. The median is greater than the mean"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "Set-up: 11 values, so the median is the 6th value, 13. Lower half = {2, 5, 6, 8, 11}, so Q1 = 6. Upper half = {15, 16, 19, 22, 48}, so Q3 = 19.\nA - IQR = 19 - 6 = 13. TRUE.\nB - 1.5 x IQR = 19.5. Lower fence = 6 - 19.5 = -13.5; upper fence = 19 + 19.5 = 38.5. Only 48 lies strictly outside [-13.5, 38.5], so there is exactly one outlier. TRUE.\nC - range = 48 - 2 = 46, and 3 x IQR = 39. Since 46 > 39, the range is more than three times the IQR. TRUE.\nD - deleting 48 leaves 10 values: 2, 5, 6, 8, 11, 13, 15, 16, 19, 22. Halves of 5: lower {2, 5, 6, 8, 11} gives Q1 = 6; upper {13, 15, 16, 19, 22} gives Q3 = 16. New IQR = 16 - 6 = 10, not 13. FALSE.\nE - the sum is 165, so the mean is 165/11 = 15, while the median is 13. The median is LESS than the mean. FALSE.\nAnswer: A, B, C.",
+   "trap": "Choice D is the trap version of the true statement in STA-IQR-029: here removing the outlier changes the count from 11 to 10, which re-cuts the halves and pulls Q3 from 19 down to 16. Choice E rewards a guess that the lone big value 48 must drag the median around; in fact a single high outlier pulls the MEAN up (to 15) and leaves the median at 13, so the inequality runs the other way.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "quartile",
+    "outlier-rule",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-IQR-034",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In a group of 500 students who each received a different score on an exam, Arun's score is at the 92nd percentile and Bela's score is at the 68th percentile. Here the pth percentile is the score at or below which exactly p percent of the 500 scores fall. How many students scored higher than Bela and lower than Arun?",
+   "options": [
+    "A. 24",
+    "B. 118",
+    "C. 119",
+    "D. 120",
+    "E. 121"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — turn each percentile into a count. At or below Arun: 0.92 x 500 = 460 students, Arun included. At or below Bela: 0.68 x 500 = 340 students, Bela included.\nStep 2 — the 460 students at or below Arun consist of three groups: the 340 at or below Bela, everyone strictly between the two, and Arun himself.\nStep 3 — so the count strictly between is 460 - 340 - 1 = 119.\nCheck by counting positions: with all 500 scores distinct, Bela is the 340th lowest and Arun is the 460th lowest. The students strictly between occupy positions 341 through 459, which is 459 - 341 + 1 = 119 students. Correct.\nAnswer: 119.",
+   "trap": "Choice D, 120, is 460 - 340: it forgets that Arun is one of the 460 students counted at or below his own score, so he must be removed from the gap. Choice B, 118, is the over-correction, subtracting BOTH named students even though Bela has already been removed with the 340 at or below her. Choice A, 24, reads the percentile gap 92 - 68 as a headcount instead of converting it to students. Choice E, 121, adds one where the count needs one subtracted.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "percentile",
+    "counting",
+    "rank-not-score"
+   ]
+  },
+  {
+   "id": "STA-IQR-035",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A data set consists of exactly 5 numbers. Its first quartile is 7, its median is 12, and its third quartile is 20, where Q1 is the median of the two values below the median and Q3 is the median of the two values above it. What is the mean of the 5 numbers? Enter your answer as a number.",
+   "options": null,
+   "answer": "13.2",
+   "explanation": "The insight: with only 5 values, the quartiles pin down the SUM even though they do not pin down the individual numbers.\nStep 1 — write the sorted values as v1, v2, v3, v4, v5. The median is v3 = 12.\nStep 2 — Q1 is the median of {v1, v2}, so (v1 + v2)/2 = 7, giving v1 + v2 = 14.\nStep 3 — Q3 is the median of {v4, v5}, so (v4 + v5)/2 = 20, giving v4 + v5 = 40.\nStep 4 — total = 14 + 12 + 40 = 66, so the mean = 66/5 = 13.2.\nCheck with two different concrete sets: 6, 8, 12, 18, 22 has Q1 = 7, median 12, Q3 = 20 and sum 66; and 7, 7, 12, 20, 20 has the same three quartiles and also sums to 66. Both give mean 13.2. Correct.\nAnswer: 13.2.",
+   "trap": "Answering 'cannot be determined' because the five individual values are not fixed - true, but irrelevant: each quartile fixes the SUM of a pair, and the mean only needs the total. The other error is averaging the three given statistics, (7 + 12 + 20)/3 = 13, which is close enough to 13.2 to look right and is wrong.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "quartile",
+    "mean-from-quartiles",
+    "insight"
+   ]
+  },
+  {
+   "id": "STA-IQR-036",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Data set S consists of 10 values, all equal to 50.\nData set T consists of 10 values: one 0, eight 50s, and one 100.\nQuartiles are found by the standard method.\nColumn A: The interquartile range of Data set S\nColumn B: The interquartile range of Data set T",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — Data set S. Every value is 50, so Q1 = Q3 = 50 and IQR = 0.\nStep 2 — Data set T sorted: 0, 50, 50, 50, 50, 50, 50, 50, 50, 100.\nWith 10 values, split into halves of 5.\nLower half = {0, 50, 50, 50, 50}, whose median is the 3rd value, 50. So Q1 = 50.\nUpper half = {50, 50, 50, 50, 100}, whose median is the 3rd value, 50. So Q3 = 50.\nStep 3 — IQR of T = 50 - 50 = 0.\nStep 4 — both IQRs are 0, so the two quantities are equal.\nNote how differently the RANGE behaves: 0 for S and 100 for T. That gap is exactly what the IQR is designed to ignore.",
+   "trap": "Choosing B because T visibly contains two extreme values and S contains none. With 10 values Q1 is the 3rd value of the lower half and Q3 is the 3rd value of the upper half, and both of those positions are occupied by 50 - the 0 and the 100 sit outside the quartile positions entirely. Spread at the ends does not register in the middle 50%.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "iqr",
+    "outlier-resistance",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-IQR-037",
+   "difficulty": "extreme_hard",
+   "type": "mcq",
+   "question": "A data set of n values, where n > 4, has an interquartile range of 0. Which of the following must be true?\n\nI. Every value in the data set is equal.\nII. At least 50% of the values are equal to one another.\nIII. The median equals Q1.",
+   "options": [
+    "A. I only",
+    "B. II only",
+    "C. III only",
+    "D. II and III only",
+    "E. I, II and III"
+   ],
+   "answer": "D",
+   "explanation": "IQR = 0 means Q3 - Q1 = 0, so Q1 = Q3 = v for some value v.\nStatement I - FALSE. Counterexample: 1, 5, 5, 5, 5, 9. Six values, median = (5 + 5)/2 = 5, lower half {1, 5, 5} gives Q1 = 5, upper half {5, 5, 9} gives Q3 = 5, so IQR = 0. Yet 1 and 9 are not equal to 5.\nStatement II - TRUE. In sorted order every value between the position that defines Q1 and the position that defines Q3 is squeezed between Q1 and Q3, and those are the same number v, so all of them equal v. Those positions bracket the middle of the list: they run from roughly the quarter point to roughly the three-quarter point, which is at least half of the values. In the counterexample above, four of the six values equal 5, which is 67%.\nStatement III - TRUE. The median always satisfies Q1 <= Q2 <= Q3. With Q1 = Q3 = v this squeezes Q2 = v = Q1.\nAnswer: II and III only.",
+   "trap": "Choice A treats IQR = 0 as 'no spread at all', so every value must coincide. The IQR only measures the middle 50%; the bottom quarter and the top quarter are free to be anything, as 1, 5, 5, 5, 5, 9 shows. Choice B drops III by forgetting the ordering Q1 <= Q2 <= Q3, which forces the median into the collapsed middle.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "iqr",
+    "must-be-true",
+    "counterexample"
+   ]
+  },
+  {
+   "id": "STA-IQR-038",
+   "difficulty": "extreme_hard",
+   "type": "numeric_entry",
+   "question": "A data set consists of 8 positive integers. Its first quartile is 12, its median is 20, its third quartile is 31, and its largest value is 40. Quartiles are found by the standard method: with 8 values the lower half is the 4 smallest and the upper half is the 4 largest. What is the greatest possible value of the mean of the data set? Enter your answer as a number.",
+   "options": null,
+   "answer": "22.25",
+   "explanation": "Write the sorted values as v1 <= v2 <= ... <= v8, with v8 = 40.\nStep 1 — translate each statistic into a pair sum.\nQ1 is the median of {v1, v2, v3, v4}, so (v2 + v3)/2 = 12, giving v2 + v3 = 24.\nThe median is (v4 + v5)/2 = 20, giving v4 + v5 = 40.\nQ3 is the median of {v5, v6, v7, v8}, so (v6 + v7)/2 = 31, giving v6 + v7 = 62.\nStep 2 — write the total using those sums:\nsum = v1 + (v2 + v3) + (v4 + v5) + (v6 + v7) + v8 = v1 + 24 + 40 + 62 + 40 = v1 + 166.\nEvery term except v1 is already fixed, so maximising the mean means maximising v1 alone.\nStep 3 — bound v1. Since v1 <= v2 <= v3 and v2 + v3 = 24, the largest v2 can be is 12, so v1 <= 12.\nStep 4 — v1 = 12 is achievable: 12, 12, 12, 20, 20, 22, 40, 40.\nCheck that set: Q1 = (12 + 12)/2 = 12; median = (20 + 20)/2 = 20; Q3 = (22 + 40)/2 = 31; maximum = 40; all eight are positive integers in increasing order. Correct.\nStep 5 — sum = 12 + 166 = 178, so the mean = 178/8 = 22.25.\nAnswer: 22.25.",
+   "trap": "Trying to make the mean large by pushing the big values up. They cannot move: v2 + v3, v4 + v5 and v6 + v7 are each locked by a quartile, and v8 is given as 40. The only free number in the whole set is v1, and it is capped at 12 by v1 <= v2 <= 12. A student who instead maximises v6 and v7 (say 22 and 40) finds the sum unchanged, because their total is fixed at 62.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "quartile",
+    "extremal-reasoning",
+    "mean"
+   ]
+  },
+  {
+   "id": "STA-IQR-039",
+   "difficulty": "extreme_hard",
+   "type": "quantitative_comparison",
+   "question": "A data set of 12 integers has an interquartile range of 20, and every value in it is less than 1000. Three more values, each equal to 1000, are appended to form a new data set of 15 values. Quartiles are found by the standard method, with the median excluded from each half.\nColumn A: The interquartile range of the new 15-value data set\nColumn B: 20",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Step 1 — set up the positions. Call the original sorted values v1 <= ... <= v12. With 12 values, Q1 = (v3 + v4)/2 and Q3 = (v9 + v10)/2, and their difference is 20.\nStep 2 — the new list is v1, ..., v12, 1000, 1000, 1000, which has 15 values. The median is now the 8th value, the lower half is positions 1-7 and the upper half is positions 9-15.\nNew Q1 = middle of positions 1-7 = v4. New Q3 = middle of positions 9-15 = the 4th of {v9, v10, v11, v12, 1000, 1000, 1000} = v12.\nSo the new IQR is v12 - v4 - a completely different pair of values from the ones that produced 20.\nStep 3 — make it bigger. Take 0, 0, 0, 0, 10, 10, 10, 10, 20, 20, 100, 100. Then Q1 = (0 + 0)/2 = 0, Q3 = (20 + 20)/2 = 20, so the original IQR is 20. The new IQR is v12 - v4 = 100 - 0 = 100 > 20.\nStep 4 — make it smaller. Take 1, 2, 3, 27, 28, 30, 32, 33, 34, 36, 38, 40. Then Q1 = (3 + 27)/2 = 15 and Q3 = (34 + 36)/2 = 35, so the original IQR is 20. The new IQR is v12 - v4 = 40 - 27 = 13 < 20.\nStep 5 — Column A can exceed, equal or fall below 20, so the relationship cannot be determined.\nAnswer: D.",
+   "trap": "Choosing C on the rule of thumb that the IQR ignores extreme values. Appending three values does more than add outliers: it changes n from 12 to 15, which moves the quartile POSITIONS. Q3 stops being an average of the 9th and 10th values and becomes the old maximum v12, so the new IQR is measured between two entirely different data points and can land anywhere.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "quartile",
+    "position-shift",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-IQR-040",
+   "difficulty": "extreme_hard",
+   "type": "multiple_answer",
+   "question": "A data set of 20 values has Q1 = 30, Q3 = 70, mean 50 and median 48. Every value x in the data set is replaced by 2x - 10. Which of the following statements about the transformed data set are true? Select all that apply.",
+   "options": [
+    "A. The new interquartile range is 80",
+    "B. The new mean is 100",
+    "C. The new median is 86",
+    "D. The new Q1 is 50",
+    "E. The new range is 10 less than twice the original range"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "D"
+   ],
+   "explanation": "The map x -> 2x - 10 is increasing, so sorted order is preserved and every order statistic transforms by the same rule. Location measures pick up both the 2 and the -10; spread measures pick up only the 2, because the -10 cancels in any difference.\nA - new IQR = (2 x 70 - 10) - (2 x 30 - 10) = 130 - 50 = 80. Equivalently 2 x (70 - 30) = 2 x 40 = 80. TRUE.\nB - new mean = 2 x 50 - 10 = 100 - 10 = 90, not 100. FALSE.\nC - new median = 2 x 48 - 10 = 96 - 10 = 86. TRUE.\nD - new Q1 = 2 x 30 - 10 = 60 - 10 = 50. TRUE.\nE - new range = (2 x max - 10) - (2 x min - 10) = 2(max - min), exactly twice the original range with no -10 attached. FALSE.\nAnswer: A, C, D.",
+   "trap": "B and E are mirror-image errors about where the -10 goes. B drops the -10 from a LOCATION measure, where it belongs, giving 100 instead of 90. E attaches the -10 to a SPREAD measure, where it cancels, giving 2R - 10 instead of 2R. The test is simple: if the statistic is a difference of two data values, the shift disappears; if it is a single value or an average of values, the shift stays.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "linear-transformation",
+    "spread-vs-location",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-IQR-041",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In a class of 20 students, the number of books each student read last month was recorded: 5 students read 1 book, 6 students read 2 books, 4 students read 3 books, 3 students read 5 books, and 2 students read 9 books. What is the interquartile range of the 20 values?",
+   "options": [
+    "A. 2",
+    "B. 2.5",
+    "C. 4",
+    "D. 5.5",
+    "E. 8"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — write out all 20 values in order, using the counts:\n1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 5, 5, 5, 9, 9.\nCheck the count: 5 + 6 + 4 + 3 + 2 = 20. Correct.\nStep 2 — 20 values, an even count, so split into two halves of 10.\nLower half = positions 1-10: 1, 1, 1, 1, 1, 2, 2, 2, 2, 2.\nUpper half = positions 11-20: 2, 3, 3, 3, 3, 5, 5, 5, 9, 9.\nStep 3 — Q1 = median of the lower half = average of its 5th and 6th values = (1 + 2)/2 = 1.5.\nStep 4 — Q3 = median of the upper half = average of its 5th and 6th values = (3 + 5)/2 = 4.\nStep 5 — IQR = 4 - 1.5 = 2.5.\nAnswer: 2.5.",
+   "trap": "Choice D, 5.5, comes from treating the five DISTINCT values 1, 2, 3, 5, 9 as the data set: that gives Q1 = 1.5 and Q3 = 7, so IQR = 5.5. The data set has 20 members, not 5, and a value repeated six times counts six times. Choice A, 2, comes from reading off the values at positions 0.25 x 20 = 5 and 0.75 x 20 = 15 (which are 1 and 3) instead of taking the median of each half. Choice C, 4, is Q3 reported on its own, and choice E, 8, is the range 9 - 1.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "quartile",
+    "frequency-data",
+    "iqr"
+   ]
+  },
+  {
+   "id": "STA-IQR-042",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "List L consists of 15 numbers. Each of the 3 largest numbers in L is increased by 20, and no other number is changed. Quartiles are found by the standard method, with the median excluded from each half. Which of the following statistics of the list must be unchanged?",
+   "options": [
+    "A. The mean only",
+    "B. The range only",
+    "C. The median and the interquartile range only",
+    "D. The mean, the median and the interquartile range",
+    "E. The median, the interquartile range and the range"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — locate every statistic by POSITION in the sorted list v1 <= v2 <= ... <= v15.\nThe median is the 8th value, v8.\nThe lower half is v1..v7, so Q1 is its middle value, v4.\nThe upper half is v9..v15, so Q3 is its middle value, v12.\nStep 2 — the 3 largest numbers occupy positions 13, 14 and 15. Adding 20 to each keeps them the three largest and keeps their order among themselves, so the sorted list is v1, ..., v12, v13 + 20, v14 + 20, v15 + 20.\nStep 3 — test each statistic.\nMedian = v8: untouched, so unchanged.\nQ1 = v4 and Q3 = v12: both untouched, so the IQR is unchanged.\nRange = max - min = (v15 + 20) - v1, which is 20 more than before. CHANGED.\nMean: the total rises by 60, so the mean rises by 60/15 = 4. CHANGED.\nStep 4 — only the median and the IQR must be unchanged.\nAnswer: C.",
+   "trap": "Choice E keeps the range on the grounds that 'only the top of the list moved, so the spread of the list is the same' - but the maximum is half of the range, and it moved 20 units. Choice D keeps the mean, forgetting that every value feeds the mean; adding 60 in total to 15 numbers lifts it by 4. A third error is assuming Q3 must move because it lives in the upper half: Q3 is the 12th value, and only positions 13-15 changed.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "quartile",
+    "position-reasoning",
+    "robustness"
+   ]
+  },
+  {
+   "id": "STA-IQR-043",
+   "difficulty": "extreme_hard",
+   "type": "mcq",
+   "question": "A data set consists of 20 positive integers, no two of which are equal. The least of them is 1 and the greatest is 100. Quartiles are found by the standard method: with 20 values the lower half is the 10 smallest and the upper half is the 10 largest. What is the greatest possible value of Q1?",
+   "options": [
+    "A. 84.5",
+    "B. 85.5",
+    "C. 86",
+    "D. 89.5",
+    "E. 95.5"
+   ],
+   "answer": "B",
+   "explanation": "Write the sorted values as v1 < v2 < ... < v20, with v1 = 1 and v20 = 100.\nStep 1 — locate Q1. The lower half is v1..v10, so Q1 is the median of ten values: Q1 = (v5 + v6)/2.\nStep 2 — bound v6. Above v6 sit v7, v8, ..., v20, which is 14 values, all distinct integers and all larger than v6, with the largest equal to 100. To fit 14 distinct integers strictly above v6 and at most 100, we need v6 <= 100 - 14 = 86.\nStep 3 — bound v5. It must be a distinct integer below v6, so v5 <= v6 - 1 <= 85.\nStep 4 — therefore Q1 = (v5 + v6)/2 <= (85 + 86)/2 = 85.5.\nStep 5 — 85.5 is achievable. Take 1, 82, 83, 84, 85, 86, 87, 88, ..., 99, 100: that is v1 = 1, then 82 through 100, which is 19 more values, 20 in all, strictly increasing and distinct. Here v5 = 85 and v6 = 86, so Q1 = (85 + 86)/2 = 85.5.\nAnswer: 85.5.",
+   "trap": "Choice D, 89.5, comes from counting only the ten values of the UPPER half as needing to sit above v6, giving v6 <= 90 and v5 <= 89. The values v7, v8, v9 and v10 are also above v6, so 14 integers must fit, not 10. Choice C, 86, reports v6 by itself, as though Q1 with an even-sized half were a single data value rather than the average of two. Choice A, 84.5, is the same argument off by one, using v6 <= 85. Choice E, 95.5, answers the wrong question: it is the greatest possible Q3, where only v17 through v20 have to fit above v16, so v16 <= 96 and v15 <= 95.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "quartile",
+    "extremal-reasoning",
+    "distinct-integers"
+   ]
+  },
+  {
+   "id": "SEC-ST-019",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The boxplot above summarizes the 200 response times, in seconds, recorded at a help desk during one week. By how many seconds does the range of the 200 response times exceed their interquartile range?",
+   "svg": "<svg viewBox=\"0 0 470 196\" width=\"470\" height=\"196\" xmlns=\"http://www.w3.org/2000/svg\"><text x=\"235\" y=\"22\" font-family=\"Georgia, serif\" font-size=\"13\" fill=\"#1f2937\" text-anchor=\"middle\">Help Desk Response Times (200 calls)</text><g stroke=\"#1f2937\" stroke-width=\"2\" fill=\"none\"><line x1=\"122\" y1=\"62\" x2=\"176\" y2=\"62\"/><line x1=\"284\" y1=\"62\" x2=\"374\" y2=\"62\"/><line x1=\"122\" y1=\"48\" x2=\"122\" y2=\"76\"/><line x1=\"374\" y1=\"48\" x2=\"374\" y2=\"76\"/></g><rect x=\"176\" y=\"40\" width=\"108\" height=\"44\" fill=\"#e5edf7\" stroke=\"#1f2937\" stroke-width=\"2\"/><line x1=\"212\" y1=\"40\" x2=\"212\" y2=\"84\" stroke=\"#1f2937\" stroke-width=\"2\"/><g stroke=\"#1f2937\" stroke-width=\"2\" fill=\"none\"><line x1=\"50\" y1=\"120\" x2=\"410\" y2=\"120\"/><line x1=\"50\" y1=\"120\" x2=\"50\" y2=\"128\"/><line x1=\"86\" y1=\"120\" x2=\"86\" y2=\"128\"/><line x1=\"122\" y1=\"120\" x2=\"122\" y2=\"128\"/><line x1=\"158\" y1=\"120\" x2=\"158\" y2=\"128\"/><line x1=\"194\" y1=\"120\" x2=\"194\" y2=\"128\"/><line x1=\"230\" y1=\"120\" x2=\"230\" y2=\"128\"/><line x1=\"266\" y1=\"120\" x2=\"266\" y2=\"128\"/><line x1=\"302\" y1=\"120\" x2=\"302\" y2=\"128\"/><line x1=\"338\" y1=\"120\" x2=\"338\" y2=\"128\"/><line x1=\"374\" y1=\"120\" x2=\"374\" y2=\"128\"/><line x1=\"410\" y1=\"120\" x2=\"410\" y2=\"128\"/></g><g stroke=\"#1f2937\" stroke-width=\"1\" fill=\"none\"><line x1=\"68\" y1=\"120\" x2=\"68\" y2=\"124\"/><line x1=\"104\" y1=\"120\" x2=\"104\" y2=\"124\"/><line x1=\"140\" y1=\"120\" x2=\"140\" y2=\"124\"/><line x1=\"176\" y1=\"120\" x2=\"176\" y2=\"124\"/><line x1=\"212\" y1=\"120\" x2=\"212\" y2=\"124\"/><line x1=\"248\" y1=\"120\" x2=\"248\" y2=\"124\"/><line x1=\"284\" y1=\"120\" x2=\"284\" y2=\"124\"/><line x1=\"320\" y1=\"120\" x2=\"320\" y2=\"124\"/><line x1=\"356\" y1=\"120\" x2=\"356\" y2=\"124\"/><line x1=\"392\" y1=\"120\" x2=\"392\" y2=\"124\"/></g><g font-family=\"Georgia, serif\" font-size=\"11\" fill=\"#1f2937\" text-anchor=\"middle\"><text x=\"50\" y=\"144\">0</text><text x=\"86\" y=\"144\">10</text><text x=\"122\" y=\"144\">20</text><text x=\"158\" y=\"144\">30</text><text x=\"194\" y=\"144\">40</text><text x=\"230\" y=\"144\">50</text><text x=\"266\" y=\"144\">60</text><text x=\"302\" y=\"144\">70</text><text x=\"338\" y=\"144\">80</text><text x=\"374\" y=\"144\">90</text><text x=\"410\" y=\"144\">100</text></g><text x=\"235\" y=\"180\" font-family=\"Georgia, serif\" font-size=\"12\" fill=\"#1f2937\" text-anchor=\"middle\">Response time (seconds)</text></svg>",
+   "options": [
+    "A. 20",
+    "B. 30",
+    "C. 40",
+    "D. 50",
+    "E. 70"
+   ],
+   "answer": "C",
+   "explanation": "Read the five summary values off the plot: the whiskers end at 20 and 90, the box runs from 35 to 65, and the line inside the box sits at 45. The range is the greatest value minus the least, 90 - 20 = 70 seconds. The interquartile range is the third quartile minus the first, the width of the box, 65 - 35 = 30 seconds. The range exceeds the interquartile range by 70 - 30 = 40 seconds.",
+   "trap": "A student who reads the line inside the box as one edge of the box computes an interquartile range of 65 - 45 = 20 and answers 70 - 20 = 50, choice D. That inner line is the median, not a quartile; the box edges at 35 and 65 give an interquartile range of 30 and a difference of 40.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "quartile",
+    "range",
+    "boxplot"
+   ],
+   "origin": "sectional",
+   "origin_set": "statistics_set2"
+  },
+  {
+   "id": "SEC-ST-023",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A list contains 400 numbers. The least number in the list is 18, the first quartile (the median of the 200 least numbers) is 30, the median is 36, the third quartile (the median of the 200 greatest numbers) is 54, and the greatest number is 72. Which of the following must be true? Indicate all such statements.",
+   "options": [
+    "A. The interquartile range of the numbers in the list is 24.",
+    "B. The average (arithmetic mean) of the numbers in the list is 36.",
+    "C. The range of the numbers in the list is greater than twice their interquartile range.",
+    "D. The number 30 occurs in the list.",
+    "E. The greatest number in the list exceeds the median by more than the median exceeds the least number."
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "A is true by definition: the interquartile range is the third quartile minus the first, 54 - 30 = 24. C is true because the range is 72 - 18 = 54, and twice the interquartile range is 2(24) = 48, so 54 is greater than 48. E is true because 72 - 36 = 36 while 36 - 18 = 18, and 36 exceeds 18. B is false: the median and the mean need not agree. The list made of 99 copies of 18, then 30, 30, then 99 copies of 36, then 36, then 99 copies of 54, then 54, then 99 copies of 72 meets every stated condition and has a mean of 44.925, not 36. D is false: the first quartile is the average of the 100th and 101st numbers, so a list holding 29 in position 100 and 31 in position 101 has first quartile 30 without 30 appearing anywhere in it.",
+   "trap": "A student who treats every summary value as an actual member of the list selects D alongside the true statements. With 400 numbers the first quartile is located between recorded values and may equal a number that never appears, so 30 being the first quartile does not put 30 in the list.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "quartile",
+    "range",
+    "multiple-answer"
+   ],
+   "origin": "sectional",
+   "origin_set": "statistics_set2"
+  },
+  {
+   "id": "SEC-ST-025",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Consider the list of integers 63, 58, 71, 66, 54, 80, 75, 61, 69, and 57. For which integer in the list are exactly 80 percent of the integers in the list less than that integer?",
+   "options": [
+    "A. 66",
+    "B. 69",
+    "C. 71",
+    "D. 75",
+    "E. 80"
+   ],
+   "answer": "D",
+   "explanation": "Sort the list: 54, 57, 58, 61, 63, 66, 69, 71, 75, 80. There are 10 integers, so 80 percent of them is 8 integers. The value with exactly 8 integers below it is the 9th value in sorted order, which is 75. Checking directly, the integers below 75 are 54, 57, 58, 61, 63, 66, 69, and 71, exactly 8 of them, which is 80 percent of 10.",
+   "trap": "A student who counts the target value itself among those below it looks for the 8th sorted value and answers 71. Only the values strictly below the target are counted, so the answer sits one position higher in the sorted list, at 75.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "percentile",
+    "ordering"
+   ],
+   "origin": "sectional",
+   "origin_set": "statistics_set3"
+  },
+  {
+   "id": "SEC-ST-033",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Maya's score on a certification exam is at the 85th percentile of the scores at her test centre. Ravi's score on the same exam is at the 60th percentile of the scores at a different test centre. The score at the 70th percentile at Maya's centre is higher than the score at the 60th percentile at Ravi's centre.\nColumn A: Maya's score\nColumn B: Ravi's score",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Percentile scores never decrease as the percentile rises, so within Maya's centre the 85th percentile score is at least the 70th percentile score; therefore Maya's score is at least the 70th percentile score at her centre. The extra fact says that 70th percentile score is strictly higher than the 60th percentile score at Ravi's centre, and Ravi's score is exactly that 60th percentile score. Chaining the three relations gives Maya's score >= the 70th percentile at her centre > the 60th percentile at Ravi's centre = Ravi's score, so Maya's score is greater.",
+   "trap": "A student who treats percentiles from two different centres as incomparable, noting that the two score distributions are unrelated, picks D. The extra sentence is exactly the bridge between the centres, and once it is used the chain of inequalities settles the comparison.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "percentile",
+    "ordering",
+    "qc"
+   ],
+   "origin": "sectional",
+   "origin_set": "statistics_set3"
+  },
+  {
+   "id": "STA-IQR-KMF-001",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The table shows, for each of the 60 matches a hockey club played last season, the number of goals the club conceded in that match. What is the interquartile range of the 60 values?",
+   "options": null,
+   "answer": "2",
+   "explanation": "Build the running count of matches when the 60 values are listed in increasing order.\nValue 0 covers positions 1 to 4.\nValue 1 covers positions 5 to 13.\nValue 2 covers positions 14 to 26.\nValue 3 covers positions 27 to 38.\nValue 4 covers positions 39 to 49.\nValue 5 covers positions 50 to 56.\nValue 6 covers positions 57 to 59.\nValue 7 covers position 60.\nThere are 60 values, so the lower half is positions 1 to 30 and the upper half is positions 31 to 60.\nQ1 is the median of the lower half, the average of positions 15 and 16. Both positions fall in the block 14 to 26, whose value is 2, so Q1 = 2.\nQ3 is the median of the upper half, the average of positions 45 and 46. Both fall in the block 39 to 49, whose value is 4, so Q3 = 4.\nInterquartile range = Q3 - Q1 = 4 - 2 = 2.\nCheck the frequencies total correctly: 4 + 9 + 13 + 12 + 11 + 7 + 3 + 1 = 60.",
+   "trap": "Finding the quartiles of the eight distinct goal totals 0 through 7 instead of the 60 match results, which gives Q1 = 1.5 and Q3 = 5.5 and an answer of 4.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "quartiles",
+    "frequency-table"
+   ],
+   "table_data": {
+    "headers": [
+     "Goals conceded",
+     "Number of matches"
+    ],
+    "rows": [
+     [
+      "0",
+      "4"
+     ],
+     [
+      "1",
+      "9"
+     ],
+     [
+      "2",
+      "13"
+     ],
+     [
+      "3",
+      "12"
+     ],
+     [
+      "4",
+      "11"
+     ],
+     [
+      "5",
+      "7"
+     ],
+     [
+      "6",
+      "3"
+     ],
+     [
+      "7",
+      "1"
+     ],
+     [
+      "Total",
+      "60"
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 9 Base",
+   "source_pages": [
+    57
+   ]
+  },
+  {
+   "id": "STA-IQR-KMF-002",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A dispatcher records 160 delivery times, in minutes, and displays them as the boxplot in the figure. Select every statement below that is guaranteed to hold for the recorded times.",
+   "options": [
+    "A. The list contains the value 45.",
+    "B. The difference between the largest and smallest values is less than 3 times the interquartile range.",
+    "C. At least 80 of the values lie between 30 and 75, inclusive.",
+    "D. Exactly 40 of the values are less than 30.",
+    "E. The median is closer to the first quartile than to the third quartile."
+   ],
+   "answer": [
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "Reading the boxplot: minimum 10, first quartile 30, median 45, third quartile 75, maximum 90. With 160 values, the median is the average of the 80th and 81st values, Q1 is the average of the 40th and 41st, and Q3 is the average of the 120th and 121st.\nA. The median 45 is an average of two middle values, so those values could be, for example, 40 and 50, and 45 need not appear. Not guaranteed.\nB. Range = 90 - 10 = 80 and IQR = 75 - 30 = 45, so 3 * IQR = 135 > 80. True.\nC. The 41st through 120th values (80 values) all lie between Q1 and Q3, so at least 80 values are between 30 and 75. True.\nD. If several of the lowest values equal 30, fewer than 40 values are below 30. Not guaranteed.\nE. The median is 45 - 30 = 15 above Q1 and 75 - 45 = 30 below Q3, so it is closer to Q1. True.\nAnswer: B, C, E.",
+   "trap": "Assuming the median must be an actual member of the list picks choice A, and assuming exactly a quarter of the values sit below the first quartile picks choice D, but ties and averaging of middle values break both.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "boxplot",
+    "quartiles",
+    "iqr"
+   ],
+   "svg": "<svg width='440' height='120' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 440 120' role='img' aria-label='Boxplot with minimum 10, first quartile 30, median 45, third quartile 75, maximum 90'><g stroke='currentColor' stroke-width='2' fill='none'><line x1='20' y1='90' x2='420' y2='90'/><line x1='60' y1='50' x2='140' y2='50'/><line x1='320' y1='50' x2='380' y2='50'/><line x1='60' y1='38' x2='60' y2='62'/><line x1='380' y1='38' x2='380' y2='62'/><rect x='140' y='30' width='180' height='40'/><line x1='200' y1='30' x2='200' y2='70'/><line x1='20' y1='84' x2='20' y2='96'/><line x1='60' y1='84' x2='60' y2='96'/><line x1='100' y1='84' x2='100' y2='96'/><line x1='140' y1='84' x2='140' y2='96'/><line x1='180' y1='84' x2='180' y2='96'/><line x1='220' y1='84' x2='220' y2='96'/><line x1='260' y1='84' x2='260' y2='96'/><line x1='300' y1='84' x2='300' y2='96'/><line x1='340' y1='84' x2='340' y2='96'/><line x1='380' y1='84' x2='380' y2='96'/><line x1='420' y1='84' x2='420' y2='96'/></g><g font-size='12' fill='currentColor' font-family='sans-serif' text-anchor='middle'><text x='20' y='112'>0</text><text x='60' y='112'>10</text><text x='100' y='112'>20</text><text x='140' y='112'>30</text><text x='180' y='112'>40</text><text x='220' y='112'>50</text><text x='260' y='112'>60</text><text x='300' y='112'>70</text><text x='340' y='112'>80</text><text x='380' y='112'>90</text><text x='420' y='112'>100</text></g></svg>",
+   "figure_description": "A horizontal boxplot drawn above a number line labelled from 0 to 100 in steps of 10. The left whisker ends at 10 and the right whisker ends at 90. The box runs from 30 (first quartile) to 75 (third quartile), with the median line at 45.",
+   "origin": "kmf1804",
+   "origin_set": "Section 53 Base",
+   "source_pages": [
+    351
+   ]
+  },
+  {
+   "id": "STA-IQR-KMF-003",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Maya's exam score is at the 85th percentile of the scores in class P, and Noor's exam score is at the 60th percentile of the scores in class Q.\nSelect each statement that, taken by itself, is enough to establish that Maya's score is higher than Noor's score.",
+   "options": [
+    "A. The 70th percentile of the scores in class P is higher than the 65th percentile of the scores in class Q.",
+    "B. The median score in class P is higher than the 75th percentile of the scores in class Q.",
+    "C. The mean score in class P is higher than the mean score in class Q.",
+    "D. The 90th percentile of the scores in class P is higher than the 60th percentile of the scores in class Q.",
+    "E. The lowest score in class P is higher than the median score in class Q."
+   ],
+   "answer": [
+    "A",
+    "B"
+   ],
+   "explanation": "Maya's score equals the 85th percentile of P, so it is at least every lower percentile of P. Noor's score equals the 60th percentile of Q, so it is at most every higher percentile of Q.\nA. Sufficient. Maya >= P's 70th percentile > Q's 65th percentile >= Noor.\nB. Sufficient. Maya >= P's median > Q's 75th percentile >= Noor.\nC. Not sufficient. Means say nothing about where one particular student sits.\nD. Not sufficient. Maya is at the 85th percentile, which is at or below the 90th, so a high 90th percentile in P does not put Maya above Noor.\nE. Not sufficient. The lowest score in P beats Q's median, but Noor sits at the 60th percentile, which can be above Q's median and above P's lowest score.\nAnswer: A and B.",
+   "trap": "Using the 90th percentile of class P (choice D) as if it were Maya's own score ignores that Maya is only at the 85th percentile, so the comparison starts from a value that is too high.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "percentile-chain",
+    "sufficiency",
+    "ordering"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 58 Hard",
+   "source_pages": [
+    384
+   ]
+  },
+  {
+   "id": "STA-IQR-KMF-004",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "Ten distinct whole numbers are written down: 41, 27, 38, 52, 33, 46, 29, 36, 44, 31. One of them, called k, is exceeded by exactly 30 percent of the ten numbers. What is k?",
+   "options": null,
+   "answer": "41",
+   "explanation": "1. 30 percent of 10 numbers is 3 numbers, so exactly 3 of the numbers are larger than k.\n2. Sort the list: 27, 29, 31, 33, 36, 38, 41, 44, 46, 52.\n3. The three largest are 44, 46 and 52, so k is the next one down: 41.\nCheck: the numbers larger than 41 are 44, 46, 52, which is 3 of 10 = 30 percent.",
+   "trap": "Reading the condition backwards, as 30 percent of the numbers lying below k (three numbers smaller), points to the fourth smallest number, 33.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "percentile",
+    "ranking-in-list"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 63 Base",
+   "source_pages": [
+    415
+   ]
+  },
+  {
+   "id": "STA-IQR-KMF-005",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The table gives the five-number summary of Data Set P and of Data Set Q. Select every statement that is guaranteed by these summaries alone.",
+   "options": [
+    "A. The range of P is greater than the range of Q.",
+    "B. The interquartile range of P is greater than the interquartile range of Q.",
+    "C. The median of Q is greater than the median of P.",
+    "D. Data Set P contains more values than Data Set Q.",
+    "E. The first quartile of Q is greater than the first quartile of P.",
+    "F. The largest value in Q is less than the third quartile of P."
+   ],
+   "answer": [
+    "A",
+    "B",
+    "E"
+   ],
+   "explanation": "1. Range = maximum - minimum. P: 80 - 12 = 68. Q: 66 - 25 = 41.\n2. Interquartile range = Q3 - Q1. P: 58 - 30 = 28. Q: 50 - 38 = 12.\n3. A: 68 > 41, so TRUE.\n4. B: 28 > 12, so TRUE.\n5. C: the median of Q is 42 and the median of P is 45, so Q's median is smaller. FALSE.\n6. D: a five-number summary says nothing about how many values a set holds. Not guaranteed, so FALSE.\n7. E: first quartile of Q is 38 and of P is 30, and 38 > 30. TRUE.\n8. F: the largest value in Q is 66 and the third quartile of P is 58, and 66 is not less than 58. FALSE.\nCheck: only A, B and E follow directly from the numbers in the table.",
+   "trap": "Assuming the set with the wider spread must also contain more values, which selects option D along with the correct statements.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "five-number-summary",
+    "interquartile-range",
+    "boxplot"
+   ],
+   "table_data": {
+    "headers": [
+     "Statistic",
+     "Data Set P",
+     "Data Set Q"
+    ],
+    "rows": [
+     [
+      "Minimum",
+      12,
+      25
+     ],
+     [
+      "First quartile",
+      30,
+      38
+     ],
+     [
+      "Median",
+      45,
+      42
+     ],
+     [
+      "Third quartile",
+      58,
+      50
+     ],
+     [
+      "Maximum",
+      80,
+      66
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 67 Base",
+   "source_pages": [
+    439
+   ]
+  },
+  {
+   "id": "STA-IQR-KMF-006",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The bar graph shows the rainfall, in millimetres, measured on each of 20 days. Call a reading the 90th-percentile reading if exactly 90 percent of the 20 readings are strictly smaller than it. Which of the following is the 90th-percentile reading?",
+   "options": [
+    "A. 6",
+    "B. 22",
+    "C. 26",
+    "D. 30",
+    "E. 35"
+   ],
+   "answer": "D",
+   "explanation": "1. 90 percent of 20 readings is 18 readings, so the target reading has exactly 18 readings below it.\n2. Sort the 20 readings: 0, 3, 4, 5, 6, 7, 8, 9, 11, 12, 13, 14, 15, 17, 18, 21, 22, 26, 30, 35.\n3. With 18 readings below it, the target is the 19th smallest value, which is 30.\nCheck: the values below 30 are 0 through 26, which is 18 values, and 18/20 = 90 percent.",
+   "trap": "Counting 18 values and then picking the 18th smallest (instead of the one that has 18 below it) gives 26, option C. Using the 18th bar in day order gives 6, option A.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "percentile",
+    "ordering-data"
+   ],
+   "chart": {
+    "type": "bar",
+    "title": "Daily rainfall (mm), Days 1-20",
+    "labels": [
+     "Day 1",
+     "Day 2",
+     "Day 3",
+     "Day 4",
+     "Day 5",
+     "Day 6",
+     "Day 7",
+     "Day 8",
+     "Day 9",
+     "Day 10",
+     "Day 11",
+     "Day 12",
+     "Day 13",
+     "Day 14",
+     "Day 15",
+     "Day 16",
+     "Day 17",
+     "Day 18",
+     "Day 19",
+     "Day 20"
+    ],
+    "datasets": [
+     {
+      "label": "Rainfall (mm)",
+      "data": [
+       12,
+       5,
+       0,
+       18,
+       7,
+       22,
+       3,
+       15,
+       9,
+       30,
+       11,
+       26,
+       4,
+       17,
+       8,
+       13,
+       21,
+       6,
+       35,
+       14
+      ]
+     }
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 67 Base",
+   "source_pages": [
+    440
+   ]
+  }
+ ]
+}

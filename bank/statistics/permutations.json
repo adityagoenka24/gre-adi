@@ -1,0 +1,1759 @@
+{
+ "meta": {
+  "topic": "Statistics",
+  "subtopic": "Permutations",
+  "subtopic_id": "STA-PRM",
+  "version": "1.0",
+  "total_questions": 82,
+  "distribution": {
+   "easy": 18,
+   "medium": 35,
+   "hard": 22,
+   "extreme_hard": 7
+  },
+  "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 38,
+   "multiple_answer": 8,
+   "numeric_entry": 24,
+   "quantitative_comparison": 12
+  },
+  "kmf1804_merged": "2026-10-03"
+ },
+ "questions": [
+  {
+   "id": "STA-PRM-001",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Five distinguishable books are placed side by side in a row on a shelf, each book used exactly once. Two placements count as different if the books appear in a different left-to-right order. How many placements are possible?",
+   "options": [
+    "A. 15",
+    "B. 20",
+    "C. 60",
+    "D. 120",
+    "E. 3125"
+   ],
+   "answer": "D",
+   "explanation": "Step 1 — decide whether order matters. The books are distinguishable and a different left-to-right order counts as a different placement, so this is a permutation of all 5 books.\nStep 2 — draw one slot per shelf position and count the choices. No book may be reused, so the counts drop by one each time:\n5 x 4 x 3 x 2 x 1\nStep 3 — multiply: 5 x 4 = 20, 20 x 3 = 60, 60 x 2 = 120, 120 x 1 = 120.\nThat is exactly 5! = 120.\nAnswer: 120.",
+   "trap": "Adding the slot counts instead of multiplying gives 5 + 4 + 3 + 2 + 1 = 15 (choice A); sequential choices multiply. Stopping part-way through the slots gives 5 x 4 = 20 (choice B) or 5 x 4 x 3 = 60 (choice C). Choice E, 5^5 = 3125, lets a book be reused in every position, but each book is placed exactly once.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "factorial",
+    "slot-method",
+    "order-matters"
+   ]
+  },
+  {
+   "id": "STA-PRM-002",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "How many different 3-letter arrangements can be formed from the letters {A, B, C, D, E} if no letter may be repeated?",
+   "options": [
+    "A. 10",
+    "B. 20",
+    "C. 60",
+    "D. 120",
+    "E. 125"
+   ],
+   "answer": "C",
+   "explanation": "Order matters and repetition is not allowed: P(5, 3) = 5!/(5-3)! = 5!/2! = 120/2 = 60.",
+   "trap": "Students compute C(5,3) = 10, treating this as a selection problem. Since we form arrangements (order matters), we use P(5,3) = 60, not C(5,3) = 10.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "permutations",
+    "two-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-003",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "What is the value of 0! + 1! + 2! + 3! ? Enter your answer as a number.",
+   "options": null,
+   "answer": "10",
+   "explanation": "Step 1 — 0! = 1 by definition. It is not zero.\nStep 2 — 1! = 1.\nStep 3 — 2! = 2 x 1 = 2.\nStep 4 — 3! = 3 x 2 x 1 = 6.\nStep 5 — add: 1 + 1 + 2 + 6 = 10.\nAnswer: 10.",
+   "trap": "Treating 0! as 0 and answering 9. The convention 0! = 1 is exactly what makes P(n, n) = n!/0! = n! come out right, so it is worth memorising rather than deriving under time pressure.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "factorial",
+    "zero-factorial"
+   ]
+  },
+  {
+   "id": "STA-PRM-004",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A club must fill the three distinct offices of president, vice president and treasurer from its 8 members. No member may hold more than one office. In how many different ways can the three offices be filled?",
+   "options": [
+    "A. 24",
+    "B. 56",
+    "C. 336",
+    "D. 512",
+    "E. 40320"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — does order matter? Yes. Making Ann president and Bob vice president is a different outcome from making Bob president and Ann vice president, because the three offices are distinct positions.\nStep 2 — repetition is not allowed, since no member holds two offices. Draw three slots:\npresident: 8 choices\nvice president: 7 members left\ntreasurer: 6 members left\nStep 3 — multiply: 8 x 7 = 56, and 56 x 6 = 336.\nThis is P(8, 3) = 8!/5! = 336.\nAnswer: 336.",
+   "trap": "Choice B, 56 = C(8, 3), counts unordered groups of three and so treats the three offices as interchangeable; the offices are named, so order matters. Choice D, 8^3 = 512, allows one member to hold more than one office. Choice E, 8! = 40320, arranges all eight members instead of filling only three posts.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "permutation-formula",
+    "order-matters",
+    "distinct-roles"
+   ]
+  },
+  {
+   "id": "STA-PRM-005",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "How many ways can 4 people be seated in a row of 4 chairs?",
+   "options": [
+    "A. 4",
+    "B. 12",
+    "C. 16",
+    "D. 24",
+    "E. 256"
+   ],
+   "answer": "D",
+   "explanation": "All 4 people must fill 4 distinct positions. Number of arrangements = 4! = 4 × 3 × 2 × 1 = 24.",
+   "trap": "Students choose 16 by computing 4² = 16, confusing 'arrangements' with 'selections with replacement'.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "permutations",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-006",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "Column A: P(6, 2)\nColumn B: 6 × 5",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "P(6, 2) = 6!/(6-2)! = 6!/4! = 6 × 5 = 30. Column B = 6 × 5 = 30. Both equal 30.",
+   "trap": "Students think P(6,2) involves more factors and estimate it as larger, without computing that P(6,2) = 6×5 = 30, which is exactly Column B.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "permutations",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-PRM-007",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "How many distinct 4-digit PIN codes can be formed using the digits 1, 2, 3, 4 if each digit is used exactly once?",
+   "options": null,
+   "answer": "24",
+   "explanation": "We need all permutations of 4 distinct digits: 4! = 4 × 3 × 2 × 1 = 24.",
+   "trap": "Students compute 4⁴ = 256, allowing digits to repeat. The problem states each digit is used exactly once, so repetition is not allowed.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "permutations",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-008",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "How many ways can the letters of the word MATH be arranged?",
+   "options": [
+    "A. 4",
+    "B. 12",
+    "C. 16",
+    "D. 24",
+    "E. 48"
+   ],
+   "answer": "D",
+   "explanation": "MATH has 4 distinct letters (M, A, T, H). Number of arrangements = 4! = 24.",
+   "trap": "Students divide by some number thinking there are repeated letters, but MATH has 4 completely distinct letters — no division needed.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "permutations",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-009",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "How many ways can 3 runners finish a race in 1st, 2nd, and 3rd place (assuming no ties) if there are 6 runners total?",
+   "options": [
+    "A. 20",
+    "B. 56",
+    "C. 60",
+    "D. 120",
+    "E. 216"
+   ],
+   "answer": "D",
+   "explanation": "We award 3 distinct medals from 6 runners, with order mattering (1st ≠ 2nd ≠ 3rd): P(6, 3) = 6 × 5 × 4 = 120.",
+   "trap": "Students compute C(6,3) = 20, dividing by 3! = 6 as if positions were interchangeable. First, second, and third place are distinct — order matters.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "permutations",
+    "two-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-010",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "Three books, A, B and C, are distinguishable.\nColumn A: The number of different left-to-right orders in which all 3 books can be placed in a row\nColumn B: The number of different 3-book selections that can be made from these 3 books, where the order within a selection does not matter",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Column A - order matters, so this is a permutation of all 3 books: 3! = 3 x 2 x 1 = 6. The six orders are ABC, ACB, BAC, BCA, CAB, CBA.\nColumn B - order does not matter, and there is exactly one way to select all 3 books out of 3: C(3, 3) = 1. The single selection is the set {A, B, C}.\n6 > 1, so Column A is greater.",
+   "trap": "Reading 'arrange' and 'select' as the same operation and choosing C. For the same r objects the ordered count is always r! times the unordered count, so here Column A is 3! = 6 times Column B.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "order-matters",
+    "permutation-vs-combination",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-PRM-011",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "How many 2-letter arrangements can be formed from the letters {X, Y, Z} with no repetition?",
+   "options": [
+    "A. 3",
+    "B. 6",
+    "C. 9",
+    "D. 12",
+    "E. 18"
+   ],
+   "answer": "B",
+   "explanation": "P(3,2) = 3!/(3-2)! = 3!/1! = 6. The arrangements are: XY, XZ, YX, YZ, ZX, ZY — 6 total.",
+   "trap": "Students compute C(3,2) = 3, forgetting that XY and YX are different arrangements. Order matters in permutations.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "permutations",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-012",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "How many ways can 6 people stand in a line?",
+   "options": null,
+   "answer": "720",
+   "explanation": "All 6 people in 6 ordered positions: 6! = 6 × 5 × 4 × 3 × 2 × 1 = 720.",
+   "trap": "Students compute 6 × 6 = 36, confusing the number of people with the number of choices at each step.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "permutations",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-013",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A lock code consists of two characters. The first character is chosen from the set {1, 2, 3} and the second character is chosen from the set {4, 5}. The two choices are made independently. How many different codes are possible?",
+   "options": [
+    "A. 2",
+    "B. 3",
+    "C. 5",
+    "D. 6",
+    "E. 9"
+   ],
+   "answer": "D",
+   "explanation": "Step 1 — the two characters are chosen one after the other and independently, so the fundamental counting principle applies: multiply the number of choices at each stage.\nStep 2 — first character: 3 choices. Second character: 2 choices.\nStep 3 — 3 x 2 = 6.\nCheck by listing: 14, 15, 24, 25, 34, 35. That is 6 codes. Correct.\nAnswer: 6.",
+   "trap": "Adding instead of multiplying: 3 + 2 = 5 (choice C). Addition is for mutually exclusive alternatives ('this or that'); sequential independent choices ('this and then that') multiply. Choice E, 9 = 3^2, uses the first set for both positions and ignores that the second character comes from a different, smaller set.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "counting-principle",
+    "add-vs-multiply"
+   ]
+  },
+  {
+   "id": "STA-PRM-014",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "Column A: P(4, 4)\nColumn B: 4!",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "P(4,4) = 4!/(4-4)! = 4!/0! = 24/1 = 24. And 4! = 24. Both equal 24.",
+   "trap": "Students compute 4!/0! and assume 0! = 0, making the denominator 0 and the expression undefined. By definition, 0! = 1, so P(4,4) = 4! = 24.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "permutations",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-015",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "How many ways can the letters of the word BEAR be arranged?",
+   "options": [
+    "A. 4",
+    "B. 12",
+    "C. 16",
+    "D. 24",
+    "E. 48"
+   ],
+   "answer": "D",
+   "explanation": "BEAR has 4 distinct letters (B, E, A, R). Number of arrangements = 4! = 24.",
+   "trap": "Students confuse BEAR with a word containing repeated letters and divide by 2, getting 12. BEAR has no repeated letters.",
+   "estimated_time_seconds": 35,
+   "tags": [
+    "permutations",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-016",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many distinct arrangements are there of the letters in the word LEVEL?",
+   "options": [
+    "A. 20",
+    "B. 30",
+    "C. 60",
+    "D. 120",
+    "E. 240"
+   ],
+   "answer": "B",
+   "explanation": "LEVEL has 5 letters: L(2), E(2), V(1). Distinct arrangements = 5!/(2! × 2!) = 120/4 = 30.",
+   "trap": "Students compute 5! = 120, forgetting to divide by 2! for each set of repeated letters. L repeats twice AND E repeats twice, requiring division by 2! × 2! = 4.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-017",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In how many ways can 5 people be seated around a circular table?",
+   "options": [
+    "A. 5",
+    "B. 12",
+    "C. 24",
+    "D. 60",
+    "E. 120"
+   ],
+   "answer": "C",
+   "explanation": "For circular permutations, fix one person to eliminate rotational duplicates. The remaining 4 people fill the other 4 seats: (5-1)! = 4! = 24.",
+   "trap": "Students compute 5! = 120, using the linear arrangement formula. In circular arrangements, rotations of the same seating are identical, so the formula is (n-1)!, not n!.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "permutations",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-018",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "How many distinct arrangements are there of the letters in the word MISSISSIPPI?",
+   "options": null,
+   "answer": "34650",
+   "explanation": "MISSISSIPPI has 11 letters: M(1), I(4), S(4), P(2). Distinct arrangements = 11!/(1! × 4! × 4! × 2!) = 39916800/(1 × 24 × 24 × 2) = 39916800/1152 = 34650.",
+   "trap": "Students compute 11! = 39,916,800 without dividing by the factorials of repeated letters. Must divide by 4! for the four I's, 4! for the four S's, and 2! for the two P's.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-019",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Alice, Bob, and two other friends (Carol and Dave) must stand in a line. In how many ways can they stand if Alice and Bob must stand next to each other?",
+   "options": [
+    "A. 6",
+    "B. 12",
+    "C. 16",
+    "D. 24",
+    "E. 48"
+   ],
+   "answer": "B",
+   "explanation": "Treat Alice and Bob as a single block. The block plus Carol and Dave = 3 units, arrangeable in 3! = 6 ways. Alice and Bob can switch positions within the block in 2! = 2 ways. Total = 6 × 2 = 12.",
+   "trap": "Students compute 4! = 24, ignoring the adjacency constraint. The block method reduces the problem to 3! × 2! = 12.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-020",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many distinct arrangements of the letters in the word BANANA are there?",
+   "options": [
+    "A. 20",
+    "B. 30",
+    "C. 60",
+    "D. 120",
+    "E. 720"
+   ],
+   "answer": "C",
+   "explanation": "BANANA has 6 letters: B(1), A(3), N(2). Distinct arrangements = 6!/(1! × 3! × 2!) = 720/12 = 60.",
+   "trap": "Students compute 6! = 720, forgetting to divide by 3! for three A's and 2! for two N's. Identical letters create overcounting that must be corrected.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-021",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Column A: Number of ways to arrange 4 people in a circle\nColumn B: Number of ways to arrange 4 people in a line, divided by 4",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Column A: Circular arrangements of 4 people = (4-1)! = 3! = 6. Column B: Linear arrangements = 4! = 24; divided by 4 gives 24/4 = 6. Both equal 6. This is not a coincidence: n!/n = (n-1)!, which is the circular formula.",
+   "trap": "Students compute Column A as 4! = 24 (using the linear formula) and Column B as 24/4 = 6, then choose B. The circular formula is (n-1)! = 6, not 4! = 24.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "permutations",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-022",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many 4-letter arrangements can be formed from the distinct letters of the word PRIME (no letter repeated)?",
+   "options": [
+    "A. 5",
+    "B. 20",
+    "C. 60",
+    "D. 120",
+    "E. 720"
+   ],
+   "answer": "D",
+   "explanation": "PRIME has 5 distinct letters. We arrange 4 of them (order matters): P(5,4) = 5!/(5-4)! = 5!/1! = 120.",
+   "trap": "Students compute C(5,4) = 5, treating this as a selection problem. Since we form arrangements (order matters), use P(5,4) = 120, not C(5,4) = 5.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "permutations",
+    "two-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-023",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Seven students line up for a photograph. In how many ways can they arrange themselves if the tallest student must stand at one of the two ends?",
+   "options": null,
+   "answer": "1440",
+   "explanation": "The tallest student has 2 choices (left end or right end). The remaining 6 students fill the remaining 6 positions in 6! = 720 ways. Total = 2 × 720 = 1440.",
+   "trap": "Students compute 7! = 5040, ignoring the constraint. Or they correctly compute 2 × 6! but make an arithmetic error with 6! — verify: 6! = 720, so 2 × 720 = 1440.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-024",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "How many distinct arrangements exist for the letters in the word TOOL? Which of the following expressions correctly compute this count? Select all that apply.",
+   "options": [
+    "A. 4!/2!",
+    "B. 12",
+    "C. P(4,4)/2!",
+    "D. C(4,2) × 2!",
+    "E. 4 × 3"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "TOOL has 4 letters with O repeated twice. Distinct arrangements = 4!/2! = 24/2 = 12.\nA: 4!/2! = 12 ✓\nB: 12 — directly states the answer ✓\nC: P(4,4)/2! = 4!/2! = 12 ✓ (P(4,4) = 4!)\nD: C(4,2) × 2! = 6 × 2 = 12 ✓ (choose 2 of 4 positions for the O's, then arrange T and L in 2 remaining slots)\nE: 4 × 3 = 12 ✓ (numerically equals 12)\nAll five expressions evaluate to 12.",
+   "trap": "Students select only A and B, missing that C, D, and E are algebraically or numerically equivalent to 12. Always evaluate each expression before eliminating.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "permutations",
+    "multiple-answer",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-025",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Six distinguishable people are to be seated in the six seats of a circular table. Two seatings are considered the same if one is a rotation of the other; reflections are considered different. In how many ways can they be seated if Anna and Ben must occupy adjacent seats?",
+   "options": [
+    "A. 24",
+    "B. 48",
+    "C. 120",
+    "D. 240",
+    "E. 720"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — glue Anna and Ben into one block. The table now holds 5 units: the block plus the 4 other people.\nStep 2 — arrange 5 units around a circle. Rotations are the same seating, so one degree of freedom is lost: (5 - 1)! = 4! = 24.\nStep 3 — inside the block Anna and Ben can sit in either order: 2! = 2.\nStep 4 — multiply: 24 x 2 = 48.\nCheck by a different route: fix Anna's seat to kill rotations. Ben must take one of her 2 neighbouring seats, and the remaining 4 people fill the remaining 4 seats in 4! = 24 ways, giving 2 x 24 = 48. Correct.\nAnswer: 48.",
+   "trap": "Choice C, 120 = (6 - 1)!, is the unrestricted circular count and ignores the adjacency requirement. Choice A, 24, forgets that the glued block has 2 internal orders. Choice D, 240 = 5! x 2, uses 5! instead of (5 - 1)! for the circle of 5 units, that is, forgets that rotations are the same seating.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "circular-arrangement",
+    "glue-method",
+    "adjacency"
+   ]
+  },
+  {
+   "id": "STA-PRM-026",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "n is an integer and n >= 3.\nColumn A: P(n, 3), the number of ordered arrangements of 3 objects chosen from n distinct objects\nColumn B: n^3 - n",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — expand Column A: P(n, 3) = n!/(n - 3)! = n(n - 1)(n - 2).\nStep 2 — factor Column B: n^3 - n = n(n^2 - 1) = n(n - 1)(n + 1).\nStep 3 — the two columns share the factor n(n - 1), which is positive for n >= 3. They differ only in the last factor: n - 2 against n + 1.\nSince n + 1 > n - 2 always, Column B is greater for every n >= 3.\nCheck n = 3: P(3, 3) = 6 while 27 - 3 = 24. Check n = 10: P(10, 3) = 720 while 1000 - 10 = 990. Column B wins both times.\nColumn B is greater.",
+   "trap": "Remembering the true identity P(n, 2) = n(n - 1) = n^2 - n and generalising it to P(n, 3) = n^3 - n, which gives C. The pattern does not continue: the third factor of P(n, 3) is n - 2, while n^3 - n factors as n(n - 1)(n + 1). Because the answer holds for every n >= 3, D is wrong too.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "permutation-formula",
+    "algebraic-identity",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-PRM-027",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many distinct orderings are there of the six letters of PEPPER, that is, of the multiset P, P, P, E, E, R? Letters that are the same are indistinguishable from one another.",
+   "options": [
+    "A. 20",
+    "B. 60",
+    "C. 120",
+    "D. 360",
+    "E. 720"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — write out the multiset: 6 letters, with P three times, E twice and R once. Because identical letters are indistinguishable, swapping two P's does not create a new ordering.\nStep 2 — start as if all 6 letters were distinct: 6! = 720.\nStep 3 — divide by the factorial of each repeat: 3! = 6 for the three P's and 2! = 2 for the two E's.\n720/(6 x 2) = 720/12 = 60.\nCheck by a second route: choose the 3 positions for the P's, C(6, 3) = 20, then order E, E, R in the remaining 3 positions, 3!/2! = 3. 20 x 3 = 60. Correct.\nAnswer: 60.",
+   "trap": "Choice E, 720 = 6!, skips the division entirely. Choice C, 120, divides only by 3! for the P's and choice D, 360, divides only by 2! for the E's - every repeated letter needs its own factorial in the denominator. Choice A, 20 = C(6, 3), places the three P's and then forgets to order E, E and R in the remaining slots.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "repeated-letters",
+    "multiset-permutation"
+   ]
+  },
+  {
+   "id": "STA-PRM-028",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Three of the six letters A, B, C, D, E, F are written in a row to form a 3-letter arrangement. No letter may be used more than once, and two arrangements that use the same three letters in different orders count as different. How many of these arrangements contain the letter A? Enter your answer as a number.",
+   "options": null,
+   "answer": "60",
+   "explanation": "Method 1 - direct.\nStep 1 — choose which slot A occupies: 3 choices (first, second or third).\nStep 2 — fill the other two slots from the remaining 5 letters, in order and without repetition: P(5, 2) = 5 x 4 = 20.\nStep 3 — multiply: 3 x 20 = 60.\nMethod 2 - complement.\nAll 3-letter arrangements from 6 letters: P(6, 3) = 6 x 5 x 4 = 120.\nArrangements that avoid A entirely: P(5, 3) = 5 x 4 x 3 = 60.\nArrangements containing A: 120 - 60 = 60.\nBoth methods agree.\nAnswer: 60.",
+   "trap": "Using C(5, 2) = 10 for the two non-A slots and answering 3 x 10 = 30. Those two slots are distinct positions, so BC and CB are different arrangements and the count is P(5, 2) = 20. Answering 120 ignores the requirement that A appear at all.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "permutation-formula",
+    "complement-counting",
+    "position-choice"
+   ]
+  },
+  {
+   "id": "STA-PRM-029",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The five distinct letters A, B, C, D, E are written in a row, each used exactly once, so there are 5! = 120 arrangements in all. Which of the following expressions give the number of these arrangements that begin with A? Select all that apply.",
+   "options": [
+    "A. 24",
+    "B. P(4, 4)",
+    "C. P(5, 4)",
+    "D. 5!/5",
+    "E. 5! - 4!"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "Fix A in the first position. The other 4 distinct letters fill positions 2 through 5 in 4! = 24 ways, so the count to match is 24.\nA - 24 is that count. TRUE.\nB - P(4, 4) = 4!/0! = 24/1 = 24, using 0! = 1. TRUE.\nC - P(5, 4) = 5 x 4 x 3 x 2 = 120. That counts 4-letter arrangements drawn from 5 letters, a different question, and it is not 24. FALSE.\nD - 5!/5 = 120/5 = 24. By symmetry each of the 5 letters starts exactly one fifth of the 120 arrangements. TRUE.\nE - 5! - 4! = 120 - 24 = 96. FALSE.\nAnswer: A, B, D.",
+   "trap": "E looks like complementary counting but removes the wrong set: the arrangements that do NOT begin with A number 4 x 4! = 96, so the correct complement is 120 - 96 = 24, not 120 - 24 = 96. C catches anyone who reads 'the remaining four letters are arranged' as P(5, 4) rather than P(4, 4).",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "fixed-position",
+    "zero-factorial",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-PRM-030",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Column A: The number of distinct orderings of the four letters of NOON, that is, of the multiset N, N, O, O\nColumn B: The number of distinct orderings of the four letters of MOON, that is, of the multiset M, O, O, N",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Column A - NOON has 4 letters with N twice and O twice, so two repeats must be divided out: 4!/(2! x 2!) = 24/4 = 6.\nThe six are NNOO, NONO, NOON, ONNO, ONON, OONN.\nColumn B - MOON has 4 letters with only O repeated: 4!/2! = 24/2 = 12.\n12 > 6, so Column B is greater.",
+   "trap": "Seeing two 4-letter words and choosing C. Equal length does not mean equal count: NOON carries two repeated pairs and needs a denominator of 2! x 2! = 4, while MOON needs only 2!. Every extra repeat cuts the number of distinct orderings.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "repeated-letters",
+    "multiset-permutation",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-PRM-031",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "8 athletes compete, and medals (gold, silver, bronze) are awarded. How many different medal outcomes are possible?",
+   "options": [
+    "A. 24",
+    "B. 56",
+    "C. 168",
+    "D. 336",
+    "E. 512"
+   ],
+   "answer": "D",
+   "explanation": "Three distinct positions (gold, silver, bronze) filled from 8 athletes: P(8,3) = 8 × 7 × 6 = 336.",
+   "trap": "Students compute C(8,3) = 56, treating the three medals as interchangeable. Gold, silver, and bronze are distinct awards — order matters.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "permutations",
+    "two-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-032",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "How many ways can 5 people be seated in a row if person A must sit in the middle (3rd) seat?",
+   "options": null,
+   "answer": "24",
+   "explanation": "Person A is fixed in seat 3. The remaining 4 people fill the remaining 4 seats in 4! = 24 ways.",
+   "trap": "Students compute 5! = 120, ignoring that A's position is fixed. Once A is placed, only 4 people remain to fill 4 positions: 4! = 24.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "permutations",
+    "two-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-033",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many distinct 4-digit numbers can be formed using the digits 1, 1, 2, 3?",
+   "options": [
+    "A. 6",
+    "B. 12",
+    "C. 18",
+    "D. 24",
+    "E. 36"
+   ],
+   "answer": "B",
+   "explanation": "4 digits with digit 1 repeated twice: 4!/2! = 24/2 = 12 distinct arrangements.",
+   "trap": "Students compute 4! = 24, treating all digits as distinct. The two 1's are identical, so swapping them produces the same number. Divide by 2! = 2 to correct.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "permutations",
+    "two-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-034",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Column A: Number of ways 7 people can sit around a circular table\nColumn B: 6!",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Column A: Circular arrangements of 7 people = (7-1)! = 6! = 720. Column B = 6! = 720. They are equal.",
+   "trap": "Students compute Column A as 7! = 5040 and choose A. The formula for circular arrangements is (n-1)!, not n!.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "permutations",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-035",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Five flags of five different colours, one of which is red and one of which is blue, are hung in a row on five hooks, one flag per hook. In how many of the possible arrangements does the red flag hang somewhere to the left of the blue flag? The two flags need not be adjacent.",
+   "options": [
+    "A. 24",
+    "B. 48",
+    "C. 60",
+    "D. 72",
+    "E. 120"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — count all arrangements. The 5 flags are distinct and each is used once: 5! = 120.\nStep 2 — use symmetry. In any arrangement red is either left of blue or right of blue, never both and never neither. Swapping just the red and blue flags turns one kind into the other, one to one, so the two kinds are equally numerous.\nStep 3 — each kind is half the total: 120/2 = 60.\nAnswer: 60.",
+   "trap": "Choice E, 120, ignores the condition altogether. Choice A, 24 = 4!, glues red immediately in front of blue, but the stem allows them to be far apart. Choice B, 48 = 4! x 2, counts the arrangements in which they are adjacent in either order, and choice D, 72 = 120 - 48, counts the arrangements in which they are NOT adjacent - each answers a different question.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "symmetry-argument",
+    "relative-order"
+   ]
+  },
+  {
+   "id": "STA-PRM-036",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Each option below names a 5-letter string and gives the multiplicity of each of its letters; letters that are the same are indistinguishable. For which strings is the number of distinct orderings of the five letters strictly greater than 30? Select all that apply.",
+   "options": [
+    "A. TIGER (T, I, G, E, R, all different)",
+    "B. TEETH (T x 2, E x 2, H)",
+    "C. ELITE (E x 2, L, I, T)",
+    "D. AABBB (A x 2, B x 3)",
+    "E. SEVEN (E x 2, S, V, N)"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "Every count is 5! = 120 divided by the factorial of each repeat.\nA - TIGER has no repeats: 120/1 = 120. 120 > 30. TRUE.\nB - TEETH has two repeated pairs: 120/(2! x 2!) = 120/4 = 30. Exactly 30, and the question asks for strictly greater. FALSE.\nC - ELITE has one repeated pair, E twice: 120/2! = 60. 60 > 30. TRUE.\nD - AABBB has a pair and a triple: 120/(2! x 3!) = 120/12 = 10. FALSE.\nE - SEVEN has one repeated pair, E twice: 120/2! = 60. 60 > 30. TRUE.\nAnswer: A, C, E.",
+   "trap": "Including B: TEETH gives exactly 30, and 'strictly greater than 30' excludes it. The other slip is on D, where students divide by a single 3! for the B's and get 120/6 = 20, forgetting the two A's; the answer stays FALSE, but for the wrong reason.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "repeated-letters",
+    "threshold-comparison",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-PRM-037",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "In how many ways can the letters of the word ARRANGE be rearranged so that both R's are always together?",
+   "options": null,
+   "answer": "360",
+   "explanation": "ARRANGE has 7 letters: A(2), R(2), N(1), G(1), E(1). Treat the two R's as one block [RR]. Now we have 6 units: [RR], A, A, N, G, E — with A appearing twice. Arrangements = 6!/2! = 720/2 = 360.",
+   "trap": "Students compute 7!/(2!×2!) = 1260 (the total distinct arrangements of ARRANGE) without applying the adjacency constraint. The block trick reduces to 6 units; only A(2) still requires a repeated-letter correction.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-038",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many 3-digit numbers greater than 400 can be formed using the digits 2, 3, 4, 5, 6 without repetition?",
+   "options": [
+    "A. 12",
+    "B. 24",
+    "C. 36",
+    "D. 48",
+    "E. 60"
+   ],
+   "answer": "C",
+   "explanation": "For a 3-digit number > 400, the hundreds digit must be 4, 5, or 6: 3 choices. The tens digit: any of the 4 remaining digits: 4 choices. The units digit: any of the 3 remaining digits: 3 choices. Total = 3 × 4 × 3 = 36.",
+   "trap": "Students compute P(5,3) = 60 without applying the constraint on the hundreds digit. With the constraint, only 3 choices (4, 5, 6) work for the first digit, giving 3 × 4 × 3 = 36.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-039",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Three men and three women, all six people distinguishable, are to be seated in a row of six chairs. In how many of the arrangements is no man seated immediately next to another man?",
+   "options": [
+    "A. 24",
+    "B. 36",
+    "C. 72",
+    "D. 144",
+    "E. 720"
+   ],
+   "answer": "D",
+   "explanation": "Use the gap method: seat the unrestricted people first, then drop the restricted ones into the gaps they create.\nStep 1 — arrange the 3 women in the row. They are distinguishable: 3! = 6 ways.\nStep 2 — three women in a row create 4 gaps, one before each woman and one after the last:\n_ W _ W _ W _\nIf every man sits in a gap of his own, no two men can touch.\nStep 3 — the 3 distinguishable men occupy 3 different gaps out of 4, and which man goes in which gap matters: P(4, 3) = 4 x 3 x 2 = 24.\nStep 4 — multiply the two stages: 6 x 24 = 144.\nCheck: the unrestricted total is 6! = 720, so the answer must be a proper fraction of it; 144 is exactly one fifth. A direct enumeration of all 720 seatings also gives 144.\nAnswer: 144.",
+   "trap": "Choice C, 72 = 2 x 3! x 3!, counts only the two perfectly alternating patterns MWMWMW and WMWMWM. Alternation is stricter than the condition asked: MWMWWM also keeps the men apart. Choice B, 36 = 3! x 3!, is a single alternating pattern. Choice A, 24 = P(4, 3), places the men in the gaps but forgets to arrange the women. Choice E, 720 = 6!, ignores the restriction.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "gap-method",
+    "non-adjacency",
+    "two-stage-count"
+   ]
+  },
+  {
+   "id": "STA-PRM-040",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "How many distinct orderings of the eleven letters of MISSISSIPPI, that is, of the multiset M, I, I, I, I, S, S, S, S, P, P, begin with S and end with S? Enter your answer as a number.",
+   "options": null,
+   "answer": "3780",
+   "explanation": "Step 1 — inventory the multiset: 11 letters, with M once, I four times, S four times and P twice. Letters that are the same are indistinguishable.\nStep 2 — put an S in position 1 and an S in position 11. Since the S's are identical, that is one single way, not two.\nStep 3 — two S's are now spent. The middle 9 positions must hold M once, I four times, S twice and P twice.\nStep 4 — count the orderings of those 9 letters: 9!/(1! x 4! x 2! x 2!) = 362880/(1 x 24 x 2 x 2) = 362880/96 = 3780.\nCheck for size: the unrestricted total is 11!/(4! x 4! x 2!) = 34650, and 3780 is about 11% of it, close to the (4/11) x (3/10) = 10.9% chance that both ends land on S. Correct.\nAnswer: 3780.",
+   "trap": "Leaving 4! in the denominator for the S's after two of them have already been placed at the ends: 9!/(4! x 4! x 2!) = 362880/1152 = 315. Only two S's survive into the middle nine slots. The other slip is multiplying by 2 for 'which S goes on the left' - the S's are identical, so there is exactly one way to put an S at each end, and doubling gives 7560.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "repeated-letters",
+    "fixed-position",
+    "multiset-permutation"
+   ]
+  },
+  {
+   "id": "STA-PRM-041",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A firm has 8 distinguishable employees. First, 3 of them are chosen to form a safety committee; the three members have equal standing, so the order in which they are named does not matter. Then, from the 5 employees not on the committee, 2 are chosen to hold the two distinct titles of Floor Warden and Deputy Warden. In how many ways can the whole assignment be made?",
+   "options": [
+    "A. 76",
+    "B. 560",
+    "C. 1120",
+    "D. 3360",
+    "E. 6720"
+   ],
+   "answer": "C",
+   "explanation": "Ask 'does order matter?' separately at each stage - the answer is different at the two stages.\nStep 1 — the committee. Its three members have equal standing, so swapping two of them changes nothing: this is a selection, C(8, 3) = (8 x 7 x 6)/(3 x 2 x 1) = 336/6 = 56.\nStep 2 — the two titles. Floor Warden and Deputy Warden are different jobs, so swapping the two people does change the outcome: this is an arrangement, P(5, 2) = 5 x 4 = 20.\nStep 3 — the two stages happen one after the other, so the counting principle says multiply: 56 x 20 = 1120.\nAnswer: 1120.",
+   "trap": "Choice B, 560 = C(8, 3) x C(5, 2), treats the two named titles as interchangeable. Choice D, 3360 = P(8, 3) x C(5, 2), gets both stages exactly backwards. Choice E, 6720 = P(8, 3) x P(5, 2), orders the committee as well. Choice A, 76 = 56 + 20, adds the stages instead of multiplying; sequential stages joined by 'and' always multiply.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "permutation-vs-combination",
+    "two-stage-count",
+    "order-matters"
+   ]
+  },
+  {
+   "id": "STA-PRM-042",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A and B are integers with A > B > 1.\nColumn A: P(A, B)\nColumn B: A x P(A - 1, B - 1)",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — write both sides with factorials.\nP(A, B) = A!/(A - B)!\nP(A - 1, B - 1) = (A - 1)!/((A - 1) - (B - 1))! = (A - 1)!/(A - B)!\nStep 2 — multiply out Column B: A x (A - 1)!/(A - B)! = A!/(A - B)!, because A x (A - 1)! = A!.\nStep 3 — the two expressions are the same, so the columns are equal for every A > B > 1.\nWhy it makes sense: filling the first of the B ordered slots (A ways) and then arranging B - 1 of the remaining A - 1 objects is the same job as arranging B of A objects.\nCheck A = 5, B = 3: P(5, 3) = 60 and 5 x P(4, 2) = 5 x 12 = 60. Check A = 7, B = 4: P(7, 4) = 840 and 7 x P(6, 3) = 7 x 120 = 840. Correct.\nThe two quantities are equal.",
+   "trap": "Testing one pair of values, seeing equality, then choosing D because A and B are unknown; the factorials cancel identically, so equality is forced for every admissible pair. The opposite slip is expanding P(A - 1, B - 1) as (A - 1)!/(A - B - 1)!, which mishandles the double shift, inflates Column B by a factor of A - B and points at B.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "permutation-formula",
+    "algebraic-identity",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-PRM-043",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "How many distinct orderings of the seven letters of ARRANGE, that is, of the multiset A, A, R, R, N, G, E, have the two A's NOT adjacent?",
+   "options": [
+    "A. 360",
+    "B. 630",
+    "C. 900",
+    "D. 1260",
+    "E. 2520"
+   ],
+   "answer": "C",
+   "explanation": "'Apart' is counted by complement: total minus together.\nStep 1 — total orderings. Seven letters with A twice and R twice: 7!/(2! x 2!) = 5040/4 = 1260.\nStep 2 — orderings with the two A's together, by the glue method. Treat AA as a single block, leaving 6 units: [AA], R, R, N, G, E. The R's are still repeated, so the count is 6!/2! = 720/2 = 360. There is no internal factor for the block, because the two A's are identical.\nStep 3 — subtract: 1260 - 360 = 900.\nAnswer: 900.",
+   "trap": "Choice A, 360, is the 'together' count - the complement of what was asked. Choice D, 1260, is the unrestricted total. Choice E, 2520 = 7!/2!, divides out only one of the two repeated pairs. Choice B, 630 = 1260/2, assumes the A's are adjacent in half the orderings; adjacency requires two specific positions to be consecutive, which is far rarer than half.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "complement-counting",
+    "glue-method",
+    "repeated-letters"
+   ]
+  },
+  {
+   "id": "STA-PRM-044",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "How many 5-digit positive integers have five different digits and are divisible by 5? (A 5-digit integer cannot begin with 0.) Enter your answer as a number.",
+   "options": null,
+   "answer": "5712",
+   "explanation": "An integer is divisible by 5 exactly when its units digit is 0 or 5, and those two cases are mutually exclusive, so count each and add.\nCase 1 - units digit is 0.\nLeading digit: any of 1 through 9, so 9 choices.\nMiddle three digits: taken in order, without repetition, from the 8 digits not yet used: P(8, 3) = 8 x 7 x 6 = 336.\nSubtotal = 9 x 336 = 3024.\nCase 2 - units digit is 5.\nLeading digit: cannot be 0 and cannot be the 5 already used, so 8 choices.\nMiddle three digits: from the 8 digits not yet used: P(8, 3) = 336.\nSubtotal = 8 x 336 = 2688.\nStep 3 — add the cases: 3024 + 2688 = 5712.\nAnswer: 5712.",
+   "trap": "Giving the leading digit 9 choices in Case 2 as well and answering 3024 + 3024 = 6048. When the units digit is 5, both 0 and 5 are barred from the front, leaving 8. Ignoring the leading-zero rule altogether gives the same wrong 6048 = 2 x P(9, 4), so 6048 is the value two different mistakes converge on.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "digit-counting",
+    "case-split",
+    "leading-zero"
+   ]
+  },
+  {
+   "id": "STA-PRM-045",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Eight distinguishable people are seated in the eight seats of a circular table. Two seatings are considered the same if one is a rotation of the other; reflections are considered different. Which of the following statements are true? Select all that apply.",
+   "options": [
+    "A. The total number of seatings equals 8!/7",
+    "B. The total number of seatings is 7! = 5040",
+    "C. If two particular people must sit directly opposite each other, the number of seatings is 2 x 6! = 1440",
+    "D. If two particular people must sit in adjacent seats, the number of seatings is 2 x 6! = 1440",
+    "E. If three particular people must occupy three consecutive seats, the number of seatings is 5! x 3! = 720"
+   ],
+   "answer": [
+    "B",
+    "D",
+    "E"
+   ],
+   "explanation": "One idea settles all five: fix one person's seat, which removes the rotations, then count freely.\nA - rotations number 8, one per seat, so the division is by 8: 8!/8 = 5040. The stated 8!/7 = 5760 is not a seating count at all. FALSE.\nB - with one seat fixed, the other 7 people fill the other 7 seats in 7! = 5040 ways. TRUE.\nC - fix the first person. In an 8-seat circle the seat directly opposite is one specific seat, so the second person has exactly 1 choice, not 2. The remaining 6 people fill 6 seats: 1 x 6! = 720, not 1440. FALSE.\nD - fix the first person. 'Adjacent' gives the second person the 2 neighbouring seats, and the remaining 6 people fill 6 seats: 2 x 6! = 1440. TRUE.\nE - glue the three into one block, leaving 6 units around the circle: (6 - 1)! = 5! = 120 arrangements of the units, times 3! = 6 internal orders of the block, gives 720. TRUE.\nAnswer: B, D, E.",
+   "trap": "C and D are worded almost identically and quote the same number, which is the whole point: 'adjacent' offers 2 seats but 'directly opposite' offers only 1, so the factor of 2 belongs to D alone and C overstates its answer by exactly double (the true value is 720). A checks whether you divide by n or by n - 1 when removing rotations: it is n, so the total is 8!/8 = 5040, not 8!/7 = 5760.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "circular-arrangement",
+    "glue-method",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-PRM-046",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "How many distinct orderings of the eight letters of PARALLEL, that is, of the multiset P, A, A, R, L, L, L, E, have the three L's all together in one consecutive block?",
+   "options": [
+    "A. 60",
+    "B. 360",
+    "C. 720",
+    "D. 2160",
+    "E. 3360"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — glue the three L's into a single block. What is left to arrange is 6 units: [LLL], P, A, A, R, E.\nStep 2 — those 6 units still contain a repeat, the two A's, so the number of arrangements is 6!/2! = 720/2 = 360.\nStep 3 — do NOT multiply by 3! for the inside of the block. The three L's are identical, so reordering them inside the block produces nothing new; that internal factor only applies to blocks of distinguishable items.\nCheck for size: the unrestricted total is 8!/(2! x 3!) = 40320/12 = 3360, and 360 is a bit over a tenth of it, which is the right order of magnitude for a three-letter block requirement.\nAnswer: 360.",
+   "trap": "Choice C, 720 = 6!, forgets that the two A's are still repeated after the L's are merged. Choice D, 2160 = (6!/2!) x 3!, multiplies by 3! for the inside of the block - correct for a block of distinct items, wrong for three identical L's. Choice E, 3360, is the unrestricted total. Choice A, 60 = 6!/(2! x 3!), divides by 3! for the L's a second time after they have already been collapsed into one unit.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "glue-method",
+    "repeated-letters",
+    "identical-block"
+   ]
+  },
+  {
+   "id": "STA-PRM-047",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A certain string consists of 6 letters, which need not be all different.\nColumn A: The number of distinct orderings of the 6 letters of the string\nColumn B: 360",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "The count depends entirely on how the letters repeat, and the stem does not fix that. Test the extremes.\nCase 1 - all 6 letters different, for example ABCDEF: 6! = 720. Column A > Column B.\nCase 2 - exactly one letter used twice, the rest different, for example AABCDE: 6!/2! = 720/2 = 360. Column A = Column B.\nCase 3 - three of one letter and three of another, AAABBB: 6!/(3! x 3!) = 720/36 = 20. Column A < Column B.\nAll three relationships are possible, so the comparison cannot be settled.\nAnswer: D.",
+   "trap": "Assuming that '6 letters' means 6 different letters, computing 6! = 720 and choosing A. Repetition is allowed unless the stem forbids it, and every repeat divides the count down. One repeated pair lands exactly on 360, which is what makes C tempting as well - but a single case that gives equality does not settle a comparison.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "repeated-letters",
+    "unstated-condition",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-PRM-048",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "Ten horses, among them Thunder and Lightning, run a race in which there are no ties. In how many ways can the first three finishing positions (1st, 2nd and 3rd) be filled if Thunder finishes in the top three and Lightning does not? Enter your answer as a number.",
+   "options": null,
+   "answer": "168",
+   "explanation": "The three positions are distinct, so order matters throughout.\nStep 1 — place Thunder. He can be 1st, 2nd or 3rd: 3 choices.\nStep 2 — the other two top-three places must go to horses that are neither Thunder nor Lightning, and there are 10 - 2 = 8 of those. They fill two ordered places: P(8, 2) = 8 x 7 = 56.\nStep 3 — multiply: 3 x 56 = 168.\nCheck by complement. Top-three outcomes containing Thunder: P(10, 3) - P(9, 3) = 720 - 504 = 216. Of those, the ones that also contain Lightning: pick ordered positions for the two of them, P(3, 2) = 6, then any of the remaining 8 horses for the last place, 8 ways, giving 48. So 216 - 48 = 168. Correct.\nAnswer: 168.",
+   "trap": "Answering 216, which counts every top three containing Thunder and quietly lets Lightning in as well. Answering 56 = P(8, 2) forgets that Thunder himself has 3 possible finishing positions. Using C(8, 2) = 28 for the other two places treats 2nd and 3rd as interchangeable and gives 84.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "permutation-formula",
+    "inclusion-exclusion",
+    "complement-counting"
+   ]
+  },
+  {
+   "id": "STA-PRM-049",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "How many distinct 4-letter arrangements can be made from the letters of the word COMBINATION?",
+   "options": null,
+   "answer": "2454",
+   "explanation": "COMBINATION: C,O,M,B,I,N,A,T,I,O,N → C(1), O(2), M(1), B(1), I(2), N(2), A(1), T(1). Distinct letter types: C, O, M, B, I, N, A, T = 8 types; three of them (O, I, N) appear twice.\n\nCase 1 — All 4 letters distinct: Choose 4 from 8 letter types, arrange: C(8,4) × 4! = 70 × 24 = 1680.\n\nCase 2 — Exactly one pair + 2 other distinct letters: Choose which repeated letter (O, I, or N): 3 ways. Choose 2 more distinct letters from the remaining 7 types: C(7,2) = 21. Arrange 4 letters with one repeated pair: 4!/2! = 12. Subtotal = 3 × 21 × 12 = 756.\n\nCase 3 — Two pairs of identical letters: Choose 2 of {O, I, N} for the two pairs: C(3,2) = 3. Arrange 4 letters with two pairs: 4!/(2!×2!) = 6. Subtotal = 3 × 6 = 18.\n\nTotal = 1680 + 756 + 18 = 2454.",
+   "trap": "Students treat all 11 letters of COMBINATION as distinct and compute P(11,4) = 7920, ignoring the repeated letters. The correct approach cases on how many repeated letters appear in the 4-letter selection.",
+   "estimated_time_seconds": 115,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-050",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Four boys and four girls, all eight people distinguishable, are to be seated in the eight seats of a circular table so that the genders alternate all the way around. Two seatings are considered the same if one is a rotation of the other; reflections are considered different. In how many ways can this be done?",
+   "options": [
+    "A. 24",
+    "B. 144",
+    "C. 288",
+    "D. 576",
+    "E. 5040"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — seat one group first and let it absorb the rotations. The 4 boys can be placed around the circle in (4 - 1)! = 3! = 6 ways.\nStep 2 — four boys around a circle create exactly 4 gaps, one between each pair of neighbouring boys. Alternation forces exactly one girl into each gap, and the girls are distinguishable, so they fill the 4 gaps in 4! = 24 ways.\nStep 3 — multiply: 6 x 24 = 144.\nAnswer: 144.",
+   "trap": "Choice D, 576 = 4! x 4!, is the count for a straight ROW that starts with a boy; in a circle one degree of freedom is lost, so the first group contributes (4 - 1)! = 6, not 4! = 24. Choice C, 288 = 2 x 144, adds a factor of 2 for 'boys in the odd seats or girls in the odd seats', but once rotations are identified that is not a separate seating. Choice E, 5040 = (8 - 1)!, ignores the alternation. Choice A, 24, arranges only one of the two groups.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "circular-arrangement",
+    "alternating-pattern",
+    "gap-method"
+   ]
+  },
+  {
+   "id": "STA-PRM-051",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Column A: Number of distinct arrangements of the letters A, A, B, B\nColumn B: Number of distinct arrangements of the letters A, B, C, D",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Column A: AABB — 4 letters with A(2) and B(2). Arrangements = 4!/(2!×2!) = 24/4 = 6.\nColumn B: ABCD — 4 distinct letters. Arrangements = 4! = 24.\nColumn B (24) > Column A (6).",
+   "trap": "Students compute Column A as 4! = 24, forgetting to divide by repeated-letter factorials, and find equality. The two repeated pairs (A×2 and B×2) require dividing by 2!×2! = 4.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "permutations",
+    "qc",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-052",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A 4-person committee is formed from 6 men and 4 women with at least 2 women. The 4 committee members are then assigned distinct roles: chair, vice-chair, treasurer, secretary. Which of the following correctly compute the total number of distinct role-assigned committees? Select all that apply.",
+   "options": [
+    "A. [C(4,2)×C(6,2) + C(4,3)×C(6,1) + C(4,4)×C(6,0)] × 4!",
+    "B. [C(10,4) − C(6,4) − C(4,1)×C(6,3)] × 4!",
+    "C. 115 × 4!",
+    "D. P(10,4) − P(6,4) − C(4,1)×P(6,3)",
+    "E. 2760"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "Step 1 — Count unordered committees with ≥2 women:\n  2W+2M: C(4,2)×C(6,2) = 6×15 = 90\n  3W+1M: C(4,3)×C(6,1) = 4×6 = 24\n  4W+0M: C(4,4)×C(6,0) = 1×1 = 1\n  Total = 115\nStep 2 — Assign 4 distinct roles: ×4! = 24.\nFinal = 115 × 24 = 2760.\n\nA: Exactly the formula above × 4! = 2760 ✓\nB: [C(10,4)−C(6,4)−C(4,1)×C(6,3)] × 4! = [210−15−80] × 24 = 115 × 24 = 2760 ✓\nC: 115 × 4! = 2760 ✓\nD: Uses P (permutation) for selection, incorrectly counting ordered groups before role assignment ✗\nE: 2760 ✓",
+   "trap": "Students apply P instead of C when selecting the committee (since roles are assigned AFTER selection, the initial group selection is unordered). Option D incorrectly intermixes ordered and unordered counting.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "permutations",
+    "combinations",
+    "multiple-answer",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-053",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "The letters of the word EQUATION are arranged in all possible ways. How many arrangements have all vowels (E, U, A, I, O) grouped together (as a contiguous block)?",
+   "options": null,
+   "answer": "2880",
+   "explanation": "EQUATION has 8 distinct letters: vowels E, U, A, I, O (5 letters) and consonants Q, T, N (3 letters). Treat all 5 vowels as one block → 4 units: [EUAIO], Q, T, N. Arrange 4 units: 4! = 24. Arrange 5 vowels within the block: 5! = 120. Total = 24 × 120 = 2880.",
+   "trap": "Students forget to multiply by the internal arrangements of the vowel block (5! = 120), computing only 4! = 24 for the unit-level arrangement.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-054",
+   "difficulty": "extreme_hard",
+   "type": "numeric_entry",
+   "question": "In how many distinct orderings of the ten letters of STATISTICS, that is, of the multiset S, S, S, T, T, T, A, I, I, C, do all three S's come before all three T's? Enter your answer as a number.",
+   "options": null,
+   "answer": "2520",
+   "explanation": "Step 1 — inventory the multiset: 10 letters, with S three times, T three times, I twice, and A and C once each.\nStep 2 — total distinct orderings: 10!/(3! x 3! x 2!) = 3628800/(6 x 6 x 2) = 3628800/72 = 50400.\nStep 3 — the insight. Look only at the 6 positions that end up holding S's and T's. Whatever those positions are, the S's and T's can be laid into them in C(6, 3) = 20 patterns (choose which 3 of the 6 positions hold the S's), and by symmetry the 50400 orderings split evenly across those 20 patterns.\nStep 4 — exactly 1 of the 20 patterns is SSSTTT, all S's before all T's.\nStep 5 — divide: 50400/20 = 2520.\nAnswer: 2520.",
+   "trap": "Dividing by 2 and answering 25200, on the reasoning that 'either the S's come first or the T's do'. That dichotomy is only exhaustive for one S and one T. With three of each there are C(6, 3) = 20 interleavings - STSTST, STTSST and so on - and only 1 of them is all-S-then-all-T. Dividing by 3! x 3! = 36 is the other misfire: the orders within each letter group were already divided out when the 50400 was computed.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "repeated-letters",
+    "relative-order",
+    "symmetry-argument"
+   ]
+  },
+  {
+   "id": "STA-PRM-055",
+   "difficulty": "extreme_hard",
+   "type": "numeric_entry",
+   "question": "Five married couples are to be seated in the ten equally spaced seats of a circular table so that each husband sits directly opposite his own wife. All ten people are distinguishable. Two seatings are considered the same if one is a rotation of the other; reflections are considered different. In how many ways can this be done? Enter your answer as a number.",
+   "options": null,
+   "answer": "384",
+   "explanation": "Step 1 — see the structure. Ten equally spaced seats form 5 pairs of diametrically opposite seats, and the condition says each couple must occupy one whole pair.\nStep 2 — remove the rotations by fixing one particular husband, call him H1, in a seat: 1 way.\nStep 3 — his wife is now forced into the single seat opposite him: 1 way.\nStep 4 — the remaining 8 seats form 4 opposite-seat pairs. Assign the other 4 couples to those 4 pairs, one couple per pair: 4! = 24 ways.\nStep 5 — within each of those 4 pairs the husband may take either seat and his wife takes the other: 2 choices per couple, so 2^4 = 16.\nStep 6 — multiply: 1 x 1 x 24 x 16 = 384.\nAnswer: 384.",
+   "trap": "Stopping at Step 4 and answering 24, forgetting that once a couple has been given a pair of opposite seats they can still sit in it two ways round, which doubles four separate times. Answering 9! = 362880 uses the unrestricted circular count for 10 people and ignores the opposite-seat condition. Multiplying by 2 for H1's couple as well gives 768, but H1's seat was fixed to remove the rotations, so his couple has no free orientation left to count.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "circular-arrangement",
+    "paired-constraint",
+    "fixed-position"
+   ]
+  },
+  {
+   "id": "STA-PRM-056",
+   "difficulty": "extreme_hard",
+   "type": "quantitative_comparison",
+   "question": "Ten distinguishable beads are strung on a loop to make a necklace. Two necklaces are considered identical if one can be obtained from the other by rotating the loop or by flipping the loop over.\nColumn A: The number of distinct necklaces\nColumn B: 10!/20",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — line the beads up first. Ten distinguishable beads can be put in 10! = 3628800 different linear orders.\nStep 2 — closing the loop makes rotations identical. A 10-bead loop has 10 rotations, so each necklace has already been counted 10 times.\nStep 3 — allowing the loop to be flipped over makes a necklace and its mirror image the same, which is a further factor of 2.\nStep 4 — so each distinct necklace corresponds to 10 x 2 = 20 of the linear orders, and because all ten beads are different no necklace is left unchanged by any of those 20 motions, so no necklace is over- or under-counted.\nDistinct necklaces = 10!/20 = 181440, which is Column B exactly.\nCheck on a small loop: with 4 distinguishable beads the same reasoning gives 4!/8 = 3, and a hand count of 4-bead necklaces up to rotation and flipping does give 3.\nThe two quantities are equal.",
+   "trap": "Using the round-table formula (n - 1)! = 9! = 362880 and choosing A. That formula treats rotations as identical but a necklace and its mirror image as different, which is right for people sitting at a table and wrong for a loop you can physically turn over. The extra flip symmetry is what turns the division by n into a division by 2n.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "circular-arrangement",
+    "reflection-symmetry",
+    "qc"
+   ]
+  },
+  {
+   "id": "STA-PRM-057",
+   "difficulty": "extreme_hard",
+   "type": "numeric_entry",
+   "question": "How many integers from 1 to 9999 (inclusive) have all distinct digits?",
+   "options": null,
+   "answer": "5274",
+   "explanation": "Count by number of digits:\n1-digit (1–9): All 9 numbers have distinct digits. Count = 9.\n2-digit (10–99): First digit: 1–9 (9 choices). Second digit: 0–9 excluding the first (9 choices). Count = 9 × 9 = 81.\n3-digit (100–999): First digit: 9 choices. Second: 9 choices. Third: 8 choices. Count = 9 × 9 × 8 = 648.\n4-digit (1000–9999): First digit: 9 choices. Second: 9 choices. Third: 8 choices. Fourth: 7 choices. Count = 9 × 9 × 8 × 7 = 4536.\nTotal = 9 + 81 + 648 + 4536 = 5274.",
+   "trap": "Students compute P(10,4) = 5040 for 4-digit numbers, allowing 0 as the leading digit. The correct 4-digit count is 9 × 9 × 8 × 7 = 4536 because the first digit cannot be 0.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "permutations",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "STA-PRM-058",
+   "difficulty": "extreme_hard",
+   "type": "multiple_answer",
+   "question": "The seven letters of ALGEBRA, that is, the multiset A, A, L, G, E, B, R, are arranged in a row; the two A's are indistinguishable from each other. Which of the following statements are true? Select all that apply.",
+   "options": [
+    "A. The total number of distinct arrangements is 2520",
+    "B. The number of arrangements that begin with A and end with A is 240",
+    "C. The number of arrangements in which the two A's are adjacent is 720",
+    "D. The number of arrangements in which the two A's are not adjacent is 1800",
+    "E. The number of arrangements in which B occupies the 4th position is 720"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "D"
+   ],
+   "explanation": "A - seven letters with A repeated twice: 7!/2! = 5040/2 = 2520. TRUE.\nB - put an A at each end. The A's are identical, so that is one single configuration, not two. The other 5 letters, all distinct, fill positions 2 through 6 in 5! = 120 ways. The count is 120, not 240. FALSE.\nC - glue the two A's into one block, leaving 6 units: [AA], L, G, E, B, R, all different. That gives 6! = 720, with no internal factor of 2 because the A's are identical. TRUE.\nD - 'not adjacent' is the complement of 'adjacent': 2520 - 720 = 1800. TRUE.\nE - fix B in position 4. The other 6 positions take A, A, L, G, E, R, which still contains the repeated A: 6!/2! = 720/2 = 360, not 720. FALSE.\nAnswer: A, C, D.",
+   "trap": "B reads as 240 only if the two A's are treated as distinguishable and 5! is doubled for 'which A is on the left'; identical letters collapse that to one configuration, so the true value is 120. E reads as 720 only if you forget that the two A's are still repeated among the six letters left after B is placed - the division by 2! never disappears. Notice the deliberate near-miss: 720 is the correct value for C and the wrong value for E.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "repeated-letters",
+    "glue-method",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "STA-PRM-059",
+   "difficulty": "extreme_hard",
+   "type": "numeric_entry",
+   "question": "How many ways can 5 boys and 5 girls be seated in a row of 10 chairs such that no two boys are adjacent to each other?",
+   "options": null,
+   "answer": "86400",
+   "explanation": "Arrange the 5 girls first: 5! = 120 ways, creating 6 gaps: _ G _ G _ G _ G _ G _. Choose 5 of these 6 gaps for the boys (each boy occupies a different gap, ensuring no two boys are adjacent): C(6,5) = 6 choices. Arrange the 5 boys in the selected 5 gaps: 5! = 120 ways. Total = 5! × C(6,5) × 5! = 120 × 6 × 120 = 86400.",
+   "trap": "Students compute 5! × 5! = 14400, assuming perfect alternation starting with a girl and ending with a boy. The gap method (6 gaps from 5 girls, choose 5) covers all valid non-adjacent placements, not just alternating patterns.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "permutations",
+    "multi-step",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "STA-PRM-060",
+   "difficulty": "extreme_hard",
+   "type": "mcq",
+   "question": "A 4-person committee is to be chosen from 5 men and 4 women, and the four chosen people are then assigned the four distinct offices of Chair, Vice-Chair, Treasurer and Secretary, one office each. The committee must contain at least 2 women. How many different office assignments are possible?",
+   "options": [
+    "A. 81",
+    "B. 486",
+    "C. 1440",
+    "D. 1944",
+    "E. 3024"
+   ],
+   "answer": "D",
+   "explanation": "Do the unordered selection first and the ordered assignment second; mixing the two stages is what wrecks this question.\nStep 1 — count the committees. A committee is an unordered group of 4 people out of 9, and 'at least 2 women' splits into three mutually exclusive cases:\n2 women and 2 men: C(4, 2) x C(5, 2) = 6 x 10 = 60\n3 women and 1 man: C(4, 3) x C(5, 1) = 4 x 5 = 20\n4 women and 0 men: C(4, 4) x C(5, 0) = 1 x 1 = 1\nTotal = 60 + 20 + 1 = 81.\nStep 2 — check by complement: all committees C(9, 4) = 126, minus 0-woman committees C(5, 4) = 5, minus 1-woman committees C(4, 1) x C(5, 3) = 4 x 10 = 40. 126 - 5 - 40 = 81. Correct.\nStep 3 — now assign the offices. The four titles are distinct, so the four members can take them in 4! = 24 ways.\nStep 4 — multiply: 81 x 24 = 1944.\nAnswer: 1944.",
+   "trap": "Choice C, 1440 = 60 x 24, reads 'at least 2 women' as 'exactly 2 women' and drops the 3-woman and 4-woman committees. Choice A, 81, stops at the committees and never assigns the offices. Choice B, 486 = 81 x 3!, uses 3! instead of 4!, the count for seating the four round a table rather than giving them four named titles. Choice E, 3024 = P(9, 4), fills four ordered offices from all nine people and ignores the requirement about women entirely.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "at-least-condition",
+    "case-split",
+    "select-then-arrange"
+   ]
+  },
+  {
+   "id": "STA-PRM-061",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A 4-character code is formed by writing four digits in a row, each chosen from 0 through 9; the code may begin with 0, and the four positions are distinguishable. Which of the following statements are true? Select all that apply.",
+   "options": [
+    "A. If digits may be repeated, exactly 540 of the codes use two different digits, each appearing exactly twice",
+    "B. If digits may be repeated, there are 10,000 possible codes",
+    "C. If no digit may be repeated, there are 5,040 possible codes",
+    "D. If digits may be repeated, exactly 4,960 of the codes use some digit more than once",
+    "E. If digits may be repeated, exactly 40 of the codes use the same digit in all four positions"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "A - the two digits that appear form an unordered pair: C(10, 2) = 45 ways. The pattern is a multiset like x, x, y, y, which orders in 4!/(2! x 2!) = 6 ways. 45 x 6 = 270, not 540. FALSE.\nB - repetition allowed means 10 choices in each of the 4 positions: 10 x 10 x 10 x 10 = 10^4 = 10000. TRUE.\nC - repetition banned means the choices fall by one each time: 10 x 9 x 8 x 7 = 5040, which is P(10, 4). TRUE.\nD - 'some digit used more than once' is the exact complement of 'all four digits different', so it is 10000 - 5040 = 4960. TRUE.\nE - all four positions must carry the same digit, and that digit can be any of the 10, so there are exactly 10 such codes, not 40. FALSE.\nAnswer: B, C, D.",
+   "trap": "A doubles the true 270 by using P(10, 2) = 90 for the pair of digits instead of C(10, 2) = 45; which of the two digits is 'first' is already decided by the arrangement step, so ordering the pair counts every code twice. E multiplies 10 digits by 4 positions, but the positions are not a free choice here - all four are forced to match. D is the statement to reach for by complement: counting 'at least one repeat' directly needs messy cases, while total minus none is a single subtraction.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "repetition-allowed",
+    "complement-counting",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "SEC-CP-002",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "How many distinct arrangements can be made using all 7 letters of the word TRESTLE?",
+   "options": null,
+   "answer": "1260",
+   "explanation": "TRESTLE has 7 letters, with T appearing twice and E appearing twice and R, S, L appearing once each. If all 7 letters were distinct there would be 7! = 5040 orderings, but swapping the two T's produces the same word, as does swapping the two E's. Divide out both repetitions: 5040 / (2! * 2!) = 5040 / 4 = 1260.",
+   "trap": "A student who forgets that repeated letters are indistinguishable answers 5040, counting every ordering of 7 objects as different. That overcounts each distinct arrangement exactly 4 times.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "permutations",
+    "repeated-letters"
+   ],
+   "origin": "sectional",
+   "origin_set": "counting_probability_set1"
+  },
+  {
+   "id": "SEC-CP-007",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "Seven delegates are to be seated around a circular table with 7 chairs, one delegate per chair. Two of the delegates, Rao and Sethi, must be seated next to each other. Two seatings are considered the same if one can be obtained from the other by rotating the table. How many different seatings are possible?",
+   "options": null,
+   "answer": "240",
+   "explanation": "Treat Rao and Sethi as a single block, which leaves 6 units to place around the circle. Arrangements of n units in a circle that differ only by rotation are the same, so there are (6 - 1)! = 5! = 120 distinct circular arrangements of the 6 units. Within the block, Rao and Sethi can sit in 2 orders. The total is 120 * 2 = 240.",
+   "trap": "A student who arranges the 6 units in a line instead of a circle gets 6! * 2 = 1440, counting each seating 6 times over, because laying the 6 units in a line fixes an arbitrary unit as the first one and any of the 6 units could have played that role.",
+   "estimated_time_seconds": 115,
+   "tags": [
+    "circular-arrangements",
+    "adjacency",
+    "permutations"
+   ],
+   "origin": "sectional",
+   "origin_set": "counting_probability_set1"
+  },
+  {
+   "id": "SEC-CP-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Six different trophies, all of different heights, are to be placed in a row on a shelf. The tallest trophy must be placed at one of the two ends of the row. How many different arrangements of the six trophies are possible?",
+   "options": [
+    "A. 120",
+    "B. 240",
+    "C. 360",
+    "D. 720",
+    "E. 1440"
+   ],
+   "answer": "B",
+   "explanation": "Place the restricted item first. The tallest trophy has 2 choices of position, the left end or the right end. Once it is placed, the remaining 5 distinct trophies fill the remaining 5 positions in 5! = 120 orders. Multiply the two stages: 2 * 120 = 240.",
+   "trap": "A student who pins the tallest trophy to a single end and never doubles for the other end answers 120, choice A. That counts only the arrangements with the tallest trophy on one particular side, which is exactly half of the arrangements the stem allows.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "permutations",
+    "restricted-position"
+   ],
+   "origin": "sectional",
+   "origin_set": "counting_probability_set2"
+  },
+  {
+   "id": "SEC-CP-015",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A committee of 9 people will choose a chairperson, a secretary, and a treasurer from among its members. No person may hold more than one of the three posts.\nColumn A: The number of different ways the three posts can be filled\nColumn B: 500",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "The three posts are distinct, so who holds which post matters and this is a permutation. There are 9 candidates for chairperson, 8 remaining for secretary, and 7 remaining for treasurer: 9 * 8 * 7 = 504. Since 504 is greater than 500, Column A is greater.",
+   "trap": "A student who treats the three officers as an unlabeled group of 3 computes C(9,3) = 84 and answers B. Dividing by 3! is correct only when the three selected people are interchangeable; here swapping the secretary and the treasurer produces a genuinely different outcome.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "permutations",
+    "qc",
+    "order-matters"
+   ],
+   "origin": "sectional",
+   "origin_set": "counting_probability_set2"
+  },
+  {
+   "id": "STA-PRM-KMF-001",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A couple purchased 8 adjacent seats in a single row of a theater for themselves and their 6 children. How many seating arrangements are possible if the two parents sit in the 2 seats at the very center of the row?",
+   "options": null,
+   "answer": "1440",
+   "explanation": "The 2 middle seats can be filled by the parents in 2! = 2 ways.\nThe remaining 6 seats can be filled by the 6 children in 6! = 720 ways.\nTotal arrangements = 2 * 720 = 1440.",
+   "trap": "Students forget to multiply by the 2! ways to arrange the parents between the two middle seats and report 720 instead of 1440.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "permutations",
+    "seating-arrangement"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    21
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-002",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Four guides and four tourists will stand in a single row of 8 positions, one person per position, arranged so that no guide stands directly next to another guide and no tourist stands directly next to another tourist. How many different arrangements of the 8 people are possible?",
+   "options": [
+    "A. 24",
+    "B. 576",
+    "C. 1,152",
+    "D. 2,304",
+    "E. 40,320"
+   ],
+   "answer": "C",
+   "explanation": "With four of each type in 8 positions and no two of the same type adjacent, the types must alternate all the way along the row.\nThere are exactly 2 alternating patterns: guide-tourist-guide-tourist-guide-tourist-guide-tourist, or tourist-guide-tourist-guide-tourist-guide-tourist-guide.\nFor a fixed pattern, the 4 guides can be placed in their 4 designated positions in 4! = 24 ways.\nThe 4 tourists can be placed in their 4 designated positions in 4! = 24 ways.\nArrangements per pattern = 24 * 24 = 576.\nTotal = 2 * 576 = 1,152.\nCheck: the same reasoning on 2 guides and 2 tourists in a row of 4 gives 2 * 2! * 2! = 8, and listing them by hand confirms 8.",
+   "trap": "Fixing the guides in the odd-numbered positions only and multiplying 4! by 4! gives 576, option B.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "alternating-arrangements",
+    "counting-principle"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 6 Hard",
+   "source_pages": [
+    34
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A research station stamps each badge with a 3-digit string. Every digit of a string is taken from the list 2, 4, 6, 7, 8, 9; no digit may repeat inside one string; and the string as a whole must read as an even number. How many distinct badge strings are possible?",
+   "options": [
+    "A. 60",
+    "B. 72",
+    "C. 80",
+    "D. 100",
+    "E. 120"
+   ],
+   "answer": "C",
+   "explanation": "A string is even exactly when its last digit is even.\nEven digits available: 2, 4, 6, 8 -- that is 4 choices for the final position.\nFill the final position first: 4 ways.\nFive digits remain for the first position: 5 ways.\nFour digits then remain for the middle position: 4 ways.\nTotal = 4 * 5 * 4 = 80.\nCheck against the unrestricted count: 6 * 5 * 4 = 120 strings in all, and 80/120 = 2/3, matching the fact that 4 of the 6 digits are even. Correct.",
+   "trap": "Assuming half of the 120 unrestricted strings end in an even digit gives 120/2 = 60, but 4 of the 6 available digits are even, not 3, so the fraction is 2/3 and 60 is choice A.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "permutations",
+    "constrained-arrangements"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    73
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-004",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A storage vault opens only when two things are entered in order: first a switch pattern, which must be either up-down-up or down-up-down, and then three different dial settings taken from the numbers 1 through 12, entered in a specific order. How many distinct complete entries are possible?",
+   "options": null,
+   "answer": "2640",
+   "explanation": "The switch pattern has 2 possible choices.\nThe first dial setting has 12 choices, the second has 11 (no repeats), and the third has 10.\nThe stages are independent, so multiply: 2 * 12 * 11 * 10.\n12 * 11 * 10 = 1,320, and 2 * 1,320 = 2,640.\nCheck: 1,320 ordered dial triples for each of the 2 patterns gives 2,640 entries.",
+   "trap": "Leaving out the factor of 2 for the two switch patterns gives 12*11*10 = 1,320; allowing a dial number to repeat gives 2*12^3 = 3,456; ignoring the order of the dial settings gives 2*220 = 440.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "multiplication-principle",
+    "ordered-selection"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 15 Base",
+   "source_pages": [
+    93
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-005",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A choir director lines up 6 singers (Asha, Ben, Chloe, Dev, Elan, and Fay) side by side for a photo. The two soloists, Chloe and Fay, must stand at the two ends of the line, one at each end. How many different line-ups are possible?",
+   "options": null,
+   "answer": "48",
+   "explanation": "Place the soloists first: Chloe can be at the left end or the right end, and Fay takes the other end. That is 2 ways.\nThe 4 remaining singers fill the 4 middle spots in any order: 4! = 24 ways.\nTotal = 2 * 24 = 48.\nCheck: the same count arises from choosing the left-end singer (2 choices), the right-end singer (1 choice), then arranging the other 4 (24).",
+   "trap": "Forgetting that the two soloists can swap ends gives 24; ignoring the restriction and arranging all six freely gives 720.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "restricted-arrangements",
+    "factorial"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 19 Base",
+   "source_pages": [
+    117
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-006",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A locker uses a 3-digit code. A technician takes five tiles marked 1, 3, 5, 7 and 8, and lays out three different tiles in a row to make a code. Codes are read as ordinary 3-digit numbers. How many different codes would be larger than 500?",
+   "options": [
+    "A. 10",
+    "B. 36",
+    "C. 60",
+    "D. 75",
+    "E. 125"
+   ],
+   "answer": "B",
+   "explanation": "The code is larger than 500 exactly when its first digit is 5, 7 or 8 (a leading 5 followed by different tiles is always above 500).\nFirst digit: 3 choices (5, 7, 8).\nSecond digit: any of the 4 remaining tiles = 4 choices.\nThird digit: 3 remaining tiles = 3 choices.\nTotal = 3 * 4 * 3 = 36.\nCheck: all codes = 5 * 4 * 3 = 60; those starting with 1 or 3 = 2 * 12 = 24; 60 - 24 = 36.",
+   "trap": "Counting all arrangements without the leading-digit restriction gives 5 * 4 * 3 = 60 (option C). Adding the choices instead of multiplying gives 3 + 4 + 3 = 10 (option A). Letting tiles repeat gives 5 * 5 * 5 = 125 (option E).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "counting",
+    "arrangements"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 37 Base",
+   "source_pages": [
+    236
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-007",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A florist has 4 vases standing in a fixed row on a counter and 7 different bouquets in the cooler. In how many ways can she choose bouquets and place exactly one bouquet in each vase?",
+   "options": [
+    "A. 11",
+    "B. 35",
+    "C. 210",
+    "D. 840",
+    "E. 2,401"
+   ],
+   "answer": "D",
+   "explanation": "The vases are in fixed positions, so which bouquet goes where matters, and no bouquet is used twice.\nFirst vase: 7 choices; second: 6; third: 5; fourth: 4.\nTotal = 7 * 6 * 5 * 4 = 840.\nCheck: 7!/(7-4)! = 5,040/6 = 840.",
+   "trap": "Treating order as irrelevant gives 7C4 = 35 (option B). Using only three of the four vases gives 7 * 6 * 5 = 210 (option C). Allowing a bouquet to be reused gives 7^4 = 2,401 (option E). Adding 7 + 4 gives 11 (option A).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "permutations",
+    "counting"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 37 Base",
+   "source_pages": [
+    238
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-008",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A four-digit odd number is to be built from the symbols 2, 4, 5, 8 and 9, with no symbol reused inside a number. How many different numbers of this kind exist?",
+   "options": [
+    "A. 24",
+    "B. 48",
+    "C. 60",
+    "D. 120",
+    "E. 625"
+   ],
+   "answer": "B",
+   "explanation": "An odd number must end in an odd digit, and the only odd digits available are 5 and 9: 2 choices for the units place.\nAfter fixing the units digit, 4 digits remain for the thousands, hundreds and tens places, filled without repetition: 4 * 3 * 2 = 24 ways.\nTotal = 2 * 24 = 48.\nCheck: all four-digit numbers without repetition number 5 * 4 * 3 * 2 = 120, and each digit is equally likely to be last, so 2/5 of 120 = 48 are odd.",
+   "trap": "Ignoring the 'odd' requirement and counting every four-digit arrangement, 5 * 4 * 3 * 2, gives 120 (option D).",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "counting-with-constraint",
+    "permutations"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 41 Base",
+   "source_pages": [
+    265
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-009",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A gift shop lets each customer choose a ribbon colour and a wrapping-paper colour from its range of c colours, and insists that the two colours differ. A ribbon in colour X with paper in colour Y counts as a different pairing from ribbon Y with paper X. The shop works out that there are exactly 72 possible pairings. How many colours does the shop stock?",
+   "options": null,
+   "answer": "9",
+   "explanation": "Pick the ribbon colour in c ways, then the paper colour in c - 1 ways (any colour except the ribbon's).\nNumber of pairings = c(c - 1) = 72.\nc^2 - c - 72 = 0, which factors as (c - 9)(c + 8) = 0.\nc must be positive, so c = 9.\nCheck: 9 * 8 = 72.",
+   "trap": "Treating the pairings as unordered and solving c(c - 1)/2 = 72, which gives c(c - 1) = 144 with no whole-number solution (c is about 12.5), then guessing 12 or 13.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "ordered-pairs",
+    "quadratic-from-count"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 43 Base",
+   "source_pages": [
+    280
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-010",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "The digits available are the elements of S = {0, 1, 3, 5, 6, 8, 9}. A 3-digit integer is built by choosing three different digits from S, with the hundreds digit not allowed to be 0. How many of the integers that can be built this way are even?",
+   "options": [
+    "A. 60",
+    "B. 80",
+    "C. 90",
+    "D. 105",
+    "E. 180"
+   ],
+   "answer": "B",
+   "explanation": "An even number must end in 0, 6 or 8. Split by the units digit, because a nonzero units digit uses up one of the nonzero digits.\nUnits digit 0: hundreds digit from the 6 nonzero digits, tens digit from the remaining 5, so 6 * 5 = 30.\nUnits digit 6: hundreds digit from the nonzero digits other than 6, which is 5 choices; tens digit from the 7 - 2 = 5 digits left (0 is now allowed), so 5 * 5 = 25.\nUnits digit 8: the same count, 25.\nTotal = 30 + 25 + 25 = 80.\nCheck: all 3-digit integers of this kind number 6 * 6 * 5 = 180; the 100 odd ones end in 1, 3, 5 or 9: 4 units choices * 5 hundreds * 5 tens = 100, and 180 - 100 = 80.",
+   "trap": "Treating the units digit as 3 free choices and then filling hundreds with all 6 nonzero digits and tens with 5 gives 3 * 6 * 5 = 90 (choice C); this ignores that a units digit of 6 or 8 removes one of the nonzero digits from the hundreds pool.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "restricted-counting",
+    "case-split"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 51 Base",
+   "source_pages": [
+    332
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-011",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A locker code has three digits, each taken from 1, 2, 3, 4, 5, 6 and 7. No digit may appear twice in the same code, and the code must be an even number. How many different codes are possible?",
+   "options": [
+    "A. 35",
+    "B. 90",
+    "C. 105",
+    "D. 147",
+    "E. 210"
+   ],
+   "answer": "B",
+   "explanation": "1. Fill the most restricted place first: the last digit must be even, so it is 2, 4 or 6 (3 choices).\n2. The first digit can be any of the other 6 digits.\n3. The middle digit can be any of the remaining 5 digits.\n4. Total = 3 * 6 * 5 = 90.\n5. Check by symmetry: all 7*6*5 = 210 codes with distinct digits, and each digit ends the code equally often, so 3/7 of them are even: 210 * 3/7 = 90.\nChoice A is C(7,3); D allows repeated digits (7*7*3); E ignores evenness.",
+   "trap": "Assuming that half of the 210 distinct-digit codes are even, since half of all whole numbers are, gives 105, which is choice C; only 3 of the 7 digits are even.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "counting-with-restriction",
+    "permutations"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 53 Base",
+   "source_pages": [
+    347
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-012",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A string holds 8 beads in a straight line, and every bead is either gold or silver. The bead at the left end must be gold. How many distinct gold-and-silver patterns can the string show?",
+   "options": [
+    "A. 16",
+    "B. 64",
+    "C. 128",
+    "D. 256",
+    "E. 512"
+   ],
+   "answer": "C",
+   "explanation": "1. The left-end bead is fixed as gold, so it contributes 1 choice.\n2. Each of the other 7 beads can be gold or silver independently: 2 choices each.\n3. By the multiplication principle the count is 1 * 2^7 = 128.\n4. Check on a smaller case: with 3 beads and the first fixed, the patterns are GGG, GGS, GSG, GSS = 4 = 2^2.\nChoice D (2^8) ignores the fixed end bead; A multiplies 8*2; B computes 8^2; E uses 8^3.",
+   "trap": "Ignoring the restriction on the first bead and using 2^8, which is choice D.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "counting-principle",
+    "binary-choices"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 55 Base",
+   "source_pages": [
+    361
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-013",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Select all of the words for which the number of distinct letter arrangements is 360.",
+   "options": [
+    "A. SUMMER",
+    "B. COFFEE",
+    "C. BOTTLE",
+    "D. PEPPER",
+    "E. GARAGE",
+    "F. BUTTON"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "F"
+   ],
+   "explanation": "Number of orders = (number of letters)! divided by the factorial of each repeated letter's count.\nA. SUMMER: 6 letters, M twice: 720/2 = 360. True.\nB. COFFEE: F twice and E twice: 720/(2*2) = 180. False.\nC. BOTTLE: T twice: 720/2 = 360. True.\nD. PEPPER: P three times and E twice: 720/(6*2) = 60. False.\nE. GARAGE: G twice and A twice: 720/(2*2) = 180. False.\nF. BUTTON: T twice: 720/2 = 360. True.\nCheck: a six-letter word gives 360 only if exactly one letter appears twice and all others once.\nAnswer: A, C, F.",
+   "trap": "Ignoring repeated letters gives 720 for every word, so nothing matches; dividing by only one repeated letter's factorial in COFFEE or GARAGE (720/2 = 360) wrongly selects B and E.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "arrangements-with-repeats",
+    "anagrams"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 57 Base",
+   "source_pages": [
+    377
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-014",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "An access card is stamped with one letter from a set of 8 letters, followed by three digits chosen from 1 through 7. No two adjacent digits may be the same, although the first and third digits may match.\nHow many different cards can be stamped?",
+   "options": [
+    "A. 1,680",
+    "B. 1,728",
+    "C. 2,016",
+    "D. 2,352",
+    "E. 2,744"
+   ],
+   "answer": "C",
+   "explanation": "1. Letter: 8 choices.\n2. First digit: 7 choices.\n3. Second digit must differ from the first: 6 choices.\n4. Third digit must differ from the second only: 6 choices (it may equal the first digit).\n5. Total = 8 * 7 * 6 * 6 = 2,016.\nCheck: digit strings = 7 * 6 * 6 = 252, and 8 * 252 = 2,016.",
+   "trap": "Requiring all three digits to be different (7 * 6 * 5) gives 8 * 210 = 1,680 (choice A), which wrongly forbids the first and third digits from matching. Ignoring the restriction gives 8 * 343 = 2,744 (choice E), restricting the first digit as well gives 8 * 6^3 = 1,728 (choice B), and missing one of the two restrictions gives 8 * 7 * 7 * 6 = 2,352 (choice D).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "multiplication-principle",
+    "adjacent-restriction",
+    "counting"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 60 Hard",
+   "source_pages": [
+    396
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-015",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A photographer lines up six different trophies on a shelf. Two of them, the gold cup and the silver cup, may not stand at either end of the row. In how many different orders can all six trophies be lined up?\n\n_____ orders",
+   "options": null,
+   "answer": "288",
+   "explanation": "1. The four other trophies are the only ones allowed at the two ends.\n2. Fill the left end: 4 choices. Fill the right end: 3 choices left. That is 4 * 3 = 12 ways.\n3. The remaining four trophies, including the gold and silver cups, fill the four middle places in 4! = 24 ways.\n4. Total = 12 * 24 = 288.\nCheck: all 6! = 720 orders, minus those with a restricted cup at an end, should leave 288; 4P2 * 4! = 12 * 24 = 288 agrees.",
+   "trap": "Allowing 4 choices for each end independently (so the same trophy could stand at both ends) gives 4 * 4 * 24 = 384.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "restricted-arrangements",
+    "permutations"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 67 Base",
+   "source_pages": [
+    440
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-016",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A school awards six prizes to nine contestants, and no contestant gets more than one prize. The prizes are a trophy, a medal, a voucher and three certificates that are indistinguishable from one another. One of the contestants, Dev, must receive the trophy, the medal or the voucher. In how many distinct ways can the prizes be awarded?",
+   "options": [
+    "A. 1,120",
+    "B. 3,360",
+    "C. 10,080",
+    "D. 20,160",
+    "E. 60,480"
+   ],
+   "answer": "B",
+   "explanation": "1. Dev takes one of the three distinct prizes: 3 choices.\n2. The two remaining distinct prizes go to two different people among the other 8 contestants: 8*7 = 56 ways.\n3. That leaves 6 contestants. The three identical certificates go to 3 of them: C(6,3) = 20 ways.\n4. Total = 3*56*20 = 3,360.\nCheck: without Dev's condition the count is 9*8*7*C(6,3) = 10,080, and Dev would then hold a distinct prize in exactly 3/9 of the cases: 10,080/3 = 3,360.",
+   "trap": "Dropping the requirement that Dev gets a distinct prize gives 9*8*7*20 = 10,080, choice C; treating the three certificates as distinct (6*5*4 = 120 instead of C(6,3) = 20) while keeping Dev's condition gives 3*56*120 = 20,160, choice D.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "permutations-with-identical-items",
+    "constraint-counting"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    460
+   ]
+  },
+  {
+   "id": "STA-PRM-KMF-017",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A three-digit code uses the digits 0 through 9. Its first digit must be odd, its second digit must be a prime number, and its third digit must be a positive multiple of 4. No digit may appear more than once in the code. How many codes are possible?",
+   "options": [
+    "A. 17",
+    "B. 34",
+    "C. 36",
+    "D. 40",
+    "E. 51"
+   ],
+   "answer": "B",
+   "explanation": "1. First digit (odd): 1, 3, 5, 7, 9 (5 choices). Second digit (prime): 2, 3, 5, 7 (4 choices). Third digit (positive multiple of 4): 4, 8 (2 choices).\n2. The third digit, 4 or 8, is neither odd nor prime, so it never repeats the first two digits.\n3. The first two digits must differ. Of the 5*4 = 20 pairs, 3 are repeats: (3,3), (5,5), (7,7). So 20 - 3 = 17 valid pairs.\n4. Total codes = 17 * 2 = 34.\nCheck: listing pairs by first digit: 1 gives 4, 3 gives 3, 5 gives 3, 7 gives 3, 9 gives 4, which totals 17.",
+   "trap": "Ignoring the no-repeat rule gives 5*4*2 = 40 (choice D); counting the pairs but forgetting the third digit gives 17 (choice A).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "counting-principle",
+    "overlapping-restrictions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 74 Hard",
+   "source_pages": [
+    483
+   ]
+  }
+ ]
+}
