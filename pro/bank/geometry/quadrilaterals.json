@@ -4,16 +4,23 @@
   "subtopic": "Quadrilaterals",
   "subtopic_id": "GEO-QDL",
   "version": "1.0",
-  "total_questions": 65,
+  "total_questions": 67,
   "distribution": {
    "easy": 15,
-   "medium": 24,
-   "hard": 19,
+   "medium": 25,
+   "hard": 20,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 25,
+   "multiple_answer": 9,
+   "numeric_entry": 18,
+   "quantitative_comparison": 15
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1380,6 +1387,58 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "GEO-QDL-KMF-001",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "JKLM is a convex quadrilateral whose vertices are labeled in order around the figure. Its diagonals JL and KM cross at an interior point P. Which of the following must be true? Select all that apply.",
+   "options": [
+    "A. JK + LM < JL + KM",
+    "B. JK + KL + LM + MJ > JL + KM",
+    "C. JK + KL > JL + KM",
+    "D. JK + LM > JL + KM",
+    "E. JK + KL + LM + MJ < 2(JL + KM)",
+    "F. JK + LM = KL + MJ"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "E"
+   ],
+   "explanation": "Triangle inequality in the four triangles around P:\nJK < JP + PK and LM < LP + PM. Adding: JK + LM < (JP + PL) + (KP + PM) = JL + KM. So A is true and D is false.\nSimilarly KL + MJ < JL + KM. Adding to A: perimeter < 2(JL + KM). So E is true.\nIn triangle JKL, JK + KL > JL, and in triangle JLM, LM + MJ > JL, so perimeter > 2*JL; likewise perimeter > 2*KM. Adding, 2*perimeter > 2(JL + KM), so perimeter > JL + KM. B is true.\nC: take J = (0,0), L = (10,0), K = (5,0.5), M = (5,-8). JK + KL is about 10.05 while JL + KM = 10 + 8.5, so C can fail -> not necessarily true.\nF: a 4 by 3 rectangle JKLM has JK + LM = 8 but KL + MJ = 6 -> not forced.\nCheck: A, B and E are all consequences of the triangle inequality only.",
+   "trap": "Assuming the two sides at K already outweigh both diagonals (choice C) or that opposite sides outweigh the diagonals (choice D) reverses the triangle-inequality direction; choice F is a property of kites and tangential quadrilaterals only.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "triangle-inequality",
+    "quadrilateral-diagonals"
+   ],
+   "figure_description": "Convex quadrilateral JKLM with vertices J, K, L, M in order around the figure; the diagonals JL and KM intersect at a point P inside the quadrilateral. No side or diagonal lengths are given.",
+   "origin": "kmf1804",
+   "origin_set": "Section 36 Hard",
+   "source_pages": [
+    225
+   ]
+  },
+  {
+   "id": "GEO-QDL-KMF-002",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Three sides of a quadrilateral measure 5, 7 and 15. If the fourth side has a whole-number length, how many different lengths are possible?\n\n_____ lengths",
+   "options": null,
+   "answer": "23",
+   "explanation": "1. In any quadrilateral, each side must be shorter than the sum of the other three.\n2. Let the fourth side be s. The longest given side, 15, must satisfy 15 < 5 + 7 + s, so s > 3.\n3. The fourth side itself must satisfy s < 5 + 7 + 15 = 27.\n4. Whole numbers with 3 < s < 27 are 4 through 26, which is 26 - 4 + 1 = 23 values.\nCheck: s = 3 would make 5 + 7 + 3 = 15, a flat figure, and s = 27 would make the other three sides add to exactly 27, also flat, so both ends are excluded.",
+   "trap": "Applying only the upper bound (s < 27) and forgetting that the side of 15 limits the short end allows s = 1, 2, 3 and counts 26.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "quadrilateral-inequality",
+    "counting"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 69 Base",
+   "source_pages": [
+    449
+   ]
   }
  ]
 }

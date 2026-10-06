@@ -4,16 +4,23 @@
   "subtopic": "Similar & Congruent Figures",
   "subtopic_id": "GEO-SCF",
   "version": "1.0",
-  "total_questions": 55,
+  "total_questions": 63,
   "distribution": {
    "easy": 13,
-   "medium": 21,
-   "hard": 16,
+   "medium": 25,
+   "hard": 20,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 28,
+   "multiple_answer": 6,
+   "numeric_entry": 16,
+   "quantitative_comparison": 13
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1236,6 +1243,206 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "GEO-SCF-KMF-001",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "In triangle JKL, point M is the midpoint of side JK and point N is the midpoint of side JL. If MN = 3w + 2 and KL = 8w - 6, what is the value of w?",
+   "options": null,
+   "answer": "5",
+   "explanation": "M and N are the midpoints of two sides of the triangle, so MN is the midsegment joining them.\nThe midsegment connecting the midpoints of two sides is parallel to the third side and exactly half its length, so MN = KL / 2.\nSubstitute the given expressions: 3w + 2 = (8w - 6) / 2.\nSimplify the right side: (8w - 6)/2 = 4w - 3.\nSo 3w + 2 = 4w - 3.\nSubtract 3w from both sides: 2 = w - 3.\nAdd 3 to both sides: w = 5.\nCheck: MN = 3(5) + 2 = 17 and KL = 8(5) - 6 = 34, and 34 / 2 = 17. Correct, and both lengths are positive as they must be.",
+   "trap": "Setting the midsegment equal to the third side, 3w + 2 = 8w - 6, which gives w = 8/5 and lengths MN = 6.8 and KL = 6.8, ignoring the factor of 2 in the midsegment relationship.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "midsegment",
+    "triangle-proportions"
+   ],
+   "figure_description": "Triangle JKL with vertex J at the top and side KL as the base. M is marked halfway along side JK and N is marked halfway along side JL, and segment MN is drawn across the triangle, parallel to KL.",
+   "origin": "kmf1804",
+   "origin_set": "Section 11 Base",
+   "source_pages": [
+    66
+   ]
+  },
+  {
+   "id": "GEO-SCF-KMF-002",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A glass panel shaped like a parallelogram is divided into two pieces by two straight cuts. As shown, each cut is parallel to one side of the panel, and each cut is 3/5 as long as the side of the panel it is parallel to. The unshaded piece, which contains one corner of the panel, covers 54 square centimeters. Find the area, in square centimeters, of the shaded piece.",
+   "options": null,
+   "answer": "96",
+   "explanation": "The unshaded piece is a parallelogram with the same angles as the panel, whose adjacent sides are 3/5 and 3/5 of the panel's adjacent sides.\nIts area is (3/5)*(3/5) = 9/25 of the panel's area.\n9/25 of the panel = 54, so the panel's area = 54*25/9 = 150 square centimeters.\nShaded area = 150 - 54 = 96.\nCheck: 96/150 = 16/25, and 1 - 9/25 = 16/25.",
+   "trap": "Applying the linear ratio instead of its square: 3/5 of 150 = 90 for the unshaded piece, or treating 54 as 3/5 of the panel, giving panel 90 and shaded 36.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "area-scale-factor",
+    "parallelogram"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 170\" width=\"400\" height=\"170\"><polygon points=\"30,20 280,20 370,140 120,140\" fill=\"#b0b0b0\" stroke=\"black\" stroke-width=\"2\"/><polygon points=\"166,68 316,68 370,140 220,140\" fill=\"white\" stroke=\"black\" stroke-width=\"2\"/><g font-family=\"serif\" font-size=\"13\"><text x=\"205\" y=\"60\">cut</text><text x=\"168\" y=\"110\">cut</text></g></svg>",
+   "figure_description": "A parallelogram with a shaded L-shaped strip along its top side and its left slanted side, and an unshaded smaller parallelogram in the lower-right corner. The unshaded piece shares the lower-right corner with the panel; its two inner sides are the cuts, one parallel to the top side and one parallel to the left side, each 3/5 the length of the panel side it is parallel to.",
+   "origin": "kmf1804",
+   "origin_set": "Section 18 Hard",
+   "source_pages": [
+    112
+   ]
+  },
+  {
+   "id": "GEO-SCF-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In the figure, triangle KLM has a right angle at K. Point N lies on side KM and point P lies on side LM, with segment NP perpendicular to KM. The lengths satisfy KN : NM = 3 : 2, and triangle NPM has area 8 square units. What is the area, in square units, of quadrilateral KLPN?",
+   "options": [
+    "A. 12",
+    "B. 18",
+    "C. 20",
+    "D. 42",
+    "E. 50"
+   ],
+   "answer": "D",
+   "explanation": "NP and KL are both perpendicular to KM, so they are parallel, and triangle NPM is similar to triangle KLM (they share the angle at M).\nKN : NM = 3 : 2 means NM is 2 of the 5 equal parts of KM, so NM/KM = 2/5.\nAreas of similar triangles scale with the square of the side ratio: area NPM / area KLM = (2/5)^2 = 4/25.\nArea KLM = 8 * 25/4 = 50.\nQuadrilateral KLPN = triangle KLM minus triangle NPM = 50 - 8 = 42.\nCheck: the quadrilateral to small-triangle area ratio is 42 : 8 = 21 : 4, which matches (25 - 4) : 4.",
+   "trap": "Applying the side ratio 3 : 2 directly to the areas gives 12 (choice A); finding the big triangle's area as 50 but forgetting to subtract the small triangle gives 50 (choice E); using (3/2)^2 * 8 = 18 treats the quadrilateral as similar to the small triangle (choice B).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "similar-triangles",
+    "area-ratio"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 220\" width=\"300\" height=\"220\"><polygon points=\"40,160 240,160 40,40\" fill=\"none\" stroke=\"#333\" stroke-width=\"2\"/><line x1=\"160\" y1=\"160\" x2=\"160\" y2=\"112\" stroke=\"#333\" stroke-width=\"2\"/><polyline points=\"40,148 52,148 52,160\" fill=\"none\" stroke=\"#333\"/><polyline points=\"160,148 148,148 148,160\" fill=\"none\" stroke=\"#333\"/><text x=\"24\" y=\"38\" font-size=\"15\">L</text><text x=\"24\" y=\"178\" font-size=\"15\">K</text><text x=\"244\" y=\"178\" font-size=\"15\">M</text><text x=\"152\" y=\"182\" font-size=\"15\">N</text><text x=\"166\" y=\"112\" font-size=\"15\">P</text></svg>",
+   "figure_description": "Right triangle KLM with the right angle at K; KL is vertical and KM is horizontal along the bottom. N is a point on KM with KN : NM = 3 : 2. P is a point on the hypotenuse LM directly above N, so that NP is vertical (perpendicular to KM, hence parallel to KL). The small triangle NPM and the quadrilateral KLPN together make up triangle KLM.",
+   "origin": "kmf1804",
+   "origin_set": "Section 21 Base",
+   "source_pages": [
+    126
+   ]
+  },
+  {
+   "id": "GEO-SCF-KMF-004",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "The diagram shows a triangular pasture with a right angle at its lower right corner. Five straight fences are shown: the bottom fence, the sloping fence, and three parallel fences, each perpendicular to the bottom fence. The three parallel fences are spaced 240 meters apart, and the first of them is 240 meters from the left corner of the pasture. The bottom fence is 720 meters long and the right-hand parallel fence is 960 meters long. What is the combined length, in meters, of all five fences?",
+   "options": null,
+   "answer": "3840",
+   "explanation": "Step 1: Sloping fence by Pythagoras: sqrt(720^2 + 960^2) = sqrt(518400 + 921600) = sqrt(1440000) = 1200 m.\nStep 2: Each shorter vertical fence forms a small right triangle similar to the big one, so its height is 960/720 = 4/3 times its distance from the left corner.\nStep 3: At 240 m the height is 320 m; at 480 m the height is 640 m; at 720 m the height is 960 m (given).\nStep 4: Total = 720 + 1200 + 320 + 640 + 960 = 3840 m.\nCheck: the three vertical heights 320, 640, 960 are equally spaced, as expected for equal spacing along the base.",
+   "trap": "Adding only the three sides of the pasture and forgetting the two interior fences gives 720 + 960 + 1200 = 2880; leaving out the bottom fence instead gives 3120.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "similar-triangles",
+    "pythagorean-triple"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 380\" width=\"320\" height=\"380\"><g stroke=\"black\" stroke-width=\"2\" fill=\"none\"><line x1=\"40\" y1=\"330\" x2=\"265\" y2=\"330\"/><line x1=\"40\" y1=\"330\" x2=\"265\" y2=\"30\"/><line x1=\"115\" y1=\"330\" x2=\"115\" y2=\"230\"/><line x1=\"190\" y1=\"330\" x2=\"190\" y2=\"130\"/><line x1=\"265\" y1=\"330\" x2=\"265\" y2=\"30\"/></g><g stroke=\"black\" stroke-width=\"1\" fill=\"none\"><polyline points=\"103,330 103,318 115,318\"/><polyline points=\"178,330 178,318 190,318\"/><polyline points=\"253,330 253,318 265,318\"/></g><g font-family=\"serif\" font-size=\"15\" fill=\"black\"><text x=\"125\" y=\"356\">720 m</text><text x=\"272\" y=\"185\">960 m</text><text x=\"62\" y=\"372\" font-size=\"12\">fences marked at 240 m spacing</text></g></svg>",
+   "figure_description": "A right triangle with its right angle at the lower right. The bottom side is horizontal and 720 m long; the right side is vertical and 960 m long; the hypotenuse slopes up from the lower left corner to the top of the right side. Two more vertical fences stand on the bottom side, 240 m and 480 m from the left corner, each reaching up to the sloping side. Right-angle marks are shown where each vertical fence meets the bottom fence.",
+   "origin": "kmf1804",
+   "origin_set": "Section 28 Hard",
+   "source_pages": [
+    178
+   ],
+   "needs_diagram_review": true
+  },
+  {
+   "id": "GEO-SCF-KMF-005",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The figure shows a decorative tile shaped as an equilateral triangle measuring 14 centimeters along each side. Centered inside it is a smaller equilateral triangle with sides of 10 centimeters, divided into 25 congruent equilateral triangles. The 15 triangles that point upward are shaded and the 10 that point downward are white. The border of the tile outside the inner triangle is white. Expressed as a fraction, how much of the whole tile's surface is shaded?",
+   "options": [
+    "A. 10/49",
+    "B. 15/49",
+    "C. 25/49",
+    "D. 3/5",
+    "E. 5/7"
+   ],
+   "answer": "B",
+   "explanation": "Each small triangle has side 2 cm, so measure area in units of one small triangle.\nInner triangle: side 10 = 5 small sides, so area = 5^2 = 25 units (matches the 25 pieces).\nWhole tile: side 14 = 7 small sides, so area = 7^2 = 49 units (areas of similar triangles scale with the square of the side).\nShaded pieces: 5 + 4 + 3 + 2 + 1 = 15 units.\nFraction shaded = 15/49.\nCheck: white pieces are 10 and 15 + 10 = 25 matches the inner triangle.",
+   "trap": "Dividing by the inner triangle only, 15/25 = 3/5 (choice D), forgetting the border; or counting the entire inner triangle as the shaded part, 25/49 (choice C).",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "similar-triangles",
+    "area-ratio"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 348 335\" width=\"348\" height=\"335\" role=\"img\" aria-label=\"Triangular tile with a centered inner triangle of 25 small triangles, 15 shaded\"><polygon points=\"20.0,286.7 328.0,286.7 174.0,20.0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"2\"/><polygon points=\"64.0,261.3 108.0,261.3 86.0,223.2\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"108.0,261.3 152.0,261.3 130.0,223.2\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"152.0,261.3 196.0,261.3 174.0,223.2\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"196.0,261.3 240.0,261.3 218.0,223.2\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"240.0,261.3 284.0,261.3 262.0,223.2\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"86.0,223.2 130.0,223.2 108.0,185.1\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"130.0,223.2 174.0,223.2 152.0,185.1\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"174.0,223.2 218.0,223.2 196.0,185.1\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"218.0,223.2 262.0,223.2 240.0,185.1\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"108.0,185.1 152.0,185.1 130.0,147.0\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"152.0,185.1 196.0,185.1 174.0,147.0\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"196.0,185.1 240.0,185.1 218.0,147.0\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"130.0,147.0 174.0,147.0 152.0,108.9\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"174.0,147.0 218.0,147.0 196.0,108.9\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"152.0,108.9 196.0,108.9 174.0,70.8\" fill=\"#555\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"86.0,223.2 130.0,223.2 108.0,261.3\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"130.0,223.2 174.0,223.2 152.0,261.3\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"174.0,223.2 218.0,223.2 196.0,261.3\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"218.0,223.2 262.0,223.2 240.0,261.3\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"108.0,185.1 152.0,185.1 130.0,223.2\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"152.0,185.1 196.0,185.1 174.0,223.2\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"196.0,185.1 240.0,185.1 218.0,223.2\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"130.0,147.0 174.0,147.0 152.0,185.1\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"174.0,147.0 218.0,147.0 196.0,185.1\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><polygon points=\"152.0,108.9 196.0,108.9 174.0,147.0\" fill=\"#fff\" stroke=\"#222\" stroke-width=\"1\"/><text x=\"174\" y=\"325\" font-size=\"12\" text-anchor=\"middle\" fill=\"#222\">Tile side 14 cm; inner triangle side 10 cm</text></svg>",
+   "figure_description": "An equilateral triangle of side 14 cm. Centered inside it (parallel sides, equal-width white border) is an equilateral triangle of side 10 cm made of 25 small equilateral triangles of side 2 cm arranged in 5 rows (5, 4, 3, 2, 1 upward-pointing triangles from the bottom row to the top, with 4, 3, 2, 1, 0 downward-pointing triangles between them). All 15 upward-pointing small triangles are shaded; the 10 downward-pointing ones and the border are white.",
+   "origin": "kmf1804",
+   "origin_set": "Section 46 Hard",
+   "source_pages": [
+    300
+   ]
+  },
+  {
+   "id": "GEO-SCF-KMF-006",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In the figure, triangle ABC is isosceles with AB = AC. The figure is not drawn to scale. Point D lies on side BC and point E lies on side AB, and segment DE is perpendicular to BC. Triangle BDE has an area equal to one eighth of the area of triangle ABC. Which of the following equals the length of BD?",
+   "options": [
+    "A. BC/16",
+    "B. BC/8",
+    "C. BC*sqrt(2)/8",
+    "D. BC/4",
+    "E. BC*sqrt(2)/4"
+   ],
+   "answer": "D",
+   "explanation": "1. Let M be the midpoint of BC. Because AB = AC, the segment AM is perpendicular to BC, and it splits triangle ABC into two triangles of equal area, so area ABM = (1/2) * area ABC.\n2. DE and AM are both perpendicular to BC, so they are parallel and triangle BDE is similar to triangle BMA.\n3. Area BDE / area BMA = (1/8) / (1/2) = 1/4.\n4. Areas of similar triangles scale as the square of lengths, so BD / BM = sqrt(1/4) = 1/2.\n5. BM = BC/2, so BD = (1/2)(BC/2) = BC/4.\nCheck with BD = BC/4: area BDE / area ABC = (1/2) * (BD/BM)^2 = (1/2) * (1/2)^2 = 1/8, as given.\nOther choices: BC/8 treats the area ratio as a length ratio; BC/16 applies 1/8 to BM; sqrt(2)*BC/8 skips the halving and then uses BM; sqrt(2)*BC/4 takes sqrt(1/8) of the whole base.",
+   "trap": "Using the area ratio against the whole triangle without halving it first gives BD/BC = sqrt(1/8) = sqrt(2)/4, which is choice E.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "similar-triangles",
+    "area-ratio",
+    "isosceles-altitude"
+   ],
+   "svg": "<svg width='280' height='180' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 280 180' role='img' aria-label='Isosceles triangle ABC with a shaded right triangle BDE cut off by a perpendicular from D on the base'><polygon points='20,150 80,150 80,85' fill='currentColor' fill-opacity='0.25' stroke='none'/><g stroke='currentColor' stroke-width='2' fill='none'><polygon points='20,150 260,150 140,20'/><line x1='80' y1='150' x2='80' y2='85'/><polyline points='80,140 90,140 90,150'/></g><g font-size='14' fill='currentColor' font-family='sans-serif'><text x='132' y='14'>A</text><text x='6' y='164'>B</text><text x='262' y='164'>C</text><text x='76' y='168'>D</text><text x='66' y='82'>E</text></g></svg>",
+   "figure_description": "Isosceles triangle ABC with apex A at the top and base BC horizontal (B at the left, C at the right). D is a point on BC between B and the midpoint of BC. E is a point on side AB directly above D, so that DE is perpendicular to BC (a right-angle mark at D). Triangle BDE is shaded. The figure is not drawn to scale.",
+   "origin": "kmf1804",
+   "origin_set": "Section 62 Hard",
+   "source_pages": [
+    404
+   ]
+  },
+  {
+   "id": "GEO-SCF-KMF-007",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A surveyor wants the width AB of a lake. She picks points D and C on the shore so that segments AD and BC cross at a point R, with R between A and D and between B and C, and with DC parallel to AB. She measures RD = 20 metres, DC = 30 metres and RA = 90 metres. What is the width AB of the lake, in metres?\n\n_____ metres",
+   "options": null,
+   "answer": "135",
+   "explanation": "1. Since DC is parallel to AB, angle RDC equals angle RAB and angle RCD equals angle RBA (alternate angles), and the angles at R are vertical angles.\n2. So triangle RDC is similar to triangle RAB, with D matching A and C matching B.\n3. Corresponding sides are in proportion: AB/DC = RA/RD = 90/20 = 4.5.\n4. AB = 4.5 * 30 = 135 metres.\nCheck: DC/AB = 30/135 = 2/9 and RD/RA = 20/90 = 2/9.",
+   "trap": "Matching the ratio the wrong way round, AB = DC * RD/RA, gives 30 * 20/90, about 6.67.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "similar-triangles",
+    "indirect-measurement"
+   ],
+   "figure_description": "Segments AD and BC cross at point R, so the figure is a pair of triangles meeting at R (an hourglass shape). R lies between A and D and between B and C. Segment DC is parallel to segment AB. A and B are on opposite sides of a lake, D and C are on the near shore. RD = 20, DC = 30, RA = 90.",
+   "origin": "kmf1804",
+   "origin_set": "Section 68 Hard",
+   "source_pages": [
+    447
+   ]
+  },
+  {
+   "id": "GEO-SCF-KMF-008",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A 16-foot plank rests level on a pivot placed 6 feet from the plank's left end; the top of the pivot, where the plank touches it, is 3 feet above flat ground, as shown. The plank is then rocked about that same touching point until its left end comes down onto the ground.\nHow high off the ground, in feet, is the plank's far end at that moment?",
+   "options": [
+    "A. 5",
+    "B. 6",
+    "C. 8",
+    "D. 10",
+    "E. 13"
+   ],
+   "answer": "C",
+   "explanation": "1. When the left end touches the ground, the plank is a straight line from the ground (left end) through the pivot top to the right end.\n2. Left end to pivot top: length 6 ft along the plank, with vertical rise 3 ft, so the plank climbs 1 ft for every 2 ft of its length (sine of the tilt = 3/6 = 1/2).\n3. The whole plank is 16 ft, so the right end is 16 * (1/2) = 8 ft above the ground. (Equivalent: similar right triangles with hypotenuses 6 and 16 give height/3 = 16/6, so height = 8.)\n4. Cross-check by parts: the right end is 10 ft beyond the pivot, so it rises 10 * (1/2) = 5 ft above the pivot top, giving 3 + 5 = 8.\nCheck: 8 is bigger than 3 as it must be, and the plank-end heights satisfy 3/6 = 8/16.",
+   "trap": "Doubling the pivot height as though the pivot were at the midpoint gives 2 * 3 = 6 (option B); finding only the extra rise beyond the pivot, 10 * (1/2) = 5, and forgetting to add the 3 ft pivot height gives option A.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "similar-triangles",
+    "lever-geometry"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 210\" width=\"400\" height=\"210\" font-family=\"sans-serif\" font-size=\"13\"><line x1=\"10\" y1=\"170\" x2=\"390\" y2=\"170\" stroke=\"#888\" stroke-width=\"5\"/><polygon points=\"150,110 130,170 170,170\" fill=\"none\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"30\" y1=\"110\" x2=\"350\" y2=\"110\" stroke=\"#222\" stroke-width=\"5\"/><line x1=\"30\" y1=\"88\" x2=\"150\" y2=\"88\" stroke=\"#222\"/><line x1=\"30\" y1=\"82\" x2=\"30\" y2=\"94\" stroke=\"#222\"/><line x1=\"150\" y1=\"82\" x2=\"150\" y2=\"94\" stroke=\"#222\"/><text x=\"75\" y=\"82\">6 ft</text><line x1=\"30\" y1=\"55\" x2=\"350\" y2=\"55\" stroke=\"#222\"/><line x1=\"30\" y1=\"49\" x2=\"30\" y2=\"61\" stroke=\"#222\"/><line x1=\"350\" y1=\"49\" x2=\"350\" y2=\"61\" stroke=\"#222\"/><text x=\"170\" y=\"48\">16 ft</text><line x1=\"200\" y1=\"112\" x2=\"200\" y2=\"168\" stroke=\"#222\"/><line x1=\"194\" y1=\"112\" x2=\"206\" y2=\"112\" stroke=\"#222\"/><line x1=\"194\" y1=\"168\" x2=\"206\" y2=\"168\" stroke=\"#222\"/><text x=\"210\" y=\"145\">3 ft</text><text x=\"60\" y=\"140\">Pivot</text><line x1=\"95\" y1=\"136\" x2=\"146\" y2=\"114\" stroke=\"#222\"/><text x=\"300\" y=\"195\">Ground</text></svg>",
+   "figure_description": "Side view. A flat ground line. A triangular pivot stands on the ground; its apex is 3 ft above the ground. A straight 16-ft plank lies horizontally across the apex, with the apex 6 ft from the plank's left end (so 10 ft from its right end). The 6 ft and 16 ft lengths and the 3 ft pivot height are marked. The plank is later rocked about the apex until the left end touches the ground.",
+   "origin": "kmf1804",
+   "origin_set": "Section 74 Hard",
+   "source_pages": [
+    485
+   ]
   }
  ]
 }

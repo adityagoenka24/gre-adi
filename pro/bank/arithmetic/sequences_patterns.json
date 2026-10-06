@@ -4,16 +4,23 @@
   "subtopic": "Sequences & Patterns",
   "subtopic_id": "ARI-SEQ",
   "version": "1.0",
-  "total_questions": 72,
+  "total_questions": 79,
   "distribution": {
-   "easy": 14,
-   "medium": 27,
-   "hard": 23,
-   "extreme_hard": 8
+   "easy": 15,
+   "medium": 30,
+   "hard": 25,
+   "extreme_hard": 9
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 35,
+   "multiple_answer": 6,
+   "numeric_entry": 22,
+   "quantitative_comparison": 16
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1471,6 +1478,165 @@
    ],
    "origin": "sectional",
    "origin_set": "arithmetic_operations_set3"
+  },
+  {
+   "id": "ARI-SEQ-KMF-001",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A tile mosaic is built in stages. Stage 1 is a single square tile measuring 3 centimeters on each side. At every later stage, a band 2 centimeters wide is laid around the whole of the current square, producing a new larger square. How many stages are needed before the outer square first has a perimeter of 300 centimeters?",
+   "options": null,
+   "answer": "19",
+   "explanation": "A perimeter of 300 centimeters means a side of 300 / 4 = 75 centimeters, so the target is a square with side 75.\nStage 1 has side 3.\nAdding a band 2 centimeters wide adds 2 centimeters on the left AND 2 centimeters on the right, so each new stage increases the side by 2 + 2 = 4 centimeters.\nSide at stage 2 = 3 + 4 = 7. Side at stage 3 = 11. The pattern is arithmetic with first term 3 and common difference 4.\nSide at stage n = 3 + 4(n - 1) = 4n - 1.\nSet 4n - 1 = 75, so 4n = 76 and n = 19.\nCheck: stage 19 gives 4(19) - 1 = 75, and 4 * 75 = 300 centimeters of perimeter. Correct.\nCheck the stage before: stage 18 gives 4(18) - 1 = 71, a perimeter of 284, which is short of 300. So 19 is the first stage that reaches it.",
+   "trap": "Treating each band as adding only its own 2 centimeters to the side rather than 2 on each of two opposite sides, which gives side = 3 + 2(n - 1) = 75 and the wrong answer 37; a second slip is counting the starting square as stage 0, which gives 20.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "arithmetic-sequence",
+    "nth-term"
+   ],
+   "figure_description": "A set of nested squares sharing a common centre. The innermost square is 3 centimeters on a side. Each square after it is drawn by surrounding the previous one with a band of uniform width 2 centimeters on all four sides, so the squares grow outward one ring at a time.",
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    64
+   ]
+  },
+  {
+   "id": "ARI-SEQ-KMF-002",
+   "difficulty": "extreme_hard",
+   "type": "mcq",
+   "question": "Sequence U lists the even integers from 2 through 130 in increasing order. To build sequence W, delete the number 6 from U, and then also delete every fourth term of U that follows 6, continuing to the end. To build sequence Z, delete the fourth term of W, and then also delete every sixth term of W that follows it, continuing to the end. How many terms does Z contain?",
+   "options": [
+    "A. 39",
+    "B. 40",
+    "C. 41",
+    "D. 42",
+    "E. 49"
+   ],
+   "answer": "C",
+   "explanation": "U has (130 - 2)/2 + 1 = 65 terms. The number 6 is the 3rd term, so W deletes positions 3, 7, 11, ..., i.e. positions 3 + 4k.\nThe largest such position within 65 is 63 (k = 15), so k = 0..15 gives 16 deletions and W has 65 - 16 = 49 terms.\nZ deletes W-positions 4, 10, 16, ..., i.e. 4 + 6k, within 49: the largest is 46 (k = 7), so k = 0..7 gives 8 deletions.\nZ has 49 - 8 = 41 terms.\nCheck: 6k + 4 <= 49 means k <= 7.5, so exactly 8 values of k.",
+   "trap": "Stopping after the first construction and reporting W's 49 terms (choice E); or, in the second stage, rounding 49/6 up to 9 deletions and answering 40 (choice B).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "arithmetic-progression-positions",
+    "deletion-patterns"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    97
+   ]
+  },
+  {
+   "id": "ARI-SEQ-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Right now 4,000 people have heard a rumor. At the end of every 3-hour period the number of people who have heard it exactly doubles, and it does not change in between. What is the least number of hours from now after which more than 2,000,000 people will have heard the rumor?",
+   "options": [
+    "A. 24",
+    "B. 27",
+    "C. 30",
+    "D. 167",
+    "E. 1,500"
+   ],
+   "answer": "B",
+   "explanation": "Step 1: After k periods the count is 4,000 * 2^k.\nStep 2: Need 4,000 * 2^k > 2,000,000, i.e. 2^k > 500.\nStep 3: 2^8 = 256 is too small, 2^9 = 512 is enough, so k = 9.\nStep 4: 9 periods of 3 hours = 27 hours.\nCheck: at 27 hours the count is 4,000 * 512 = 2,048,000 > 2,000,000; at 24 hours it is 1,024,000, which is not.",
+   "trap": "Using the ratio 1,000 instead of 500 (2^10) gives 30 hours (option C); treating doubling as adding the original amount each period gives about 499 * 3 = 1,497 hours, near option E.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "exponential-growth",
+    "doubling"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 30 Hard",
+   "source_pages": [
+    185
+   ]
+  },
+  {
+   "id": "ARI-SEQ-KMF-004",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "For each integer k from 1 through 50, form the fraction (k+2)/k. What is the product of all 50 of these fractions?",
+   "options": null,
+   "answer": "1326",
+   "explanation": "Write out the product: (3/1) * (4/2) * (5/3) * ... * (51/49) * (52/50).\nNumerators are 3, 4, ..., 52; denominators are 1, 2, ..., 50.\nEvery number from 3 to 50 appears in both, so those cancel. Left in the numerator: 51 and 52. Left in the denominator: 1 and 2.\nProduct = (51 * 52)/(1 * 2) = 2652/2 = 1326.\nCheck on a short version, k = 1 to 3: (3/1)(4/2)(5/3) = 10, and the pattern (4 * 5)/(1 * 2) = 10.",
+   "trap": "Forgetting the leftover denominators 1 and 2, and answering 51 * 52 = 2652; or expecting only the last numerator to survive as in (k+1)/k products, giving 52.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "telescoping-product",
+    "cancellation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 32 Hard",
+   "source_pages": [
+    205
+   ]
+  },
+  {
+   "id": "ARI-SEQ-KMF-005",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A live-streamed concert had 40 viewers at 6:10 p.m. The viewer count triples every 25 minutes, and the concert ends at 7:25 p.m. How many viewers are watching when the concert ends?",
+   "options": [
+    "A. 120",
+    "B. 280",
+    "C. 360",
+    "D. 1,080",
+    "E. 3,240"
+   ],
+   "answer": "D",
+   "explanation": "Time from 6:10 p.m. to 7:25 p.m. is 75 minutes.\nNumber of triplings = 75/25 = 3.\nViewers = 40 * 3^3 = 40 * 27 = 1,080.\nCheck: 6:35 -> 120, 7:00 -> 360, 7:25 -> 1,080.",
+   "trap": "Linear thinking (adding 80 viewers each interval, since tripling adds twice the starting count) gives 40 + 3*80 = 280 (choice B); stopping after two triplings gives 360 (choice C); counting four triplings gives 3,240 (choice E).",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "exponential-growth",
+    "time-intervals"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 33 Base",
+   "source_pages": [
+    207
+   ]
+  },
+  {
+   "id": "ARI-SEQ-KMF-006",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A technician services a wind turbine on a Friday and then repeats the service at 4-day intervals, so the second service is on a Tuesday. Counting the first service as number 1, how many of the first 24 services fall on a Friday?",
+   "options": null,
+   "answer": "4",
+   "explanation": "1. Services are 4 days apart, so service number j falls 4(j - 1) days after the first one.\n2. Weekdays repeat every 7 days, so service j is on a Friday exactly when 4(j - 1) is a multiple of 7.\n3. Because 4 and 7 have no common factor, this requires (j - 1) to be a multiple of 7: j - 1 = 0, 7, 14, 21, so j = 1, 8, 15, 22.\n4. The next such service would be j = 29, which is past 24, so exactly 4 services fall on a Friday.\nCheck: service 22 is 84 days after the first and 84 = 12 * 7, so it is a Friday; service 23 is 88 days later, which is not a multiple of 7.",
+   "trap": "Dividing 24 by 7 and keeping only the whole part gives 3, which forgets that service number 1 is itself on a Friday.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "cyclic-patterns",
+    "weekday-cycles"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 61 Base",
+   "source_pages": [
+    403
+   ]
+  },
+  {
+   "id": "ARI-SEQ-KMF-007",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A list of numbers begins 5832, 1944, 648, and every term after the first equals one-third of the term just before it, with no rounding. How many terms of this list are greater than 1?\n\n_____ terms",
+   "options": null,
+   "answer": "8",
+   "explanation": "1. Term number k (starting at k = 1) is 5832 / 3^(k-1).\n2. 5832 = 8 * 729 = 8 * 3^6, so the terms are 5832, 1944, 648, 216, 72, 24, 8, then 8/3, then 8/9.\n3. The first eight terms (down to 8/3, about 2.67) are all greater than 1.\n4. The ninth term, 8/9, is less than 1, and every later term is smaller still.\nCheck: 8/3 > 1 and 8/9 < 1, so exactly eight terms exceed 1.",
+   "trap": "Assuming the terms must stay whole numbers and stopping at 8 counts only seven terms.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "geometric-sequence",
+    "counting-terms"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 68 Hard",
+   "source_pages": [
+    443
+   ]
   }
  ]
 }

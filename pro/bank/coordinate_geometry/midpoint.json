@@ -4,16 +4,23 @@
   "subtopic": "Midpoint",
   "subtopic_id": "COG-MID",
   "version": "1.0",
-  "total_questions": 43,
+  "total_questions": 47,
   "distribution": {
-   "easy": 10,
-   "medium": 18,
-   "hard": 11,
+   "easy": 11,
+   "medium": 20,
+   "hard": 12,
    "extreme_hard": 4
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 17,
+   "multiple_answer": 8,
+   "numeric_entry": 12,
+   "quantitative_comparison": 10
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -926,6 +933,119 @@
    ],
    "origin": "sectional",
    "origin_set": "coordinate_geometry_set4"
+  },
+  {
+   "id": "COG-MID-KMF-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Parallelogram PQRS has consecutive vertices P at (-2, 3), Q at (4, -1), and R at (10, 5). What is the sum of the x-coordinate and y-coordinate of the fourth vertex S?",
+   "options": [
+    "A. -11",
+    "B. 4",
+    "C. 8",
+    "D. 13",
+    "E. 17"
+   ],
+   "answer": "D",
+   "explanation": "Diagonals of a parallelogram bisect each other. The diagonals are PR and QS.\nMidpoint of PR = ((-2 + 10)/2, (3 + 5)/2) = (4, 4).\nLet S = (a, b). Midpoint of QS = ((4 + a)/2, (-1 + b)/2) = (4, 4).\nSo a = 4 and b = 9, giving S = (4, 9).\nSum = 4 + 9 = 13.\nCheck: S - R = (-6, 4) and P - Q = (-6, 4), so QR is parallel and equal to SP.",
+   "trap": "Using the wrong vertex as the pivot: Q + R - P = (16, 1) gives 17 (E); P + Q - R = (-8, -3) gives -11 (A); taking the midpoint (4, 4) itself gives 8 (C).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "parallelogram-diagonals",
+    "fourth-vertex"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 17 Base",
+   "source_pages": [
+    106
+   ]
+  },
+  {
+   "id": "COG-MID-KMF-002",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "In the coordinate plane, point M is the midpoint of segment PQ. P is at (9b, 3b) and M is at (2b, -5b), where b is not 0. Which ordered pair locates Q?",
+   "options": [
+    "A. (-5b, -13b)",
+    "B. (-7b, -8b)",
+    "C. (11b, -2b)",
+    "D. (5b, 13b)",
+    "E. (11b/2, -b/2)"
+   ],
+   "answer": "A",
+   "explanation": "Midpoint formula: M = ((Px + Qx)/2, (Py + Qy)/2).\nx: (9b + Qx)/2 = 2b, so Qx = 4b - 9b = -5b.\ny: (3b + Qy)/2 = -5b, so Qy = -10b - 3b = -13b.\nQ = (-5b, -13b).\nCheck: midpoint of (9b, 3b) and (-5b, -13b) is (4b/2, -10b/2) = (2b, -5b).",
+   "trap": "Subtracting P from M instead of doubling M first gives (-7b, -8b), option B.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "midpoint",
+    "find-endpoint"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 23 Base",
+   "source_pages": [
+    142
+   ]
+  },
+  {
+   "id": "COG-MID-KMF-003",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A square in the coordinate plane has KL as one of its sides. Point K sits at (-1, 3) and the midpoint of KL sits at (2, 7). Select every point that could be one of the square's other two vertices (that is, a vertex other than K and L), depending on which side of KL the square is drawn.",
+   "options": [
+    "A. (7, -3)",
+    "B. (13, 5)",
+    "C. (-3, 17)",
+    "D. (7, 9)",
+    "E. (-7, -5)",
+    "F. (-1, 13)"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "1. The midpoint is (2, 7), so L = (2*2 - (-1), 2*7 - 3) = (5, 11).\n2. Vector from K to L is (6, 8), so the side length is sqrt(36 + 64) = 10.\n3. The other sides are perpendicular to KL, so they are +/-(8, -6) (dot product with (6, 8) is 48 - 48 = 0, length 10).\n4. Square on one side: K + (8, -6) = (7, -3) and L + (8, -6) = (13, 5). Square on the other side: K + (-8, 6) = (-9, 9) and L + (-8, 6) = (-3, 17).\n5. A (7, -3): true. B (13, 5): true. C (-3, 17): true.\n6. D (7, 9) = K + (8, 6); (8, 6) dot (6, 8) = 96, not 0, so it is not perpendicular: false.\n7. E (-7, -5) = K - (6, 8) lies on line KL extended past K: false.\n8. F (-1, 13) = K + (0, 10) would need an axis-parallel side, but KL is not axis-parallel: false.\nCheck: distance from K to (7, -3) is sqrt(64 + 36) = 10 and from L to (13, 5) is sqrt(64 + 36) = 10, as required.\nAnswer: A, B, C.",
+   "trap": "Assuming the square has axis-parallel sides and adding the side length straight up from K gives (-1, 13), option F; rotating the direction (6, 8) to (8, 6) without a sign flip gives (7, 9), option D.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "square-vertices",
+    "midpoint",
+    "perpendicular-vectors"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 56 Hard",
+   "source_pages": [
+    367
+   ]
+  },
+  {
+   "id": "COG-MID-KMF-004",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A parallelogram has corners at P(0, 3), Q(4, 1) and R(5, 5), and its fourth corner has not been placed yet. Select every point that cannot be that fourth corner.",
+   "options": [
+    "A. (9, 3)",
+    "B. (1, 7)",
+    "C. (-1, -1)",
+    "D. (9, 9)",
+    "E. (4, 5)"
+   ],
+   "answer": [
+    "D",
+    "E"
+   ],
+   "explanation": "1. In a parallelogram the diagonals share a midpoint, so the fourth vertex equals the sum of the two vertices it is adjacent to, minus the vertex opposite it.\n2. Opposite (0, 3): (4, 1) + (5, 5) - (0, 3) = (9, 3). Option A is possible.\n3. Opposite (4, 1): (0, 3) + (5, 5) - (4, 1) = (1, 7). Option B is possible.\n4. Opposite (5, 5): (0, 3) + (4, 1) - (5, 5) = (-1, -1). Option C is possible.\n5. Those are the only three possible fourth vertices, so (9, 9) and (4, 5) cannot be.\nCheck: the midpoint of (0, 3) and (9, 3) is (4.5, 3), and the midpoint of (4, 1) and (5, 5) is (4.5, 3), so (9, 3) does work; neither (9, 9) nor (4, 5) matches any of the three sums.",
+   "trap": "Adding all three given points (0 + 4 + 5, 3 + 1 + 5) gives (9, 9), option D, which is not a vertex position; mixing the x of one point with the y of another gives (4, 5), option E.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "parallelogram-vertices",
+    "diagonal-midpoint"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 67 Base",
+   "source_pages": [
+    442
+   ]
   }
  ]
 }

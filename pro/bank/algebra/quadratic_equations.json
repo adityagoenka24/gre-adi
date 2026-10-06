@@ -4,16 +4,23 @@
   "subtopic": "Quadratic Equations",
   "subtopic_id": "ALG-QDR",
   "version": "1.0",
-  "total_questions": 70,
+  "total_questions": 81,
   "distribution": {
-   "easy": 15,
-   "medium": 29,
-   "hard": 19,
+   "easy": 19,
+   "medium": 35,
+   "hard": 20,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 41,
+   "multiple_answer": 8,
+   "numeric_entry": 21,
+   "quantitative_comparison": 11
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1474,6 +1481,277 @@
    ],
    "origin": "sectional",
    "origin_set": "algebra_set8"
+  },
+  {
+   "id": "ALG-QDR-KMF-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "If 3/4 is one solution of the equation 8x^2 - 2x - k = 0, where k is a constant, what is the other solution of the equation?",
+   "options": [
+    "A. -3/4",
+    "B. -1/2",
+    "C. -1/4",
+    "D. 1/4",
+    "E. 1/2"
+   ],
+   "answer": "B",
+   "explanation": "For 8x^2 - 2x - k = 0, the sum of the roots = -(-2)/8 = 1/4.\nIf one root is 3/4, the other root = 1/4 - 3/4 = -1/2.\nCheck: with k found from x=3/4 (k=3), the equation becomes 8x^2-2x-3=0, which factors/solves to x=3/4 or x=-1/2.",
+   "trap": "Students use the product of roots instead of the sum, or forget to divide -b by a, computing the sum of roots as -2 instead of 1/4.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "quadratic-roots",
+    "sum-of-roots"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    23
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The equation 3y^2 + 4y - 15 = 0 has two real roots. What does the sum of the absolute values of those two roots come to?",
+   "options": [
+    "A. 14/3",
+    "B. 5/3",
+    "C. 3",
+    "D. 4/3",
+    "E. 8"
+   ],
+   "answer": "A",
+   "explanation": "Factor the quadratic: 3y^2 + 4y - 15 = (3y - 5)(y + 3).\nCheck the expansion: (3y - 5)(y + 3) = 3y^2 + 9y - 5y - 15 = 3y^2 + 4y - 15. Matches.\nSet each factor to zero: 3y - 5 = 0 gives y = 5/3; y + 3 = 0 gives y = -3.\nAbsolute values: |5/3| = 5/3 and |-3| = 3.\nSum = 5/3 + 3 = 5/3 + 9/3 = 14/3.\nCheck: 14/3 is about 4.67, which sits between the larger root's size (3) and the total spread (5/3 + 3). Correct.",
+   "trap": "Using -b/a = -4/3 and taking its size gives 4/3, but that is the plain sum of the roots, where the negative root cancels part of the positive one instead of adding to it; the result is choice D.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "factoring-quadratics",
+    "absolute-value"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    75
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-003",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "The quadratic equation x^2 + px + q = 0 has 4 as one of its solutions. Which of the following expresses q in terms of p?",
+   "options": [
+    "A. q = -4p - 16",
+    "B. q = -4p + 16",
+    "C. q = 4p + 16",
+    "D. q = 4p - 16",
+    "E. q = -4p"
+   ],
+   "answer": "A",
+   "explanation": "Since 4 is a solution, substituting x = 4 must satisfy the equation.\n4^2 + p(4) + q = 0, so 16 + 4p + q = 0.\nSolve for q: q = -16 - 4p, which is the same as q = -4p - 16.\nCheck with p = -5: the equation is x^2 - 5x + 4 = 0 and q should be 20 - 16 = 4; indeed x = 4 gives 16 - 20 + 4 = 0.",
+   "trap": "Substituting x = -4 instead of 4 (or flipping signs while moving terms) gives 16 - 4p + q = 0, so q = 4p - 16 (choice D); moving 16 across without changing its sign gives q = -4p + 16 (choice B).",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "roots-substitution",
+    "quadratic"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    95
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-004",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "The numbers a and b satisfy a + b = 6, and a can be any value from -5 to 9 inclusive. For which value of a is the product ab as small as possible?",
+   "options": [
+    "A. -5",
+    "B. 0",
+    "C. 3",
+    "D. 6",
+    "E. 9"
+   ],
+   "answer": "A",
+   "explanation": "Since b = 6 - a, the product is ab = a(6 - a) = 6a - a^2 = 9 - (a - 3)^2.\nThis is a downward-opening parabola with its maximum at a = 3, so the minimum on an interval occurs at an endpoint, the one farther from 3.\nDistance from 3 to -5 is 8; distance from 3 to 9 is 6. So the minimum is at a = -5.\nValues: a = -5 gives -5*11 = -55; a = 9 gives 9*(-3) = -27; a = 0 and a = 6 give 0; a = 3 gives 9.\nCheck: -55 is the smallest of these.",
+   "trap": "Picking the vertex a = 3 (choice C), which gives the greatest product, not the least; or picking the upper endpoint a = 9 (choice E) without comparing the two ends.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "constrained-product",
+    "parabola-endpoints"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    98
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-005",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "Consider the quadratic g(x) = x^2 - 14x + k, where k is a constant. Its two x-intercepts lie 6 units apart. What is the value of k?",
+   "options": null,
+   "answer": "40",
+   "explanation": "The x-intercepts are symmetric about the vertex, whose x-coordinate is -(-14)/2 = 7.\nTwo intercepts 6 apart sit 3 on each side of 7, so they are 4 and 10.\nThe constant term is their product: k = 4*10 = 40.\nCheck: x^2 - 14x + 40 = (x - 4)(x - 10); the sum 14 matches and the gap 10 - 4 = 6.",
+   "trap": "Treating the 6-unit gap as the distance from the vertex to one intercept gives intercepts 1 and 13 and k = 13, or taking k = 6.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "roots",
+    "vertex-symmetry"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 25 Base",
+   "source_pages": [
+    158
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-006",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "For one particular value of k, the equation (x + 2)(x - 8) = k has exactly one real solution. What is the value of k?",
+   "options": null,
+   "answer": "-25",
+   "explanation": "Expand: x^2 - 6x - 16 = k, so x^2 - 6x - (16 + k) = 0.\nExactly one real solution means the discriminant is zero: (-6)^2 - 4(1)(-(16 + k)) = 36 + 64 + 4k = 0, so k = -25.\nCheck: with k = -25, x^2 - 6x + 9 = 0 gives (x - 3)^2 = 0, the single solution x = 3. Also (3 + 2)(3 - 8) = 5 * (-5) = -25.",
+   "trap": "Substituting x = 0 to read off the constant term, k = -16, or dropping a sign and answering 25.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "discriminant",
+    "double-root"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 33 Base",
+   "source_pages": [
+    206
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-007",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "For which of the following expressions is the value positive for every real number y? Select all that apply.",
+   "options": [
+    "A. (y+4)^2 + 2",
+    "B. (y-5)^2",
+    "C. y^2 + 6y + 10",
+    "D. 4 - (y-1)^2",
+    "E. y^2 - 8y + 15",
+    "F. (3y-2)^2 + 1/2"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "F"
+   ],
+   "explanation": "A: a square is at least 0, so (y+4)^2 + 2 >= 2. Always positive. True.\nB: (y-5)^2 equals 0 at y = 5, which is not positive. False.\nC: y^2 + 6y + 10 = (y+3)^2 + 1 >= 1. Always positive. True.\nD: at y = 5, 4 - 16 = -12, negative. False.\nE: at y = 4, 16 - 32 + 15 = -1, negative (roots are 3 and 5). False.\nF: (3y-2)^2 + 1/2 >= 1/2. Always positive. True.\nAnswer: A, C, F.",
+   "trap": "Assuming any squared expression is positive selects choice B, which equals 0 at y = 5; failing to complete the square on y^2 + 6y + 10 and guessing from the +10 leaves out choice C.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "completing-the-square",
+    "always-positive"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 33 Base",
+   "source_pages": [
+    209
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-008",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "In the equation 4x^2 - 19x + k = 0, k is a constant and x = 5 is one of the two solutions. What is the other solution?",
+   "options": [
+    "A. -1/4",
+    "B. 1/4",
+    "C. 5/4",
+    "D. 19/4",
+    "E. 14"
+   ],
+   "answer": "A",
+   "explanation": "Sum of the two solutions = -(-19)/4 = 19/4.\nOther solution = 19/4 - 5 = 19/4 - 20/4 = -1/4.\nCheck: substituting x = 5 gives 100 - 95 + k = 0, so k = -5. Then 4x^2 - 19x - 5 = (4x + 1)(x - 5), whose solutions are -1/4 and 5.",
+   "trap": "Using a sum of 19 instead of 19/4 (forgetting to divide by the leading coefficient) gives 19 - 5 = 14 (option E). Stopping at the sum of the solutions gives 19/4 (option D). A sign slip on k gives a product of 5/4 (option C), and a sign slip on the sum gives 1/4 (option B).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "sum-of-roots",
+    "quadratics"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 37 Base",
+   "source_pages": [
+    237
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-009",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Consider the curve 4y^2 - x^2 = 16. Indicate all of the listed points that lie on this curve and also on one of the coordinate axes.",
+   "options": [
+    "A. (0, 2)",
+    "B. (0, -2)",
+    "C. (4, 0)",
+    "D. (-4, 0)",
+    "E. (0, 4)",
+    "F. (2, 0)"
+   ],
+   "answer": [
+    "A",
+    "B"
+   ],
+   "explanation": "A point on the y-axis has x = 0; a point on the x-axis has y = 0.\nA: (0, 2): 4*4 - 0 = 16. TRUE.\nB: (0, -2): 4*4 - 0 = 16. TRUE.\nC: (4, 0): 0 - 16 = -16, not 16. FALSE.\nD: (-4, 0): 0 - 16 = -16. FALSE.\nE: (0, 4): 4*16 - 0 = 64. FALSE.\nF: (2, 0): 0 - 4 = -4. FALSE.\nIn fact, setting y = 0 gives -x^2 = 16, which has no real solution, so there are no x-axis points at all; setting x = 0 gives y = 2 or -2.\nAnswer: A, B.",
+   "trap": "Mixing up which variable carries the positive square: treating the graph as x^2 - 4y^2 = 16 gives x-intercepts at (4, 0) and (-4, 0) (options C and D).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "axis-intercepts",
+    "hyperbola"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 45 Base",
+   "source_pages": [
+    293
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-010",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The equation n^6 + 19n^3 = 216 has some real solutions. What is the sum of all of its real solutions?",
+   "options": null,
+   "answer": "-1",
+   "explanation": "Let u = n^3, so the equation becomes u^2 + 19u - 216 = 0.\nFactor: (u - 8)(u + 27) = 0, so u = 8 or u = -27.\nn^3 = 8 gives n = 2; n^3 = -27 gives n = -3. A cube root of a real number is always a single real number, so these are the only real solutions.\nSum = 2 + (-3) = -1.\nCheck: 2^6 + 19*2^3 = 64 + 152 = 216; (-3)^6 + 19*(-3)^3 = 729 - 513 = 216.",
+   "trap": "Adding the two roots of the quadratic in u (8 + (-27) = -19) instead of converting back to n, or discarding the negative value of u as impossible and answering 2.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "quadratic-in-disguise",
+    "substitution"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 49 Base",
+   "source_pages": [
+    321
+   ]
+  },
+  {
+   "id": "ALG-QDR-KMF-011",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "Given that 5 is one solution of 4x^2 + bx - 40 = 0 (b is a constant), what is the other solution?",
+   "options": null,
+   "answer": "-2",
+   "explanation": "1. For ax^2 + bx + c = 0 the product of the two solutions is c/a = -40/4 = -10.\n2. One solution is 5, so the other is -10 / 5 = -2.\n3. Check by finding b: 4*25 + 5b - 40 = 0, so 5b = -60 and b = -12.\n4. Then 4x^2 - 12x - 40 = 4(x - 5)(x + 2), whose solutions are 5 and -2.\nCheck: the product 5*(-2) = -10 matches c/a.",
+   "trap": "Stopping at the product of the solutions, c/a = -10, and reporting it instead of dividing by the known solution 5 gives -10.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "product-of-roots",
+    "vieta"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 63 Base",
+   "source_pages": [
+    416
+   ]
   }
  ]
 }

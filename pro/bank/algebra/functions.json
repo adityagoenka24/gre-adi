@@ -4,16 +4,23 @@
   "subtopic": "Functions",
   "subtopic_id": "ALG-FNC",
   "version": "1.0",
-  "total_questions": 70,
+  "total_questions": 91,
   "distribution": {
-   "easy": 15,
-   "medium": 24,
-   "hard": 24,
+   "easy": 18,
+   "medium": 38,
+   "hard": 28,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 39,
+   "multiple_answer": 15,
+   "numeric_entry": 24,
+   "quantitative_comparison": 13
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1468,6 +1475,596 @@
    ],
    "origin": "sectional",
    "origin_set": "number_properties_set1"
+  },
+  {
+   "id": "ALG-FNC-KMF-001",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The operation # is defined by x#y = (x^2)/y - x/y for all numbers x and y, where y != 0. What is the value of (8#(-8)) + ((-8)#8)?",
+   "options": null,
+   "answer": "2",
+   "explanation": "Compute 8#(-8): x=8, y=-8. x^2/y = 64/-8 = -8. x/y = 8/-8 = -1. Result = -8 - (-1) = -7.\nCompute (-8)#8: x=-8, y=8. x^2/y = 64/8 = 8. x/y = -8/8 = -1. Result = 8 - (-1) = 9.\nSum: -7 + 9 = 2.",
+   "trap": "Students compute x/y incorrectly when x is negative (dropping the sign), or add the two subexpressions before applying the subtraction inside the operation, leading to an incorrect intermediate value.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "custom-operation",
+    "function-evaluation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    23
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-002",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The table shows values of the function f, the graph of which is a line in the xy-plane. What is the value of f(x) when x = 101?\nf(101) = ?",
+   "options": null,
+   "answer": "284",
+   "explanation": "Slope = (2 - (-7)) / (7 - 4) = 9/3 = 3.\nUsing point (4, -7): f(x) = 3(x - 4) - 7 = 3x - 12 - 7 = 3x - 19.\nf(101) = 3(101) - 19 = 303 - 19 = 284.",
+   "trap": "Students compute the slope using non-adjacent table rows incorrectly or forget to solve for the intercept, plugging x=101 directly into '3x' without the '-19' offset.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "linear-function",
+    "slope-intercept"
+   ],
+   "table_data": {
+    "headers": [
+     "x",
+     "f(x)"
+    ],
+    "rows": [
+     [
+      4,
+      -7
+     ],
+     [
+      7,
+      2
+     ],
+     [
+      10,
+      11
+     ],
+     [
+      13,
+      20
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    27
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-003",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "For all nonzero numbers p and q, the operation # is defined by p # q = 1/p - 1/q. Which of the following statements must be true for all nonzero numbers u and v?\n\nIndicate all such statements.",
+   "options": [
+    "A. u # v = -(v # u)",
+    "B. u # v = (v - u)/(u*v)",
+    "C. (1/u) # (1/v) = u - v",
+    "D. u # v = v # u",
+    "E. u # u = 1"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "Statement A: u # v = 1/u - 1/v, and v # u = 1/v - 1/u. So -(v # u) = 1/u - 1/v = u # v. True.\nStatement B: 1/u - 1/v = v/(u*v) - u/(u*v) = (v - u)/(u*v). True.\nStatement C: (1/u) # (1/v) = 1/(1/u) - 1/(1/v) = u - v. True.\nStatement D: u # v = 1/u - 1/v and v # u = 1/v - 1/u. Test u = 1, v = 2: u # v = 1 - 0.5 = 0.5, and v # u = 0.5 - 1 = -0.5. Not equal, so false.\nStatement E: u # u = 1/u - 1/u = 0, not 1. False.\nCheck with u = 2, v = 4: u # v = 0.5 - 0.25 = 0.25. Statement B gives (4 - 2)/8 = 0.25, matching. Statement C gives (1/2) # (1/4) = 2 - 4 = -2, and directly 1/(1/2) - 1/(1/4) = 2 - 4 = -2, matching.",
+   "trap": "Assuming any operation written with a symbol between two inputs must be commutative selects D.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "defined-operation",
+    "reciprocals"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 6 Hard",
+   "source_pages": [
+    36
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-004",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "The function h is defined by h(t) = (t^2 + 3*t)*(t - 4) for every real number t. Which of the following statements about h must be true?\n\nIndicate all such statements.",
+   "options": [
+    "A. h(t) = 0 for exactly three values of t.",
+    "B. h(t) > 0 for every t greater than 4.",
+    "C. h(t) < 0 for every t strictly between -3 and 0.",
+    "D. h(-5) < 0",
+    "E. h(t) > 0 for every t strictly between 0 and 4."
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "Factor completely: t^2 + 3*t = t*(t + 3), so h(t) = t*(t + 3)*(t - 4).\nThe zeros are t = 0, t = -3, and t = 4, three distinct values, so statement A is true.\nDetermine the sign in each interval by testing a point.\nFor t < -3, take t = -4: h(-4) = (-4)*(-1)*(-8) = -32, negative.\nFor -3 < t < 0, take t = -1: h(-1) = (-1)*(2)*(-5) = 10, positive.\nFor 0 < t < 4, take t = 1: h(1) = (1)*(4)*(-3) = -12, negative.\nFor t > 4, take t = 5: h(5) = (5)*(8)*(1) = 40, positive.\nStatement B: h is positive on t > 4, as the test at t = 5 shows and as all three factors are positive there. True.\nStatement C: on -3 < t < 0 the function is positive, not negative, as h(-1) = 10 shows. False.\nStatement D: -5 < -3, so h(-5) lies in the first interval, which is negative. Directly, h(-5) = (-5)*(-2)*(-9) = -90 < 0. True.\nStatement E: on 0 < t < 4 the function is negative, as h(1) = -12 shows. False.\nCheck: A, B, and D hold; C and E are contradicted by explicit values.",
+   "trap": "Assuming that the factor (t - 4) makes h negative for every t below 4 selects C.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "polynomial-sign",
+    "factored-form",
+    "roots"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 8 Hard",
+   "source_pages": [
+    49
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-005",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "If w = 5 - v^2 and v is an integer from -3 to 6, inclusive, by how much does the greatest possible value of w exceed the least possible value of w?",
+   "options": [
+    "A. 5",
+    "B. 9",
+    "C. 31",
+    "D. 36",
+    "E. 41"
+   ],
+   "answer": "D",
+   "explanation": "w = 5 - v^2, so w is largest when v^2 is smallest and smallest when v^2 is largest.\nThe allowed integers are -3, -2, -1, 0, 1, 2, 3, 4, 5, 6.\nSmallest v^2: v = 0 gives v^2 = 0, so the greatest w = 5 - 0 = 5.\nLargest v^2: compare the two ends. v = -3 gives 9, v = 6 gives 36. The largest is 36, at v = 6.\nSo the least w = 5 - 36 = -31.\nDifference = greatest minus least = 5 - (-31) = 5 + 31 = 36.\nCheck a middle value to confirm the pattern: v = 4 gives w = 5 - 16 = -11, which lies between -31 and 5.\nSo the greatest value exceeds the least by 36.",
+   "trap": "Assuming the most negative allowed value of v makes w smallest, using v = -3 to get w = -4 and a difference of 5 - (-4) = 9, which produces option B; squaring removes the sign, so v = 6 is the true extreme.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "quadratic-range",
+    "integer-domain"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    60
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-006",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "For every integer k, the rule g(k) = 2k^2 - 6k + 11 assigns a value to k. What is the smallest value g ever takes?",
+   "options": null,
+   "answer": "7",
+   "explanation": "The expression 2k^2 - 6k + 11 is a parabola opening upward, so its smallest value sits at the vertex.\nVertex at k = 6/(2*2) = 6/4 = 1.5.\nBut k is restricted to integers, so check the two integers on either side of 1.5.\ng(1) = 2*1 - 6*1 + 11 = 2 - 6 + 11 = 7.\ng(2) = 2*4 - 6*2 + 11 = 8 - 12 + 11 = 7.\nBoth give 7, and moving further out only increases the value: g(0) = 11 and g(3) = 18 - 18 + 11 = 11.\nSo the smallest value over the integers is 7.",
+   "trap": "Evaluating at the vertex k = 1.5 gives 2*2.25 - 9 + 11 = 6.5, but k is restricted to integers and 6.5 is never attained.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "quadratic-minimum",
+    "integer-domain"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 14 Hard",
+   "source_pages": [
+    83
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-007",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "In the xy-plane a curve is traced by y = (x^2 - 5x + 6)/(x - 6). Indicate each listed value of x at which the curve meets the x-axis.",
+   "options": [
+    "A. x = 2",
+    "B. x = 3",
+    "C. x = 6",
+    "D. x = -2",
+    "E. x = -3"
+   ],
+   "answer": [
+    "A",
+    "B"
+   ],
+   "explanation": "The curve meets the x-axis where y = 0, and a fraction is 0 exactly when its numerator is 0 while its denominator is not.\nFactor the numerator: x^2 - 5x + 6 = (x - 2)(x - 3).\nCheck the expansion: (x - 2)(x - 3) = x^2 - 3x - 2x + 6 = x^2 - 5x + 6. Matches.\nNumerator zeros: x = 2 and x = 3.\nDenominator zero: x = 6, where the expression is undefined, so no point of the curve exists there.\nA. x = 2: numerator 0, denominator 2 - 6 = -4, not 0 -- the curve meets the axis, true.\nB. x = 3: numerator 0, denominator 3 - 6 = -3, not 0 -- true.\nC. x = 6: the expression is undefined -- false.\nD. x = -2: numerator = 4 + 10 + 6 = 20, not 0 -- false.\nE. x = -3: numerator = 9 + 15 + 6 = 30, not 0 -- false.\nSelected: A and B.",
+   "trap": "Setting the denominator to zero yields x = 6, which marks the value the curve avoids altogether rather than a place where it crosses the axis.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "rational-expressions",
+    "zeros"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 14 Hard",
+   "source_pages": [
+    88
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-008",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "The function g is given by g(x) = |x + 7| - |x + 3| for every real x. Select all values of x for which g(x) equals 4.",
+   "options": [
+    "A. -10",
+    "B. -7",
+    "C. -5",
+    "D. -3",
+    "E. 0",
+    "F. 6"
+   ],
+   "answer": [
+    "D",
+    "E",
+    "F"
+   ],
+   "explanation": "The expression x + 3 changes sign at x = -3 and x + 7 changes sign at x = -7.\nFor x >= -3 both x + 7 and x + 3 are non-negative, so g(x) = (x + 7) - (x + 3) = 4. Every x at or above -3 works.\nFor -7 <= x < -3, g(x) = (x + 7) + (x + 3) = 2x + 10, which is less than 4 on this interval.\nFor x < -7, g(x) = -(x + 7) + (x + 3) = -4.\nA. g(-10) = 3 - 7 = -4, false.\nB. g(-7) = 0 - 4 = -4, false.\nC. g(-5) = 2 - 2 = 0, false.\nD. g(-3) = 4 - 0 = 4, true.\nE. g(0) = 7 - 3 = 4, true.\nF. g(6) = 13 - 9 = 4, true.",
+   "trap": "Dropping the absolute-value bars and simplifying (x + 7) - (x + 3) = 4 as if it held for every x, which makes A, B and C look correct; the shortcut is valid only for x >= -3, where both bars open without a sign change.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "absolute-value",
+    "piecewise-function"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 15 Base",
+   "source_pages": [
+    93
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-009",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Two integers m and n are combined by the symbol # as follows: m # n = m + n when m + n is even, and m # n = m * n when m + n is odd. Which choice equals 7 # ((-12) # (-4))?",
+   "options": [
+    "A. -112",
+    "B. -88",
+    "C. -9",
+    "D. 55",
+    "E. 336"
+   ],
+   "answer": "A",
+   "explanation": "Work the inner pair first: (-12) # (-4). The sum is -16, which is even, so the rule gives -12 + -4 = -16.\nNow evaluate 7 # (-16). The sum is -9, which is odd, so the rule gives 7 * (-16) = -112.\nCheck: the two steps used different rules (sum then product), which is why the case test must be redone at every step.",
+   "trap": "Applying the product rule to the inner pair (48) and then the product rule again gives 7 * 48 = 336 (choice E); using the sum rule on the outer step gives 7 + (-16) = -9 (choice C).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "defined-operation",
+    "case-definition"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 19 Base",
+   "source_pages": [
+    118
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-010",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Each integer w of the form c^d, with c prime and d a positive integer, is assigned the value w* = c + d. As an illustration, 49 = 7^2 gives 49* = 9. If w* = 9 and w is even, what is w?",
+   "options": null,
+   "answer": "128",
+   "explanation": "w is even and a power of the prime c, so c must be 2 (the only even prime).\nThen c + d = 9 gives d = 7.\nSo w = 2^7 = 128.\nCheck: 128 = 2^7 and 128* = 2 + 7 = 9, and 128 is even.\nWithout the evenness condition, 49 (c = 7, d = 2) or 729 (c = 3, d = 6) would also work.",
+   "trap": "Multiplying the base and exponent (2 * 7 = 14) instead of raising 2 to the 7th power, or reusing the illustration's 49, which is odd and so fails the stated condition.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "custom-operation",
+    "prime-powers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 26 Hard",
+   "source_pages": [
+    165
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-011",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "For positive numbers a and b, let H(a, b) = 2ab/(a + b). If H(12, n) = 16, what is the value of n?",
+   "options": null,
+   "answer": "24",
+   "explanation": "H(12, n) = 2*12*n/(12 + n) = 24n/(12 + n) = 16.\nCross-multiply: 24n = 16(12 + n) = 192 + 16n.\nSo 8n = 192 and n = 24.\nCheck: H(12, 24) = 2*12*24/36 = 576/36 = 16.",
+   "trap": "Treating H as the ordinary average, (12 + n)/2 = 16, which gives n = 20.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "defined-function",
+    "rational-equation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 35 Base",
+   "source_pages": [
+    222
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-012",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "For every integer t, a function g is given by g(t) = 3^(1 - t^2). Select all of the numbers that g(t) can equal for at least one integer t.",
+   "options": [
+    "A. 27",
+    "B. 9",
+    "C. 3",
+    "D. 1",
+    "E. 1/3",
+    "F. 1/9",
+    "G. 1/27"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "G"
+   ],
+   "explanation": "The exponent 1 - t^2 takes only the values 1, 0, -3, -8, -15, ... as t = 0, +-1, +-2, +-3, ...\nt = 0 gives 3^1 = 3 (option C is possible).\nt = +-1 gives 3^0 = 1 (option D is possible).\nt = +-2 gives 3^(-3) = 1/27 (option G is possible).\n27 and 9 would need exponents 3 and 2, i.e. t^2 = -2 and t^2 = -1: impossible.\n1/3 and 1/9 would need exponents -1 and -2, i.e. t^2 = 2 and t^2 = 3: no integer t works.\nCheck: the exponent set is {1, 0, -3, -8, ...}, and only 3, 1 and 1/27 correspond to members of it among the options.",
+   "trap": "Treating the exponent as free to be any integer and also picking 9, 1/3 and 1/9 (options B, E, F), instead of noticing that 1 - t^2 can never equal 2, -1 or -2.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "exponent-function",
+    "integer-domain"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 40 Hard",
+   "source_pages": [
+    260
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The equation y = |x| - x is graphed in the xy-plane. Which description fits the resulting set of points?",
+   "options": [
+    "A. The nonnegative x-axis together with a ray from the origin into the second quadrant of slope -2",
+    "B. A V-shape with its vertex at the origin, symmetric about the y-axis",
+    "C. The negative x-axis together with a ray from the origin into the first quadrant of slope 2",
+    "D. The entire x-axis",
+    "E. A single straight line through the origin with slope 2"
+   ],
+   "answer": "A",
+   "explanation": "Split by the sign of x.\nIf x >= 0, |x| = x, so y = x - x = 0. The points lie on the nonnegative x-axis.\nIf x < 0, |x| = -x, so y = -x - x = -2x. For x = -1, y = 2; for x = -3, y = 6. This is a ray into the second quadrant with slope -2.\nChoice A matches both pieces.\nCheck: x = 2 gives y = 0 (on the axis); x = -2 gives y = 4 (second quadrant).",
+   "trap": "Treating the expression as |x| + x flips the pieces: zero for negative x and 2x for positive x, which gives choice C. Dropping the -x entirely gives the V-shape in choice B.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "absolute-value-graph",
+    "piecewise"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 47 Base",
+   "source_pages": [
+    307
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-014",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Select all of the equations whose graphs never touch or cross the x-axis in the xy-plane.",
+   "options": [
+    "A. y = x^2 + 4",
+    "B. y = (x - 3)^2",
+    "C. y = 1/x",
+    "D. y = |x| - 2",
+    "E. y = x^2 - 4x + 5",
+    "F. y = 2x + 7"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "A graph meets the x-axis only where y = 0, so test whether y = 0 has a solution.\nA: x^2 + 4 = 0 has no real solution. TRUE.\nB: (x - 3)^2 = 0 at x = 3, so the graph touches the axis. FALSE.\nC: 1/x = 0 has no solution (a fraction with numerator 1 is never 0). TRUE.\nD: |x| = 2 at x = 2 and x = -2. FALSE.\nE: x^2 - 4x + 5 = 0 has discriminant 16 - 20 = -4 < 0, so no real solution. TRUE.\nF: 2x + 7 = 0 at x = -3.5. FALSE.\nAnswer: A, C, E.",
+   "trap": "Counting a parabola that just touches the axis at its vertex (choice B) as 'not crossing', or overlooking that 1/x never equals zero (choice C) and so omitting it.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "x-intercepts",
+    "graph-behavior"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 47 Base",
+   "source_pages": [
+    308
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-015",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "For every real number x, let floor(x) denote the largest integer that does not exceed x, and define g(x) = 3 + floor(x). What is the value of g(-2.4) + g(2.6)?",
+   "options": null,
+   "answer": "5",
+   "explanation": "floor(-2.4) = -3, because -3 is the largest integer not exceeding -2.4 (the integer -2 is larger than -2.4).\nSo g(-2.4) = 3 + (-3) = 0.\nfloor(2.6) = 2, so g(2.6) = 3 + 2 = 5.\nSum = 0 + 5 = 5.",
+   "trap": "Treating floor(-2.4) as -2 (dropping the decimal part) gives g(-2.4) = 1 and a total of 6.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "floor-function",
+    "negative-numbers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    325
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-016",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "The table lists four input-output pairs of a linear function g. For what value of x does g(x) equal 75?",
+   "options": null,
+   "answer": "21",
+   "explanation": "Slope = (3 - (-1)) / (3 - 2) = 4; check with the pair (6, 15) and (10, 31): (31 - 15) / (10 - 6) = 4.\nIntercept: g(2) = -1 = 4(2) + b, so b = -9 and g(x) = 4x - 9.\nSolve 4x - 9 = 75: 4x = 84, so x = 21.\nCheck: g(21) = 84 - 9 = 75.",
+   "trap": "Continuing the table by adding 4 to x each time (as if x rose by 1 for each step in g) rather than solving g(x) = 75 algebraically, or forgetting to add the 9 and solving 4x = 75.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "linear-function",
+    "solve-for-input"
+   ],
+   "table_data": {
+    "headers": [
+     "x",
+     "2",
+     "3",
+     "6",
+     "10"
+    ],
+    "rows": [
+     [
+      "g(x)",
+      "-1",
+      "3",
+      "15",
+      "31"
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    329
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-017",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A curve in the xy-plane is given by y = (x^2 + 2)(x - 5). Select all of the statements that are true of this curve.",
+   "options": [
+    "A. The curve passes through the point (0, -10).",
+    "B. The curve crosses the x-axis at x = sqrt(2).",
+    "C. The curve meets the x-axis at exactly one point.",
+    "D. As x becomes a very large negative number, y becomes a very large positive number.",
+    "E. The value of y is negative for every x less than 5.",
+    "F. The value of y is positive for every x between 0 and 5."
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "The factor x^2 + 2 is at least 2 for every real x, so it is always positive and never zero. The sign and the zero of y come only from the factor x - 5.\nA: at x = 0, y = (0 + 2)(0 - 5) = -10. TRUE.\nB: at x = sqrt(2), y = (2 + 2)(sqrt(2) - 5) = 4(sqrt(2) - 5), which is not 0. FALSE.\nC: y = 0 only when x - 5 = 0, so x = 5 is the single x-intercept. TRUE.\nD: for large negative x, x - 5 is large and negative while x^2 + 2 is positive, so y is large and negative. FALSE.\nE: for x < 5, x - 5 < 0 and x^2 + 2 > 0, so y < 0. TRUE.\nF: for 0 < x < 5, x - 5 is still negative, so y is negative there. FALSE.\nAnswer: A, C, E.",
+   "trap": "Letting the positive factor x^2 + 2 decide the end behaviour, so y seems to become large and positive for large negative x (choice D); or treating x^2 + 2 = 0 as giving real intercepts such as x = sqrt(2) (choice B).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "factored-polynomial",
+    "sign-analysis",
+    "intercepts"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 51 Base",
+   "source_pages": [
+    337
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-018",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Define a ~ b for any positive integers a and b as follows: if a + b is even, a ~ b = ab - a; if a + b is odd, a ~ b = ab + b.\nWhat is the value of (4 ~ 6) ~ 3 minus 3 ~ (4 ~ 6)?",
+   "options": null,
+   "answer": "-17",
+   "explanation": "1. Inner operation: 4 + 6 = 10 is even, so 4 ~ 6 = 4*6 - 4 = 20.\n2. First term: 20 ~ 3. Since 20 + 3 = 23 is odd, 20 ~ 3 = 20*3 + 3 = 63.\n3. Second term: 3 ~ 20. Since 3 + 20 = 23 is odd, 3 ~ 20 = 3*20 + 20 = 80.\n4. The difference is 63 - 80 = -17.\nCheck: the operation is not commutative (the added term is the second operand), so the two orders must differ, and they do.",
+   "trap": "Treating ~ as commutative gives a difference of 0, because the two orders look interchangeable; in fact the added term is b, which differs between the two orders.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "custom-operation",
+    "piecewise-rule",
+    "non-commutative"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 60 Hard",
+   "source_pages": [
+    392
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-019",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "For any real numbers p and q, let p # q stand for 5p - 2q. If (4 # k) # 3 = 24, what is the value of k?",
+   "options": null,
+   "answer": "7",
+   "explanation": "1. Work from the inside: 4 # k = 5(4) - 2k = 20 - 2k.\n2. Then (20 - 2k) # 3 = 5(20 - 2k) - 2(3) = 100 - 10k - 6 = 94 - 10k.\n3. Set 94 - 10k = 24, so 10k = 70 and k = 7.\nCheck: 4 # 7 = 20 - 14 = 6, and 6 # 3 = 30 - 6 = 24.",
+   "trap": "Swapping the roles of the two slots in the second step (computing 3 # (20 - 2k) = 15 - 2(20 - 2k)) leads to 4k - 25 = 24 and the wrong value k = 12.25.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "defined-operation",
+    "nested-operation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 63 Base",
+   "source_pages": [
+    412
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-020",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A linear function g takes the input-output values listed in the table. For what value of x does g(x) equal -134?",
+   "options": null,
+   "answer": "99",
+   "explanation": "1. Between x = 3 and x = 7 the output drops from 10 to 4, so the slope is (4 - 10)/(7 - 3) = -6/4 = -3/2. The other rows give the same slope: (-2 - 4)/4 = -3/2 and (-8 + 2)/4 = -3/2.\n2. Write g(x) = 10 - (3/2)(x - 3).\n3. Set 10 - (3/2)(x - 3) = -134, so (3/2)(x - 3) = 144 and x - 3 = 96.\n4. x = 99.\nCheck: g(99) = 10 - 1.5*96 = 10 - 144 = -134.",
+   "trap": "Using the slope with the wrong sign (+3/2) gives x - 3 = -96, so x = -93.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "linear-function",
+    "table-to-equation"
+   ],
+   "table_data": {
+    "headers": [
+     "x",
+     "g(x)"
+    ],
+    "rows": [
+     [
+      "3",
+      "10"
+     ],
+     [
+      "7",
+      "4"
+     ],
+     [
+      "11",
+      "-2"
+     ],
+     [
+      "15",
+      "-8"
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 65 Base",
+   "source_pages": [
+    427
+   ]
+  },
+  {
+   "id": "ALG-FNC-KMF-021",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Define m & n to mean m^2 - 2n for any real m and n. Select every value of t for which 3 & t equals t & 3.",
+   "options": [
+    "A. -5",
+    "B. -3",
+    "C. 0",
+    "D. 3",
+    "E. 5"
+   ],
+   "answer": [
+    "A",
+    "D"
+   ],
+   "explanation": "1. 3 & t = 9 - 2t, and t & 3 = t^2 - 6.\n2. Set them equal: t^2 + 2t - 15 = 0, so (t + 5)(t - 3) = 0 and t = -5 or t = 3.\n3. Test each option: A (-5): 9 + 10 = 19 and 25 - 6 = 19, true. B (-3): 9 + 6 = 15 and 9 - 6 = 3, false. C (0): 9 and -6, false. D (3): 9 - 6 = 3 and 9 - 6 = 3, true. E (5): 9 - 10 = -1 and 25 - 6 = 19, false.\nCheck: only -5 and 3 solve the quadratic.",
+   "trap": "Comparing only the squared terms (3^2 versus t^2) points to t = 3 and t = -3, so choices B and D get selected.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "defined-operation",
+    "quadratic-from-equation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 66 Hard",
+   "source_pages": [
+    431
+   ]
   }
  ]
 }

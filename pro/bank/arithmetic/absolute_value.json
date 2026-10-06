@@ -4,16 +4,23 @@
   "subtopic": "Absolute Value",
   "subtopic_id": "NUM-ABS",
   "version": "1.0",
-  "total_questions": 50,
+  "total_questions": 60,
   "distribution": {
-   "easy": 10,
-   "medium": 17,
-   "hard": 18,
+   "easy": 13,
+   "medium": 21,
+   "hard": 21,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 21,
+   "multiple_answer": 12,
+   "numeric_entry": 11,
+   "quantitative_comparison": 16
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1081,6 +1088,272 @@
    ],
    "origin": "sectional",
    "origin_set": "arithmetic_operations_set4"
+  },
+  {
+   "id": "ARI-ABS-KMF-001",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Let a be a positive number, let b be a negative number, and put k = |a/b|. Which extra fact listed below would guarantee that k comes out larger than k^2?",
+   "options": [
+    "A. a is an integer.",
+    "B. The size of a is larger than the size of b.",
+    "C. a + b = 5",
+    "D. a*b is less than -1.",
+    "E. The size of a is smaller than the size of b."
+   ],
+   "answer": "E",
+   "explanation": "Since a is positive and b is negative, the quotient a/b is negative, and k = |a/b| is positive.\nFor a positive k, saying k > k^2 is saying k > k*k, and dividing both sides by the positive k gives 1 > k.\nSo the requirement is exactly 0 < k < 1.\nNow k = |a|/|b|, and |a|/|b| < 1 means the size of a is smaller than the size of b.\nE says precisely that -- it guarantees the result.\nA. Being an integer says nothing about the sizes: a = 3, b = -1 gives k = 3, and 3 is not greater than 9 -- no guarantee.\nB. A larger size for a makes k > 1, and then k^2 is the larger of the two -- it guarantees the opposite.\nC. a + b = 5 with b negative forces a = 5 + |b|, so a is bigger than b in size and k > 1 -- again the opposite.\nD. a*b less than -1 is loose: a = 4, b = -1 gives k = 4 with k^2 larger, while a = 0.5, b = -4 also satisfies it and gives k = 1/8 with k larger -- no guarantee.\nOnly E works.",
+   "trap": "Picking the condition that makes the quotient bigger than 1 reverses the requirement, since a number above 1 is always smaller than its own square; that is choice B.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "absolute-value",
+    "squares-of-fractions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 15 Base",
+   "source_pages": [
+    90
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-002",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Let f(x) = |5 - 2x| and let g(x) = 9 for every real x. Find the sum of all values of c that satisfy f(c) = g(c).",
+   "options": null,
+   "answer": "5",
+   "explanation": "f(c) = g(c) means |5 - 2c| = 9, so 5 - 2c = 9 or 5 - 2c = -9.\nFirst case: -2c = 4, so c = -2.\nSecond case: -2c = -14, so c = 7.\nSum = -2 + 7 = 5.\nCheck: |5 - 2(-2)| = |9| = 9 and |5 - 2(7)| = |-9| = 9.",
+   "trap": "Solving only the positive case (5 - 2c = 9) gives the single value c = -2, so the sum is reported as -2 instead of -2 + 7 = 5.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "absolute-value-equation",
+    "two-cases"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 27 Base",
+   "source_pages": [
+    170
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-003",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "The real number x satisfies 4 < |x - 3| < |x - 7|. Which of the following could be the value of x? Select all that apply.",
+   "options": [
+    "A. -8",
+    "B. -1.5",
+    "C. -1",
+    "D. 0",
+    "E. 5",
+    "F. 9"
+   ],
+   "answer": [
+    "A",
+    "B"
+   ],
+   "explanation": "|x - 3| < |x - 7| means x is closer to 3 than to 7, so x < 5 (the midpoint).\n|x - 3| > 4 means x > 7 or x < -1.\nBoth hold only when x < -1.\nA. -8: |-11| = 11 > 4 and 11 < |-15| = 15 -> true.\nB. -1.5: 4.5 > 4 and 4.5 < 8.5 -> true.\nC. -1: |-4| = 4, not greater than 4 -> false.\nD. 0: 3 is not greater than 4 -> false.\nE. 5: 2 is not greater than 4 -> false.\nF. 9: 6 > 4 but 6 < |2| = 2 fails -> false.\nCheck: the solution set is x < -1.",
+   "trap": "Using only the inequality 4 < |x - 3| accepts 9 (choice F); using only the closeness condition accepts 0 and -1 (choices C and D); allowing the boundary value gives choice C.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "absolute-value-inequality",
+    "distance-on-number-line"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 36 Hard",
+   "source_pages": [
+    227
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-004",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Two numbers u and v satisfy u > v. For which of the following (u, v) pairs is the value of |v| - |-u| positive? Select all that apply.",
+   "options": [
+    "A. u = 4, v = 1",
+    "B. u = 2, v = -7",
+    "C. u = -3, v = -6",
+    "D. u = 5, v = -5",
+    "E. u = 0, v = -1"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "Since |-u| = |u|, the expression is |v| - |u|; it is positive exactly when v is farther from 0 than u.\nA: u = 4, v = 1 (4 > 1): 1 - 4 = -3, not positive.\nB: u = 2, v = -7 (2 > -7): 7 - 2 = 5, positive.\nC: u = -3, v = -6 (-3 > -6): 6 - 3 = 3, positive.\nD: u = 5, v = -5 (5 > -5): 5 - 5 = 0, not positive.\nE: u = 0, v = -1 (0 > -1): 1 - 0 = 1, positive.\nCheck: all five pairs satisfy u > v. Correct set: B, C, E.",
+   "trap": "Comparing signed values instead of distances from 0: because v < u, concluding that |v| < |u| always, which rejects the true pairs B, C and E. Treating the tie in D (value 0) as positive wrongly adds D.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "absolute-value",
+    "sign-cases"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 38 Hard",
+   "source_pages": [
+    240
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-005",
+   "difficulty": "easy",
+   "type": "multiple_answer",
+   "question": "If m < n, which of the following must be equal to n - m? Select all that apply.",
+   "options": [
+    "A. |m - n|",
+    "B. m - n",
+    "C. |m| - |n|",
+    "D. -(m - n)",
+    "E. |n| - |m|",
+    "F. |n - m|"
+   ],
+   "answer": [
+    "A",
+    "D",
+    "F"
+   ],
+   "explanation": "Since m < n, the quantity n - m is positive.\nA: |m - n| = |-(n - m)| = n - m because n - m > 0. Must equal.\nB: m - n is negative, so it never equals the positive n - m. Not equal.\nC: |m| - |n|; take m = -5, n = 1: 5 - 1 = 4, but n - m = 6. Not always equal.\nD: -(m - n) = n - m by distributing the sign. Must equal.\nE: |n| - |m|; take m = -5, n = 1: 1 - 5 = -4, but n - m = 6. Not always equal.\nF: |n - m| = n - m because n - m > 0. Must equal.\nCheck: with m = -5, n = 1, n - m = 6; A, D and F give 6, while B, C and E give -6, 4 and -4.",
+   "trap": "Dropping absolute-value bars as if |m| - |n| or |n| - |m| were just the difference of the numbers: E equals n - m only when both numbers are nonnegative and C only when both are nonpositive, so each passes some quick tests but fails when the signs differ (m = -5, n = 1).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "absolute-value",
+    "difference"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 39 Base",
+   "source_pages": [
+    246
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-006",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "x and y are real numbers, and x is greater than y. Indicate all of the following statements that hold for every such pair of numbers.",
+   "options": [
+    "A. |x| > |y|",
+    "B. x - y = |x - y|",
+    "C. -x < |y|",
+    "D. x + y < |x| + |y|",
+    "E. y - x < |x + y|",
+    "F. |x - y| > x - y"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "Since x > y, the difference x - y is positive.\nA. |x| > |y|: false. x = -1, y = -3 satisfies x > y, but |x| = 1 < 3 = |y|.\nB. x - y = |x - y|: true. x - y > 0, so its absolute value is itself.\nC. -x < |y|: true. If y >= 0 then x > 0, so -x < 0 <= |y|. If y < 0 then x > y gives -x < -y = |y|.\nD. x + y < |x| + |y|: false. x = 2, y = 1 gives 3 < 3, which is false.\nE. y - x < |x + y|: true. y - x < 0 while |x + y| >= 0.\nF. |x - y| > x - y: false. They are equal because x - y > 0.\nCheck with x = 2, y = 1: B (1 = 1), C (-2 < 1) and E (-1 < 3) hold; A, D, F fail.\nAnswer: B, C, E.",
+   "trap": "Assuming the larger number also has the larger absolute value (testing only positive pairs such as x = 5, y = 2) makes choice A look valid, and reading x + y < |x| + |y| as a general triangle inequality makes choice D look valid.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "absolute-value",
+    "inequality-reasoning",
+    "counterexamples"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 52 Hard",
+   "source_pages": [
+    343
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-007",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "The real number x lies strictly between -6 and 3, and it also lies strictly between -3 and 5.\nQuantity A: |x - 1|\nQuantity B: 4",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. Both conditions must hold, so x lies in the overlap of (-6, 3) and (-3, 5), which is -3 < x < 3.\n2. Subtract 1 from every part: -4 < x - 1 < 2.\n3. The absolute value is largest near the left end: as x approaches -3, |x - 1| approaches 4 but never reaches it, because x = -3 is excluded. At the other end, x - 1 < 2.\n4. So |x - 1| < 4 for every allowed x.\n5. Check: x = -2.9 gives 3.9; x = 0 gives 1; x = 1 gives 0; x = 2.9 gives 1.9. All are below 4, so Quantity B is greater.",
+   "trap": "Using only the first condition (-6 < x < 3) lets x - 1 reach -6.9 or so, so |x - 1| can exceed 4 and the answer looks like D (cannot be determined).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "compound-inequality",
+    "absolute-value",
+    "intersection-of-intervals"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 57 Base",
+   "source_pages": [
+    373
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-008",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many real numbers w satisfy the equation |w + 1| = 2w + 8?",
+   "options": [
+    "A. 0",
+    "B. 1",
+    "C. 2",
+    "D. 3",
+    "E. Infinitely many"
+   ],
+   "answer": "B",
+   "explanation": "1. Case w + 1 >= 0: w + 1 = 2w + 8 gives w = -7, which breaks the case condition w >= -1. Check in the original: |-7 + 1| = 6 but 2(-7) + 8 = -6. Reject.\n2. Case w + 1 < 0: -(w + 1) = 2w + 8 gives -w - 1 = 2w + 8, so 3w = -9 and w = -3. This satisfies w < -1.\n3. Check w = -3: |-3 + 1| = 2 and 2(-3) + 8 = 2. Valid.\n4. Exactly one real number works.",
+   "trap": "Solving both branches and keeping both answers (w = -7 and w = -3) without checking them in the original equation, where the right side would be negative, gives 2 solutions, which is choice C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "absolute-value-equation",
+    "extraneous-solution"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 59 Base",
+   "source_pages": [
+    385
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-009",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "What is the sum of all real solutions of the equation | |x - 4| - 6 | = 3?",
+   "options": null,
+   "answer": "16",
+   "explanation": "1. The outer bars give |x - 4| - 6 = 3 or |x - 4| - 6 = -3.\n2. First case: |x - 4| = 9, so x - 4 = 9 or x - 4 = -9, giving x = 13 or x = -5.\n3. Second case: |x - 4| = 3, so x - 4 = 3 or x - 4 = -3, giving x = 7 or x = 1.\n4. All four values work, and their sum is 13 + (-5) + 7 + 1 = 16.\nCheck: the solutions pair up around 4 (13 and -5 average to 4, 7 and 1 average to 4), so the sum is 4 * 4 = 16.",
+   "trap": "Handling only the positive branch at each level (|x - 4| = 9 giving x = 13) and ignoring the other cases gives 13.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "nested-absolute-value",
+    "case-analysis"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 62 Hard",
+   "source_pages": [
+    410
+   ]
+  },
+  {
+   "id": "ARI-ABS-KMF-010",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "m and n are numbers with m < 0 < n.\nQuantity A: |m + n|\nQuantity B: |m - n|",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. Since m < 0 < n, write m = -p with p > 0.\n2. |m - n| = |-p - n| = p + n, because both p and n are positive.\n3. |m + n| = |n - p|, which is at most the larger of p and n, so it is less than p + n.\n4. Test: m = -3, n = 5 gives 2 and 8. m = -0.5, n = 0.25 gives 0.25 and 0.75. m = -10, n = 0.1 gives 9.9 and 10.1.\nCheck: in every case Quantity B is larger, and the reasoning in steps 2 and 3 holds for all such m and n.",
+   "trap": "Thinking the absolute value signs wipe out the sign difference so the two expressions must match leads to option C.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "absolute-value",
+    "opposite-signs"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 67 Base",
+   "source_pages": [
+    441
+   ]
   }
  ]
 }

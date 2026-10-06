@@ -4,16 +4,23 @@
   "subtopic": "Distance-Speed-Time",
   "subtopic_id": "WRD-DST",
   "version": "1.0",
-  "total_questions": 62,
+  "total_questions": 66,
   "distribution": {
    "easy": 15,
-   "medium": 25,
+   "medium": 29,
    "hard": 15,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 27,
+   "multiple_answer": 9,
+   "numeric_entry": 17,
+   "quantitative_comparison": 13
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1281,6 +1288,107 @@
    ],
    "origin": "sectional",
    "origin_set": "percentages_set3"
+  },
+  {
+   "id": "WRD-DST-KMF-001",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A ferry moving at a constant speed passed a lighthouse on its route to Harbour Point. Twelve minutes after passing the lighthouse, the ferry was 31 kilometres from Harbour Point, and 20 minutes after passing the lighthouse, it was 17 kilometres from Harbour Point, where these distances were measured along the ferry's route. At what speed, in kilometres per hour, was the ferry travelling?\n\n_____ kilometres per hour",
+   "options": null,
+   "answer": "105",
+   "explanation": "Between the 12-minute mark and the 20-minute mark, the elapsed time is 20 - 12 = 8 minutes.\nOver that interval the remaining distance fell from 31 kilometres to 17 kilometres, so the ferry covered 31 - 17 = 14 kilometres.\nSpeed = 14 kilometres per 8 minutes.\nConvert 8 minutes to hours: 8/60 = 2/15 hour.\nSpeed = 14 / (2/15) = 14 * 15/2 = 105 kilometres per hour.\nCheck: at 105 km/h the ferry covers 105 * (8/60) = 14 kilometres in 8 minutes, which matches the drop from 31 to 17.",
+   "trap": "Dividing 14 kilometres by the full 20 minutes rather than by the 8-minute gap gives 42 kilometres per hour.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "constant-rate",
+    "unit-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 6 Hard",
+   "source_pages": [
+    35
+   ]
+  },
+  {
+   "id": "WRD-DST-KMF-002",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Nadia drove 180 km non-stop between two depots. She covered the first 60 km in heavy traffic at an average of 20 km/h, then covered the remaining 120 km on a clear highway at an average of 60 km/h. Select all statements that must be true.",
+   "options": [
+    "A. The first portion of the journey took 1.5 times as long as the second portion.",
+    "B. The whole journey lasted 5 hours.",
+    "C. Her average speed over the whole journey was 40 km/h.",
+    "D. Her average speed over the whole journey was below 40 km/h.",
+    "E. More than half of the journey's total duration was spent on the second portion."
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "Time on first portion = 60/20 = 3 hours. Time on second portion = 120/60 = 2 hours.\nA: 3 = 1.5 * 2. TRUE.\nB: total time = 3 + 2 = 5 hours. TRUE.\nC: average speed = 180/5 = 36 km/h, not 40. FALSE (40 is just the simple average of 20 and 60).\nD: 36 < 40. TRUE.\nE: second portion is 2 of 5 hours = 40%, not more than half. FALSE.\nAnswer: A, B, D.",
+   "trap": "Averaging the two speeds, (20 + 60)/2 = 40 km/h, and selecting C instead of dividing total distance by total time.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "average-speed",
+    "unequal-segments"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 43 Base",
+   "source_pages": [
+    281
+   ]
+  },
+  {
+   "id": "WRD-DST-KMF-003",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A conveyor belt in a warehouse moves at 54 meters per minute, while a guard strip along its edge is driven by a separate motor at 57.6 meters per minute. A worker puts a package on the belt and grabs the strip in the same instant. Neither the package nor the worker's hand slips. After 25 seconds, how many centimeters farther will the hand have traveled than the package?",
+   "options": null,
+   "answer": "150",
+   "explanation": "1. Difference in speeds = 57.6 - 54 = 3.6 meters per minute.\n2. Convert: 3.6 m = 360 cm, and 1 minute = 60 seconds, so 360 / 60 = 6 centimeters per second.\n3. In 25 seconds the gap grows by 6 * 25 = 150 centimeters.\nCheck: 25 seconds is 25/60 of a minute, and 3.6 m * (25/60) = 1.5 m = 150 cm.",
+   "trap": "Multiplying the per-minute difference (360 cm per minute) by 25 without converting 25 seconds to minutes gives 9,000 centimeters.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "relative-speed",
+    "unit-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 59 Base",
+   "source_pages": [
+    390
+   ]
+  },
+  {
+   "id": "WRD-DST-KMF-004",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Mara cycled along a 15-mile trail at an average speed of s miles per hour. Her ride lasted more than 36 minutes and fewer than 45 minutes. Select every value that s could equal.",
+   "options": [
+    "A. 20 mph",
+    "B. 21 mph",
+    "C. 22 mph",
+    "D. 24 mph",
+    "E. 25 mph",
+    "F. 26 mph"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "1. A ride of t minutes at s mph covers 15 miles, so s = 15 / (t/60) = 900/t.\n2. Speed falls as time rises. At t = 45, s = 20; at t = 36, s = 25.\n3. Because t is strictly between 36 and 45, s is strictly between 20 and 25.\n4. A (20): false, 900/20 = 45 minutes is not less than 45. B (21): 900/21 = 42.9 minutes, yes. C (22): 900/22 = 40.9 minutes, yes. D (24): 900/24 = 37.5 minutes, yes. E (25): 900/25 = 36 minutes is not more than 36, no. F (26): 900/26 = 34.6 minutes, below 36, no.\nCheck: the true options 21, 22, 24 all lie strictly inside (20, 25).",
+   "trap": "Treating the strict time bounds as inclusive makes the endpoint speeds 20 and 25 look valid, so choices A and E get selected.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "speed-time-reciprocal",
+    "strict-bounds"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 65 Base",
+   "source_pages": [
+    428
+   ]
   }
  ]
 }

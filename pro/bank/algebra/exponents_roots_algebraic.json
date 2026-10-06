@@ -4,16 +4,23 @@
   "subtopic": "Exponents & Roots (Algebraic)",
   "subtopic_id": "ALG-EXR",
   "version": "1.0",
-  "total_questions": 68,
+  "total_questions": 91,
   "distribution": {
    "easy": 14,
-   "medium": 21,
-   "hard": 28,
+   "medium": 36,
+   "hard": 36,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 37,
+   "multiple_answer": 11,
+   "numeric_entry": 18,
+   "quantitative_comparison": 25
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1445,6 +1452,587 @@
    ],
    "origin": "sectional",
    "origin_set": "algebra_set9"
+  },
+  {
+   "id": "ALG-EXR-KMF-001",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "x != 0\nQuantity A: x^-6\nQuantity B: x^-14",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Both exponents are even, so x^-6 = 1/x^6 and x^-14 = 1/x^14 are both positive regardless of the sign of x.\nComparing them is equivalent to comparing x^14 to x^6 (a bigger denominator means a smaller fraction).\nIf |x| > 1 (e.g., x = 2): x^14 > x^6, so 1/x^14 < 1/x^6, meaning Quantity A is greater.\nIf 0 < |x| < 1 (e.g., x = 1/2): x^14 < x^6, so 1/x^14 > 1/x^6, meaning Quantity B is greater.\nSince both outcomes are possible, the relationship cannot be determined.",
+   "trap": "Students assume x is an integer greater than 1 by default and conclude Quantity A is always greater, without testing a fractional value of x.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "negative-exponents",
+    "case-testing"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    9
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-002",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Quantity A: sqrt(t^10)\nQuantity B: t^5",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "sqrt(t^10) = sqrt((t^5)^2) = |t^5|, which is always non-negative.\nIf t > 0, t^5 > 0, so |t^5| = t^5, and the two quantities are equal.\nIf t < 0, t^5 < 0, so |t^5| = -t^5 > t^5, making Quantity A greater.\nIf t = 0, both quantities equal 0.\nSince the relationship changes depending on the sign of t, it cannot be determined.",
+   "trap": "Students simplify sqrt(t^10) directly to t^5 without accounting for the absolute value, and pick 'the two quantities are equal.'",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "radicals",
+    "absolute-value",
+    "even-powers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    10
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-003",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "n is an integer.\nQuantity A: (1/4)^n\nQuantity B: (1/5)^n",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "If n = 0: both quantities equal 1, so they're equal.\nIf n is a positive integer (e.g., n = 1): (1/4) = 0.25 > (1/5) = 0.2, so Quantity A is greater; this pattern holds for all positive n since 1/4 > 1/5.\nIf n is a negative integer (e.g., n = -1): (1/4)^-1 = 4 and (1/5)^-1 = 5, so Quantity B (5) is greater than Quantity A (4).\nSince the outcome depends on whether n is positive, negative, or zero, the relationship cannot be determined.",
+   "trap": "Students assume n is a positive integer (the 'default' case) and conclude Quantity A is always greater, without testing n = 0 or negative n.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "exponents",
+    "sign-of-exponent",
+    "case-testing"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    15
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-004",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "x = 3, y = 4, z = 2\nQuantity A: x^-1 * y * z^-2\nQuantity B: (xz/y)^-2",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Quantity A = (1/3) * 4 * (1/4) = (1/3) * 1 = 1/3, approximately 0.333.\nQuantity B = (xz/y)^-2 = (3*2/4)^-2 = (1.5)^-2 = 1/2.25, approximately 0.444.\nSince 0.444 > 0.333, Quantity B is greater.",
+   "trap": "Students mishandle the negative exponent on Quantity B, computing (xz/y)^-2 as -(xz/y)^2 (a negative number) instead of 1/(xz/y)^2, leading to an incorrect comparison.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "negative-exponents",
+    "substitution"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    25
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-005",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "For each positive integer k, the function g is defined by g(k) = 3^(k*(-1)^(k+1)).\nQuantity A: g(3) * g(4)\nQuantity B: g(1)/g(2)",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "When k is odd, k + 1 is even, so (-1)^(k+1) = 1 and g(k) = 3^k.\nWhen k is even, k + 1 is odd, so (-1)^(k+1) = -1 and g(k) = 3^(-k).\nCompute the needed values.\ng(1) = 3^1 = 3.\ng(2) = 3^(-2) = 1/9.\ng(3) = 3^3 = 27.\ng(4) = 3^(-4) = 1/81.\nQuantity A = 27 * (1/81) = 27/81 = 1/3.\nQuantity B = 3 divided by (1/9) = 3 * 9 = 27.\n1/3 < 27, so Quantity B is greater.\nCheck in exponent form: Quantity A = 3^3 * 3^(-4) = 3^(-1); Quantity B = 3^1 / 3^(-2) = 3^(1+2) = 3^3. And 3^(-1) < 3^3.",
+   "trap": "Reading (-1)^(k+1) as negative for odd k reverses every exponent, making Quantity A 3^1 and Quantity B 3^(-3), which selects A.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "alternating-exponent",
+    "function-evaluation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 8 Hard",
+   "source_pages": [
+    44
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-006",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The number t is positive and satisfies t^(1/3) > t/25. Which of the following describes every possible value of t?",
+   "options": [
+    "A. 0 < t < 125",
+    "B. 0 < t < 25",
+    "C. 0 < t < 5",
+    "D. t > 125",
+    "E. t > 625"
+   ],
+   "answer": "A",
+   "explanation": "Start from t^(1/3) > t/25 with t > 0, so every quantity below is positive and no inequality sign flips.\nMultiply both sides by 25: 25 * t^(1/3) > t.\nDivide both sides by t^(1/3), which is positive: 25 > t / t^(1/3).\nt / t^(1/3) = t^(1 - 1/3) = t^(2/3), so the condition is t^(2/3) < 25.\nRaise both sides to the power 3/2: t < 25^(3/2) = (sqrt(25))^3 = 5^3 = 125.\nCombined with t > 0, the solution set is 0 < t < 125.\nCheck inside the interval, t = 64: 64^(1/3) = 4 and 64/25 = 2.56, and 4 > 2.56, so the inequality holds.\nCheck at the boundary, t = 125: 125^(1/3) = 5 and 125/25 = 5, so the two sides are equal and t = 125 is correctly excluded.\nCheck outside, t = 216: 216^(1/3) = 6 and 216/25 = 8.64, and 6 > 8.64 is false, so large values are correctly excluded.",
+   "trap": "Reading t^(2/3) < 25 as if the exponent could simply be dropped, giving t < 25 and producing option B.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "fractional-exponents",
+    "inequalities"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 9 Base",
+   "source_pages": [
+    51
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-007",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A negative integer m satisfies (3^m)^2 = (m^2)^m. What is the value of m?",
+   "options": null,
+   "answer": "-3",
+   "explanation": "Rewrite each side as a single power with exponent m.\nLeft: (3^m)^2 = 3^(2m) = (3^2)^m = 9^m.\nRight: (m^2)^m, whose base is m^2.\nSo 9^m = (m^2)^m with m not 0.\nBoth bases are positive, and for a fixed nonzero exponent m the map t -> t^m is one-to-one on positive t, so the bases must match: m^2 = 9.\nThat gives m = 3 or m = -3, and the stem requires m negative, so m = -3.\nCheck: (3^-3)^2 = 3^-6 = 1/729, and ((-3)^2)^-3 = 9^-3 = 1/729. Equal. Correct.",
+   "trap": "Solving m^2 = 9 and entering 3, forgetting that the stem requires m to be negative. The value 3 satisfies the equation but not the condition.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "power-of-a-power",
+    "negative-exponents"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    70
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-008",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "The number w satisfies sqrt(w^2) = 5. Indicate every listed number that could equal 2^(3w).",
+   "options": [
+    "A. 1/32768",
+    "B. 1/1024",
+    "C. 1",
+    "D. 1024",
+    "E. 32768"
+   ],
+   "answer": [
+    "A",
+    "E"
+   ],
+   "explanation": "sqrt(w^2) is the absolute value of w, so the condition says |w| = 5.\nThat leaves exactly two possibilities: w = 5 or w = -5.\nCase w = 5: 2^(3*5) = 2^15 = 32768.\nCase w = -5: 2^(3*(-5)) = 2^(-15) = 1/32768.\nNow test each option.\nA. 1/32768 = 2^(-15) -- reachable, true.\nB. 1/1024 = 2^(-10), which needs 3w = -10, not an option -- false.\nC. 1 = 2^0 needs w = 0, but |w| = 5 -- false.\nD. 1024 = 2^10 needs 3w = 10 -- false.\nE. 32768 = 2^15 -- reachable, true.\nSelected: A and E.",
+   "trap": "Reading sqrt(w^2) as w rather than |w|. That keeps only w = 5, giving 2^15 = 32768 (choice E) and missing the w = -5 case, whose value 2^(-15) = 1/32768 is choice A. The student selects E alone.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "absolute-value",
+    "negative-exponents"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    72
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-009",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "The number b is greater than 1, the number n is an integer, and b raised to the power n lies strictly between 0 and 1.\nQuantity A: 0\nQuantity B: n",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Since b > 1, raising b to a positive integer power gives a result greater than 1.\nSo n positive would make b^n > 1, which contradicts b^n < 1.\nRaising b to the power 0 gives exactly 1, again contradicting b^n < 1.\nThat leaves n negative, and indeed b^n = 1/b^(-n) with -n positive, so b^n is a positive number less than 1.\nTherefore n < 0, which is less than Quantity A, so Quantity A is greater.\nCheck with b = 4 and n = -2: 4^-2 = 1/16, which lies strictly between 0 and 1, and -2 is less than 0. Correct.",
+   "trap": "Imagining a fractional base such as 1/2, for which a positive exponent also yields a value under 1, makes the sign of n look undecidable and points at the cannot-be-determined choice; the stem fixes b above 1, so that case is unavailable.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "negative-exponents",
+    "base-greater-than-one"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 14 Hard",
+   "source_pages": [
+    84
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-010",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Positive numbers g and h obey the relation g^4 divided by h^8 equals 1/16. What number does h^2 / g equal?",
+   "options": null,
+   "answer": "2",
+   "explanation": "Rewrite the left side as a single fourth power.\nh^8 = (h^2)^4, so g^4 / h^8 = g^4 / (h^2)^4 = (g / h^2)^4.\nSo (g / h^2)^4 = 1/16.\nSince g and h are positive, g / h^2 is positive, and the positive fourth root of 1/16 is 1/2 because (1/2)^4 = 1/16.\nSo g / h^2 = 1/2.\nTaking the reciprocal: h^2 / g = 2.\nCheck with numbers: let h = 2, so h^2 = 4 and g = 2; then g^4 = 16, h^8 = 256, and 16/256 = 1/16. And h^2/g = 4/2 = 2. Correct.",
+   "trap": "Halving the exponent once, as if a square root were wanted, turns 1/16 into 1/4 and gives an answer of 4; the relation is a fourth power, so the fourth root is needed.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "power-of-a-quotient",
+    "fourth-roots"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 15 Base",
+   "source_pages": [
+    90
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-011",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A nonzero real number r has the property that dividing 5 by r gives the same result as multiplying r^2 by 135. Find the value of r + 1/r, written as a fraction.",
+   "options": null,
+   "answer": "10/3",
+   "explanation": "The condition is 5/r = 135 * r^2.\nMultiply both sides by r (r is nonzero): 5 = 135 * r^3, so r^3 = 5/135 = 1/27.\nThe only real number whose cube is 1/27 is r = 1/3.\nThen 1/r = 3, so r + 1/r = 1/3 + 3 = 10/3.\nCheck: 5/(1/3) = 15 and 135 * (1/3)^2 = 135/9 = 15.",
+   "trap": "Solving correctly for r = 1/3 but then answering with r alone (1/3) or with 1/r alone (3) instead of their sum; or turning the equation into 5 = 135*r^2 (forgetting that multiplying by r also raises r^2 to r^3), which gives an irrational r.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "cube-root",
+    "reciprocal-equation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    96
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-012",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Integers x and y satisfy the equation below.\n27^(x-2) = 9^(y-2)\n\nColumn A: x\nColumn B: y",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Step 1: Write both sides with base 3: 27^(x-2) = 3^(3x-6) and 9^(y-2) = 3^(2y-4).\nStep 2: Equal powers of 3 mean equal exponents: 3x - 6 = 2y - 4, so 3x = 2y + 2.\nStep 3: Integer solutions exist in several patterns. y = 2 gives x = 2 (equal). y = -1 gives x = 0 (x greater than y). y = 5 gives x = 4 (x less than y).\nStep 4: The comparison flips between cases, so it cannot be determined.\nCheck: x = 4, y = 5: 27^2 = 729 and 9^3 = 729.",
+   "trap": "Assuming equal bases force x = y (as when both exponents carry the same multiplier) leads to choosing C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "common-base",
+    "integer-solutions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 29 Base",
+   "source_pages": [
+    179
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A number t satisfies 0 < t < 1. Which of the following lists the four values t^-3, t^-1, t and t^2 in order from least to greatest?",
+   "options": [
+    "A. t^-3, t^-1, t, t^2",
+    "B. t, t^2, t^-1, t^-3",
+    "C. t^2, t^-1, t, t^-3",
+    "D. t^2, t, t^-3, t^-1",
+    "E. t^2, t, t^-1, t^-3"
+   ],
+   "answer": "E",
+   "explanation": "Test t = 1/2.\nt^2 = 1/4.\nt = 1/2.\nt^-1 = 2.\nt^-3 = 8.\nLeast to greatest: 1/4, 1/2, 2, 8, i.e. t^2, t, t^-1, t^-3.\nIn general, for 0 < t < 1 a larger positive power gives a smaller value, and negative powers give values above 1 that grow as the exponent becomes more negative.\nCheck with t = 1/3: 1/9, 1/3, 3, 27 -> same order.",
+   "trap": "Assuming a bigger exponent means a bigger value orders the list by exponent, t^-3, t^-1, t, t^2 (choice A). Believing that squaring makes a number larger, so t < t^2, gives t, t^2, t^-1, t^-3 (choice B). Believing t^-3 is smaller than t^-1 gives t^2, t, t^-3, t^-1 (choice D).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "negative-exponents",
+    "fractions-between-0-and-1"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 36 Hard",
+   "source_pages": [
+    225
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-014",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The real numbers p and q satisfy p^2 = 16 and q^2 = 9. Which of the following could be the value of (p+q)^2? Select all that apply.",
+   "options": [
+    "A. 1",
+    "B. 7",
+    "C. 25",
+    "D. 49",
+    "E. 144"
+   ],
+   "answer": [
+    "A",
+    "D"
+   ],
+   "explanation": "p can be 4 or -4, and q can be 3 or -3. Evaluate all four sign pairs:\np = 4, q = 3: (7)^2 = 49.\np = 4, q = -3: (1)^2 = 1.\np = -4, q = 3: (-1)^2 = 1.\np = -4, q = -3: (-7)^2 = 49.\nSo the possible values are 1 and 49 only.\nA (1): possible. B (7): not possible, 7 is p + q before squaring. C (25): not possible, it equals p^2 + q^2 and drops the cross term. D (49): possible. E (144): not possible, it equals (pq)^2, the square of the product rather than of the sum.\nCheck: (p+q)^2 = 25 + 2pq with pq = +-12 gives 49 or 1.",
+   "trap": "Replacing (p+q)^2 by p^2 + q^2 = 25 (option C), or treating the roots as positive only and choosing just 49 (option D alone).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "square-roots",
+    "sign-cases"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 38 Hard",
+   "source_pages": [
+    239
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-015",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The integer n is such that 2^n is at least 1/8 and less than 70. What is the sum of all possible values of n?",
+   "options": null,
+   "answer": "15",
+   "explanation": "Lower bound: 2^n >= 1/8 = 2^(-3), so n >= -3 (the bound is inclusive, so n = -3 is allowed).\nUpper bound: 2^6 = 64 < 70 but 2^7 = 128 > 70, so n <= 6.\nPossible n: -3, -2, -1, 0, 1, 2, 3, 4, 5, 6.\nThe values from -3 to 3 cancel in pairs (sum 0); the rest add 4 + 5 + 6 = 15.\nCheck: 10 values with mean 1.5 gives 15.",
+   "trap": "Treating the lower bound as strict and dropping n = -3 gives 18; including n = 7 by misjudging 2^7 gives 22.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "exponential-inequality",
+    "integer-solutions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 38 Hard",
+   "source_pages": [
+    240
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-016",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "m^4 / n^8 = 1/16, where n is not 0.\nQuantity A: 2m\nQuantity B: n^2",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Rewrite the equation as (m / n^2)^4 = 1/16.\nA fourth power equals 1/16 for two real values of the base: m / n^2 = 1/2 or m / n^2 = -1/2.\nSo m = n^2/2 or m = -n^2/2, which means 2m = n^2 or 2m = -n^2.\nCase 1: m = 1/2, n = 1 satisfies the equation (m^4/n^8 = 1/16), and then Quantity A = 1 and Quantity B = 1, so they are equal.\nCase 2: m = -1/2, n = 1 also satisfies it, and then Quantity A = -1 and Quantity B = 1, so Quantity B is greater.\nThe comparison depends on the sign of m, which the problem does not give, so the answer is D.",
+   "trap": "Taking the 4th root as if it gave only the positive value (the habit that works for odd roots such as a cube root), so 2m = n^2 and the quantities are equal (choice C).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "even-roots",
+    "sign-cases",
+    "qc-reasoning"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 40 Hard",
+   "source_pages": [
+    254
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-017",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Let P = x^20 - x^21. Select every value of x for which P is greater than 0.",
+   "options": [
+    "A. x = -3",
+    "B. x = -1",
+    "C. x = -1/2",
+    "D. x = 0",
+    "E. x = 1/2",
+    "F. x = 1",
+    "G. x = 2"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "1. Factor out the lower power: P = x^20 (1 - x).\n2. For x not 0, x^20 is positive because the exponent is even, so the sign of P is the sign of (1 - x).\n3. P > 0 exactly when x < 1 and x is not 0.\n4. A (x = -3): 3^20 * 4 > 0. True.\n5. B (x = -1): 1 * 2 = 2 > 0. True.\n6. C (x = -1/2): (1/2)^20 * 3/2 > 0. True.\n7. D (x = 0): P = 0. False.\n8. E (x = 1/2): (1/2)^20 * 1/2 > 0. True.\n9. F (x = 1): P = 0. False.\n10. G (x = 2): 2^20 * (-1) < 0. False.\nCheck: for x = -1, x^20 = 1 and x^21 = -1, so P = 1 - (-1) = 2.\nAnswer: A, B, C, E.",
+   "trap": "Assuming that raising a negative number to a power always gives a negative result (ignoring that x^20 is positive) makes the negative values look like they give a negative P, so choice A, choice B and choice C are wrongly dropped.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "even-odd-exponents",
+    "factor-out-power",
+    "sign-analysis"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 58 Hard",
+   "source_pages": [
+    378
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-018",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The constant s satisfies (4^n)(s^3) = 2^(2n+9) for every real number n. What is the value of s?",
+   "options": null,
+   "answer": "8",
+   "explanation": "1. Rewrite the base: 4^n = (2^2)^n = 2^(2n).\n2. The right side splits as 2^(2n+9) = 2^(2n) * 2^9.\n3. So 2^(2n) * s^3 = 2^(2n) * 2^9, and dividing by the nonzero 2^(2n) gives s^3 = 2^9 = 512.\n4. 8^3 = 512, and a real cube root is unique, so s = 8.\nCheck: (4^n)(8^3) = 512 * 4^n, and 2^(2n+9) = 4^n * 512. They match.",
+   "trap": "Reading s^3 = 2^9 = 512 as the finished answer and entering 512 forgets that the question asks for s itself, which needs one more step (the cube root).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "exponent-rules",
+    "common-base",
+    "cube-root"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 60 Hard",
+   "source_pages": [
+    391
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-019",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Let p and q be positive real numbers. Indicate all of the following statements that are true for every such pair p, q.",
+   "options": [
+    "A. sqrt(p+q) < sqrt(p) + sqrt(q)",
+    "B. sqrt(p+q) = sqrt(p) + sqrt(q)",
+    "C. sqrt(p+q) > sqrt(p)",
+    "D. sqrt(p+q) > sqrt(p) + sqrt(q)",
+    "E. sqrt(pq) < sqrt(p+q)",
+    "F. sqrt(p+q) < 2sqrt(p)"
+   ],
+   "answer": [
+    "A",
+    "C"
+   ],
+   "explanation": "A. True. Both sides are positive, so compare squares: p + q versus p + q + 2sqrt(pq). The right side is larger because sqrt(pq) > 0.\nB. False. p = q = 1 gives sqrt(2), about 1.41, on the left and 2 on the right.\nC. True. q > 0, so p + q > p and taking positive square roots keeps the order.\nD. False. The pair p = q = 1 would need 1.41 > 2, which is false (and A shows the inequality always runs the other way).\nE. False. p = q = 4 gives sqrt(16) = 4 on the left and sqrt(8), about 2.83, on the right, so the statement fails.\nF. False. p = 1, q = 10 gives sqrt(11), about 3.32, against 2, so the statement fails.\nAnswer: A and C.",
+   "trap": "Assuming a square root can be split across a sum, so that sqrt(p+q) equals sqrt(p) + sqrt(q), selects choice B.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "root-of-sum",
+    "counterexamples",
+    "squaring-inequalities"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 62 Hard",
+   "source_pages": [
+    405
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-020",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Let t be a number with 0 < t < 1, and let j and k be positive integers with j < k. Which of the following expressions has the greatest value?",
+   "options": [
+    "A. t^(-k)",
+    "B. t^(-j)",
+    "C. t^j",
+    "D. t^k",
+    "E. t^(k-j)"
+   ],
+   "answer": "A",
+   "explanation": "1. Since 0 < t < 1, every positive power of t is below 1 (t^j, t^k and t^(k-j) all lie between 0 and 1).\n2. A negative exponent takes the reciprocal: t^(-n) = 1/t^n, and 1/t^n > 1 because t^n < 1. So A and B beat C, D and E.\n3. Compare A and B: 1/t^k versus 1/t^j. Because t < 1 and k > j, t^k < t^j, so 1/t^k > 1/t^j.\n4. Therefore t^(-k) is the greatest.\nCheck with t = 1/2, j = 1, k = 3: t^(-1) = 2, t^(-3) = 8, t^1 = 0.5, t^3 = 0.125, t^2 = 0.25; the largest is 8.",
+   "trap": "Noticing that a fraction shrinks as its exponent grows and so choosing t^j, which is choice C, ignores that the negative exponents in choices B and B turn the values into numbers above 1.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "negative-exponents",
+    "fractional-base"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 62 Hard",
+   "source_pages": [
+    406
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-021",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The nonzero-valued real numbers p and q satisfy the inequality q^3 * p^6 < 0.\nIndicate every one of the following statements that must be true.",
+   "options": [
+    "A. q < 0",
+    "B. p < 0",
+    "C. p*q < 0",
+    "D. q/p^2 < 0",
+    "E. p^2 * q^5 < 0",
+    "F. p + q < 0"
+   ],
+   "answer": [
+    "A",
+    "D",
+    "E"
+   ],
+   "explanation": "Because the product is nonzero, p is not 0, so p^6 > 0. Then q^3 * p^6 < 0 forces q^3 < 0, so q < 0. Nothing is known about the sign of p.\nA. q < 0. True.\nB. p < 0. Not forced: p = 2, q = -1 gives 64*(-1) = -64 < 0 with p > 0. False.\nC. p*q < 0. If p = -2 and q = -1, then pq = 2 > 0 while the original inequality still holds. False.\nD. q/p^2: p^2 > 0 and q < 0, so the quotient is negative. True.\nE. p^2 * q^5: p^2 > 0 and q^5 < 0 (odd power of a negative), so the product is negative. True.\nF. p + q < 0. If p = 5 and q = -1, the sum is 4 > 0. False.",
+   "trap": "Reasoning that a negative product needs one negative factor and one positive factor, so p and q have opposite signs, leads to selecting C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "sign-analysis",
+    "even-odd-powers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 65 Base",
+   "source_pages": [
+    425
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-022",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "j and k are integers, and each of them is at least 2.\nQuantity A: sqrt(9^j * 9^k)\nQuantity B: 3^(jk)",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "1. sqrt(9^j * 9^k) = sqrt(9^(j+k)) = 3^(j+k), since sqrt(9) = 3.\n2. Both quantities are powers of 3, so compare the exponents j + k and jk.\n3. j = 2, k = 2: j + k = 4 and jk = 4, so the quantities are equal.\n4. j = 2, k = 3: j + k = 5 and jk = 6, so Quantity B is greater (3^5 = 243 and 3^6 = 729).\n5. Different allowed values give different comparisons, so the relationship cannot be determined.\nCheck: for j = k = 2, Quantity A = sqrt(81*81) = 81 and Quantity B = 3^4 = 81.",
+   "trap": "Testing only j = k = 2 (the smallest allowed values) shows the quantities equal and points to choice C, but larger values break the tie.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "exponent-rules",
+    "boundary-case"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    455
+   ]
+  },
+  {
+   "id": "ALG-EXR-KMF-023",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Four equal terms 4^y are added and the total equals 8^(y-2). What is the value of 2^(y-6)?",
+   "options": null,
+   "answer": "4",
+   "explanation": "1. Four copies of 4^y sum to 4 * 4^y = 4^(y+1).\n2. Write both sides with base 2: 4^(y+1) = 2^(2y+2) and 8^(y-2) = 2^(3y-6).\n3. Equal powers of 2 need equal exponents: 2y + 2 = 3y - 6, so y = 8.\n4. 2^(y-6) = 2^2 = 4.\nCheck: 4 * 4^8 = 262144 = 2^18 and 8^6 = 2^18.",
+   "trap": "Forgetting that there are four terms (using 4^y = 8^(y-2) alone) gives 2y = 3y - 6, y = 6, and 2^0 = 1.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "exponent-equation",
+    "common-base"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 72 Hard",
+   "source_pages": [
+    471
+   ]
   }
  ]
 }

@@ -4,16 +4,23 @@
   "subtopic": "Isosceles & Equilateral Triangles",
   "subtopic_id": "GEO-IET",
   "version": "1.0",
-  "total_questions": 41,
+  "total_questions": 46,
   "distribution": {
    "easy": 10,
-   "medium": 17,
-   "hard": 10,
+   "medium": 20,
+   "hard": 12,
    "extreme_hard": 4
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 21,
+   "multiple_answer": 5,
+   "numeric_entry": 9,
+   "quantitative_comparison": 11
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -890,6 +897,139 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set1"
+  },
+  {
+   "id": "GEO-IET-KMF-001",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In quadrilateral PQRS, side lengths satisfy PQ = QR and the diagonal QS has the same length as PQ. Angle PQR measures 64 degrees, and S lies on the opposite side of line PR from Q. What is the sum, in degrees, of angles QPS and QRS?",
+   "options": [
+    "A. 32",
+    "B. 116",
+    "C. 148",
+    "D. 212",
+    "E. 296"
+   ],
+   "answer": "C",
+   "explanation": "Triangle PQS has QP = QS, so angle QPS = angle QSP = a. Triangle RQS has QR = QS, so angle QRS = angle QSR = b.\nIn the quadrilateral, the angle at S is angle PSR = a + b.\nAngles of PQRS: 64 + a + b + (a + b) = 360, so 2(a + b) = 296 and a + b = 148.\nSo angle QPS + angle QRS = a + b = 148.\nCheck: P, R and S lie on a circle centered at Q, so angle PSR is an inscribed angle on the minor arc PR and equals 180 - 64/2 = 148, matching a + b.",
+   "trap": "Using the angle on the far arc, 64/2 = 32, gives choice A; taking the supplement of the 64 degree angle gives 116 (choice B); forgetting to halve 360 - 64 gives 296 (choice E).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "isosceles-triangles",
+    "angle-sum"
+   ],
+   "figure_description": "Convex quadrilateral PQRS with vertices in order P, Q, R, S. Q is the apex with PQ = QR and angle PQR = 64 degrees. The diagonal QS has the same length as PQ, so P, R and S all lie at the same distance from Q. S is on the opposite side of line PR from Q, so Q and S are opposite vertices.",
+   "origin": "kmf1804",
+   "origin_set": "Section 36 Hard",
+   "source_pages": [
+    227
+   ]
+  },
+  {
+   "id": "GEO-IET-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "An equilateral triangle has an altitude of length 9sqrt(3) centimeters. What is the perimeter of the triangle, in centimeters?",
+   "options": [
+    "A. 18",
+    "B. 27",
+    "C. 54",
+    "D. 27sqrt(3)",
+    "E. 54sqrt(3)"
+   ],
+   "answer": "C",
+   "explanation": "The altitude of an equilateral triangle splits it into two 30-60-90 right triangles. The altitude is the leg opposite the 60-degree angle, so altitude = s*sqrt(3)/2, where s is the side length.\nSet s*sqrt(3)/2 = 9sqrt(3). Then s = 2 * 9sqrt(3) / sqrt(3) = 18.\nPerimeter = 3 * 18 = 54 centimeters.\nCheck: 18*sqrt(3)/2 = 9sqrt(3), which matches the given altitude.",
+   "trap": "Stopping after the side length, 18 (choice A). Treating the altitude as s*sqrt(3) instead of s*sqrt(3)/2 gives s = 9 and a perimeter of 27 (choice B). Treating the altitude itself as the side gives 3 * 9sqrt(3) = 27sqrt(3) (choice D). Treating the altitude as half the side gives s = 18sqrt(3) and 54sqrt(3) (choice E).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "equilateral-triangle",
+    "altitude",
+    "30-60-90"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 40 Hard",
+   "source_pages": [
+    256
+   ]
+  },
+  {
+   "id": "GEO-IET-KMF-003",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Triangle T is isosceles with perimeter 20, and one of its sides measures 8.\nQuantity A: The length of the shortest side of T\nQuantity B: 4",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "The side of length 8 is either one of the two equal sides or the odd side.\nCase 1: 8 is a leg. The other leg is also 8, so the base is 20 - 16 = 4. Sides 8, 8, 4 satisfy the triangle inequality (8 + 4 > 8). Shortest side = 4, so A equals B.\nCase 2: 8 is the base. The two equal legs share 20 - 8 = 12, so each is 6. Sides 6, 6, 8 satisfy the triangle inequality (6 + 6 > 8). Shortest side = 6, so A is greater than B.\nBoth cases are possible, and they give different relationships, so it cannot be determined.",
+   "trap": "Assuming the stated side of 8 must be one of the equal sides, giving a shortest side of 4 and answering that the quantities are equal (option C).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "isosceles-cases",
+    "perimeter"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 45 Base",
+   "source_pages": [
+    289
+   ]
+  },
+  {
+   "id": "GEO-IET-KMF-004",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A parallelogram is built from 8 identical equilateral triangles placed in a single row, alternately pointing up and down, with neighbouring triangles sharing a full side. Its perimeter is 40 meters. What is its area, in square meters?",
+   "options": [
+    "A. 16*sqrt(3)",
+    "B. 32*sqrt(3)",
+    "C. 50*sqrt(3)",
+    "D. 64*sqrt(3)",
+    "E. 128*sqrt(3)"
+   ],
+   "answer": "B",
+   "explanation": "Top edge = 4s, bottom edge = 4s, two slanted ends = s each, so perimeter = 10s.\n10s = 40, so s = 4 meters.\nArea of one equilateral triangle = (sqrt(3)/4)*s^2 = (sqrt(3)/4)*16 = 4*sqrt(3).\nTotal area = 8 * 4*sqrt(3) = 32*sqrt(3).\nCheck: the parallelogram has base 4s = 16 and height (sqrt(3)/2)*4 = 2*sqrt(3), so area = 16*2*sqrt(3) = 32*sqrt(3). Matches.",
+   "trap": "Reading the perimeter as 8 sides (one per triangle), so s = 5 and area = 8*(sqrt(3)/4)*25 = 50*sqrt(3), choice C.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "equilateral-triangle-area",
+    "composite-figure"
+   ],
+   "figure_description": "A single row of 8 congruent equilateral triangles, alternating point-up and point-down, glued along shared sides. The long top edge and long bottom edge are each made of 4 triangle sides, and each slanted end is one triangle side, so the outline is a parallelogram.",
+   "origin": "kmf1804",
+   "origin_set": "Section 47 Base",
+   "source_pages": [
+    308
+   ]
+  },
+  {
+   "id": "GEO-IET-KMF-005",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "ABCD is a square. Point E lies outside the square, on the opposite side of line CD from A and B, with DE = DC and angle CDE = 40 degrees. Segment AE is drawn.\nQuantity A: The measure, in degrees, of angle AED\nQuantity B: 30",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "DA = DC because ABCD is a square, and DE = DC is given, so DA = DE and triangle ADE is isosceles with its apex at D.\nAngle ADE = angle ADC + angle CDE = 90 + 40 = 130 degrees (E is on the far side of DC from A, so the angles add).\nThe base angles are equal: angle AED = (180 - 130)/2 = 25 degrees.\nQuantity A = 25 < 30 = Quantity B.\nCheck: angles of triangle ADE = 130 + 25 + 25 = 180.",
+   "trap": "Forgetting that DA = DE and using the full 180 - 130 = 50 for angle AED gives 50, which exceeds 30 (choice A).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "isosceles-triangle",
+    "angle-chasing"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 220\" width=\"240\" height=\"220\"><polygon points=\"60,180 160,180 160,80 60,80\" fill=\"none\" stroke=\"#333\" stroke-width=\"2\"/><polygon points=\"60,80 160,80 136.6,15.7\" fill=\"none\" stroke=\"#333\" stroke-width=\"2\"/><line x1=\"60\" y1=\"180\" x2=\"136.6\" y2=\"15.7\" stroke=\"#333\" stroke-width=\"2\" stroke-dasharray=\"5,4\"/><text x=\"40\" y=\"192\" font-size=\"14\">A</text><text x=\"164\" y=\"192\" font-size=\"14\">B</text><text x=\"166\" y=\"86\" font-size=\"14\">C</text><text x=\"40\" y=\"78\" font-size=\"14\">D</text><text x=\"138\" y=\"12\" font-size=\"14\">E</text><text x=\"82\" y=\"72\" font-size=\"11\">40&#176;</text></svg>",
+   "figure_description": "Square ABCD with A bottom-left, B bottom-right, C top-right, D top-left. Triangle DCE sits on top of side DC with E above the square, DE = DC, and angle CDE = 40 degrees. A dashed segment joins A to E.",
+   "origin": "kmf1804",
+   "origin_set": "Section 48 Hard",
+   "source_pages": [
+    311
+   ]
   }
  ]
 }

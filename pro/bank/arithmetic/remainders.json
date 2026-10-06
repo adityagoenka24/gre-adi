@@ -4,16 +4,23 @@
   "subtopic": "Remainders",
   "subtopic_id": "NUM-REM",
   "version": "1.0",
-  "total_questions": 64,
+  "total_questions": 67,
   "distribution": {
    "easy": 13,
-   "medium": 29,
-   "hard": 17,
+   "medium": 31,
+   "hard": 18,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 24,
+   "multiple_answer": 10,
+   "numeric_entry": 17,
+   "quantitative_comparison": 16
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1357,6 +1364,84 @@
    ],
    "origin": "sectional",
    "origin_set": "number_properties_set2"
+  },
+  {
+   "id": "ARI-REM-KMF-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The positive integer u leaves a remainder of 5 when it is divided by 9, and the positive integer v leaves a remainder of 8 when it is divided by 9. What is the remainder when u + 3v is divided by 9?",
+   "options": [
+    "A. 1",
+    "B. 2",
+    "C. 3",
+    "D. 4",
+    "E. 5"
+   ],
+   "answer": "B",
+   "explanation": "Write u = 9a + 5 and v = 9b + 8 for non-negative integers a and b.\nu + 3v = (9a + 5) + 3*(9b + 8) = 9a + 27b + 5 + 24 = 9*(a + 3b) + 29.\nEverything in 9*(a + 3b) is a multiple of 9, so the remainder is the remainder of 29 on division by 9.\n29 = 9*3 + 2, so the remainder is 2.\nCheck with u = 5, v = 8: u + 3v = 5 + 24 = 29, and 29 = 9*3 + 2, remainder 2.\nCheck with u = 23, v = 17: u + 3v = 23 + 51 = 74, and 74 = 9*8 + 2, remainder 2.",
+   "trap": "Dropping the coefficient and reducing u + v = 13 instead gives a remainder of 4, option D; attaching the 3 to the wrong term and reducing 3u + v = 23 gives a remainder of 5, option E.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "remainders",
+    "modular-arithmetic"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    11
+   ]
+  },
+  {
+   "id": "ARI-REM-KMF-002",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "When the positive integer m is divided by 4, the remainder is 3, and when m is divided by 5, the remainder is 2.\nQuantity A: m\nQuantity B: 27",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "m = 3 mod 4 and m = 2 mod 5. By checking small values: m = 7 works (7 = 4*1+3, 7 = 5*1+2).\nThe general solution repeats every lcm(4,5) = 20, so m could be 7, 27, 47, 67, ...\nIf m = 7, Quantity B (27) is greater. If m = 27, they are equal. If m = 47, Quantity A is greater.\nSince m is not uniquely determined, the relationship cannot be determined.",
+   "trap": "Students solve the system and find only one solution (m=27) via trial, forgetting the general solution repeats every 20 and stopping at the first match instead of checking that multiple values of m satisfy both conditions.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "remainders",
+    "modular-arithmetic",
+    "quantitative-comparison"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    20
+   ]
+  },
+  {
+   "id": "ARI-REM-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many integers greater than 250 and less than 400 leave remainder 6 upon division by 7?",
+   "options": [
+    "A. 20",
+    "B. 21",
+    "C. 22",
+    "D. 23",
+    "E. 24"
+   ],
+   "answer": "C",
+   "explanation": "Integers leaving remainder 6 upon division by 7 have the form 7t + 6.\nSmallest such integer above 250: 7*35 = 245, and 245 + 6 = 251, which is greater than 250.\nLargest such integer below 400: 7*56 = 392, and 392 + 6 = 398, which is less than 400.\nThese values run 251, 258, 265, ..., 398 with common difference 7.\nCount = (398 - 251)/7 + 1 = 147/7 + 1 = 21 + 1 = 22.\nCheck the endpoints are included and the next terms outside: 251 - 7 = 244 (too small) and 398 + 7 = 405 (too large). Correct.",
+   "trap": "Computing (398 - 251)/7 = 21 and stopping there counts the gaps between terms rather than the terms themselves, giving choice B.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "remainders",
+    "counting-arithmetic-lists"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    71
+   ]
   }
  ]
 }

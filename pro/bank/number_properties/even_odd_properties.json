@@ -1,1104 +1,1714 @@
 {
-  "meta": {
-    "topic": "Number Properties",
-    "subtopic": "Even/Odd Properties",
-    "subtopic_id": "NUM-EOP",
-    "version": "1.0",
-    "total_questions": 51,
-    "distribution": {
-      "easy": 13,
-      "medium": 18,
-      "hard": 15,
-      "extreme_hard": 5
-    },
-    "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-    "bank": "Adi's GRE Quant Bank"
+ "meta": {
+  "topic": "Number Properties",
+  "subtopic": "Even/Odd Properties",
+  "subtopic_id": "NUM-EOP",
+  "version": "1.0",
+  "total_questions": 73,
+  "distribution": {
+   "easy": 15,
+   "medium": 34,
+   "hard": 18,
+   "extreme_hard": 6
   },
-  "questions": [
-    {
-      "id": "NUM-EOP-001",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "Which of the following is an even number?",
-      "options": [
-        "A. 1",
-        "B. 3",
-        "C. 0",
-        "D. 7",
-        "E. 9"
-      ],
-      "answer": "C",
-      "explanation": "An even number is any integer divisible by 2 with no remainder. 0 ÷ 2 = 0 with remainder 0, so 0 is even. All other options (1, 3, 7, 9) are odd — they leave remainder 1 when divided by 2.",
-      "trap": "Students often say 0 is 'neither even nor odd' because it seems like a special case. By definition, 0 is divisible by 2 (0 = 2 × 0), making it even.",
-      "estimated_time_seconds": 40,
-      "tags": [
-        "even-odd",
-        "conceptual",
-        "memorisation"
-      ]
-    },
-    {
-      "id": "NUM-EOP-002",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "p is an even integer and q is an odd integer. Which of the following must be even?",
-      "options": [
-        "A. p + q",
-        "B. p x q",
-        "C. p + p + q",
-        "D. q + q + q",
-        "E. p x q + q"
-      ],
-      "answer": "B",
-      "explanation": "Test each option with the parity table. Use p = 2 and q = 3 to keep it concrete, but the rule is what decides.\nA - even + odd = odd. With p = 2, q = 3: 5. FALSE.\nB - even x anything = even, so p x q is even. With p = 2, q = 3: 6. TRUE.\nC - p + p = even, and even + odd = odd. With p = 2, q = 3: 7. FALSE.\nD - odd + odd = even, then even + odd = odd. With q = 3: 9. FALSE.\nE - p x q is even, and even + odd = odd. With p = 2, q = 3: 9. FALSE.\nCheck with a second pair, p = 4 and q = 7: A = 11 odd, B = 28 even, C = 15 odd, D = 21 odd, E = 35 odd. Same verdicts.\nAnswer: B.",
-      "trap": "Choosing D on the belief that odd + odd + odd is even. The first two odds do pair up to an even, but the third odd flips it back: 3 + 3 + 3 = 9. Choosing C or E comes from forgetting that adding an odd number always changes parity.",
-      "estimated_time_seconds": 45,
-      "tags": [
-        "parity-rules",
-        "must-be-even",
-        "basic-parity"
-      ]
-    },
-    {
-      "id": "NUM-EOP-003",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "If m and n are both odd integers, which of the following must be even?",
-      "options": [
-        "A. m + 1",
-        "B. m × n",
-        "C. m + n",
-        "D. m - 1",
-        "E. m² + 1"
-      ],
-      "answer": "C",
-      "explanation": "Odd + Odd = Even. So m + n must be even. Check the others: m + 1 = Odd + 1 = Odd + Odd = Even — actually this is also even! m - 1 = Odd - 1 = Odd - Odd = Even. m² + 1 = Odd² + 1 = Odd + 1 = Even. m × n = Odd × Odd = Odd. So B is the only odd result, meaning A, C, D, E are all even. The cleanest answer the question is testing: m + n = Odd + Odd = Even.",
-      "trap": "Students often think m × n (odd × odd) is even. In fact, Odd × Odd = Odd. The product of any number of odd numbers is always odd.",
-      "estimated_time_seconds": 50,
-      "tags": [
-        "even-odd",
-        "addition",
-        "multiplication",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "NUM-EOP-004",
-      "difficulty": "easy",
-      "type": "numeric_entry",
-      "question": "x is an even integer and y is an odd integer. What is the remainder when x + y is divided by 2? Enter your answer as a number.",
-      "options": null,
-      "answer": "1",
-      "explanation": "Step 1 — find the parity of the sum. even + odd = odd, so x + y is odd.\nStep 2 — translate parity into a remainder. An odd integer is 2k + 1, so dividing it by 2 leaves remainder 1; an even integer would leave remainder 0.\nCheck with x = 4, y = 3: 7 divided by 2 is 3 remainder 1. Check with x = 0, y = -5: -5 = 2 x (-3) + 1, remainder 1 again.\nAnswer: 1.",
-      "trap": "Answering 0 by treating 'x + y' as a sum of two integers and assuming any such sum is even. The answer is also not 0.5: a remainder is a whole number left over, not the fractional part of the quotient.",
-      "estimated_time_seconds": 40,
-      "tags": [
-        "parity-rules",
-        "remainder",
-        "basic-parity"
-      ]
-    },
-    {
-      "id": "NUM-EOP-005",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "Which of the following is always true for any integer n?",
-      "options": [
-        "A. n² is odd",
-        "B. n² is even",
-        "C. n² + n is even",
-        "D. n² - n is odd",
-        "E. n² + 1 is odd"
-      ],
-      "answer": "C",
-      "explanation": "n² + n = n(n + 1). Note that n and n + 1 are consecutive integers, so one of them is always even. The product of any integer with an even number is even. Therefore n(n + 1) is always even, regardless of whether n is even or odd. Check: if n = 3, n² + n = 9 + 3 = 12 (even ✓). If n = 4, n² + n = 16 + 4 = 20 (even ✓).",
-      "trap": "Students pick E thinking n² + 1 is always odd, but if n is odd, n² is odd, so n² + 1 = odd + 1 = even. E fails for odd n.",
-      "estimated_time_seconds": 55,
-      "tags": [
-        "even-odd",
-        "consecutive-integers",
-        "conceptual",
-        "algebraic-proof"
-      ]
-    },
-    {
-      "id": "NUM-EOP-006",
-      "difficulty": "easy",
-      "type": "quantitative_comparison",
-      "question": "n is an odd integer.\n\nColumn A: n²\nColumn B: n² + 1",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "n is odd, so n² = Odd² = Odd. Column A = n² = some odd number. Column B = n² + 1 = Odd + 1 = Even. Since n² + 1 = n² + 1, Column B is always exactly 1 greater than Column A. Therefore Column B is greater.",
-      "trap": "Students may think 'n could be negative, so n² could be different.' But n² is always positive and Column B = n² + 1 is always exactly 1 more than Column A, regardless of the sign of n.",
-      "estimated_time_seconds": 40,
-      "tags": [
-        "even-odd",
-        "qc",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "NUM-EOP-007",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "If k is a positive even integer, which of the following must also be even?",
-      "options": [
-        "A. k + 1",
-        "B. k/2",
-        "C. k²",
-        "D. k - 1",
-        "E. k/4"
-      ],
-      "answer": "C",
-      "explanation": "k is even, so k = 2m for some positive integer m. k² = (2m)² = 4m², which is even (divisible by 2). Check the others: k + 1 = Even + 1 = Odd (A is wrong). k/2 = m, which could be odd or even (if k = 6, k/2 = 3, odd; if k = 4, k/2 = 2, even) — not always even. k - 1 = Even - 1 = Odd (D is wrong). k/4 may not even be an integer (if k = 6, k/4 = 1.5). Only C (k²) is always even.",
-      "trap": "Students often pick k/2, reasoning that 'half of an even number is even.' But half of 6 is 3 (odd), and half of 10 is 5 (odd). The quotient of two even numbers is not necessarily even.",
-      "estimated_time_seconds": 55,
-      "tags": [
-        "even-odd",
-        "conceptual",
-        "division"
-      ]
-    },
-    {
-      "id": "NUM-EOP-008",
-      "difficulty": "easy",
-      "type": "numeric_entry",
-      "question": "How many integers from -6 to 7, inclusive, are even? Enter your answer as a number.",
-      "options": null,
-      "answer": "7",
-      "explanation": "Step 1 — list them. The even integers in the range are -6, -4, -2, 0, 2, 4, 6.\nStep 2 — count: that is 7 integers.\nTwo points decide this question. Zero is even, because 0 = 2 x 0, so it belongs on the list. Negative integers have parity too, so -6, -4 and -2 belong as well.\nCheck by the endpoint formula: from -6 to 6 the evens are spaced 2 apart, giving (6 - (-6))/2 + 1 = 12/2 + 1 = 7. The extra integer 7 is odd and adds nothing.\nAnswer: 7.",
-      "trap": "Answering 6 by skipping 0 as 'neither even nor odd'. Answering 3 by counting only the positive evens 2, 4 and 6 and discarding the negatives, which is the 'not even means positive odd' habit in reverse.",
-      "estimated_time_seconds": 45,
-      "tags": [
-        "zero-is-even",
-        "negative-parity",
-        "counting"
-      ]
-    },
-    {
-      "id": "NUM-EOP-009",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "Which of the following statements about the integer –6 is correct?",
-      "options": [
-        "A. –6 is odd because it is negative",
-        "B. –6 is neither even nor odd because it is negative",
-        "C. –6 is even because it is divisible by 2",
-        "D. –6 is even only if we ignore the negative sign",
-        "E. The parity of –6 cannot be determined"
-      ],
-      "answer": "C",
-      "explanation": "Parity (even/odd) applies to all integers, including negative integers. An integer is even if it is divisible by 2 with no remainder. –6 ÷ 2 = –3 (an integer with no remainder), so –6 is even. Negative numbers follow the same parity rules as positive numbers: –4 is even, –3 is odd, –6 is even, –7 is odd.",
-      "trap": "Students believe that only positive integers have parity, or that negative integers are automatically odd. Parity is defined for all integers: even means divisible by 2, and this applies equally to negative numbers.",
-      "estimated_time_seconds": 40,
-      "tags": [
-        "even-odd",
-        "negative-numbers",
-        "conceptual",
-        "memorisation"
-      ]
-    },
-    {
-      "id": "NUM-EOP-010",
-      "difficulty": "easy",
-      "type": "quantitative_comparison",
-      "question": "a is an even integer and b is an odd integer.\nColumn A: a + b\nColumn B: a x b",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "D",
-      "explanation": "Parity is settled here: a + b is odd and a x b is even. But parity says nothing about SIZE, and the question asks which is larger.\nCase 1 — a = 2, b = 3: Column A = 5, Column B = 6. Column B is greater.\nCase 2 — a = 0, b = 3: Column A = 3, Column B = 0. Column A is greater.\nTwo legal choices give opposite verdicts, so the relationship is not determined.\nCheck that both cases are legal: 2 and 0 are both even integers, 3 is odd, and no positivity was stated anywhere in the question.\nAnswer: D.",
-      "trap": "Choosing B after testing only a = 2, b = 3 and concluding that a product beats a sum. Setting a = 0 kills the product while the sum survives, and a = 0 is allowed because 0 is an even integer. Choosing A or B on parity grounds is also wrong: an even number is not automatically larger or smaller than an odd one.",
-      "estimated_time_seconds": 55,
-      "tags": [
-        "qc",
-        "zero-is-even",
-        "parity-vs-size"
-      ]
-    },
-    {
-      "id": "NUM-EOP-011",
-      "difficulty": "easy",
-      "type": "multiple_answer",
-      "question": "n is an integer. For which of the following values of n is n^3 - n^2 + n even? Select all that apply.",
-      "options": [
-        "A. n = 3",
-        "B. n = 4",
-        "C. n = -2",
-        "D. n = 0",
-        "E. n = 7"
-      ],
-      "answer": [
-        "B",
-        "C",
-        "D"
-      ],
-      "explanation": "Step 1 — reduce the expression to a single parity. n^3 has the same parity as n, and n^2 has the same parity as n, so n^3 - n^2 + n has the parity of n - n + n, which is the parity of n.\nStep 2 — so the expression is even exactly when n is even. The signs do not matter: subtraction obeys the same parity table as addition.\nA - n = 3 is odd. 27 - 9 + 3 = 21, odd. FALSE.\nB - n = 4 is even. 64 - 16 + 4 = 52, even. TRUE.\nC - n = -2 is even; the minus sign does not change parity. -8 - 4 - 2 = -14, even. TRUE.\nD - n = 0 is even, since 0 = 2 x 0. 0 - 0 + 0 = 0, even. TRUE.\nE - n = 7 is odd. 343 - 49 + 7 = 301, odd. FALSE.\nCheck: the three selected values 4, -2 and 0 are exactly the even entries in the list.\nAnswer: B, C, D.",
-      "trap": "Skipping C because -2 is negative and skipping D because 0 looks like a special case. Both are even integers: parity is about divisibility by 2, not about sign, and 0 divided by 2 leaves remainder 0. The other slip is treating the three terms as if the minus sign could flip a parity, and then selecting A or E because 'two odds and a subtraction' feels even; subtraction follows the same table as addition, so the expression simply inherits the parity of n.",
-      "estimated_time_seconds": 55,
-      "tags": [
-        "zero-is-even",
-        "negative-parity",
-        "expression-parity"
-      ]
-    },
-    {
-      "id": "NUM-EOP-012",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "If x is an odd integer, what is the parity of x³?",
-      "options": [
-        "A. Always even",
-        "B. Always odd",
-        "C. Could be either even or odd",
-        "D. Always zero",
-        "E. Cannot be determined"
-      ],
-      "answer": "B",
-      "explanation": "Odd × Odd × Odd = Odd. More precisely: x is odd means x = 2k + 1 for some integer k. x² = (2k+1)² = 4k² + 4k + 1 = 2(2k² + 2k) + 1, which is odd. x³ = x² × x = Odd × Odd = Odd. So x³ is always odd when x is odd. Example: 3³ = 27 (odd), 5³ = 125 (odd), (–3)³ = –27 (odd).",
-      "trap": "Students sometimes think cubing changes parity or that large powers 'eventually become even.' The parity of a power of an integer depends only on whether the base is even or odd, not the exponent.",
-      "estimated_time_seconds": 45,
-      "tags": [
-        "even-odd",
-        "exponents",
-        "conceptual",
-        "memorisation"
-      ]
-    },
-    {
-      "id": "NUM-EOP-013",
-      "difficulty": "easy",
-      "type": "numeric_entry",
-      "question": "The sum of five consecutive odd integers is 85. What is the largest of these five integers?",
-      "options": null,
-      "answer": "21",
-      "explanation": "Let the five consecutive odd integers be n, n+2, n+4, n+6, n+8. Their sum: 5n + 20 = 85. 5n = 65. n = 13. The integers are 13, 15, 17, 19, 21. The largest is 21. Verify: 13 + 15 + 17 + 19 + 21 = 85 ✓.",
-      "trap": "Students sometimes write the consecutive odd integers as n, n+1, n+3, n+5, n+7 (mixing up consecutive integers with consecutive odd integers). Consecutive odd integers differ by 2, not 1.",
-      "estimated_time_seconds": 60,
-      "tags": [
-        "even-odd",
-        "consecutive-integers",
-        "word-problem-setup"
-      ]
-    },
-    {
-      "id": "NUM-EOP-014",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "a is an even integer and b is an odd integer. Which of the following must be even?",
-      "options": [
-        "A. a^2 x b + b",
-        "B. a x b + b",
-        "C. a^2 x b + a",
-        "D. a x b + b + a",
-        "E. a^2 x b^2 + b"
-      ],
-      "answer": "C",
-      "explanation": "Every term containing a factor of a is even, because even x anything = even. So each expression reduces to 'even + whatever is left'.\nA - a^2 x b is even, b is odd; even + odd = odd. FALSE.\nB - a x b is even, b is odd; even + odd = odd. FALSE.\nC - a^2 x b is even, a is even; even + even = even. TRUE.\nD - a x b is even, b is odd, a is even; even + odd + even = odd. FALSE.\nE - a^2 x b^2 is even, b is odd; even + odd = odd. FALSE.\nCheck with a = 2, b = 3: A = 12 + 3 = 15, B = 6 + 3 = 9, C = 12 + 2 = 14, D = 6 + 3 + 2 = 11, E = 36 + 3 = 39. Only C is even.\nAnswer: C.",
-      "trap": "Choosing A or E because squaring feels like it should produce an even result on its own. Squaring never changes parity: b^2 is still odd when b is odd, so a^2 x b + b and a^2 x b^2 + b both end as even + odd = odd. The parity of a sum is decided by the odd terms only.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "parity-rules",
-        "must-be-even",
-        "expressions"
-      ]
-    },
-    {
-      "id": "NUM-EOP-015",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "x and y are integers where x is even and y is odd.\n\nColumn A: (x + y)²\nColumn B: x² + y²",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "D",
-      "explanation": "Column A: (x + y)². Since x is even and y is odd, x + y is odd. So (x+y)² is odd. Column B: x² + y². x² = Even² = Even. y² = Odd² = Odd. Even + Odd = Odd. Both columns are odd, but we cannot determine which is numerically larger. (x+y)² = x² + 2xy + y², so A = B + 2xy. If x and y are positive: A > B. If x = 2, y = 1: A = 9, B = 5 (A > B). If x = 0, y = 1: A = 1, B = 1 (A = B). If x = –2, y = 1: A = (–1)² = 1, B = 4 + 1 = 5 (B > A). The relationship cannot be determined.",
-      "trap": "Students may observe that both expressions are odd and assume they are equal, or always assume A > B because squaring a sum seems larger. Testing edge cases (negative values, zero) reveals the relationship varies.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "even-odd",
-        "qc",
-        "algebraic-expressions",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "NUM-EOP-016",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "If n is an integer, select all expressions that are always even, regardless of whether n is even or odd.",
-      "options": [
-        "A. n² + n",
-        "B. n² – n",
-        "C. n² + 1",
-        "D. 2n + 1",
-        "E. n(n + 2)"
-      ],
-      "answer": [
-        "A",
-        "B"
-      ],
-      "explanation": "A. n² + n = n(n+1). Consecutive integers: one is always even, so the product is always even ✓. B. n² – n = n(n–1). Consecutive integers (n–1 and n): one is always even, so the product is always even ✓. C. n² + 1: if n is even, n² is even, n²+1 is odd. So C is NOT always even ✗. D. 2n + 1 is always odd (2n is even, +1 makes it odd) ✗. E. n(n+2): if n = 1 (odd), 1 × 3 = 3 (odd). So E is NOT always even ✗. Answers: A and B.",
-      "trap": "Students often include E = n(n+2), thinking it resembles A. But n and n+2 have the same parity (both even or both odd), so their product is odd when n is odd. Contrast with n(n+1) where n and n+1 have opposite parity.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "even-odd",
-        "multiple-answer",
-        "consecutive-integers",
-        "algebraic-proof"
-      ]
-    },
-    {
-      "id": "NUM-EOP-017",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "m and n are integers such that m - n is even and m x n is even. Which of the following must be true?",
-      "options": [
-        "A. m + n is divisible by 4",
-        "B. m x n is divisible by 4",
-        "C. m and n are both odd",
-        "D. m + n is odd",
-        "E. m/2 + n/2 is an even integer"
-      ],
-      "answer": "B",
-      "explanation": "Step 1 — m - n is even, and a difference is even only when the two terms share a parity. So m and n are both odd or both even.\nStep 2 — m x n is even, and a product is odd only when every factor is odd. So m and n are not both odd.\nStep 3 — combining the two, m and n are both even. Write m = 2j and n = 2k.\nA - m + n = 2j + 2k = 2(j + k), which is even but need not be a multiple of 4: m = 2, n = 4 gives 6. FALSE.\nB - m x n = 4jk, which is always a multiple of 4. TRUE.\nC - both odd would make m x n odd, which the stem forbids. FALSE.\nD - both even makes m + n even, never odd. FALSE.\nE - m/2 + n/2 = j + k, and j and k have no forced parity: m = 2, n = 4 gives 1 + 2 = 3, odd. FALSE.\nCheck with m = 6 and n = 10: m - n = -4 even, m x n = 60 even, and 60 = 4 x 15 is a multiple of 4. Check with m = 2 and n = 4: 8 = 4 x 2. Correct.\nAnswer: B.",
-      "trap": "Choosing C stops at the first condition: m - n even does mean m and n share a parity, and 'both odd' is the case students reach for first, but it is killed by m x n being even. Choosing A promotes 'the sum of two evens' to 'a multiple of 4'; 2 + 4 = 6 is the counterexample. Choosing E applies parity rules through division: halving two even numbers says nothing about the parity of the halves, since 2/2 = 1 is odd while 4/2 = 2 is even.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "parity-deduction",
-        "must-be-true",
-        "divisibility-by-4"
-      ]
-    },
-    {
-      "id": "NUM-EOP-018",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "If the sum of 7 consecutive integers is 84, what is the value of the largest integer?",
-      "options": null,
-      "answer": "15",
-      "explanation": "Let the 7 consecutive integers be n, n+1, n+2, n+3, n+4, n+5, n+6. Sum = 7n + 21 = 84. 7n = 63. n = 9. The integers are 9, 10, 11, 12, 13, 14, 15. Largest = 15. Alternative: the sum of consecutive integers equals (count × middle term). Middle (4th) term = 84/7 = 12. Integers are 9 through 15. Largest = 15. Verify: 9+10+11+12+13+14+15 = 84 ✓.",
-      "trap": "Students set up n + (n+1) + ... + (n+6) correctly but make arithmetic errors computing 7n + 21 = 84 → 7n = 63 → n = 9. Some also forget to add 6 to n to find the largest: largest = 9 + 6 = 15.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "even-odd",
-        "consecutive-integers",
-        "word-problem-setup",
-        "two-step"
-      ]
-    },
-    {
-      "id": "NUM-EOP-019",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "k is a positive odd integer.\n\nColumn A: k² + k\nColumn B: k² + k + 1",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "k is odd. k² = Odd² = Odd. k² + k = Odd + Odd = Even. Column A is always even. Column B = k² + k + 1 = Even + 1 = Odd. Since Column B = Column A + 1, Column B is always exactly 1 greater than Column A. So Column B is always greater.",
-      "trap": "Students who compute parity correctly (A is even, B is odd) might then say 'D — can't be determined' because even and odd numbers can be in any size relationship. But here B is literally A + 1, so B is always exactly 1 more.",
-      "estimated_time_seconds": 60,
-      "tags": [
-        "even-odd",
-        "qc",
-        "two-step",
-        "conceptual"
-      ]
-    },
-    {
-      "id": "NUM-EOP-020",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If m is an integer such that m³ is even, which of the following must be true?",
-      "options": [
-        "A. m² is odd",
-        "B. m is even",
-        "C. m + 1 is even",
-        "D. m/2 is an integer",
-        "E. m is a positive integer"
-      ],
-      "answer": "B",
-      "explanation": "m³ is even. If m were odd, then m³ = Odd³ = Odd, contradicting that m³ is even. Therefore m must be even. A: m² = Even² = Even, so m² + 1... but A says m² is odd — false. B: m is even ✓. C: m + 1 = Even + 1 = Odd, not even — C is false. D: m/2 is an integer is true for any even integer — actually this is true since m is even, m = 2k, so m/2 = k is an integer. So D is also true. E: m could be negative (e.g., m = –2, m³ = –8, even). E is not necessarily true. Both B and D must be true, but B is the direct and primary implication.",
-      "trap": "Students may choose D (m/2 is an integer) thinking 'even means divisible by 2.' Both B and D are valid, but B is the fundamental property tested here. On real GRE this would be a single-answer question pointing to B as the core insight.",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "even-odd",
-        "exponents",
-        "conceptual",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "NUM-EOP-021",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "j is an odd integer and k is an even integer. Which of the following must be odd?",
-      "options": [
-        "A. j x k",
-        "B. j + k + 1",
-        "C. j^2 + k^2",
-        "D. j x k + k",
-        "E. (j + k)(j - k) + 1"
-      ],
-      "answer": "C",
-      "explanation": "A - even x anything = even, so j x k is even. With j = 3, k = 2: 6. FALSE.\nB - j + k = odd + even = odd, and odd + 1 = even. With j = 3, k = 2: 6. FALSE.\nC - j^2 is odd (squaring never changes parity) and k^2 is even, so odd + even = odd. With j = 3, k = 2: 9 + 4 = 13. TRUE.\nD - j x k is even and k is even, so even + even = even. With j = 3, k = 2: 6 + 2 = 8. FALSE.\nE - j + k is odd and j - k is odd, so the product is odd x odd = odd, and adding 1 makes it even. With j = 3, k = 2: 5 x 1 + 1 = 6. FALSE.\nCheck with j = 5, k = 4: A = 20 even, B = 10 even, C = 25 + 16 = 41 odd, D = 24 even, E = 9 x 1 + 1 = 10 even. Same verdicts.\nAnswer: C.",
-      "trap": "Choosing E after correctly finding that (j + k)(j - k) is odd and then ignoring the '+ 1', which flips it to even. Rejecting C is the other slip: squaring does not turn an odd number even, so j^2 + k^2 is odd + even = odd.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "must-be-odd",
-        "expressions",
-        "squares"
-      ]
-    },
-    {
-      "id": "NUM-EOP-022",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "a and b are positive integers, a is even and b is odd. If a + b = 15 and a x b = 50, what is the value of a? Enter your answer as a number.",
-      "options": null,
-      "answer": "10",
-      "explanation": "Step 1 — parity check on the sum. a + b = 15 is odd, and even + odd = odd, so the stated parities are consistent.\nStep 2 — factor pairs of 50 with a positive integer sum of 15: 1 x 50 sums to 51, 2 x 25 sums to 27, 5 x 10 sums to 15. Only 5 and 10 work.\nStep 3 — assign by parity. a is even, so a = 10, and b = 5, which is odd as required.\nCheck: 10 + 5 = 15 and 10 x 5 = 50, with 10 even and 5 odd. Correct.\nAnswer: 10.",
-      "trap": "Answering 5, which is the other member of the pair but the odd one, so it is b, not a. The parity condition in the stem is what tells the two apart; without reading it the pair {5, 10} looks symmetric.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "factor-pairs",
-        "parity-assignment",
-        "system"
-      ]
-    },
-    {
-      "id": "NUM-EOP-023",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If the sum of four consecutive even integers is 76, what is the smallest of the four integers?",
-      "options": [
-        "A. 14",
-        "B. 16",
-        "C. 18",
-        "D. 20",
-        "E. 22"
-      ],
-      "answer": "B",
-      "explanation": "Let the four consecutive even integers be n, n+2, n+4, n+6. Sum = 4n + 12 = 76. 4n = 64. n = 16. The integers are 16, 18, 20, 22. The smallest is 16. Verify: 16 + 18 + 20 + 22 = 76 ✓.",
-      "trap": "Students write n, n+1, n+2, n+3 for 'consecutive even integers,' treating them as consecutive integers rather than consecutive even integers (which differ by 2). Using n+1 increments gives 4n + 6 = 76 → n = 17.5, which is not an integer — a signal that the setup is wrong.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "even-odd",
-        "consecutive-integers",
-        "word-problem-setup"
-      ]
-    },
-    {
-      "id": "NUM-EOP-024",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "n is a positive integer.\nColumn A: The remainder when n(n + 1)(n + 2) is divided by 4\nColumn B: 0",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — split on the parity of n, because that decides where the factors of 2 sit.\nStep 2 — n even. Then n and n + 2 are consecutive even numbers, so one of them is a multiple of 4. The product is therefore a multiple of 4 and the remainder is 0. Example n = 2: 2 x 3 x 4 = 24, and 24/4 = 6 exactly.\nStep 3 — n odd. Then n and n + 2 are both odd and the only even factor is n + 1. If n + 1 is a multiple of 4 the remainder is 0; if n + 1 is only a multiple of 2 the product carries exactly one factor of 2 and the remainder is 2. Example n = 3: 3 x 4 x 5 = 60, remainder 0. Example n = 1: 1 x 2 x 3 = 6, and 6 = 4 + 2, remainder 2.\nStep 4 — n = 1 gives Column A = 2, which is greater than Column B, while n = 2 gives Column A = 0, which equals Column B. Two legal values of n give different verdicts.\nCheck n = 5: 5 x 6 x 7 = 210, and 210 = 4 x 52 + 2, remainder 2. Check n = 4: 4 x 5 x 6 = 120, remainder 0. Both outcomes really occur.\nAnswer: D.",
-      "trap": "Choosing C by carrying over the familiar fact that three consecutive integers always contain an even factor. That pins the remainder mod 2 at 0, but it does not pin the remainder mod 4: one factor of 2 is guaranteed, a second is not. Choosing A comes from testing only odd n such as n = 1 and n = 5, both of which give remainder 2, and never trying an even n.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "parity-casework",
-        "qc",
-        "remainder"
-      ]
-    },
-    {
-      "id": "NUM-EOP-025",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "p is a positive even integer and q is a positive odd integer. Which of the following must be even?",
-      "options": [
-        "A. p^q - q^p",
-        "B. (p + q)^q + 1",
-        "C. p^q + q^q",
-        "D. q^(p + q)",
-        "E. (pq)^0 + p"
-      ],
-      "answer": "B",
-      "explanation": "Two exponent facts run this question: an even base raised to any positive power stays even, and an odd base raised to any power stays odd. Also anything to the power 0 equals 1, which is odd.\nA - p^q is even (p is even, q >= 1) and q^p is odd, so even - odd = odd. FALSE.\nB - p + q = even + odd = odd, and an odd base to any power is odd, so (p + q)^q is odd; odd + 1 = even. TRUE.\nC - p^q is even and q^q is odd, so even + odd = odd. FALSE.\nD - q is odd and any power of an odd number is odd, so q^(p + q) is odd. FALSE.\nE - (pq)^0 = 1, odd, and p is even, so odd + even = odd. FALSE.\nCheck with p = 2, q = 3: A = 8 - 9 = -1 odd, B = 5^3 + 1 = 126 even, C = 8 + 27 = 35 odd, D = 3^5 = 243 odd, E = 1 + 2 = 3 odd. Check with p = 4, q = 1: A = 4 - 1 = 3 odd, B = 5 + 1 = 6 even, C = 4 + 1 = 5 odd, D = 1 odd, E = 1 + 4 = 5 odd.\nAnswer: B.",
-      "trap": "Choosing E by reading (pq)^0 as 0 rather than 1; that would make the expression 0 + even = even. Any nonzero base to the power 0 is 1, which is odd. Choosing A comes from thinking even minus odd can be even, and choosing D from believing a large even exponent can turn an odd base even - it never does.",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "exponents",
-        "zero-exponent",
-        "must-be-even"
-      ]
-    },
-    {
-      "id": "NUM-EOP-026",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "How many integers from 1 to 100 inclusive are divisible by both 2 and 3?",
-      "options": null,
-      "answer": "16",
-      "explanation": "Divisible by both 2 and 3 means divisible by LCM(2, 3) = 6. Count the multiples of 6 from 1 to 100: 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96. Count = floor(100/6) = floor(16.67) = 16. There are 16 such integers.",
-      "trap": "Students add (count of multiples of 2) + (count of multiples of 3) = 50 + 33 = 83 and then divide by 2, getting ~41. This is wrong. For divisibility by BOTH 2 AND 3, find multiples of their LCM = 6.",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "even-odd",
-        "divisibility",
-        "counting",
-        "two-step"
-      ]
-    },
-    {
-      "id": "NUM-EOP-027",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "x is a positive odd integer greater than 1.\n\nColumn A: x²\nColumn B: x² – 1",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "A",
-      "explanation": "Column A = x². Column B = x² – 1. Since x² > 0 for all real x ≠ 0, and x is a positive integer greater than 1, x² ≥ 9 > 0, so x² > x² – 1. Column A > Column B always. The parity analysis: x is odd, x² is odd, x² – 1 is even. Both columns have definite parity, but more importantly A – B = x² – (x²–1) = 1 > 0. Column A is always exactly 1 greater.",
-      "trap": "Students sometimes complicate this with parity analysis or think the answer might be D because x is not fully specified. But the algebraic relationship A = B + 1 is always true regardless of which specific odd x is chosen.",
-      "estimated_time_seconds": 50,
-      "tags": [
-        "even-odd",
-        "qc",
-        "conceptual",
-        "algebraic-proof"
-      ]
-    },
-    {
-      "id": "NUM-EOP-028",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If ab is odd, which of the following must be odd?",
-      "options": [
-        "A. a + b",
-        "B. a – b",
-        "C. a + b + 1",
-        "D. a × b + 1",
-        "E. a² + b²"
-      ],
-      "answer": "C",
-      "explanation": "ab odd means both a and b are odd. (A) a + b = odd + odd = even ✗; (B) a − b = even ✗; (C) a + b + 1 = even + 1 = odd ✓; (D) ab + 1 = odd + 1 = even ✗; (E) a² + b² = odd + odd = even ✗. So C.",
-      "trap": "Students may mistakenly compute a+b+1 as 'Odd+Odd+1 = Odd+1 = Even,' adding a and b individually rather than first recognizing a+b = Odd+Odd = Even. Always reduce step by step: Odd+Odd=Even, then Even+1=Odd.",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "even-odd",
-        "multiplication",
-        "conceptual",
-        "two-step"
-      ]
-    },
-    {
-      "id": "NUM-EOP-029",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "n is an integer. Which of the following expressions is odd for every integer n?",
-      "options": [
-        "A. n^3 + n",
-        "B. n^3 + n^2",
-        "C. n^3 + n + 1",
-        "D. n^3 - n",
-        "E. n^3 + n^2 + n + 1"
-      ],
-      "answer": "C",
-      "explanation": "The key identity is that n^2 + n = n(n + 1) is a product of two consecutive integers, so it is always even. The same argument handles the cubes, since n^3 has the same parity as n.\nA - n^3 has the parity of n, so n^3 + n is odd + odd = even when n is odd and even + even = even when n is even. Always even. FALSE.\nB - n^3 + n^2 = n^2(n + 1), a product in which n and n + 1 are consecutive, so one factor is even. With n = 3: 27 + 9 = 36, even. FALSE.\nC - n^3 + n is always even by A, so adding 1 makes it always odd. With n = 2: 8 + 2 + 1 = 11; with n = 3: 27 + 3 + 1 = 31; with n = -2: -8 - 2 + 1 = -9. TRUE.\nD - n^3 - n = (n - 1)n(n + 1), three consecutive integers, so it is always even (in fact always divisible by 6). With n = 3: 24. FALSE.\nE - factor it: n^3 + n^2 + n + 1 = n^2(n + 1) + (n + 1) = (n^2 + 1)(n + 1). If n is even, n^2 + 1 is odd and n + 1 is odd, so the product is odd; if n is odd, both factors are even, so the product is even. With n = 2: 8 + 4 + 2 + 1 = 15, odd; with n = 3: 27 + 9 + 3 + 1 = 40, even. Odd for some n but not all. FALSE.\nCheck C at n = 0: 0 + 0 + 1 = 1, odd. Correct.\nAnswer: C.",
-      "trap": "Choosing E is the designed trap: testing a single even value such as n = 2 gives 15, which is odd, and the pattern looks settled. It breaks at every odd n, because (n^2 + 1)(n + 1) turns into even x even. 'Odd for every integer n' has to survive both parities, so always test one of each. Choosing A after testing only an odd n and mis-adding: for n = 3, n^3 + n = 27 + 3 = 30, which is even, not odd; odd + odd = even is the rule being missed.",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "consecutive-integers",
-        "cubes",
-        "must-be-odd"
-      ]
-    },
-    {
-      "id": "NUM-EOP-030",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "If x and y are integers and x + y is even, which of the following must be true?",
-      "options": [
-        "A. x and y are both even",
-        "B. x and y are both odd",
-        "C. x and y have the same parity",
-        "D. xy is odd",
-        "E. x – y is odd"
-      ],
-      "answer": "C",
-      "explanation": "x + y is even means either both x and y are even, OR both x and y are odd. In both cases, x and y have the same parity (both even or both odd). A is not necessarily true (both could be odd). B is not necessarily true (both could be even). C is always true ✓. D: if both are even, xy is even — D fails. E: x – y: if both even: Even – Even = Even; if both odd: Odd – Odd = Even. So x – y is always even, not odd — E is false.",
-      "trap": "Students may choose A or B, thinking x+y even requires a specific case. In fact, x+y is even when x and y have the same parity — both even OR both odd.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "even-odd",
-        "conceptual",
-        "parity-same",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "NUM-EOP-031",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "For how many integers n with -4 <= n <= 5 is 6n + 3 an odd integer? Enter your answer as a number.",
-      "options": null,
-      "answer": "10",
-      "explanation": "Step 1 — 6n is 6 times an integer, so it is even for every integer n, positive, negative or zero.\nStep 2 — 6n + 3 = even + odd = odd, for every integer n. The condition never fails.\nStep 3 — count the integers in the range: from -4 to 5 inclusive there are 5 - (-4) + 1 = 10 integers.\nCheck the two ends: n = -4 gives 6(-4) + 3 = -21, odd; n = 5 gives 33, odd. Check n = 0: 3, odd.\nAnswer: 10.",
-      "trap": "Answering 5 by assuming 6n + 3 is odd only when n is odd, then counting the odd values of n in the range. The coefficient 6 is even, so it wipes out n's parity entirely: the term 6n is even no matter what n is.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "even-coefficient",
-        "counting",
-        "negative-parity"
-      ]
-    },
-    {
-      "id": "NUM-EOP-032",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "p is a positive even integer and q is a positive odd integer.\nColumn A: (-1)^p\nColumn B: (-1)^q",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "A",
-      "explanation": "Step 1 — a negative base raised to an even exponent gives a positive result: the minus signs pair off. So (-1)^p = 1 for every even p.\nStep 2 — a negative base raised to an odd exponent leaves one minus sign unpaired: (-1)^q = -1 for every odd q.\nStep 3 — 1 > -1, and this holds for every legal pair, so Column A is always greater.\nCheck p = 2, q = 3: (-1)^2 = 1 and (-1)^3 = -1. Check p = 10, q = 7: 1 and -1 again.\nAnswer: A.",
-      "trap": "Choosing D because p and q are unspecified. The actual sizes of p and q never matter; only their parity does, and that is fixed by the stem, so the two columns are locked at 1 and -1. Choosing C comes from reading (-1)^q as -1^q and treating both as 1.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "exponents",
-        "qc",
-        "sign-rules"
-      ]
-    },
-    {
-      "id": "NUM-EOP-033",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "The product of two positive integers is 36, and one of the two integers is odd. What is the greatest possible value of the other integer?",
-      "options": [
-        "A. 6",
-        "B. 9",
-        "C. 12",
-        "D. 18",
-        "E. 36"
-      ],
-      "answer": "E",
-      "explanation": "Step 1 — 36 = 2^2 x 3^2, so the odd factors of 36 are the ones built only from 3s: 1, 3 and 9.\nStep 2 — pair each with its partner: 1 x 36, 3 x 12, 9 x 4.\nStep 3 — the partners available are 36, 12 and 4, so the greatest is 36.\nCheck: 1 x 36 = 36, and 1 is odd, so the pair is legal. Correct.\nAnswer: E, 36.",
-      "trap": "Choosing 18 (option D) takes the largest proper factor of 36 and forgets to check its partner: 18 x 2 = 36, but 2 is even, so that pair breaks the condition. Choosing 12 (option C) treats 1 as 'not really a factor' and starts the odd list at 3, giving the partner of 3. Choosing 9 (option B) finds the largest ODD factor of 36 and reports it instead of its partner, answering the wrong half of the pair. Choosing 6 (option A) splits 36 evenly as 6 x 6, the reflex that ignores the requirement that one factor be odd - 6 is even.",
-      "estimated_time_seconds": 75,
-      "tags": [
-        "odd-factors",
-        "maximum",
-        "parity-constraint"
-      ]
-    },
-    {
-      "id": "NUM-EOP-034",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "w, x, y and z are integers such that x + y is odd, y + z is odd and z + w is odd. Which of the following must be odd?",
-      "options": [
-        "A. x + z",
-        "B. x + w",
-        "C. w + y",
-        "D. xy + zw",
-        "E. x + yz"
-      ],
-      "answer": "B",
-      "explanation": "Step 1 — a sum is odd only when its two terms have opposite parity. So x is opposite to y, z is opposite to y, and w is opposite to z.\nStep 2 — chain them. x and z both sit opposite y, so x and z share a parity. w sits opposite z, so w shares y's parity and is opposite to x.\nStep 3 — there are exactly two cases. Case 1: y and w even, x and z odd. Case 2: y and w odd, x and z even.\nA - x and z share a parity, so x + z is odd + odd = even or even + even = even. Always EVEN. FALSE.\nB - x and w are opposite in both cases, so x + w is odd + even = odd. Always ODD. TRUE.\nC - w and y share a parity in both cases, so w + y is always even. FALSE.\nD - x and y are opposite, so one of them is even and xy is even; z and w are opposite, so zw is even. Even + even = even. Always EVEN. FALSE.\nE - y and z are opposite, so yz is even, and x + yz has the parity of x. In Case 1 x is odd and the expression is odd; in Case 2 x is even and it is even. Not determined. FALSE.\nCheck Case 1 with w = 2, x = 1, y = 2, z = 3: x + y = 3 odd, y + z = 5 odd, z + w = 5 odd. Then x + w = 3 (odd), x + z = 4 (even), w + y = 4 (even), xy + zw = 2 + 6 = 8 (even), x + yz = 1 + 6 = 7 (odd).\nCheck Case 2 with w = 1, x = 2, y = 1, z = 2: x + y = 3 odd, y + z = 3 odd, z + w = 3 odd. Then x + w = 3 (odd), x + z = 4 (even), w + y = 2 (even), xy + zw = 2 + 2 = 4 (even), x + yz = 2 + 2 = 4 (even), which flips E.\nAnswer: B.",
-      "trap": "Choosing A or C comes from adding two of the given odd sums and calling the result odd: (x + y) + (y + z) = x + 2y + z is odd + odd = EVEN, so dropping the 2y leaves x + z even, not odd; the same slip on (y + z) + (z + w) lands on C. Choosing D reads 'x and y have opposite parity' as making the product xy odd; opposite parity means one factor is even, so xy is even. Choosing E tests only Case 1, where x is odd and x + yz comes out odd, and never checks Case 2, where it is even.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "opposite-parity",
-        "must-be-odd",
-        "parity-chain"
-      ]
-    },
-    {
-      "id": "NUM-EOP-035",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "m and n are positive integers with m < n. The product mn is even and the sum m + n is odd.\nColumn A: m^2 n\nColumn B: m n^2",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "Step 1 — read what the parity conditions actually do. m + n odd means one of them is even and the other odd, which already forces mn to be even. The parity information is consistent but adds nothing to the comparison.\nStep 2 — factor both columns. Column A = mn x m and Column B = mn x n, so both are the same positive quantity mn multiplied by m and by n respectively.\nStep 3 — m and n are positive, so mn > 0 and dividing both columns by mn is safe. The comparison reduces to m versus n, and the stem says m < n.\nStep 4 — therefore m^2 n < m n^2 for every legal pair, so Column B is greater.\nCheck m = 2, n = 3: Column A = 4 x 3 = 12, Column B = 2 x 9 = 18. Check m = 3, n = 8: Column A = 9 x 8 = 72, Column B = 3 x 64 = 192. Column B wins both.\nAnswer: B.",
-      "trap": "Choosing D because the parity conditions look like they might let the columns swap. They cannot: the parity facts are a red herring, and the only thing that decides the comparison is m < n with both positive. Choosing A comes from thinking the squared variable automatically makes its column larger, ignoring that the other column squares the bigger number.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "qc",
-        "red-herring",
-        "inequality"
-      ]
-    },
-    {
-      "id": "NUM-EOP-036",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "a, b and c are positive integers and a^2 x b^3 x c is odd. Which of the following must be true? Select all that apply.",
-      "options": [
-        "A. a is odd",
-        "B. b + c is even",
-        "C. a + b + c is odd",
-        "D. a x b x c + 1 is odd",
-        "E. a^b is even"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "C"
-      ],
-      "explanation": "Step 1 — a product is odd only when every factor is odd. a^2 is odd only if a is odd, b^3 is odd only if b is odd, and c must be odd as well. So a, b and c are all odd.\nA - a must be odd, as shown. TRUE.\nB - odd + odd = even, so b + c is even. With b = 3, c = 5: 8. TRUE.\nC - odd + odd = even, then even + odd = odd, so a + b + c is odd. With a = 3, b = 3, c = 5: 11. TRUE.\nD - a x b x c is odd x odd x odd = odd, so a x b x c + 1 is even, not odd. With a = b = 1, c = 3: 3 + 1 = 4. FALSE.\nE - an odd base to any power is odd, so a^b is odd. With a = 3, b = 3: 27. FALSE.\nCheck the whole set with a = 3, b = 5, c = 7: a^2 x b^3 x c = 9 x 125 x 7 = 7875, odd, as required. Then A holds, b + c = 12 even, a + b + c = 15 odd, abc + 1 = 105 + 1 = 106 even, a^b = 3^5 = 243 odd.\nAnswer: A, B, C.",
-      "trap": "Selecting D by computing that abc is odd and then reporting that value's parity instead of the parity after adding 1. Selecting E comes from assuming that a large exponent drags an odd base toward even; odd^n is odd for every n.",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "odd-product",
-        "must-be-true",
-        "multiple-answer"
-      ]
-    },
-    {
-      "id": "NUM-EOP-037",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "n is a positive integer less than 500. n/2 is an even integer, n/4 is an even integer, and n/8 is an odd integer. What is the greatest possible value of n? Enter your answer as a number.",
-      "options": null,
-      "answer": "488",
-      "explanation": "Step 1 — read the three conditions as a statement about factors of 2. n/8 being an integer means 8 divides n; n/8 being ODD means no further factor of 2 survives. So n contains exactly three factors of 2: n = 8k with k odd.\nStep 2 — the first two conditions are then automatic: n/2 = 4k and n/4 = 2k are both even. They are there to tempt you into reading parity down the chain.\nStep 3 — note what the chain actually does. n is even, n/2 is even, n/4 is even, and then n/8 is odd. Dividing by 2 does not preserve parity; each division simply removes one factor of 2, and the parity flips to odd the moment the last one is gone.\nStep 4 — maximise. n = 8k < 500 gives k < 62.5, so k <= 62, and k must be odd, so the largest allowed k is 61.\nStep 5 — n = 8 x 61 = 488.\nCheck: 488/2 = 244 (even), 488/4 = 122 (even), 488/8 = 61 (odd), and 488 < 500. The next multiple of 8, 496, gives 496/8 = 62, which is even, so it fails.\nAnswer: 488.",
-      "trap": "Answering 496 takes the largest multiple of 8 below 500 and assumes any such n works; 496/8 = 62 is even, so it fails the last condition. Answering 498 takes the largest even number below 500, ignoring that n must be divisible by 8 at all. The underlying error in both is expecting parity to be inherited through division: n even does not make n/2 even, and n/4 even does not make n/8 even. Parity rules cover addition, subtraction and multiplication only.",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "division-no-parity-rule",
-        "powers-of-2",
-        "maximum"
-      ]
-    },
-    {
-      "id": "NUM-EOP-038",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "p and q are distinct prime numbers and p + q is odd. Which of the following must be true?",
-      "options": [
-        "A. p + q is prime",
-        "B. p x q + 1 is odd",
-        "C. p^2 + q^2 is even",
-        "D. p + q > 7",
-        "E. p x q is a perfect square"
-      ],
-      "answer": "B",
-      "explanation": "Step 1 — p + q is odd, so one of the two primes is even and the other is odd.\nStep 2 — the only even prime is 2. So one of p and q equals 2 and the other is an odd prime.\nA - take p = 2, q = 7: p + q = 9 = 3 x 3, not prime. FALSE.\nB - p x q = 2 x (odd prime) is even, so p x q + 1 is odd. With p = 2, q = 7: 14 + 1 = 15, odd. TRUE.\nC - one square is even (2^2 = 4) and the other odd, so p^2 + q^2 = even + odd = odd. With p = 2, q = 7: 4 + 49 = 53, odd. FALSE.\nD - p = 2, q = 3 gives p + q = 5, which is not greater than 7. FALSE.\nE - p x q = 2 x (odd prime) has a single factor of 2 and a single factor of the odd prime, so it is never a perfect square. With p = 2, q = 5: 10. FALSE.\nCheck B on a second pair, p = 2, q = 13: 26 + 1 = 27, odd. Correct.\nAnswer: B.",
-      "trap": "Choosing C by assuming both primes are odd - the usual mental default, since every prime except 2 is odd. The stem's 'p + q is odd' is precisely the signal that one of them must be 2, the only even prime. Choosing A comes from noticing that 2 + 3 = 5 and 2 + 5 = 7 are prime and stopping before 2 + 7 = 9.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "primes",
-        "only-even-prime",
-        "must-be-true"
-      ]
-    },
-    {
-      "id": "NUM-EOP-039",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "a is an even integer. b is an odd integer. Neither a nor b is zero.\n\nColumn A: (–1)^(a+b) + (–1)^(a–b)\nColumn B: 0",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "B",
-      "explanation": "a is even, b is odd. a+b = Even+Odd = Odd → (–1)^(a+b) = –1. a–b = Even–Odd = Odd → (–1)^(a–b) = –1. Column A = –1 + (–1) = –2. Column B = 0. Since –2 < 0, Column B is greater.",
-      "trap": "Students may think a+b and a–b have different parities (since one adds and one subtracts b). But Even ± Odd = Odd in both cases. Both exponents are odd, giving –1 + (–1) = –2, not 0.",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "even-odd",
-        "qc",
-        "exponents",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "NUM-EOP-040",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "How many integers from 100 to 200 inclusive are divisible by 4 but NOT divisible by 6?",
-      "options": null,
-      "answer": "18",
-      "explanation": "Multiples of 4 from 100 to 200: from 100 (=4×25) to 200 (=4×50), count = 50–25+1 = 26. Multiples of LCM(4,6)=12 from 100 to 200: from 108 (=12×9) to 192 (=12×16), count = 16–9+1 = 8. Multiples of 4 but NOT 6 = 26 – 8 = 18.",
-      "trap": "Students compute LCM(4,6) = 24 instead of 12 (thinking LCM of 4 and 6 is their product). LCM(4,6) = 12 because 4=2² and 6=2×3, so LCM = 2²×3 = 12.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "even-odd",
-        "divisibility",
-        "counting",
-        "lcm",
-        "multi-step"
-      ]
-    },
-    {
-      "id": "NUM-EOP-041",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "x is an integer and x^3 + x is divisible by 4. Which of the following must be true? Select all that apply.",
-      "options": [
-        "A. x is even",
-        "B. x is a multiple of 4",
-        "C. x^2 + x is divisible by 8",
-        "D. x/2 is an even integer",
-        "E. x^3 + x is divisible by 8"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "D"
-      ],
-      "explanation": "Step 1 — factor: x^3 + x = x(x^2 + 1).\nStep 2 — if x is odd then x^2 + 1 is even but x is odd, so the expression carries exactly one factor of 2 and is never a multiple of 4.\nStep 3 — if x is even then x^2 + 1 is odd, so every factor of 2 must come from x itself. Divisibility by 4 therefore forces 4 to divide x.\nStep 4 — so the condition in the stem is equivalent to: x is a multiple of 4. Write x = 4k.\nA - every multiple of 4 is even. TRUE.\nB - this is exactly the condition derived in Step 4. TRUE.\nC - x^2 + x = x(x + 1) = 4k(4k + 1), and 4k + 1 is odd, so the power of 2 comes from 4k alone. With x = 4: 16 + 4 = 20, and 20/8 = 2.5. FALSE.\nD - x = 4k gives x/2 = 2k, which is even for every integer k. With x = 4: 2. With x = -12: -6. TRUE.\nE - x = 4 gives 64 + 4 = 68, and 68/8 = 8.5. FALSE.\nCheck the set with x = 8: 512 + 8 = 520 = 4 x 130, so the stem holds. Then x is even, x is a multiple of 4, x/2 = 4 is even, while x^2 + x = 72 is divisible by 8 here but 20 at x = 4 is not, and x^3 + x = 520 is divisible by 8 here but 68 at x = 4 is not. C and E fail at x = 4.\nAnswer: A, B, D.",
-      "trap": "Selecting C or E promotes 'divisible by 4' to 'divisible by 8' because the expression looks heavily even; x = 4 is the counterexample for both, giving 20 and 68. Skipping A or B comes from testing only x = 2, seeing x^3 + x = 10 and concluding that any even x is enough; 10 is 2 x 5, so x = 2 does not even satisfy the stem. Skipping D is the reverse worry, that dividing by 2 might destroy the guarantee; here x = 4k makes x/2 = 2k, which is even for every k, including k = 0.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "divisibility-by-4",
-        "must-be-true",
-        "powers-of-2"
-      ]
-    },
-    {
-      "id": "NUM-EOP-042",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "a, b, and c are consecutive odd integers with a < b < c.\n\nColumn A: a + c\nColumn B: 2b",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "Let a = 2k–1 (some odd integer). Then b = 2k+1 and c = 2k+3 (consecutive odd integers differ by 2). Column A: a + c = (2k–1) + (2k+3) = 4k + 2. Column B: 2b = 2(2k+1) = 4k + 2. Column A = Column B = 4k + 2. They are always equal. Verify: a=1, b=3, c=5: A = 1+5=6, B = 2×3=6 ✓. a=–3, b=–1, c=1: A=–3+1=–2, B=2×(–1)=–2 ✓.",
-      "trap": "Students may test one example and choose C, then doubt themselves because the answer seems 'too obvious for a hard question.' The insight — that the average of an arithmetic sequence's endpoints equals the middle term — is a clean but non-trivial result worth verifying algebraically.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "even-odd",
-        "qc",
-        "consecutive-integers",
-        "algebraic-proof",
-        "pattern"
-      ]
-    },
-    {
-      "id": "NUM-EOP-043",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "a, b and c are non-negative integers and 2^a x 3^b + 2^c is odd. Which of the following must be true?",
-      "options": [
-        "A. a = 0",
-        "B. b = 0",
-        "C. a + c is at least 1",
-        "D. a = c",
-        "E. b is even"
-      ],
-      "answer": "C",
-      "explanation": "Step 1 — a sum is odd only when exactly one of the two terms is odd.\nStep 2 — when is each term odd? 2^a x 3^b is odd only if there is no factor of 2 at all, which means a = 0 (recall 2^0 = 1, odd, and 3^b is odd for every b). And 2^c is odd only if c = 0.\nStep 3 — so exactly one of a = 0 and c = 0 holds. If both were 0 the sum would be 3^b + 1 = odd + odd = even; if neither were 0 both terms would be even and the sum even.\nA - false: a = 1, b = 0, c = 0 gives 2 + 1 = 3, odd, with a not 0. FALSE.\nB - false: a = 0, b = 1, c = 1 gives 3 + 2 = 5, odd, with b = 1. FALSE.\nC - exactly one of a and c is 0, so the other is at least 1, making a + c at least 1. TRUE.\nD - a = c is impossible here: equal values would put both terms in the same parity class and force an even sum. FALSE.\nE - the same example a = 0, b = 1, c = 1 has b odd. FALSE.\nCheck C on both shapes: a = 0, b = 2, c = 3 gives 9 + 8 = 17, odd, and a + c = 3. a = 2, b = 1, c = 0 gives 12 + 1 = 13, odd, and a + c = 2.\nAnswer: C.",
-      "trap": "Choosing A by assuming the first term is the one that must be odd; the roles of the two terms are interchangeable, and the 2^c term can be the odd one instead. The deeper slip is reading 2^0 as even because the base is even: 2^0 = 1, which is odd, and that is what makes a = 0 or c = 0 possible at all.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "zero-exponent",
-        "powers-of-2",
-        "must-be-true"
-      ]
-    },
-    {
-      "id": "NUM-EOP-044",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "a, b, c and d are integers, each greater than 1, and a x b x c x d = 2520. Exactly one of the four integers is even. What is the greatest possible value of that even integer? Enter your answer as a number.",
-      "options": null,
-      "answer": "56",
-      "explanation": "Step 1 — factorise: 2520 = 2^3 x 3^2 x 5 x 7.\nStep 2 — exactly one of the four is even, so the other three are odd and contribute no factor of 2. Every one of the three 2s must sit inside the single even integer. Call it E, so E = 8 x m where m is an odd divisor of 315 = 3^2 x 5 x 7.\nStep 3 — the three odd integers multiply to 315/m, and each must be greater than 1.\nStep 4 — maximising E means minimising the product 315/m of those three odd integers. The smallest product of three integers greater than 1 that divides 315 is 3 x 3 x 5 = 45; 315/45 = 7 is an integer, so this split is legal. No smaller product works: 27 does not divide 315, and any product of three factors greater than 1 must use at least three of the prime factors 3, 3, 5, 7.\nStep 5 — so 315/m = 45, m = 7, and E = 8 x 7 = 56.\nCheck: 56 x 3 x 3 x 5 = 56 x 45 = 2520. Each of 3, 3, 5 is greater than 1 and odd, and 56 is the only even one. Correct.\nAnswer: 56.",
-      "trap": "Answering 2520 sets the other three to 1 and ignores the requirement that every one of the four integers exceeds 1. Answering 8 assumes the even integer can only be the pure power of 2, forgetting that it may also absorb odd factors. Answering 840 takes 2520/3 and leaves the other three as 3, 1 and 1, which again breaks the 'greater than 1' condition. The parity step is the one that does the real work: because only one integer may be even, all three factors of 2 are forced into it, so the question reduces to how few odd factors the remaining three can use up.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "odd-factors",
-        "parity-constraint",
-        "maximum"
-      ]
-    },
-    {
-      "id": "NUM-EOP-045",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "k is a number such that k^2 + k is an odd integer.\nColumn A: k\nColumn B: 0",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — test the reflex first. If k were an integer, then k^2 + k = k(k + 1) would be a product of two consecutive integers, and one of any two consecutive integers is even, so k^2 + k would be even. It is given as odd, so k is NOT an integer.\nStep 2 — that is the whole point of the stem: it says 'a number', not 'an integer'. Parity is defined only for integers, so no parity rule constrains k itself. The condition is a plain equation to be solved.\nStep 3 — take the smallest odd integer value, k^2 + k = 1, that is k^2 + k - 1 = 0. The quadratic formula gives k = (-1 + sqrt(5))/2 or k = (-1 - sqrt(5))/2.\nStep 4 — sqrt(5) is about 2.24, so the two roots are about 0.62 and about -1.62. Both satisfy the stem, and both are legal values of k.\nStep 5 — k = 0.62 makes Column A greater than Column B; k = -1.62 makes Column B greater. The relationship is not determined.\nCheck the positive root: 0.618^2 + 0.618 = 0.382 + 0.618 = 1, an odd integer. Check the negative root: (-1.618)^2 + (-1.618) = 2.618 - 1.618 = 1, an odd integer. Both are valid.\nAnswer: D.",
-      "trap": "The stem never says k is an integer, and that omission is the question. A student who assumes it is applies k(k + 1) is always even, concludes the condition is impossible, and then guesses - or decides the problem must intend some odd k and picks A. Parity is defined only for integers: the moment k is allowed to be any number, k^2 + k can be odd, and it happens at two values of opposite sign. Choice B fails for the mirror-image reason: the positive root, about 0.618, exists just as surely as the negative one, so Column B is not forced either. Choice C fails because neither root is 0 - at k = 0, k^2 + k = 0, which is even, not odd - so the two columns are never equal.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "parity-needs-integers",
-        "qc",
-        "consecutive-integers"
-      ]
-    },
-    {
-      "id": "NUM-EOP-046",
-      "difficulty": "extreme_hard",
-      "type": "multiple_answer",
-      "question": "For a positive integer n, let f(n) be the sum of all positive divisors of n. For which of the following values of n is f(n) odd? Select all that apply.",
-      "options": [
-        "A. n = 6",
-        "B. n = 8",
-        "C. n = 12",
-        "D. n = 18",
-        "E. n = 25"
-      ],
-      "answer": [
-        "B",
-        "D",
-        "E"
-      ],
-      "explanation": "The fast route: divisors pair as d and n/d, and the only divisors that are not cancelled out in parity are the odd ones. In fact f(n) is odd exactly when the ODD part of n is a perfect square, which means n is a perfect square or twice a perfect square. Compute each one to be certain.\nA - n = 6: divisors 1, 2, 3, 6, sum = 12, even. (Odd part of 6 is 3, not a square.) FALSE.\nB - n = 8: divisors 1, 2, 4, 8, sum = 15, odd. (8 = 2 x 4, twice a square; the only odd divisor is 1.) TRUE.\nC - n = 12: divisors 1, 2, 3, 4, 6, 12, sum = 28, even. (Odd part 3, not a square.) FALSE.\nD - n = 18: divisors 1, 2, 3, 6, 9, 18, sum = 39, odd. (18 = 2 x 9, twice a square.) TRUE.\nE - n = 25: divisors 1, 5, 25, sum = 31, odd. (25 is a perfect square.) TRUE.\nCheck the pattern from a different angle: the odd divisors of 8 are just 1 (one of them, an odd count); of 18 they are 1, 3, 9 (three, odd count); of 25 they are 1, 5, 25 (three). The even divisors always pair off, so the parity of f(n) is the parity of the number of odd divisors - odd in exactly the three selected cases.\nAnswer: B, D, E.",
-      "trap": "Selecting A and C because 6 and 18 look alike (both are 2 x 3 x something) and 12 contains the square 4. What matters is the odd part alone: 18 = 2 x 3^2 has odd part 9, a square, while 6 = 2 x 3 and 12 = 2^2 x 3 have odd part 3, which is not. Rejecting B because 8 is 'very even' is the other slip: all of its even divisors cancel in parity and only the divisor 1 survives.",
-      "estimated_time_seconds": 125,
-      "tags": [
-        "divisor-sum",
-        "perfect-squares",
-        "multiple-answer"
-      ]
-    },
-    {
-      "id": "NUM-EOP-047",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "a, b and c are integers such that a + b + c = 0 and ab + bc + ca = -7. What can be said about a^2 + b^2 + c^2?",
-      "options": [
-        "A. It is always even",
-        "B. It is always odd",
-        "C. It could be either even or odd",
-        "D. It is always divisible by 4",
-        "E. It is always divisible by 3"
-      ],
-      "answer": "A",
-      "explanation": "Step 1 — use the square-of-a-sum identity: (a + b + c)^2 = a^2 + b^2 + c^2 + 2(ab + bc + ca).\nStep 2 — substitute the given values: 0^2 = a^2 + b^2 + c^2 + 2 x (-7).\nStep 3 — solve: a^2 + b^2 + c^2 = 0 + 14 = 14. The value is not merely even, it is pinned to 14.\nStep 4 — test the options against 14. A: 14 is even, TRUE. B: 14 is not odd, FALSE. C: the value is forced, so it cannot be either, FALSE. D: 14/4 = 3.5, FALSE. E: 14/3 is not an integer, FALSE.\nCheck that such integers exist, and that they give 14: a = 1, b = 2, c = -3 satisfies a + b + c = 0 and ab + bc + ca = 2 - 6 - 3 = -7, and 1 + 4 + 9 = 14. A second triple, a = -1, b = -2, c = 3, gives the same 14.\nAnswer: A.",
-      "trap": "Choosing C by trying to reason about the parities of a, b and c separately: a + b + c = 0 is even, which allows all three even or one even and two odd, so parity alone looks undecidable. The identity bypasses that entirely and fixes the value at 14. Choosing D comes from seeing 2(ab + bc + ca) and assuming the whole expression carries a factor of 4.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "algebraic-identity",
-        "parity-of-value",
-        "symmetric-sums"
-      ]
-    },
-    {
-      "id": "NUM-EOP-048",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "n is a positive integer. P(n) is the product of all odd integers from 1 to 2n - 1, inclusive, and S(n) is the sum of all integers from 1 to 2n, inclusive.\nColumn A: The remainder when P(n) is divided by 2\nColumn B: The remainder when S(n) is divided by 2",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — Column A. P(n) is a product of odd numbers only, and odd x odd = odd however many factors there are, so P(n) is odd for every n and Column A = 1 always.\nStep 2 — Column B. S(n) = 1 + 2 + ... + 2n = 2n(2n + 1)/2 = n(2n + 1). Since 2n + 1 is odd, the parity of S(n) is just the parity of n.\nStep 3 — so Column B = 1 when n is odd and Column B = 0 when n is even.\nCase n = 1: P = 1, remainder 1; S = 1 + 2 = 3, remainder 1. The columns are equal.\nCase n = 2: P = 1 x 3 = 3, remainder 1; S = 1 + 2 + 3 + 4 = 10, remainder 0. Column A is greater.\nStep 4 — two legal values of n give different verdicts, so nothing is determined.\nCheck n = 3: P = 1 x 3 x 5 = 15, remainder 1; S = 21, remainder 1, equal again. Check n = 4: P = 105, remainder 1; S = 36, remainder 0, Column A greater. The pattern alternates with the parity of n, confirming D.\nAnswer: D.",
-      "trap": "Choosing A after noticing that P(n) is always odd and assuming S(n), a run of consecutive integers, is always even. S(n) = n(2n + 1) is even only when n is even; for n = 1 it is 3 and for n = 3 it is 21. Choosing C comes from testing only n = 1 or n = 3 and seeing 1 in both columns.",
-      "estimated_time_seconds": 125,
-      "tags": [
-        "qc",
-        "odd-product",
-        "triangular-sum"
-      ]
-    },
-    {
-      "id": "NUM-EOP-049",
-      "difficulty": "extreme_hard",
-      "type": "numeric_entry",
-      "question": "For how many integers n with 1 <= n <= 200 is n(n + 1)(n + 2) divisible by 8? Enter your answer as a number.",
-      "options": null,
-      "answer": "125",
-      "explanation": "Step 1 — split by the parity of n, since that decides how the factors of 2 are distributed.\nStep 2 — n even. Then n and n + 2 are consecutive even numbers, so one of them is a multiple of 4 and the other supplies one more factor of 2. The product therefore carries at least 4 x 2 = 8. Every even n works: that is 100 values from 2 to 200.\nStep 3 — n odd. Then n and n + 2 are both odd, and the only even factor is n + 1. Divisibility by 8 requires 8 to divide n + 1 outright, that is n = 7, 15, 23, ..., 199.\nStep 4 — count that list: it runs from 7 to 199 in steps of 8, giving (199 - 7)/8 + 1 = 192/8 + 1 = 24 + 1 = 25 values.\nStep 5 — total = 100 + 25 = 125.\nCheck one from each branch. n = 6: 6 x 7 x 8 = 336 = 8 x 42, yes. n = 7: 7 x 8 x 9 = 504 = 8 x 63, yes. n = 5: 5 x 6 x 7 = 210, and 210/8 = 26.25, no - consistent with 5 + 1 = 6 not being a multiple of 8.\nAnswer: 125.",
-      "trap": "Answering 100 by handling only the even n and assuming odd n can never work; n = 7 works because n + 1 = 8 supplies all three factors of 2 at once. Answering 200 comes from the correct fact that three consecutive integers always contain an even number and then over-claiming divisibility by 8 from a single factor of 2.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "consecutive-integers",
-        "powers-of-2",
-        "counting"
-      ]
-    },
-    {
-      "id": "NUM-EOP-050",
-      "difficulty": "extreme_hard",
-      "type": "multiple_answer",
-      "question": "For a positive integer k, let E(k) be the largest power of 2 that divides k. For example, E(12) = 4, because 12 = 4 x 3 and 8 does not divide 12. Which of the following statements are true for all positive integers n and m? Select all that apply.",
-      "options": [
-        "A. E(2n) = 2 x E(n)",
-        "B. E(3n) = 3 x E(n)",
-        "C. If n is odd, then E(n) = 1",
-        "D. E(n^2) = [E(n)]^2",
-        "E. E(n + m) = E(n) + E(m)"
-      ],
-      "answer": [
-        "A",
-        "C",
-        "D"
-      ],
-      "explanation": "Write n = 2^s x t with t odd; then E(n) = 2^s. Every statement is a claim about how s behaves.\nA - 2n = 2^(s+1) x t, so E(2n) = 2^(s+1) = 2 x 2^s = 2 x E(n). Check n = 12: E(24) = 8 = 2 x 4. TRUE.\nB - multiplying by the odd number 3 adds no factors of 2, so E(3n) = E(n), not 3 x E(n). Check n = 1: E(3) = 1 but 3 x E(1) = 3. FALSE.\nC - an odd n has no factor of 2, so the largest power of 2 dividing it is 2^0 = 1. Check n = 7: E(7) = 1. TRUE.\nD - n^2 = 2^(2s) x t^2 with t^2 odd, so E(n^2) = 2^(2s) = (2^s)^2 = [E(n)]^2. Check n = 12: E(144) = 16 = 4^2. TRUE.\nE - addition can create new factors of 2 out of nowhere. Check n = 1, m = 3: E(4) = 4 but E(1) + E(3) = 1 + 1 = 2. FALSE.\nCheck A, C and D once more on n = 40 = 2^3 x 5, so E(40) = 8: E(80) = 16 = 2 x 8; 40 is not odd so C does not apply; E(1600) = 64 = 8^2. All hold.\nAnswer: A, C, D.",
-      "trap": "Selecting B by treating E as if it multiplied through any factor, when only the factors of 2 inside k count - multiplying by the odd number 3 leaves E untouched. Selecting E is the same error for sums: n = 1 and m = 3 are each odd with E = 1, yet their sum 4 has E = 4, because two odds add to an even.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "powers-of-2",
-        "function-properties",
-        "multiple-answer"
-      ]
-    },
-    {
-      "id": "NUM-EOP-051",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "The sum of seven integers is odd and the product of the same seven integers is even. Which of the following must be true?",
-      "options": [
-        "A. At least two of the seven integers are even",
-        "B. At least four of the seven integers are odd",
-        "C. All seven integers are odd",
-        "D. Exactly one of the seven integers is even",
-        "E. The product of the seven integers is divisible by 8"
-      ],
-      "answer": "A",
-      "explanation": "Step 1 — even terms never affect the parity of a sum, so only the odd terms matter. Each odd term flips the running total. The sum is odd exactly when the NUMBER of odd terms is odd.\nStep 2 — with seven integers in all, if the number of odd ones is odd then the number of even ones is 7 minus an odd number, which is EVEN. So the count of even integers is 0, 2, 4 or 6.\nStep 3 — the product is even, so at least one integer is even, which rules out 0. The count of even integers is therefore 2, 4 or 6.\nA - the count of evens is at least 2 in every surviving case. TRUE.\nB - the count of odds can be as low as 1. Take 3, 2, 2, 2, 2, 2, 2: the sum is 15 (odd) and the product is even, yet only one integer is odd. FALSE.\nC - all seven odd would give an odd product, which the stem forbids. FALSE.\nD - impossible, not merely unforced. An odd sum forces an odd number of odd terms, so the number of even terms is 7 minus an odd number, which is always even and can never equal 1. FALSE.\nE - not forced. Take 2, 2, 1, 1, 1, 1, 1: the sum is 9 (odd), the product is 4, and 4 is not divisible by 8. Two even terms guarantee only 2 x 2 = 4. FALSE.\nCheck A on both examples above: 3, 2, 2, 2, 2, 2, 2 has six even terms, and 2, 2, 1, 1, 1, 1, 1 has two. Both are at least 2.\nAnswer: A.",
-      "trap": "Choosing D is the designed trap: the stem guarantees at least one even integer, and 'exactly one' feels like the minimal way to supply it. It is impossible - one even term would leave six odd terms, and six odds sum to even, so the total could not be odd. Choosing C ignores the product condition entirely. Choosing E turns 'at least two even factors' into 2^3; two factors of 2 give only 4, as 2 x 2 x 1 x 1 x 1 x 1 x 1 shows. Choosing B assumes an odd total needs a majority of odd terms, but a single odd term among six evens already makes the sum odd.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "counting-odds",
-        "sum-parity",
-        "must-be-true"
-      ]
-    }
-  ]
+  "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
+  "bank": "Adi's GRE Quant Bank",
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 25,
+   "multiple_answer": 19,
+   "numeric_entry": 13,
+   "quantitative_comparison": 16
+  },
+  "kmf1804_merged": "2026-10-03"
+ },
+ "questions": [
+  {
+   "id": "NUM-EOP-001",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Which of the following is an even number?",
+   "options": [
+    "A. 1",
+    "B. 3",
+    "C. 0",
+    "D. 7",
+    "E. 9"
+   ],
+   "answer": "C",
+   "explanation": "An even number is any integer divisible by 2 with no remainder. 0 ÷ 2 = 0 with remainder 0, so 0 is even. All other options (1, 3, 7, 9) are odd — they leave remainder 1 when divided by 2.",
+   "trap": "Students often say 0 is 'neither even nor odd' because it seems like a special case. By definition, 0 is divisible by 2 (0 = 2 × 0), making it even.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "even-odd",
+    "conceptual",
+    "memorisation"
+   ]
+  },
+  {
+   "id": "NUM-EOP-002",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "p is an even integer and q is an odd integer. Which of the following must be even?",
+   "options": [
+    "A. p + q",
+    "B. p x q",
+    "C. p + p + q",
+    "D. q + q + q",
+    "E. p x q + q"
+   ],
+   "answer": "B",
+   "explanation": "Test each option with the parity table. Use p = 2 and q = 3 to keep it concrete, but the rule is what decides.\nA - even + odd = odd. With p = 2, q = 3: 5. FALSE.\nB - even x anything = even, so p x q is even. With p = 2, q = 3: 6. TRUE.\nC - p + p = even, and even + odd = odd. With p = 2, q = 3: 7. FALSE.\nD - odd + odd = even, then even + odd = odd. With q = 3: 9. FALSE.\nE - p x q is even, and even + odd = odd. With p = 2, q = 3: 9. FALSE.\nCheck with a second pair, p = 4 and q = 7: A = 11 odd, B = 28 even, C = 15 odd, D = 21 odd, E = 35 odd. Same verdicts.\nAnswer: B.",
+   "trap": "Choosing D on the belief that odd + odd + odd is even. The first two odds do pair up to an even, but the third odd flips it back: 3 + 3 + 3 = 9. Choosing C or E comes from forgetting that adding an odd number always changes parity.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "parity-rules",
+    "must-be-even",
+    "basic-parity"
+   ]
+  },
+  {
+   "id": "NUM-EOP-003",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "If m and n are both odd integers, which of the following must be even?",
+   "options": [
+    "A. m + 1",
+    "B. m × n",
+    "C. m + n",
+    "D. m - 1",
+    "E. m² + 1"
+   ],
+   "answer": "C",
+   "explanation": "Odd + Odd = Even. So m + n must be even. Check the others: m + 1 = Odd + 1 = Odd + Odd = Even — actually this is also even! m - 1 = Odd - 1 = Odd - Odd = Even. m² + 1 = Odd² + 1 = Odd + 1 = Even. m × n = Odd × Odd = Odd. So B is the only odd result, meaning A, C, D, E are all even. The cleanest answer the question is testing: m + n = Odd + Odd = Even.",
+   "trap": "Students often think m × n (odd × odd) is even. In fact, Odd × Odd = Odd. The product of any number of odd numbers is always odd.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "even-odd",
+    "addition",
+    "multiplication",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "NUM-EOP-004",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "x is an even integer and y is an odd integer. What is the remainder when x + y is divided by 2? Enter your answer as a number.",
+   "options": null,
+   "answer": "1",
+   "explanation": "Step 1 — find the parity of the sum. even + odd = odd, so x + y is odd.\nStep 2 — translate parity into a remainder. An odd integer is 2k + 1, so dividing it by 2 leaves remainder 1; an even integer would leave remainder 0.\nCheck with x = 4, y = 3: 7 divided by 2 is 3 remainder 1. Check with x = 0, y = -5: -5 = 2 x (-3) + 1, remainder 1 again.\nAnswer: 1.",
+   "trap": "Answering 0 by treating 'x + y' as a sum of two integers and assuming any such sum is even. The answer is also not 0.5: a remainder is a whole number left over, not the fractional part of the quotient.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "parity-rules",
+    "remainder",
+    "basic-parity"
+   ]
+  },
+  {
+   "id": "NUM-EOP-005",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Which of the following is always true for any integer n?",
+   "options": [
+    "A. n² is odd",
+    "B. n² is even",
+    "C. n² + n is even",
+    "D. n² - n is odd",
+    "E. n² + 1 is odd"
+   ],
+   "answer": "C",
+   "explanation": "n² + n = n(n + 1). Note that n and n + 1 are consecutive integers, so one of them is always even. The product of any integer with an even number is even. Therefore n(n + 1) is always even, regardless of whether n is even or odd. Check: if n = 3, n² + n = 9 + 3 = 12 (even ✓). If n = 4, n² + n = 16 + 4 = 20 (even ✓).",
+   "trap": "Students pick E thinking n² + 1 is always odd, but if n is odd, n² is odd, so n² + 1 = odd + 1 = even. E fails for odd n.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "even-odd",
+    "consecutive-integers",
+    "conceptual",
+    "algebraic-proof"
+   ]
+  },
+  {
+   "id": "NUM-EOP-006",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "n is an odd integer.\n\nColumn A: n²\nColumn B: n² + 1",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "n is odd, so n² = Odd² = Odd. Column A = n² = some odd number. Column B = n² + 1 = Odd + 1 = Even. Since n² + 1 = n² + 1, Column B is always exactly 1 greater than Column A. Therefore Column B is greater.",
+   "trap": "Students may think 'n could be negative, so n² could be different.' But n² is always positive and Column B = n² + 1 is always exactly 1 more than Column A, regardless of the sign of n.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "even-odd",
+    "qc",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "NUM-EOP-007",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "If k is a positive even integer, which of the following must also be even?",
+   "options": [
+    "A. k + 1",
+    "B. k/2",
+    "C. k²",
+    "D. k - 1",
+    "E. k/4"
+   ],
+   "answer": "C",
+   "explanation": "k is even, so k = 2m for some positive integer m. k² = (2m)² = 4m², which is even (divisible by 2). Check the others: k + 1 = Even + 1 = Odd (A is wrong). k/2 = m, which could be odd or even (if k = 6, k/2 = 3, odd; if k = 4, k/2 = 2, even) — not always even. k - 1 = Even - 1 = Odd (D is wrong). k/4 may not even be an integer (if k = 6, k/4 = 1.5). Only C (k²) is always even.",
+   "trap": "Students often pick k/2, reasoning that 'half of an even number is even.' But half of 6 is 3 (odd), and half of 10 is 5 (odd). The quotient of two even numbers is not necessarily even.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "even-odd",
+    "conceptual",
+    "division"
+   ]
+  },
+  {
+   "id": "NUM-EOP-008",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "How many integers from -6 to 7, inclusive, are even? Enter your answer as a number.",
+   "options": null,
+   "answer": "7",
+   "explanation": "Step 1 — list them. The even integers in the range are -6, -4, -2, 0, 2, 4, 6.\nStep 2 — count: that is 7 integers.\nTwo points decide this question. Zero is even, because 0 = 2 x 0, so it belongs on the list. Negative integers have parity too, so -6, -4 and -2 belong as well.\nCheck by the endpoint formula: from -6 to 6 the evens are spaced 2 apart, giving (6 - (-6))/2 + 1 = 12/2 + 1 = 7. The extra integer 7 is odd and adds nothing.\nAnswer: 7.",
+   "trap": "Answering 6 by skipping 0 as 'neither even nor odd'. Answering 3 by counting only the positive evens 2, 4 and 6 and discarding the negatives, which is the 'not even means positive odd' habit in reverse.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "zero-is-even",
+    "negative-parity",
+    "counting"
+   ]
+  },
+  {
+   "id": "NUM-EOP-009",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Which of the following statements about the integer –6 is correct?",
+   "options": [
+    "A. –6 is odd because it is negative",
+    "B. –6 is neither even nor odd because it is negative",
+    "C. –6 is even because it is divisible by 2",
+    "D. –6 is even only if we ignore the negative sign",
+    "E. The parity of –6 cannot be determined"
+   ],
+   "answer": "C",
+   "explanation": "Parity (even/odd) applies to all integers, including negative integers. An integer is even if it is divisible by 2 with no remainder. –6 ÷ 2 = –3 (an integer with no remainder), so –6 is even. Negative numbers follow the same parity rules as positive numbers: –4 is even, –3 is odd, –6 is even, –7 is odd.",
+   "trap": "Students believe that only positive integers have parity, or that negative integers are automatically odd. Parity is defined for all integers: even means divisible by 2, and this applies equally to negative numbers.",
+   "estimated_time_seconds": 40,
+   "tags": [
+    "even-odd",
+    "negative-numbers",
+    "conceptual",
+    "memorisation"
+   ]
+  },
+  {
+   "id": "NUM-EOP-010",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "a is an even integer and b is an odd integer.\nColumn A: a + b\nColumn B: a x b",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Parity is settled here: a + b is odd and a x b is even. But parity says nothing about SIZE, and the question asks which is larger.\nCase 1 — a = 2, b = 3: Column A = 5, Column B = 6. Column B is greater.\nCase 2 — a = 0, b = 3: Column A = 3, Column B = 0. Column A is greater.\nTwo legal choices give opposite verdicts, so the relationship is not determined.\nCheck that both cases are legal: 2 and 0 are both even integers, 3 is odd, and no positivity was stated anywhere in the question.\nAnswer: D.",
+   "trap": "Choosing B after testing only a = 2, b = 3 and concluding that a product beats a sum. Setting a = 0 kills the product while the sum survives, and a = 0 is allowed because 0 is an even integer. Choosing A or B on parity grounds is also wrong: an even number is not automatically larger or smaller than an odd one.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "qc",
+    "zero-is-even",
+    "parity-vs-size"
+   ]
+  },
+  {
+   "id": "NUM-EOP-011",
+   "difficulty": "easy",
+   "type": "multiple_answer",
+   "question": "n is an integer. For which of the following values of n is n^3 - n^2 + n even? Select all that apply.",
+   "options": [
+    "A. n = 3",
+    "B. n = 4",
+    "C. n = -2",
+    "D. n = 0",
+    "E. n = 7"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "Step 1 — reduce the expression to a single parity. n^3 has the same parity as n, and n^2 has the same parity as n, so n^3 - n^2 + n has the parity of n - n + n, which is the parity of n.\nStep 2 — so the expression is even exactly when n is even. The signs do not matter: subtraction obeys the same parity table as addition.\nA - n = 3 is odd. 27 - 9 + 3 = 21, odd. FALSE.\nB - n = 4 is even. 64 - 16 + 4 = 52, even. TRUE.\nC - n = -2 is even; the minus sign does not change parity. -8 - 4 - 2 = -14, even. TRUE.\nD - n = 0 is even, since 0 = 2 x 0. 0 - 0 + 0 = 0, even. TRUE.\nE - n = 7 is odd. 343 - 49 + 7 = 301, odd. FALSE.\nCheck: the three selected values 4, -2 and 0 are exactly the even entries in the list.\nAnswer: B, C, D.",
+   "trap": "Skipping C because -2 is negative and skipping D because 0 looks like a special case. Both are even integers: parity is about divisibility by 2, not about sign, and 0 divided by 2 leaves remainder 0. The other slip is treating the three terms as if the minus sign could flip a parity, and then selecting A or E because 'two odds and a subtraction' feels even; subtraction follows the same table as addition, so the expression simply inherits the parity of n.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "zero-is-even",
+    "negative-parity",
+    "expression-parity"
+   ]
+  },
+  {
+   "id": "NUM-EOP-012",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "If x is an odd integer, what is the parity of x³?",
+   "options": [
+    "A. Always even",
+    "B. Always odd",
+    "C. Could be either even or odd",
+    "D. Always zero",
+    "E. Cannot be determined"
+   ],
+   "answer": "B",
+   "explanation": "Odd × Odd × Odd = Odd. More precisely: x is odd means x = 2k + 1 for some integer k. x² = (2k+1)² = 4k² + 4k + 1 = 2(2k² + 2k) + 1, which is odd. x³ = x² × x = Odd × Odd = Odd. So x³ is always odd when x is odd. Example: 3³ = 27 (odd), 5³ = 125 (odd), (–3)³ = –27 (odd).",
+   "trap": "Students sometimes think cubing changes parity or that large powers 'eventually become even.' The parity of a power of an integer depends only on whether the base is even or odd, not the exponent.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "even-odd",
+    "exponents",
+    "conceptual",
+    "memorisation"
+   ]
+  },
+  {
+   "id": "NUM-EOP-013",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "The sum of five consecutive odd integers is 85. What is the largest of these five integers?",
+   "options": null,
+   "answer": "21",
+   "explanation": "Let the five consecutive odd integers be n, n+2, n+4, n+6, n+8. Their sum: 5n + 20 = 85. 5n = 65. n = 13. The integers are 13, 15, 17, 19, 21. The largest is 21. Verify: 13 + 15 + 17 + 19 + 21 = 85 ✓.",
+   "trap": "Students sometimes write the consecutive odd integers as n, n+1, n+3, n+5, n+7 (mixing up consecutive integers with consecutive odd integers). Consecutive odd integers differ by 2, not 1.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "even-odd",
+    "consecutive-integers",
+    "word-problem-setup"
+   ]
+  },
+  {
+   "id": "NUM-EOP-014",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "a is an even integer and b is an odd integer. Which of the following must be even?",
+   "options": [
+    "A. a^2 x b + b",
+    "B. a x b + b",
+    "C. a^2 x b + a",
+    "D. a x b + b + a",
+    "E. a^2 x b^2 + b"
+   ],
+   "answer": "C",
+   "explanation": "Every term containing a factor of a is even, because even x anything = even. So each expression reduces to 'even + whatever is left'.\nA - a^2 x b is even, b is odd; even + odd = odd. FALSE.\nB - a x b is even, b is odd; even + odd = odd. FALSE.\nC - a^2 x b is even, a is even; even + even = even. TRUE.\nD - a x b is even, b is odd, a is even; even + odd + even = odd. FALSE.\nE - a^2 x b^2 is even, b is odd; even + odd = odd. FALSE.\nCheck with a = 2, b = 3: A = 12 + 3 = 15, B = 6 + 3 = 9, C = 12 + 2 = 14, D = 6 + 3 + 2 = 11, E = 36 + 3 = 39. Only C is even.\nAnswer: C.",
+   "trap": "Choosing A or E because squaring feels like it should produce an even result on its own. Squaring never changes parity: b^2 is still odd when b is odd, so a^2 x b + b and a^2 x b^2 + b both end as even + odd = odd. The parity of a sum is decided by the odd terms only.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "parity-rules",
+    "must-be-even",
+    "expressions"
+   ]
+  },
+  {
+   "id": "NUM-EOP-015",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "x and y are integers where x is even and y is odd.\n\nColumn A: (x + y)²\nColumn B: x² + y²",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Column A: (x + y)². Since x is even and y is odd, x + y is odd. So (x+y)² is odd. Column B: x² + y². x² = Even² = Even. y² = Odd² = Odd. Even + Odd = Odd. Both columns are odd, but we cannot determine which is numerically larger. (x+y)² = x² + 2xy + y², so A = B + 2xy. If x and y are positive: A > B. If x = 2, y = 1: A = 9, B = 5 (A > B). If x = 0, y = 1: A = 1, B = 1 (A = B). If x = –2, y = 1: A = (–1)² = 1, B = 4 + 1 = 5 (B > A). The relationship cannot be determined.",
+   "trap": "Students may observe that both expressions are odd and assume they are equal, or always assume A > B because squaring a sum seems larger. Testing edge cases (negative values, zero) reveals the relationship varies.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "even-odd",
+    "qc",
+    "algebraic-expressions",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "NUM-EOP-016",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "If n is an integer, select all expressions that are always even, regardless of whether n is even or odd.",
+   "options": [
+    "A. n² + n",
+    "B. n² – n",
+    "C. n² + 1",
+    "D. 2n + 1",
+    "E. n(n + 2)"
+   ],
+   "answer": [
+    "A",
+    "B"
+   ],
+   "explanation": "A. n² + n = n(n+1). Consecutive integers: one is always even, so the product is always even ✓. B. n² – n = n(n–1). Consecutive integers (n–1 and n): one is always even, so the product is always even ✓. C. n² + 1: if n is even, n² is even, n²+1 is odd. So C is NOT always even ✗. D. 2n + 1 is always odd (2n is even, +1 makes it odd) ✗. E. n(n+2): if n = 1 (odd), 1 × 3 = 3 (odd). So E is NOT always even ✗. Answers: A and B.",
+   "trap": "Students often include E = n(n+2), thinking it resembles A. But n and n+2 have the same parity (both even or both odd), so their product is odd when n is odd. Contrast with n(n+1) where n and n+1 have opposite parity.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "even-odd",
+    "multiple-answer",
+    "consecutive-integers",
+    "algebraic-proof"
+   ]
+  },
+  {
+   "id": "NUM-EOP-017",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "m and n are integers such that m - n is even and m x n is even. Which of the following must be true?",
+   "options": [
+    "A. m + n is divisible by 4",
+    "B. m x n is divisible by 4",
+    "C. m and n are both odd",
+    "D. m + n is odd",
+    "E. m/2 + n/2 is an even integer"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — m - n is even, and a difference is even only when the two terms share a parity. So m and n are both odd or both even.\nStep 2 — m x n is even, and a product is odd only when every factor is odd. So m and n are not both odd.\nStep 3 — combining the two, m and n are both even. Write m = 2j and n = 2k.\nA - m + n = 2j + 2k = 2(j + k), which is even but need not be a multiple of 4: m = 2, n = 4 gives 6. FALSE.\nB - m x n = 4jk, which is always a multiple of 4. TRUE.\nC - both odd would make m x n odd, which the stem forbids. FALSE.\nD - both even makes m + n even, never odd. FALSE.\nE - m/2 + n/2 = j + k, and j and k have no forced parity: m = 2, n = 4 gives 1 + 2 = 3, odd. FALSE.\nCheck with m = 6 and n = 10: m - n = -4 even, m x n = 60 even, and 60 = 4 x 15 is a multiple of 4. Check with m = 2 and n = 4: 8 = 4 x 2. Correct.\nAnswer: B.",
+   "trap": "Choosing C stops at the first condition: m - n even does mean m and n share a parity, and 'both odd' is the case students reach for first, but it is killed by m x n being even. Choosing A promotes 'the sum of two evens' to 'a multiple of 4'; 2 + 4 = 6 is the counterexample. Choosing E applies parity rules through division: halving two even numbers says nothing about the parity of the halves, since 2/2 = 1 is odd while 4/2 = 2 is even.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "parity-deduction",
+    "must-be-true",
+    "divisibility-by-4"
+   ]
+  },
+  {
+   "id": "NUM-EOP-018",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "If the sum of 7 consecutive integers is 84, what is the value of the largest integer?",
+   "options": null,
+   "answer": "15",
+   "explanation": "Let the 7 consecutive integers be n, n+1, n+2, n+3, n+4, n+5, n+6. Sum = 7n + 21 = 84. 7n = 63. n = 9. The integers are 9, 10, 11, 12, 13, 14, 15. Largest = 15. Alternative: the sum of consecutive integers equals (count × middle term). Middle (4th) term = 84/7 = 12. Integers are 9 through 15. Largest = 15. Verify: 9+10+11+12+13+14+15 = 84 ✓.",
+   "trap": "Students set up n + (n+1) + ... + (n+6) correctly but make arithmetic errors computing 7n + 21 = 84 → 7n = 63 → n = 9. Some also forget to add 6 to n to find the largest: largest = 9 + 6 = 15.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "even-odd",
+    "consecutive-integers",
+    "word-problem-setup",
+    "two-step"
+   ]
+  },
+  {
+   "id": "NUM-EOP-019",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "k is a positive odd integer.\n\nColumn A: k² + k\nColumn B: k² + k + 1",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "k is odd. k² = Odd² = Odd. k² + k = Odd + Odd = Even. Column A is always even. Column B = k² + k + 1 = Even + 1 = Odd. Since Column B = Column A + 1, Column B is always exactly 1 greater than Column A. So Column B is always greater.",
+   "trap": "Students who compute parity correctly (A is even, B is odd) might then say 'D — can't be determined' because even and odd numbers can be in any size relationship. But here B is literally A + 1, so B is always exactly 1 more.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "even-odd",
+    "qc",
+    "two-step",
+    "conceptual"
+   ]
+  },
+  {
+   "id": "NUM-EOP-020",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "If m is an integer such that m³ is even, which of the following must be true?",
+   "options": [
+    "A. m² is odd",
+    "B. m is even",
+    "C. m + 1 is even",
+    "D. m/2 is an integer",
+    "E. m is a positive integer"
+   ],
+   "answer": "B",
+   "explanation": "m³ is even. If m were odd, then m³ = Odd³ = Odd, contradicting that m³ is even. Therefore m must be even. A: m² = Even² = Even, so m² + 1... but A says m² is odd — false. B: m is even ✓. C: m + 1 = Even + 1 = Odd, not even — C is false. D: m/2 is an integer is true for any even integer — actually this is true since m is even, m = 2k, so m/2 = k is an integer. So D is also true. E: m could be negative (e.g., m = –2, m³ = –8, even). E is not necessarily true. Both B and D must be true, but B is the direct and primary implication.",
+   "trap": "Students may choose D (m/2 is an integer) thinking 'even means divisible by 2.' Both B and D are valid, but B is the fundamental property tested here. On real GRE this would be a single-answer question pointing to B as the core insight.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "even-odd",
+    "exponents",
+    "conceptual",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "NUM-EOP-021",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "j is an odd integer and k is an even integer. Which of the following must be odd?",
+   "options": [
+    "A. j x k",
+    "B. j + k + 1",
+    "C. j^2 + k^2",
+    "D. j x k + k",
+    "E. (j + k)(j - k) + 1"
+   ],
+   "answer": "C",
+   "explanation": "A - even x anything = even, so j x k is even. With j = 3, k = 2: 6. FALSE.\nB - j + k = odd + even = odd, and odd + 1 = even. With j = 3, k = 2: 6. FALSE.\nC - j^2 is odd (squaring never changes parity) and k^2 is even, so odd + even = odd. With j = 3, k = 2: 9 + 4 = 13. TRUE.\nD - j x k is even and k is even, so even + even = even. With j = 3, k = 2: 6 + 2 = 8. FALSE.\nE - j + k is odd and j - k is odd, so the product is odd x odd = odd, and adding 1 makes it even. With j = 3, k = 2: 5 x 1 + 1 = 6. FALSE.\nCheck with j = 5, k = 4: A = 20 even, B = 10 even, C = 25 + 16 = 41 odd, D = 24 even, E = 9 x 1 + 1 = 10 even. Same verdicts.\nAnswer: C.",
+   "trap": "Choosing E after correctly finding that (j + k)(j - k) is odd and then ignoring the '+ 1', which flips it to even. Rejecting C is the other slip: squaring does not turn an odd number even, so j^2 + k^2 is odd + even = odd.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "must-be-odd",
+    "expressions",
+    "squares"
+   ]
+  },
+  {
+   "id": "NUM-EOP-022",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "a and b are positive integers, a is even and b is odd. If a + b = 15 and a x b = 50, what is the value of a? Enter your answer as a number.",
+   "options": null,
+   "answer": "10",
+   "explanation": "Step 1 — parity check on the sum. a + b = 15 is odd, and even + odd = odd, so the stated parities are consistent.\nStep 2 — factor pairs of 50 with a positive integer sum of 15: 1 x 50 sums to 51, 2 x 25 sums to 27, 5 x 10 sums to 15. Only 5 and 10 work.\nStep 3 — assign by parity. a is even, so a = 10, and b = 5, which is odd as required.\nCheck: 10 + 5 = 15 and 10 x 5 = 50, with 10 even and 5 odd. Correct.\nAnswer: 10.",
+   "trap": "Answering 5, which is the other member of the pair but the odd one, so it is b, not a. The parity condition in the stem is what tells the two apart; without reading it the pair {5, 10} looks symmetric.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "factor-pairs",
+    "parity-assignment",
+    "system"
+   ]
+  },
+  {
+   "id": "NUM-EOP-023",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "If the sum of four consecutive even integers is 76, what is the smallest of the four integers?",
+   "options": [
+    "A. 14",
+    "B. 16",
+    "C. 18",
+    "D. 20",
+    "E. 22"
+   ],
+   "answer": "B",
+   "explanation": "Let the four consecutive even integers be n, n+2, n+4, n+6. Sum = 4n + 12 = 76. 4n = 64. n = 16. The integers are 16, 18, 20, 22. The smallest is 16. Verify: 16 + 18 + 20 + 22 = 76 ✓.",
+   "trap": "Students write n, n+1, n+2, n+3 for 'consecutive even integers,' treating them as consecutive integers rather than consecutive even integers (which differ by 2). Using n+1 increments gives 4n + 6 = 76 → n = 17.5, which is not an integer — a signal that the setup is wrong.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "even-odd",
+    "consecutive-integers",
+    "word-problem-setup"
+   ]
+  },
+  {
+   "id": "NUM-EOP-024",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "n is a positive integer.\nColumn A: The remainder when n(n + 1)(n + 2) is divided by 4\nColumn B: 0",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Step 1 — split on the parity of n, because that decides where the factors of 2 sit.\nStep 2 — n even. Then n and n + 2 are consecutive even numbers, so one of them is a multiple of 4. The product is therefore a multiple of 4 and the remainder is 0. Example n = 2: 2 x 3 x 4 = 24, and 24/4 = 6 exactly.\nStep 3 — n odd. Then n and n + 2 are both odd and the only even factor is n + 1. If n + 1 is a multiple of 4 the remainder is 0; if n + 1 is only a multiple of 2 the product carries exactly one factor of 2 and the remainder is 2. Example n = 3: 3 x 4 x 5 = 60, remainder 0. Example n = 1: 1 x 2 x 3 = 6, and 6 = 4 + 2, remainder 2.\nStep 4 — n = 1 gives Column A = 2, which is greater than Column B, while n = 2 gives Column A = 0, which equals Column B. Two legal values of n give different verdicts.\nCheck n = 5: 5 x 6 x 7 = 210, and 210 = 4 x 52 + 2, remainder 2. Check n = 4: 4 x 5 x 6 = 120, remainder 0. Both outcomes really occur.\nAnswer: D.",
+   "trap": "Choosing C by carrying over the familiar fact that three consecutive integers always contain an even factor. That pins the remainder mod 2 at 0, but it does not pin the remainder mod 4: one factor of 2 is guaranteed, a second is not. Choosing A comes from testing only odd n such as n = 1 and n = 5, both of which give remainder 2, and never trying an even n.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "parity-casework",
+    "qc",
+    "remainder"
+   ]
+  },
+  {
+   "id": "NUM-EOP-025",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "p is a positive even integer and q is a positive odd integer. Which of the following must be even?",
+   "options": [
+    "A. p^q - q^p",
+    "B. (p + q)^q + 1",
+    "C. p^q + q^q",
+    "D. q^(p + q)",
+    "E. (pq)^0 + p"
+   ],
+   "answer": "B",
+   "explanation": "Two exponent facts run this question: an even base raised to any positive power stays even, and an odd base raised to any power stays odd. Also anything to the power 0 equals 1, which is odd.\nA - p^q is even (p is even, q >= 1) and q^p is odd, so even - odd = odd. FALSE.\nB - p + q = even + odd = odd, and an odd base to any power is odd, so (p + q)^q is odd; odd + 1 = even. TRUE.\nC - p^q is even and q^q is odd, so even + odd = odd. FALSE.\nD - q is odd and any power of an odd number is odd, so q^(p + q) is odd. FALSE.\nE - (pq)^0 = 1, odd, and p is even, so odd + even = odd. FALSE.\nCheck with p = 2, q = 3: A = 8 - 9 = -1 odd, B = 5^3 + 1 = 126 even, C = 8 + 27 = 35 odd, D = 3^5 = 243 odd, E = 1 + 2 = 3 odd. Check with p = 4, q = 1: A = 4 - 1 = 3 odd, B = 5 + 1 = 6 even, C = 4 + 1 = 5 odd, D = 1 odd, E = 1 + 4 = 5 odd.\nAnswer: B.",
+   "trap": "Choosing E by reading (pq)^0 as 0 rather than 1; that would make the expression 0 + even = even. Any nonzero base to the power 0 is 1, which is odd. Choosing A comes from thinking even minus odd can be even, and choosing D from believing a large even exponent can turn an odd base even - it never does.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "exponents",
+    "zero-exponent",
+    "must-be-even"
+   ]
+  },
+  {
+   "id": "NUM-EOP-026",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "How many integers from 1 to 100 inclusive are divisible by both 2 and 3?",
+   "options": null,
+   "answer": "16",
+   "explanation": "Divisible by both 2 and 3 means divisible by LCM(2, 3) = 6. Count the multiples of 6 from 1 to 100: 6, 12, 18, 24, 30, 36, 42, 48, 54, 60, 66, 72, 78, 84, 90, 96. Count = floor(100/6) = floor(16.67) = 16. There are 16 such integers.",
+   "trap": "Students add (count of multiples of 2) + (count of multiples of 3) = 50 + 33 = 83 and then divide by 2, getting ~41. This is wrong. For divisibility by BOTH 2 AND 3, find multiples of their LCM = 6.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "even-odd",
+    "divisibility",
+    "counting",
+    "two-step"
+   ]
+  },
+  {
+   "id": "NUM-EOP-027",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "x is a positive odd integer greater than 1.\n\nColumn A: x²\nColumn B: x² – 1",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Column A = x². Column B = x² – 1. Since x² > 0 for all real x ≠ 0, and x is a positive integer greater than 1, x² ≥ 9 > 0, so x² > x² – 1. Column A > Column B always. The parity analysis: x is odd, x² is odd, x² – 1 is even. Both columns have definite parity, but more importantly A – B = x² – (x²–1) = 1 > 0. Column A is always exactly 1 greater.",
+   "trap": "Students sometimes complicate this with parity analysis or think the answer might be D because x is not fully specified. But the algebraic relationship A = B + 1 is always true regardless of which specific odd x is chosen.",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "even-odd",
+    "qc",
+    "conceptual",
+    "algebraic-proof"
+   ]
+  },
+  {
+   "id": "NUM-EOP-028",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "If ab is odd, which of the following must be odd?",
+   "options": [
+    "A. a + b",
+    "B. a – b",
+    "C. a + b + 1",
+    "D. a × b + 1",
+    "E. a² + b²"
+   ],
+   "answer": "C",
+   "explanation": "ab odd means both a and b are odd. (A) a + b = odd + odd = even ✗; (B) a − b = even ✗; (C) a + b + 1 = even + 1 = odd ✓; (D) ab + 1 = odd + 1 = even ✗; (E) a² + b² = odd + odd = even ✗. So C.",
+   "trap": "Students may mistakenly compute a+b+1 as 'Odd+Odd+1 = Odd+1 = Even,' adding a and b individually rather than first recognizing a+b = Odd+Odd = Even. Always reduce step by step: Odd+Odd=Even, then Even+1=Odd.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "even-odd",
+    "multiplication",
+    "conceptual",
+    "two-step"
+   ]
+  },
+  {
+   "id": "NUM-EOP-029",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "n is an integer. Which of the following expressions is odd for every integer n?",
+   "options": [
+    "A. n^3 + n",
+    "B. n^3 + n^2",
+    "C. n^3 + n + 1",
+    "D. n^3 - n",
+    "E. n^3 + n^2 + n + 1"
+   ],
+   "answer": "C",
+   "explanation": "The key identity is that n^2 + n = n(n + 1) is a product of two consecutive integers, so it is always even. The same argument handles the cubes, since n^3 has the same parity as n.\nA - n^3 has the parity of n, so n^3 + n is odd + odd = even when n is odd and even + even = even when n is even. Always even. FALSE.\nB - n^3 + n^2 = n^2(n + 1), a product in which n and n + 1 are consecutive, so one factor is even. With n = 3: 27 + 9 = 36, even. FALSE.\nC - n^3 + n is always even by A, so adding 1 makes it always odd. With n = 2: 8 + 2 + 1 = 11; with n = 3: 27 + 3 + 1 = 31; with n = -2: -8 - 2 + 1 = -9. TRUE.\nD - n^3 - n = (n - 1)n(n + 1), three consecutive integers, so it is always even (in fact always divisible by 6). With n = 3: 24. FALSE.\nE - factor it: n^3 + n^2 + n + 1 = n^2(n + 1) + (n + 1) = (n^2 + 1)(n + 1). If n is even, n^2 + 1 is odd and n + 1 is odd, so the product is odd; if n is odd, both factors are even, so the product is even. With n = 2: 8 + 4 + 2 + 1 = 15, odd; with n = 3: 27 + 9 + 3 + 1 = 40, even. Odd for some n but not all. FALSE.\nCheck C at n = 0: 0 + 0 + 1 = 1, odd. Correct.\nAnswer: C.",
+   "trap": "Choosing E is the designed trap: testing a single even value such as n = 2 gives 15, which is odd, and the pattern looks settled. It breaks at every odd n, because (n^2 + 1)(n + 1) turns into even x even. 'Odd for every integer n' has to survive both parities, so always test one of each. Choosing A after testing only an odd n and mis-adding: for n = 3, n^3 + n = 27 + 3 = 30, which is even, not odd; odd + odd = even is the rule being missed.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "consecutive-integers",
+    "cubes",
+    "must-be-odd"
+   ]
+  },
+  {
+   "id": "NUM-EOP-030",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "If x and y are integers and x + y is even, which of the following must be true?",
+   "options": [
+    "A. x and y are both even",
+    "B. x and y are both odd",
+    "C. x and y have the same parity",
+    "D. xy is odd",
+    "E. x – y is odd"
+   ],
+   "answer": "C",
+   "explanation": "x + y is even means either both x and y are even, OR both x and y are odd. In both cases, x and y have the same parity (both even or both odd). A is not necessarily true (both could be odd). B is not necessarily true (both could be even). C is always true ✓. D: if both are even, xy is even — D fails. E: x – y: if both even: Even – Even = Even; if both odd: Odd – Odd = Even. So x – y is always even, not odd — E is false.",
+   "trap": "Students may choose A or B, thinking x+y even requires a specific case. In fact, x+y is even when x and y have the same parity — both even OR both odd.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "even-odd",
+    "conceptual",
+    "parity-same",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "NUM-EOP-031",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "For how many integers n with -4 <= n <= 5 is 6n + 3 an odd integer? Enter your answer as a number.",
+   "options": null,
+   "answer": "10",
+   "explanation": "Step 1 — 6n is 6 times an integer, so it is even for every integer n, positive, negative or zero.\nStep 2 — 6n + 3 = even + odd = odd, for every integer n. The condition never fails.\nStep 3 — count the integers in the range: from -4 to 5 inclusive there are 5 - (-4) + 1 = 10 integers.\nCheck the two ends: n = -4 gives 6(-4) + 3 = -21, odd; n = 5 gives 33, odd. Check n = 0: 3, odd.\nAnswer: 10.",
+   "trap": "Answering 5 by assuming 6n + 3 is odd only when n is odd, then counting the odd values of n in the range. The coefficient 6 is even, so it wipes out n's parity entirely: the term 6n is even no matter what n is.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "even-coefficient",
+    "counting",
+    "negative-parity"
+   ]
+  },
+  {
+   "id": "NUM-EOP-032",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "p is a positive even integer and q is a positive odd integer.\nColumn A: (-1)^p\nColumn B: (-1)^q",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Step 1 — a negative base raised to an even exponent gives a positive result: the minus signs pair off. So (-1)^p = 1 for every even p.\nStep 2 — a negative base raised to an odd exponent leaves one minus sign unpaired: (-1)^q = -1 for every odd q.\nStep 3 — 1 > -1, and this holds for every legal pair, so Column A is always greater.\nCheck p = 2, q = 3: (-1)^2 = 1 and (-1)^3 = -1. Check p = 10, q = 7: 1 and -1 again.\nAnswer: A.",
+   "trap": "Choosing D because p and q are unspecified. The actual sizes of p and q never matter; only their parity does, and that is fixed by the stem, so the two columns are locked at 1 and -1. Choosing C comes from reading (-1)^q as -1^q and treating both as 1.",
+   "estimated_time_seconds": 65,
+   "tags": [
+    "exponents",
+    "qc",
+    "sign-rules"
+   ]
+  },
+  {
+   "id": "NUM-EOP-033",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The product of two positive integers is 36, and one of the two integers is odd. What is the greatest possible value of the other integer?",
+   "options": [
+    "A. 6",
+    "B. 9",
+    "C. 12",
+    "D. 18",
+    "E. 36"
+   ],
+   "answer": "E",
+   "explanation": "Step 1 — 36 = 2^2 x 3^2, so the odd factors of 36 are the ones built only from 3s: 1, 3 and 9.\nStep 2 — pair each with its partner: 1 x 36, 3 x 12, 9 x 4.\nStep 3 — the partners available are 36, 12 and 4, so the greatest is 36.\nCheck: 1 x 36 = 36, and 1 is odd, so the pair is legal. Correct.\nAnswer: E, 36.",
+   "trap": "Choosing 18 (option D) takes the largest proper factor of 36 and forgets to check its partner: 18 x 2 = 36, but 2 is even, so that pair breaks the condition. Choosing 12 (option C) treats 1 as 'not really a factor' and starts the odd list at 3, giving the partner of 3. Choosing 9 (option B) finds the largest ODD factor of 36 and reports it instead of its partner, answering the wrong half of the pair. Choosing 6 (option A) splits 36 evenly as 6 x 6, the reflex that ignores the requirement that one factor be odd - 6 is even.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "odd-factors",
+    "maximum",
+    "parity-constraint"
+   ]
+  },
+  {
+   "id": "NUM-EOP-034",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "w, x, y and z are integers such that x + y is odd, y + z is odd and z + w is odd. Which of the following must be odd?",
+   "options": [
+    "A. x + z",
+    "B. x + w",
+    "C. w + y",
+    "D. xy + zw",
+    "E. x + yz"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — a sum is odd only when its two terms have opposite parity. So x is opposite to y, z is opposite to y, and w is opposite to z.\nStep 2 — chain them. x and z both sit opposite y, so x and z share a parity. w sits opposite z, so w shares y's parity and is opposite to x.\nStep 3 — there are exactly two cases. Case 1: y and w even, x and z odd. Case 2: y and w odd, x and z even.\nA - x and z share a parity, so x + z is odd + odd = even or even + even = even. Always EVEN. FALSE.\nB - x and w are opposite in both cases, so x + w is odd + even = odd. Always ODD. TRUE.\nC - w and y share a parity in both cases, so w + y is always even. FALSE.\nD - x and y are opposite, so one of them is even and xy is even; z and w are opposite, so zw is even. Even + even = even. Always EVEN. FALSE.\nE - y and z are opposite, so yz is even, and x + yz has the parity of x. In Case 1 x is odd and the expression is odd; in Case 2 x is even and it is even. Not determined. FALSE.\nCheck Case 1 with w = 2, x = 1, y = 2, z = 3: x + y = 3 odd, y + z = 5 odd, z + w = 5 odd. Then x + w = 3 (odd), x + z = 4 (even), w + y = 4 (even), xy + zw = 2 + 6 = 8 (even), x + yz = 1 + 6 = 7 (odd).\nCheck Case 2 with w = 1, x = 2, y = 1, z = 2: x + y = 3 odd, y + z = 3 odd, z + w = 3 odd. Then x + w = 3 (odd), x + z = 4 (even), w + y = 2 (even), xy + zw = 2 + 2 = 4 (even), x + yz = 2 + 2 = 4 (even), which flips E.\nAnswer: B.",
+   "trap": "Choosing A or C comes from adding two of the given odd sums and calling the result odd: (x + y) + (y + z) = x + 2y + z is odd + odd = EVEN, so dropping the 2y leaves x + z even, not odd; the same slip on (y + z) + (z + w) lands on C. Choosing D reads 'x and y have opposite parity' as making the product xy odd; opposite parity means one factor is even, so xy is even. Choosing E tests only Case 1, where x is odd and x + yz comes out odd, and never checks Case 2, where it is even.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "opposite-parity",
+    "must-be-odd",
+    "parity-chain"
+   ]
+  },
+  {
+   "id": "NUM-EOP-035",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "m and n are positive integers with m < n. The product mn is even and the sum m + n is odd.\nColumn A: m^2 n\nColumn B: m n^2",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — read what the parity conditions actually do. m + n odd means one of them is even and the other odd, which already forces mn to be even. The parity information is consistent but adds nothing to the comparison.\nStep 2 — factor both columns. Column A = mn x m and Column B = mn x n, so both are the same positive quantity mn multiplied by m and by n respectively.\nStep 3 — m and n are positive, so mn > 0 and dividing both columns by mn is safe. The comparison reduces to m versus n, and the stem says m < n.\nStep 4 — therefore m^2 n < m n^2 for every legal pair, so Column B is greater.\nCheck m = 2, n = 3: Column A = 4 x 3 = 12, Column B = 2 x 9 = 18. Check m = 3, n = 8: Column A = 9 x 8 = 72, Column B = 3 x 64 = 192. Column B wins both.\nAnswer: B.",
+   "trap": "Choosing D because the parity conditions look like they might let the columns swap. They cannot: the parity facts are a red herring, and the only thing that decides the comparison is m < n with both positive. Choosing A comes from thinking the squared variable automatically makes its column larger, ignoring that the other column squares the bigger number.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "qc",
+    "red-herring",
+    "inequality"
+   ]
+  },
+  {
+   "id": "NUM-EOP-036",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "a, b and c are positive integers and a^2 x b^3 x c is odd. Which of the following must be true? Select all that apply.",
+   "options": [
+    "A. a is odd",
+    "B. b + c is even",
+    "C. a + b + c is odd",
+    "D. a x b x c + 1 is odd",
+    "E. a^b is even"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "Step 1 — a product is odd only when every factor is odd. a^2 is odd only if a is odd, b^3 is odd only if b is odd, and c must be odd as well. So a, b and c are all odd.\nA - a must be odd, as shown. TRUE.\nB - odd + odd = even, so b + c is even. With b = 3, c = 5: 8. TRUE.\nC - odd + odd = even, then even + odd = odd, so a + b + c is odd. With a = 3, b = 3, c = 5: 11. TRUE.\nD - a x b x c is odd x odd x odd = odd, so a x b x c + 1 is even, not odd. With a = b = 1, c = 3: 3 + 1 = 4. FALSE.\nE - an odd base to any power is odd, so a^b is odd. With a = 3, b = 3: 27. FALSE.\nCheck the whole set with a = 3, b = 5, c = 7: a^2 x b^3 x c = 9 x 125 x 7 = 7875, odd, as required. Then A holds, b + c = 12 even, a + b + c = 15 odd, abc + 1 = 105 + 1 = 106 even, a^b = 3^5 = 243 odd.\nAnswer: A, B, C.",
+   "trap": "Selecting D by computing that abc is odd and then reporting that value's parity instead of the parity after adding 1. Selecting E comes from assuming that a large exponent drags an odd base toward even; odd^n is odd for every n.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "odd-product",
+    "must-be-true",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "NUM-EOP-037",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "n is a positive integer less than 500. n/2 is an even integer, n/4 is an even integer, and n/8 is an odd integer. What is the greatest possible value of n? Enter your answer as a number.",
+   "options": null,
+   "answer": "488",
+   "explanation": "Step 1 — read the three conditions as a statement about factors of 2. n/8 being an integer means 8 divides n; n/8 being ODD means no further factor of 2 survives. So n contains exactly three factors of 2: n = 8k with k odd.\nStep 2 — the first two conditions are then automatic: n/2 = 4k and n/4 = 2k are both even. They are there to tempt you into reading parity down the chain.\nStep 3 — note what the chain actually does. n is even, n/2 is even, n/4 is even, and then n/8 is odd. Dividing by 2 does not preserve parity; each division simply removes one factor of 2, and the parity flips to odd the moment the last one is gone.\nStep 4 — maximise. n = 8k < 500 gives k < 62.5, so k <= 62, and k must be odd, so the largest allowed k is 61.\nStep 5 — n = 8 x 61 = 488.\nCheck: 488/2 = 244 (even), 488/4 = 122 (even), 488/8 = 61 (odd), and 488 < 500. The next multiple of 8, 496, gives 496/8 = 62, which is even, so it fails.\nAnswer: 488.",
+   "trap": "Answering 496 takes the largest multiple of 8 below 500 and assumes any such n works; 496/8 = 62 is even, so it fails the last condition. Answering 498 takes the largest even number below 500, ignoring that n must be divisible by 8 at all. The underlying error in both is expecting parity to be inherited through division: n even does not make n/2 even, and n/4 even does not make n/8 even. Parity rules cover addition, subtraction and multiplication only.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "division-no-parity-rule",
+    "powers-of-2",
+    "maximum"
+   ]
+  },
+  {
+   "id": "NUM-EOP-038",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "p and q are distinct prime numbers and p + q is odd. Which of the following must be true?",
+   "options": [
+    "A. p + q is prime",
+    "B. p x q + 1 is odd",
+    "C. p^2 + q^2 is even",
+    "D. p + q > 7",
+    "E. p x q is a perfect square"
+   ],
+   "answer": "B",
+   "explanation": "Step 1 — p + q is odd, so one of the two primes is even and the other is odd.\nStep 2 — the only even prime is 2. So one of p and q equals 2 and the other is an odd prime.\nA - take p = 2, q = 7: p + q = 9 = 3 x 3, not prime. FALSE.\nB - p x q = 2 x (odd prime) is even, so p x q + 1 is odd. With p = 2, q = 7: 14 + 1 = 15, odd. TRUE.\nC - one square is even (2^2 = 4) and the other odd, so p^2 + q^2 = even + odd = odd. With p = 2, q = 7: 4 + 49 = 53, odd. FALSE.\nD - p = 2, q = 3 gives p + q = 5, which is not greater than 7. FALSE.\nE - p x q = 2 x (odd prime) has a single factor of 2 and a single factor of the odd prime, so it is never a perfect square. With p = 2, q = 5: 10. FALSE.\nCheck B on a second pair, p = 2, q = 13: 26 + 1 = 27, odd. Correct.\nAnswer: B.",
+   "trap": "Choosing C by assuming both primes are odd - the usual mental default, since every prime except 2 is odd. The stem's 'p + q is odd' is precisely the signal that one of them must be 2, the only even prime. Choosing A comes from noticing that 2 + 3 = 5 and 2 + 5 = 7 are prime and stopping before 2 + 7 = 9.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "primes",
+    "only-even-prime",
+    "must-be-true"
+   ]
+  },
+  {
+   "id": "NUM-EOP-039",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "a is an even integer. b is an odd integer. Neither a nor b is zero.\n\nColumn A: (–1)^(a+b) + (–1)^(a–b)\nColumn B: 0",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "a is even, b is odd. a+b = Even+Odd = Odd → (–1)^(a+b) = –1. a–b = Even–Odd = Odd → (–1)^(a–b) = –1. Column A = –1 + (–1) = –2. Column B = 0. Since –2 < 0, Column B is greater.",
+   "trap": "Students may think a+b and a–b have different parities (since one adds and one subtracts b). But Even ± Odd = Odd in both cases. Both exponents are odd, giving –1 + (–1) = –2, not 0.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "even-odd",
+    "qc",
+    "exponents",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "NUM-EOP-040",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "How many integers from 100 to 200 inclusive are divisible by 4 but NOT divisible by 6?",
+   "options": null,
+   "answer": "18",
+   "explanation": "Multiples of 4 from 100 to 200: from 100 (=4×25) to 200 (=4×50), count = 50–25+1 = 26. Multiples of LCM(4,6)=12 from 100 to 200: from 108 (=12×9) to 192 (=12×16), count = 16–9+1 = 8. Multiples of 4 but NOT 6 = 26 – 8 = 18.",
+   "trap": "Students compute LCM(4,6) = 24 instead of 12 (thinking LCM of 4 and 6 is their product). LCM(4,6) = 12 because 4=2² and 6=2×3, so LCM = 2²×3 = 12.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "even-odd",
+    "divisibility",
+    "counting",
+    "lcm",
+    "multi-step"
+   ]
+  },
+  {
+   "id": "NUM-EOP-041",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "x is an integer and x^3 + x is divisible by 4. Which of the following must be true? Select all that apply.",
+   "options": [
+    "A. x is even",
+    "B. x is a multiple of 4",
+    "C. x^2 + x is divisible by 8",
+    "D. x/2 is an even integer",
+    "E. x^3 + x is divisible by 8"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "Step 1 — factor: x^3 + x = x(x^2 + 1).\nStep 2 — if x is odd then x^2 + 1 is even but x is odd, so the expression carries exactly one factor of 2 and is never a multiple of 4.\nStep 3 — if x is even then x^2 + 1 is odd, so every factor of 2 must come from x itself. Divisibility by 4 therefore forces 4 to divide x.\nStep 4 — so the condition in the stem is equivalent to: x is a multiple of 4. Write x = 4k.\nA - every multiple of 4 is even. TRUE.\nB - this is exactly the condition derived in Step 4. TRUE.\nC - x^2 + x = x(x + 1) = 4k(4k + 1), and 4k + 1 is odd, so the power of 2 comes from 4k alone. With x = 4: 16 + 4 = 20, and 20/8 = 2.5. FALSE.\nD - x = 4k gives x/2 = 2k, which is even for every integer k. With x = 4: 2. With x = -12: -6. TRUE.\nE - x = 4 gives 64 + 4 = 68, and 68/8 = 8.5. FALSE.\nCheck the set with x = 8: 512 + 8 = 520 = 4 x 130, so the stem holds. Then x is even, x is a multiple of 4, x/2 = 4 is even, while x^2 + x = 72 is divisible by 8 here but 20 at x = 4 is not, and x^3 + x = 520 is divisible by 8 here but 68 at x = 4 is not. C and E fail at x = 4.\nAnswer: A, B, D.",
+   "trap": "Selecting C or E promotes 'divisible by 4' to 'divisible by 8' because the expression looks heavily even; x = 4 is the counterexample for both, giving 20 and 68. Skipping A or B comes from testing only x = 2, seeing x^3 + x = 10 and concluding that any even x is enough; 10 is 2 x 5, so x = 2 does not even satisfy the stem. Skipping D is the reverse worry, that dividing by 2 might destroy the guarantee; here x = 4k makes x/2 = 2k, which is even for every k, including k = 0.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "divisibility-by-4",
+    "must-be-true",
+    "powers-of-2"
+   ]
+  },
+  {
+   "id": "NUM-EOP-042",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "a, b, and c are consecutive odd integers with a < b < c.\n\nColumn A: a + c\nColumn B: 2b",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Let a = 2k–1 (some odd integer). Then b = 2k+1 and c = 2k+3 (consecutive odd integers differ by 2). Column A: a + c = (2k–1) + (2k+3) = 4k + 2. Column B: 2b = 2(2k+1) = 4k + 2. Column A = Column B = 4k + 2. They are always equal. Verify: a=1, b=3, c=5: A = 1+5=6, B = 2×3=6 ✓. a=–3, b=–1, c=1: A=–3+1=–2, B=2×(–1)=–2 ✓.",
+   "trap": "Students may test one example and choose C, then doubt themselves because the answer seems 'too obvious for a hard question.' The insight — that the average of an arithmetic sequence's endpoints equals the middle term — is a clean but non-trivial result worth verifying algebraically.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "even-odd",
+    "qc",
+    "consecutive-integers",
+    "algebraic-proof",
+    "pattern"
+   ]
+  },
+  {
+   "id": "NUM-EOP-043",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "a, b and c are non-negative integers and 2^a x 3^b + 2^c is odd. Which of the following must be true?",
+   "options": [
+    "A. a = 0",
+    "B. b = 0",
+    "C. a + c is at least 1",
+    "D. a = c",
+    "E. b is even"
+   ],
+   "answer": "C",
+   "explanation": "Step 1 — a sum is odd only when exactly one of the two terms is odd.\nStep 2 — when is each term odd? 2^a x 3^b is odd only if there is no factor of 2 at all, which means a = 0 (recall 2^0 = 1, odd, and 3^b is odd for every b). And 2^c is odd only if c = 0.\nStep 3 — so exactly one of a = 0 and c = 0 holds. If both were 0 the sum would be 3^b + 1 = odd + odd = even; if neither were 0 both terms would be even and the sum even.\nA - false: a = 1, b = 0, c = 0 gives 2 + 1 = 3, odd, with a not 0. FALSE.\nB - false: a = 0, b = 1, c = 1 gives 3 + 2 = 5, odd, with b = 1. FALSE.\nC - exactly one of a and c is 0, so the other is at least 1, making a + c at least 1. TRUE.\nD - a = c is impossible here: equal values would put both terms in the same parity class and force an even sum. FALSE.\nE - the same example a = 0, b = 1, c = 1 has b odd. FALSE.\nCheck C on both shapes: a = 0, b = 2, c = 3 gives 9 + 8 = 17, odd, and a + c = 3. a = 2, b = 1, c = 0 gives 12 + 1 = 13, odd, and a + c = 2.\nAnswer: C.",
+   "trap": "Choosing A by assuming the first term is the one that must be odd; the roles of the two terms are interchangeable, and the 2^c term can be the odd one instead. The deeper slip is reading 2^0 as even because the base is even: 2^0 = 1, which is odd, and that is what makes a = 0 or c = 0 possible at all.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "zero-exponent",
+    "powers-of-2",
+    "must-be-true"
+   ]
+  },
+  {
+   "id": "NUM-EOP-044",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "a, b, c and d are integers, each greater than 1, and a x b x c x d = 2520. Exactly one of the four integers is even. What is the greatest possible value of that even integer? Enter your answer as a number.",
+   "options": null,
+   "answer": "56",
+   "explanation": "Step 1 — factorise: 2520 = 2^3 x 3^2 x 5 x 7.\nStep 2 — exactly one of the four is even, so the other three are odd and contribute no factor of 2. Every one of the three 2s must sit inside the single even integer. Call it E, so E = 8 x m where m is an odd divisor of 315 = 3^2 x 5 x 7.\nStep 3 — the three odd integers multiply to 315/m, and each must be greater than 1.\nStep 4 — maximising E means minimising the product 315/m of those three odd integers. The smallest product of three integers greater than 1 that divides 315 is 3 x 3 x 5 = 45; 315/45 = 7 is an integer, so this split is legal. No smaller product works: 27 does not divide 315, and any product of three factors greater than 1 must use at least three of the prime factors 3, 3, 5, 7.\nStep 5 — so 315/m = 45, m = 7, and E = 8 x 7 = 56.\nCheck: 56 x 3 x 3 x 5 = 56 x 45 = 2520. Each of 3, 3, 5 is greater than 1 and odd, and 56 is the only even one. Correct.\nAnswer: 56.",
+   "trap": "Answering 2520 sets the other three to 1 and ignores the requirement that every one of the four integers exceeds 1. Answering 8 assumes the even integer can only be the pure power of 2, forgetting that it may also absorb odd factors. Answering 840 takes 2520/3 and leaves the other three as 3, 1 and 1, which again breaks the 'greater than 1' condition. The parity step is the one that does the real work: because only one integer may be even, all three factors of 2 are forced into it, so the question reduces to how few odd factors the remaining three can use up.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "odd-factors",
+    "parity-constraint",
+    "maximum"
+   ]
+  },
+  {
+   "id": "NUM-EOP-045",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "k is a number such that k^2 + k is an odd integer.\nColumn A: k\nColumn B: 0",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Step 1 — test the reflex first. If k were an integer, then k^2 + k = k(k + 1) would be a product of two consecutive integers, and one of any two consecutive integers is even, so k^2 + k would be even. It is given as odd, so k is NOT an integer.\nStep 2 — that is the whole point of the stem: it says 'a number', not 'an integer'. Parity is defined only for integers, so no parity rule constrains k itself. The condition is a plain equation to be solved.\nStep 3 — take the smallest odd integer value, k^2 + k = 1, that is k^2 + k - 1 = 0. The quadratic formula gives k = (-1 + sqrt(5))/2 or k = (-1 - sqrt(5))/2.\nStep 4 — sqrt(5) is about 2.24, so the two roots are about 0.62 and about -1.62. Both satisfy the stem, and both are legal values of k.\nStep 5 — k = 0.62 makes Column A greater than Column B; k = -1.62 makes Column B greater. The relationship is not determined.\nCheck the positive root: 0.618^2 + 0.618 = 0.382 + 0.618 = 1, an odd integer. Check the negative root: (-1.618)^2 + (-1.618) = 2.618 - 1.618 = 1, an odd integer. Both are valid.\nAnswer: D.",
+   "trap": "The stem never says k is an integer, and that omission is the question. A student who assumes it is applies k(k + 1) is always even, concludes the condition is impossible, and then guesses - or decides the problem must intend some odd k and picks A. Parity is defined only for integers: the moment k is allowed to be any number, k^2 + k can be odd, and it happens at two values of opposite sign. Choice B fails for the mirror-image reason: the positive root, about 0.618, exists just as surely as the negative one, so Column B is not forced either. Choice C fails because neither root is 0 - at k = 0, k^2 + k = 0, which is even, not odd - so the two columns are never equal.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "parity-needs-integers",
+    "qc",
+    "consecutive-integers"
+   ]
+  },
+  {
+   "id": "NUM-EOP-046",
+   "difficulty": "extreme_hard",
+   "type": "multiple_answer",
+   "question": "For a positive integer n, let f(n) be the sum of all positive divisors of n. For which of the following values of n is f(n) odd? Select all that apply.",
+   "options": [
+    "A. n = 6",
+    "B. n = 8",
+    "C. n = 12",
+    "D. n = 18",
+    "E. n = 25"
+   ],
+   "answer": [
+    "B",
+    "D",
+    "E"
+   ],
+   "explanation": "The fast route: divisors pair as d and n/d, and the only divisors that are not cancelled out in parity are the odd ones. In fact f(n) is odd exactly when the ODD part of n is a perfect square, which means n is a perfect square or twice a perfect square. Compute each one to be certain.\nA - n = 6: divisors 1, 2, 3, 6, sum = 12, even. (Odd part of 6 is 3, not a square.) FALSE.\nB - n = 8: divisors 1, 2, 4, 8, sum = 15, odd. (8 = 2 x 4, twice a square; the only odd divisor is 1.) TRUE.\nC - n = 12: divisors 1, 2, 3, 4, 6, 12, sum = 28, even. (Odd part 3, not a square.) FALSE.\nD - n = 18: divisors 1, 2, 3, 6, 9, 18, sum = 39, odd. (18 = 2 x 9, twice a square.) TRUE.\nE - n = 25: divisors 1, 5, 25, sum = 31, odd. (25 is a perfect square.) TRUE.\nCheck the pattern from a different angle: the odd divisors of 8 are just 1 (one of them, an odd count); of 18 they are 1, 3, 9 (three, odd count); of 25 they are 1, 5, 25 (three). The even divisors always pair off, so the parity of f(n) is the parity of the number of odd divisors - odd in exactly the three selected cases.\nAnswer: B, D, E.",
+   "trap": "Selecting A and C because 6 and 18 look alike (both are 2 x 3 x something) and 12 contains the square 4. What matters is the odd part alone: 18 = 2 x 3^2 has odd part 9, a square, while 6 = 2 x 3 and 12 = 2^2 x 3 have odd part 3, which is not. Rejecting B because 8 is 'very even' is the other slip: all of its even divisors cancel in parity and only the divisor 1 survives.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "divisor-sum",
+    "perfect-squares",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "NUM-EOP-047",
+   "difficulty": "extreme_hard",
+   "type": "mcq",
+   "question": "a, b and c are integers such that a + b + c = 0 and ab + bc + ca = -7. What can be said about a^2 + b^2 + c^2?",
+   "options": [
+    "A. It is always even",
+    "B. It is always odd",
+    "C. It could be either even or odd",
+    "D. It is always divisible by 4",
+    "E. It is always divisible by 3"
+   ],
+   "answer": "A",
+   "explanation": "Step 1 — use the square-of-a-sum identity: (a + b + c)^2 = a^2 + b^2 + c^2 + 2(ab + bc + ca).\nStep 2 — substitute the given values: 0^2 = a^2 + b^2 + c^2 + 2 x (-7).\nStep 3 — solve: a^2 + b^2 + c^2 = 0 + 14 = 14. The value is not merely even, it is pinned to 14.\nStep 4 — test the options against 14. A: 14 is even, TRUE. B: 14 is not odd, FALSE. C: the value is forced, so it cannot be either, FALSE. D: 14/4 = 3.5, FALSE. E: 14/3 is not an integer, FALSE.\nCheck that such integers exist, and that they give 14: a = 1, b = 2, c = -3 satisfies a + b + c = 0 and ab + bc + ca = 2 - 6 - 3 = -7, and 1 + 4 + 9 = 14. A second triple, a = -1, b = -2, c = 3, gives the same 14.\nAnswer: A.",
+   "trap": "Choosing C by trying to reason about the parities of a, b and c separately: a + b + c = 0 is even, which allows all three even or one even and two odd, so parity alone looks undecidable. The identity bypasses that entirely and fixes the value at 14. Choosing D comes from seeing 2(ab + bc + ca) and assuming the whole expression carries a factor of 4.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "algebraic-identity",
+    "parity-of-value",
+    "symmetric-sums"
+   ]
+  },
+  {
+   "id": "NUM-EOP-048",
+   "difficulty": "extreme_hard",
+   "type": "quantitative_comparison",
+   "question": "n is a positive integer. P(n) is the product of all odd integers from 1 to 2n - 1, inclusive, and S(n) is the sum of all integers from 1 to 2n, inclusive.\nColumn A: The remainder when P(n) is divided by 2\nColumn B: The remainder when S(n) is divided by 2",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Step 1 — Column A. P(n) is a product of odd numbers only, and odd x odd = odd however many factors there are, so P(n) is odd for every n and Column A = 1 always.\nStep 2 — Column B. S(n) = 1 + 2 + ... + 2n = 2n(2n + 1)/2 = n(2n + 1). Since 2n + 1 is odd, the parity of S(n) is just the parity of n.\nStep 3 — so Column B = 1 when n is odd and Column B = 0 when n is even.\nCase n = 1: P = 1, remainder 1; S = 1 + 2 = 3, remainder 1. The columns are equal.\nCase n = 2: P = 1 x 3 = 3, remainder 1; S = 1 + 2 + 3 + 4 = 10, remainder 0. Column A is greater.\nStep 4 — two legal values of n give different verdicts, so nothing is determined.\nCheck n = 3: P = 1 x 3 x 5 = 15, remainder 1; S = 21, remainder 1, equal again. Check n = 4: P = 105, remainder 1; S = 36, remainder 0, Column A greater. The pattern alternates with the parity of n, confirming D.\nAnswer: D.",
+   "trap": "Choosing A after noticing that P(n) is always odd and assuming S(n), a run of consecutive integers, is always even. S(n) = n(2n + 1) is even only when n is even; for n = 1 it is 3 and for n = 3 it is 21. Choosing C comes from testing only n = 1 or n = 3 and seeing 1 in both columns.",
+   "estimated_time_seconds": 125,
+   "tags": [
+    "qc",
+    "odd-product",
+    "triangular-sum"
+   ]
+  },
+  {
+   "id": "NUM-EOP-049",
+   "difficulty": "extreme_hard",
+   "type": "numeric_entry",
+   "question": "For how many integers n with 1 <= n <= 200 is n(n + 1)(n + 2) divisible by 8? Enter your answer as a number.",
+   "options": null,
+   "answer": "125",
+   "explanation": "Step 1 — split by the parity of n, since that decides how the factors of 2 are distributed.\nStep 2 — n even. Then n and n + 2 are consecutive even numbers, so one of them is a multiple of 4 and the other supplies one more factor of 2. The product therefore carries at least 4 x 2 = 8. Every even n works: that is 100 values from 2 to 200.\nStep 3 — n odd. Then n and n + 2 are both odd, and the only even factor is n + 1. Divisibility by 8 requires 8 to divide n + 1 outright, that is n = 7, 15, 23, ..., 199.\nStep 4 — count that list: it runs from 7 to 199 in steps of 8, giving (199 - 7)/8 + 1 = 192/8 + 1 = 24 + 1 = 25 values.\nStep 5 — total = 100 + 25 = 125.\nCheck one from each branch. n = 6: 6 x 7 x 8 = 336 = 8 x 42, yes. n = 7: 7 x 8 x 9 = 504 = 8 x 63, yes. n = 5: 5 x 6 x 7 = 210, and 210/8 = 26.25, no - consistent with 5 + 1 = 6 not being a multiple of 8.\nAnswer: 125.",
+   "trap": "Answering 100 by handling only the even n and assuming odd n can never work; n = 7 works because n + 1 = 8 supplies all three factors of 2 at once. Answering 200 comes from the correct fact that three consecutive integers always contain an even number and then over-claiming divisibility by 8 from a single factor of 2.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "consecutive-integers",
+    "powers-of-2",
+    "counting"
+   ]
+  },
+  {
+   "id": "NUM-EOP-050",
+   "difficulty": "extreme_hard",
+   "type": "multiple_answer",
+   "question": "For a positive integer k, let E(k) be the largest power of 2 that divides k. For example, E(12) = 4, because 12 = 4 x 3 and 8 does not divide 12. Which of the following statements are true for all positive integers n and m? Select all that apply.",
+   "options": [
+    "A. E(2n) = 2 x E(n)",
+    "B. E(3n) = 3 x E(n)",
+    "C. If n is odd, then E(n) = 1",
+    "D. E(n^2) = [E(n)]^2",
+    "E. E(n + m) = E(n) + E(m)"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "D"
+   ],
+   "explanation": "Write n = 2^s x t with t odd; then E(n) = 2^s. Every statement is a claim about how s behaves.\nA - 2n = 2^(s+1) x t, so E(2n) = 2^(s+1) = 2 x 2^s = 2 x E(n). Check n = 12: E(24) = 8 = 2 x 4. TRUE.\nB - multiplying by the odd number 3 adds no factors of 2, so E(3n) = E(n), not 3 x E(n). Check n = 1: E(3) = 1 but 3 x E(1) = 3. FALSE.\nC - an odd n has no factor of 2, so the largest power of 2 dividing it is 2^0 = 1. Check n = 7: E(7) = 1. TRUE.\nD - n^2 = 2^(2s) x t^2 with t^2 odd, so E(n^2) = 2^(2s) = (2^s)^2 = [E(n)]^2. Check n = 12: E(144) = 16 = 4^2. TRUE.\nE - addition can create new factors of 2 out of nowhere. Check n = 1, m = 3: E(4) = 4 but E(1) + E(3) = 1 + 1 = 2. FALSE.\nCheck A, C and D once more on n = 40 = 2^3 x 5, so E(40) = 8: E(80) = 16 = 2 x 8; 40 is not odd so C does not apply; E(1600) = 64 = 8^2. All hold.\nAnswer: A, C, D.",
+   "trap": "Selecting B by treating E as if it multiplied through any factor, when only the factors of 2 inside k count - multiplying by the odd number 3 leaves E untouched. Selecting E is the same error for sums: n = 1 and m = 3 are each odd with E = 1, yet their sum 4 has E = 4, because two odds add to an even.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "powers-of-2",
+    "function-properties",
+    "multiple-answer"
+   ]
+  },
+  {
+   "id": "NUM-EOP-051",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "The sum of seven integers is odd and the product of the same seven integers is even. Which of the following must be true?",
+   "options": [
+    "A. At least two of the seven integers are even",
+    "B. At least four of the seven integers are odd",
+    "C. All seven integers are odd",
+    "D. Exactly one of the seven integers is even",
+    "E. The product of the seven integers is divisible by 8"
+   ],
+   "answer": "A",
+   "explanation": "Step 1 — even terms never affect the parity of a sum, so only the odd terms matter. Each odd term flips the running total. The sum is odd exactly when the NUMBER of odd terms is odd.\nStep 2 — with seven integers in all, if the number of odd ones is odd then the number of even ones is 7 minus an odd number, which is EVEN. So the count of even integers is 0, 2, 4 or 6.\nStep 3 — the product is even, so at least one integer is even, which rules out 0. The count of even integers is therefore 2, 4 or 6.\nA - the count of evens is at least 2 in every surviving case. TRUE.\nB - the count of odds can be as low as 1. Take 3, 2, 2, 2, 2, 2, 2: the sum is 15 (odd) and the product is even, yet only one integer is odd. FALSE.\nC - all seven odd would give an odd product, which the stem forbids. FALSE.\nD - impossible, not merely unforced. An odd sum forces an odd number of odd terms, so the number of even terms is 7 minus an odd number, which is always even and can never equal 1. FALSE.\nE - not forced. Take 2, 2, 1, 1, 1, 1, 1: the sum is 9 (odd), the product is 4, and 4 is not divisible by 8. Two even terms guarantee only 2 x 2 = 4. FALSE.\nCheck A on both examples above: 3, 2, 2, 2, 2, 2, 2 has six even terms, and 2, 2, 1, 1, 1, 1, 1 has two. Both are at least 2.\nAnswer: A.",
+   "trap": "Choosing D is the designed trap: the stem guarantees at least one even integer, and 'exactly one' feels like the minimal way to supply it. It is impossible - one even term would leave six odd terms, and six odds sum to even, so the total could not be odd. Choosing C ignores the product condition entirely. Choosing E turns 'at least two even factors' into 2^3; two factors of 2 give only 4, as 2 x 2 x 1 x 1 x 1 x 1 x 1 shows. Choosing B assumes an odd total needs a majority of odd terms, but a single odd term among six evens already makes the sum odd.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "counting-odds",
+    "sum-parity",
+    "must-be-true"
+   ]
+  },
+  {
+   "id": "SEC-AL-045",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "If n is an odd positive integer, what is the value of (-1)^n + (-1)^(-n) + (-1)^(n+1) ?",
+   "options": [
+    "A. -3",
+    "B. -2",
+    "C. -1",
+    "D. 0",
+    "E. 1"
+   ],
+   "answer": "C",
+   "explanation": "Since n is odd, (-1)^n = -1. The second term is (-1)^(-n) = 1/(-1)^n = 1/(-1) = -1. Since n is odd, n + 1 is even, so (-1)^(n+1) = 1. Adding: -1 + (-1) + 1 = -1.",
+   "trap": "Students treat the negative exponent as flipping the sign and take (-1)^(-n) to be +1. A negative exponent produces a reciprocal, and the reciprocal of -1 is still -1.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "exponents",
+    "parity"
+   ],
+   "origin": "sectional",
+   "origin_set": "algebra_set4"
+  },
+  {
+   "id": "SEC-AO-007",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "k is an integer greater than 1. Which of the following expressions must be divisible by 2?\n\nIndicate all such expressions.",
+   "options": [
+    "A. k^2 + k",
+    "B. k^2 - 1",
+    "C. k^3 - k",
+    "D. k^2 + k + 1",
+    "E. k^4 + k^2"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "A factors as k(k + 1), the product of two consecutive integers, so exactly one factor is even and the product is always even. C factors as (k - 1)k(k + 1), three consecutive integers, which likewise must contain an even factor. E factors as k^2(k^2 + 1), and k^2 and k^2 + 1 are consecutive, so one of them is even. B fails: k^2 - 1 = (k - 1)(k + 1), and when k is even both factors are odd — at k = 4 it gives 15. D fails for every k: k(k + 1) is always even, so adding 1 always produces an odd number.",
+   "trap": "Students test only an odd k such as k = 3, where B gives 8 and looks reliably even, and accept it on that single case. Any even k — k = 4 is enough — makes B odd at once.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "consecutive-integers",
+    "divisibility"
+   ],
+   "origin": "sectional",
+   "origin_set": "arithmetic_operations_set1"
+  },
+  {
+   "id": "SEC-AO-036",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "r is a positive integer, k = 2r + 1, and h = 5k - 3. Which of the following must be true?\n\nIndicate all such statements.",
+   "options": [
+    "A. h is even",
+    "B. The units digit of h is 2",
+    "C. h is a multiple of 5",
+    "D. h - 2 is a multiple of 10",
+    "E. h is a multiple of 3",
+    "F. h is odd"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "Substitute and simplify before testing anything. h = 5(2r + 1) - 3 = 10r + 5 - 3 = 10r + 2. That single expression settles every statement. A is true because 10r + 2 is 2 more than a multiple of 10, hence even. B is true because 10r contributes nothing to the units place, leaving a units digit of 2. D is true because h - 2 = 10r exactly. C is false: dividing 10r + 2 by 5 always leaves remainder 2. E fails at r = 2, where h = 22, which is not a multiple of 3. F contradicts A and is false.",
+   "trap": "Students see the factor of 5 in h = 5k - 3 and select 'h is a multiple of 5,' but subtracting 3 destroys that property. Others test r = 1, get h = 12, notice it is divisible by 3, and include statement E on the strength of one case; r = 2 kills it at once. Collapsing the definitions into 10r + 2 first is what turns a testing exercise into a reading exercise.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "units-digit",
+    "substitution",
+    "divisibility"
+   ],
+   "origin": "sectional",
+   "origin_set": "arithmetic_operations_set3"
+  },
+  {
+   "id": "SEC-AO-041",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "a and b are positive even integers.\nColumn A: The remainder when a^2 + b is divided by 2\nColumn B: The remainder when a^b is divided by 2",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Work with parity rather than with specific numbers. Since a is even, a^2 is even, and since b is even as well, the sum a^2 + b is even plus even, which is even. An even number divided by 2 leaves remainder 0, so Column A is 0. For Column B, a^b is a product of copies of the even number a, so it too is even, and its remainder on division by 2 is also 0. Both columns equal 0 regardless of which even values a and b take. Testing a = 4 and b = 2 gives 18 and 16, both even.",
+   "trap": "Students see the exponent b in Column B, worry that a large power might behave differently, and choose 'cannot be determined.' Any positive power of an even number stays even, so the exponent never changes the parity. The opposite error is to assume a^2 + b must be odd because two different terms are being combined.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "parity",
+    "remainders"
+   ],
+   "origin": "sectional",
+   "origin_set": "arithmetic_operations_set4"
+  },
+  {
+   "id": "SEC-NP-006",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "List X consists of the integers from 1 to p, inclusive, where p is odd. List Y consists of the integers from 1 to q, inclusive, where q is even.\nColumn A: The percent of the integers in List X that are even\nColumn B: The percent of the integers in List Y that are odd",
+   "options": [
+    "A. Column A is greater",
+    "B. Column B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "In List Y, q is even, so the integers 1 through q divide exactly evenly: q/2 of them are odd and q/2 are even. Column B is therefore exactly 50%. In List X, p is odd, so the list begins and ends on an odd integer; it contains (p + 1)/2 odd integers and only (p - 1)/2 even ones. The percent that are even is (p - 1)/(2p) x 100, which is less than 50% for every positive odd p. So Column B is greater.",
+   "trap": "Students assume any run of consecutive integers splits half even and half odd and select 'the two quantities are equal'. That only holds when the run contains an even count of integers; an odd-length run starts and ends on the same parity, which tips the balance.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "odd-even",
+    "consecutive-integers"
+   ],
+   "origin": "sectional",
+   "origin_set": "number_properties_set1"
+  },
+  {
+   "id": "SEC-NP-008",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Which of the following statements are true for all integers m and n?\n\nIndicate all such statements.",
+   "options": [
+    "A. If mn is odd, then m + n must be even.",
+    "B. If m + n is odd, then m - n must be odd.",
+    "C. If m - n is even, then mn must be even.",
+    "D. If m + n is even, then m - n must be even.",
+    "E. If mn is even, then m + n must be even."
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "A is true: a product of two integers is odd only when both factors are odd, and two odd integers sum to an even integer. B is true: if m + n is odd then exactly one of m and n is even, and subtracting an even from an odd (or an odd from an even) also gives an odd result. C is false: m - n even means m and n share a parity, but they could both be odd — take m = 3 and n = 1, where m - n = 2 is even while mn = 3 is odd. D is true: m + n even means m and n share a parity, and same-parity integers always have an even difference. E is false: take m = 2 and n = 3, where mn = 6 is even but m + n = 5 is odd.",
+   "trap": "Students accept C after testing only the both-even case (m = 4, n = 2 gives mn = 8) and never check the both-odd case, which is the half of 'same parity' that breaks the statement. The same shortcut makes E look plausible.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "odd-even"
+   ],
+   "origin": "sectional",
+   "origin_set": "number_properties_set1"
+  },
+  {
+   "id": "SEC-NP-009",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "If y is an integer, which of the following must be divisible by 2?",
+   "options": [
+    "A. y^2 + 5",
+    "B. y^2 + 6y + 9",
+    "C. y^2 + 5y + 6",
+    "D. 9y^2 + 6y + 1",
+    "E. y^3 + 3"
+   ],
+   "answer": "C",
+   "explanation": "Option C factors as (y + 2)(y + 3), the product of two consecutive integers. Exactly one of any two consecutive integers is even, so the product is always even. Every other option fails at y = 0: A gives 5, B = (y + 3)^2 gives 9, D = (3y + 1)^2 gives 1, and E gives 3 — all odd.",
+   "trap": "Students test only y = 1, where A gives 6, B gives 16, C gives 12, D gives 16 and E gives 4 — every option is even — and then pick A because it is first. Any even value of y eliminates all four wrong answers at once.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "consecutive-integers",
+    "divisibility"
+   ],
+   "origin": "sectional",
+   "origin_set": "number_properties_set1"
+  },
+  {
+   "id": "NUM-EOP-KMF-001",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "p and q are integers, and p < q - 6.\nQuantity A: The number of even integers between p and q\nQuantity B: The number of odd integers between p and q",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "p < q - 6 means q - p > 6, so since p and q are integers, q - p >= 7.\nThe integers strictly between p and q number (q - p - 1), which is at least 6.\nTest p = 0, q = 7: integers between are 1..6, 3 even (2,4,6) and 3 odd (1,3,5) -> equal.\nTest p = 0, q = 8: integers between are 1..7, 3 even (2,4,6) and 4 odd (1,3,5,7) -> B greater.\nTest p = -1, q = 7: integers between are 0..6, 4 even (0,2,4,6) and 3 odd (1,3,5) -> A greater.\nSince all three outcomes (A greater, B greater, equal) are possible depending on the parities of p and q, the relationship cannot be determined.",
+   "trap": "Students test only one convenient case (like a block with an even number of integers), see the counts come out equal, and lock in answer C without checking that the interval length is not fixed.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "parity",
+    "integer-range",
+    "case-testing"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    4
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-002",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The variable t represents an integer. Select every expression below whose value must be odd.",
+   "options": [
+    "A. t^2 + t + 3",
+    "B. 2t^2 + 5",
+    "C. t^2 + 4t + 4",
+    "D. 3t + 6",
+    "E. t^3 - t + 7",
+    "F. t^2 + 3"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "E"
+   ],
+   "explanation": "Evaluate each expression's parity for every integer t.\nA. t^2 + t = t(t + 1), the product of two consecutive integers, so it is always even. Even + 3 = odd. Check t = 4: 16 + 4 + 3 = 23, odd. Check t = 5: 25 + 5 + 3 = 33, odd. MUST BE ODD, so A is selected.\nB. 2t^2 is even for every integer t, and even + 5 = odd. Check t = 3: 18 + 5 = 23, odd. Check t = 0: 0 + 5 = 5, odd. MUST BE ODD, so B is selected.\nC. t^2 + 4t + 4 = (t + 2)^2, which is odd exactly when t is odd. Check t = 1: 9, odd. Check t = 2: 16, even. NOT always odd, so C is not selected.\nD. 3t + 6 has the parity of 3t, which follows the parity of t. Check t = 1: 9, odd. Check t = 2: 12, even. NOT always odd, so D is not selected.\nE. t^3 - t = t(t - 1)(t + 1), the product of three consecutive integers, so it is always even. Even + 7 = odd. Check t = 2: 8 - 2 + 7 = 13, odd. Check t = 3: 27 - 3 + 7 = 31, odd. MUST BE ODD, so E is selected.\nF. t^2 + 3 has the parity of t^2, which follows the parity of t. Check t = 1: 4, even. Check t = 2: 7, odd. NOT always odd, so F is not selected.\nThe expressions that must be odd are A, B, and E.",
+   "trap": "Seeing that every term after the leading one in t^2 + 4t + 4 is even and concluding the whole expression is even or of fixed parity; it factors as (t + 2)^2 and is odd whenever t is odd, so selecting option C is wrong.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "parity",
+    "consecutive-integers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 9 Base",
+   "source_pages": [
+    55
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-003",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Let p and q be integers, both of them less than zero, for which the square of p minus the square of q is odd. Indicate each expression below that must be odd.",
+   "options": [
+    "A. p + q",
+    "B. p*q",
+    "C. p - q",
+    "D. p^2 + q^2",
+    "E. 4*p*q"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "D"
+   ],
+   "explanation": "An integer and its square share parity, so p^2 has p's parity and q^2 has q's parity.\nThe difference p^2 - q^2 is odd only when p^2 and q^2 have different parities, so p and q have different parities: one is even, the other odd.\nA. even + odd = odd -- must be odd, true.\nB. a product with an even factor is even -- not odd, false.\nC. even - odd = odd (in either order) -- must be odd, true.\nD. p^2 + q^2 = even + odd = odd -- must be odd, true.\nE. 4 times anything is even -- not odd, false.\nCheck with p = -3, q = -2: p + q = -5 (odd), p*q = 6 (even), p - q = -1 (odd), p^2 + q^2 = 13 (odd), 4*p*q = 24 (even). Matches A, C, D.",
+   "trap": "Reading the condition as forcing both p and q odd makes the product p*q look odd as well, but two odds would give an even difference of squares, contradicting the stem.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "parity",
+    "squares"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    76
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-004",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "The integers j, k, m, and n are all odd, and 20 < j < k < m < n < 50. How many different values can the sum j + k + m + n take?",
+   "options": null,
+   "answer": "45",
+   "explanation": "The odd integers strictly between 20 and 50 are 21, 23, ..., 49.\nSmallest sum: 21 + 23 + 25 + 27 = 96. Largest sum: 43 + 45 + 47 + 49 = 184.\nThe sum of four odd integers is always even, so every possible sum is an even number from 96 to 184.\nEvery even value in between can be reached: start from 21, 23, 25, 27 and raise one number at a time by 2 (keeping the order), which raises the sum by 2 each step until 43, 45, 47, 49.\nNumber of even values from 96 to 184 = (184 - 96)/2 + 1 = 45.\nCheck: a brute-force count of the sums of all 4-element selections of 21, 23, ..., 49 also gives 45.",
+   "trap": "Answering with the range 184 - 96 = 88 (or counting every integer from 96 to 184, which is 89) ignores that the sum of four odd integers must be even, so only every second value occurs.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "parity-of-sum",
+    "extreme-values"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 20 Hard",
+   "source_pages": [
+    121
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-005",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Which of the following expressions must be even for every integer m? Indicate all such expressions.",
+   "options": [
+    "A. m^2 + m",
+    "B. m^2 + 1",
+    "C. m^3 - m",
+    "D. m^2 - 2m + 2",
+    "E. 3m^2 + 3m + 2",
+    "F. m^2 + m + 1"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "A: m^2 + m = m(m + 1), a product of consecutive integers, so even. TRUE.\nB: m = 2 gives 5, odd. FALSE.\nC: m^3 - m = (m - 1)m(m + 1), contains consecutive integers so is even. TRUE.\nD: m = 1 gives 1 - 2 + 2 = 1, odd. FALSE.\nE: 3m^2 + 3m + 2 = 3m(m + 1) + 2, even + 2 is even. TRUE.\nF: m^2 + m + 1 is an even number plus 1, always odd. FALSE.\nAnswer: A, C, E.",
+   "trap": "Testing only one value, or only one kind of value, makes a wrong choice look right: m = 1 makes m^2 + 1 (choice B) even, and every even m makes m^2 - 2m + 2 (choice D) even. B fails at m = 2 and D fails at m = 1.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "product-of-consecutive",
+    "parity"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 23 Base",
+   "source_pages": [
+    141
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-006",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The integers p and q are both positive and odd. Select all of the digits that are impossible as the ones place of the number pq + 3.",
+   "options": [
+    "A. 0",
+    "B. 1",
+    "C. 3",
+    "D. 4",
+    "E. 5",
+    "F. 6",
+    "G. 9"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "E",
+    "G"
+   ],
+   "explanation": "An odd integer times an odd integer is odd, so pq is odd and its ones digit is one of 1, 3, 5, 7, 9.\nAdding 3 to an odd number gives an even number, so pq + 3 is even and its ones digit must be 0, 2, 4, 6 or 8.\nCheck each option: 0 is possible (p=1, q=7 gives 7+3=10); 1 is odd, impossible; 3 is odd, impossible; 4 is possible (p=q=1 gives 4); 5 is odd, impossible; 6 is possible (p=1, q=3 gives 6); 9 is odd, impossible.\nImpossible digits: 1, 3, 5, 9 (options B, C, E, G).",
+   "trap": "Reading 'impossible' backwards, or forgetting that +3 flips parity, and selecting the digits 0, 4 and 6 (options A, D, F) that actually can occur.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "odd-even",
+    "units-digit"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 33 Base",
+   "source_pages": [
+    211
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-007",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "Let n be any integer, positive, negative or zero.\nQuantity A: (-1)^(n^2 + n + 3)\nQuantity B: 0",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "n^2 + n = n(n+1) is a product of two consecutive integers, so it is always even.\nEven + 3 is always odd, so the exponent n^2 + n + 3 is odd for every integer n.\n(-1) raised to an odd power is -1, so Quantity A = -1.\nTest: n = 0 gives (-1)^3 = -1; n = 1 gives (-1)^5 = -1; n = -2 gives (-1)^5 = -1; n = 4 gives (-1)^23 = -1.\nQuantity B = 0 > -1.",
+   "trap": "Reading the exponent as even (as with n^2 + n alone) and concluding Quantity A is +1, which would make A greater (option A).",
+   "estimated_time_seconds": 50,
+   "tags": [
+    "parity-of-exponent",
+    "consecutive-product"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 43 Base",
+   "source_pages": [
+    274
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-008",
+   "difficulty": "extreme_hard",
+   "type": "multiple_answer",
+   "question": "A list of 400 integers is built so that, from the third entry onward, each entry is the total of the two entries just ahead of it. Select every value that the number of even entries in the list could equal.",
+   "options": [
+    "A. 0",
+    "B. 100",
+    "C. 133",
+    "D. 134",
+    "E. 200",
+    "F. 267",
+    "G. 399",
+    "H. 400"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "H"
+   ],
+   "explanation": "Only the parities of the first two entries matter. List the four cases (e = even, o = odd).\nCase e,e: every later entry is even, so the evens number 400.\nCase e,o: pattern e,o,o repeats (e+o = o, o+o = e, ...). 400 = 3(133) + 1, so there are 133 full blocks of e,o,o plus one extra entry (the 400th), which is e. Evens = 133 + 1 = 134.\nCase o,o: pattern o,o,e repeats. 133 full blocks give 133 evens, and the 400th entry is o. Evens = 133.\nCase o,e: entries are o, then e,o,o repeating from the 2nd entry. Entries 2 to 400 are 399 = 3(133) entries, giving 133 evens, and the first entry is odd. Evens = 133.\nPossible counts: 133, 134, 400.\nA: 0 evens is impossible (two odd entries in a row force an even). FALSE. B: 100 FALSE. C: 133 TRUE. D: 134 TRUE. E: 200 FALSE. F: 267 FALSE. G: 399 FALSE. H: 400 TRUE.",
+   "trap": "Assuming that parities settle into a repeating pattern but ignoring the leftover entry after the last full block of three, which makes only 133 appear (choice C) and misses 134 (choice D); or forgetting the all-even start (choice H).",
+   "estimated_time_seconds": 180,
+   "tags": [
+    "parity-pattern",
+    "recurrence"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    330
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-009",
+   "difficulty": "easy",
+   "type": "multiple_answer",
+   "question": "p is a positive odd integer and q is a positive even integer. Select all of the following expressions that must be odd.",
+   "options": [
+    "A. p + q",
+    "B. pq",
+    "C. p^q",
+    "D. q^p",
+    "E. p^2 + q^2",
+    "F. q(p + q)"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "Odd + even = odd, odd * odd = odd, even * anything = even.\nA. p + q = odd + even = odd. True.\nB. pq = odd * even = even. False.\nC. p^q is a product of odd numbers, so it is odd. True.\nD. q^p is a product of p copies of an even number (p >= 1), so it is even. False.\nE. p^2 is odd and q^2 is even, so the sum is odd. True.\nF. q(p + q) has the even factor q, so it is even. False.\nCheck with p = 3, q = 2: 5, 6, 9, 8, 13, 10 - odd, even, odd, even, odd, even.\nAnswer: A, C, E.",
+   "trap": "Believing that anything involving an odd number stays odd leads to ticking the product pq (choice B) and the power q^p (choice D), but an even factor makes the whole product even.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "parity",
+    "even-odd"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 53 Base",
+   "source_pages": [
+    347
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-010",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The integers x and y are both even, and xy = -48. Swapping the two numbers does not count as a new case. How many different numbers can the sum x + y equal?",
+   "options": null,
+   "answer": "6",
+   "explanation": "1. Write x = 2a and y = 2b with a and b integers. Then 4ab = -48, so ab = -12.\n2. Unordered factor pairs of -12 (one positive, one negative): {1, -12}, {2, -6}, {3, -4}, and the same pairs with the signs swapped: {-1, 12}, {-2, 6}, {-3, 4}.\n3. Their sums a + b are -11, -4, -1, 11, 4 and 1, all different.\n4. Since x + y = 2(a + b), the possible sums are -22, -8, -2, 22, 8 and 2.\n5. That is 6 different values.\n6. Check one: x = 4, y = -12 gives xy = -48 and x + y = -8, which is on the list; x = 24, y = -2 gives 22.",
+   "trap": "Counting ordered pairs (x, y), which gives 12 because every pair appears twice with the roles of x and y exchanged, rather than counting distinct sums.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "even-integers",
+    "factor-pairs",
+    "counting"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 55 Base",
+   "source_pages": [
+    364
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-011",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Let n be any integer. Indicate all of the following expressions that must equal 1.",
+   "options": [
+    "A. (-1)^n * (-1)^(n+4)",
+    "B. (-1)^n + (-1)^(n+2)",
+    "C. (-1)^(n^2+n)",
+    "D. (-1)^(2n+3)",
+    "E. (-1)^n * (-1)^(n+1)",
+    "F. (-1)^(3n) * (-1)^(n+1)"
+   ],
+   "answer": [
+    "A",
+    "C"
+   ],
+   "explanation": "Powers of -1 are 1 for even exponents and -1 for odd exponents. Combine exponents when the bases are the same.\nA. (-1)^(n + n + 4) = (-1)^(2n+4). The exponent is even for every integer n, so the value is 1. True.\nB. (-1)^(n+2) = (-1)^n, so the sum is 2 * (-1)^n, which is 2 or -2, never 1. False.\nC. n^2 + n = n(n+1) is a product of consecutive integers, so it is always even and the value is 1. True.\nD. 2n + 3 is always odd, so the value is -1. False.\nE. (-1)^(2n+1): the exponent is odd, so the value is -1. False.\nF. (-1)^(3n + n + 1) = (-1)^(4n+1): the exponent is odd, so the value is -1. False.\nCheck with n = 3: A gives (-1)^3 * (-1)^7 = (-1)(-1) = 1; C gives (-1)^12 = 1; E gives (-1)^3 * (-1)^4 = -1.",
+   "trap": "Treating (-1)^n * (-1)^(n+1) as 1 because it 'cancels' is wrong, since the exponents add to the odd number 2n+1 and the product is -1, so choice E gets selected by mistake.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "powers-of-negative-one",
+    "parity",
+    "consecutive-integers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 63 Base",
+   "source_pages": [
+    412
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-012",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "q is an integer that is a multiple of 4. Select every expression that must be an odd integer.",
+   "options": [
+    "A. q/4",
+    "B. q/2 + 1",
+    "C. q^2/8 - 1",
+    "D. 3q/4",
+    "E. q^2/16 + 2",
+    "F. q^2/4 + 1"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "F"
+   ],
+   "explanation": "1. Write q = 4j for an integer j (j may be even or odd, positive, negative or zero).\n2. A: q/4 = j, which can be even, e.g. q = 8. FALSE.\n3. B: q/2 + 1 = 2j + 1, which is always odd. TRUE.\n4. C: q^2/8 - 1 = 16j^2/8 - 1 = 2j^2 - 1, which is always odd. TRUE.\n5. D: 3q/4 = 3j, which is even when j is even (q = 8 gives 6). FALSE.\n6. E: q^2/16 + 2 = j^2 + 2, which is even when j is even (q = 8 gives 6). FALSE.\n7. F: q^2/4 + 1 = 4j^2 + 1, which is always odd. TRUE.\nCheck with q = 8: A = 2, B = 5, C = 7, D = 6, E = 6, F = 17; only B, C and F are odd, and q = 4 and q = 0 also give odd values for B, C and F.",
+   "trap": "Testing only q = 4, where q/4 = 1, 3q/4 = 3 and q^2/16 + 2 = 3 all look odd, wrongly adds options A, D and E.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "parity",
+    "multiples-of-four"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 68 Hard",
+   "source_pages": [
+    448
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-013",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "p and q are integers. Select every statement below that is guaranteed to hold for all such p and q.",
+   "options": [
+    "A. If p - q is odd, then p*q is even.",
+    "B. If p*q is odd, then p + q is even.",
+    "C. If p + q is even, then p*q is even.",
+    "D. If p*q is even, then p + q is odd.",
+    "E. If p^2 + q^2 is even, then p + q is even.",
+    "F. If p + q is odd, then p^2*q is odd."
+   ],
+   "answer": [
+    "A",
+    "B",
+    "E"
+   ],
+   "explanation": "Parity facts: p - q and p + q always have the same parity, and p^2 has the same parity as p.\nA. p - q odd means one of p, q is even and the other odd, so p*q is even. True.\nB. p*q odd means both are odd, so p + q is even. True.\nC. p = 3, q = 5 gives p + q = 8 (even) but p*q = 15 (odd). False.\nD. p = 2, q = 4 gives p*q = 8 (even) but p + q = 6 (even). False.\nE. p^2 + q^2 has the same parity as p + q, so if it is even then p + q is even. True.\nF. p + q odd means one is even; then p^2*q is even, never odd. False.\nCheck E with p = 3, q = 5: 9 + 25 = 34 is even and 3 + 5 = 8 is even.",
+   "trap": "Reading 'p + q is even' as if it forced both numbers to be even (so the product is even) accepts option C, but two odd numbers also give an even sum and an odd product.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "parity",
+    "implication-statements"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    457
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-014",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "For every positive integer n, let h(n) = n^2 + 3n + 7.\nSelect all statements that must hold no matter which positive integer n is used.",
+   "options": [
+    "A. h(n) is an odd integer.",
+    "B. h(n+1) - h(n) is an even integer.",
+    "C. h(n) + h(n+1) is an odd integer.",
+    "D. h(n) is a multiple of 3.",
+    "E. h(n) * h(n+1) is an even integer."
+   ],
+   "answer": [
+    "A",
+    "B"
+   ],
+   "explanation": "1. n^2 + 3n = n(n + 3). The factors n and n + 3 have opposite parity, so one is even and the product is even. Adding 7 makes h(n) odd for every n.\nA: TRUE.\n2. h(n+1) - h(n) = (2n + 1) + 3 = 2n + 4, which is always even. B: TRUE.\n3. h(n) and h(n+1) are both odd, so their sum is even. C: FALSE (h(1) + h(2) = 11 + 17 = 28).\n4. h(1) = 11 is not a multiple of 3. D: FALSE.\n5. The product of two odd numbers is odd. E: FALSE (11 * 17 = 187).\nAnswer: A, B.",
+   "trap": "Checking only n = 1 (h = 11, odd) and then assuming statements that are odd-looking, such as C (odd sum), also hold; h(1) + h(2) is 28, which is even, so C fails.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "parity",
+    "polynomial-parity",
+    "select-all"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 71 Base",
+   "source_pages": [
+    466
+   ]
+  },
+  {
+   "id": "NUM-EOP-KMF-015",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The function g is defined for integer inputs by g(x, y) = (-1)^(y(x+1)). Which of the following has the value -1 for every integer a and every integer b?",
+   "options": [
+    "A. g(2a, b)",
+    "B. g(a, 2b)",
+    "C. g(2a, 2b+1)",
+    "D. g(2a+1, b)",
+    "E. g(a, b+1)"
+   ],
+   "answer": "C",
+   "explanation": "(-1) raised to an exponent is -1 exactly when the exponent is odd, so we need y(x+1) odd for all a, b, which requires both y and x + 1 to be odd.\nA: g(2a, b): exponent b(2a+1) has the parity of b, so it varies. No.\nB: g(a, 2b): exponent 2b(a+1) is even, so the value is 1. No.\nC: g(2a, 2b+1): exponent (2b+1)(2a+1) is odd times odd, odd, so the value is -1 always. Yes.\nD: g(2a+1, b): exponent b(2a+2) is even, so the value is 1. No.\nE: g(a, b+1): exponent (b+1)(a+1) depends on a and b. No.\nAnswer: C.",
+   "trap": "Seeing that x = 2a is even and assuming that already makes the exponent odd, without checking that y must also be odd, leads to choice A.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "parity-of-exponent",
+    "even-odd"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 72 Hard",
+   "source_pages": [
+    467
+   ]
+  }
+ ]
 }

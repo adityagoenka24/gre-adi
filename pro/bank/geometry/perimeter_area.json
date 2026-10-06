@@ -4,16 +4,23 @@
   "subtopic": "Perimeter & Area",
   "subtopic_id": "GEO-PNA",
   "version": "1.0",
-  "total_questions": 68,
+  "total_questions": 87,
   "distribution": {
-   "easy": 15,
-   "medium": 29,
-   "hard": 17,
+   "easy": 19,
+   "medium": 35,
+   "hard": 26,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 39,
+   "multiple_answer": 7,
+   "numeric_entry": 23,
+   "quantitative_comparison": 18
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1442,6 +1449,497 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "GEO-PNA-KMF-001",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "JKLM is a rectangle. Point N lies on side KL (between K and L).\nQuantity A: The sum of the areas of triangular regions JKN and NLM\nQuantity B: The area of triangular region JNM",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Place J = (0,0), K = (0,h), L = (w,h), M = (w,0), so JKLM is a rectangle with width w and height h.\nLet N = (c,h) be any point on side KL, where 0 <= c <= w.\nArea of triangle JKN (vertices (0,0),(0,h),(c,h)) = (1/2)*c*h.\nArea of triangle NLM (vertices (c,h),(w,h),(w,0)) = (1/2)*h*(w-c).\nSum = (1/2)*c*h + (1/2)*h*(w-c) = (1/2)*h*w, which is exactly half the rectangle's area, no matter where N sits on KL.\nArea of triangle JNM (vertices (0,0),(c,h),(w,0)) = (1/2)*w*h as well (base JM = w, height = h).\nBoth quantities equal (1/2)*w*h, so they are always equal.",
+   "trap": "Students assume the split depends on exactly where N sits on KL and, without doing the algebra, guess the relationship cannot be determined (option D).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "rectangle",
+    "triangle-area",
+    "invariant"
+   ],
+   "figure_description": "Rectangle JKLM with J at bottom-left, K at top-left, L at top-right, M at bottom-right. Point N lies somewhere on the top side KL (between K and L). Segments JN and NM are drawn, splitting the rectangle into three triangles: JKN (left), NLM (right), and JNM (the triangle using the bottom side JM and apex N).",
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    4
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-002",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "The circumference of circle C is equal to the perimeter of equilateral triangle T.\nQuantity A: The ratio of the area enclosed by C to the area enclosed by T\nQuantity B: 1",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Let the circle have radius r, so its circumference is 2*pi*r, and let the triangle have side s, so its perimeter is 3s.\nSince 2*pi*r = 3s, s = 2*pi*r/3.\nArea of circle = pi*r^2.\nArea of equilateral triangle = (sqrt(3)/4)*s^2 = (sqrt(3)/4) * (2*pi*r/3)^2 = (sqrt(3)*pi^2*r^2)/9.\nRatio = (pi*r^2) / [(sqrt(3)*pi^2*r^2)/9] = 9 / (sqrt(3)*pi) ~= 9 / 5.44 ~= 1.65.\nSince 1.65 > 1, Quantity A is greater. (This matches the general fact that for a fixed perimeter, a circle always encloses more area than any polygon.)",
+   "trap": "Students assume equal perimeters must give equal areas and pick 'the two quantities are equal.'",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "circle",
+    "equilateral-triangle",
+    "equal-perimeter"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    14
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-003",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In the xy-plane, a triangle has vertices (0, 4), (c, 4), and (0, 4c), where c is a constant. If the area of the triangle is 24, which of the following is a possible value of c?",
+   "options": [
+    "A. -4",
+    "B. -3",
+    "C. 2",
+    "D. 3",
+    "E. 6"
+   ],
+   "answer": "B",
+   "explanation": "The base of the triangle runs from (0,4) to (c,4), with length |c|.\nThe height is the vertical distance from that line (y=4) to the point (0, 4c), which is |4c - 4|.\nArea = (1/2) * |c| * |4c - 4| = 24, so |c| * |4c-4| = 48, or |c(c-1)| = 12.\nTest c = -3: |(-3)(-4)| = 12. This satisfies the equation.\nChecking the other options (-4, 2, 3, 6) does not satisfy |c(c-1)| = 12.",
+   "trap": "Forgetting the factor of 1/2 in the triangle area formula. Setting |c| * |4c - 4| = 24 instead of 48 gives |c(c-1)| = 6, so c^2 - c - 6 = 0 and c = 3 or c = -2; the student then picks c = 3, which is choice D.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "coordinate-geometry",
+    "triangle-area"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    22
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-004",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A rectangular sheet measures 3s by 2s. A quarter-circle of radius s is cut away at the bottom-left corner and another quarter-circle of radius s is cut away at the top-right corner; in each case the centre of the quarter-circle is that corner of the rectangle and its two straight radii lie along the two sides that meet there. What is the perimeter of the shaded piece that remains?",
+   "options": [
+    "A. (6 + pi/2)s",
+    "B. (6 + pi)s",
+    "C. (8 + pi)s",
+    "D. (6 + 2pi)s",
+    "E. (10 + pi)s"
+   ],
+   "answer": "B",
+   "explanation": "Start from the full rectangle: perimeter = 2 * (3s + 2s) = 10s.\nNow account for one corner cut-out. Removing the quarter-disc deletes a length s of the bottom edge and a length s of the left edge from the boundary, a total of 2s of straight edge, and puts a quarter-circle arc in their place.\nArc length of a quarter-circle of radius s = (1/4) * 2 * pi * s = (pi * s) / 2.\nSo each cut-out changes the perimeter by -2s + (pi/2)s.\nThere are two such cut-outs, at the bottom-left and top-right corners, so the total change is -4s + pi * s.\nPerimeter of the remaining piece = 10s - 4s + pi * s = (6 + pi)s.\nCheck the cut-outs fit and do not overlap: the radius s is at most the 2s height and at most the 3s width, and the two centres are 3s apart horizontally, well more than the 2s that would be needed for the arcs to meet.\nCheck with a number: let s = 1. The boundary is then 6 straight units plus two quarter-arcs of radius 1, total 6 + 2 * (pi/2) = 6 + pi, about 9.14.",
+   "trap": "Adding the two arcs to the full rectangle perimeter without deleting the straight edges they replace, giving 10s + pi * s, which produces option E.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "composite-figure",
+    "arc-length"
+   ],
+   "figure_description": "A rectangle 3s wide and 2s tall. At the bottom-left corner a quarter-disc of radius s is removed: its centre is the bottom-left corner, one radius runs s along the bottom edge and the other runs s up the left edge, and a quarter-circle arc joins those two endpoints. The same removal is made at the top-right corner, with its centre at the top-right corner, one radius running s leftward along the top edge and the other running s down the right edge, joined by a quarter-circle arc. The two cut-outs do not touch each other. The shaded piece is everything left of the rectangle after both cut-outs.",
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    61
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-005",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "An architect's drawing of a workshop floor is an L-shaped region in which every corner is a right angle. The drawing is a 9 cm by x cm rectangle with a 3 cm by 2 cm rectangular piece removed from one corner, with the 3 cm side lying along a 9 cm edge. The drawing uses a scale of 1 cm to 2 meters, and the real workshop floor has an area of 264 square meters. What is the value of x, in centimeters?",
+   "options": null,
+   "answer": "8",
+   "explanation": "The scale is 1 cm to 2 m, so 1 square cm on the drawing is 2*2 = 4 square meters of floor.\nDrawing area = 264/4 = 66 square cm.\nDrawing area = full rectangle minus the removed corner = 9x - 3*2 = 9x - 6.\n9x - 6 = 66, so 9x = 72 and x = 8.\nCheck: 9*8 - 6 = 66 square cm, and 66*4 = 264 square meters.",
+   "trap": "Dividing the area by the linear scale 2 instead of 2^2 = 4 gives 9x - 6 = 132 and x of about 15.3; forgetting to subtract the removed corner gives 9x = 66 and x of about 7.3.",
+   "estimated_time_seconds": 95,
+   "tags": [
+    "scale-factor-squared",
+    "composite-area"
+   ],
+   "figure_description": "A rectangle 9 cm wide and x cm tall with a 3 cm by 2 cm rectangle cut out of its top-right corner (the 3 cm side runs along the top edge, the 2 cm side runs down the right edge). All angles are right angles, giving an L-shaped region with six sides.",
+   "origin": "kmf1804",
+   "origin_set": "Section 22 Hard",
+   "source_pages": [
+    137
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-006",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A rectangular herb bed is 2 feet wide and its length is 2.5 times its width. A gravel strip 1.5 feet wide is laid along all four sides of the bed. How many feet of edging are needed to line the outer boundary of the gravel strip?",
+   "options": [
+    "A. 14",
+    "B. 20",
+    "C. 26",
+    "D. 30",
+    "E. 38"
+   ],
+   "answer": "C",
+   "explanation": "Bed: 2 ft by 2.5 * 2 = 5 ft.\nThe strip adds 1.5 ft on each side, so each dimension grows by 2 * 1.5 = 3 ft.\nOuter rectangle: (2 + 3) by (5 + 3) = 5 ft by 8 ft.\nEdging = perimeter = 2(5 + 8) = 26 ft.\nCheck: bed perimeter 14 plus 4 corners worth 4 * 3 = 12 gives 26.",
+   "trap": "Adding the strip width only once to each dimension (3.5 by 6.5) gives a perimeter of 20, choice B; finding the area of the strip, 40 - 10 = 30, answers a different question and gives choice D.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "border-strip",
+    "perimeter"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 27 Base",
+   "source_pages": [
+    170
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-007",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "PQRS is a rectangle, and M is a point on side SR (M is not necessarily the midpoint).\n\nColumn A: The area of triangle PMQ\nColumn B: The sum of the areas of triangle PSM and triangle MRQ",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Step 1: Let PQ = SR = b and the rectangle's height PS = QR = h.\nStep 2: Triangle PMQ has base PQ = b and height h (M is on the opposite side), so its area is bh/2.\nStep 3: Triangles PSM and MRQ have heights h (right angles at S and R) and bases SM and MR, so their areas sum to h(SM + MR)/2 = h*b/2.\nStep 4: Both quantities equal bh/2, whatever the position of M.\nCheck: with b = 10, h = 4, SM = 3, MR = 7: A = 20 and B = 6 + 14 = 20.",
+   "trap": "Thinking the answer depends on where M sits (since M's position is not given) leads to choosing D.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "triangle-area",
+    "rectangle"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 200\" width=\"320\" height=\"200\"><g stroke=\"black\" stroke-width=\"2\" fill=\"none\"><rect x=\"60\" y=\"40\" width=\"200\" height=\"100\"/><line x1=\"60\" y1=\"40\" x2=\"150\" y2=\"140\"/><line x1=\"260\" y1=\"40\" x2=\"150\" y2=\"140\"/></g><g font-family=\"serif\" font-size=\"16\" fill=\"black\"><text x=\"42\" y=\"38\">P</text><text x=\"266\" y=\"38\">Q</text><text x=\"266\" y=\"156\">R</text><text x=\"42\" y=\"156\">S</text><text x=\"144\" y=\"160\">M</text></g></svg>",
+   "figure_description": "Rectangle PQRS with P at top left, Q at top right, R at bottom right, S at bottom left. M is a point on the bottom side SR. Segments PM and QM are drawn, dividing the rectangle into three triangles: PSM on the left, PMQ in the middle with PQ as its top side, and MRQ on the right.",
+   "origin": "kmf1804",
+   "origin_set": "Section 29 Base",
+   "source_pages": [
+    180
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-008",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A rectangular garden bed must cover exactly 144 square meters. What is the smallest length of edging, in meters, that could go all the way around the bed?",
+   "options": null,
+   "answer": "48",
+   "explanation": "For a fixed area, the perimeter is smallest when the rectangle is a square.\nSquare with area 144 has side 12, so perimeter = 4 * 12 = 48.\nCheck against other shapes: 9 by 16 gives 50; 8 by 18 gives 52; 6 by 24 gives 60. All are larger than 48.\nAlgebraic check: for sides l and w with l*w = 144, l + w >= 2*sqrt(144) = 24, so perimeter >= 48.",
+   "trap": "Using a 12-by-12 square but then reporting its area (144) or half-perimeter (24) rather than the full perimeter 48.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "am-gm",
+    "rectangle-extremum"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 34 Hard",
+   "source_pages": [
+    217
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-009",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "The figure shows a staircase-shaped polygon with a flat bottom edge of length 15. It has five treads (horizontal edges on its stepped top), each of length 3, and five risers (vertical edges) each of height h, where h > 0. All corners are right angles.\nQuantity A: Area of the staircase figure\nQuantity B: Half the area of the smallest rectangle that completely encloses the polygon",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "The polygon splits into five columns, each of width 3 and heights 5h, 4h, 3h, 2h, h.\nArea = 3*(5h + 4h + 3h + 2h + h) = 3*15h = 45h.\nThe smallest enclosing rectangle is 15 wide and 5h tall: area 75h, so half of it is 37.5h.\nQuantity A = 45h and Quantity B = 37.5h; since h > 0, 45h > 37.5h.\nTest: h = 1 gives 45 vs 37.5; h = 0.1 gives 4.5 vs 3.75; h = 100 gives 4500 vs 3750. A is always greater.",
+   "trap": "Treating the staircase as a right triangle with legs 15 and 5h (area 37.5h) so the two quantities look equal (option C); the steps add extra area above the sloped line.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "composite-area",
+    "staircase"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 340 150\" width=\"340\" height=\"150\"><polygon points=\"20,130 320,130 320,114 260,114 260,98 200,98 200,82 140,82 140,66 80,66 80,50 20,50\" fill=\"#eef2fb\" stroke=\"#1a2a5a\" stroke-width=\"2\"/><text x=\"170\" y=\"146\" font-size=\"12\" text-anchor=\"middle\" fill=\"#1a2a5a\">15</text><text x=\"50\" y=\"44\" font-size=\"12\" text-anchor=\"middle\" fill=\"#1a2a5a\">3</text><text x=\"110\" y=\"60\" font-size=\"12\" text-anchor=\"middle\" fill=\"#1a2a5a\">3</text><text x=\"170\" y=\"76\" font-size=\"12\" text-anchor=\"middle\" fill=\"#1a2a5a\">3</text><text x=\"230\" y=\"92\" font-size=\"12\" text-anchor=\"middle\" fill=\"#1a2a5a\">3</text><text x=\"290\" y=\"108\" font-size=\"12\" text-anchor=\"middle\" fill=\"#1a2a5a\">3</text><text x=\"74\" y=\"58\" font-size=\"12\" text-anchor=\"end\" fill=\"#1a2a5a\">h</text><text x=\"134\" y=\"74\" font-size=\"12\" text-anchor=\"end\" fill=\"#1a2a5a\">h</text><text x=\"194\" y=\"90\" font-size=\"12\" text-anchor=\"end\" fill=\"#1a2a5a\">h</text><text x=\"254\" y=\"106\" font-size=\"12\" text-anchor=\"end\" fill=\"#1a2a5a\">h</text><text x=\"314\" y=\"122\" font-size=\"12\" text-anchor=\"end\" fill=\"#1a2a5a\">h</text></svg>",
+   "figure_description": "Staircase polygon, tallest on the left. Bottom edge length 15 along the base. Reading left to right the stepped top descends in 5 equal treads of length 3; the left edge has height 5h, and each step down is a riser of height h, so the five columns have heights 5h, 4h, 3h, 2h, h. The right edge has height h. All angles are 90 degrees.",
+   "origin": "kmf1804",
+   "origin_set": "Section 43 Base",
+   "source_pages": [
+    275
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-010",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "Square S has an area of 72 square units. Square T is built so that its diagonal is exactly as long as one side of square S. What is the area of square T, in square units?",
+   "options": null,
+   "answer": "36",
+   "explanation": "A square with side s has area s^2 and diagonal d with d^2 = 2s^2, so its area is d^2/2.\nSide of S: s^2 = 72, so the side of S squared is 72.\nThe diagonal of T equals that side, so d^2 = 72.\nArea of T = d^2/2 = 72/2 = 36.\nCheck: T has side sqrt(36) = 6, so its diagonal is 6*sqrt(2); S has side sqrt(72) = 6*sqrt(2). They match.",
+   "trap": "Using the diagonal of T as if it were T's side length, which gives T the same area as S, 72.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "square-diagonal",
+    "area-from-diagonal"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 44 Hard",
+   "source_pages": [
+    284
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-011",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A square has side length 15. Its width is increased by 4 while its height is decreased by 4, producing a rectangle. By how much is the rectangle's area less than the square's area?",
+   "options": null,
+   "answer": "16",
+   "explanation": "Square area = 15 * 15 = 225.\nNew rectangle: width 15 + 4 = 19, height 15 - 4 = 11, so its area is 19 * 11 = 209.\nDifference = 225 - 209 = 16.\nCheck by algebra: (s + k)(s - k) = s^2 - k^2, so the loss is k^2 = 4^2 = 16 regardless of s.",
+   "trap": "Assuming the +4 and -4 changes cancel and the area is unchanged, so the difference is 0; or entering 4 (the change in one side).",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "difference-of-squares",
+    "area-change"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 45 Base",
+   "source_pages": [
+    290
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-012",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The figure shows a pentagon in the xy-plane with vertices (-2, -1), (4, -1), (4, 3), (1, 5) and (-2, 3). A triangular hole with vertices (-1, 0), (3, 0) and (1, 2) has been cut out of it. The pentagon minus the hole is shaded. How many square units of the figure are shaded?",
+   "options": null,
+   "answer": "26",
+   "explanation": "Split the pentagon into a rectangle and a triangle on top.\nRectangle: x from -2 to 4 (width 6), y from -1 to 3 (height 4), area 6 * 4 = 24.\nTop triangle: base from (-2,3) to (4,3) has length 6; apex (1,5) is 2 above the base; area = (1/2) * 6 * 2 = 6.\nPentagon area = 24 + 6 = 30.\nHole: base from (-1,0) to (3,0) has length 4, apex (1,2) is 2 above it; area = (1/2) * 4 * 2 = 4.\nShaded area = 30 - 4 = 26.\nCheck: the shoelace formula on the pentagon gives 60/2 = 30, matching.",
+   "trap": "Reporting the whole pentagon, 30, without removing the hole; or adding the hole instead of subtracting it, getting 34.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "composite-area",
+    "polygon-in-coordinate-plane"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 280 280\" width=\"280\" height=\"280\" role=\"img\" aria-label=\"Shaded pentagon with a triangular hole in the xy-plane\"><line x1=\"20\" y1=\"260\" x2=\"20\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"50\" y1=\"260\" x2=\"50\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"80\" y1=\"260\" x2=\"80\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"110\" y1=\"260\" x2=\"110\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"140\" y1=\"260\" x2=\"140\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"170\" y1=\"260\" x2=\"170\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"200\" y1=\"260\" x2=\"200\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"230\" y1=\"260\" x2=\"230\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"260\" y1=\"260\" x2=\"260\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"260\" x2=\"260\" y2=\"260\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"230\" x2=\"260\" y2=\"230\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"200\" x2=\"260\" y2=\"200\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"170\" x2=\"260\" y2=\"170\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"140\" x2=\"260\" y2=\"140\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"110\" x2=\"260\" y2=\"110\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"80\" x2=\"260\" y2=\"80\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"50\" x2=\"260\" y2=\"50\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"20\" x2=\"260\" y2=\"20\" stroke=\"#999\" stroke-width=\"0.4\"/><line x1=\"20\" y1=\"200\" x2=\"260\" y2=\"200\" stroke=\"#333\" stroke-width=\"1.2\"/><line x1=\"110\" y1=\"260\" x2=\"110\" y2=\"20\" stroke=\"#333\" stroke-width=\"1.2\"/><path d=\"M50,230 L230,230 L230,110 L140,50 L50,110 Z M80,200 L200,200 L140,140 Z\" fill=\"#5b7fb5\" fill-opacity=\"0.65\" fill-rule=\"evenodd\" stroke=\"#1f3a63\" stroke-width=\"1.5\"/><text x=\"44\" y=\"244\" font-size=\"11\" text-anchor=\"end\" fill=\"#222\">(-2, -1)</text><text x=\"236\" y=\"244\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">(4, -1)</text><text x=\"238\" y=\"106\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">(4, 3)</text><text x=\"146\" y=\"44\" font-size=\"11\" text-anchor=\"start\" fill=\"#222\">(1, 5)</text><text x=\"42\" y=\"104\" font-size=\"11\" text-anchor=\"end\" fill=\"#222\">(-2, 3)</text><text x=\"260\" y=\"196\" font-size=\"11\" text-anchor=\"end\" fill=\"#222\">x</text><text x=\"114\" y=\"30\" font-size=\"11\" fill=\"#222\">y</text></svg>",
+   "figure_description": "A coordinate plane showing a convex pentagon with vertices (-2,-1), (4,-1), (4,3), (1,5), (-2,3). Inside it, entirely in the interior, is an unshaded triangle with vertices (-1,0), (3,0), (1,2). The region between the pentagon and the triangle is shaded.",
+   "origin": "kmf1804",
+   "origin_set": "Section 46 Hard",
+   "source_pages": [
+    297
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-013",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "The figure shows a wall panel that is to be sealed. All lengths are in meters. The bottom edge is 16 long, and the left and right edges are vertical (perpendicular to the bottom edge) with lengths 14 and 11. The top of the panel is not straight: one straight cut runs from the top of the left edge down to a notch point N, and another runs from N up to the top of the right edge. N is 8 from the left edge and 5 above the bottom edge. A single tin of sealant covers exactly 90 square meters, and all of it is spent on the portion of the panel lying to the left of a vertical line drawn d meters to the right of the left edge. Which interval contains d?",
+   "options": [
+    "A. d is between 6 and 7",
+    "B. d is between 8 and 9",
+    "C. d is between 9 and 10",
+    "D. d is between 10 and 11",
+    "E. d is between 11 and 12"
+   ],
+   "answer": "D",
+   "explanation": "1. Area of the panel to the left of N (0 <= x <= 8): a trapezoid with vertical sides 14 and 5 and width 8, so (14 + 5)/2 * 8 = 76.\n2. 76 < 90, so the vertical line is to the right of N and 90 - 76 = 14 more square meters are needed.\n3. Right of N the top edge climbs from height 5 to height 11 over a width of 8, a slope of 6/8 = 0.75. At t meters past N the height is 5 + 0.75t, so the strip of width t has area 5t + 0.375t^2.\n4. Set 5t + 0.375t^2 = 14. Multiplying by 8: 3t^2 + 40t - 112 = 0, so t = (-40 + sqrt(1600 + 1344))/6 = (-40 + 54.26)/6 = 2.38. Hence d = 8 + 2.38 = 10.38.\n5. Check: at d = 10 the area is 76 + 10 + 1.5 = 87.5 < 90, and at d = 11 it is 76 + 15 + 3.375 = 94.375 > 90, so d is between 10 and 11.\nChoice A comes from ignoring the notch (straight top edge, d = 6.7); B from 90/11 = 8.2; C from 90/9.5 = 9.5 or 8 + 14/8 = 9.75; E from 90/8 = 11.25.",
+   "trap": "Ignoring the notch and treating the top edge as one straight slope from height 14 down to height 11 makes the left part look much bigger, so the 90 square meters is used up near d = 6.7, which is choice A.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "composite-area",
+    "trapezoid",
+    "piecewise-boundary"
+   ],
+   "svg": "<svg width='260' height='200' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 200' role='img' aria-label='Wall panel with a notch in its top edge'><g stroke='currentColor' stroke-width='2' fill='none'><polygon points='30,170 190,170 190,60 110,120 30,30'/><polyline points='30,170 40,170 40,160 30,160'/><polyline points='190,170 180,170 180,160 190,160'/></g><circle cx='110' cy='120' r='3' fill='currentColor'/><g font-size='13' fill='currentColor' font-family='sans-serif'><text x='6' y='105'>14</text><text x='196' y='120'>11</text><text x='100' y='188'>16</text><text x='104' y='138'>N</text></g></svg>",
+   "figure_description": "A wall panel viewed from the front. The bottom edge is horizontal and 16 m long. The left edge is vertical, 14 m tall; the right edge is vertical, 11 m tall; both meet the bottom edge at right angles. The top boundary is two straight segments: from the top of the left edge down to a notch point N, then from N up to the top of the right edge. N is 8 m from the left edge (so 8 m from the right edge too) and 5 m above the bottom edge.",
+   "origin": "kmf1804",
+   "origin_set": "Section 52 Hard",
+   "source_pages": [
+    343
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-014",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In the figure, PQRS is a rectangle with perimeter 24 whose length and width are both integers. Point M is the midpoint of side QR and point N is the midpoint of side RS. Which value is a possible area for the shaded triangle PMN?",
+   "options": [
+    "A. 10",
+    "B. 12",
+    "C. 16",
+    "D. 18",
+    "E. 32"
+   ],
+   "answer": "B",
+   "explanation": "1. Let the rectangle have length l and width w, with l + w = 12 and l, w integers. Place P = (0,0), Q = (l,0), R = (l,w), S = (0,w), so M = (l, w/2) and N = (l/2, w).\n2. Cut the rectangle into pieces around triangle PMN: triangle PQM = (1/2)*l*(w/2) = lw/4; triangle PSN = (1/2)*w*(l/2) = lw/4; triangle MRN = (1/2)*(w/2)*(l/2) = lw/8.\n3. Shaded area = lw - lw/4 - lw/4 - lw/8 = 3lw/8.\n4. Possible rectangle areas with l + w = 12: 1*11 = 11, 2*10 = 20, 3*9 = 27, 4*8 = 32, 5*7 = 35, 6*6 = 36.\n5. Multiply by 3/8: 4.125, 7.5, 10.125, 12, 13.125, 13.5. Only 12 appears among the choices.\n6. Check: with sides 4 and 8, the pieces are 8 + 8 + 4 = 20 and 32 - 20 = 12.\nChoices A, C and D are half of the rectangle areas 20, 32 and 36; E is the full area 32.",
+   "trap": "Treating the shaded triangle as half of the rectangle, as when its base is a whole side, gives half of 20, 32 or 36, which produce choices A, C and D; here the triangle has vertices at a corner and two midpoints, so it is only 3/8 of the rectangle.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "composite-area",
+    "midpoints",
+    "integer-constraint"
+   ],
+   "svg": "<svg width='240' height='160' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 160' role='img' aria-label='Rectangle PQRS with shaded triangle PMN'><rect x='20' y='20' width='160' height='110' fill='none' stroke='currentColor' stroke-width='2'/><polygon points='20,130 180,75 100,20' fill='currentColor' fill-opacity='0.25' stroke='currentColor' stroke-width='2'/><g font-size='13' fill='currentColor' font-family='sans-serif'><text x='6' y='142'>P</text><text x='184' y='142'>Q</text><text x='184' y='18'>R</text><text x='6' y='16'>S</text><text x='186' y='78'>M</text><text x='96' y='14'>N</text></g></svg>",
+   "figure_description": "Rectangle PQRS drawn with P at the bottom-left, Q at the bottom-right, R at the top-right and S at the top-left. M is the midpoint of the right side QR and N is the midpoint of the top side RS. Segments PM, MN and NP are drawn and the triangle PMN is shaded.",
+   "origin": "kmf1804",
+   "origin_set": "Section 53 Base",
+   "source_pages": [
+    350
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-015",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Square MNOP is divided into four regions: a small shaded square in corner M, a larger shaded square in the opposite corner O, and two congruent unshaded rectangles that fill the rest (see figure). The larger shaded square has exactly 4 times the area of the smaller one, while each unshaded rectangle covers 18 square units. Find the combined area of the two shaded squares.",
+   "options": [
+    "A. 36",
+    "B. 45",
+    "C. 54",
+    "D. 63",
+    "E. 81"
+   ],
+   "answer": "B",
+   "explanation": "1. Areas 4 : 1 means the side lengths are in ratio 2 : 1. Let the small square have side b, so the large one has side 2b.\n2. Each unshaded rectangle has dimensions 2b by b, so its area is 2b^2 = 18, giving b^2 = 9 and b = 3.\n3. Small square area = 9; large square area = 36 (side 6).\n4. Combined shaded area = 9 + 36 = 45.\n5. Check: the whole square has side 3 + 6 = 9, area 81 = 45 + 18 + 18.\nChoice A is only the large square; C is the large square plus one rectangle (36 + 18); D is the whole square minus one rectangle (81 - 18); E is the whole square.",
+   "trap": "Subtracting only one rectangle from the whole square (81 - 18) instead of both gives 63, which is choice D.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "square-partition",
+    "area-ratio",
+    "side-ratio"
+   ],
+   "svg": "<svg width='240' height='230' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 230' role='img' aria-label='Square MNOP split into two shaded squares and two unshaded rectangles'><g stroke='currentColor' stroke-width='2'><rect x='20' y='15' width='60' height='120' fill='none'/><rect x='80' y='15' width='120' height='120' fill='#9aa0a6'/><rect x='20' y='135' width='60' height='60' fill='#9aa0a6'/><rect x='80' y='135' width='120' height='60' fill='none'/></g><g font-size='14' fill='currentColor' font-family='sans-serif' font-style='italic'><text x='5' y='14'>N</text><text x='205' y='14'>O</text><text x='5' y='208'>M</text><text x='205' y='208'>P</text></g></svg>",
+   "figure_description": "Square MNOP with M at bottom-left, N at top-left, O at top-right, P at bottom-right. A small shaded square occupies corner M. A larger shaded square occupies corner O. The remaining top-left region (above the small square, to the left of the large square) and bottom-right region (to the right of the small square, below the large square) are unshaded rectangles. The small square's side equals the width of the top-left rectangle and the height of the bottom-right rectangle; the large square's side equals the height of the top-left rectangle and the width of the bottom-right rectangle.",
+   "origin": "kmf1804",
+   "origin_set": "Section 56 Hard",
+   "source_pages": [
+    368
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-016",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A large semicircle has radius R. Along its flat edge lie k congruent small semicircles whose diameters, laid end to end, exactly cover the large semicircle's diameter. Each small semicircle bulges outward, away from the large one, so the closed boundary is the large arc followed by the k small arcs, and the enclosed region is the large half-disk together with the k small half-disks. Which expression equals the area of this enclosed region, written using k and R?",
+   "options": [
+    "A. (pi*R^2/2)(1 + 1/k)",
+    "B. (pi*R^2/2)(1 + 2/k)",
+    "C. (pi*R^2/2)(1 + 1/(4k))",
+    "D. (pi*R^2/2)(1 - 1/k)",
+    "E. (pi*R^2/2)(1 + 1/k^2)"
+   ],
+   "answer": "A",
+   "explanation": "1. The large diameter is 2R, shared by k equal small diameters, so each small diameter is 2R/k and each small radius is R/k.\n2. Area of one small half-disk = (1/2)*pi*(R/k)^2 = pi*R^2/(2k^2).\n3. k of them: k * pi*R^2/(2k^2) = pi*R^2/(2k).\n4. Large half-disk = pi*R^2/2.\n5. Total = pi*R^2/2 + pi*R^2/(2k) = (pi*R^2/2)(1 + 1/k).\n6. Check with k = 1: the small semicircle is congruent to the large one, so the area doubles: (pi*R^2/2)(2) = pi*R^2. Matches.\nChoice B uses full circles for the small ones (forgetting the 1/2); C uses small radius R/(2k); D subtracts instead of adds; E forgets to multiply by k.",
+   "trap": "Treating each small semicircle as having radius R/(2k), as if 2R/k were its radius rather than its diameter, gives (pi*R^2/2)(1 + 1/(4k)), which is choice C.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "semicircles",
+    "composite-area",
+    "expression-options"
+   ],
+   "svg": "<svg width='260' height='170' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 170' role='img' aria-label='Large semicircle with small semicircles bulging outward along its diameter'><g stroke='currentColor' stroke-width='2' fill='none'><path d='M20,120 A110,110 0 0 1 240,120'/><path d='M20,120 A22,22 0 0 0 64,120'/><path d='M64,120 A22,22 0 0 0 108,120'/><path d='M108,120 A22,22 0 0 0 152,120'/><path d='M152,120 A22,22 0 0 0 196,120'/><path d='M196,120 A22,22 0 0 0 240,120'/></g><line x1='130' y1='120' x2='130' y2='10' stroke='currentColor' stroke-dasharray='4 3'/><text x='136' y='70' font-size='13' fill='currentColor' font-family='sans-serif'>R</text></svg>",
+   "figure_description": "A large semicircle with its flat edge (diameter) horizontal along the bottom. Along that diameter sit k equal small semicircles, side by side with no gaps, each curving outward (downward, away from the interior of the large semicircle).",
+   "origin": "kmf1804",
+   "origin_set": "Section 56 Hard",
+   "source_pages": [
+    370
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-017",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Square ABCD has side length 15. Points P, Q, R and S lie on sides BC, CD, DA and AB respectively, with BP = CQ = DR = AS = 5. The segments AP, BQ, CR and DS are drawn, and they enclose a small square in the middle of ABCD. What is the area of that small square?",
+   "options": [
+    "A. 25",
+    "B. 45",
+    "C. 90",
+    "D. 100",
+    "E. 125"
+   ],
+   "answer": "C",
+   "explanation": "1. Place A at (0, 0), B at (15, 0), C at (15, 15), D at (0, 15). Then P = (15, 5), Q = (10, 15), R = (0, 10), S = (5, 0).\n2. Line AP: y = x/3. Line DS: through (0, 15) and (5, 0), so y = 15 - 3x. Line BQ: through (15, 0) and (10, 15), so y = 45 - 3x.\n3. AP meets DS where x/3 = 15 - 3x, so x = 4.5 and y = 1.5. AP meets BQ where x/3 = 45 - 3x, so x = 13.5 and y = 4.5.\n4. These are adjacent corners of the small square, so its side squared is (13.5 - 4.5)^2 + (4.5 - 1.5)^2 = 81 + 9 = 90.\n5. The area of a square equals its side squared, so the area is 90.\nCheck: 90 / 225 = 2/5 of the big square, matching the general result (15 - 5)^2 / (15^2 + 5^2) = 100 / 250 = 2/5.\nOther choices: 25 uses side 15 - 2*5; 45 applies the midpoint-case fraction 1/5; 100 uses side 15 - 5; 125 is 225 - 100.",
+   "trap": "Using the fraction 1/5 that holds when the points are midpoints (so area 225/5 = 45) ignores that here the points are only one third of the way along each side, which gives choice B.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "pinwheel-square",
+    "similar-triangles",
+    "coordinate-method"
+   ],
+   "svg": "<svg width='200' height='200' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200' role='img' aria-label='Square ABCD with four segments forming a small central square'><polygon points='160.0,130.0 130.0,40.0 40.0,70.0 70.0,160.0' fill='currentColor' fill-opacity='0.2' stroke='none'/><g stroke='currentColor' stroke-width='2' fill='none'><polygon points='25.0,175.0 175.0,175.0 175.0,25.0 25.0,25.0'/><line x1='25.0' y1='175.0' x2='175.0' y2='125.0'/><line x1='175.0' y1='175.0' x2='125.0' y2='25.0'/><line x1='175.0' y1='25.0' x2='25.0' y2='75.0'/><line x1='25.0' y1='25.0' x2='75.0' y2='175.0'/></g><g font-size='13' fill='currentColor' font-family='sans-serif'><text x='11.0' y='187.0'>A</text><text x='179.0' y='187.0'>B</text><text x='179.0' y='21.0'>C</text><text x='11.0' y='21.0'>D</text><text x='180.0' y='129.0'>P</text><text x='121.0' y='19.0'>Q</text><text x='11.0' y='79.0'>R</text><text x='72.0' y='189.0'>S</text></g></svg>",
+   "figure_description": "Square ABCD with A at the bottom-left, B bottom-right, C top-right and D top-left. P is on the right side BC, 5 above B; Q is on the top side CD, 5 to the left of C; R is on the left side DA, 5 below D; S is on the bottom side AB, 5 to the right of A. The four segments AP, BQ, CR and DS cross to form a small tilted square in the center of the figure, which is shaded.",
+   "origin": "kmf1804",
+   "origin_set": "Section 58 Hard",
+   "source_pages": [
+    384
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-018",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In parallelogram PQRS, side PQ has length 3, side PS has length 5, and angle QPS measures 60 degrees. A circle centered at P with radius 3 passes through Q. The part of the parallelogram lying outside the circle is shaded. Find the area of that shaded part.",
+   "options": [
+    "A. 15 - 3*pi/2",
+    "B. (15*sqrt(3) - 3*pi)/2",
+    "C. (9*sqrt(3) - 3*pi)/2",
+    "D. 15*sqrt(3)/2 - 3*pi",
+    "E. 15*sqrt(3)/2 - 3*pi/4"
+   ],
+   "answer": "B",
+   "explanation": "1. Take PQ = 3 as the base. Dropping a perpendicular from S to line PQ makes a 30-60-90 triangle with hypotenuse PS = 5, so the height is 5*sqrt(3)/2. Parallelogram area = 3 * 5*sqrt(3)/2 = 15*sqrt(3)/2.\n2. The circle has radius 3 and the angle at P is 60 degrees, so the part of the circle inside the parallelogram is a 60-degree sector, 1/6 of the circle. (The whole sector fits: side SR is 5*sqrt(3)/2, about 4.33, from P, more than 3; and the arc meets side QR only at Q itself.)\n3. Sector area = (1/6) * pi * 3^2 = 3*pi/2.\n4. Shaded area = 15*sqrt(3)/2 - 3*pi/2 = (15*sqrt(3) - 3*pi)/2, about 12.99 - 4.71 = 8.28.\nCheck: the other options evaluate to about 10.29, 3.08, 3.57 and 10.63, none equal to 8.28.",
+   "trap": "Using side times side (3*5 = 15) as the parallelogram area instead of base times height gives 15 - 3*pi/2, choice A.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "parallelogram-area",
+    "sector-area",
+    "composite-region"
+   ],
+   "figure_description": "Parallelogram PQRS drawn with PQ as the bottom side (length 3) and PS (length 5) rising to the upper right of P at an angle of 60 degrees to PQ, so P is the bottom-left vertex. A circle of radius 3 is centered at P and passes through Q. Inside the parallelogram the circle covers the 60-degree sector between PQ and PS; the rest of the parallelogram (the part nearer R) is shaded.",
+   "origin": "kmf1804",
+   "origin_set": "Section 64 Hard",
+   "source_pages": [
+    422
+   ]
+  },
+  {
+   "id": "GEO-PNA-KMF-019",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A garden designer plans a gravel bed shaped like an isosceles trapezoid, with a straight rectangular path leading away from its shorter parallel side, as in the layout shown. The gravel layer is to be 1/4 meter deep everywhere.\nWhat volume of gravel, in cubic meters, must be ordered to cover the whole bed and path?",
+   "options": [
+    "A. 18",
+    "B. 27",
+    "C. 33",
+    "D. 39",
+    "E. 108"
+   ],
+   "answer": "B",
+   "explanation": "1. Drop perpendiculars from the ends of the top side to the bottom side. Each cuts off a right triangle at the slanted side; the horizontal leg is (20 - 4)/2 = 8 and the hypotenuse is 10.\n2. The vertical leg (the trapezoid's height) is sqrt(10^2 - 8^2) = sqrt(36) = 6.\n3. Trapezoid area = (4 + 20)/2 * 6 = 12 * 6 = 72 square meters.\n4. Path area = 4 * 9 = 36 square meters.\n5. Total area = 72 + 36 = 108 square meters.\n6. Volume = 108 * (1/4) = 27 cubic meters.\nCheck: slices of 8-6-10 form a right triangle (64 + 36 = 100), and 108 / 4 = 27.",
+   "trap": "Using the horizontal offset 8 as the trapezoid height gives (4 + 20)/2 * 8 = 96, then 96 + 36 = 132 and 132/4 = 33 (option C); using the slanted side 10 as the height gives 120 + 36 = 156 and 156/4 = 39 (option D).",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "composite-area",
+    "trapezoid-height",
+    "volume-from-area"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 250\" width=\"300\" height=\"250\" font-family=\"sans-serif\" font-size=\"13\"><polygon points=\"50,210 250,210 170,150 130,150\" fill=\"#e8eef7\" stroke=\"#222\" stroke-width=\"2\"/><rect x=\"130\" y=\"60\" width=\"40\" height=\"90\" fill=\"#e8eef7\" stroke=\"#222\" stroke-width=\"2\"/><line x1=\"130\" y1=\"150\" x2=\"130\" y2=\"210\" stroke=\"#222\" stroke-dasharray=\"5,4\"/><line x1=\"170\" y1=\"150\" x2=\"170\" y2=\"210\" stroke=\"#222\" stroke-dasharray=\"5,4\"/><text x=\"139\" y=\"52\">4 m</text><text x=\"92\" y=\"110\">9 m</text><text x=\"176\" y=\"110\">9 m</text><text x=\"62\" y=\"172\">10 m</text><text x=\"212\" y=\"172\">10 m</text><text x=\"136\" y=\"232\">20 m</text></svg>",
+   "figure_description": "Plan view, all lengths in meters. An isosceles trapezoid has a bottom (longer parallel) side of 20 and a top (shorter parallel) side of 4; its two slanted sides are each 10. A rectangle 4 wide and 9 long sits on the top side of the trapezoid, its width equal to that top side, so the long sides of the rectangle are vertical and 9 long. Dashed vertical lines drop from the ends of the top side to the bottom side to mark the width of the path. The bed is the trapezoid and the path is the rectangle; the gravel covers both.",
+   "origin": "kmf1804",
+   "origin_set": "Section 74 Hard",
+   "source_pages": [
+    486
+   ]
   }
  ]
 }

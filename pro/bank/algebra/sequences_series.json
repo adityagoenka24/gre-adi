@@ -4,15 +4,22 @@
   "subtopic": "Sequences & Series (Algebraic)",
   "subtopic_id": "ALG-SEQ",
   "version": "1.0",
-  "total_questions": 50,
+  "total_questions": 71,
   "distribution": {
-   "easy": 13,
-   "medium": 20,
-   "hard": 12,
-   "extreme_hard": 5
+   "easy": 14,
+   "medium": 32,
+   "hard": 19,
+   "extreme_hard": 6
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
-  "bank": "Adi's GRE Quant Bank"
+  "bank": "Adi's GRE Quant Bank",
+  "question_types": {
+   "mcq": 26,
+   "multiple_answer": 8,
+   "numeric_entry": 21,
+   "quantitative_comparison": 16
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1031,6 +1038,506 @@
     "multi-step",
     "pattern",
     "two-step"
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-001",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "a1, a2, a3, ..., an, ...\nIn the sequence shown, a1 = 10, and for each integer n greater than 1, an is defined by:\nIf n is even, then an = 3 + a(n-1) (n >= 2)\nIf n is odd, then an = -7 + a(n-1) (n >= 2)\nWhat is the value of a8?",
+   "options": null,
+   "answer": "1",
+   "explanation": "a1 = 10.\na2 (even): 3 + 10 = 13.\na3 (odd): -7 + 13 = 6.\na4 (even): 3 + 6 = 9.\na5 (odd): -7 + 9 = 2.\na6 (even): 3 + 2 = 5.\na7 (odd): -7 + 5 = -2.\na8 (even): 3 + (-2) = 1.\nCheck: over each even-odd pair the net change is 3-7 = -4, applied 3 full times (a1 to a7) gives 10-12=-2, then +3 for a8 gives 1. Matches.",
+   "trap": "Students mix up which rule (even or odd index) applies to which step, e.g. applying the 'odd' rule when computing a2, producing a different final value.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "recursive-sequence",
+    "arithmetic-steps"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    18
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A sequence b_1, b_2, b_3, ... is defined by b_1 = 3, b_2 = 7, and b_n = 3*b_(n-1) - b_(n-2) for every integer n greater than 2. Which of the following is a term of this sequence?",
+   "options": [
+    "A. 24",
+    "B. 47",
+    "C. 54",
+    "D. 61",
+    "E. 65"
+   ],
+   "answer": "B",
+   "explanation": "b_1 = 3 and b_2 = 7.\nb_3 = 3*b_2 - b_1 = 3*7 - 3 = 21 - 3 = 18.\nb_4 = 3*b_3 - b_2 = 3*18 - 7 = 54 - 7 = 47.\nb_5 = 3*b_4 - b_3 = 3*47 - 18 = 141 - 18 = 123.\nb_6 = 3*b_5 - b_4 = 3*123 - 47 = 369 - 47 = 322.\nThe terms so far are 3, 7, 18, 47, 123, 322, and the sequence is strictly increasing from b_2 on, so no later term equals any of the listed values below 123.\nOf the options, only 47 appears.\nCheck: 3*18 - 7 = 47, so 47 is indeed b_4.",
+   "trap": "Adding the earlier term instead of subtracting it at the fourth step gives 3*18 + 7 = 61, option D.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "recursive-sequence",
+    "term-generation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 6 Hard",
+   "source_pages": [
+    36
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-003",
+   "difficulty": "extreme_hard",
+   "type": "quantitative_comparison",
+   "question": "The sequence d_1, d_2, d_3, ..., d_k, ... is defined by d_1 = 6 and d_(k+1) = (1/6)*d_k for each positive integer k.\nQuantity A: d_9\nQuantity B: (36^5) * d_20",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Each term is the previous term divided by 6, so d_k = 6 * (1/6)^(k-1).\nWrite this with a single base: d_k = 6^1 * 6^(-(k-1)) = 6^(2-k).\nCheck the formula: d_1 = 6^(2-1) = 6^1 = 6, correct; d_2 = 6^0 = 1 = 6/6, correct.\nQuantity A: d_9 = 6^(2-9) = 6^(-7).\nQuantity B: d_20 = 6^(2-20) = 6^(-18), and 36^5 = (6^2)^5 = 6^10.\nSo Quantity B = 6^10 * 6^(-18) = 6^(10-18) = 6^(-8).\nCompare 6^(-7) with 6^(-8). Since the base 6 is greater than 1, a larger exponent gives a larger value, and -7 > -8.\nSo 6^(-7) > 6^(-8) and Quantity A is greater.\nCheck numerically: 6^(-7) = 1/279,936 and 6^(-8) = 1/1,679,616, and the first fraction is the larger of the two.",
+   "trap": "Multiplying by 6 at each step instead of dividing gives d_9 = 6^9 and d_20 = 6^20, so Quantity B looks enormous and selects B.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "geometric-sequence",
+    "exponent-rules"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 8 Hard",
+   "source_pages": [
+    46
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-004",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "The terms b_k of a sequence are given by b_k = 6 / (k(k + 1)) for every integer k >= 1. What is the least value of n for which the sum of the first n terms of the sequence is greater than 5?",
+   "options": null,
+   "answer": "6",
+   "explanation": "Split the general term using partial fractions: 1/(k(k + 1)) = 1/k - 1/(k + 1).\nSo b_k = 6 * (1/k - 1/(k + 1)).\nAdd the first n terms. The sum is 6 * [(1/1 - 1/2) + (1/2 - 1/3) + (1/3 - 1/4) + ... + (1/n - 1/(n + 1))].\nEvery interior fraction appears once with a plus sign and once with a minus sign, so they all cancel, leaving 6 * (1 - 1/(n + 1)).\nSimplify: sum of the first n terms = 6n / (n + 1).\nSet 6n / (n + 1) > 5. Since n >= 1, n + 1 is positive, so multiply through without flipping: 6n > 5(n + 1) = 5n + 5, giving n > 5.\nThe least integer greater than 5 is 6.\nCheck n = 6: 6 * 6 / 7 = 36/7 = 5.142..., which is greater than 5.\nCheck n = 5: 6 * 5 / 6 = 5 exactly, which is not greater than 5, so 5 fails.\nSo the least value of n is 6.",
+   "trap": "Assuming the sum keeps climbing without bound and testing only small n by brute addition; the running total is 3, 4, 4.5, 4.8, 5, 5.142..., so a student who stops at n = 5 because the total finally 'reaches' 5 answers 5 instead of 6.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "telescoping-series",
+    "partial-fractions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 11 Base",
+   "source_pages": [
+    65
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-005",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A sequence is defined by t_1 = 2, t_2 = 1, and t_n = t_(n-1) + t_(n-2) for every integer n >= 3. Select all of the following numbers that appear among the first eight terms of the sequence.",
+   "options": [
+    "A. 11",
+    "B. 16",
+    "C. 18",
+    "D. 23",
+    "E. 29",
+    "F. 40",
+    "G. 47"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "Build the terms: t_1 = 2, t_2 = 1, t_3 = 3, t_4 = 4, t_5 = 7, t_6 = 11, t_7 = 18, t_8 = 29. (The next term, t_9, is 47.)\nA. 16 is not among them: false.\nB. 18 = t_7: true.\nC. 23 is not among them: false.\nD. 29 = t_8: true.\nE. 40 is not among them: false.\nF. 11 = t_6: true.\nG. 47 is t_9, outside the first eight terms: false.\nCorrect: B, D, F.",
+   "trap": "Including 47 (G) because it belongs to the sequence, although it is the ninth term and the question limits attention to the first eight.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "recursive-sequence",
+    "list-terms"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 18 Hard",
+   "source_pages": [
+    113
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-006",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The first term of a sequence is 2, and every later term is 4 times the term before it. What is the smallest n for which the nth term exceeds 1,000,000,000?",
+   "options": null,
+   "answer": "16",
+   "explanation": "Each term is 4 times the one before, so the nth term is 2 * 4^(n-1) = 2 * 2^(2n-2) = 2^(2n-1).\nWe need 2^(2n-1) > 10^9. Since 2^10 = 1,024, 2^30 is about 1.07 * 10^9, so 2^29 is about 5.4 * 10^8, which is below 10^9, and 2^30 is above it.\nThe exponent 2n - 1 is odd, so the first odd exponent that is at least 30 is 31: 2n - 1 = 31, so n = 16.\nCheck: the 15th term is 2^29 = 536,870,912, which is below 10^9; the 16th is 2^31 = 2,147,483,648, which is above it.",
+   "trap": "Matching 10^9 to 2^30 and solving 2n - 1 = 30 gives n = 15.5, which tempts an answer of 15; but the 15th term is only 2^29 = 536,870,912, so 15 falls short and the answer is 16.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "geometric-sequence",
+    "powers-of-two"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 20 Hard",
+   "source_pages": [
+    121
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-007",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "For each positive integer n, define T_n as n divided by (n + 2). For each integer n greater than 2, define U_n as T_n minus T_(n-2). Which of the following expressions equals U_n?",
+   "options": [
+    "A. 2/(n + 2)",
+    "B. 4/(n(n + 2))",
+    "C. 4/(n + 2)",
+    "D. (4n - 4)/(n(n + 2))",
+    "E. (n - 2)/n"
+   ],
+   "answer": "B",
+   "explanation": "T_(n-2) replaces n by n - 2 everywhere: (n - 2)/((n - 2) + 2) = (n - 2)/n.\nU_n = n/(n + 2) - (n - 2)/n.\nCommon denominator n(n + 2): numerator = n*n - (n - 2)(n + 2) = n^2 - (n^2 - 4) = 4.\nU_n = 4/(n(n + 2)).\nCheck at n = 7: T_7 = 7/9, T_5 = 5/7, 7/9 - 5/7 = (49 - 45)/63 = 4/63, and 4/(7*9) = 4/63.",
+   "trap": "Replacing n by n - 2 only in the numerator, T_(n-2) = (n - 2)/(n + 2), gives 2/(n + 2), choice A; expanding (n - 2)(n + 2) as (n - 2)^2 gives choice D.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "recursive-definition",
+    "fraction-subtraction"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 22 Hard",
+   "source_pages": [
+    133
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-008",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "For each positive integer n, the nth term of a sequence is 12 divided by 2^n, so the sequence begins 6, 3, 1.5, and so on. What is the least number of terms that must be added together, starting from the first, for the total to be greater than 11.9?",
+   "options": null,
+   "answer": "7",
+   "explanation": "Each term is half the previous one, and the first n terms add up to 12 - 12/2^n (the shortfall from 12 is always equal to the last term added).\nCheck the pattern: n = 1 gives 12 - 6 = 6; n = 2 gives 12 - 3 = 9 = 6 + 3.\nWe need 12 - 12/2^n > 11.9, so 12/2^n < 0.1, so 2^n > 120.\n2^6 = 64 is too small and 2^7 = 128 works.\nSums: n = 6 gives 12 - 0.1875 = 11.8125 (not enough); n = 7 gives 12 - 0.09375 = 11.90625 (greater than 11.9).\nLeast n = 7.",
+   "trap": "Stopping at 6 terms because the later terms look negligible: the sum of 6 terms is only 12 - 0.1875 = 11.8125, which is below 11.9. Another error is to solve 12/2^n < 0.1 as 2^n > 12 and answer 4.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "geometric-partial-sum",
+    "halving-pattern"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 22 Hard",
+   "source_pages": [
+    134
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-009",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A technician records 41 pressure readings, r1, r2, ..., r41. Starting from the second reading, every reading exceeds its predecessor by 2, and the 41 readings total -82. What is the final reading, r41?",
+   "options": [
+    "A. -42",
+    "B. -2",
+    "C. 36",
+    "D. 38",
+    "E. 40"
+   ],
+   "answer": "D",
+   "explanation": "The readings form an arithmetic sequence, so their mean equals the middle term, r21.\nMean = -82 / 41 = -2, so r21 = -2.\nFrom r21 to r41 there are 41 - 21 = 20 steps of +2, so r41 = -2 + 20*2 = 38.\nCheck: r1 = -2 - 20*2 = -42; the average of r1 and r41 is (-42 + 38)/2 = -2; times 41 readings gives -82.\nOther options: -42 is the first reading, -2 is the middle reading and the mean, 36 and 40 come from 19 or 21 steps instead of 20.",
+   "trap": "Counting 21 steps from the middle term to the end instead of 20 gives -2 + 42 = 40 (option E).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "arithmetic-sequence",
+    "middle-term"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 24 Hard",
+   "source_pages": [
+    152
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-010",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The terms of a sequence satisfy h(1) = 6 and h(k+1) = 3*h(k) for every positive integer k. For which value of n does h(n) equal 2*3^13?",
+   "options": [
+    "A. 6",
+    "B. 12",
+    "C. 13",
+    "D. 14",
+    "E. 26"
+   ],
+   "answer": "C",
+   "explanation": "Each term is 3 times the one before, so h(n) = 6*3^(n-1).\nSince 6 = 2*3, h(n) = 2*3*3^(n-1) = 2*3^n.\nSetting 2*3^n = 2*3^13 gives n = 13.\nCheck: h(1) = 2*3^1 = 6, matching the start of the sequence.\nOther options: 12 comes from writing h(n) = 6*3^n = 2*3^(n+1); 14 from writing h(n) = 2*3^(n-1); 26 multiplies 2 by 13; 6 is just the first term.",
+   "trap": "Writing h(n) = 6*3^n (exponent n instead of n - 1), which leads to n + 1 = 13 and n = 12 (option B).",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "geometric-sequence",
+    "exponent-offset"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 26 Hard",
+   "source_pages": [
+    160
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-011",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Two bakeries, one on Mill Street and one on Dock Street, opened on the same day. On day 1 the Mill Street bakery sold k loaves, and on every later day it sold exactly 3 times as many loaves as on the day before. On day 1 the Dock Street bakery sold 6k loaves, and on every later day it sold 6k more loaves than on the day before. Select all of the true statements.",
+   "options": [
+    "A. On day 2, the Dock Street bakery sold 4 times as many loaves as the Mill Street bakery.",
+    "B. On day 3, the Dock Street bakery sold 3 times as many loaves as the Mill Street bakery.",
+    "C. On day 4, the Mill Street bakery sold more loaves than the Dock Street bakery.",
+    "D. On day 5, the Dock Street bakery sold more than half as many loaves as the Mill Street bakery.",
+    "E. On day 6, the Mill Street bakery sold more than 5 times as many loaves as the Dock Street bakery."
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "Step 1: Mill Street is geometric: day n sells k*3^(n-1): k, 3k, 9k, 27k, 81k, 243k.\nStep 2: Dock Street is arithmetic: day n sells 6kn: 6k, 12k, 18k, 24k, 30k, 36k.\nA. Day 2: 12k vs 3k, ratio 4, true.\nB. Day 3: 18k vs 9k, ratio 2 not 3, false.\nC. Day 4: Mill 27k > Dock 24k, true.\nD. Day 5: half of Mill is 40.5k and Dock is 30k, which is less, false.\nE. Day 6: 5 times Dock is 180k and Mill is 243k, which is more, true.\nCheck: Mill overtakes Dock first on day 4 and the gap keeps widening.",
+   "trap": "Assuming Dock Street stays ahead because it starts 6 times higher makes statement B (ratio 3 on day 3) look plausible; the ratio of 2 is the true value.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "geometric-vs-arithmetic",
+    "select-all"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 28 Hard",
+   "source_pages": [
+    177
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-012",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A sequence b_1, b_2, b_3, ... starts with b_1 = 3 and b_2 = 2. Every term after the second equals the square of the term just before it, multiplied by the term two places before it. If b_6 can be written as 3^p * 2^q, where p and q are positive integers, what is the value of p + q?",
+   "options": null,
+   "answer": "41",
+   "explanation": "Track the exponents. Let p_n be the exponent of 3 and q_n the exponent of 2 in b_n; squaring the previous term doubles its exponent, so p_n = 2*p_(n-1) + p_(n-2) and q_n = 2*q_(n-1) + q_(n-2).\np: 1, 0, 1, 2, 5, 12 (n = 1..6). q: 0, 1, 2, 5, 12, 29.\nCheck terms directly: b_3 = 2^2 * 3 = 12 = 3^1 * 2^2; b_4 = 12^2 * 2 = 288 = 3^2 * 2^5.\nSo b_6 = 3^12 * 2^29, giving p + q = 12 + 29 = 41.",
+   "trap": "Using the plain product rule (exponents add like Fibonacci numbers) gives smaller exponents and a wrong total, and forgetting to double the exponent when squaring leads to the same error.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "recursive-sequence",
+    "exponent-tracking"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 30 Hard",
+   "source_pages": [
+    190
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-013",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Two facts: the total of the whole numbers 1 through n is n(n+1)/2, and the total of the first n odd positive integers is n^2. Let U be the total of every whole number from 1 through 80, and let V be the total of the odd whole numbers from 1 through 79. Compute U - 2V.",
+   "options": null,
+   "answer": "40",
+   "explanation": "U = 80*81/2 = 3240.\nThe odd numbers 1, 3, ..., 79 form an arithmetic list with common difference 2; the count is (79-1)/2 + 1 = 40.\nV = 40^2 = 1600, so 2V = 3200.\nU - 2V = 3240 - 3200 = 40.\nCheck: using n(n+1)/2 with n = 80 and 2*(n/2)^2 = n^2/2 gives the difference n(n+1)/2 - n^2/2 = n/2 = 40.",
+   "trap": "Counting 79 odd numbers (using the last term as the count) or 80 odd numbers, which gives a V far too large and a negative result instead of 40.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "arithmetic-series",
+    "sum-of-odds"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 42 Hard",
+   "source_pages": [
+    272
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-014",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A sequence is defined by a_k = 3/(sqrt(3k+1) + sqrt(3k-2)) for k = 1, 2, 3, and so on. The first n terms add up to exactly 7. Find n.",
+   "options": null,
+   "answer": "21",
+   "explanation": "Rationalise: a_k = 3*(sqrt(3k+1) - sqrt(3k-2)) / ((3k+1) - (3k-2)) = 3*(sqrt(3k+1) - sqrt(3k-2))/3 = sqrt(3k+1) - sqrt(3k-2).\nThe sum telescopes: a_1 + ... + a_n = sqrt(3n+1) - sqrt(1).\nSet sqrt(3n+1) - 1 = 7, so sqrt(3n+1) = 8 and 3n + 1 = 64.\nn = 21.\nCheck: a_1 = 3/(2+1) = 1 = sqrt(4) - sqrt(1), consistent; sum of first 21 terms = sqrt(64) - 1 = 7.",
+   "trap": "Forgetting to subtract the leftover first term, setting sqrt(3n+1) = 7 and getting 3n + 1 = 49, n = 16.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "telescoping",
+    "rationalising"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 42 Hard",
+   "source_pages": [
+    273
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-015",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A sequence has general term t(n) = (-1)^(n+1) * (2n - 1) for n = 1, 2, 3, and so on. The sum of its first N terms equals -60. What is N?",
+   "options": null,
+   "answer": "60",
+   "explanation": "The terms are 1, -3, 5, -7, 9, -11, ...\nGroup consecutive terms in pairs: 1 + (-3) = -2, 5 + (-7) = -2, 9 + (-11) = -2, and every pair gives -2.\nIf N is even, there are N/2 pairs, so the sum is -2*(N/2) = -N.\nIf N is odd, the sum of the first N - 1 terms is -(N - 1), and the last term is +(2N - 1), giving N, which is positive and so cannot equal -60.\nSo N is even and -N = -60, giving N = 60.\nCheck: first 4 terms sum to 1 - 3 + 5 - 7 = -4 = -N, consistent with the pattern.",
+   "trap": "Using the odd-length result (sum = +N) for every N, which makes a negative sum look impossible; the negative sum shows N must be even, giving N = 60.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "alternating-series",
+    "pairing"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 48 Hard",
+   "source_pages": [
+    313
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-016",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The first term of a sequence is 5, and every later term equals one quarter of the term right before it. If the m-th term of the sequence is 5/1024, what is m?",
+   "options": null,
+   "answer": "6",
+   "explanation": "Each step multiplies by 1/4, so the m-th term is 5 * (1/4)^(m-1).\nSet 5 * (1/4)^(m-1) = 5/1024, so 4^(m-1) = 1024.\n1024 = 4^5 (4, 16, 64, 256, 1024), so m - 1 = 5 and m = 6.\nCheck: terms are 5, 5/4, 5/16, 5/64, 5/256, 5/1024, and 5/1024 is the 6th.",
+   "trap": "Reading the exponent 5 in 1024 = 4^5 directly as the term number gives 5, forgetting that the first term has had no division yet.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "geometric-sequence",
+    "term-index"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    326
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-017",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A rubber ball is released from a starting height of H feet. Every bounce carries it up to a peak that is three-quarters as high as the peak before it (the release height counts as the first peak). After its k-th bounce the ball peaks at exactly 27 feet. Which expression gives H?",
+   "options": [
+    "A. 27(4/3)^k",
+    "B. 27(3/4)^(k-1)",
+    "C. 27(4/3)^(k-1)",
+    "D. 27(3/4)^k",
+    "E. 27(4/3)^(k+1)"
+   ],
+   "answer": "A",
+   "explanation": "1. After one bounce the peak is H*(3/4); after two it is H*(3/4)^2; after k bounces it is H*(3/4)^k.\n2. So H*(3/4)^k = 27.\n3. Divide both sides by (3/4)^k, which is the same as multiplying by (4/3)^k: H = 27(4/3)^k.\n4. Check with k = 1: peak is 3H/4 = 27, so H = 36 = 27*(4/3). Matches D.\nChoices D and B shrink the 27 instead of growing it; C and E are off by one in the exponent.",
+   "trap": "Multiplying 27 by the ratio 3/4 for each bounce instead of dividing, which gives 27(3/4)^k, choice D.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "geometric-sequence",
+    "exponent-modelling"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 54 Hard",
+   "source_pages": [
+    356
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-018",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A club member makes one deposit each month for 36 months. The first deposit is positive, and every later deposit is more than twice the deposit made the month before.\nQuantity A: The total of the first 35 deposits\nQuantity B: The 36th deposit",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. Write the deposits as d1, d2, ..., d36, all positive, with each d(n) > 2 * d(n-1). Let S(n) be the sum of the first n deposits.\n2. Claim: d(n) > S(n-1) for every n >= 2.\n3. n = 2: d2 > 2 * d1 > d1 = S(1).\n4. If d(n-1) > S(n-2), then d(n) > 2 * d(n-1) = d(n-1) + d(n-1) > d(n-1) + S(n-2) = S(n-1).\n5. So the claim holds for every n, and in particular d36 > S(35). Quantity B is greater.\nCheck with sample values: deposits 1, 2.1, 4.3, 8.7 give a total of 1 + 2.1 + 4.3 = 7.4 < 8.7 for the fourth deposit.",
+   "trap": "Seeing no actual deposit amounts and concluding the comparison cannot be determined gives choice D, even though the doubling rule forces the last deposit to exceed all earlier ones combined.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "doubling-sequences",
+    "sum-vs-last-term",
+    "induction-idea"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 62 Hard",
+   "source_pages": [
+    404
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-019",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "The first term of a sequence is 8, and every later term equals the term before it times -1/2.\nQuantity A: The sum of the 61st term and the 62nd term\nQuantity B: 0",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "1. The n-th term is 8*(-1/2)^(n-1).\n2. The 61st term is 8*(-1/2)^60, which is positive because the exponent is even.\n3. The 62nd term is the 61st term times -1/2, so it is negative with half the size: it equals -(61st term)/2.\n4. Sum = (61st term) - (61st term)/2 = (61st term)/2 > 0.\n5. So Quantity A is positive and exceeds 0.\nCheck with early terms: 8, -4, 2, -1 give sums 8 + (-4) = 4 and 2 + (-1) = 1, both positive.",
+   "trap": "Assuming that terms of opposite sign cancel, so their sum is 0, leads to choice C.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "alternating-sequence",
+    "geometric-sequence"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 65 Base",
+   "source_pages": [
+    424
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-020",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A list consists of the first 45 terms of the rule t_n = (-1)^n(5n + 1), so it begins -6, 11, -16, 21, and ends with t_45.\nQuantity A: The sum of all 45 terms in the list\nQuantity B: -110",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. Group the first 44 terms into pairs (t_1 + t_2), (t_3 + t_4), ..., (t_43 + t_44). Each pair is -(5m + 1) + (5(m + 1) + 1) = 5 for odd m, for example -6 + 11 = 5 and -16 + 21 = 5.\n2. There are 22 pairs, so the first 44 terms sum to 22*5 = 110.\n3. The 45th term is left over: t_45 = (-1)^45 * (5*45 + 1) = -226.\n4. Total = 110 - 226 = -116.\n5. -116 < -110, so Quantity B is greater.\nCheck: t_43 = -216 and t_44 = 221 give 5, and 110 + (-226) = -116.",
+   "trap": "Pairing the terms and forgetting the unpaired 45th term gives a sum of 110, which beats -110 and points to choice A.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "alternating-series",
+    "pairing",
+    "odd-count"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    456
+   ]
+  },
+  {
+   "id": "ALG-SEQ-KMF-021",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Starting from -5, a pattern rises by 8 at every step and never stops. How many entries of the pattern are below 200?",
+   "options": [
+    "A. 25",
+    "B. 26",
+    "C. 27",
+    "D. 195",
+    "E. 203"
+   ],
+   "answer": "B",
+   "explanation": "1. The entries are -5 + 8k for k = 0, 1, 2, ...\n2. Require -5 + 8k < 200, so 8k < 205 and k < 25.625, hence k = 0, 1, ..., 25.\n3. That is 26 entries (k runs from 0, so there is one more entry than the largest k).\nCheck: the 26th entry is -5 + 8*25 = 195 < 200, and the 27th is 203 > 200.",
+   "trap": "Computing (200 + 5)/8 = 25.6 and keeping 25 forgets that the count starts at k = 0, so the first entry is not counted (choice A).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "arithmetic-sequence",
+    "counting-terms"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 73 Base",
+   "source_pages": [
+    479
    ]
   }
  ]

@@ -4,16 +4,23 @@
   "subtopic": "Parallelograms & Trapezoids",
   "subtopic_id": "GEO-PTZ",
   "version": "1.0",
-  "total_questions": 43,
+  "total_questions": 47,
   "distribution": {
-   "easy": 10,
-   "medium": 16,
-   "hard": 13,
+   "easy": 11,
+   "medium": 18,
+   "hard": 14,
    "extreme_hard": 4
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 20,
+   "multiple_answer": 6,
+   "numeric_entry": 10,
+   "quantitative_comparison": 11
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -937,6 +944,110 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "GEO-PTZ-KMF-001",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In trapezoid WXYZ, sides WX and ZY are parallel, with WX = 4 and ZY = 10. The nonparallel sides are WZ = 5 and XY = 8. Point P lies on WZ and point Q lies on XY, and segment PQ is parallel to the bases. PQ splits WXYZ into two trapezoids with the same perimeter. Taken together, how long are the two nonparallel sides of the upper trapezoid WXQP?",
+   "options": [
+    "A. 3.5",
+    "B. 6.5",
+    "C. 8.0",
+    "D. 9.5",
+    "E. 13.5"
+   ],
+   "answer": "D",
+   "explanation": "Let t = WP + XQ, the nonparallel sides of the upper trapezoid WXQP. The two legs of the whole figure total 5 + 8 = 13, so the lower trapezoid PQYZ has legs totalling 13 - t.\nPerimeter of upper = WX + PQ + t = 4 + PQ + t.\nPerimeter of lower = ZY + PQ + (13 - t) = 10 + PQ + 13 - t.\nSet equal; PQ cancels: 4 + t = 23 - t, so 2t = 19 and t = 9.5.\nCheck: upper perimeter = 4 + PQ + 9.5 = 13.5 + PQ; lower = 10 + PQ + 3.5 = 13.5 + PQ. Equal.\nFeasible: t = 9.5 is less than 13, so P and Q sit about 73 percent of the way down the legs.",
+   "trap": "Finding the lower trapezoid's legs, 13 - 9.5 = 3.5, but answering with that instead of the requested upper trapezoid (choice A); or splitting the legs evenly, 13/2 = 6.5 (choice B).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "trapezoid",
+    "perimeter",
+    "cancellation"
+   ],
+   "figure_description": "Trapezoid WXYZ drawn with the short base WX (length 4) on top and the long base ZY (length 10) on the bottom, so W is above Z and X is above Y. The left leg WZ has length 5 and the right leg XY has length 8. A segment PQ (not drawn in the original) joins P on WZ to Q on XY, parallel to both bases, cutting WXYZ into the upper trapezoid WXQP and the lower trapezoid PQYZ.",
+   "origin": "kmf1804",
+   "origin_set": "Section 32 Hard",
+   "source_pages": [
+    203
+   ]
+  },
+  {
+   "id": "GEO-PTZ-KMF-002",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "In the figure, the outer rectangle is 15 units wide and 11 units tall. A square of side 4 sits in its lower-left corner and a second square of side 4 sits in its upper-right corner. The shaded quadrilateral WVZY is a parallelogram: side WV lies along the top edge of the lower square and side YZ lies along the bottom edge of the upper square. What is the area of the shaded parallelogram, in square units?",
+   "options": null,
+   "answer": "12",
+   "explanation": "WV and YZ are the two horizontal sides of the parallelogram, each of length 4.\nWV lies on the line 4 units above the bottom of the rectangle. YZ lies on the line 4 units below the top, which is 11 - 4 = 7 units above the bottom.\nThe perpendicular distance between the two horizontal sides is 7 - 4 = 3.\nArea = base * height = 4 * 3 = 12.\nCheck with coordinates W(0,4), V(4,4), Z(15,7), Y(11,7): the shoelace sum is (0*4-4*4) + (4*7-15*4) + (15*7-11*7) + (11*4-0*7) = -16 - 32 + 28 + 44 = 24, and half of 24 is 12.",
+   "trap": "Using the slanted side length (about 11.4) as the height, or multiplying 4 by 11 or by 7 instead of by the 3-unit gap between the two horizontal sides.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "parallelogram-area",
+    "base-times-height"
+   ],
+   "svg": "<svg width=\"350\" height=\"270\" viewBox=\"0 0 350 270\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"14\">\n<rect x=\"20\" y=\"20\" width=\"300\" height=\"220\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n<rect x=\"20\" y=\"160\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n<rect x=\"240\" y=\"20\" width=\"80\" height=\"80\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n<polygon points=\"20,160 100,160 320,100 240,100\" fill=\"currentColor\" fill-opacity=\"0.18\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n<text x=\"4\" y=\"157\">W</text>\n<text x=\"104\" y=\"176\">V</text>\n<text x=\"324\" y=\"104\">Z</text>\n<text x=\"224\" y=\"116\">Y</text>\n<text x=\"55\" y=\"206\">4</text>\n<text x=\"275\" y=\"66\">4</text>\n<text x=\"165\" y=\"260\">15</text>\n<text x=\"326\" y=\"175\">11</text>\n</svg>",
+   "figure_description": "Rectangle 15 units wide and 11 units tall. A 4-by-4 square occupies the lower-left corner; its top side is WV with W on the left edge of the rectangle (4 units above the bottom-left corner) and V 4 units to the right of W. A second 4-by-4 square occupies the upper-right corner; its bottom side is YZ with Z on the right edge of the rectangle (4 units below the top-right corner) and Y 4 units to the left of Z. The parallelogram WVZY joins W to V, V to Z, Z to Y and Y to W. WV and YZ are horizontal and both of length 4; the horizontal lines containing them are 3 units apart (11 - 4 - 4 = 3).",
+   "origin": "kmf1804",
+   "origin_set": "Section 45 Base",
+   "source_pages": [
+    288
+   ]
+  },
+  {
+   "id": "GEO-PTZ-KMF-003",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "In quadrilateral WXYZ, side ZY is parallel to side WX, angle XWZ is a right angle, WX = 9, ZY = 4 and WZ = 12.\nQuantity A: The length of XY\nQuantity B: 13",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Drop a perpendicular from Y to WX, meeting it at P. Then YP = WZ = 12 and WP = ZY = 4, so PX = 9 - 4 = 5.\nTriangle YPX is right-angled with legs 12 and 5, so XY = sqrt(12^2 + 5^2) = sqrt(144 + 25) = sqrt(169) = 13.\nQuantity A = 13 = Quantity B.\nCheck coordinates: W(0,0), X(9,0), Z(0,12), Y(4,12); distance XY = sqrt(5^2 + 12^2) = 13.",
+   "trap": "Using the sloping side as WZ = 12 plus something, or taking the horizontal gap as 9 instead of 9 - 4 = 5: sqrt(12^2 + 9^2) = 15 would make Quantity A greater (choice A).",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "right-trapezoid",
+    "pythagorean-triple"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 220 240\" width=\"220\" height=\"240\"><polygon points=\"30,200 138,200 78,56 30,56\" fill=\"none\" stroke=\"#333\" stroke-width=\"2\"/><polyline points=\"30,188 42,188 42,200\" fill=\"none\" stroke=\"#333\"/><text x=\"14\" y=\"212\" font-size=\"14\">W</text><text x=\"142\" y=\"212\" font-size=\"14\">X</text><text x=\"82\" y=\"50\" font-size=\"14\">Y</text><text x=\"14\" y=\"50\" font-size=\"14\">Z</text><text x=\"78\" y=\"216\" font-size=\"12\">9</text><text x=\"46\" y=\"48\" font-size=\"12\">4</text><text x=\"8\" y=\"130\" font-size=\"12\">12</text></svg>",
+   "figure_description": "Right trapezoid WXYZ drawn with W at bottom-left, X at bottom-right, Y at top, Z at top-left. WX is the bottom side (length 9), ZY is the top side (length 4), WZ is the left side (length 12) and meets WX at a right angle. XY is the slanted side.",
+   "origin": "kmf1804",
+   "origin_set": "Section 49 Base",
+   "source_pages": [
+    316
+   ]
+  },
+  {
+   "id": "GEO-PTZ-KMF-004",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A square and a rhombus each have sides of length 6, and the rhombus has an angle of 60 degrees. By how much does the area of the square exceed the area of the rhombus?",
+   "options": [
+    "A. 36 - 9*sqrt(3)",
+    "B. 18*sqrt(3)",
+    "C. 18",
+    "D. 36 - 18*sqrt(2)",
+    "E. 36 - 18*sqrt(3)"
+   ],
+   "answer": "E",
+   "explanation": "1. Square area = 6*6 = 36.\n2. Drop a perpendicular from one vertex of the rhombus to the opposite side. With a 60-degree angle this makes a 30-60-90 triangle with hypotenuse 6, so the height is 6*(sqrt(3)/2) = 3*sqrt(3).\n3. Rhombus area = base * height = 6 * 3*sqrt(3) = 18*sqrt(3), about 31.2.\n4. Difference = 36 - 18*sqrt(3), about 4.8.\nCheck: the rhombus is thinner than the square (height 5.2 against 6), so its area must be a little smaller than 36.",
+   "trap": "Treating the height as if it came from a 45-45-90 triangle (3*sqrt(2)) gives 36 - 18*sqrt(2) (choice D).",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "rhombus-area",
+    "30-60-90"
+   ],
+   "figure_description": "A rhombus with all four sides equal to 6 and one interior angle of 60 degrees, next to a square of side 6.",
+   "origin": "kmf1804",
+   "origin_set": "Section 74 Hard",
+   "source_pages": [
+    482
+   ]
   }
  ]
 }

@@ -4,16 +4,23 @@
   "subtopic": "Surface Area & Volume",
   "subtopic_id": "GEO-SAV",
   "version": "1.0",
-  "total_questions": 56,
+  "total_questions": 69,
   "distribution": {
-   "easy": 13,
-   "medium": 23,
-   "hard": 15,
+   "easy": 15,
+   "medium": 32,
+   "hard": 17,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 36,
+   "multiple_answer": 7,
+   "numeric_entry": 15,
+   "quantitative_comparison": 11
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1243,6 +1250,334 @@
    ],
    "origin": "sectional",
    "origin_set": "circles_solids_set3"
+  },
+  {
+   "id": "GEO-SAV-KMF-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Two right circular cylindrical tanks each have an inside height of 24 centimetres. The wider tank has an inside radius of 6 centimetres and the narrower tank has an inside radius of 4 centimetres. Juice is poured into the wider tank until the depth of the juice is 8 centimetres, and all of that juice is then transferred into the empty narrower tank. What is the depth of the juice, in centimetres, in the narrower tank?",
+   "options": [
+    "A. 3.6",
+    "B. 8.0",
+    "C. 12.0",
+    "D. 18.0",
+    "E. 24.0"
+   ],
+   "answer": "D",
+   "explanation": "Volume of juice in the wider tank = pi * 6^2 * 8 = pi * 36 * 8 = 288*pi cubic centimetres.\nCross-sectional area of the narrower tank = pi * 4^2 = 16*pi square centimetres.\nDepth in the narrower tank = volume divided by area = 288*pi / (16*pi) = 18.\n18 is at most the 24-centimetre inside height, so the juice fits.\nCheck: pi * 16 * 18 = 288*pi, matching the original volume.",
+   "trap": "Scaling the depth by the ratio of the radii, 8 * 6/4, instead of by the ratio of the cross-sectional areas gives 12.0, option C.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "cylinder-volume",
+    "conservation-of-volume"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 6 Hard",
+   "source_pages": [
+    34
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A florist packs bouquets in a sealed rectangular carton whose width, height, and length stand in the ratio 2 : 3 : 4. Cardboard covering all six faces of the carton measures 468 square centimeters. How many cubic centimeters does the carton hold?",
+   "options": [
+    "A. 216",
+    "B. 234",
+    "C. 468",
+    "D. 648",
+    "E. 1,296"
+   ],
+   "answer": "D",
+   "explanation": "Write the three dimensions with a shared multiplier x: width = 2x, height = 3x, length = 4x.\nA sealed rectangular carton has three pairs of matching faces, of areas 2x*3x = 6x^2, 2x*4x = 8x^2, and 3x*4x = 12x^2.\nArea of all six faces = 2*(6x^2 + 8x^2 + 12x^2) = 2*26x^2 = 52x^2.\nSet 52x^2 = 468, so x^2 = 468/52 = 9 and x = 3.\nDimensions: width = 6, height = 9, length = 12 centimeters.\nCheck the cardboard figure: 2*(6*9 + 6*12 + 9*12) = 2*(54 + 72 + 108) = 2*234 = 468. Correct.\nCapacity = 6*9*12 = 648 cubic centimeters.\nCheck the ratio: 6 : 9 : 12 divides through by 3 to give 2 : 3 : 4. Correct.\nWrong routes behind the other options: 216 is 6^3, from treating the carton as a cube built on its shortest edge; 468 is the cardboard figure restated as a capacity; 1,296 is twice the true capacity, from carrying the doubling of the surface-area formula into the volume as well.",
+   "trap": "Halving the stated 468 square centimeters to 234 and reporting that as the capacity gives option B.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "rectangular-solid",
+    "ratio-of-dimensions",
+    "inverse-problem"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    62
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Two open storage tanks are right prisms standing upright. Tank P has an interior floor of area 8 square meters and currently holds water to a depth of 9 meters. Tank R has an interior floor of area 4 square meters and currently holds water to a depth of 3 meters. Water is pumped between the tanks until the depth reads the same in each. What depth, in meters, do both tanks then show?",
+   "options": [
+    "A. 5",
+    "B. 6",
+    "C. 7",
+    "D. 10.5",
+    "E. 21"
+   ],
+   "answer": "C",
+   "explanation": "Water volume equals floor area times depth for an upright prism.\nTank P holds 8 * 9 = 72 cubic meters.\nTank R holds 4 * 3 = 12 cubic meters.\nTotal water = 72 + 12 = 84 cubic meters, and pumping does not change that total.\nAt a shared depth h the two tanks hold 8h + 4h = 12h cubic meters.\n12h = 84, so h = 7.\nCheck: tank P then holds 8 * 7 = 56 and tank R holds 4 * 7 = 28, and 56 + 28 = 84. Correct.",
+   "trap": "Averaging the two depths, (9 + 3)/2 = 6, weights the tanks equally even though tank P's floor is twice as large, and that shortcut produces choice B.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "volume-conservation",
+    "prisms"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    74
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-004",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Filled to the brim, one cylindrical drum of sealant coats 84 square meters of decking. A second cylindrical drum, filled with the same sealant, has a radius half as long and a height 6 times as great. Filled to the brim, how many square meters of decking will the second drum coat?",
+   "options": [
+    "A. 42",
+    "B. 63",
+    "C. 126",
+    "D. 252",
+    "E. 504"
+   ],
+   "answer": "C",
+   "explanation": "Coverage is proportional to the volume held, and a cylinder's volume is pi*(radius)^2*(height).\nHalving the radius multiplies the volume by (1/2)^2 = 1/4.\nMultiplying the height by 6 multiplies the volume by 6.\nCombined factor = (1/4)*6 = 3/2.\nNew coverage = 84 * 3/2 = 126 square meters.\nCheck with concrete numbers: let the first drum have radius 2 and height 1, volume pi*4*1 = 4pi; the second has radius 1 and height 6, volume pi*1*6 = 6pi; and 6pi/4pi = 3/2. Correct.",
+   "trap": "Applying the height factor while leaving the radius alone gives 84 * 6 = 504, which is choice E and forgets that the radius enters the volume squared.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "cylinder-volume",
+    "scaling"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 14 Hard",
+   "source_pages": [
+    87
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-005",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A thin square sheet of aluminium has sides of length x inches. A 3-inch square is removed from each of its four corners, and the four flaps are folded up to form an open tray. The tray holds 192 cubic inches. What is x?",
+   "options": [
+    "A. 8",
+    "B. 11",
+    "C. 14",
+    "D. 20",
+    "E. 70"
+   ],
+   "answer": "C",
+   "explanation": "After the corner squares are cut out, the flat base of the tray is a square whose side is x - 3 - 3 = x - 6 inches.\nThe tray's height is the 3-inch cut, so volume = (x - 6)^2 * 3 = 192.\n(x - 6)^2 = 64, so x - 6 = 8 (the side is positive), giving x = 14.\nCheck: base 8 by 8 is 64 square inches, times height 3 is 192 cubic inches.",
+   "trap": "Removing only one 3-inch strip from each side (base side x - 3) gives x = 11 (choice B); stopping at (x - 6)^2 = 64 and then adding 6 to 64 instead of taking the square root gives 70 (choice E).",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "open-box-volume",
+    "corner-cutouts"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 20 Hard",
+   "source_pages": [
+    124
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-006",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A cylindrical grain bin stands upright on its circular base. The base has a circumference of 10pi meters and the bin is 4 meters tall. What is the volume of the bin, in cubic meters?",
+   "options": [
+    "A. 20pi",
+    "B. 25pi",
+    "C. 40pi",
+    "D. 100pi",
+    "E. 400pi"
+   ],
+   "answer": "D",
+   "explanation": "Circumference 2*pi*r = 10pi, so r = 5 meters.\nBase area = pi*r^2 = 25pi square meters.\nVolume = base area * height = 25pi * 4 = 100pi cubic meters.\nCheck: radius 5 gives circumference 10pi, and 100pi / 4 = 25pi = pi*5^2.",
+   "trap": "Multiplying the circumference by the height (10pi * 4) gives 40pi (option C), and reading 10 as the radius gives 400pi (option E).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "cylinder-volume",
+    "circumference"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 30 Hard",
+   "source_pages": [
+    188
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-007",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A large cube is assembled from 64 identical small cubes arranged 4 by 4 by 4. Exactly 12 of the small cubes are white and the other 52 are red. What is the least possible fraction of the large cube's surface area that is red?",
+   "options": [
+    "A. 5/8",
+    "B. 2/3",
+    "C. 17/24",
+    "D. 3/4",
+    "E. 23/24"
+   ],
+   "answer": "B",
+   "explanation": "The large cube's surface has 6 * 16 = 96 small faces.\nSmall cubes by exposed faces: 8 corner cubes show 3 faces each (24); 24 edge cubes show 2 faces each (48); 24 face cubes show 1 face each (24); 8 interior cubes show 0. Total 24 + 48 + 24 = 96.\nTo minimize red area, the white cubes should show as many faces as possible: 8 corners (24 faces) plus 4 edge cubes (8 faces) = 12 cubes showing 32 faces.\nRed faces = 96 - 32 = 64.\nFraction = 64/96 = 2/3.\nCheck: swapping any white cube for a cube with fewer exposed faces only lowers white exposure.",
+   "trap": "Using only the 8 corners for white and forgetting the other 4 white cubes also show faces gives 72/96 = 3/4 (choice D); assuming all 12 white cubes show 3 faces gives 60/96 = 5/8 (choice A); hiding the white cubes (the greatest fraction instead of the least) gives 23/24 (choice E).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "surface-area",
+    "cube-arrangement"
+   ],
+   "figure_description": "A large 4 by 4 by 4 cube built from 64 identical small cubes. 12 small cubes are white and 52 are red; their positions are not fixed and may be chosen to make the red surface area as small as possible.",
+   "origin": "kmf1804",
+   "origin_set": "Section 36 Hard",
+   "source_pages": [
+    231
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-008",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A metal bushing is made by drilling a hole straight through the length of a solid cylindrical rod, with the hole centered on the rod's axis. The rod has diameter 10 cm and the hole has diameter 6 cm. The bushing contains 144*pi cubic centimeters of metal. What is the length of the bushing, in centimeters?",
+   "options": null,
+   "answer": "9",
+   "explanation": "The metal is a cylinder of radius 5 cm (diameter 10) with a coaxial cylinder of radius 3 cm (diameter 6) removed, over the same length L.\nVolume = pi * (5^2 - 3^2) * L = pi * 16 * L.\nSet 16 * pi * L = 144 * pi, so L = 144 / 16 = 9.\nCheck: pi * 16 * 9 = 144 * pi.",
+   "trap": "Using the diameters 10 and 6 as if they were radii: pi * (100 - 36) * L = 64 * pi * L = 144 * pi, so L = 2.25. Subtracting the radii first, (5 - 3)^2 = 4, gives L = 144 / 4 = 36.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "hollow-cylinder",
+    "volume-difference"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 40 Hard",
+   "source_pages": [
+    256
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-009",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A model-maker bends a single piece of wire, 96 cm long, into a skeleton of a cube. Every edge of the cube is made of wire, and no wire is wasted or doubled up. What is the total surface area of the cube, in square centimetres?",
+   "options": [
+    "A. 64",
+    "B. 384",
+    "C. 512",
+    "D. 864",
+    "E. 1536"
+   ],
+   "answer": "B",
+   "explanation": "A cube has 12 edges, so each edge is 96/12 = 8 cm.\nEach of the 6 faces is a square of area 8^2 = 64.\nSurface area = 6 * 64 = 384 square cm.\nCheck: 12 * 8 = 96 matches the wire length.",
+   "trap": "Using 8 edges instead of 12 gives an edge of 12 cm and a surface area of 6*144 = 864 (option D).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "cube-edges",
+    "surface-area"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 43 Base",
+   "source_pages": [
+    280
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-010",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A homeowner wants topsoil in a rectangular raised garden bed that is 9 feet long and 5 feet wide, filled until it is 6 inches deep. Topsoil is sold only in whole bags, each holding 4 cubic feet. The homeowner buys the fewest bags that will fill the bed completely. How many cubic feet of topsoil will be left over?",
+   "options": null,
+   "answer": "1.5",
+   "explanation": "Convert the depth: 6 inches = 0.5 foot.\nVolume needed = 9 * 5 * 0.5 = 22.5 cubic feet.\nBags needed = 22.5 / 4 = 5.625, so 6 bags are required (5 bags would give only 20 cubic feet).\nSoil bought = 6 * 4 = 24 cubic feet.\nLeft over = 24 - 22.5 = 1.5 cubic feet.\nCheck: 5 bags supply 20 < 22.5, and 6 bags supply 24 >= 22.5, so 6 is the fewest.",
+   "trap": "Using the depth as 6 feet instead of 0.5 foot, or leaving the bag count at 5.625 without rounding up, which would give no leftover soil (0).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "volume",
+    "unit-conversion",
+    "rounding-up"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 46 Hard",
+   "source_pages": [
+    298
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-011",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Five identical solid cubes, each with edges of length 3, are glued face to face to form a U-shaped solid: a bottom row of three cubes side by side, with one more cube resting directly on top of each of the two end cubes of that row. What is the total surface area of the solid?",
+   "options": [
+    "A. 180",
+    "B. 198",
+    "C. 216",
+    "D. 234",
+    "E. 270"
+   ],
+   "answer": "B",
+   "explanation": "1. Each cube has 6 faces of area 3*3 = 9, so the five cubes have 5*6 = 30 faces in all.\n2. Count the glued contacts: 2 between neighbours in the bottom row, plus 2 where an upper cube rests on an end cube, which is 4 contacts.\n3. Each contact hides 2 faces (one from each cube), so 4*2 = 8 faces are hidden.\n4. Exposed faces: 30 - 8 = 22.\n5. Surface area = 22*9 = 198.\nCheck by direct count: front and back show 5 squares each (10); tops show 3 (two upper cubes and the middle bottom cube); bottoms show 3; the two outer sides show 2 each (4) and the two inner sides of the gap show 1 each (2): 10 + 3 + 3 + 4 + 2 = 22 squares.",
+   "trap": "Subtracting only one face for each contact (4 hidden faces instead of 8) leaves 26 faces and 26*9 = 234, choice D.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "cubes",
+    "hidden-faces"
+   ],
+   "figure_description": "Five identical solid cubes of edge length 3 lie in one flat layer, glued face to face, forming the letter U when viewed from the front: a bottom row of three cubes side by side, with one more cube resting directly on top of each of the two end cubes of that row. The middle cube of the bottom row has nothing on top of it, leaving a one-cube-wide gap between the two upper cubes.",
+   "origin": "kmf1804",
+   "origin_set": "Section 63 Base",
+   "source_pages": [
+    416
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-012",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A wooden plank has a density of 0.6 gram per cubic centimeter. The plank is a rectangular solid that is 4 cm thick; its width is twice its thickness, and its length is 5 times its width. What is the mass of the plank, in grams?",
+   "options": null,
+   "answer": "768",
+   "explanation": "1. Thickness = 4 cm, width = 2*4 = 8 cm, length = 5*8 = 40 cm.\n2. Volume = 4*8*40 = 1,280 cubic centimeters.\n3. Mass = density * volume = 0.6*1,280 = 768 grams.\nCheck: 1,280 * 0.6 = 1,280*0.5 + 1,280*0.1 = 640 + 128 = 768.",
+   "trap": "Reading 'length is 5 times its width' as 5 times the thickness gives length 20, volume 640 and mass 384 grams.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "volume",
+    "density"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 65 Base",
+   "source_pages": [
+    425
+   ]
+  },
+  {
+   "id": "GEO-SAV-KMF-013",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A rectangular solid has volume 36. One of its faces has area 9, and all three edge lengths are positive integers. Which of the following could be the total surface area of the solid? Select all that apply.",
+   "options": [
+    "A. 33",
+    "B. 49",
+    "C. 58",
+    "D. 66",
+    "E. 98"
+   ],
+   "answer": [
+    "D",
+    "E"
+   ],
+   "explanation": "1. Let the face of area 9 have edges a and b, with a * b = 9, and let the third edge be c. Then c = 36 / 9 = 4.\n2. Integer pairs with a * b = 9: (1, 9), (3, 3) and (9, 1).\n3. Surface area = 2(ab + bc + ca). For (3, 3, 4): 2(9 + 12 + 12) = 66. For (1, 9, 4) or (9, 1, 4): 2(9 + 36 + 4) = 98.\n4. D (66) and E (98) are possible. A (33) and B (49) are exactly half of those, from forgetting the factor 2. C (58) = 2 * 9 + 36 + 4 doubles only one face pair.\nCheck: the volumes are 3 * 3 * 4 = 36 and 1 * 9 * 4 = 36, and both have a face of area 9.",
+   "trap": "Forgetting to double the sum of the three face areas gives 33 or 49, options A and B.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "surface-area",
+    "integer-edges",
+    "underdetermined"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 68 Hard",
+   "source_pages": [
+    444
+   ]
   }
  ]
 }

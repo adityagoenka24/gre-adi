@@ -4,16 +4,23 @@
   "subtopic": "Other Polygons",
   "subtopic_id": "GEO-POL",
   "version": "1.0",
-  "total_questions": 42,
+  "total_questions": 50,
   "distribution": {
-   "easy": 10,
-   "medium": 17,
-   "hard": 11,
+   "easy": 12,
+   "medium": 20,
+   "hard": 14,
    "extreme_hard": 4
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 21,
+   "multiple_answer": 5,
+   "numeric_entry": 12,
+   "quantitative_comparison": 12
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -896,6 +903,190 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "GEO-POL-KMF-001",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Polygon M has more than 7 sides. Polygon N has three times as many sides as polygon M.\nQuantity A: Three times the sum of the interior angles of polygon M\nQuantity B: The sum of the interior angles of polygon N",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Let polygon M have n sides (n > 7). The sum of its interior angles is (n - 2) * 180.\nPolygon N has 3n sides, so its interior angle sum is (3n - 2) * 180.\nQuantity A = 3 * (n - 2) * 180 = (3n - 6) * 180.\nQuantity B = (3n - 2) * 180.\nQuantity B - Quantity A = [(3n - 2) - (3n - 6)] * 180 = 4 * 180 = 720, which is positive regardless of n.\nSo Quantity B is always greater, by exactly 720 degrees.",
+   "trap": "Students think a specific value of n is needed to compare the two quantities and pick 'cannot be determined,' not noticing that n cancels out of the difference.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "interior-angles",
+    "polygon",
+    "algebraic-proof"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    9
+   ]
+  },
+  {
+   "id": "GEO-POL-KMF-002",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A regular hexagon and a regular nonagon are drawn. Every interior angle measure of the hexagon, together with every interior angle measure of the nonagon, is copied into a single list of 15 numbers. What is the median of that list, in degrees?",
+   "options": null,
+   "answer": "140",
+   "explanation": "Interior angle of a regular polygon with s sides = ((s - 2)/s)*180.\nHexagon, s = 6: ((6 - 2)/6)*180 = (4/6)*180 = 120.\nNonagon, s = 9: ((9 - 2)/9)*180 = (7/9)*180 = 140.\nThe list therefore holds six copies of 120 and nine copies of 140, for 6 + 9 = 15 numbers.\nSorted, positions 1 through 6 are all 120 and positions 7 through 15 are all 140.\nThe median of 15 numbers is the 8th value, which falls in the block of 140s.\nMedian = 140.\nCheck: 8 is greater than 6, so the 8th value is past the last 120. Correct.",
+   "trap": "Averaging the two distinct angle measures, (120 + 140)/2 = 130, treats the list as though it held one of each instead of six and nine.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "interior-angles",
+    "median-of-a-list"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    71
+   ]
+  },
+  {
+   "id": "GEO-POL-KMF-003",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A regular polygon has n sides, n an integer, and every one of its interior angles is strictly between 140 and 150 degrees.\nQuantity A: The measure, in degrees, of one exterior angle of the polygon\nQuantity B: 34",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Interior angle = 180 - 360/n.\n140 < 180 - 360/n gives 360/n < 40, so n > 9.\n180 - 360/n < 150 gives 360/n > 30, so n < 12.\nSo n = 10 or n = 11 (n = 9 gives exactly 140 and n = 12 gives exactly 150, both excluded).\nExterior angle = 360/n: n = 10 gives 36, which is more than 34; n = 11 gives about 32.7, which is less than 34.\nThe comparison flips, so it cannot be determined.",
+   "trap": "Using only n = 10 (the first integer above 9) gives exterior 36 and choice A.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "exterior-angle",
+    "regular-polygon"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 23 Base",
+   "source_pages": [
+    140
+   ]
+  },
+  {
+   "id": "GEO-POL-KMF-004",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "Four of the interior angles of a convex pentagon are equal in measure. The fifth interior angle measures 30 degrees more than each of the other four. What is the measure, in degrees, of the largest interior angle of the pentagon?",
+   "options": null,
+   "answer": "132",
+   "explanation": "The interior angles of a pentagon sum to (5 - 2) * 180 = 540 degrees.\nLet each of the four equal angles be x; the fifth is x + 30.\n4x + (x + 30) = 540, so 5x = 510 and x = 102.\nThe largest angle is 102 + 30 = 132 degrees.\nCheck: 4 * 102 + 132 = 408 + 132 = 540, and 132 < 180 so the pentagon can be convex.",
+   "trap": "Giving x = 102 as the answer, which is the common angle rather than the largest angle.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "interior-angle-sum",
+    "polygon"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 35 Base",
+   "source_pages": [
+    219
+   ]
+  },
+  {
+   "id": "GEO-POL-KMF-005",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The interior angle measures of convex polygon X add up to 540 degrees more than those of convex polygon Y. Polygon X has 12 sides. How many sides does polygon Y have?",
+   "options": [
+    "A. 3",
+    "B. 6",
+    "C. 9",
+    "D. 10",
+    "E. 15"
+   ],
+   "answer": "C",
+   "explanation": "Interior angle sum of an n-sided polygon = (n - 2) * 180.\nFor X: (12 - 2) * 180 = 1,800 degrees.\nFor Y: 1,800 - 540 = 1,260 degrees.\n(n - 2) * 180 = 1,260 gives n - 2 = 7, so n = 9.\nCheck: each side lost removes 180 degrees; 540 / 180 = 3 sides fewer, and 12 - 3 = 9.",
+   "trap": "Taking 540/180 = 3 as the number of sides of Y instead of the number of fewer sides gives choice A; adding 3 to 12 gives 15 (choice E); dividing 540 by 90 and subtracting from 12 gives 6 (choice B).",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "interior-angle-sum",
+    "polygon-sides"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    327
+   ]
+  },
+  {
+   "id": "GEO-POL-KMF-006",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "For how many integers n >= 3 are the interior angles of a regular n-gon each between 135 and 150 degrees, with both of those values allowed?",
+   "options": [
+    "A. 3",
+    "B. 4",
+    "C. 5",
+    "D. 6",
+    "E. 12"
+   ],
+   "answer": "C",
+   "explanation": "1. Each interior angle of a regular n-gon is 180 - 360/n degrees.\n2. 180 - 360/n >= 135 means 360/n <= 45, so n >= 8.\n3. 180 - 360/n <= 150 means 360/n >= 30, so n <= 12.\n4. Both endpoints are allowed: n = 8 gives exactly 135 and n = 12 gives exactly 150.\n5. The admissible values are 8, 9, 10, 11, 12, which is 5 integers.\n6. Check the neighbours: n = 7 gives about 128.6 (too small) and n = 13 gives about 152.3 (too large).\nChoice A drops both endpoints (9, 10, 11); B is 12 - 8 with no +1 for inclusive counting; D wrongly lets in a neighbour such as n = 13; E reports the largest admissible n instead of how many there are.",
+   "trap": "Counting 12 - 8 = 4 instead of 12 - 8 + 1 = 5, or throwing out the endpoints because the angles equal the limits, which leaves 9, 10 and 11 and gives choice A.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "interior-angle",
+    "regular-polygon",
+    "inclusive-count"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 54 Hard",
+   "source_pages": [
+    355
+   ]
+  },
+  {
+   "id": "GEO-POL-KMF-007",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A convex quadrilateral has three sides of lengths 10, 3 and 4, and its fourth side has integer length x. How many different values can x take?",
+   "options": null,
+   "answer": "13",
+   "explanation": "1. A quadrilateral exists only if its longest side is shorter than the sum of the other three sides.\n2. Upper bound: if x is the longest side, x < 10 + 3 + 4 = 17, so x <= 16.\n3. Lower bound: the side of length 10 must be shorter than the other three, so 10 < 3 + 4 + x, which gives x > 3, so x >= 4.\n4. Integer values from 4 to 16 inclusive: 16 - 4 + 1 = 13.\nCheck: x = 4 gives sides 10, 3, 4, 4 with 10 < 11, which works, while x = 3 gives 10 < 10, which fails (the sides would collapse onto a line).",
+   "trap": "Using only the upper bound x < 17 and counting the integers 1 through 16 gives 16 values, which forgets that the side of length 10 also has to be shorter than the sum of the others.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "polygon-inequality",
+    "side-length-bounds"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 62 Hard",
+   "source_pages": [
+    409
+   ]
+  },
+  {
+   "id": "GEO-POL-KMF-008",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A convex hexagon has exactly two right angles, and its other four interior angles all have the same measure. What is the measure, in degrees, of each of those four equal angles?",
+   "options": null,
+   "answer": "135",
+   "explanation": "1. The interior angles of a hexagon add up to (6 - 2)*180 = 720 degrees.\n2. The two right angles account for 2*90 = 180 degrees.\n3. The other four angles share 720 - 180 = 540 degrees, so each is 540/4 = 135 degrees.\nCheck: 135 is less than 180 (convex), and 2*90 + 4*135 = 180 + 540 = 720.",
+   "trap": "Using the pentagon angle sum of 540 instead of 720 for a six-sided figure gives (540 - 180)/4 = 90 for each angle.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "polygon-angle-sum",
+    "interior-angles"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 73 Base",
+   "source_pages": [
+    475
+   ]
   }
  ]
 }

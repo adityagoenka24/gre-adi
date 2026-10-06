@@ -4,16 +4,23 @@
   "subtopic": "Rates & Unit Conversions",
   "subtopic_id": "ARI-RAE",
   "version": "1.0",
-  "total_questions": 83,
+  "total_questions": 104,
   "distribution": {
-   "easy": 18,
-   "medium": 30,
-   "hard": 27,
+   "easy": 25,
+   "medium": 43,
+   "hard": 28,
    "extreme_hard": 8
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 55,
+   "multiple_answer": 10,
+   "numeric_entry": 23,
+   "quantitative_comparison": 16
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1713,6 +1720,683 @@
    ],
    "origin": "sectional",
    "origin_set": "percentages_set3"
+  },
+  {
+   "id": "ARI-RAE-KMF-001",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A floor in a gallery is covered by 45 flat rectangular tiles. If the dimensions of each tile are 3 feet by 6 feet, what is the total area, in square yards, of the tiles? (Note: 1 yard = 3 feet.)",
+   "options": [
+    "A. 60",
+    "B. 90",
+    "C. 180",
+    "D. 270",
+    "E. 810"
+   ],
+   "answer": "B",
+   "explanation": "Area of each tile = 3 * 6 = 18 square feet.\nTotal area = 45 * 18 = 810 square feet.\nConvert to square yards: since 1 square yard = 9 square feet, divide by 9: 810 / 9 = 90.",
+   "trap": "Students forget to convert square feet to square yards and answer 810 (option E), or divide by 3 instead of 9 and get 270 (option D).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "unit-conversion",
+    "area"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    22
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-002",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "At a market in Valdris a shopper bought one woven basket, paying the marked price and nothing else. The shopper handed over 200 grams of trade silver and was given the correct change, 340 dram, converted at that day's silver-to-dram rate. Which of the statements below, each taken on its own, is enough further information to fix the price of the basket in grams of trade silver? Select all that apply.",
+   "options": [
+    "A. The change came as exactly 17 coins, all of one denomination.",
+    "B. On that day 1 gram of trade silver was worth 10 dram.",
+    "C. The marked price of the basket, in dram, was a multiple of 20.",
+    "D. The marked price of the basket was 1,660 dram.",
+    "E. The 340 dram of change was less than one-fifth of the marked price of the basket.",
+    "F. On that day 45 dram was worth 4.5 grams of trade silver."
+   ],
+   "answer": [
+    "B",
+    "D",
+    "F"
+   ],
+   "explanation": "Let r be the number of dram per gram of trade silver and let L be the marked price in dram.\nThe silver handed over is worth 200r dram, so L = 200r - 340, and the price in grams of silver is L/r = 200 - 340/r. Fixing r fixes the answer, and fixing L fixes r, hence the answer.\nA: 340 = 17 * 20 tells us only how the change was denominated; it places no condition on r. With r = 10 the price is 200 - 34 = 166 grams, with r = 12 it is 200 - 340/12 = 171.67 grams, and 17 twenty-dram coins are possible either way. NOT sufficient.\nB: r = 10, so the price = 200 - 340/10 = 200 - 34 = 166 grams. SUFFICIENT.\nC: L = 200r - 340 is a multiple of 20 for r = 10 (L = 1,660) and also for r = 12 (L = 2,060), giving 166 grams and 171.67 grams. NOT sufficient.\nD: L = 1,660, so 200r - 340 = 1,660, r = 2,000/200 = 10, and the price = 1,660/10 = 166 grams. SUFFICIENT.\nE: 340 < L/5 means L > 1,700, so 200r - 340 > 1,700 and r > 10.2. That bounds the rate without fixing it: r = 11 gives 169.09 grams and r = 12 gives 171.67 grams. NOT sufficient.\nF: 45 dram = 4.5 grams means r = 45/4.5 = 10 dram per gram, so the price = 166 grams. SUFFICIENT.\nSufficient on their own: B, D and F.",
+   "trap": "Statement E carries numbers and a comparison, so it reads as quantitative, but it only yields the inequality r > 10.2 rather than a single rate; counting it as sufficient produces the selection B, D, E, F.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "exchange-rate",
+    "sufficiency-reasoning",
+    "unit-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    24
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A crate holding c ceramic tiles sells for p dollars. At that same price per tile, what is the cost, in dollars, of c - 240 tiles?",
+   "options": [
+    "A. (cp - 240p) / c",
+    "B. (cp - 240c) / p",
+    "C. (240p - cp) / c",
+    "D. (cp - 240) / c",
+    "E. c(p - 240) / p"
+   ],
+   "answer": "A",
+   "explanation": "Find the price of a single tile first: p dollars buys c tiles, so one tile costs p/c dollars.\nMultiply the unit price by the new number of tiles: (p/c) * (c - 240).\nDistribute the numerator: (p * c - p * 240) / c = (cp - 240p) / c.\nThat matches option A.\nCheck with numbers: let c = 400 and p = 800, so each tile costs 800/400 = 2 dollars. Then c - 240 = 160 tiles should cost 160 * 2 = 320 dollars.\nOption A gives (400 * 800 - 240 * 800) / 400 = (320000 - 192000) / 400 = 128000 / 400 = 320. Matches.\nOption B gives (320000 - 96000) / 800 = 280, which does not match. Option D gives (320000 - 240) / 400 = 799.4, which does not match.",
+   "trap": "Subtracting 240 from the total crate price instead of from the tile count, giving (cp - 240)/c, which produces option D.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "unit-price",
+    "algebraic-modelling"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    61
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-004",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A ribbon measuring 0.45 kilometer is snipped into pieces, each piece 15 centimeters long, with none of the ribbon left over. How many pieces result?",
+   "options": [
+    "A. 30",
+    "B. 300",
+    "C. 3,000",
+    "D. 30,000",
+    "E. 300,000"
+   ],
+   "answer": "C",
+   "explanation": "Put both lengths in the same unit. 1 kilometer = 100,000 centimeters.\n0.45 kilometer = 0.45 * 100,000 = 45,000 centimeters.\nEach piece takes 15 centimeters, so the number of pieces = 45,000 / 15 = 3,000.\nCheck by reversing: 3,000 * 15 = 45,000 centimeters = 450 meters = 0.45 kilometer. Correct.",
+   "trap": "Converting 0.45 kilometer only as far as 450 meters and then dividing by 15 as though the pieces were 15 meters long gives 30, which is choice A.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "metric-conversion",
+    "division"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 13 Base",
+   "source_pages": [
+    80
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-005",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The table shows the total area of seven Kansas counties and the acres of cropland in each, for 2005 and as projected for 2035 (*projected). A mile is 1,760 yards long, and an acre covers 4,840 square yards. Which expression gives Dickinson County's projected 2035 cropland, in square miles?",
+   "options": [
+    "A. (301,700)(1,760)/(4,840)",
+    "B. (301,700)(4,840)/(1,760)",
+    "C. 301,700/[(4,840)(1,760)^2]",
+    "D. (301,700)(1,760)^2/(4,840)",
+    "E. (301,700)(4,840)/(1,760)^2"
+   ],
+   "answer": "E",
+   "explanation": "Dickinson's projected 2035 cropland is 301,700 acres.\nConvert acres to square yards: multiply by 4,840, giving (301,700)(4,840) square yards.\nConvert square yards to square miles: 1 square mile = (1,760)^2 square yards, so divide by (1,760)^2.\nResult: (301,700)(4,840)/(1,760)^2 square miles.\nCheck: (1,760)^2 / 4,840 = 640, so this equals 301,700 / 640 = about 471 square miles, which is below Dickinson's 848 square miles of total area.",
+   "trap": "Dividing by 1,760 instead of 1,760 squared (a mile in a linear unit, not a square mile) gives choice B; inverting the conversion by multiplying by (1,760)^2 and dividing by 4,840 gives choice D.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "square-unit-conversion",
+    "dimensional-analysis"
+   ],
+   "table_data": {
+    "headers": [
+     "County",
+     "Total area (square miles)",
+     "Cropland, 2005 (acres)",
+     "Cropland, 2035* (acres)"
+    ],
+    "rows": [
+     [
+      "Barton",
+      "895",
+      "411,200",
+      "368,900"
+     ],
+     [
+      "Dickinson",
+      "848",
+      "396,500",
+      "301,700"
+     ],
+     [
+      "Ellis",
+      "900",
+      "288,000",
+      "244,100"
+     ],
+     [
+      "Finney",
+      "1,302",
+      "602,400",
+      "517,800"
+     ],
+     [
+      "Harvey",
+      "540",
+      "276,100",
+      "233,600"
+     ],
+     [
+      "Marion",
+      "957",
+      "330,700",
+      "295,400"
+     ],
+     [
+      "Pratt",
+      "735",
+      "352,000",
+      "319,200"
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 19 Base",
+   "source_pages": [
+    118
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-006",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A tile supplier packs 12 tiles in a box, 6 boxes in a case, and 5 cases on a pallet. A stockroom holds 2 full pallets plus 3 loose cases and 4 loose boxes of tiles. The tiles are regrouped into parcels of exactly 25 tiles, making as many full parcels as possible. How many tiles are left over?",
+   "options": [
+    "A. 9",
+    "B. 11",
+    "C. 16",
+    "D. 18",
+    "E. 39"
+   ],
+   "answer": "A",
+   "explanation": "Cases: 2 pallets * 5 = 10 cases, plus 3 loose = 13 cases.\nBoxes: 13 * 6 = 78 boxes, plus 4 loose = 82 boxes.\nTiles: 82 * 12 = 984.\nFull parcels: 984 / 25 = 39.36, so 39 parcels use 39 * 25 = 975 tiles.\nLeft over: 984 - 975 = 9.\nCheck: 25 * 39 + 9 = 984.",
+   "trap": "Reporting the number of full parcels instead of the leftover tiles gives 39, choice E; leaving out the 4 loose boxes gives 936 tiles and 936 - 925 = 11, choice B.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "unit-chain",
+    "leftover"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 26 Hard",
+   "source_pages": [
+    164
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-007",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A rectangular reservoir is 2.5 kilometers long and 800 meters wide. What is its surface area, in hectares? (A hectare is defined as 10,000 square meters.)",
+   "options": null,
+   "answer": "200",
+   "explanation": "Convert the length to meters: 2.5 km = 2,500 m.\nArea = 2,500 * 800 = 2,000,000 square meters.\nHectares = 2,000,000 / 10,000 = 200.\nCheck: 200 * 10,000 = 2,000,000.",
+   "trap": "Treating a hectare as 1,000 square meters gives 2,000; leaving the length as 2.5 and dividing 2.5 * 800 by 10,000 gives 0.2.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "area-units",
+    "metric-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 35 Base",
+   "source_pages": [
+    223
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-008",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A filling machine delivers m/5 liters of paint every n minutes at a steady pace. In terms of m, n and h, how many liters does it deliver in h hours? (mnh is not 0)",
+   "options": [
+    "A. 12hm/n",
+    "B. hm/(5n)",
+    "C. hm/(300n)",
+    "D. 12hn/m",
+    "E. 300hm/n"
+   ],
+   "answer": "A",
+   "explanation": "Rate = (m/5) / n = m/(5n) liters per minute.\nh hours = 60h minutes.\nLiters = 60h * m/(5n) = 12hm/n.\nCheck with m = 5, n = 1, h = 1: the machine delivers 1 liter per minute, so 60 liters in an hour; 12*1*5/1 = 60.",
+   "trap": "Forgetting to convert hours to minutes gives hm/(5n) (choice B); dividing by 60 instead of multiplying gives hm/(300n) (choice C); inverting the rate gives 12hn/m (choice D).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "rate-conversion",
+    "symbolic-rate"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 36 Hard",
+   "source_pages": [
+    229
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-009",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A cyclist moves at a constant speed and covers 22 feet in 1.5 seconds. What is the cyclist's speed in miles per hour? Use 5,280 feet per mile.",
+   "options": null,
+   "answer": "10",
+   "explanation": "Speed in feet per second = 22 / 1.5 = 44/3 ft/s (about 14.67).\nIn one hour (3,600 seconds): (44/3) * 3,600 = 52,800 feet.\n52,800 feet / 5,280 feet per mile = 10 miles.\nSpeed = 10 miles per hour.\nCheck: 10 mph = 52,800 ft per 3,600 s = 14.67 ft/s, and 14.67 * 1.5 = 22 ft.",
+   "trap": "Stopping at feet per second (22 / 1.5 = 14.67) without converting seconds to hours and feet to miles. Multiplying by 3,600 but forgetting to divide by 5,280 gives 52,800.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "unit-conversion",
+    "speed"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 39 Base",
+   "source_pages": [
+    252
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-010",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A farm stand in Canada sells honey at 9.60 Canadian dollars per kilogram. One US dollar buys 1.30 Canadian dollars, and 1 kilogram is approximately 2.2 pounds. Which of the following is closest to the price of the honey in US dollars per pound?",
+   "options": [
+    "A. 0.30",
+    "B. 3.36",
+    "C. 5.67",
+    "D. 16.25",
+    "E. 27.46"
+   ],
+   "answer": "B",
+   "explanation": "Convert currency first: 9.60 CAD / 1.30 CAD per USD = 7.385 USD per kilogram.\nConvert the weight: 1 kg is about 2.2 lb, so each pound costs 7.385 / 2.2 = 3.357 USD, about 3.36.\nCheck by unit analysis: (CAD/kg) / (CAD/USD) / (lb/kg) = USD/lb. Multiplying back: 3.36 * 2.2 * 1.30 = 9.61, matching 9.60.",
+   "trap": "Multiplying by the exchange rate instead of dividing (9.60 * 1.30 / 2.2 = 5.67) gives option C.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "currency-conversion",
+    "unit-analysis"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 42 Hard",
+   "source_pages": [
+    270
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-011",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A county fair turns a rectangular field that is 0.35 kilometer long and 120 meters wide into a parking lot. Each parked car, including its share of the lanes, uses about 15 square meters. About how many cars can the lot accommodate?",
+   "options": [
+    "A. 63",
+    "B. 280",
+    "C. 2,800",
+    "D. 28,000",
+    "E. 42,000"
+   ],
+   "answer": "C",
+   "explanation": "Convert to one unit: 0.35 km = 350 m.\nArea = 350 * 120 = 42,000 square meters.\nNumber of cars = 42,000 / 15 = 2,800.\nCheck: 2,800 cars * 15 square meters = 42,000 square meters.",
+   "trap": "Using the perimeter, 2(350 + 120) = 940 m, divided by 15 gives about 63 (option A); forgetting to divide by 15 gives 42,000 (option E).",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "unit-conversion",
+    "area-density"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 42 Hard",
+   "source_pages": [
+    270
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-012",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The nutrition panel for a box of Oat Crunch cereal is shown. N grams of dietary fiber is the combined fiber in how many boxes of this cereal? Select the expression that gives that number of boxes.",
+   "options": [
+    "A. N/4",
+    "B. 3N/2",
+    "C. 24N",
+    "D. 2N/3",
+    "E. N/24"
+   ],
+   "answer": "E",
+   "explanation": "Fiber per serving = 4 grams and a box has 6 servings, so fiber per box = 4 * 6 = 24 grams.\nNumber of boxes holding N grams of fiber = N / 24.\nCheck: 48 grams of fiber should be 2 boxes, and 48/24 = 2.\nA: N/4 counts servings, not boxes.\nB: 3N/2 equals 6N/4, which multiplies the servings needed by the servings per box.\nD: 2N/3 equals 4N/6, which mixes the servings and the grams per serving without forming 24 grams per box.\nC: 24N multiplies instead of dividing.\nOnly N/24 gives boxes.",
+   "trap": "Dividing N by the fiber in one serving only, giving N/4, which counts servings rather than boxes (option A.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "unit-rate",
+    "expression-setup"
+   ],
+   "table_data": {
+    "headers": [
+     "Oat Crunch cereal",
+     "Value"
+    ],
+    "rows": [
+     [
+      "Serving size",
+      "40 grams"
+     ],
+     [
+      "Servings per box",
+      "6"
+     ],
+     [
+      "Total fat per serving",
+      "5 grams"
+     ],
+     [
+      "Saturated fat per serving",
+      "1 gram"
+     ],
+     [
+      "Total carbohydrate per serving",
+      "28 grams"
+     ],
+     [
+      "Dietary fiber per serving",
+      "4 grams"
+     ],
+     [
+      "Sugars per serving",
+      "9 grams"
+     ],
+     [
+      "Protein per serving",
+      "6 grams"
+     ],
+     [
+      "Sodium per serving",
+      "120 milligrams"
+     ],
+     [
+      "Total calories per serving",
+      "181"
+     ],
+     [
+      "Calories from fat per serving",
+      "45"
+     ],
+     [
+      "Calories per gram of fat",
+      "9"
+     ],
+     [
+      "Calories per gram of carbohydrate",
+      "4"
+     ],
+     [
+      "Calories per gram of protein",
+      "4"
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 45 Base",
+   "source_pages": [
+    292
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A patio is paved with identical square slabs, each 9 inches on a side, laid edge to edge with no gaps and none trimmed. Exactly 1,152 slabs are used. (12 inches = 1 foot.) Which pair of dimensions could the patio have?",
+   "options": [
+    "A. 8 feet by 9 feet",
+    "B. 18 feet by 36 feet",
+    "C. 24 feet by 36 feet",
+    "D. 32 feet by 36 feet",
+    "E. 72 feet by 108 feet"
+   ],
+   "answer": "B",
+   "explanation": "1. One slab has side 9/12 = 3/4 foot, so its area is (3/4)^2 = 9/16 square foot.\n2. Total patio area = 1152 * 9/16 = 648 square feet.\n3. Compute each option's area: A 72, B 18*36 = 648, C 24*36 = 864, D 32*36 = 1152, E 72*108 = 7776.\n4. Only B equals 648.\n5. Check the fit: 18 ft = 216 in = 24 slabs and 36 ft = 432 in = 48 slabs, and 24*48 = 1152 slabs.\nChoice C comes from multiplying by 3/4 instead of (3/4)^2; D treats each slab as 1 square foot; A treats a slab as 9 square inches; E divides 1152*81 square inches by 12 instead of 144.",
+   "trap": "Converting the slab side to feet but forgetting to square it, so each slab is taken as 3/4 square foot and the area becomes 864, which is choice C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "area-conversion",
+    "unit-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 54 Hard",
+   "source_pages": [
+    355
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-014",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A rectangular storage tank is 3 meters long, 2 meters wide and 1.5 meters deep. One liter equals 1,000 cubic centimeters. How many liters of water does the tank hold when it is completely full?",
+   "options": [
+    "A. 9",
+    "B. 900",
+    "C. 9,000",
+    "D. 90,000",
+    "E. 9,000,000"
+   ],
+   "answer": "C",
+   "explanation": "1. Volume = 3 * 2 * 1.5 = 9 cubic meters.\n2. 1 meter = 100 centimeters, so 1 cubic meter = 100^3 = 1,000,000 cubic centimeters.\n3. 9 cubic meters = 9,000,000 cubic centimeters.\n4. Dividing by 1,000 cubic centimeters per liter gives 9,000 liters.\nCheck: 1 cubic meter holds 1,000 liters, so 9 cubic meters hold 9,000 liters.",
+   "trap": "Stopping at 9,000,000 cubic centimeters and not converting to liters gives choice E.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "cubic-unit-conversion",
+    "volume"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 59 Base",
+   "source_pages": [
+    387
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-015",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A drainage trench stretches one quarter of a mile and measures 3 feet across, and it is filled with gravel to a depth of 18 inches. Use 1 yard = 3 feet, 1 foot = 12 inches, and 1 mile = 5,280 feet.\nWhat volume of gravel, in cubic yards, fills the trench?",
+   "options": [
+    "A. 220",
+    "B. 660",
+    "C. 1,980",
+    "D. 2,640",
+    "E. 5,940"
+   ],
+   "answer": "A",
+   "explanation": "1. Length = 5,280 / 4 = 1,320 feet. Width = 3 feet. Depth = 18 inches = 1.5 feet.\n2. Volume = 1,320 * 3 * 1.5 = 5,940 cubic feet.\n3. One cubic yard is 3 * 3 * 3 = 27 cubic feet, so the volume is 5,940 / 27 = 220 cubic yards.\nCheck in yards: length 440, width 1, depth 0.5, and 440 * 1 * 0.5 = 220.",
+   "trap": "Stopping at 5,940 (cubic feet) without converting to cubic yards gives choice E; dividing by 3 instead of 27, as if volume converted like length, gives 1,980. Dividing by 9 gives 660 (choice B), and treating 18 inches as 18 feet gives 2,640 (choice D).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "unit-conversion",
+    "volume",
+    "cubic-units"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 60 Hard",
+   "source_pages": [
+    394
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-016",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A packing machine fills b boxes in h hours and keeps the same pace. How many minutes will it need to fill 600 boxes?",
+   "options": [
+    "A. 10h/b",
+    "B. 600h/b",
+    "C. 600b/h",
+    "D. 36000h/b",
+    "E. 36000b/h"
+   ],
+   "answer": "D",
+   "explanation": "1. The machine needs h/b hours per box.\n2. For 600 boxes: 600 * (h/b) = 600h/b hours.\n3. Convert hours to minutes by multiplying by 60: 60 * 600h/b = 36000h/b minutes.\nCheck with b = 100 boxes in h = 2 hours: 600 boxes need 12 hours = 720 minutes, and 36000 * 2 / 100 = 720.\nOther choices: 10h/b divides by 60 instead of multiplying; 600b/h and 36000b/h invert the rate (boxes per hour instead of hours per box).",
+   "trap": "Leaving the answer in hours (600h/b) without converting to minutes is choice B.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "rate-with-variables",
+    "unit-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 63 Base",
+   "source_pages": [
+    413
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-017",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The table shows the overnight low and the daytime peak temperature, in degrees Celsius, for seven towns on one day. A temperature of C degrees Celsius equals (9/5)C + 32 degrees Fahrenheit. In degrees Fahrenheit, how much higher was Brevik's daytime peak than its overnight low? Round to the nearest whole degree.",
+   "options": null,
+   "answer": "14",
+   "explanation": "1. In Celsius, Brevik's gap is 27 - 19 = 8 degrees.\n2. Convert both temperatures: peak = (9/5)(27) + 32 = 80.6 and low = (9/5)(19) + 32 = 66.2.\n3. Difference = 80.6 - 66.2 = 14.4, which rounds to 14.\nCheck: the 32 cancels in a difference, so the gap is just (9/5) * 8 = 14.4.",
+   "trap": "Converting the 8-degree gap as if it were a single temperature, (9/5)(8) + 32 = 46.4, adds the 32 offset that cancels in a difference, giving 46.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "temperature-conversion",
+    "difference-vs-value"
+   ],
+   "table_data": {
+    "headers": [
+     "Town",
+     "Overnight low (C)",
+     "Daytime peak (C)"
+    ],
+    "rows": [
+     [
+      "Aldor",
+      "11",
+      "17"
+     ],
+     [
+      "Brevik",
+      "19",
+      "27"
+     ],
+     [
+      "Calder",
+      "2",
+      "11"
+     ],
+     [
+      "Dunmore",
+      "14",
+      "22"
+     ],
+     [
+      "Esker",
+      "6",
+      "15"
+     ],
+     [
+      "Fairlie",
+      "8",
+      "18"
+     ],
+     [
+      "Garth",
+      "16",
+      "21"
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 63 Base",
+   "source_pages": [
+    413
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-018",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A rooftop sensor logged its day's lowest reading, 12 degrees Celsius, at 5:45 a.m. and its highest, 33 degrees Celsius, at 3:45 p.m. Suppose the reading climbed at a constant pace between those two moments. By how many degrees had it climbed 3 hours 30 minutes after the low?\n\n_____ degrees Celsius",
+   "options": null,
+   "answer": "7.35",
+   "explanation": "1. Elapsed time from 5:45 a.m. to 3:45 p.m. is 10 hours.\n2. Total rise = 33 - 12 = 21 degrees, so the constant rate is 21/10 = 2.1 degrees per hour.\n3. In 3.5 hours the climb is 2.1 * 3.5 = 7.35 degrees.\nCheck: at 7.35 degrees per 3.5 hours the pace is 2.1 per hour, and 2.1 * 10 = 21, the full rise.",
+   "trap": "Measuring the elapsed time as 12 hours (reading 5:45 to 3:45 as a full half-day) gives a rate of 1.75 per hour and an answer of 6.125.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "constant-rate",
+    "clock-time"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 67 Base",
+   "source_pages": [
+    440
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-019",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A rectangular block of oak measures 25 centimetres by 20 centimetres by 40 centimetres, and the wood has a density of 640 kilograms per cubic metre. What is the mass of the block, in kilograms?\n\n_____ kilograms",
+   "options": null,
+   "answer": "12.8",
+   "explanation": "1. Volume = 25 * 20 * 40 = 20000 cubic centimetres.\n2. 1 metre = 100 centimetres, so 1 cubic metre = 100^3 = 1000000 cubic centimetres.\n3. Volume in cubic metres = 20000 / 1000000 = 0.02.\n4. Mass = density * volume = 640 * 0.02 = 12.8 kilograms.\nCheck: 640 kg per cubic metre is 0.00064 kg per cubic centimetre, and 0.00064 * 20000 = 12.8.",
+   "trap": "Converting cubic centimetres to cubic metres by dividing by 1000 (instead of 1000000) makes the volume 20 and the mass 12800.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "density",
+    "cubic-unit-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 68 Hard",
+   "source_pages": [
+    446
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-020",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A satellite moves at about 17,500 miles per hour. Roughly how many feet does it cover in 2 minutes? (1 mile = 5,280 feet)",
+   "options": [
+    "A. 600",
+    "B. 300,000",
+    "C. 3,000,000",
+    "D. 30,000,000",
+    "E. 200,000,000"
+   ],
+   "answer": "C",
+   "explanation": "1. Convert 2 minutes to hours: 2/60 = 1/30 hour.\n2. Distance in miles = 17,500 / 30, about 583 miles.\n3. Convert to feet: 583 * 5,280 = about 3,080,000 feet.\n4. The closest choice is 3,000,000.\nCheck by estimating: 17,500 is about 1.75*10^4, 1/30 is about 0.033, and 5,280 is about 5.3*10^3; the product is about 3.1*10^6.",
+   "trap": "Stopping after the mile count (about 583 miles) and not converting to feet gives 600, choice A; using 2 hours instead of 2 minutes gives about 185 million, choice E.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "unit-conversion",
+    "order-of-magnitude"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    457
+   ]
+  },
+  {
+   "id": "ARI-RAE-KMF-021",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "An ordinance sets a floor-area quota for lecture halls: each block of 6 attendees needs a minimum of 45 square feet. A certain hall is 24 feet wide and has to be cleared for 240 attendees under this quota. What is the least possible length of the hall, in feet?",
+   "options": null,
+   "answer": "75",
+   "explanation": "1. 240 attendees make 240 / 6 = 40 groups of 6.\n2. Each group needs 45 square feet, so the hall needs at least 40 * 45 = 1800 square feet.\n3. Area = width * length, so length >= 1800 / 24 = 75 feet.\nCheck: 24 * 75 = 1800 square feet, which gives 1800 / 45 = 40 groups and 40 * 6 = 240 attendees.",
+   "trap": "Reading the rule as 45 square feet per single attendee gives 240 * 45 = 10,800 square feet and a length of 10,800 / 24 = 450.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "rate-conversion",
+    "area-requirement"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 72 Hard",
+   "source_pages": [
+    469
+   ]
   }
  ]
 }

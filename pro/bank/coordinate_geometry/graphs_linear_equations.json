@@ -4,16 +4,23 @@
   "subtopic": "Graphs of Linear Equations",
   "subtopic_id": "COG-GLE",
   "version": "1.0",
-  "total_questions": 41,
+  "total_questions": 49,
   "distribution": {
    "easy": 10,
-   "medium": 16,
-   "hard": 11,
+   "medium": 22,
+   "hard": 13,
    "extreme_hard": 4
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 19,
+   "multiple_answer": 10,
+   "numeric_entry": 11,
+   "quantitative_comparison": 9
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -880,6 +887,231 @@
    ],
    "origin": "sectional",
    "origin_set": "coordinate_geometry_set1"
+  },
+  {
+   "id": "COG-GLE-KMF-001",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "In the xy-plane, line k has equation 3y + 4 = x/3 - 2. Indicate all of the statements below that are true of line k.",
+   "options": [
+    "A. The slope of line k is positive and less than 1.",
+    "B. Line k meets the y-axis at a point below the origin.",
+    "C. The point (18, 0) lies on line k.",
+    "D. The slope of line k is negative.",
+    "E. Some point of line k lies in the second quadrant."
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "Put the equation in slope-intercept form.\n3y + 4 = x/3 - 2\n3y = x/3 - 6\ny = x/9 - 2\nSo the slope is 1/9 and the y-intercept is -2.\nA. 1/9 is positive and 1/9 < 1 -- true.\nB. The y-intercept is -2, which is below the origin -- true.\nC. Set y = 0: 0 = x/9 - 2, so x = 18. The point (18, 0) is on the line -- true.\nD. The slope 1/9 is positive, not negative -- false.\nE. The second quadrant needs x < 0 and y > 0. For x < 0, y = x/9 - 2 < -2 < 0, so no point qualifies -- false.\nSelected: A, B and C.",
+   "trap": "Stopping at 3y = x/3 - 6 and reading the slope off as 1/3 rather than dividing the whole right side by 3 still gives a positive slope under 1, so it hides the error here but would misplace the x-intercept at 18.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "slope-intercept-form",
+    "intercepts",
+    "quadrants"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 11 Base",
+   "source_pages": [
+    69
+   ]
+  },
+  {
+   "id": "COG-GLE-KMF-002",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Five straight lines, labelled J, K, L, M and N, are drawn in the xy-plane as described below. Indicate each of the five lines that has at least one point in the third quadrant.",
+   "options": [
+    "A. Line J, the horizontal line 2 units above the x-axis",
+    "B. Line K, through the origin rising 1 unit per unit to the right",
+    "C. Line L, the vertical line 2 units left of the y-axis",
+    "D. Line M, through the origin falling 1 unit per unit to the right",
+    "E. Line N, parallel to line K and crossing the y-axis at 3 units above the origin"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "A point lies in the third quadrant when both of its coordinates are negative.\nA. Line J is the set of points with y = 2. Every point on it has y = 2, which is positive, so no third-quadrant point -- false.\nB. Line K is the set of points with y = x. Taking x = -1 gives the point (-1, -1), both coordinates negative -- true.\nC. Line L is the set of points with x = -2. Taking y = -5 gives the point (-2, -5), both coordinates negative -- true.\nD. Line M is the set of points with y = -x. When x is negative, y is positive, so the line runs through the second and fourth quadrants only -- false.\nE. Line N is the set of points with y = x + 3. Taking x = -4 gives the point (-4, -1), both coordinates negative -- true.\nSelected: B, C and E.",
+   "trap": "Assuming any line that slopes downward must dip into the third quadrant picks up line M, but a downward line through the origin passes only through the second and fourth quadrants.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "quadrants",
+    "lines-in-the-plane"
+   ],
+   "figure_description": "All five lines are drawn on one set of axes in the xy-plane. Line J is horizontal and passes 2 units above the x-axis. Line K passes through the origin and rises one unit for every unit it moves right. Line L is vertical and passes 2 units to the left of the y-axis. Line M passes through the origin and falls one unit for every unit it moves right. Line N is parallel to line K and crosses the y-axis 3 units above the origin.",
+   "origin": "kmf1804",
+   "origin_set": "Section 14 Hard",
+   "source_pages": [
+    85
+   ]
+  },
+  {
+   "id": "COG-GLE-KMF-003",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A triangle in the xy-plane has one side lying on the x-axis, and its other two sides lie along the lines y = -2x + c and y = x/2 + c, where c is a positive constant. If the area of the triangle is 20, find c.",
+   "options": null,
+   "answer": "4",
+   "explanation": "Both lines have y-intercept c, so they meet at (0, c); that point is the top vertex and the height is c.\nLine y = -2x + c meets the x-axis where -2x + c = 0, so x = c/2.\nLine y = x/2 + c meets the x-axis where x/2 + c = 0, so x = -2c.\nThe base runs from -2c to c/2, so its length is c/2 + 2c = 5c/2.\nArea = (1/2) * (5c/2) * c = 5c^2/4.\nSet 5c^2/4 = 20, so c^2 = 16 and c = 4 (c is positive).\nCheck: base = 10, height = 4, area = (1/2)*10*4 = 20.",
+   "trap": "Dropping the 1/2 from the area formula gives (5/2)c^2 = 20, so c^2 = 8 and c is about 2.83; or counting only the right-hand x-intercept c/2 as the base gives c^2/4 = 20 and c of about 8.94. Neither is an integer, a hint that the setup is off.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "triangle-area",
+    "x-intercepts"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 15 Base",
+   "source_pages": [
+    91
+   ]
+  },
+  {
+   "id": "COG-GLE-KMF-004",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Which of the following describes the set of all points (x, y) that satisfy y = (1 + x)^2 - (x - 3)^2?",
+   "options": [
+    "A. A line with slope 8 and y-intercept -8",
+    "B. A parabola that opens downward",
+    "C. A parabola that opens upward",
+    "D. A line with slope -4 and y-intercept -8",
+    "E. A horizontal line"
+   ],
+   "answer": "A",
+   "explanation": "Expand each square.\n(1 + x)^2 = 1 + 2x + x^2.\n(x - 3)^2 = x^2 - 6x + 9.\nSubtract: y = (x^2 + 2x + 1) - (x^2 - 6x + 9) = 8x - 8.\nThe x^2 terms cancel, so the graph is a line with slope 8 and y-intercept -8.\nCheck: x = 0 gives (1)^2 - (-3)^2 = 1 - 9 = -8, and x = 1 gives 4 - 4 = 0, which fits y = 8x - 8.",
+   "trap": "Seeing two squares and assuming a parabola without noticing the x^2 terms cancel (A); or dropping the sign on the second bracket's middle term, -(x^2 - 6x + 9) read as -x^2 - 6x - 9, giving slope -4  (D).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "hidden-cancellation",
+    "line-from-squares"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 17 Base",
+   "source_pages": [
+    107
+   ]
+  },
+  {
+   "id": "COG-GLE-KMF-005",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The line 0.35x + 0.15y = 8 meets the line y = x at exactly one point, P. What is the sum of the two coordinates of P?",
+   "options": null,
+   "answer": "32",
+   "explanation": "On the line y = x, both coordinates are equal. Call the point (c, c).\nSubstitute: 0.35c + 0.15c = 8, so 0.5c = 8 and c = 16.\nP = (16, 16), and the sum of its coordinates is 16 + 16 = 32.\nCheck: 0.35*16 + 0.15*16 = 5.6 + 2.4 = 8.",
+   "trap": "Giving only one coordinate, 16, instead of the sum of both coordinates.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "intersection",
+    "line-y-equals-x"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 26 Hard",
+   "source_pages": [
+    159
+   ]
+  },
+  {
+   "id": "COG-GLE-KMF-006",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "In the xy-plane shown, line l crosses the x-axis at (4, 0) and the y-axis at (0, 2). Line m crosses the x-axis at (1, 0) and the y-axis at (0, -2). The shaded region consists of all points that lie on or below line l and on or above line m, boundaries included. Which of the following points lie in the shaded region? Select all that apply.",
+   "options": [
+    "A. (0, 0)",
+    "B. (2, 0)",
+    "C. (0, 3)",
+    "D. (-2, 3)",
+    "E. (-3, -9)",
+    "F. (1, 1)"
+   ],
+   "answer": [
+    "A",
+    "D",
+    "F"
+   ],
+   "explanation": "Line l through (4,0) and (0,2): slope = (2-0)/(0-4) = -1/2, so y = -x/2 + 2.\nLine m through (1,0) and (0,-2): slope = 2, so y = 2x - 2.\nRegion: y <= -x/2 + 2 and y >= 2x - 2.\nA. (0,0): 0 <= 2 and 0 >= -2 -> in.\nB. (2,0): 0 <= 1 true, but 0 >= 2 false -> out.\nC. (0,3): 3 <= 2 false -> out.\nD. (-2,3): -x/2 + 2 = 3, so 3 <= 3 true; 2x - 2 = -6, so 3 >= -6 true -> in (on boundary l).\nE. (-3,-9): -9 <= 3.5 true, but 2x - 2 = -8 and -9 >= -8 false -> out.\nF. (1,1): 1 <= 1.5 true and 1 >= 0 true -> in.\nCheck: the boundary point (-2,3) lies on l, which is included.",
+   "trap": "Reading the region as above line m and above line l (wrong direction on l) accepts (0,3), choice C; reading it as below m accepts (2,0), choice B; excluding boundary points drops choice D.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "linear-inequality-regions",
+    "intercept-form"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 400 300\" width=\"400\" height=\"300\" role=\"img\" aria-label=\"Lines l and m with a shaded region\"><polygon points=\"257.6,109.2 56.0,14.0 20.0,14.0 20.0,286.0 164.0,286.0\" fill=\"#9db4d6\" fill-opacity=\"0.55\"/><line x1=\"20\" y1=\"286\" x2=\"20\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"56\" y1=\"286\" x2=\"56\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"92\" y1=\"286\" x2=\"92\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"128\" y1=\"286\" x2=\"128\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"164\" y1=\"286\" x2=\"164\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"200\" y1=\"286\" x2=\"200\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"236\" y1=\"286\" x2=\"236\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"272\" y1=\"286\" x2=\"272\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"308\" y1=\"286\" x2=\"308\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"344\" y1=\"286\" x2=\"344\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"380\" y1=\"286\" x2=\"380\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"286\" x2=\"380\" y2=\"286\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"252\" x2=\"380\" y2=\"252\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"218\" x2=\"380\" y2=\"218\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"184\" x2=\"380\" y2=\"184\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"150\" x2=\"380\" y2=\"150\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"116\" x2=\"380\" y2=\"116\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"82\" x2=\"380\" y2=\"82\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"48\" x2=\"380\" y2=\"48\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"14\" x2=\"380\" y2=\"14\" stroke=\"#ddd\" stroke-width=\"0.6\"/><line x1=\"20\" y1=\"150\" x2=\"380\" y2=\"150\" stroke=\"#222\" stroke-width=\"1.4\"/><line x1=\"200\" y1=\"286\" x2=\"200\" y2=\"14\" stroke=\"#222\" stroke-width=\"1.4\"/><line x1=\"56\" y1=\"14\" x2=\"380\" y2=\"167.0\" stroke=\"#b03030\" stroke-width=\"2\"/><line x1=\"164\" y1=\"286\" x2=\"308\" y2=\"14\" stroke=\"#1f6f3f\" stroke-width=\"2\"/><text x=\"351.20000000000005\" y=\"174.2\" font-size=\"14\" font-style=\"italic\" fill=\"#b03030\">l</text><text x=\"314\" y=\"26\" font-size=\"14\" font-style=\"italic\" fill=\"#1f6f3f\">m</text><text x=\"52\" y=\"164\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">-4</text><text x=\"124\" y=\"164\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">-2</text><text x=\"268\" y=\"164\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">2</text><text x=\"340\" y=\"164\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">4</text><text x=\"204\" y=\"256\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">-3</text><text x=\"204\" y=\"222\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">-2</text><text x=\"204\" y=\"188\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">-1</text><text x=\"204\" y=\"120\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">1</text><text x=\"204\" y=\"86\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">2</text><text x=\"204\" y=\"52\" font-size=\"10\" paint-order=\"stroke\" stroke=\"#fff\" stroke-width=\"3\">3</text><text x=\"370\" y=\"146\" font-size=\"12\" font-style=\"italic\">x</text><text x=\"206\" y=\"22\" font-size=\"12\" font-style=\"italic\">y</text></svg>",
+   "figure_description": "Coordinate plane with line l through (4,0) and (0,2) (slope -1/2) and line m through (1,0) and (0,-2) (slope 2). The lines meet at (1.6, 1.2). The shaded region is the wedge opening to the left: on or below l and on or above m, boundaries included.",
+   "origin": "kmf1804",
+   "origin_set": "Section 36 Hard",
+   "source_pages": [
+    232
+   ]
+  },
+  {
+   "id": "COG-GLE-KMF-007",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A region of the xy-plane is made up of every point (x, y) that satisfies y > |x + 2|.\nIndicate all of the following points that lie in this region.",
+   "options": [
+    "A. (0, 3)",
+    "B. (-2, 0)",
+    "C. (-5, 2)",
+    "D. (1, 4)",
+    "E. (-3, 1.5)",
+    "F. (2, 3)"
+   ],
+   "answer": [
+    "A",
+    "D",
+    "E"
+   ],
+   "explanation": "Test each point in y > |x + 2|.\nA. (0, 3): |0 + 2| = 2 and 3 > 2. True.\nB. (-2, 0): |-2 + 2| = 0 and 0 > 0 is false (the point is the corner of the boundary and the inequality is strict). False.\nC. (-5, 2): |-5 + 2| = 3 and 2 > 3 is false. False.\nD. (1, 4): |1 + 2| = 3 and 4 > 3. True.\nE. (-3, 1.5): |-3 + 2| = 1 and 1.5 > 1. True.\nF. (2, 3): |2 + 2| = 4 and 3 > 4 is false. False.\nCheck: the region is the open wedge above the V-shaped graph of y = |x + 2| whose corner is (-2, 0); A, D and E are above the V and B, C, F are on it or below it.",
+   "trap": "Dropping the absolute value and testing y > x + 2 instead makes (-5, 2) look acceptable (2 > -3), which adds choice C to the selection.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "absolute-value-inequality",
+    "region-testing",
+    "strict-inequality"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 58 Hard",
+   "source_pages": [
+    381
+   ]
+  },
+  {
+   "id": "COG-GLE-KMF-008",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "In the xy-plane, line p has a negative slope and crosses the y-axis above the origin. Line q is horizontal and lies below the x-axis.\nIndicate all of the following statements that must be true.",
+   "options": [
+    "A. Lines p and q intersect at exactly one point.",
+    "B. The point where p and q intersect lies in Quadrant IV.",
+    "C. Line p crosses the x-axis at a positive x-value.",
+    "D. Line q crosses the y-axis above the origin.",
+    "E. Line p passes through the origin.",
+    "F. Line q crosses the x-axis at exactly one point."
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "Write p as y = mx + b with m < 0 and b > 0, and q as y = k with k < 0.\nA. True. A line with a nonzero slope meets any horizontal line exactly once.\nB. True. Solving mx + b = k gives x = (k - b)/m. Here k - b < 0 and m < 0, so x > 0, and the y-coordinate is k < 0. Positive x with negative y is Quadrant IV.\nC. True. Setting y = 0 gives x = -b/m; with b > 0 and m < 0 this is positive.\nD. False. Line q meets the y-axis at (0, k) and k < 0, so it is below the origin.\nE. False. Line p meets the y-axis at (0, b) with b > 0, so it misses the origin.\nF. False. A horizontal line y = k with k not equal to 0 never reaches the x-axis.\nCheck with m = -1, b = 2, k = -3: the lines meet where -x + 2 = -3, at (5, -3), in Quadrant IV, and p crosses the x-axis at (2, 0).",
+   "trap": "Reading the negative height of q as 'a line that sits above the origin' or as having an x-intercept leads to marking choices D and F as true.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "line-sketching",
+    "sign-analysis",
+    "quadrants"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 58 Hard",
+   "source_pages": [
+    382
+   ]
   }
  ]
 }

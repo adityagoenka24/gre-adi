@@ -4,16 +4,23 @@
   "subtopic": "Fractions & Decimals",
   "subtopic_id": "ARI-FRC",
   "version": "1.0",
-  "total_questions": 87,
+  "total_questions": 101,
   "distribution": {
-   "easy": 20,
-   "medium": 33,
-   "hard": 24,
+   "easy": 21,
+   "medium": 41,
+   "hard": 29,
    "extreme_hard": 10
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 39,
+   "multiple_answer": 14,
+   "numeric_entry": 23,
+   "quantitative_comparison": 25
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1795,6 +1802,370 @@
    ],
    "origin": "sectional",
    "origin_set": "statistics_set2"
+  },
+  {
+   "id": "ARI-FRC-KMF-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A jar contains only two kinds of coins: 8 copper coins and z silver coins. If more than 2/5 of the coins in the jar are silver coins, what is the least number of coins that could be in the jar?",
+   "options": [
+    "A. 11",
+    "B. 12",
+    "C. 13",
+    "D. 14",
+    "E. 15"
+   ],
+   "answer": "D",
+   "explanation": "We need z / (8 + z) > 2/5.\n5z > 2(8 + z) = 16 + 2z, so 3z > 16, so z > 16/3 = 5.33.\nSince z is an integer, the least value is z = 6.\nTotal coins = 8 + 6 = 14. Check: 6/14 = 0.4286 > 0.4.",
+   "trap": "Students round 16/3 down to 5 instead of up to 6 (since z must exceed 5.33, not equal or be less), getting a total of 13 (option C) instead of 14.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "fraction-inequality",
+    "least-value"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    21
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Points P, Q, R, S, and T lie in that order on segment PT and are equally spaced. If 3/4 of segment PQ, 1/2 of segment QR, all of segment RS, and none of segment ST were erased, what fraction of segment PT would have been erased?",
+   "options": [
+    "A. 9/16",
+    "B. 7/16",
+    "C. 5/16",
+    "D. 3/4",
+    "E. 9/4"
+   ],
+   "answer": "A",
+   "explanation": "The five equally spaced points split PT into four pieces of equal length: PQ, QR, RS and ST.\nSo each piece is 1/4 of PT.\nErased from PQ: (3/4) * (1/4) = 3/16 of PT.\nErased from QR: (1/2) * (1/4) = 2/16 of PT.\nErased from RS: all of it, which is 1 * (1/4) = 4/16 of PT.\nErased from ST: none, 0.\nTotal erased = 3/16 + 2/16 + 4/16 + 0 = 9/16 of PT.\nCheck with a concrete length: let PT = 16, so each piece is 4. Erased lengths are 3, 2, 4 and 0, totalling 9, and 9/16 of the whole. Matches.\nCheck the complement: the part remaining is 1/16 + 2/16 + 0 + 4/16 = 7/16, and 9/16 + 7/16 = 1.",
+   "trap": "Adding the stated fractions directly, 3/4 + 1/2 + 1 = 9/4, without first scaling each one by the 1/4 of PT that its piece represents, which produces option E.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "fraction-of-a-fraction",
+    "segment-partition"
+   ],
+   "figure_description": "A horizontal segment with endpoints P on the left and T on the right. Three points Q, R and S lie on it between P and T, placed so that the four pieces PQ, QR, RS and ST all have the same length.",
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    62
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-003",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "The positive integers p and q satisfy p > q. Select all of the following expressions whose value must be greater than 1/(1/q + 1/10).",
+   "options": [
+    "A. 1/(1/p + 1/10)",
+    "B. 1/(1/q + 1/8)",
+    "C. 1/(1/q + 1/12)",
+    "D. 1/(1/p + 1/8)",
+    "E. q",
+    "F. 1/(1/p + 1/q + 1/10)"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "Let T = 1/(1/q + 1/10). A bigger denominator makes the whole fraction smaller, and a smaller denominator makes it bigger.\nA: p > q means 1/p < 1/q, so the denominator 1/p + 1/10 is smaller than 1/q + 1/10, and the value is greater than T. TRUE.\nB: 1/8 > 1/10, so the denominator is larger and the value is smaller than T. FALSE.\nC: 1/12 < 1/10, so the denominator is smaller and the value is greater than T. TRUE.\nD: p lowers the denominator but 1/8 raises it; the net effect depends on p and q. For q = 1, p = 2 it is 1.6 versus T = 0.909 (greater), but for q = 100, p = 101 it is about 7.41 versus T = about 9.09 (smaller). So it need not be greater. FALSE.\nE: T = 1/(1/q + 1/10) < 1/(1/q) = q, so q is greater than T. TRUE.\nF: the extra 1/p term makes the denominator larger than 1/q + 1/10, so the value is smaller than T. FALSE.\nCheck: the true set is A, C, E.",
+   "trap": "Choice D mixes a favourable change (p in place of q) with an unfavourable one (1/8 in place of 1/10) and looks larger because p > q, but its comparison with T flips for large q, so it is not guaranteed.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "reciprocal-monotonicity",
+    "compound-fractions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 19 Base",
+   "source_pages": [
+    116
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-004",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "For any nonzero t, let r(t) = 1/t. The positive number x satisfies 7 + r(5 + r(6 + r(x))) = 482/67. What is the value of x?",
+   "options": null,
+   "answer": "2",
+   "explanation": "Peel the layers from the outside in.\n7 + 1/(5 + 1/(6 + 1/x)) = 482/67, so 1/(5 + 1/(6 + 1/x)) = 482/67 - 7 = 13/67.\nReciprocal: 5 + 1/(6 + 1/x) = 67/13, so 1/(6 + 1/x) = 67/13 - 5 = 2/13.\nReciprocal: 6 + 1/x = 13/2, so 1/x = 13/2 - 6 = 1/2 and x = 2.\nCheck: 6 + 1/2 = 13/2; 1/(13/2) = 2/13; 5 + 2/13 = 67/13; 1/(67/13) = 13/67; 7 + 13/67 = 482/67.",
+   "trap": "Taking the reciprocal of each term separately instead of the whole denominator (for example reading 1/(6 + 1/x) as 1/6 + x), which gives no sensible x.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "nested-fraction",
+    "work-inside-out"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 24 Hard",
+   "source_pages": [
+    149
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-005",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Select all of the expressions that are larger than 6/n for every integer n larger than 2.",
+   "options": [
+    "A. 6/(n+1)",
+    "B. 6/(n-1)",
+    "C. 3/(n-1) + 3/(n+1)",
+    "D. 12/(2n+1)",
+    "E. 3/(n-2) + 3/(n+2)",
+    "F. 6/(n+2)"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "E"
+   ],
+   "explanation": "Test n = 3 (6/n = 2) and n = 10 (6/n = 0.6), then confirm algebraically.\nA: 6/(n+1) has a bigger denominator, so it is smaller. n=3 gives 1.5 < 2. False.\nB: 6/(n-1) has a smaller denominator, so it is larger. n=3 gives 3 > 2. True.\nC: 3/(n-1) + 3/(n+1) = 6n/(n^2-1). Since n^2 - 1 < n^2, this exceeds 6n/n^2 = 6/n. n=3 gives 2.25 > 2. True.\nD: 12/(2n+1) = 6/(n + 0.5), smaller than 6/n. n=3 gives 1.71 < 2. False.\nE: 3/(n-2) + 3/(n+2) = 6n/(n^2-4) > 6/n. n=3 gives 3.6 > 2. True.\nF: 6/(n+2) is smaller. n=3 gives 1.2 < 2. False.\nCorrect: B, C, E.",
+   "trap": "Believing that n-1 and n+1 'average out' to n so the sum in option C must equal 6/n, and so leaving C (and E) unselected, answering only B.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "fraction-comparison",
+    "reciprocal-convexity"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 34 Hard",
+   "source_pages": [
+    213
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-006",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Each whole-number value of r below is written as r percent, then converted to a fraction and fully reduced. Select all values of r for which the reduced fraction has a denominator of exactly 25.",
+   "options": [
+    "A. 4",
+    "B. 10",
+    "C. 12",
+    "D. 25",
+    "E. 36",
+    "F. 40",
+    "G. 45"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "r percent = r/100. The reduced denominator is 25 exactly when r/100 simplifies to n/25 with n not divisible by 5, i.e., r is a multiple of 4 that is not a multiple of 20.\nA (4): 4/100 = 1/25. TRUE.\nB (10): 10/100 = 1/10. FALSE.\nC (12): 12/100 = 3/25. TRUE.\nD (25): 25/100 = 1/4. FALSE.\nE (36): 36/100 = 9/25. TRUE.\nF (40): 40/100 = 2/5. FALSE (multiple of 4 but also of 20, so it reduces further).\nG (45): 45/100 = 9/20. FALSE.\nAnswer: A, C, E.",
+   "trap": "Choosing any multiple of 4 without checking for a further common factor of 5, which wrongly adds 40 (choice F).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "lowest-terms",
+    "percent-to-fraction"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 48 Hard",
+   "source_pages": [
+    312
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-007",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Three 500-milliliter flasks, F, G and H, hold different solutions. The salt dissolved in flask F equals two-thirds of the amount in flask G, and also four-ninths of the amount in flask H. What fraction of the salt in flask H is the total salt in flasks F and G together?",
+   "options": [
+    "A. 2/3",
+    "B. 9/10",
+    "C. 15/4",
+    "D. 3/2",
+    "E. 10/9"
+   ],
+   "answer": "E",
+   "explanation": "Let the salt in F be f.\nF = (2/3)G gives G = (3/2)f.\nF = (4/9)H gives H = (9/4)f.\nF and G together hold f + (3/2)f = (5/2)f.\nFraction of H = (5/2)f / ((9/4)f) = (5/2)(4/9) = 20/18 = 10/9.\nCheck with f = 4: G = 6, H = 9, F + G = 10, and 10/9 matches.",
+   "trap": "Reading each fraction upside down (G = 2f/3 and H = 4f/9) gives (5/3)/(4/9) = 15/4 (choice C; flipping the final ratio to H / (F + G) gives 9/10 (choice B.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "fraction-of-fraction",
+    "relative-amounts"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    329
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-008",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "A warehouse inspector checked 150 trays that each held 40 tiles. For every tray she computed r, the fraction of that tray's tiles that were cracked. The count of cracked tiles per tray was always between 3 and 30, inclusive.\nQuantity A: The total of r taken over all 150 trays\nQuantity B: The total of sqrt(r) taken over all 150 trays",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "For each tray, r = (cracked tiles)/40, so r lies between 3/40 = 0.075 and 30/40 = 0.75.\nEvery r is therefore strictly between 0 and 1.\nFor a number strictly between 0 and 1, the square root is larger than the number itself.\nSo for every tray, sqrt(r) > r, and adding 150 such inequalities gives a larger total for B.\nCheck: r = 0.075 gives sqrt(r) about 0.274; r = 0.75 gives sqrt(r) about 0.866; both exceed r.",
+   "trap": "Assuming a square root, like a square, makes a number smaller (so the roots would sum to less than the r values), which leads to Quantity A is greater (choice A).",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "fractions-between-0-and-1",
+    "square-roots"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 52 Hard",
+   "source_pages": [
+    341
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-009",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A packing line receives 336 apples. Two-sevenths of them are rejected as undersized. Of the apples that are not rejected, 5 are sorted as Grade 1 for every 3 that are sorted as Grade 2. How many apples are sorted as Grade 2?",
+   "options": [
+    "A. 90",
+    "B. 126",
+    "C. 144",
+    "D. 150",
+    "E. 210"
+   ],
+   "answer": "A",
+   "explanation": "1. Rejected apples: (2/7) * 336 = 96.\n2. Apples that are sorted: 336 - 96 = 240.\n3. The 5 : 3 split means Grade 2 is 3/8 of the sorted apples: (3/8) * 240 = 90.\n4. Check: Grade 1 is (5/8) * 240 = 150, and 150 + 90 + 96 = 336.\nChoice B takes 3/8 of all 336 apples; C takes 3/5 of the sorted apples (treating the ratio as part-to-part); D is the Grade 1 count; E is 5/8 of all 336.",
+   "trap": "Applying the 5 : 3 split to all 336 apples without removing the rejected ones first gives (3/8) * 336 = 126, which is choice B.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "fraction-of-remainder",
+    "part-to-part-ratio"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 57 Base",
+   "source_pages": [
+    375
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-010",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Each option lists two positive integers whose sum is 20. Select every option for which the sum of their reciprocals is strictly between 1/5 and 1/4.",
+   "options": [
+    "A. 3 and 17",
+    "B. 5 and 15",
+    "C. 6 and 14",
+    "D. 8 and 12",
+    "E. 9 and 11",
+    "F. 10 and 10"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "1. For two numbers a and b, 1/a + 1/b = (a + b)/(ab) = 20/(ab) because a + b = 20.\n2. 1/5 < 20/(ab) < 1/4 is equivalent to 4 < ab/20 < 5, i.e. 80 < ab < 100.\n3. Products: A 3*17 = 51 (no), B 5*15 = 75 (no), C 6*14 = 84 (yes), D 8*12 = 96 (yes), E 9*11 = 99 (yes), F 10*10 = 100 (no, the sum of reciprocals is exactly 1/5).\nCheck E directly: 1/9 + 1/11 = 20/99, about 0.2020, which lies between 0.2 and 0.25.",
+   "trap": "Including 10 and 10 because it is the most balanced pair overlooks that its reciprocal sum is exactly 1/5, not strictly above it, so choice F gets selected.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "reciprocal-sum",
+    "fixed-sum-product"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 66 Hard",
+   "source_pages": [
+    431
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-011",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "At a weekend market, a fruit seller sold 3/8 of her mangoes on Saturday. On Sunday she sold 2/5 of the mangoes that were still unsold after Saturday.\nQuantity A: The fraction of her original stock of mangoes that she sold on Sunday\nQuantity B: 2/7",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. After Saturday, 1 - 3/8 = 5/8 of the original stock is left.\n2. On Sunday she sells 2/5 of that remainder: (2/5)*(5/8) = 1/4 of the original stock.\n3. Quantity A = 1/4 = 0.25 and Quantity B = 2/7, about 0.286.\n4. 0.25 < 0.286, so Quantity B is greater.\nCheck: cross-multiply 1/4 and 2/7: 1*7 = 7 and 2*4 = 8, so 1/4 < 2/7.",
+   "trap": "Reading the 2/5 as a fraction of the original stock instead of the remainder gives 0.4 for Quantity A, which beats 2/7 and points to choice A.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "fraction-of-remainder"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    454
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-012",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "w is a negative integer.\nQuantity A: 0.35w\nQuantity B: (3/8)w",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "1. 3/8 = 0.375, so Quantity B is 0.375w and Quantity A is 0.35w.\n2. Because w is negative, multiplying by the larger positive factor gives the smaller (more negative) number: 0.375w < 0.35w.\n3. So Quantity A is greater for every allowed w (w is negative, never zero).\nCheck with w = -8: 0.35*(-8) = -2.8 and (3/8)*(-8) = -3, and -2.8 > -3.",
+   "trap": "Comparing 0.35 and 0.375 and ignoring that w is negative makes Quantity B look larger, choice B.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "sign-flip",
+    "fraction-vs-decimal"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    454
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-013",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "Subtracting the reciprocal of 6 from 2 gives a number that exceeds y by 1/3.\nExpress y as a fraction in lowest terms.",
+   "options": null,
+   "answer": "3/2",
+   "explanation": "1. The reciprocal of 6 is 1/6, so 2 - 1/6 = 12/6 - 1/6 = 11/6.\n2. The statement says 11/6 = y + 1/3.\n3. y = 11/6 - 1/3 = 11/6 - 2/6 = 9/6 = 3/2.\nCheck: 3/2 + 1/3 = 9/6 + 2/6 = 11/6.",
+   "trap": "Adding 1/3 to 11/6 instead of subtracting it (reading 'exceeds y by 1/3' backwards) gives 13/6.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "reciprocal",
+    "fraction-arithmetic"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 71 Base",
+   "source_pages": [
+    466
+   ]
+  },
+  {
+   "id": "ARI-FRC-KMF-014",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "For digits a and b, write 0.abab... for the decimal whose two-digit block ab repeats forever. Let S be the total of 0.abab... over every digit pair (a, b) with a - b = 4. Express S as a fraction in lowest terms (type it as numerator/denominator).",
+   "options": null,
+   "answer": "45/11",
+   "explanation": "1. A repeating block of two digits ab equals the two-digit number divided by 99: 0.abab... = (10a + b) / 99.\n2. Pairs with a - b = 4: (4,0), (5,1), (6,2), (7,3), (8,4), (9,5), giving blocks 40, 51, 62, 73, 84, 95.\n3. Sum of the blocks = 40 + 51 + 62 + 73 + 84 + 95 = 405.\n4. S = 405 / 99 = 45 / 11 after dividing numerator and denominator by 9.\nCheck: 45/11 is about 4.09, and the six decimals average about 0.68, so 6 * 0.68 is about 4.09.",
+   "trap": "Dividing the block sum by 100 instead of 99 (treating ab as hundredths) gives 405/100 = 81/20.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "repeating-decimals",
+    "fraction-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 72 Hard",
+   "source_pages": [
+    471
+   ]
   }
  ]
 }

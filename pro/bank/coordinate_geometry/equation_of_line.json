@@ -4,16 +4,23 @@
   "subtopic": "Equation of a Line",
   "subtopic_id": "COG-EQL",
   "version": "1.0",
-  "total_questions": 54,
+  "total_questions": 65,
   "distribution": {
-   "easy": 13,
-   "medium": 22,
-   "hard": 14,
+   "easy": 17,
+   "medium": 27,
+   "hard": 16,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 28,
+   "multiple_answer": 7,
+   "numeric_entry": 18,
+   "quantitative_comparison": 12
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1177,6 +1184,277 @@
    ],
    "origin": "sectional",
    "origin_set": "coordinate_geometry_set4"
+  },
+  {
+   "id": "COG-EQL-KMF-001",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "In the xy-plane, what is the x-intercept of the line given by the equation 5x + 2y = 40?",
+   "options": null,
+   "answer": "8",
+   "explanation": "The x-intercept occurs where y = 0.\nSubstitute y = 0: 5x + 2(0) = 40, so 5x = 40.\nDivide by 5: x = 8.\nThe x-intercept is 8.",
+   "trap": "Students solve for the y-intercept instead (setting x = 0), getting y = 20, and enter 20 instead of the requested x-intercept of 8.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "x-intercept",
+    "linear-equation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    7
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-002",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A circle drawn on a coordinate grid has its centre at (u, v) and radius w, with u, v, and w all nonzero. Q is the point whose x-coordinate is u + 2*v and whose y-coordinate is v - 2*u, and Q lies on this circle. The line tangent to the circle at Q crosses the y-axis. What is the y-coordinate of the crossing point?",
+   "options": [
+    "A. (-2u^2 - 2v^2)/u",
+    "B. (u^2 + v^2)/v",
+    "C. (2v^2 + 2*u*v - 2u^2)/u",
+    "D. (v^2 - u^2 - 4*u*v)/v",
+    "E. (2u^2 - 2v^2)/u"
+   ],
+   "answer": "A",
+   "explanation": "The radius to the point of contact runs from the centre (u, v) to Q = (u + 2*v, v - 2*u).\nHorizontal change: (u + 2*v) - u = 2*v.\nVertical change: (v - 2*u) - v = -2*u.\nSlope of that radius = (-2*u)/(2*v) = -u/v.\nA tangent meets its radius at right angles at the point of contact, so the tangent slope is the negative reciprocal of -u/v, which is v/u. This is defined because u is nonzero, and it is finite, so the tangent is not vertical and really does cross the y-axis.\nPoint-slope form at Q: y = (v/u)*(x - (u + 2*v)) + (v - 2*u).\nPut x = 0: y = (v/u)*(-(u + 2*v)) + v - 2*u.\n(v/u)*(-(u + 2*v)) = -(u*v + 2*v^2)/u = -v - 2*v^2/u.\nSo y = -v - 2*v^2/u + v - 2*u = -2*v^2/u - 2*u.\nOver the common denominator u: y = (-2u^2 - 2v^2)/u.\nCheck with u = 3, v = 4: the centre is (3, 4) and Q = (3 + 8, 4 - 6) = (11, -2). The distance from (3, 4) to (11, -2) is sqrt(64 + 36) = 10, so w = 10 and Q is genuinely on the circle. The tangent slope is 4/3, giving y = (4/3)*(x - 11) - 2, whose value at x = 0 is -44/3 - 2 = -50/3. Option A gives (-2*9 - 2*16)/3 = -50/3, a match.\nWrong routes behind the other options: option C comes from a sign slip that writes (x + u + 2*v) in the point-slope form; option D comes from negating the radius slope to u/v instead of taking its negative reciprocal; option E comes from mis-copying the point of contact as (u + 2*v, v + 2*u).",
+   "trap": "Using the radius slope -u/v itself as the tangent slope gives the y-coordinate (u^2 + v^2)/v, option B.",
+   "estimated_time_seconds": 135,
+   "tags": [
+    "tangent-line",
+    "perpendicular-slope",
+    "y-intercept"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 7 Base",
+   "source_pages": [
+    43
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-003",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "In the xy-plane, line n crosses the x-axis at the point (p, 0) and crosses the y-axis at the point (0, q), where p and q are positive numbers. Select every point that must lie on line n.",
+   "options": [
+    "A. (p/4, 3q/4)",
+    "B. (p, q)",
+    "C. (-p, 2q)",
+    "D. (2p, 2q)",
+    "E. (3p, -2q)",
+    "F. (q, p)"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "A line with x-intercept p and y-intercept q has the intercept equation x/p + y/q = 1. A point lies on the line exactly when its coordinates make that sum equal to 1.\nA. (p/4, 3q/4): (p/4)/p + (3q/4)/q = 1/4 + 3/4 = 1. ON THE LINE.\nB. (p, q): p/p + q/q = 1 + 1 = 2, not 1. NOT on the line.\nC. (-p, 2q): (-p)/p + (2q)/q = -1 + 2 = 1. ON THE LINE.\nD. (2p, 2q): 2 + 2 = 4, not 1. NOT on the line.\nE. (3p, -2q): 3 + (-2) = 1. ON THE LINE.\nF. (q, p): q/p + p/q, which equals 1 only for special values of p and q, not for every line. NOT on the line.\nCheck with a concrete line, p = 4 and q = 6, so the line is x/4 + y/6 = 1, or 3x + 2y = 12.\nA gives (1, 4.5): 3(1) + 2(4.5) = 12. Correct.\nB gives (4, 6): 12 + 12 = 24. Not 12.\nC gives (-4, 12): -12 + 24 = 12. Correct.\nD gives (8, 12): 24 + 24 = 48. Not 12.\nE gives (12, -12): 36 - 24 = 12. Correct.\nF gives (6, 4): 18 + 8 = 26. Not 12.\nSo the points that must lie on line n are A, C and E.",
+   "trap": "Pairing the two intercept values into the single point (p, q) and assuming it sits on the line; substituting gives 1 + 1 = 2 rather than 1, so selecting option B is wrong.",
+   "estimated_time_seconds": 135,
+   "tags": [
+    "intercept-form",
+    "point-on-line"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    63
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-004",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "In the xy-plane, line t passes through the point (20, 0) and has slope -1/4. Line s has slope 3/4, and the two lines cross at a point whose x-coordinate is 8. At what y-value does line s cross the y-axis?",
+   "options": null,
+   "answer": "-3",
+   "explanation": "Line t through (20, 0) with slope -1/4: y = -(1/4)(x - 20).\nAt x = 8: y = -(1/4)(8 - 20) = -(1/4)(-12) = 3, so the lines cross at (8, 3).\nLine s has slope 3/4 and passes through (8, 3): y - 3 = (3/4)(x - 8).\nAt x = 0: y = 3 + (3/4)(-8) = 3 - 6 = -3.\nCheck: s(8) = (3/4)(8) - 3 = 3, matching t(8) = 3.",
+   "trap": "Reporting 3, the y-coordinate of the crossing point, instead of the y-intercept of line s; or reporting 5, which is the y-intercept of line t (y = -x/4 + 5), mixing up which line was asked about.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "intersection-point",
+    "y-intercept"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 15 Base",
+   "source_pages": [
+    93
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-005",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Line L has slope 3/2, and its x-intercept is -4. Which of the following points lies on line L?",
+   "options": [
+    "A. (0, -6)",
+    "B. (0, 4)",
+    "C. (2, 7)",
+    "D. (4, 12)",
+    "E. (6, 3)"
+   ],
+   "answer": "D",
+   "explanation": "The x-intercept is -4, so L passes through (-4, 0). With slope 3/2: y - 0 = (3/2)(x - (-4)), so y = (3/2)(x + 4).\nTest each point:\n(0, -6): y = (3/2)(4) = 6, not -6. No.\n(0, 4): y = 6, not 4. No.\n(2, 7): y = (3/2)(6) = 9, not 7. No.\n(4, 12): y = (3/2)(8) = 12. Yes.\n(6, 3): y = (3/2)(10) = 15, not 3. No.\nCheck: slope from (-4, 0) to (4, 12) is 12/8 = 3/2.",
+   "trap": "Treating -4 as the y-intercept (y = 3x/2 + 4) makes (0, 4) look right, which is choice B; getting the sign wrong (y = (3/2)(x - 4)) makes (0, -6) and (6, 3) look right (choices A and E).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "point-slope",
+    "x-intercept"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 19 Base",
+   "source_pages": [
+    119
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-006",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Line p has equation y = (4/5)x - 3. Line q has slope -5/4, and it crosses line p at the point whose x-coordinate is 10. Line q and the two coordinate axes enclose a triangle in the first quadrant. What is the area of this triangle? Give your answer as a decimal.",
+   "options": null,
+   "answer": "122.5",
+   "explanation": "On line p at x = 10: y = (4/5)(10) - 3 = 8 - 3 = 5. So the crossing point is (10, 5).\nLine q: y = -(5/4)x + c passes through (10, 5): 5 = -12.5 + c, so c = 17.5 (the y-intercept).\nx-intercept of q: 0 = -(5/4)x + 17.5, so x = 17.5 * (4/5) = 14.\nThe triangle has legs 14 and 17.5, so area = (1/2) * 14 * 17.5 = 122.5.\nCheck: line q at x = 14 gives y = -17.5 + 17.5 = 0, and at x = 10 gives 5.",
+   "trap": "Stopping at the x-intercept (14) or y-intercept (17.5), or using the full product 14 * 17.5 = 245 without the one-half.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "line-equation",
+    "intercepts",
+    "triangle-area"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 38 Hard",
+   "source_pages": [
+    243
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-007",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The table lists three input-output pairs of a linear function g. Where does the graph of g meet the x-axis? Enter the x-coordinate in fraction form.",
+   "options": null,
+   "answer": "19/3",
+   "explanation": "Slope between the first two rows: (-1/2 - 5/2)/(7 - 3) = (-3)/4 = -3/4.\nCheck with the last two rows: (-7/2 - (-1/2))/(11 - 7) = (-3)/4 = -3/4, so the table is consistent with one line.\nUsing the point (3, 5/2): g(x) = 5/2 - (3/4)(x - 3).\nSet g(x) = 0: (3/4)(x - 3) = 5/2, so x - 3 = (5/2)*(4/3) = 10/3, giving x = 3 + 10/3 = 19/3.\nCheck: g(19/3) = 5/2 - (3/4)(10/3) = 5/2 - 5/2 = 0.",
+   "trap": "Estimating the zero by locating where the listed outputs change sign (between x = 3 and x = 7) and entering a value such as 5, instead of solving the line exactly.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "linear-from-table",
+    "x-intercept"
+   ],
+   "table_data": {
+    "headers": [
+     "x",
+     "g(x)"
+    ],
+    "rows": [
+     [
+      "3",
+      "5/2"
+     ],
+     [
+      "7",
+      "-1/2"
+     ],
+     [
+      "11",
+      "-7/2"
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 44 Hard",
+   "source_pages": [
+    287
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-008",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A line was translated 3 units to the left and 2 units down, and its new equation is y = 2x + 1. Which equation describes the original, unmoved line?",
+   "options": [
+    "A. y = 2x - 3",
+    "B. y = 2x - 5",
+    "C. y = 2x - 7",
+    "D. y = 2x + 5",
+    "E. y = 2x + 9"
+   ],
+   "answer": "A",
+   "explanation": "Undo the move: shift the new line 3 units right and 2 units up.\nShifting right by 3 replaces x with (x - 3): y = 2(x - 3) + 1 = 2x - 5.\nShifting up by 2 adds 2: y = 2x - 5 + 2 = 2x - 3.\nSo the original line is y = 2x - 3.\nCheck: move y = 2x - 3 left 3 and down 2: y = 2(x + 3) - 3 - 2 = 2x + 1, which is the given equation.",
+   "trap": "Applying the stated move again instead of reversing it, y = 2(x + 3) + 1 - 2 = 2x + 5 (choice D; or undoing only the horizontal move and stopping at 2x - 5 (choice B.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "translation-of-lines",
+    "slope-intercept"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 46 Hard",
+   "source_pages": [
+    300
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-009",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "Line m contains P(9, 14) and also Q(10, 12). At what x-coordinate does this line cross the x-axis?",
+   "options": null,
+   "answer": "16",
+   "explanation": "Slope = (12 - 14)/(10 - 9) = -2.\nPoint-slope form from P: y - 14 = -2(x - 9), so y = -2x + 32.\nSet y = 0: 0 = -2x + 32, so x = 16.\nCheck: at x = 10, y = -20 + 32 = 12, which matches Q.",
+   "trap": "Reporting the y-intercept (32) instead of the x-intercept, or flipping the sign of the slope to +2 and getting x = -16.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "x-intercept",
+    "slope"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 49 Base",
+   "source_pages": [
+    317
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-010",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A line in the xy-plane has slope 8/7 and passes through the point (4, -4). The point (k + 7, 4k) also lies on this line. Find the y-coordinate of that point and enter it as a fraction.",
+   "options": null,
+   "answer": "-4/5",
+   "explanation": "1. The line through (4, -4) with slope 8/7 is y + 4 = (8/7)(x - 4).\n2. Substitute the point (k + 7, 4k): 4k + 4 = (8/7)(k + 7 - 4) = (8/7)(k + 3).\n3. Multiply by 7: 28k + 28 = 8k + 24, so 20k = -4 and k = -1/5.\n4. The y-coordinate is 4k = -4/5.\n5. Check: x = k + 7 = 34/5. Then y = -4 + (8/7)(34/5 - 4) = -4 + (8/7)(14/5) = -4 + 16/5 = -4/5. Matches.",
+   "trap": "Solving for k correctly but reporting k = -1/5, or giving the x-coordinate 34/5, instead of the requested y-coordinate. A sign slip in the point-slope form (using y - 4 rather than y + 4) also produces a wrong k.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "line-equation",
+    "point-on-line"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 54 Hard",
+   "source_pages": [
+    356
+   ]
+  },
+  {
+   "id": "COG-EQL-KMF-011",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A line in the xy-plane passes through the points (4, -2) and (10, 2). The point (m, 2m - 7) is also on this line. Find m, written as a fraction.",
+   "options": null,
+   "answer": "7/4",
+   "explanation": "1. Slope = (2 - (-2)) / (10 - 4) = 4/6 = 2/3.\n2. Using the point (4, -2): y + 2 = (2/3)(x - 4), so y = (2/3)x - 8/3 - 2 = (2/3)x - 14/3.\n3. Substitute (m, 2m - 7): 2m - 7 = (2/3)m - 14/3.\n4. Multiply by 3: 6m - 21 = 2m - 14, so 4m = 7 and m = 7/4.\nCheck: y = 2(7/4) - 7 = -7/2 and (2/3)(7/4) - 14/3 = 7/6 - 28/6 = -7/2.",
+   "trap": "Making a sign slip on the intercept (writing -8/3 + 2 = -2/3 instead of -8/3 - 2 = -14/3) leads to 2m - 7 = (2/3)m - 2/3 and the wrong answer 19/4.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "line-through-two-points",
+    "point-on-line"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 59 Base",
+   "source_pages": [
+    389
+   ]
   }
  ]
 }

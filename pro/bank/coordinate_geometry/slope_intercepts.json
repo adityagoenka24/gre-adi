@@ -4,16 +4,23 @@
   "subtopic": "Slope & Intercepts",
   "subtopic_id": "COG-SLO",
   "version": "1.0",
-  "total_questions": 59,
+  "total_questions": 71,
   "distribution": {
    "easy": 13,
-   "medium": 23,
-   "hard": 18,
+   "medium": 32,
+   "hard": 21,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 25,
+   "multiple_answer": 14,
+   "numeric_entry": 17,
+   "quantitative_comparison": 15
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1261,6 +1268,339 @@
    ],
    "origin": "sectional",
    "origin_set": "coordinate_geometry_set4"
+  },
+  {
+   "id": "COG-SLO-KMF-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "On a coordinate grid, J = (0, -8) and K = (-8, 0). A point P = (h, k) satisfies h > 0 and k > 0. Let s be the slope of line PJ and let w be the slope of line PK. Which ordering below holds no matter which such P is chosen?",
+   "options": [
+    "A. s < w < 0",
+    "B. w < s < 0",
+    "C. 0 < s < w",
+    "D. 0 < w < s",
+    "E. s and w have opposite signs"
+   ],
+   "answer": "D",
+   "explanation": "Slope of PJ: s = (k - (-8))/(h - 0) = (k + 8)/h.\nWith k > 0 the numerator k + 8 is positive, and with h > 0 the denominator is positive, so s > 0.\nSlope of PK: w = (k - 0)/(h - (-8)) = k/(h + 8).\nBoth k and h + 8 are positive, so w > 0.\nThat rules out A, B, and E at once, since both slopes are positive.\nNow compare s and w. Their denominators h and h + 8 are both positive, so cross-multiplying does not flip the comparison.\ns versus w becomes (k + 8)*(h + 8) versus k*h.\nExpand: (k + 8)*(h + 8) = k*h + 8*k + 8*h + 64.\nSubtract k*h from both sides, leaving 8*k + 8*h + 64 versus 0.\nSince h > 0 and k > 0, that left side exceeds 64 and is positive, so s > w.\nTherefore 0 < w < s.\nCheck with h = 1, k = 1: s = 9/1 = 9 and w = 1/9.\nCheck with h = 100, k = 2: s = 10/100 = 0.1 and w = 2/108, about 0.0185.\nIn both trials s > w > 0, as derived.",
+   "trap": "Noticing only that line PK carries the larger denominator, h + 8 rather than h, and concluding a larger denominator gives a larger slope reverses the order and lands on option C.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "slope-formula",
+    "comparing-fractions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 7 Base",
+   "source_pages": [
+    38
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-002",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Line p, drawn in the coordinate plane, rises from left to right and goes through the point where the line y = 2x - 3 meets the vertical line x = 4. Select all of the listed numbers that are possible x-coordinates for the point where p crosses the x-axis.",
+   "options": [
+    "A. -6",
+    "B. -1",
+    "C. 3",
+    "D. 4",
+    "E. 5",
+    "F. 8"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "At x = 4 the line y = 2x - 3 gives y = 5, so p passes through (4, 5).\nLet p have slope m > 0: y - 5 = m(x - 4).\nSet y = 0: -5 = m(x - 4), so x = 4 - 5/m.\nBecause m > 0, 5/m > 0, so the x-intercept is always less than 4, and any value below 4 occurs for some m = 5/(4 - x).\nA (-6): m = 0.5, true.\nB (-1): m = 1, true.\nC (3): m = 5, true.\nD (4): would need 5/m = 0, impossible, false.\nE (5): above 4, false.\nF (8): above 4, false.\nCheck: m = 1 gives y = x + 1, which passes through (4, 5) and crosses the x-axis at -1.",
+   "trap": "Assuming that a line rising from left to right must cross the x-axis to the right of the point (4, 5) leads to choosing E or F; in fact the line drops to y = 0 as it moves left from (4, 5). Including 4 because the line passes through x = 4 leads to choosing D, but at x = 4 the line is at height 5, not 0.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "intercepts",
+    "slope-sign"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 21 Base",
+   "source_pages": [
+    131
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-003",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A straight line crosses the y-axis at the point (0, -10) and crosses the x-axis at a point (p, 0), where 4 <= p <= 5. Select all values that the slope of this line could have.",
+   "options": [
+    "A. 1/2",
+    "B. 2",
+    "C. 9/4",
+    "D. 5/2",
+    "E. 11/4",
+    "F. 4"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "Step 1: Going from (0, -10) to (p, 0) the line rises 10 over a run of p, so the slope is m = 10/p.\nStep 2: p = 4 gives m = 5/2 and p = 5 gives m = 2; m falls as p grows, so 2 <= m <= 5/2.\nStep 3: Test each option. A. 1/2: p = 20, outside [4, 5], false. B. 2: p = 5, true. C. 9/4: p = 40/9 = 4.44, true. D. 5/2: p = 4, true. E. 11/4: p = 40/11 = 3.64, false. F. 4: p = 2.5, false.\nCheck: the three true values all lie in [2, 2.5].",
+   "trap": "Treating the slope as the intercept itself picks 4 (option F); dividing p by 10 instead of 10 by p gives values near 1/2 (option A).",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "x-intercept",
+    "slope",
+    "range"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 28 Hard",
+   "source_pages": [
+    176
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-004",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Line m lies in the xy-plane and crosses the x-axis at (p, 0) and the y-axis at (0, q), where p and q are both nonzero. Which of the following conditions, on its own, guarantees that line m slopes downward from left to right?\nSelect all that apply.",
+   "options": [
+    "A. pq > 0",
+    "B. p - q > 0",
+    "C. p/q > 0",
+    "D. p + q > 0",
+    "E. p^2 q > 0",
+    "F. p q^3 > 0"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "F"
+   ],
+   "explanation": "Slope = (change in y)/(change in x) = (0 - q)/(p - 0) = -q/p.\nDownward slope means -q/p < 0, i.e. q/p > 0, i.e. p and q have the same sign, i.e. pq > 0.\nA: pq > 0 is exactly that condition. True.\nB: p - q > 0. p = 5, q = 1 gives slope -0.2 (down), but p = 5, q = -1 gives slope 0.2 (up). Not guaranteed. False.\nC: p/q > 0 means p and q have the same sign. True.\nD: p + q > 0. p = 3, q = -1 gives slope 1/3 (up). False.\nE: p^2 q > 0 only says q > 0 (p^2 is always positive), so p can be negative: p = -1, q = 2 gives slope 2 (up). False.\nF: q^3 has the same sign as q, so p q^3 > 0 means pq > 0. True.\nAnswer: A, C, F.",
+   "trap": "Treating p - q > 0 or p + q > 0 as if they said something about signs, and ticking B or D; a sum or difference can be positive with mixed signs.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "intercepts",
+    "slope-sign",
+    "sufficiency"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 32 Hard",
+   "source_pages": [
+    203
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-005",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "In the xy-plane, the points (3t, 8t) and (-5t, ct) lie on a line whose slope is 1/4, where t is not 0 and c is a constant. What is the value of c?",
+   "options": null,
+   "answer": "6",
+   "explanation": "Slope = (change in y) / (change in x) = (ct - 8t) / (-5t - 3t).\nFactor t out of top and bottom (t is not 0): slope = (c - 8) / (-8).\nSet (c - 8) / (-8) = 1/4, so c - 8 = -2 and c = 6.\nCheck: the points are (3t, 8t) and (-5t, 6t); slope = (6t - 8t) / (-5t - 3t) = -2t / -8t = 1/4.",
+   "trap": "Subtracting the y-values in one order and the x-values in the other: (8 - c) / (-8) = 1/4 gives c = 10 instead of 6.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "slope",
+    "parameters"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 40 Hard",
+   "source_pages": [
+    255
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-006",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In the xy-plane, shaded square M (edges included) has corners (1, 4), (3, 4), (3, 6) and (1, 6). Shaded square N (edges included) has corners (6, 1), (8, 1), (8, 3) and (6, 3). Point P is chosen anywhere in M and point Q anywhere in N. What is the greatest possible slope of line segment PQ?",
+   "options": [
+    "A. -5/3",
+    "B. -3/5",
+    "C. -1/3",
+    "D. -1/7",
+    "E. 1/7"
+   ],
+   "answer": "D",
+   "explanation": "Every point of N is to the right of and below every point of M, so each slope (yQ - yP)/(xQ - xP) is negative, with xQ - xP > 0 and yP - yQ > 0.\nThe slope equals -(yP - yQ)/(xQ - xP). To make it as large as possible (closest to 0) we want yP - yQ as small as possible and xQ - xP as large as possible.\nSmallest drop: yP - yQ = 4 - 3 = 1 (P at height 4, Q at height 3).\nLargest horizontal gap: xQ - xP = 8 - 1 = 7 (P at x = 1, Q at x = 8). Both choices are reached together by P = (1, 4) and Q = (8, 3).\nGreatest slope = -1/7.\nCheck: P = (1, 4), Q = (8, 3) gives (3 - 4)/(8 - 1) = -1/7. The nearest corners (3, 4) and (6, 3) give -1/3, which is smaller.",
+   "trap": "Reading 'greatest' as the steepest segment (largest size of slope) and using P = (3, 6), Q = (6, 1), giving -5/3 (option A), which is actually the least slope.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "slope-extremes",
+    "region-optimization"
+   ],
+   "svg": "<svg width=\"320\" height=\"260\" viewBox=\"0 0 320 260\" xmlns=\"http://www.w3.org/2000/svg\" font-family=\"sans-serif\" font-size=\"12\">\n<line x1=\"30\" y1=\"20\" x2=\"30\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"60\" y1=\"20\" x2=\"60\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"90\" y1=\"20\" x2=\"90\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"120\" y1=\"20\" x2=\"120\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"150\" y1=\"20\" x2=\"150\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"180\" y1=\"20\" x2=\"180\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"210\" y1=\"20\" x2=\"210\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"240\" y1=\"20\" x2=\"240\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"270\" y1=\"20\" x2=\"270\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"230\" x2=\"270\" y2=\"230\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"200\" x2=\"270\" y2=\"200\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"170\" x2=\"270\" y2=\"170\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"140\" x2=\"270\" y2=\"140\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"110\" x2=\"270\" y2=\"110\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"80\" x2=\"270\" y2=\"80\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"50\" x2=\"270\" y2=\"50\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"20\" x2=\"270\" y2=\"20\" stroke=\"currentColor\" stroke-opacity=\"0.2\"/>\n<line x1=\"30\" y1=\"230\" x2=\"285\" y2=\"230\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n<line x1=\"30\" y1=\"230\" x2=\"30\" y2=\"12\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n<text x=\"57\" y=\"246\">1</text>\n<text x=\"87\" y=\"246\">2</text>\n<text x=\"117\" y=\"246\">3</text>\n<text x=\"147\" y=\"246\">4</text>\n<text x=\"177\" y=\"246\">5</text>\n<text x=\"207\" y=\"246\">6</text>\n<text x=\"237\" y=\"246\">7</text>\n<text x=\"267\" y=\"246\">8</text>\n<text x=\"14\" y=\"204\">1</text>\n<text x=\"14\" y=\"174\">2</text>\n<text x=\"14\" y=\"144\">3</text>\n<text x=\"14\" y=\"114\">4</text>\n<text x=\"14\" y=\"84\">5</text>\n<text x=\"14\" y=\"54\">6</text>\n<text x=\"14\" y=\"24\">7</text>\n<text x=\"290\" y=\"234\">x</text><text x=\"34\" y=\"14\">y</text>\n<rect x=\"60\" y=\"50\" width=\"60\" height=\"60\" fill=\"currentColor\" fill-opacity=\"0.3\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n<rect x=\"210\" y=\"140\" width=\"60\" height=\"60\" fill=\"currentColor\" fill-opacity=\"0.3\" stroke=\"currentColor\" stroke-width=\"1.5\"/>\n<text x=\"86\" y=\"84\" font-size=\"16\">M</text><text x=\"236\" y=\"174\" font-size=\"16\">N</text>\n</svg>",
+   "figure_description": "xy-plane with grid lines at integer values. Square M occupies 1 <= x <= 3 and 4 <= y <= 6 (upper left). Square N occupies 6 <= x <= 8 and 1 <= y <= 3 (lower right). Both squares include their edges.",
+   "origin": "kmf1804",
+   "origin_set": "Section 45 Base",
+   "source_pages": [
+    289
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-007",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Six points are marked on the line 3x + 5y = 45. The x-coordinates of the marked points have a range of 15. By how much do the largest and smallest y-coordinates among these points differ?",
+   "options": [
+    "A. -9",
+    "B. 3",
+    "C. 9",
+    "D. 15",
+    "E. 25"
+   ],
+   "answer": "C",
+   "explanation": "Rewrite the line as y = 9 - (3/5)x, so the slope has size 3/5.\nOn a line, the spread of y-values equals the size of the slope times the spread of x-values: (3/5)*15 = 9.\nThe difference between the largest and smallest y is a positive spread, so it is 9 (not -9, even though the slope is negative).\nCheck: x = 0 gives y = 9 and x = 15 gives y = 0, so the y-values span 9.\nA: -9 comes from keeping the sign of the slope.\nB: 3 comes from 15/5, ignoring the 3.\nD: 15 treats the slope as 1.\nE: 25 divides by 3/5 instead of multiplying.",
+   "trap": "Dividing by the slope instead of multiplying: 15 / (3/5) = 25 (option E).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "slope-as-rate",
+    "range"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 45 Base",
+   "source_pages": [
+    294
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-008",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "A straight-line relationship links p and q: each time p rises by 2, q falls by 6.\nIndicate all equations that could describe this relationship.",
+   "options": [
+    "A. q = 3p - 6",
+    "B. q = -6p + 2",
+    "C. q = 3(2 - p)",
+    "D. 6p + 2q = 11",
+    "E. q = 4 - p/3",
+    "F. q - 5 = -3(p + 4)"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "F"
+   ],
+   "explanation": "1. A drop of 6 in q for a rise of 2 in p means the slope is -6/2 = -3, so a valid equation has q = -3p + b for some constant b.\nA. q = 3p - 6: slope +3. False.\nB. q = -6p + 2: slope -6 (the change in q per 2 units of p, not per 1). False.\nC. q = 3(2 - p) = 6 - 3p: slope -3. True.\nD. 6p + 2q = 11 gives q = 5.5 - 3p: slope -3. True.\nE. q = 4 - p/3: slope -1/3 (the ratio inverted). False.\nF. q - 5 = -3(p + 4) gives q = -3p - 7: slope -3. True.\nCheck C: p = 0 gives q = 6 and p = 2 gives q = 0, a fall of 6.",
+   "trap": "Using the raw change in q (-6) as the slope, without dividing by the 2-unit change in p, selects the equation with slope -6 (choice B) and misses the genuine slope -3.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "slope",
+    "rate-of-change",
+    "linear-forms"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 60 Hard",
+   "source_pages": [
+    396
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-009",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "In the xy-plane, the line y = mx + c has constants that satisfy c < m < -1.\nIndicate all values that could be the x-coordinate of the point where this line crosses the x-axis.",
+   "options": [
+    "A. -4",
+    "B. -2.5",
+    "C. -1",
+    "D. -0.5",
+    "E. 2",
+    "F. 3"
+   ],
+   "answer": [
+    "A",
+    "B"
+   ],
+   "explanation": "1. The line crosses the x-axis where y = 0, so mx + c = 0 and x = -c/m.\n2. Since c < m < -1, both constants are negative and |c| > |m| > 1, so c/m = |c|/|m| > 1.\n3. Therefore x = -c/m < -1: the crossing point is always to the left of -1, and any value below -1 is achievable.\nA. -4: m = -2, c = -8 gives x = -(-8)/(-2) = -4. True.\nB. -2.5: m = -2, c = -5 gives x = -(-5)/(-2) = -2.5. True.\nC. -1: would need c = m, which the strict inequality forbids. False.\nD. -0.5: would need c/m = 0.5, but c/m > 1. False.\nE. 2: positive x-intercepts need m and c of opposite signs. False.\nF. 3: same reason. False.\nCheck: with m = -2 and c = -5 the line 5 units below the origin at x = 0 meets the x-axis at -2.5, left of -1.",
+   "trap": "If the ordering is mistakenly read the other way (slope steeper than the intercept, |m| > |c|), the intercept lands between -1 and 0, which makes -0.5 (choice D) look right.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "x-intercept",
+    "inequality-on-constants",
+    "slope-intercept"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 61 Base",
+   "source_pages": [
+    402
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-010",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "In the xy-plane, a line passes through the origin O and through point P(p, q), which lies in the third quadrant, so p and q are both negative. The line makes an angle of w degrees with the positive x-axis, where 0 < w < 45.\nQuantity A: p + q\nQuantity B: 2q",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. The line makes an angle of 45 degrees with the positive x-axis exactly when it is the line y = x, which has slope 1. Because 0 < w < 45, the line rises but is flatter than y = x, so its slope q/p is between 0 and 1.\n2. So q = (slope)*p with 0 < slope < 1 and p negative. That makes q a negative number closer to 0 than p, hence q > p.\n3. Then p + q < q + q = 2q, so Quantity B is greater.\nCheck with p = -4, q = -2 (slope 0.5): A = -6, B = -4. With p = -10, q = -1: A = -11, B = -2.",
+   "trap": "Using first-quadrant intuition (where a slope below 1 makes q smaller than p) suggests p + q > 2q, so choice A.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "slope-angle",
+    "negative-coordinates"
+   ],
+   "figure_description": "An xy-plane with a straight line through the origin O rising to the right at an angle of w degrees above the positive x-axis, with 0 < w < 45 (the line is flatter than the line y = x). The line extends down-left into the third quadrant, where point P(p, q) is marked on it, with p < 0 and q < 0.",
+   "origin": "kmf1804",
+   "origin_set": "Section 66 Hard",
+   "source_pages": [
+    429
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-011",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The lines 2x + 5y = 9 and x - 4y = 12 each cross the y-axis. How many points on the y-axis with an integer y-coordinate lie strictly between these two crossing points?",
+   "options": null,
+   "answer": "4",
+   "explanation": "1. For 2x + 5y = 9, set x = 0: y = 9/5 = 1.8.\n2. For x - 4y = 12, set x = 0: -4y = 12, so y = -3.\n3. Integer y-values strictly between -3 and 1.8 are -2, -1, 0 and 1.\n4. That is 4 points.\nCheck: -3 and 1.8 are excluded as endpoints, and 2 lies beyond 1.8.",
+   "trap": "Counting the integer intercept y = -3 as lying between the crossing points (it is an endpoint) gives 5.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "y-intercept",
+    "strict-between",
+    "counting-integers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    457
+   ]
+  },
+  {
+   "id": "COG-SLO-KMF-012",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Line l in the xy-plane has slope p, and neither of its intercepts is zero. The distance from the origin to the point where l crosses the y-axis is 3 times the distance from the origin to the point where l crosses the x-axis.\nWhich of the following are possible values of p? Select all that apply.",
+   "options": [
+    "A. -3",
+    "B. -1/3",
+    "C. 1/3",
+    "D. 3"
+   ],
+   "answer": [
+    "A",
+    "D"
+   ],
+   "explanation": "1. Let l cross the y-axis at (0, q) and the x-axis at (r, 0), with q and r nonzero.\n2. The slope is p = (0 - q)/(r - 0) = -q/r, so |p| = |q|/|r|.\n3. The condition says |q| = 3|r|, so |p| = 3.\n4. Hence p = 3 or p = -3 (a positive slope needs q and r of opposite signs, a negative slope needs the same signs; both can occur). A and D are TRUE.\n5. B and C (|p| = 1/3) are FALSE: they come from the opposite ratio.\nCheck: y = 3x + 6 meets the y-axis at 6 and the x-axis at -2 (6 = 3*2), and y = -3x + 6 meets them at 6 and 2.",
+   "trap": "Reading the ratio upside down (x-intercept is 3 times as far) gives |p| = 1/3, so choosing B and C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "intercepts",
+    "slope"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 74 Hard",
+   "source_pages": [
+    480
+   ]
   }
  ]
 }

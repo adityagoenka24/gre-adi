@@ -4,16 +4,23 @@
   "subtopic": "Pythagorean Theorem",
   "subtopic_id": "GEO-PYT",
   "version": "1.0",
-  "total_questions": 67,
+  "total_questions": 75,
   "distribution": {
    "easy": 15,
-   "medium": 24,
-   "hard": 21,
+   "medium": 30,
+   "hard": 23,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 34,
+   "multiple_answer": 9,
+   "numeric_entry": 17,
+   "quantitative_comparison": 15
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1446,6 +1453,221 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "GEO-PYT-KMF-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The ratio of the lengths of the sides of a triangle is 5 to 12 to 13. If the area of the region enclosed by the triangle is 120, what is the perimeter of the triangle?",
+   "options": [
+    "A. 20",
+    "B. 30",
+    "C. 60",
+    "D. 90",
+    "E. 150"
+   ],
+   "answer": "C",
+   "explanation": "Since 5^2 + 12^2 = 25 + 144 = 169 = 13^2, a 5-12-13 triangle is a right triangle with legs 5k and 12k and hypotenuse 13k.\nArea = (1/2)(5k)(12k) = 30k^2.\nSet 30k^2 = 120, so k^2 = 4, and k = 2 (k must be positive).\nPerimeter = (5 + 12 + 13)k = 30k = 30(2) = 60.",
+   "trap": "Students correctly solve k^2 = 4 and k = 2, but then compute the perimeter as just (5+12+13) = 30, forgetting to multiply by k, and pick option B instead of C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "pythagorean-triple",
+    "triangle-area",
+    "ratio"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    7
+   ]
+  },
+  {
+   "id": "GEO-PYT-KMF-002",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A rectangular courtyard has a diagonal of 25 meters, and one of its sides is longer than 7 meters but shorter than 15 meters. Select all of the following values that could be the perimeter of the courtyard, in meters.",
+   "options": [
+    "A. 60",
+    "B. 62",
+    "C. 64",
+    "D. 66",
+    "E. 68",
+    "F. 70",
+    "G. 72"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "Let the sides be s and t, with s^2 + t^2 = 25^2 = 625 and 7 < s < 15. Then t = sqrt(625 - s^2) is between 20 and 24.\nPerimeter = 2(s + t), and (s + t)^2 = s^2 + t^2 + 2st = 625 + 2st.\nAt s = 7: t = 24, perimeter 2(31) = 62. At s = 15: t = 20, perimeter 2(35) = 70.\nAs s increases from 7 to 15, s^2 * t^2 = s^2 * (625 - s^2) keeps increasing (it rises while s^2 is below 312.5), so st, and therefore s + t, increases steadily. The perimeter takes every value strictly between 62 and 70, but not 62 or 70 themselves, because s = 7 and s = 15 are excluded.\nA. 60: false (below 62).\nB. 62: false (needs s = 7 exactly).\nC. 64: true (s is about 8.5).\nD. 66: true (s is about 10.2).\nE. 68: true (s is about 12.2).\nF. 70: false (needs s = 15 exactly).\nG. 72: false (above 70).",
+   "trap": "Treating the endpoint sides as allowed, which brings in 62 (B) and 70 (F); the strict wording 'longer than 7 but shorter than 15' removes them.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "range-of-values",
+    "excluded-endpoints"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 17 Base",
+   "source_pages": [
+    107
+   ]
+  },
+  {
+   "id": "GEO-PYT-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A designer cuts two pennants from fabric, each shaped like a right triangle. Pennant P has a hypotenuse of 29 inches and one leg of 21 inches. Pennant Q has a hypotenuse of 17 inches and one leg of 8 inches. Pennant Q covers what fraction of the area that Pennant P covers?",
+   "options": [
+    "A. 2/7",
+    "B. 8/21",
+    "C. 17/29",
+    "D. 5/7",
+    "E. 3/4"
+   ],
+   "answer": "A",
+   "explanation": "Pennant P: the other leg is sqrt(29^2 - 21^2) = sqrt(841 - 441) = sqrt(400) = 20, so its area is (1/2) * 21 * 20 = 210 square inches.\nPennant Q: the other leg is sqrt(17^2 - 8^2) = sqrt(289 - 64) = sqrt(225) = 15, so its area is (1/2) * 8 * 15 = 60 square inches.\nFraction = 60/210 = 2/7.\nCheck: 2/7 of 210 = 60.",
+   "trap": "Comparing the hypotenuses instead of the areas gives 17/29 (choice C); comparing the two given legs gives 8/21 (choice B).",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "missing-leg",
+    "triangle-area-ratio"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 52 Hard",
+   "source_pages": [
+    342
+   ]
+  },
+  {
+   "id": "GEO-PYT-KMF-004",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A right triangle has legs of length p and q, both greater than 1, and hypotenuse h. A second right triangle is formed by shortening every leg of the first one by 1 unit.\nQuantity A: The longest side of the second triangle\nQuantity B: h - 1",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. Let A be the new longest side (the hypotenuse of the second triangle): A^2 = (p - 1)^2 + (q - 1)^2 = p^2 + q^2 - 2(p + q) + 2 = h^2 - 2(p + q) + 2.\n2. Quantity B squared is (h - 1)^2 = h^2 - 2h + 1, and both A and h - 1 are positive.\n3. A^2 - (h - 1)^2 = -2(p + q) + 2 + 2h - 1 = 1 - 2(p + q - h).\n4. The quantity p + q - h grows whenever either leg grows, so for legs greater than 1 it exceeds its value at p = q = 1, which is 2 - sqrt(2), about 0.586.\n5. So 2(p + q - h) > 1.17 > 1, A^2 - (h - 1)^2 is negative, and Quantity B is larger.\n6. Check: p = 3, q = 4, h = 5 gives A = sqrt(4 + 9) = 3.61 versus h - 1 = 4. With p = q = 1.5 the values are 0.71 versus 1.12. Quantity B wins every time.",
+   "trap": "Expecting that shortening both legs by 1 shortens the hypotenuse by exactly 1 (the way lengths add along a straight line), which makes the two quantities equal, choice C; in fact the hypotenuse shrinks by less than 1.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "pythagorean-theorem",
+    "triangle-inequality",
+    "qc-reasoning"
+   ],
+   "figure_description": "A right triangle with the right angle at the lower left, a vertical leg of length p, a horizontal leg of length q and hypotenuse h. Both p and q exceed 1.",
+   "origin": "kmf1804",
+   "origin_set": "Section 56 Hard",
+   "source_pages": [
+    366
+   ]
+  },
+  {
+   "id": "GEO-PYT-KMF-005",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "A 17-foot ladder rests against a vertical wall with its top exactly 15 feet above the level ground. The top then slips 3 feet straight down the wall, and the foot of the ladder slides along the ground directly away from the wall.\nQuantity A: The distance the foot of the ladder slides along the ground\nQuantity B: 3 feet",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "1. First position: the foot is sqrt(17^2 - 15^2) = sqrt(289 - 225) = sqrt(64) = 8 feet from the wall.\n2. After the slip the top is at height 15 - 3 = 12 feet, so the foot is sqrt(17^2 - 12^2) = sqrt(289 - 144) = sqrt(145) from the wall.\n3. sqrt(145) is about 12.04, so the foot slides about 12.04 - 8 = 4.04 feet.\n4. 4.04 > 3, so Quantity A is greater.\nCheck: 12^2 = 144 < 145 < 169 = 13^2, so sqrt(145) > 12 and the slide exceeds 12 - 8 = 4, which is already more than 3.",
+   "trap": "Assuming the foot moves as far horizontally as the top moves vertically (a 3-foot slide for a 3-foot drop) gives equality, which is choice C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "pythagorean-triple",
+    "ladder",
+    "comparison-by-estimation"
+   ],
+   "figure_description": "Side view of a ladder (hypotenuse, length 17 ft) leaning on a vertical wall. In its first position the top is 15 ft up the wall and the foot is on the ground at a horizontal distance from the wall. In its second position the top is 3 ft lower and the foot is farther from the wall. The wall and ground meet at a right angle.",
+   "origin": "kmf1804",
+   "origin_set": "Section 58 Hard",
+   "source_pages": [
+    380
+   ]
+  },
+  {
+   "id": "GEO-PYT-KMF-006",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The display of a tablet is a rectangle whose side lengths are in the ratio 8 to 5, and its area is 360 square inches. Approximately how long, in inches, is the diagonal of the display?",
+   "options": [
+    "A. 15",
+    "B. 19",
+    "C. 24",
+    "D. 28",
+    "E. 39"
+   ],
+   "answer": "D",
+   "explanation": "1. Let the sides be 8k and 5k. The area is 8k * 5k = 40k^2 = 360, so k^2 = 9 and k = 3.\n2. The sides are 24 and 15 inches.\n3. Diagonal = sqrt(24^2 + 15^2) = sqrt(576 + 225) = sqrt(801), which is about 28.3.\n4. The closest choice is 28.\nCheck: 28^2 = 784 and 29^2 = 841, so sqrt(801) is between 28 and 29, nearer 28.\nOther choices: 15 is the short side; 19 is the side of a square with area 360 (sqrt(360) = 18.97); 24 is the long side; 39 is the sum of the two sides.",
+   "trap": "Adding the two side lengths (24 + 15 = 39) instead of using the Pythagorean theorem gives choice E.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "ratio-sides",
+    "diagonal",
+    "pythagorean-theorem"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 58 Hard",
+   "source_pages": [
+    381
+   ]
+  },
+  {
+   "id": "GEO-PYT-KMF-007",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A right triangle has legs in the ratio 2 to 5 and an area of 20. Which of the following is closest to the length of its hypotenuse?",
+   "options": [
+    "A. 5",
+    "B. 8",
+    "C. 10",
+    "D. 11",
+    "E. 14"
+   ],
+   "answer": "D",
+   "explanation": "1. Write the legs as 2k and 5k. The area is (1/2)*(2k)*(5k) = 5k^2.\n2. 5k^2 = 20 gives k^2 = 4, so k = 2 and the legs are 4 and 10.\n3. Hypotenuse = sqrt(4^2 + 10^2) = sqrt(116).\n4. 10^2 = 100 and 11^2 = 121; since 10.8^2 = 116.64 is slightly above 116, sqrt(116) is about 10.77, closest to 11.\nCheck: 10.77^2 is about 116.0.",
+   "trap": "Dropping the factor 1/2 in the area formula gives 10k^2 = 20, k = sqrt(2), legs about 2.83 and 7.07, hypotenuse about 7.6, so choice B.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "ratio-legs",
+    "area-to-scale-factor"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 66 Hard",
+   "source_pages": [
+    432
+   ]
+  },
+  {
+   "id": "GEO-PYT-KMF-008",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A stepped path joins P and Q, and every turn along it is a right angle. Walking away from P, the segments are, in order: east 2, north 5, east x, north 3, east 1 and north 4, all in the same units. The straight-line distance from P to Q is 15. What is the value of x?",
+   "options": null,
+   "answer": "6",
+   "explanation": "1. Add the north-going segments: 5 + 3 + 4 = 12, so Q is 12 units north of P.\n2. Add the east-going segments: 2 + x + 1 = x + 3, so Q is x + 3 units east of P.\n3. The straight line PQ is the hypotenuse of a right triangle with legs x + 3 and 12: (x + 3)^2 + 12^2 = 15^2.\n4. (x + 3)^2 = 225 - 144 = 81, so x + 3 = 9 and x = 6.\nCheck: the legs 9 and 12 give a hypotenuse of sqrt(81 + 144) = sqrt(225) = 15.",
+   "trap": "Treating the whole eastward distance as x (and ignoring the segments of length 2 and 1) gives x = 9.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "right-triangle-legs",
+    "staircase-path"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 230 280\" width=\"230\" height=\"280\" font-family=\"sans-serif\" font-size=\"13\"><polyline points=\"30,250 66,250 66,160 174,160 174,106 192,106 192,34\" fill=\"none\" stroke=\"#1a3a6b\" stroke-width=\"2.5\"/><line x1=\"30\" y1=\"250\" x2=\"192\" y2=\"34\" stroke=\"#b5651d\" stroke-width=\"1.5\" stroke-dasharray=\"5,4\"/><circle cx=\"30\" cy=\"250\" r=\"3.5\" fill=\"#1a3a6b\"/><circle cx=\"192\" cy=\"34\" r=\"3.5\" fill=\"#1a3a6b\"/><text x=\"14\" y=\"266\">P</text><text x=\"198\" y=\"28\">Q</text><text x=\"44\" y=\"268\">2</text><text x=\"74\" y=\"228\">5</text><text x=\"116\" y=\"178\">x</text><text x=\"180\" y=\"138\">3</text><text x=\"178\" y=\"100\">1</text><text x=\"200\" y=\"74\">4</text><text x=\"78\" y=\"138\" fill=\"#b5651d\">15</text></svg>",
+   "figure_description": "A path starts at P on the lower left. It goes east 2, north 5, east x, north 3, east 1, north 4, ending at Q at the upper right. Every turn is a right angle. A dashed straight segment joins P to Q and is marked 15.",
+   "origin": "kmf1804",
+   "origin_set": "Section 68 Hard",
+   "source_pages": [
+    445
+   ],
+   "needs_diagram_review": true
   }
  ]
 }

@@ -4,16 +4,23 @@
   "subtopic": "Inequalities",
   "subtopic_id": "ALG-INQ",
   "version": "1.0",
-  "total_questions": 86,
+  "total_questions": 130,
   "distribution": {
-   "easy": 15,
-   "medium": 36,
-   "hard": 28,
-   "extreme_hard": 7
+   "easy": 22,
+   "medium": 55,
+   "hard": 45,
+   "extreme_hard": 8
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 41,
+   "multiple_answer": 33,
+   "numeric_entry": 24,
+   "quantitative_comparison": 32
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1891,6 +1898,1182 @@
    ],
    "origin": "sectional",
    "origin_set": "number_properties_set2"
+  },
+  {
+   "id": "ALG-INQ-KMF-001",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "t > 2\nQuantity A: (t + 2)/t\nQuantity B: t/(t - 2)",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Since t > 2, both t and t - 2 are positive, so cross-multiplying preserves the direction of the comparison.\nCompare (t + 2)*(t - 2) with t*t.\n(t + 2)*(t - 2) = t^2 - 4.\nt*t = t^2.\nt^2 - 4 < t^2 for every t.\nSo (t + 2)/t < t/(t - 2), and Quantity B is greater.\nCheck at t = 4: Quantity A = 6/4 = 1.5, Quantity B = 4/2 = 2. B is larger.\nCheck at t = 100: Quantity A = 102/100 = 1.02, Quantity B = 100/98 = 1.0204. B is still larger.",
+   "trap": "Cancelling the t in each fraction and comparing 2 with -2 selects A.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "rational-expressions",
+    "cross-multiplication"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 6 Hard",
+   "source_pages": [
+    33
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-002",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "p^2*q - p*q*r < 0\np > 0 and q < 0\nQuantity A: r\nQuantity B: p",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Factor the left side: p^2*q - p*q*r = p*q*(p - r).\nSo the given inequality is p*q*(p - r) < 0.\nSince p > 0 and q < 0, the product p*q is negative.\nDividing both sides of the inequality by the negative number p*q reverses the direction: p - r > 0.\nTherefore p > r, which means Quantity B is greater.\nCheck with p = 2, q = -1: the inequality becomes 4*(-1) - 2*(-1)*r = -4 + 2*r < 0, so r < 2 = p, consistent.\nCheck with p = 5, q = -3: 25*(-3) - 5*(-3)*r = -75 + 15*r < 0, so r < 5 = p, consistent again.",
+   "trap": "Dividing by p*q without noticing that it is negative leaves p - r < 0, giving r > p and selecting A.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "factoring",
+    "sign-analysis",
+    "inequality-direction"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 8 Hard",
+   "source_pages": [
+    45
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-003",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The numbers m and n are integers, with 4 <= m <= 9 and 4 <= n <= 12. What is the greatest possible value of (5m + 3) / (n + 2)?",
+   "options": null,
+   "answer": "8",
+   "explanation": "Check the signs first. The smallest m is 4, giving 5 * 4 + 3 = 23, so the numerator is always positive. The smallest n is 4, giving 4 + 2 = 6, so the denominator is always positive.\nFor a fraction with a positive numerator and a positive denominator, the value is largest when the numerator is as large as possible and the denominator is as small as possible.\nm and n vary independently, so both extremes can be taken at the same time.\nLargest numerator: m = 9 gives 5 * 9 + 3 = 48.\nSmallest denominator: n = 4 gives 4 + 2 = 6.\nGreatest value = 48 / 6 = 8.\nCheck a nearby pair to confirm nothing beats it: m = 9, n = 5 gives 48 / 7, about 6.86, which is smaller. m = 8, n = 4 gives 43 / 6, about 7.17, which is smaller.\nSo the greatest possible value is 8.",
+   "trap": "Pushing both the numerator and the denominator to their largest values, using m = 9 and n = 12 to get 48 / 14, about 3.43, instead of pairing the largest numerator with the smallest denominator.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "bounded-variables",
+    "maximizing-a-fraction"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    58
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-004",
+   "difficulty": "extreme_hard",
+   "type": "multiple_answer",
+   "question": "A tray holds 15 seedlings, and every seedling carries exactly one label: basil, thyme or sage. The tray contains at least 2 basil seedlings, at least 4 thyme seedlings and at least 4 sage seedlings. The thyme count is an even number and the sage count is an even number. Indicate each number that could be the basil count.",
+   "options": [
+    "A. 2",
+    "B. 3",
+    "C. 4",
+    "D. 5",
+    "E. 6",
+    "F. 7",
+    "G. 9"
+   ],
+   "answer": [
+    "B",
+    "D",
+    "F"
+   ],
+   "explanation": "Let the counts be b (basil), t (thyme) and s (sage), with b + t + s = 15.\nBoth t and s are even, so t + s is even, and b = 15 - (t + s) must therefore be odd. That rules out every even option.\nUpper bound on b: t >= 4 and s >= 4 with both even, so t + s >= 8, giving b <= 7.\nLower bound on b: b >= 2, and since b is odd, b >= 3.\nSo b is an odd number from 3 through 7: the candidates are 3, 5 and 7.\nb = 3: t + s = 12 with both even and at least 4 -- for example t = 6, s = 6. Works.\nb = 5: t + s = 10 -- for example t = 4, s = 6. Works.\nb = 7: t + s = 8 -- the only option is t = 4, s = 4. Works.\nb = 9 would need t + s = 6, below the minimum of 8 -- fails.\nA. 2 is even -- false. B. 3 -- true. C. 4 is even -- false. D. 5 -- true. E. 6 is even -- false. F. 7 -- true. G. 9 exceeds the bound -- false.\nSelected: B, D and F.",
+   "trap": "Using only the three minimums, 2 + 4 + 4 = 10, suggests the basil count can be anything from 2 to 7 and lets the even values in, but two even group sizes force the remaining count to be odd.",
+   "estimated_time_seconds": 140,
+   "tags": [
+    "parity",
+    "bounded-partitions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 14 Hard",
+   "source_pages": [
+    87
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-005",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Consider real numbers y with y > -2. Select all of the following values of y for which y^3/4 is greater than (y/4)^3.",
+   "options": [
+    "A. -1.5",
+    "B. -0.5",
+    "C. 0",
+    "D. 0.5",
+    "E. 3"
+   ],
+   "answer": [
+    "D",
+    "E"
+   ],
+   "explanation": "Note that (y/4)^3 = y^3/64, so the comparison is y^3/4 versus y^3/64.\nThese differ by y^3 * (1/4 - 1/64) = y^3 * (15/64), whose sign is the sign of y^3, i.e. the sign of y.\nSo y^3/4 > (y/4)^3 exactly when y > 0.\nA. y = -1.5: y^3/4 = -0.84375, (y/4)^3 = -0.0527, so the left side is smaller: false.\nB. y = -0.5: left = -0.03125, right = -0.00195, left is smaller: false.\nC. y = 0: both equal 0: false.\nD. y = 0.5: left = 0.03125, right = 0.00195: true.\nE. y = 3: left = 6.75, right = 0.42: true.",
+   "trap": "Assuming that dividing by the larger denominator always shrinks the result, so y^3/4 is always the larger quantity, selects every option (A, B and C included); for negative y the cube is negative and the larger denominator makes the result closer to zero, i.e. larger.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "cubes-of-negatives",
+    "sign-analysis"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    97
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-006",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "x is a real number between 2 and 3. Select all of the following values of x for which 12/x is greater than 7x/4.",
+   "options": [
+    "A. x = 2.1",
+    "B. x = 2.4",
+    "C. x = 2.6",
+    "D. x = 2.65",
+    "E. x = 2.8"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "12/x > 7x/4. Since x > 0, multiply both sides by 4x: 48 > 7x^2, so x^2 < 48/7 = 6.857, and x < 2.6186.\nA. 2.1: 12/2.1 = 5.71 and 7*2.1/4 = 3.675, so true.\nB. 2.4: 12/2.4 = 5.0 and 7*2.4/4 = 4.2, so true.\nC. 2.6: 12/2.6 = 4.615 and 7*2.6/4 = 4.55, so true.\nD. 2.65: 12/2.65 = 4.528 and 7*2.65/4 = 4.6375, so false.\nE. 2.8: 12/2.8 = 4.286 and 7*2.8/4 = 4.9, so false.",
+   "trap": "Assuming the two expressions swap order at the midpoint 2.5 of the interval, which would wrongly drop 2.6 (C); the true switch point is about 2.62.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "crossing-point",
+    "reciprocal-vs-linear"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 18 Hard",
+   "source_pages": [
+    108
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-007",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "m and n are real numbers with m > n. Select all of the following statements that must be true.",
+   "options": [
+    "A. 3m - n > 2m",
+    "B. m^2 > n^2",
+    "C. 1/m < 1/n",
+    "D. m^3 > n^3",
+    "E. -2m < -2n",
+    "F. mn > n^2"
+   ],
+   "answer": [
+    "A",
+    "D",
+    "E"
+   ],
+   "explanation": "A. 3m - n > 2m is the same as m > n: true.\nB. m = 1, n = -2 gives 1 > 4, false.\nC. m = 2, n = -1 gives 1/2 < -1, false.\nD. Cubing keeps order for all real numbers, so m^3 > n^3: true.\nE. Multiplying m > n by -2 flips it to -2m < -2n: true.\nF. mn > n^2 means n(m - n) > 0; with m = 1, n = -1 we get -1 > 1, false.\nCorrect: A, D, E.",
+   "trap": "Assuming squaring keeps the order (B) or that taking reciprocals reverses it for every pair (C); both fail when n is negative.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "must-be-true",
+    "order-preserving"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 18 Hard",
+   "source_pages": [
+    111
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-008",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Printer P takes longer to print a pages at a steady b pages per minute than printer Q takes to print c pages at a steady d pages per minute. The numbers a, b, c, and d are all positive. Select all of the inequalities that must hold.",
+   "options": [
+    "A. ad > bc",
+    "B. a/c > b/d",
+    "C. ac > bd",
+    "D. bc - ad < 0",
+    "E. a/d > c/b",
+    "F. b/a < d/c"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D",
+    "F"
+   ],
+   "explanation": "Time for P = a/b minutes; time for Q = c/d minutes. The condition is a/b > c/d, with every letter positive.\nMultiplying both sides by the positive number bd gives ad > bc. This is the key fact.\nA: ad > bc. TRUE.\nB: divide ad > bc by the positive number cd to get a/c > b/d. TRUE.\nC: ac > bd does not follow. Take a = 2, b = 1, c = 1, d = 3: the condition a/b = 2 > c/d = 1/3 holds, yet ac = 2 is less than bd = 3. So C can fail. FALSE.\nD: bc - ad < 0 is the same as ad > bc. TRUE.\nE: a/d > c/b is equivalent to ab > cd, which is a different statement; a = 2, b = 1, c = 3, d = 5 satisfies the condition (2 > 0.6) yet ab = 2 < cd = 15. FALSE.\nF: taking reciprocals of both positive sides of a/b > c/d reverses the inequality: b/a < d/c. TRUE.\nCheck: the true set is A, B, D, F.",
+   "trap": "Cross-multiplying 'along the wrong diagonals' produces ac > bd (choice C) or ab > cd (the form behind choice E); only multiplying each side by bd, which pairs a with d and b with c, is valid.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "cross-multiplication",
+    "rate-time-inequality"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 20 Hard",
+   "source_pages": [
+    124
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-009",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Each of j and k is the probability of some event, where k exceeds j and j exceeds 0.\nQuantity A: j + k - jk\nQuantity B: k",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Quantity A - Quantity B = j + k - jk - k = j - jk = j(1 - k).\nj is positive, so the sign depends on 1 - k.\nA probability can be at most 1, so k <= 1 and 1 - k >= 0, with k = 1 allowed.\nIf k = 1 (and j = 1/2), A = 1/2 + 1 - 1/2 = 1 = B, so the quantities are equal.\nIf k = 1/2 (and j = 1/4), A = 1/4 + 1/2 - 1/8 = 5/8 > 1/2 = B.\nDifferent allowed values give different results, so the relationship cannot be determined.",
+   "trap": "Assuming k must be strictly less than 1 (so j(1 - k) is always positive) and answering A.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "probability-bounds",
+    "expression-comparison"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 24 Hard",
+   "source_pages": [
+    147
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-010",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Real numbers a and b satisfy 3a - b > 3a and a + 2b < 2b. Which of the following must be true?",
+   "options": [
+    "A. a > b",
+    "B. a < b",
+    "C. ab < 0",
+    "D. a + b > 0",
+    "E. a + b < 0"
+   ],
+   "answer": "E",
+   "explanation": "From 3a - b > 3a, subtract 3a from both sides: -b > 0, so b < 0.\nFrom a + 2b < 2b, subtract 2b from both sides: a < 0.\nBoth numbers are negative, so a + b < 0 must hold (choice E).\nA, B: (a, b) = (-1, -2) and (-2, -1) both fit the conditions but reverse the order, so neither must hold.\nC: ab is positive for two negatives, so it is false. D: a sum of two negatives cannot be positive, so it is false.\nCheck with a = -1, b = -3: 3a - b = 0 > -3 and a + 2b = -7 < -6.",
+   "trap": "Dropping the sign when moving the term (reading 3a - b > 3a as b > 0, and a + 2b < 2b as a > 0) makes both numbers positive and leads to a + b > 0, choice D.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "sign-from-inequality",
+    "must-be-true"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 27 Base",
+   "source_pages": [
+    167
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-011",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "y is an integer that satisfies both 5 - 3y >= 26 and 2y + 30 > 9. How many different values can y have?",
+   "options": null,
+   "answer": "4",
+   "explanation": "Step 1: 5 - 3y >= 26 gives -3y >= 21; dividing by -3 flips the sign: y <= -7.\nStep 2: 2y + 30 > 9 gives 2y > -21, so y > -10.5.\nStep 3: Integers with -10.5 < y <= -7: -10, -9, -8, -7, which is 4 values.\nCheck: y = -7: 5 + 21 = 26 >= 26 and -14 + 30 = 16 > 9; y = -11: -22 + 30 = 8, not > 9.",
+   "trap": "Dropping y = -7 by treating the first inequality as strict gives 3; forgetting to flip the sign gives y >= -7 and no upper limit.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "compound-inequality",
+    "sign-flip"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 29 Base",
+   "source_pages": [
+    182
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-012",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "p is an integer with p >= 4.\nQuantity A: 4/p + 5/p^2 + 6/p^3\nQuantity B: 3/2",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Each term 4/p, 5/p^2 and 6/p^3 is positive and shrinks as p grows, so the sum is largest at the smallest allowed value, p = 4.\nAt p = 4: 4/4 + 5/16 + 6/64 = 1 + 0.3125 + 0.09375 = 1.40625.\nFor every larger p the sum is smaller than 1.40625, so Quantity A <= 1.40625 < 1.5 = Quantity B for all allowed p.\nCheck p = 5: 0.8 + 0.2 + 0.048 = 1.048 < 1.5. Quantity B is greater.",
+   "trap": "Trying a value outside the allowed range, such as p = 2 (sum = 2 + 1.25 + 0.75 = 4 > 1.5), makes Quantity A look larger and leads to choice A.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "decreasing-expression",
+    "boundary-value"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 31 Base",
+   "source_pages": [
+    191
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-013",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Two numbers s and t satisfy s < t < 0. Which of the following expressions must have the largest value?",
+   "options": [
+    "A. s + t",
+    "B. (s + t)/2",
+    "C. s + 2t",
+    "D. 2s + t",
+    "E. t"
+   ],
+   "answer": "E",
+   "explanation": "Test s = -5, t = -1: s + t = -6; (s + t)/2 = -3; s + 2t = -7; t = -1; 2s + t = -11. The largest is t.\nGeneral check: t - (s + t)/2 = (t - s)/2 > 0 since t > s.\nt - (s + t) = -s > 0 since s < 0.\nt - (s + 2t) = -(s + t) > 0 since both are negative.\nt - (2s + t) = -2s > 0.\nSo t exceeds every other expression for all s < t < 0. Second check s = -1.1, t = -1: values -2.1, -1.05, -3.1, -1, -3.2; again t is largest.",
+   "trap": "Thinking that halving a negative sum makes it larger than either number, so the average (s + t)/2 is the biggest (choice B). In fact an average of two numbers lies between them and so is below the larger number t.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "negative-numbers",
+    "ordering"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 31 Base",
+   "source_pages": [
+    191
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-014",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "z is greater than 2. For which of the following values of z is 9z^2 greater than 16(z^2 - 4)?\nSelect all that apply.",
+   "options": [
+    "A. 2.1",
+    "B. 2.5",
+    "C. 3",
+    "D. 3.1",
+    "E. 4",
+    "F. 6"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "Want 9z^2 > 16z^2 - 64. Rearranging: 64 > 7z^2, so z^2 < 64/7, which is about 9.14, so z < about 3.02 (for positive z).\nA: z = 2.1: 9(4.41) = 39.69 and 16(0.41) = 6.56. 39.69 > 6.56, true.\nB: z = 2.5: 9(6.25) = 56.25 and 16(2.25) = 36. True.\nC: z = 3: 81 and 16(5) = 80. 81 > 80, true.\nD: z = 3.1: 9(9.61) = 86.49 and 16(5.61) = 89.76. 86.49 < 89.76, false.\nE: z = 4: 144 and 16(12) = 192. False.\nF: z = 6: 324 and 16(32) = 512. False.\nAnswer: A, B, C.",
+   "trap": "Seeing that z = 3 passes and assuming the left side stays larger a little longer, so also ticking 3.1 (choice D); the threshold is only about 3.02.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "quadratic-inequality",
+    "threshold-value"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 32 Hard",
+   "source_pages": [
+    201
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-015",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "The integer k satisfies both 3k - 4 > -16 and 5k + 7 < 2. What is the sum of all possible values of k?",
+   "options": null,
+   "answer": "-5",
+   "explanation": "First inequality: 3k > -12, so k > -4.\nSecond inequality: 5k < -5, so k < -1.\nIntegers with -4 < k < -1 are -3 and -2.\nSum = -3 + -2 = -5.\nCheck the endpoints: k = -4 gives 3(-4) - 4 = -16, not greater than -16; k = -1 gives 5(-1) + 7 = 2, not less than 2. Both are correctly excluded.",
+   "trap": "Including the endpoints -4 and -1 (non-strict reading), giving -4 + -3 + -2 + -1 = -10.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "compound-inequality",
+    "integer-solutions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 35 Base",
+   "source_pages": [
+    219
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-016",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Two storage tanks hold 90,000 liters and 30,000 liters of water, so the first holds three times as much as the second. A pump will add the same x liters to each tank. Afterwards, the first tank's contents must be less than 1.5 times the second tank's contents. Which of the following are possible amounts for x, in liters? Select all that apply.",
+   "options": [
+    "A. 60,000",
+    "B. 90,000",
+    "C. 96,000",
+    "D. 105,000",
+    "E. 140,000",
+    "F. 200,000"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "E",
+    "F"
+   ],
+   "explanation": "Require (90,000 + x) / (30,000 + x) < 1.5. The denominator is positive, so multiply through.\n90,000 + x < 1.5 * (30,000 + x) = 45,000 + 1.5x\n45,000 < 0.5x\nx > 90,000.\nA. 60,000: 150,000/90,000 = 1.667, not less than 1.5 -> false.\nB. 90,000: 180,000/120,000 = 1.5 exactly, not strictly less -> false.\nC. 96,000: 186,000/126,000 = 1.476 -> true.\nD. 105,000: 195,000/135,000 = 1.444 -> true.\nE. 140,000: 230,000/170,000 = 1.353 -> true.\nF. 200,000: 290,000/230,000 = 1.261 -> true.\nCheck: the ratio falls toward 1 as x grows, so large x always works.",
+   "trap": "Reversing the inequality direction (x < 90,000) selects only choice A; including the boundary value 90,000 (choice B) forgets the ratio must be strictly less than 1.5.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "ratio-inequality",
+    "strict-boundary"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 35 Base",
+   "source_pages": [
+    224
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-017",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The numbers a and b satisfy 3 < a < 7 and 1/9 < b < 1/7. Which of the following must be true? Select all that apply.",
+   "options": [
+    "A. 1/a + 1/b > a + b",
+    "B. 1/b > a",
+    "C. 1/a > b",
+    "D. 1/a + 1/b > 9",
+    "E. ab > 1",
+    "F. 1/b - a > 1"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "From the bounds: 1/b is between 7 and 9, and 1/a is between 1/7 and 1/3.\nB. 1/b > 7 > a, so 1/b > a always -> true.\nC. 1/a > 1/7 > b, so 1/a > b always -> true.\nA. Adding the inequalities in B and C gives 1/a + 1/b > a + b -> true.\nD. Take a = 6 and b = 0.12: 1/a + 1/b = 0.167 + 8.33 = 8.5, not above 9 -> not forced.\nE. a < 7 and b < 1/7 give ab < 1, so ab > 1 never holds -> false.\nF. Take a = 6.9 and 1/b = 7.1: difference 0.2, not above 1 -> not forced.\nCheck: B and C use only the upper bounds of a and b against the reciprocal lower bounds.",
+   "trap": "Assuming reciprocals just flip every bound without reversing, or checking only one pair of extreme values, can make D or F look forced.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "reciprocal-bounds",
+    "must-be-true"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 37 Base",
+   "source_pages": [
+    233
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-018",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "The integer m is from 4 through 9, inclusive, and the integer n is from 11 through 16, inclusive. Determine the smallest number that 12/(m-n) can equal.",
+   "options": null,
+   "answer": "-6",
+   "explanation": "Every allowed m is smaller than every allowed n, so m - n is always negative and 12/(m-n) is always negative.\nThe expression is smallest (most negative) when |m - n| is smallest, because dividing 12 by a smaller magnitude gives a larger magnitude.\nSmallest |m - n| uses the largest m and the smallest n: m = 9, n = 11, so m - n = -2.\nLeast value = 12/(-2) = -6.\nCheck: the other extreme, m = 4, n = 16, gives 12/(-12) = -1, which is larger than -6. A difference of -1 is impossible because the ranges are separated by a gap.",
+   "trap": "Using m - n = -12 (the biggest gap) gives -1, or assuming a difference of -1 is attainable gives -12; neither is reachable as the least value.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "extreme-values",
+    "integer-ranges"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 38 Hard",
+   "source_pages": [
+    238
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-019",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "For which of the following values of x is the product (x + 4)(x - 5)(x - 3)^2 negative? Select all that apply.",
+   "options": [
+    "A. -5",
+    "B. -2",
+    "C. 3",
+    "D. 4",
+    "E. 6"
+   ],
+   "answer": [
+    "B",
+    "D"
+   ],
+   "explanation": "Evaluate the product (x + 4)(x - 5)(x - 3)^2 at each value.\nA: x = -5 gives (-1)(-10)(64) = 640, which is positive. Not a solution.\nB: x = -2 gives (2)(-7)(25) = -350, which is negative. Solution.\nC: x = 3 gives (7)(-2)(0) = 0, and 0 is not negative. Not a solution.\nD: x = 4 gives (8)(-1)(1) = -8, which is negative. Solution.\nE: x = 6 gives (10)(1)(9) = 90, which is positive. Not a solution.\nGeneral check: (x - 3)^2 is never negative and is zero only at x = 3, so the product is negative exactly when (x + 4)(x - 5) < 0 and x is not 3, i.e. -4 < x < 5 with x not equal to 3. That contains -2 and 4 but not -5, 3 or 6.",
+   "trap": "Ignoring that (x - 3)^2 cannot change the sign, i.e. treating x = 3 as a sign-changing root. Then the sign pattern flips at -4, 3 and 5, which makes -5 and 4 look right (choices A and D) and misses -2 (choice B).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "sign-analysis",
+    "squared-factor",
+    "select-all"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 40 Hard",
+   "source_pages": [
+    253
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-020",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Which set of real numbers x satisfies x^2 - 2x - 8 >= 0?",
+   "options": [
+    "A. -2 <= x <= 4",
+    "B. x <= -4 or x >= 2",
+    "C. x >= 4",
+    "D. -4 <= x <= 2",
+    "E. x <= -2 or x >= 4"
+   ],
+   "answer": "E",
+   "explanation": "Factor: x^2 - 2x - 8 = (x - 4)(x + 2). The roots are x = -2 and x = 4.\nThe parabola opens upward, so the expression is positive outside the roots and negative between them.\nWe need >= 0, so x <= -2 or x >= 4 (the roots themselves give 0 and are included).\nCheck: x = 0 gives -8 (not allowed, and 0 lies between the roots); x = -3 gives 9 + 6 - 8 = 7 (allowed); x = 5 gives 25 - 10 - 8 = 7 (allowed).",
+   "trap": "Treating the inequality as <= 0 (or forgetting that an upward parabola is positive outside its roots) selects the interval between the roots, -2 <= x <= 4 (option A.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "quadratic-inequality",
+    "sign-analysis"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 42 Hard",
+   "source_pages": [
+    269
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-021",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "The number t satisfies 2 < t < 5.\nQuantity A: 12/t\nQuantity B: t + 1",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Quantity A shrinks as t grows, while Quantity B grows, so which one is larger depends on where t sits in the interval.\nTry t = 2.5: A = 12/2.5 = 4.8 and B = 2.5 + 1 = 3.5, so A is larger.\nTry t = 4: A = 12/4 = 3 and B = 4 + 1 = 5, so B is larger.\nBecause both outcomes are allowed by 2 < t < 5, the relationship cannot be determined.\n(They cross at t = 3, where 12/3 = 4 = 3 + 1; this is the unique point where the two are equal.)",
+   "trap": "Testing only the midpoint-style value t = 3, where 12/3 = 4 = 3 + 1, and concluding the quantities are equal (option C).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "compare-over-interval",
+    "reciprocal-vs-linear"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 44 Hard",
+   "source_pages": [
+    283
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-022",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Real numbers x and y satisfy |x + 2| < 3 and |y| < 4. Indicate every statement about the product xy that is guaranteed to hold.",
+   "options": [
+    "A. -20 < xy < 20",
+    "B. -16 < xy < 16",
+    "C. xy < 24",
+    "D. xy > -4",
+    "E. 0 < xy < 20",
+    "F. -24 < xy < 24"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "F"
+   ],
+   "explanation": "|x + 2| < 3 means -5 < x < 1, and |y| < 4 means -4 < y < 4.\nThe product of two numbers taken from intervals is extreme at the endpoints: (-5)(-4) = 20, (-5)(4) = -20, (1)(4) = 4, (1)(-4) = -4.\nThe largest endpoint product is 20 and the smallest is -20; the endpoints themselves are excluded, so -20 < xy < 20 and values get arbitrarily close to both ends.\nA: -20 < xy < 20 holds always. TRUE.\nB: -16 < xy < 16 fails, e.g. x = -4.5, y = 3.9 gives xy = -17.55. FALSE.\nC: xy < 24 holds because xy < 20. TRUE.\nD: xy > -4 fails, e.g. x = -4.5, y = 3.9 gives -17.55. FALSE.\nE: 0 < xy fails, e.g. x = 0 gives xy = 0 and x = -1, y = 1 gives -1. FALSE.\nF: -24 < xy < 24 holds because the true range lies inside it. TRUE.\nAnswer: A, C, F.",
+   "trap": "Reading |x + 2| < 3 as |x| < 3 (dropping the shift) gives -12 < xy < 12, which wrongly makes -16 < xy < 16 look guaranteed (option B).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "interval-product",
+    "absolute-value-inequality"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 44 Hard",
+   "source_pages": [
+    283
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-023",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "An orchard has 240 apple trees and 100 pear trees. The orchard plants x new trees of each kind, so both counts rise by x. Once planting is done, the ratio of apple trees to pear trees is to be below 1.5. Indicate all values x could take.",
+   "options": [
+    "A. 150",
+    "B. 180",
+    "C. 200",
+    "D. 250",
+    "E. 300"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "After planting there are 240 + x apple trees and 100 + x pear trees.\nRequire (240 + x)/(100 + x) < 1.5. The denominator is positive, so multiply through: 240 + x < 150 + 1.5x.\nSubtract: 90 < 0.5x, so x > 180 (strictly).\nA: x = 150 gives 390/250 = 1.56, not below 1.5. FALSE.\nB: x = 180 gives 420/280 = 1.5 exactly, not below 1.5. FALSE.\nC: x = 200 gives 440/300 = 1.467. TRUE.\nD: x = 250 gives 490/350 = 1.4. TRUE.\nE: x = 300 gives 540/400 = 1.35. TRUE.\nAnswer: C, D, E.",
+   "trap": "Adding the new trees only to the pear count: 240/(100 + x) < 1.5 gives x > 60, which wrongly admits 150 and 180 (options A and B).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "ratio-inequality",
+    "add-to-both-parts"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 44 Hard",
+   "source_pages": [
+    284
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-024",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Integers m and k are both positive, and k lies strictly between m/11 and m/7. What is the smallest value that m can take?",
+   "options": null,
+   "answer": "8",
+   "explanation": "Since k is a positive integer, k >= 1.\nThe condition k < m/7 then forces m/7 > 1, so m > 7, which means m >= 8.\nTest m = 8 with k = 1: 8/11 is about 0.73, and 8/7 is about 1.14, and 0.73 < 1 < 1.14 holds.\nNo m below 8 works because m/7 would be at most 1, leaving no positive integer strictly below it.\nCheck: m = 8, k = 1 satisfies both bounds, so the smallest m is 8.",
+   "trap": "Using the equality case m/7 = 1 and answering 7, although k must be strictly less than m/7; or pushing m up to 11 after noticing the lower bound m/11, when k = 1 already clears that bound at m = 8.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "strict-inequality",
+    "integer-constraints"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 46 Hard",
+   "source_pages": [
+    296
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-025",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Which of the listed numbers, when substituted for x, make the expression (2x+7)^8 (x-8)^3 / (x+3)^2 negative? Select all such numbers.",
+   "options": [
+    "A. -7",
+    "B. -3.5",
+    "C. -3",
+    "D. -1",
+    "E. 3",
+    "F. 8",
+    "G. 11"
+   ],
+   "answer": [
+    "A",
+    "D",
+    "E"
+   ],
+   "explanation": "(2x+7)^8 and (x+3)^2 are even powers, so each is positive or zero. The denominator is zero at x = -3, where the expression is undefined. The factor (2x+7)^8 is zero at x = -3.5, giving a value of 0, which is not negative.\nFor every other x, the sign equals the sign of (x-8)^3, which is negative exactly when x < 8.\nA. x = -7: (-7)^8 is positive, (-15)^3 is negative, (-4)^2 is positive. Negative. Yes.\nB. x = -3.5: numerator factor is 0, value 0. No.\nC. x = -3: denominator 0, undefined. No.\nD. x = -1: 5^8 * (-9)^3 / 2^2 is negative. Yes.\nE. x = 3: 13^8 * (-5)^3 / 6^2 is negative. Yes.\nF. x = 8: (x-8)^3 = 0, value 0. No.\nG. x = 11: 29^8 * 3^3 / 14^2 is positive. No.\nCheck: the solution set is x < 8 with -3.5 and -3 removed.",
+   "trap": "Seeing only that x < 8 makes (x-8)^3 negative and selecting x = -3 (choice C) despite the zero denominator, or counting the zeros at -3.5 (choice B) and 8 (choice F) as satisfying a strict 'negative' requirement.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "sign-analysis",
+    "even-odd-powers",
+    "undefined-values"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 46 Hard",
+   "source_pages": [
+    298
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-026",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "A real number t satisfies t <= -9. Which of the following expressions must be positive?",
+   "options": [
+    "A. t^2 + 9t",
+    "B. t + 12",
+    "C. 9t - t^2",
+    "D. t^3 + 500",
+    "E. -2t^3"
+   ],
+   "answer": "E",
+   "explanation": "Test the boundary t = -9 and a far value such as t = -20 for each expression.\nA. t^2 + 9t = t(t + 9): equals 0 at t = -9, so it is not always positive.\nB. t + 12: equals 3 at t = -9 but -8 at t = -20, so the sign varies.\nC. 9t - t^2: both terms are negative, so the value is negative.\nD. -2t^3: for t <= -9, t^3 is negative (at least 729 in size), so -2t^3 is positive (at least 1458). Always positive.\nE. t^3 + 500: t^3 <= -729, so the sum is at most -229, negative.\nCheck: only D stays positive at both t = -9 and t = -20.",
+   "trap": "Reasoning that t^2 dominates 9t for large negative t and choosing t^2 + 9t (choice A, which is exactly 0 at the boundary t = -9; or picking t + 12 (choice B after testing only t = -9.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "sign-analysis",
+    "negative-numbers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 47 Base",
+   "source_pages": [
+    302
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-027",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "m > n > 2\nQuantity A: mn\nQuantity B: m + n",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Compare mn with m + n by looking at the difference: mn - m - n = (m - 1)(n - 1) - 1.\nSince n > 2, n - 1 > 1. Since m > n, m - 1 > n - 1 > 1.\nSo (m - 1)(n - 1) > 1, which makes (m - 1)(n - 1) - 1 > 0, i.e., mn > m + n.\nCheck: m = 2.2, n = 2.1 gives mn = 4.62 and m + n = 4.3. m = 10, n = 5 gives 50 versus 15. Quantity A is always greater.",
+   "trap": "At the boundary m = n = 2, the product and sum are both 4, which suggests the two quantities are equal (choice C); but m and n must be strictly greater than 2, so the product pulls ahead.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "product-vs-sum",
+    "inequality-bounds"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 48 Hard",
+   "source_pages": [
+    310
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-028",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "r and s are positive numbers.\nQuantity A: r/s + s/r\nQuantity B: 2",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Rewrite r/s + s/r - 2 = (r^2 + s^2 - 2rs)/(rs) = (r - s)^2/(rs).\nSince r and s are positive, rs > 0, and (r - s)^2 >= 0, so the difference is never negative.\nIt equals 0 exactly when r = s (e.g., r = s = 3 gives 1 + 1 = 2, so the quantities are equal).\nIt is positive when r differs from s (e.g., r = 1, s = 2 gives 0.5 + 2 = 2.5 > 2).\nBecause both outcomes are allowed, the relationship cannot be determined. Answer D.",
+   "trap": "Assuming the two numbers must be different and concluding Quantity A is greater (choice A); r = s is allowed and makes the quantities equal.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "reciprocal-sum",
+    "case-testing"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 49 Base",
+   "source_pages": [
+    315
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-029",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "n is a positive integer. Select all values of n for which the average (arithmetic mean) of n, n^2 and 1/n is greater than n + 3.",
+   "options": [
+    "A. 1",
+    "B. 3",
+    "C. 4",
+    "D. 5",
+    "E. 6",
+    "F. 9"
+   ],
+   "answer": [
+    "D",
+    "E",
+    "F"
+   ],
+   "explanation": "The average is (n + n^2 + 1/n)/3. Require (n + n^2 + 1/n)/3 > n + 3, i.e., n^2 + n + 1/n > 3n + 9, i.e., n^2 - 2n - 9 + 1/n > 0.\nA (n = 1): 1 - 2 - 9 + 1 = -9. FALSE (average is 1, while n + 3 = 4).\nB (n = 3): 9 - 6 - 9 + 0.33 = -5.67. FALSE.\nC (n = 4): 16 - 8 - 9 + 0.25 = -0.75. FALSE (average 6.75 vs 7).\nD (n = 5): 25 - 10 - 9 + 0.2 = 6.2. TRUE (average 10.07 vs 8).\nE (n = 6): 36 - 12 - 9 + 0.17 = 15.17. TRUE (average 14.06 vs 9).\nF (n = 9): 81 - 18 - 9 + 0.11 = 54.11. TRUE (average 30.04 vs 12).\nAnswer: D, E, F.",
+   "trap": "Assuming the average of n, n^2 and 1/n tracks n + 3 closely and picking small values like 4 (choice C), where the average 6.75 is just short of 7.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "average-vs-linear",
+    "threshold-testing"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 49 Base",
+   "source_pages": [
+    316
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-030",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Real numbers a and b satisfy -4 < a < -2 and 3 < b < 5. Select every statement that is guaranteed to hold for all such pairs (a, b).",
+   "options": [
+    "A. ab < -6",
+    "B. a + b > 1",
+    "C. b/a < -3/4",
+    "D. b - a > 5",
+    "E. a^2 > b",
+    "F. ab > -12"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "D"
+   ],
+   "explanation": "A: |a| > 2 and b > 3, so |ab| > 6; ab is negative, so ab < -6. TRUE.\nB: a = -3.6, b = 4.3 gives a + b = 0.7, which is not greater than 1. FALSE.\nC: b/a is negative and |b/a| = b/|a|; since b > 3 and |a| < 4, b/|a| > 3/4, so b/a < -3/4. TRUE.\nD: b - a = b + |a| > 3 + 2 = 5. TRUE.\nE: a = -2.1, b = 4.9 gives a^2 = 4.41, which is not greater than 4.9. FALSE.\nF: a = -3.6, b = 4.3 gives ab = -15.48, which is not greater than -12. FALSE.\nCorrect set: A, C, D.",
+   "trap": "Testing only the middle pair a = -3, b = 4 makes E look true (a^2 = 9 > 4), so a student adds choice E to the answer set although other pairs break it.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "sign-analysis",
+    "select-all"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    328
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-031",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "How many ordered pairs (p, q) of positive integers satisfy both 3p + 5q < 26 and p > q?",
+   "options": null,
+   "answer": "8",
+   "explanation": "List by the value of p, since p > q >= 1 means p >= 2.\np = 2: 5q < 20 and q < 2, so q = 1 (1 pair).\np = 3: 5q < 17 and q < 3, so q = 1, 2 (2 pairs).\np = 4: 5q < 14 and q < 4, so q = 1, 2 (2 pairs).\np = 5: 5q < 11 and q < 5, so q = 1, 2 (2 pairs).\np = 6: 5q < 8 and q < 6, so q = 1 (1 pair).\np = 7: 5q < 5 gives no positive q.\nTotal = 1 + 2 + 2 + 2 + 1 = 8.\nCheck: (6, 1) gives 18 + 5 = 23 < 26, while (6, 2) gives 18 + 10 = 28, which fails.",
+   "trap": "Dropping the condition p > q and counting every positive pair with 3p + 5q < 26, which gives 15; or including boundary pairs that make 3p + 5q equal to 26 although the inequality is strict.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "lattice-points",
+    "strict-inequality"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 51 Base",
+   "source_pages": [
+    333
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-032",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "x and y are real numbers, and x + y > 6.\nQuantity A: The average of x^2 and y^2\nQuantity B: 9",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "1. For any real numbers, (x - y)^2 >= 0, which expands to x^2 + y^2 >= 2xy.\n2. Then 2(x^2 + y^2) >= x^2 + y^2 + 2xy = (x + y)^2, so (x^2 + y^2)/2 >= (x + y)^2 / 4.\n3. Because x + y > 6, which is positive, (x + y)^2 > 36, so (x^2 + y^2)/2 > 9 for every allowed pair.\n4. Test values: x = 3.1, y = 3 gives 9.31; x = 7, y = 0 gives 24.5; x = 10, y = -3.5 gives 56.125; x = -2, y = 8.5 gives 38.125. All exceed 9.\n5. The boundary case x = y = 3 would give exactly 9 but is excluded by the strict inequality. Quantity A is always greater.",
+   "trap": "Substituting the boundary x = y = 3, which gives exactly 9, and concluding that the quantities are equal (choice C), even though x + y > 6 rules that pair out and pushes the average of the squares above 9.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "sum-of-squares",
+    "qc-reasoning",
+    "boundary-case"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 56 Hard",
+   "source_pages": [
+    366
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-033",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Consider each condition below on its own, for a real number t. Select every condition that, if it holds, is enough to guarantee that t lies strictly between 0 and 1.",
+   "options": [
+    "A. t^2 < t^3",
+    "B. t^3 < t",
+    "C. 1/t > 1",
+    "D. t^4 < t^2",
+    "E. t^2 < t",
+    "F. sqrt(t) > t"
+   ],
+   "answer": [
+    "C",
+    "E",
+    "F"
+   ],
+   "explanation": "1. A: t^2 < t^3 means t^2(t - 1) > 0, so t > 1 (with t not 0). Counterexample t = 2 (4 < 8): false.\n2. B: t^3 < t means t(t - 1)(t + 1) < 0, which holds for t < -1 as well. Counterexample t = -2 (-8 < -2): false.\n3. C: 1/t > 1. If t < 0 then 1/t is negative; if t > 1 then 1/t < 1; for 0 < t < 1, 1/t > 1. True.\n4. D: t^4 < t^2 means t^2(t^2 - 1) < 0, so -1 < t < 1 with t not 0. Counterexample t = -0.5 (0.0625 < 0.25): false.\n5. E: t^2 < t means t(t - 1) < 0, so 0 < t < 1. True.\n6. F: sqrt(t) > t needs t >= 0; t = 0 gives 0 > 0 (false); t > 1 gives sqrt(t) < t; for 0 < t < 1, sqrt(t) > t. True.\nCheck with t = 0.25: E (0.0625 < 0.25), C (4 > 1), F (0.5 > 0.25) all hold.\nAnswer: C, E, F.",
+   "trap": "Testing only positive values, such as t = 0.5, makes B (t^3 < t) and D (t^4 < t^2) look as if they confine t to the interval from 0 to 1; both also hold for some negative t (t = -2 for B, t = -0.5 for D), so neither is enough.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "inequality-reasoning",
+    "sign-cases",
+    "counterexamples"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 56 Hard",
+   "source_pages": [
+    369
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-034",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "a, b and c are real numbers with a < b < c and b > 0.\nQuantity A: ab\nQuantity B: ac",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "1. ac - ab = a(c - b), and c - b > 0 because b < c.\n2. So the sign of ac - ab is the sign of a, which the conditions do not fix.\n3. a = 1, b = 2, c = 3: ab = 2 and ac = 3, so Quantity B is greater.\n4. a = -1, b = 2, c = 3: ab = -2 and ac = -3, so Quantity A is greater.\n5. a = 0, b = 2, c = 3: both products are 0, so they are equal.\nDifferent allowed values give different relationships, so it cannot be determined.",
+   "trap": "Trying only positive values (a = 1, b = 2, c = 3) and concluding that multiplying by the larger number c always gives the larger product picks choice B.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "sign-of-factor",
+    "qc-case-testing"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 59 Base",
+   "source_pages": [
+    385
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-035",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A bakery packed 250 muffins into trays for a catering order. Every tray held 24, 25, or 26 muffins, and no muffins were left over. How many trays were used?",
+   "options": null,
+   "answer": "10",
+   "explanation": "1. Let n be the number of trays. The muffins total 250, and each tray holds between 24 and 26.\n2. Upper bound on capacity: 26n >= 250, so n >= 250/26 = 9.6..., hence n >= 10 because n is a whole number.\n3. Lower bound on capacity: 24n <= 250, so n <= 250/24 = 10.4..., hence n <= 10.\n4. Only n = 10 satisfies both bounds.\nCheck: 10 trays of 25 muffins hold exactly 250, and 9 trays hold at most 234 while 11 trays hold at least 264.",
+   "trap": "Using only 250/26 = 9.6 and rounding down to 9 treats the count as if it could be truncated, but 9 trays hold at most 234 muffins, so the order would not fit.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "bounding",
+    "integer-constraint",
+    "range-of-values"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 60 Hard",
+   "source_pages": [
+    393
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-036",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "How many integers x satisfy |3x - 5| <= 11?",
+   "options": null,
+   "answer": "8",
+   "explanation": "1. |3x - 5| <= 11 means -11 <= 3x - 5 <= 11.\n2. Add 5 to every part: -6 <= 3x <= 16.\n3. Divide by 3: -2 <= x <= 16/3, which is about 5.33.\n4. The integers in that interval are -2, -1, 0, 1, 2, 3, 4, 5: eight values.\nCheck the edges: x = -2 gives |-11| = 11 (allowed), x = 5 gives |10| = 10 (allowed), x = 6 gives |13| (too big), x = -3 gives |-14| (too big).",
+   "trap": "Subtracting the endpoints, 5 - (-2) = 7, counts gaps instead of integers and forgets to add 1, so a student enters 7.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "absolute-value-inequality",
+    "integer-count",
+    "endpoints"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 61 Base",
+   "source_pages": [
+    398
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-037",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "The positive integers m, n and k satisfy m < n < k, and m + k = 36. Select all values that k could equal.",
+   "options": [
+    "A. 12",
+    "B. 18",
+    "C. 19",
+    "D. 27",
+    "E. 35",
+    "F. 36"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "Bounds first. Since m < k and m + k = 36, k > 18. Since m is a positive integer, m >= 1 so k <= 35. Also n must fit strictly between m and k, so k - m >= 2, which with m + k = 36 gives k >= 19 (the same bound as k > 18 for integers).\nA. 12: then m = 24 > k, breaking m < k. False.\nB. 18: then m = 18 = k, but m must be strictly less than k. False.\nC. 19: m = 17, n = 18 works (17 < 18 < 19). True.\nD. 27: m = 9, n = 10 works. True.\nE. 35: m = 1, n = 2 works. True.\nF. 36: m = 0, which is not positive. False.\nCheck: k can be any integer from 19 to 35, and C, D, E are the only listed values in that interval.",
+   "trap": "Treating 18, the midpoint of m and k, as an allowed value for k ignores that m < k is strict, so choice B gets selected.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "integer-bounds",
+    "strict-inequalities",
+    "distinct-integers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 61 Base",
+   "source_pages": [
+    403
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-038",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Indicate every value of x listed below for which the inequality |x + 1| < 5 - x is true.",
+   "options": [
+    "A. -6",
+    "B. -1",
+    "C. 0",
+    "D. 1",
+    "E. 2",
+    "F. 3"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "Test each value in |x + 1| < 5 - x.\nA. x = -6: |-5| = 5 and 5 - (-6) = 11; 5 < 11 is true.\nB. x = -1: |0| = 0 and 5 - (-1) = 6; 0 < 6 is true.\nC. x = 0: |1| = 1 and 5 - 0 = 5; 1 < 5 is true.\nD. x = 1: |2| = 2 and 5 - 1 = 4; 2 < 4 is true.\nE. x = 2: |3| = 3 and 5 - 2 = 3; 3 < 3 is false (strict inequality).\nF. x = 3: |4| = 4 and 5 - 3 = 2; 4 < 2 is false.\nGeneral check: for x >= -1 the inequality reads x + 1 < 5 - x, so x < 2; for x < -1 it reads -x - 1 < 5 - x, i.e. -1 < 5, which is always true. So the solution set is every x < 2.",
+   "trap": "Handling only the case x + 1 >= 0, which gives x < 2, and ignoring the case x + 1 < 0 leaves out -6 (choice A), although every x below -1 works; treating the strict inequality as non-strict wrongly adds x = 2 (choice E).",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "absolute-value-inequality",
+    "case-split"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 64 Hard",
+   "source_pages": [
+    417
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-039",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "t is a negative number.\nQuantity A: t + 1/t\nQuantity B: -2",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "1. For t = -1: t + 1/t = -1 + (-1) = -2, so the two quantities are equal.\n2. For t = -2: t + 1/t = -2 - 0.5 = -2.5, which is less than -2, so Quantity B is greater.\n3. Two allowed values of t give different outcomes, so the relationship cannot be determined.\nWhy: for negative t, t + 1/t = -(|t| + 1/|t|), and |t| + 1/|t| >= 2 with equality only when |t| = 1, so Quantity A is at most -2 and equals it only at t = -1.",
+   "trap": "Testing only t = -2 (or any other negative value besides -1) suggests Quantity A is always smaller, so choice B; testing only t = -1 suggests choice C.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "reciprocal-sum",
+    "testing-values"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 66 Hard",
+   "source_pages": [
+    430
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-040",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A number t satisfies -4 < t < -2. Which of the following describes all the possible values of 1/t?",
+   "options": [
+    "A. -4 < 1/t < -2",
+    "B. -1/2 < 1/t < -1/4",
+    "C. 1/4 < 1/t < 1/2",
+    "D. 1/t < -1/4",
+    "E. -1/2 < 1/t < 0"
+   ],
+   "answer": "B",
+   "explanation": "1. For a negative number t, |1/t| = 1/|t|, and 1/t is also negative.\n2. t = -2 gives 1/t = -1/2, and t = -4 gives 1/t = -1/4; both endpoints are excluded.\n3. As t moves from -4 toward -2, 1/t decreases from -1/4 toward -1/2, so the values of 1/t fill the open interval (-1/2, -1/4).\nCheck: t = -3 gives 1/t = -1/3, and -1/2 < -1/3 < -1/4.",
+   "trap": "Ignoring the upper bound t < -2 and using only t > -4 gives 1/t < -1/4, choice D.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "reciprocal-of-negative",
+    "interval-of-values"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 67 Base",
+   "source_pages": [
+    438
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-041",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "x is a positive number and x is not equal to 3.\nQuantity A: x + 9/x\nQuantity B: 6",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "1. Compare by subtracting: x + 9/x - 6 = (x^2 - 6x + 9)/x = (x - 3)^2 / x.\n2. Since x > 0, the denominator is positive; since x is not 3, the numerator (x - 3)^2 is positive.\n3. So the difference is strictly positive and Quantity A is greater.\nCheck: x = 1 gives 10, x = 2 gives 6.5, x = 4 gives 6.25, x = 2.9 gives about 6.003, all above 6.",
+   "trap": "Substituting x = 3 gives exactly 6, which suggests equality (option C), but the problem excludes that value.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "am-gm",
+    "reciprocal-sum"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 69 Base",
+   "source_pages": [
+    449
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-042",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "k is a number for which k^3 < k.\nQuantity A: k - 1/k\nQuantity B: 0",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. k^3 < k means k^3 - k < 0, i.e. k(k - 1)(k + 1) < 0, so k < -1 or 0 < k < 1 (sign chart: negative for k < -1, positive for -1 < k < 0, negative for 0 < k < 1, positive for k > 1).\n2. Rewrite Quantity A: k - 1/k = (k^2 - 1)/k = k(k^2 - 1)/k^2 = k(k - 1)(k + 1)/k^2.\n3. The numerator is negative by step 1 and k^2 is positive, so Quantity A is negative, and Quantity B is 0.\n4. Examples: k = -3 gives -3 + 1/3 = -8/3; k = 0.5 gives 0.5 - 2 = -1.5.\nCheck: k = -2 gives -2 + 0.5 = -1.5 and k = 0.1 gives 0.1 - 10 = -9.9, both below 0.",
+   "trap": "Letting k be a negative fraction between -1 and 0 (for example k = -0.5, where k - 1/k = 1.5) makes the relationship look undetermined, option D, but those values fail k^3 < k.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "cubic-inequality",
+    "reciprocal-comparison"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 69 Base",
+   "source_pages": [
+    450
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-043",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The real numbers w and z satisfy w^3 < -64 and z^2 > 9. Select every statement that must be true.",
+   "options": [
+    "A. w < -4",
+    "B. w^2 > 16",
+    "C. z > 3",
+    "D. |z| > 3",
+    "E. w < z",
+    "F. w*z > 0"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "From w^3 < -64: cubing preserves order, so w < -4. From z^2 > 9: |z| > 3, meaning z > 3 or z < -3.\nA. w < -4. True (cube root of -64 is -4).\nB. w < -4 means w is at least as far from zero as 4 in the negative direction, so w^2 > 16. True.\nC. z could be -5 (then z^2 = 25 > 9) but -5 is not greater than 3. False.\nD. z^2 > 9 means |z| > 3. True.\nE. w = -5, z = -10 gives w > z, while w = -5, z = 10 gives w < z. Not forced. False.\nF. w is negative, so w*z > 0 needs z negative; z = 5 gives w*z < 0. False.\nCheck with w = -5 and z = 5: A true, B true (25 > 16), D true (5 > 3), C true here but fails for z = -5.",
+   "trap": "Solving z^2 > 9 as z > 3 only, dropping the negative root, makes C look forced and, since then w < -4 < 3 < z, also makes E look forced.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "cube-inequality",
+    "square-inequality",
+    "must-be-true"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 71 Base",
+   "source_pages": [
+    462
+   ]
+  },
+  {
+   "id": "ALG-INQ-KMF-044",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "An angle measures r degrees, where r is a whole number. The angle is larger than twice its own complement, yet smaller than two-thirds of its supplement. How many different values of r are possible?",
+   "options": null,
+   "answer": "11",
+   "explanation": "1. The complement of the angle is 90 - r and the supplement is 180 - r.\n2. First condition: r > 2(90 - r), so r > 180 - 2r, so 3r > 180, so r > 60.\n3. Second condition: r < (2/3)(180 - r), so 3r < 360 - 2r, so 5r < 360, so r < 72.\n4. Both conditions are strict, so r can be any whole number from 61 through 71.\n5. Count: 71 - 61 + 1 = 11.\nCheck: r = 60 gives 2*30 = 60, which is not less than 60, so it is out; r = 72 gives (2/3)*108 = 72, which is not greater than 72, so it is out; r = 61 and r = 71 both work.",
+   "trap": "Treating the ends as allowed (60 through 72) gives 13 values; subtracting 72 - 60 without adjusting for the strict ends gives 12.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "complement-supplement",
+    "compound-inequality"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 74 Hard",
+   "source_pages": [
+    485
+   ]
   }
  ]
 }

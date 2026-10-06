@@ -4,16 +4,23 @@
   "subtopic": "Inscribed & Circumscribed Shapes",
   "subtopic_id": "GEO-INS",
   "version": "1.0",
-  "total_questions": 58,
+  "total_questions": 73,
   "distribution": {
    "easy": 13,
-   "medium": 25,
-   "hard": 15,
-   "extreme_hard": 5
+   "medium": 33,
+   "hard": 20,
+   "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 40,
+   "multiple_answer": 6,
+   "numeric_entry": 12,
+   "quantitative_comparison": 15
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1303,6 +1310,404 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set3"
+  },
+  {
+   "id": "GEO-INS-KMF-001",
+   "difficulty": "extreme_hard",
+   "type": "quantitative_comparison",
+   "question": "Two line segments, each 10 units long, bisect each other.\nQuantity A: the number of distinct circles that can be drawn through at least three of the four endpoints of the two segments\nQuantity B: 2",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Two equal-length segments that bisect each other form the diagonals of a rectangle, so the four endpoints are the vertices of a rectangle.\nA rectangle's four vertices always lie on a single common circle (its circumscribed circle), since opposite angles are supplementary (in fact right angles), making it a cyclic quadrilateral.\nAny three of those four points also lie on that same one circle -- there is no second, different circle through a different set of three.\nSo exactly 1 circle passes through at least three of the four endpoints.\nQuantity A = 1, Quantity B = 2, so Quantity B is greater.",
+   "trap": "Students count 4 (one circle per set of 3 chosen points) or reason that since there are 4 ways to choose 3 of the 4 points, there must be 4 different circles, forgetting that all four points already lie on one common circle so every 3-point subset lies on that same circle.",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "cyclic-quadrilateral",
+    "rectangle-diagonals",
+    "circle-through-points"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    26
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Quadrilateral KLMN is inscribed in a circle. The measure of angle N is 24 degrees less than three times the measure of angle L. In degrees, what is the measure of angle N? (Note: in a quadrilateral inscribed in a circle, the measures of each pair of opposite angles sum to 180 degrees.)",
+   "options": [
+    "A. 12",
+    "B. 51",
+    "C. 96",
+    "D. 129",
+    "E. 156"
+   ],
+   "answer": "D",
+   "explanation": "Angles L and N are opposite angles of the inscribed quadrilateral, so L + N = 180.\nThe stem gives N = 3L - 24.\nSubstitute: L + (3L - 24) = 180.\n4L - 24 = 180.\n4L = 204.\nL = 51.\nN = 3*51 - 24 = 153 - 24 = 129.\nCheck: 51 + 129 = 180, and 129 is 24 less than 3*51 = 153.",
+   "trap": "Solving for angle L and reporting that value gives 51, option B.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "cyclic-quadrilateral",
+    "opposite-angles"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 5 Base",
+   "source_pages": [
+    30
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A circle passes through all three vertices of an equilateral triangle whose altitude measures 18 centimeters. What is the area, in square centimeters, of that circle?",
+   "options": [
+    "A. 36*pi",
+    "B. 81*pi",
+    "C. 108*pi",
+    "D. 144*pi",
+    "E. 324*pi"
+   ],
+   "answer": "D",
+   "explanation": "In an equilateral triangle the centre of the circumscribed circle is also the centroid.\nThe centroid divides each altitude in the ratio 2 to 1, measured from the vertex.\nThe circumradius R runs from the centre to a vertex, so R is the longer piece: R = (2/3)*altitude.\nR = (2/3)*18 = 12.\nArea of the circle = pi*R^2 = pi*12^2 = 144*pi.\nCheck: with R = 12 the side is s = R*sqrt(3) = 12*sqrt(3); the altitude of an equilateral triangle of side s is s*sqrt(3)/2 = (12*sqrt(3))*sqrt(3)/2 = 36/2 = 18, which matches the given altitude. Correct.",
+   "trap": "Treating the altitude as a diameter gives R = 9 and an area of 81*pi, which is choice B; the altitude is not a chord through the centre.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "circumradius",
+    "equilateral-triangle",
+    "centroid"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    73
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-004",
+   "difficulty": "extreme_hard",
+   "type": "quantitative_comparison",
+   "question": "Quadrilateral WXYZ has all four of its vertices on a circle whose radius is r, and the quadrilateral does not cross itself.\nQuantity A: The perimeter of quadrilateral WXYZ\nQuantity B: 5r",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "The perimeter is not fixed; it depends on how the four points are spaced.\nLarge case: spread the points evenly, so WXYZ is a square. Its diagonal is a diameter, 2r, so its side is 2r/sqrt(2) = r*sqrt(2) and its perimeter is 4*sqrt(2)*r, about 5.66r, which is greater than 5r.\nSmall case: take a rectangle with sides 0.56r and 1.92r. Its diagonal is sqrt(0.56^2 + 1.92^2)*r = sqrt(0.3136 + 3.6864)*r = 2r, so the diagonals are diameters and all four vertices lie on the circle. Its perimeter is 2(0.56r + 1.92r) = 4.96r, which is less than 5r.\n(In fact the perimeter can be made as small as we like by crowding all four points close together on the circle.)\nSome allowed quadrilaterals have perimeter above 5r and others below it, so the relationship cannot be determined.",
+   "trap": "Assuming the four points must be evenly spaced makes WXYZ a square with perimeter about 5.66r and Quantity A look greater, but nothing in the stem fixes the spacing, so choice A is not safe.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "cyclic-quadrilateral",
+    "perimeter-bounds"
+   ],
+   "figure_description": "A circle of radius r with centre O. Four distinct points W, X, Y and Z lie on the circle, named in the order they are met going around the circle, and the four chords WX, XY, YZ and ZW are drawn to form a quadrilateral that does not cross itself. Nothing fixes how far apart the four points are.",
+   "origin": "kmf1804",
+   "origin_set": "Section 15 Base",
+   "source_pages": [
+    89
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-005",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In the figure, a square is centred inside a circle of radius 6. A semicircle is drawn outward from each side of the square, with that side as its diameter, and every semicircle touches the circle at exactly one point. Find the total area inside the circle that is covered by neither the square nor any semicircle.",
+   "options": [
+    "A. 18*pi - 36",
+    "B. 18*pi - 18",
+    "C. 27*pi - 36",
+    "D. 18*pi",
+    "E. 36*pi - 36"
+   ],
+   "answer": "A",
+   "explanation": "Let the square have side s. The semicircle on a side has radius s/2 and its farthest point lies s/2 beyond the side, which is s/2 + s/2 = s from the centre.\nThat point touches the big circle, so s = 6 (the radius of the big circle).\nSquare area = 6^2 = 36.\nEach semicircle has radius 3 and area (1/2)*pi*3^2 = 9*pi/2; four of them give 18*pi.\nBig circle area = pi*6^2 = 36*pi.\nRequested area = 36*pi - 36 - 18*pi = 18*pi - 36.\nCheck: this is about 56.55 - 36 = 20.5, positive and smaller than the circle's area of about 113.1.",
+   "trap": "Not subtracting the square, which gives 18*pi (choice D); subtracting the area of only two semicircles gives 27*pi - 36 (choice C); ignoring the semicircles altogether gives 36*pi - 36 (choice E).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "circle-square-semicircle",
+    "area-subtraction"
+   ],
+   "svg": "<svg width='260' height='260' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 260' role='img' aria-label='Square centred in a circle with a semicircle on each side touching the circle'><g stroke='currentColor' stroke-width='2'><circle cx='130' cy='130' r='120' fill='#bbb'/><rect x='70' y='70' width='120' height='120' fill='#fff'/><path d='M190,70 A60,60 0 0 1 190,190 Z' fill='#fff'/><path d='M190,190 A60,60 0 0 1 70,190 Z' fill='#fff'/><path d='M70,190 A60,60 0 0 1 70,70 Z' fill='#fff'/><path d='M70,70 A60,60 0 0 1 190,70 Z' fill='#fff'/></g><line x1='130' y1='130' x2='130' y2='10' stroke='currentColor' stroke-width='1.2' stroke-dasharray='4 3'/><circle cx='130' cy='130' r='2.5' fill='currentColor'/><text x='134' y='104' font-size='13' fill='currentColor' font-family='sans-serif'>6</text></svg>",
+   "figure_description": "A circle of radius 6 with a square at its centre. On each side of the square a semicircle bulges outward, using that side as its diameter. The farthest point of each semicircle from the square touches the big circle (at the four points straight above, below, left and right of the centre). The four regions between the semicircles and the big circle are the region asked about. The four regions between the semicircles and the big circle are shaded; the square and semicircles are white. A dashed radius of length 6 is drawn from the centre straight up to the circle.",
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    100
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-006",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Triangle PQR is inscribed in a semicircle whose diameter is side PR. Side PQ has length 10 and side QR has length 24. What is the area of the semicircular region?",
+   "options": [
+    "A. 42.25 pi",
+    "B. 84.5 pi",
+    "C. 144.5 pi",
+    "D. 169 pi",
+    "E. 338 pi"
+   ],
+   "answer": "B",
+   "explanation": "Q is on the semicircle and PR is the diameter, so angle PQR is a right angle.\nPR^2 = 10^2 + 24^2 = 100 + 576 = 676, so PR = 26.\nRadius = 26/2 = 13.\nArea of semicircle = (1/2)*pi*13^2 = (1/2)*169*pi = 84.5 pi.\nCheck: 10-24-26 is twice the 5-12-13 triple.",
+   "trap": "Using the full-circle area, 169 pi, gives choice D; taking PR = 26 as the radius gives (1/2)*pi*26^2 = 338 pi (choice E); averaging the legs for the radius, (10 + 24)/2 = 17, gives 144.5 pi (choice C).",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "thales",
+    "semicircle"
+   ],
+   "figure_description": "A semicircle drawn on the diameter PR (a horizontal segment). Point Q lies on the curved arc, and segments PQ and QR are drawn, forming triangle PQR. PQ = 10, QR = 24.",
+   "origin": "kmf1804",
+   "origin_set": "Section 22 Hard",
+   "source_pages": [
+    132
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-007",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A right triangle drawn on a coordinate grid has its longest side running from (-2, 5) to (4, -3), and its remaining vertex has integer coordinates. How many different locations are possible for that remaining vertex?",
+   "options": null,
+   "answer": "10",
+   "explanation": "A right angle subtends a diameter, so the third vertex lies on the circle with the segment as diameter.\nCentre = midpoint = (1, 1). Length of segment = sqrt(6^2 + 8^2) = 10, so radius = 5.\nCircle: (x - 1)^2 + (y - 1)^2 = 25.\nInteger solutions for the offsets (x - 1, y - 1): (+-5, 0), (0, +-5), (+-3, +-4), (+-4, +-3). That is 4 + 8 = 12 lattice points.\nTwo of these are the segment's own endpoints: (-3, 4) gives (-2, 5) and (3, -4) gives (4, -3). Remove them, leaving 12 - 2 = 10.\nCheck: each remaining point gives a non-degenerate right triangle.",
+   "trap": "Answering 12 by counting every lattice point on the circle, including the two endpoints that cannot be a third vertex.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "thales-circle",
+    "lattice-points"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 24 Hard",
+   "source_pages": [
+    146
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-008",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A regular hexagon is drawn inside a circle so that all six of its corners lie on the circle. The hexagon's perimeter is 48. What is the area of the circle?",
+   "options": [
+    "A. 16pi",
+    "B. 48pi",
+    "C. 64pi",
+    "D. 128pi",
+    "E. 192pi"
+   ],
+   "answer": "C",
+   "explanation": "Perimeter 48 over 6 equal sides gives side length 8.\nA regular hexagon splits into 6 equilateral triangles whose sides equal the circumradius, so radius = 8.\nArea = pi * 8^2 = 64pi.\nCheck: diameter 16 is twice the side 8, as expected for a regular hexagon.",
+   "trap": "Treating the side as the circle's diameter gives radius 4 and area 16pi (option A); using the hexagon's short diagonal 8*sqrt(3) as the radius gives 192pi (option E).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "regular-hexagon",
+    "circumradius"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 24 Hard",
+   "source_pages": [
+    148
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-009",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Quadrilateral PQRS is inscribed in a circle, with the vertices P, Q, R, S lying on the circle in that order. Its interior angles measure (5a) degrees at P, (4b) degrees at Q, (4a) degrees at R and (11b) degrees at S. What is the measure, in degrees, of the largest interior angle of PQRS?",
+   "options": [
+    "A. 48",
+    "B. 66",
+    "C. 80",
+    "D. 100",
+    "E. 132"
+   ],
+   "answer": "E",
+   "explanation": "Opposite angles of a quadrilateral inscribed in a circle are supplementary (each is half of an arc, and the two arcs make the full 360 degrees).\nAngles at P and R: 5a + 4a = 180, so 9a = 180 and a = 20. P = 100 degrees, R = 80 degrees.\nAngles at Q and S: 4b + 11b = 180, so 15b = 180 and b = 12. Q = 48 degrees, S = 132 degrees.\nThe largest angle is S = 132 degrees.\nCheck: 100 + 48 + 80 + 132 = 360, as required for any quadrilateral.",
+   "trap": "Using only the inscribed-angle halving rule and halving the angle at S to get 66 (choice B), or solving the P and R pair correctly and reporting the larger of those two angles, 100 (choice D), without checking the Q and S pair.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "inscribed-quadrilateral",
+    "opposite-angles-supplementary"
+   ],
+   "figure_description": "A circle with four points P, Q, R, S on it in that order around the circle, joined to form a quadrilateral PQRS. The interior angle at P is (5a) degrees, at Q is (4b) degrees, at R is (4a) degrees and at S is (11b) degrees. P is opposite R and Q is opposite S.",
+   "origin": "kmf1804",
+   "origin_set": "Section 31 Base",
+   "source_pages": [
+    199
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-010",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "All four vertices of a square lie on a circle. A dart lands at a uniformly random spot within the circular region. Find the chance that the landing spot is inside the square.",
+   "options": [
+    "A. 1/2",
+    "B. 1/pi",
+    "C. 2/pi",
+    "D. pi/4",
+    "E. sqrt(2)/2"
+   ],
+   "answer": "C",
+   "explanation": "Let the circle have radius r. The square's diagonal is a diameter, so its diagonal is 2r.\nA square with diagonal d has area d^2/2, so the square's area = (2r)^2/2 = 2r^2.\nCircle area = pi*r^2.\nProbability = 2r^2/(pi*r^2) = 2/pi, about 0.637.\nCheck: this is below 1 and above 1/2, as expected since the square covers most of the circle.\nD: pi/4 is the ratio for the reverse picture (circle inside square).\nB: 1/pi would come from taking the square's area as r^2.",
+   "trap": "Using the ratio for a circle inscribed in a square instead, pi/4 (option D), or taking the square's area as r^2, giving 1/pi (option B).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "inscribed-square",
+    "geometric-probability"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 45 Base",
+   "source_pages": [
+    294
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-011",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "In the figure, square TUVW sits inside rectangle PQRS. Point T is the midpoint of side PQ and point V is the midpoint of side SR, so diagonal TV is perpendicular to both of those sides. Side PS has midpoint X and side QR has midpoint Y; the other diagonal, WU, lies along segment XY, with XW = UY = 4. The perimeter of rectangle PQRS is 80. What is the area of square TUVW?",
+   "options": [
+    "A. 64",
+    "B. 128",
+    "C. 192",
+    "D. 256",
+    "E. 384"
+   ],
+   "answer": "B",
+   "explanation": "Let the diagonal TV = d. T and V are on opposite sides of the rectangle, so the rectangle's height is d.\nThe other diagonal WU also has length d, and it is centred on the horizontal midline XY, so the rectangle's width = d + 4 + 4 = d + 8.\nPerimeter: 2(d + d + 8) = 80, so 4d + 16 = 80 and d = 16.\nArea of a square with diagonal d = d^2 / 2 = 256 / 2 = 128.\nCheck: width 24, height 16 gives perimeter 80, and the square's side is 16/sqrt(2) = 8sqrt(2), whose square is 128.",
+   "trap": "Using the diagonal length 16 as the side of the square gives 256 (choice D); computing the rectangle's area 24 x 16 = 384 gives choice E; assuming the square fills half the rectangle gives 192 (choice C); squaring half the diagonal gives 64 (choice A).",
+   "estimated_time_seconds": 150,
+   "tags": [
+    "inscribed-square",
+    "diagonal-area"
+   ],
+   "svg": "<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 320 220' width='320' height='220'><rect x='30' y='20' width='240' height='160' fill='none' stroke='#333' stroke-width='2'/><polygon points='150,20 230,100 150,180 70,100' fill='rgba(80,120,200,0.15)' stroke='#2a4ea0' stroke-width='2'/><line x1='30' y1='100' x2='270' y2='100' stroke='#777' stroke-dasharray='4 3'/><line x1='150' y1='20' x2='150' y2='180' stroke='#777' stroke-dasharray='4 3'/><text x='16' y='16' font-size='14'>P</text><text x='272' y='16' font-size='14'>Q</text><text x='272' y='196' font-size='14'>R</text><text x='16' y='196' font-size='14'>S</text><text x='146' y='14' font-size='14'>T</text><text x='146' y='198' font-size='14'>V</text><text x='234' y='95' font-size='14'>U</text><text x='56' y='95' font-size='14'>W</text><text x='12' y='104' font-size='14'>X</text><text x='274' y='104' font-size='14'>Y</text><text x='44' y='118' font-size='13'>4</text><text x='244' y='118' font-size='13'>4</text></svg>",
+   "figure_description": "Rectangle PQRS with P at top-left, Q at top-right, R at bottom-right, S at bottom-left. T is the midpoint of the top side PQ and V is the midpoint of the bottom side SR; segment TV is vertical. X is the midpoint of the left side PS and Y is the midpoint of the right side QR; segment XY is horizontal and crosses TV at its midpoint. W lies on XY to the left of TV and U lies on XY to the right of TV, so that TUVW is a square with diagonals TV and WU. The two end segments XW and UY each have length 4.",
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    328
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-012",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In the figure, triangle XYZ has its right angle at Z and ZX = ZY. Square ZMNK is drawn with M on side ZX, K on side ZY and N on the hypotenuse XY. The perimeter of the square is 24. What is the area of triangle XYZ?",
+   "options": [
+    "A. 18",
+    "B. 36",
+    "C. 72",
+    "D. 81",
+    "E. 144"
+   ],
+   "answer": "C",
+   "explanation": "1. The square has perimeter 24, so its side is 6: ZM = ZK = 6.\n2. Triangle XMN has a right angle at M, angle X = 45 degrees (the triangle is isosceles right), and MN = 6, so MX = 6.\n3. Hence ZX = ZM + MX = 6 + 6 = 12, and by symmetry ZY = 12.\n4. Area of triangle XYZ = (1/2)*12*12 = 72.\n5. Check: the square (36) plus the two small triangles (18 each) gives 36 + 36 = 72.\nChoice A uses 6 as the legs; B takes the hypotenuse as 12; D assumes the square rests on the hypotenuse (base 18, area 81); E forgets the factor 1/2.",
+   "trap": "Assuming the square sits with a side along the hypotenuse, so that the hypotenuse is 3 times the side (18), gives an area of 81, which is choice D; here the square sits in the right-angle corner.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "inscribed-square",
+    "isosceles-right-triangle"
+   ],
+   "svg": "<svg width='240' height='170' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 170' role='img' aria-label='Isosceles right triangle XYZ with a square at the right-angle corner'><polygon points='30,140 150,140 30,20 ' fill='none' stroke='currentColor' stroke-width='2'/><rect x='30' y='80' width='60' height='60' fill='currentColor' fill-opacity='0.25' stroke='currentColor' stroke-width='2'/><g font-size='13' fill='currentColor' font-family='sans-serif'><text x='14' y='156'>Z</text><text x='154' y='146'>X</text><text x='14' y='20'>Y</text><text x='94' y='76'>N</text><text x='88' y='156'>M</text><text x='14' y='84'>K</text></g></svg>",
+   "figure_description": "Isosceles right triangle XYZ with the right angle at Z (bottom-left), X at the bottom-right and Y at the top-left, so legs ZX and ZY are equal. A square ZMNK shares the corner Z: M lies on leg ZX, K lies on leg ZY, and the opposite corner N lies on the hypotenuse XY.",
+   "origin": "kmf1804",
+   "origin_set": "Section 54 Hard",
+   "source_pages": [
+    353
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Two circles share the same center O. A regular hexagon has all six of its vertices on the outer circle, and each of its six sides touches the inner circle at exactly one point. The outer circle has radius 10. What is the area of the ring-shaped region between the two circles?",
+   "options": [
+    "A. 25",
+    "B. 25pi",
+    "C. 50pi",
+    "D. 75pi",
+    "E. 100pi"
+   ],
+   "answer": "B",
+   "explanation": "1. A regular hexagon splits into six equilateral triangles meeting at O, so each side equals the outer radius: side = 10.\n2. The inner circle touches each side at its midpoint, so its radius is the distance from O to a side's midpoint, the height of an equilateral triangle of side 10: 10 * sqrt(3)/2 = 5*sqrt(3).\n3. Inner radius squared = 25 * 3 = 75.\n4. Ring area = pi * 10^2 - pi * 75 = 100pi - 75pi = 25pi.\nCheck: the inner radius 5*sqrt(3) is about 8.66, a little less than 10, so the ring is thin: 25pi is about 78.5 against 314 for the whole outer disc.\nOther choices: 25 drops the pi; 50pi uses inner radius 5*sqrt(2) (the square relationship); 75pi uses inner radius 5, half the outer radius; 100pi is just the outer disc.",
+   "trap": "Assuming the inner circle's radius is half the outer radius (5) gives a ring area of 100pi - 25pi = 75pi, which is choice D.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "hexagon",
+    "apothem",
+    "annulus-area"
+   ],
+   "svg": "<svg width='220' height='220' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 220 220' role='img' aria-label='Regular hexagon with its vertices on an outer circle and its sides touching an inner circle'><g stroke='currentColor' stroke-width='2' fill='none'><circle cx='110' cy='110' r='90'/><circle cx='110' cy='110' r='77.9'/><polygon points='200.0,110.0 155.0,32.1 65.0,32.1 20.0,110.0 65.0,187.9 155.0,187.9'/></g><circle cx='110' cy='110' r='2.5' fill='currentColor'/><g font-size='13' fill='currentColor' font-family='sans-serif'><text x='94' y='128'>O</text><text x='140' y='66'>10</text></g><line x1='110' y1='110' x2='155.0' y2='32.1' stroke='currentColor' stroke-width='1.5' stroke-dasharray='4 3'/></svg>",
+   "figure_description": "Two concentric circles with center O; the outer one has radius 10. A regular hexagon is drawn with its six vertices on the outer circle; each side of the hexagon is tangent to the inner circle.",
+   "origin": "kmf1804",
+   "origin_set": "Section 58 Hard",
+   "source_pages": [
+    381
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-014",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "A circle is inscribed in a square, so the circle touches all four sides of the square. The four corner regions that lie inside the square but outside the circle are shaded, and their total area is 9.\nHow much area does the circle enclose?",
+   "options": [
+    "A. 9/(4 - pi)",
+    "B. 9*pi/(4 + pi)",
+    "C. 9*pi/(4 - pi)",
+    "D. 36/(4 - pi)",
+    "E. 36*pi/(4 - pi)"
+   ],
+   "answer": "C",
+   "explanation": "1. Let the circle's radius be r. The circle touches all four sides, so the square's side equals the diameter 2r and the square's area is 4r^2.\n2. The circle's area is pi*r^2, so the shaded area is 4r^2 - pi*r^2 = r^2(4 - pi) = 9.\n3. Therefore r^2 = 9/(4 - pi).\n4. The circle's area is pi*r^2 = 9*pi/(4 - pi).\nCheck: 4 - pi is about 0.858, so r^2 is about 10.49, the circle is about 32.9, the square about 41.9, and 41.9 - 32.9 = 9.",
+   "trap": "Finding r^2 = 9/(4 - pi) and stopping there answers with 9/(4 - pi) (choice A); using the square's area 4r^2 instead of the circle's gives 36/(4 - pi) (choice D). A sign slip in the denominator gives 9*pi/(4 + pi) (choice B), and multiplying the square's area by pi gives 36*pi/(4 - pi) (choice E).",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "inscribed-circle",
+    "area-difference",
+    "pi-expressions"
+   ],
+   "figure_description": "A square with a circle drawn inside it so that the circle touches the midpoint of each of the four sides. The four small regions at the corners, between the circle and the square, are shaded; the inside of the circle is unshaded.",
+   "origin": "kmf1804",
+   "origin_set": "Section 60 Hard",
+   "source_pages": [
+    394
+   ]
+  },
+  {
+   "id": "GEO-INS-KMF-015",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A spherical ball fits snugly inside a cubical crate and touches all six faces of the crate. Roughly what percent of the crate's interior volume is left empty by the ball?",
+   "options": [
+    "A. 21%",
+    "B. 48%",
+    "C. 52%",
+    "D. 61%",
+    "E. 79%"
+   ],
+   "answer": "B",
+   "explanation": "1. Let the crate have edge s. The ball touches opposite faces, so its diameter is s and its radius is s/2.\n2. Ball volume = (4/3)*pi*(s/2)^3 = pi*s^3/6, about 0.5236*s^3.\n3. Empty fraction = 1 - 0.5236 = 0.4764, about 48 percent.\nCheck: pi/6 is a bit over one half, so the ball fills a little over half and a little under half is empty.",
+   "trap": "Reporting the fraction the ball does fill (about 52 percent) instead of the fraction left empty gives choice C.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "sphere-in-cube",
+    "complement-volume"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 66 Hard",
+   "source_pages": [
+    432
+   ]
   }
  ]
 }

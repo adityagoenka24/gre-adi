@@ -4,16 +4,23 @@
   "subtopic": "Distance Between Points",
   "subtopic_id": "COG-DST",
   "version": "1.0",
-  "total_questions": 50,
+  "total_questions": 59,
   "distribution": {
    "easy": 10,
-   "medium": 20,
-   "hard": 16,
+   "medium": 25,
+   "hard": 20,
    "extreme_hard": 4
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 22,
+   "multiple_answer": 11,
+   "numeric_entry": 11,
+   "quantitative_comparison": 15
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1100,6 +1107,243 @@
    ],
    "origin": "sectional",
    "origin_set": "coordinate_geometry_set4"
+  },
+  {
+   "id": "COG-DST-KMF-001",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "In the xy-plane, the point (3, 4) is a vertex of a square that has sides of length 4. Which of the following points could be the vertex of the square that is diagonally opposite the vertex (3, 4)? Select all that apply.",
+   "options": [
+    "A. (-1, 0)",
+    "B. (-1, 8)",
+    "C. (3, 8)",
+    "D. (7, 8)"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "For a square with side length 4, the diagonal has length 4*sqrt(2) (since diagonal = side * sqrt(2)).\nThe vertex diagonally opposite (3,4) must be at distance 4*sqrt(2) from (3,4), reached by moving +/-4 in x and +/-4 in y (for an axis-aligned square).\nThe four candidate diagonal points are (3+4,4+4)=(7,8), (3-4,4+4)=(-1,8), (3-4,4-4)=(-1,0), (3+4,4-4)=(7,0).\nCheck option A (-1,0): matches (3-4,4-4). Valid.\nCheck option B (-1,8): matches (3-4,4+4). Valid.\nCheck option C (3,8): distance from (3,4) is sqrt(0^2+4^2)=4, not 4*sqrt(2). Not valid.\nCheck option D (7,8): matches (3+4,4+4). Valid.\nSo A, B, and D work; C does not.",
+   "trap": "Students pick (3,8), which is only a straight vertical move of 4 (one side length) from (3,4) rather than a full diagonal move, mistaking a same-side offset for the diagonally opposite vertex.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "square",
+    "distance-formula",
+    "diagonal"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    12
+   ]
+  },
+  {
+   "id": "COG-DST-KMF-002",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "Points P and Q in the xy-plane have coordinates (u, 9) and (v, 1), and segment PQ has length 17.\nQuantity A: |u - v|\nQuantity B: u - v",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "Distance formula: sqrt((u - v)^2 + (9 - 1)^2) = 17.\n(9 - 1)^2 = 64.\nSo (u - v)^2 + 64 = 289.\n(u - v)^2 = 225.\nTherefore u - v = 15 or u - v = -15, and in both cases |u - v| = 15.\nIf u - v = 15, then Quantity A = 15 and Quantity B = 15, so the quantities are equal.\nIf u - v = -15, then Quantity A = 15 and Quantity B = -15, so Quantity A is greater.\nBoth situations are allowed by the stem, so the relationship cannot be determined.\nCheck the second case concretely: u = 0 and v = 15 gives points (0, 9) and (15, 1), whose distance is sqrt(225 + 64) = sqrt(289) = 17, and there u - v = -15.",
+   "trap": "Solving for |u - v| = 15 and then assuming u must be the larger coordinate selects C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "distance-formula",
+    "absolute-value",
+    "sign-cases"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 8 Hard",
+   "source_pages": [
+    44
+   ]
+  },
+  {
+   "id": "COG-DST-KMF-003",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The nth term of a sequence, d_n, is how far the point (n, n + 1) lies from the origin of the coordinate plane, for every positive integer n. For which value of n does d_n equal 29?",
+   "options": null,
+   "answer": "20",
+   "explanation": "Step 1: d_n = sqrt(n^2 + (n + 1)^2).\nStep 2: Set d_n = 29: n^2 + (n + 1)^2 = 841, so 2n^2 + 2n + 1 = 841, i.e. n^2 + n - 420 = 0.\nStep 3: Factor: (n + 21)(n - 20) = 0, so n = 20 (n = -21 is not a positive integer).\nCheck: 20^2 + 21^2 = 400 + 441 = 841 = 29^2.",
+   "trap": "Mistaking the point (n, n + 1) for a distance of n + (n + 1) (taxicab-style), giving 2n + 1 = 29 and n = 14.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "distance-formula",
+    "sequence",
+    "quadratic"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 30 Hard",
+   "source_pages": [
+    186
+   ]
+  },
+  {
+   "id": "COG-DST-KMF-004",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In the xy-plane, a circle has center (1, -2) and circumference 10pi. Which of the following points lies on the circle?",
+   "options": [
+    "A. (7, 6)",
+    "B. (2, 6)",
+    "C. (4, -1)",
+    "D. (4, 2)",
+    "E. (1, 5)"
+   ],
+   "answer": "D",
+   "explanation": "Circumference 2*pi*r = 10pi, so the radius is 5.\nA point is on the circle when its distance from (1, -2) equals 5.\nD: (4, 2): dx = 3, dy = 4, distance = sqrt(9 + 16) = 5 - on the circle.\nA: (7, 6): dx = 6, dy = 8, distance = 10 (not 5).\nB: (2, 6): dx = 1, dy = 8, distance = sqrt(65).\nC: (4, -1): dx = 3, dy = 1, distance = sqrt(10).\nE: (1, 5): dx = 0, dy = 7, distance = 7.\nCheck: only D gives a distance of exactly 5.",
+   "trap": "Treating 10 as the radius instead of 10pi/(2pi) = 5 makes (7, 6) at distance 10 look right (option A); adding the offsets 3 + 4 = 7 favors option E.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "circle-equation",
+    "distance-formula"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 30 Hard",
+   "source_pages": [
+    189
+   ]
+  },
+  {
+   "id": "COG-DST-KMF-005",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "In the xy-plane, the points P(-2, 1) and Q(4, -3) are opposite vertices of a square. What is the area of the square?",
+   "options": null,
+   "answer": "26",
+   "explanation": "Opposite vertices are the ends of a diagonal. The squared diagonal is (4 - (-2))^2 + (-3 - 1)^2 = 36 + 16 = 52.\nFor a square, area = (diagonal^2)/2 = 52/2 = 26.\nCheck: the side is sqrt(26), so area = 26; and a diagonal of side*sqrt(2) = sqrt(52). Consistent.",
+   "trap": "Treating the squared distance PQ as if PQ were a side, giving 52.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "diagonal-of-square",
+    "distance-formula"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 35 Base",
+   "source_pages": [
+    220
+   ]
+  },
+  {
+   "id": "COG-DST-KMF-006",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A square in the coordinate plane has vertices labelled K, L, M, N in order around its boundary, and K = (-1, 3). Select every statement that, taken by itself, would be enough to fix the area of the square.",
+   "options": [
+    "A. Point L lies on the line y = 3.",
+    "B. The distance between K and M is 4sqrt(3).",
+    "C. Point M lies on the line y = x + 4.",
+    "D. Point N has coordinates (2, -1).",
+    "E. The distance from point L to the origin is 5."
+   ],
+   "answer": [
+    "B",
+    "D"
+   ],
+   "explanation": "A statement is sufficient only if it fixes the side length (or the diagonal) of the square.\nA: L on y = 3 only says side KL is horizontal; the side can be any length. Not sufficient.\nB: K and M are opposite vertices, so KM is a diagonal of length 4sqrt(3). Area = (diagonal)^2 / 2 = 48 / 2 = 24. Sufficient.\nC: K = (-1, 3) already lies on y = x + 4, so M is just somewhere along that line; the diagonal length is free. Not sufficient.\nD: N is adjacent to K, so KN is a side: sqrt((2 - (-1))^2 + (-1 - 3)^2) = sqrt(9 + 16) = 5. Area = 25. Sufficient.\nE: L can be any point on a circle of radius 5 about the origin, so the side KL varies (for example L = (-4, 3) gives side 3, while L = (3, 4) gives side sqrt(17)). Not sufficient.\nSo the answer is B and D.",
+   "trap": "Treating a statement that fixes only a direction or a line (A or C) as if it fixed the size, and reading a one-dimensional constraint such as E as determining the side. Choosing A, C or E.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "data-sufficiency-style",
+    "square-from-vertices",
+    "diagonal-vs-side"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 39 Base",
+   "source_pages": [
+    252
+   ]
+  },
+  {
+   "id": "COG-DST-KMF-007",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Point (a, b) lies on the line y = 2x - 3 and is the same distance from the point (-1, 4) as from the point (5, 4). What is the value of a + b?",
+   "options": [
+    "A. 3",
+    "B. 6",
+    "C. 7.5",
+    "D. 12",
+    "E. 15"
+   ],
+   "answer": "A",
+   "explanation": "1. The two given points have the same y-coordinate, so the points equidistant from them form the vertical line through their midpoint: x = (-1 + 5)/2 = 2.\n2. So a = 2.\n3. On the line y = 2x - 3: b = 2*2 - 3 = 1.\n4. a + b = 2 + 1 = 3.\n5. Check: distance from (2, 1) to (-1, 4) is sqrt(9 + 9) and to (5, 4) is sqrt(9 + 9), equal.\nChoices: B from a = 3; C from b = 4; D from a = 5; E from a = 6.",
+   "trap": "Assuming the equidistant point must share the two points' y-coordinate sets b = 4, then 2a - 3 = 4 gives a = 3.5 and a + b = 7.5, which is choice C.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "perpendicular-bisector",
+    "distance-formula"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 53 Base",
+   "source_pages": [
+    346
+   ]
+  },
+  {
+   "id": "COG-DST-KMF-008",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "In the xy-plane, triangle EFG has vertices E(-4, 2), F(-4, 10) and G(m, 6), where m < -4.\nIndicate all of the following statements that must be true.",
+   "options": [
+    "A. EG = GF",
+    "B. The area of triangle EFG equals -4m - 16.",
+    "C. GF > 4",
+    "D. Angle EGF is a right angle.",
+    "E. The perimeter of triangle EFG is greater than 24.",
+    "F. The slope of segment EG is positive."
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "Let d = -4 - m, the horizontal distance from G to the line x = -4, so d > 0. E and F are 8 apart on that vertical line, and G is level with its midpoint (y = 6).\nA. True. G has y = 6, which is exactly 4 above E (y = 2) and 4 below F (y = 10), so EG = sqrt(d^2 + 16) = GF.\nB. True. Area = (1/2) * 8 * d = 4d = 4(-4 - m) = -4m - 16.\nC. True. GF = sqrt(d^2 + 16) > sqrt(16) = 4 since d > 0.\nD. False. The angle at G is 90 degrees only when d = 4 (m = -8). For m = -5, d = 1 and the angle at G is obtuse, so it is not a right angle.\nE. False. Perimeter = 8 + 2*sqrt(d^2 + 16); with m = -5 (d = 1) this is 8 + 2*sqrt(17), about 16.2, which is less than 24.\nF. False. The slope of EG is (6 - 2)/(m - (-4)) = 4/(m + 4), which is negative because m + 4 < 0.\nAnswer: A, B and C.",
+   "trap": "Assuming the triangle must be a right triangle (choice D) because the points look like a 'nice' configuration confuses the equal sides EG = GF with a right angle at G.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "perpendicular-bisector",
+    "distance-formula",
+    "triangle-area"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 59 Base",
+   "source_pages": [
+    389
+   ]
+  },
+  {
+   "id": "COG-DST-KMF-009",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In the xy-plane, segment UV has endpoints U(-4, 8) and V(-4, 3). Triangle GHK has vertices G(2, -1), H(6, 2) and K(1, 5). What is the least possible distance between an endpoint of UV and a vertex of triangle GHK?",
+   "options": [
+    "A. sqrt(29)",
+    "B. sqrt(34)",
+    "C. sqrt(52)",
+    "D. sqrt(101)",
+    "E. sqrt(117)"
+   ],
+   "answer": "A",
+   "explanation": "Compute the squared distance from each endpoint to each vertex.\nU to G: 6^2 + 9^2 = 36 + 81 = 117.\nU to H: 10^2 + 6^2 = 100 + 36 = 136.\nU to K: 5^2 + 3^2 = 25 + 9 = 34.\nV to G: 6^2 + 4^2 = 36 + 16 = 52.\nV to H: 10^2 + 1^2 = 100 + 1 = 101.\nV to K: 5^2 + 2^2 = 25 + 4 = 29.\nThe smallest squared distance is 29, so the least distance is sqrt(29).\nCheck: K is 5 to the right of both endpoints, and V (y = 3) is closer to K (y = 5) vertically than U (y = 8), so V to K is the shortest.",
+   "trap": "Pairing K with the upper endpoint U only, because U looks nearer on the page, gives sqrt(34), which is choice B; V is vertically closer to K.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "distance-formula",
+    "comparing-distances"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 62 Hard",
+   "source_pages": [
+    407
+   ]
   }
  ]
 }

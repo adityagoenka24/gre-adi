@@ -4,16 +4,23 @@
   "subtopic": "Ratios & Proportions",
   "subtopic_id": "ARI-RAT",
   "version": "1.0",
-  "total_questions": 84,
+  "total_questions": 91,
   "distribution": {
-   "easy": 20,
-   "medium": 33,
+   "easy": 21,
+   "medium": 39,
    "hard": 23,
    "extreme_hard": 8
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 37,
+   "multiple_answer": 11,
+   "numeric_entry": 18,
+   "quantitative_comparison": 25
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1748,6 +1755,172 @@
    ],
    "origin": "sectional",
    "origin_set": "percentages_set3"
+  },
+  {
+   "id": "ARI-RAT-KMF-001",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "On a blueprint of a rectangular patio, a length of 1 centimeter represents an actual length of 4 meters. The patio occupies 5 square centimeters on the blueprint.\nQuantity A: 75 square meters\nQuantity B: The actual area of the patio",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "The linear scale factor is 4 meters per centimeter.\nArea scales by the square of the linear factor: 1 square centimeter on the blueprint represents 4 * 4 = 16 square meters.\nThe blueprint area is 5 square centimeters, so the actual area is 5 * 16 = 80 square meters.\nQuantity B = 80 square meters, Quantity A = 75 square meters.\n80 > 75, so Quantity B is greater.\nCheck with explicit dimensions: if the blueprint rectangle is 2.5 cm by 2 cm (area 5 square centimeters), the real patio is 10 m by 8 m, area 80 square meters. Consistent.",
+   "trap": "Applying the linear factor to the area, computing 5 * 4 = 20 square meters, and concluding that Quantity A is greater, which produces option A.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "scale-drawing",
+    "area-scaling"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 9 Base",
+   "source_pages": [
+    52
+   ]
+  },
+  {
+   "id": "ARI-RAT-KMF-002",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "A blueprint is drawn so that 1 inch on the page stands for 8 feet in the building. A particular room occupies 3.5 square inches on the blueprint.\nQuantity A: 230 square feet\nQuantity B: The true floor area of that room",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Lengths scale by 8, so areas scale by 8 squared.\n8^2 = 64, meaning 1 square inch on the page stands for 64 square feet in the building.\nTrue floor area = 3.5 * 64 = 224 square feet.\nQuantity A = 230 and Quantity B = 224, so Quantity A is greater.\nCheck with a concrete room: a rectangle measuring 1.75 inches by 2 inches has area 3.5 square inches and stands for a room 14 feet by 16 feet, whose area is 224 square feet. Correct.",
+   "trap": "Scaling the page area by 8 first and then squaring the result gives (3.5 * 8)^2 = 784 square feet and makes Quantity B look greater; only the scale factor is squared, not the area.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "scale-factor",
+    "area-ratio"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 15 Base",
+   "source_pages": [
+    89
+   ]
+  },
+  {
+   "id": "ARI-RAT-KMF-003",
+   "difficulty": "easy",
+   "type": "numeric_entry",
+   "question": "A laundry detergent comes in a compact pack and an economy pack. The compact pack holds enough for 5/8 as many loads as the economy pack and costs 3/4 as much as the economy pack. The compact pack's cost per load is what percent of the economy pack's cost per load? (Enter the number only.)",
+   "options": null,
+   "answer": "120",
+   "explanation": "Let the economy pack cost C for L loads, so its cost per load is C/L.\nThe compact pack costs (3/4)C for (5/8)L loads, so its cost per load is (3/4)C / ((5/8)L) = (3/4)*(8/5) * C/L = (6/5) * C/L.\n6/5 = 1.2 = 120%.\nCheck with numbers: economy 80 loads for 40 dollars gives 0.50 per load; compact 50 loads for 30 dollars gives 0.60 per load; 0.60/0.50 = 120%.",
+   "trap": "Computing 3/4 divided by 5/8 upside down, (5/8)/(3/4) = 5/6, gives about 83 percent; or comparing only the prices and answering 75.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "unit-price",
+    "ratio-of-ratios"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 17 Base",
+   "source_pages": [
+    102
+   ]
+  },
+  {
+   "id": "ARI-RAT-KMF-004",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A pizzeria prices its round pizzas in direct proportion to their area. A pizza 12 inches across costs $18.00. How many inches across is a pizza that costs $40.50?",
+   "options": null,
+   "answer": "18",
+   "explanation": "Price is proportional to area, so the price ratio equals the area ratio.\n40.50 / 18.00 = 2.25.\nArea scales with the square of the diameter, so (new diameter / 12)^2 = 2.25.\nnew diameter / 12 = 1.5, so new diameter = 18 inches.\nCheck: area ratio (18/12)^2 = 2.25 and 18.00 * 2.25 = 40.50.",
+   "trap": "Scaling the diameter by the price ratio directly: 12 * 2.25 = 27 inches.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "area-scaling",
+    "proportion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 24 Hard",
+   "source_pages": [
+    149
+   ]
+  },
+  {
+   "id": "ARI-RAT-KMF-005",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "k and m are positive integers with k > m, and k/8 = 18/m.\nQuantity A: k\nQuantity B: 12",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "Cross-multiply: k/8 = 18/m gives k*m = 144.\nBecause k > m and both are positive, k*k > k*m = 144, so k > 12.\nTests: (k, m) = (16, 9), (18, 8), (36, 4), (144, 1) all have k > 12. The pair k = m = 12 is excluded by k > m.\nQuantity A > Quantity B.",
+   "trap": "Taking the 'balanced' pair k = m = 12 gives equal quantities (option C), but the condition k > m rules that pair out.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "cross-multiplication",
+    "product-constant"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 25 Base",
+   "source_pages": [
+    153
+   ]
+  },
+  {
+   "id": "ARI-RAT-KMF-006",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The ratio of m to n is 3 to 5, and the ratio of m to k is 2 to 3, where m, n and k are positive. What is the value of k divided by the sum of m and n?",
+   "options": [
+    "A. 6/19",
+    "B. 9/19",
+    "C. 16/9",
+    "D. 19/15",
+    "E. 9/16"
+   ],
+   "answer": "E",
+   "explanation": "Make m the same in both ratios. The least common multiple of 3 and 2 is 6, so take m = 6.\nm : n = 3 : 5 gives n = 10. m : k = 2 : 3 gives k = 9.\nk / (m + n) = 9 / (6 + 10) = 9/16.\nCheck: 6/10 = 3/5 and 6/9 = 2/3, both as given.",
+   "trap": "Adding the given ratios, 3/5 + 2/3 = 19/15, instead of building actual values for m, n and k (choice D).",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "common-term-ratios",
+    "ratio-chain"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 32 Hard",
+   "source_pages": [
+    201
+   ]
+  },
+  {
+   "id": "ARI-RAT-KMF-007",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "On a map, a segment 4.5 cm long stands for 7.5 km on the ground, and the scale is the same everywhere on the map.\nQuantity A: The ground distance, in km, that a 6.3 cm segment stands for\nQuantity B: 10.4",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "1. The scale is 7.5 km / 4.5 cm = 5/3 km per cm.\n2. A 6.3 cm segment stands for 6.3 * 5/3 = 10.5 km.\n3. 10.5 > 10.4, so Quantity A is greater.\nCheck by proportion: 7.5/4.5 = 10.5/6.3 since both equal 5/3.",
+   "trap": "Inverting the scale (4.5/7.5 = 0.6 cm per km) and multiplying by 6.3 gives 3.78, which would make Quantity B greater.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "proportion",
+    "scale-conversion"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 66 Hard",
+   "source_pages": [
+    429
+   ]
   }
  ]
 }

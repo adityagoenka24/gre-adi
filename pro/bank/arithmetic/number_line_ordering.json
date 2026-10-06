@@ -4,16 +4,23 @@
   "subtopic": "Number Line & Ordering",
   "subtopic_id": "ARI-NLO",
   "version": "1.0",
-  "total_questions": 46,
+  "total_questions": 57,
   "distribution": {
-   "easy": 10,
-   "medium": 16,
-   "hard": 15,
+   "easy": 11,
+   "medium": 22,
+   "hard": 19,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 17,
+   "multiple_answer": 13,
+   "numeric_entry": 13,
+   "quantitative_comparison": 14
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -971,6 +978,316 @@
    ],
    "origin": "sectional",
    "origin_set": "statistics_set2"
+  },
+  {
+   "id": "ARI-NLO-KMF-001",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Set G = {-24, 1, 6, 15} and set H = {10, 12, 25}. One number g is picked from G and one number h is picked from H, forming the quotient g/h. Add the largest quotient obtainable to the smallest quotient obtainable. What is that total?",
+   "options": [
+    "A. -9/5",
+    "B. -9/10",
+    "C. 27/50",
+    "D. 39/10",
+    "E. 77/50"
+   ],
+   "answer": "B",
+   "explanation": "There are 4*3 = 12 quotients available, but only the two extremes matter.\nLargest quotient: pair the biggest positive numerator with the smallest denominator, giving 15/10 = 3/2 = 1.5. Compare the rivals: 15/12 = 1.25, 15/25 = 0.6, 6/10 = 0.6, 1/10 = 0.1. All are smaller, so the largest is 3/2.\nSmallest quotient: -24 is the only negative member of G, and a negative divided by a positive stays negative, so the smallest quotient must use -24. Dividing a negative by a smaller positive number drives it further below zero, so pair -24 with the smallest member of H: -24/10 = -12/5 = -2.4. Compare: -24/12 = -2 and -24/25 = -0.96, both above -2.4.\nAdd the two extremes: 3/2 + (-12/5) = 15/10 - 24/10 = -9/10.\nCheck numerically: 1.5 + (-2.4) = -0.9, and -9/10 = -0.9.\nWrong routes behind the other options: -9/5 comes from pairing both extremes with the largest denominator, 15/25 + (-24/10) = 0.6 - 2.4 = -1.8; 39/10 comes from subtracting the extremes instead of adding them, 1.5 - (-2.4) = 3.9; 77/50 comes from overlooking -24 entirely, so the smallest quotient becomes 1/25 = 0.04 and the total becomes 1.54.",
+   "trap": "Assuming the largest denominator makes a negative quotient smallest gives -24/25 = -0.96 and a total of 1.5 - 0.96 = 0.54, option C; dividing a negative number by a larger positive number pulls it up toward zero, not down.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "extreme-values",
+    "negative-quotients",
+    "ordering"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    60
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-002",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Three marks are made on a number line. Reading from left to right they carry the coordinates u, v and w. The mark u sits to the left of the origin, while v and w both sit to the right of it. Select each relation below that has to hold.",
+   "options": [
+    "A. u*w < u*v",
+    "B. v + w > u",
+    "C. u + v = w",
+    "D. w - v < u",
+    "E. u*v < 0"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "E"
+   ],
+   "explanation": "From the ordering: u < 0 and 0 < v < w.\nA. Start from v < w and multiply both sides by the negative number u; the inequality reverses, giving u*v > u*w, that is u*w < u*v -- always true.\nB. v + w is a sum of two positives, hence positive, while u is negative, so v + w > u -- always true.\nC. Try u = -1, v = 2, w = 5: u + v = 1 but w = 5 -- fails, so not forced.\nD. w - v is positive because w > v, and u is negative, so w - v > u, the opposite of the claim -- false.\nE. u is negative and v is positive, so their product is negative -- always true.\nSelected: A, B and E.",
+   "trap": "Multiplying v < w through by u without reversing the inequality yields u*v < u*w and makes A look false, which is the standard sign slip when the multiplier is negative.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "inequalities",
+    "signed-products",
+    "number-line"
+   ],
+   "figure_description": "A horizontal number line. Moving from left to right the marks appear in this order: u, then 0, then v, then w. So u < 0 < v < w, and u, v, w are distinct.",
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    72
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-003",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Nine tick marks are shown on a number line and are equally spaced. Only the second and the sixth tick marks, counting from the left, carry labels, 0.35 and 0.83 respectively. What is the sum of the coordinates of the leftmost tick mark and the rightmost tick mark?",
+   "options": null,
+   "answer": "1.42",
+   "explanation": "The 2nd and 6th ticks are 4 gaps apart, so one gap = (0.83 - 0.35)/4 = 0.48/4 = 0.12.\nThe leftmost tick is one gap left of the 2nd tick: 0.35 - 0.12 = 0.23.\nThe rightmost (9th) tick is 3 gaps right of the 6th tick: 0.83 + 3*0.12 = 1.19.\nSum = 0.23 + 1.19 = 1.42.\nCheck: the nine ticks are 0.23, 0.35, 0.47, 0.59, 0.71, 0.83, 0.95, 1.07, 1.19, and 1.19 - 0.23 = 0.96 = 8 gaps of 0.12.",
+   "trap": "Counting the ticks from the 2nd to the 6th inclusive (5) instead of the gaps (4) gives a spacing of 0.48/5 = 0.096, which leads to 0.254 + 1.118 = 1.372. Another error is to add the two printed labels, 0.35 + 0.83 = 1.18, which answers a different question.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "equal-spacing",
+    "number-line"
+   ],
+   "svg": "<svg width='520' height='96' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 520 96' role='img' aria-label='Number line with nine equally spaced ticks; second tick labelled 0.35, sixth tick labelled 0.83'><g stroke='currentColor' stroke-width='2' fill='none'><line x1='10' y1='40' x2='510' y2='40'/><polyline points='20,34 10,40 20,46'/><polyline points='500,34 510,40 500,46'/><line x1='40' y1='31' x2='40' y2='49'/><line x1='95' y1='31' x2='95' y2='49'/><line x1='150' y1='31' x2='150' y2='49'/><line x1='205' y1='31' x2='205' y2='49'/><line x1='260' y1='31' x2='260' y2='49'/><line x1='315' y1='31' x2='315' y2='49'/><line x1='370' y1='31' x2='370' y2='49'/><line x1='425' y1='31' x2='425' y2='49'/><line x1='480' y1='31' x2='480' y2='49'/></g><g fill='currentColor' font-family='serif' font-size='16' text-anchor='middle'><text x='95' y='72'>0.35</text><text x='315' y='72'>0.83</text></g></svg>",
+   "figure_description": "A horizontal number line with arrowheads at both ends and nine equally spaced tick marks. Counting from the left, the 2nd tick is labelled 0.35 and the 6th tick is labelled 0.83. All other ticks are unlabelled.",
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    99
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-004",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Positive even integers p and q multiply to give t. A positive even integer s is smaller than t, and a further positive even integer r equals the product of s and t. Indicate all of the integers among q, r, s and t that must be greater than p.",
+   "options": [
+    "A. q",
+    "B. r",
+    "C. s",
+    "D. t"
+   ],
+   "answer": [
+    "B",
+    "D"
+   ],
+   "explanation": "Every positive even integer is at least 2.\nD (t): t = pq >= 2p > p, so t must be greater than p. TRUE.\nB (r): r = st >= 2t > t > p, so r must be greater than p. TRUE.\nA (q): nothing orders q against p (p = 4, q = 2 gives t = 8 and q < p). FALSE.\nC (s): only s < t is known. With p = 4, q = 2, t = 8, s = 2 is allowed and 2 < 4. FALSE.\nAnswer: B, D.",
+   "trap": "Assuming s must exceed p because s sits 'between' p and t in the given relations; s < t gives no lower bound (option C).",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "product-bound",
+    "ordering"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 25 Base",
+   "source_pages": [
+    158
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-005",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Point U (not shown) is located somewhere in the interval from -3 to -2 on a number line, and point W (not shown) somewhere in the interval from 5 to 6 on that same line. UW stands for the gap separating the two points, not a product of their coordinates.\nQuantity A: UW\nQuantity B: 8",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "D",
+   "explanation": "The distance UW = (coordinate of W) - (coordinate of U).\nSmallest possible gap: W just above 5 and U just below -2 gives a bit more than 5 - (-2) = 7.\nLargest possible gap: W just below 6 and U just above -3 gives a bit less than 6 - (-3) = 9.\nSo UW can be any value between 7 and 9, and 8 lies inside that range.\nExample: U = -2.5, W = 5.5 gives UW = 8 (equal). U = -2.9, W = 5.9 gives 8.8 (greater than 8). U = -2.1, W = 5.1 gives 7.2 (less than 8).\nThe relationship cannot be determined.\nCheck: all three examples respect the stated intervals.",
+   "trap": "Using the midpoints -2.5 and 5.5 only, getting a gap of exactly 8, and answering that the quantities are equal (choice C).",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "number-line",
+    "interval-bounds",
+    "distance"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 32 Hard",
+   "source_pages": [
+    200
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-006",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "A hiking trail runs 45.0 kilometers from a trailhead to a lake. A water station sits at the 30.0 kilometer mark, and a ranger is always within 1.2 kilometers of the water station (the ranger may be exactly 1.2 kilometers away). A hiker stops at a point on the trail that is more than 2 kilometers but less than 3 kilometers short of the lake. Select every distance, in kilometers along the trail, that could separate the ranger from the hiker.",
+   "options": [
+    "A. 10.4",
+    "B. 10.8",
+    "C. 11.5",
+    "D. 12.9",
+    "E. 13.7",
+    "F. 14.2",
+    "G. 14.9"
+   ],
+   "answer": [
+    "C",
+    "D",
+    "E"
+   ],
+   "explanation": "Measure positions from the trailhead. The ranger is at r with 28.8 <= r <= 31.2. The hiker is at h with 42 < h < 43 (the lake is at 45, so 2 to 3 km short of it).\nThe gap is d = h - r. Smallest: h just above 42 and r at most 31.2, so d is just above 10.8 (never equal to 10.8, because h > 42 strictly).\nLargest: h just below 43 and r at least 28.8, so d is just below 14.2 (never equal to 14.2).\nSo 10.8 < d < 14.2 and every value strictly between is reachable.\nA 10.4: false (below 10.8). B 10.8: false (excluded endpoint). C 11.5: true. D 12.9: true. E 13.7: true. F 14.2: false (excluded endpoint). G 14.9: false (above 14.2).\nCheck C: r = 31.0, h = 42.5 gives 11.5.",
+   "trap": "Treating the endpoints as reachable because the ranger's bound is inclusive, so choosing 10.8 and 14.2 (options B and F); the hiker's strict inequalities make both endpoints unattainable.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "interval-arithmetic",
+    "strict-inequality"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 34 Hard",
+   "source_pages": [
+    218
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-007",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "The numbers p and q satisfy -1 < p < q < 0. Which of the following must be true? Select all that apply.",
+   "options": [
+    "A. 3p < q",
+    "B. pq < q",
+    "C. p^2 < q",
+    "D. p/2 < q",
+    "E. 1/p < q",
+    "F. q/p < 1"
+   ],
+   "answer": [
+    "A",
+    "E",
+    "F"
+   ],
+   "explanation": "Pick p = -0.8, q = -0.1 and p = -0.4, q = -0.3 to test, and also reason generally.\nA. p is negative, so 3p < p, and p < q. So 3p < q always -> true.\nB. pq is positive (two negatives) while q is negative, so pq > q -> false.\nC. p^2 is positive and q is negative, so p^2 > q -> false.\nD. First pair: p/2 = -0.4 < -0.1 true. Second pair: p/2 = -0.2 > -0.3 false. Not forced -> false.\nE. p in (-1, 0) gives 1/p < -1, and q > p > -1, so 1/p < -1 < q -> true.\nF. q/p is positive, and |q| < |p| because q is closer to zero, so 0 < q/p < 1 -> true.\nCheck with p = -0.8, q = -0.1: 3p = -2.4 < q, 1/p = -1.25 < q, q/p = 0.125 < 1.",
+   "trap": "Forgetting that the product of two negatives is positive leads to choosing B (pq < q). Forgetting that a square is positive leads to choosing C (p^2 < q). Testing only one pair such as p = -0.8, q = -0.1 makes p/2 < q look always true, which wrongly adds D; the pair p = -0.4, q = -0.3 breaks it.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "negative-numbers",
+    "ordering"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 36 Hard",
+   "source_pages": [
+    226
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-008",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "w equals three-fourths of z, and z is negative.\nQuantity A: w\nQuantity B: z",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "1. w = (3/4)z.\n2. For a negative z, multiplying by 3/4 moves the number toward 0, so w is to the right of z on the number line.\n3. Example: z = -8 gives w = -6, and -6 > -8. Example: z = -1 gives w = -0.75 > -1.\n4. In general w - z = (3/4)z - z = -z/4, which is positive when z < 0.\nSo Quantity A is greater.",
+   "trap": "Assuming that a fraction of a number is always smaller than the number itself (true only for positive numbers) leads to choice B.",
+   "estimated_time_seconds": 45,
+   "tags": [
+    "negative-numbers",
+    "fraction-of-negative"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 65 Base",
+   "source_pages": [
+    425
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-009",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "In the decimals below, the digits inside brackets repeat forever, so 0.(41) means 0.414141... . Let X = 0.(417) = 0.417417417... . Select every decimal that is less than X.",
+   "options": [
+    "A. 0.(41)",
+    "B. 0.4(17)",
+    "C. 0.(4171)",
+    "D. 0.(4174)",
+    "E. 0.(42)",
+    "F. 0.41(74)"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "1. Write out X = 0.41741741741... and compare digit by digit with each option; the first digit that differs decides.\n2. A: 0.41414141... vs 0.41741741...: digits agree through 0.41, then 4 < 7. A is less. TRUE.\n3. B: 0.4171717... vs 0.4174174...: agree through 0.417, then 1 < 4. B is less. TRUE.\n4. C: 0.41714171... vs 0.41741741...: agree through 0.417, then 1 < 4. C is less. TRUE.\n5. D: 0.41744174... vs 0.41741741...: agree through 0.4174, then 4 > 1. D is greater. FALSE.\n6. E: 0.4242... vs 0.4174...: second decimal digit 2 > 1. E is greater. FALSE.\n7. F: 0.4174747... vs 0.4174174...: agree through 0.4174, then 7 > 1. F is greater. FALSE.\nCheck: as fractions, X = 417/999 = 0.417417..., and D = 4174/9999 = 0.41744..., which is larger than X.",
+   "trap": "Stopping the comparison after three decimal places makes B, C, D and F (all beginning 0.417) look equal to X. The fourth and fifth decimal digits decide here, so students either skip B and C or wrongly select D and F.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "repeating-decimals",
+    "digit-comparison"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 68 Hard",
+   "source_pages": [
+    447
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-010",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "s and t are numbers with -1 < s < 0 < t < 1.\nQuantity A: s/t\nQuantity B: s*t",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. s is negative and t is positive, so both s/t and s*t are negative.\n2. Compare their sizes: |s/t| = |s|/t is greater than |s| because t < 1 makes the denominator a fraction, while |s*t| = |s|*t is less than |s| because t < 1.\n3. So |s/t| > |s| > |s*t|, and among negative numbers the one with the larger size is smaller: s/t < s*t.\n4. Quantity B is greater.\nCheck with s = -0.5, t = 0.5: s/t = -1 and s*t = -0.25, and -0.25 > -1.",
+   "trap": "Comparing sizes and forgetting both quantities are negative (so the larger size is the smaller number) makes Quantity A look greater, choice A.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "negative-numbers",
+    "fractions-between-0-and-1"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 71 Base",
+   "source_pages": [
+    462
+   ]
+  },
+  {
+   "id": "ARI-NLO-KMF-011",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Points J, K and L sit on a number line with J strictly between -9 and -8, K strictly between -5 and -4, and L strictly between 4 and 5. Let d equal the distance from J to K minus the distance from K to L.\nWhich of the following are possible values of d? Select all that apply.",
+   "options": [
+    "A. -8",
+    "B. -7",
+    "C. -6",
+    "D. -4",
+    "E. -3",
+    "F. 4"
+   ],
+   "answer": [
+    "C",
+    "D"
+   ],
+   "explanation": "1. Distance from J to K is K - J. Since K is in (-5, -4) and -J is in (8, 9), K - J is in (3, 5).\n2. Distance from K to L is L - K. Since L is in (4, 5) and -K is in (4, 5), L - K is in (8, 10).\n3. So d = (K - J) - (L - K) lies between 3 - 10 = -7 and 5 - 8 = -3. Every endpoint is excluded, so d is strictly between -7 and -3, and every value in that open interval can occur.\n4. -6 and -4 are inside (-7, -3): TRUE (C, D).\n5. -7 and -3 are the boundary values and would need a point sitting exactly at an endpoint: FALSE (B, E). -8 and 4 are outside the interval: FALSE (A, F).\nCheck: J = -8.5, K = -4.5, L = 4.5 gives distances 4 and 9, so d = -5; sliding K or L changes d continuously, so -6 and -4 are both reachable.",
+   "trap": "Allowing a point to sit exactly at an endpoint treats the open range (-7, -3) as closed, so also choosing B and E (the values -7 and -3).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "number-line",
+    "distance",
+    "open-interval"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 74 Hard",
+   "source_pages": [
+    481
+   ]
   }
  ]
 }

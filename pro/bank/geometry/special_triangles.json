@@ -4,16 +4,23 @@
   "subtopic": "Special Triangles (30-60-90, 45-45-90)",
   "subtopic_id": "GEO-SPT",
   "version": "1.0",
-  "total_questions": 61,
+  "total_questions": 64,
   "distribution": {
    "easy": 15,
-   "medium": 24,
-   "hard": 15,
+   "medium": 26,
+   "hard": 16,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 32,
+   "multiple_answer": 5,
+   "numeric_entry": 11,
+   "quantitative_comparison": 16
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1314,6 +1321,85 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "GEO-SPT-KMF-001",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "A circle with center P has radius r. Points X and Y lie on the circle, and the measure of angle XPY is 90 degrees.\nQuantity A: The perimeter of triangle XPY\nQuantity B: 3.4r",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "PX and PY are both radii, so PX = PY = r.\nAngle XPY is 90 degrees, so triangle XPY is an isosceles right triangle with legs r and r.\nIn a 45-45-90 triangle the hypotenuse is sqrt(2) times a leg, so XY = r * sqrt(2).\nPerimeter = r + r + r * sqrt(2) = (2 + sqrt(2)) * r.\nNow compare (2 + sqrt(2)) with 3.4, which means comparing sqrt(2) with 1.4.\nsqrt(2) = 1.41421..., and 1.4^2 = 1.96 while (sqrt(2))^2 = 2, so sqrt(2) > 1.4.\nTherefore 2 + sqrt(2) = 3.41421... > 3.4.\nSince r is a positive length, multiplying both sides by r preserves the inequality, so Quantity A > Quantity B.\nCheck numerically with r = 10: perimeter = 34.1421..., and Quantity B = 34. Quantity A is greater.\nThe comparison does not depend on r, so the answer is not D.",
+   "trap": "Rounding sqrt(2) to exactly 1.4, getting a perimeter of 3.4r, and concluding the two quantities are equal, which produces option C.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "isosceles-right-triangle",
+    "radical-estimation"
+   ],
+   "figure_description": "A circle of radius r with center P. Two radii PX and PY are drawn to points X and Y on the circle, and the angle at P between them is a right angle. Segment XY is drawn, closing triangle XPY.",
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    59
+   ]
+  },
+  {
+   "id": "GEO-SPT-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "The sum of the lengths of two adjacent sides of a square is 24sqrt(2). What is the length of a diagonal of the square?",
+   "options": [
+    "A. 12",
+    "B. 12sqrt(2)",
+    "C. 24",
+    "D. 24sqrt(2)",
+    "E. 48"
+   ],
+   "answer": "C",
+   "explanation": "Let the side be s. Two adjacent sides sum to 2s = 24sqrt(2), so s = 12sqrt(2).\nThe diagonal of a square is s*sqrt(2) = 12sqrt(2) * sqrt(2) = 12 * 2 = 24.\nCheck: diagonal / sum of two sides = 24 / (24sqrt(2)) = 1/sqrt(2), which matches s*sqrt(2) / (2s) = sqrt(2)/2.",
+   "trap": "Dividing the side by sqrt(2) instead of multiplying gives 12 (choice A); using 24sqrt(2), the sum of two sides, as the diagonal gives choice D; multiplying the sum by sqrt(2) gives 48 (choice E).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "square-diagonal",
+    "45-45-90"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    326
+   ]
+  },
+  {
+   "id": "GEO-SPT-KMF-003",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "In triangle ABC, angle A is a right angle, AB = 15 and AC = 35. Point D lies on side AC with CD = 20.\nQuantity A: The measure of angle BDC, in degrees\nQuantity B: Three times the measure of angle ABD, in degrees",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "1. AD = AC - CD = 35 - 20 = 15, so AD = AB = 15.\n2. Triangle ABD has a right angle at A and two equal legs, so it is a 45-45-90 triangle: angle ABD = 45 and angle ADB = 45.\n3. Angle BDC and angle ADB lie along the straight line AC, so angle BDC = 180 - 45 = 135.\n4. Quantity B = 3 * 45 = 135.\n5. Both quantities are 135, so they are equal.\nCheck: the angles of triangle ABD are 90 + 45 + 45 = 180.",
+   "trap": "Reading angle ADB (45 degrees, inside the small triangle) as angle BDC makes Quantity A look like 45 against 135 for Quantity B, which points to choice B.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "isosceles-right-triangle",
+    "supplementary-angles"
+   ],
+   "svg": "<svg width='260' height='160' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 260 160' role='img' aria-label='Right triangle ABC with point D on side AC'><g stroke='currentColor' stroke-width='2' fill='none'><polygon points='20,130 20,40 230,130'/><line x1='20' y1='40' x2='110' y2='130'/><polyline points='20,120 30,120 30,130'/></g><g font-size='13' fill='currentColor' font-family='sans-serif'><text x='8' y='38'>B</text><text x='6' y='146'>A</text><text x='104' y='148'>D</text><text x='234' y='146'>C</text><text x='2' y='88'>15</text><text x='160' y='148'>20</text></g></svg>",
+   "figure_description": "Right triangle ABC with the right angle at A; B is directly above A and C is to the right of A along the base. D is a point on base AC with AD = 15 and DC = 20. Segment BD is drawn.",
+   "origin": "kmf1804",
+   "origin_set": "Section 59 Base",
+   "source_pages": [
+    386
+   ]
   }
  ]
 }

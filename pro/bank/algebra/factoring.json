@@ -4,16 +4,23 @@
   "subtopic": "Factoring",
   "subtopic_id": "ALG-FAC",
   "version": "1.0",
-  "total_questions": 53,
+  "total_questions": 59,
   "distribution": {
-   "easy": 13,
-   "medium": 22,
-   "hard": 13,
+   "easy": 14,
+   "medium": 26,
+   "hard": 14,
    "extreme_hard": 5
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 29,
+   "multiple_answer": 6,
+   "numeric_entry": 13,
+   "quantitative_comparison": 11
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1130,6 +1137,144 @@
    ],
    "origin": "sectional",
    "origin_set": "algebra_set9"
+  },
+  {
+   "id": "ALG-FAC-KMF-001",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "For real numbers w, x, y and z it is known that (3w + x)(y - z) = 0, and that y is not equal to z. Which of the following must equal x?",
+   "options": [
+    "A. 3w",
+    "B. w/3",
+    "C. -w/3",
+    "D. z - y",
+    "E. -3w"
+   ],
+   "answer": "E",
+   "explanation": "A product of two real factors is 0 only when at least one factor is 0.\nThe second factor is y - z. Since y is not equal to z, y - z is not 0.\nTherefore the first factor must be 0: 3w + x = 0.\nSolve for x: x = -3w.\nCheck with numbers: let w = 2, so x = -6. Then 3w + x = 6 - 6 = 0 and the product is 0 for any y not equal to z. Correct.",
+   "trap": "Solving 3w + x = 0 as x = 3w drops the sign when moving the term across the equals sign, producing choice A.",
+   "estimated_time_seconds": 55,
+   "tags": [
+    "zero-product-property",
+    "solving-for-a-variable"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    70
+   ]
+  },
+  {
+   "id": "ALG-FAC-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Which of the following is a factor of the expression (18 - 13x + 7x^2) - 6(5 - 2x + x^2), whatever the value of x?",
+   "options": [
+    "A. x - 12",
+    "B. x + 12",
+    "C. x - 3",
+    "D. x + 4",
+    "E. x - 4"
+   ],
+   "answer": "E",
+   "explanation": "Distribute the 6: 18 - 13x + 7x^2 - 30 + 12x - 6x^2.\nCombine like terms: x^2 - x - 12.\nFactor: (x - 4)(x + 3).\nOnly x - 4 appears among the options (x + 3 is not listed). Check: at x = 4, 16 - 4 - 12 = 0.\nOther options: x = 12 gives 120; x = 3 gives -6; x = -4 gives 8; x = -12 gives 144, none zero.",
+   "trap": "Treating the constant -12 as a root gives x - 12 (option A; flipping the sign of the root 4 gives x + 4 (option D.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "simplify-then-factor",
+    "distribution"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 23 Base",
+   "source_pages": [
+    144
+   ]
+  },
+  {
+   "id": "ALG-FAC-KMF-003",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Let p be a positive number and define q = 5p^2 - 45. Which of the following is equal to q/(p+3)?",
+   "options": [
+    "A. 5(p+3)",
+    "B. 5(p-3)",
+    "C. 5p-3",
+    "D. 5p^2-15",
+    "E. 5(p^2-9)"
+   ],
+   "answer": "B",
+   "explanation": "Factor out 5: q = 5(p^2 - 9).\nDifference of squares: p^2 - 9 = (p - 3)(p + 3), so q = 5(p - 3)(p + 3).\nDivide by (p + 3), which is nonzero because p is positive: q/(p + 3) = 5(p - 3).\nCheck with p = 5: q = 125 - 45 = 80, and 80/8 = 10, while 5(5 - 3) = 10.",
+   "trap": "Slipping on the sign when factoring the difference of squares and keeping the (p + 3) factor, 5(p + 3) (choice A); or dividing only the constant term by 3, giving 5p^2 - 15 (choice D).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "difference-of-squares",
+    "cancelling-factors"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 47 Base",
+   "source_pages": [
+    303
+   ]
+  },
+  {
+   "id": "ALG-FAC-KMF-004",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "What is the sum of all of the distinct real numbers x that satisfy (x - 2)^3 (x + 6)(x^2 - 5)(x^2 + 3) = 0?",
+   "options": null,
+   "answer": "-4",
+   "explanation": "A product is 0 when one of its factors is 0.\n(x - 2)^3 = 0 gives x = 2 (a single value, even though it is cubed).\nx + 6 = 0 gives x = -6.\nx^2 - 5 = 0 gives x = sqrt(5) and x = -sqrt(5).\nx^2 + 3 = 0 has no real solution, since x^2 + 3 >= 3.\nDistinct real solutions: 2, -6, sqrt(5), -sqrt(5).\nSum = 2 + (-6) + sqrt(5) - sqrt(5) = -4.\nCheck: counting 2 three times would give 6 - 6 = 0, which is the mistake to avoid.",
+   "trap": "Counting x = 2 three times because of the exponent 3, which gives 3*2 - 6 + 0 = 0 instead of -4; or hunting for real roots of x^2 + 3 = 0.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "distinct-roots",
+    "repeated-factor"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 52 Hard",
+   "source_pages": [
+    339
+   ]
+  },
+  {
+   "id": "ALG-FAC-KMF-005",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "How many ordered pairs (x, y) of integers satisfy x^2 - y^2 = 21?",
+   "options": null,
+   "answer": "8",
+   "explanation": "1. Factor: (x - y)(x + y) = 21.\n2. x - y and x + y are integers whose product is 21, so x - y = d where d is one of the divisors of 21, positive or negative: 1, 3, 7, 21, -1, -3, -7, -21.\n3. Then x + y = 21/d. Both factors are odd, so x = (d + 21/d)/2 and y = (21/d - d)/2 are integers every time.\n4. The eight values of d give: d = 1: (11, 10); d = 3: (5, 2); d = 7: (5, -2); d = 21: (11, -10); d = -1: (-11, -10); d = -3: (-5, -2); d = -7: (-5, 2); d = -21: (-11, 10).\n5. These are 8 different ordered pairs.\nCheck: 11^2 - 10^2 = 121 - 100 = 21 and 5^2 - (-2)^2 = 25 - 4 = 21.",
+   "trap": "Counting only the positive pairs, (11, 10) and (5, 2), and ignoring negative values of x and y gives 2.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "difference-of-squares",
+    "integer-solutions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 67 Base",
+   "source_pages": [
+    437
+   ]
+  },
+  {
+   "id": "ALG-FAC-KMF-006",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "p and q are positive numbers with p - q = 3, and (p^4 - q^4)/(p^2 + q^2) = 45. What is the value of p + q?",
+   "options": null,
+   "answer": "15",
+   "explanation": "1. Factor the numerator as a difference of squares: p^4 - q^4 = (p^2 - q^2)(p^2 + q^2).\n2. The factor p^2 + q^2 is positive, so it cancels and the quotient equals p^2 - q^2 = 45.\n3. Factor again: p^2 - q^2 = (p - q)(p + q) = 3(p + q) = 45, so p + q = 15.\nCheck: p - q = 3 and p + q = 15 give p = 9, q = 6; then (6561 - 1296)/(81 + 36) = 5265/117 = 45.",
+   "trap": "Wrongly cancelling to get p^2 + q^2 = 45 and then using p - q = 3 gives pq = 18 and p + q = sqrt(45 + 36) = 9, not 15.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "difference-of-squares",
+    "cancel-common-factor"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 70 Hard",
+   "source_pages": [
+    456
+   ]
   }
  ]
 }

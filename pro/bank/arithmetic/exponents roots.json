@@ -4,16 +4,23 @@
   "subtopic": "Exponents & Roots",
   "subtopic_id": "ARI-EXP",
   "version": "1.0",
-  "total_questions": 94,
+  "total_questions": 128,
   "distribution": {
-   "easy": 20,
-   "medium": 35,
-   "hard": 29,
+   "easy": 21,
+   "medium": 60,
+   "hard": 37,
    "extreme_hard": 10
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 55,
+   "multiple_answer": 17,
+   "numeric_entry": 26,
+   "quantitative_comparison": 30
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1976,6 +1983,872 @@
    ],
    "origin": "sectional",
    "origin_set": "arithmetic_operations_set4"
+  },
+  {
+   "id": "ARI-EXP-KMF-001",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Quantity A: (9^2 * 9^-6) / 9^-1\nQuantity B: 1 / 3^6",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Quantity A: combine exponents with base 9: 9^(2 + (-6) - (-1)) = 9^(2 - 6 + 1) = 9^-3.\nRewrite base 9 as 3^2: 9^-3 = (3^2)^-3 = 3^-6 = 1/3^6.\nQuantity B is also 1/3^6.\nThe two quantities are equal.",
+   "trap": "Students mishandle the sign when dividing by 9^-1 (subtracting -1 as if it were +1), getting 9^-5 = 1/3^10, and conclude Quantity B is greater.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "exponent-rules",
+    "common-base"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    9
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "How many of the integers from 100 to 2,000, inclusive, are squares of odd integers?",
+   "options": [
+    "A. 16",
+    "B. 17",
+    "C. 19",
+    "D. 22",
+    "E. 33"
+   ],
+   "answer": "B",
+   "explanation": "An integer in the list is n^2 for some odd integer n, and n^2 is the same for n and -n, so count the positive odd n with 100 <= n^2 <= 2000.\nLower end: 9^2 = 81, which is below 100; 10^2 = 100 is in range but 10 is even; the smallest odd n that works is n = 11, since 11^2 = 121.\nUpper end: 43^2 = 1849, which is at most 2000; 45^2 = 2025, which is above 2000. So the largest odd n that works is n = 43.\nThe odd integers from 11 to 43 are 11, 13, 15, ..., 43. Count them: (43 - 11)/2 + 1 = 32/2 + 1 = 17.\nSo 17 of the integers from 100 to 2,000 are squares of odd integers.\nCheck the ends: 11^2 = 121 >= 100 and 43^2 = 1849 <= 2000, both inside the stated range.",
+   "trap": "Counting every integer from 11 to 43 rather than only the odd ones gives 43 - 11 + 1 = 33, option E; using (43 - 11)/2 and forgetting to add 1 for an inclusive count gives 16, option A.",
+   "estimated_time_seconds": 85,
+   "tags": [
+    "perfect-squares",
+    "odd-integers",
+    "counting-in-a-range"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    11
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-003",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "x is a nonzero integer.\nQuantity A: (-1)^(x+2)\nQuantity B: (-1)^(-x)",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "(-1)^(x+2) = (-1)^x * (-1)^2 = (-1)^x * 1 = (-1)^x.\n(-1)^(-x) = 1 / (-1)^x. Since (-1)^x is always 1 or -1, its reciprocal equals itself.\nSo (-1)^(-x) = (-1)^x as well.\nBoth quantities equal (-1)^x, so they are always equal, regardless of the value of x.",
+   "trap": "Students treat negative exponents as automatically flipping the sign of the result, concluding Quantity B is negative of Quantity A, without checking that 1/(-1) = -1 and 1/1 = 1 (self-reciprocal).",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "negative-exponents",
+    "parity"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    19
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-004",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "If n is an integer, what is the least possible value of 5^n + (5)(5^-n)?",
+   "options": [
+    "A. 2",
+    "B. 4",
+    "C. 5",
+    "D. 6",
+    "E. 7"
+   ],
+   "answer": "D",
+   "explanation": "5^n + 5*5^-n = 5^n + 5^(1-n).\nBy AM-GM the continuous minimum would occur at n = 0.5, but n must be an integer.\nAt n = 0: 1 + 5 = 6. At n = 1: 5 + 1 = 6. At n = -1: 0.2 + 25 = 25.2.\nThe least possible integer value is 6.",
+   "trap": "Students apply AM-GM directly and report 2*sqrt(5) (approximately 4.47, rounding to option B, 4) without checking that n must be an integer, so that continuous minimum is not actually achievable.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "exponents",
+    "minimization",
+    "integer-constraint"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    22
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-005",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Quantity A: 2401^(1/4)\nQuantity B: 7*sqrt(7)",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "2401 = 7^4, so the fourth root of 2401 = 7^(4/4) = 7.\n7*sqrt(7) = 7^1 * 7^(1/2) = 7^(3/2), which is approximately 18.52.\nSince 18.52 > 7, Quantity B is greater.",
+   "trap": "Students compute the fourth root of 2401 incorrectly (e.g. mistaking it for the square root, getting approximately 49) or fail to convert 7*sqrt(7) into exponent form to compare directly.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "radicals",
+    "exponent-comparison"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "",
+   "source_pages": [
+    25
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-006",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Suppose -1 < w < 0. Consider the three values w^(1/3), w^(1/5), and 1/(w^(1/3)), where w^(1/3) is the real cube root of w and w^(1/5) is the real fifth root of w.\n\nWhich of the following statements must be true?\n\nIndicate all such statements.",
+   "options": [
+    "A. 1/(w^(1/3)) is the least of the three values.",
+    "B. w^(1/3) < w^(1/5)",
+    "C. w^(1/5) lies between the other two values.",
+    "D. w^(1/3) < -1",
+    "E. All three of the values are negative."
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "Test with w = -1/8, which satisfies -1 < w < 0.\nw^(1/3) = -1/2 = -0.5.\nw^(1/5) = -(1/8)^(1/5) = -0.660 approximately.\n1/(w^(1/3)) = 1/(-0.5) = -2.\nOrder from least to greatest: -2 < -0.660 < -0.5, that is 1/(w^(1/3)) < w^(1/5) < w^(1/3).\nConfirm with a second value, w = -1/2: w^(1/3) = -0.794, w^(1/5) = -0.871, 1/(w^(1/3)) = -1.260. Same order.\nStatement A: 1/(w^(1/3)) is least in both tests. In general, for -1 < w < 0 the cube root lies strictly between -1 and 0, so its reciprocal is below -1 and is therefore smaller than either root. True.\nStatement B: w^(1/3) = -0.5 is greater than w^(1/5) = -0.660, so w^(1/3) < w^(1/5) is false.\nStatement C: w^(1/5) sits between 1/(w^(1/3)) and w^(1/3) in both tests. Since an odd root of a number between -1 and 0 moves toward -1 as the index grows, the fifth root is below the cube root, and both are above -1 while the reciprocal is below -1. True.\nStatement D: w^(1/3) = -0.5, which is greater than -1, so false.\nStatement E: an odd root of a negative number is negative, and the reciprocal of a negative number is negative, so all three are negative. True.\nCheck: A, C, and E hold; B and D fail on the tested value.",
+   "trap": "Assuming a larger root index always produces a larger value selects B.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "odd-roots",
+    "negative-fractions",
+    "ordering"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 5 Base",
+   "source_pages": [
+    31
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-007",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Which of the following is equal to 3^(-5) - 3^(-6)?",
+   "options": [
+    "A. 2 * 3^(-6)",
+    "B. 2 * 3^(-11)",
+    "C. 3^(-6)",
+    "D. 3^(-11)",
+    "E. 3^(-1)"
+   ],
+   "answer": "A",
+   "explanation": "Factor out the smaller power, 3^(-6).\n3^(-5) = 3 * 3^(-6).\nSo 3^(-5) - 3^(-6) = 3*3^(-6) - 1*3^(-6) = (3 - 1)*3^(-6) = 2 * 3^(-6).\nCheck numerically: 3^(-5) = 1/243 and 3^(-6) = 1/729.\n1/243 - 1/729 = 3/729 - 1/729 = 2/729 = 2 * 3^(-6).",
+   "trap": "Factoring out 3^(-6) but dropping the resulting factor of 2 gives 3^(-6), option C.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "negative-exponents",
+    "factoring"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 6 Hard",
+   "source_pages": [
+    35
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-008",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "List R: (-2/3)^2, (-2/3)^(-2), (-1/4)^2, (-1/4)^(-2)\n\nWhat is the range of the numbers in list R?",
+   "options": [
+    "A. 2 3/16",
+    "B. 15 5/9",
+    "C. 16 1/16",
+    "D. 16",
+    "E. 15 15/16"
+   ],
+   "answer": "E",
+   "explanation": "Evaluate each entry.\n(-2/3)^2 = 4/9, since squaring removes the negative sign.\n(-2/3)^(-2) = 1/((-2/3)^2) = 1/(4/9) = 9/4.\n(-1/4)^2 = 1/16.\n(-1/4)^(-2) = 1/((-1/4)^2) = 1/(1/16) = 16.\nThe four values are 4/9 = 0.444, 9/4 = 2.25, 1/16 = 0.0625, and 16.\nLargest = 16. Smallest = 1/16.\nRange = 16 - 1/16 = 256/16 - 1/16 = 255/16 = 15 15/16.\nCheck: 15 15/16 = 15.9375, and 16 - 0.0625 = 15.9375.",
+   "trap": "Taking 9/4 as the largest value in the list gives 9/4 - 1/16 = 2 3/16, option A.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "negative-exponents",
+    "range",
+    "fractions"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 8 Hard",
+   "source_pages": [
+    47
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-009",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Quantity A: The cube root of (8 + 343)\nQuantity B: 8",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Simplify inside the radical first, because a cube root does not distribute across addition.\n8 + 343 = 351.\nSo Quantity A is the cube root of 351.\nCompare 351 with 8^3 to settle the comparison without a calculator.\n8^3 = 8 * 8 * 8 = 512.\nSince 351 < 512, the cube root of 351 is less than 8.\nFor a closer look, 7^3 = 343, so the cube root of 351 is a little above 7; it is about 7.05.\nQuantity A is about 7.05 and Quantity B is 8, so Quantity B is greater.\nBoth quantities are fixed numbers with no variables, so the answer cannot be D.",
+   "trap": "Splitting the cube root across the sum as cube root of 8 plus cube root of 343 = 2 + 7 = 9, and concluding that Quantity A is greater, which produces option A.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "cube-roots",
+    "radical-of-a-sum"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 10 Hard",
+   "source_pages": [
+    62
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-010",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The number 27^80 is divided by 3, and the result is then written as a power of 3. What is that exponent?",
+   "options": null,
+   "answer": "239",
+   "explanation": "Express the base as a power of 3: 27 = 3^3.\nSo 27^80 = (3^3)^80 = 3^(3*80) = 3^240.\nDividing by 3 subtracts 1 from the exponent: 3^240 / 3^1 = 3^(240 - 1) = 3^239.\nThe exponent is 239.\nCheck with small numbers: 27^2 = 3^6 = 729, and 729/3 = 243 = 3^5 = 3^(6-1). The pattern holds. Correct.",
+   "trap": "Dividing the exponent by 3 instead of subtracting 1 gives 3^80 and an answer of 80, which confuses dividing the number by 3 with dividing its exponent.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "power-of-a-power",
+    "exponent-rules"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 12 Hard",
+   "source_pages": [
+    75
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-011",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Indicate every expression below that evaluates to an odd integer.",
+   "options": [
+    "A. sqrt(1/((2^-6)*(3^-2)))",
+    "B. sqrt(1/((5^-2)*(7^-2)))",
+    "C. 1/((3^-2)*(7^-1))",
+    "D. 1/((5^-1) + (3^-2))",
+    "E. sqrt(1/((2^-4)*(5^-4)))"
+   ],
+   "answer": [
+    "B",
+    "C"
+   ],
+   "explanation": "A reciprocal of a product of negative powers turns the exponents positive: 1/(a^-m * b^-n) = a^m * b^n.\nA. 1/((2^-6)*(3^-2)) = 2^6 * 3^2 = 64 * 9 = 576, and sqrt(576) = 24, an even integer -- false.\nB. 1/((5^-2)*(7^-2)) = 5^2 * 7^2 = 25 * 49 = 1225, and sqrt(1225) = 35, an odd integer -- true.\nC. 1/((3^-2)*(7^-1)) = 3^2 * 7 = 9 * 7 = 63, an odd integer -- true.\nD. 5^-1 + 3^-2 = 1/5 + 1/9 = 9/45 + 5/45 = 14/45, and 1/(14/45) = 45/14, which is not an integer at all -- false.\nE. 1/((2^-4)*(5^-4)) = 2^4 * 5^4 = 16 * 625 = 10000, and sqrt(10000) = 100, an even integer -- false.\nSelected: B and C.",
+   "trap": "Treating a sum of reciprocals the way a product is treated and reading D as 5^1 * 3^2 = 45 makes that choice look like an odd integer, but reciprocals may not be distributed across addition.",
+   "estimated_time_seconds": 130,
+   "tags": [
+    "negative-exponents",
+    "square-roots",
+    "parity"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 13 Base",
+   "source_pages": [
+    82
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-012",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "The difference 7^(-3) - 7^(-4) can be written in the form c * 7^(-4) for a constant c. Determine c.",
+   "options": null,
+   "answer": "6",
+   "explanation": "Write the first term using the smaller exponent: 7^(-3) = 7 * 7^(-4).\nThen 7^(-3) - 7^(-4) = 7 * 7^(-4) - 1 * 7^(-4) = (7 - 1) * 7^(-4) = 6 * 7^(-4).\nSo c = 6.\nCheck: 7^(-3) = 1/343 and 7^(-4) = 1/2401; the difference is 7/2401 - 1/2401 = 6/2401 = 6 * 7^(-4).",
+   "trap": "Remembering that the analogous base-2 difference collapses to a single power (coefficient 1) and answering 1; or subtracting the exponents to get 7^(-1) and answering 7.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "factoring-powers",
+    "negative-exponents"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    98
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Exactly one of the values below makes sqrt(50/(x - 1)) a rational number. Which value of x is it?",
+   "options": [
+    "A. 4",
+    "B. 6",
+    "C. 8",
+    "D. 10",
+    "E. 19"
+   ],
+   "answer": "E",
+   "explanation": "A square root is rational only when the fraction under it, in lowest terms, has a perfect-square numerator and a perfect-square denominator.\nx = 4: 50/3. Neither 50 nor 3 is a perfect square. Irrational.\nx = 6: 50/5 = 10. Not a perfect square. Irrational.\nx = 8: 50/7. Irrational.\nx = 10: 50/9 = 50 over 9. The denominator is a square but 50 is not, so sqrt(50)/3 = 5*sqrt(2)/3. Irrational.\nx = 19: 50/18 = 25/9. Both are perfect squares, so the root is 5/3. Rational.\nCheck: sqrt(25/9) = 5/3.",
+   "trap": "Hunting for an x that makes 50/(x - 1) a whole number picks x = 6 (50/5 = 10, choice B) or similar, but sqrt(10) is irrational; an integer under the root is only enough if it is a perfect square.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "rational-roots",
+    "perfect-squares"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 20 Hard",
+   "source_pages": [
+    123
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-014",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Four numbers are formed from 0.4: its square, 0.4 itself, its square root, and its cube root. Which choice lists them from least to greatest?",
+   "options": [
+    "A. (0.4)^2, 0.4, 0.4^(1/3), sqrt(0.4)",
+    "B. (0.4)^2, 0.4, sqrt(0.4), 0.4^(1/3)",
+    "C. 0.4, (0.4)^2, sqrt(0.4), 0.4^(1/3)",
+    "D. 0.4^(1/3), sqrt(0.4), 0.4, (0.4)^2",
+    "E. (0.4)^2, sqrt(0.4), 0.4, 0.4^(1/3)"
+   ],
+   "answer": "B",
+   "explanation": "For a number between 0 and 1, raising to a power above 1 makes it smaller, and taking a root makes it larger; a higher root gives a larger result.\n(0.4)^2 = 0.16.\n0.4 = 0.4.\nsqrt(0.4) = about 0.632 (since 0.632^2 = 0.4).\n0.4^(1/3) = about 0.737 (since 0.737^3 = 0.4).\nLeast to greatest: 0.16, 0.4, 0.632, 0.737, which is (0.4)^2, 0.4, sqrt(0.4), 0.4^(1/3).\nCheck: the cube root is bigger than the square root because 0.737^2 = 0.543, which is above 0.4, so 0.737 is the bigger root.",
+   "trap": "Believing a higher root should give a smaller result (as it does for numbers above 1) swaps the square root and cube root, giving choice A; reversing the whole order gives choice D.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "roots-of-fractions",
+    "ordering"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 20 Hard",
+   "source_pages": [
+    125
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-015",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "n is an integer. Select all of the expressions that equal 1 for every integer value of n.",
+   "options": [
+    "A. 1^(3n+7)",
+    "B. (-1)^(2n)",
+    "C. (-1)^(n+1)",
+    "D. (-1)^(n^2+n)",
+    "E. (-1)^(3n)",
+    "F. (-1)^(n^2)"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "D"
+   ],
+   "explanation": "Powers of 1 are always 1. Powers of -1 equal 1 when the exponent is even and -1 when it is odd.\nA: 1 to any integer power is 1. TRUE.\nB: 2n is always even, so (-1)^(2n) = 1. TRUE.\nC: n + 1 is even only when n is odd; for n = 2 the exponent is 3 and the value is -1. FALSE.\nD: n^2 + n = n(n + 1) is a product of consecutive integers, so it is always even. So the value is always 1. TRUE.\nE: 3n has the same parity as n; for n = 1 the value is -1. FALSE.\nF: n^2 has the same parity as n; for n = 1 the value is -1. FALSE.\nCheck: n = 2 gives -1 for C, and n = 1 gives -1 for E and for F, while A, B and D give 1 at both n = 1 and n = 2.",
+   "trap": "Seeing n^2 + n and assuming it can be odd (as n^2 alone can be) wrongly rejects choice D; the sum n^2 + n = n(n + 1) is always even because one of two consecutive integers is even.",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "powers-of-negative-one",
+    "parity-of-exponent"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 21 Base",
+   "source_pages": [
+    126
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-016",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Each of a and b is a nonzero integer, and a + b is not 0. Select all of the pairs (a, b) for which the value of a^(-2) + b^(-2) is greater than the value of (a + b)^(-2).",
+   "options": [
+    "A. (a, b) = (2, -3)",
+    "B. (a, b) = (1, 1)",
+    "C. (a, b) = (3, -4)",
+    "D. (a, b) = (-1, -1)",
+    "E. (a, b) = (5, -7)",
+    "F. (a, b) = (1, -2)"
+   ],
+   "answer": [
+    "B",
+    "D",
+    "F"
+   ],
+   "explanation": "Write each side as reciprocals of squares: compare 1/a^2 + 1/b^2 with 1/(a+b)^2.\nA (2, -3): 1/4 + 1/9 = 13/36; a + b = -1 so the right side is 1. 13/36 < 1, false.\nB (1, 1): 1 + 1 = 2; a + b = 2 so the right side is 1/4. 2 > 1/4, true.\nC (3, -4): 1/9 + 1/16 = 25/144; a + b = -1 so the right side is 1. 25/144 < 1, false.\nD (-1, -1): 1 + 1 = 2; a + b = -2 so the right side is 1/4. 2 > 1/4, true.\nE (5, -7): 1/25 + 1/49 = 74/1225, about 0.060; a + b = -2 so the right side is 1/4. 0.060 < 0.25, false.\nF (1, -2): 1 + 1/4 = 5/4; a + b = -1 so the right side is 1. 5/4 > 1, true.\nThe pairs that work are B, D and F.",
+   "trap": "Assuming a^(-2) + b^(-2) must always beat (a + b)^(-2), or that the exponent distributes over the sum so the sides are equal; the opposite-sign pairs with a + b = -1 or -2 (choices A, C, E) make the right side large and reverse the inequality.",
+   "estimated_time_seconds": 110,
+   "tags": [
+    "negative-exponents",
+    "plug-in-cases"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 22 Hard",
+   "source_pages": [
+    133
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-017",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Select every listed integer n for which 25^n * 16^(-n) has a value below 1.",
+   "options": [
+    "A. n = -6",
+    "B. n = -4",
+    "C. n = -1",
+    "D. n = 0",
+    "E. n = 5",
+    "F. n = 7"
+   ],
+   "answer": [
+    "A",
+    "B",
+    "C"
+   ],
+   "explanation": "Rewrite 16^(-n) = 1/16^n, so the product is 25^n / 16^n = (25/16)^n.\nThe base 25/16 is greater than 1, so (25/16)^n < 1 exactly when n < 0.\nA: n = -6 gives (25/16)^(-6) < 1. TRUE.\nB: n = -4 gives (25/16)^(-4) < 1. TRUE.\nC: n = -1 gives (25/16)^(-1) = 16/25 < 1. TRUE.\nD: n = 0 gives 1, which is not less than 1. FALSE.\nE: n = 5 gives (25/16)^5 > 1. FALSE.\nF: n = 7 gives (25/16)^7 > 1. FALSE.\nAnswer: A, B, C.",
+   "trap": "Treating the two factors as reciprocals that cancel to 1 for every n, or including n = 0 because the value equals 1 (option D).",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "negative-exponents",
+    "sign-of-exponent"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 24 Hard",
+   "source_pages": [
+    148
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-018",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Indicate all of the expressions that are equal to 6(48)^(-3).",
+   "options": [
+    "A. 48^(-2)/8",
+    "B. 48^(-3)/6",
+    "C. (6^(-2))(8^(-3))",
+    "D. 48^(-2)/6",
+    "E. (2^(-11))(3^(-1))",
+    "F. 6(8^(-3))(6^(-3))"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "F"
+   ],
+   "explanation": "Note 48 = 6*8, so 6*48^(-3) = 6 * 6^(-3) * 8^(-3) = 6^(-2) * 8^(-3).\nA: 6/48 = 1/8, so 6*48^(-3) = 48^(-2)/8. TRUE.\nB: 48^(-3)/6 divides by 6 instead of multiplying by 6. FALSE.\nC: 6^(-2)*8^(-3), shown above. TRUE.\nD: 48^(-2)/6 would need 6/48 = 1/6, but 6/48 = 1/8. FALSE.\nE: 6^(-2)*8^(-3) = 2^(-2)*3^(-2)*2^(-9) = 2^(-11)*3^(-2), not 3^(-1). FALSE.\nF: 6*(8^(-3))*(6^(-3)) = 6*(48)^(-3) directly. TRUE.\nAnswer: A, C, F.",
+   "trap": "Pulling the 6 into the base as a divisor, 48^(-3)/6 (option B), or using 6 as the divisor in place of 8 when reducing one power of 48 (option D).",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "negative-exponents",
+    "base-factoring"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 26 Hard",
+   "source_pages": [
+    162
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-019",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Suppose 0.75 times 5^22, increased by 3 times 5^21, equals k times 5^21. What is the value of k?",
+   "options": null,
+   "answer": "6.75",
+   "explanation": "Write 5^22 as 5*5^21.\n0.75 times 5^22 = 0.75*5*5^21 = 3.75 * 5^21.\nAdding 3 * 5^21 gives (3.75 + 3) * 5^21 = 6.75 * 5^21.\nSo k = 6.75.\nCheck: dividing the whole expression by 5^21 gives 0.75*5 + 3 = 3.75 + 3 = 6.75.",
+   "trap": "Adding the coefficients without matching the powers: 0.75 + 3 = 3.75, ignoring that 5^22 is five times 5^21.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "common-factor",
+    "powers-of-same-base"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 26 Hard",
+   "source_pages": [
+    162
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-020",
+   "difficulty": "easy",
+   "type": "mcq",
+   "question": "Which of the following is equal to 6^10 divided by (2^6)(3^3)?",
+   "options": [
+    "A. 6",
+    "B. (2^4)(3^7)",
+    "C. (2^4)(3^10)",
+    "D. 6^7",
+    "E. (2^16)(3^13)"
+   ],
+   "answer": "B",
+   "explanation": "Write 6^10 = (2^10)(3^10).\nDivide by (2^6)(3^3): subtract exponents base by base.\n2^(10-6) = 2^4 and 3^(10-3) = 3^7.\nThe result is (2^4)(3^7).\nCheck: (2^4)(3^7) * (2^6)(3^3) = (2^10)(3^10) = 6^10.",
+   "trap": "Treating the denominator as 6^(6+3) = 6^9 and subtracting from 6^10 gives 6, choice A; adding exponents instead of subtracting gives (2^16)(3^13), choice E.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "exponent-laws",
+    "product-of-powers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 27 Base",
+   "source_pages": [
+    166
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-021",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "For how many positive integers n is the value of 1/3^n less than 10(1/5^n)?",
+   "options": null,
+   "answer": "4",
+   "explanation": "1/3^n < 10/5^n is equivalent to 5^n < 10 * 3^n, i.e. (5/3)^n < 10.\n(5/3)^n for n = 1, 2, 3, 4, 5 is about 1.67, 2.78, 4.63, 7.72, 12.86.\nThe inequality holds for n = 1, 2, 3, 4 and fails for n = 5; since (5/3)^n keeps growing, it fails for every n >= 5.\nCount = 4.\nCheck: n = 4 gives 1/81 = 0.01235 < 10/625 = 0.016, while n = 5 gives 1/243 = 0.00412 > 10/3125 = 0.0032.",
+   "trap": "Stopping the table at n = 3 (where (5/3)^n is still only 4.63) gives 3, and testing only n = 1 suggests the inequality always holds, so the count seems unlimited.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "exponential-comparison",
+    "case-analysis"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 28 Hard",
+   "source_pages": [
+    172
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-022",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "If (5^34 - 5^32) divided by (25^k - 25^(k-1)) equals 5^(-8), what is the value of k?",
+   "options": null,
+   "answer": "21",
+   "explanation": "Factor the numerator: 5^34 - 5^32 = 5^32(25 - 1) = 24 * 5^32.\nFactor the denominator: 25^k - 25^(k-1) = 25^(k-1)(25 - 1) = 24 * 25^(k-1) = 24 * 5^(2k-2).\nThe 24s cancel, leaving 5^(32 - (2k - 2)) = 5^(34 - 2k).\nSet 34 - 2k = -8, so 2k = 42 and k = 21.\nCheck: denominator = 24 * 5^40 and numerator = 24 * 5^32, so the quotient is 5^(-8).",
+   "trap": "Writing 25^(k-1) as 5^(2k) instead of 5^(2k-2) drops the shift and gives 5^(32 - 2k) = 5^(-8), so k = 20 instead of 21.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "factor-common-power",
+    "exponent-laws"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 28 Hard",
+   "source_pages": [
+    172
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-023",
+   "difficulty": "hard",
+   "type": "mcq",
+   "question": "Let P = 5^50 + 2^50, Q = (5 + 2)^50 and R = 7^49. Which of the following lists P, Q and R from least to greatest?",
+   "options": [
+    "A. P, Q, R",
+    "B. P, R, Q",
+    "C. Q, P, R",
+    "D. Q, R, P",
+    "E. R, P, Q"
+   ],
+   "answer": "B",
+   "explanation": "Q = 7^50 = 7 * 7^49 = 7R, so Q is greater than R.\nP = 5^50 + 2^50 < 2 * 5^50 = 10 * 5^49.\nR = 7^49 = 5^49 * (7/5)^49 and (7/5)^49 > (1.4)^10 = 28.9, which is more than 10.\nSo R > 10 * 5^49 > P.\nOrder from least to greatest: P, R, Q.\nCheck: P is about 8.9e34 + 8.9e14, R is about 2.6e41, Q is about 1.8e42.",
+   "trap": "Believing that the larger exponent 50 in P outweighs R's exponent 49 (ignoring the bases 5 and 7) gives R, P, Q, choice E.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "power-of-sum",
+    "compare-powers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 28 Hard",
+   "source_pages": [
+    173
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-024",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Let k = (-2)^(-8). Select all of the following expressions that are equal to k.",
+   "options": [
+    "A. 2^(-8)",
+    "B. -(2^(-8))",
+    "C. (-1/2)^8",
+    "D. (1/2)^(-8)",
+    "E. 1/((-2)^8)",
+    "F. -(2^8)"
+   ],
+   "answer": [
+    "A",
+    "C",
+    "E"
+   ],
+   "explanation": "A negative exponent means reciprocal, and an even power of a negative base is positive.\nk = (-2)^(-8) = 1/((-2)^8) = 1/256.\nA: 2^(-8) = 1/256 - equal (true).\nB: -(2^(-8)) = -1/256 - the sign is wrong (false).\nC: (-1/2)^8 = 1/256 because the exponent is even (true).\nD: (1/2)^(-8) = 2^8 = 256 - reciprocal of k (false).\nE: 1/((-2)^8) = 1/256 - this is k written out (true).\nF: -(2^8) = -256 (false).\nCheck: the three true options all evaluate to 1/256.",
+   "trap": "Assuming a negative base keeps the result negative selects option B, and flipping the reciprocal (256 instead of 1/256) makes option D look right.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "negative-exponents",
+    "even-powers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 30 Hard",
+   "source_pages": [
+    187
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-025",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "m is a positive integer.\nQuantity A: 7^(m+1) - 7^m\nQuantity B: 42(7^(m-1))",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "Factor the smaller power out of Quantity A: 7^(m+1) - 7^m = 7^m(7 - 1) = 6 * 7^m.\nIn Quantity B write 7^m = 7 * 7^(m-1), so 6 * 7^m = 42 * 7^(m-1).\nThus Quantity A = 42(7^(m-1)) = Quantity B for every positive integer m.\nCheck with m = 2: 7^3 - 7^2 = 343 - 49 = 294 and 42(7^1) = 294. With m = 1: 49 - 7 = 42 and 42(7^0) = 42.",
+   "trap": "Subtracting exponents as if 7^(m+1) - 7^m = 7^1 = 7 makes Quantity A tiny, so Quantity B appears greater (option B).",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "factoring-powers",
+    "exponent-rules"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 42 Hard",
+   "source_pages": [
+    267
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-026",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "It is known that cbrt(54) + cbrt(250) - cbrt(16) = cbrt(N) for a positive integer N, where cbrt denotes the cube root. Determine N.",
+   "options": null,
+   "answer": "432",
+   "explanation": "Pull perfect cubes out of each root, using 54 = 27*2, 250 = 125*2 and 16 = 8*2.\ncbrt(54) = 3*cbrt(2); cbrt(250) = 5*cbrt(2); cbrt(16) = 2*cbrt(2).\nCombine: (3 + 5 - 2)*cbrt(2) = 6*cbrt(2).\nCube both sides: N = 6^3 * 2 = 216*2 = 432.\nCheck: cbrt(432) = cbrt(216*2) = 6*cbrt(2). Matches.",
+   "trap": "Adding the radicands (54 + 250 - 16 = 288) and treating the cube root of the total as the answer; the correct approach combines like radicals first and then cubes.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "cube-roots",
+    "like-radicals"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 42 Hard",
+   "source_pages": [
+    272
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-027",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Which of the following numbers is the greatest?",
+   "options": [
+    "A. 9^55",
+    "B. 27^40",
+    "C. 243^25",
+    "D. 3^127",
+    "E. 81^32"
+   ],
+   "answer": "E",
+   "explanation": "Write every number as a power of 3.\n9^55 = 3^(2*55) = 3^110.\n27^40 = 3^(3*40) = 3^120.\n243^25 = 3^(5*25) = 3^125.\n3^127 stays 3^127.\n81^32 = 3^(4*32) = 3^128.\nWith the same base, the largest exponent wins: 128 is greatest, so 81^32.",
+   "trap": "Choosing the number with the largest base, 243^25, gives choice C; choosing the number with the largest exponent, 9^55, gives choice A; and picking 3^127 because it looks like the biggest bare exponent gives choice D.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "common-base",
+    "compare-powers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 50 Hard",
+   "source_pages": [
+    325
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-028",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Let n be a number with -1 < n < 0. When the five numbers n, n^2, n^3, n^4 and n^5 are arranged from least to greatest, which one sits in the middle position?",
+   "options": [
+    "A. n",
+    "B. n^2",
+    "C. n^3",
+    "D. n^4",
+    "E. n^5"
+   ],
+   "answer": "E",
+   "explanation": "Odd powers of n are negative and even powers are positive, so n^2 and n^4 are the two largest.\nWithin (-1, 0), raising to a higher power moves a number closer to 0: |n| > |n^3| > |n^5| and |n^2| > |n^4|.\nNegative values, least to greatest: n, n^3, n^5.\nPositive values, least to greatest: n^4, n^2.\nFull order: n < n^3 < n^5 < n^4 < n^2, so the middle (third) one is n^5.\nCheck with n = -0.5: -0.5, -0.125, -0.03125, 0.0625, 0.25.",
+   "trap": "Assuming the middle exponent must give the middle value, which selects n^3 (choice C), when the negative powers get closer to 0 as the exponent rises and n^5 lands third.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "powers-of-fractions",
+    "negative-base"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 52 Hard",
+   "source_pages": [
+    341
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-029",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A rule combining two positive integers is written p @ q and means q raised to the power negative p, that is, p @ q = q^(-p). Evaluate (2 @ 3)^2 / (1 @ 9).",
+   "options": [
+    "A. 1/9",
+    "B. 1/81",
+    "C. 1/729",
+    "D. 1",
+    "E. 9"
+   ],
+   "answer": "A",
+   "explanation": "1. 2 @ 3 = 3^(-2) = 1/9, so (2 @ 3)^2 = 1/81.\n2. 1 @ 9 = 9^(-1) = 1/9.\n3. (1/81) / (1/9) = (1/81) * 9 = 1/9.\n4. Check in powers of 3: (3^-2)^2 = 3^-4 and 9^-1 = 3^-2, so the quotient is 3^-4 / 3^-2 = 3^-2 = 1/9.\nChoice C multiplies instead of dividing; B omits the division; D forgets to square; E inverts the quotient.",
+   "trap": "Forgetting to divide by (1 @ 9) and stopping at (2 @ 3)^2 gives 1/81, which is choice B.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "custom-operation",
+    "negative-exponents"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 54 Hard",
+   "source_pages": [
+    353
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-030",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A positive number m satisfies the equation (1/m)^-3 = 1^3 + (1/6)^-3 + (1/8)^-3. Find the value of m.",
+   "options": null,
+   "answer": "9",
+   "explanation": "1. A negative power of a reciprocal flips it: (1/a)^-3 = a^3.\n2. So the right side is 1 + 6^3 + 8^3 = 1 + 216 + 512 = 729.\n3. The left side is (1/m)^-3 = m^3, so m^3 = 729.\n4. Since 9^3 = 729 and m is positive, m = 9.\n5. Check: 9^3 = 729 = 1 + 216 + 512.",
+   "trap": "Taking the cube root of each term separately and adding (1 + 6 + 8) gives m = 15 instead of 9; the cube root of a sum is not the sum of cube roots.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "negative-exponents",
+    "reciprocal-powers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 56 Hard",
+   "source_pages": [
+    369
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-031",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "If 5*12^9 - 8*12^8 = m*12^8, what is the value of m?",
+   "options": null,
+   "answer": "52",
+   "explanation": "1. Both terms contain 12^8, so factor it out: 5*12^9 = 5*12*12^8 = 60*12^8.\n2. The expression becomes 60*12^8 - 8*12^8 = (60 - 8)*12^8 = 52*12^8.\n3. Matching with m*12^8 gives m = 52.\nCheck: 12^9 = 12 * 12^8, so 5*12^9 - 8*12^8 = 12^8 * (60 - 8) = 12^8 * 52.",
+   "trap": "Subtracting the coefficients 5 - 8 directly, without noticing that 12^9 carries an extra factor of 12, gives -3 instead of 52.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "common-power-factoring",
+    "exponent-rules"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 62 Hard",
+   "source_pages": [
+    408
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-032",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "Which one of the following expressions is NOT the cube of an integer?",
+   "options": [
+    "A. 6^3 * 4 * 16",
+    "B. 2^3 * 3^6 * 5^3",
+    "C. 10^3 * 9 * 3",
+    "D. 7^3 * 8 * 9 * 3",
+    "E. 5^3 * 4 * 16 * 2"
+   ],
+   "answer": "E",
+   "explanation": "An integer is a perfect cube exactly when every prime in its factorization has an exponent that is a multiple of 3.\nA. 4*16 = 2^2*2^4 = 2^6 = 4^3, so the product is 6^3*4^3 = 24^3. Cube.\nB. 3^6 = (3^2)^3 = 9^3, so the product is (2*9*5)^3 = 90^3. Cube.\nC. 9*3 = 27 = 3^3, so the product is (10*3)^3 = 30^3. Cube.\nD. 8*9*3 = 8*27 = 216 = 6^3, so the product is (7*6)^3 = 42^3. Cube.\nE. 4*16*2 = 2^2*2^4*2 = 2^7, and 7 is not a multiple of 3, so 5^3*2^7 is not a cube (it equals 16000, and 25^3 = 15625, 26^3 = 17576).\nCheck: only E has a prime exponent (2^7) that is not a multiple of 3.",
+   "trap": "Not recognising that 8*9*3 = 216 = 6^3 and rejecting D as 'not obviously a cube', instead of counting the exponent of each prime, produces choice D.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "perfect-cubes",
+    "exponent-multiples"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 64 Hard",
+   "source_pages": [
+    420
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-033",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "Count the integer pairs (p, q) with 1 < p < q <= 5 for which p^q is greater than q^p.",
+   "options": null,
+   "answer": "4",
+   "explanation": "1. List all pairs with 1 < p < q <= 5: (2,3), (2,4), (2,5), (3,4), (3,5), (4,5).\n2. (2,3): 2^3 = 8 and 3^2 = 9, so p^q < q^p. No.\n3. (2,4): 2^4 = 16 and 4^2 = 16, equal, not greater. No.\n4. (2,5): 2^5 = 32 and 5^2 = 25. Yes.\n5. (3,4): 3^4 = 81 and 4^3 = 64. Yes.\n6. (3,5): 3^5 = 243 and 5^3 = 125. Yes.\n7. (4,5): 4^5 = 1024 and 5^4 = 625. Yes.\n8. Four pairs qualify.\nCheck: from p = 3 upward the larger power is always the one with the smaller base raised to the larger exponent, matching the three rows with p >= 3 plus (2,5).",
+   "trap": "Counting the pair (2,4), where both powers equal 16, as 'greater' gives 5.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "exponent-comparison",
+    "case-enumeration"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 72 Hard",
+   "source_pages": [
+    469
+   ]
+  },
+  {
+   "id": "ARI-EXP-KMF-034",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Select every expression below whose value is an integer.",
+   "options": [
+    "A. sqrt(2^(-6) * 5^8)",
+    "B. sqrt(1 / (2^(-6) * 5^(-8)))",
+    "C. sqrt(3^(-4) / 7^(-6))",
+    "D. 1 / (2^(-3) * 5^(-2))",
+    "E. 1 / (2^(-3) + 5^(-2))"
+   ],
+   "answer": [
+    "B",
+    "D"
+   ],
+   "explanation": "A: 2^(-6) * 5^8 = 5^8 / 2^6, and the square root is 5^4 / 2^3 = 625/8. Not an integer.\nB: 1 / (2^(-6) * 5^(-8)) = 2^6 * 5^8, and the square root is 2^3 * 5^4 = 8 * 625 = 5000. Integer.\nC: 3^(-4) / 7^(-6) = 7^6 / 3^4, and the square root is 7^3 / 3^2 = 343/9. Not an integer.\nD: 1 / (2^(-3) * 5^(-2)) = 2^3 * 5^2 = 8 * 25 = 200. Integer.\nE: 2^(-3) + 5^(-2) = 1/8 + 1/25 = 33/200, so the reciprocal is 200/33. Not an integer.\nAnswer: B, D.",
+   "trap": "Treating E like D (turning the sum of negative powers into a product of positive powers, 8 * 25 = 200) wrongly marks choice E as an integer, since a sum cannot be split the way a product can.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "negative-exponents",
+    "radicals-integer",
+    "select-all"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 72 Hard",
+   "source_pages": [
+    470
+   ]
   }
  ]
 }

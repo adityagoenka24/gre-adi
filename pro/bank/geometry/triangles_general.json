@@ -4,16 +4,23 @@
   "subtopic": "Triangles (General)",
   "subtopic_id": "GEO-TRI",
   "version": "1.0",
-  "total_questions": 76,
+  "total_questions": 91,
   "distribution": {
-   "easy": 18,
-   "medium": 31,
-   "hard": 20,
+   "easy": 19,
+   "medium": 40,
+   "hard": 25,
    "extreme_hard": 7
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 37,
+   "multiple_answer": 12,
+   "numeric_entry": 23,
+   "quantitative_comparison": 19
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1665,6 +1672,387 @@
    ],
    "origin": "sectional",
    "origin_set": "plane_geometry_set4"
+  },
+  {
+   "id": "GEO-TRI-KMF-001",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "Three distinct points R, S, and T lie in a plane. Consider the collection of all points of that plane whose distance to R, distance to S, and distance to T are all equal to one another. Depending on where R, S, and T are placed, which descriptions of that collection can occur?\n\nSelect every description that is achievable.",
+   "options": [
+    "A. It is empty.",
+    "B. It holds precisely one point.",
+    "C. It holds precisely two points.",
+    "D. It is an entire straight line.",
+    "E. It is a circle of positive radius.",
+    "F. It holds infinitely many points."
+   ],
+   "answer": [
+    "A",
+    "B"
+   ],
+   "explanation": "A point is equally far from R and S exactly when it lies on the perpendicular bisector of segment RS, and equally far from S and T exactly when it lies on the perpendicular bisector of segment ST.\nSo the collection in question is the intersection of those two lines.\nCase 1: R, S, and T are not collinear. Segments RS and ST then run in different directions, so their perpendicular bisectors also run in different directions and cross at exactly one point. Example: R = (0, 0), S = (8, 0), T = (0, 10). The bisector of RS is x = 4 and the bisector of RT is y = 5, meeting only at (4, 5), whose distance to each of the three points is sqrt(16 + 25) = sqrt(41). So 'precisely one point' does occur.\nCase 2: R, S, and T are collinear. Segments RS and ST lie along one line, so both perpendicular bisectors are perpendicular to that same line and are therefore parallel. The three points are distinct, so RS and ST have different midpoints, making the two bisectors distinct parallel lines that never meet. Example: R = (0, 0), S = (2, 0), T = (6, 0) give x = 1 and x = 4, which share no point. So 'empty' does occur.\nNow judge each option.\nA, empty: TRUE, produced by Case 2.\nB, precisely one point: TRUE, produced by Case 1.\nC, precisely two points: FALSE. Two distinct lines meet in at most one point, so a two-point collection is impossible.\nD, an entire straight line: FALSE. That would need the two bisectors to coincide, which forces RS and ST to share a midpoint, impossible for three distinct points.\nE, a circle of positive radius: FALSE. The collection is always the meeting of two lines, never a curved set.\nF, infinitely many points: FALSE, for the same reason as D.\nCheck: exactly two descriptions survive, A and B, and they match the two positional cases, collinear and not collinear.",
+   "trap": "Imposing the condition on only two of the three points leaves a single perpendicular bisector and makes option D, an entire straight line, look correct.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "perpendicular-bisector",
+    "locus",
+    "collinearity"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 6 Hard",
+   "source_pages": [
+    34
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In a triangle, two of the sides measure 7 units and 18 units. The remaining side also measures a whole number of units. How many different lengths are available for that remaining side?",
+   "options": [
+    "A. 11",
+    "B. 12",
+    "C. 13",
+    "D. 14",
+    "E. 15"
+   ],
+   "answer": "C",
+   "explanation": "Let t be the length of the remaining side, a positive integer.\nA triangle exists exactly when each side is shorter than the sum of the other two.\nFirst condition: t < 7 + 18 = 25.\nSecond condition: 18 < t + 7, which rearranges to t > 11.\nThird condition: 7 < t + 18, automatic for every positive t.\nSo 11 < t < 25, with both endpoints excluded.\nThe integers strictly between 11 and 25 are 12, 13, 14, ..., 24.\nCount them: 24 - 12 + 1 = 13.\nCheck the excluded endpoints: t = 11 would give 7 + 11 = 18, a flattened figure with no area, and t = 25 would give 7 + 18 = 25, flat as well. Both are correctly left out.\nCheck one interior value: t = 20 gives sides 7, 18, 20, and 7 + 18 = 25 > 20, 7 + 20 = 27 > 18, 18 + 20 = 38 > 7, so a genuine triangle exists.\nWrong routes behind the other options: 11 is the difference 18 - 7 reported as though it were the count; 14 comes from counting 11 through 24 and keeping the degenerate value 11; 15 comes from counting 11 through 25 inclusive and keeping both degenerate ends.",
+   "trap": "Subtracting the endpoints without adding one, 24 - 12 = 12, gives option B.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "triangle-inequality",
+    "counting-integers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 8 Hard",
+   "source_pages": [
+    49
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-003",
+   "difficulty": "medium",
+   "type": "multiple_answer",
+   "question": "Three radio masts stand on a level plain, and their bases do not all lie on one straight line. The base of mast P sits 30 meters from the base of mast Q and 18 meters from the base of mast R. Indicate every listed length, in meters, that could separate the bases of masts Q and R.",
+   "options": [
+    "A. 10",
+    "B. 12",
+    "C. 20",
+    "D. 36",
+    "E. 48",
+    "F. 50"
+   ],
+   "answer": [
+    "C",
+    "D"
+   ],
+   "explanation": "The three bases form a genuine triangle, since they are not collinear, with two sides 30 and 18.\nTriangle inequality, upper bound: QR < 30 + 18 = 48, strictly.\nTriangle inequality, lower bound: QR > 30 - 18 = 12, strictly.\nSo the allowed range is 12 < QR < 48.\nA. 10 is at or below 12 -- false.\nB. 12 would make the bases collinear -- false.\nC. 20 lies strictly inside the range -- true.\nD. 36 lies strictly inside the range -- true.\nE. 48 would make the bases collinear -- false.\nF. 50 exceeds the sum of the other two sides -- false.\nSelected: C and D.",
+   "trap": "Reading the inequalities as inclusive admits the two endpoint values 12 and 48, but each of those forces the three bases onto one line, which the stem rules out.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "triangle-inequality",
+    "collinearity"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 11 Base",
+   "source_pages": [
+    68
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-004",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "Triangle PQR has PQ = 7 and QR = 15, and the length of side PR is a whole number. How many different perimeters are possible for the triangle?",
+   "options": null,
+   "answer": "13",
+   "explanation": "By the triangle inequality, PR must satisfy 15 - 7 < PR < 15 + 7, so 8 < PR < 22.\nWhole-number values of PR: 9, 10, ..., 21, which is 21 - 9 + 1 = 13 values.\nPerimeter = 7 + 15 + PR = 22 + PR, so each different PR gives a different perimeter, from 31 to 43.\nThere are 13 different perimeters.\nCheck: 43 - 31 + 1 = 13.",
+   "trap": "Counting the boundary values PR = 8 and PR = 22 (which give degenerate triangles) as well gives 15; counting 9 through 21 but subtracting instead of adding 1 gives 12.",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "triangle-inequality",
+    "integer-counting"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 16 Hard",
+   "source_pages": [
+    100
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-005",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "In the figure, segments AP, BP and CP bisect the three angles of triangle ABC. Angle PAB measures 22 degrees and angle PCB measures 31 degrees. What is the measure, in degrees, of angle BPC?",
+   "options": null,
+   "answer": "112",
+   "explanation": "AP bisects angle A, so angle A = 2*22 = 44 degrees.\nCP bisects angle C, so angle C = 2*31 = 62 degrees.\nAngle B = 180 - 44 - 62 = 74 degrees, so angle PBC = 74/2 = 37 degrees.\nIn triangle BPC: angle BPC = 180 - 37 - 31 = 112 degrees.\nCheck: for any triangle the angle at the meeting point of the bisectors equals 90 + (half the opposite angle), and 90 + 22 = 112.",
+   "trap": "Subtracting only the two given half-angles from 180 gives 127, which is angle APC (the angle across from vertex B), not angle BPC. Reporting angle B itself gives 74.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "angle-bisectors",
+    "incenter"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 280 190\" width=\"280\" height=\"190\"><polygon points=\"25.0,165.0 170.4,24.6 245.0,165.0\" fill=\"none\" stroke=\"black\" stroke-width=\"2\"/><g stroke=\"black\" stroke-width=\"1.5\"><line x1=\"25.0\" y1=\"165.0\" x2=\"156.5\" y2=\"111.9\"/><line x1=\"170.4\" y1=\"24.6\" x2=\"156.5\" y2=\"111.9\"/><line x1=\"245.0\" y1=\"165.0\" x2=\"156.5\" y2=\"111.9\"/></g><g font-family=\"serif\" font-size=\"14\" font-weight=\"bold\"><text x=\"11\" y=\"169\">A</text><text x=\"166\" y=\"19\">B</text><text x=\"251\" y=\"169\">C</text><text x=\"161\" y=\"107\">P</text></g><g font-family=\"serif\" font-size=\"12\"><text x=\"68\" y=\"138\">22&#176;</text><text x=\"190\" y=\"120\">31&#176;</text></g></svg>",
+   "figure_description": "Triangle ABC with A at the lower left, C at the lower right and B at the top. Point P lies inside the triangle. Segments AP, BP and CP are the bisectors of angles A, B and C. Angle PAB is marked 22 degrees (at A) and angle PCB is marked 31 degrees (at C).",
+   "origin": "kmf1804",
+   "origin_set": "Section 18 Hard",
+   "source_pages": [
+    109
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-006",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "In the figure, line m is horizontal. Lines p and q each cross m, and then cross each other at point V below m. At the left crossing, the angle between the leftward part of m and the downward part of p measures 128 degrees. At the right crossing, the angle between the rightward part of m and the downward part of q measures 117 degrees. What is the measure, in degrees, of the angle at V that opens upward toward m?",
+   "options": null,
+   "answer": "65",
+   "explanation": "At the left crossing the interior angle (between the rightward part of m and the downward part of p) is 180 - 128 = 52 degrees, since the two angles lie along straight line m.\nAt the right crossing the interior angle (between the leftward part of m and the downward part of q) is 180 - 117 = 63 degrees.\nThe triangle formed by m, p and q has angle sum 180, so the angle at V = 180 - 52 - 63 = 65 degrees.\nCheck: 52 + 63 + 65 = 180, and 180 - 52 = 128 and 180 - 63 = 117 match the marked angles.",
+   "trap": "Subtracting the two given angles from 360 without taking supplements first gives 360 - 128 - 117 = 115, which is the wrong answer.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "exterior-angle",
+    "triangle-angle-sum"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 420 250\" width=\"420\" height=\"250\" font-family=\"sans-serif\" font-size=\"14\" fill=\"currentColor\" stroke=\"currentColor\"><g stroke-width=\"1.6\" fill=\"none\"><line x1=\"40\" y1=\"60\" x2=\"385\" y2=\"60\"/><line x1=\"95.4\" y1=\"28.5\" x2=\"247.4\" y2=\"223\"/><line x1=\"318.2\" y1=\"24.4\" x2=\"215.3\" y2=\"226.1\"/><path d=\"M92 60 A28 28 0 0 0 137.2 82.1\" stroke-width=\"1.2\"/><path d=\"M328 60 A28 28 0 0 1 287.3 84.9\" stroke-width=\"1.2\"/><path d=\"M215.4 182.1 A22 22 0 0 1 238.9 179.8\" stroke-width=\"1.2\"/></g><g stroke=\"none\"><text x=\"76\" y=\"104\">128&#176;</text><text x=\"316\" y=\"102\">117&#176;</text><text x=\"222\" y=\"160\">?</text><text x=\"390\" y=\"64\">m</text><text x=\"82\" y=\"24\">p</text><text x=\"322\" y=\"22\">q</text><text x=\"238\" y=\"203\">V</text></g></svg>",
+   "figure_description": "Line m is horizontal. Line p crosses m at a left point L, sloping down and to the right; line q crosses m at a right point R, sloping down and to the left. p and q intersect at point V below m, so m, p and q bound a triangle with vertices L, R and V. The angle at L between the leftward part of m and the downward part of p is marked 128 degrees. The angle at R between the rightward part of m and the downward part of q is marked 117 degrees. The angle at V inside the triangle (opening up toward m) is marked with a question mark.",
+   "origin": "kmf1804",
+   "origin_set": "Section 26 Hard",
+   "source_pages": [
+    163
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-007",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Each triangle shown has a right angle at its lower right vertex and a horizontal leg of length 6. The marked angle at the lower left vertex is w degrees in the first triangle and (w + 2) degrees in the second. The hypotenuse of the first triangle has length p and the hypotenuse of the second has length q. The figures are not drawn to scale.\nQuantity A: the length p\nQuantity B: the length q",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "In a right triangle with the horizontal leg fixed at 6, the hypotenuse equals 6 / cos(marked angle).\nBecause each triangle has a right angle, both marked angles lie strictly between 0 and 90 degrees, so w < w + 2 < 90.\nOn that range cosine decreases as the angle grows, so cos(w + 2) < cos(w) and therefore q > p.\nTests: w = 30 gives p = 6/0.866 = 6.93 and q = 6/cos(32) = 7.07; w = 80 gives p = 34.5 and q = 43.1; w = 1 gives p = 6.001 and q = 6.005.\nQuantity B is always greater.",
+   "trap": "Carrying over the idea that a larger angle goes with a shorter side (true for the leg opposite the angle, not for the hypotenuse when the adjacent leg is fixed) leads to choice A.",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "right-triangle",
+    "side-angle-monotonic"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 430 180\" width=\"430\" height=\"180\" font-family=\"sans-serif\" font-size=\"14\" fill=\"currentColor\" stroke=\"currentColor\"><g stroke-width=\"1.6\" fill=\"none\"><path d=\"M20 140 L140 140 L140 60 Z\"/><path d=\"M240 140 L360 140 L360 40 Z\"/><path d=\"M130 140 L130 130 L140 130\" stroke-width=\"1.1\"/><path d=\"M350 140 L350 130 L360 130\" stroke-width=\"1.1\"/></g><g stroke=\"none\"><text x=\"48\" y=\"134\">w&#176;</text><text x=\"262\" y=\"134\">(w + 2)&#176;</text><text x=\"76\" y=\"158\">6</text><text x=\"296\" y=\"158\">6</text><text x=\"64\" y=\"92\">p</text><text x=\"290\" y=\"82\">q</text><text x=\"120\" y=\"176\" font-size=\"11\">not drawn to scale</text></g></svg>",
+   "figure_description": "Two right triangles side by side, each with a horizontal base of length 6 and a right angle at the lower right vertex. In the left triangle the angle at the lower left vertex is marked w degrees and its hypotenuse is labelled p. In the right triangle the angle at the lower left vertex is marked (w + 2) degrees and its hypotenuse is labelled q. Both marked angles are acute. Not drawn to scale.",
+   "origin": "kmf1804",
+   "origin_set": "Section 27 Base",
+   "source_pages": [
+    167
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-008",
+   "difficulty": "easy",
+   "type": "quantitative_comparison",
+   "question": "In the triangle shown, the angle at R is a right angle, p and q are the measures in degrees of the interior angles at T and B, and w is the measure in degrees of the exterior angle at B formed by extending side RB.\nw < 110\nThe figure is not drawn to scale.\n\nColumn A: 3p\nColumn B: 60",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "Step 1: The exterior angle w and the interior angle q lie on a straight line, so q = 180 - w.\nStep 2: Since w < 110, q > 180 - 110 = 70.\nStep 3: The acute angles of a right triangle sum to 90, so p = 90 - q < 90 - 70 = 20.\nStep 4: Then 3p < 60, so Quantity A is always less than Quantity B (p is positive, so 3p is between 0 and 60).\nCheck: w = 100 gives q = 80, p = 10, 3p = 30 < 60; w = 109 gives p = 19, 3p = 57 < 60.",
+   "trap": "Treating the bound on w as a bound on q (q < 110) or forgetting the exterior-angle step, then assuming p can be 20 or more, leads to choosing D or C.",
+   "estimated_time_seconds": 60,
+   "tags": [
+    "exterior-angle",
+    "right-triangle"
+   ],
+   "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 320 260\" width=\"320\" height=\"260\"><g stroke=\"black\" stroke-width=\"2\" fill=\"none\"><line x1=\"60\" y1=\"210\" x2=\"210\" y2=\"210\"/><line x1=\"210\" y1=\"210\" x2=\"290\" y2=\"210\"/><line x1=\"60\" y1=\"210\" x2=\"60\" y2=\"50\"/><line x1=\"60\" y1=\"50\" x2=\"210\" y2=\"210\"/></g><polyline points=\"60,196 74,196 74,210\" fill=\"none\" stroke=\"black\" stroke-width=\"1\"/><g font-family=\"serif\" font-size=\"16\" font-style=\"italic\" fill=\"black\"><text x=\"70\" y=\"86\">p</text><text x=\"168\" y=\"203\">q</text><text x=\"240\" y=\"196\">w</text><text x=\"42\" y=\"228\" font-style=\"normal\">R</text><text x=\"48\" y=\"48\" font-style=\"normal\">T</text><text x=\"204\" y=\"230\" font-style=\"normal\">B</text></g></svg>",
+   "figure_description": "A right triangle RTB with the right angle at R (bottom left), T directly above R, and B on the horizontal base to the right of R. Side RB is extended to the right beyond B. The interior angle at T is labelled p, the interior angle at B is labelled q, and the exterior angle at B, between the extension of RB and side BT, is labelled w.",
+   "origin": "kmf1804",
+   "origin_set": "Section 29 Base",
+   "source_pages": [
+    179
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-009",
+   "difficulty": "hard",
+   "type": "multiple_answer",
+   "question": "On a scale drawing, town X is 7 cm from town Y and town Y is 4 cm from town Z; the three towns need not lie on one straight line. The real distance from X to Y is 84 km. Indicate all values that could be the real distance, in km, from X to Z.",
+   "options": [
+    "A. 30",
+    "B. 40",
+    "C. 84",
+    "D. 120",
+    "E. 140",
+    "F. 180"
+   ],
+   "answer": [
+    "B",
+    "C",
+    "D"
+   ],
+   "explanation": "Scale: 84 km for 7 cm is 12 km per cm. The real distance from Y to Z is 4 * 12 = 48 km.\nX, Y and Z form a triangle (possibly flat), so XZ lies between |84 - 48| = 36 and 84 + 48 = 132 km.\nA: 30 < 36. FALSE.\nB: 40 is between 36 and 132. TRUE.\nC: 84 is between 36 and 132. TRUE.\nD: 120 is between 36 and 132. TRUE.\nE: 140 > 132. FALSE.\nF: 180 > 132. FALSE.\nAnswer: B, C, D.",
+   "trap": "Using only the upper bound XZ < 132 and ignoring the lower bound |84 - 48| = 36 keeps 30 (choice A) in the answer; using only the lower bound keeps 140 and 180 (choices E and F).",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "triangle-inequality",
+    "scale-drawing"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 44 Hard",
+   "source_pages": [
+    288
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-010",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "The side lengths of a triangle, in centimeters, are 6, 9 and t, where t is an integer.\nQuantity A: The number of different values that t can have\nQuantity B: 11",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "C",
+   "explanation": "A triangle needs each side to be shorter than the sum of the other two.\nt < 6 + 9 = 15.\n9 < 6 + t gives t > 3.\n6 < 9 + t holds for every positive t.\nSo 3 < t < 15, and the integers allowed are 4, 5, ..., 14.\nCount = 14 - 4 + 1 = 11.\nQuantity A = 11 = Quantity B.\nCheck the ends: t = 4 gives 4 + 6 = 10 > 9 (valid); t = 14 gives 6 + 9 = 15 > 14 (valid); t = 3 gives 3 + 6 = 9, which only flattens the triangle, and t = 15 does the same.",
+   "trap": "Treating 3 and 15 as allowed values or subtracting without adding one: 15 - 3 = 12 values, so Quantity A looks greater (choice A).",
+   "estimated_time_seconds": 80,
+   "tags": [
+    "triangle-inequality",
+    "counting-integers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 51 Base",
+   "source_pages": [
+    332
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-011",
+   "difficulty": "medium",
+   "type": "quantitative_comparison",
+   "question": "Triangle PQR has PQ = 5, PR = 8 and angle QPR = a degrees. Triangle STU has ST = 5, SU = 8 and angle TSU = b degrees. It is given that 90 < a < b < 180.\nQuantity A: The area of triangle PQR\nQuantity B: The area of triangle STU",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "A",
+   "explanation": "1. Area of a triangle with two sides s and t enclosing an angle theta is (1/2)*s*t*sin(theta).\n2. Both triangles have the sides 5 and 8, so Area = 20*sin(theta): Quantity A = 20 sin(a), Quantity B = 20 sin(b).\n3. On the interval from 90 to 180 degrees the sine decreases as the angle grows, so a < b gives sin(a) > sin(b).\n4. Test with a = 100, b = 170: sin 100 = 0.985 and sin 170 = 0.174, so 19.7 versus 3.5. Test with a = 91, b = 179: 20*0.9998 versus 20*0.017. Always A.\n5. Intuition check: the height from Q onto line PR shrinks as the angle at P opens further past 90 degrees.",
+   "trap": "Applying the acute-angle intuition that a larger included angle always gives a larger area, so the larger angle b seems to give Quantity B the bigger area, choice B.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "triangle-area",
+    "sine-area-formula"
+   ],
+   "figure_description": "Two triangles drawn side by side. Triangle PQR: the vertex P sits where a side of length 5 (PQ) and a side of length 8 (PR) meet, and the angle between them, angle QPR, is a degrees. Triangle STU: the vertex S sits where a side of length 5 (ST) and a side of length 8 (SU) meet, and the angle between them, angle TSU, is b degrees. Both angles are obtuse, and a is smaller than b.",
+   "origin": "kmf1804",
+   "origin_set": "Section 55 Base",
+   "source_pages": [
+    360
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-012",
+   "difficulty": "hard",
+   "type": "quantitative_comparison",
+   "question": "In triangle PQR, PQ = 5, QR = 12, and PR = 12.5.\nQuantity A: The measure of angle Q, in degrees\nQuantity B: The sum of the measures of angles P and R, in degrees",
+   "options": [
+    "A. Quantity A is greater",
+    "B. Quantity B is greater",
+    "C. The two quantities are equal",
+    "D. The relationship cannot be determined from the information given"
+   ],
+   "answer": "B",
+   "explanation": "1. The angles of a triangle sum to 180, so Quantity B = 180 - (measure of angle Q).\n2. So Quantity A < Quantity B exactly when angle Q < 90.\n3. Angle Q lies opposite the longest side PR = 12.5. Compare PQ^2 + QR^2 = 25 + 144 = 169 with PR^2 = 156.25.\n4. Since 169 > 156.25, the side opposite Q is shorter than it would be in a right triangle, so the angle opposite PR is acute: Q < 90.\n5. Therefore Q < 180 - Q, so Quantity B is greater.\nCheck: with legs 5 and 12, a right angle at Q would need PR = 13. Shortening PR to 12.5 closes the angle at Q, so Q is less than 90 and P + R is more than 90.",
+   "trap": "Noticing the 5 and 12 sides and assuming a 5-12-13 right triangle gives Q = 90 and P + R = 90, so the quantities look equal (choice C).",
+   "estimated_time_seconds": 100,
+   "tags": [
+    "converse-pythagorean",
+    "angle-sum",
+    "not-to-scale"
+   ],
+   "figure_description": "Triangle PQR with side PQ = 5, side QR = 12 and side PR = 12.5. The angle at Q is between the sides of length 5 and 12 and lies opposite the longest side, PR. The triangle is drawn so that angle Q looks close to square, but the figure is not to scale and no right-angle mark is shown.",
+   "origin": "kmf1804",
+   "origin_set": "Section 60 Hard",
+   "source_pages": [
+    391
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-013",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "In triangle JKL, side KL has length 14 and the perpendicular distance from J to line KL is 10. Points M and N are the midpoints of sides JK and JL. Point P lies on the opposite side of line KL from J, at a perpendicular distance of 3 from line KL. What is the area of triangle PMN?",
+   "options": [
+    "A. 10.5",
+    "B. 28",
+    "C. 35",
+    "D. 45.5",
+    "E. 56"
+   ],
+   "answer": "B",
+   "explanation": "1. M and N are midpoints, so MN is parallel to KL and MN = 14/2 = 7.\n2. Line MN is halfway up the triangle, so it is 10/2 = 5 above line KL.\n3. P is 3 below line KL, so its perpendicular distance to line MN is 3 + 5 = 8.\n4. Area of triangle PMN = (1/2)*7*8 = 28.\nCheck: the distance from P to the apex-side line is measured across the whole gap, so the 5 between MN and KL must be added to the 3.",
+   "trap": "Using only the 3-unit distance from P to KL as the height of triangle PMN gives (1/2)*7*3 = 10.5, choice A.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "midsegment",
+    "height-across-parallels"
+   ],
+   "figure_description": "Triangle JKL has its base KL horizontal with length 14, and vertex J above it at perpendicular distance 10. M is the midpoint of JK and N is the midpoint of JL, so segment MN is parallel to KL. Point P lies below line KL (the side opposite J), 3 units from KL. Segments PM, PN and MN form triangle PMN.",
+   "origin": "kmf1804",
+   "origin_set": "Section 64 Hard",
+   "source_pages": [
+    418
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-014",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A rope runs from a dock post to a buoy 7 meters away, and a second rope runs from the same post to another buoy 12 meters away. The two ropes do not lie along one straight line, and the straight-line distance between the buoys is a whole number of meters. How many different whole-number distances are possible?",
+   "options": null,
+   "answer": "13",
+   "explanation": "1. The post and the two buoys form a triangle with two sides 7 and 12.\n2. Triangle inequality: the third side d satisfies 12 - 7 < d < 12 + 7, so 5 < d < 19.\n3. The ropes are not collinear, so the endpoints 5 and 19 are excluded.\n4. Whole numbers d = 6, 7, ..., 18: that is 18 - 6 + 1 = 13 values.\nCheck: d = 5 would make the buoys and post collinear (a degenerate triangle), and d = 19 likewise.",
+   "trap": "Counting the endpoints too (5 through 19) gives 15 values; subtracting 19 - 5 without adding 1 gives 14.",
+   "estimated_time_seconds": 90,
+   "tags": [
+    "triangle-inequality",
+    "counting-integers"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 64 Hard",
+   "source_pages": [
+    421
+   ]
+  },
+  {
+   "id": "GEO-TRI-KMF-015",
+   "difficulty": "hard",
+   "type": "numeric_entry",
+   "question": "A triangle has side lengths 6, 9 and y, where y is a positive whole number. For how many values of y does the triangle contain an obtuse angle?",
+   "options": null,
+   "answer": "7",
+   "explanation": "1. For a triangle to exist, 9 - 6 < y < 9 + 6, so y can be 4, 5, 6, ..., 14 (11 values).\n2. Case 1, 9 is the longest side (y <= 9): the angle opposite 9 is obtuse when y^2 + 6^2 < 9^2, i.e. y^2 < 45, so y = 4, 5, 6 (y^2 = 16, 25, 36). That is 3 values.\n3. Case 2, y is the longest side (y > 9): the angle opposite y is obtuse when 6^2 + 9^2 < y^2, i.e. y^2 > 117, so y = 11, 12, 13, 14 (121, 144, 169, 196). That is 4 values.\n4. y = 7, 8, 9, 10 give 49 < 117 and 45 < y^2 < 117 so those triangles are acute; no value gives a right angle since 45 and 117 are not perfect squares.\nTotal = 3 + 4 = 7.\nCheck: 11 valid values, 4 acute (7 to 10), 7 obtuse.",
+   "trap": "Only testing the case where 9 is the longest side (y = 4, 5, 6) gives 3 and misses the obtuse triangles where y itself is the longest side.",
+   "estimated_time_seconds": 120,
+   "tags": [
+    "obtuse-triangle",
+    "two-case-analysis"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 73 Base",
+   "source_pages": [
+    476
+   ]
   }
  ]
 }

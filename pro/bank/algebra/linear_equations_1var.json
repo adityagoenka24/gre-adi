@@ -4,16 +4,23 @@
   "subtopic": "Linear Equations (1 Variable)",
   "subtopic_id": "ALG-LIN",
   "version": "1.0",
-  "total_questions": 61,
+  "total_questions": 64,
   "distribution": {
    "easy": 15,
-   "medium": 23,
+   "medium": 26,
    "hard": 15,
    "extreme_hard": 8
   },
   "generated_by": "Claude Sonnet (AI-generated, Adi-reviewed)",
   "bank": "Adi's GRE Quant Bank",
-  "sectional_merged": "2026-09-26"
+  "sectional_merged": "2026-09-26",
+  "question_types": {
+   "mcq": 29,
+   "multiple_answer": 7,
+   "numeric_entry": 16,
+   "quantitative_comparison": 12
+  },
+  "kmf1804_merged": "2026-10-03"
  },
  "questions": [
   {
@@ -1261,6 +1268,118 @@
    ],
    "origin": "sectional",
    "origin_set": "algebra_set4"
+  },
+  {
+   "id": "ALG-LIN-KMF-001",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "COST OF FABRIC ROLLS, BY ROLL WIDTH AND FIBRE, in dollars per linear metre. Note: every roll listed is 1 millimetre thick.\n\nThe cost of one jute roll that is 30 centimetres wide and k metres long is $7.20 more than the combined cost of 3 jute rolls that are each 10 centimetres wide and k metres long. What is the value of k?",
+   "options": [
+    "A. 4",
+    "B. 6",
+    "C. 12",
+    "D. 24",
+    "E. 36"
+   ],
+   "answer": "C",
+   "explanation": "From the table, jute at 30 centimetres wide costs $4.20 per linear metre and jute at 10 centimetres wide costs $1.20 per linear metre.\nCost of the single wide roll = 4.20*k.\nCombined cost of the 3 narrow rolls = 3 * 1.20 * k = 3.60*k.\nThe stem gives 4.20*k = 3.60*k + 7.20.\nSubtract 3.60*k from both sides: 0.60*k = 7.20.\nk = 7.20/0.60 = 12.\nCheck: the wide roll costs 4.20 * 12 = $50.40; the three narrow rolls cost 3.60 * 12 = $43.20; and 50.40 - 43.20 = $7.20, as required.",
+   "trap": "Using 2 narrow rolls instead of 3 gives 4.20*k - 2.40*k = 1.80*k = 7.20 and k = 4, option A.",
+   "estimated_time_seconds": 105,
+   "tags": [
+    "table-lookup",
+    "linear-equation"
+   ],
+   "table_data": {
+    "headers": [
+     "Roll Width (in centimetres)",
+     "Linen",
+     "Hemp",
+     "Jute"
+    ],
+    "rows": [
+     [
+      10,
+      "$2.00",
+      "$1.60",
+      "$1.20"
+     ],
+     [
+      15,
+      "$3.00",
+      "$2.40",
+      "$1.80"
+     ],
+     [
+      20,
+      "$4.00",
+      "$3.20",
+      "$2.40"
+     ],
+     [
+      25,
+      "$4.90",
+      "$4.20",
+      "$3.50"
+     ],
+     [
+      30,
+      "$6.00",
+      "$5.00",
+      "$4.20"
+     ]
+    ]
+   },
+   "origin": "kmf1804",
+   "origin_set": "Section 7 Base",
+   "source_pages": [
+    41
+   ]
+  },
+  {
+   "id": "ALG-LIN-KMF-002",
+   "difficulty": "medium",
+   "type": "mcq",
+   "question": "A librarian arranges 150 books on a shelf in alphabetical order by title, and no two titles are the same. One particular novel is the mth book counting from the left end of the shelf, and it is the (2m + 7)th book counting from the right end. How many books on the shelf lie to the right of this novel?",
+   "options": [
+    "A. 47",
+    "B. 48",
+    "C. 102",
+    "D. 103",
+    "E. 106"
+   ],
+   "answer": "C",
+   "explanation": "Counting from the left, the novel is book m; counting from the right it is book 151 - m (the two positions always add to 150 + 1).\nSet 2m + 7 = 151 - m, so 3m = 144 and m = 48.\nFrom the right end the novel is book 2(48) + 7 = 103.\nBooks to its right = 103 - 1 = 102.\nCheck: 47 books to the left + the novel + 102 to the right = 150.",
+   "trap": "Giving the novel's position from the right end (103) instead of the number of books beyond it (choice D). Giving the number of books to its left (47) is choice A. Dropping the +7 (solving m + 2m = 150) gives m = 50, so the novel is book 107 from the right and 106 books lie to its right (choice E).",
+   "estimated_time_seconds": 75,
+   "tags": [
+    "position-from-ends",
+    "linear-equation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 39 Base",
+   "source_pages": [
+    251
+   ]
+  },
+  {
+   "id": "ALG-LIN-KMF-003",
+   "difficulty": "medium",
+   "type": "numeric_entry",
+   "question": "A lab defines its own temperature scale, the Quill scale, so that a Quill reading Q and the Celsius reading C of the same sample satisfy Q = (7/4)C + 12. For one sample, the Quill reading is exactly twice the Celsius reading. What is the Celsius reading of that sample?",
+   "options": null,
+   "answer": "48",
+   "explanation": "Set Q = 2C in the conversion rule: 2C = (7/4)C + 12.\nSubtract (7/4)C from both sides: (1/4)C = 12.\nC = 48.\nCheck: Q = (7/4)*48 + 12 = 84 + 12 = 96, and 96 = 2*48. Answer 48.",
+   "trap": "Reporting the Quill reading (96) instead of the Celsius reading that was asked for, or turning 'twice' into Q = C/2, which gives a negative Celsius value.",
+   "estimated_time_seconds": 70,
+   "tags": [
+    "scale-conversion",
+    "linear-equation"
+   ],
+   "origin": "kmf1804",
+   "origin_set": "Section 48 Hard",
+   "source_pages": [
+    311
+   ]
   }
  ]
 }
