@@ -369,9 +369,10 @@ const Events = (() => {
     }
     if (q.type === "quantitative_comparison") {
       const lines = String(q.question || "").split("\n");
-      const intro = lines[0] || "";
-      const colA = (lines.find((line) => line.startsWith("Column A:")) || "Column A: -").replace("Column A:", "").trim();
-      const colB = (lines.find((line) => line.startsWith("Column B:")) || "Column B: -").replace("Column B:", "").trim();
+      const isQ = (line, x) => new RegExp('^\\s*(Column|Quantity)\\s*' + x + '\\s*:', 'i').test(line);
+      const intro = lines.filter((line) => !isQ(line, 'A') && !isQ(line, 'B')).join('\n').trim();
+      const colA = (lines.find((line) => isQ(line, 'A')) || '-').replace(/^\s*(Column|Quantity)\s*A\s*:/i, '').trim();
+      const colB = (lines.find((line) => isQ(line, 'B')) || '-').replace(/^\s*(Column|Quantity)\s*B\s*:/i, '').trim();
       const selected = new Set(currentAnswer ? [Array.isArray(currentAnswer) ? currentAnswer[0] : currentAnswer] : []);
       return `<p class="pq-question-text">${escapeHtml(intro)}</p>
         <div class="pq-qc-grid">

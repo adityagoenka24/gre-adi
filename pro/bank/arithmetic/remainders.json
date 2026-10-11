@@ -29,13 +29,13 @@
       "type": "mcq",
       "question": "What is the remainder when 47 is divided by 5?",
       "options": [
-        "A. 1",
-        "B. 2",
-        "C. 3",
-        "D. 4",
-        "E. 0"
+        "A. 0",
+        "B. 1",
+        "C. 2",
+        "D. 3",
+        "E. 4"
       ],
-      "answer": "B",
+      "answer": "C",
       "explanation": "47 ÷ 5 = 9 remainder 2. Check: 9 × 5 = 45, and 47 − 45 = 2. The remainder is 2.",
       "trap": "Students compute 47/5 = 9.4 and write 4 as the remainder (confusing the decimal digit after the point with the actual remainder). The remainder is 47 − 9 × 5 = 2, not 4.",
       "estimated_time_seconds": 40,
@@ -48,7 +48,18 @@
         "options_unordered",
         "textbook_phrasing"
       ],
-      "ets_note": "Numeric options not ascending (0 placed last); trivial one-step item."
+      "ets_note": "Numeric options not ascending (0 placed last); trivial one-step item.",
+      "ets_option_order": {
+        "date": "2026-10-11",
+        "from": [
+          "E",
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "note": "options sorted ascending; answer and letter references recomputed"
+      }
     },
     {
       "id": "NUM-REM-002",
@@ -346,15 +357,15 @@
       "type": "mcq",
       "question": "What is the remainder when 2^10 is divided by 5?",
       "options": [
-        "A. 1",
-        "B. 2",
-        "C. 3",
-        "D. 4",
-        "E. 0"
+        "A. 0",
+        "B. 1",
+        "C. 2",
+        "D. 3",
+        "E. 4"
       ],
-      "answer": "D",
+      "answer": "E",
       "explanation": "Step 1 — build the cycle of powers of 2 mod 5, reducing at every step:\n2^1 = 2\n2^2 = 4\n2^3 = 8, which leaves 3\n2^4 = 16, which leaves 1\n2^5 leaves 2 again, so the cycle is (2, 4, 3, 1) and its length is 4.\nStep 2 — locate the exponent: 10 = 4 x 2 + 2, so 10 mod 4 = 2.\nStep 3 — take the 2nd entry of the cycle: 4.\nCheck: 2^10 = 1024 = 5 x 204 + 4. Correct.\nAnswer: 4.",
-      "trap": "Using a cycle length of 5 because there are 5 possible remainders, computing 10 mod 5 = 0, and landing on 1 (choice A). The length of the cycle is however many powers it takes to return to the start - here 4, not 5. Choice B is position 1 of the cycle and choice C is position 3, the two off-by-one slips on either side of the correct position 2; choice E is the belief that a power of 2 must eventually be divisible by 5.",
+      "trap": "Using a cycle length of 5 because there are 5 possible remainders, computing 10 mod 5 = 0, and landing on 1 (choice B). The length of the cycle is however many powers it takes to return to the start - here 4, not 5. Choice C is position 1 of the cycle and choice D is position 3, the two off-by-one slips on either side of the correct position 2; choice A is the belief that a power of 2 must eventually be divisible by 5.",
       "estimated_time_seconds": 70,
       "tags": [
         "cyclicity",
@@ -365,7 +376,18 @@
       "ets_tags": [
         "options_unordered"
       ],
-      "ets_note": "Numeric options 1,2,3,4,0 not ascending; 0 placed last."
+      "ets_note": "Numeric options 1,2,3,4,0 not ascending; 0 placed last.",
+      "ets_option_order": {
+        "date": "2026-10-11",
+        "from": [
+          "E",
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "note": "options sorted ascending; answer and letter references recomputed"
+      }
     },
     {
       "id": "NUM-REM-016",
@@ -415,11 +437,11 @@
       "options": [
         "A. 1",
         "B. 3",
-        "C. 7",
-        "D. 9",
-        "E. 6"
+        "C. 6",
+        "D. 7",
+        "E. 9"
       ],
-      "answer": "C",
+      "answer": "D",
       "explanation": "The last digit of 3^n cycles with period 4: 3^1 → 3, 3^2 → 9, 3^3 → 7, 3^4 → 1, 3^5 → 3, ... Find 47 mod 4: 47 = 4×11 + 3, so 47 mod 4 = 3. The 3rd position in the cycle (3, 9, 7, 1) is 7. Last digit of 3^47 is 7.",
       "trap": "Students use a cycle length of 5 for powers of 3 (mistakenly thinking the cycle is 3, 9, 7, 1, 3 of length 5). With length 5: 47 mod 5 = 2, giving position 2 → last digit 9. The correct period for last digits of 3^n is 4, not 5.",
       "estimated_time_seconds": 70,
@@ -433,7 +455,18 @@
       "ets_tags": [
         "options_unordered"
       ],
-      "ets_note": "Numeric options 1,3,7,9,6 not ascending."
+      "ets_note": "Numeric options 1,3,7,9,6 not ascending.",
+      "ets_option_order": {
+        "date": "2026-10-11",
+        "from": [
+          "A",
+          "B",
+          "E",
+          "C",
+          "D"
+        ],
+        "note": "options sorted ascending; answer and letter references recomputed"
+      }
     },
     {
       "id": "NUM-REM-019",
@@ -641,9 +674,9 @@
       "options": [
         "A. 1",
         "B. 3",
-        "C. 7",
-        "D. 9",
-        "E. 5"
+        "C. 5",
+        "D. 7",
+        "E. 9"
       ],
       "answer": "B",
       "explanation": "The remainder when any number is divided by 10 equals its last digit. Last digits of 7^n cycle with period 4: 7^1→7, 7^2→9, 7^3→3, 7^4→1, then repeats. Find 15 mod 4: 15 = 4×3 + 3, so 15 mod 4 = 3. The 3rd position in the cycle (7, 9, 3, 1) is 3. Remainder = 3.",
@@ -659,7 +692,18 @@
       "ets_tags": [
         "options_unordered"
       ],
-      "ets_note": "Numeric options 1,3,7,9,5 not ascending."
+      "ets_note": "Numeric options 1,3,7,9,5 not ascending.",
+      "ets_option_order": {
+        "date": "2026-10-11",
+        "from": [
+          "A",
+          "B",
+          "E",
+          "C",
+          "D"
+        ],
+        "note": "options sorted ascending; answer and letter references recomputed"
+      }
     },
     {
       "id": "NUM-REM-027",
@@ -1283,6 +1327,8 @@
         "remainders",
         "divisibility"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set1"
     },
@@ -1305,6 +1351,8 @@
         "units-digit",
         "exponents"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set1"
     },
@@ -1327,6 +1375,8 @@
         "lcm",
         "remainders"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set1"
     },
@@ -1344,6 +1394,9 @@
         "remainders",
         "modular-arithmetic"
       ],
+      "ets_score": 3,
+      "ets_tags": [],
+      "ets_note": "Fine but reduces mechanically; hard label generous for a one-step reduction.",
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set1"
     },
@@ -1367,6 +1420,8 @@
         "remainders",
         "prime-numbers"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set1"
     },
@@ -1384,6 +1439,8 @@
         "remainders",
         "modular-arithmetic"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set2"
     },
@@ -1401,6 +1458,8 @@
         "remainders",
         "divisibility"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set2"
     },
@@ -1429,12 +1488,14 @@
         "remainders",
         "lcm"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set2"
     },
     {
       "id": "SEC-AO-031",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "quantitative_comparison",
       "question": "When the positive integer n is divided by 5, the remainder is 4; when n is divided by 4, the remainder is 3.\nQuantity A: The least possible value of n\nQuantity B: 20",
       "options": [
@@ -1451,6 +1512,17 @@
         "remainders",
         "lcm"
       ],
+      "ets_score": 4,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Easy-medium, labelled hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Both remainders are one short of the divisor, so n = 19; list matching values.",
+        "confidence": "high"
+      },
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set3"
     },
@@ -1468,6 +1540,8 @@
         "remainders",
         "modular-arithmetic"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set3"
     },
@@ -1496,6 +1570,8 @@
         "remainders",
         "divisibility"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set3"
     },
@@ -1519,6 +1595,8 @@
         "remainders",
         "lcm"
       ],
+      "ets_score": 3,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set4"
     },
@@ -1547,6 +1625,8 @@
         "remainders",
         "modular-arithmetic"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "arithmetic_operations_set4"
     },
@@ -1569,6 +1649,8 @@
         "remainders",
         "divisibility"
       ],
+      "ets_score": 4,
+      "ets_tags": [],
       "origin": "sectional",
       "origin_set": "number_properties_set2"
     },

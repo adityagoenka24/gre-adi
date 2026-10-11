@@ -1776,13 +1776,14 @@ function bankRenderQuestion(){
   let bodyHTML='';
   if(q.type==='quantitative_comparison'){
     const lines=q.question.split('\n');
-    const intro=lines[0];
-    const colA=(lines.find(l=>l.startsWith('Column A:'))||'Column A: —').replace('Column A:','').trim();
-    const colB=(lines.find(l=>l.startsWith('Column B:'))||'Column B: —').replace('Column B:','').trim();
+    const isQ=(l,x)=>new RegExp('^\\s*(Column|Quantity)\\s*'+x+'\\s*:','i').test(l);
+    const intro=lines.filter(l=>!isQ(l,'A')&&!isQ(l,'B')).join('\n').trim();
+    const colA=(lines.find(l=>isQ(l,'A'))||'—').replace(/^\s*(Column|Quantity)\s*A\s*:/i,'').trim();
+    const colB=(lines.find(l=>isQ(l,'B'))||'—').replace(/^\s*(Column|Quantity)\s*B\s*:/i,'').trim();
     bodyHTML=`<p class="pq-question-text">${escHtml(intro)}</p>
     <div class="pq-qc-grid">
-      <div class="pq-qc-col"><div class="pq-qc-label">Column A</div><div class="pq-qc-content">${escHtml(colA)}</div></div>
-      <div class="pq-qc-col"><div class="pq-qc-label">Column B</div><div class="pq-qc-content">${escHtml(colB)}</div></div>
+      <div class="pq-qc-col"><div class="pq-qc-label">Quantity A</div><div class="pq-qc-content">${escHtml(colA)}</div></div>
+      <div class="pq-qc-col"><div class="pq-qc-label">Quantity B</div><div class="pq-qc-content">${escHtml(colB)}</div></div>
     </div>
     <div class="pq-qc-options">${q.options.map((o,i)=>{
       const l=String.fromCharCode(65+i);
@@ -2409,14 +2410,15 @@ function examRenderQuestion(idx) {
 
   let bodyHTML = '';
   if (q.type === 'quantitative_comparison') {
-    const lines = q.question.split('\n');
-    const intro = lines[0];
-    const colA = (lines.find(l => l.startsWith('Column A:')) || 'Column A: —').replace('Column A:', '').trim();
-    const colB = (lines.find(l => l.startsWith('Column B:')) || 'Column B: —').replace('Column B:', '').trim();
+    const lines=q.question.split('\n');
+    const isQ=(l,x)=>new RegExp('^\\s*(Column|Quantity)\\s*'+x+'\\s*:','i').test(l);
+    const intro=lines.filter(l=>!isQ(l,'A')&&!isQ(l,'B')).join('\n').trim();
+    const colA=(lines.find(l=>isQ(l,'A'))||'—').replace(/^\s*(Column|Quantity)\s*A\s*:/i,'').trim();
+    const colB=(lines.find(l=>isQ(l,'B'))||'—').replace(/^\s*(Column|Quantity)\s*B\s*:/i,'').trim();
     bodyHTML = `<p class="pq-question-text">${escHtml(intro)}</p>
       <div class="pq-qc-grid">
-        <div class="pq-qc-col"><div class="pq-qc-label">Column A</div><div class="pq-qc-content">${escHtml(colA)}</div></div>
-        <div class="pq-qc-col"><div class="pq-qc-label">Column B</div><div class="pq-qc-content">${escHtml(colB)}</div></div>
+        <div class="pq-qc-col"><div class="pq-qc-label">Quantity A</div><div class="pq-qc-content">${escHtml(colA)}</div></div>
+        <div class="pq-qc-col"><div class="pq-qc-label">Quantity B</div><div class="pq-qc-content">${escHtml(colB)}</div></div>
       </div>
       <div class="pq-qc-options">${q.options.map((o,i)=>{
         const l = String.fromCharCode(65+i);
