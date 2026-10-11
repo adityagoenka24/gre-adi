@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="../gre-math.js"></script>
+<script defer src="../gre-calculator.js"></script>
 <style>.gre-math{white-space:normal}.katex{font-size:1.08em!important}.pq-question-text .katex,.pq-qc-content .katex{font-size:1.12em!important}</style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -173,6 +174,7 @@ textarea{resize:vertical;min-height:70px;}
 
 /* Difficulty toggle */
 .diff-toggle{display:flex;gap:6px;}
+.tag-count{font-family:var(--font-mono);font-size:10.5px;font-weight:700;opacity:.7;margin-left:3px;}
 .diff-btn{flex:1;padding:8px;border-radius:var(--radius-sm);border:1px solid var(--border);background:var(--surface2);font-family:var(--font-body);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;text-align:center;color:var(--text2);}
 .diff-btn[data-diff="Easy"].active-diff{background:rgba(30,126,70,0.2);color:var(--success);border-color:var(--success);}
 .diff-btn[data-diff="Medium"].active-diff{background:rgba(176,96,0,0.2);color:var(--warning);border-color:var(--warning);}
@@ -724,6 +726,89 @@ tr:hover td{background:rgba(26,93,166,0.04);}
   .practice-q-card .pq-question-text{font-size:16.5px;}
   .practice-q-card .pq-option{font-size:15.5px;}
 }
+
+/* ============================================================
+   ETS TEST-SCREEN SHELL — practice + exam sessions
+   Full-screen replica of the mock-test interface: navy control bar,
+   grey section/timer strip, white question area. Values are copied
+   from gre-exam-theme.css (not linked, for the reason given above).
+   Everything is scoped to .ets-frame so nothing else in the app moves.
+   ============================================================ */
+body.ets-lock{overflow:hidden;}
+.ets-frame{
+  --ets-bar:#28455e; --ets-bar-dark:#1e3549; --ets-strip:#dfe6ed; --ets-strip-border:#c3ccd6;
+  position:fixed;inset:0;z-index:100;display:flex;flex-direction:column;background:#fff;
+  font-family:Arial,Helvetica,"Segoe UI",sans-serif;color:#16191d;
+}
+.ets-topbar{background:linear-gradient(180deg,var(--ets-bar),var(--ets-bar-dark));color:#fff;display:flex;align-items:stretch;justify-content:space-between;flex-shrink:0;min-height:58px;}
+.ets-topbar-left{display:flex;align-items:center;padding:0 18px;font-size:13.5px;gap:8px;white-space:nowrap;overflow:hidden;}
+.ets-topbar-left b{font-weight:700;}
+.ets-topbar-btns{display:flex;align-items:stretch;}
+.ets-tb-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;border:none;border-left:1px solid rgba(255,255,255,.16);color:#fff;min-width:72px;padding:7px 12px;font-family:inherit;font-size:11px;font-weight:600;letter-spacing:.3px;cursor:pointer;transition:background .12s;}
+.ets-tb-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.ets-tb-btn:hover{background:rgba(255,255,255,.13);}
+.ets-tb-btn:active{background:rgba(255,255,255,.22);}
+.ets-tb-btn:disabled{opacity:.4;cursor:not-allowed;background:transparent;}
+.ets-tb-btn:focus-visible{outline:3px solid #7fb2e5;outline-offset:-3px;}
+.ets-tb-btn.marked{color:#ffce7a;}
+.ets-tb-btn.marked svg{fill:#ffce7a;stroke:#ffce7a;}
+.ets-tb-btn[aria-pressed="true"]{background:rgba(255,255,255,.18);}
+.ets-tb-btn.ets-primary{background:#1a5da6;}
+.ets-tb-btn.ets-primary:hover:not(:disabled){background:#124a87;}
+.ets-tb-btn.ets-primary:disabled{background:transparent;}
+.ets-frame.ets-practice .ets-exam-only{display:none;}
+
+.ets-strip{background:var(--ets-strip);border-bottom:1px solid var(--ets-strip-border);display:flex;align-items:center;justify-content:space-between;padding:7px 18px;flex-shrink:0;gap:12px;flex-wrap:wrap;}
+.ets-strip-title{font-size:13px;color:#2b3947;font-weight:700;}
+.ets-strip-sub{font-weight:400;color:#51606e;}
+.ets-strip-right{display:flex;align-items:center;gap:14px;}
+.ets-strip .bank-score-pill{font-family:"Courier New",Consolas,monospace;font-size:13px;font-weight:700;padding:2px 10px;}
+.ets-timer{display:flex;align-items:center;gap:7px;font-family:"Courier New",Consolas,monospace;font-size:17px;font-weight:700;color:#1d2833;letter-spacing:1px;}
+.ets-timer svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;}
+.ets-frame .session-timer,.ets-frame .exam-countdown{font-family:inherit;font-size:17px;font-weight:700;color:#1d2833;background:none;border:none;padding:0;border-radius:0;letter-spacing:1px;animation:none;}
+.ets-frame .exam-countdown.warning{color:#b06000;background:none;border:none;}
+.ets-frame .exam-countdown.critical{color:var(--danger);background:none;border:none;animation:none;}
+.ets-strip.time-hidden .ets-timer{visibility:hidden;}
+.ets-hide-time{background:none;border:none;color:#3b5a77;font-family:inherit;font-size:12px;text-decoration:underline;padding:6px;cursor:pointer;}
+
+.ets-body{flex:1;overflow-y:auto;background:#fff;}
+.ets-qwrap{max-width:860px;margin:0 auto;padding:30px 34px 80px;}
+.ets-directions{font-size:13.5px;color:#4a545e;border-bottom:1px solid #e2e8ee;padding-bottom:12px;margin-bottom:26px;font-style:italic;font-family:Arial,Helvetica,sans-serif;}
+
+/* the card stops being a card: ETS has just the white page */
+.ets-frame .practice-q-card{border:none;border-radius:0;box-shadow:none;animation:none;margin-bottom:0;overflow:visible;background:transparent;}
+.ets-frame .pq-header{background:transparent;border-bottom:1px solid #e2e8ee;padding:0 0 10px;margin-bottom:18px;}
+.ets-frame .pq-body{padding:0;}
+.ets-frame .pq-feedback{margin:6px 0 24px;}
+.ets-frame .pq-footer{background:transparent;border-top:1px solid #e2e8ee;padding:12px 0 0;}
+.ets-frame .pq-footer .btn{display:none;}
+.ets-frame .exam-layout{display:block;}
+.ets-frame .exam-sidebar{display:none;}
+
+/* review / help dialog (same look as the mocks' modal) */
+.ets-modal-backdrop{position:fixed;inset:0;background:rgba(20,30,40,.5);display:flex;align-items:center;justify-content:center;z-index:9000;padding:20px;}
+.ets-modal{background:#fff;border-radius:6px;max-width:520px;width:100%;max-height:88vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.3);font-family:Arial,Helvetica,sans-serif;}
+.ets-modal-head{background:#28455e;color:#fff;padding:12px 18px;font-size:15px;font-weight:700;}
+.ets-modal-body{padding:18px;font-size:14.5px;color:#4a545e;line-height:1.6;overflow-y:auto;}
+.ets-modal-actions{display:flex;justify-content:flex-end;gap:10px;padding:0 18px 18px;flex-wrap:wrap;}
+.ets-review-table{width:100%;border-collapse:collapse;font-size:14px;}
+.ets-review-table th{background:#dfe6ed;color:#2b3947;text-align:left;padding:8px 12px;border:1px solid #c3ccd6;font-size:12px;text-transform:uppercase;letter-spacing:.5px;}
+.ets-review-table td{padding:8px 12px;border:1px solid #e2e8ee;}
+.ets-review-table tbody tr{cursor:pointer;}
+.ets-review-table tbody tr:hover{background:#e8f1fa;}
+.ets-review-table .st-answered{color:#1e7e46;font-weight:700;}
+.ets-review-table .st-unanswered{color:#c0392b;font-weight:700;}
+.ets-review-table .mark-flag{color:#d9822b;font-weight:700;}
+
+@media(max-width:720px){
+  .ets-topbar{flex-direction:column;}
+  .ets-topbar-left{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.15);}
+  .ets-topbar-btns{width:100%;justify-content:space-between;}
+  .ets-tb-btn{flex:1;min-width:0;border-left:none;border-right:1px solid rgba(255,255,255,.12);padding:6px 4px;}
+  .ets-qwrap{padding:22px 16px 70px;}
+  .ets-strip{padding:6px 14px;}
+  .ets-strip-sub{display:none;}
+}
 </style>
 </head>
 <body>
@@ -961,37 +1046,79 @@ tr:hover td{background:rgba(26,93,166,0.04);}
       </div>
     </div>
 
-    <!-- Practice Active Screen -->
+    <!-- Practice Active Screen — ETS test-screen shell (same layout as the mocks) -->
     <div id="bank-active-screen" style="display:none;">
-      <div class="bank-meta-bar visible" id="bank-meta-bar">
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-          <div class="meta-item"><span class="meta-label">Student</span><span class="meta-value" id="bank-meta-name">—</span></div>
-          <div class="meta-item"><span class="meta-label">Topic</span><span class="meta-value" id="bank-meta-topic">—</span></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;">
-          <div class="bank-progress-pill" id="bank-progress-pill">Q 1 / 10</div>
-          <div class="bank-score-pill" id="bank-score-pill" style="display:none;">✓ 0</div>
-          <div class="session-timer" id="bank-session-timer" style="display:none;">00:00</div>
-          <div class="exam-countdown" id="exam-countdown" style="display:none;">00:00</div>
-        </div>
-      </div>
-      <!-- Exam sidebar layout (exam mode only) -->
-      <div id="exam-layout-wrapper" style="display:none;">
-        <div class="exam-layout">
-          <div class="exam-sidebar" id="exam-nav-bar">
-            <div class="exam-sidebar-title">Navigator</div>
-            <div class="exam-dots-wrap" id="exam-dots"></div>
-            <div class="exam-sidebar-unanswered" id="exam-unanswered-warning"></div>
-            <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
-              <button class="btn btn-danger" style="width:100%;padding:10px;" onclick="examSubmit()">📝 Submit</button>
-            </div>
+      <div class="ets-frame" role="application" aria-label="GRE practice test screen">
+        <div class="ets-topbar">
+          <div class="ets-topbar-left">
+            <b id="ets-mode-label">Practice</b>
+            <span aria-hidden="true">&nbsp;|&nbsp;</span>
+            <span id="bank-progress-pill">Question 1 of 10</span>
           </div>
-          <div class="exam-question-col" id="exam-question-col"></div>
+          <div class="ets-topbar-btns">
+            <button class="ets-tb-btn" id="ets-btn-exit" onclick="etsExit()" aria-label="Exit">
+              <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+              <span id="ets-exit-label">Exit</span>
+            </button>
+            <button class="ets-tb-btn" id="ets-btn-calc" data-gre-calc-btn onclick="GRECalc.toggle()" aria-label="Calculator" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="8.01" y2="11"/><line x1="12" y1="11" x2="12.01" y2="11"/><line x1="16" y1="11" x2="16.01" y2="11"/><line x1="8" y1="15" x2="8.01" y2="15"/><line x1="12" y1="15" x2="12.01" y2="15"/><line x1="16" y1="15" x2="16.01" y2="15"/><line x1="8" y1="19" x2="16" y2="19"/></svg>
+              Calculator
+            </button>
+            <button class="ets-tb-btn" id="ets-btn-help" onclick="etsHelp()" aria-label="Help">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              Help
+            </button>
+            <button class="ets-tb-btn ets-exam-only" id="ets-btn-mark" onclick="etsToggleMark()" aria-label="Mark question for review" aria-pressed="false">
+              <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+              Mark
+            </button>
+            <button class="ets-tb-btn ets-exam-only" id="ets-btn-review" onclick="etsOpenReview()" aria-label="Review section">
+              <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              Review
+            </button>
+            <button class="ets-tb-btn ets-exam-only" id="ets-btn-prev" onclick="etsPrev()" aria-label="Back">
+              <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+              Back
+            </button>
+            <button class="ets-tb-btn ets-primary" id="ets-btn-next" onclick="etsPrimary()" aria-label="Next">
+              <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              <span id="ets-next-label">Submit</span>
+            </button>
+          </div>
+        </div>
+        <div class="ets-strip" id="ets-strip">
+          <div class="ets-strip-title">GRE<sup>&reg;</sup> Practice &mdash; Quantitative Reasoning
+            <span class="ets-strip-sub">&nbsp;·&nbsp;<span id="bank-meta-topic">—</span>&nbsp;·&nbsp;<span id="bank-meta-name">—</span></span>
+          </div>
+          <div class="ets-strip-right">
+            <div class="bank-score-pill" id="bank-score-pill" style="display:none;">✓ 0</div>
+            <div class="ets-timer" id="ets-timer-wrap">
+              <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              <span class="session-timer" id="bank-session-timer" style="display:none;">00:00</span>
+              <span class="exam-countdown" id="exam-countdown" style="display:none;">00:00</span>
+            </div>
+            <button class="ets-hide-time" id="ets-hide-time" onclick="etsToggleTimer()">Hide Time</button>
+          </div>
+        </div>
+        <div class="ets-body" id="ets-body">
+          <div class="ets-qwrap">
+            <!-- Exam layout wrapper (exam mode only; the navigator is now the Review screen) -->
+            <div id="exam-layout-wrapper" style="display:none;">
+              <div class="exam-layout">
+                <div class="exam-sidebar" id="exam-nav-bar">
+                  <div class="exam-sidebar-title">Navigator</div>
+                  <div class="exam-dots-wrap" id="exam-dots"></div>
+                  <div class="exam-sidebar-unanswered" id="exam-unanswered-warning"></div>
+                </div>
+                <div class="exam-question-col" id="exam-question-col"></div>
+              </div>
+            </div>
+            <!-- Practice mode question area — always visible -->
+            <div id="bank-question-area"></div>
+            <div id="exam-submit-area" style="display:none;"></div>
+          </div>
         </div>
       </div>
-      <!-- Practice mode question area — always visible -->
-      <div id="bank-question-area"></div>
-      <div id="exam-submit-area" style="display:none;"></div>
     </div>
 
     <!-- Exam Analysis Screen -->
@@ -2001,11 +2128,11 @@ function bankPopulateTopicDropdown() {
 }
 
 // Load a specific subtopic JSON on demand
-async function loadSubtopic(topic, subtopic) {
+async function loadSubtopic(topic, subtopic, silent) {
   const cacheKey = topic + '/' + subtopic;
   if (BANK_CACHE[cacheKey]) return BANK_CACHE[cacheKey]; // already cached
   const path = BANK_INDEX.topics[topic][subtopic].file;
-  showLoading('Loading ' + subtopic + ' questions...');
+  if (!silent) showLoading('Loading ' + subtopic + ' questions...');
   try {
     const res = await fetch('bank/' + path);
     if (!res.ok) throw new Error('File not found: bank/' + path);
@@ -2015,11 +2142,13 @@ async function loadSubtopic(topic, subtopic) {
     if (!QUESTION_BANK[topic]) QUESTION_BANK[topic] = {};
     QUESTION_BANK[topic][subtopic] = data.questions;
     BANK_CACHE[cacheKey] = data.questions;
-    hideLoading();
+    if (!silent) hideLoading();
     return data.questions;
   } catch(e) {
-    hideLoading();
-    showToast('Could not load ' + subtopic + ': ' + e.message, 'error');
+    if (!silent) {
+      hideLoading();
+      showToast('Could not load ' + subtopic + ': ' + e.message, 'error');
+    }
     return null;
   }
 }
@@ -2046,6 +2175,7 @@ function bankTopicChanged(){
   document.getElementById('bank-avail-count').textContent='Select a subtopic';
   document.getElementById('bank-avail-count').style.color='var(--text3)';
   document.getElementById('bank-start-btn').disabled=true;
+  bankRefreshAvail();
   if(!topic||!BANK_INDEX||!BANK_INDEX.topics[topic])return;
   Object.keys(BANK_INDEX.topics[topic]).sort().forEach(s=>{
     // Only show subtopics with questions available (status = complete)
@@ -2059,19 +2189,68 @@ function bankSubtopicChanged(){
   const topic=document.getElementById('bank-topic').value;
   const subtopic=document.getElementById('bank-subtopic').value;
   bankState.subtopic=subtopic;
-  const el=document.getElementById('bank-avail-count');
   if(!subtopic){
-    el.textContent='Select a subtopic';el.style.color='var(--text3)';
+    bankRefreshAvail();
     document.getElementById('bank-start-btn').disabled=true;return;
   }
-  // Read count from manifest (always available)
-  const meta=BANK_INDEX&&BANK_INDEX.topics[topic]&&BANK_INDEX.topics[topic][subtopic];
-  if(!meta){
-    el.textContent='Not found in bank';el.style.color='var(--danger)';
-    document.getElementById('bank-start-btn').disabled=true;return;
-  }
-  el.textContent=meta.count+' questions available';el.style.color='var(--success)';
   bankUpdateSummary();
+  // Fetch the subtopic quietly in the background so the counts below can be
+  // exact (they depend on difficulty AND question type, which only the loaded
+  // questions know). The manifest's per-difficulty counts cover the gap.
+  if(!(QUESTION_BANK[topic]&&QUESTION_BANK[topic][subtopic])&&BANK_INDEX&&BANK_INDEX.topics[topic]&&BANK_INDEX.topics[topic][subtopic]){
+    loadSubtopic(topic,subtopic,true).then(()=>{
+      // ignore the result if the student has already picked something else
+      if(document.getElementById('bank-topic').value===topic&&document.getElementById('bank-subtopic').value===subtopic)bankUpdateSummary();
+    });
+  }
+}
+
+// Question counts for the selected subtopic under the current filters.
+// Exact once the subtopic file is loaded; until then it comes from the
+// per-difficulty distribution in the manifest (type filter not known yet).
+const BANK_DIFFS=['easy','medium','hard','extreme_hard'];
+function bankAvailCounts(topic,subtopic){
+  const meta=BANK_INDEX&&BANK_INDEX.topics[topic]&&BANK_INDEX.topics[topic][subtopic];
+  if(!meta)return null;
+  const loaded=QUESTION_BANK[topic]&&QUESTION_BANK[topic][subtopic];
+  const byDiff={};BANK_DIFFS.forEach(d=>byDiff[d]=0);
+  if(loaded){
+    const typeOk=q=>bankState.selectedTypes.includes('all')||bankState.selectedTypes.includes(q.type);
+    loaded.forEach(q=>{if(typeOk(q)&&byDiff[q.difficulty]!==undefined)byDiff[q.difficulty]++;});
+    return{total:loaded.length,matching:bankGetFiltered(topic,subtopic).length,byDiff,exact:true};
+  }
+  const dist=meta.distribution||{};
+  BANK_DIFFS.forEach(d=>byDiff[d]=dist[d]||0);
+  // distribution counts only questions that are actually served (withdrawn ones excluded)
+  const served=BANK_DIFFS.reduce((n,d)=>n+byDiff[d],0)||meta.count;
+  const allDiffs=bankState.selectedDiffs.includes('all');
+  const matching=allDiffs?served:BANK_DIFFS.reduce((n,d)=>n+(bankState.selectedDiffs.includes(d)?byDiff[d]:0),0);
+  return{total:served,matching,byDiff,exact:false};
+}
+
+// Redraws the "Available Questions" box and the count on each difficulty button.
+function bankRefreshAvail(){
+  const topic=document.getElementById('bank-topic').value;
+  const subtopic=document.getElementById('bank-subtopic').value;
+  const el=document.getElementById('bank-avail-count');
+  const btns=document.querySelectorAll('#bank-diff-select .tag-opt');
+  const c=(topic&&subtopic)?bankAvailCounts(topic,subtopic):null;
+  btns.forEach(b=>{
+    if(!b.dataset.label)b.dataset.label=b.textContent.trim();
+    const v=b.dataset.val;
+    const n=!c?null:(v==='all'?(c.exact?BANK_DIFFS.reduce((t,d)=>t+c.byDiff[d],0):c.total):c.byDiff[v]);
+    b.innerHTML=n===null?b.dataset.label:b.dataset.label+' <span class="tag-count">'+n+'</span>';
+  });
+  if(!subtopic){el.textContent='Select a subtopic';el.style.color='var(--text3)';return;}
+  if(!c){el.textContent='Not found in bank';el.style.color='var(--danger)';return;}
+  const narrowed=!bankState.selectedDiffs.includes('all')||(c.exact&&!bankState.selectedTypes.includes('all'));
+  if(!narrowed){
+    el.textContent=c.total+' questions available';el.style.color='var(--success)';
+  }else if(!c.matching){
+    el.textContent='0 of '+c.total+' match your filters';el.style.color='var(--danger)';
+  }else{
+    el.textContent=c.matching+' of '+c.total+' match your filters';el.style.color='var(--success)';
+  }
 }
 
 function bankToggleDiff(btn){
@@ -2132,6 +2311,7 @@ function bankUpdateSummary(){
   const topic=document.getElementById('bank-topic').value;
   const subtopic=document.getElementById('bank-subtopic').value;
   const sumEl=document.getElementById('bank-filter-summary');
+  bankRefreshAvail();
   if(!topic||!subtopic){
     sumEl.textContent='Select topic and subtopic to begin';
     sumEl.style.color='var(--text3)';
@@ -2150,15 +2330,17 @@ function bankUpdateSummary(){
       sumEl.style.color='var(--text3)';document.getElementById('bank-start-btn').disabled=false;
     }
   }else{
-    // Not loaded yet — use total count from manifest, enable button
-    const total=BANK_INDEX&&BANK_INDEX.topics[topic]&&BANK_INDEX.topics[topic][subtopic]
-      ?BANK_INDEX.topics[topic][subtopic].count:0;
-    if(!total){
+    // Not loaded yet — use the manifest's per-difficulty counts, enable button
+    const c=bankAvailCounts(topic,subtopic);
+    if(!c){
       sumEl.textContent='⚠️ Subtopic not found in bank.';
       sumEl.style.color='var(--danger)';document.getElementById('bank-start-btn').disabled=true;
+    }else if(!c.matching){
+      sumEl.textContent='⚠️ No questions match these filters. Adjust difficulty or type.';
+      sumEl.style.color='var(--danger)';document.getElementById('bank-start-btn').disabled=true;
     }else{
-      const toServe=bankState.questionCount===999?total:Math.min(total,bankState.questionCount);
-      sumEl.textContent=total+' questions available → '+toServe+' will be loaded on Start';
+      const toServe=bankState.questionCount===999?c.matching:Math.min(c.matching,bankState.questionCount);
+      sumEl.textContent=c.matching+' questions match filters → '+toServe+' will be served';
       sumEl.style.color='var(--text3)';document.getElementById('bank-start-btn').disabled=false;
     }
   }
@@ -2203,7 +2385,7 @@ function bankRenderQuestion(){
   const q=bankState.queue[bankState.currentIndex];
   const idx=bankState.currentIndex,total=bankState.queue.length;
   const correct=bankState.results.filter(r=>r.correct).length;
-  document.getElementById('bank-progress-pill').textContent='Q '+(idx+1)+' / '+total;
+  document.getElementById('bank-progress-pill').textContent='Question '+(idx+1)+' of '+total;
   document.getElementById('bank-score-pill').textContent='✓ '+correct;
   bankState.qStartTime=Date.now();
   window.bankSelectedOptions=[];
@@ -2476,8 +2658,9 @@ function sendBankMailto(){
 function resetBankSession(){
   if(bankState.bankSessionTimer)clearInterval(bankState.bankSessionTimer);
   if(bankState.bankQTimer)clearInterval(bankState.bankQTimer);
-  bankState={studentName:'',topic:'',subtopic:'',selectedDiffs:['all'],selectedTypes:['all'],
-    questionCount:10,queue:[],currentIndex:0,results:[],qStartTime:null,
+  // keep the filter / mode choices: the buttons on the setup screen still show them
+  bankState={studentName:'',topic:'',subtopic:'',selectedDiffs:bankState.selectedDiffs,selectedTypes:bankState.selectedTypes,
+    questionCount:bankState.questionCount,mode:bankState.mode,queue:[],currentIndex:0,results:[],qStartTime:null,
     sessionStartTime:null,bankSessionTimer:null,bankQTimer:null};
   window.bankSelectedOptions=[];
   document.getElementById('bank-complete-screen').style.display='none';
@@ -2719,10 +2902,8 @@ bankUpdateSummary = function() {
   const sumEl = document.getElementById('bank-filter-summary');
   if (!sumEl || document.getElementById('bank-start-btn').disabled) return;
   // Count from manifest or loaded data
-  const available = (QUESTION_BANK[topic] && QUESTION_BANK[topic][subtopic])
-    ? bankGetFiltered(topic, subtopic).length
-    : (BANK_INDEX && BANK_INDEX.topics[topic] && BANK_INDEX.topics[topic][subtopic]
-        ? BANK_INDEX.topics[topic][subtopic].count : 0);
+  const ac = bankAvailCounts(topic, subtopic);
+  const available = ac ? ac.matching : 0;
   if (!available) return;
   const n = bankState.questionCount === 999 ? available : Math.min(available, bankState.questionCount);
   const mins = Math.floor(Math.round(n * 105) / 60);
@@ -2852,7 +3033,7 @@ function examRenderQuestion(idx) {
   bankState.currentIndex = idx;
   const q = bankState.queue[idx];
   const total = bankState.queue.length;
-  document.getElementById('bank-progress-pill').textContent = 'Q ' + (idx + 1) + ' / ' + total;
+  document.getElementById('bank-progress-pill').textContent = 'Question ' + (idx + 1) + ' of ' + total;
   bankState.qStartTime = Date.now();
 
   const visualHTML2 = (q.chart ? `<div class="pq-chart-wrap"><canvas id="pq-chart-canvas"></canvas></div>` : '')
@@ -2947,7 +3128,7 @@ function examSelectOpt(letter, btn) {
   }
   examSaveCurrentAnswer();
   document.getElementById('bank-progress-pill').textContent =
-    'Q ' + (bankState.currentIndex + 1) + ' / ' + bankState.queue.length + ' ✓';
+    'Question ' + (bankState.currentIndex + 1) + ' of ' + bankState.queue.length;
 }
 
 function examNumericInput(val) {
@@ -3225,8 +3406,8 @@ resetBankSession = function() {
   const qa2 = document.getElementById('bank-question-area');
   const activeScreen2 = document.getElementById('bank-active-screen');
   const examWrapper2 = document.getElementById('exam-layout-wrapper');
-  if (qa2 && activeScreen2 && qa2.parentElement !== activeScreen2) {
-    activeScreen2.insertBefore(qa2, examWrapper2);
+  if (qa2 && examWrapper2 && examWrapper2.parentElement && qa2.parentElement !== examWrapper2.parentElement) {
+    examWrapper2.parentElement.insertBefore(qa2, examWrapper2);
   }
   document.getElementById('exam-submit-area').style.display = 'none';
   document.getElementById('exam-countdown').style.display = 'none';
@@ -3239,6 +3420,198 @@ resetBankSession = function() {
 // Init mode
 bankState.mode = 'practice';
 window.examSelectedOptions = [];
+
+// ============================================================
+// ETS TEST-SCREEN SHELL — behaviour
+// The practice and exam renderers above are untouched; this layer
+// wraps them so the session runs inside the full-screen ETS frame
+// (top bar, timer strip, calculator, review) just like the mocks.
+// ============================================================
+const ETS_DIRECTIONS = {
+  mcq: 'Select one answer choice.',
+  quantitative_comparison: 'Compare Column A and Column B, using additional information given, if any. Select one answer choice.',
+  numeric_entry: 'Enter your answer in the box.',
+  multiple_answer: 'Select one or more answer choices. Select all that apply.'
+};
+
+function etsEnter(mode) {
+  const isExam = mode === 'exam';
+  document.body.classList.add('ets-lock');
+  const frame = document.querySelector('.ets-frame');
+  frame.classList.toggle('ets-exam', isExam);
+  frame.classList.toggle('ets-practice', !isExam);
+  document.getElementById('ets-mode-label').textContent = isExam ? 'Exam Mode' : 'Practice';
+  document.getElementById('ets-exit-label').textContent = isExam ? 'Submit' : 'Exit';
+  document.getElementById('ets-strip').classList.remove('time-hidden');
+  document.getElementById('ets-hide-time').textContent = 'Hide Time';
+  bankState.examMarked = new Set();
+  if (!isExam) {
+    document.getElementById('bank-session-timer').style.display = 'inline';
+    document.getElementById('exam-countdown').style.display = 'none';
+    document.getElementById('bank-score-pill').style.display = 'inline-block';
+  }
+  document.getElementById('ets-body').scrollTop = 0;
+  etsUpdateChrome();
+}
+
+function etsLeave() {
+  document.body.classList.remove('ets-lock');
+  if (window.GRECalc) GRECalc.close();
+  etsCloseModal();
+}
+
+// Keeps the top-bar buttons in step with where the student is in the session.
+function etsUpdateChrome() {
+  const next = document.getElementById('ets-btn-next');
+  if (!next || !bankState.queue) return;
+  const idx = bankState.currentIndex, total = bankState.queue.length;
+  const label = document.getElementById('ets-next-label');
+  if (bankState.mode === 'exam') {
+    label.textContent = 'Next';
+    next.disabled = idx >= total - 1;
+    document.getElementById('ets-btn-prev').disabled = idx === 0;
+    const marked = !!(bankState.examMarked && bankState.examMarked.has(idx));
+    const mb = document.getElementById('ets-btn-mark');
+    mb.classList.toggle('marked', marked);
+    mb.setAttribute('aria-pressed', marked ? 'true' : 'false');
+  } else {
+    const submitted = bankState.results.length > idx;
+    next.disabled = false;
+    label.textContent = !submitted ? 'Submit' : (idx >= total - 1 ? 'Finish' : 'Next');
+  }
+}
+
+// After every question render: directions line, scroll to top, refresh buttons.
+function etsAfterRender() {
+  const q = bankState.queue[bankState.currentIndex];
+  const body = document.querySelector('#bank-question-area .pq-body');
+  if (q && body && !body.querySelector('.ets-directions') && ETS_DIRECTIONS[q.type]) {
+    const d = document.createElement('div');
+    d.className = 'ets-directions';
+    d.textContent = ETS_DIRECTIONS[q.type];
+    body.insertBefore(d, body.firstChild);
+  }
+  const scroller = document.getElementById('ets-body');
+  if (scroller) scroller.scrollTop = 0;
+  etsUpdateChrome();
+}
+
+function etsPrimary() {
+  if (bankState.mode === 'exam') { examGoNext(); return; }
+  const idx = bankState.currentIndex;
+  if (bankState.results.length <= idx) { bankSubmit(); return; }
+  if (idx >= bankState.queue.length - 1) bankFinish(); else bankNext();
+}
+function etsPrev() { if (bankState.mode === 'exam') examGoPrev(); }
+
+function etsToggleMark() {
+  if (bankState.mode !== 'exam') return;
+  if (!bankState.examMarked) bankState.examMarked = new Set();
+  const i = bankState.currentIndex;
+  if (bankState.examMarked.has(i)) bankState.examMarked.delete(i); else bankState.examMarked.add(i);
+  etsUpdateChrome();
+}
+
+function etsToggleTimer() {
+  const strip = document.getElementById('ets-strip');
+  const hidden = strip.classList.toggle('time-hidden');
+  document.getElementById('ets-hide-time').textContent = hidden ? 'Show Time' : 'Hide Time';
+}
+
+// ── dialogs ─────────────────────────────────────────────────
+function etsCloseModal() {
+  const m = document.getElementById('ets-modal');
+  if (m) m.remove();
+}
+function etsModal(title, bodyHtml, buttons) {
+  etsCloseModal();
+  const bd = document.createElement('div');
+  bd.className = 'ets-modal-backdrop';
+  bd.id = 'ets-modal';
+  bd.innerHTML = '<div class="ets-modal" role="dialog" aria-modal="true"><div class="ets-modal-head"></div><div class="ets-modal-body"></div><div class="ets-modal-actions"></div></div>';
+  bd.querySelector('.ets-modal-head').textContent = title;
+  bd.querySelector('.ets-modal-body').innerHTML = bodyHtml;
+  const actions = bd.querySelector('.ets-modal-actions');
+  buttons.forEach(b => {
+    const btn = document.createElement('button');
+    btn.className = 'btn ' + (b.cls || 'btn-ghost');
+    btn.textContent = b.label;
+    btn.onclick = () => { etsCloseModal(); if (b.action) b.action(); };
+    actions.appendChild(btn);
+  });
+  document.body.appendChild(bd);
+  const last = actions.lastElementChild;
+  if (last) last.focus();
+}
+
+function etsHelp() {
+  const exam = bankState.mode === 'exam';
+  etsModal('Test Help', exam
+    ? '<strong>Back / Next</strong> — move between questions.<br><strong>Mark</strong> — flag a question to find it again on the Review screen.<br><strong>Review</strong> — see which questions are answered or marked and jump to any of them.<br><strong>Calculator</strong> — the on-screen calculator, as on the real test.<br><strong>Submit</strong> — end the exam and see your analysis. Unanswered questions count as wrong.'
+    : '<strong>Submit</strong> — check your answer. You get the explanation and the common trap straight away.<br><strong>Next</strong> — move to the next question once you have seen the feedback.<br><strong>Calculator</strong> — the on-screen calculator, as on the real test.<br><strong>Exit</strong> — end the session early. Questions you have answered are still scored.',
+    [{ label: 'Return to Test', cls: 'btn-primary' }]);
+}
+
+function etsExit() {
+  if (bankState.mode === 'exam') {
+    examSaveCurrentAnswer();
+    const un = bankState.examAnswers.filter(a => !a || a.answer === null).length;
+    etsModal('Submit Exam',
+      (un ? 'You have <strong>' + un + '</strong> unanswered question' + (un > 1 ? 's' : '') + '. Unanswered questions count as wrong.<br><br>' : '')
+      + 'Submit the exam now? You cannot return to it afterwards.',
+      [{ label: 'Return to Exam', cls: 'btn-ghost' }, { label: 'Submit Exam', cls: 'btn-danger', action: examSubmit }]);
+    return;
+  }
+  const n = bankState.results.length;
+  etsModal('Exit Practice',
+    n ? 'End this session now? The <strong>' + n + '</strong> question' + (n > 1 ? 's' : '') + ' you have answered will be scored.'
+      : 'Leave this session? You have not answered any questions yet.',
+    [{ label: 'Return to Test', cls: 'btn-ghost' },
+     { label: n ? 'End & See Results' : 'Leave Session', cls: 'btn-danger', action: () => { if (n) bankFinish(); else resetBankSession(); } }]);
+}
+
+function etsOpenReview() {
+  if (bankState.mode !== 'exam') return;
+  examSaveCurrentAnswer();
+  const rows = bankState.queue.map((q, i) => {
+    const e = bankState.examAnswers[i];
+    const answered = e && e.answer !== null;
+    const marked = bankState.examMarked && bankState.examMarked.has(i);
+    return '<tr onclick="etsReviewJump(' + i + ')"><td>' + (i + 1) + (i === bankState.currentIndex ? ' ◂' : '') + '</td><td>' + escHtml(bankTypeLabel(q.type))
+      + '</td><td class="' + (answered ? 'st-answered' : 'st-unanswered') + '">' + (answered ? 'Answered' : 'Not answered')
+      + '</td><td class="mark-flag">' + (marked ? '⚑ Marked' : '') + '</td></tr>';
+  }).join('');
+  etsModal('Review Questions',
+    '<p style="margin-bottom:12px;">Select a question to return to it.</p><table class="ets-review-table"><thead><tr><th>#</th><th>Type</th><th>Status</th><th>Mark</th></tr></thead><tbody>' + rows + '</tbody></table>',
+    [{ label: 'Return to Question', cls: 'btn-primary' }]);
+}
+function etsReviewJump(i) { etsCloseModal(); examJumpTo(i); }
+
+// ── wire the shell into the existing flow ───────────────────
+const _etsRenderQ = bankRenderQuestion;
+bankRenderQuestion = function () { _etsRenderQ(); etsAfterRender(); };
+
+const _etsExamRenderQ = examRenderQuestion;
+examRenderQuestion = function (idx) { _etsExamRenderQ(idx); etsAfterRender(); };
+
+const _etsSubmit = bankSubmit;
+bankSubmit = function () { _etsSubmit(); etsUpdateChrome(); };
+
+const _etsFinish = bankFinish;
+bankFinish = function () { _etsFinish(); etsLeave(); };
+
+const _etsExamSubmit = examSubmit;
+examSubmit = function () { _etsExamSubmit(); etsLeave(); };
+
+const _etsReset = resetBankSession;
+resetBankSession = function () { _etsReset(); etsLeave(); };
+
+const _etsStart = startBankSession;
+startBankSession = async function () {
+  await _etsStart();
+  const scr = document.getElementById('bank-active-screen');
+  if (scr && scr.style.display === 'block') etsEnter(bankState.mode === 'exam' ? 'exam' : 'practice');
+};
 
 
 // ============================================================

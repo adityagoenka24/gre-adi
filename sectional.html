@@ -44,6 +44,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="gre-math.js"></script>
+<script defer src="gre-calculator.js"></script>
 <script defer src="ads-config.js"></script>
 <script defer src="analytics.js"></script>
 <style>
@@ -178,6 +179,7 @@
       </div>
       <div class="gre-topbar-btns">
         <button class="gre-tb-btn" id="btn-exit" onclick="confirmExitSection()" aria-label="Exit Section">Exit</button>
+        <button class="gre-tb-btn" id="btn-calc" data-gre-calc-btn onclick="GRECalc.toggle()" aria-label="Calculator" aria-pressed="false">Calculator</button>
         <button class="gre-tb-btn" id="btn-help" onclick="showHelp()" aria-label="Help">Help</button>
         <button class="gre-tb-btn" id="btn-mark" onclick="toggleMark()" aria-label="Mark question for review" aria-pressed="false">Mark</button>
         <button class="gre-tb-btn" id="btn-review" onclick="openReview()" aria-label="Review section">Review</button>
@@ -268,6 +270,7 @@ function track(ev, props){ try{ if(window.GQP && window.GQP.track) window.GQP.tr
 
 // ─── NAVIGATION ───────────────────────────────────────────────────────────────
 function goTo(id){
+  if (window.GRECalc) GRECalc.close();
   document.querySelectorAll('.screen').forEach(function(s){ s.classList.remove('active'); });
   document.getElementById(id).classList.add('active');
   window.scrollTo(0,0);
