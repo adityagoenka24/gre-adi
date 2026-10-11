@@ -2010,6 +2010,8 @@ async function loadSubtopic(topic, subtopic) {
     const res = await fetch('bank/' + path);
     if (!res.ok) throw new Error('File not found: bank/' + path);
     const data = await res.json();
+    // ETS audit 2026-10-08: never serve questions withdrawn by the audit.
+    if (Array.isArray(data.questions)) data.questions = data.questions.filter(function(q){ return !(q && q.ets_withdrawn); });
     if (!QUESTION_BANK[topic]) QUESTION_BANK[topic] = {};
     QUESTION_BANK[topic][subtopic] = data.questions;
     BANK_CACHE[cacheKey] = data.questions;

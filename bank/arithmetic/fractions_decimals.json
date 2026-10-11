@@ -21,7 +21,9 @@
       "tags": [
         "fraction-addition",
         "lcd"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-002",
@@ -29,26 +31,39 @@
       "type": "mcq",
       "question": "What is 5/8 − 1/4?",
       "options": [
-        "A. 4/4",
+        "A. 1/8",
         "B. 3/8",
         "C. 1/2",
-        "D. 4/8",
-        "E. 1/4"
+        "D. 7/8",
+        "E. 1"
       ],
       "answer": "B",
       "explanation": "Convert 1/4 = 2/8. Then 5/8 − 2/8 = 3/8.",
-      "trap": "Students subtract 5−1=4 and 8−4=4, getting 4/4=1. Must find common denominator first.",
+      "trap": "A: students convert 1/4 to 4/8 instead of 2/8. C: students subtract the numerators, 5 - 1 = 4, and keep the denominator 8. D: students add instead of subtract. E: students subtract numerators and denominators, 4/4.",
       "estimated_time_seconds": 45,
       "tags": [
         "fraction-subtraction",
         "lcd"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered",
+        "filler_distractors"
+      ],
+      "ets_note": "Options unordered and C=1/2 equals D=4/8; filler.",
+      "ets_rewrite": {
+        "date": "2026-10-09",
+        "changes": [
+          "removed duplicate pair 1/2 and 4/8; replaced with errors; ascending; answer stays B"
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-003",
       "difficulty": "easy",
       "type": "numeric_entry",
-      "question": "What is 2/3 × 9/4? Enter your answer as a simplified fraction (e.g. 3/2) or whole number.",
+      "question": "What is 2/3 × 9/4? Give your answer as a fraction in simplest form.",
       "answer": "3/2",
       "explanation": "2/3 × 9/4 = 18/12 = 3/2. Or cross-cancel first: 2/3 × 9/4 → cancel 3 and 9 to get 2/1 × 3/4 = 6/4 = 3/2.",
       "trap": "Students multiply straight across and fail to simplify: 18/12 left unreduced.",
@@ -56,7 +71,20 @@
       "tags": [
         "fraction-multiplication",
         "simplify"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "telegraphed_method",
+        "textbook_phrasing"
+      ],
+      "ets_note": "Format example '3/2' is the answer itself; stem gives it away.",
+      "ets_rewrite": {
+        "date": "2026-10-09",
+        "changes": [
+          "removed example that is the answer"
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-004",
@@ -64,41 +92,60 @@
       "type": "mcq",
       "question": "What is 3/5 ÷ 9/10?",
       "options": [
-        "A. 27/50",
-        "B. 2/3",
-        "C. 3/2",
-        "D. 6/9",
-        "E. 1/3"
+        "A. 1/3",
+        "B. 27/50",
+        "C. 2/3",
+        "D. 3/2",
+        "E. 50/27"
       ],
-      "answer": "B",
-      "explanation": "Dividing by a fraction = multiplying by its reciprocal. 3/5 × 10/9 = 30/45 = 2/3.",
-      "trap": "Students divide numerators and denominators separately: (3/9)÷(5/10) = 1/3 ÷ 1/2. Must flip the second fraction.",
+      "answer": "C",
+      "explanation": "Dividing by a fraction = multiplying by its reciprocal. 3/5 × 10/9 = 30/45 = 2/3.\nAnswer: C.",
+      "trap": "Students choose B (27/50) by multiplying straight across without flipping the divisor. Dividing by a fraction means multiplying by its reciprocal: 3/5 × 10/9. Choice E is the same instinct applied twice — inverting both fractions instead of only the second, giving 50/27.",
       "estimated_time_seconds": 55,
       "tags": [
         "fraction-division",
         "reciprocal"
-      ]
+      ],
+      "ets_score": 1,
+      "ets_tags": [
+        "multiple_correct",
+        "options_unordered"
+      ],
+      "ets_note": "Options B and D are equal; two correct; unordered.",
+      "ets_dup_fix": {
+        "date": "2026-10-08",
+        "was": "2/3",
+        "rationale": {
+          "A": "taking only the numerators, 3 ÷ 9 = 1/3, and discarding the denominators",
+          "B": "multiplying straight across without flipping the divisor: 3/5 × 9/10 = 27/50",
+          "D": "flipping the first fraction instead of the second (equivalently, inverting the whole quotient): 5/3 × 9/10 = 3/2",
+          "E": "new — inverting BOTH fractions rather than only the divisor: 10/9 × 5/3 = 50/27"
+        }
+      }
     },
     {
       "id": "ARI-FRC-005",
       "difficulty": "easy",
       "type": "quantitative_comparison",
-      "question": "Column A: 1/3 of 3/4\nColumn B: 3/4 of 1/3",
+      "question": "Quantity A: 1/3 of 3/4\nQuantity B: 3/4 of 1/3",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
-      "explanation": "Column A: 1/3 × 3/4 = 3/12 = 1/4. Column B: 3/4 × 1/3 = 3/12 = 1/4. Equal. Multiplication is commutative.",
+      "explanation": "Quantity A: 1/3 × 3/4 = 3/12 = 1/4. Quantity B: 3/4 × 1/3 = 3/12 = 1/4. Equal. Multiplication is commutative.",
       "trap": "Students think the order matters. Fraction multiplication is always commutative.",
       "estimated_time_seconds": 40,
       "tags": [
         "fraction-multiplication",
         "commutativity",
         "qc"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [],
+      "ets_note": "Trivial; reads more textbook than ETS."
     },
     {
       "id": "ARI-FRC-006",
@@ -119,13 +166,18 @@
       "tags": [
         "decimal-to-fraction",
         "conversion"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered"
+      ],
+      "ets_note": "Numeric options not ascending."
     },
     {
       "id": "ARI-FRC-007",
       "difficulty": "easy",
       "type": "numeric_entry",
-      "question": "Write 5/8 as a decimal. Enter your answer as a number.",
+      "question": "What is 5/8 expressed as a decimal?",
       "options": null,
       "answer": "0.625",
       "explanation": "Step 1 — check that it will terminate. 8 = 2^3, only 2s, so the decimal stops. Good, no repeating block to worry about.\nStep 2 — force the denominator to a power of 10. 8 x 125 = 1000, so multiply top and bottom by 125:\n5/8 = (5 x 125)/(8 x 125) = 625/1000 = 0.625.\nStep 3 — or just divide: 5.000 divided by 8 gives 0.625.\nCheck: 0.625 x 8 = 5. Correct.\nAnswer: 0.625.",
@@ -134,7 +186,19 @@
       "tags": [
         "fraction-to-decimal",
         "terminating-decimals"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "textbook_phrasing"
+      ],
+      "ets_note": "Trivial conversion with 'Write... as a decimal'; not ETS flavour.",
+      "ets_rewrite": {
+        "date": "2026-10-09",
+        "changes": [
+          "removed 'Write...' command and 'Enter your answer as a number'"
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-008",
@@ -155,18 +219,23 @@
       "tags": [
         "comparing-fractions",
         "ordering"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "textbook_phrasing"
+      ],
+      "ets_note": "Bare 'Which fraction is largest?' plain; options unordered by value but fractions."
     },
     {
       "id": "ARI-FRC-009",
       "difficulty": "easy",
       "type": "quantitative_comparison",
-      "question": "Column A: 1/2 + 1/3 + 1/6\nColumn B: 1",
+      "question": "Quantity A: 1/2 + 1/3 + 1/6\nQuantity B: 1",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
       "explanation": "LCD = 6. 3/6 + 2/6 + 1/6 = 6/6 = 1. Equal.",
@@ -176,7 +245,10 @@
         "fraction-addition",
         "lcd",
         "qc"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [],
+      "ets_note": "Trivial."
     },
     {
       "id": "ARI-FRC-010",
@@ -197,7 +269,12 @@
       "tags": [
         "decimal-multiplication",
         "place-value"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered"
+      ],
+      "ets_note": "Numeric options 0.46,2.4,0.24,0.024,0.0024 not ascending."
     },
     {
       "id": "ARI-FRC-021",
@@ -219,42 +296,74 @@
         "complex-fractions",
         "fraction-division",
         "lcd"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered"
+      ],
+      "ets_note": "Numeric options not ascending (3/2 before 11/12)."
     },
     {
       "id": "ARI-FRC-022",
       "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "What is the value of 2⅖ + 3¾? Enter your answer as a mixed number in the form A B/C (e.g. 5 3/4) or as a decimal.",
+      "question": "What is the value of 2⅖ + 3¾? Give your answer as a decimal.",
       "answer": "6.15",
-      "explanation": "2⅖ = 2.4, 3¾ = 3.75. Sum = 6.15. Or: 12/5 + 15/4 = 48/20 + 75/20 = 123/20 = 6 3/20 = 6.15.",
-      "trap": "Students add whole numbers (2+3=5) and fractions (2/5+3/4=8/20+15/20=23/20=1 3/20) then combine: 5+1 3/20=6 3/20. This is correct — 6.15 ✓.",
+      "explanation": "2⅖ = 2.4 and 3¾ = 3.75, so the sum is 6.15.\nCheck with fractions: 12/5 + 15/4 = 48/20 + 75/20 = 123/20 = 6.15.",
+      "trap": "Students who add the whole parts (5) and then add the fractions as 2/5 + 3/4 = 5/9 get 5 5/9, about 5.56; the fractions need a common denominator, 2/5 + 3/4 = 23/20.",
       "estimated_time_seconds": 75,
       "tags": [
         "mixed-numbers",
         "addition"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "textbook_phrasing",
+        "trap_mismatch",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Mixed-number entry format with example is not ETS; trap field describes a correct method; one-step labelled medium.",
+      "ets_rewrite": {
+        "date": "2026-10-09",
+        "changes": [
+          "removed the mixed-number entry format and example; asks for a decimal",
+          "trap rewritten (old one described a correct method)"
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-023",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "type": "quantitative_comparison",
-      "question": "Column A: (0.1 + 0.2 + 0.3) × 0.1\nColumn B: 0.1 × 0.1 + 0.2 × 0.1 + 0.3 × 0.1",
+      "question": "Quantity A: (0.1 + 0.2 + 0.3) × 0.1\nQuantity B: 0.1 × 0.1 + 0.2 × 0.1 + 0.3 × 0.1",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
-      "explanation": "Column A uses distributive law. Both equal 0.06. Column A: 0.6 × 0.1 = 0.06. Column B: 0.01+0.02+0.03 = 0.06.",
-      "trap": "Students compute Column A incorrectly or don't recognize the distributive property in Column B.",
+      "explanation": "Quantity A uses distributive law. Both equal 0.06. Quantity A: 0.6 × 0.1 = 0.06. Quantity B: 0.01+0.02+0.03 = 0.06.",
+      "trap": "Students compute Quantity A incorrectly or don't recognize the distributive property in Quantity B.",
       "estimated_time_seconds": 60,
       "tags": [
         "decimal-arithmetic",
         "distributive-law",
         "qc"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled",
+        "trap_mismatch"
+      ],
+      "ets_note": "Trivial; easy at most. Trap is generic, names no specific error.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "medium",
+        "work_required": "Evaluate both sides to 0.06 (or see the distributive law).",
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-024",
@@ -275,7 +384,12 @@
       "tags": [
         "fraction-of-a-number",
         "two-step"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Easy two-step; distractor E 20 filler."
     },
     {
       "id": "ARI-FRC-025",
@@ -300,7 +414,9 @@
       "tags": [
         "recurring-decimals",
         "multiple-answer"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-026",
@@ -322,28 +438,32 @@
         "fraction-word-problem",
         "fraction-division",
         "part-of-whole"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-027",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "0 < x < 1\nColumn A: x + 1/x\nColumn B: 2",
+      "question": "0 < x < 1\nQuantity A: x + 1/x\nQuantity B: 2",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "A",
-      "explanation": "Step 1 — a proper fraction and its reciprocal sit on opposite sides of 1. For 0 < x < 1 the reciprocal 1/x is greater than 1: x = 1/4 gives 1/x = 4, x = 0.9 gives 1/x = 1.111...\nStep 2 — do not test values one at a time - subtract Column B and combine over the common denominator x:\nx + 1/x - 2 = (x^2 + 1 - 2x)/x = (x - 1)^2 / x.\nStep 3 — the numerator (x - 1)^2 is a square, and it is strictly positive because the stem excludes x = 1. The denominator x is positive. So the whole expression is positive, i.e. x + 1/x > 2 for every x in the range.\nCheck x = 1/2: 0.5 + 2 = 2.5 > 2. Check x = 0.9: 0.9 + 1.1111 = 2.0111 > 2. Check x = 0.99: 0.99 + 1.0101 = 2.0001 > 2. The gap shrinks as x approaches 1 but never reaches zero.\nColumn A is greater.",
+      "explanation": "Step 1 — a proper fraction and its reciprocal sit on opposite sides of 1. For 0 < x < 1 the reciprocal 1/x is greater than 1: x = 1/4 gives 1/x = 4, x = 0.9 gives 1/x = 1.111...\nStep 2 — do not test values one at a time - subtract Quantity B and combine over the common denominator x:\nx + 1/x - 2 = (x^2 + 1 - 2x)/x = (x - 1)^2 / x.\nStep 3 — the numerator (x - 1)^2 is a square, and it is strictly positive because the stem excludes x = 1. The denominator x is positive. So the whole expression is positive, i.e. x + 1/x > 2 for every x in the range.\nCheck x = 1/2: 0.5 + 2 = 2.5 > 2. Check x = 0.9: 0.9 + 1.1111 = 2.0111 > 2. Check x = 0.99: 0.99 + 1.0101 = 2.0001 > 2. The gap shrinks as x approaches 1 but never reaches zero.\nQuantity A is greater.",
       "trap": "Choosing C by testing x = 1, where x + 1/x = 1 + 1 = 2 exactly - but the stem excludes 1, and that endpoint is the only place the columns tie. Choosing B by rounding the reciprocal down: at x = 0.9 a student who calls 1/0.9 'about 1' gets 1.9, which is less than 2; the true value is 1.1111 and the sum is 2.0111. Choosing D because x is unspecified is the third error: the sign of (x - 1)^2 / x is fixed across the whole interval, so the comparison resolves.",
       "estimated_time_seconds": 70,
       "tags": [
         "reciprocals",
         "fractions-less-than-1",
         "qc"
-      ]
+      ],
+      "ets_score": 5,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-028",
@@ -357,7 +477,12 @@
       "tags": [
         "fraction-division",
         "chain"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "textbook_phrasing"
+      ],
+      "ets_note": "Bare arithmetic chain with no concept; easy-medium."
     },
     {
       "id": "ARI-FRC-029",
@@ -378,7 +503,9 @@
       "tags": [
         "decimal-division",
         "place-value"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-030",
@@ -400,11 +527,13 @@
         "fraction-division",
         "mixed-numbers",
         "real-world"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-051",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "What is the value of 1 / (1 + 1 / (1 + 1/2))?",
       "options": [
@@ -422,32 +551,46 @@
         "complex-fractions",
         "continued-fraction",
         "reciprocal"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Numeric options not ascending (2/3,3/2,3/5,5/3,2/5); easy grind labelled hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Evaluate a three-level continued fraction from the inside out; one concept, several careful steps.",
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-052",
       "difficulty": "hard",
       "type": "quantitative_comparison",
-      "question": "0 < x < 1\nColumn A: x / (1 - x)\nColumn B: x^2 / (1 - x^2)",
+      "question": "0 < x < 1\nQuantity A: x / (1 - x)\nQuantity B: x^2 / (1 - x^2)",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "A",
-      "explanation": "Step 1 — factor the denominator of Column B as a difference of squares: 1 - x^2 = (1 - x)(1 + x).\nStep 2 — split Column B to expose Column A inside it:\nx^2/((1 - x)(1 + x)) = [x/(1 - x)] x [x/(1 + x)].\nSo Column B = Column A x [x/(1 + x)].\nStep 3 — bound the extra factor. For 0 < x < 1 we have x < 1 + x, so 0 < x/(1 + x) < 1.\nStep 4 — Column A is positive (numerator x > 0, denominator 1 - x > 0), and multiplying a positive number by a factor strictly below 1 makes it smaller. So Column B < Column A.\nCheck with x = 1/2: Column A = (1/2)/(1/2) = 1; Column B = (1/4)/(3/4) = 1/3. Check with x = 9/10: Column A = 9; Column B = 0.81/0.19 = 4.26. Column A wins both.\nColumn A is greater.",
-      "trap": "Reading Column B as 'Column A squared' and, since squaring shrinks numbers below 1, guessing the answer flips somewhere - it does not. The real relationship is Column B = Column A x x/(1 + x), and that multiplier is below 1 for every allowed x, so Column A wins on the whole interval. Choosing D because one test value gave Column A = 1 (a value that could go either way against Column B) is the other slip; the algebra covers all x at once.",
+      "explanation": "Step 1 — factor the denominator of Quantity B as a difference of squares: 1 - x^2 = (1 - x)(1 + x).\nStep 2 — split Quantity B to expose Quantity A inside it:\nx^2/((1 - x)(1 + x)) = [x/(1 - x)] x [x/(1 + x)].\nSo Quantity B = Quantity A x [x/(1 + x)].\nStep 3 — bound the extra factor. For 0 < x < 1 we have x < 1 + x, so 0 < x/(1 + x) < 1.\nStep 4 — Quantity A is positive (numerator x > 0, denominator 1 - x > 0), and multiplying a positive number by a factor strictly below 1 makes it smaller. So Quantity B < Quantity A.\nCheck with x = 1/2: Quantity A = (1/2)/(1/2) = 1; Quantity B = (1/4)/(3/4) = 1/3. Check with x = 9/10: Quantity A = 9; Quantity B = 0.81/0.19 = 4.26. Quantity A wins both.\nQuantity A is greater.",
+      "trap": "Reading Quantity B as 'Quantity A squared' and, since squaring shrinks numbers below 1, guessing the answer flips somewhere - it does not. The real relationship is Quantity B = Quantity A x x/(1 + x), and that multiplier is below 1 for every allowed x, so Quantity A wins on the whole interval. Choosing D because one test value gave Quantity A = 1 (a value that could go either way against Quantity B) is the other slip; the algebra covers all x at once.",
       "estimated_time_seconds": 95,
       "tags": [
         "algebraic-fractions",
         "difference-of-squares",
         "qc"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-053",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "numeric_entry",
       "question": "The block 142857 repeats forever in the decimal 0.142857142857142857... Express this number as a fraction in lowest terms. Enter your answer in the form numerator/denominator.",
       "options": null,
@@ -458,7 +601,19 @@
       "tags": [
         "recurring-decimals",
         "decimal-to-fraction"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled",
+        "telegraphed_method"
+      ],
+      "ets_note": "Famous 1/7 cycle, hard label too high; stem hands over the block.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Repeating-decimal method with a 6-digit block, then reduce 142857/999999 to 1/7 (or recognise it).",
+        "confidence": "medium"
+      }
     },
     {
       "id": "ARI-FRC-054",
@@ -480,11 +635,13 @@
         "algebraic-fractions",
         "equal-ratios",
         "mediant"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-055",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "multiple_answer",
       "question": "Which of the following equal 0.2̄5̄ (0.252525...)? Select all that apply.",
       "options": [
@@ -505,28 +662,50 @@
         "recurring-decimals",
         "multiple-answer",
         "hard"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Overbar placed on each digit separately is odd notation; medium not hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Convert a two-digit repeating decimal to 25/99 and check five options by simple reductions.",
+        "confidence": "medium"
+      }
     },
     {
       "id": "ARI-FRC-056",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "Column A: (1/2)^10\nColumn B: (1/3)^7",
+      "question": "Quantity A: (1/2)^10\nQuantity B: (1/3)^7",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "A",
-      "explanation": "(1/2)^10 = 1/1024 ≈ 0.000977. (1/3)^7 = 1/2187 ≈ 0.000457. Column A > Column B.",
-      "trap": "Students see larger exponent on Column A and assume it's smaller. (1/2)^10 = 1/1024 while (1/3)^7 = 1/2187. Larger denominator = smaller value, so Column B is smaller.",
+      "explanation": "(1/2)^10 = 1/1024 ≈ 0.000977. (1/3)^7 = 1/2187 ≈ 0.000457. Quantity A > Quantity B.",
+      "trap": "Students see larger exponent on Quantity A and assume it's smaller. (1/2)^10 = 1/1024 while (1/3)^7 = 1/2187. Larger denominator = smaller value, so Quantity B is smaller.",
       "estimated_time_seconds": 85,
       "tags": [
         "fraction-powers",
         "qc",
         "hard"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Easy comparison labelled hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Compare 2^10 = 1024 with 3^7 = 2187 and invert; two small power computations.",
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-057",
@@ -541,7 +720,9 @@
       "tags": [
         "algebraic-fractions",
         "sum-of-reciprocals"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-058",
@@ -563,18 +744,23 @@
         "square-of-a-sum",
         "sum-of-squares",
         "decimal-arithmetic"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "grindy_computation"
+      ],
+      "ets_note": "Requires summing squares 0.01*285 by hand; little insight shortcut."
     },
     {
       "id": "ARI-FRC-059",
-      "difficulty": "hard",
+      "difficulty": "easy",
       "type": "quantitative_comparison",
-      "question": "a, b, c are positive with a/b = b/c.\nColumn A: b²\nColumn B: ac",
+      "question": "a, b, c are positive with a/b = b/c.\nQuantity A: b²\nQuantity B: ac",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
       "explanation": "a/b = b/c means b² = ac (geometric mean property). Always equal.",
@@ -585,7 +771,18 @@
         "proportion",
         "qc",
         "hard"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Immediate cross-multiplication; hard overstated.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Cross-multiply a/b = b/c.",
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-060",
@@ -612,7 +809,9 @@
         "fraction-inequalities",
         "multiple-answer",
         "hard"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-071",
@@ -634,43 +833,83 @@
         "infinite-product",
         "telescoping",
         "extreme-hard"
-      ]
+      ],
+      "ets_score": 1,
+      "ets_tags": [
+        "off_syllabus",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Infinite product/limit is off-syllabus; option 2/π and 'diverges' are non-GRE.",
+      "ets_withdrawn": true,
+      "ets_withdraw_reason": "rewrite pass: unsalvageable"
     },
     {
       "id": "ARI-FRC-072",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "quantitative_comparison",
-      "question": "a and b are digits, not both zero, and x = 0.ababab... , the decimal in which the two-digit block ab repeats forever.\nColumn A: x\nColumn B: (10a + b)/99",
+      "question": "a and b are digits, not both zero, and x = 0.ababab... , the decimal in which the two-digit block ab repeats forever.\nQuantity A: x\nQuantity B: (10a + b)/99",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
-      "explanation": "Step 1 — name the two-digit block. As a number, the block 'ab' equals 10a + b; call it N, so 0 < N < 100.\nStep 2 — shift by the block length. Since the block is 2 digits, multiply x by 100:\n100x = N.ababab...\nStep 3 — the tail after the decimal point in 100x is identical to x itself, so 100x = N + x.\nStep 4 — solve: 99x = N, hence x = N/99 = (10a + b)/99.\nThat is exactly Column B, for every allowed pair of digits. The two quantities are equal.\nCheck with a = 1, b = 2: x = 0.121212... and (10 + 2)/99 = 12/99 = 4/33 = 0.121212... Check with a = 9, b = 0: x = 0.909090... and 90/99 = 10/11 = 0.909090... Both agree.",
+      "explanation": "Step 1 — name the two-digit block. As a number, the block 'ab' equals 10a + b; call it N, so 0 < N < 100.\nStep 2 — shift by the block length. Since the block is 2 digits, multiply x by 100:\n100x = N.ababab...\nStep 3 — the tail after the decimal point in 100x is identical to x itself, so 100x = N + x.\nStep 4 — solve: 99x = N, hence x = N/99 = (10a + b)/99.\nThat is exactly Quantity B, for every allowed pair of digits. The two quantities are equal.\nCheck with a = 1, b = 2: x = 0.121212... and (10 + 2)/99 = 12/99 = 4/33 = 0.121212... Check with a = 9, b = 0: x = 0.909090... and 90/99 = 10/11 = 0.909090... Both agree.",
       "trap": "Choosing D on the grounds that a and b are unknown. They never need to be known: the shift-and-subtract works symbolically, and the digits cancel out of the comparison entirely. The other route to D is testing a single case such as a = b = 3 (x = 0.3333... = 33/99 = 1/3), getting equality, and then doubting whether it survives other digits - it does, because Step 4 used nothing about a and b beyond their being the repeating block.",
       "estimated_time_seconds": 105,
       "tags": [
         "recurring-decimals",
         "algebraic-proof",
         "qc"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Standard repeating-decimal conversion labelled extreme_hard; awkward stem.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "General repeating-decimal derivation with digit variables, showing x = N/99; algebraic reframing with a known pattern.",
+        "confidence": "medium"
+      }
     },
     {
       "id": "ARI-FRC-073",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "Given that 1/7 = 0.142857̄, what is 1/49 expressed as a decimal? Give the first 6 decimal places.",
+      "question": "What is 1/49 as a decimal, rounded to six decimal places?",
       "answer": "0.020408",
-      "explanation": "1/49 = (1/7)×(1/7). 1/7 = 0.142857142857... (1/7)² = 1/49. Direct division: 1÷49 = 0.020408163265306122448979591836734693877551...(repeating with period 42). First 6 places: 0.020408.",
-      "trap": "Students try to square the decimal 0.142857... digit by digit — extremely error-prone. Recognise that 1/49 is a separate division problem best done directly.",
+      "explanation": "Check candidates by multiplying by 49: 49 × 0.020408 = 0.999992, which is just under 1, and 49 × 0.020409 = 1.000041, which is just over 1. So 1/49 lies between 0.020408 and 0.020409, and much closer to 0.020408 (the difference 0.000008 divided by 49 is about 0.00000016). Rounded to six decimal places, 1/49 = 0.020408.",
+      "trap": "Students try to square the repeating decimal for 1/7 digit by digit, which is error-prone, or misplace the leading zeros and write 0.02408.",
       "estimated_time_seconds": 120,
       "tags": [
         "fraction-to-decimal",
         "divisibility",
         "extreme-hard"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "difficulty_mislabelled",
+        "grindy_computation"
+      ],
+      "ets_note": "Long division, not insight; extreme_hard label unjustified; overline notation cosmetic.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Long-division of 1/49 to 6 places, or find the pattern from 1/7 squared; laborious and error-prone, not a standard fraction skill.",
+        "confidence": "low"
+      },
+      "ets_rewrite": {
+        "date": "2026-10-09",
+        "changes": [
+          "removed the '1/7 = 0.142857' lead-in that pushes a squaring route",
+          "stated rounding explicitly",
+          "explanation shows a short multiplication check"
+        ],
+        "confidence": "medium"
+      }
     },
     {
       "id": "ARI-FRC-074",
@@ -688,8 +927,7 @@
         "A",
         "B",
         "C",
-        "D",
-        "E"
+        "D"
       ],
       "explanation": "A✓: definition of terminating decimal. B✓: given in lowest terms. C✓: termination length = max(p,q) where b=2^p×5^q. D✓: if b has only 2s and 5s, so does 1/b. E✓: multiply numerator and denominator to make denominator a power of 10: a/b × (2^(q-p))/(2^(q-p)) if p<q etc., always achievable.",
       "trap": "Students doubt E — but since b=2^p×5^q, we can always multiply by missing powers to get 10^k denominator.",
@@ -699,18 +937,36 @@
         "theory",
         "multiple-answer",
         "extreme-hard"
-      ]
+      ],
+      "ets_score": 1,
+      "ets_tags": [
+        "wrong_key",
+        "explanation_error"
+      ],
+      "ets_note": "Key includes E, which is false as worded; also B restates premise, extreme_hard mislabelled.",
+      "ets_key_disputed": false,
+      "ets_auditor_answer": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "ets_triage": {
+        "verdict": "key_wrong",
+        "action": "change_key",
+        "date": "2026-10-08"
+      }
     },
     {
       "id": "ARI-FRC-076",
-      "difficulty": "extreme_hard",
+      "difficulty": "easy",
       "type": "quantitative_comparison",
-      "question": "p and q are positive integers with p < q.\nColumn A: (p+q)/(p×q)\nColumn B: 1/p + 1/q",
+      "question": "p and q are positive integers with p < q.\nQuantity A: (p+q)/(p×q)\nQuantity B: 1/p + 1/q",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
       "explanation": "1/p + 1/q = q/(pq) + p/(pq) = (p+q)/(pq). Always equal — this is the fundamental identity for adding fractions.",
@@ -720,7 +976,18 @@
         "fraction-addition-identity",
         "qc",
         "extreme-hard"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Trivial identity labelled extreme_hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Add 1/p + 1/q over a common denominator; the p<q condition is a distraction.",
+        "confidence": "high"
+      }
     },
     {
       "id": "ARI-FRC-077",
@@ -736,7 +1003,9 @@
         "fraction-sequence",
         "reciprocal",
         "extreme-hard"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-078",
@@ -762,7 +1031,12 @@
         "recurring-decimal-period",
         "prime-factorisation",
         "multiple-answer"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "grindy_computation"
+      ],
+      "ets_note": "Requires memorised repetend lengths such as 1/13; not an ETS-style insight item."
     },
     {
       "id": "ARI-FRC-079",
@@ -784,32 +1058,42 @@
         "infinite-series",
         "arithmetico-geometric",
         "extreme-hard"
-      ]
+      ],
+      "ets_score": 1,
+      "ets_tags": [
+        "off_syllabus",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Infinite series summation is calculus-level and outside ETS syllabus.",
+      "ets_withdrawn": true,
+      "ets_withdraw_reason": "rewrite pass: unsalvageable"
     },
     {
       "id": "ARI-FRC-080",
       "difficulty": "extreme_hard",
       "type": "quantitative_comparison",
-      "question": "Column A: 1/(2^2 - 1) + 1/(3^2 - 1) + 1/(4^2 - 1) + ... + 1/(10^2 - 1), the sum of 1/(n^2 - 1) for n = 2, 3, 4, ..., 10\nColumn B: 13/20",
+      "question": "Quantity A: 1/(2^2 - 1) + 1/(3^2 - 1) + 1/(4^2 - 1) + ... + 1/(10^2 - 1), the sum of 1/(n^2 - 1) for n = 2, 3, 4, ..., 10\nQuantity B: 13/20",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "A",
-      "explanation": "The two columns are close, so an estimate will not settle it - the sum must be computed exactly.\nStep 1 — factor and split each term. n^2 - 1 = (n - 1)(n + 1), and\n1/((n-1)(n+1)) = (1/2)[1/(n-1) - 1/(n+1)].\nThe 1/2 appears because the two parts are 2 apart, not 1 apart. Verify at n = 2: (1/2)[1/1 - 1/3] = (1/2)(2/3) = 1/3, and 1/(2^2 - 1) = 1/3. Correct.\nStep 2 — write the sum out. Pulling the 1/2 in front:\nSum = (1/2)[(1/1 - 1/3) + (1/2 - 1/4) + (1/3 - 1/5) + ... + (1/9 - 1/11)]\nStep 3 — because each negative term is two places ahead, cancellation leaves TWO terms at each end, not one. The positives 1/1 and 1/2 are never cancelled, and the negatives -1/10 and -1/11 are never cancelled.\nSum = (1/2)[1 + 1/2 - 1/10 - 1/11]\nStep 4 — evaluate the bracket over 110: 110/110 + 55/110 - 11/110 - 10/110 = 144/110.\nSum = (1/2)(144/110) = 72/110 = 36/55.\nStep 5 — compare 36/55 with 13/20 by cross-multiplication: 36 x 20 = 720 versus 13 x 55 = 715. Since 720 > 715, Column A is greater.\nColumn A = 36/55 = 0.6545..., Column B = 0.65. Column A is greater.",
+      "explanation": "The two columns are close, so an estimate will not settle it - the sum must be computed exactly.\nStep 1 — factor and split each term. n^2 - 1 = (n - 1)(n + 1), and\n1/((n-1)(n+1)) = (1/2)[1/(n-1) - 1/(n+1)].\nThe 1/2 appears because the two parts are 2 apart, not 1 apart. Verify at n = 2: (1/2)[1/1 - 1/3] = (1/2)(2/3) = 1/3, and 1/(2^2 - 1) = 1/3. Correct.\nStep 2 — write the sum out. Pulling the 1/2 in front:\nSum = (1/2)[(1/1 - 1/3) + (1/2 - 1/4) + (1/3 - 1/5) + ... + (1/9 - 1/11)]\nStep 3 — because each negative term is two places ahead, cancellation leaves TWO terms at each end, not one. The positives 1/1 and 1/2 are never cancelled, and the negatives -1/10 and -1/11 are never cancelled.\nSum = (1/2)[1 + 1/2 - 1/10 - 1/11]\nStep 4 — evaluate the bracket over 110: 110/110 + 55/110 - 11/110 - 10/110 = 144/110.\nSum = (1/2)(144/110) = 72/110 = 36/55.\nStep 5 — compare 36/55 with 13/20 by cross-multiplication: 36 x 20 = 720 versus 13 x 55 = 715. Since 720 > 715, Quantity A is greater.\nQuantity A = 36/55 = 0.6545..., Quantity B = 0.65. Quantity A is greater.",
       "trap": "Two traps stack. First, forgetting the factor of 1/2 in the partial fraction: 1/((n-1)(n+1)) is NOT 1/(n-1) - 1/(n+1), which would double the answer to 72/55. Second, assuming only one term survives at each end, as in the familiar 1/(n(n+1)) telescope - here the gap of 2 means two terms survive at each end, and dropping the 1/2 and the -1/11 gives (1/2)(1 - 1/10) = 9/20 = 0.45, which would point the wrong way. The margin is only 720 versus 715, so estimating to two decimals and calling it equal (choice C) is exactly the wrong move.",
       "estimated_time_seconds": 130,
       "tags": [
         "telescoping-sum",
         "partial-fractions",
         "qc"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "ARI-FRC-081",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "mcq",
       "question": "What is the value of:\n1/(1×2) + 1/(2×3) + 1/(3×4) + 1/(4×5) + 1/(5×6) + 1/(6×7) + 1/(7×8) + 1/(8×9) + 1/(9×10)?",
       "options": [
@@ -826,7 +1110,19 @@
       "tags": [
         "telescoping-sums",
         "algebraic-fractions"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Options not ascending (9/10, 1, 45/55); extreme_hard label for a standard telescoping sum.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Recognise 1/(k(k+1)) = 1/k - 1/(k+1) and telescope; one well-known trick, easier than the extreme anchors.",
+        "confidence": "medium"
+      }
     }
   ],
   "meta": {

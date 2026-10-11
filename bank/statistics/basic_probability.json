@@ -4,24 +4,35 @@
   "questions": [
     {
       "id": "STA-CPR-048",
-      "difficulty": "extreme_hard",
+      "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "A biased coin comes up heads with probability 2/3 on every flip, and the flips are independent. The coin is flipped repeatedly until heads appears.\nColumn A: P(heads first appears on the 3rd flip)\nColumn B: 3 x P(heads first appears on the 4th flip)",
+      "question": "A biased coin comes up heads with probability 2/3 on every flip, and the flips are independent. The coin is flipped repeatedly until heads appears.\nQuantity A: P(heads first appears on the 3rd flip)\nQuantity B: 3 x P(heads first appears on the 4th flip)",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
-      "explanation": "'Heads first appears on flip n' means tails on each of the first n - 1 flips AND heads on flip n, which is a pure AND chain worth (1/3)^(n-1) x (2/3).\nColumn A: n = 3, so P = (1/3)^2 x (2/3) = (1/9)(2/3) = 2/27.\nColumn B: n = 4, so P = (1/3)^3 x (2/3) = (1/27)(2/3) = 2/81, and the column is 3 x 2/81 = 6/81 = 2/27.\n2/27 = 2/27, so the two quantities are equal.\nWhy it lands exactly: each additional flip of waiting multiplies the probability by P(tails) = 1/3, so flip 4 is exactly one third as likely as flip 3, and the factor of 3 in Column B undoes that precisely.",
-      "trap": "Computing 2/27 and 2/81, noticing that 2/27 is larger, and choosing A while ignoring the 'x 3' printed in Column B. The reverse slip is assuming the shrink factor between consecutive waiting times is P(heads) = 2/3; it is P(TAILS) = 1/3, which is exactly what the 3 cancels.",
+      "explanation": "'Heads first appears on flip n' means tails on each of the first n - 1 flips AND heads on flip n, which is a pure AND chain worth (1/3)^(n-1) x (2/3).\nQuantity A: n = 3, so P = (1/3)^2 x (2/3) = (1/9)(2/3) = 2/27.\nQuantity B: n = 4, so P = (1/3)^3 x (2/3) = (1/27)(2/3) = 2/81, and the column is 3 x 2/81 = 6/81 = 2/27.\n2/27 = 2/27, so the two quantities are equal.\nWhy it lands exactly: each additional flip of waiting multiplies the probability by P(tails) = 1/3, so flip 4 is exactly one third as likely as flip 3, and the factor of 3 in Quantity B undoes that precisely.",
+      "trap": "Computing 2/27 and 2/81, noticing that 2/27 is larger, and choosing A while ignoring the 'x 3' printed in Quantity B. The reverse slip is assuming the shrink factor between consecutive waiting times is P(heads) = 2/3; it is P(TAILS) = 1/3, which is exactly what the 3 cancels.",
       "estimated_time_seconds": 120,
       "tags": [
         "first-success",
         "and-chain",
         "qc"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Nice QC but extreme_hard overstates it.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Geometric first-success probabilities for n=3 and n=4 with a constant factor; chain of independent products.",
+        "confidence": "medium"
+      }
     },
     {
       "id": "STA-CPR-050",
@@ -48,11 +59,16 @@
         "independent-events",
         "at-least-one",
         "multiple-answer"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "grindy_computation"
+      ],
+      "ets_note": "Five separate multi-term probability computations; grindy, not an insight item."
     },
     {
       "id": "STA-CPR-051",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "mcq",
       "question": "A bag has 5 red and 4 blue balls. Two are drawn without replacement. Given that at least one is red, what is the probability that both are red?",
       "options": [
@@ -69,7 +85,19 @@
       "tags": [
         "conditional-probability",
         "combinations"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Numeric options not ascending; extreme_hard overstated.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Conditional probability with 'at least one' in the condition, via combinations and a ratio; matches the hard conditional anchors.",
+        "confidence": "medium"
+      }
     },
     {
       "id": "STA-PRB-001",
@@ -91,7 +119,10 @@
         "favourable-over-total",
         "single-event",
         "counting-outcomes"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [],
+      "ets_note": "Trivial one-step item."
     },
     {
       "id": "STA-PRB-002",
@@ -111,7 +142,10 @@
       "estimated_time_seconds": 40,
       "tags": [
         "probability-basic"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [],
+      "ets_note": "Trivial one-step."
     },
     {
       "id": "STA-PRB-003",
@@ -131,7 +165,12 @@
       "estimated_time_seconds": 40,
       "tags": [
         "probability-basic"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered"
+      ],
+      "ets_note": "Options not ascending: 4/13 listed before 1/4."
     },
     {
       "id": "STA-PRB-004",
@@ -145,7 +184,9 @@
       "estimated_time_seconds": 45,
       "tags": [
         "probability-basic"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-005",
@@ -166,7 +207,13 @@
       "tags": [
         "complement",
         "probability-range"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "textbook_phrasing",
+        "filler_distractors"
+      ],
+      "ets_note": "One-step complement rule; option D 0.70 weak."
     },
     {
       "id": "STA-PRB-006",
@@ -187,18 +234,23 @@
       "tags": [
         "probability-basic",
         "independent-events"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered"
+      ],
+      "ets_note": "Numeric options 1/4,1/3,1/2,3/4,2/3 are not ascending."
     },
     {
       "id": "STA-PRB-007",
       "difficulty": "easy",
       "type": "quantitative_comparison",
-      "question": "A fair coin is flipped once.\nColumn A: P(heads)\nColumn B: P(tails)",
+      "question": "A fair coin is flipped once.\nQuantity A: P(heads)\nQuantity B: P(tails)",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
       "explanation": "For a fair coin, P(heads) = 1/2 and P(tails) = 1/2. Both quantities equal 1/2, so they are equal.",
@@ -207,7 +259,12 @@
       "tags": [
         "probability-basic",
         "qc"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "textbook_phrasing"
+      ],
+      "ets_note": "Trivial 'P(heads)' QC with no insight; not ETS-like."
     },
     {
       "id": "STA-PRB-008",
@@ -227,7 +284,10 @@
       "estimated_time_seconds": 45,
       "tags": [
         "probability-basic"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [],
+      "ets_note": "Single-step, plain textbook."
     },
     {
       "id": "STA-PRB-009",
@@ -242,7 +302,12 @@
       "tags": [
         "favourable-over-total",
         "single-event"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "textbook_phrasing"
+      ],
+      "ets_note": "Trivial one-step; 'remaining 18 do not' is redundant."
     },
     {
       "id": "STA-PRB-010",
@@ -253,16 +318,30 @@
         "A. 1/4",
         "B. 1/3",
         "C. 1/2",
-        "D. 3/4",
-        "E. 2/3"
+        "D. 2/3",
+        "E. 3/4"
       ],
-      "answer": "D",
+      "answer": "E",
       "explanation": "P(not heart) = 1 - P(heart) = 1 - 1/4 = 3/4.",
-      "trap": "Students try to compute directly: there are 3 non-heart suits, so they guess 3/52, confusing the suit count with the card count.",
+      "trap": "Students who answer with P(heart) choose 1/4 (A); those who compare hearts with non-hearts (13 to 39) choose 1/3 (B); those who treat 'heart or not' as two equally likely outcomes choose 1/2 (C).",
       "estimated_time_seconds": 35,
       "tags": [
         "complementary-probability"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered",
+        "trap_mismatch"
+      ],
+      "ets_note": "Options 1/4,1/3,1/2,3/4,2/3 not ascending; trap cites 3/52, not an option; trivial.",
+      "ets_rewrite": {
+        "date": "2026-10-09",
+        "changes": [
+          "options sorted ascending; ANSWER LETTER MOVES from D to E (value 3/4 unchanged)",
+          "trap rewritten (old trap value 3/52 was not an option)"
+        ],
+        "confidence": "medium"
+      }
     },
     {
       "id": "STA-PRB-016",
@@ -283,11 +362,16 @@
       "tags": [
         "dependent-events",
         "two-step"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered"
+      ],
+      "ets_note": "Options not in ascending order (25/144, 5/33, 1/6, 5/22, 5/12)."
     },
     {
       "id": "STA-PRB-017",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "Events A and B are mutually exclusive, and P(A) = 3 x P(B). If P(A or B) = 0.6, what is P(not A)?",
       "options": [
@@ -305,7 +389,17 @@
         "mutually-exclusive",
         "complement",
         "addition-rule"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Mutually exclusive addition gives 4P(B)=0.6, then complement; two concepts chained.",
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-018",
@@ -321,7 +415,9 @@
         "overlapping-sets",
         "inclusion-exclusion",
         "complement"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-019",
@@ -343,28 +439,35 @@
         "overlapping-sets",
         "inclusion-exclusion",
         "deck"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered"
+      ],
+      "ets_note": "Options 1/4 then 3/13 are out of ascending order."
     },
     {
       "id": "STA-PRB-020",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "A bag has 6 red and 4 blue marbles. One marble is drawn and NOT replaced. Then a second marble is drawn.\nColumn A: P(both marbles are red)\nColumn B: P(both marbles are blue)",
+      "question": "A bag has 6 red and 4 blue marbles. One marble is drawn and NOT replaced. Then a second marble is drawn.\nQuantity A: P(both marbles are red)\nQuantity B: P(both marbles are blue)",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "A",
-      "explanation": "P(both red) = (6/10)(5/9) = 30/90 = 1/3. P(both blue) = (4/10)(3/9) = 12/90 = 2/15. Comparing: 1/3 = 5/15 > 2/15. Column A is greater.",
+      "explanation": "P(both red) = (6/10)(5/9) = 30/90 = 1/3. P(both blue) = (4/10)(3/9) = 12/90 = 2/15. Comparing: 1/3 = 5/15 > 2/15. Quantity A is greater.",
       "trap": "Students compute the probabilities correctly but then compare 1/3 and 2/15 without a common denominator, mistakenly thinking they are equal or that 2/15 is larger because 15 > 3.",
       "estimated_time_seconds": 75,
       "tags": [
         "dependent-events",
         "qc",
         "two-step"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-021",
@@ -386,11 +489,13 @@
         "table-probability",
         "restricted-sample-space",
         "favourable-over-total"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-022",
-      "difficulty": "medium",
+      "difficulty": "easy",
       "type": "numeric_entry",
       "question": "A game pays $5 if a fair coin lands heads and $0 if it lands tails. What is the expected value of one play of this game in dollars? Enter your answer as a decimal.",
       "options": null,
@@ -400,7 +505,19 @@
       "estimated_time_seconds": 60,
       "tags": [
         "probability-basic"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled",
+        "contrived_context"
+      ],
+      "ets_note": "Trivial one-step expected value labelled medium; 'game' framing is textbook.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "medium",
+        "work_required": "Single expected-value computation 0.5x5.",
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-023",
@@ -408,41 +525,59 @@
       "type": "mcq",
       "question": "A bag contains 3 red marbles and 5 blue marbles. If two marbles are drawn WITH replacement, what is the probability that the first is red and the second is blue?",
       "options": [
-        "A. 3/64",
+        "A. 9/64",
         "B. 15/64",
-        "C. 5/16",
-        "D. 8/64",
-        "E. 3/16"
+        "C. 15/56",
+        "D. 25/64",
+        "E. 15/32"
       ],
       "answer": "B",
       "explanation": "With replacement, the draws are independent. P(first red) = 3/8. P(second blue) = 5/8. P(red then blue) = (3/8)(5/8) = 15/64.",
-      "trap": "Students incorrectly apply without-replacement logic and compute (3/8)(5/7) = 15/56, reducing the denominator for the second draw even though the marble was replaced.",
+      "trap": "C: students use without-replacement logic, (3/8)(5/7). A: students find P(red, red). D: students find P(blue, blue). E: students find P(one of each color in either order), 2 x 15/64.",
       "estimated_time_seconds": 65,
       "tags": [
         "independent-events",
         "two-step"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered",
+        "filler_distractors"
+      ],
+      "ets_note": "Options not ascending; 8/64 filler.",
+      "ets_rewrite": {
+        "date": "2026-10-09",
+        "changes": [
+          "replaced 3/64, 8/64, 5/16, 3/16 with values from named errors; options ascending; answer stays B"
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-024",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "Events A and B are mutually exclusive, with P(A) = 0.4 and P(B) = 0.5.\nColumn A: P(A or B)\nColumn B: P(A) + P(B) - P(A and B)",
+      "question": "Events A and B are mutually exclusive, with P(A) = 0.4 and P(B) = 0.5.\nQuantity A: P(A or B)\nQuantity B: P(A) + P(B) - P(A and B)",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
-      "explanation": "Step 1 — mutually exclusive means A and B cannot both occur, so P(A and B) = 0.\nStep 2 — Column B = 0.4 + 0.5 - 0 = 0.9.\nStep 3 — for mutually exclusive events the probabilities add directly, so Column A = P(A or B) = 0.4 + 0.5 = 0.9.\nStep 4 — both columns equal 0.9.\nThe deeper point: Column B is the general addition rule, which holds for ANY two events, and Column A is the left side of that same identity. The two columns would be equal even if the numbers were different.\nAnswer: the two quantities are equal.",
-      "trap": "Computing P(A and B) as P(A) x P(B) = 0.4 x 0.5 = 0.2, which drops Column B to 0.7 and points at A. Multiplying is the test for INDEPENDENT events; mutually exclusive is the opposite situation, in which the overlap is 0. Two events with positive probabilities can never be both mutually exclusive and independent.",
+      "explanation": "Step 1 — mutually exclusive means A and B cannot both occur, so P(A and B) = 0.\nStep 2 — Quantity B = 0.4 + 0.5 - 0 = 0.9.\nStep 3 — for mutually exclusive events the probabilities add directly, so Quantity A = P(A or B) = 0.4 + 0.5 = 0.9.\nStep 4 — both columns equal 0.9.\nThe deeper point: Quantity B is the general addition rule, which holds for ANY two events, and Quantity A is the left side of that same identity. The two columns would be equal even if the numbers were different.\nAnswer: the two quantities are equal.",
+      "trap": "Computing P(A and B) as P(A) x P(B) = 0.4 x 0.5 = 0.2, which drops Quantity B to 0.7 and points at A. Multiplying is the test for INDEPENDENT events; mutually exclusive is the opposite situation, in which the overlap is 0. Two events with positive probabilities can never be both mutually exclusive and independent.",
       "estimated_time_seconds": 75,
       "tags": [
         "mutually-exclusive",
         "addition-rule",
         "qc"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "telegraphed_method"
+      ],
+      "ets_note": "Quantity B spells out the addition rule; telegraphs method."
     },
     {
       "id": "STA-PRB-025",
@@ -468,7 +603,9 @@
         "single-event",
         "counting-outcomes",
         "multiple-answer"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-039",
@@ -489,7 +626,9 @@
       "tags": [
         "dependent-events",
         "two-step"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-040",
@@ -498,23 +637,38 @@
       "question": "A square has side length 6. A circle is drawn with its center at the center of the square and with the largest possible radius that still fits entirely within the square. A point is chosen at random inside the square. What is the probability it falls OUTSIDE the circle?",
       "options": [
         "A. 1 - pi/4",
-        "B. pi/4",
-        "C. 1 - pi/36",
-        "D. (36 - 9pi)/36",
-        "E. 4 - pi"
+        "B. 1 - pi/6",
+        "C. pi/4",
+        "D. 4 - pi",
+        "E. 1 - pi/36"
       ],
       "answer": "A",
-      "explanation": "The largest inscribed circle has radius = 3 (half the side length). Area of square = 36. Area of circle = pi(3^2) = 9pi. P(inside circle) = 9pi/36 = pi/4. P(outside circle) = 1 - pi/4. Note: option D equals (36-9pi)/36 = 1 - 9pi/36 = 1 - pi/4, which is the same value as option A. The cleaner form is 1 - pi/4.",
-      "trap": "Students use the diagonal of the square to find the radius (r = 3 root 2), as if constructing a circumscribed circle. The inscribed circle touches the midpoints of the sides and has radius equal to half the side, not half the diagonal.",
+      "explanation": "The largest inscribed circle has radius = 3 (half the side length). Area of square = 36. Area of circle = pi(3^2) = 9pi. P(inside circle) = 9pi/36 = pi/4. P(outside circle) = 1 - pi/4.\nAnswer: A.",
+      "trap": "Choice C is the complement — pi/4 is the probability of landing INSIDE the circle, and the stem asks for outside. Choice B uses the circumference 2(pi)(3) = 6pi in place of the area pi(3^2) = 9pi, and choice E drops the square on the radius altogether. The inscribed circle touches the midpoints of the sides, so its radius is half the side length, 3, not half the diagonal.",
       "estimated_time_seconds": 90,
       "tags": [
         "probability-basic",
         "two-step"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "multiple_correct"
+      ],
+      "ets_note": "A and D are identical in value; two correct answers. Radius 3 not stated; 'largest possible radius' fine.",
+      "ets_dup_fix": {
+        "date": "2026-10-08",
+        "was": "1 - pi/4",
+        "rationale": {
+          "B": "using the circumference 2(pi)(3) = 6pi as the circle's area, giving 1 − 6pi/36 = 1 − pi/6",
+          "C": "answering the complement — computing P(inside the circle) = 9pi/36 = pi/4 and stopping without subtracting from 1 (original bank distractor, retained)",
+          "D": "forgetting to divide by the square's area — subtracting the areas, 36 − 9pi, and then mis-scaling by 9 instead of 36 (original bank distractor, retained)",
+          "E": "dropping the exponent in pi(r²) and using pi · 1 for the circle's area, giving 1 − pi/36 (original bank distractor, retained)"
+        }
+      }
     },
     {
       "id": "STA-PRB-041",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "numeric_entry",
       "question": "Two fair six-sided dice are rolled once. What is the probability that the sum of the two numbers showing is a prime number? Enter your answer as a fraction in lowest terms.",
       "options": null,
@@ -526,28 +680,50 @@
         "two-dice",
         "sample-space",
         "counting-outcomes"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Standard two-dice count labelled hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Enumerate prime sums (15 of 36 outcomes) and reduce.",
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-042",
-      "difficulty": "extreme_hard",
+      "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "A jar contains 4 red, 3 blue and 3 green marbles and no others. Two marbles are drawn at random at the same time, without replacement.\nColumn A: P(the two marbles are the same colour)\nColumn B: 1/4",
+      "question": "A jar contains 4 red, 3 blue and 3 green marbles and no others. Two marbles are drawn at random at the same time, without replacement.\nQuantity A: P(the two marbles are the same colour)\nQuantity B: 1/4",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "A",
-      "explanation": "Step 1 — count the sample space. Two marbles chosen from 10 give C(10,2) = (10 x 9)/2 = 45 equally likely pairs.\nStep 2 — count the same-colour pairs one colour at a time:\nred: C(4,2) = (4 x 3)/2 = 6\nblue: C(3,2) = 3\ngreen: C(3,2) = 3\nTotal same-colour pairs = 6 + 3 + 3 = 12.\nStep 3 — P(same colour) = 12/45 = 4/15.\nStep 4 — compare 4/15 with 1/4 over the common denominator 60: 4/15 = 16/60 and 1/4 = 15/60.\n16/60 > 15/60, so Column A is greater - but only by 1/60.\nCheck the complement: P(different colours) = 1 - 4/15 = 11/15, and the direct count (4x3 + 4x3 + 3x3)/45 = (12 + 12 + 9)/45 = 33/45 = 11/15. Correct.\nAnswer: Column A is greater.",
+      "explanation": "Step 1 — count the sample space. Two marbles chosen from 10 give C(10,2) = (10 x 9)/2 = 45 equally likely pairs.\nStep 2 — count the same-colour pairs one colour at a time:\nred: C(4,2) = (4 x 3)/2 = 6\nblue: C(3,2) = 3\ngreen: C(3,2) = 3\nTotal same-colour pairs = 6 + 3 + 3 = 12.\nStep 3 — P(same colour) = 12/45 = 4/15.\nStep 4 — compare 4/15 with 1/4 over the common denominator 60: 4/15 = 16/60 and 1/4 = 15/60.\n16/60 > 15/60, so Quantity A is greater - but only by 1/60.\nCheck the complement: P(different colours) = 1 - 4/15 = 11/15, and the direct count (4x3 + 4x3 + 3x3)/45 = (12 + 12 + 9)/45 = 33/45 = 11/15. Correct.\nAnswer: Quantity A is greater.",
       "trap": "Mixing ordered and unordered counting: using 10 x 10 = 100 as the total gives (4x3 + 3x2 + 3x2)/100 = 24/100 = 6/25 = 0.24, which is BELOW 1/4 and points at B. Keep both counts in the same currency - 12 unordered same-colour pairs out of C(10,2) = 45. The other failure is eyeballing 4/15 as 'about a quarter' and answering C; the two differ by exactly 1/60.",
       "estimated_time_seconds": 120,
       "tags": [
         "combinations",
         "without-replacement",
         "qc"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Routine two-step probability labelled extreme_hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Count same-colour pairs (6+3+3)/45 and compare with 1/4; combinations plus a close comparison.",
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-043",
@@ -573,28 +749,52 @@
         "single-event",
         "counting-outcomes",
         "multiple-answer"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-044",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "Box A contains 3 red and 2 blue balls. Box B contains 1 red and 4 blue balls. A box is chosen at random (each with probability 1/2), and then one ball is drawn from that box. What is the probability that the drawn ball is red?",
       "options": [
-        "A. 2/5",
-        "B. 11/50",
-        "C. 4/25",
-        "D. 2/10",
-        "E. 7/25"
+        "A. 1/5",
+        "B. 3/10",
+        "C. 2/5",
+        "D. 3/5",
+        "E. 4/5"
       ],
-      "answer": "A",
+      "answer": "C",
       "explanation": "Using the law of total probability: P(red) = P(Box A) x P(red|A) + P(Box B) x P(red|B) = (1/2)(3/5) + (1/2)(1/5) = 3/10 + 1/10 = 4/10 = 2/5.",
-      "trap": "Students pool the two boxes and compute (3+1)/(5+5) = 4/10 = 2/5. This coincidentally gives the correct answer here because both boxes have the same total number of balls (5 each). Students should recognize this shortcut only works when box sizes are equal, and use the law of total probability in general.",
+      "trap": "E: students add the two conditional probabilities, 3/5 + 1/5, without weighting each box by 1/2. D: students use only P(red | Box A). B: students include only the Box A branch, (1/2)(3/5). A: students use only P(red | Box B).",
       "estimated_time_seconds": 90,
       "tags": [
         "compound-probability",
         "multi-step"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "options_unordered",
+        "filler_distractors",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Numeric options not ascending; 2/10 unreduced filler. Easy item labelled hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "hard",
+        "work_required": "Law of total probability over two equally likely boxes; two steps.",
+        "confidence": "high"
+      },
+      "ets_rewrite": {
+        "date": "2026-10-09",
+        "changes": [
+          "replaced unreduced/filler options (11/50, 4/25, 2/10, 7/25) with values from named errors",
+          "options ascending; answer 2/5 moves from A to C",
+          "trap rewritten (old trap said pooling gives the same answer and named no option)"
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-045",
@@ -609,28 +809,35 @@
       "tags": [
         "geometric-probability",
         "area-ratio"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "ugly_numbers"
+      ],
+      "ets_note": "Decimal rounded to 4 places; ETS would use fraction or π form."
     },
     {
       "id": "STA-PRB-046",
       "difficulty": "hard",
       "type": "quantitative_comparison",
-      "question": "Two cards are drawn without replacement from a standard 52-card deck.\nColumn A: P(both cards are aces)\nColumn B: P(both cards are the same suit)",
+      "question": "Two cards are drawn without replacement from a standard 52-card deck.\nQuantity A: P(both cards are aces)\nQuantity B: P(both cards are the same suit)",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "B",
-      "explanation": "Column A: P(both aces) = (4/52)(3/51) = 12/2652 = 1/221 approximately 0.0045. Column B: After drawing any first card, 12 of the remaining 51 cards share its suit. P(same suit) = 12/51 = 4/17 approximately 0.235. Column B is far greater.",
-      "trap": "Students correctly compute Column A but try to enumerate Column B as 4 x (13/52)(12/51), which gives the same result. The error comes if they miscount the remaining same-suit cards as 13 instead of 12 (forgetting the first drawn card).",
+      "explanation": "Quantity A: P(both aces) = (4/52)(3/51) = 12/2652 = 1/221 approximately 0.0045. Quantity B: After drawing any first card, 12 of the remaining 51 cards share its suit. P(same suit) = 12/51 = 4/17 approximately 0.235. Quantity B is far greater.",
+      "trap": "Students correctly compute Quantity A but try to enumerate Quantity B as 4 x (13/52)(12/51), which gives the same result. The error comes if they miscount the remaining same-suit cards as 13 instead of 12 (forgetting the first drawn card).",
       "estimated_time_seconds": 95,
       "tags": [
         "dependent-events",
         "qc",
         "two-step"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-047",
@@ -652,7 +859,9 @@
         "favourable-over-total",
         "reverse-probability",
         "complement"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-048",
@@ -678,11 +887,13 @@
         "algebraic-probability",
         "complement",
         "multiple-answer"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": []
     },
     {
       "id": "STA-PRB-054",
-      "difficulty": "extreme_hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "An urn contains 4 red and 6 blue balls. Balls are drawn one at a time without replacement until the first red ball is drawn. What is the probability that exactly 3 draws are needed?",
       "options": [
@@ -699,32 +910,56 @@
       "tags": [
         "dependent-events",
         "multi-step"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled",
+        "filler_distractors"
+      ],
+      "ets_note": "Three-factor product labelled extreme_hard; 4/30 and 4/10 are naive-error fillers.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Multiply sequential without-replacement probabilities 6/10 x 5/9 x 4/8.",
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-055",
-      "difficulty": "extreme_hard",
+      "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "A fair die is rolled repeatedly until a 6 appears.\nColumn A: P(the game ends in exactly 3 rolls)\nColumn B: P(the game ends in exactly 4 rolls)",
+      "question": "A fair die is rolled repeatedly until a 6 appears.\nQuantity A: P(the game ends in exactly 3 rolls)\nQuantity B: P(the game ends in exactly 4 rolls)",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
       ],
       "answer": "A",
-      "explanation": "P(ends in exactly n rolls) = (5/6)^(n-1) x (1/6). Column A (n=3): (5/6)^2 x (1/6) = 25/216. Column B (n=4): (5/6)^3 x (1/6) = 125/1296. To compare: 25/216 = 150/1296. Since 150/1296 > 125/1296, Column A is greater.",
+      "explanation": "P(ends in exactly n rolls) = (5/6)^(n-1) x (1/6). Quantity A (n=3): (5/6)^2 x (1/6) = 25/216. Quantity B (n=4): (5/6)^3 x (1/6) = 125/1296. To compare: 25/216 = 150/1296. Since 150/1296 > 125/1296, Quantity A is greater.",
       "trap": "Students intuit that more rolls mean more opportunities for success and think later endings are more probable. In the geometric distribution, each additional non-6 multiplies the probability by 5/6 < 1, so probabilities decrease monotonically with n.",
       "estimated_time_seconds": 110,
       "tags": [
         "independent-events",
         "qc",
         "multi-step"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled",
+        "contrived_context"
+      ],
+      "ets_note": "Simple geometric-probability comparison labelled extreme_hard; 'game' framing.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Geometric waiting-time probabilities; B is A times 5/6 so A greater.",
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-056",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "numeric_entry",
       "question": "An integer is chosen at random from the integers 1 through 210, inclusive, with every integer equally likely. What is the probability that the chosen integer is divisible by none of 2, 3, 5 and 7? Enter your answer as a fraction in lowest terms.",
       "options": null,
@@ -736,11 +971,21 @@
         "complement",
         "inclusion-exclusion",
         "counting-outcomes"
-      ]
+      ],
+      "ets_score": 4,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Inclusion-exclusion or totient product over four primes in 1..210; non-trivial counting but structured.",
+        "confidence": "medium"
+      }
     },
     {
       "id": "STA-PRB-057",
-      "difficulty": "extreme_hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "A game pays $2^k where k is the number of heads obtained in 3 flips of a fair coin. What is the expected payout?",
       "options": [
@@ -757,11 +1002,22 @@
       "tags": [
         "probability-basic",
         "multi-step"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Fair ETS-style expected value, but not extreme_hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Binomial distribution of heads then expectation of 2^k; two chained concepts with the E[2^k] trap.",
+        "confidence": "medium"
+      }
     },
     {
       "id": "STA-PRB-058",
-      "difficulty": "extreme_hard",
+      "difficulty": "medium",
       "type": "numeric_entry",
       "question": "A square dartboard has side 10. Four quarter-circle regions of radius 3 are painted at the corners, each centred on a corner of the square, and one circular region of radius 2 is painted at the centre of the square. No two painted regions overlap. A dart lands at a random point of the board, with every point equally likely. What is the probability that it lands on an unpainted part of the board? Enter your answer as a decimal rounded to 4 decimal places.",
       "options": null,
@@ -773,40 +1029,73 @@
         "geometric-probability",
         "area-ratio",
         "complement"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "ugly_numbers",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "Needs calculator and decimal rounding; ETS would leave in terms of pi; extreme_hard overstated.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Geometric probability: quarter circles total 9pi plus circle 4pi, complement over 100; one concept, arithmetic with pi.",
+        "confidence": "medium"
+      }
     },
     {
       "id": "STA-PRB-059",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "multiple_answer",
       "question": "A biased coin has P(heads) = p where 0 < p < 1. The coin is flipped twice. Which of the following statements are ALWAYS true for all valid values of p? Select all that apply.",
       "options": [
-        "A. P(at least one head) = 2p - p^2",
+        "A. P(at least one head) = 2p",
         "B. P(both heads) = p^2",
-        "C. P(exactly one head) = 2p(1-p)",
+        "C. P(exactly one head) = p(1-p)",
         "D. P(at least one head) > P(both heads)",
         "E. P(exactly one head) > P(both tails) when p > 0.5"
       ],
       "answer": [
-        "A",
         "B",
-        "C",
         "D",
         "E"
       ],
-      "explanation": "A: P(at least one head) = 1 - (1-p)^2 = 2p - p^2. TRUE. B: The flips are independent: P(HH) = p^2. TRUE. C: P(exactly one head) = 2p(1-p). TRUE. D: Is 2p - p^2 > p^2? This gives 2p > 2p^2, i.e., 1 > p, which holds since p < 1. TRUE. E: P(exactly one head) = 2p(1-p). P(both tails) = (1-p)^2. Is 2p(1-p) > (1-p)^2 when p > 0.5? Dividing by (1-p) > 0: 2p > 1-p, so 3p > 1, p > 1/3. Since p > 0.5 implies p > 1/3, the inequality holds. TRUE.",
-      "trap": "Students eliminate E, thinking that 'p > 0.5' is only a necessary condition when in fact p > 1/3 is sufficient for the inequality. They also often assume D requires p = 0.5 to hold exactly, rather than holding for all p strictly between 0 and 1.",
+      "explanation": "The two flips are independent, so P(HH) = p^2, P(TT) = (1−p)^2, P(exactly one head) = 2p(1−p), and P(at least one head) = 1 − (1−p)^2 = 2p − p^2.\nA: 2p − p^2 ≠ 2p for any p in (0, 1), since p^2 > 0. FALSE.\nB: p · p = p^2. TRUE.\nC: Exactly one head happens as HT or TH, so the probability is 2p(1−p), twice the stated value. FALSE.\nD: 2p − p^2 > p^2 reduces to 2p > 2p^2, that is p < 1, which holds throughout 0 < p < 1. TRUE.\nE: 2p(1−p) > (1−p)^2; dividing by the positive 1−p gives 2p > 1−p, so p > 1/3, which every p > 0.5 satisfies. TRUE.\nAnswer: B, D and E.",
+      "trap": "A adds the two flips' probabilities as if the events were mutually exclusive, double-counting HH. C forgets that exactly one head occurs in two orders, HT and TH, and so halves the correct 2p(1−p).",
       "estimated_time_seconds": 125,
       "tags": [
         "complementary-probability",
         "independent-events",
         "multiple-answer",
         "conceptual"
-      ]
+      ],
+      "ets_score": 2,
+      "ets_tags": [
+        "degenerate_select_all",
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "All five options correct: degenerate select-all. Also trivial for extreme_hard.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Verify five algebraic statements about a biased coin, including inequalities valid for all p; multi-check with symbolic reasoning.",
+        "confidence": "medium"
+      },
+      "ets_lastmile": {
+        "date": "2026-10-10",
+        "defect": "all_options_correct",
+        "changes": [
+          "made A false (probabilities added without subtracting the overlap)",
+          "made C false (HT/TH factor of 2 dropped)",
+          "answer set B,D,E",
+          "rewrote explanation and trap"
+        ],
+        "confidence": "high"
+      }
     },
     {
       "id": "STA-PRB-060",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "mcq",
       "question": "In a room there are n people, where n >= 4, and each pair of people shakes hands exactly once. The handshakes occur one after another in a random order, with every order equally likely. In terms of n, what is the probability that the very first handshake is one that involves a particular person A?",
       "options": [
@@ -824,7 +1113,18 @@
         "favourable-over-total",
         "counting-outcomes",
         "algebraic-probability"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [
+        "difficulty_mislabelled"
+      ],
+      "ets_note": "One-step counting labelled extreme_hard; n>=4 and 'random order' wording is padding.",
+      "ets_difficulty_recal": {
+        "date": "2026-10-08",
+        "was": "extreme_hard",
+        "work_required": "Count pairs involving A out of C(n,2) symbolically to get 2/n; needs combinatorial reframing.",
+        "confidence": "medium"
+      }
     },
     {
       "id": "STA-PRB-061",
@@ -845,7 +1145,10 @@
       "tags": [
         "odds-vs-probability",
         "favourable-over-total"
-      ]
+      ],
+      "ets_score": 3,
+      "ets_tags": [],
+      "ets_note": "Odds language is not an ETS convention; British 'favour'."
     }
   ],
   "meta": {

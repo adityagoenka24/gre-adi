@@ -417,6 +417,12 @@ async function loadMock(mockId) {
     const res = await fetch(`mocks/${mockId}.json`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     state.mockData = await res.json();
+    // ETS audit 2026-10-08: drop any question withdrawn by the audit.
+    if (state.mockData && Array.isArray(state.mockData.sections)) {
+      state.mockData.sections.forEach(function(sec){
+        if (Array.isArray(sec.questions)) sec.questions = sec.questions.filter(function(q){ return !(q && q.ets_withdrawn); });
+      });
+    }
   } catch(e) {
     state.loadError = e.message;
     console.error('Failed to load mock:', e);

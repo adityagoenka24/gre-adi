@@ -359,7 +359,7 @@ function chooseSet(n){
     return res.json();
   }).then(function(json){
     state.data = json;
-    var list = json.questions || [];
+    var list = (json.questions || []).filter(function(q){ return !(q && q.ets_withdrawn); }); // ETS audit 2026-10-08: drop withdrawn questions
     document.getElementById('instr-title').textContent = state.topic.name + ' — Set ' + n;
     document.getElementById('instr-count').textContent = list.length;
     var secs = (json.meta && json.meta.time_limit_seconds) || SECTION_SECONDS;
