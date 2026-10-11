@@ -60,6 +60,7 @@ claims of "zero defects" turned out to be narrower than stated; what the second 
   differ from the bank where an option reorder applied: `events/config/*.json` (frozen event
   snapshots — leave them) and static `learn/practice/*.html` + `learn/pro-body/*.html` pages.
   Each is internally consistent.
+- **Pro bank exposure confirmed, deliberately left open (Adi, 2026-10-11).** `https://grequantpro.com/pro/bank/index.json` is publicly readable, and the repo is public so the files are also on github.com and in git history. Adi chose to defer; the plan is to move the admin/pro data behind Cloudflare KV once there is traction. Note the admin page cannot detect copying, since static JSON never passes through the Worker. Cheapest future fix: serve pro files from the existing Worker (email + fingerprint + access tier checks) out of KV, remove `pro/bank`, `mocks/` and `events/config/` from the repo, and purge history. The `gre-question-gen` skill is also stale (still writes Column A/B and 'Column A is greater'); update it to Quantity A/B per `ETS_RUBRIC.md`.
 - Open items 1 (re-score), 2 (URL exposure — `grequantpro.com` is unreachable from the sandbox;
   `cloudflare/worker.js` is an auth API and contains no static-asset handling), 5 (the
   `gre-question-gen` skill lives outside this repo) and 7 (48 withdrawn) remain open.
