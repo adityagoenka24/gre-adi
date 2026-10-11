@@ -51,6 +51,13 @@ Rules:
 - **Numeric options must be in ascending order.** This is an ETS invariant. Re-lettering numeric
   options to flatten the answer distribution is not permitted; only textual-option sets may be
   re-lettered.
+- **No two options may have the same value.** A value-equal but not-fully-simplified option is a
+  legitimate distractor *only* when the stem itself demands a form ("in simplest form", "factor
+  completely", "fully simplified", "in scientific notation"); in every other stem it is a defect,
+  because ETS grades the value and the student who reaches it would be marked wrong. (Settled
+  2026-10-11 from the two defensible positions in the ETS audit — `ALG-FAC-037` keeps its
+  incompletely-factored option under "factor completely"; `ALG-EXP-007`, `ALG-FAC-008` and
+  `ARI-P10-012` had theirs replaced because their stems asked only for a value. Adi can overrule.)
 - No "none of the above" / "cannot be determined" in a single-answer MCQ (that belongs to QC).
 - Approximation questions say "approximately"; the correct answer is the closest in value.
 

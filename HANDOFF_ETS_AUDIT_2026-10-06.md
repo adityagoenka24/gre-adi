@@ -9,6 +9,65 @@ then **Still open** for what to do next.
 
 ---
 
+## Addendum — 2026-10-11 continuation (read this first)
+
+A second session picked this up. The original work was **already committed and on `main`** as
+`a94e1bf` ("questions upgrade"), so "uncommitted in the working tree" below is out of date. Several
+claims of "zero defects" turned out to be narrower than stated; what the second session found and did:
+
+**Found and fixed**
+
+1. **QC questions rendered blank in four pages (regression from step 1).** `gre_practice_logger_free.html`,
+   `pro/gre_practice_logger_pro.html`, `previous.html` and `events/events_common.js` parsed QC stems
+   by looking for lines starting `Column A:` / `Column B:`. After the Column→Quantity rewrite they
+   found nothing and showed "—" for both quantities. Parsers now accept either wording (same approach
+   as `parseQC` in `full_mock.html`, which already did), build the intro from every non-quantity
+   line, and label the columns "Quantity A/B". **Verified by `node --check` on every inline script
+   and a unit test of the parsing logic — not yet by a browser run; do a visual check of one QC
+   question in each page.**
+2. **420 `SEC-*` questions had stale topic-side copies.** Each exists in a sectional set *and* in a
+   topic file plus its mixed bag. Only the sectional copy received `ets_*` fields and fixes, so the
+   copies the practice loggers actually serve carried no `ets_score`, and 27 differed in content
+   (for example `SEC-AL-084`'s topic copy still had a "cannot be determined" option). All copies now
+   match their sectional copy (866 instances rewritten, `origin`/`origin_set` kept per copy). **Zero
+   IDs now have disagreeing copies** — the original "zero copies disagree" held only for
+   claude-gen IDs.
+3. **22 more flattened mixed-graph exhibits (`DAT-MXG-001…028`).** Step 7 rebuilt only the ones that
+   carried an `ets_exhibit_fix`; the rest were still a single "pie" mixing months with categories
+   (the data was already lost that way in the original upload, so figures come from the
+   explanations). Stem-complete questions had the junk chart removed; the others were rebuilt as
+   chart + `table_data` (the `DAT-MXG-022` pattern; second exhibit's stem header now says "Table —").
+   Medium-confidence rebuilds (`008`, `013`, `016`, `025`) used an array value for one or two
+   *unused* bars; each is recorded in its `ets_exhibit_fix.source`.
+4. **24 questions still carried `ets_key_disputed`** (the handoff said none). All re-solved: every key
+   held, so the flags were stale and are cleared with an `ets_key_resolved` record. Only content
+   change: `ALG-INQ-036` option D now reads "for all such x and y".
+5. **Open item 4 settled:** `DAT-MGS-014`'s stem no longer says to round 82/6 (key 73 stands);
+   `DAT-LIN-025` now says readings are "taken every 2 hours" (typo fixed).
+6. **Open item 6 done:** 172 numeric MCQs with out-of-order options reordered ascending, answer
+   letter and in-text letter references recomputed together (`ets_option_order` records the old
+   order). Each checked that the correct option's *text* is unchanged. 0 remain.
+7. **Open item 3 settled** in `ETS_RUBRIC.md` §1.4 (equal-valued option is a defect unless the stem
+   demands a form). It is a default — Adi can overrule.
+
+**Not done / newly found**
+
+- **Free logger and `previous.html` render no charts or tables.** They have no `q.chart` /
+  `table_data` handling (only the pro logger does), so the free bank's 83 chart questions and 10
+  `table_data` questions (`DAT-TBL-008…040`: "The table below shows…") show only the stem. Pre-existing,
+  not caused by the audit; queued as a separate task.
+- Independent copies of some questions live outside the banks and were **not** touched, so they can
+  differ from the bank where an option reorder applied: `events/config/*.json` (frozen event
+  snapshots — leave them) and static `learn/practice/*.html` + `learn/pro-body/*.html` pages.
+  Each is internally consistent.
+- Open items 1 (re-score), 2 (URL exposure — `grequantpro.com` is unreachable from the sandbox;
+  `cloudflare/worker.js` is an auth API and contains no static-asset handling), 5 (the
+  `gre-question-gen` skill lives outside this repo) and 7 (48 withdrawn) remain open.
+- 19 numeric MCQs were hand-checked for letter references before reordering; the two real ones
+  (`MIX-GEN-008`, `NUM-DIV-018`) were edited by hand.
+
+---
+
 ## Current state
 
 Every Claude-generated question in both banks was independently re-solved, scored for ETS fidelity,
