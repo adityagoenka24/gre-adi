@@ -197,6 +197,7 @@
     </div>
     <div class="review-section" id="review-section" style="display:none;">
       <h3>Question Review <button class="review-toggle" onclick="toggleReview()">hide</button></h3>
+      <div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into the result file you download and isn't saved anywhere else. <span id="le-count"></span></div>
       <div class="review-list" id="review-list"></div>
     </div>
   </div>
@@ -790,6 +791,7 @@ function showBreak() {
 
 // ─── RESULTS ─────────────────────────────────────────────────────────────────
 function showResults() {
+  leReset();
   const r1 = state.sectionResults[1];
   const r2 = state.sectionResults[2];
   const totalCorrect = r1.correct + r2.correct;
@@ -941,6 +943,75 @@ function renderUpgradeCTA(pct) {
   `;
 }
 
+// ─── LOG ERROR (review only) ──────────────────────────────────────────────────
+// Lives in memory for this attempt. It is written into the downloaded JSON and
+// nowhere else: not sent to the server, not kept in browser storage.
+const LE_TYPES = ['Concept gap', 'Calculation slip', 'Misread the question', 'Fell for the trap', 'Ran out of time', 'Guessed', 'Other'];
+let errorLog = {};    // review key -> { type, note }
+let errorMeta = {};   // review key -> question details, registered as the review renders
+
+function leReset() { errorLog = {}; errorMeta = {}; }
+
+function leBox(key, meta) {
+  errorMeta[key] = meta;
+  return `<div class="le-box" data-le="${key}">${leInner(key, false)}</div>`;
+}
+
+function leInner(key, editing) {
+  const e = errorLog[key];
+  if (editing) {
+    return `<div class="le-form">
+      <label>What went wrong?<select class="le-type" onchange="this.classList.remove('le-err')"><option value="">Select…</option>${
+        LE_TYPES.map(t => `<option${e && e.type === t ? ' selected' : ''}>${t}</option>`).join('')
+      }</select></label>
+      <label>Note (optional)<textarea class="le-text" rows="2" maxlength="300" placeholder="e.g. Forgot to convert minutes to hours">${escapeHtml(e ? e.note : '')}</textarea></label>
+      <div class="le-actions">
+        <button class="btn btn-primary le-btn" onclick="leSave(this)">Save</button>
+        <button class="btn btn-ghost le-btn" onclick="leShow(this,false)">Cancel</button>
+        ${e ? '<button class="btn btn-ghost le-btn" onclick="leRemove(this)">Remove</button>' : ''}
+      </div></div>`;
+  }
+  if (e) {
+    return `<div class="le-chip"><span class="le-tag">⚑ ${escapeHtml(e.type)}</span>${
+      e.note ? `<span class="le-note">${escapeHtml(e.note)}</span>` : ''
+    }<button class="btn btn-ghost le-btn" onclick="leShow(this,true)">Edit</button></div>`;
+  }
+  return '<button class="btn btn-ghost le-btn" onclick="leShow(this,true)">⚑ Log Error</button>';
+}
+
+function leShow(btn, editing) {
+  const box = btn.closest('.le-box');
+  box.innerHTML = leInner(box.dataset.le, editing);
+  if (editing) box.querySelector('.le-type').focus();
+}
+
+function leSave(btn) {
+  const box = btn.closest('.le-box'), key = box.dataset.le;
+  const sel = box.querySelector('.le-type');
+  if (!sel.value) { sel.classList.add('le-err'); sel.focus(); return; }
+  errorLog[key] = { type: sel.value, note: box.querySelector('.le-text').value.trim() };
+  leRefresh(key);
+}
+
+function leRemove(btn) {
+  const key = btn.closest('.le-box').dataset.le;
+  delete errorLog[key];
+  leRefresh(key);
+}
+
+function leRefresh(key) {
+  document.querySelectorAll(`.le-box[data-le="${key}"]`).forEach(b => { b.innerHTML = leInner(key, false); });
+  const n = leEntries().length, hint = document.getElementById('le-count');
+  if (hint) hint.textContent = n ? `${n} logged so far.` : '';
+}
+
+// Everything logged so far, in question order, ready for the download.
+function leEntries() {
+  return Object.keys(errorMeta).filter(k => errorLog[k]).map(k => (
+    { ...errorMeta[k], error_type: errorLog[k].type, note: errorLog[k].note }
+  ));
+}
+
 // ─── POST-TEST ANSWER REVIEW ─────────────────────────────────────────────────
 function reviewAnswers() {
   const reviewEl = document.getElementById('review-section');
@@ -964,6 +1035,15 @@ function reviewAnswers() {
         </div>
         ${q.explanation ? `<div class="review-exp">${escapeHtml(q.explanation)}</div>` : ''}
         ${q.trap ? `<div class="review-trap">⚠ Trap: ${escapeHtml(q.trap)}</div>` : ''}
+        ${leBox(`${si+1}-${qi+1}`, {
+          section: si+1,
+          question_number: qi+1,
+          question_id: q.id,
+          topic: q.tags?.[0] || 'general',
+          status,
+          given_answer: givenStr === '—' ? '' : givenStr,
+          correct_answer: correctStr
+        })}
       </div>`;
     });
   });
@@ -993,6 +1073,8 @@ function downloadResult() {
     sections: state.sectionResults,
     answers: state.answers, timings: state.timings,
   };
+  const errors = leEntries();
+  if (errors.length) result.error_log = errors;
   const blob = new Blob([JSON.stringify(result, null, 2)], { type:'application/json' });
   const a = document.createElement('a');
   a.href = URL.createObjectURL(blob);

@@ -536,6 +536,86 @@ const Events = (() => {
       </tbody></table>`;
   }
 
+  // ── Log Error (review only) ───────────────────────────────────────────────
+  // Lives in memory for this attempt. It is written into the downloaded JSON
+  // and nowhere else: not sent to the server, not kept in browser storage.
+  const LE_TYPES = ["Concept gap", "Calculation slip", "Misread the question", "Fell for the trap", "Ran out of time", "Guessed", "Other"];
+  let errorLog = {};   // result index -> { type, note }
+  let errorMeta = {};  // result index -> question details, registered as the review renders
+
+  function leHint() {
+    return `<div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into the result file you download and isn't saved anywhere else. <span id="le-count"></span></div>`;
+  }
+
+  function leBox(index, r) {
+    const given = r.skipped ? "" : Array.isArray(r.student_answer) ? r.student_answer.join(", ") : r.student_answer;
+    errorMeta[index] = {
+      question_number: index + 1,
+      question_id: r.question_id,
+      topic: r.topic,
+      subtopic: r.subtopic,
+      status: r.correct ? "correct" : r.skipped ? "skipped" : "incorrect",
+      given_answer: given,
+      correct_answer: Array.isArray(r.correct_answer) ? r.correct_answer.join(", ") : r.correct_answer
+    };
+    return `<div class="le-box" data-le="${index}">${leInner(index, false)}</div>`;
+  }
+
+  function leInner(key, editing) {
+    const e = errorLog[key];
+    if (editing) {
+      return `<div class="le-form">
+        <label>What went wrong?<select class="le-type" onchange="this.classList.remove('le-err')"><option value="">Select…</option>${
+          LE_TYPES.map((t) => `<option${e && e.type === t ? " selected" : ""}>${t}</option>`).join("")
+        }</select></label>
+        <label>Note (optional)<textarea class="le-text" rows="2" maxlength="300" placeholder="e.g. Forgot to convert minutes to hours">${escapeHtml(e ? e.note : "")}</textarea></label>
+        <div class="le-actions">
+          <button class="btn btn-primary le-btn" data-le-act="save">Save</button>
+          <button class="btn btn-ghost le-btn" data-le-act="cancel">Cancel</button>
+          ${e ? '<button class="btn btn-ghost le-btn" data-le-act="remove">Remove</button>' : ""}
+        </div></div>`;
+    }
+    if (e) {
+      return `<div class="le-chip"><span class="le-tag">⚑ ${escapeHtml(e.type)}</span>${
+        e.note ? `<span class="le-note">${escapeHtml(e.note)}</span>` : ""
+      }<button class="btn btn-ghost le-btn" data-le-act="edit">Edit</button></div>`;
+    }
+    return `<button class="btn btn-ghost le-btn" data-le-act="edit">⚑ Log Error</button>`;
+  }
+
+  function leRefresh(key) {
+    document.querySelectorAll(`.le-box[data-le="${key}"]`).forEach((b) => { b.innerHTML = leInner(key, false); });
+    const n = leEntries().length, hint = $("le-count");
+    if (hint) hint.textContent = n ? `${n} logged so far.` : "";
+  }
+
+  function leClick(ev) {
+    const btn = ev.target.closest("[data-le-act]");
+    if (!btn) return;
+    const box = btn.closest(".le-box"), key = box.dataset.le, act = btn.dataset.leAct;
+    if (act === "edit") {
+      box.innerHTML = leInner(key, true);
+      box.querySelector(".le-type").focus();
+    } else if (act === "cancel") {
+      box.innerHTML = leInner(key, false);
+    } else if (act === "remove") {
+      delete errorLog[key];
+      leRefresh(key);
+    } else if (act === "save") {
+      const sel = box.querySelector(".le-type");
+      if (!sel.value) { sel.classList.add("le-err"); sel.focus(); return; }
+      errorLog[key] = { type: sel.value, note: box.querySelector(".le-text").value.trim() };
+      leRefresh(key);
+    }
+  }
+
+  // Everything logged so far, in question order, ready for the download.
+  function leEntries() {
+    return Object.keys(errorMeta).filter((k) => errorLog[k]).map((k) => (
+      { ...errorMeta[k], error_type: errorLog[k].type, note: errorLog[k].note }
+    ));
+  }
+
   function renderWrongReview(result) {
     const wrong = (result.results || []).filter((r) => !r.correct);
     if (!wrong.length) {
@@ -566,6 +646,7 @@ const Events = (() => {
             </div>
             ${r.explanation ? `<div class="wrong-q-explanation">${escapeHtml(r.explanation)}</div>` : ""}
             ${r.trap ? `<div class="wrong-q-trap">⚠️ Trap: ${escapeHtml(r.trap)}</div>` : ""}
+            ${leBox(result.results.indexOf(r), r)}
           </div>
         </div>`;
       }).join("")}</div>
@@ -606,6 +687,7 @@ const Events = (() => {
               </div>
               ${r.explanation ? `<div class="wrong-q-explanation">${escapeHtml(r.explanation)}</div>` : ""}
               ${r.trap ? `<div class="wrong-q-trap">Trap: ${escapeHtml(r.trap)}</div>` : ""}
+              ${leBox(i, r)}
             </div>
           </div>`;
         }).join("")}
@@ -715,9 +797,15 @@ const Events = (() => {
     renderAnalysisBars(result);
     renderTimeTable(result);
     if ($("proCta")) $("proCta").innerHTML = renderSmartDiagnosis(result) + renderProCta(result);
-    $("exam-wrong-section").innerHTML = renderQuestionReference(result) + renderWrongReview(result);
+    errorLog = {};
+    errorMeta = {};
+    $("exam-wrong-section").innerHTML = leHint() + renderQuestionReference(result) + renderWrongReview(result);
+    $("exam-wrong-section").onclick = leClick;
     if (window.GREMath) window.GREMath.renderIn($("resultsSection"));
-    $("downloadResultBtn").onclick = () => downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, result);
+    $("downloadResultBtn").onclick = () => {
+      const errors = leEntries();
+      downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, errors.length ? { ...result, error_log: errors } : result);
+    };
     document.getElementById("emailResultBtn").onclick = async () => {
   const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);
   const bodyText = `Hi Coach Aditya,\n\nAttached/pasted below is my event result JSON.\n\n${JSON.stringify(result, null, 2)}`;
