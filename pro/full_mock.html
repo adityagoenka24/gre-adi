@@ -288,7 +288,7 @@ function selectMock(mockId, title) {
 
 async function loadMock(mockId) {
   try {
-    const res = await greProFetch(`mocks/${mockId}.json`);
+    const res = await fetch(`mocks/${mockId}.json`);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
     state.mockData = await res.json();
     // ETS audit 2026-10-08: drop any question withdrawn by the audit.

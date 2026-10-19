@@ -356,7 +356,7 @@ function openTopic(id){
 function chooseSet(n){
   state.setNo = n; state.data = null; state.loadError = null;
   var file = 'bank/sectional/' + state.topic.file + '_set' + n + '.json';
-  greProFetch(file).then(function(res){
+  fetch(file).then(function(res){
     if(!res.ok) throw new Error('HTTP ' + res.status);
     return res.json();
   }).then(function(json){
@@ -878,7 +878,7 @@ window.addEventListener('beforeunload', function(e){
 });
 
 function loadCatalogue(){
-  greProFetch('bank/sectional/index.json')
+  fetch('bank/sectional/index.json')
     .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
     .then(function(idx){
       TOPICS = idx.topics || [];
