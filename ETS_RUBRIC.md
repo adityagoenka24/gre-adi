@@ -57,7 +57,8 @@ Rules:
   because ETS grades the value and the student who reaches it would be marked wrong. (Settled
   2026-10-11 from the two defensible positions in the ETS audit — `ALG-FAC-037` keeps its
   incompletely-factored option under "factor completely"; `ALG-EXP-007`, `ALG-FAC-008` and
-  `ARI-P10-012` had theirs replaced because their stems asked only for a value. Adi can overrule.)
+  `ARI-P10-012` had theirs replaced because their stems asked only for a value. **Confirmed by Adi
+  2026-10-12.**)
 - No "none of the above" / "cannot be determined" in a single-answer MCQ (that belongs to QC).
 - Approximation questions say "approximately"; the correct answer is the closest in value.
 
@@ -124,6 +125,16 @@ The bank's own renderer (`gre-math.js`) converts plain-text math to typeset math
 
 So do **not** tag or penalise ASCII math notation. It is invisible to the user. There is no
 `notation_ascii` tag. Judge the mathematics and the wording, not the raw encoding.
+
+### 1.9 Editorial decisions on record
+
+Decided by Adi, 2026-10-12. These are settled; do not reopen them in an audit.
+
+- **Unsimplified equal-valued options** — a defect unless the stem demands a form (see §1.4).
+- **`DAT-MGS-014`** — the key stays **73** (`82/6` is not rounded before dividing; only the final
+  answer is rounded to the nearest whole number). The stem carries no rounding clause on `82/6`.
+- **`DAT-LIN-025`** — readings are taken **every 2 hours** (not "hourly"); the 11am estimate of 62°F
+  stands.
 
 ---
 

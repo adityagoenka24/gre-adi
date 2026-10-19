@@ -310,3 +310,90 @@ Working tree: **207 changed paths, ~20 MB**, nothing committed yet.
 Verified immediately before handing over: 4,920 live questions, zero copies disagreeing, free index
 970/970, pro index 10,362/10,362, the four free sectional sets matching the catalogue's promise, no
 unparseable JSON, and the `ets_withdrawn` filter present in all 7 serving pages.
+
+
+---
+
+## Addendum 2026-10-19 — re-score finished, scores written back
+
+**Items 1, 3, 4 (settled earlier):** the two editorial decisions are already in `ETS_RUBRIC.md` §1.4 and §1.9 and the user confirmed them again. 21 further non-ascending numeric MCQs were reordered on 2026-10-17 (key letter, trap and explanation letter references remapped, sympy-verified, all copies synced; log in `_ets_audit_archive_2026-10/step3_option_order/sweep_2026-10-17_applied.json`). Only `ARI-P10-005` is left unordered, deliberately. The `gre-question-gen` skill proposal was submitted for the user to save; `references/gre-scope.md` (lines 78, 91, 121) and `references/trap-patterns.md` (lines 157, 166) still carry stale Column A/B and select-all wording.
+
+**Item 2 — re-score (measurement only):**
+- 4,920 live non-KMF non-withdrawn questions re-scored blind by Sonnet (verdicts in `_ets_audit_archive_2026-10/rescore_2026-10-12/verdicts_new/`). The 21 reordered IDs were re-scored again on their post-reorder text (`bcm01.json`) and that result is the one written back.
+- Written to every copy by ID (10,749 copies, 158 files): `ets_score`, `ets_tags`, `ets_note` (new note only; stale old note removed) and `ets_rescore {date, prev_score, prev_tags, prev_note, agree_with_key}`. No question content changed (verified against `bank_backup_2026-10-19_pre_rescore_writeback.tar.gz`: zero non-`ets_` differences; all copies of each ID agree).
+- Score distribution old -> new: 1: 211 -> 20, 2: 780 -> 354, 3: 1797 -> 2125, 4: 2054 -> 2413, 5: 78 -> 8.
+- 10 disagreements with the key plus 2 explanation/stem problems went to Opus adversarial triage: `rescore_2026-10-12/triage_report.md`. Nothing was changed in the bank. Summary:
+  - Key wrong, explanation right (fix the key): ARI-FRC-040 (A->D), WRD-MST-023 (C->A; trap "(D)" should be E), GEO-LNA-048 (24.2->25), STA-OVL-033 (C,D,E -> B,C,D,E).
+  - Stem omits where P is (key C right after a stem fix): GEO-LNA-055, GEO-PLT-026.
+  - Two correct options in an MCQ (replace one): ALG-EXP-028, COG-PPL-010.
+  - Unsolvable/ambiguous stems: DAT-RCD-034 (options read "Statement A-E"; restore or withdraw), GEO-LNA-050, WRD-MIX-043.
+  - Explanation/trap only: STA-DDI-020.
+  The outcome of each is also recorded in that question's `ets_note`.
+
+**Still open:** repairs for the 12 triaged questions (needs user go-ahead, each key change to be sympy-verified and propagated to all copies); item 5 (48 withdrawn instances / 26 IDs: rewrite or delete — user decision); sweep of numeric select-all option order (not required by rubric §1.4 — user decision); item 6 (static `/pro/bank/` JSON exposure — only when the user says so). Nothing has been committed or pushed.
+
+
+---
+
+## Addendum 2 — 2026-10-19 (later the same day): everything the user delegated is done
+
+The user handed over decision-making ("I give you the control. Decide, and then continue."). Decisions and results:
+
+**1. The 12 triaged questions were repaired** (all copies by ID; every key re-derived with sympy/numeric constructions, then re-scored blind and all 12 keys confirmed). Scripts and logs: `_ets_audit_archive_2026-10/triage_repair_2026-10-19/` (backup before: `backups/bank_backup_2026-10-19_pre_triage_repair.tar.gz`).
+- Key fixed: ARI-FRC-040 (A->D), WRD-MST-023 (C->A; trap letter D->E), GEO-LNA-048 (24.2->25), STA-OVL-033 ([C,D,E]->[B,C,D,E]).
+- Stem fixed so the existing key holds: GEO-LNA-055 and GEO-PLT-026 (position of P stated).
+- Option replaced (two correct options): ALG-EXP-028 (D), COG-PPL-010 (B).
+- Rebuilt: DAT-RCD-034 (five statements restored, stale chart removed), GEO-LNA-050 (options B/C by position), WRD-MIX-043 (stem asks which ratio "could" be used; new explanation and trap), STA-DDI-020 (Y's SD 15->7 so the ranges can go either way; key B->D; examples added to the explanation).
+
+**2. Option-order sweep extended** to select-all, ratio and coordinate-pair questions (keys remapped, sympy-checked): ALG-LN2-058 ([A,D]->[A,E]), GEO-SAV-046 (B->D), SEC-CG-021 ([A,B,C]->[B,C,D]), NUM-GCL-042 (A->B), COG-MID-027 (B->C), ARI-P10-005 (A/B swapped, key C unchanged). Decision recorded: coordinate-pair options need not be sorted (COG-PLT-002/009 left as is); equal-valued options are allowed when the stem demands a form. The detector now finds zero unordered numeric MCQs (ARI-P10-005 is non-decreasing, so even that exception is gone).
+
+**3. Withdrawn questions (item 5):** decision = keep the 26 unsalvageable IDs hidden in place (not deleted, not mass-rewritten): deleting touches meta totals, practice sheets and indexes for no student-visible gain. One was rewritten because a live practice sheet showed it: ARI-SEQ-057 (off-syllabus infinite series -> new on-syllabus recursive-sequence select-all, key A,C,E; bank + `learn/practice/sequences-series.html` + `learn/pro-body/practice-sequences-series.html` updated). Four more questions that the blind re-score put at 1 for unambiguous reasons were newly withdrawn: ALG-LN2-041, GEO-QDL-056, GEO-TRI-045, GEO-TRI-050. Withdrawn IDs are now 29 (26 - 1 + 4).
+
+**4. Event configs refreshed.** `events/config/{current,mock_001,mock_002}.json` embed frozen question copies; 48 of 67 had drifted from the bank (some with old answer keys). They were re-synced by ID from the bank (content fields only; topic/subtopic/review_flag kept) and the withdrawn trig question MIX-GEN-067 in the live "Mixed Bag" event was replaced by MIX-GEN-070 (hard MCQ, in-syllabus, score 3). Log: `triage_repair_2026-10-19/events_sync_log.json`. Backup of events/ and learn/: `backups/events_learn_backup_2026-10-19.tar.gz`.
+
+**5. Final score distribution** (4,917 live non-KMF non-withdrawn): 1: 5, 2: 345, 3: 2135, 4: 2424, 5: 8. Verified: 19 question IDs changed content (all intended), zero ID-set changes, KMF untouched, all copies agree (excluding origin fields), JSON format round-trips, structural checks clean except known withdrawn/KMF items.
+
+**Left for the owner (not decided on his behalf):**
+- Five live questions score 1 for "off-syllabus infinite series / limit" (ARI-EXP-079, ARI-SEQ-037, 041, 046, 048). Four of them (079, 041, 046, 048) sit on curated practice sheets, so they were left live. If infinite geometric series is out of scope, withdraw them and swap them out of `learn/practice/{exponents-roots,sequences-series}.html` and the matching `learn/pro-body/practice-*.html`.
+- The `learn/practice/*.html` and `learn/pro-body/practice-*.html` sheets are static snapshots from September. 14 of them show options in the old order (self-consistent but not ascending) and some questions whose bank text has since changed (e.g. NUM-ABS-029). Regenerating them needs the old `concepts/practice/_source` build pipeline, which is not in this repo.
+- The gre-question-gen skill proposal still needs to be saved by the user; `references/gre-scope.md` (lines 78, 91, 121) and `references/trap-patterns.md` (lines 157, 166) still carry old Column A/B and select-all wording.
+- Item 6 (static `/pro/bank/` JSON reachable by URL) is untouched, as instructed. `events/config/current.json` also serves pro-mixed questions on the free site; confirm that is intended.
+- Nothing has been committed or pushed.
+
+
+---
+
+## Addendum 3 — 2026-10-19 (afternoon): owner's answers applied
+
+- **Skill:** confirmed saved (the synced `gre-question-gen/SKILL.md` carries the ETS rubric, Quantity A/B, ascending-options and precedence rules). `references/gre-scope.md` (lines 78, 91, 121) and `references/trap-patterns.md` (lines 157, 166) still have old Column A/B / select-all wording; the new SKILL.md says `ETS_RUBRIC.md` outranks them.
+- **Off-syllabus infinite-series questions removed from service** (withdrawn in every copy, reversible via `ets_withdrawn`): ARI-EXP-079, ARI-SEQ-037, ARI-SEQ-041, ARI-SEQ-046, ARI-SEQ-048. Practice sheets were deliberately skipped (owner's call), so `learn/practice/{exponents-roots,sequences-series}.html` and the matching `learn/pro-body/` pages still contain ARI-EXP-079, ARI-SEQ-041/046/048. Withdrawn IDs are now 34.
+- **Free site no longer serves pro-only questions in events.** All 30 questions in `events/config/current.json` were pro-only (MIX-GEN-*), and 7 each in `mock_001.json` / `mock_002.json` were pro-only (ARI-PCT-0xx / ARI-FRC-0xx that no longer exist in `bank/`). `current.json` was rebuilt from the free bank (`bank/`, no sectional sets, score >= 4, no tags, no exhibits; 14 medium / 12 hard / 4 extreme_hard, 17 topics) and `source_filters.bank_source` is now `../bank/`; the 14 pro-only mock questions were replaced with free ones of the same type and difficulty. Verified: every question in all three configs exists in `bank/`, none is withdrawn, content equals the free-bank copy, no duplicates. Script: `_ets_audit_archive_2026-10/triage_repair_2026-10-19/events_free.py`. Backup: `backups/bank_backup_2026-10-19_pre_withdraw5.tar.gz` (includes `events/`).
+- Note: `current.json` still carries `event_id: "mock_001"`, the same id as `mock_001.json`, so analytics for the two events share an id; left unchanged.
+
+
+---
+
+## Addendum 4 — 2026-10-19 (evening): item 6, Pro data no longer served as static files
+
+**Finding (confirmed live, logged out):** every file under `/pro/bank/` (132 files, 10,362 questions) and `/pro/mocks/mock_01–10.json` downloaded with no login, from `grequantpro.com/pro/...` and from `raw.githubusercontent.com/adityagoenka24/gre-adi/main/pro/...`. The repo is public. The lock screens in `pro-gate.js` and the practice logger only hide the page; the data was never behind them.
+
+**Fix (code done, NOT yet deployed, nothing committed):** Pro JSON is served only by the Worker. `POST /pro-data` takes `{email, fingerprint, path}`, checks the student exactly as `/validate` does (known, not revoked, fingerprint already registered; it never registers a device), checks the plan (`bank/sectional/*` → sectional, `mocks/*` → mocks, other `bank/*` → practice), then streams the file from KV key `data:<path>`. Errors: 400 bad request, 401 not a current student on this device, 403 plan lacks the feature, 404 file not uploaded.
+
+Changed files: `cloudflare/worker.js` (new route + handler), `pro/pro-gate.js` (adds `window.greProFetch`), `pro/gre_practice_logger_pro.html` (own `greProFetch`; 2 fetches), `pro/sectional.html` (2), `pro/full_mock.html` (1), `events/event_builder.html` (removed the "Pro bank" source), `.gitignore` (`pro/bank/`, `pro/mocks/`). Tested: 28 Worker cases against a fake KV (wrong device, revoked, wrong plan, `..` and key-injection paths, missing file, spaces in names) all pass; edited pages pass a syntax check; no static fetch of Pro data remains.
+
+**Upload file:** `_ets_audit_archive_2026-10/pro_data_fix_2026-10-19/kv_payload.json` (142 keys, 18.9 MB, built from the current working tree, so it includes today's audit changes; `kv_manifest.json` beside it has bytes + sha256). Rebuild after any later edit to `pro/bank` or `pro/mocks`: `python3 _ets_audit_archive_2026-10/pro_data_fix_2026-10-19/build_payload.py`, then upload again.
+
+**Order matters** (the live Worker currently answers `/pro-data` with 404; pushing the pages first breaks Pro):
+1. **Deploy the Worker** the way you normally do (paste `cloudflare/worker.js` into the dashboard editor and deploy). Do not `wrangler deploy` from `cloudflare/`: `wrangler.toml` holds a placeholder KV id. Existing endpoints are unchanged.
+2. **Upload the data** (namespace id: dashboard → KV → `GRE_AUTH`):
+   `npx wrangler kv bulk put _ets_audit_archive_2026-10/pro_data_fix_2026-10-19/kv_payload.json --namespace-id <GRE_AUTH id> --remote`
+   (older wrangler 3.x: `kv:bulk put`, drop `--remote`).
+3. **Check it** while logged in to Pro on grequantpro.com, in the browser console:
+   `const a=JSON.parse(localStorage.gre_pro_auth);(await fetch('https://gre-auth.goenka-aditya-kol.workers.dev/pro-data',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:a.email,fingerprint:a.fingerprint,path:'bank/index.json'})})).status` → expect 200.
+4. **Commit and push** the code, and stop publishing the data: `git rm -r --cached pro/bank pro/mocks` (keeps your local files), then commit everything and push.
+5. **Re-test after Pages redeploys:** `https://grequantpro.com/pro/bank/index.json` and the same path on raw.githubusercontent.com should both be 404; then open the practice logger, a sectional set and mock 3 while logged in. Browsers with a cached old page (10 min) may show "Bank unavailable" until refreshed.
+
+**Not done / owner's decisions:**
+- **Git history still contains the Pro bank** (public repo, created 2026-04-29, 0 forks). Removing it means rewriting history (`git filter-repo --invert-paths --path pro/bank --path pro/mocks`, force-push, and asking GitHub support to purge cached commit views). Anyone who already cloned keeps their copy.
+- **`learn/pro-body/*.html` (75 lesson bodies, 25 of them practice sheets) is a documented soft gate** (see the comment at the top of `learn/gate.js`): the pages are fetchable by URL. Same fix pattern would work; not touched, since this item was about `/pro/bank/`.
+- **A student with valid access can still script the new route** and pull their plan's files. Per-student rate limits would be the next layer.

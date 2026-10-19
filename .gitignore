@@ -21,3 +21,11 @@ ets_audit_verdicts_*.tar.gz
 *.swp
 *~
 Thumbs.db
+
+# ── Pro question data ────────────────────────────────────────────────────────
+# The repo is PUBLIC and the site is static, so anything committed here is downloadable
+# by anyone. Pro questions and Pro mocks are served to paying students from Cloudflare KV
+# through the Worker (POST /pro-data) and stay local-only. If they are still tracked,
+# untrack them (keeps the files on disk):  git rm -r --cached pro/bank pro/mocks
+pro/bank/
+pro/mocks/

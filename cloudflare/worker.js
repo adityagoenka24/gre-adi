@@ -15,9 +15,15 @@
  *   this is the default so every student added before this field existed keeps
  *   working exactly as before. Only set `access` to grant a partial/selective plan.
  *
+ *   data:{path}       →  raw JSON text of ONE Pro data file (question bank or Pro mock), e.g.
+ *                        data:bank/arithmetic/percentages.json  or  data:mocks/mock_03.json.
+ *                        Loaded with `wrangler kv bulk put`; deliberately NOT in git or on the
+ *                        public site (see handleProData).
+ *
  * Endpoints:
  *   POST /validate              — check email + fingerprint (called on every app load)
  *   POST /register              — save fingerprint after first successful email check
+ *   POST /pro-data              — serve one Pro question/mock JSON file to a validated student whose plan includes that feature
  *   POST /admin/add-student     — add a new paying student (protected by ADMIN_SECRET)
  *   POST /admin/set-access      — change a student's feature access (protected by ADMIN_SECRET)
  *   POST /admin/reset-device    — clear fingerprints for a student (protected by ADMIN_SECRET)
@@ -72,6 +78,9 @@ export default {
     try {
       if (path === '/validate' && request.method === 'POST') {
         return await handleValidate(request, env);
+      }
+      if (path === '/pro-data' && request.method === 'POST') {
+        return await handleProData(request, env);
       }
       if (path === '/register' && request.method === 'POST') {
         return await handleRegister(request, env);
@@ -214,6 +223,67 @@ async function handleValidate(request, env) {
 
   // Over device limit, fingerprint mismatch → block
   return jsonResponse({ status: 'device_limit' });
+}
+
+// ─── PRO DATA ────────────────────────────────────────────────────────────────
+// Serves the Pro question bank and the Pro mock tests to validated students only.
+//
+// Why this exists: the site is static (GitHub Pages) and the repo is public, so any
+// file under /pro/ was downloadable by anyone who knew the URL, whatever the page's
+// lock screen said. Pro JSON now lives ONLY in KV (key  data:<path>) and is handed out
+// here after the same checks /validate makes.
+//
+// Body: { email, fingerprint, path }
+//   path is relative to /pro/ exactly like the old static URLs:
+//   "bank/index.json", "bank/arithmetic/percentages.json",
+//   "bank/sectional/index.json", "bank/sectional/algebra_set1.json", "mocks/mock_03.json"
+// Responses: 200 raw JSON text · 400 bad request · 401 not a current student on this
+//   device · 403 plan does not include this feature · 404 file not uploaded to KV.
+//
+// Unlike /validate this NEVER registers a device: the fingerprint must already be on
+// the student's record (the login page registers it). Feature mapping mirrors the
+// pages: bank/sectional/* → 'sectional', mocks/* → 'mocks', other bank/* → 'practice'.
+// Path charset allows spaces because a few bank files have them ("ratios proportions.json").
+const PRO_DATA_PATH_RE = /^(bank|mocks)(\/[A-Za-z0-9 _-]+)+\.json$/;
+
+function proDataFeature(path) {
+  if (path.startsWith('mocks/')) return 'mocks';
+  if (path.startsWith('bank/sectional/')) return 'sectional';
+  return 'practice';
+}
+
+async function handleProData(request, env) {
+  const { email, fingerprint, path } = await safeJson(request);
+  const cleanEmail = typeof email === 'string' ? email.toLowerCase().trim() : '';
+
+  if (!cleanEmail || typeof fingerprint !== 'string' || !fingerprint ||
+      typeof path !== 'string' || path.length > 200 || !PRO_DATA_PATH_RE.test(path)) {
+    return jsonResponse({ error: 'bad_request' }, 400);
+  }
+
+  const raw = await env.GRE_AUTH.get(`student:${cleanEmail}`);
+  if (!raw) return jsonResponse({ error: 'unauthorized' }, 401);
+
+  let student;
+  try { student = JSON.parse(raw); } catch { return jsonResponse({ error: 'unauthorized' }, 401); }
+
+  if (student.revoked) return jsonResponse({ error: 'unauthorized' }, 401);
+  if (!Array.isArray(student.fingerprints) || !student.fingerprints.includes(fingerprint)) {
+    return jsonResponse({ error: 'unauthorized' }, 401);
+  }
+
+  const feature = proDataFeature(path);
+  if (!resolveAccess(student).includes(feature)) {
+    return jsonResponse({ error: 'feature_locked', feature }, 403);
+  }
+
+  const file = await env.GRE_AUTH.get(`data:${path}`, 'stream');
+  if (file === null) return jsonResponse({ error: 'not_found' }, 404);
+
+  return new Response(file, {
+    status: 200,
+    headers: { ...CORS_HEADERS, 'Cache-Control': 'private, no-store' },
+  });
 }
 
 // ─── ANALYTICS: PAGEVIEW ─────────────────────────────────────────────────────

@@ -1416,6 +1416,21 @@ function getStoredAuth() {
   } catch(e) { return null; }
 }
 
+// Pro question files are NOT static files (the site and repo are public). The Worker serves
+// them from KV at POST /pro-data to a validated student whose plan includes this feature.
+// Returns a normal fetch() Response. path is relative to /pro/, e.g. 'bank/index.json'.
+function greProFetch(path) {
+  const s = getStoredAuth();
+  if (!s || !s.email || !s.fingerprint) {
+    return Promise.resolve(new Response('{"error":"not_logged_in"}', { status: 401 }));
+  }
+  return fetch(`${AUTH_CONFIG.WORKER_URL}/pro-data`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: s.email, fingerprint: s.fingerprint, path }),
+  });
+}
+
 function isSessionExpired(stored) {
   if (!stored || !stored.savedAt) return true;
   const hours = (Date.now() - stored.savedAt) / (1000 * 60 * 60);
@@ -2096,7 +2111,7 @@ let BANK_INDEX = null;          // loaded from bank/index.json
 // Load the bank manifest on startup
 async function loadBankIndex() {
   try {
-    const res = await fetch('bank/index.json');
+    const res = await greProFetch('bank/index.json');
     if (!res.ok) throw new Error('index not found');
     BANK_INDEX = await res.json();
     bankPopulateTopicDropdown();
@@ -2134,7 +2149,7 @@ async function loadSubtopic(topic, subtopic, silent) {
   const path = BANK_INDEX.topics[topic][subtopic].file;
   if (!silent) showLoading('Loading ' + subtopic + ' questions...');
   try {
-    const res = await fetch('bank/' + path);
+    const res = await greProFetch('bank/' + path);
     if (!res.ok) throw new Error('File not found: bank/' + path);
     const data = await res.json();
     // ETS audit 2026-10-08: never serve questions withdrawn by the audit.

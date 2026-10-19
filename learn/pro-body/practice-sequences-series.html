@@ -218,7 +218,7 @@
 <td><code>ARI-SEQ-057</code></td>
 <td>extreme hard</td>
 <td>Select all that apply</td>
-<td><strong>A, C, D</strong></td>
+<td><strong>A, C, E</strong></td>
 </tr>
 </tbody>
 </table>
@@ -477,12 +477,14 @@ Step 4 — sum them: 50 x (-3 + -199)/2 = 50 x (-101) = -5050.
 Check by a second route: since each pair equals -(sum of its two bases), the whole expression equals -(1 + 2 + 3 + ... + 100) = -(100 x 101/2) = -5050. Correct.
 Answer: -5050.</p>
 <p><strong>Trap.</strong> Computing 100 squares by hand, which is a guaranteed arithmetic error inside a two-minute question. The conceptual traps are dropping the minus sign and answering 5050, and mis-pairing as 1^2 - (2^2 + 3^2) - ... by ignoring that the signs alternate strictly term by term.</p>
-<h3>Q30 · <code>ARI-SEQ-057</code> — Answer: A, C, D</h3>
-<p>The series converges to a/(1 - r) exactly when |r| &lt; 1, and diverges otherwise. So a condition qualifies precisely when it forces |r| &lt; 1.
-A - this is the convergence condition itself. TRUE.
-B - r &lt; 1 also allows r = -2, where the terms a, -2a, 4a, -8a, ... grow without bound. Not sufficient. FALSE.
-C - 0 &lt; r &lt; 1 gives |r| = r &lt; 1, so it forces convergence. It is narrower than needed, but the question asks what guarantees a finite sum, and this does. TRUE.
-D - -1 &lt; r &lt; 0 gives |r| &lt; 1 as well; the terms alternate in sign and shrink, and the series converges. TRUE.
-E - a &gt; 0 and r &gt; 0 allows r = 3, which diverges. Not sufficient. FALSE.
-Answer: A, C, D.</p>
-<p><strong>Trap.</strong> Choice B is the headline error: dropping the absolute value turns the true condition into one that admits every negative ratio, including r = -2 and r = -10. Choice E tempts a student who thinks positivity is what matters, when only the SIZE of r decides convergence. The other direction of error is rejecting C or D for being 'too narrow' - a sufficient condition does not have to be the full condition.</p>
+<h3>Q30 · <code>ARI-SEQ-057</code> — Answer: A, C, E</h3>
+<p>Step 1 - compute the first terms: 2, 4, 10, 28, 82, 244, 730, ...
+Step 2 - find the structure by subtracting 1 from the rule: a_(n+1) - 1 = 3*a_n - 3 = 3*(a_n - 1). So the values a_n - 1 form a geometric sequence with first term a_1 - 1 = 1 and ratio 3, which means a_n = 3^(n-1) + 1.
+Step 3 - a number is a term exactly when it is 1 more than a power of 3 (1, 3, 9, 27, 81, 243, 729, ...).
+A: 28 = 27 + 1. TRUE.
+B: 81 = 80 + 1, and 80 is not a power of 3. FALSE (81 is itself a power of 3, which is the trap).
+C: 82 = 81 + 1. TRUE.
+D: 243 = 242 + 1, and 242 is not a power of 3. FALSE.
+E: 730 = 729 + 1. TRUE.
+Answer: A, C, E.</p>
+<p><strong>Trap.</strong> Students notice powers of 3 and select 81 and 243 (B and D). The terms are one MORE than a power of 3, so 28, 82 and 730 qualify instead.</p>

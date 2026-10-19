@@ -192,3 +192,33 @@
     );
   });
 })();
+
+/* ------------------------------------------------------------------
+   Pro data loader — window.greProFetch(path)
+
+   Pro question files and Pro mocks are NOT static files any more (the site and
+   repo are public, so a static file is downloadable by anyone). The Worker
+   serves them from KV at POST /pro-data, only to a validated student whose
+   plan includes the feature. This returns a normal fetch() Response, so
+   callers keep using .ok / .status / .json() as before.
+
+   path is relative to /pro/, same as the old static URLs, e.g.
+     greProFetch('bank/sectional/index.json')
+     greProFetch('mocks/mock_03.json')
+   ------------------------------------------------------------------ */
+(function () {
+  var WORKER_URL = 'https://gre-auth.goenka-aditya-kol.workers.dev';
+  var STORAGE_KEY = 'gre_pro_auth';
+  window.greProFetch = function (path) {
+    var s = null;
+    try { s = JSON.parse(localStorage.getItem(STORAGE_KEY) || 'null'); } catch (e) {}
+    if (!s || !s.email || !s.fingerprint) {
+      return Promise.resolve(new Response('{"error":"not_logged_in"}', { status: 401 }));
+    }
+    return fetch(WORKER_URL + '/pro-data', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: s.email, fingerprint: s.fingerprint, path: path }),
+    });
+  };
+})();
