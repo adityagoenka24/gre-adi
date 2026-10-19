@@ -221,6 +221,7 @@
     </div>
     <div class="review-section" id="review-section" style="display:none;">
       <h3>Answer Review</h3>
+      <div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into the results file you download and isn't saved anywhere else. <span id="le-count"></span></div>
       <div class="review-list" id="review-list"></div>
     </div>
     <div class="result-upgrade" id="result-upgrade"></div>
@@ -666,6 +667,8 @@ function saveAttempt(payload){
 // Export the attempt in the shape pro/analytics.html ingests.
 function downloadResults(){
   var payload = buildSubmissionPayload();
+  var errors = leEntries();
+  if(errors.length) payload.error_log = errors;
   var blob = new Blob([JSON.stringify(payload, null, 2)], { type: 'application/json' });
   var a = document.createElement('a');
   a.href = URL.createObjectURL(blob);
@@ -689,6 +692,7 @@ function fmtTime(s){
 }
 
 function renderResults(){
+  leReset();
   var r = state.result, pct = Math.round(r.correct/r.total*100), band = bandFor(pct);
   document.getElementById('res-title').textContent = state.topic.name + ' — Set ' + state.setNo;
   document.getElementById('res-subtitle').textContent = r.autoSubmit
@@ -781,6 +785,15 @@ function toggleReview(){
         '</div>' +
         (x.q.explanation ? '<div class="review-exp">' + escapeHtml(x.q.explanation) + '</div>' : '') +
         (x.q.trap ? '<div class="review-trap">⚠ Trap: ' + escapeHtml(x.q.trap) + '</div>' : '') +
+        leBox(x.i, {
+          question_number: x.i + 1,
+          question_id: x.q.id,
+          topic: (x.q.tags && x.q.tags[0]) || 'general',
+          subtopic: (x.q.tags && x.q.tags[1]) || '',
+          status: status,
+          given_answer: givenStr === '—' ? '' : givenStr,
+          correct_answer: correctStr
+        }) +
       '</div>';
     }).join('');
     if(window.GREMath) GREMath.renderIn(document.getElementById('review-list'));
@@ -791,6 +804,75 @@ function toggleReview(){
     sec.style.display = 'none';
     btn.textContent = 'Review Every Question';
   }
+}
+
+// ─── LOG ERROR (review only) ──────────────────────────────────────────────────
+// Lives in memory for this attempt. It is written into the downloaded JSON and
+// nowhere else: not sent to the server, not kept in browser storage.
+var LE_TYPES = ['Concept gap', 'Calculation slip', 'Misread the question', 'Fell for the trap', 'Ran out of time', 'Guessed', 'Other'];
+var errorLog = {};    // review key -> { type, note }
+var errorMeta = {};   // review key -> question details, registered as the review renders
+
+function leReset(){ errorLog = {}; errorMeta = {}; }
+
+function leBox(key, meta){
+  errorMeta[key] = meta;
+  return '<div class="le-box" data-le="' + key + '">' + leInner(key, false) + '</div>';
+}
+
+function leInner(key, editing){
+  var e = errorLog[key];
+  if(editing){
+    return '<div class="le-form">' +
+      '<label>What went wrong?<select class="le-type" onchange="this.classList.remove(\'le-err\')"><option value="">Select…</option>' +
+        LE_TYPES.map(function(t){ return '<option' + (e && e.type === t ? ' selected' : '') + '>' + t + '</option>'; }).join('') +
+      '</select></label>' +
+      '<label>Note (optional)<textarea class="le-text" rows="2" maxlength="300" placeholder="e.g. Forgot to convert minutes to hours">' + escapeHtml(e ? e.note : '') + '</textarea></label>' +
+      '<div class="le-actions">' +
+        '<button class="btn btn-primary le-btn" onclick="leSave(this)">Save</button>' +
+        '<button class="btn btn-ghost le-btn" onclick="leShow(this,false)">Cancel</button>' +
+        (e ? '<button class="btn btn-ghost le-btn" onclick="leRemove(this)">Remove</button>' : '') +
+      '</div></div>';
+  }
+  if(e){
+    return '<div class="le-chip"><span class="le-tag">⚑ ' + escapeHtml(e.type) + '</span>' +
+      (e.note ? '<span class="le-note">' + escapeHtml(e.note) + '</span>' : '') +
+      '<button class="btn btn-ghost le-btn" onclick="leShow(this,true)">Edit</button></div>';
+  }
+  return '<button class="btn btn-ghost le-btn" onclick="leShow(this,true)">⚑ Log Error</button>';
+}
+
+function leShow(btn, editing){
+  var box = btn.closest('.le-box');
+  box.innerHTML = leInner(box.getAttribute('data-le'), editing);
+  if(editing) box.querySelector('.le-type').focus();
+}
+
+function leSave(btn){
+  var box = btn.closest('.le-box'), key = box.getAttribute('data-le');
+  var sel = box.querySelector('.le-type');
+  if(!sel.value){ sel.classList.add('le-err'); sel.focus(); return; }
+  errorLog[key] = { type: sel.value, note: box.querySelector('.le-text').value.trim() };
+  leRefresh(key);
+}
+
+function leRemove(btn){
+  var key = btn.closest('.le-box').getAttribute('data-le');
+  delete errorLog[key];
+  leRefresh(key);
+}
+
+function leRefresh(key){
+  document.querySelectorAll('.le-box[data-le="' + key + '"]').forEach(function(b){ b.innerHTML = leInner(key, false); });
+  var n = leEntries().length, hint = document.getElementById('le-count');
+  if(hint) hint.textContent = n ? n + ' logged so far.' : '';
+}
+
+// Everything logged so far, in question order, ready for the download.
+function leEntries(){
+  return Object.keys(errorMeta).filter(function(k){ return errorLog[k]; }).map(function(k){
+    return Object.assign({}, errorMeta[k], { error_type: errorLog[k].type, note: errorLog[k].note });
+  });
 }
 
 function restartSet(){ beginSection(); }
