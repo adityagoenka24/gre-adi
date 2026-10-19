@@ -88,6 +88,9 @@ export default {
       if (path === '/admin/remove-student' && request.method === 'POST') {
         return await handleAdminRemoveStudent(request, env);
       }
+      if (path === '/admin/delete-student' && request.method === 'POST') {
+        return await handleAdminDeleteStudent(request, env);
+      }
       if (path === '/admin/list' && request.method === 'GET') {
         return await handleAdminList(request, env);
       }
@@ -611,6 +614,33 @@ async function handleAdminRemoveStudent(request, env) {
 
   await env.GRE_AUTH.put(key, JSON.stringify(student));
   return jsonResponse({ status: 'revoked', email: email.toLowerCase().trim() });
+}
+
+// ─── ADMIN: DELETE STUDENT ───────────────────────────────────────────────────
+// Permanently removes the student's record from KV so they drop off the list
+// (e.g. students who have completed the course). Unlike revoke, this can't be
+// undone — re-adding creates a fresh record.
+// Body: { email }
+async function handleAdminDeleteStudent(request, env) {
+  if (!isAdmin(request, env)) {
+    return jsonResponse({ error: 'Unauthorized' }, 401);
+  }
+
+  const { email } = await request.json();
+  if (!email) {
+    return jsonResponse({ error: 'Missing email' }, 400);
+  }
+
+  const normalized = email.toLowerCase().trim();
+  const key = `student:${normalized}`;
+  const raw = await env.GRE_AUTH.get(key);
+
+  if (!raw) {
+    return jsonResponse({ error: 'Student not found' }, 404);
+  }
+
+  await env.GRE_AUTH.delete(key);
+  return jsonResponse({ status: 'deleted', email: normalized });
 }
 
 // ─── ADMIN: LIST STUDENTS ─────────────────────────────────────────────────────
