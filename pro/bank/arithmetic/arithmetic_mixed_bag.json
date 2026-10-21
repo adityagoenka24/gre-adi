@@ -4163,42 +4163,6 @@
       }
     },
     {
-      "id": "ARI-EXP-069",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "For any real x, what is the minimum value of 2^x?",
-      "options": [
-        "A. 0",
-        "B. -∞",
-        "C. 1",
-        "D. There is no minimum — 2^x approaches 0 but never reaches it",
-        "E. 0.5"
-      ],
-      "answer": "D",
-      "explanation": "2^x > 0 for all real x. As x → -∞, 2^x → 0 but never equals 0. There is no minimum value — the infimum is 0 but it's not attained.",
-      "trap": "Students say the minimum is 0 (confusing infimum with minimum) or 1 (thinking x=0 gives the smallest value, not realising x can be negative).",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "comparing-exponentials",
-        "negative-exponent"
-      ],
-      "ets_score": 2,
-      "ets_tags": [
-        "off_syllabus",
-        "difficulty_mislabelled",
-        "malformed_type"
-      ],
-      "ets_note": "Infimum/limit idea; options include -∞ and explanatory sentence; not ETS.",
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "hard",
-        "work_required": "Conceptual: 2^x is positive with infimum 0 not attained; one idea with a trap.",
-        "confidence": "medium"
-      },
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "rewrite pass: unsalvageable"
-    },
-    {
       "id": "ARI-EXP-070",
       "difficulty": "hard",
       "type": "multiple_answer",
@@ -4244,34 +4208,6 @@
         "prev_note": "All five options correct: degenerate select-all.",
         "agree_with_key": true
       }
-    },
-    {
-      "id": "ARI-EXP-071",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "What is the value of (√2)^(√2)^(√2)^∞ (the infinite power tower of √2)?",
-      "options": [
-        "A. 1",
-        "B. √2",
-        "C. 2",
-        "D. 4",
-        "E. The expression diverges"
-      ],
-      "answer": "C",
-      "explanation": "Let x = (√2)^x (the fixed point equation for the infinite power tower). x = (√2)^x = 2^(x/2). Taking log: log x = (x/2)log2. Testing x=2: 2 = 2^(2/2) = 2^1 = 2 ✓. The tower converges to 2.",
-      "trap": "Students think the infinite tower must diverge to infinity. For bases between 1 and e^(1/e) ≈ 1.445, the infinite power tower converges. √2 ≈ 1.414 < 1.445, so it converges to 2.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "comparing-exponentials",
-        "exponent-rules"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus"
-      ],
-      "ets_note": "Infinite power tower and convergence are limit/calculus content; not GRE syllabus.",
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "rewrite pass: unsalvageable"
     },
     {
       "id": "ARI-EXP-072",
@@ -4538,80 +4474,6 @@
         "prev_tags": [],
         "agree_with_key": true
       }
-    },
-    {
-      "id": "ARI-EXP-079",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "Quantity A: sqrt(6 + sqrt(6 + sqrt(6 + ...))), where the nesting continues without end\nQuantity B: 3",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "C",
-      "explanation": "An infinite nested radical repeats itself, so name the whole thing and use that repetition.\nStep 1 - let x be the value of Quantity A. Everything under the outermost radical is 6 plus the SAME infinite expression, so x = sqrt(6 + x).\nStep 2 - square both sides: x^2 = 6 + x.\nStep 3 - solve: x^2 - x - 6 = 0, which factors as (x - 3)(x + 2) = 0, giving x = 3 or x = -2.\nStep 4 - a square root is never negative, so reject x = -2. Hence x = 3.\nCheck by building up: sqrt(6) = 2.449, sqrt(6 + 2.449) = 2.907, sqrt(6 + 2.907) = 2.984, sqrt(6 + 2.984) = 2.997 - closing in on 3.\nThe two quantities are equal.",
-      "trap": "Assuming an endlessly repeated addition must grow without bound and choosing A. It does not: each new square root shrinks the increment, and the sequence converges. The other error is keeping x = -2 from the quadratic; the radical symbol denotes the non-negative root, so the negative solution is discarded - the same rule that makes sqrt(x^2) = |x|.",
-      "estimated_time_seconds": 115,
-      "tags": [
-        "nested-radical",
-        "self-reference",
-        "non-negative-root",
-        "qc",
-        "extreme-hard"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus"
-      ],
-      "ets_note": "Borderline: infinite nested radical relies on limit/convergence, which ETS excludes (calculus limits). Human triage.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [],
-        "prev_note": "Infinite nested radical relies on convergence; not an ETS-style construct.",
-        "agree_with_key": true
-      },
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "Owner decision 2026-10-19: infinite series / limit content is outside the GRE syllabus; removed from service."
-    },
-    {
-      "id": "ARI-EXP-080",
-      "difficulty": "extreme_hard",
-      "type": "multiple_answer",
-      "question": "Which of the following are true about the expression x^x for x > 0? Select all that apply.",
-      "options": [
-        "A. x^x > 1 for all x > 1",
-        "B. x^x < 1 for 0 < x < 1",
-        "C. x^x = 1 when x = 1",
-        "D. x^x has a minimum value for some 0 < x < 1",
-        "E. x^x is always greater than x for x > 1"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E"
-      ],
-      "explanation": "A: x>1 → x^x>1^1=1 ✓. B: For 0<x<1, x<1 and x^x<1 (e.g. (0.5)^0.5=√0.5≈0.707<1) ✓. C: 1^1=1 ✓. D: The function x^x has a minimum at x=1/e ≈ 0.368, value = e^(-1/e) ≈ 0.692 ✓. E: For x>1: x^x > x^1 = x since x^x = x × x^(x-1) and x^(x-1)>1 for x>1 ✓.",
-      "trap": "Students doubt D — the minimum of x^x on (0,∞) occurs at x=1/e, a non-trivial calculus result. For a GRE context, testing specific values (x=0.5: 0.707, x=0.1: 0.794, x=0.3: 0.697) suggests a minimum near x≈0.37.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "comparing-exponentials",
-        "fractional-exponent",
-        "multiple-answer"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "degenerate_select_all",
-        "off_syllabus",
-        "explanation_offsyllabus"
-      ],
-      "ets_note": "All five options true; D needs calculus-level analysis.",
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "rewrite pass: unsalvageable"
     },
     {
       "id": "ARI-FRC-001",
@@ -7206,36 +7068,6 @@
       }
     },
     {
-      "id": "ARI-FRC-071",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "What is the value of the infinite product (1 − 1/4)(1 − 1/9)(1 − 1/16)... = ∏(1 − 1/n²) for n=2 to ∞?",
-      "options": [
-        "A. 1/2",
-        "B. 1/3",
-        "C. 1/4",
-        "D. 2/π",
-        "E. The product diverges to 0"
-      ],
-      "answer": "A",
-      "explanation": "1−1/n² = (n-1)(n+1)/n². The infinite product telescopes to (1/2)(3/2)(2/3)(4/3)(3/4)(5/4)... After cancellation: numerator has 1, denominator has 2, giving 1/2. (This is related to sin(π)/π = 1, Euler's product formula.)",
-      "trap": "Students compute a few terms and notice decreasing behavior but can't determine the limit. This requires recognizing the telescoping: the product = lim(1/N) × (N+1)/1 → well-known to be 1/2.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "infinite-product",
-        "telescoping",
-        "extreme-hard"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus",
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Infinite product/limit is off-syllabus; option 2/π and 'diverges' are non-GRE.",
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "rewrite pass: unsalvageable"
-    },
-    {
       "id": "ARI-FRC-072",
       "difficulty": "hard",
       "type": "quantitative_comparison",
@@ -7485,36 +7317,6 @@
         "prev_note": "Requires memorised repetend lengths such as 1/13; not an ETS-style insight item.",
         "agree_with_key": true
       }
-    },
-    {
-      "id": "ARI-FRC-079",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "What is the sum 1/2 + 2/4 + 3/8 + 4/16 + 5/32 + ... (the series Σ n/2ⁿ from n=1 to ∞)?",
-      "options": [
-        "A. 1",
-        "B. 2",
-        "C. 3/2",
-        "D. 4",
-        "E. The series diverges"
-      ],
-      "answer": "B",
-      "explanation": "This is Σ n×(1/2)ⁿ. Using the formula Σ n×xⁿ = x/(1−x)² for |x|<1, with x=1/2: (1/2)/(1/2)² = (1/2)/(1/4) = 2.",
-      "trap": "Students confuse this with Σ(1/2)ⁿ = 1 (geometric series). This series has n in the numerator, making it arithmetico-geometric, not purely geometric.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "infinite-series",
-        "arithmetico-geometric",
-        "extreme-hard"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus",
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Infinite series summation is calculus-level and outside ETS syllabus.",
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "rewrite pass: unsalvageable"
     },
     {
       "id": "ARI-FRC-080",
@@ -19497,43 +19299,6 @@
       }
     },
     {
-      "id": "ARI-SEQ-037",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "Geometric sequence: 8, 4, 2, 1, 1/2, ...\nQuantity A: Sum of infinite terms\nQuantity B: 16",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "C",
-      "explanation": "a = 8, r = 1/2. Infinite geometric sum = a/(1-r) = 8/(1-1/2) = 8/(1/2) = 16. Equal.",
-      "trap": "Students think infinite sums always diverge. For |r| < 1, the geometric series converges to a/(1-r).",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "geometric-sequence",
-        "sum-formula",
-        "qc"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus"
-      ],
-      "ets_note": "Infinite geometric series sum is limit-based; borderline syllabus, for human triage.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "textbook_phrasing"
-        ],
-        "prev_note": "Infinite geometric sum is at edge of ETS syllabus; 'Sum of infinite terms' is awkward phrasing.",
-        "agree_with_key": true
-      },
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "Owner decision 2026-10-19: infinite series / limit content is outside the GRE syllabus; removed from service."
-    },
-    {
       "id": "ARI-SEQ-038",
       "difficulty": "easy",
       "type": "mcq",
@@ -19633,41 +19398,6 @@
       }
     },
     {
-      "id": "ARI-SEQ-041",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "An infinite geometric sequence has first term a > 0 and common ratio r with 0 < r < 1. S denotes the sum of the entire infinite series.\nQuantity A: The sum of the first 10 terms of the sequence\nQuantity B: S x (1 - r^10)",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "C",
-      "explanation": "Step 1 — write each column algebraically.\nQuantity A = a(1 - r^10)/(1 - r), the partial-sum formula written so the numerator is positive for 0 < r < 1.\nQuantity B: S = a/(1 - r), so Quantity B = [a/(1 - r)] x (1 - r^10) = a(1 - r^10)/(1 - r).\nStep 2 — the two expressions are identical, for every legal a and r. The two quantities are equal.\nWhy this is not a coincidence: the terms from the 11th onward are just the whole series scaled by r^10, so their sum is S x r^10. Removing them leaves S - S x r^10 = S(1 - r^10), which is exactly the first ten terms.\nCheck numerically with a = 5, r = 1/3: the first ten terms sum to 147620/19683, and S x (1 - r^10) = (15/2) x (1 - 1/59049) = 147620/19683. Identical. Correct.",
-      "trap": "Choosing B because a partial sum must be less than the infinite sum - true of S alone, but Quantity B is S shrunk by the factor (1 - r^10), which is exactly the right amount to remove the tail. Choosing D because a and r are unknown is the other error: both columns carry the same a and the same r, so the unknowns cancel identically and the relationship is fixed.",
-      "estimated_time_seconds": 115,
-      "tags": [
-        "infinite-geometric",
-        "partial-sum-identity",
-        "qc"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus",
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Infinite-series sum is limit-based; borderline syllabus, for human triage. Also an easy identity labelled extreme_hard.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      },
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "Owner decision 2026-10-19: infinite series / limit content is outside the GRE syllabus; removed from service."
-    },
-    {
       "id": "ARI-SEQ-042",
       "difficulty": "medium",
       "type": "mcq",
@@ -19745,7 +19475,7 @@
       "options": [
         "A. The 4th term is 20.25",
         "B. The sum of the first 4 terms is 48.75",
-        "C. The infinite series 6 + 9 + 13.5 + ... has a sum of -12",
+        "C. The 5th term is 18",
         "D. Every term after the first is greater than the term before it",
         "E. The 10th term is 10 times the 1st term"
       ],
@@ -19754,12 +19484,12 @@
         "B",
         "D"
       ],
-      "explanation": "Build the first few terms: 6, 9, 13.5, 20.25, 30.375, ...\nA - a_4 = 6 x (3/2)^3 = 6 x 27/8 = 20.25. TRUE.\nB - 6 + 9 + 13.5 + 20.25 = 48.75. TRUE.\nC - the formula a/(1 - r) does give 6/(1 - 1.5) = 6/(-0.5) = -12, but the formula only applies when |r| < 1. Here r = 1.5, so the terms grow without bound and the series diverges - it has no finite sum, and certainly not a negative one when every term is positive. FALSE.\nD - r = 1.5 > 1 and the first term is positive, so each term is 1.5 times the previous one and strictly larger. TRUE.\nE - a_10 = 6 x (3/2)^9 = 6 x 38.44... = 230.66..., which is about 38 times the first term, not 10 times. FALSE.\nAnswer: A, B, D.",
-      "trap": "Choice C is the capsule's named trap made concrete: plugging r = 3/2 into a/(1 - r) produces the absurd answer -12, a negative sum for a series of positive terms - the sign is the tell that the formula was applied outside its domain |r| < 1. Choice E punishes linear thinking: the 10th term is 9 multiplications away from the first, so it is (3/2)^9 times as large, not 10 times.",
+      "explanation": "Build the first few terms: 6, 9, 13.5, 20.25, 30.375, ...\nA - a_4 = 6 x (3/2)^3 = 6 x 27/8 = 20.25. TRUE.\nB - 6 + 9 + 13.5 + 20.25 = 48.75. TRUE.\nC - a_5 = 6 x (3/2)^4 = 6 x 81/16 = 30.375, not 18. The value 18 comes from adding 3 each time (6, 9, 12, 15, 18), as if the sequence were arithmetic. FALSE.\nD - r = 1.5 > 1 and the first term is positive, so each term is 1.5 times the previous one and strictly larger. TRUE.\nE - a_10 = 6 x (3/2)^9 = 6 x 38.44... = 230.66..., which is about 38 times the first term, not 10 times. FALSE.\nAnswer: A, B, D.",
+      "trap": "Choice C catches students who see 6 to 9 as \"add 3\" and keep adding 3 (6, 9, 12, 15, 18); the sequence multiplies by 3/2 each step, so the 5th term is 30.375. Choice E punishes the same linear thinking: the 10th term is 9 multiplications away from the first, so it is (3/2)^9 times as large, not 10 times.",
       "estimated_time_seconds": 105,
       "tags": [
         "geometric-sequence",
-        "divergence",
+        "arithmetic-vs-geometric",
         "multiple-answer"
       ],
       "ets_score": 3,
@@ -19813,113 +19543,6 @@
         "prev_note": "Easy item labelled hard.",
         "agree_with_key": true
       }
-    },
-    {
-      "id": "ARI-SEQ-046",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "S is the sum of the infinite series 1/2 + 1/4 + 1/8 + 1/16 + ... , in which each term is half the term before it.\nQuantity A: S\nQuantity B: 1 - 1/2^100",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "A",
-      "explanation": "Quantity A - the series is geometric with a = 1/2 and r = 1/2. Since |r| < 1 it converges:\nS = a/(1 - r) = (1/2)/(1 - 1/2) = (1/2)/(1/2) = 1.\nQuantity B - 1/2^100 is a positive number, tiny but not zero, so 1 - 1/2^100 is strictly less than 1.\nTherefore Quantity A = 1 > Quantity B. Quantity A is greater.\nWhere Quantity B comes from: the sum of the first n terms of this series is exactly 1 - 1/2^n, so Quantity B is the 100th PARTIAL sum. Every partial sum falls short of 1; only the completed infinite sum reaches it.",
-      "trap": "Choosing C because 1/2^100 is 'basically zero'. It is unimaginably small but strictly positive, so the two quantities are never equal - a partial sum of a positive-term series is always less than the full sum. The opposite error is choosing B on the belief that an endless sum of positive numbers must exceed any fixed bound; with |r| < 1 it converges to a ceiling it never passes.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "infinite-geometric",
-        "partial-sum",
-        "qc"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus"
-      ],
-      "ets_note": "Infinite-series sum is limit-based; borderline syllabus, for human triage.",
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "hard",
-        "work_required": "Infinite geometric sum equals 1, compared with a partial sum that is strictly less; one formula plus a subtle strictness point.",
-        "confidence": "medium"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "Infinite geometric series is borderline for ETS; hard label overstated.",
-        "agree_with_key": true
-      },
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "Owner decision 2026-10-19: infinite series / limit content is outside the GRE syllabus; removed from service."
-    },
-    {
-      "id": "ARI-SEQ-047",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "A sequence has the property that each term equals the average of the two preceding terms: aₙ = (aₙ₋₂ + aₙ₋₁)/2 with a₁ = 0 and a₂ = 12. What does the sequence converge to? Enter your answer as a number.",
-      "answer": "8",
-      "explanation": "a₁=0, a₂=12, a₃=6, a₄=9, a₅=7.5, a₆=8.25, ... The sequence oscillates and converges. The limit L satisfies L=(L+L)/2=L (trivially), but using the property the limit = a₁/3 + 2a₂/3 = 0/3 + 8 = 8. Or: the weighted average converges to (a₁×1 + a₂×2)/3 = (0+24)/3 = 8.",
-      "trap": "Students compute a few terms and guess, or think it converges to (0+12)/2=6. The actual limit weights a₂ twice as heavily: limit = (a₁ + 2a₂)/3.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "pattern"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus"
-      ],
-      "ets_note": "Convergence/limit of a recurrence is off-syllabus (limits, recurrence relations).",
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "rewrite pass: unsalvageable"
-    },
-    {
-      "id": "ARI-SEQ-048",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "An infinite geometric series has first term a, where a > 0, and its sum is exactly 3 times its first term. What is the common ratio?",
-      "options": [
-        "A. 1/4",
-        "B. 1/3",
-        "C. 1/2",
-        "D. 2/3",
-        "E. 3/4"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — the infinite sum formula, valid because a finite sum is asserted (so |r| < 1): S = a/(1 - r).\nStep 2 — set it equal to 3a: a/(1 - r) = 3a.\nStep 3 — a > 0, so divide both sides by a: 1/(1 - r) = 3.\nStep 4 — cross-multiply: 1 = 3(1 - r) = 3 - 3r, so 3r = 2 and r = 2/3.\nCheck with a = 1: 1 + 2/3 + 4/9 + 8/27 + ... = 1/(1 - 2/3) = 1/(1/3) = 3 = 3 x 1. Correct.\nAnswer: 2/3.",
-      "trap": "Stopping one line early at 1 - r = 1/3 and reporting 1/3 (choice B) instead of solving for r. Choice E, 3/4, answers a different question: it is the ratio for which the terms AFTER the first sum to 3a, since a x r/(1 - r) = 3a gives r = 3/4. Choice C, 1/2, is the familiar halving series, whose sum is only 2a.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "geometric-series",
-        "infinite-sum",
-        "hard"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus"
-      ],
-      "ets_note": "Infinite-series sum is limit-based; borderline syllabus, for human triage.",
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "hard",
-        "work_required": "Set a/(1-r)=3a and solve for r; one formula with simple algebra.",
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "One-step formula application labelled hard; infinite series borderline for syllabus.",
-        "agree_with_key": true
-      },
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "Owner decision 2026-10-19: infinite series / limit content is outside the GRE syllabus; removed from service."
     },
     {
       "id": "ARI-SEQ-049",
@@ -20123,34 +19746,6 @@
       }
     },
     {
-      "id": "ARI-SEQ-055",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "For the series 1 + 1/2 + 1/4 + 1/8 + ... (infinite):\nQuantity A: The sum\nQuantity B: The limit of the partial sums",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "C",
-      "explanation": "The sum of an infinite convergent series IS the limit of its partial sums, by definition. Both equal 2 (a/(1-r) = 1/(1-1/2) = 2). They are always equal — Quantity A and Quantity B are two ways of describing the same quantity.",
-      "trap": "Students think 'sum' and 'limit of partial sums' are different. They are identical by definition for convergent series.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "geometric-sequence",
-        "sum-formula",
-        "qc"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus"
-      ],
-      "ets_note": "Limits and series convergence are calculus; tautological and not a real comparison.",
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "rewrite pass: unsalvageable"
-    },
-    {
       "id": "ARI-SEQ-056",
       "difficulty": "hard",
       "type": "numeric_entry",
@@ -20228,41 +19823,6 @@
         "post_repair_rescore": "2026-10-19",
         "agree_with_key": true
       }
-    },
-    {
-      "id": "ARI-SEQ-058",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "The sequence a₁, a₂, a₃, ... satisfies aₙ₊₁ = aₙ/2 + 1 with a₁ = 0. What value does the sequence converge to?",
-      "options": [
-        "A. 1",
-        "B. 2",
-        "C. 3",
-        "D. 4",
-        "E. It diverges"
-      ],
-      "answer": "B",
-      "explanation": "At the fixed point L: L = L/2 + 1 → L/2 = 1 → L = 2. Verify: a₁=0, a₂=1, a₃=1.5, a₄=1.75, a₅=1.875, ... → converging to 2.",
-      "trap": "Students compute a few terms and guess 1 (thinking it converges to the add term). The fixed point equation L = L/2 + 1 gives L = 2.",
-      "estimated_time_seconds": 95,
-      "tags": [
-        "pattern"
-      ],
-      "ets_score": 1,
-      "ets_tags": [
-        "off_syllabus",
-        "explanation_offsyllabus",
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Limits/convergence of a recurrence are off-syllabus; fixed-point method is also only a few lines.",
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "extreme_hard",
-        "work_required": "Fixed-point reasoning on a recurrence to find the limit (or iterate and see the pattern); a convergence idea but short.",
-        "confidence": "medium"
-      },
-      "ets_withdrawn": true,
-      "ets_withdraw_reason": "rewrite pass: unsalvageable"
     },
     {
       "id": "ARI-SEQ-059",
@@ -26028,7 +25588,7 @@
     }
   ],
   "meta": {
-    "total_questions": 744,
+    "total_questions": 731,
     "sectional_merged": "2026-09-26"
   }
 }

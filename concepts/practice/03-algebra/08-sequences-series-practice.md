@@ -240,7 +240,7 @@ A geometric sequence has first term 6 and common ratio 3/2. Which of the followi
 
 **(A)** The 4th term is 20.25  
 **(B)** The sum of the first 4 terms is 48.75  
-**(C)** The infinite series 6 + 9 + 13.5 + ... has a sum of -12  
+**(C)** The 5th term is 18  
 **(D)** Every term after the first is greater than the term before it  
 **(E)** The 10th term is 10 times the 1st term
 
@@ -615,12 +615,12 @@ Answer: A, C, D.
 Build the first few terms: 6, 9, 13.5, 20.25, 30.375, ...
 A - a_4 = 6 x (3/2)^3 = 6 x 27/8 = 20.25. TRUE.
 B - 6 + 9 + 13.5 + 20.25 = 48.75. TRUE.
-C - the formula a/(1 - r) does give 6/(1 - 1.5) = 6/(-0.5) = -12, but the formula only applies when |r| < 1. Here r = 1.5, so the terms grow without bound and the series diverges - it has no finite sum, and certainly not a negative one when every term is positive. FALSE.
+C - a_5 = 6 x (3/2)^4 = 6 x 81/16 = 30.375, not 18. The value 18 comes from adding 3 each time (6, 9, 12, 15, 18), as if the sequence were arithmetic. FALSE.
 D - r = 1.5 > 1 and the first term is positive, so each term is 1.5 times the previous one and strictly larger. TRUE.
 E - a_10 = 6 x (3/2)^9 = 6 x 38.44... = 230.66..., which is about 38 times the first term, not 10 times. FALSE.
 Answer: A, B, D.
 
-**Trap.** Choice C is the capsule's named trap made concrete: plugging r = 3/2 into a/(1 - r) produces the absurd answer -12, a negative sum for a series of positive terms - the sign is the tell that the formula was applied outside its domain |r| < 1. Choice E punishes linear thinking: the 10th term is 9 multiplications away from the first, so it is (3/2)^9 times as large, not 10 times.
+**Trap.** Choice C catches students who see 6 to 9 as "add 3" and keep adding 3 (6, 9, 12, 15, 18); the sequence multiplies by 3/2 each step, so the 5th term is 30.375. Choice E punishes the same linear thinking: the 10th term is 9 multiplications away from the first, so it is (3/2)^9 times as large, not 10 times.
 
 ### Q26 · `ARI-SEQ-050` — Answer: D
 
