@@ -25,22 +25,22 @@
           "id": "MOCK-08-S1-001",
           "difficulty": "medium",
           "type": "multiple_answer",
-          "question": "Which of the following are roots of x³ − x = 0? Select all that apply.",
+          "question": "Which of the following are solutions of the equation x³ = 4x? Indicate all such values.",
           "options": [
-            "A. x = 0",
-            "B. x = 1",
-            "C. x = −1",
-            "D. x = i",
-            "E. x = 2"
+            "A. −4",
+            "B. −2",
+            "C. 0",
+            "D. 2",
+            "E. 4"
           ],
           "answer": [
-            "A",
             "B",
-            "C"
+            "C",
+            "D"
           ],
-          "explanation": "x(x²−1)=0 → x(x−1)(x+1)=0 → x=0,1,−1.",
-          "trap": "Students include x=i, thinking i²=−1 satisfies x²=1. But x=i gives i²=−1≠1.",
-          "estimated_time_seconds": 55,
+          "explanation": "x³ − 4x = 0 → x(x² − 4) = 0 → x(x − 2)(x + 2) = 0, so x = 0, 2 or −2. Check: (−2)³ = −8 = 4(−2); 0³ = 0 = 4(0); 2³ = 8 = 4(2). For x = ±4: 4³ = 64 but 4(4) = 16, so ±4 are not solutions.",
+          "trap": "Students divide both sides by x to get x² = 4, so x = ±2, and miss x = 0, which is lost when dividing by x.",
+          "estimated_time_seconds": 60,
           "tags": [
             "algebra",
             "polynomial-equations"
@@ -53,12 +53,12 @@
           "question": "p and q are the roots of x²−5x+6=0. What is p²+q²?",
           "options": [
             "A. 11",
-            "B. 13",
-            "C. 25",
-            "D. 36",
-            "E. 12"
+            "B. 12",
+            "C. 13",
+            "D. 25",
+            "E. 36"
           ],
-          "answer": "B",
+          "answer": "C",
           "explanation": "p+q=5, pq=6. p²+q²=(p+q)²−2pq=25−12=13.",
           "trap": "Students compute (p+q)²=25 and stop, forgetting to subtract 2pq=12.",
           "estimated_time_seconds": 60,
@@ -96,8 +96,8 @@
           "question": "How many prime numbers p satisfy the condition that p² + 2 is also prime?",
           "options": null,
           "answer": "1",
-          "explanation": "p=2: 6 (not prime). p=3: 11 (prime ✓). For p>3: p≡1 or 2 (mod 3), so p²≡1 (mod 3), p²+2≡0 (mod 3) → composite. Only p=3 works.",
-          "trap": "Students check p=2 and p=3 correctly but assume larger primes may work without applying the mod-3 argument that rules them all out.",
+          "explanation": "p = 2: 2² + 2 = 6, not prime. p = 3: 3² + 2 = 11, prime ✓. Every prime p greater than 3 is not divisible by 3, so p = 3k + 1 or p = 3k + 2 for some integer k. Then p² = 9k² + 6k + 1 or p² = 9k² + 12k + 4 = 3(3k² + 4k + 1) + 1, so p² leaves remainder 1 when divided by 3, and p² + 2 is divisible by 3. Since p² + 2 > 3, it is not prime. Only p = 3 works, so the answer is 1.",
+          "trap": "Students check p = 2 and p = 3 correctly but assume some larger prime may also work, without noticing that p² + 2 is divisible by 3 for every prime p greater than 3.",
           "estimated_time_seconds": 95,
           "tags": [
             "number-properties",
@@ -108,21 +108,21 @@
           "id": "MOCK-08-S1-005",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "If log₂(8 × 4ˣ) = 5, what is x?",
+          "question": "If 2ˣ + 2ˣ + 2ˣ + 2ˣ = 4⁶, what is the value of x?",
           "options": [
-            "A. 0",
-            "B. 1",
-            "C. 1/2",
-            "D. 2",
-            "E. −1"
+            "A. 3",
+            "B. 4",
+            "C. 10",
+            "D. 12",
+            "E. 14"
           ],
-          "answer": "B",
-          "explanation": "log₂8 + x·log₂4 = 3+2x = 5 → x=1.",
-          "trap": "Students write log₂(4ˣ)=4x (using base-10 exponent rule instead of log₂(4ˣ)=2x).",
+          "answer": "C",
+          "explanation": "The left side is 4 × 2ˣ = 2² × 2ˣ = 2ˣ⁺². The right side is 4⁶ = (2²)⁶ = 2¹². So x + 2 = 12 and x = 10.",
+          "trap": "Students add the exponents of the four equal terms, writing 2ˣ + 2ˣ + 2ˣ + 2ˣ = 2⁴ˣ; then 2⁴ˣ = 2¹² gives x = 3 (option A). Adding four equal terms multiplies by 4; it does not multiply the exponent by 4.",
           "estimated_time_seconds": 75,
           "tags": [
             "algebra",
-            "logarithms"
+            "exponents"
           ]
         },
         {
@@ -132,12 +132,12 @@
           "question": "A 30-60-90 triangle has its shorter leg equal to 5. What is the area of the triangle?",
           "options": [
             "A. 5√3/2",
-            "B. 25√3/2",
-            "C. 25√3",
-            "D. 5√3",
-            "E. 25/2"
+            "B. 5√3",
+            "C. 25/2",
+            "D. 25√3/2",
+            "E. 25√3"
           ],
-          "answer": "B",
+          "answer": "D",
           "explanation": "Shorter leg=5, longer leg=5√3. Area=(1/2)(5)(5√3)=25√3/2.",
           "trap": "Students compute area=(1/2)(5)(10)=25, using the hypotenuse (10) instead of the longer leg (5√3) as the height.",
           "estimated_time_seconds": 75,
@@ -154,13 +154,13 @@
           "type": "mcq",
           "question": "If a/b = 2/3 and b/c = 3/4, what is (a+b)/(b+c)?",
           "options": [
-            "A. 5/7",
-            "B. 1/2",
+            "A. 1/2",
+            "B. 5/9",
             "C. 2/3",
-            "D. 3/4",
-            "E. 5/9"
+            "D. 5/7",
+            "E. 3/4"
           ],
-          "answer": "A",
+          "answer": "D",
           "explanation": "Let a=2k, b=3k, c=4k. (a+b)/(b+c)=5k/7k=5/7.",
           "trap": "Students add fractions a/b+b/c=2/3+3/4=17/12, mistaking compound ratio for the expression asked.",
           "estimated_time_seconds": 80,
@@ -173,21 +173,22 @@
           "id": "MOCK-08-S1-008",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "What is i + i² + i³ + i⁴ + … + i¹⁰⁰, where i = √(−1)?",
+          "question": "What is the value of 1² − 2² + 3² − 4² + … + 99² − 100²?",
           "options": [
-            "A. −1",
-            "B. 0",
-            "C. 1",
-            "D. i",
-            "E. 100i"
+            "A. −10,100",
+            "B. −5,050",
+            "C. −2,550",
+            "D. −50",
+            "E. 5,050"
           ],
           "answer": "B",
-          "explanation": "Each block of 4 consecutive powers sums to i+(−1)+(−i)+1=0. 100=25×4 complete cycles → total sum=0.",
-          "trap": "Students compute the last term i¹⁰⁰=(i⁴)²⁵=1 and report 1, rather than summing all 100 terms.",
-          "estimated_time_seconds": 75,
+          "explanation": "Group the terms in pairs: (1² − 2²) + (3² − 4²) + … + (99² − 100²). Each pair is a difference of squares: (k − 1)² − k² = ((k − 1) − k)((k − 1) + k) = −((k − 1) + k). So the whole sum is −(1 + 2) − (3 + 4) − … − (99 + 100) = −(1 + 2 + 3 + … + 100) = −(100 × 101)/2 = −5,050.",
+          "trap": "Students treat the sum like 1 − 2 + 3 − 4 + … − 100, where each of the 50 pairs contributes −1, and answer −50 (option D). Here each pair is a difference of squares, (k − 1)² − k² = −(2k − 1), which grows with k.",
+          "estimated_time_seconds": 90,
           "tags": [
             "algebra",
-            "complex-numbers"
+            "difference-of-squares",
+            "summation"
           ]
         },
         {
@@ -203,7 +204,7 @@
             "E. 48"
           ],
           "answer": "C",
-          "explanation": "The maximum area of a rectangle inscribed in a right triangle equals half the triangle's area. Area of triangle=(1/2)(6)(8)=24. Max rectangle area=24/2=12.",
+          "explanation": "Put the right angle at the origin with the legs along the axes, from (0, 0) to (8, 0) and from (0, 0) to (0, 6). The hypotenuse is the line y = 6 − (3/4)x. A rectangle with two sides along the legs and width x has its fourth corner on the hypotenuse, so its height is 6 − (3/4)x and its area is x(6 − (3/4)x) = 6x − (3/4)x² = 12 − (3/4)(x − 4)². This is greatest, 12, when x = 4 (a 4-by-3 rectangle). (A rectangle with one side on the hypotenuse also has maximum area 12.) So the maximum area is 12, half the area of the triangle.",
           "trap": "Students compute the full triangle area (24) thinking that is the answer.",
           "estimated_time_seconds": 95,
           "tags": [
@@ -219,13 +220,13 @@
           "type": "mcq",
           "question": "A class of 40 students has a boys-to-girls ratio of 3:5. After 5 boys and 5 girls join, what is the new ratio?",
           "options": [
-            "A. 2:3",
-            "B. 3:4",
-            "C. 1:2",
-            "D. 4:5",
-            "E. 5:7"
+            "A. 1:2",
+            "B. 2:3",
+            "C. 5:7",
+            "D. 3:4",
+            "E. 4:5"
           ],
-          "answer": "A",
+          "answer": "B",
           "explanation": "Original: 40×3/8=15 boys, 25 girls. After: 20 boys, 30 girls. Ratio=20:30=2:3.",
           "trap": "Students add to the ratio numerals directly: (3+5):(5+5)=8:10=4:5, instead of working with actual counts.",
           "estimated_time_seconds": 70,
@@ -240,15 +241,15 @@
           "type": "mcq",
           "question": "PQRS is a cyclic quadrilateral (inscribed in a circle). ∠QRS = 110°. What is ∠QPS?",
           "options": [
-            "A. 70°",
-            "B. 80°",
-            "C. 90°",
-            "D. 110°",
-            "E. Cannot be determined"
+            "A. 55°",
+            "B. 70°",
+            "C. 80°",
+            "D. 90°",
+            "E. 110°"
           ],
-          "answer": "A",
+          "answer": "B",
           "explanation": "Opposite angles of a cyclic quadrilateral sum to 180°. ∠QPS + ∠QRS = 180° → ∠QPS = 70°.",
-          "trap": "Students confuse the angles: compute 180°−110°=70° ✓ correctly, but some mistakenly report 110° (same angle) or 90° (confusion with the diameter theorem).",
+          "trap": "Students confuse the angles: compute 180°−110°=70° ✓ correctly, but some mistakenly report 110° (same angle) or 90° (confusion with the diameter theorem), or halve 110° to 55° (misapplying the inscribed-angle rule).",
           "estimated_time_seconds": 80,
           "tags": [
             "geometry",
@@ -266,8 +267,8 @@
             "A. 0",
             "B. 1",
             "C. 2",
-            "D. Infinitely many",
-            "E. 3"
+            "D. 3",
+            "E. Infinitely many"
           ],
           "answer": "B",
           "explanation": "Note x²−4=(x+2)(x−2). Multiply through: (x−2)+(x+2)=5 → 2x=5 → x=5/2. Check x≠±2: 5/2≠±2 ✓. Exactly one solution.",
@@ -288,18 +289,18 @@
           "id": "MOCK-08-S2-001",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "A geometric series has first term 2 and sum to infinity 8. What is the common ratio?",
+          "question": "The first term of a geometric sequence is 2, and the sum of the first three terms is 26. Which of the following could be the common ratio of the sequence?",
           "options": [
-            "A. 1/4",
-            "B. 1/2",
-            "C. 3/4",
-            "D. 2/3",
-            "E. 1/3"
+            "A. −4",
+            "B. −3",
+            "C. 4",
+            "D. 12",
+            "E. 13"
           ],
-          "answer": "C",
-          "explanation": "S=a/(1−r): 2/(1−r)=8 → 1−r=1/4 → r=3/4.",
-          "trap": "Students write S=a×r/(1−r)=8 (summing from the second term) → 2r/(1−r)=8 → r=4/5.",
-          "estimated_time_seconds": 70,
+          "answer": "A",
+          "explanation": "With common ratio r, the first three terms are 2, 2r and 2r². So 2 + 2r + 2r² = 26 → r² + r − 12 = 0 → (r + 4)(r − 3) = 0, so r = −4 or r = 3. Only −4 is among the choices. Check: 2, −8, 32 has sum 26.",
+          "trap": "Students factor r² + r − 12 as (r − 4)(r + 3), getting r = 4 or r = −3, and choose C or B. Checking r = 4 gives 2 + 8 + 32 = 42, not 26.",
+          "estimated_time_seconds": 80,
           "tags": [
             "algebra",
             "sequences-series",
@@ -354,13 +355,13 @@
           "type": "mcq",
           "question": "If x^(2/3) = 4, what is x?",
           "options": [
-            "A. 4",
-            "B. 8",
-            "C. 16",
-            "D. 64",
-            "E. 2"
+            "A. 2",
+            "B. 4",
+            "C. 8",
+            "D. 16",
+            "E. 64"
           ],
-          "answer": "B",
+          "answer": "C",
           "explanation": "Raise both sides to the 3/2 power: x = 4^(3/2) = (√4)³ = 2³ = 8.",
           "trap": "Students compute x=4/(2/3)=6 (dividing rather than raising to the reciprocal power).",
           "estimated_time_seconds": 70,
@@ -394,22 +395,22 @@
           "id": "MOCK-08-S2-006",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "For x²+px+q=0, the product of the roots is 6 and the sum of the roots is 1. What is p+q?",
+          "question": "Each of the two solutions of the equation x² + bx + c = 0 is twice one of the solutions of x² + 2x − 15 = 0. What is the value of b + c?",
           "options": [
-            "A. −7",
-            "B. 5",
-            "C. 7",
-            "D. −5",
-            "E. 1"
+            "A. −64",
+            "B. −56",
+            "C. −26",
+            "D. −13",
+            "E. 64"
           ],
           "answer": "B",
-          "explanation": "By Vieta's: sum=−p=1 → p=−1. Product=q=6. p+q=−1+6=5.",
-          "trap": "Students use sum=p (sign error in Vieta's for the standard form), getting p=1,q=6,p+q=7.",
-          "estimated_time_seconds": 70,
+          "explanation": "x² + 2x − 15 = (x + 5)(x − 3), so its solutions are −5 and 3. Doubling them gives −10 and 6, so x² + bx + c = (x + 10)(x − 6) = x² + 4x − 60. Thus b = 4, c = −60 and b + c = −56.",
+          "trap": "Students double both coefficients of x² + 2x − 15, writing x² + 4x − 30 and getting b + c = −26 (option C). Doubling both solutions doubles their sum but multiplies their product by 4, so the constant term becomes −60, not −30.",
+          "estimated_time_seconds": 90,
           "tags": [
             "algebra",
             "quadratic-equations",
-            "vieta-formulas"
+            "factoring"
           ]
         },
         {
@@ -424,8 +425,8 @@
             "D. The relationship cannot be determined from the information given"
           ],
           "answer": "D",
-          "explanation": "ab≤100 (by AM-GM). a=8,b=12: ab=96=B. a=5,b=15: ab=75<96. a=10,b=10: ab=100>96. So ab can be <96, =96, or >96 → D.",
-          "trap": "Students apply AM-GM: ab≤100 and guess B≥100>96, missing that ab can equal or exceed 96.",
+          "explanation": "ab = a(20 − a) = 100 − (a − 10)², so ab is at most 100. Try values: a = 8, b = 12 gives ab = 96, equal to Column B; a = 5, b = 15 gives ab = 75 < 96; a = 10, b = 10 gives ab = 100 > 96. Since ab can be less than, equal to or greater than 96, the relationship cannot be determined.",
+          "trap": "Students try only the most balanced split, a = b = 10, get ab = 100 > 96 and choose A; but a = 5, b = 15 gives ab = 75 < 96.",
           "estimated_time_seconds": 85,
           "tags": [
             "algebra",
@@ -441,9 +442,9 @@
           "options": [
             "A. 15",
             "B. 20",
-            "C. 25",
-            "D. 30",
-            "E. Cannot be determined"
+            "C. 22.5",
+            "D. 25",
+            "E. 30"
           ],
           "answer": "B",
           "explanation": "The median is the 4th value. Changing only the largest and smallest values does not affect the 4th value. Median remains 20.",
@@ -467,7 +468,7 @@
             "E. x³=8"
           ],
           "answer": "B",
-          "explanation": "x²=4 → x=±2. Option B ✓. A,C,E give only x=2. D gives x=±4.",
+          "explanation": "x²=4 → x=±2. Option B ✓. A and E give only x=2. C gives x=4. D gives x=±4.",
           "trap": "Students choose E: x³=8 has the unique real solution x=2, which misses x=−2 from x²=4.",
           "estimated_time_seconds": 55,
           "tags": [
@@ -488,14 +489,15 @@
             "E. 6"
           ],
           "answer": "C",
-          "explanation": "Intersecting chords theorem: AP·PB=CP·PD. 3×8=6×PD → PD=4.",
+          "explanation": "Draw AC and BD. Angles PAC and PDB are inscribed angles that intercept the same arc BC, so they are equal, and angles APC and DPB are vertical angles. So triangles APC and DPB are similar, with AP/DP = CP/BP, that is, AP·PB = CP·PD. Then 3 × 8 = 6 × PD, so PD = 4.",
           "trap": "Students add: AP+PB=CP+PD → 11=6+PD → PD=5.",
           "estimated_time_seconds": 65,
           "tags": [
             "geometry",
             "circles",
             "chord"
-          ]
+          ],
+          "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><circle cx=\"120\" cy=\"120\" r=\"94\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><line x1=\"31.5\" y1=\"88.2\" x2=\"208.5\" y2=\"88.2\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"46.8\" y1=\"178.9\" x2=\"101.8\" y2=\"27.8\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><circle cx=\"31.5\" cy=\"88.2\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><circle cx=\"208.5\" cy=\"88.2\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><circle cx=\"46.8\" cy=\"178.9\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><circle cx=\"101.8\" cy=\"27.8\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><circle cx=\"79.8\" cy=\"88.2\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><text x=\"19.3\" y=\"87.4\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">A</text><text x=\"220.7\" y=\"87.4\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">B</text><text x=\"36.6\" y=\"193.8\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">C</text><text x=\"99.3\" y=\"16.5\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">D</text><text x=\"91.3\" y=\"102.8\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">P</text><text x=\"55.7\" y=\"79.6\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">3</text><text x=\"144.1\" y=\"79.6\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">8</text><text x=\"72.7\" y=\"142.4\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">6</text></svg>"
         },
         {
           "id": "MOCK-08-S2-011",
@@ -522,25 +524,26 @@
           "id": "MOCK-08-S2-012",
           "difficulty": "hard",
           "type": "multiple_answer",
-          "question": "Which statements about the median are always true? Select all that apply.",
+          "question": "Each number x in a list of 9 numbers is replaced by 100 − x. Which of the following statistics must be the same for the new list as for the original list? Select all that apply.",
           "options": [
-            "A. The median minimizes the sum of absolute deviations from it",
-            "B. The median equals the mean",
-            "C. The median is unaffected by extreme values",
-            "D. Adding any new value always changes the median",
-            "E. The median of {1,2,3,4,5} is 3"
+            "A. The mean",
+            "B. The median",
+            "C. The range",
+            "D. The standard deviation",
+            "E. The interquartile range"
           ],
           "answer": [
-            "A",
             "C",
+            "D",
             "E"
           ],
-          "explanation": "A: True — the median minimizes Σ|xᵢ−m|. B: False — mean≠median in skewed distributions. C: True — the median is resistant to outliers. D: False — adding a value equal to the existing median leaves it unchanged. E: True — middle of 5 sorted values is 3.",
-          "trap": "Students include B (confusing mean and median) or exclude C (thinking 'outliers change everything').",
-          "estimated_time_seconds": 85,
+          "explanation": "Replacing x by 100 − x reverses the order of the list and keeps every distance between two numbers the same. A: the new mean is 100 − (old mean), equal only when the old mean is 50 (e.g., 1, 2, …, 9 has mean 5; the new list has mean 95) ✗. B: likewise the new median is 100 − (old median) ✗. C: the new greatest number is 100 − (old least) and the new least is 100 − (old greatest), so the range is unchanged ✓. D: each deviation from the mean keeps its size and only changes sign, so the standard deviation is unchanged ✓. E: the new third quartile is 100 − (old first quartile) and the new first quartile is 100 − (old third quartile), so their difference is unchanged ✓.",
+          "trap": "Students assume that a statistic of \"center\" is also preserved and select A, or think that flipping the values changes the spread and leave out D. Only the measures of spread — range, standard deviation, interquartile range — must stay the same.",
+          "estimated_time_seconds": 90,
           "tags": [
             "statistics",
-            "mean-median-mode"
+            "standard-deviation",
+            "data-transformations"
           ]
         },
         {
@@ -566,12 +569,12 @@
           "question": "How many integers from 1 to 100 have an odd number of positive divisors?",
           "options": [
             "A. 5",
-            "B. 8",
-            "C. 10",
-            "D. 12",
-            "E. 7"
+            "B. 7",
+            "C. 8",
+            "D. 10",
+            "E. 12"
           ],
-          "answer": "C",
+          "answer": "D",
           "explanation": "A number has an odd number of divisors if and only if it is a perfect square. Perfect squares from 1 to 100: 1,4,9,16,25,36,49,64,81,100 → 10.",
           "trap": "Students count prime numbers (25) or numbers with exactly 1 divisor (just 1), missing the perfect-square characterization.",
           "estimated_time_seconds": 85,
