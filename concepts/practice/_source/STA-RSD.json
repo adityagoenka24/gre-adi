@@ -1,0 +1,646 @@
+{
+  "set": {
+    "subtopic_id": "STA-RSD",
+    "topic": "Statistics",
+    "subtopic": "Range & Standard Deviation",
+    "capsule": "07-statistics-probability/03-range-standard-deviation.md",
+    "bank_files": [
+      "statistics/range_standard_deviation.json"
+    ],
+    "practice_path": "07-statistics-probability/03-range-standard-deviation-practice.md",
+    "one_liner": "Adding shifts (SD unchanged); multiplying scales (SD times |k|). Compare spread by eye - don't compute."
+  },
+  "questions": [
+    {
+      "id": "STA-RSD-003",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which of the following data sets has a standard deviation of 0?",
+      "options": [
+        "A. {1, 2, 3, 4, 5}",
+        "B. {0, 0, 1, 0, 0}",
+        "C. {7, 7, 7, 7, 7}",
+        "D. {-2, 0, 2, 0, -2}",
+        "E. {1, 1, 2, 1, 1}"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — recall the rule. SD = 0 happens only when every value is identical, because only then is every deviation from the mean equal to 0.\nStep 2 — scan the sets for one with a single repeated value.\nA - five different values. Spread out, SD > 0.\nB - four 0s and one 1. Not all identical, so SD > 0.\nC - every value is 7. Mean = 7, every deviation = 0, so SD = 0.\nD - mean = (-2 + 0 + 2 + 0 - 2)/5 = -2/5, and the values are not identical, so SD > 0.\nE - four 1s and one 2. Not identical, so SD > 0.\nAnswer: C.",
+      "trap": "Picking B because the set is mostly zeros, or picking D because it looks symmetric about 0. The zeros in the set are values, not deviations; SD = 0 requires that all five values be the SAME number, whatever that number is.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "standard-deviation",
+        "zero-sd",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-RSD-008",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "A data set consists of the values 5, 10, 15, 20, 25, and 30. What is the range of this data set? Enter your answer as a number.",
+      "options": null,
+      "answer": "25",
+      "explanation": "Step 1 — range is a two-number question: find the largest value and the smallest value and stop.\nMaximum = 30, minimum = 5.\nStep 2 — range = max - min = 30 - 5 = 25.\nAnswer: 25.",
+      "trap": "Reporting the count of values (6), the mean (17.5), or the common gap between consecutive terms (5). Range never depends on how many values there are or how they are spaced in between - only on the two extremes.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "range",
+        "basic-spread"
+      ]
+    },
+    {
+      "id": "STA-RSD-009",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "Which of the following statements is true for every data set?",
+      "options": [
+        "A. The standard deviation is negative if some of the values are negative.",
+        "B. The standard deviation is 0 whenever the mean is 0.",
+        "C. The standard deviation is greater than or equal to 0.",
+        "D. The standard deviation equals the range divided by 2.",
+        "E. The standard deviation increases when every value is increased by the same amount."
+      ],
+      "answer": "C",
+      "explanation": "SD is built from squared distances to the mean, then a square root, so it can never come out negative.\nA - false. {-5, -5, -5} has SD 0, and {-10, 0, 10} has SD > 0. Negative values never make the SD negative.\nB - false. {-2, 0, 2} has mean 0 but the values are not identical, so its SD is greater than 0. The mean says where the data sits, the SD says how scattered it is.\nC - true. SD >= 0 always, with equality exactly when every value is the same.\nD - false. For {0, 5, 10} the range is 10 but the SD is sqrt((25 + 0 + 25)/3) = sqrt(16.67) = 4.08, not 5. There is no fixed ratio between range and SD.\nE - false. Adding the same amount to every value slides the whole set along the number line; every distance from the mean is unchanged, so the SD is unchanged.\nAnswer: C.",
+      "trap": "Choosing A because the data contains negative numbers, as if the SD inherited their sign. SD measures distance, and distance is never negative. E is the other live bait - it is the single most common standard-deviation error on the GRE, and it is false.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "standard-deviation",
+        "non-negative",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "STA-RSD-011",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A data set has a range of 30 and a minimum value of 15. The value 60 is then added to the data set. What is the range of the new data set?",
+      "options": [
+        "A. 15",
+        "B. 30",
+        "C. 45",
+        "D. 60",
+        "E. 75"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — recover the original maximum. Range = max - min, so max = range + min = 30 + 15 = 45.\nStep 2 — add 60. Since 60 > 45, the new value becomes the new maximum. The minimum is still 15, because 60 > 15.\nStep 3 — new range = 60 - 15 = 45.\nCheck: the old range was 30, the maximum moved up from 45 to 60, and the minimum did not move, so the range should grow by exactly 15. 30 + 15 = 45. Correct.\nAnswer: 45.",
+      "trap": "Answering 30 (choice B) by assuming one extra value cannot change the range - it does, because 60 sits outside the old span. Choice D, 60, reports the new maximum as if it were the range; choice E, 75, adds the minimum to 60 instead of subtracting it; choice A, 15, is 60 - 45, the amount the maximum moved rather than the new range.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "range",
+        "new-value",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-RSD-012",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Set M = {1, 5, 9}\nSet N = {1, 5, 9, 7}\nColumn A: Range of Set M\nColumn B: Range of Set N",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — Set M: max = 9, min = 1, so range = 9 - 1 = 8.\nStep 2 — Set N is Set M with 7 added. Since 1 < 7 < 9, the new value is neither a new maximum nor a new minimum.\nStep 3 — Set N: max = 9, min = 1, so range = 9 - 1 = 8.\nBoth ranges are 8, so the two quantities are equal.\nAnswer: C.",
+      "trap": "Assuming that a fourth value must change the range, and picking B. A new value moves the range only if it lands outside the current maximum or minimum; anything strictly between them leaves the range alone. (Note the contrast with the standard deviation, which an interior value generally does change.)",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "range",
+        "qc",
+        "new-value"
+      ]
+    },
+    {
+      "id": "STA-RSD-022",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Each of the following is a set of five numbers. Which set has the greatest standard deviation?",
+      "options": [
+        "A. {0, 30, 30, 30, 60}",
+        "B. {0, 0, 0, 50, 50}",
+        "C. {10, 20, 30, 40, 50}",
+        "D. {25, 25, 25, 25, 55}",
+        "E. {0, 15, 30, 45, 60}"
+      ],
+      "answer": "B",
+      "explanation": "Do not compute five standard deviations. Use the capsule's test: find each mean, then judge the typical distance of the values from that mean.\nA - mean 30. Distances: 30, 0, 0, 0, 30. Average distance = 60/5 = 12.\nB - mean 20. Distances: 20, 20, 20, 30, 30. Average distance = 120/5 = 24.\nC - mean 30. Distances: 20, 10, 0, 10, 20. Average distance = 60/5 = 12.\nD - mean 31. Distances: 6, 6, 6, 6, 24. Average distance = 48/5 = 9.6.\nE - mean 30. Distances: 30, 15, 0, 15, 30. Average distance = 90/5 = 18.\nB has by far the largest typical distance from its mean, so B has the greatest SD.\nCheck by actual computation: SD(A) = 18.97, SD(B) = 24.49, SD(C) = 14.14, SD(D) = 12.00, SD(E) = 21.21. B wins.\nAnswer: B.",
+      "trap": "Choosing A or E because they have the largest range (60). A bigger range usually means a bigger SD, but it is not guaranteed: range is decided by only two values, while SD is decided by all of them. Set A has the widest span yet three of its five values sit exactly ON the mean, so its SD (18.97) is well below B's (24.49), even though B spans only 50.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "standard-deviation",
+        "compare-spread",
+        "range-vs-sd"
+      ]
+    },
+    {
+      "id": "STA-RSD-023",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Data set A = {0, 0, 0, 12}\nData set B = {3, 3, 3, 3}\nColumn A: Standard deviation of Data set A\nColumn B: Standard deviation of Data set B",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — Column B first, because it is instant. Every value in B is 3, so all four values equal the mean and every deviation is 0. SD(B) = 0.\nStep 2 — Column A. Mean = (0 + 0 + 0 + 12)/4 = 3. The values are not all identical, so SD(A) > 0. That already settles it.\nStep 3 — for completeness: squared deviations are 9, 9, 9, and 81. Variance = (9 + 9 + 9 + 81)/4 = 108/4 = 27, so SD(A) = sqrt(27) = 5.20.\n5.20 > 0, so Column A is greater.\nAnswer: A.",
+      "trap": "Both sets have the same four-value count, the same sum (12) and the same mean (3), so students conclude the SDs match and pick C. Mean and sum say nothing about spread. The instant that one set has two different values in it and the other does not, the first set's SD is strictly larger - no arithmetic needed.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "standard-deviation",
+        "zero-sd",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-RSD-026",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Data set P = {2, 4, 6, 8, 10}\nData set Q = {20, 40, 60, 80, 100}\nColumn A: Standard deviation of Data set P\nColumn B: (Standard deviation of Data set Q) divided by 10",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — spot the relationship between the sets. Every element of Q is 10 times the matching element of P, so Q = 10 x P.\nStep 2 — apply the scaling rule. Multiplying every value by k multiplies the SD by |k|, so SD(Q) = 10 x SD(P).\nStep 3 — Column B = SD(Q)/10 = 10 x SD(P)/10 = SD(P) = Column A.\nThe two quantities are equal.\nCheck by computing: P has mean 6 and squared deviations 16, 4, 0, 4, 16, so variance = 40/5 = 8 and SD(P) = sqrt(8) = 2.83. Q has mean 60 and variance 800, so SD(Q) = sqrt(800) = 28.28, and 28.28/10 = 2.83. Correct.\nAnswer: C.",
+      "trap": "Treating the jump from P to Q as 'adding 18, 36, 54, ...' and concluding nothing can be said, or noticing only that Q's numbers are bigger and picking B. The two sets are related by a single multiplier, so the SD scales by exactly that multiplier and the division by 10 undoes it precisely.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "standard-deviation",
+        "scaling",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-RSD-027",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A data set has a mean of 50 and a variance of 16. Every value in the data set is increased by 5. What are the new mean and the new variance?",
+      "options": [
+        "A. Mean = 50, Variance = 16",
+        "B. Mean = 55, Variance = 16",
+        "C. Mean = 55, Variance = 21",
+        "D. Mean = 55, Variance = 400",
+        "E. Mean = 250, Variance = 400"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — the mean. Adding 5 to every value adds 5 to the total for each of the n values, so the mean moves by exactly 5: new mean = 50 + 5 = 55.\nStep 2 — the spread. Adding the same constant to every value slides the whole set; the mean slides with it, so every deviation (value - mean) is unchanged. Squared deviations are unchanged, so the variance is unchanged: new variance = 16.\nMean = 55, Variance = 16.\nCheck with a tiny set: {2, 6} has mean 4 and variance ((-2)^2 + 2^2)/2 = 4. Add 5: {7, 11} has mean 9 and variance ((-2)^2 + 2^2)/2 = 4. The mean moved by 5; the variance did not move. Correct.\nAnswer: B.",
+      "trap": "Choosing C by adding 5 to the variance as well as to the mean. Choice A makes the mirror-image error, updating the spread but not the location. Choice D, variance 400, comes from treating '+5' as 'times 5' (16 x 5^2 = 400); choice E does that to the mean too.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "variance",
+        "add-constant",
+        "mean-shift"
+      ]
+    },
+    {
+      "id": "STA-RSD-030",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A data set consists of the values 8, 12, 15, 19, 21, and 26. The value 26 is removed from the data set. What is the range of the remaining five values? Enter your answer as a number.",
+      "options": null,
+      "answer": "13",
+      "explanation": "Step 1 — the original range, for orientation: 26 - 8 = 18.\nStep 2 — remove 26. The remaining values are 8, 12, 15, 19, 21. Removing the old maximum forces you to find the NEW maximum, which is 21. The minimum is still 8.\nStep 3 — new range = 21 - 8 = 13.\nCheck: 8 and 21 are both in the reduced list and nothing lies outside them. Correct.\nAnswer: 13.",
+      "trap": "Subtracting the removed value from the old range (18 - 26, or 26 - 18 = 8) instead of re-finding the extremes. Deleting the maximum does not shrink the range by the deleted value; it shrinks it by the gap between the old maximum and the next-largest value, here 26 - 21 = 5, giving 18 - 5 = 13.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "range",
+        "remove-value",
+        "two-step"
+      ]
+    },
+    {
+      "id": "STA-RSD-031",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Data set A has a standard deviation of 4. Data set B consists of the values of Data set A, each multiplied by -2. What is the standard deviation of Data set B?",
+      "options": [
+        "A. -8",
+        "B. -4",
+        "C. 2",
+        "D. 4",
+        "E. 8"
+      ],
+      "answer": "E",
+      "explanation": "Step 1 — the scaling rule: multiplying every value by k multiplies the SD by |k|, not by k. The absolute value is there because SD is a distance and distances cannot be negative.\nStep 2 — here k = -2, so |k| = 2.\nStep 3 — new SD = 2 x 4 = 8.\nCheck with a concrete set: {1, 5} has mean 3 and SD 2. Multiplying by -2 gives {-2, -10}, mean -6, deviations 4 and -4, so SD = 4 = |-2| x 2. Correct.\nAnswer: 8.",
+      "trap": "Choosing A (-8) by carrying the minus sign through to the standard deviation. Multiplying by a negative reflects the data across the mean; it does not fold the spread inward or make it negative. Choice B, -4, is the half-corrected version of the same slip: seeing that multiplication cannot change the size of the spread, leaving the 4 alone, but still attaching the multiplier's minus sign. Choice D, 4, comes from treating multiplication like addition and leaving the SD alone entirely; choice C, 2, comes from dividing 4 by 2 because the multiplier is negative.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "standard-deviation",
+        "scaling",
+        "absolute-value"
+      ]
+    },
+    {
+      "id": "STA-RSD-033",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A data set has a standard deviation of 6. Every value in the data set is multiplied by 5 and then increased by 3. What is the standard deviation of the resulting data set? Enter your answer as a number.",
+      "options": null,
+      "answer": "30",
+      "explanation": "Handle the two operations in order, and remember only one of them can touch the SD.\nStep 1 — multiply every value by 5. Multiplying scales the SD by |5| = 5, so the SD becomes 5 x 6 = 30.\nStep 2 — add 3 to every value. Adding a constant slides the whole set and leaves the spread alone, so the SD stays at 30.\nFinal SD = 30.\nCheck with a two-value set: {0, 12} has mean 6 and SD 6. Apply 5x + 3: {3, 63}, mean 33, deviations -30 and 30, SD = 30. Correct.\nAnswer: 30.",
+      "trap": "Carrying the '+3' into the answer and reporting 33. Only the multiplicative part of a transformation reaches the standard deviation. The mirror error is applying the +3 first, or ignoring the x5 and answering 6 - the two words to hold on to are 'adding shifts, multiplying scales'.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "standard-deviation",
+        "linear-transformation",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "STA-RSD-051",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Scores on a test are normally distributed with a mean of 72 and a standard deviation of 6. Approximately what percent of the scores are greater than 84?",
+      "options": [
+        "A. 2.5%",
+        "B. 5%",
+        "C. 16%",
+        "D. 32%",
+        "E. 47.5%"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — express the boundary in standard deviations. 84 - 72 = 12, and 12/6 = 2, so 84 is exactly 2 SDs above the mean.\nStep 2 — use the 68-95-99.7 rule. About 95% of a normal distribution lies WITHIN 2 SDs of the mean, so about 100 - 95 = 5% lies outside that band.\nStep 3 — the bell curve is symmetric, so that 5% splits evenly between the two tails: 5/2 = 2.5% lies above 2 SDs and 2.5% below.\nAbout 2.5% of scores are greater than 84.\nAnswer: A.",
+      "trap": "Answering 5% (choice B) by reporting the whole outside-2-SD region instead of just the upper tail - the question asks only for scores ABOVE 84. Choice C, 16%, is the same tail computed at 1 SD, (100 - 68)/2, and choice D, 32%, is the full outside-1-SD region. Choice E, 47.5%, is the area from the mean up to 84, which is the piece the question excludes.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "normal-distribution",
+        "empirical-rule",
+        "tail-percent"
+      ],
+      "is_new": true
+    },
+    {
+      "id": "STA-RSD-034",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Set A = {x, x + 4, x + 8, x + 12, x + 16}, where x is a real number. What is the standard deviation of Set A?",
+      "options": [
+        "A. 4",
+        "B. 8",
+        "C. sqrt(32)",
+        "D. sqrt(40)",
+        "E. The standard deviation depends on the value of x."
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — the mean. Mean = x + (0 + 4 + 8 + 12 + 16)/5 = x + 40/5 = x + 8.\nStep 2 — the deviations. Subtracting the mean from each term:\nx - (x + 8) = -8\n(x + 4) - (x + 8) = -4\n(x + 8) - (x + 8) = 0\n(x + 12) - (x + 8) = 4\n(x + 16) - (x + 8) = 8\nThe x cancels in every one of them, which is the whole point: the set is a fixed pattern shifted by x, and shifting never changes spread.\nStep 3 — squared deviations: 64, 16, 0, 16, 64. Their sum is 160.\nStep 4 — variance = 160/5 = 32, so SD = sqrt(32) = 4 x sqrt(2) = 5.66.\nAnswer: sqrt(32).",
+      "trap": "Choosing E because x appears in all five terms. The x is an added constant, and adding a constant leaves the SD alone, so the answer is a fixed number. Choice D, sqrt(40), comes from dividing the sum of squared deviations by 4 instead of by 5 (the GRE uses the population SD, dividing by n). Choice A, 4, reports the common gap between consecutive terms, and choice B, 8, reports the largest single deviation.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "standard-deviation",
+        "add-constant",
+        "algebraic-set"
+      ]
+    },
+    {
+      "id": "STA-RSD-035",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Set G = {1, 2, 3, 4, 5, 6, 7}. Set H consists of the seven values of Set G together with one additional value v, where v is an integer and 1 <= v <= 7.\nColumn A: Standard deviation of Set H\nColumn B: Standard deviation of Set G",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Set G has mean 4 and squared deviations 9, 4, 1, 0, 1, 4, 9, summing to 28, so variance = 28/7 = 4 and SD(G) = 2. The added value is unspecified, so test the extremes of what v may be.\nCase 1: v = 4, the mean. The mean of H is still (28 + 4)/8 = 4, and the new value contributes a squared deviation of 0. Variance(H) = 28/8 = 3.5, so SD(H) = sqrt(3.5) = 1.87 < 2. Column B is greater here.\nCase 2: v = 1, as far from the mean as v is allowed to go. H = {1, 1, 2, 3, 4, 5, 6, 7}, mean = 29/8 = 3.625. The squared deviations sum to 35.875, so variance = 35.875/8 = 4.484 and SD(H) = 2.118 > 2. Column A is greater here.\nOne legal choice of v makes Column A bigger and another makes Column B bigger, so no relationship holds in general.\nAnswer: D.\nThe underlying rule: a new value pulls the SD DOWN if it sits closer to the mean than a typical member does, and pushes it UP if it sits further out. Here v = 2, 3, 4, 5, 6 all lower the SD and only v = 1 or v = 7 raise it.",
+      "trap": "Applying the 'adding a value at the mean lowers the SD' rule and keying B without noticing that v is not pinned to the mean - it is only pinned inside the interval [1, 7]. The opposite slip is assuming that any extra value must increase the SD and keying A. Both fail because v is only partly specified, and both cases genuinely occur.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "standard-deviation",
+        "add-value",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-RSD-036",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A data set has a mean of 10 and a standard deviation of 3. Every value x in the data set is replaced by ax + b, where a and b are constants and a > 0. The resulting data set has a mean of 57 and a standard deviation of 12. What is the value of b? Enter your answer as a number.",
+      "options": null,
+      "answer": "17",
+      "explanation": "The key is that b is invisible to the standard deviation, so the SDs alone determine a.\nStep 1 — use the standard deviations to find a. Multiplying by a scales the SD by |a|, and adding b does not change it, so new SD = |a| x old SD.\n12 = |a| x 3, so |a| = 4, and since a > 0, a = 4.\nStep 2 — use the means to find b. Both operations move the mean: new mean = a x (old mean) + b.\n57 = 4 x 10 + b\n57 = 40 + b\nb = 17.\nCheck: a value sitting 3 above the old mean, x = 13, becomes 4(13) + 17 = 69, which is 69 - 57 = 12 above the new mean - exactly one new SD, as it should be. Correct.\nAnswer: 17.",
+      "trap": "Trying to find b from the standard deviations, for instance solving 12 = 3a + b or 12 = 3(a + b). The constant b never appears in the SD equation at all, which is precisely why the SDs isolate a first. Reversing the order - using the means to get a - leaves two unknowns in one equation and stalls.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "linear-transformation",
+        "reverse-engineering",
+        "standard-deviation"
+      ]
+    },
+    {
+      "id": "STA-RSD-037",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The heights of the adults in a large population are normally distributed with a mean of 170 cm and a standard deviation of 8 cm. Approximately what percent of these adults have heights between 162 cm and 186 cm?",
+      "options": [
+        "A. 34%",
+        "B. 47.5%",
+        "C. 68%",
+        "D. 81.5%",
+        "E. 95%"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — convert both boundaries into standard deviations from the mean.\n162 = 170 - 8, so 162 is 1 SD BELOW the mean.\n186 = 170 + 16 = 170 + 2(8), so 186 is 2 SDs ABOVE the mean.\nThe interval is lopsided, so it cannot be read off the 68-95-99.7 rule in one step - split it at the mean.\nStep 2 — the piece below the mean. About 68% lies within 1 SD of the mean, and by symmetry half of that sits on each side, so from 162 up to 170 is 68/2 = 34%.\nStep 3 — the piece above the mean. About 95% lies within 2 SDs, so from 170 up to 186 is 95/2 = 47.5%.\nStep 4 — add the two pieces: 34 + 47.5 = 81.5%.\nAbout 81.5% of the adults have heights between 162 cm and 186 cm.\nAnswer: D.",
+      "trap": "Reaching for a single band of the empirical rule and answering 68% (choice C, reading the interval as within 1 SD) or 95% (choice E, reading it as within 2 SDs). Neither fits, because the two boundaries are at different distances from the mean. Choice A, 34%, keeps only the 162-to-170 piece and choice B, 47.5%, keeps only the 170-to-186 piece; the question wants both, so the halves must be added.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "normal-distribution",
+        "empirical-rule",
+        "asymmetric-interval"
+      ]
+    },
+    {
+      "id": "STA-RSD-038",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A data set consists of 6 distinct positive integers whose range is 10.\nColumn A: The greatest possible standard deviation of the data set\nColumn B: 5",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — set up the extreme case. SD does not change when the whole set slides, so take the smallest value to be 1; the range of 10 then forces the largest to be 11. Four more distinct integers must sit strictly between them.\nStep 2 — to push the SD as high as possible, drive every value as far from the centre as the distinctness rule allows: pack them against the two ends. The best arrangement is {1, 2, 3, 9, 10, 11}.\nStep 3 — evaluate it. Mean = (1 + 2 + 3 + 9 + 10 + 11)/6 = 36/6 = 6.\nSquared deviations: 25, 16, 9, 9, 16, 25. Sum = 100.\nVariance = 100/6 = 16.67, so SD = sqrt(16.67) = 4.08.\nStep 4 — compare. The greatest possible SD is about 4.08, which is less than 5, so Column B is greater.\nAnswer: B.\nWhy 5 is unreachable: even without the distinctness rule, the absolute ceiling on the SD of a set with range R is R/2 = 5, achieved only by putting every value at one of the two extremes. Six DISTINCT integers cannot do that, so the true maximum lands strictly below 5.",
+      "trap": "Reasoning that a range of 10 means values can be 5 from the centre, so the SD 'could be' 5, and keying C. Reaching R/2 would require every value to sit exactly at an endpoint; distinctness forces four of the six inward, which drags the average squared deviation down to 100/6 and the SD to 4.08. Keying D on the grounds that the values are unnamed is the other slip - the stem asks for a maximum, and the maximum is a definite number.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "standard-deviation",
+        "range",
+        "extremal-reasoning"
+      ]
+    },
+    {
+      "id": "STA-RSD-039",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Set S = {4, 7, 10, 13, 16}. Which of the following sets have the same standard deviation as Set S? Select all that apply.",
+      "options": [
+        "A. {14, 17, 20, 23, 26}",
+        "B. {8, 14, 20, 26, 32}",
+        "C. {16, 13, 10, 7, 4}",
+        "D. {-4, -7, -10, -13, -16}",
+        "E. {4, 7, 10, 13, 16, 10}"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "Set S has mean 10 and squared deviations 36, 9, 0, 9, 36, so variance = 90/5 = 18 and SD(S) = sqrt(18) = 4.24. Test each option by identifying the transformation rather than recomputing.\nA - every term is 10 more than the matching term of S, so this is S with the constant 10 added. Adding a constant leaves the SD unchanged. TRUE.\nB - every term is twice the matching term of S, so this is 2 x S. Multiplying scales the SD by |2|, giving 2 x sqrt(18) = sqrt(72) = 8.49. FALSE.\nC - the same five numbers, written in reverse order. A data set is a collection of values, not a sequence; order plays no part in the mean or in any deviation. SD unchanged. TRUE.\nD - every term is -1 times the matching term of S, so this is (-1) x S. The SD scales by |-1| = 1, so it is unchanged at sqrt(18). TRUE.\nE - this is S with an extra value equal to the mean, 10. The mean stays 10 and the new value adds a squared deviation of 0, but n rises from 5 to 6, so the variance falls to 90/6 = 15 and the SD drops to sqrt(15) = 3.87. FALSE.\nAnswer: A, C, D.",
+      "trap": "Rejecting D because the values are negative, as though a negative data set had to have a different (or negative) spread - reflecting a set across zero preserves every distance from the mean. The opposite slip is accepting E: an added value equal to the mean contributes nothing to the numerator but still increases the denominator n, so the SD strictly decreases.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "standard-deviation",
+        "transformations",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-RSD-040",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The standard deviation of the data set {a, b, c} is 5. What is the standard deviation of the data set {a - 3, b - 3, c - 3, a - 3, b - 3, c - 3}?",
+      "options": [
+        "A. 2",
+        "B. 5",
+        "C. 5 x sqrt(2)",
+        "D. 10",
+        "E. Cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Break the new set into the two things that were done to the old one.\nStep 1 — subtract 3 from every value. That is adding the constant -3, which slides the whole set and changes no distance from the mean. {a - 3, b - 3, c - 3} still has SD 5.\nStep 2 — list every value twice. Doubling the list does not move the mean: the sum doubles and n doubles, so the mean is unchanged. Each squared deviation now appears twice, so the sum of squared deviations doubles while n also doubles - and variance is their quotient, so it is unchanged.\nIn symbols, if the original squared deviations sum to T over n values, the new variance is 2T/(2n) = T/n, exactly the old variance.\nStep 3 — the SD is therefore still 5.\nCheck with numbers: {1, 6, 11} has mean 6 and SD sqrt((25 + 0 + 25)/3) = 4.08. Then {-2, 3, 8, -2, 3, 8} has mean 3 and squared deviations 25, 0, 25, 25, 0, 25, so variance = 100/6 = 16.67 and SD = 4.08. Unchanged. Correct.\nAnswer: 5.",
+      "trap": "Choice D, 10, comes from thinking that a data set with twice as many values must have twice the spread; choice A, 2, from subtracting the 3 from the SD as well as from the values. Choice C, 5 x sqrt(2), comes from applying a merge-two-groups formula as if these were two different groups - they are the same group listed twice, with identical means, so nothing is added. Choice E tempts anyone who thinks a, b and c must be known; every step here is a rule about spread, not about the actual values.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "standard-deviation",
+        "duplication",
+        "add-constant"
+      ]
+    },
+    {
+      "id": "STA-RSD-041",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Data set A = {2, 4, 6, 8, 10} has a variance of 8. Data set B is formed by replacing each element x of Data set A with 3x + 7. What is the variance of Data set B? Enter your answer as a number.",
+      "options": null,
+      "answer": "72",
+      "explanation": "Step 1 — separate the two operations. The transformation multiplies by 3 and then adds 7.\nStep 2 — the '+7' is an added constant, so it changes neither the standard deviation nor the variance.\nStep 3 — the 'x3' multiplies the SD by |3| = 3. Variance is the SQUARE of the SD, so the variance is multiplied by 3^2 = 9.\nStep 4 — new variance = 8 x 9 = 72.\nCheck directly: B = {13, 19, 25, 31, 37}, mean = 125/5 = 25. Squared deviations: 144, 36, 0, 36, 144, summing to 360. Variance = 360/5 = 72. Correct.\nAnswer: 72.",
+      "trap": "Multiplying the variance by 3 instead of by 3^2 and answering 24 - the |k| rule is stated for the standard deviation, and variance, being SD squared, picks up k^2. The second error is letting the +7 in: answers like 8 x 9 + 7 = 79 or (3 x 8) + 7 = 31 both come from applying a shift to a spread.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "variance",
+        "scaling",
+        "linear-transformation"
+      ]
+    },
+    {
+      "id": "STA-RSD-042",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Data set J and Data set K each consist of exactly 4 positive integers. Data set J has range 6 and Data set K has range 10. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. The greatest value in K is greater than the greatest value in J.",
+        "B. The least value in K is less than the least value in J.",
+        "C. The standard deviation of K is greater than the standard deviation of J.",
+        "D. At least one value in K is different from every value in J.",
+        "E. The mean of K could equal the mean of J."
+      ],
+      "answer": [
+        "C",
+        "D",
+        "E"
+      ],
+      "explanation": "A - range says how wide a set is, not where it sits. Take J = {100, 100, 106, 106} (range 6) and K = {1, 1, 11, 11} (range 10). K's greatest value 11 is far below J's 106. FALSE.\nB - the same counterexample reversed: J = {1, 1, 7, 7} and K = {50, 50, 60, 60}. K's least value 50 exceeds J's 1. FALSE.\nC - true here, and it needs a bound at each end. The LARGEST possible SD for 4 values with range 6 comes from pushing everything to the two ends, {a, a, a + 6, a + 6}: mean a + 3, squared deviations 9, 9, 9, 9, variance 9, SD = 3. The SMALLEST possible SD for 4 values with range 10 comes from pulling the middle two to the centre, {a, a + 5, a + 5, a + 10}: mean a + 5, squared deviations 25, 0, 0, 25, variance 50/4 = 12.5, SD = 3.54. Since the best J can ever manage (3) is below the worst K can ever manage (3.54), SD(K) > SD(J) always. TRUE.\nD - suppose every value of K also appeared in J. Then K's values would all lie between J's minimum and maximum, forcing range(K) <= range(J) = 6. But range(K) = 10. Contradiction, so at least one value of K lies outside J's span. TRUE.\nE - range does not constrain the mean, so equality is possible: J = {1, 1, 7, 7} has mean 4 and K = {1, 2, 2, 11} has range 10 and mean 4. The statement claims only that this CAN happen, and it can. TRUE.\nAnswer: C, D, E.",
+      "trap": "Picking A or B by reading a bigger range as bigger numbers - range fixes the width of a set, never its position on the number line. C is the option worth pausing over: a bigger range does NOT guarantee a bigger SD in general (a wide set with most values parked on its mean can be tighter than a narrow set with values at both ends), and it holds here only because 4 values and the specific ranges 6 and 10 leave no overlap between the two possible SD windows.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "range",
+        "standard-deviation",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-RSD-043",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A data set has n values, a mean of m, and a standard deviation of s, where n > 1 and s > 0. One additional value, equal to m, is added to the data set. What happens to the standard deviation?",
+      "options": [
+        "A. It increases.",
+        "B. It decreases.",
+        "C. It stays the same.",
+        "D. It becomes 0.",
+        "E. It increases if n is small and decreases if n is large."
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — the mean does not move. New mean = (n x m + m)/(n + 1) = m(n + 1)/(n + 1) = m.\nStep 2 — the numerator of the variance does not move either. Variance is (sum of squared deviations)/n, so for the original set the sum of squared deviations is n x s^2. The added value equals the mean, so its deviation is 0 and it contributes 0 to that sum. The sum is still n x s^2.\nStep 3 — the denominator DOES move: there are now n + 1 values.\nNew variance = n x s^2/(n + 1).\nStep 4 — since n/(n + 1) < 1 for every n > 0, the new variance is strictly less than s^2, so the new SD is strictly less than s. The standard deviation decreases.\nCheck with numbers: {1, 2, 3} has mean 2 and variance (1 + 0 + 1)/3 = 0.667, SD = 0.816. Add the mean, 2: {1, 2, 3, 2} has mean 2 and variance (1 + 0 + 1 + 0)/4 = 0.5, SD = 0.707. Lower. Correct.\nAnswer: B.",
+      "trap": "Choice A is the reflex that adding any data point must widen the spread; here the added point sits exactly at the mean, contributes 0 to the sum of squared deviations, and only enlarges the divisor, so the spread can only shrink. Choice C is chosen on the grounds that a value sitting exactly at the mean 'adds nothing'. It adds nothing to the TOP of the variance fraction but it still adds 1 to the BOTTOM, so the average squared deviation is spread over one more value and must fall. Choice D comes from confusing the new value's own deviation with the whole set's: that ONE value has deviation 0, but the other n values keep their deviations, so the sum of squared deviations stays at n x s^2 and the SD stays positive - it would reach 0 only if every value equalled m. Choice E is the last bait: the factor n/(n + 1) is less than 1 for every n, so the direction never depends on the size of n - only the size of the effect does.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "standard-deviation",
+        "add-value",
+        "counterintuitive"
+      ]
+    },
+    {
+      "id": "STA-RSD-044",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "Set A = {k, k + 3, k + 6, k + 9, k + 12} and Set B = {m, m + 1, m + 2, m + 3, m + 4}, where k and m are integers. What is the variance of Set A divided by the variance of Set B? Enter your answer as a number.",
+      "options": null,
+      "answer": "9",
+      "explanation": "Step 1 — Set B first, since it is the simpler pattern. Mean = m + 2, deviations -2, -1, 0, 1, 2, squared deviations 4, 1, 0, 1, 4 summing to 10. Variance(B) = 10/5 = 2. The m cancels, so this holds for every m.\nStep 2 — Set A. Mean = k + (0 + 3 + 6 + 9 + 12)/5 = k + 6, deviations -6, -3, 0, 3, 6, squared deviations 36, 9, 0, 9, 36 summing to 90. Variance(A) = 90/5 = 18. The k cancels here too.\nStep 3 — the ratio: 18/2 = 9.\nThe one-line route: Set A is Set B with each value multiplied by 3 and then shifted (the gaps are 3 instead of 1). Multiplying by 3 multiplies the SD by 3 and therefore the variance by 3^2 = 9; the shift does nothing. So the ratio is 9 without computing either variance.\nAnswer: 9.",
+      "trap": "Answering 3 by scaling the variance with the gap ratio instead of its square - the gaps in A are 3 times the gaps in B, so the SDs are in ratio 3 and the variances in ratio 9. Substituting particular values such as k = m = 1 also works but wastes time, and it invites the further error of thinking the answer depends on the choice.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "variance",
+        "scaling",
+        "algebraic-set"
+      ]
+    },
+    {
+      "id": "STA-RSD-045",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "The data set {1, 3, 5, 7, 9} has mean 5, range 8, and variance 8. Which of the following statements about the data set {2, 6, 10, 14, 18} are true? Select all that apply.",
+      "options": [
+        "A. The mean is 10.",
+        "B. The range is 8.",
+        "C. The standard deviation is 2 x sqrt(8).",
+        "D. The variance is 16.",
+        "E. The standard deviation is 4 x sqrt(8)."
+      ],
+      "answer": [
+        "A",
+        "C"
+      ],
+      "explanation": "First identify the transformation: {2, 6, 10, 14, 18} is {1, 3, 5, 7, 9} with every value multiplied by 2. So mean, range and SD all scale by |2| = 2, and variance scales by 2^2 = 4.\nA - new mean = 2 x 5 = 10. TRUE.\nB - new range = 2 x 8 = 16, not 8. Confirm directly: 18 - 2 = 16. FALSE.\nC - the original SD is sqrt(8), so the new SD = 2 x sqrt(8) = 5.66. TRUE.\nD - new variance = 4 x 8 = 32, not 16. FALSE.\nE - 4 x sqrt(8) = 11.31 applies the VARIANCE multiplier k^2 = 4 to the standard deviation. The SD takes the multiplier |k| = 2, giving 2 x sqrt(8) = 5.66. FALSE.\nCheck by direct computation: {2, 6, 10, 14, 18} has mean 10, squared deviations 64, 16, 0, 16, 64 summing to 160, variance = 160/5 = 32, SD = sqrt(32) = 5.66, which equals 2 x sqrt(8). Correct.\nAnswer: A, C.",
+      "trap": "B is the 'multiplying leaves the range alone' error - it is ADDING that leaves the range and SD untouched; multiplying scales both. D is the 'variance scales by k' error: 2 x 8 = 16 instead of 2^2 x 8 = 32. E is the mirror-image slip: applying the variance multiplier 4 to the SD to get 4 x sqrt(8) = 11.31, when the SD takes only |k| = 2. Exactly one of the two scaling factors belongs to each statistic.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "scaling",
+        "variance",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-RSD-046",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "Set A consists of n integers, where n > 1, and has mean m and standard deviation s, where s > 0. Set B consists of the n integers of Set A together with one additional value equal to m + s.\nColumn A: Standard deviation of Set B\nColumn B: s",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "The added value sits exactly one standard deviation above the mean, which feels like a 'typical' member - but a typical member still drags the SD down, and here is why.\nStep 1 — the sum of squared deviations for Set A is n x s^2, by definition of the population variance.\nStep 2 — general fact for appending one value at distance d from the old mean. Adding it moves the mean by d/(n + 1), and the new sum of squared deviations works out to\nn x s^2 + n x d^2/(n + 1).\nStep 3 — Set B has n + 1 values, so\nvariance(B) = [n x s^2 + n x d^2/(n + 1)]/(n + 1).\nStep 4 — put in d = s, the distance specified in the stem:\nvariance(B) = [n x s^2 + n x s^2/(n + 1)]/(n + 1) = n x s^2 x (n + 2)/(n + 1)^2.\nStep 5 — compare the multiplier with 1:\nn(n + 2)/(n + 1)^2 = (n^2 + 2n)/(n^2 + 2n + 1), which is less than 1 for every n.\nSo variance(B) < s^2 and therefore SD(B) < s, no matter what n is and no matter what the integers are. Column B is greater.\nCheck with a concrete set: A = {1, 2, 3} has m = 2 and s = 0.8165, so the added value is 2.8165. B = {1, 2, 3, 2.8165} has mean 2.2041 and squared deviations 1.4499, 0.0417, 0.6335, 0.3750, summing to 2.5001. Variance(B) = 0.6250 < s^2 = 0.6667, and SD(B) = 0.7906 < 0.8165. Correct.\nThe short reason: appending a value at distance d LOWERS the variance whenever d^2 < s^2(n + 1)/n. Since d = s here, that condition reads s^2 < s^2(n + 1)/n, which is always true.\nAnswer: B.",
+      "trap": "Keying D on the grounds that the actual integers and the value of n are unknown - they are, but the comparison does not depend on them, because the multiplier n(n + 2)/(n + 1)^2 is below 1 for every n. Keying C is the other trap: 'one SD from the mean' is exactly the average size of a deviation, so the new value looks like it should leave the spread untouched. It cannot, because the variance averages SQUARED deviations, and the break-even distance is s x sqrt((n + 1)/n), which is strictly greater than s.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "standard-deviation",
+        "add-value",
+        "qc"
+      ]
+    },
+    {
+      "id": "STA-RSD-047",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "A data set of 4 values has a mean of 10 and a variance of 20. Two of the values are 4 and 8. What is the greatest of the four values? Enter your answer as a number.",
+      "options": null,
+      "answer": "16",
+      "explanation": "Let the two unknown values be p and q. Two totals are fixed: the sum of the values and the sum of the squared deviations.\nStep 1 — the sum. Mean 10 over 4 values gives a total of 4 x 10 = 40. The known values contribute 4 + 8 = 12, so p + q = 40 - 12 = 28.\nStep 2 — the sum of squared deviations. Variance 20 over 4 values gives 4 x 20 = 80. The known values contribute (4 - 10)^2 + (8 - 10)^2 = 36 + 4 = 40, so (p - 10)^2 + (q - 10)^2 = 80 - 40 = 40.\nStep 3 — switch to deviations. Let u = p - 10 and v = q - 10. Then\nu + v = 28 - 20 = 8 and u^2 + v^2 = 40.\nStep 4 — use the identity (u + v)^2 = u^2 + v^2 + 2uv:\n64 = 40 + 2uv, so uv = 12.\nStep 5 — u and v are the roots of t^2 - 8t + 12 = 0, which factors as (t - 2)(t - 6) = 0, giving t = 2 and t = 6.\nStep 6 — convert back: p = 12 and q = 16.\nThe four values are 4, 8, 12, 16, and the greatest is 16.\nCheck: mean = 40/4 = 10; squared deviations 36, 4, 4, 36 sum to 80; variance = 80/4 = 20. Correct.\nAnswer: 16.",
+      "trap": "Using only the mean, splitting the missing 28 evenly as 14 and 14, and answering 14 - that gives squared deviations 36, 4, 16, 16 summing to 72, so the variance would be 18, not 20. One equation cannot pin down two unknowns; the variance condition is not decoration here, it is the second equation. The other slip is forgetting that the variance divides by n, and using 20 rather than 4 x 20 = 80 as the total squared deviation.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "variance",
+        "missing-value",
+        "sum-of-squares"
+      ]
+    },
+    {
+      "id": "STA-RSD-048",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "Data set D has n values, mean m, and standard deviation s, where s > 0. Data set E is formed by replacing every value x of D with (x - m)/s. Which of the following must be true of Data set E? Select all that apply.",
+      "options": [
+        "A. The mean of E is 0.",
+        "B. The standard deviation of E is 1.",
+        "C. The range of E equals the range of D divided by s.",
+        "D. The variance of E is s.",
+        "E. Every value of E lies between -1 and 1."
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "The transformation is linear: subtract the constant m, then divide by the constant s. Track the mean and the spread separately.\nA - subtracting m from every value moves the mean from m to 0; dividing every value by s multiplies the mean by 1/s, and 0/s = 0. Mean of E = 0. TRUE.\nB - subtracting m is adding a constant, so the SD is still s. Dividing by s multiplies the SD by |1/s| = 1/s, giving s x (1/s) = 1. SD of E = 1. TRUE.\nC - range behaves the same way: subtracting m leaves it alone, dividing by s scales it by 1/s. Range of E = range of D divided by s. TRUE.\nD - variance of E = (SD of E)^2 = 1^2 = 1, not s. This is only s in the special case s = 1, so it is not something that MUST be true. FALSE.\nE - the new value is the number of standard deviations a value sits from the mean, and nothing stops a value from sitting far out. If D = {2, 5, 9, 14} then m = 7.5 and s = 4.5, and the value 14 becomes (14 - 7.5)/4.5 = 1.44, already outside [-1, 1]. FALSE.\nAnswer: A, B, C.",
+      "trap": "Selecting D by carrying the s across from the transformation, when in fact the s has been divided out - once the SD is 1 the variance is 1 too. Selecting E confuses standardisation with rescaling into the interval [-1, 1]; standardisation fixes the mean and the SD, not the extremes, and a value 3 SDs out simply becomes 3.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "standardization",
+        "linear-transformation",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-RSD-049",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "Data sets X and Y each consist of 5 positive integers, and their standard deviations are equal: SD(X) = SD(Y) = s. Data set Z consists of all 10 values from X and Y together. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. The mean of Z equals the average of the mean of X and the mean of Y.",
+        "B. The standard deviation of Z equals s.",
+        "C. The range of Z equals the range of X plus the range of Y.",
+        "D. If the mean of X equals the mean of Y, then the standard deviation of Z is at least s.",
+        "E. The range of Z is at least as large as the range of X."
+      ],
+      "answer": [
+        "A",
+        "D",
+        "E"
+      ],
+      "explanation": "A - mean(Z) = (sum of X + sum of Y)/10 = (5 x mean(X) + 5 x mean(Y))/10 = (mean(X) + mean(Y))/2. The simple average works here precisely because the two sets are the SAME size. TRUE.\nB - false whenever the two sets are centred at different places. Take X = {1, 2, 3, 4, 5} and Y = {11, 12, 13, 14, 15}, both with SD sqrt(2) = 1.41. Then Z = {1, ..., 5, 11, ..., 15} has mean 8 and SD 5.20, far above 1.41. The 10-unit gap between the group means is itself a source of spread. FALSE.\nC - ranges do not add. With X = {1, 2, 3, 4, 5} (range 4) and Y = {11, 12, 13, 14, 15} (range 4), Z spans 15 - 1 = 14, not 4 + 4 = 8. FALSE.\nD - suppose mean(X) = mean(Y) = m. Then mean(Z) = m too, and every deviation in Z is measured from the same m it was measured from inside its own set. Sum of squared deviations for Z = 5s^2 + 5s^2 = 10s^2, so variance(Z) = 10s^2/10 = s^2 and SD(Z) = s exactly. 'At least s' includes equality, so the statement holds. TRUE.\nE - Z contains every value of X plus five more, so max(Z) >= max(X) and min(Z) <= min(X). Subtracting, range(Z) >= range(X). TRUE.\nAnswer: A, D, E.",
+      "trap": "Selecting B by assuming that merging two equally spread sets preserves that spread. It does only when the two means coincide (that is exactly statement D); when the means differ, the distance between the group centres adds variance on top of the within-group variance. C is the mirror-image error on range - combining sets can leave a gap between them, so the combined range can far exceed the sum of the two.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "standard-deviation",
+        "combining-sets",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "STA-RSD-050",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A data set of 10 values has a mean of 50 and a standard deviation of 10. A second data set of 10 values has a mean of 70 and a standard deviation of 10. The two data sets are combined into a single data set of 20 values. What is the standard deviation of the combined data set?",
+      "options": [
+        "A. 10",
+        "B. 10 x sqrt(2)",
+        "C. 10 x sqrt(5)",
+        "D. 20",
+        "E. Cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — the combined mean. The two groups are the same size, so it is the simple average: (10 x 50 + 10 x 70)/20 = 1200/20 = 60.\nStep 2 — the idea. Each value's deviation from 60 has two parts: how far it sits from its OWN group mean, and how far its group mean sits from 60. Squared deviations add up as\nsum of squared deviations = (within-group part) + (between-group part).\nStep 3 — the within-group part. Each group has 10 values and SD 10, so each contributes 10 x 10^2 = 1000. Together: 2000.\nStep 4 — the between-group part. Group 1's mean is 50 - 60 = -10 from the combined mean and group 2's is 70 - 60 = +10. Each of the 10 values in a group carries that group's offset, so each group contributes 10 x 10^2 = 1000. Together: 2000.\nStep 5 — total sum of squared deviations = 2000 + 2000 = 4000, over 20 values.\nVariance = 4000/20 = 200, so SD = sqrt(200) = 10 x sqrt(2) = 14.14.\nCheck with a concrete pair: take five 40s and five 60s (mean 50, SD 10) and five 60s and five 80s (mean 70, SD 10). Combined, the 20 values have mean 60 and squared deviations 400 (five times), 0 (five times), 0 (five times), 400 (five times) - total 4000, variance 200, SD 14.14. Correct.\nAnswer: 10 x sqrt(2).",
+      "trap": "Choice A, 10, is the assumption that two groups with the same SD merge into a set with that SD - it ignores the 20-unit gap between the group centres, which is itself spread. Choice C, 10 x sqrt(5), comes from measuring each group's offset from the combined mean as the full 20 instead of 10, giving 100 + 400 = 500. Choice D, 20, reads the gap between the means as the answer. Choice E gives up too early: because both groups are the same size and both SDs are given, the combined variance is fully determined even though the individual values are not.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "standard-deviation",
+        "combining-sets",
+        "between-group-spread"
+      ]
+    }
+  ]
+}

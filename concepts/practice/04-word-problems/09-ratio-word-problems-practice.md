@@ -1,0 +1,753 @@
+# Ratio Word Problems — Practice Set
+
+**Bank code:** `WRD-RAT` · **Section:** Word Problems · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+
+**Lecture capsule:** [09-ratio-word-problems.md](../../04-word-problems/09-ratio-word-problems.md)
+
+> Write every quantity as a multiple of k, then ask what stayed the same - the invariant is what turns a confusing story into a single equation.
+
+Every question below is live in the question bank under the ID shown — the sheet and the portal are the same questions. Attempt a level with the clock running, then check Part C.
+
+---
+
+## Part A — Questions
+
+> **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
+> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+
+
+### Level 1 · Easy — 5 questions · ~4 min
+
+*warm-up — these must be automatic*
+
+**Q1** · `WRD-RAT-003` · Numeric Entry · 45s
+
+$120 is divided between Alice and Bob in the ratio 3:5. How many dollars does Alice receive? Enter your answer as a number.
+
+*Numeric entry — write the number.*
+
+**Q2** · `WRD-RAT-006` · MCQ · 40s
+
+A recipe calls for flour and sugar in the ratio 5:2. A baker uses 20 cups of flour. How many cups of sugar are needed?
+
+**(A)** 4  
+**(B)** 8  
+**(C)** 10  
+**(D)** 28  
+**(E)** 50
+
+**Q3** · `WRD-RAT-007` · Numeric Entry · 50s
+
+In a class the ratio of students who passed a test to students who failed it is 7:3. If 21 students passed, how many students are in the class? Enter your answer as a number.
+
+*Numeric entry — write the number.*
+
+**Q4** · `WRD-RAT-009` · QC · 45s
+
+A mixture consists only of water and juice, and the ratio of water to juice is 2:3.
+
+> **Column A:**  The fraction of the mixture that is water
+> **Column B:**  2/5
+
+**Q5** · `WRD-RAT-010` · MCQ · 55s
+
+6 workers can build a wall in 12 days. Working at the same rate, how many days would 9 workers take to build the same wall?
+
+**(A)** 4  
+**(B)** 8  
+**(C)** 9  
+**(D)** 12  
+**(E)** 18
+
+---
+
+### Level 2 · Medium — 8 questions · ~10 min
+
+*two or three steps, one planted trap each*
+
+**Q6** · `WRD-RAT-019` · MCQ · 85s
+
+The ratio of men to women in an office is 5:4. If 3 men leave and 3 women are hired, the ratio becomes 1:1. How many people worked in the office originally?
+
+**(A)** 6  
+**(B)** 24  
+**(C)** 27  
+**(D)** 30  
+**(E)** 54
+
+**Q7** · `WRD-RAT-021` · Select all that apply · 80s
+
+$200 is divided among A, B and C in the ratio 2:3:5. Which of the following amounts are among the three shares? Select all that apply.
+
+**(A)** $20  
+**(B)** $40  
+**(C)** $60  
+**(D)** $80  
+**(E)** $100
+
+**Q8** · `WRD-RAT-022` · MCQ · 80s
+
+8 machines working together produce 400 units in 5 hours. Working at the same rate, how many units can 12 machines produce in 3 hours?
+
+**(A)** 240  
+**(B)** 300  
+**(C)** 360  
+**(D)** 480  
+**(E)** 600
+
+**Q9** · `WRD-RAT-023` · Numeric Entry · 85s
+
+A and B are positive numbers with A:B = 3:8. When A alone is increased by 9, the ratio A:B becomes 3:4. What is the value of B? Enter your answer as a number.
+
+*Numeric entry — write the number.*
+
+**Q10** · `WRD-RAT-028` · MCQ · 70s
+
+A shade of paint is made by mixing red and white paint in the ratio 3:1 by volume. A painter has exactly 12 liters of red paint and an unlimited supply of white paint. What is the greatest number of liters of the shade he can mix?
+
+**(A)** 4  
+**(B)** 12  
+**(C)** 16  
+**(D)** 36  
+**(E)** 48
+
+**Q11** · `WRD-RAT-030` · MCQ · 75s
+
+Three partners invest in a business in the ratio 5:3:2, and the total investment is $150,000. Profits are shared in the same ratio as the investments. If the total profit for a year is $60,000, how much of that profit does the partner who invested least receive?
+
+**(A)** $6,000  
+**(B)** $12,000  
+**(C)** $18,000  
+**(D)** $20,000  
+**(E)** $30,000
+
+**Q12** · `WRD-RAT-031` · Select all that apply · 80s
+
+In a parking lot the ratio of cars to trucks is 5:8, and every vehicle in the lot is either a car or a truck. Which of the following could be the total number of vehicles in the lot? Select all that apply.
+
+**(A)** 26  
+**(B)** 40  
+**(C)** 52  
+**(D)** 65  
+**(E)** 80
+
+**Q13** · `WRD-RAT-033` · QC · 75s
+
+Solution P consists only of salt and water, in which the ratio of salt to water is 1:9. Solution Q consists only of salt and water, in which the ratio of salt to water is 2:13.
+
+> **Column A:**  The fraction of solution P that is salt
+> **Column B:**  The fraction of solution Q that is salt
+
+---
+
+### Level 3 · Hard — 12 questions · ~20 min
+
+*where 162+ is won or lost*
+
+**Q14** · `WRD-RAT-034` · MCQ · 105s
+
+A box contains only red and blue balls, in the ratio 3:5. After 6 red balls are added and nothing else changes, the ratio of red to blue is 3:4. How many more red balls must then be added, with no other change, to make the ratio of red to blue 1:1?
+
+**(A)** 5  
+**(B)** 8  
+**(C)** 10  
+**(D)** 16  
+**(E)** 40
+
+**Q15** · `WRD-RAT-035` · QC · 100s
+
+x is a positive integer.
+
+> **Column A:**  (x + 2)/(x + 5)
+> **Column B:**  (x + 5)/(x + 9)
+
+**Q16** · `WRD-RAT-036` · Numeric Entry · 105s
+
+A tank holds a mixture of liquids A, B and C in the ratio 3:4:5. Then 8 liters of A are removed and 8 liters of C are added, after which the ratio of A to B to C is 1:4:7. What was the original total volume of the mixture, in liters? Enter your answer as a number.
+
+*Numeric entry — write the number.*
+
+**Q17** · `WRD-RAT-037` · MCQ · 100s
+
+At a factory the ratio of managers to supervisors is 2:3, the ratio of supervisors to technicians is 4:5, and the ratio of technicians to laborers is 3:7. If there are 210 laborers, how many managers are there?
+
+**(A)** 48  
+**(B)** 60  
+**(C)** 72  
+**(D)** 90  
+**(E)** 108
+
+**Q18** · `WRD-RAT-038` · QC · 100s
+
+A box contains red, green and yellow balls in the ratio 2:3:4. Then 9 green balls are added to the box and no other change is made.
+
+> **Column A:**  The ratio of red balls to green balls after the addition
+> **Column B:**  The ratio of red balls to yellow balls before the addition
+
+**Q19** · `WRD-RAT-039` · Select all that apply · 95s
+
+In a club the ratio of men to women is 5:3. Then a positive number of women join the club, and no one else joins or leaves. Which of the following MUST be true? Select all that apply.
+
+**(A)** The number of men in the club did not change  
+**(B)** The ratio of men to women is now less than 5:3  
+**(C)** There are now more women in the club than men  
+**(D)** Men now make up a smaller fraction of the club than before  
+**(E)** The number of women in the club more than doubled
+
+**Q20** · `WRD-RAT-041` · MCQ · 95s
+
+In a school the ratio of teachers to students is 1:18, and among the students the ratio of male to female is 5:4. Every person in the school is either a teacher or a student. What fraction of the total school population is female students?
+
+**(A)** 1/19  
+**(B)** 4/9  
+**(C)** 8/19  
+**(D)** 8/27  
+**(E)** 10/19
+
+**Q21** · `WRD-RAT-042` · QC · 90s
+
+P, Q and R are positive numbers with P:Q = 3:4 and Q:R = 5:6.
+
+> **Column A:**  P/R
+> **Column B:**  5/8
+
+**Q22** · `WRD-RAT-044` · Numeric Entry · 105s
+
+A sum of money is divided among A, B and C. A's share is to B's share as 3 is to 4, and B's share is to C's share as 6 is to 5. If B receives $180 more than C, what is the total sum of money, in dollars? Enter your answer as a number.
+
+*Numeric entry — write the number.*
+
+**Q23** · `WRD-RAT-045` · Select all that apply · 100s
+
+A jar contains 3n red marbles and 5n blue marbles, where n is an integer greater than 1. Which of the following changes would make the ratio of red marbles to blue marbles strictly greater than 3:5? Select all that apply.
+
+**(A)** Add 3 red marbles and 5 blue marbles  
+**(B)** Add 6 red marbles and no blue marbles  
+**(C)** Remove 3 red marbles and 3 blue marbles  
+**(D)** Double the number of marbles of each color  
+**(E)** Add 1 red marble and remove 1 blue marble
+
+**Q24** · `WRD-RAT-051` · Numeric Entry · 110s
+
+The monthly incomes of Ravi and Sunil are in the ratio 5:4, and their monthly expenditures are in the ratio 7:5. Each of them saves $900 per month, where savings equal income minus expenditure. What is Sunil's monthly expenditure, in dollars? Enter your answer as a number.
+
+*Numeric entry — write the number.*
+
+**Q25** · `WRD-RAT-052` · MCQ · 110s
+
+A cash drawer contains only $1 bills, $5 bills and $10 bills, and the numbers of bills of the three kinds are in the ratio 4:3:2. The total value of the bills is $1,170. Some of the $5 bills are then exchanged for $10 bills of the same total value, after which the drawer contains equal numbers of $5 bills and $10 bills. How many $10 bills does the drawer then contain?
+
+**(A)** 60  
+**(B)** 70  
+**(C)** 75  
+**(D)** 90  
+**(E)** 130
+
+---
+
+### Level 4 · Extreme — 5 questions · ~10 min
+
+*165+ — expect to need the insight, not the grind*
+
+**Q26** · `WRD-RAT-046` · MCQ · 120s
+
+Working alone, tap A fills an empty tank in 6 hours, tap B fills it in 8 hours and tap C fills it in 12 hours. All three taps are opened at the same time into the empty tank, tap C is closed after a while, and the tank is exactly full 3 hours after the taps were opened. Taps A and B ran the whole time. For how many hours was tap C open?
+
+**(A)** 0.5  
+**(B)** 1  
+**(C)** 1.5  
+**(D)** 2  
+**(E)** 3
+
+**Q27** · `WRD-RAT-047` · Numeric Entry · 125s
+
+The present ages of A, B, C and D are in the ratio 1:2:3:4. Five years from now their ages will be in the ratio 2:3:4:5. How many years from now will their ages be in the ratio 3:4:5:6? Enter your answer as a number.
+
+*Numeric entry — write the number.*
+
+**Q28** · `WRD-RAT-048` · MCQ · 130s
+
+Liquids X and Y are combined in the ratio 3:2 by volume. The resulting mixture is then combined with liquid Z in the ratio 4:1 by volume, mixture to Z. Finally, 60 liters of liquid Y are added to that blend. If liquid Z now makes up exactly 1/6 of the blend by volume, how many liters of liquid X does the blend contain?
+
+**(A)** 60  
+**(B)** 96  
+**(C)** 144  
+**(D)** 156  
+**(E)** 180
+
+**Q29** · `WRD-RAT-049` · QC · 125s
+
+In Company A the ratio of managers to workers is 1:9. In Company B the ratio of managers to workers is 1:11. Every employee of each company is either a manager or a worker. The two companies merge into a single company, and no one joins or leaves.
+
+> **Column A:**  (number of managers)/(number of workers) in the merged company
+> **Column B:**  1/10
+
+**Q30** · `WRD-RAT-050` · Select all that apply · 125s
+
+The positive quantities a, b, c and d satisfy a:b = 3:4, b:c = 6:5 and c:d = 2:3. Which of the following must be true? Select all that apply.
+
+**(A)** a:d = 3:5  
+**(B)** a = d  
+**(C)** a:c = 3:5  
+**(D)** b is greater than c  
+**(E)** d is the greatest of the four quantities
+
+---
+
+## Part B — Answer Key
+
+| Q | ID | Level | Type | Answer |
+|---|---|---|---|---|
+| 1 | `WRD-RAT-003` | easy | Numeric Entry | **45** |
+| 2 | `WRD-RAT-006` | easy | MCQ | **B** |
+| 3 | `WRD-RAT-007` | easy | Numeric Entry | **30** |
+| 4 | `WRD-RAT-009` | easy | QC | **C** |
+| 5 | `WRD-RAT-010` | easy | MCQ | **B** |
+| 6 | `WRD-RAT-019` | medium | MCQ | **E** |
+| 7 | `WRD-RAT-021` | medium | Select all that apply | **B, C, E** |
+| 8 | `WRD-RAT-022` | medium | MCQ | **C** |
+| 9 | `WRD-RAT-023` | medium | Numeric Entry | **24** |
+| 10 | `WRD-RAT-028` | medium | MCQ | **C** |
+| 11 | `WRD-RAT-030` | medium | MCQ | **B** |
+| 12 | `WRD-RAT-031` | medium | Select all that apply | **A, C, D** |
+| 13 | `WRD-RAT-033` | medium | QC | **B** |
+| 14 | `WRD-RAT-034` | hard | MCQ | **C** |
+| 15 | `WRD-RAT-035` | hard | QC | **D** |
+| 16 | `WRD-RAT-036` | hard | Numeric Entry | **48** |
+| 17 | `WRD-RAT-037` | hard | MCQ | **A** |
+| 18 | `WRD-RAT-038` | hard | QC | **D** |
+| 19 | `WRD-RAT-039` | hard | Select all that apply | **A, B, D** |
+| 20 | `WRD-RAT-041` | hard | MCQ | **C** |
+| 21 | `WRD-RAT-042` | hard | QC | **C** |
+| 22 | `WRD-RAT-044` | hard | Numeric Entry | **2790** |
+| 23 | `WRD-RAT-045` | hard | Select all that apply | **B, E** |
+| 24 | `WRD-RAT-051` | hard | Numeric Entry | **1500** |
+| 25 | `WRD-RAT-052` | hard | MCQ | **B** |
+| 26 | `WRD-RAT-046` | extreme hard | MCQ | **C** |
+| 27 | `WRD-RAT-047` | extreme hard | Numeric Entry | **10** |
+| 28 | `WRD-RAT-048` | extreme hard | MCQ | **C** |
+| 29 | `WRD-RAT-049` | extreme hard | QC | **D** |
+| 30 | `WRD-RAT-050` | extreme hard | Select all that apply | **A, D, E** |
+
+---
+
+## Part C — Worked Solutions
+
+### Q1 · `WRD-RAT-003` — Answer: 45
+
+Step 1 — name k. Alice gets 3k and Bob gets 5k.
+Step 2 — the invariant here is the total: 3k + 5k = 8k = 120, so k = 15. One ratio part is worth $15.
+Step 3 — answer what was asked. Alice = 3k = 3 x 15 = $45.
+Check: Bob = 5 x 15 = $75, and 45 + 75 = $120. Also 45:75 = 3:5. Correct.
+Answer: 45.
+
+**Trap.** Dividing 120 by 3 to get 40, or by 5 to get 24. The denominator in a share-a-total problem is always the SUM of the parts, 3 + 5 = 8, never one of the parts on its own.
+
+### Q2 · `WRD-RAT-006` — Answer: B
+
+Step 1 — name k. Flour = 5k, sugar = 2k.
+Step 2 — use the quantity you were given. 5k = 20, so k = 4. One ratio part is 4 cups.
+Step 3 — sugar = 2k = 2 x 4 = 8 cups.
+Check: 20:8 = 5:2. Correct.
+Answer: 8 cups.
+
+**Trap.** Choosing 50, which is 20 x 5/2 - the ratio applied upside down. Sugar is the SMALLER part of 5:2, so the answer must be less than 20 cups, and 50 fails that one-second sanity check. Choice A (4) is the value of one part k, and D (28) is the total mixture, not the sugar.
+
+### Q3 · `WRD-RAT-007` — Answer: 30
+
+Step 1 — name k. Passed = 7k, failed = 3k.
+Step 2 — 7k = 21, so k = 3.
+Step 3 — the question asks for the whole class, which is all 10 parts: total = 10k = 10 x 3 = 30.
+Check: 21 passed, 9 failed, 21:9 = 7:3, and 21 + 9 = 30. Correct.
+Answer: 30.
+
+**Trap.** Solving for k = 3 and stopping, or reporting the 9 who failed. Circle what the question actually asks before you start: here it is the total, which is 10k and not either part.
+
+### Q4 · `WRD-RAT-009` — Answer: C
+
+Step 1 — name k. Water = 2k and juice = 3k. The mixture is ONLY these two liquids, so the whole is 2k + 3k = 5k.
+Step 2 — the fraction that is water = 2k/5k = 2/5. The k cancels, so the actual size of the mixture never matters.
+Column A = 2/5 = Column B.
+Answer: The two quantities are equal.
+
+**Trap.** Reading 2:3 as the fraction 2/3 and choosing A. That is part-to-PART; the question asks part-to-WHOLE, whose denominator is the sum of the parts, 2 + 3 = 5. A second error is choosing D because the mixture size is unknown - but k cancels, so the fraction is fixed. Note the word 'only': it is what guarantees the two parts add up to the whole, and without it the denominator could be larger than 5k.
+
+### Q5 · `WRD-RAT-010` — Answer: B
+
+Step 1 — find the invariant. The wall is a fixed job, so the total worker-days is constant.
+Step 2 — compute it: 6 x 12 = 72 worker-days.
+Step 3 — divide by the new number of workers: 72/9 = 8 days.
+Sanity check before you even compute: more workers must mean FEWER days, so the answer has to be below 12. Correct.
+Answer: 8 days.
+
+**Trap.** Setting up a direct proportion 6/12 = 9/x, which gives 18 - more workers taking more days, which is nonsense. Workers and days are inversely proportional: their PRODUCT is fixed, not their ratio. Choice C (9) comes from subtracting 3 days because 3 workers were added, and D (12) from dividing the 72 worker-days by the old crew size.
+
+### Q6 · `WRD-RAT-019` — Answer: E
+
+Step 1 — name k. Men = 5k, women = 4k.
+Step 2 — name the invariant. Three people leave and three arrive, so the TOTAL headcount 9k never changes. This is an exchange, not an addition.
+Step 3 — change only what the story changed: men become 5k - 3, women become 4k + 3.
+(5k - 3)/(4k + 3) = 1/1
+5k - 3 = 4k + 3
+k = 6
+Faster route: the gap between the groups is 5k - 4k = k. The swap takes 3 off the men and puts 3 onto the women, closing the gap by 6, so k = 6 immediately.
+Step 4 — the question asks for the original total: 9k = 9 x 6 = 54.
+Check: 30 men, 24 women. After the swap: 27 and 27, a 1:1 ratio, and the office still has 54 people. Correct.
+Answer: 54.
+
+**Trap.** Reporting 30 (the original number of men, choice D), 24 (the original number of women, choice B) or 27 (each group's size after the swap, choice C) instead of the original total. Choice C is also where half the story lands you: 5k - 3 = 4k or 5k = 4k + 3 each give k = 3 and a total of 27, because only one of the two changes was applied. Choice A (6) is k itself, the size of one ratio part, not a headcount.
+
+### Q7 · `WRD-RAT-021` — Answer: B, C, E
+
+Step 1 — name k. The shares are 2k, 3k and 5k.
+Step 2 — the total is the invariant: 2k + 3k + 5k = 10k = 200, so k = 20.
+Step 3 — the three shares are 2k = $40, 3k = $60 and 5k = $100.
+A - $20 is k, the value of ONE ratio part, not anybody's share. FALSE.
+B - $40 = 2k, A's share. TRUE.
+C - $60 = 3k, B's share. TRUE.
+D - $80 = 200 x 2/5, which uses the first and last ratio numbers as if the ratio were 2:5. FALSE.
+E - $100 = 5k, C's share. TRUE.
+Check: 40 + 60 + 100 = $200. Correct.
+Answer: B, C, E.
+
+**Trap.** Choice A is the value of one part and it is the most tempting wrong pick, because k is the number you just solved for. Choice D comes from dividing by 5 instead of by the sum of all three parts, 10 - with a three-part ratio the denominator is a + b + c, always.
+
+### Q8 · `WRD-RAT-022` — Answer: C
+
+Step 1 — find the invariant: the output per machine per hour never changes.
+Step 2 — compute it. 8 machines x 5 hours = 40 machine-hours produced 400 units, so 1 machine-hour = 400/40 = 10 units.
+Step 3 — the new job: 12 machines x 3 hours = 36 machine-hours.
+Step 4 — output = 36 x 10 = 360 units.
+One-line version: 400 x (12/8) x (3/5) = 400 x 1.5 x 0.6 = 360.
+Answer: 360.
+
+**Trap.** Scaling by only one of the two changes. Using the machines alone gives 400 x 12/8 = 600 (choice E); using the hours alone gives 400 x 3/5 = 240 (choice A). Both factors act at once, so both multipliers must be applied.
+
+### Q9 · `WRD-RAT-023` — Answer: 24
+
+Step 1 — name k. A = 3k, B = 8k.
+Step 2 — name the invariant. Only A changes, so B stays at 8k.
+Step 3 — write the new ratio and cross-multiply:
+(3k + 9)/(8k) = 3/4
+4(3k + 9) = 3(8k)
+12k + 36 = 24k
+12k = 36
+k = 3
+Step 4 — answer what was asked: B = 8k = 8 x 3 = 24.
+Check: A = 9, B = 24, and 9:24 = 3:8. After the increase A = 18, and 18:24 = 3:4. Correct.
+Answer: 24.
+
+**Trap.** Writing (3k + 9)/(8k + 9) = 3/4 - nothing was added to B. The other way to lose this one is to solve correctly for k = 3 and then report A = 9, or report k itself; the question asks for B.
+
+### Q10 · `WRD-RAT-028` — Answer: C
+
+Step 1 — name k. Red = 3k, white = 1k, so the mixture is 4k in total.
+Step 2 — red is the limiting ingredient, since white is unlimited. 3k = 12, so k = 4.
+Step 3 — the question asks for the mixture, which is all 4 parts: 4k = 4 x 4 = 16 liters.
+Check: 12 L red + 4 L white = 16 L, and 12:4 = 3:1. Correct.
+Answer: 16 liters.
+
+**Trap.** Answering 12 (the red he already has) or 4 (the white he must add) instead of the mixture, which is the sum. Choice D (36) comes from multiplying 12 by 3 - scaling by the wrong factor; red is 3/4 of the mixture, so the mixture is 12 x 4/3.
+
+### Q11 · `WRD-RAT-030` — Answer: B
+
+Step 1 — the profit is shared in the ratio 5:3:2, so name k: the shares are 5k, 3k and 2k.
+Step 2 — the total is the invariant: 10k = 60,000, so k = 6,000.
+Step 3 — the smallest investor holds 2 parts: 2k = 2 x 6,000 = $12,000.
+The $150,000 is not needed at all - once you know the profit ratio, the investment amounts are a distraction. (As a check, the investments are $75,000, $45,000 and $30,000, and 30,000/150,000 = 1/5 = 12,000/60,000. Consistent.)
+Answer: $12,000.
+
+**Trap.** Choice A ($6,000) is k, the value of one part, from forgetting that the smallest partner holds TWO parts. Choice E ($30,000) is the largest partner's share, and D ($20,000) comes from splitting $60,000 equally three ways instead of by the ratio.
+
+### Q12 · `WRD-RAT-031` — Answer: A, C, D
+
+Step 1 — name k. Cars = 5k, trucks = 8k, with k a positive integer because vehicles come in whole numbers.
+Step 2 — the total is 5k + 8k = 13k, so the total must be a multiple of 13.
+A - 26 = 13 x 2. TRUE (10 cars, 16 trucks).
+B - 40 is not a multiple of 13. FALSE.
+C - 52 = 13 x 4. TRUE (20 cars, 32 trucks).
+D - 65 = 13 x 5. TRUE (25 cars, 40 trucks).
+E - 80 is not a multiple of 13. FALSE.
+Answer: A, C, D.
+
+**Trap.** Testing whether the total is divisible by 5 or by 8 instead of by their sum. That reasoning accepts 40 (= 5 x 8) and 80, both of which are impossible: 40/13 and 80/13 are not integers. When a total is split in the ratio a:b, the total is always a multiple of a + b.
+
+### Q13 · `WRD-RAT-033` — Answer: B
+
+Concentration is salt divided by the WHOLE solution. Each solution is only salt and water, so each denominator is the sum of the two parts.
+Column A: 1/(1 + 9) = 1/10.
+Column B: 2/(2 + 13) = 2/15.
+Compare 1/10 and 2/15 with a common denominator of 30: 1/10 = 3/30 and 2/15 = 4/30.
+4/30 > 3/30, so Column B is greater.
+Answer: Column B is greater.
+
+**Trap.** Comparing 1/9 with 2/13 (part-to-part) instead of 1/10 with 2/15 (part-to-whole). Here it happens to give the same verdict, so the habit goes unpunished - but concentration always means salt over TOTAL. Choosing D because no volumes are given is also wrong: k cancels out of every concentration.
+
+### Q14 · `WRD-RAT-034` — Answer: C
+
+Step 1 — name k. Red = 3k, blue = 5k.
+Step 2 — name the invariant. Only red balls are ever added, so blue stays at 5k for the whole problem.
+Step 3 — write the first change and cross-multiply:
+(3k + 6)/(5k) = 3/4
+4(3k + 6) = 3(5k)
+12k + 24 = 15k
+3k = 24
+k = 8
+So the box started with 24 red and 40 blue, and after the 6 are added it holds 30 red and 40 blue.
+Step 4 — the second stage. A 1:1 ratio means red = blue, and blue is stuck at 40, so red must climb from 30 to 40: add 40 - 30 = 10.
+Faster: at 30:40 one ratio part is 10 balls, and red has to grow from 3 parts to 4 parts - exactly one part, 10 balls.
+Check: 24:40 = 3:5, then 30:40 = 3:4, then 40:40 = 1:1. Correct.
+Answer: 10.
+
+**Trap.** Measuring the last step from the ORIGINAL 24 reds gives 40 - 24 = 16 (choice D), but the 6 balls from the first stage are already in the box. Choice E (40) is the blue count - the target red TOTAL, not the number still to add; choice A (5) comes from assuming the box stays at 70 balls and splitting 70 evenly, 35 each; choice B (8) is k, the size of one part in the original 3:5 ratio.
+
+### Q15 · `WRD-RAT-035` — Answer: D
+
+Both denominators are positive because x > 0, so cross-multiplication is safe and preserves the direction of the comparison.
+Column A gives (x + 2)(x + 9) = x^2 + 11x + 18.
+Column B gives (x + 5)(x + 5) = x^2 + 10x + 25.
+Subtract: (x^2 + 11x + 18) - (x^2 + 10x + 25) = x - 7.
+The verdict is the sign of x - 7, and that is not fixed for positive integers x:
+x = 1: Column A = 3/6 = 0.500, Column B = 6/10 = 0.600, so B is greater.
+x = 7: Column A = 9/12 = 0.750, Column B = 12/16 = 0.750, so they are equal.
+x = 10: Column A = 12/15 = 0.800, Column B = 15/19 = 0.789, so A is greater.
+Three legal values give three different verdicts.
+Why the familiar rule does not settle it: Column B is NOT Column A with the same amount added to top and bottom - the top gains 3 and the bottom gains 4. Adding equal amounts to both parts of a fraction below 1 always raises it, but the extra 1 on the bottom pulls the other way, and which effect wins depends on how large x is.
+Answer: The relationship cannot be determined from the information given.
+
+**Trap.** Testing one small value - x = 1 gives 0.500 against 0.600 - and locking in choice B; the 'adding to the top and the bottom drags a fraction toward 1' rule points the same way and feels like confirmation. That rule needs the SAME amount added to both parts, and here it is +3 over +4, so from x = 8 onward Column A wins. Choice C is what testing x = 7 alone produces.
+
+### Q16 · `WRD-RAT-036` — Answer: 48
+
+Step 1 — name k. A = 3k, B = 4k, C = 5k, and the total is 12k.
+Step 2 — name the invariant. Exactly 8 liters left and exactly 8 liters came back, so the TOTAL never moved. It is 12k before and after. B never moved either.
+Step 3 — use the invariant. The new ratio 1:4:7 has 1 + 4 + 7 = 12 parts, and those 12 parts still add to 12k, so one new part is worth exactly k. (This is the whole trick: the same total split into the same number of parts means the part size is unchanged.)
+Step 4 — B confirms it: B is 4 new parts = 4k, and B did not change. Consistent.
+Step 5 — A is now 1 new part = k, and A is also 3k - 8:
+3k - 8 = k
+2k = 8
+k = 4
+Step 6 — original total = 12k = 12 x 4 = 48 liters.
+Check: start 12, 16, 20 (total 48). After: 4, 16, 28 (total 48), and 4:16:28 = 1:4:7. Correct.
+Answer: 48.
+
+**Trap.** Answering 4 (the value of k) or 12 (the original volume of A) instead of the total. The setup error is subtracting 8 from the total as well - it is an exchange, so the total is invariant, and noticing that is what collapses the three-part algebra into the single equation 3k - 8 = k.
+
+### Q17 · `WRD-RAT-037` — Answer: A
+
+Only one actual number is given, so walk the chain inward from it, one link at a time.
+Step 1 — technicians. technicians : laborers = 3:7 and laborers = 210, so technicians = 210 x 3/7 = 90.
+Step 2 — supervisors. supervisors : technicians = 4:5 and technicians = 90, so supervisors = 90 x 4/5 = 72.
+Step 3 — managers. managers : supervisors = 2:3 and supervisors = 72, so managers = 72 x 2/3 = 48.
+The other route - build the full chain by matching shared terms. Supervisors are 3 in the first ratio and 4 in the second, so scale to 12: managers : supervisors = 8:12 and supervisors : technicians = 12:15. Technicians are 15 there and 3 in the last ratio, so scale that to 15:35. The full chain is managers : supervisors : technicians : laborers = 8:12:15:35. With 35 parts = 210, one part = 6, so managers = 8 x 6 = 48.
+Check: 48:72 = 2:3, 72:90 = 4:5, 90:210 = 3:7. Correct.
+Answer: 48.
+
+**Trap.** Reading the first and last numbers straight off as managers : laborers = 2:7 and computing 210 x 2/7 = 60, which is choice B. The shared terms do not match (supervisors are 3 then 4, technicians are 5 then 3), so they must be scaled first. Choices C (72) and D (90) are the supervisor and technician counts - correct numbers, wrong question - and E (108) comes from inverting the last step, 72 x 3/2.
+
+### Q18 · `WRD-RAT-038` — Answer: D
+
+Step 1 — name k. Red = 2k, green = 3k, yellow = 4k, with k a positive integer.
+Step 2 — Column B first, because it is the simple one: red : yellow = 2k : 4k = 1/2. The k cancels, so Column B is 1/2 no matter what.
+Step 3 — Column A: only green changed, so it is 2k/(3k + 9). Here the k does NOT cancel, because the 9 is a fixed number of balls, not a number of parts.
+Step 4 — test values.
+k = 1: 2/12 = 1/6, which is less than 1/2.
+k = 9: 18/36 = 1/2, which is equal.
+k = 20: 40/69 = 0.58, which is greater than 1/2.
+All three verdicts occur, so the relationship cannot be determined.
+Answer: D.
+
+**Trap.** Picking k = 1, getting 2:12 = 1/6, and concluding that Column B is greater. A ratio plus a fixed change is not another ratio - it is an equation waiting for k, and here nothing in the problem pins k down. Solving 2k/(3k + 9) = 1/2 shows the crossover sits at k = 9, so both directions are reachable.
+
+### Q19 · `WRD-RAT-039` — Answer: A, B, D
+
+Name k: men = 5k, women = 3k. Let j women join, with j > 0. Men stay at 5k; women become 3k + j; the total becomes 8k + j.
+A - only women joined, so men are still 5k. TRUE.
+B - the ratio is now 5k/(3k + j). The numerator is unchanged and the denominator grew, so the fraction shrank: 5k/(3k + j) < 5k/3k = 5/3. TRUE.
+C - this needs 3k + j > 5k, i.e. j > 2k. If k = 10 and j = 1, women go from 30 to 31 while men stay at 50. NOT necessarily true. FALSE.
+D - men as a fraction of the club go from 5k/8k to 5k/(8k + j). Same numerator, bigger denominator, so the fraction fell. TRUE.
+E - doubling would need j > 3k. j = 1 breaks it. FALSE.
+Answer: A, B, D.
+
+**Trap.** Choices C and E both smuggle in a SIZE assumption that 'a positive number of women' never granted - j could be 1. The reliable test for a must-be-true ratio question is to push the change to its smallest legal value, j = 1, and see which statements survive; only the ones that never mention how much the women grew do.
+
+### Q20 · `WRD-RAT-041` — Answer: C
+
+Two ratios are in play but they are NESTED - the second one splits up the students, who are already one term of the first. So express both in the same units.
+Step 1 — teachers : students = 1:18. Take teachers = 1 part and students = 18 parts, so the whole school is 19 parts.
+Step 2 — the students split 5:4, which is 9 sub-parts, and 18 parts divides by 9 cleanly: each sub-part is 2 parts.
+male students = 5 x 2 = 10 parts
+female students = 4 x 2 = 8 parts
+Step 3 — female students as a fraction of everybody = 8/19.
+Check: 1 + 10 + 8 = 19 parts, the whole school. Correct.
+Answer: 8/19.
+
+**Trap.** Answering 4/9, which is the fraction of STUDENTS who are female - the question asks for a fraction of the whole school, and the school also contains teachers, so the denominator is 19 parts, not 18. Choice D (8/27) comes from adding the two ratio totals, 9 + 18, as if the students were being counted twice; E (10/19) is the male students.
+
+### Q21 · `WRD-RAT-042` — Answer: C
+
+Step 1 — the shared term is Q, and it is 4 in one ratio and 5 in the other. Scale both until Q matches, using the LCM of 4 and 5, which is 20.
+P:Q = 3:4, multiply by 5 -> 15:20
+Q:R = 5:6, multiply by 4 -> 20:24
+Step 2 — chain them: P:Q:R = 15:20:24.
+Step 3 — P/R = 15/24 = 5/8.
+Column A = 5/8 = Column B, so the two quantities are equal.
+Check with numbers: take Q = 20. Then P = 15 and R = 24, and 15/24 = 0.625 = 5/8. Correct.
+Answer: The two quantities are equal.
+
+**Trap.** Reading P:R straight off the outer numbers as 3:6 = 1/2, which is less than 5/8 and points to choice B. Q is not the same quantity in the two ratios until you scale them, so the outer terms are not comparable as written. Choosing D because P, Q and R have no fixed sizes is also wrong: the common multiplier cancels out of P/R.
+
+### Q22 · `WRD-RAT-044` — Answer: 2790
+
+Step 1 — chain the two ratios. The shared term is B, which is 4 in the first and 6 in the second; the LCM is 12.
+A:B = 3:4, multiply by 3 -> 9:12
+B:C = 6:5, multiply by 2 -> 12:10
+So A:B:C = 9:12:10. (Reading the numbers straight off as 3:4:5 would make B smaller than C, which the stem's 'B receives $180 more than C' already rules out - that contradiction is the signal to scale.)
+Step 2 — name k: A = 9k, B = 12k, C = 10k.
+Step 3 — use the difference directly. Do not build the total first: the gap in ratio units maps straight onto the gap in dollars.
+B - C = 12k - 10k = 2k = 180
+k = 90
+Step 4 — total = 9k + 12k + 10k = 31k = 31 x 90 = 2,790.
+Check: A = $810, B = $1,080, C = $900. 810:1080 = 3:4, 1080:900 = 6:5, and 1080 - 900 = $180. Total = $2,790. Correct.
+Answer: 2790.
+
+**Trap.** Mapping the whole $180 onto a single ratio unit. In 9:12:10 the gap between B and C is 12k - 10k = 2k, not k, so k = 90 and not 180; taking k = 180 gives a total of 31 x 180 = 5,580, exactly double the right answer. The other way to lose it is stopping at k = 90 or at B = 12k = 1,080 - the question asks for the sum of all three shares, 31k.
+
+### Q23 · `WRD-RAT-045` — Answer: B, E
+
+The starting ratio is 3n/5n = 3/5. Test each change by cross-multiplying against 3/5.
+A - (3n + 3)/(5n + 5) = 3(n + 1)/[5(n + 1)] = 3/5. Adding amounts that are themselves in the ratio 3:5 changes nothing. Not greater. FALSE.
+B - (3n + 6)/(5n). The numerator grew and the denominator did not, so the fraction grew. Cross-check: 5(3n + 6) = 15n + 30 versus 3(5n) = 15n, and 15n + 30 > 15n for every n. TRUE.
+C - (3n - 3)/(5n - 3). Cross-multiply: 5(3n - 3) = 15n - 15 versus 3(5n - 3) = 15n - 9. Since 15n - 15 < 15n - 9, this ratio is SMALLER than 3/5, not greater. FALSE.
+D - 6n/10n = 3/5. Multiplying both parts by the same factor is exactly what a ratio is blind to. FALSE.
+E - (3n + 1)/(5n - 1). Cross-multiply: 5(3n + 1) = 15n + 5 versus 3(5n - 1) = 15n - 3, and 15n + 5 > 15n - 3 for every n. Numerator up, denominator down, so the ratio must rise. TRUE.
+Answer: B, E.
+
+**Trap.** Choice A is the designed bait: it adds different amounts to the two colors, so it looks like it must move the ratio, but 3 and 5 are exactly the ratio numbers, so it is the same scaling that D performs openly. Choice C tempts anyone who reasons 'take the same amount off both, so nothing changes' - subtracting equal amounts from a fraction below 1 pushes it AWAY from 1, i.e. down.
+
+### Q24 · `WRD-RAT-051` — Answer: 1500
+
+Step 1 — count the unknowns before solving. Incomes and expenditures are two DIFFERENT quantities with two separate ratios, so they need two separate multipliers. Using k for both would assert that a man who earns more must spend proportionally more, which the problem never says.
+incomes: 5x and 4x
+expenditures: 7y and 5y
+Step 2 — each savings statement gives one equation.
+Ravi:  5x - 7y = 900
+Sunil: 4x - 5y = 900
+Step 3 — eliminate y. Multiply the first by 5 and the second by 7:
+25x - 35y = 4,500
+28x - 35y = 6,300
+Subtract: 3x = 1,800, so x = 600.
+Step 4 — back-substitute: 5(600) - 7y = 900, so 3,000 - 7y = 900, giving 7y = 2,100 and y = 300.
+Step 5 — answer what was asked. Sunil's expenditure = 5y = 5 x 300 = $1,500.
+Check: incomes $3,000 and $2,400 (ratio 5:4); expenditures $2,100 and $1,500 (ratio 7:5); savings 3,000 - 2,100 = 900 and 2,400 - 1,500 = 900. Correct.
+Answer: 1500.
+
+**Trap.** Writing the expenditures as 7k and 5k with the SAME k as the incomes. That forces 5k - 7k = 900 and 4k - 5k = 900, i.e. -2k = 900 and -k = 900, which contradict each other - and a student who does not check will just pick whichever one solves. The tell that you need a second letter is that income and expenditure are separate quantities, each with its own ratio. The other way to lose the question is to solve correctly and then report x = 600, y = 300, or Sunil's income 4x = 2,400 instead of his expenditure 5y.
+
+### Q25 · `WRD-RAT-052` — Answer: B
+
+Step 1 — read what the ratio counts. 4:3:2 counts BILLS, not dollars, while $1,170 measures value. Those are different things, so the ratio cannot be applied to $1,170 directly.
+Step 2 — name k for the counts, then weight each count by its denomination:
+4k ones are worth 4k x 1 = 4k dollars
+3k fives are worth 3k x 5 = 15k dollars
+2k tens are worth 2k x 10 = 20k dollars
+Total value = 4k + 15k + 20k = 39k.
+Step 3 — 39k = 1,170, so k = 30: the drawer holds 120 ones, 90 fives and 60 tens.
+Step 4 — the exchange. 'Of the same total value' means each $10 bill replaces TWO $5 bills, so if m tens come in, 2m fives go out. The count of fives falls twice as fast as the count of tens rises, while the drawer's value never changes.
+fives: 90 - 2m
+tens: 60 + m
+Step 5 — set the two counts equal:
+90 - 2m = 60 + m
+30 = 3m
+m = 10
+Tens = 60 + 10 = 70 (and fives = 90 - 20 = 70).
+Check: value is untouched by an equal-value swap: 120 x 1 + 70 x 5 + 70 x 10 = 120 + 350 + 700 = $1,170. Correct.
+Answer: 70.
+
+**Trap.** Trading one $5 for one $10 gives 90 - m = 60 + m, so m = 15 and 75 of each (choice C) - but that swap would conjure $150 out of nothing; equal VALUE means two fives per ten. Choice E (130) is what 4k + 3k + 2k = 1,170 produces, the count-vs-value slip of applying a bill ratio to dollars. Choices A (60) and D (90) are the tens and the fives before the exchange.
+
+### Q26 · `WRD-RAT-046` — Answer: C
+
+Step 1 — the invariant is the job: exactly one full tank gets filled, however the work is split.
+Step 2 — rates per hour: A = 1/6, B = 1/8, C = 1/12.
+Step 3 — A and B run for the full 3 hours. Their combined rate is 1/6 + 1/8 = 4/24 + 3/24 = 7/24 per hour, so in 3 hours they deliver 3 x 7/24 = 21/24 = 7/8 of the tank.
+Step 4 — C must supply the rest: 1 - 7/8 = 1/8 of the tank.
+Step 5 — at 1/12 of a tank per hour, the time C needs is (1/8) / (1/12) = (1/8) x 12 = 1.5 hours.
+Check: in 1.5 hours C delivers 1.5/12 = 1/8, and 7/8 + 1/8 = 1 full tank. Correct.
+Answer: 1.5 hours.
+
+**Trap.** Choice E (3) comes from ignoring the closing of C altogether - but all three running for 3 hours gives 3 x 3/8 = 9/8 of a tank, which is more than the tank holds, and that overflow is the signal that C must have been shut early. Choice D (2) comes from swapping B's 8 hours with C's 12, and choice B (1) from dividing the missing 1/8 by 1/8 instead of by C's actual rate of 1/12; choice A (0.5) comes from taking the shortfall as 1/24 rather than 3/24.
+
+### Q27 · `WRD-RAT-047` — Answer: 10
+
+Step 1 — name k. Present ages are k, 2k, 3k, 4k.
+Step 2 — use the second sentence to pin k down. In 5 years the ages are k + 5, 2k + 5, 3k + 5, 4k + 5, and the first two must be in the ratio 2:3:
+3(k + 5) = 2(2k + 5)
+3k + 15 = 4k + 10
+k = 5
+So the present ages are 5, 10, 15 and 20. Confirm with all four: in 5 years they are 10, 15, 20, 25, which is 2:3:4:5. Correct.
+Step 3 — now find the invariant that makes the last step one line. Everybody ages at the same rate, so the DIFFERENCES between the ages never change: they are 5, 5 and 5 throughout.
+Step 4 — in the target ratio 3:4:5:6 the consecutive terms differ by exactly 1 part. Since the real gap is 5 years, one part must be worth 5 years.
+Step 5 — so at that moment A's age is 3 parts = 15. A is 5 now, so this happens 15 - 5 = 10 years from now.
+Check: in 10 years the ages are 15, 20, 25, 30, and dividing by 5 gives 3:4:5:6. Correct.
+Answer: 10.
+
+**Trap.** Adding years to the ratio numbers instead of to the ages - going from 1:2:3:4 to 3:4:5:6 by 'adding 2 to each' and answering 2. Ratio terms are parts, not years. The other slip is answering 15, which is A's age at that moment rather than the number of years from now that the question asked for.
+
+### Q28 · `WRD-RAT-048` — Answer: C
+
+Step 1 — fuse the two stages into one chain before touching the 60 liters.
+Stage two: mixture : Z = 4:1. Stage one splits that mixture into X and Y as 3:2, which is 5 parts, so scale the second ratio by 5 to make the mixture divisible: mixture : Z = 20:5, and the 20 splits as X = 12, Y = 8.
+X : Y : Z = 12 : 8 : 5, which is 25 parts in all.
+Step 2 — name t for one part: X = 12t, Y = 8t, Z = 5t, blend = 25t.
+Step 3 — add the 60 liters of Y. Only Y and the total move:
+X = 12t, Y = 8t + 60, Z = 5t, blend = 25t + 60.
+Step 4 — impose the condition that Z is 1/6 of the blend:
+5t/(25t + 60) = 1/6
+6(5t) = 25t + 60
+30t = 25t + 60
+5t = 60
+t = 12
+Step 5 — answer what was asked: X = 12t = 12 x 12 = 144 liters.
+Check: X = 144, Y = 8(12) + 60 = 156, Z = 60, blend = 144 + 156 + 60 = 360, and 60/360 = 1/6. Before the 60 liters went in: X + Y = 144 + 96 = 240 with Z = 60, so mixture : Z = 240:60 = 4:1, and X:Y = 144:96 = 3:2. Correct.
+Answer: 144 liters.
+
+**Trap.** Applying the 3:2 to a whole it does not govern: the blend before the addition is 300 liters, and 3/5 x 300 = 180 (choice E). The 3:2 rules only the X-Y mixture, 240 of those 300 liters. A second slip is imposing 'Z is 1/6' on the 25t blend instead of on 25t + 60, which is impossible - Z is already exactly 5/25 = 1/5 of it, so the 60 liters of Y are what dilute Z from 1/5 down to 1/6. Choices D (156), B (96) and A (60) are the final Y, the Y before the addition and the Z volume - right arithmetic, wrong quantity.
+
+### Q29 · `WRD-RAT-049` — Answer: D
+
+Step 1 — two independent ratios need two independent multipliers. Nothing links the sizes of the two companies, so do NOT reuse k.
+Company A: a managers and 9a workers.
+Company B: b managers and 11b workers.
+Step 2 — merge by adding the raw counts, never by averaging the ratios.
+Column A = (a + b)/(9a + 11b).
+Step 3 — compare with 1/10 by cross-multiplying (both denominators are positive):
+10(a + b) versus 1(9a + 11b)
+10a + 10b versus 9a + 11b
+Subtract 9a + 10b from both sides: a versus b.
+So the comparison reduces exactly to which company has more managers.
+Step 4 — test both directions.
+a = 5, b = 1: merged is 6/(45 + 11) = 6/56 = 3/28 = 0.107, which is greater than 0.100.
+a = 1, b = 5: merged is 6/(9 + 55) = 6/64 = 3/32 = 0.094, which is less than 0.100.
+Both verdicts occur, and a = b even makes them equal, so the relationship cannot be determined.
+Answer: D.
+
+**Trap.** Averaging the two ratios - splitting the difference between 1:9 and 1:11 to get 1:10 and choosing C. A merged ratio is a WEIGHTED average, and the weights are the company sizes, which the problem deliberately withholds. If A is the bigger firm the merged ratio leans toward 1:9; if B is bigger it leans toward 1:11.
+
+### Q30 · `WRD-RAT-050` — Answer: A, D, E
+
+Build the full chain first; every statement then reads off it.
+Step 1 — join a:b = 3:4 to b:c = 6:5. The shared term b is 4 and 6, LCM 12.
+a:b = 3:4, multiply by 3 -> 9:12
+b:c = 6:5, multiply by 2 -> 12:10
+So a:b:c = 9:12:10.
+Step 2 — join on c, which is 10 in that chain and 2 in c:d = 2:3. Multiply c:d by 5 -> 10:15.
+So a:b:c:d = 9:12:10:15, i.e. a = 9k, b = 12k, c = 10k, d = 15k.
+A - a:d = 9:15 = 3:5. TRUE.
+B - 9k is not 15k for positive k. FALSE.
+C - a:c = 9:10, not 3:5 (= 9:15). FALSE.
+D - b = 12k and c = 10k, so b > c. TRUE.
+E - the parts are 9, 12, 10, 15, and 15 is the largest, so d is greatest. TRUE.
+Answer: A, D, E.
+
+**Trap.** Reading the six numbers off in order as a:b:c:d = 3:4:5:3 without matching the shared terms. That fake chain makes a and d both 3 (choice B), makes a:c look like 3:5 (choice C), makes c bigger than b (killing D) and makes c, not d, the largest of the four (killing E) - so it flips every single statement. Both joints here need scaling: b is 4 then 6, and c is 5 then 2.

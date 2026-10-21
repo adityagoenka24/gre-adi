@@ -1,0 +1,643 @@
+{
+  "set": {
+    "subtopic_id": "NUM-REM",
+    "topic": "Arithmetic",
+    "subtopic": "Remainders & Cyclicity",
+    "capsule": "01-arithmetic/06-remainders-cyclicity.md",
+    "bank_files": [
+      "arithmetic/remainders.json"
+    ],
+    "practice_path": "01-arithmetic/06-remainders-cyclicity-practice.md",
+    "one_liner": "Write N = dq + r, reduce at every step instead of at the end, and remember that powers of a fixed base repeat with a period of 4 or less."
+  },
+  "questions": [
+    {
+      "id": "NUM-REM-004",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "When a positive integer n is divided by 6, the remainder is 0. Which of the following must be true?\n\nI. n is divisible by 2\nII. n is divisible by 3\nIII. n is divisible by 12",
+      "options": [
+        "A. I only",
+        "B. II only",
+        "C. I and II only",
+        "D. I and III only",
+        "E. I, II, and III"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — translate the remainder. A remainder of 0 means 6 divides n exactly, so n = 6k for some integer k.\nStep 2 — test I. n = 6k = 2(3k), so n is a multiple of 2. TRUE.\nStep 3 — test II. n = 6k = 3(2k), so n is a multiple of 3. TRUE.\nStep 4 — test III. Try the smallest case, n = 6. Then 6 divided by 12 gives quotient 0 and remainder 6, so 6 is not divisible by 12. One counterexample kills the statement. FALSE.\nOnly I and II must hold, so the answer is C.",
+      "trap": "Choosing E by assuming that a multiple of 6 must also be a multiple of 12, the next multiple of 6. Divisibility passes DOWN to the factors of the divisor (2 and 3), never UP to its multiples: n = 6 is the counterexample.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "divisibility",
+        "remainder-zero",
+        "must-be-true"
+      ]
+    },
+    {
+      "id": "NUM-REM-005",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "When 53 is divided by 8, the remainder is r. What is the value of r? Enter your answer as a number.",
+      "options": null,
+      "answer": "5",
+      "explanation": "Step 1 — write the division algorithm: 53 = 8q + r with 0 <= r < 8.\nStep 2 — find the largest multiple of 8 that does not exceed 53: 8 x 6 = 48, while 8 x 7 = 56 is too big. So q = 6.\nStep 3 — r = 53 - 48 = 5.\nCheck: 5 is between 0 and 7, so it is a legal remainder, and 8 x 6 + 5 = 53. Correct.\nAnswer: 5.",
+      "trap": "Overshooting to 8 x 7 = 56 and reporting 56 - 53 = 3. The quotient must be the largest multiple that stays BELOW the number; going past it turns the remainder into a negative one (-3), which then gets reported as 3.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "division-algorithm",
+        "basic-remainder"
+      ]
+    },
+    {
+      "id": "NUM-REM-006",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "n is a positive integer.\nColumn A: The remainder when 2n is divided by 2\nColumn B: The remainder when 2n + 1 is divided by 2",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Column A: 2n is even for every integer n, and an even number divided by 2 leaves nothing over. Column A = 0.\nColumn B: 2n + 1 is odd for every integer n, and an odd number divided by 2 leaves 1. Column B = 1.\nCheck with n = 3: 6 divided by 2 is 3 remainder 0; 7 divided by 2 is 3 remainder 1. And with n = 10: 20 leaves 0, 21 leaves 1.\n1 > 0, so Column B is greater.",
+      "trap": "Treating Column A as 'no remainder' and therefore as blank or undefined, and choosing D. A remainder of 0 is a perfectly ordinary value - it is what divisibility looks like - so Column A is the number 0 and the comparison resolves.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "remainder-zero",
+        "parity",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-REM-007",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "What is the units digit of 7 x 48?",
+      "options": [
+        "A. 3",
+        "B. 4",
+        "C. 5",
+        "D. 6",
+        "E. 8"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — the units digit of a product depends only on the units digits of the factors, because every other digit contributes a multiple of 10.\nStep 2 — units digit of 7 is 7; units digit of 48 is 8.\nStep 3 — 7 x 8 = 56, which ends in 6.\nCheck: 7 x 48 = 336, and 336 does end in 6. Correct.\nAnswer: 6.",
+      "trap": "Multiplying 7 by the tens digit instead: 7 x 4 = 28, so answering 8, which is choice E - but the tens digit of 48 only ever feeds the tens column and higher, and the units digit of the answer is decided by 7 x 8 alone. Choice C, 5, is the units digit of 7 + 8 = 15, from adding the units digits instead of multiplying them, and choice B, 4, is the tens digit of 48 copied straight down. Choice A, 3, is the tens digit of the product 336, read off in place of the units digit.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "units-digit",
+        "product-rule"
+      ]
+    },
+    {
+      "id": "NUM-REM-011",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The positive integer n leaves a remainder of 4 when divided by 7. What is the remainder when n + 7 is divided by 7?",
+      "options": [
+        "A. 0",
+        "B. 3",
+        "C. 4",
+        "D. 7",
+        "E. 11"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — write n in its remainder form: n = 7q + 4.\nStep 2 — add 7: n + 7 = 7q + 4 + 7 = 7(q + 1) + 4.\nStep 3 — the expression is again (a multiple of 7) + 4, and 4 is less than 7, so the remainder is 4.\nCheck with the smallest legal n, n = 4: 4 + 7 = 11, and 11 = 7 x 1 + 4, remainder 4. Try n = 18: 18 + 7 = 25 = 7 x 3 + 4, remainder 4 again.\nAnswer: 4.",
+      "trap": "Adding 7 to the remainder as well, giving 4 + 7 = 11, which is choice E; adding the divisor itself pushes the quotient up by 1 and leaves the remainder untouched. Choice D, 7, is the same instinct in a milder form - treating the added 7 as a fresh leftover chunk - and both 7 and 11 are impossible on their face, since a remainder on division by 7 must be 0 through 6. Choice B, 3, is the complement error 7 - 4 = 3, reporting what is left of the divisor instead of what is left of n, and choice A, 0, comes from believing that adding 7 completes the division and makes n + 7 divisible.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "remainder-invariance",
+        "division-algorithm"
+      ]
+    },
+    {
+      "id": "NUM-REM-014",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "When the integer n is divided by 8, the remainder is 5. What is the remainder when 4n is divided by 8?",
+      "options": [
+        "A. 0",
+        "B. 3",
+        "C. 4",
+        "D. 5",
+        "E. 20"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — use the product rule: the remainder of a product is the remainder of the product of the remainders, reduced again.\nStep 2 — rem(4n) = rem(4 x 5) = rem(20).\nStep 3 — reduce: 20 = 8 x 2 + 4, so the remainder is 4.\nThe algebra behind it: n = 8k + 5, so 4n = 32k + 20 = 32k + 16 + 4 = 8(4k + 2) + 4.\nCheck with n = 5: 4n = 20, and 20 = 8 x 2 + 4. Check with n = 13: 4n = 52 = 8 x 6 + 4. Same remainder both times.\nAnswer: 4.",
+      "trap": "Stopping at 4 x 5 = 20 and choosing E. A remainder on division by 8 must be less than 8, so 20 is not finished - subtract 8 twice to reach 4. Choice D is the other live error: assuming that multiplying n leaves its remainder alone, the way ADDING a multiple of 8 would.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "product-rule",
+        "reduce-then-multiply",
+        "remainder-range"
+      ]
+    },
+    {
+      "id": "NUM-REM-015",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "What is the remainder when 2^10 is divided by 5?",
+      "options": [
+        "A. 1",
+        "B. 2",
+        "C. 3",
+        "D. 4",
+        "E. 0"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — build the cycle of powers of 2 mod 5, reducing at every step:\n2^1 = 2\n2^2 = 4\n2^3 = 8, which leaves 3\n2^4 = 16, which leaves 1\n2^5 leaves 2 again, so the cycle is (2, 4, 3, 1) and its length is 4.\nStep 2 — locate the exponent: 10 = 4 x 2 + 2, so 10 mod 4 = 2.\nStep 3 — take the 2nd entry of the cycle: 4.\nCheck: 2^10 = 1024 = 5 x 204 + 4. Correct.\nAnswer: 4.",
+      "trap": "Using a cycle length of 5 because there are 5 possible remainders, computing 10 mod 5 = 0, and landing on 1 (choice A). The length of the cycle is however many powers it takes to return to the start - here 4, not 5. Choice B is position 1 of the cycle and choice C is position 3, the two off-by-one slips on either side of the correct position 2; choice E is the belief that a power of 2 must eventually be divisible by 5.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "cyclicity",
+        "power-remainder",
+        "mod-5"
+      ]
+    },
+    {
+      "id": "NUM-REM-017",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "When the integer m is divided by 6 the remainder is 4, and when the integer n is divided by 6 the remainder is 3.\nColumn A: The remainder when mn is divided by 6\nColumn B: The remainder when m + n is divided by 6",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Reduce first, multiply or add second, then reduce again.\nColumn A: rem(mn) = rem(4 x 3) = rem(12) = 0, since 12 = 6 x 2.\nColumn B: rem(m + n) = rem(4 + 3) = rem(7) = 1, since 7 = 6 x 1 + 1.\nCheck with actual numbers: m = 10, n = 9. Then mn = 90 = 6 x 15, remainder 0; m + n = 19 = 6 x 3 + 1, remainder 1. Try m = 16, n = 15: mn = 240 = 6 x 40, remainder 0; m + n = 31 = 6 x 5 + 1, remainder 1. The two remainders never move.\n1 > 0, so Column B is greater.",
+      "trap": "Comparing 4 x 3 = 12 against 4 + 3 = 7, seeing 12 > 7, and choosing A. Neither number is a remainder yet: both must be reduced mod 6, and that reverses the comparison to 0 versus 1. The bigger intermediate product does not mean the bigger remainder.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "sum-rule",
+        "product-rule",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-REM-019",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "The positive integer n leaves a remainder of 5 when divided by 12. Which of the following could be the value of n? Select all that apply.",
+      "options": [
+        "A. 5",
+        "B. 17",
+        "C. 24",
+        "D. 29",
+        "E. 37"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Every valid n has the form 12k + 5 with k an integer: 5, 17, 29, 41, 53, ...\nA - 5 = 12 x 0 + 5, remainder 5. TRUE.\nB - 17 = 12 x 1 + 5, remainder 5. TRUE.\nC - 24 = 12 x 2 + 0, remainder 0. FALSE.\nD - 29 = 12 x 2 + 5, remainder 5. TRUE.\nE - 37 = 12 x 3 + 1, remainder 1. FALSE.\nAnswer: A, B, D.",
+      "trap": "Rejecting A because 5 is smaller than the divisor. k = 0 is allowed, so a number smaller than the divisor simply IS its own remainder: 5 divided by 12 gives quotient 0 and remainder 5. The other bait is C: 24 is a multiple of 12, which looks like it belongs to the 12-pattern, but its remainder is 0, not 5.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "remainder-form",
+        "multiple-answer",
+        "division-algorithm"
+      ]
+    },
+    {
+      "id": "NUM-REM-023",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "When the positive integer k is divided by 9, the remainder is 7. What is the remainder when k + 20 is divided by 9?",
+      "options": [
+        "A. 0",
+        "B. 2",
+        "C. 7",
+        "D. 9",
+        "E. 27"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — reduce each piece mod 9. The remainder of k is 7. For 20: 20 = 9 x 2 + 2, so its remainder is 2.\nStep 2 — add the remainders: 7 + 2 = 9.\nStep 3 — reduce again: 9 = 9 x 1 + 0, so the remainder is 0.\nCheck with the smallest k, k = 7: 7 + 20 = 27 = 9 x 3, remainder 0. Try k = 16: 16 + 20 = 36 = 9 x 4, remainder 0.\nAnswer: 0.",
+      "trap": "Stopping at 7 + 2 = 9 and choosing D. A remainder on division by 9 has to be less than 9, so 9 must be reduced one more time to 0. Choice E is the same failure one step earlier (7 + 20 = 27 left unreduced), choice C ignores the +20 as if 20 were a multiple of 9, and choice B keeps only the 20's remainder and forgets k's.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "sum-rule",
+        "reduce-again",
+        "remainder-zero"
+      ]
+    },
+    {
+      "id": "NUM-REM-029",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "When the positive integer m is divided by 14, the remainder is 9. What is the remainder when m is divided by 7?",
+      "options": [
+        "A. 0",
+        "B. 2",
+        "C. 5",
+        "D. 7",
+        "E. 9"
+      ],
+      "answer": "B",
+      "explanation": "Step 1 — write the form: m = 14q + 9.\nStep 2 — since 7 divides 14, the term 14q is already a multiple of 7. Only the 9 can contribute.\nStep 3 — reduce the 9: 9 = 7 x 1 + 2, so m = 7(2q + 1) + 2 and the remainder is 2.\nCheck with the smallest m, m = 9: 9 = 7 + 2, remainder 2. Try m = 23: 23 = 7 x 3 + 2, remainder 2. Try m = 37: 37 = 7 x 5 + 2, remainder 2.\nAnswer: 2.\nThe general rule: when the new divisor is a FACTOR of the old one, just reduce the old remainder by the new divisor.",
+      "trap": "Choosing E and carrying the 9 across unchanged - impossible, since a remainder on division by 7 must be under 7. Choice D comes from splitting 9 = 7 + 2 and reporting the 7 rather than the leftover 2; choice A comes from assuming that because 7 divides 14, it must divide m as well.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "divisor-factor",
+        "remainder-reduction",
+        "remainder-range"
+      ]
+    },
+    {
+      "id": "NUM-REM-030",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "The positive integer n leaves a remainder of 3 when divided by 8. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. n is odd",
+        "B. The remainder when n is divided by 4 is 3",
+        "C. The remainder when n^2 is divided by 8 is 1",
+        "D. The remainder when n is divided by 16 is 3",
+        "E. The remainder when 3n is divided by 8 is 9"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "Write n = 8k + 3 and test each statement.\nA - 8k is even and 3 is odd, so n is odd for every k. TRUE.\nB - 4 divides 8, so 8k is a multiple of 4 and only the 3 survives: n = 4(2k) + 3, remainder 3 (and 3 < 4, so it is already reduced). TRUE.\nC - rem(n^2) = rem(3 x 3) = rem(9) = 1. Check: n = 3 gives 9 = 8 + 1; n = 11 gives 121 = 8 x 15 + 1. TRUE.\nD - 16 is a MULTIPLE of 8, not a factor, so the remainder does not carry over. n = 3 leaves 3 mod 16, but n = 11 leaves 11 mod 16. FALSE.\nE - rem(3n) = rem(3 x 3) = rem(9) = 1, not 9; and 9 cannot be a remainder on division by 8 at all. FALSE.\nAnswer: A, B, C.",
+      "trap": "D and E are the two halves of the same habit. D assumes a remainder survives a jump to a MULTIPLE of the divisor (it only survives a jump to a factor, which is why B is true), and E leaves 3 x 3 = 9 unreduced even though every remainder mod 8 must be under 8.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "remainder-form",
+        "divisor-factor",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "NUM-REM-031",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "What is the remainder when 50! + 3 is divided by 7?\n\n(Note: 50! = 50 x 49 x 48 x ... x 1.) Enter your answer as a number.",
+      "options": null,
+      "answer": "3",
+      "explanation": "Step 1 — handle the huge term first. 50! is the product of every integer from 1 to 50, and 7 is one of those factors, so 7 divides 50! exactly.\nStep 2 — therefore rem(50!) = 0. There is nothing to compute and no cycle to find.\nStep 3 — apply the sum rule: rem(50! + 3) = rem(0 + 3) = 3, and 3 < 7, so it is already reduced.\nAnswer: 3.\nThe general fact: n! is divisible by every integer from 1 to n, so rem(n!) = 0 for any divisor d <= n.",
+      "trap": "Trying to attack 50! itself - hunting for a cycle in its digits or estimating its size. Nothing needs to be computed: 7 is one of the factors being multiplied, so the remainder is 0 and only the +3 is left. Students who instead reduce 50 mod 7 = 1 and treat the term as 1 answer 4.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "factorial-remainder",
+        "sum-rule",
+        "divisibility"
+      ]
+    },
+    {
+      "id": "NUM-REM-034",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What is the remainder when 2^100 is divided by 7?",
+      "options": [
+        "A. 0",
+        "B. 1",
+        "C. 2",
+        "D. 3",
+        "E. 4"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — build the cycle of powers of 2 mod 7, reducing at each step:\n2^1 = 2\n2^2 = 4\n2^3 = 8, which leaves 1\n2^4 leaves 2 again.\nThe cycle is (2, 4, 1) with length 3 - short, because 2^3 = 8 is just one more than 7.\nStep 2 — locate the exponent: 100 = 3 x 33 + 1, so 100 mod 3 = 1.\nStep 3 — take the 1st entry of the cycle: 2.\nCheck by rebuilding: 2^100 = 2^99 x 2 = (2^3)^33 x 2, and 2^3 leaves 1, so (1)^33 x 2 = 2.\nAnswer: 2.",
+      "trap": "Dividing the exponent by the DIVISOR instead of by the cycle length: 100 mod 7 = 2, then 2^2 = 4, which is choice E. The exponent is always reduced mod the length of the cycle, here 3. Choice B comes from reading position 1 off a cycle started at 2^0 = 1 rather than 2^1; choice D reports the cycle LENGTH (3) instead of the entry sitting there; and choice A assumes that a high enough power of 2 must eventually be divisible by 7 - it never is, since 7 is prime and does not divide 2, so remainder 0 is unreachable here.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "cyclicity",
+        "power-remainder",
+        "mod-7"
+      ]
+    },
+    {
+      "id": "NUM-REM-035",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "When the positive integer n is divided by 5 the remainder is 3, and when n is divided by 7 the remainder is 4. What is the remainder when n is divided by 35? Enter your answer as a number.",
+      "options": null,
+      "answer": "18",
+      "explanation": "Step 1 — list the numbers that satisfy the harder-to-hit condition first. Numbers leaving 3 on division by 5: 3, 8, 13, 18, 23, 28, 33, ...\nStep 2 — walk that list and test the second condition, remainder 4 on division by 7:\n3 leaves 3. No.\n8 leaves 1. No.\n13 leaves 6. No.\n18 leaves 4. Yes.\nStep 3 — 18 is the smallest such n. Because the two divisors 5 and 7 are coprime, the pattern repeats every LCM(5, 7) = 35, so every valid n has the form 35m + 18.\nStep 4 — that form is exactly what division by 35 reads off: the remainder is 18.\nCheck: 18 = 5 x 3 + 3 and 18 = 7 x 2 + 4. The next one, 53, gives 53 = 5 x 10 + 3 and 53 = 7 x 7 + 4, and 53 = 35 + 18. Correct.\nAnswer: 18.",
+      "trap": "Combining the two remainders directly - adding them for 7, or multiplying them for 12. Remainders from different divisors are not combinable that way; you must find one number that satisfies both conditions at once, then read off its remainder mod the LCM.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "simultaneous-congruence",
+        "lcm",
+        "remainder-form"
+      ]
+    },
+    {
+      "id": "NUM-REM-036",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "What is the remainder when 3^100 + 4^100 is divided by 5?",
+      "options": [
+        "A. 0",
+        "B. 1",
+        "C. 2",
+        "D. 3",
+        "E. 4"
+      ],
+      "answer": "C",
+      "explanation": "Handle each power separately, then add and reduce.\nStep 1 — powers of 3 mod 5: 3, then 9 leaves 4, then 12 leaves 2, then 6 leaves 1. The cycle is (3, 4, 2, 1), length 4.\n100 mod 4 = 0, and when the exponent lands on 0 you take the LAST entry of the cycle, not a nonexistent 0th one. So 3^100 leaves 1.\nStep 2 — powers of 4 mod 5: 4, then 16 leaves 1. The cycle is (4, 1), length 2. 100 mod 2 = 0, so again the last entry: 4^100 leaves 1.\nFaster for 4: 4 is one less than 5, so 4 behaves like -1. Then 4^100 = (-1)^100 = 1. Even exponent, remainder 1; odd exponent, remainder 4.\nStep 3 — add the remainders: 1 + 1 = 2, and 2 < 5, so the remainder is 2.\nAnswer: 2.",
+      "trap": "The off-by-one on the cycle. With 100 mod 4 = 0, a cycle position of 0 always means the END of the cycle - the 4th entry, 1 - but students read it as a nonexistent 0th position. Reading it as the remainder 0 for both terms gives choice A; reading position 1 for 3^100 (that is, 3) while handling 4^100 correctly gives 3 + 1 = 4, choice E; and reading position 1 for 3^100 while calling 4^100 zero gives choice D. Choice B is what you get by evaluating 3^100 and then forgetting the second term altogether.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "cyclicity",
+        "negative-remainder",
+        "sum-rule"
+      ]
+    },
+    {
+      "id": "NUM-REM-037",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "n is a positive integer, and when n is divided by 3 the remainder is 2.\nColumn A: The remainder when n^2 + n is divided by 3\nColumn B: The remainder when n^2 - n is divided by 3",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "B",
+      "explanation": "Work with the remainder of n, which is 2, and reduce at each step.\nStep 1 — rem(n^2) = rem(2 x 2) = rem(4) = 1.\nStep 2 — Column A: rem(n^2 + n) = rem(1 + 2) = rem(3) = 0.\nStep 3 — Column B: rem(n^2 - n) = rem(1 - 2) = rem(-1). A negative value is not a legal remainder, so add the divisor: -1 + 3 = 2.\nCheck with n = 2: n^2 + n = 6, remainder 0; n^2 - n = 2, remainder 2. Check with n = 5: 30 leaves 0, and 20 = 3 x 6 + 2 leaves 2. Check with n = 8: 72 leaves 0, and 56 = 3 x 18 + 2 leaves 2. The values never move.\n0 < 2, so Column B is greater.",
+      "trap": "Two failures compete. One is stopping at rem(-1) and calling Column B negative, hence smaller than 0 - the GRE only uses remainders in the range 0 to d - 1, so -1 becomes 2. The other is testing n = 2, getting 0 and 2, then choosing D out of doubt that other values of n might behave differently. Since only the remainder of n enters the calculation and that remainder is fixed at 2, both columns are locked.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "negative-remainder",
+        "algebraic-invariance",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-REM-038",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A positive integer n leaves the same remainder when divided by 4 as it leaves when divided by 6. Which of the following could be the value of n? Select all that apply.",
+      "options": [
+        "A. 14",
+        "B. 20",
+        "C. 25",
+        "D. 30",
+        "E. 39"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "E"
+      ],
+      "explanation": "Step 1 — characterise the numbers first. Let the common remainder be r. Then n - r is a multiple of 4 and also a multiple of 6, so n - r is a multiple of LCM(4, 6) = 12, giving n = 12k + r.\nStep 2 — bound r. It must be a legal remainder for BOTH divisors, so r < 4: r is 0, 1, 2 or 3.\nSo n works exactly when n leaves 0, 1, 2 or 3 on division by 12.\nA - 14 = 12 + 2, so it qualifies. Confirm: 14 = 4 x 3 + 2 and 14 = 6 x 2 + 2. Both remainders are 2. TRUE.\nB - 20 = 12 + 8, and 8 is not in {0, 1, 2, 3}. Confirm: 20 leaves 0 mod 4 but 2 mod 6. FALSE.\nC - 25 = 24 + 1, so it qualifies. Confirm: 25 = 4 x 6 + 1 and 25 = 6 x 4 + 1. Both remainders are 1. TRUE.\nD - 30 = 24 + 6, and 6 is not in {0, 1, 2, 3}. Confirm: 30 leaves 2 mod 4 but 0 mod 6. FALSE.\nE - 39 = 36 + 3, so it qualifies. Confirm: 39 = 4 x 9 + 3 and 39 = 6 x 6 + 3. Both remainders are 3. TRUE.\nAnswer: A, C, E.",
+      "trap": "Choosing B and D because they are 'divisible by one of the divisors' and so look regular: 20 is a multiple of 4 and 30 is a multiple of 6, but a shared remainder needs both divisions to agree, and each of these leaves 0 on one side and 2 on the other. The one-step test is n mod 12: only 0, 1, 2 and 3 survive, because the common remainder must be smaller than the smaller divisor.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "same-remainder",
+        "lcm",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "NUM-REM-039",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "What is the remainder when 17^50 is divided by 100? Enter your answer as a number.",
+      "options": null,
+      "answer": "49",
+      "explanation": "The remainder on division by 100 is just the last two digits, and last two digits cycle exactly the way last digits do.\nStep 1 — square up, keeping only the last two digits each time.\n17^2 = 289, which ends in 89.\n17^4 = 89^2 = 7921, which ends in 21.\nStep 2 — powers of 21 are easy, because a number ending in 21 raised to a power just walks the tens digit up by 2:\n21^1 -> 21, 21^2 = 441 -> 41, 21^3 -> 61, 21^4 -> 81, 21^5 -> 01.\nSo the cycle of 21 mod 100 has length 5.\nStep 3 — split the exponent: 50 = 4 x 12 + 2, so 17^50 = (17^4)^12 x 17^2, which ends like 21^12 x 89.\nStep 4 — 12 mod 5 = 2, so 21^12 ends in 41.\nStep 5 — 41 x 89 = 3649, which ends in 49.\nAnswer: 49.\n(Sanity check on the last digit alone: units digit of 7^50 uses the cycle 7, 9, 3, 1 with 50 mod 4 = 2, giving 9 - and 49 ends in 9. Consistent.)",
+      "trap": "Answering 9 - the units digit - because that is the cycle everyone practises. Division by 100 asks for the last TWO digits, so the answer must be a two-digit remainder in the range 0 to 99. The other slip is applying the 4-cycle of 7 to the mod-100 problem: mod 100 the powers of 17 repeat with period 20, not 4, so 50 mod 4 tells you nothing here.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "last-two-digits",
+        "cyclicity",
+        "mod-100"
+      ]
+    },
+    {
+      "id": "NUM-REM-040",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "p is a prime number greater than 3.\nColumn A: The remainder when p^2 is divided by 12\nColumn B: 1",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — describe every prime above 3. Such a p is divisible by neither 2 nor 3, so on division by 6 it cannot leave 0, 2, 3 or 4. Only remainders 1 and 5 are left, i.e. p = 6k + 1 or p = 6k - 1.\nStep 2 — square that form: p^2 = (6k +/- 1)^2 = 36k^2 +/- 12k + 1 = 12(3k^2 +/- k) + 1.\nStep 3 — the bracket is an integer, so p^2 is a multiple of 12 plus 1, and 1 < 12 is already reduced. The remainder is 1 for every prime p > 3.\nCheck: 5^2 = 25 = 12 x 2 + 1. 7^2 = 49 = 12 x 4 + 1. 11^2 = 121 = 12 x 10 + 1. 13^2 = 169 = 12 x 14 + 1.\nColumn A = 1 = Column B, so the two quantities are equal.",
+      "trap": "Testing two or three primes, getting 1 every time, and still choosing D because 'p could be any prime'. The 6k +/- 1 form covers every prime above 3 at once, so the result is proved, not sampled. The stem's 'greater than 3' matters: p = 3 gives 9, and p = 2 gives 4, neither of which is 1.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "prime-form",
+        "algebraic-invariance",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-REM-041",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "n is a positive integer. What is the remainder when 5^n + 5^(n+1) is divided by 6?",
+      "options": [
+        "A. 0",
+        "B. 1",
+        "C. 5",
+        "D. 6",
+        "E. The remainder depends on whether n is odd or even"
+      ],
+      "answer": "A",
+      "explanation": "Fastest route - factor before you divide.\n5^n + 5^(n+1) = 5^n(1 + 5) = 6 x 5^n, which is a multiple of 6 for every n. The remainder is 0.\nThe cyclicity route, for confirmation: 5 is one less than 6, so 5 behaves like -1. Powers of 5 mod 6 therefore cycle (5, 1) with length 2.\nIf n is odd: 5^n leaves 5 and 5^(n+1) leaves 1, so the sum leaves 5 + 1 = 6, which reduces to 0.\nIf n is even: 5^n leaves 1 and 5^(n+1) leaves 5, so the sum leaves 1 + 5 = 6, which reduces to 0.\nEither way the two consecutive cycle entries add to exactly the divisor.\nCheck: n = 1 gives 5 + 25 = 30 = 6 x 5. n = 2 gives 25 + 125 = 150 = 6 x 25. n = 3 gives 125 + 625 = 750 = 6 x 125.\nAnswer: 0.",
+      "trap": "Adding the two cycle entries to get 6 and choosing D - but 6 is not a legal remainder on division by 6, and reducing once more gives 0. Choice E is the other bait: the two cases really do look different (5 + 1 versus 1 + 5), yet both sum to 6, so the parity of n never reaches the answer.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "factoring-out",
+        "negative-remainder",
+        "cyclicity"
+      ]
+    },
+    {
+      "id": "NUM-REM-042",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "What is the remainder when 1! + 2! + 3! + ... + 20! is divided by 12? Enter your answer as a number.",
+      "options": null,
+      "answer": "9",
+      "explanation": "Step 1 — find where the terms die. 12 = 4 x 3, so a factorial is divisible by 12 as soon as it contains both a 4 and a 3: 4! = 24 = 12 x 2 already does, and every later factorial contains 4! as a factor.\nSo 4!, 5!, ..., 20! all leave remainder 0 and can be ignored entirely.\nStep 2 — only the first three terms survive: 1! + 2! + 3! = 1 + 2 + 6 = 9.\nStep 3 — reduce: 9 < 12, so the remainder is 9.\nCheck: 1! + 2! + 3! + 4! = 33, and 33 = 12 x 2 + 9. Adding 5! = 120 = 12 x 10 changes nothing: 153 = 12 x 12 + 9. Correct.\nAnswer: 9.",
+      "trap": "Cutting the sum off at the wrong place and answering 3. Students stop after 2! because 3! = 6 already contains 2 x 3, forgetting that 12 = 2 x 2 x 3 needs a SECOND factor of 2, which only arrives at 4! = 24. The cut-off is the first factorial containing every prime factor of the divisor to its full power - here 4!, not 3!.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "factorial-remainder",
+        "divisibility",
+        "sum-rule"
+      ]
+    },
+    {
+      "id": "NUM-REM-043",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "For each positive integer n, let R(n) denote the remainder when n is divided by 11. What is the value of R(1) + R(2) + R(3) + ... + R(50)?",
+      "options": [
+        "A. 220",
+        "B. 235",
+        "C. 241",
+        "D. 247",
+        "E. 285"
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — find the pattern. R runs 1, 2, 3, ..., 10, then R(11) = 0, then it restarts: R(12) = 1, R(13) = 2, and so on. The remainders repeat in blocks of 11.\nStep 2 — one block sums to 1 + 2 + ... + 10 + 0 = 55. Note the 0, not an 11: R(11) = 0 because 11 divides itself exactly.\nStep 3 — count whole blocks. 50 = 11 x 4 + 6, so n = 1 through 44 forms 4 complete blocks: 4 x 55 = 220.\nStep 4 — handle the tail. Since 44 = 11 x 4, the next six terms restart the pattern: R(45) = 1, R(46) = 2, R(47) = 3, R(48) = 4, R(49) = 5, R(50) = 6. Their sum is 1 + 2 + 3 + 4 + 5 + 6 = 21.\nStep 5 — total: 220 + 21 = 241.\nAnswer: 241.",
+      "trap": "Choice A drops the six-term tail and reports only the complete blocks. Choice E uses 66 per block by counting R(11) as 11 instead of 0: 4 x 66 + 21 = 285. Choices B and D are off-by-one starts for the tail - beginning it at R(45) = 0 gives 0 + 1 + ... + 5 = 15 and a total of 235, while beginning at R(45) = 2 gives 2 + 3 + ... + 7 = 27 and a total of 247. The anchor is 44 = 11 x 4, so 45 must restart the block at 1.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "remainder-pattern",
+        "block-counting",
+        "remainder-zero"
+      ]
+    },
+    {
+      "id": "NUM-REM-044",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "t is a positive integer.\nColumn A: The remainder when 6t + 5 is divided by 6\nColumn B: The remainder when 6t + 5 is divided by 5",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — Column A: 6t is a multiple of 6 whatever t is, so 6t + 5 is already in the form 6(t) + 5 with 5 < 6. The remainder is exactly 5, always.\nStep 2 — Column B: reduce each piece mod 5. 6 leaves 1, so 6t leaves the same as t; and 5 leaves 0. So the remainder of 6t + 5 on division by 5 equals the remainder of t on division by 5, which is 0, 1, 2, 3 or 4 depending on t.\nStep 3 — compare. Column B is at most 4, because any remainder on division by 5 is under 5. Column A is fixed at 5. So Column A > Column B for every t.\nCheck: t = 1 gives 11 - remainders 5 and 1. t = 4 gives 29 - remainders 5 and 4. t = 5 gives 35 - remainders 5 and 0. Column A wins every time.\nColumn A is greater.",
+      "trap": "Choosing D because Column B moves as t changes. It moves, but it is trapped below 5 by the definition of a remainder, while Column A is pinned at 5 - a varying quantity can still be decisively smaller. The other slip is computing Column B at t = 5, getting 0, and assuming Column A must also collapse to 0 there; 35 divided by 6 still leaves 5.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "remainder-range",
+        "bounded-comparison",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-REM-045",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Which of the following are equal to the remainder when 8^400 is divided by 5? Select all that apply.",
+      "options": [
+        "A. 0",
+        "B. 1",
+        "C. The remainder when 2^400 is divided by 5",
+        "D. The remainder when 3^400 is divided by 5",
+        "E. 4"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "Step 1 — reduce the base before doing anything else: 8 leaves 3 on division by 5, so 8^400 and 3^400 leave the same remainder.\nStep 2 — cycle for 3 mod 5: 3, 4, 2, 1 - length 4. 400 mod 4 = 0, so take the LAST entry: 3^400 leaves 1. Therefore 8^400 leaves 1.\nA - the remainder is 1, not 0. FALSE.\nB - matches the computed value. TRUE.\nC - cycle for 2 mod 5: 2, 4, 3, 1 - length 4. 400 mod 4 = 0, last entry, so 2^400 leaves 1. Equal to 1. TRUE.\nD - shown in Step 2 to be 1. TRUE.\nE - 4 would be the value at cycle position 2 (as in 3^2 = 9), not position 4. FALSE.\nAnswer: B, C, D.",
+      "trap": "Selecting only B, because C and D look like different problems and get skipped. Both must actually be evaluated, and both land on 1: any base that is not a multiple of 5 returns to remainder 1 at the exponent 4, and 400 is a multiple of 4. Choice A is the off-by-one trap - reading 400 mod 4 = 0 as 'remainder 0' instead of 'last entry of the cycle'.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "cyclicity",
+        "base-reduction",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "NUM-REM-046",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "What is the remainder when 2^1 + 2^2 + 2^3 + ... + 2^62 is divided by 7? Enter your answer as a number.",
+      "options": null,
+      "answer": "6",
+      "explanation": "Method 1 - group the cycle.\nStep 1 — powers of 2 mod 7 cycle (2, 4, 1) with length 3, since 2^3 = 8 leaves 1.\nStep 2 — each block of three consecutive powers contributes 2 + 4 + 1 = 7, which leaves 0. The blocks vanish.\nStep 3 — count: 62 = 3 x 20 + 2, so the first 60 terms form 20 complete blocks contributing 0, and two terms are left over: 2^61 and 2^62.\nStep 4 — 61 mod 3 = 1, so 2^61 leaves 2; 62 mod 3 = 2, so 2^62 leaves 4.\nStep 5 — total: 0 + 2 + 4 = 6.\nMethod 2 - sum the geometric series first.\n2^1 + 2^2 + ... + 2^62 = 2^63 - 2.\n2^63 = (2^3)^21, and 2^3 leaves 1, so 2^63 leaves 1^21 = 1.\nSo the sum leaves 1 - 2 = -1, and a negative remainder is completed by adding the divisor: -1 + 7 = 6.\nBoth methods give 6.\nAnswer: 6.",
+      "trap": "Assuming the blocks of three sweep up everything and answering 0. 62 is not a multiple of 3, so two powers hang off the end and they carry the whole answer. The second trap sits in Method 2: stopping at -1, which is not a legal remainder - add 7 to land in the range 0 to 6.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "geometric-sum",
+        "cyclicity",
+        "negative-remainder"
+      ]
+    },
+    {
+      "id": "NUM-REM-047",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "A positive integer n leaves a remainder of 2 when divided by 3, a remainder of 3 when divided by 5, and a remainder of 4 when divided by 7. What is the smallest possible value of n?",
+      "options": [
+        "A. 53",
+        "B. 68",
+        "C. 83",
+        "D. 158",
+        "E. 173"
+      ],
+      "answer": "A",
+      "explanation": "Step 1 — combine the first two conditions. Numbers leaving 3 on division by 5: 3, 8, 13, 18, 23, ... Test each against 'remainder 2 on division by 3': 3 leaves 0, 8 leaves 2. Yes.\nSo n = 8 works for the first two, and since LCM(3, 5) = 15, every solution of the first two has the form 15k + 8: 8, 23, 38, 53, 68, ...\nStep 2 — bring in the third condition, remainder 4 on division by 7, walking that shorter list:\n8 leaves 1. No.\n23 leaves 2. No.\n38 leaves 3. No.\n53 leaves 4. Yes.\nStep 3 — n = 53 is the smallest. (The full family is 53 + 105k, since LCM(3, 5, 7) = 105 - the next one is 158, which is choice D.)\nCheck: 53 = 3 x 17 + 2, 53 = 5 x 10 + 3, 53 = 7 x 7 + 4. All three hold.\nAnswer: 53.",
+      "trap": "Testing the options against only one or two of the three conditions. Every option here clears the first condition, and B, C, D and E were built to clear the second as well: 68, 83, 158 and 173 all leave 3 on division by 5. Only the division by 7 separates them - 68 leaves 5, 83 leaves 6, 173 leaves 5 - so an option must be checked against all three before it is chosen. Choice D is the correct family's SECOND member, which catches anyone who solves correctly but forgets the word 'smallest'.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "simultaneous-congruence",
+        "lcm",
+        "systematic-listing"
+      ]
+    },
+    {
+      "id": "NUM-REM-048",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "n is a positive integer.\nColumn A: The remainder when n^3 - n is divided by 6\nColumn B: The remainder when 2^n + 1 is divided by 3",
+      "options": [
+        "A. Column A is greater",
+        "B. Column B is greater",
+        "C. The two quantities are equal",
+        "D. The relationship cannot be determined from the information given"
+      ],
+      "answer": "D",
+      "explanation": "Column A is fixed. Factor: n^3 - n = n(n^2 - 1) = (n - 1)n(n + 1), the product of three consecutive integers. Among any three consecutive integers at least one is even and exactly one is a multiple of 3, so the product is divisible by 2 x 3 = 6. Column A = 0 for every n.\nColumn B moves. Powers of 2 mod 3 cycle (2, 1) with length 2, because 2 is one less than 3 and so behaves like -1:\nn odd -> 2^n leaves 2 -> 2^n + 1 leaves 2 + 1 = 3, which reduces to 0.\nn even -> 2^n leaves 1 -> 2^n + 1 leaves 1 + 1 = 2.\nNow compare:\nn = 1: Column A = 0 (0 divided by 6) and Column B = 0 (3 divided by 3). The columns are EQUAL.\nn = 2: Column A = 0 (n^3 - n = 6, and 6 divided by 6 leaves 0). Column B: 2^2 + 1 = 5, and 5 = 3 x 1 + 2, so Column B = 2. Column B is GREATER.\nn = 3: Column A = 0 (24 divided by 6) and Column B = 0 (9 divided by 3). Equal again.\nTwo different relationships occur, so the relationship cannot be determined.",
+      "trap": "Testing only n = 1, where both columns happen to be 0, and choosing C. Column A is genuinely invariant, but Column B swings between 0 and 2 with the parity of n - and 'leaves remainder 3, so 0' at odd n is exactly the coincidence that makes n = 1 look conclusive. Whenever a column depends on n, test at least an odd and an even value before answering.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "consecutive-integers",
+        "parity-cases",
+        "qc"
+      ]
+    },
+    {
+      "id": "NUM-REM-049",
+      "difficulty": "extreme_hard",
+      "type": "numeric_entry",
+      "question": "What is the units digit of 7^(7^7)?\n\n(The exponent is 7^7 = 823,543, so this is 7 raised to the power 823,543.) Enter your answer as a number.",
+      "options": null,
+      "answer": "3",
+      "explanation": "Step 1 — the units digit is the remainder on division by 10, and units digits of powers of 7 cycle (7, 9, 3, 1) with length 4.\nStep 2 — so the only thing that matters about the exponent is its remainder on division by 4. The exponent is 823,543.\nStep 3 — for division by 4, only the last two digits matter, because 100 is a multiple of 4. Last two digits: 43, and 43 = 4 x 10 + 3, so 823,543 leaves 3.\nStep 4 — take the 3rd entry of the cycle (7, 9, 3, 1): 3.\nFaster route to Step 3 without the given value: 7 leaves 3 on division by 4, i.e. 7 behaves like -1, so 7^7 behaves like (-1)^7 = -1, which is 4 - 1 = 3. Same remainder, no multiplication needed.\nAnswer: 3.",
+      "trap": "Collapsing the tower to 7^(7 x 7) = 7^49 and using 49 mod 4 = 1 to answer 7. A power of a power multiplies exponents only when it is written (7^7)^7; here the exponent is itself 7^7 = 823,543, a far bigger number. The second trap is using the digit-sum shortcut on 823,543 to get its remainder mod 4 - digit sums work for 3 and 9 only; for 4, read the last two digits.",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "power-tower",
+        "cyclicity",
+        "mod-4-of-exponent"
+      ]
+    },
+    {
+      "id": "NUM-REM-050",
+      "difficulty": "extreme_hard",
+      "type": "multiple_answer",
+      "question": "a, b and d are positive integers with d > 1. Which of the following must be true? Select all that apply.",
+      "options": [
+        "A. If a leaves remainder r when divided by d, then 2a leaves remainder 2r when divided by d",
+        "B. If a and b leave the same remainder when divided by d, then d divides a - b",
+        "C. If a leaves remainder r when divided by d, then a leaves remainder r when divided by every factor of d that is greater than 1",
+        "D. The remainder when a^2 is divided by d is completely determined by the remainder when a is divided by d",
+        "E. If a is divisible by d, then a is divisible by every multiple of d"
+      ],
+      "answer": [
+        "B",
+        "D"
+      ],
+      "explanation": "A - the product rule requires a second reduction. Take a = 5, d = 7, so r = 5. Then 2a = 10, which leaves 3, not 10. The rule is rem(2a) = rem(2r) reduced again, and 2r can exceed d. FALSE.\nB - write a = dq1 + r and b = dq2 + r. Subtracting, a - b = d(q1 - q2), a multiple of d. This is the workhorse fact behind every 'same remainder' problem. TRUE.\nC - the remainder survives the switch to a factor only after being reduced again. Take a = 11, d = 15, so r = 11; dividing 11 by the factor 3 leaves 2, not 11 - and 11 is not even a legal remainder mod 3. FALSE.\nD - rem(a^2) = rem(r x r) reduced, and r is exactly the remainder of a, so nothing else about a enters. Example: every a leaving 3 mod 8 has a^2 leaving 1, whether a is 3, 11 or 19. TRUE.\nE - divisibility travels down to factors, not up to multiples. Take a = 6, d = 6: 6 is divisible by 6 but not by the multiple 12. FALSE.\nAnswer: B, D.",
+      "trap": "A and C are the same habit wearing two hats: carrying a remainder through an operation without reducing it a second time, which lets an 'answer' like 10 (mod 7) or 11 (mod 3) stand even though it exceeds its divisor. E inverts the direction in which divisibility travels: a remainder of 0 passes down to every FACTOR of d, never up to its multiples, and a = d = 6 kills it in one line. D is the one that gets skipped rather than mis-answered - it is just the product rule rem(a^2) = rem(r x r) stated in words.",
+      "estimated_time_seconds": 130,
+      "tags": [
+        "remainder-rules",
+        "must-be-true",
+        "multiple-answer"
+      ]
+    }
+  ]
+}
