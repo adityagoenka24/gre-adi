@@ -80,8 +80,8 @@
             "E. 50"
           ],
           "answer": "B",
-          "explanation": "5¹=5, 5²=25, 5³=125→25(mod 100). For all n≥2: 5ⁿ≡25(mod 100). So 5⁹⁹≡25.",
-          "trap": "Students compute 5⁹⁹ mod 100 = 5 (thinking the units digit pattern repeats as ...5 for all powers). For mod 100, the pattern is 5,25,25,25,... — all powers ≥2 give remainder 25.",
+          "explanation": "5² = 25 and 5³ = 125 = 100 + 25. Multiplying a number of the form 100k + 25 by 5 gives 500k + 125 = 100(5k + 1) + 25, which is again 25 more than a multiple of 100. So every power 5ⁿ with n ≥ 2 leaves remainder 25 when divided by 100, and 5⁹⁹ leaves remainder 25.",
+          "trap": "Students reason from the units digit alone (every power of 5 ends in 5) and answer 5 (choice A). Division by 100 depends on the last two digits, which are 25 for every power from 5² on.",
           "estimated_time_seconds": 80,
           "tags": [
             "number-properties",
@@ -239,8 +239,8 @@
             "E. Cannot be determined"
           ],
           "answer": "C",
-          "explanation": "By AM-GM: x+y ≥ 2√(xy) = 2. Equality when x=y=1.",
-          "trap": "Students think the minimum depends on specific x,y values and choose E. AM-GM gives the exact minimum of 2.",
+          "explanation": "Since xy = 1, y = 1/x, so x + y = x + 1/x. For x > 0, (x − 1)² ≥ 0 gives x² − 2x + 1 ≥ 0, so x² + 1 ≥ 2x; dividing by x > 0 gives x + 1/x ≥ 2. Equality holds when x = 1 (then y = 1 and x + y = 2). So the minimum value is 2.",
+          "trap": "Students think the minimum depends on the specific values of x and y and choose E. But x + 1/x − 2 = (x − 1)²/x is never negative, so the sum is never less than 2, and it equals 2 at x = y = 1.",
           "estimated_time_seconds": 65,
           "tags": [
             "algebra",
@@ -262,7 +262,7 @@
           ],
           "answer": "A",
           "explanation": "Strictly inside: x≥1, y≥1, x+y≤5. Row y=1: x∈{1,2,3,4}→4. y=2: 3. y=3: 2. y=4: 1. Total=4+3+2+1=10.",
-          "trap": "Students include boundary points or use Pick's theorem and make an error with the boundary count.",
+          "trap": "Students include the points on the side x + y = 6 (such as (1,5) and (5,1)), counting all points with x ≥ 1, y ≥ 1, x + y ≤ 6: 5+4+3+2+1 = 15 (choice B). 'Strictly inside' excludes every point on the sides, so x + y ≤ 5.",
           "estimated_time_seconds": 100,
           "tags": [
             "geometry",

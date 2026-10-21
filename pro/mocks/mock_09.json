@@ -69,21 +69,22 @@
           "id": "MOCK-09-S1-003",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "What is the value of log₂(log₃(log₂(8)))?",
+          "question": "If (2ˣ)(4ʸ) = 128 and 9ˣ/3ʸ = 81, what is the value of x + y?",
           "options": [
-            "A. −1",
-            "B. 0",
-            "C. 1",
-            "D. 2",
-            "E. 3"
+            "A. 2",
+            "B. 3",
+            "C. 5",
+            "D. 6",
+            "E. 7"
           ],
-          "answer": "B",
-          "explanation": "log₂(8)=3. log₃(3)=1. log₂(1)=0.",
-          "trap": "Students compute log₃(3)=3 (confusing log output with argument) and get log₂(3)≈1.58.",
-          "estimated_time_seconds": 75,
+          "answer": "C",
+          "explanation": "(2ˣ)(4ʸ) = 2ˣ · 2²ʸ = 2ˣ⁺²ʸ and 128 = 2⁷, so x + 2y = 7. 9ˣ/3ʸ = 3²ˣ/3ʸ = 3²ˣ⁻ʸ and 81 = 3⁴, so 2x − y = 4. From the second equation y = 2x − 4; substituting, x + 4x − 8 = 7, so x = 3 and y = 2. Then x + y = 5.",
+          "trap": "Students rewrite 128 and 81 as powers of 2 and 3 but leave 4ʸ as 2ʸ and 9ˣ as 3ˣ, getting x + y = 7 directly from the first equation (option E). 4ʸ = 2²ʸ and 9ˣ = 3²ˣ.",
+          "estimated_time_seconds": 85,
           "tags": [
             "algebra",
-            "logarithms"
+            "exponents",
+            "simultaneous-equations"
           ]
         },
         {
@@ -256,7 +257,7 @@
           "id": "MOCK-09-S1-012",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "If 2x ≡ 1 (mod 5) and 3y ≡ 2 (mod 5), what is (x+y) mod 5?",
+          "question": "x and y are positive integers. When 2x is divided by 5, the remainder is 1, and when 3y is divided by 5, the remainder is 2. What is the remainder when x + y is divided by 5?",
           "options": [
             "A. 0",
             "B. 1",
@@ -265,12 +266,12 @@
             "E. 4"
           ],
           "answer": "C",
-          "explanation": "2⁻¹≡3(mod5): x≡3. 3⁻¹≡2(mod5): y≡4. x+y≡7≡2(mod5).",
-          "trap": "Students compute 2⁻¹=1/2 and 3⁻¹=1/3 in regular arithmetic, then sum to 7/6.",
-          "estimated_time_seconds": 80,
+          "explanation": "The remainder of 2x on division by 5 depends only on the remainder of x. If x leaves remainder 0, 1, 2, 3 or 4, then 2x leaves remainder 0, 2, 4, 1 or 3 (2×3 = 6 = 5 + 1), so x leaves remainder 3. Similarly, 3y leaves remainder 0, 3, 1, 4 or 2 (3×4 = 12 = 10 + 2), so y leaves remainder 4. Then x + y leaves the same remainder as 3 + 4 = 7, which is 2. Check: x = 3, y = 4 gives 2x = 6, 3y = 12 and x + y = 7, remainders 1, 2 and 2.",
+          "trap": "Students add the given remainders, 1 + 2 = 3, and choose D. Those are the remainders of 2x and 3y, not of x and y; x leaves remainder 3 and y leaves remainder 4.",
+          "estimated_time_seconds": 90,
           "tags": [
             "number-properties",
-            "modular-arithmetic"
+            "remainders"
           ]
         }
       ]
@@ -562,7 +563,7 @@
           ],
           "answer": "A",
           "explanation": "p(x)=(x²−1)(x²−4)=x⁴−5x²+4. So b=−5.",
-          "trap": "Students compute b via Vieta's sum of pairwise products: (1)(−1)+(1)(2)+(1)(−2)+(−1)(2)+(−1)(−2)+(2)(−2)=−1+2−2−2+2−4=−5 ✓.",
+          "trap": "Students expand (x² − 1)(x² − 4) and combine the middle terms as +4x² + x² = 5x², choosing 5 (option B). Both cross terms, x²·(−4) and (−1)·x², are negative, so b = −5.",
           "estimated_time_seconds": 75,
           "tags": [
             "algebra",

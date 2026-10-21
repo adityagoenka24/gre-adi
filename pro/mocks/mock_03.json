@@ -102,8 +102,8 @@
             "D. The relationship cannot be determined from the information given"
           ],
           "answer": "A",
-          "explanation": "k(k+1) is always even (consecutive integers). Need also divisible by 3: k≡0 or 2 (mod 3). Check k=1 to 9: k=2:6✓, k=3:12✓, k=5:30✓, k=6:42✓, k=8:72✓, k=9:90✓ → 6 values. Column A=6 > Column B=3.",
-          "trap": "Students only consider k divisible by 3 (k=3,6,9), getting 3 values and choosing C. But k≡2 (mod 3) also makes k(k+1) divisible by 3.",
+          "explanation": "k(k+1) is always even (one of two consecutive integers is even). It is divisible by 3 exactly when k or k+1 is a multiple of 3. Check k=1 to 9: k=2:6✓, k=3:12✓, k=5:30✓, k=6:42✓, k=8:72✓, k=9:90✓ → 6 values. Column A=6 > Column B=3.",
+          "trap": "Students only consider k divisible by 3 (k=3,6,9), getting 3 values and choosing C. But when k+1 is a multiple of 3 (k=2,5,8), k(k+1) is also divisible by 3.",
           "estimated_time_seconds": 90,
           "tags": [
             "number-properties",
@@ -236,44 +236,44 @@
           "id": "MOCK-03-S1-011",
           "difficulty": "medium",
           "type": "mcq",
-          "question": "A data set {5, 8, 12, 15, 20} has all values multiplied by 3. Which statistical measure remains the same as the original?",
+          "question": "The standard deviation of the data set {5, 8, 12, 15, 20} is s. Each value in the set is multiplied by 3, and then 2 is added to each result. In terms of s, what is the standard deviation of the new data set?",
           "options": [
-            "A. Mean",
-            "B. Median",
-            "C. Standard deviation",
-            "D. Coefficient of variation",
-            "E. Range"
+            "A. s",
+            "B. s + 2",
+            "C. 3s",
+            "D. 3s + 2",
+            "E. 9s"
           ],
-          "answer": "D",
-          "explanation": "Multiplying all values by 3 scales the mean, median, SD, and range by 3. Coefficient of variation = SD/mean: (3×SD)/(3×mean) = SD/mean — unchanged.",
-          "trap": "Students choose C (SD) thinking scaling preserves standard deviation. SD also scales by 3. Only the dimensionless ratio CV=SD/mean is preserved.",
+          "answer": "C",
+          "explanation": "Adding 2 to every value shifts the mean by 2 but leaves every value's distance from the mean unchanged, so it does not change the standard deviation. Multiplying every value by 3 multiplies every distance from the mean by 3, so it multiplies the standard deviation by 3. New standard deviation = 3s. (Check: s ≈ 5.25, and the new set {17, 26, 38, 47, 62} has standard deviation ≈ 15.76 = 3 × 5.25.)",
+          "trap": "Students apply both operations to the standard deviation and choose 3s + 2 (choice D), not realizing that adding a constant to every value does not change the spread. Others confuse standard deviation with variance and choose 9s (choice E).",
           "estimated_time_seconds": 85,
           "tags": [
             "statistics",
-            "data-distribution",
-            "standard-deviation"
+            "standard-deviation",
+            "data-distribution"
           ]
         },
         {
           "id": "MOCK-03-S1-012",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "If log₂(x) + log₂(x−2) = 3, what is the value of x?",
+          "question": "If 2^(2x) − 2^x = 56, what is the value of 2^x?",
           "options": [
-            "A. 2",
+            "A. −7",
             "B. 3",
-            "C. 4",
-            "D. 5",
-            "E. 6"
+            "C. 7",
+            "D. 8",
+            "E. 64"
           ],
-          "answer": "C",
-          "explanation": "log₂(x(x−2)) = 3 → x(x−2) = 8 → x²−2x−8 = 0 → (x−4)(x+2) = 0. Solutions: x=4 or x=−2. Since x>2 is required for both logs to be defined, x=4.",
-          "trap": "Students find both roots x=4 and x=−2 and pick x=−2 (option none), or forget to verify x>2 for log₂(x−2) to be defined.",
+          "answer": "D",
+          "explanation": "Let u = 2^x. Then 2^(2x) = (2^x)² = u², so u² − u − 56 = 0 → (u − 8)(u + 7) = 0 → u = 8 or u = −7. A power of 2 is always positive, so 2^x = 8 (and x = 3). Check: 2⁶ − 2³ = 64 − 8 = 56 ✓.",
+          "trap": "Students factor correctly but choose −7 (choice A) without noticing that 2^x can never be negative. Others solve for x and report 3 (choice B), or report 2^(2x) = 64 (choice E) instead of 2^x.",
           "estimated_time_seconds": 100,
           "tags": [
             "algebra",
-            "logarithms",
-            "equations"
+            "exponents",
+            "quadratic-equations"
           ]
         }
       ]
@@ -466,7 +466,7 @@
           "id": "MOCK-03-S2-009",
           "difficulty": "hard",
           "type": "quantitative_comparison",
-          "question": "x is a positive real number, x ≠ 1.\nColumn A: log_x(x²)\nColumn B: 2",
+          "question": "Column A: 9¹¹ − 9¹⁰\nColumn B: 8 × 3²⁰",
           "options": [
             "A. Column A is greater",
             "B. Column B is greater",
@@ -474,12 +474,12 @@
             "D. The relationship cannot be determined from the information given"
           ],
           "answer": "C",
-          "explanation": "log_x(x²) = 2·log_x(x) = 2·1 = 2, for any valid base x. Column A always equals Column B.",
-          "trap": "Students think the answer depends on the value of x and choose D. The identity log_b(bⁿ)=n holds for all valid bases.",
-          "estimated_time_seconds": 55,
+          "explanation": "Factor out 9¹⁰: 9¹¹ − 9¹⁰ = 9¹⁰(9 − 1) = 8 × 9¹⁰. Since 9 = 3², 9¹⁰ = (3²)¹⁰ = 3²⁰. So Column A = 8 × 3²⁰ = Column B.",
+          "trap": "Students subtract the exponents, treating 9¹¹ − 9¹⁰ as 9¹ = 9, and choose B. Others rewrite 9¹⁰ as 3¹⁰ instead of 3²⁰ and also conclude Column B is greater.",
+          "estimated_time_seconds": 75,
           "tags": [
             "algebra",
-            "logarithms"
+            "exponents"
           ]
         },
         {

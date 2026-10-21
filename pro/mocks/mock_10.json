@@ -25,22 +25,22 @@
           "id": "MOCK-10-S1-001",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "The polynomial x⁴ − 1 factored completely over the reals is:",
+          "question": "If x and y are positive integers and x² − y² = 45, what is the sum of all possible values of x?",
           "options": [
-            "A. (x−1)(x+1)(x²+1)",
-            "B. (x²−1)²",
-            "C. (x−1)²(x+1)²",
-            "D. (x−1)(x+1)(x−i)(x+i)",
-            "E. (x²−1)(x²+1)"
+            "A. 16",
+            "B. 23",
+            "C. 32",
+            "D. 39",
+            "E. 69"
           ],
-          "answer": "A",
-          "explanation": "x⁴−1=(x²−1)(x²+1)=(x−1)(x+1)(x²+1). Over reals, x²+1 has no real roots and is irreducible.",
-          "trap": "Students stop at (x²−1)(x²+1) (option E) without completing the factoring of x²−1=(x−1)(x+1).",
-          "estimated_time_seconds": 60,
+          "answer": "D",
+          "explanation": "x² − y² = (x − y)(x + y) = 45, where x + y > x − y > 0 and both factors have the same parity (both are odd here). The factor pairs of 45 are 1 × 45, 3 × 15 and 5 × 9. x = (sum of the pair)/2: (1, 45) gives x = 23, y = 22; (3, 15) gives x = 9, y = 6; (5, 9) gives x = 7, y = 2. Sum of the possible values of x = 23 + 9 + 7 = 39.",
+          "trap": "Students stop after the obvious pairs and miss one: skipping 1 × 45 gives 9 + 7 = 16 (A), and skipping 5 × 9 gives 23 + 9 = 32 (C). Others add every x and y together, getting 69 (E).",
+          "estimated_time_seconds": 95,
           "tags": [
             "algebra",
-            "polynomial-equations",
-            "factoring"
+            "factoring",
+            "difference-of-squares"
           ]
         },
         {
@@ -69,21 +69,22 @@
           "id": "MOCK-10-S1-003",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "If log_a(b) = log_b(a²) where a,b>1 and a≠b, what is log_a(b)?",
+          "question": "If 4ᵃ = 9 and 9ᵇ = 8, what is the value of ab?",
           "options": [
-            "A. 1",
-            "B. √2",
+            "A. 2/3",
+            "B. 3/2",
             "C. 2",
-            "D. −√2",
-            "E. −1"
+            "D. 3",
+            "E. 6"
           ],
           "answer": "B",
-          "explanation": "Let x=log_a(b). log_b(a²)=2log_b(a)=2/x. x=2/x → x²=2 → x=√2 (positive since a,b>1).",
-          "trap": "Students solve x=2/x as x=2 (cancelling x from both sides) instead of x²=2 → x=√2.",
-          "estimated_time_seconds": 85,
+          "explanation": "Substitute 9 = 4ᵃ into the second equation: (4ᵃ)ᵇ = 8, so 4^(ab) = 8. Write both sides as powers of 2: 2^(2ab) = 2³, so 2ab = 3 and ab = 3/2.",
+          "trap": "Students forget that 4 = 2² and match 4^(ab) = 8 to 2³ directly, getting ab = 3 (D). Others divide the values, 8/4 = 2 (C), or invert the final step, 2/3 (A).",
+          "estimated_time_seconds": 90,
           "tags": [
             "algebra",
-            "logarithms"
+            "exponents",
+            "exponential-equations"
           ]
         },
         {
@@ -112,25 +113,26 @@
           "id": "MOCK-10-S1-005",
           "difficulty": "hard",
           "type": "multiple_answer",
-          "question": "Which of the following series converge? Select all that apply.",
+          "question": "In an arithmetic sequence, the first term is 5 and the common difference d is a positive integer. If both 41 and 101 are terms of the sequence, which of the following could be the value of d? Select all that apply.",
           "options": [
-            "A. Σ 1/n",
-            "B. Σ 1/n²",
-            "C. Σ 1/√n",
-            "D. Σ (−1)ⁿ/n",
-            "E. Σ 1/n^(3/2)"
+            "A. 2",
+            "B. 3",
+            "C. 6",
+            "D. 8",
+            "E. 9"
           ],
           "answer": [
+            "A",
             "B",
-            "D",
-            "E"
+            "C"
           ],
-          "explanation": "A: Harmonic (p=1), diverges. B: p=2>1, converges. C: p=1/2<1, diverges. D: Alternating with 1/n→0 decreasingly — converges by AST. E: p=3/2>1, converges.",
-          "trap": "Students include A (classic divergent series) or exclude D (forgetting the Alternating Series Test applies here).",
-          "estimated_time_seconds": 90,
+          "explanation": "Every term is 5 plus a multiple of d. So d must divide 41 − 5 = 36 and 101 − 5 = 96, i.e. d must be a common divisor of 36 and 96. The greatest common divisor of 36 and 96 is 12, so d must be a divisor of 12. A: 2 ✓. B: 3 ✓. C: 6 ✓. D: 8 divides 96 but not 36 ✗. E: 9 divides 36 but not 96 ✗.",
+          "trap": "Students check only one of the two terms: testing just 101 makes 8 look valid (D), and testing just 41 makes 9 look valid (E). Both terms must be reached.",
+          "estimated_time_seconds": 95,
           "tags": [
             "algebra",
-            "sequences-series"
+            "sequences-series",
+            "arithmetic-sequence"
           ]
         },
         {
@@ -181,64 +183,66 @@
           "id": "MOCK-10-S1-008",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "What is Σ_{k=1}^{n} 1/(k(k+1)(k+2)) in closed form?",
+          "question": "What is the value of the product (1 − 1/2²)(1 − 1/3²)(1 − 1/4²) ⋯ (1 − 1/10²)?",
           "options": [
-            "A. 1/4",
-            "B. n(n+3)/(4(n+1)(n+2))",
-            "C. 1/(2(n+1)(n+2))",
-            "D. (n+1)/(4(n+2))",
-            "E. 1/4−1/(2(n+1)(n+2))"
+            "A. 1/10",
+            "B. 11/20",
+            "C. 99/100",
+            "D. 11/10",
+            "E. 11/2"
           ],
           "answer": "B",
-          "explanation": "Partial fractions: 1/(k(k+1)(k+2))=(1/2)(1/(k(k+1))−1/((k+1)(k+2))). Sum=(1/2)(1/2−1/((n+1)(n+2)))=1/4−1/(2(n+1)(n+2))=n(n+3)/(4(n+1)(n+2)). Verify n=1: 1/6 vs (1×4)/(4×2×3)=4/24=1/6 ✓.",
-          "trap": "Students compute the infinite sum (1/4) and choose A, ignoring that the problem asks for the finite n-term sum.",
+          "explanation": "Each factor is a difference of squares: 1 − 1/k² = (1 − 1/k)(1 + 1/k) = ((k − 1)/k) × ((k + 1)/k). The (k − 1)/k factors for k = 2 to 10 multiply to (1/2)(2/3)⋯(9/10) = 1/10. The (k + 1)/k factors multiply to (3/2)(4/3)⋯(11/10) = 11/2. Product = (1/10)(11/2) = 11/20.",
+          "trap": "Students assume the whole product collapses to 1 − 1/10² = 99/100 (C). Others cancel only one of the two chains, getting 1/10 (A) or 11/2 (E).",
           "estimated_time_seconds": 100,
           "tags": [
-            "algebra",
-            "sequences-series",
-            "telescoping"
+            "arithmetic",
+            "fractions",
+            "difference-of-squares"
           ]
         },
         {
           "id": "MOCK-10-S1-009",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "The complex number (1+i)⁸ equals:",
+          "question": "If x + 1/x = 3, what is the value of x³ + 1/x³?",
           "options": [
-            "A. 16",
-            "B. −16",
-            "C. 16i",
-            "D. −16i",
-            "E. 8"
+            "A. 18",
+            "B. 21",
+            "C. 24",
+            "D. 27",
+            "E. 36"
           ],
           "answer": "A",
-          "explanation": "(1+i)²=2i. (1+i)⁴=−4. (1+i)⁸=16.",
-          "trap": "Students compute (1+i)²=1+i²=1−1=0 (forgetting the cross term 2i), getting (0)⁸=0.",
-          "estimated_time_seconds": 60,
+          "explanation": "Cube both sides: (x + 1/x)³ = x³ + 3x + 3/x + 1/x³ = x³ + 1/x³ + 3(x + 1/x). So 27 = x³ + 1/x³ + 3(3), giving x³ + 1/x³ = 27 − 9 = 18.",
+          "trap": "Students cube both sides as if (x + 1/x)³ = x³ + 1/x³, dropping the cross terms, and choose 27 (D). Others subtract the cross terms only once (27 − 3 = 24, C) or add them instead of subtracting (27 + 9 = 36, E).",
+          "estimated_time_seconds": 85,
           "tags": [
             "algebra",
-            "complex-numbers"
+            "algebraic-identities",
+            "exponents"
           ]
         },
         {
           "id": "MOCK-10-S1-010",
           "difficulty": "hard",
           "type": "mcq",
-          "question": "If log₁₀(x)+log₁₀(x+3)=1, what is x?",
+          "question": "What is the sum of all real numbers x such that √(x + 7) = x − 5?",
           "options": [
-            "A. 2",
-            "B. 5",
-            "C. −5",
-            "D. −7",
-            "E. 7"
+            "A. −11",
+            "B. 2",
+            "C. 9",
+            "D. 11",
+            "E. 18"
           ],
-          "answer": "A",
-          "explanation": "x(x+3)=10 → x²+3x−10=0 → (x+5)(x−2)=0. x=2 or x=−5. Domain requires x>0 → x=2.",
-          "trap": "Students include x=−5 without checking that log(x) requires x>0.",
-          "estimated_time_seconds": 60,
+          "answer": "C",
+          "explanation": "Square both sides: x + 7 = x² − 10x + 25, so x² − 11x + 18 = 0 and (x − 2)(x − 9) = 0, giving x = 2 or x = 9. Check in the original equation: x = 9 gives √16 = 4 = 9 − 5 ✓; x = 2 gives √9 = 3 but 2 − 5 = −3 ✗, so 2 is not a solution. The only solution is 9, so the sum is 9.",
+          "trap": "Students solve the squared equation and add both roots, 2 + 9 = 11 (D), without checking that x − 5 must be nonnegative because it equals a square root.",
+          "estimated_time_seconds": 85,
           "tags": [
             "algebra",
-            "logarithms"
+            "radical-equations",
+            "extraneous-solutions"
           ]
         },
         {
@@ -294,44 +298,44 @@
           "id": "MOCK-10-S2-001",
           "difficulty": "extreme_hard",
           "type": "mcq",
-          "question": "A and B each flip a fair coin repeatedly: A until heads, B until tails. What is P(A needs fewer flips than B)?",
+          "question": "Ann and Bob each flip a fair coin 3 times. What is the probability that Ann gets more heads than Bob?",
           "options": [
-            "A. 1/3",
-            "B. 1/4",
-            "C. 2/5",
-            "D. 3/8",
-            "E. 5/16"
+            "A. 5/16",
+            "B. 11/32",
+            "C. 3/8",
+            "D. 1/2",
+            "E. 11/16"
           ],
-          "answer": "A",
-          "explanation": "P(A=a)=P(B=b)=(1/2)^k. P(A<B)=Σ_{a=1}^∞ (1/2)^a Σ_{b=a+1}^∞ (1/2)^b=Σ_{a=1}^∞(1/4)^a=(1/4)/(3/4)=1/3.",
-          "trap": "Students compute P(A<B)=P(B<A)=(1−P(A=B))/2. P(A=B)=Σ(1/4)^k=1/3. P(A<B)=(1−1/3)/2=1/3 ✓. Error: P(A<B)=1/2 by 'symmetry' without accounting for P(A=B)>0.",
+          "answer": "B",
+          "explanation": "Each person gets 0, 1, 2 or 3 heads with probabilities 1/8, 3/8, 3/8, 1/8. P(tie) = (1/8)² + (3/8)² + (3/8)² + (1/8)² = (1 + 9 + 9 + 1)/64 = 20/64 = 5/16. By symmetry, P(Ann more) = P(Bob more), so P(Ann more) = (1 − 5/16)/2 = (11/16)/2 = 11/32.",
+          "trap": "Students use symmetry but ignore ties and answer 1/2 (D), or forget to halve 1 − 5/16 and answer 11/16 (E). Treating the 4 head counts as equally likely gives P(tie) = 1/4 and (1 − 1/4)/2 = 3/8 (C).",
           "estimated_time_seconds": 115,
           "tags": [
             "statistics",
             "basic-probability",
-            "geometric-series"
+            "symmetry"
           ]
         },
         {
           "id": "MOCK-10-S2-002",
           "difficulty": "extreme_hard",
           "type": "mcq",
-          "question": "Wilson's theorem: (p−1)!≡−1(mod p) for prime p. Find 4! mod 7.",
+          "question": "What is the greatest integer k such that 6ᵏ is a factor of 30!?",
           "options": [
-            "A. 1",
-            "B. 3",
-            "C. 5",
-            "D. 6",
-            "E. 0"
+            "A. 5",
+            "B. 10",
+            "C. 13",
+            "D. 14",
+            "E. 26"
           ],
-          "answer": "B",
-          "explanation": "6!≡−1(mod7). 6!=6×5×4!. 6≡−1,5≡−2(mod7): (−1)(−2)×4!=2×4!≡−1(mod7). 4!≡−1×4=−4≡3(mod7).",
-          "trap": "Students compute 4!=24 directly and verify 24=3×7+3≡3(mod7) ✓. Using Wilson: 2⁻¹≡4(mod7) since 2×4=8≡1. 4!=−1/2≡(−1)×4=−4≡3.",
-          "estimated_time_seconds": 90,
+          "answer": "D",
+          "explanation": "6ᵏ = 2ᵏ × 3ᵏ, so k is limited by the scarcer prime. Factors of 3 in 30!: multiples of 3 contribute 10, multiples of 9 contribute 3 more (9, 18, 27), and 27 contributes 1 more: 10 + 3 + 1 = 14. Factors of 2 are far more plentiful (15 + 7 + 3 + 1 = 26). So k = 14.",
+          "trap": "Students count only the multiples of 3 (10, B), or stop at multiples of 9 and miss the third factor of 3 in 27 (13, C). Others count multiples of 6 (5, A) or count the factors of 2 (26, E).",
+          "estimated_time_seconds": 110,
           "tags": [
             "number-properties",
-            "modular-arithmetic",
-            "wilson-theorem"
+            "factorials",
+            "prime-factorization"
           ]
         },
         {
@@ -341,8 +345,8 @@
           "question": "For how many integers n in {1, 2, …, 200} is n³+n²+n+1 divisible by 5?",
           "options": null,
           "answer": "120",
-          "explanation": "n³+n²+n+1=(n+1)(n²+1). Divisible by 5 iff 5|(n+1) or 5|(n²+1). n≡4(mod5): 40 values. n≡2(mod5): n²+1≡5≡0→40. n≡3(mod5): n²+1≡10≡0→40. Total=40+40+40=120. (No overlap: n≡4 gives n²+1≡17≡2≠0.)",
-          "trap": "Students only find n≡4(mod5) (40 values), missing the n²+1≡0(mod5) cases (n≡2 or 3).",
+          "explanation": "n³ + n² + n + 1 = n²(n + 1) + (n + 1) = (n + 1)(n² + 1). Because 5 is prime, the product is divisible by 5 exactly when n + 1 or n² + 1 is. n + 1 is a multiple of 5 when n leaves remainder 4 on division by 5 (n = 4, 9, …, 199): 40 values. For n², only the remainder of n matters: remainders 0, 1, 2, 3, 4 give n² remainders 0, 1, 4, 4, 1, so n² + 1 is a multiple of 5 exactly when n leaves remainder 2 or 3: 40 + 40 values. Each n has only one remainder, so the groups do not overlap: 40 + 40 + 40 = 120.",
+          "trap": "Students count only the n for which n + 1 is a multiple of 5 (n = 4, 9, …, 199) and answer 40, missing the n with remainder 2 or 3, for which n² + 1 is a multiple of 5.",
           "estimated_time_seconds": 110,
           "tags": [
             "number-properties",
@@ -385,7 +389,7 @@
             "E. 3/8"
           ],
           "answer": "B",
-          "explanation": "States: start, after-H, after-T. Let p=P(win|start), h=P(win|after-H), t=P(win|after-T). h=1/2+(1/2)h→h=1. t=(1/2)h+0=1/2. p=(1/2)h+(1/2)t=3/4.",
+          "explanation": "Once an H has appeared, TT can never come first: the next T that appears is immediately preceded by an H, which completes HT. So HT comes first whenever the first flip is H, and also when the first two flips are T then H. TT comes first only when the first two flips are both T, which has probability 1/2 × 1/2 = 1/4. P(HT before TT) = 1 − 1/4 = 3/4.",
           "trap": "Students assume P(HT before TT)=1/2 by symmetry, not accounting for how the two patterns interact on overlapping sequences.",
           "estimated_time_seconds": 125,
           "tags": [
@@ -443,43 +447,44 @@
           "id": "MOCK-10-S2-008",
           "difficulty": "extreme_hard",
           "type": "mcq",
-          "question": "How many 3-element subsets {a,b,c} of {1,2,…,15} satisfy a+b+c ≡ 0 (mod 3)?",
+          "question": "How many different groups of 3 distinct integers can be chosen from the integers 1 through 15 so that the sum of the 3 integers is divisible by 3?",
           "options": [
-            "A. 120",
-            "B. 105",
-            "C. 155",
-            "D. 165",
-            "E. 195"
+            "A. 30",
+            "B. 125",
+            "C. 135",
+            "D. 155",
+            "E. 780"
           ],
-          "answer": "C",
-          "explanation": "Classes mod 3: each class {0,1,2} has 5 elements. Valid subsets: all same class: C(5,3)×3=30. One from each class: 5×5×5=125. Total=155.",
-          "trap": "Students count only the all-same-class case (30) and miss the mixed-class case (125).",
-          "estimated_time_seconds": 105,
+          "answer": "D",
+          "explanation": "Sort 1–15 by remainder when divided by 3: remainder 0 (3, 6, 9, 12, 15), remainder 1 (1, 4, 7, 10, 13), remainder 2 (2, 5, 8, 11, 14) — 5 integers each. The sum is divisible by 3 exactly when the three remainders are all equal (0+0+0, 1+1+1, 2+2+2) or are 0, 1 and 2. All from one group: 3 × C(5,3) = 3 × 10 = 30. One from each group: 5 × 5 × 5 = 125. Total = 30 + 125 = 155.",
+          "trap": "Students count only the one-from-each-group case (125, B), or count the all-same-remainder case for just one group (10 + 125 = 135, C).",
+          "estimated_time_seconds": 110,
           "tags": [
             "number-properties",
-            "modular-arithmetic",
-            "counting"
+            "remainders",
+            "combinations"
           ]
         },
         {
           "id": "MOCK-10-S2-009",
           "difficulty": "extreme_hard",
           "type": "mcq",
-          "question": "If z=cos(2π/5)+i·sin(2π/5), what is 1+z+z²+z³+z⁴?",
+          "question": "If x² = x + 1, then x⁵ is equal to which of the following?",
           "options": [
-            "A. 0",
-            "B. 1",
-            "C. 5",
-            "D. 5z",
-            "E. Cannot be determined"
+            "A. 2x + 1",
+            "B. 3x + 1",
+            "C. 3x + 2",
+            "D. 5x + 3",
+            "E. 8x + 5"
           ],
-          "answer": "A",
-          "explanation": "z=e^(2πi/5) is a primitive 5th root of unity. The sum of all 5th roots of unity equals 0.",
-          "trap": "Students compute |1+z|≈1.9 and guess a non-zero result, or sum magnitudes instead of complex values.",
-          "estimated_time_seconds": 75,
+          "answer": "D",
+          "explanation": "Replace x² by x + 1 each time it appears. x³ = x · x² = x² + x = 2x + 1. x⁴ = x · x³ = 2x² + x = 3x + 2. x⁵ = x · x⁴ = 3x² + 2x = 3(x + 1) + 2x = 5x + 3.",
+          "trap": "Students write x⁵ = x(x²)² = x(x + 1)² but square x + 1 as x² + 1, dropping the 2x term: x(x² + 1) = x³ + x = 3x + 1 (B). Miscounting the steps gives x³ = 2x + 1 (A), x⁴ = 3x + 2 (C) or x⁶ = 8x + 5 (E).",
+          "estimated_time_seconds": 105,
           "tags": [
             "algebra",
-            "complex-numbers"
+            "exponents",
+            "polynomials"
           ]
         },
         {
@@ -502,7 +507,7 @@
           "id": "MOCK-10-S2-011",
           "difficulty": "extreme_hard",
           "type": "quantitative_comparison",
-          "question": "Positive integer n satisfies: n≡3(mod7) and n≡5(mod11).\nColumn A: n mod 77\nColumn B: 38",
+          "question": "When the positive integer n is divided by 7, the remainder is 3, and when n is divided by 11, the remainder is 5.\nQuantity A: The remainder when n is divided by 77\nQuantity B: 38",
           "options": [
             "A. Column A is greater",
             "B. Column B is greater",
@@ -510,13 +515,12 @@
             "D. The relationship cannot be determined from the information given"
           ],
           "answer": "C",
-          "explanation": "CRT: n=7k+3, 7k≡2(mod11). 7⁻¹≡8(mod11). k≡16≡5(mod11). n=7(11m+5)+3=77m+38. Remainder mod 77 is always 38 → C.",
-          "trap": "Students apply CRT correctly but make an arithmetic error: 7×5+3=38 ✓. Some compute 3+5=8 (adding remainders) and get Column A=8<38=Column B.",
-          "estimated_time_seconds": 90,
+          "explanation": "The integers from 0 to 76 that leave remainder 5 when divided by 11 are 5, 16, 27, 38, 49, 60, 71; of these only 38 leaves remainder 3 when divided by 7 (38 = 35 + 3). Any two integers with both remainders differ by a multiple of 7 and of 11, hence by a multiple of 77, so every such n is 38 more than a multiple of 77 (38, 115, 192, …). The remainder when n is divided by 77 is always 38. The quantities are equal.",
+          "trap": "Students add the remainders (3 + 5 = 8) and choose B, or see that n can be 38, 115, 192, … and assume the remainder varies, choosing D.",
+          "estimated_time_seconds": 105,
           "tags": [
             "number-properties",
-            "chinese-remainder-theorem",
-            "modular-arithmetic"
+            "remainders"
           ]
         },
         {
@@ -587,27 +591,25 @@
           "id": "MOCK-10-S2-015",
           "difficulty": "extreme_hard",
           "type": "multiple_answer",
-          "question": "Let f(x)=x³−3x. Which statements are true? Select all that apply.",
+          "question": "The function f is defined by f(x) = |x − 3| − |x + 1| for all numbers x. Which of the following statements are true? Select all that apply.",
           "options": [
-            "A. f has a local max at x=−1",
-            "B. f is increasing on (1,∞)",
-            "C. f(−1)=2 is a local max value",
-            "D. f has exactly 2 critical points",
-            "E. f is concave up for x>0"
+            "A. f(−5) = 4",
+            "B. The greatest value of f(x) is 4.",
+            "C. f(x) = 0 for exactly one value of x.",
+            "D. f(x) = −4 for exactly one value of x.",
+            "E. f(0) < f(2)"
           ],
           "answer": [
             "A",
             "B",
-            "C",
-            "D",
-            "E"
+            "C"
           ],
-          "explanation": "f'=3x²−3=3(x−1)(x+1). Crit at ±1. f''=6x. f''(−1)=−6<0 → local max ✓. f(−1)=−1+3=2 ✓. f'(x)>0 for x>1 → increasing ✓. 2 crit points ✓. f''>0 for x>0 → concave up ✓.",
-          "trap": "Students include x=0 as a critical point (f'(0)=−3≠0), or compute f(−1)=1−3=−2 (sign error).",
-          "estimated_time_seconds": 100,
+          "explanation": "Split at x = −1 and x = 3. For x ≤ −1: f(x) = (3 − x) − (−x − 1) = 4. For −1 ≤ x ≤ 3: f(x) = (3 − x) − (x + 1) = 2 − 2x, which falls from 4 to −4. For x ≥ 3: f(x) = (x − 3) − (x + 1) = −4. A: f(−5) = 8 − 4 = 4 ✓. B: f never exceeds 4 ✓. C: f(x) = 0 only where 2 − 2x = 0, i.e. x = 1 ✓. D: f(x) = −4 for every x ≥ 3 ✗. E: f(0) = 2 and f(2) = −2, so f(0) > f(2) ✗.",
+          "trap": "Students find f(3) = −4 and stop, selecting D, without noticing that f stays at −4 for every x ≥ 3.",
+          "estimated_time_seconds": 115,
           "tags": [
             "algebra",
-            "calculus-concepts",
+            "absolute-value",
             "functions"
           ]
         }
