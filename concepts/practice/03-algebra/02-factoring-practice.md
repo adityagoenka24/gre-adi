@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ Factor: x^2 - 14x + 49.
 
 x^2 - 16 = 0, where x is a positive integer.
 
-> **Column A:**  x
-> **Column B:**  4
+> **Quantity A:**  x
+> **Quantity B:**  4
 
 **Q4** · `ALG-FAC-011` · Numeric Entry · 50s
 
@@ -103,15 +103,15 @@ Which of the following is equivalent to (a + b)^2 - (a - b)^2?
 
 a and b are real numbers with a > b > 0.
 
-> **Column A:**  (a - b)^2
-> **Column B:**  a^2 - b^2
+> **Quantity A:**  (a - b)^2
+> **Quantity B:**  a^2 - b^2
 
 **Q10** · `ALG-FAC-021` · QC · 75s
 
 x is a real number and x^3 = 9x.
 
-> **Column A:**  the number of distinct real values of x that satisfy the equation
-> **Column B:**  3
+> **Quantity A:**  the number of distinct real values of x that satisfy the equation
+> **Quantity B:**  3
 
 **Q11** · `ALG-FAC-019` · Numeric Entry · 75s
 
@@ -181,8 +181,8 @@ Which of the following is the complete factorisation of x^8 - 256 into factors t
 
 x is a nonzero real number.
 
-> **Column A:**  x^2 + 1/x^2
-> **Column B:**  2
+> **Quantity A:**  x^2 + 1/x^2
+> **Quantity B:**  2
 
 **Q19** · `ALG-FAC-039` · Select all that apply · 110s
 
@@ -224,8 +224,8 @@ Factor completely: x^2 + 6x + 9 - 4y^2.
 
 k is a positive integer, and x^2 - kx + 12 can be factored into two binomials with integer coefficients.
 
-> **Column A:**  the number of possible values of k
-> **Column B:**  4
+> **Quantity A:**  the number of possible values of k
+> **Quantity B:**  4
 
 **Q24** · `ALG-FAC-044` · Select all that apply · 105s
 
@@ -269,8 +269,8 @@ x^4 + 4x^2 + 16 = (x^2 + ax + 4)(x^2 + bx + 4) for all x, where a and b are inte
 
 x^4 - 10x^3 + 33x^2 - 40x + 16 = 0
 
-> **Column A:**  the product of all DISTINCT real solutions of the equation
-> **Column B:**  the sum of all DISTINCT real solutions of the equation
+> **Quantity A:**  the product of all DISTINCT real solutions of the equation
+> **Quantity B:**  the sum of all DISTINCT real solutions of the equation
 
 **Q29** · `ALG-FAC-049` · Select all that apply · 125s
 
@@ -359,7 +359,7 @@ Answer: A.
 Step 1 — factor rather than square-root: x^2 - 16 = (x - 4)(x + 4).
 Step 2 — a product equals 0 only when a factor equals 0, so x - 4 = 0 or x + 4 = 0, giving x = 4 or x = -4.
 Step 3 — the stem says x is a positive integer, which removes -4. So x = 4.
-Check: 4^2 - 16 = 0, and 4 is a positive integer. Column A = 4 and Column B = 4.
+Check: 4^2 - 16 = 0, and 4 is a positive integer. Quantity A = 4 and Quantity B = 4.
 Answer: C.
 
 **Trap.** Spotting the second root -4 and choosing D on the grounds that x could be negative. The stem has already ruled that out with 'positive integer'. The reverse error also exists: solving x^2 = 16 by taking one square root, which happens to land on 4 here but hides a root whenever the stem does not restrict the sign.
@@ -423,14 +423,14 @@ Answer: C.
 
 ### Q9 · `ALG-FAC-017` — Answer: B
 
-Step 1 — factor both columns so they share a piece. Column A = (a - b)(a - b). Column B = (a - b)(a + b).
+Step 1 — factor both columns so they share a piece. Quantity A = (a - b)(a - b). Quantity B = (a - b)(a + b).
 Step 2 — a > b, so the shared factor (a - b) is positive. Dividing both columns by a positive quantity does not change which is larger.
 Step 3 — what remains is a - b against a + b. Since b > 0, a + b is larger.
-So Column B is greater, for every allowed a and b.
-Check at a = 5, b = 2: Column A = 9, Column B = 25 - 4 = 21. Check at a = 5, b = 4: Column A = 1, Column B = 9. Column B wins both times.
+So Quantity B is greater, for every allowed a and b.
+Check at a = 5, b = 2: Quantity A = 9, Quantity B = 25 - 4 = 21. Check at a = 5, b = 4: Quantity A = 1, Quantity B = 9. Quantity B wins both times.
 Answer: B.
 
-**Trap.** Choosing D because the columns are full of unknowns. Factoring removes the unknowns from the decision: the shared factor (a - b) cancels out of the comparison and the contest reduces to a - b against a + b, which b > 0 settles. The other pull is C, from expanding Column A as a^2 - b^2 and dropping the -2ab cross term, which makes the columns look identical.
+**Trap.** Choosing D because the columns are full of unknowns. Factoring removes the unknowns from the decision: the shared factor (a - b) cancels out of the comparison and the contest reduces to a - b against a + b, which b > 0 settles. The other pull is C, from expanding Quantity A as a^2 - b^2 and dropping the -2ab cross term, which makes the columns look identical.
 
 ### Q10 · `ALG-FAC-021` — Answer: C
 
@@ -438,11 +438,11 @@ Step 1 — never divide by the variable. Move everything to one side: x^3 - 9x =
 Step 2 — common factor first: x(x^2 - 9) = 0.
 Step 3 — the bracket is a difference of squares: x(x - 3)(x + 3) = 0.
 Step 4 — a product is 0 only when a factor is 0, so x = 0, x = 3 or x = -3. That is 3 distinct real values.
-Column A = 3 and Column B = 3.
+Quantity A = 3 and Quantity B = 3.
 Check: 0^3 = 0 = 9(0); 3^3 = 27 = 9(3); (-3)^3 = -27 = 9(-3). All three work.
 Answer: C.
 
-**Trap.** Dividing both sides by x to get x^2 = 9 and x = 3 or -3, which reports 2 and lands on Column B being greater. Dividing by x silently assumes x is not 0 and deletes the root x = 0. A second error is taking only the positive square root of 9, reporting 1 value. Factor instead of dividing and all three roots stay on the page.
+**Trap.** Dividing both sides by x to get x^2 = 9 and x = 3 or -3, which reports 2 and lands on Quantity B being greater. Dividing by x silently assumes x is not 0 and deletes the root x = 0. A second error is taking only the positive square root of 9, reporting 1 value. Factor instead of dividing and all three roots stay on the page.
 
 ### Q11 · `ALG-FAC-019` — Answer: 11
 
@@ -531,11 +531,11 @@ Answer: A.
 
 Step 1 — compare by subtracting and look for a factorable form: x^2 + 1/x^2 - 2.
 With a = x and b = 1/x, note that 2ab = 2 * x * (1/x) = 2, so this is exactly a^2 - 2ab + b^2 = (x - 1/x)^2.
-Step 2 — a real square is never negative, so Column A - Column B = (x - 1/x)^2 >= 0. Column A is never below 2.
+Step 2 — a real square is never negative, so Quantity A - Quantity B = (x - 1/x)^2 >= 0. Quantity A is never below 2.
 Step 3 — the square is 0 exactly when x - 1/x = 0, that is x^2 = 1, so x = 1 or x = -1. At those two values the columns are equal.
-Step 4 — at any other value the square is positive. At x = 2, Column A = 4 + 1/4 = 4.25 > 2.
-Equal at some allowed values and Column A greater at others, so nothing is fixed.
-Check: x = 1 gives 1 + 1 = 2, equal; x = 2 gives 4.25, Column A greater. Correct.
+Step 4 — at any other value the square is positive. At x = 2, Quantity A = 4 + 1/4 = 4.25 > 2.
+Equal at some allowed values and Quantity A greater at others, so nothing is fixed.
+Check: x = 1 gives 1 + 1 = 2, equal; x = 2 gives 4.25, Quantity A greater. Correct.
 Answer: D.
 
 **Trap.** Testing x = 2, x = 3 and x = 0.5, getting a value above 2 every time, and choosing A. The only values that tie are x = 1 and x = -1, and a single tie is enough to force D. The factorisation x^2 + 1/x^2 - 2 = (x - 1/x)^2 shows precisely where the tie sits instead of leaving it to be stumbled on.
@@ -598,7 +598,7 @@ Step 3 — list the positive factor pairs of 12 with their sums:
 1 and 12 give k = 13
 2 and 6 give k = 8
 3 and 4 give k = 7
-Step 4 — that is 3 possible values of k. Column A = 3 and Column B = 4.
+Step 4 — that is 3 possible values of k. Quantity A = 3 and Quantity B = 4.
 Check each: x^2 - 7x + 12 = (x - 3)(x - 4), x^2 - 8x + 12 = (x - 2)(x - 6), x^2 - 13x + 12 = (x - 1)(x - 12). All factor, and no fourth pair of positive integers multiplies to 12.
 Answer: B.
 
@@ -664,13 +664,13 @@ Step 1 — the quartic is a perfect square. The constant 16 = 4^2 and the leadin
 Check the middle: (x^2 - 5x + 4)^2 = x^4 - 10x^3 + (25 + 8)x^2 - 40x + 16 = x^4 - 10x^3 + 33x^2 - 40x + 16. It matches, so the equation is (x^2 - 5x + 4)^2 = 0.
 Step 2 — factor the inside: x^2 - 5x + 4 = (x - 1)(x - 4), so the equation is (x - 1)^2 (x - 4)^2 = 0.
 Step 3 — the zero-product property gives x = 1 and x = 4, each a DOUBLE root. Counted with multiplicity there are four roots, 1, 1, 4 and 4, but the solution SET is {1, 4}: only two distinct real solutions.
-Step 4 — Column A: the product of the distinct solutions is 1 * 4 = 4.
-Step 5 — Column B: the sum of the distinct solutions is 1 + 4 = 5.
-4 < 5, so Column B is greater.
+Step 4 — Quantity A: the product of the distinct solutions is 1 * 4 = 4.
+Step 5 — Quantity B: the sum of the distinct solutions is 1 + 4 = 5.
+4 < 5, so Quantity B is greater.
 Check x = 4: 256 - 640 + 528 - 160 + 16 = 0, and x = 1: 1 - 10 + 33 - 40 + 16 = 0. Correct.
 Answer: B.
 
-**Trap.** Counting the repeated roots twice, as the solutions 1, 1, 4, 4: the product becomes 16 and the sum 10, which flips the answer to Column A. Both columns say DISTINCT, so each root is used once however many times its factor appears. Reading the answers straight off the coefficients by Vieta gives the same wrong pair - product of the roots = 16/1 = 16 and sum = 10/1 = 10 - because Vieta always counts multiplicity; it answers a question about the quartic, not about its solution set. The third slip is assuming a quartic must have four different real solutions and hunting for two more; the squared factors say there are none. Only the fully factored form (x - 1)^2 (x - 4)^2 makes the repetition visible.
+**Trap.** Counting the repeated roots twice, as the solutions 1, 1, 4, 4: the product becomes 16 and the sum 10, which flips the answer to Quantity A. Both columns say DISTINCT, so each root is used once however many times its factor appears. Reading the answers straight off the coefficients by Vieta gives the same wrong pair - product of the roots = 16/1 = 16 and sum = 10/1 = 10 - because Vieta always counts multiplicity; it answers a question about the quartic, not about its solution set. The third slip is assuming a quartic must have four different real solutions and hunting for two more; the squared factors say there are none. Only the fully factored form (x - 1)^2 (x - 4)^2 makes the repetition visible.
 
 ### Q29 · `ALG-FAC-049` — Answer: A, B, D
 

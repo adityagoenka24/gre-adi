@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -54,8 +54,8 @@ A fair six-sided die is rolled three times. What is the probability that every o
 
 A fair six-sided die is rolled twice.
 
-> **Column A:**  P(both rolls show an even number)
-> **Column B:**  P(both rolls show an odd number)
+> **Quantity A:**  P(both rolls show an even number)
+> **Quantity B:**  P(both rolls show an odd number)
 
 **Q5** · `STA-CPR-013` · Numeric Entry · 55s
 
@@ -109,8 +109,8 @@ A box contains 5 defective items and 15 non-defective items. Two items are selec
 
 A bag contains 3 red balls and 3 blue balls and no other balls. Two balls are drawn at random WITHOUT replacement.
 
-> **Column A:**  P(both balls are red)
-> **Column B:**  P(one ball is red and the other is blue)
+> **Quantity A:**  P(both balls are red)
+> **Quantity B:**  P(one ball is red and the other is blue)
 
 **Q11** · `STA-CPR-027` · Select all that apply · 90s
 
@@ -188,8 +188,8 @@ Urn X contains 2 red and 3 white balls. Urn Y contains 4 red and 1 white ball. O
 
 A bag contains 4 red marbles and 6 blue marbles and no others. Two marbles are drawn at random.
 
-> **Column A:**  P(the two marbles are different colors) when the two draws are made WITH replacement
-> **Column B:**  P(the two marbles are different colors) when the two draws are made WITHOUT replacement
+> **Quantity A:**  P(the two marbles are different colors) when the two draws are made WITH replacement
+> **Quantity B:**  P(the two marbles are different colors) when the two draws are made WITHOUT replacement
 
 **Q19** · `STA-CPR-039` · Select all that apply · 100s
 
@@ -211,8 +211,8 @@ A drawer contains 4 black socks and 6 white socks and no others. Three socks are
 
 A bag contains 2 red marbles and 6 blue marbles and no others. Three marbles are drawn at random WITHOUT replacement.
 
-> **Column A:**  P(at least one of the three marbles is red)
-> **Column B:**  2/3
+> **Quantity A:**  P(at least one of the three marbles is red)
+> **Quantity B:**  2/3
 
 **Q22** · `STA-CPR-042` · MCQ · 110s
 
@@ -244,8 +244,8 @@ A jar contains 2 red marbles and 4 white marbles and no others. Three marbles ar
 
 A coin, not necessarily fair, comes up heads with probability p, where 0 < p < 1. The coin is flipped twice and the flips are independent.
 
-> **Column A:**  P(at least one head in the two flips)
-> **Column B:**  2p - p^2
+> **Quantity A:**  P(at least one head in the two flips)
+> **Quantity B:**  2p - p^2
 
 ---
 
@@ -273,8 +273,8 @@ An urn contains 3 red, 4 blue, and 5 green balls. Balls are drawn one at a time 
 
 A biased coin comes up heads with probability 2/3 on every flip, and the flips are independent. The coin is flipped repeatedly until heads appears.
 
-> **Column A:**  P(heads first appears on the 3rd flip)
-> **Column B:**  3 x P(heads first appears on the 4th flip)
+> **Quantity A:**  P(heads first appears on the 3rd flip)
+> **Quantity B:**  3 x P(heads first appears on the 4th flip)
 
 **Q29** · `STA-CPR-049` · Numeric Entry · 125s
 
@@ -367,8 +367,8 @@ Answer: 1/27.
 ### Q4 · `STA-CPR-011` — Answer: C
 
 Each roll has 3 even faces (2, 4, 6) and 3 odd faces (1, 3, 5), so on any single roll P(even) = P(odd) = 3/6 = 1/2.
-Column A: the two rolls are independent, so P(even AND even) = 1/2 x 1/2 = 1/4.
-Column B: P(odd AND odd) = 1/2 x 1/2 = 1/4.
+Quantity A: the two rolls are independent, so P(even AND even) = 1/2 x 1/2 = 1/4.
+Quantity B: P(odd AND odd) = 1/2 x 1/2 = 1/4.
 Check by counting the 6 x 6 = 36 ordered outcomes: 3 x 3 = 9 are even-even and 3 x 3 = 9 are odd-odd, so each is 9/36 = 1/4.
 The two quantities are equal.
 
@@ -431,17 +431,17 @@ Answer: 17/38.
 
 ### Q10 · `STA-CPR-026` — Answer: B
 
-Column A: P(first is red) = 3/6, and then 2 reds remain among 5 balls, so P(second is red) = 2/5.
+Quantity A: P(first is red) = 3/6, and then 2 reds remain among 5 balls, so P(second is red) = 2/5.
 P(both red) = (3/6)(2/5) = 6/30 = 1/5.
-Column B: 'one red and one blue' does not fix the order, so BOTH orders count.
+Quantity B: 'one red and one blue' does not fix the order, so BOTH orders count.
 P(red then blue) = (3/6)(3/5) = 9/30.
 P(blue then red) = (3/6)(3/5) = 9/30.
 P(one of each) = 9/30 + 9/30 = 18/30 = 3/5.
-3/5 > 1/5, so Column B is greater.
+3/5 > 1/5, so Quantity B is greater.
 Check that the three cases exhaust the sample space: both red 6/30, both blue 6/30, one of each 18/30, and 6 + 6 + 18 = 30. Correct.
-Answer: Column B is greater.
+Answer: Quantity B is greater.
 
-**Trap.** Counting Column B's favourable pairs as 3 - one for each red ball - instead of 3 x 3 = 9 red-blue pairs. That gives 3/C(6,2) = 3/15 = 1/5, exactly Column A, and points at C; every red can be paired with any of the 3 blues, so 9 of the 15 unordered pairs are mixed. Misreading Column A as 'at least one red' is the other way to go wrong: 1 - P(both blue) = 1 - 1/5 = 4/5 beats Column B's 3/5 and points at A.
+**Trap.** Counting Quantity B's favourable pairs as 3 - one for each red ball - instead of 3 x 3 = 9 red-blue pairs. That gives 3/C(6,2) = 3/15 = 1/5, exactly Quantity A, and points at C; every red can be paired with any of the 3 blues, so 9 of the 15 unordered pairs are mixed. Misreading Quantity A as 'at least one red' is the other way to go wrong: 1 - P(both blue) = 1 - 1/5 = 4/5 beats Quantity B's 3/5 and points at A.
 
 ### Q11 · `STA-CPR-027` — Answer: A, C, D
 
@@ -521,12 +521,12 @@ Answer: 11/15.
 
 ### Q18 · `STA-CPR-038` — Answer: B
 
-Column A: with replacement the pool resets, so every draw is 4/10 red and 6/10 blue. Different colours happens two ways:
+Quantity A: with replacement the pool resets, so every draw is 4/10 red and 6/10 blue. Different colours happens two ways:
 (4/10)(6/10) + (6/10)(4/10) = 24/100 + 24/100 = 48/100 = 12/25 = 0.48.
-Column B: without replacement the second denominator drops to 9:
+Quantity B: without replacement the second denominator drops to 9:
 (4/10)(6/9) + (6/10)(4/9) = 24/90 + 24/90 = 48/90 = 8/15 = 0.5333...
 Compare by cross-multiplying: 8 x 25 = 200 and 15 x 12 = 180, so 8/15 > 12/25.
-Column B is greater.
+Quantity B is greater.
 Why it must be: removing the first marble makes the OTHER colour relatively more plentiful for the second draw, which pushes 'different colours' up.
 
 **Trap.** Choosing C on the grounds that both orderings were counted in each column and the same 10 marbles are involved. Replacement is not cosmetic - it pins the second draw's pool at 10 instead of 9. A student who counts only one ordering in both columns gets 0.24 and 4/15 = 0.267, still picks B, and never notices the missing order.
@@ -559,13 +559,13 @@ Answer: 4/5.
 
 Step 1 — 'at least one' is the signal to work with the complement: at least one red = 1 - P(no red).
 Step 2 — price 'no red' as a three-stage chain of blues, updating both numbers each time: (6/8)(5/7)(4/6) = 120/336 = 5/14.
-Step 3 — Column A = 1 - 5/14 = 9/14.
+Step 3 — Quantity A = 1 - 5/14 = 9/14.
 Step 4 — compare 9/14 with 2/3 over the common denominator 42: 9/14 = 27/42 and 2/3 = 28/42.
-27/42 < 28/42, so Column B is greater.
+27/42 < 28/42, so Quantity B is greater.
 Check with combinations: P(no red) = C(6,3)/C(8,3) = 20/56 = 5/14, the same number. Correct.
-Answer: Column B is greater.
+Answer: Quantity B is greater.
 
-**Trap.** Adding the per-draw chances, 3 x 2/8 = 3/4, and choosing A. Adding treats the three draws as if they could not overlap, but the two reds can both appear, and the chain shrinks the bag after every draw; the complement route avoids both problems. Choosing D on the grounds that 'at least one' is not a fixed number is the other slip - the bag is fully specified, so Column A is the definite value 9/14.
+**Trap.** Adding the per-draw chances, 3 x 2/8 = 3/4, and choosing A. Adding treats the three draws as if they could not overlap, but the two reds can both appear, and the chain shrinks the bag after every draw; the complement route avoids both problems. Choosing D on the grounds that 'at least one' is not a fixed number is the other slip - the bag is fully specified, so Quantity A is the definite value 9/14.
 
 ### Q22 · `STA-CPR-042` — Answer: B
 
@@ -607,13 +607,13 @@ Answer: A, B and D.
 
 ### Q25 · `STA-CPR-045` — Answer: C
 
-Column A: 'at least one' goes through the complement.
+Quantity A: 'at least one' goes through the complement.
 P(no heads) = P(tail) x P(tail) = (1 - p)(1 - p) = (1 - p)^2.
 Expand: (1 - p)^2 = 1 - 2p + p^2.
 So P(at least one head) = 1 - (1 - 2p + p^2) = 2p - p^2.
-Column B is 2p - p^2, the identical expression, so the columns agree for every allowed p.
+Quantity B is 2p - p^2, the identical expression, so the columns agree for every allowed p.
 The two quantities are equal.
-Sanity check with p = 1/2: Column A = 1 - (1/2)^2 = 3/4, and Column B = 2(1/2) - (1/2)^2 = 1 - 1/4 = 3/4. Equal.
+Sanity check with p = 1/2: Quantity A = 1 - (1/2)^2 = 3/4, and Quantity B = 2(1/2) - (1/2)^2 = 1 - 1/4 = 3/4. Equal.
 
 **Trap.** Choosing D because p is unknown. An unknown forces D only when the RELATIONSHIP moves with it, and here the algebra collapses both columns to the same expression for every p between 0 and 1. The competing error is reading 'at least one head' as p + p = 2p, which can exceed 1; the missing -p^2 is exactly the both-heads case that plain addition counts twice.
 
@@ -644,12 +644,12 @@ Answer: 9/55.
 ### Q28 · `STA-CPR-048` — Answer: C
 
 'Heads first appears on flip n' means tails on each of the first n - 1 flips AND heads on flip n, which is a pure AND chain worth (1/3)^(n-1) x (2/3).
-Column A: n = 3, so P = (1/3)^2 x (2/3) = (1/9)(2/3) = 2/27.
-Column B: n = 4, so P = (1/3)^3 x (2/3) = (1/27)(2/3) = 2/81, and the column is 3 x 2/81 = 6/81 = 2/27.
+Quantity A: n = 3, so P = (1/3)^2 x (2/3) = (1/9)(2/3) = 2/27.
+Quantity B: n = 4, so P = (1/3)^3 x (2/3) = (1/27)(2/3) = 2/81, and the column is 3 x 2/81 = 6/81 = 2/27.
 2/27 = 2/27, so the two quantities are equal.
-Why it lands exactly: each additional flip of waiting multiplies the probability by P(tails) = 1/3, so flip 4 is exactly one third as likely as flip 3, and the factor of 3 in Column B undoes that precisely.
+Why it lands exactly: each additional flip of waiting multiplies the probability by P(tails) = 1/3, so flip 4 is exactly one third as likely as flip 3, and the factor of 3 in Quantity B undoes that precisely.
 
-**Trap.** Computing 2/27 and 2/81, noticing that 2/27 is larger, and choosing A while ignoring the 'x 3' printed in Column B. The reverse slip is assuming the shrink factor between consecutive waiting times is P(heads) = 2/3; it is P(TAILS) = 1/3, which is exactly what the 3 cancels.
+**Trap.** Computing 2/27 and 2/81, noticing that 2/27 is larger, and choosing A while ignoring the 'x 3' printed in Quantity B. The reverse slip is assuming the shrink factor between consecutive waiting times is P(heads) = 2/3; it is P(TAILS) = 1/3, which is exactly what the 3 cancels.
 
 ### Q29 · `STA-CPR-049` — Answer: 223/343
 

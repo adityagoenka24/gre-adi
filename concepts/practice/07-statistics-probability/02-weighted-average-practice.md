@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ Group 1 has average value a and Group 2 has average value b, where a < b. Each g
 
 Group X consists of 5 students with an average score of 60. Group Y consists of 15 students with an average score of 80.
 
-> **Column A:**  The average score of all 20 students
-> **Column B:**  70
+> **Quantity A:**  The average score of all 20 students
+> **Quantity B:**  70
 
 **Q5** · `STA-WAV-010` · MCQ · 50s
 
@@ -105,8 +105,8 @@ For real numbers a and b, define M = (3a + 5b)/8. Which of the following must be
 
 A car drives from P to Q at a constant speed of v1 km/h and immediately returns from Q to P along the same road at a constant speed of v2 km/h. Both v1 and v2 are positive, and v1 is not equal to v2.
 
-> **Column A:**  The car's average speed for the round trip
-> **Column B:**  (v1 + v2)/2
+> **Quantity A:**  The car's average speed for the round trip
+> **Quantity B:**  (v1 + v2)/2
 
 **Q11** · `STA-WAV-029` · Numeric Entry · 60s
 
@@ -154,8 +154,8 @@ A school has exactly three sections. Section A has 20 students with an average s
 
 Group A has an average score of 70 and Group B has an average score of 90. Group A has more members than Group B, and each group has at least one member.
 
-> **Column A:**  The average score of Groups A and B combined
-> **Column B:**  80
+> **Quantity A:**  The average score of Groups A and B combined
+> **Quantity B:**  80
 
 **Q16** · `STA-WAV-036` · Numeric Entry · 95s
 
@@ -197,8 +197,8 @@ A student's grade point average is the sum of (grade x credit hours) over all co
 
 A store sold n items on Monday at an average price of $40 and m items on Tuesday at an average price of $60, where n and m are both positive. The average price of all the items sold over the two days was $52.
 
-> **Column A:**  n
-> **Column B:**  m
+> **Quantity A:**  n
+> **Quantity B:**  m
 
 **Q21** · `STA-WAV-041` · Numeric Entry · 100s
 
@@ -220,8 +220,8 @@ On a certain airline, 80% of passengers travel in Economy and pay an average far
 
 Team A has 12 players with an average age of 25 and Team B has 8 players with an average age of 30. Two players from Team A, both aged 28, transfer to Team B, and at the same time two players from Team B, both aged 27, transfer to Team A. No other players join or leave.
 
-> **Column A:**  The average age of all 20 players on the two teams after the transfers
-> **Column B:**  27
+> **Quantity A:**  The average age of all 20 players on the two teams after the transfers
+> **Quantity B:**  27
 
 **Q24** · `STA-WAV-044` · Select all that apply · 100s
 
@@ -263,8 +263,8 @@ A firm has exactly two divisions. Division A has 300 employees: 40% are managers
 
 Every student at School X and at School Y takes the same annual exam. In 2019 the average score was 80 at School X and 84 at School Y. In 2020 the average score was 88 at School X and 92 at School Y. Each school had at least one student in each of the two years, but a school's enrollment in 2020 need not equal its enrollment in 2019.
 
-> **Column A:**  The average score of all students at the two schools combined in 2020
-> **Column B:**  8 more than the average score of all students at the two schools combined in 2019
+> **Quantity A:**  The average score of all students at the two schools combined in 2020
+> **Quantity B:**  8 more than the average score of all students at the two schools combined in 2019
 
 **Q28** · `STA-WAV-048` · Numeric Entry · 115s
 
@@ -370,11 +370,11 @@ Answer: D.
 
 Step 1 — totals. Group X: 5 x 60 = 300. Group Y: 15 x 80 = 1200.
 Step 2 — combined mean = (300 + 1200)/20 = 1500/20 = 75.
-Step 3 — compare: 75 > 70, so Column A is greater.
+Step 3 — compare: 75 > 70, so Quantity A is greater.
 Faster, no arithmetic: Group Y has three times as many students as Group X, so the combined mean must be pulled three quarters of the way from 60 to 80. That is well above the midpoint 70, which settles it immediately.
 Answer: A.
 
-**Trap.** Averaging 60 and 80 to get 70 and choosing C. The groups differ in size 5 to 15, so the midpoint is not the combined mean. Column B is exactly the number that error produces, which is why C is the tempting key.
+**Trap.** Averaging 60 and 80 to get 70 and choosing C. The groups differ in size 5 to 15, so the midpoint is not the combined mean. Quantity B is exactly the number that error produces, which is why C is the tempting key.
 
 ### Q5 · `STA-WAV-010` — Answer: B
 
@@ -438,7 +438,7 @@ Average speed is never a weighted average of the speeds by DISTANCE - it is tota
 Step 1 — let the one-way distance be d. Total distance = 2d. Total time = d/v1 + d/v2.
 Step 2 — average speed = 2d / (d/v1 + d/v2) = 2/(1/v1 + 1/v2) = 2 v1 v2/(v1 + v2), the harmonic mean.
 Step 3 — compare with the arithmetic mean. (v1 + v2)/2 - 2 v1 v2/(v1 + v2) = ((v1 + v2)^2 - 4 v1 v2)/(2(v1 + v2)) = (v1 - v2)^2/(2(v1 + v2)).
-Since v1 is not equal to v2, that numerator is strictly positive and the denominator is positive, so Column B is strictly greater.
+Since v1 is not equal to v2, that numerator is strictly positive and the denominator is positive, so Quantity B is strictly greater.
 Concrete check: v1 = 60, v2 = 40 gives average speed 2(60)(40)/100 = 48, while (60 + 40)/2 = 50.
 Answer: B.
 
@@ -497,7 +497,7 @@ Let nA and nB be the two group sizes, with nA > nB > 0.
 Step 1 — the combined mean is m = (70 nA + 90 nB)/(nA + nB). Rewrite it as m = 70 + 20 x nB/(nA + nB).
 Step 2 — since nA > nB, the fraction nB/(nA + nB) is strictly less than 1/2.
 Step 3 — therefore m < 70 + 20(1/2) = 80, no matter what the actual sizes are.
-So Column B is greater. Two examples confirm it: nA = 3, nB = 1 gives (210 + 90)/4 = 75; nA = 100, nB = 99 gives (7000 + 8910)/199 = 79.95. Both below 80.
+So Quantity B is greater. Two examples confirm it: nA = 3, nB = 1 gives (210 + 90)/4 = 75; nA = 100, nB = 99 gives (7000 + 8910)/199 = 79.95. Both below 80.
 Answer: B.
 
 **Trap.** Keying D because the individual group sizes are never given. They do not need to be: the single fact that Group A is the larger group fixes which side of the midpoint the combined mean falls on. The exact sizes are undetermined but the COMPARISON is determined, and that is all a QC asks. The opposite error is choosing C by averaging 70 and 90.
@@ -562,7 +562,7 @@ Step 1 — write the weighted-average equation and clear the denominator.
 40n + 60m = 52n + 52m
 8m = 12n
 m = (3/2)n
-Step 2 — since n > 0, m = 1.5n > n, so Column B is greater.
+Step 2 — since n > 0, m = 1.5n > n, so Quantity B is greater.
 Alligation, with the direction checked explicitly: distance from Monday's $40 to the mean $52 is 12; distance from the mean to Tuesday's $60 is 8. The counts are the INVERSE of the distances, so n : m = 8 : 12 = 2 : 3, and m is the larger.
 Sanity check: $52 lies nearer $60 than $40, so the $60 day must be the day with more items sold. Correct.
 Answer: B.
@@ -654,12 +654,12 @@ Answer: $85,000.
 
 Let p be School X's share of the two schools' combined enrollment in 2019, and q be School X's share in 2020; both lie strictly between 0 and 1, and they need not be equal.
 Step 1 — the 2019 combined average: 80p + 84(1 - p) = 84 - 4p.
-Step 2 — the 2020 combined average: 88q + 92(1 - q) = 92 - 4q. That is Column A.
-Step 3 — Column B = (84 - 4p) + 8 = 92 - 4p.
-Step 4 — Column A minus Column B = (92 - 4q) - (92 - 4p) = 4(p - q), whose sign depends entirely on how the enrollment mix shifted.
-Case 1: p = q = 0.5. Column A = 90, Column B = 82 + 8 = 90. Equal.
-Case 2: p = 0.9, q = 0.1. Column A = 92 - 0.4 = 91.6; 2019 average = 84 - 3.6 = 80.4, so Column B = 88.4. Column A is greater.
-Case 3: p = 0.1, q = 0.9. Column A = 92 - 3.6 = 88.4; 2019 average = 84 - 0.4 = 83.6, so Column B = 91.6. Column B is greater.
+Step 2 — the 2020 combined average: 88q + 92(1 - q) = 92 - 4q. That is Quantity A.
+Step 3 — Quantity B = (84 - 4p) + 8 = 92 - 4p.
+Step 4 — Quantity A minus Quantity B = (92 - 4q) - (92 - 4p) = 4(p - q), whose sign depends entirely on how the enrollment mix shifted.
+Case 1: p = q = 0.5. Quantity A = 90, Quantity B = 82 + 8 = 90. Equal.
+Case 2: p = 0.9, q = 0.1. Quantity A = 92 - 0.4 = 91.6; 2019 average = 84 - 3.6 = 80.4, so Quantity B = 88.4. Quantity A is greater.
+Case 3: p = 0.1, q = 0.9. Quantity A = 92 - 3.6 = 88.4; 2019 average = 84 - 0.4 = 83.6, so Quantity B = 91.6. Quantity B is greater.
 All three outcomes occur, so the relationship cannot be determined.
 Answer: D.
 

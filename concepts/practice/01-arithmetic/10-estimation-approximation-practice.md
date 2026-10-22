@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -70,8 +70,8 @@ Which of the following values, when rounded to the nearest tenth, equal 3.5? Sel
 
 **Q6** · `ARI-EST-012` · QC · 70s
 
-> **Column A:**  299 x 301
-> **Column B:**  90,000
+> **Quantity A:**  299 x 301
+> **Quantity B:**  90,000
 
 **Q7** · `ARI-EST-013` · MCQ · 75s
 
@@ -95,8 +95,8 @@ Which of the following fractions are within 0.05 of 0.7? Select all that apply.
 
 **Q9** · `ARI-EST-018` · QC · 75s
 
-> **Column A:**  (0.48 x 210)/99
-> **Column B:**  1
+> **Quantity A:**  (0.48 x 210)/99
+> **Quantity B:**  1
 
 **Q10** · `ARI-EST-020` · Numeric Entry · 65s
 
@@ -148,8 +148,8 @@ A factory produced 4,873 units in January and 5,127 units in February. If produc
 
 **Q15** · `ARI-EST-028` · QC · 95s
 
-> **Column A:**  sqrt(2) + sqrt(3)
-> **Column B:**  sqrt(5) + 1
+> **Quantity A:**  sqrt(2) + sqrt(3)
+> **Quantity B:**  sqrt(5) + 1
 
 **Q16** · `ARI-EST-029` · MCQ · 100s
 
@@ -169,8 +169,8 @@ What is the greatest integer n for which sqrt(n) < 41.5? Enter your answer as a 
 
 **Q18** · `ARI-EST-031` · QC · 95s
 
-> **Column A:**  The sum of all integers from 1 to 100, divided by 99
-> **Column B:**  51
+> **Quantity A:**  The sum of all integers from 1 to 100, divided by 99
+> **Quantity B:**  51
 
 **Q19** · `ARI-EST-032` · Select all that apply · 90s
 
@@ -190,8 +190,8 @@ What is the value of 1,000,000/999 - 1,000,000/1,001, rounded to the nearest int
 
 **Q21** · `ARI-EST-035` · QC · 100s
 
-> **Column A:**  1/1.98 + 1/2.02
-> **Column B:**  1
+> **Quantity A:**  1/1.98 + 1/2.02
+> **Quantity B:**  1
 
 **Q22** · `ARI-EST-036` · MCQ · 90s
 
@@ -241,8 +241,8 @@ Which of the following is closest to sqrt(0.0037)?
 
 **Q26** · `ARI-EST-038` · QC · 115s
 
-> **Column A:**  1/51 + 1/52 + 1/53 + ... + 1/100
-> **Column B:**  1/2
+> **Quantity A:**  1/51 + 1/52 + 1/53 + ... + 1/100
+> **Quantity B:**  1/2
 
 **Q27** · `ARI-EST-039` · Numeric Entry · 120s
 
@@ -383,10 +383,10 @@ Answer: A, C, E.
 
 Step 1 — spot the symmetry: 299 and 301 sit one below and one above 300.
 Step 2 — difference of squares: (300 - 1)(300 + 1) = 300^2 - 1^2 = 90,000 - 1 = 89,999.
-Step 3 — compare: 89,999 < 90,000, so Column B is greater.
+Step 3 — compare: 89,999 < 90,000, so Quantity B is greater.
 The general fact worth carrying: (a - d)(a + d) is ALWAYS less than a^2, by exactly d^2. A product of two numbers straddling a is never as large as a^2.
 
-**Trap.** Estimating 299 x 301 as 300 x 300 = 90,000 and choosing C. The two roundings look like they cancel, but they do not: moving one factor down by 1 costs 301, while moving the other up by 1 gains only 299. On a QC where your estimate lands exactly on Column B, the estimate has told you nothing - you must compute.
+**Trap.** Estimating 299 x 301 as 300 x 300 = 90,000 and choosing C. The two roundings look like they cancel, but they do not: moving one factor down by 1 costs 301, while moving the other up by 1 gains only 299. On a QC where your estimate lands exactly on Quantity B, the estimate has told you nothing - you must compute.
 
 ### Q7 · `ARI-EST-013` — Answer: B
 
@@ -414,12 +414,12 @@ Answer: A, B, C.
 
 Do not estimate here - the numerator is exact in one step.
 Step 1 — 0.48 x 210 = 48 x 2.1 = 100.8.
-Step 2 — Column A = 100.8/99. Since 100.8 > 99, the fraction is greater than 1.
-Column A is greater.
+Step 2 — Quantity A = 100.8/99. Since 100.8 > 99, the fraction is greater than 1.
+Quantity A is greater.
 For the record, 100.8/99 = 1.018.
 Why the estimate is dangerous: 0.48 rounds up to 0.50 and 99 rounds up to 100, so BOTH roundings act on the answer, and one of them (raising 0.48) pushes the value up while the other (raising 99) pushes it down.
 
-**Trap.** Rounding 0.48 to 0.5 AND 210 to 200 AND 99 to 100, which gives (0.5 x 200)/100 = 1 exactly, and choosing C. Three roundings of a quantity that sits only 1.8% from the comparison value is far too coarse. Whenever an estimate on a QC comes out equal to Column B, that is the signal to compute exactly, not to answer C.
+**Trap.** Rounding 0.48 to 0.5 AND 210 to 200 AND 99 to 100, which gives (0.5 x 200)/100 = 1 exactly, and choosing C. Three roundings of a quantity that sits only 1.8% from the comparison value is far too coarse. Whenever an estimate on a QC comes out equal to Quantity B, that is the signal to compute exactly, not to answer C.
 
 ### Q10 · `ARI-EST-020` — Answer: 25
 
@@ -482,17 +482,17 @@ The estimate is safe: any rate from 4.5% to 5.5% gives the same crossing month, 
 ### Q15 · `ARI-EST-028` — Answer: B
 
 Method 1 - benchmarks. sqrt(2) = 1.41, sqrt(3) = 1.73, sqrt(5) = 2.24.
-Column A = 1.41 + 1.73 = 3.14.
-Column B = 2.24 + 1 = 3.24.
-Column B is greater. The gap, 0.10, is three times the total rounding slack in the two benchmarks, so the estimate is safe.
+Quantity A = 1.41 + 1.73 = 3.14.
+Quantity B = 2.24 + 1 = 3.24.
+Quantity B is greater. The gap, 0.10, is three times the total rounding slack in the two benchmarks, so the estimate is safe.
 Method 2 - square both, which is legal since both columns are positive.
 A^2 = 2 + 3 + 2 sqrt(6) = 5 + 2 sqrt(6)
 B^2 = 5 + 1 + 2 sqrt(5) = 6 + 2 sqrt(5)
 Subtract: B^2 - A^2 = 1 + 2 sqrt(5) - 2 sqrt(6) = 1 - 2(sqrt(6) - sqrt(5)).
 Now sqrt(6) = 2.449 and sqrt(5) = 2.236, so 2(sqrt(6) - sqrt(5)) = 0.43, which is less than 1.
-So B^2 - A^2 > 0, and Column B is greater.
+So B^2 - A^2 > 0, and Quantity B is greater.
 
-**Trap.** Adding under the radical: sqrt(2) + sqrt(3) is NOT sqrt(5), so Column A is not sqrt(5) and the columns are not sqrt(5) versus sqrt(5) + 1. A second error is squaring term by term - (sqrt(2) + sqrt(3))^2 is 5 + 2 sqrt(6), not 5 - dropping the cross term makes Column A look far too small.
+**Trap.** Adding under the radical: sqrt(2) + sqrt(3) is NOT sqrt(5), so Quantity A is not sqrt(5) and the columns are not sqrt(5) versus sqrt(5) + 1. A second error is squaring term by term - (sqrt(2) + sqrt(3))^2 is 5 + 2 sqrt(6), not 5 - dropping the cross term makes Quantity A look far too small.
 
 ### Q16 · `ARI-EST-029` — Answer: D
 
@@ -520,12 +520,12 @@ Answer: 1722.
 ### Q18 · `ARI-EST-031` — Answer: A
 
 Step 1 — the sum: 1 + 2 + ... + 100 = 100 x 101/2 = 5,050.
-Step 2 — Column A = 5,050/99.
+Step 2 — Quantity A = 5,050/99.
 Step 3 — do not estimate to 5,050/100 = 50.5 and stop; that rounding moved the DENOMINATOR up, so 50.5 is an underestimate and the true value could still be above 51. Bound it instead.
 Is 5,050/99 greater than 51? That asks whether 5,050 > 51 x 99.
 51 x 99 = 51 x 100 - 51 = 5,100 - 51 = 5,049.
-Since 5,050 > 5,049, Column A > 51.
-Column A is greater. (Exactly, 5,050/99 = 51.0101.)
+Since 5,050 > 5,049, Quantity A > 51.
+Quantity A is greater. (Exactly, 5,050/99 = 51.0101.)
 
 **Trap.** Dividing by 100 instead of 99 to get 50.5 and choosing B. Shrinking the denominator from 100 to 99 raises the quotient by about 1%, i.e. by about 0.5 - enough to carry it past 51. The clean move on any 'fraction vs number' comparison is to cross-multiply: compare 5,050 with 51 x 99, which is a one-line subtraction.
 
@@ -562,8 +562,8 @@ The two denominators sit symmetrically either side of 2, so the tempting answer 
 Step 1 — combine over a common denominator:
 1/1.98 + 1/2.02 = (2.02 + 1.98)/(1.98 x 2.02) = 4/(1.98 x 2.02).
 Step 2 — the denominator is a difference of squares: 1.98 x 2.02 = (2 - 0.02)(2 + 0.02) = 4 - 0.0004 = 3.9996.
-Step 3 — so Column A = 4/3.9996, which is greater than 4/4 = 1.
-Column A is greater. (Exactly, 1.0001.)
+Step 3 — so Quantity A = 4/3.9996, which is greater than 4/4 = 1.
+Quantity A is greater. (Exactly, 1.0001.)
 The principle: 1/(a - d) gains more than 1/(a + d) loses, because the smaller denominator is the more sensitive one.
 
 **Trap.** Rounding both denominators to 2 and answering C. The whole question lives inside the part you rounded away. The general fact is worth memorising: for 0 < d < a, 1/(a - d) + 1/(a + d) is always greater than 2/a - so a pair of symmetric wobbles in a denominator never cancels, it always nets upward.
@@ -627,10 +627,10 @@ Adding fifty awkward fractions is not the intended route - bound them instead.
 Step 1 — count the terms: from 51 to 100 inclusive is 100 - 51 + 1 = 50 terms.
 Step 2 — find the SMALLEST term. The denominators grow, so the smallest term is the last one, 1/100.
 Step 3 — replace every term by that smallest one. Each of the 50 terms is at least 1/100, and 49 of them are strictly greater, so
-Column A > 50 x (1/100) = 1/2.
-Column A is greater.
-For a sense of scale, the same trick from above uses the LARGEST term, 1/51: Column A < 50 x (1/51) = 0.98. So the sum sits between 0.5 and 0.98, and the true value is 0.688.
-Answer: Column A is greater.
+Quantity A > 50 x (1/100) = 1/2.
+Quantity A is greater.
+For a sense of scale, the same trick from above uses the LARGEST term, 1/51: Quantity A < 50 x (1/51) = 0.98. So the sum sits between 0.5 and 0.98, and the true value is 0.688.
+Answer: Quantity A is greater.
 
 **Trap.** Reaching for a numerical estimate of fifty terms, or averaging as 50 x (1/75) = 0.667 and worrying whether the approximation is trustworthy so close to a comparison. Neither is needed: replacing every term by the smallest one gives a strict inequality that settles the comparison with no arithmetic beyond 50/100. The other error is choosing D because 'the sum is not computable by hand' - a bound is a computation.
 

@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ A histogram shows most of its values clustered near the right-hand end of the ra
 
 A variable is normally distributed with mean m and standard deviation s, where s > 0.
 
-> **Column A:**  The probability that a randomly selected value is greater than m
-> **Column B:**  The probability that a randomly selected value is less than m
+> **Quantity A:**  The probability that a randomly selected value is greater than m
+> **Quantity B:**  The probability that a randomly selected value is less than m
 
 **Q5** · `STA-DDI-009` · MCQ · 55s
 
@@ -135,8 +135,8 @@ Two classes took the same exam. Class A has mean 70 and standard deviation 5. Cl
 
 A data set of 11 values has median 45. A twelfth value, 200, is added to the data set.
 
-> **Column A:**  The median of the 12-value data set
-> **Column B:**  45
+> **Quantity A:**  The median of the 12-value data set
+> **Quantity B:**  45
 
 **Q13** · `STA-DDI-025` · Select all that apply · 85s
 
@@ -158,8 +158,8 @@ A data set has Q1 = 40 and Q3 = 60. A value is called an outlier if it is below 
 
 A variable is normally distributed with mean m and standard deviation s > 0. Using the 68-95-99.7 rule, and treating those three percentages as exact, let p be the probability that a randomly selected value lies between m - 2s and m + s.
 
-> **Column A:**  p
-> **Column B:**  0.815
+> **Quantity A:**  p
+> **Quantity B:**  0.815
 
 **Q15** · `STA-DDI-028` · MCQ · 95s
 
@@ -211,8 +211,8 @@ How many data values does the histogram represent in total?
 
 Data set A consists of 10 values with mean 50 and standard deviation 10. Data set B consists of those same 10 values together with one additional value, 50. (Standard deviation here is the population standard deviation, as on the GRE.)
 
-> **Column A:**  The standard deviation of data set A
-> **Column B:**  The standard deviation of data set B
+> **Quantity A:**  The standard deviation of data set A
+> **Quantity B:**  The standard deviation of data set B
 
 **Q20** · `STA-DDI-033` · Numeric Entry · 90s
 
@@ -244,8 +244,8 @@ Scores on a test are normally distributed with mean 500 and standard deviation 1
 
 For a certain data set, Q1 = 20 and Q3 = 50. The lower outlier fence is Q1 - 1.5 x IQR and the upper outlier fence is Q3 + 1.5 x IQR.
 
-> **Column A:**  The distance from the lower fence to the upper fence
-> **Column B:**  120
+> **Quantity A:**  The distance from the lower fence to the upper fence
+> **Quantity B:**  120
 
 **Q24** · `STA-DDI-041` · MCQ · 110s
 
@@ -303,8 +303,8 @@ Using the 68-95-99.7 rule, approximately what percent of the values lie in NONE 
 
 Data set P is 1, 2, 3, 4, 5, 6, 7, 8, 9, 10. Data set Q is 1, 1, 1, 5, 5, 6, 6, 10, 10, 10. Both have mean 5.5. (Standard deviation here is the population standard deviation, as on the GRE.)
 
-> **Column A:**  The standard deviation of data set P
-> **Column B:**  The standard deviation of data set Q
+> **Quantity A:**  The standard deviation of data set P
+> **Quantity B:**  The standard deviation of data set Q
 
 **Q28** · `STA-DDI-039` · Numeric Entry · 120s
 
@@ -407,7 +407,7 @@ Answer: left-skewed.
 
 Step 1 - a normal curve is symmetric about its mean m.
 Step 2 - symmetry means the area to the right of m equals the area to the left of m, and the two areas make up the whole curve.
-Step 3 - so each area is 0.50: Column A = 0.50 and Column B = 0.50.
+Step 3 - so each area is 0.50: Quantity A = 0.50 and Quantity B = 0.50.
 The two quantities are equal.
 Note that s never enters the calculation - a wide curve and a narrow curve both split 50/50 at the mean.
 
@@ -496,8 +496,8 @@ Step 1 - with 11 values sorted, the median is the 6th value, so the 6th value is
 Step 2 - 200 is larger than 45, so it is inserted somewhere after position 6. The first six values are therefore unchanged and the new 6th value is still 45, while the new 7th value is whichever is smaller, the old 7th value or 200.
 Step 3 - with 12 values the median is the average of the 6th and 7th: (45 + w)/2, where w is the smaller of the old 7th value and 200, so w >= 45.
 Step 4 - test two legal data sets.
-If the data set is 41, 42, 43, 44, 44, 45, 45, 45, 45, 46, 47, then the old 7th value is 45, so w = 45 and the new median is (45 + 45)/2 = 45, equal to Column B.
-If the data set is 41, 42, 43, 44, 44, 45, 55, 56, 57, 58, 59, then the old 7th value is 55, so w = 55 and the new median is (45 + 55)/2 = 50, greater than Column B.
+If the data set is 41, 42, 43, 44, 44, 45, 45, 45, 45, 46, 47, then the old 7th value is 45, so w = 45 and the new median is (45 + 45)/2 = 45, equal to Quantity B.
+If the data set is 41, 42, 43, 44, 44, 45, 55, 56, 57, 58, 59, then the old 7th value is 55, so w = 55 and the new median is (45 + 55)/2 = 50, greater than Quantity B.
 Two legal data sets give two different comparisons, so the relationship cannot be determined.
 
 **Trap.** Choosing C on the slogan 'the median ignores outliers'. The median is resistant to an outlier's SIZE, but adding a twelfth value still changes which positions are averaged, so the median can move - here it can only move up, but whether it actually moves depends on the 7th value. Choosing A is the mirror error: assuming a large addition must raise the median.
@@ -523,7 +523,7 @@ The interval is lopsided - 2 SDs on the left but only 1 SD on the right - so spl
 Step 1 - left piece, from m - 2s to m. 95% lies within 2 SDs, and symmetry puts half of that on each side, so this piece is 95/2 = 47.5%.
 Step 2 - right piece, from m to m + s. 68% lies within 1 SD, and half of that is on the right, so this piece is 68/2 = 34%.
 Step 3 - add: 47.5% + 34% = 81.5%, so p = 0.815.
-Column A = 0.815 = Column B. The two quantities are equal.
+Quantity A = 0.815 = Quantity B. The two quantities are equal.
 Note that m and s never appear in the arithmetic - the percentages depend only on how many SDs away the endpoints are.
 
 **Trap.** Choosing D because m and s are unknown; the band percentages are the same for every normal curve. The arithmetic trap is averaging 68 and 95 to get 81.5 by luck, or taking (95 + 68)/2 as a rule - it happens to give the right number here only because both pieces are exact halves. Always split at the mean and halve each band separately.
@@ -580,7 +580,7 @@ Step 1 - the new value equals the old mean, so the sum rises by 50 and the count
 Step 2 - work with the total of the squared deviations. For data set A, variance = SD^2 = 10^2 = 100, and variance = (total squared deviation)/n, so the total squared deviation is 100 x 10 = 1000.
 Step 3 - the added value is 50, which is exactly the mean, so it contributes (50 - 50)^2 = 0. The total squared deviation for data set B is still 1000, but it is now divided among 11 values.
 Step 4 - variance of B = 1000/11 = 90.9, so SD of B = sqrt(90.9) = 9.54.
-Step 5 - 10 > 9.54, so Column A is greater.
+Step 5 - 10 > 9.54, so Quantity A is greater.
 The principle: adding a value AT the mean adds no new deviation but does enlarge n, so it dilutes the spread. The standard deviation must fall.
 
 **Trap.** Choosing C because 'a value at the mean changes nothing'. It changes nothing about the MEAN, but the standard deviation is an average squared distance, and averaging the same total distance over 11 values instead of 10 makes it smaller. Choosing D is the other error - the answer does not depend on which 10 values data set A contains, since only the totals matter.
@@ -631,7 +631,7 @@ Answer: about 10,000.
 Step 1 - IQR = Q3 - Q1 = 50 - 20 = 30, so 1.5 x IQR = 45.
 Step 2 - lower fence = 20 - 45 = -25. Upper fence = 50 + 45 = 95.
 Step 3 - the distance between them = 95 - (-25) = 120.
-Column A = 120 = Column B, so the two quantities are equal.
+Quantity A = 120 = Quantity B, so the two quantities are equal.
 The shortcut worth remembering: the fences sit 1.5 IQRs outside a box that is itself 1 IQR wide, so fence to fence is always 1.5 + 1 + 1.5 = 4 IQRs. Here 4 x 30 = 120 with no fence values needed at all.
 
 **Trap.** Subtracting the two fences as 95 - 25 = 70, by treating the lower fence as +25 and losing its negative sign - a data set can perfectly well have a negative fence even when every value in it is positive. The other error is computing only 3 x IQR = 90, the span outside the box, and forgetting to include the box itself.
@@ -691,7 +691,7 @@ Variance = 82.5/10 = 8.25, so SD = sqrt(8.25) = 2.87.
 Step 2 - data set Q. Three values at 1 give 3(4.5)^2 = 3(20.25) = 60.75. Three values at 10 give another 60.75. Two values at 5 give 2(0.5)^2 = 0.5, and two at 6 give 0.5.
 Total = 60.75 + 60.75 + 0.5 + 0.5 = 122.5.
 Variance = 122.5/10 = 12.25, so SD = sqrt(12.25) = 3.5.
-Step 3 - 3.5 > 2.87, so Column B is greater.
+Step 3 - 3.5 > 2.87, so Quantity B is greater.
 The principle: standard deviation is driven by SQUARED distance from the mean, so a set that piles its values at the two extremes beats an evenly spread set over the same range every time.
 
 **Trap.** Choosing A because P uses every value from 1 to 10 while Q repeats itself, which reads as 'more variety'. Variety is not spread. Choosing C is the other trap - equal means, equal ranges and equal counts do not force equal standard deviations, since none of those quantities looks at where the middle values sit.

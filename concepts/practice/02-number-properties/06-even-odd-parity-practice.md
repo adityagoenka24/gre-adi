@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -46,8 +46,8 @@ How many integers from -6 to 7, inclusive, are even? Enter your answer as a numb
 
 a is an even integer and b is an odd integer.
 
-> **Column A:**  a + b
-> **Column B:**  a x b
+> **Quantity A:**  a + b
+> **Quantity B:**  a x b
 
 **Q5** · `NUM-EOP-011` · Select all that apply · 55s
 
@@ -105,8 +105,8 @@ a and b are positive integers, a is even and b is odd. If a + b = 15 and a x b =
 
 n is a positive integer.
 
-> **Column A:**  The remainder when n(n + 1)(n + 2) is divided by 4
-> **Column B:**  0
+> **Quantity A:**  The remainder when n(n + 1)(n + 2) is divided by 4
+> **Quantity B:**  0
 
 **Q11** · `NUM-EOP-031` · Numeric Entry · 65s
 
@@ -118,8 +118,8 @@ For how many integers n with -4 <= n <= 5 is 6n + 3 an odd integer? Enter your a
 
 p is a positive even integer and q is a positive odd integer.
 
-> **Column A:**  (-1)^p
-> **Column B:**  (-1)^q
+> **Quantity A:**  (-1)^p
+> **Quantity B:**  (-1)^q
 
 **Q13** · `NUM-EOP-033` · MCQ · 75s
 
@@ -171,8 +171,8 @@ w, x, y and z are integers such that x + y is odd, y + z is odd and z + w is odd
 
 m and n are positive integers with m < n. The product mn is even and the sum m + n is odd.
 
-> **Column A:**  m^2 n
-> **Column B:**  m n^2
+> **Quantity A:**  m^2 n
+> **Quantity B:**  m n^2
 
 **Q18** · `NUM-EOP-036` · Select all that apply · 95s
 
@@ -230,8 +230,8 @@ a, b, c and d are integers, each greater than 1, and a x b x c x d = 2520. Exact
 
 k is a number such that k^2 + k is an odd integer.
 
-> **Column A:**  k
-> **Column B:**  0
+> **Quantity A:**  k
+> **Quantity B:**  0
 
 **Q25** · `NUM-EOP-051` · MCQ · 110s
 
@@ -273,8 +273,8 @@ a, b and c are integers such that a + b + c = 0 and ab + bc + ca = -7. What can 
 
 n is a positive integer. P(n) is the product of all odd integers from 1 to 2n - 1, inclusive, and S(n) is the sum of all integers from 1 to 2n, inclusive.
 
-> **Column A:**  The remainder when P(n) is divided by 2
-> **Column B:**  The remainder when S(n) is divided by 2
+> **Quantity A:**  The remainder when P(n) is divided by 2
+> **Quantity B:**  The remainder when S(n) is divided by 2
 
 **Q29** · `NUM-EOP-049` · Numeric Entry · 130s
 
@@ -368,8 +368,8 @@ Answer: 7.
 ### Q4 · `NUM-EOP-010` — Answer: D
 
 Parity is settled here: a + b is odd and a x b is even. But parity says nothing about SIZE, and the question asks which is larger.
-Case 1 — a = 2, b = 3: Column A = 5, Column B = 6. Column B is greater.
-Case 2 — a = 0, b = 3: Column A = 3, Column B = 0. Column A is greater.
+Case 1 — a = 2, b = 3: Quantity A = 5, Quantity B = 6. Quantity B is greater.
+Case 2 — a = 0, b = 3: Quantity A = 3, Quantity B = 0. Quantity A is greater.
 Two legal choices give opposite verdicts, so the relationship is not determined.
 Check that both cases are legal: 2 and 0 are both even integers, 3 is odd, and no positivity was stated anywhere in the question.
 Answer: D.
@@ -445,7 +445,7 @@ Answer: 10.
 Step 1 — split on the parity of n, because that decides where the factors of 2 sit.
 Step 2 — n even. Then n and n + 2 are consecutive even numbers, so one of them is a multiple of 4. The product is therefore a multiple of 4 and the remainder is 0. Example n = 2: 2 x 3 x 4 = 24, and 24/4 = 6 exactly.
 Step 3 — n odd. Then n and n + 2 are both odd and the only even factor is n + 1. If n + 1 is a multiple of 4 the remainder is 0; if n + 1 is only a multiple of 2 the product carries exactly one factor of 2 and the remainder is 2. Example n = 3: 3 x 4 x 5 = 60, remainder 0. Example n = 1: 1 x 2 x 3 = 6, and 6 = 4 + 2, remainder 2.
-Step 4 — n = 1 gives Column A = 2, which is greater than Column B, while n = 2 gives Column A = 0, which equals Column B. Two legal values of n give different verdicts.
+Step 4 — n = 1 gives Quantity A = 2, which is greater than Quantity B, while n = 2 gives Quantity A = 0, which equals Quantity B. Two legal values of n give different verdicts.
 Check n = 5: 5 x 6 x 7 = 210, and 210 = 4 x 52 + 2, remainder 2. Check n = 4: 4 x 5 x 6 = 120, remainder 0. Both outcomes really occur.
 Answer: D.
 
@@ -465,7 +465,7 @@ Answer: 10.
 
 Step 1 — a negative base raised to an even exponent gives a positive result: the minus signs pair off. So (-1)^p = 1 for every even p.
 Step 2 — a negative base raised to an odd exponent leaves one minus sign unpaired: (-1)^q = -1 for every odd q.
-Step 3 — 1 > -1, and this holds for every legal pair, so Column A is always greater.
+Step 3 — 1 > -1, and this holds for every legal pair, so Quantity A is always greater.
 Check p = 2, q = 3: (-1)^2 = 1 and (-1)^3 = -1. Check p = 10, q = 7: 1 and -1 again.
 Answer: A.
 
@@ -526,10 +526,10 @@ Answer: B.
 ### Q17 · `NUM-EOP-035` — Answer: B
 
 Step 1 — read what the parity conditions actually do. m + n odd means one of them is even and the other odd, which already forces mn to be even. The parity information is consistent but adds nothing to the comparison.
-Step 2 — factor both columns. Column A = mn x m and Column B = mn x n, so both are the same positive quantity mn multiplied by m and by n respectively.
+Step 2 — factor both columns. Quantity A = mn x m and Quantity B = mn x n, so both are the same positive quantity mn multiplied by m and by n respectively.
 Step 3 — m and n are positive, so mn > 0 and dividing both columns by mn is safe. The comparison reduces to m versus n, and the stem says m < n.
-Step 4 — therefore m^2 n < m n^2 for every legal pair, so Column B is greater.
-Check m = 2, n = 3: Column A = 4 x 3 = 12, Column B = 2 x 9 = 18. Check m = 3, n = 8: Column A = 9 x 8 = 72, Column B = 3 x 64 = 192. Column B wins both.
+Step 4 — therefore m^2 n < m n^2 for every legal pair, so Quantity B is greater.
+Check m = 2, n = 3: Quantity A = 4 x 3 = 12, Quantity B = 2 x 9 = 18. Check m = 3, n = 8: Quantity A = 9 x 8 = 72, Quantity B = 3 x 64 = 192. Quantity B wins both.
 Answer: B.
 
 **Trap.** Choosing D because the parity conditions look like they might let the columns swap. They cannot: the parity facts are a red herring, and the only thing that decides the comparison is m < n with both positive. Choosing A comes from thinking the squared variable automatically makes its column larger, ignoring that the other column squares the bigger number.
@@ -622,11 +622,11 @@ Step 1 — test the reflex first. If k were an integer, then k^2 + k = k(k + 1) 
 Step 2 — that is the whole point of the stem: it says 'a number', not 'an integer'. Parity is defined only for integers, so no parity rule constrains k itself. The condition is a plain equation to be solved.
 Step 3 — take the smallest odd integer value, k^2 + k = 1, that is k^2 + k - 1 = 0. The quadratic formula gives k = (-1 + sqrt(5))/2 or k = (-1 - sqrt(5))/2.
 Step 4 — sqrt(5) is about 2.24, so the two roots are about 0.62 and about -1.62. Both satisfy the stem, and both are legal values of k.
-Step 5 — k = 0.62 makes Column A greater than Column B; k = -1.62 makes Column B greater. The relationship is not determined.
+Step 5 — k = 0.62 makes Quantity A greater than Quantity B; k = -1.62 makes Quantity B greater. The relationship is not determined.
 Check the positive root: 0.618^2 + 0.618 = 0.382 + 0.618 = 1, an odd integer. Check the negative root: (-1.618)^2 + (-1.618) = 2.618 - 1.618 = 1, an odd integer. Both are valid.
 Answer: D.
 
-**Trap.** The stem never says k is an integer, and that omission is the question. A student who assumes it is applies k(k + 1) is always even, concludes the condition is impossible, and then guesses - or decides the problem must intend some odd k and picks A. Parity is defined only for integers: the moment k is allowed to be any number, k^2 + k can be odd, and it happens at two values of opposite sign. Choice B fails for the mirror-image reason: the positive root, about 0.618, exists just as surely as the negative one, so Column B is not forced either. Choice C fails because neither root is 0 - at k = 0, k^2 + k = 0, which is even, not odd - so the two columns are never equal.
+**Trap.** The stem never says k is an integer, and that omission is the question. A student who assumes it is applies k(k + 1) is always even, concludes the condition is impossible, and then guesses - or decides the problem must intend some odd k and picks A. Parity is defined only for integers: the moment k is allowed to be any number, k^2 + k can be odd, and it happens at two values of opposite sign. Choice B fails for the mirror-image reason: the positive root, about 0.618, exists just as surely as the negative one, so Quantity B is not forced either. Choice C fails because neither root is 0 - at k = 0, k^2 + k = 0, which is even, not odd - so the two columns are never equal.
 
 ### Q25 · `NUM-EOP-051` — Answer: A
 
@@ -669,13 +669,13 @@ Answer: A.
 
 ### Q28 · `NUM-EOP-048` — Answer: D
 
-Step 1 — Column A. P(n) is a product of odd numbers only, and odd x odd = odd however many factors there are, so P(n) is odd for every n and Column A = 1 always.
-Step 2 — Column B. S(n) = 1 + 2 + ... + 2n = 2n(2n + 1)/2 = n(2n + 1). Since 2n + 1 is odd, the parity of S(n) is just the parity of n.
-Step 3 — so Column B = 1 when n is odd and Column B = 0 when n is even.
+Step 1 — Quantity A. P(n) is a product of odd numbers only, and odd x odd = odd however many factors there are, so P(n) is odd for every n and Quantity A = 1 always.
+Step 2 — Quantity B. S(n) = 1 + 2 + ... + 2n = 2n(2n + 1)/2 = n(2n + 1). Since 2n + 1 is odd, the parity of S(n) is just the parity of n.
+Step 3 — so Quantity B = 1 when n is odd and Quantity B = 0 when n is even.
 Case n = 1: P = 1, remainder 1; S = 1 + 2 = 3, remainder 1. The columns are equal.
-Case n = 2: P = 1 x 3 = 3, remainder 1; S = 1 + 2 + 3 + 4 = 10, remainder 0. Column A is greater.
+Case n = 2: P = 1 x 3 = 3, remainder 1; S = 1 + 2 + 3 + 4 = 10, remainder 0. Quantity A is greater.
 Step 4 — two legal values of n give different verdicts, so nothing is determined.
-Check n = 3: P = 1 x 3 x 5 = 15, remainder 1; S = 21, remainder 1, equal again. Check n = 4: P = 105, remainder 1; S = 36, remainder 0, Column A greater. The pattern alternates with the parity of n, confirming D.
+Check n = 3: P = 1 x 3 x 5 = 15, remainder 1; S = 21, remainder 1, equal again. Check n = 4: P = 105, remainder 1; S = 36, remainder 0, Quantity A greater. The pattern alternates with the parity of n, confirming D.
 Answer: D.
 
 **Trap.** Choosing A after noticing that P(n) is always odd and assuming S(n), a run of consecutive integers, is always even. S(n) = n(2n + 1) is even only when n is even; for n = 1 it is 3 and for n = 3 it is 21. Choosing C comes from testing only n = 1 or n = 3 and seeing 1 in both columns.

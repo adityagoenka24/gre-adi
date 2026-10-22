@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -60,8 +60,8 @@ Which of the following are common divisors of 30 and 45? Select all that apply.
 
 p and q are distinct prime numbers.
 
-> **Column A:**  LCM(p, q)
-> **Column B:**  p x q
+> **Quantity A:**  LCM(p, q)
+> **Quantity B:**  p x q
 
 ---
 
@@ -103,15 +103,15 @@ The positive integers a and b satisfy GCD(a, b) = 4, and neither a nor b exceeds
 
 n is a positive integer.
 
-> **Column A:**  GCD(n, n + 1)
-> **Column B:**  1
+> **Quantity A:**  GCD(n, n + 1)
+> **Quantity B:**  1
 
 **Q10** · `NUM-GCL-035` · QC · 80s
 
 m and n are positive integers with m > n > 1.
 
-> **Column A:**  GCD(m, n)
-> **Column B:**  GCD(m - n, n)
+> **Quantity A:**  GCD(m, n)
+> **Quantity B:**  GCD(m - n, n)
 
 **Q11** · `NUM-GCL-021` · Numeric Entry · 70s
 
@@ -205,15 +205,15 @@ p and q are distinct prime numbers, each greater than 3. Let a = 12 p^3 q^2 and 
 
 p is a prime number greater than 3.
 
-> **Column A:**  GCD(p^2 - 1, 24)
-> **Column B:**  24
+> **Quantity A:**  GCD(p^2 - 1, 24)
+> **Quantity B:**  24
 
 **Q21** · `NUM-GCL-053` · QC · 110s
 
 a = 2^3 x 3^2 x 5, b = 2^2 x 3 x 5^2 x 7 and c = 2 x 3^3 x 5.
 
-> **Column A:**  GCD(a, b, c) x LCM(a, b, c)
-> **Column B:**  a x b x c
+> **Quantity A:**  GCD(a, b, c) x LCM(a, b, c)
+> **Quantity B:**  a x b x c
 
 **Q22** · `NUM-GCL-040` · Numeric Entry · 100s
 
@@ -279,8 +279,8 @@ How many ordered pairs of positive integers (a, b) satisfy GCD(a, b) = 6 and LCM
 
 a, b and c are positive integers with GCD(a, b) = GCD(b, c) = GCD(a, c) = 1.
 
-> **Column A:**  LCM(a, b, c)
-> **Column B:**  a x b x c
+> **Quantity A:**  LCM(a, b, c)
+> **Quantity B:**  a x b x c
 
 **Q30** · `NUM-GCL-060` · Select all that apply · 115s
 
@@ -575,10 +575,10 @@ So GCD = 2 x 3 x 5 = 30.
 Step 2 — LCM takes the HIGHEST exponent of every prime present.
 Prime 2: max(3, 2, 1) = 3. Prime 3: max(2, 1, 3) = 3. Prime 5: max(1, 2, 1) = 2. Prime 7: 1.
 So LCM = 2^3 x 3^3 x 5^2 x 7 = 8 x 27 x 25 x 7 = 37,800.
-Step 3 — Column A = 30 x 37,800 = 1,134,000.
-Step 4 — Column B: a = 360, b = 2,100, c = 270, so a x b x c = 360 x 2,100 x 270 = 204,120,000.
-Step 5 — 204,120,000 is far larger, so Column B is greater.
-Check by exponents alone, on the prime 2: Column A carries 1 + 3 = 4 copies of it, Column B carries 3 + 2 + 1 = 6. Column B wins on that prime, and the same happens on 3 and on 5.
+Step 3 — Quantity A = 30 x 37,800 = 1,134,000.
+Step 4 — Quantity B: a = 360, b = 2,100, c = 270, so a x b x c = 360 x 2,100 x 270 = 204,120,000.
+Step 5 — 204,120,000 is far larger, so Quantity B is greater.
+Check by exponents alone, on the prime 2: Quantity A carries 1 + 3 = 4 copies of it, Quantity B carries 3 + 2 + 1 = 6. Quantity B wins on that prime, and the same happens on 3 and on 5.
 Answer: B.
 
 **Trap.** Answering C by applying GCD x LCM = product. That identity holds for TWO numbers only. With three numbers the GCD takes each prime's minimum exponent and the LCM takes its maximum, so the middle exponent is never counted at all. The one-second sanity check is 2, 4, 8: GCD = 2, LCM = 8, and 2 x 8 = 16, but 2 x 4 x 8 = 64.

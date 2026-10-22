@@ -45,7 +45,7 @@ the markdown practice sheet AND the portal question bank are both generated from
 **Options**
 - MCQ / multiple_answer: exactly 5, format `"A. text"` … `"E. text"`.
 - QC: exactly the standard four, verbatim:
-  `["A. Column A is greater", "B. Column B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"]`
+  `["A. Quantity A is greater", "B. Quantity B is greater", "C. The two quantities are equal", "D. The relationship cannot be determined from the information given"]`
 - numeric_entry: `"options": null`.
 - Every distractor must be the output of a specific, nameable student error. No filler
   numbers. If you cannot say which mistake produces a distractor, replace it.

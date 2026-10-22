@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -58,8 +58,8 @@ What is the largest integer value of x that satisfies 4x - 5 < 15 ? Enter your a
 
 **Q5** · `ALG-INQ-011` · QC · 45s
 
-> **Column A:**  The number of integers x satisfying -4 <= x <= 5
-> **Column B:**  10
+> **Quantity A:**  The number of integers x satisfying -4 <= x <= 5
+> **Quantity B:**  10
 
 ---
 
@@ -133,8 +133,8 @@ A company's profit P, in thousands of dollars, satisfies P > 3n - 15, where n is
 
 n is an integer and n > 5.
 
-> **Column A:**  n^2 - 25
-> **Column B:**  n + 5
+> **Quantity A:**  n^2 - 25
+> **Quantity B:**  n + 5
 
 ---
 
@@ -156,8 +156,8 @@ Which of the following is the complete solution set of x^3 - 2x^2 - 11x + 12 <= 
 
 x > 0 and x is not equal to 1.
 
-> **Column A:**  x + 1/x
-> **Column B:**  2
+> **Quantity A:**  x + 1/x
+> **Quantity B:**  2
 
 **Q16** · `ALG-INQ-042` · Numeric Entry · 105s
 
@@ -225,8 +225,8 @@ k is a constant with k < -3. Which of the following describes all values of x fo
 
 p, q and r are positive numbers with p < q < r.
 
-> **Column A:**  p/q + q/r
-> **Column B:**  p/r + 1
+> **Quantity A:**  p/q + q/r
+> **Quantity B:**  p/r + 1
 
 **Q24** · `ALG-INQ-053` · Numeric Entry · 105s
 
@@ -264,8 +264,8 @@ x and y are real numbers with x^2 + y^2 <= 1. What is the maximum possible value
 
 x and y are nonzero real numbers with x + 2y < -10, x - y > -1, and 1/x > 1/y.
 
-> **Column A:**  x
-> **Column B:**  y
+> **Quantity A:**  x
+> **Quantity B:**  y
 
 **Q28** · `ALG-INQ-057` · Numeric Entry · 130s
 
@@ -277,8 +277,8 @@ a and b are positive numbers with a + b = 1 and a is not equal to b. What is the
 
 x is a real number satisfying x^4 - 10x^2 + 9 <= 0.
 
-> **Column A:**  |x|
-> **Column B:**  3
+> **Quantity A:**  |x|
+> **Quantity B:**  3
 
 **Q30** · `ALG-INQ-060` · Select all that apply · 125s
 
@@ -376,12 +376,12 @@ Answer: 4.
 
 Step 1 — both signs are <=, so both endpoints are themselves solutions.
 Step 2 — list the integers in the interval: -4, -3, -2, -1, 0, 1, 2, 3, 4, 5.
-Step 3 — count them: 10 integers. Column A = 10 and Column B = 10.
+Step 3 — count them: 10 integers. Quantity A = 10 and Quantity B = 10.
 Step 4 — the counting shortcut for an inclusive integer range is (last - first) + 1 = 5 - (-4) + 1 = 9 + 1 = 10, and the +1 is exactly the endpoint that a plain subtraction loses.
 Check: the listed values are all distinct and all satisfy -4 <= x <= 5, and the next integers out, -5 and 6, both fail. Correct.
 Answer: C.
 
-**Trap.** Computing 5 - (-4) = 9 and forgetting the +1 gives 9, which makes Column B look greater and produces choice B. Reading the signs as strict, so that -4 and 5 are excluded, leaves only 8 integers and also produces choice B.
+**Trap.** Computing 5 - (-4) = 9 and forgetting the +1 gives 9, which makes Quantity B look greater and produces choice B. Reading the signs as strict, so that -4 and 5 are excluded, leaves only 8 integers and also produces choice B.
 
 ### Q6 · `ALG-INQ-016` — Answer: A
 
@@ -479,11 +479,11 @@ Answer: B.
 
 ### Q13 · `ALG-INQ-030` — Answer: D
 
-Step 1 — factor Column A as a difference of squares: n^2 - 25 = (n - 5)(n + 5).
-Step 2 — Column B is n + 5, and since n > 5 the factor n + 5 is positive, so dividing both columns by n + 5 is legal and does not flip the sign.
-Step 3 — after dividing, Column A becomes n - 5 and Column B becomes 1. So the comparison reduces to n - 5 versus 1, that is n versus 6.
-Step 4 — n is an integer greater than 5, so n = 6 is allowed and so is n = 7. At n = 6 the columns are equal; at n = 7 Column A is greater. Two different outcomes are possible.
-Check: substitute directly. n = 6: Column A = 36 - 25 = 11 and Column B = 11, equal. n = 7: Column A = 49 - 25 = 24 and Column B = 12, so Column A is greater. Since the relationship changes, it is not determined. Correct.
+Step 1 — factor Quantity A as a difference of squares: n^2 - 25 = (n - 5)(n + 5).
+Step 2 — Quantity B is n + 5, and since n > 5 the factor n + 5 is positive, so dividing both columns by n + 5 is legal and does not flip the sign.
+Step 3 — after dividing, Quantity A becomes n - 5 and Quantity B becomes 1. So the comparison reduces to n - 5 versus 1, that is n versus 6.
+Step 4 — n is an integer greater than 5, so n = 6 is allowed and so is n = 7. At n = 6 the columns are equal; at n = 7 Quantity A is greater. Two different outcomes are possible.
+Check: substitute directly. n = 6: Quantity A = 36 - 25 = 11 and Quantity B = 11, equal. n = 7: Quantity A = 49 - 25 = 24 and Quantity B = 12, so Quantity A is greater. Since the relationship changes, it is not determined. Correct.
 Answer: D.
 
 **Trap.** Testing only one value. A student who tries n = 7 sees 24 versus 12 and answers A; a student who tries the smallest allowed value n = 6 sees 11 versus 11 and answers C. The constraint n > 5 leaves the boundary case n = 6 inside the allowed set, and that single value is what makes the relationship indeterminate. Reading n > 5 as n >= 7, or forgetting that n must be an integer, both hide the tie.
@@ -502,11 +502,11 @@ Answer: E.
 
 ### Q15 · `ALG-INQ-040` — Answer: A
 
-Step 1 — compare by subtracting: Column A - Column B = x + 1/x - 2.
+Step 1 — compare by subtracting: Quantity A - Quantity B = x + 1/x - 2.
 Step 2 — put it over the common denominator x: (x^2 + 1 - 2x)/x = (x^2 - 2x + 1)/x.
 Step 3 — factor the numerator: x^2 - 2x + 1 = (x - 1)^2.
-Step 4 — so Column A - Column B = (x - 1)^2 / x. The numerator is a square, hence never negative, and it is zero only at x = 1, which the stem excludes. The denominator x is positive because the stem says x > 0.
-Step 5 — a strictly positive numerator over a positive denominator is strictly positive, so Column A - Column B > 0 for every allowed x. Column A is greater, always.
+Step 4 — so Quantity A - Quantity B = (x - 1)^2 / x. The numerator is a square, hence never negative, and it is zero only at x = 1, which the stem excludes. The denominator x is positive because the stem says x > 0.
+Step 5 — a strictly positive numerator over a positive denominator is strictly positive, so Quantity A - Quantity B > 0 for every allowed x. Quantity A is greater, always.
 Check: test values on both sides of 1 and far out. x = 2 gives 2 + 0.5 = 2.5 > 2. x = 0.5 gives 0.5 + 2 = 2.5 > 2. x = 1.01 gives 1.01 + 0.990099 = 2.0001 > 2. x = 100 gives 100.01 > 2. Every test exceeds 2. Correct.
 Answer: A.
 
@@ -605,12 +605,12 @@ Answer: D.
 
 ### Q23 · `ALG-INQ-052` — Answer: B
 
-Step 1 — do not try to evaluate; subtract and factor. Column B - Column A = p/r + 1 - p/q - q/r.
+Step 1 — do not try to evaluate; subtract and factor. Quantity B - Quantity A = p/r + 1 - p/q - q/r.
 Step 2 — group the terms that share a denominator: (p/r - q/r) + (1 - p/q) = (p - q)/r + (q - p)/q.
 Step 3 — the second numerator is the negative of the first, so factor out (p - q): (p - q)/r - (p - q)/q = (p - q)(1/r - 1/q).
 Step 4 — determine the sign of each factor. Since p < q, the factor p - q is negative. Since 0 < q < r, taking reciprocals of positives reverses the order, so 1/r < 1/q and the factor 1/r - 1/q is negative.
-Step 5 — a negative times a negative is positive, so Column B - Column A > 0. Column B is greater, for every allowed p, q, r.
-Check: substitute two different triples. p = 1, q = 2, r = 4: Column A = 1/2 + 1/2 = 1 and Column B = 1/4 + 1 = 1.25, so B is greater. p = 3, q = 10, r = 11: Column A = 0.3 + 0.909 = 1.209 and Column B = 0.273 + 1 = 1.273, so B is greater again. Correct.
+Step 5 — a negative times a negative is positive, so Quantity B - Quantity A > 0. Quantity B is greater, for every allowed p, q, r.
+Check: substitute two different triples. p = 1, q = 2, r = 4: Quantity A = 1/2 + 1/2 = 1 and Quantity B = 1/4 + 1 = 1.25, so B is greater. p = 3, q = 10, r = 11: Quantity A = 0.3 + 0.909 = 1.209 and Quantity B = 0.273 + 1 = 1.273, so B is greater again. Correct.
 Answer: B.
 
 **Trap.** Noticing that p/q and q/r are each less than 1 and concluding nothing, then answering D because three free variables feel indeterminate. The difference factors as (p - q)(1/r - 1/q), whose sign is pinned by the single ordering p < q < r, so no test value can ever reverse it. Testing near-equal values such as p = 9, q = 10, r = 11 makes the two columns nearly equal (1.809 versus 1.818) and can tempt an answer of C, but they never actually meet.
@@ -659,9 +659,9 @@ Step 1 — first eliminate x from the two linear conditions. Inequalities may be
 Step 2 — both now read 'less than', so they may be added to x + 2y < -10 part by part: (x + 2y) + (-x + y) < -10 + 1, and the x terms cancel to give 3y < -9.
 Step 3 — divide by the positive 3, no flip: y < -3. So y is negative and 1/y is negative.
 Step 4 — now use 1/x > 1/y. Do NOT read it as y > x. Taking reciprocals reverses an inequality only when both sides have the SAME sign; here the sign of x is still unknown, so split into cases.
-Step 5 — case x > 0. Then 1/x is positive and 1/y is negative, so 1/x > 1/y holds automatically and adds no restriction. In this case x > 0 > y, so Column A is greater.
-Step 6 — case x < 0. Then x and y are both negative, so the product xy is positive. Multiplying 1/x > 1/y by the positive xy preserves the sign and gives y > x, so Column B is greater.
-Step 7 — both cases really occur, so check a pair in each. x = 1, y = -10: x + 2y = 1 - 20 = -19 < -10, x - y = 1 + 10 = 11 > -1, and 1/x = 1 while 1/y = -0.1, so 1 > -0.1. Here Column A is greater. x = -5, y = -4.5: x + 2y = -5 - 9 = -14 < -10, x - y = -5 + 4.5 = -0.5 > -1, and 1/x = -0.2 while 1/y = -0.2222, so -0.2 > -0.2222. Here Column B is greater.
+Step 5 — case x > 0. Then 1/x is positive and 1/y is negative, so 1/x > 1/y holds automatically and adds no restriction. In this case x > 0 > y, so Quantity A is greater.
+Step 6 — case x < 0. Then x and y are both negative, so the product xy is positive. Multiplying 1/x > 1/y by the positive xy preserves the sign and gives y > x, so Quantity B is greater.
+Step 7 — both cases really occur, so check a pair in each. x = 1, y = -10: x + 2y = 1 - 20 = -19 < -10, x - y = 1 + 10 = 11 > -1, and 1/x = 1 while 1/y = -0.1, so 1 > -0.1. Here Quantity A is greater. x = -5, y = -4.5: x + 2y = -5 - 9 = -14 < -10, x - y = -5 + 4.5 = -0.5 > -1, and 1/x = -0.2 while 1/y = -0.2222, so -0.2 > -0.2222. Here Quantity B is greater.
 Step 8 — two admissible pairs give opposite relationships, so the comparison is not determined.
 Check: both witness pairs were tested against all three stated conditions and both pass, and they differ in the sign of x, which is exactly the freedom the third condition fails to remove. Correct.
 Answer: D.
@@ -688,8 +688,8 @@ Step 2 — factor: t^2 - 10t + 9 = (t - 1)(t - 9). The critical points are t = 1
 Step 3 — sign chart in t. For t < 1, test t = 0: (-1)(-9) = 9, positive. For 1 < t < 9, test t = 4: (3)(-5) = -15, negative. For t > 9, test t = 10: (9)(1) = 9, positive.
 Step 4 — the inequality is <= 0, so 1 <= t <= 9, that is 1 <= x^2 <= 9.
 Step 5 — translate back. Since |x| = sqrt(x^2) and the square root is increasing on non-negative numbers, 1 <= x^2 <= 9 is the same as 1 <= |x| <= 3.
-Step 6 — so |x| ranges over the whole interval from 1 to 3. At |x| = 3, Columns A and B are equal; at |x| = 2, Column B is greater. Two different relationships occur, so nothing is determined.
-Check: substitute actual values into the original inequality. x = 3: 81 - 90 + 9 = 0 <= 0, allowed, and |x| = 3 equals Column B. x = 2: 16 - 40 + 9 = -15 <= 0, allowed, and |x| = 2 < 3. x = -3 also gives 0 and |x| = 3. But x = 4 gives 256 - 160 + 9 = 105, not allowed, so |x| can never exceed 3 and Column A is never greater. Since both C and B are possible outcomes, the answer is D. Correct.
+Step 6 — so |x| ranges over the whole interval from 1 to 3. At |x| = 3, Columns A and B are equal; at |x| = 2, Quantity B is greater. Two different relationships occur, so nothing is determined.
+Check: substitute actual values into the original inequality. x = 3: 81 - 90 + 9 = 0 <= 0, allowed, and |x| = 3 equals Quantity B. x = 2: 16 - 40 + 9 = -15 <= 0, allowed, and |x| = 2 < 3. x = -3 also gives 0 and |x| = 3. But x = 4 gives 256 - 160 + 9 = 105, not allowed, so |x| can never exceed 3 and Quantity A is never greater. Since both C and B are possible outcomes, the answer is D. Correct.
 Answer: D.
 
 **Trap.** Solving only the outer condition x^2 <= 9 and concluding |x| <= 3, then answering B because the maximum looks unattainable; in fact x = 3 satisfies the inequality with equality, so C is possible and the answer cannot be B. Answering C after testing only x = 3 misses the whole interior 1 <= |x| < 3. Answering A comes from reading the inequality as >= 0 and taking the outer regions, where |x| >= 3.

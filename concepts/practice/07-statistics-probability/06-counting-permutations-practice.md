@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~3 min
@@ -50,8 +50,8 @@ A club must fill the three distinct offices of president, vice president and tre
 
 Three books, A, B and C, are distinguishable.
 
-> **Column A:**  The number of different left-to-right orders in which all 3 books can be placed in a row
-> **Column B:**  The number of different 3-book selections that can be made from these 3 books, where the order within a selection does not matter
+> **Quantity A:**  The number of different left-to-right orders in which all 3 books can be placed in a row
+> **Quantity B:**  The number of different 3-book selections that can be made from these 3 books, where the order within a selection does not matter
 
 **Q5** · `STA-PRM-013` · MCQ · 35s
 
@@ -99,13 +99,13 @@ Three of the six letters A, B, C, D, E, F are written in a row to form a 3-lette
 
 n is an integer and n >= 3.
 
-> **Column A:**  P(n, 3), the number of ordered arrangements of 3 objects chosen from n distinct objects
-> **Column B:**  n^3 - n
+> **Quantity A:**  P(n, 3), the number of ordered arrangements of 3 objects chosen from n distinct objects
+> **Quantity B:**  n^3 - n
 
 **Q10** · `STA-PRM-030` · QC · 65s
 
-> **Column A:**  The number of distinct orderings of the four letters of NOON, that is, of the multiset N, N, O, O
-> **Column B:**  The number of distinct orderings of the four letters of MOON, that is, of the multiset M, O, O, N
+> **Quantity A:**  The number of distinct orderings of the four letters of NOON, that is, of the multiset N, N, O, O
+> **Quantity B:**  The number of distinct orderings of the four letters of MOON, that is, of the multiset M, O, O, N
 
 **Q11** · `STA-PRM-029` · Select all that apply · 85s
 
@@ -173,8 +173,8 @@ A firm has 8 distinguishable employees. First, 3 of them are chosen to form a sa
 
 A and B are integers with A > B > 1.
 
-> **Column A:**  P(A, B)
-> **Column B:**  A x P(A - 1, B - 1)
+> **Quantity A:**  P(A, B)
+> **Quantity B:**  A x P(A - 1, B - 1)
 
 **Q18** · `STA-PRM-043` · MCQ · 100s
 
@@ -216,8 +216,8 @@ How many distinct orderings of the eight letters of PARALLEL, that is, of the mu
 
 A certain string consists of 6 letters, which need not be all different.
 
-> **Column A:**  The number of distinct orderings of the 6 letters of the string
-> **Column B:**  360
+> **Quantity A:**  The number of distinct orderings of the 6 letters of the string
+> **Quantity B:**  360
 
 **Q23** · `STA-PRM-048` · Numeric Entry · 100s
 
@@ -267,8 +267,8 @@ Five married couples are to be seated in the ten equally spaced seats of a circu
 
 Ten distinguishable beads are strung on a loop to make a necklace. Two necklaces are considered identical if one can be obtained from the other by rotating the loop or by flipping the loop over.
 
-> **Column A:**  The number of distinct necklaces
-> **Column B:**  10!/20
+> **Quantity A:**  The number of distinct necklaces
+> **Quantity B:**  10!/20
 
 **Q29** · `STA-PRM-058` · Select all that apply · 125s
 
@@ -368,11 +368,11 @@ Answer: 336.
 
 ### Q4 · `STA-PRM-010` — Answer: A
 
-Column A - order matters, so this is a permutation of all 3 books: 3! = 3 x 2 x 1 = 6. The six orders are ABC, ACB, BAC, BCA, CAB, CBA.
-Column B - order does not matter, and there is exactly one way to select all 3 books out of 3: C(3, 3) = 1. The single selection is the set {A, B, C}.
-6 > 1, so Column A is greater.
+Quantity A - order matters, so this is a permutation of all 3 books: 3! = 3 x 2 x 1 = 6. The six orders are ABC, ACB, BAC, BCA, CAB, CBA.
+Quantity B - order does not matter, and there is exactly one way to select all 3 books out of 3: C(3, 3) = 1. The single selection is the set {A, B, C}.
+6 > 1, so Quantity A is greater.
 
-**Trap.** Reading 'arrange' and 'select' as the same operation and choosing C. For the same r objects the ordered count is always r! times the unordered count, so here Column A is 3! = 6 times Column B.
+**Trap.** Reading 'arrange' and 'select' as the same operation and choosing C. For the same r objects the ordered count is always r! times the unordered count, so here Quantity A is 3! = 6 times Quantity B.
 
 ### Q5 · `STA-PRM-013` — Answer: D
 
@@ -423,21 +423,21 @@ Answer: 60.
 
 ### Q9 · `STA-PRM-026` — Answer: B
 
-Step 1 — expand Column A: P(n, 3) = n!/(n - 3)! = n(n - 1)(n - 2).
-Step 2 — factor Column B: n^3 - n = n(n^2 - 1) = n(n - 1)(n + 1).
+Step 1 — expand Quantity A: P(n, 3) = n!/(n - 3)! = n(n - 1)(n - 2).
+Step 2 — factor Quantity B: n^3 - n = n(n^2 - 1) = n(n - 1)(n + 1).
 Step 3 — the two columns share the factor n(n - 1), which is positive for n >= 3. They differ only in the last factor: n - 2 against n + 1.
-Since n + 1 > n - 2 always, Column B is greater for every n >= 3.
-Check n = 3: P(3, 3) = 6 while 27 - 3 = 24. Check n = 10: P(10, 3) = 720 while 1000 - 10 = 990. Column B wins both times.
-Column B is greater.
+Since n + 1 > n - 2 always, Quantity B is greater for every n >= 3.
+Check n = 3: P(3, 3) = 6 while 27 - 3 = 24. Check n = 10: P(10, 3) = 720 while 1000 - 10 = 990. Quantity B wins both times.
+Quantity B is greater.
 
 **Trap.** Remembering the true identity P(n, 2) = n(n - 1) = n^2 - n and generalising it to P(n, 3) = n^3 - n, which gives C. The pattern does not continue: the third factor of P(n, 3) is n - 2, while n^3 - n factors as n(n - 1)(n + 1). Because the answer holds for every n >= 3, D is wrong too.
 
 ### Q10 · `STA-PRM-030` — Answer: B
 
-Column A - NOON has 4 letters with N twice and O twice, so two repeats must be divided out: 4!/(2! x 2!) = 24/4 = 6.
+Quantity A - NOON has 4 letters with N twice and O twice, so two repeats must be divided out: 4!/(2! x 2!) = 24/4 = 6.
 The six are NNOO, NONO, NOON, ONNO, ONON, OONN.
-Column B - MOON has 4 letters with only O repeated: 4!/2! = 24/2 = 12.
-12 > 6, so Column B is greater.
+Quantity B - MOON has 4 letters with only O repeated: 4!/2! = 24/2 = 12.
+12 > 6, so Quantity B is greater.
 
 **Trap.** Seeing two 4-letter words and choosing C. Equal length does not mean equal count: NOON carries two repeated pairs and needs a denominator of 2! x 2! = 4, while MOON needs only 2!. Every extra repeat cuts the number of distinct orderings.
 
@@ -514,13 +514,13 @@ Answer: 1120.
 Step 1 — write both sides with factorials.
 P(A, B) = A!/(A - B)!
 P(A - 1, B - 1) = (A - 1)!/((A - 1) - (B - 1))! = (A - 1)!/(A - B)!
-Step 2 — multiply out Column B: A x (A - 1)!/(A - B)! = A!/(A - B)!, because A x (A - 1)! = A!.
+Step 2 — multiply out Quantity B: A x (A - 1)!/(A - B)! = A!/(A - B)!, because A x (A - 1)! = A!.
 Step 3 — the two expressions are the same, so the columns are equal for every A > B > 1.
 Why it makes sense: filling the first of the B ordered slots (A ways) and then arranging B - 1 of the remaining A - 1 objects is the same job as arranging B of A objects.
 Check A = 5, B = 3: P(5, 3) = 60 and 5 x P(4, 2) = 5 x 12 = 60. Check A = 7, B = 4: P(7, 4) = 840 and 7 x P(6, 3) = 7 x 120 = 840. Correct.
 The two quantities are equal.
 
-**Trap.** Testing one pair of values, seeing equality, then choosing D because A and B are unknown; the factorials cancel identically, so equality is forced for every admissible pair. The opposite slip is expanding P(A - 1, B - 1) as (A - 1)!/(A - B - 1)!, which mishandles the double shift, inflates Column B by a factor of A - B and points at B.
+**Trap.** Testing one pair of values, seeing equality, then choosing D because A and B are unknown; the factorials cancel identically, so equality is forced for every admissible pair. The opposite slip is expanding P(A - 1, B - 1) as (A - 1)!/(A - B - 1)!, which mishandles the double shift, inflates Quantity B by a factor of A - B and points at B.
 
 ### Q18 · `STA-PRM-043` — Answer: C
 
@@ -573,9 +573,9 @@ Answer: 360.
 ### Q22 · `STA-PRM-047` — Answer: D
 
 The count depends entirely on how the letters repeat, and the stem does not fix that. Test the extremes.
-Case 1 - all 6 letters different, for example ABCDEF: 6! = 720. Column A > Column B.
-Case 2 - exactly one letter used twice, the rest different, for example AABCDE: 6!/2! = 720/2 = 360. Column A = Column B.
-Case 3 - three of one letter and three of another, AAABBB: 6!/(3! x 3!) = 720/36 = 20. Column A < Column B.
+Case 1 - all 6 letters different, for example ABCDEF: 6! = 720. Quantity A > Quantity B.
+Case 2 - exactly one letter used twice, the rest different, for example AABCDE: 6!/2! = 720/2 = 360. Quantity A = Quantity B.
+Case 3 - three of one letter and three of another, AAABBB: 6!/(3! x 3!) = 720/36 = 20. Quantity A < Quantity B.
 All three relationships are possible, so the comparison cannot be settled.
 Answer: D.
 
@@ -641,7 +641,7 @@ Step 1 — line the beads up first. Ten distinguishable beads can be put in 10! 
 Step 2 — closing the loop makes rotations identical. A 10-bead loop has 10 rotations, so each necklace has already been counted 10 times.
 Step 3 — allowing the loop to be flipped over makes a necklace and its mirror image the same, which is a further factor of 2.
 Step 4 — so each distinct necklace corresponds to 10 x 2 = 20 of the linear orders, and because all ten beads are different no necklace is left unchanged by any of those 20 motions, so no necklace is over- or under-counted.
-Distinct necklaces = 10!/20 = 181440, which is Column B exactly.
+Distinct necklaces = 10!/20 = 181440, which is Quantity B exactly.
 Check on a small loop: with 4 distinguishable beads the same reasoning gives 4!/8 = 3, and a hand count of 4-bead necklaces up to rotation and flipping does give 3.
 The two quantities are equal.
 

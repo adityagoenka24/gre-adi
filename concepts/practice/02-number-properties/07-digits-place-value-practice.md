@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ How many two-digit positive integers are there?
 
 A two-digit positive integer has tens digit a and units digit b, where a > b.
 
-> **Column A:**  The integer itself
-> **Column B:**  The number formed by reversing its two digits
+> **Quantity A:**  The integer itself
+> **Quantity B:**  The number formed by reversing its two digits
 
 **Q5** · `NUM-DPV-008` · MCQ · 45s
 
@@ -97,8 +97,8 @@ In a four-digit positive integer, the thousands digit is 5, the hundreds digit a
 
 **Q9** · `NUM-DPV-019` · QC · 85s
 
-> **Column A:**  The number of three-digit positive integers that contain at least one digit equal to 0
-> **Column B:**  180
+> **Quantity A:**  The number of three-digit positive integers that contain at least one digit equal to 0
+> **Quantity B:**  180
 
 **Q10** · `NUM-DPV-020` · MCQ · 75s
 
@@ -208,8 +208,8 @@ A decimal number has the form 4.d7k, so the three digits after the decimal point
 
 N is a two-digit positive integer.
 
-> **Column A:**  The sum of the digits of the integer N + 10
-> **Column B:**  The sum of the digits of N
+> **Quantity A:**  The sum of the digits of the integer N + 10
+> **Quantity B:**  The sum of the digits of N
 
 **Q22** · `NUM-DPV-044` · Numeric Entry · 110s
 
@@ -241,8 +241,8 @@ How many three-digit positive integers have digits that sum to 4?
 
 a is the tens digit and b is the units digit of a two-digit positive integer, so the integer is 10a + b.
 
-> **Column A:**  The greatest possible value of (10a + b)/(a + b)
-> **Column B:**  10
+> **Quantity A:**  The greatest possible value of (10a + b)/(a + b)
+> **Quantity B:**  10
 
 ---
 
@@ -280,15 +280,15 @@ What is the least positive integer whose digits are all different and whose digi
 
 N is a three-digit positive integer whose units digit is not 0, and M is the three-digit integer formed by writing the digits of N in reverse order.
 
-> **Column A:**  The number of such integers N for which N + M is a perfect square
-> **Column B:**  8
+> **Quantity A:**  The number of such integers N for which N + M is a perfect square
+> **Quantity B:**  8
 
 **Q30** · `NUM-DPV-050` · QC · 130s
 
 For a three-digit positive integer N, let S(N) denote the sum of the digits of N.
 
-> **Column A:**  The number of three-digit integers N for which N - S(N) = 369
-> **Column B:**  The number of three-digit integers N for which N - S(N) = 368
+> **Quantity A:**  The number of three-digit integers N for which N - S(N) = 369
+> **Quantity B:**  The number of three-digit integers N for which N - S(N) = 368
 
 ---
 
@@ -365,8 +365,8 @@ Answer: B.
 Step 1 — expand both by place value. The integer is 10a + b. The reverse is 10b + a.
 Step 2 — subtract: (10a + b) - (10b + a) = 9a - 9b = 9(a - b).
 Step 3 — we are told a > b, so a - b is at least 1 and 9(a - b) is positive.
-Step 4 — a positive difference means Column A is larger, for every allowed a and b.
-Check with two cases: a = 5, b = 2 gives 52 vs 25, difference 27 = 9 x 3. a = 9, b = 0 gives 90 vs 09 = 9, difference 81 = 9 x 9. Column A wins both times.
+Step 4 — a positive difference means Quantity A is larger, for every allowed a and b.
+Check with two cases: a = 5, b = 2 gives 52 vs 25, difference 27 = 9 x 3. a = 9, b = 0 gives 90 vs 09 = 9, difference 81 = 9 x 9. Quantity A wins both times.
 Answer: A.
 
 **Trap.** Keying D on the grounds that a and b are not pinned down. They do not need to be: the difference is 9(a - b), and the single condition a > b fixes its sign. The other live error is treating 'the number formed by reversing' when b = 0 as impossible and calling the comparison undefined; 90 reversed is simply 9.
@@ -421,7 +421,7 @@ Answer: 5535.
 Step 1 — 'at least one' is a signal to count the complement. There are 900 three-digit integers in all, 100 through 999.
 Step 2 — count those with NO digit equal to 0 by the slot method: hundreds slot 9 choices (1 through 9), tens slot 9 (1 through 9), units slot 9 (1 through 9). That is 9 x 9 x 9 = 729.
 Step 3 — the integers with at least one 0 are the rest: 900 - 729 = 171.
-Step 4 — 171 < 180, so Column B is greater.
+Step 4 — 171 < 180, so Quantity B is greater.
 Check by inclusion-exclusion instead: tens digit 0 gives 9 x 1 x 10 = 90 integers, units digit 0 gives 9 x 10 x 1 = 90, and 9 integers (100, 200, ..., 900) have 0 in both places and are counted twice. 90 + 90 - 9 = 171. Both routes agree.
 Answer: B.
 
@@ -578,10 +578,10 @@ Answer: C.
 ### Q21 · `NUM-DPV-043` — Answer: D
 
 Step 1 — adding 10 raises the tens digit by 1 and leaves the units digit alone, PROVIDED the tens digit is not already 9.
-Step 2 — case 1: N is from 10 to 89. Then N + 10 is still a two-digit number with the same units digit and a tens digit one larger, so Column A = Column B + 1 and Column A is greater. Example: N = 34, N + 10 = 44, digit sums 8 and 7.
-Step 3 — case 2: N is from 90 to 99. Then N + 10 is from 100 to 109: the tens digit rolls over to 0 and a new hundreds digit 1 appears. Example: N = 95, N + 10 = 105, digit sums 6 and 14, so Column B is greater.
+Step 2 — case 1: N is from 10 to 89. Then N + 10 is still a two-digit number with the same units digit and a tens digit one larger, so Quantity A = Quantity B + 1 and Quantity A is greater. Example: N = 34, N + 10 = 44, digit sums 8 and 7.
+Step 3 — case 2: N is from 90 to 99. Then N + 10 is from 100 to 109: the tens digit rolls over to 0 and a new hundreds digit 1 appears. Example: N = 95, N + 10 = 105, digit sums 6 and 14, so Quantity B is greater.
 Step 4 — both orders occur among the allowed values of N, so the relationship is not determined.
-Check the boundary: N = 89 gives 99, digit sums 18 and 17 (Column A greater); N = 90 gives 100, digit sums 1 and 9 (Column B greater). The switch happens exactly at the carry.
+Check the boundary: N = 89 gives 99, digit sums 18 and 17 (Quantity A greater); N = 90 gives 100, digit sums 1 and 9 (Quantity B greater). The switch happens exactly at the carry.
 Answer: D.
 
 **Trap.** Reasoning 'adding 10 adds 1 to the tens digit, so the digit sum always goes up by 1' and keying A. That is true for N from 10 to 89 but fails for the ten values 90 through 99, where the carry destroys a 9 and the digit sum drops by 8. A two-digit N is allowed to be 95.
@@ -627,7 +627,7 @@ Answer: C.
 Step 1 — test the natural candidate first. If b = 0 the quotient is 10a/a = 10, for any a from 1 to 9. So 10 is achievable; for instance 70/7 = 10.
 Step 2 — can the quotient ever exceed 10? Suppose (10a + b)/(a + b) > 10. Since a + b is positive, multiply through: 10a + b > 10a + 10b, which reduces to b > 10b, that is 0 > 9b, so b < 0.
 Step 3 — b is a digit, so b cannot be negative. The quotient therefore never exceeds 10, and 10 is attained.
-Step 4 — the greatest possible value is exactly 10, equal to Column B.
+Step 4 — the greatest possible value is exactly 10, equal to Quantity B.
 Check the extremes by hand: 90/9 = 10, 91/10 = 9.1, 19/10 = 1.9, 10/1 = 10. Nothing beats 10.
 Answer: C.
 
@@ -692,16 +692,16 @@ Step 6 — total = 3 + 4 + 8 = 15, and 15 > 8.
 Check: s = 4, b = 4 gives 143, 242 and 341, and 143 + 341 = 484 = 22^2. s = 9, b = 9 gives 198 + 891 = 1089 = 33^2. Correct.
 Answer: A.
 
-**Trap.** Counting unordered digit pairs instead of integers: {1,3} and {2,2} for s = 4, {1,4} and {2,3} for s = 5, and four pairs for s = 9 gives 2 + 2 + 4 = 8 and the false reading that the columns are equal, choice C. The other live error is stopping at Step 4 and reporting the number of qualifying squares, 3, which makes Column B look greater, choice B. A student who also lets c = 0 (so that M is not a three-digit integer) inflates the count further; the stem rules that out.
+**Trap.** Counting unordered digit pairs instead of integers: {1,3} and {2,2} for s = 4, {1,4} and {2,3} for s = 5, and four pairs for s = 9 gives 2 + 2 + 4 = 8 and the false reading that the columns are equal, choice C. The other live error is stopping at Step 4 and reporting the number of qualifying squares, 3, which makes Quantity B look greater, choice B. A student who also lets c = 0 (so that M is not a three-digit integer) inflates the count further; the stem rules that out.
 
 ### Q30 · `NUM-DPV-050` — Answer: A
 
 Step 1 — expand. With hundreds digit a, tens digit b and units digit c, N - S(N) = (100a + 10b + c) - (a + b + c) = 99a + 9b = 9(11a + b).
 Step 2 — so N - S(N) is always a multiple of 9, and the units digit c drops out completely.
-Step 3 — Column B first. 368/9 is not an integer (9 x 40 = 360, 9 x 41 = 369), so N - S(N) = 368 is impossible. Column B = 0.
-Step 4 — Column A. 369 = 9 x 41, so 11a + b = 41. With a and b digits, a = 3 gives b = 41 - 33 = 8, and that is the only fit: a = 2 needs b = 19 and a = 4 needs b = -3.
-Step 5 — a = 3 and b = 8 are fixed, but c is free because it cancelled. So N is any of 380, 381, 382, ..., 389: 10 integers. Column A = 10.
-Step 6 — 10 > 0, so Column A is greater.
+Step 3 — Quantity B first. 368/9 is not an integer (9 x 40 = 360, 9 x 41 = 369), so N - S(N) = 368 is impossible. Quantity B = 0.
+Step 4 — Quantity A. 369 = 9 x 41, so 11a + b = 41. With a and b digits, a = 3 gives b = 41 - 33 = 8, and that is the only fit: a = 2 needs b = 19 and a = 4 needs b = -3.
+Step 5 — a = 3 and b = 8 are fixed, but c is free because it cancelled. So N is any of 380, 381, 382, ..., 389: 10 integers. Quantity A = 10.
+Step 6 — 10 > 0, so Quantity A is greater.
 Check: 385 - (3 + 8 + 5) = 385 - 16 = 369, and 389 - 20 = 369. Both work, confirming c is free. And 368 leaves remainder 8 on division by 9, which no value of N - S(N) can do.
 Answer: A.
 

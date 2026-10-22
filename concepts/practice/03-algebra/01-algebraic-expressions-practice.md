@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ If x is not equal to 0, simplify: (x^2 + x) / x.
 
 x is a positive integer.
 
-> **Column A:**  (x + 2)^2
-> **Column B:**  x^2 + 4
+> **Quantity A:**  (x + 2)^2
+> **Quantity B:**  x^2 + 4
 
 **Q4** · `ALG-EXP-010` · Numeric Entry · 55s
 
@@ -109,8 +109,8 @@ For which of the following values of x is the expression (x^2 - x - 6) / (x^2 - 
 
 p and q are positive numbers with p > q.
 
-> **Column A:**  (p + q)^2
-> **Column B:**  (p - q)^2 + 4pq
+> **Quantity A:**  (p + q)^2
+> **Quantity B:**  (p - q)^2 + 4pq
 
 **Q11** · `ALG-EXP-027` · Numeric Entry · 65s
 
@@ -164,8 +164,8 @@ If x + y = 6 and x^2 + y^2 = 20, what is the value of x^3 + y^3? Enter your answ
 
 x and y are real numbers with x^2 + y^2 = 10 and xy = -3.
 
-> **Column A:**  (x + y)^2
-> **Column B:**  (x - y)^2
+> **Quantity A:**  (x + y)^2
+> **Quantity B:**  (x - y)^2
 
 **Q17** · `ALG-EXP-037` · MCQ · 110s
 
@@ -201,8 +201,8 @@ x is a real number with x not equal to 1, 2 or 3. Which of the following is equi
 
 a and b are real numbers with a > b, a + b = 7 and ab = 10.
 
-> **Column A:**  a^3 - b^3
-> **Column B:**  3(a^2 + ab + b^2)
+> **Quantity A:**  a^3 - b^3
+> **Quantity B:**  3(a^2 + ab + b^2)
 
 **Q21** · `ALG-EXP-041` · Numeric Entry · 100s
 
@@ -240,8 +240,8 @@ x is a real number with x^3 + 2x^2 = 8x. What is the sum of all possible values 
 
 x and y are real numbers with x > y > 0.
 
-> **Column A:**  (x^3 - y^3) / (x - y)
-> **Column B:**  (x + y)^2
+> **Quantity A:**  (x^3 - y^3) / (x - y)
+> **Quantity B:**  (x + y)^2
 
 ---
 
@@ -269,8 +269,8 @@ x and y are real numbers with x > y > 0, x^4 + y^4 = 2417 and xy = 14. What is t
 
 a, b and c are real numbers with a + b + c = 0.
 
-> **Column A:**  a^3 + b^3 + c^3
-> **Column B:**  3abc
+> **Quantity A:**  a^3 + b^3 + c^3
+> **Quantity B:**  3abc
 
 **Q29** · `ALG-EXP-049` · Select all that apply · 130s
 
@@ -358,11 +358,11 @@ Answer: B.
 
 ### Q3 · `ALG-EXP-008` — Answer: A
 
-Step 1 — expand Column A in full. (x + 2)^2 = (x + 2)(x + 2) = x^2 + 2x + 2x + 4 = x^2 + 4x + 4.
-Step 2 — subtract Column B from Column A.
+Step 1 — expand Quantity A in full. (x + 2)^2 = (x + 2)(x + 2) = x^2 + 2x + 2x + 4 = x^2 + 4x + 4.
+Step 2 — subtract Quantity B from Quantity A.
 (x^2 + 4x + 4) - (x^2 + 4) = 4x
-Step 3 — x is a positive integer, so 4x > 0, which means Column A is always the larger quantity.
-Check: at x = 1, Column A = 9 and Column B = 5. At x = 5, Column A = 49 and Column B = 29. Column A wins both times.
+Step 3 — x is a positive integer, so 4x > 0, which means Quantity A is always the larger quantity.
+Check: at x = 1, Quantity A = 9 and Quantity B = 5. At x = 5, Quantity A = 49 and Quantity B = 29. Quantity A wins both times.
 Answer: A.
 
 **Trap.** Believing (x + 2)^2 = x^2 + 2^2 and calling the columns equal, which is choice C. The square of a sum always carries the middle term 2ab; here that missing term is 4x, and it is exactly the gap between the two columns.
@@ -448,13 +448,13 @@ Answer: A and E.
 
 ### Q10 · `ALG-EXP-026` — Answer: C
 
-Step 1 — expand Column A: (p + q)^2 = p^2 + 2pq + q^2.
-Step 2 — expand Column B: (p - q)^2 + 4pq = (p^2 - 2pq + q^2) + 4pq = p^2 + 2pq + q^2.
+Step 1 — expand Quantity A: (p + q)^2 = p^2 + 2pq + q^2.
+Step 2 — expand Quantity B: (p - q)^2 + 4pq = (p^2 - 2pq + q^2) + 4pq = p^2 + 2pq + q^2.
 Step 3 — the two expansions are identical term for term, so the columns are equal for every p and q, positive or not. This is the standard derived form (a + b)^2 - (a - b)^2 = 4ab, rearranged.
-Check: put p = 5 and q = 2. Column A = 49. Column B = 9 + 40 = 49. Equal.
+Check: put p = 5 and q = 2. Quantity A = 49. Quantity B = 9 + 40 = 49. Equal.
 Answer: C.
 
-**Trap.** Reasoning that because p > q the bigger-looking Column A must win, and choosing A. The extra +4pq in Column B is exactly the 4pq gap between the two squares, so it closes the difference precisely. The other error is expanding (p - q)^2 as p^2 - q^2, which gives Column B = p^2 - q^2 + 4pq and makes the columns look unequal.
+**Trap.** Reasoning that because p > q the bigger-looking Quantity A must win, and choosing A. The extra +4pq in Quantity B is exactly the 4pq gap between the two squares, so it closes the difference precisely. The other error is expanding (p - q)^2 as p^2 - q^2, which gives Quantity B = p^2 - q^2 + 4pq and makes the columns look unequal.
 
 ### Q11 · `ALG-EXP-027` — Answer: 49
 
@@ -522,14 +522,14 @@ Answer: 72.
 ### Q16 · `ALG-EXP-036` — Answer: B
 
 Step 1 — expand both columns in terms of the two given quantities.
-Column A: (x + y)^2 = (x^2 + y^2) + 2xy = 10 + 2(-3) = 10 - 6 = 4
-Column B: (x - y)^2 = (x^2 + y^2) - 2xy = 10 - 2(-3) = 10 + 6 = 16
-Step 2 — compare: 4 < 16, so Column B is greater.
-The general statement is (x + y)^2 - (x - y)^2 = 4xy, which here is 4(-3) = -12, negative - so Column A falls short of Column B by 12, matching 4 - 16 = -12.
+Quantity A: (x + y)^2 = (x^2 + y^2) + 2xy = 10 + 2(-3) = 10 - 6 = 4
+Quantity B: (x - y)^2 = (x^2 + y^2) - 2xy = 10 - 2(-3) = 10 + 6 = 16
+Step 2 — compare: 4 < 16, so Quantity B is greater.
+The general statement is (x + y)^2 - (x - y)^2 = 4xy, which here is 4(-3) = -12, negative - so Quantity A falls short of Quantity B by 12, matching 4 - 16 = -12.
 Check: x = 3 and y = -1 satisfy both conditions, since 9 + 1 = 10 and (3)(-1) = -3. Then (x + y)^2 = 2^2 = 4 and (x - y)^2 = 4^2 = 16. Correct.
 Answer: B.
 
-**Trap.** Assuming the square of a SUM must beat the square of a difference and choosing A. That is true only when xy is positive; here xy = -3, which flips the comparison. Signing the substitution carelessly - reading 2xy as +6 in Column A and -6 in Column B - produces 16 versus 4 and the wrong choice A.
+**Trap.** Assuming the square of a SUM must beat the square of a difference and choosing A. That is true only when xy is positive; here xy = -3, which flips the comparison. Signing the substitution carelessly - reading 2xy as +6 in Quantity A and -6 in Quantity B - produces 16 versus 4 and the wrong choice A.
 
 ### Q17 · `ALG-EXP-037` — Answer: E
 
@@ -585,11 +585,11 @@ Step 1 — the givens do not hand you a - b, so build it. Expand (a - b)^2 and r
 Step 2 — take the root with the right sign. a - b = 3 or -3, and a > b forces a - b = 3.
 Step 3 — expand the product (a - b)(a^2 + ab + b^2) and watch the middle terms die:
 (a - b)(a^2 + ab + b^2) = a^3 + a^2 b + ab^2 - a^2 b - ab^2 - b^3 = a^3 - b^3
-Step 4 — so Column A = a^3 - b^3 = (a - b)(a^2 + ab + b^2) = 3(a^2 + ab + b^2), which is exactly Column B. The two columns are equal whatever a^2 + ab + b^2 turns out to be.
-Check with the actual numbers: a + b = 7 and ab = 10 give a = 5 and b = 2. Column A = 125 - 8 = 117. a^2 + ab + b^2 = 25 + 10 + 4 = 39, so Column B = 3(39) = 117. Equal.
+Step 4 — so Quantity A = a^3 - b^3 = (a - b)(a^2 + ab + b^2) = 3(a^2 + ab + b^2), which is exactly Quantity B. The two columns are equal whatever a^2 + ab + b^2 turns out to be.
+Check with the actual numbers: a + b = 7 and ab = 10 give a = 5 and b = 2. Quantity A = 125 - 8 = 117. a^2 + ab + b^2 = 25 + 10 + 4 = 39, so Quantity B = 3(39) = 117. Equal.
 Answer: C.
 
-**Trap.** Forgetting the square root in Step 1 and using a - b = 9 instead of 3; that makes Column A nine times the bracket and Column B only three times it, so Column A looks greater - choice A. Ignoring a > b and taking a - b = -3 makes Column A negative while Column B is positive, giving choice B. Choosing D because a and b are never given separately; they never need to be, since (a + b)^2 - 4ab pins a - b down to a single value.
+**Trap.** Forgetting the square root in Step 1 and using a - b = 9 instead of 3; that makes Quantity A nine times the bracket and Quantity B only three times it, so Quantity A looks greater - choice A. Ignoring a > b and taking a - b = -3 makes Quantity A negative while Quantity B is positive, giving choice B. Choosing D because a and b are never given separately; they never need to be, since (a + b)^2 - 4ab pins a - b down to a single value.
 
 ### Q21 · `ALG-EXP-041` — Answer: 19
 
@@ -652,16 +652,16 @@ Answer: 17.
 
 ### Q25 · `ALG-EXP-045` — Answer: B
 
-Step 1 — factor the numerator of Column A: x^3 - y^3 = (x - y)(x^2 + xy + y^2). Since x > y, the factor x - y is nonzero and cancels.
-Column A = x^2 + xy + y^2
-Step 2 — expand Column B: (x + y)^2 = x^2 + 2xy + y^2.
-Step 3 — subtract Column A from Column B:
+Step 1 — factor the numerator of Quantity A: x^3 - y^3 = (x - y)(x^2 + xy + y^2). Since x > y, the factor x - y is nonzero and cancels.
+Quantity A = x^2 + xy + y^2
+Step 2 — expand Quantity B: (x + y)^2 = x^2 + 2xy + y^2.
+Step 3 — subtract Quantity A from Quantity B:
 (x^2 + 2xy + y^2) - (x^2 + xy + y^2) = xy
-Step 4 — x > 0 and y > 0, so xy > 0. Column B exceeds Column A by xy, which is always positive here.
-Check: put x = 3 and y = 1. Column A = (27 - 1)/2 = 13, and x^2 + xy + y^2 = 9 + 3 + 1 = 13. Column B = 16. Column B is greater, and the gap is xy = 3. Correct.
+Step 4 — x > 0 and y > 0, so xy > 0. Quantity B exceeds Quantity A by xy, which is always positive here.
+Check: put x = 3 and y = 1. Quantity A = (27 - 1)/2 = 13, and x^2 + xy + y^2 = 9 + 3 + 1 = 13. Quantity B = 16. Quantity B is greater, and the gap is xy = 3. Correct.
 Answer: B.
 
-**Trap.** Cancelling as if x^3 - y^3 factored like x^2 - y^2 and writing Column A as x^2 + 2xy + y^2, which makes the columns look equal and produces choice C. The quadratic factor of a difference of cubes has a single xy, not 2xy. Choosing D on the grounds that x and y are unknown also fails: the difference is xy, and the stem pins its sign by requiring x > y > 0.
+**Trap.** Cancelling as if x^3 - y^3 factored like x^2 - y^2 and writing Quantity A as x^2 + 2xy + y^2, which makes the columns look equal and produces choice C. The quadratic factor of a difference of cubes has a single xy, not 2xy. Choosing D on the grounds that x and y are unknown also fails: the difference is xy, and the stem pins its sign by requiring x > y > 0.
 
 ### Q26 · `ALG-EXP-046` — Answer: B
 
@@ -694,14 +694,14 @@ Answer: 604.
 ### Q28 · `ALG-EXP-048` — Answer: C
 
 Step 1 — use the condition to eliminate one letter: c = -(a + b).
-Step 2 — substitute into Column A.
+Step 2 — substitute into Quantity A.
 c^3 = -(a + b)^3 = -(a^3 + 3a^2 b + 3ab^2 + b^3)
 a^3 + b^3 + c^3 = a^3 + b^3 - a^3 - 3a^2 b - 3ab^2 - b^3 = -3a^2 b - 3ab^2 = -3ab(a + b)
-Step 3 — substitute into Column B.
+Step 3 — substitute into Quantity B.
 3abc = 3ab * (-(a + b)) = -3ab(a + b)
 Step 4 — the two expressions are identical, so the columns are equal for every a, b and c satisfying the condition.
 This is the standard identity a^3 + b^3 + c^3 - 3abc = (a + b + c)(a^2 + b^2 + c^2 - ab - bc - ca); when a + b + c = 0 the right side is 0, so the two columns coincide.
-Check: a = 1, b = 2, c = -3. Column A = 1 + 8 - 27 = -18. Column B = 3(1)(2)(-3) = -18. Equal. Try a = 5, b = -1, c = -4: Column A = 125 - 1 - 64 = 60, Column B = 3(5)(-1)(-4) = 60. Equal again.
+Check: a = 1, b = 2, c = -3. Quantity A = 1 + 8 - 27 = -18. Quantity B = 3(1)(2)(-3) = -18. Equal. Try a = 5, b = -1, c = -4: Quantity A = 125 - 1 - 64 = 60, Quantity B = 3(5)(-1)(-4) = 60. Equal again.
 Answer: C.
 
 **Trap.** Testing a single easy case such as a = b = c = 0, getting 0 = 0, and then choosing D on the suspicion that one example proves nothing. The identity holds for all such triples, so the answer is C. The other error is treating a^3 + b^3 + c^3 as (a + b + c)^3 = 0 and choosing B whenever abc is positive.

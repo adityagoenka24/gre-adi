@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -48,8 +48,8 @@ What is the largest prime factor of 84? Enter your answer as a number.
 
 **Q4** · `NUM-PRF-009` · QC · 50s
 
-> **Column A:**  The number of distinct prime factors of 30
-> **Column B:**  The number of distinct prime factors of 42
+> **Quantity A:**  The number of distinct prime factors of 30
+> **Quantity B:**  The number of distinct prime factors of 42
 
 **Q5** · `NUM-PRF-014` · MCQ · 55s
 
@@ -97,8 +97,8 @@ Which of the following statements about prime numbers are true? Select all that 
 
 p is a prime number and p > 2.
 
-> **Column A:**  The remainder when p^2 is divided by 4
-> **Column B:**  1
+> **Quantity A:**  The remainder when p^2 is divided by 4
+> **Quantity B:**  1
 
 **Q10** · `NUM-PRF-027` · MCQ · 70s
 
@@ -178,8 +178,8 @@ What is the exponent of 3 in the prime factorization of 30! ? Enter your answer 
 
 x and y are distinct prime numbers.
 
-> **Column A:**  The sum of all positive factors of xy
-> **Column B:**  (x + 1)(y + 1)
+> **Quantity A:**  The sum of all positive factors of xy
+> **Quantity B:**  (x + 1)(y + 1)
 
 **Q19** · `NUM-PRF-045` · MCQ · 110s
 
@@ -211,8 +211,8 @@ What is the smallest positive integer n such that n! has at least 10 trailing ze
 
 p and q are distinct prime numbers, both greater than 2.
 
-> **Column A:**  GCD(p + q, p x q)
-> **Column B:**  2
+> **Quantity A:**  GCD(p + q, p x q)
+> **Quantity B:**  2
 
 **Q23** · `NUM-PRF-049` · MCQ · 110s
 
@@ -260,8 +260,8 @@ For a positive integer n, let f(n) be the number of trailing zeros of n!. Which 
 
 n is an integer greater than 1, and p is the smallest prime factor of n.
 
-> **Column A:**  p
-> **Column B:**  sqrt(n)
+> **Quantity A:**  p
+> **Quantity B:**  sqrt(n)
 
 **Q28** · `NUM-PRF-058` · MCQ · 110s
 
@@ -293,8 +293,8 @@ Which of the following integers have exactly 4 positive factors? Select all that
 
 p, q and r are distinct prime numbers with p < q < r.
 
-> **Column A:**  The number of positive factors of p^2 x q^2 x r^2
-> **Column B:**  The number of positive factors of p^2 x q x r x (p + q + r)
+> **Quantity A:**  The number of positive factors of p^2 x q^2 x r^2
+> **Quantity B:**  The number of positive factors of p^2 x q x r x (p + q + r)
 
 ---
 
@@ -372,8 +372,8 @@ Answer: 7.
 
 ### Q4 · `NUM-PRF-009` — Answer: C
 
-Column A: 30 = 2 x 3 x 5. The distinct primes are 2, 3 and 5, so Column A = 3.
-Column B: 42 = 2 x 3 x 7. The distinct primes are 2, 3 and 7, so Column B = 3.
+Quantity A: 30 = 2 x 3 x 5. The distinct primes are 2, 3 and 5, so Quantity A = 3.
+Quantity B: 42 = 2 x 3 x 7. The distinct primes are 2, 3 and 7, so Quantity B = 3.
 Two numbers can have different prime sets and still have the same COUNT of distinct primes.
 Check: 2 x 3 x 5 = 30 and 2 x 3 x 7 = 42. Correct.
 3 = 3, so the two quantities are equal.
@@ -431,7 +431,7 @@ Answer: A, C, D.
 
 Step 1 — p is prime and greater than 2, so p is odd. Write p = 2k + 1 for some integer k.
 Step 2 — square it: p^2 = 4k^2 + 4k + 1 = 4(k^2 + k) + 1.
-Step 3 — the first term is a multiple of 4, so p^2 divided by 4 leaves remainder 1. Column A = 1.
+Step 3 — the first term is a multiple of 4, so p^2 divided by 4 leaves remainder 1. Quantity A = 1.
 Check: p = 3 gives 9 = 4 x 2 + 1; p = 5 gives 25 = 4 x 6 + 1; p = 7 gives 49 = 4 x 12 + 1; p = 11 gives 121 = 4 x 30 + 1. Always remainder 1.
 1 = 1, so the two quantities are equal.
 Answer: C.
@@ -529,9 +529,9 @@ Answer: 14.
 ### Q18 · `NUM-PRF-044` — Answer: C
 
 Step 1 — x and y are distinct primes, so xy has exactly (1+1)(1+1) = 4 positive factors: 1, x, y and xy.
-Step 2 — Column A = 1 + x + y + xy.
+Step 2 — Quantity A = 1 + x + y + xy.
 Step 3 — factor that sum by grouping: 1 + x + y + xy = (1 + x) + y(1 + x) = (1 + x)(1 + y).
-Step 4 — that is exactly Column B, for every pair of distinct primes. The two quantities are equal.
+Step 4 — that is exactly Quantity B, for every pair of distinct primes. The two quantities are equal.
 This is the capsule's sum-of-factors rule read backwards: the sum of the factors of p^a x q^b is (1 + p + ... + p^a)(1 + q + ... + q^b), and with a = b = 1 the brackets are (1 + x)(1 + y).
 Check with x = 3, y = 5: 15 has factors 1, 3, 5, 15 summing to 24, and (3+1)(5+1) = 4 x 6 = 24. Check with x = 11, y = 13: 143 has factors 1, 11, 13, 143 summing to 168, and 12 x 14 = 168.
 Answer: C.
@@ -578,12 +578,12 @@ Answer: 45.
 Step 1 — the only primes dividing p x q are p and q, so any common divisor of p + q and p x q must be built from p and q.
 Step 2 — could p divide p + q? p divides p, so p would have to divide q as well. But q is prime and q is not equal to p, so p does not divide q. Therefore p does not divide p + q.
 Step 3 — the same argument rules out q.
-Step 4 — with no shared prime, GCD(p + q, p x q) = 1. Column A = 1.
+Step 4 — with no shared prime, GCD(p + q, p x q) = 1. Quantity A = 1.
 Check: p = 3, q = 5 gives GCD(8, 15) = 1. p = 5, q = 7 gives GCD(12, 35) = 1. p = 3, q = 11 gives GCD(14, 33) = 1.
-1 < 2, so Column B is greater.
+1 < 2, so Quantity B is greater.
 Answer: B.
 
-**Trap.** Noticing that p + q is even (odd + odd) and concluding that 2 is a common factor, so Column A = 2 and the answer is C. But p x q is a product of two ODD primes, so p x q is odd and 2 cannot divide it. The 2 sitting in p + q has nothing to pair with on the other side.
+**Trap.** Noticing that p + q is even (odd + odd) and concluding that 2 is a common factor, so Quantity A = 2 and the answer is C. But p x q is a product of two ODD primes, so p x q is odd and 2 cannot divide it. The 2 sitting in p + q has nothing to pair with on the other side.
 
 ### Q23 · `NUM-PRF-049` — Answer: D
 
@@ -642,9 +642,9 @@ Answer: B. 5.
 ### Q27 · `NUM-PRF-056` — Answer: D
 
 Test the three shapes n can take.
-Case 1 — n = 6: the smallest prime factor is 2, and sqrt(6) = 2.449... Column B is greater.
+Case 1 — n = 6: the smallest prime factor is 2, and sqrt(6) = 2.449... Quantity B is greater.
 Case 2 — n = 4: the smallest prime factor is 2, and sqrt(4) = 2. The two are equal.
-Case 3 — n = 3, which is prime: its smallest (indeed only) prime factor is 3 itself, and sqrt(3) = 1.732... Column A is greater.
+Case 3 — n = 3, which is prime: its smallest (indeed only) prime factor is 3 itself, and sqrt(3) = 1.732... Quantity A is greater.
 All three outcomes occur, so the relationship is not determined.
 Why the pull toward B: the primality shortcut says that to test n you only need primes up to sqrt(n). That works because a COMPOSITE n must have a prime factor at most sqrt(n). It says nothing about prime n, where the smallest prime factor is n itself and n > sqrt(n) for every n > 1.
 Answer: D. The relationship cannot be determined from the information given.
@@ -677,11 +677,11 @@ Answer: A, B, E.
 
 ### Q30 · `NUM-PRF-060` — Answer: D
 
-Step 1 — Column A is fixed: the exponents are 2, 2, 2, so the count is (2+1)(2+1)(2+1) = 27 for any choice of primes.
-Step 2 — Column B is not fixed, because p + q + r can share primes with p, q and r, and its own factorization changes the exponents.
-Case 1 — p, q, r = 2, 3, 5. Then p + q + r = 10 = 2 x 5, so the number is 2^2 x 3 x 5 x (2 x 5) = 2^3 x 3 x 5^2. Count = (3+1)(1+1)(2+1) = 24. Here 24 < 27, so Column A is greater.
-Case 2 — p, q, r = 2, 3, 7. Then p + q + r = 12 = 2^2 x 3, so the number is 2^2 x 3 x 7 x (2^2 x 3) = 2^4 x 3^2 x 7. Count = (4+1)(2+1)(1+1) = 30. Here 30 > 27, so Column B is greater.
+Step 1 — Quantity A is fixed: the exponents are 2, 2, 2, so the count is (2+1)(2+1)(2+1) = 27 for any choice of primes.
+Step 2 — Quantity B is not fixed, because p + q + r can share primes with p, q and r, and its own factorization changes the exponents.
+Case 1 — p, q, r = 2, 3, 5. Then p + q + r = 10 = 2 x 5, so the number is 2^2 x 3 x 5 x (2 x 5) = 2^3 x 3 x 5^2. Count = (3+1)(1+1)(2+1) = 24. Here 24 < 27, so Quantity A is greater.
+Case 2 — p, q, r = 2, 3, 7. Then p + q + r = 12 = 2^2 x 3, so the number is 2^2 x 3 x 7 x (2^2 x 3) = 2^4 x 3^2 x 7. Count = (4+1)(2+1)(1+1) = 30. Here 30 > 27, so Quantity B is greater.
 Two legal choices give opposite results.
 Answer: D. The relationship cannot be determined from the information given.
 
-**Trap.** Treating p + q + r as if it were a fourth, brand-new prime, which makes Column B (2+1)(1+1)(1+1)(1+1) = 24 and the answer look like a settled A. The sum of three primes is normally composite and normally shares primes with p, q and r - with 2, 3, 7 it is 12, the exponents on 2 and 3 pile up, and Column B climbs to 30. Nothing in the stem pins the sum down, so neither column dominates.
+**Trap.** Treating p + q + r as if it were a fourth, brand-new prime, which makes Quantity B (2+1)(1+1)(1+1)(1+1) = 24 and the answer look like a settled A. The sum of three primes is normally composite and normally shares primes with p, q and r - with 2, 3, 7 it is 12, the exponents on 2 and 3 pile up, and Quantity B climbs to 30. Nothing in the stem pins the sum down, so neither column dominates.

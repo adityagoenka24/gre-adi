@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ If p:q = 4:7, what is p:(p+q)?
 
 m and n are positive with m:n = 5:9.
 
-> **Column A:**  m + n
-> **Column B:**  2m
+> **Quantity A:**  m + n
+> **Quantity B:**  2m
 
 **Q5** · `ARI-RAT-020` · Select all that apply · 60s
 
@@ -109,8 +109,8 @@ A solution of salt and water is in the ratio 1:4 by mass. Which of the following
 
 x varies inversely with y. When x = 6, y = 8.
 
-> **Column A:**  y when x = 4
-> **Column B:**  12
+> **Quantity A:**  y when x = 4
+> **Quantity B:**  12
 
 **Q11** · `ARI-RAT-034` · Numeric Entry · 70s
 
@@ -132,8 +132,8 @@ The ratio of petrol to kerosene in a mixture is 7:3. When 10 litres of kerosene 
 
 a:b = 2:5 and c:d = 3:7, and all four quantities are positive.
 
-> **Column A:**  a/b
-> **Column B:**  c/d
+> **Quantity A:**  a/b
+> **Quantity B:**  c/d
 
 ---
 
@@ -155,8 +155,8 @@ The ratio of A's income to B's income is 3:2, and the ratio of their expenditure
 
 a, b, c and d are positive, with a:b = 3:4 and c:d = 5:6.
 
-> **Column A:**  (ac):(bd)
-> **Column B:**  15:24
+> **Quantity A:**  (ac):(bd)
+> **Quantity B:**  15:24
 
 **Q16** · `ARI-RAT-053` · Numeric Entry · 95s
 
@@ -214,8 +214,8 @@ If a/b = b/c = c/d = 2/3, what is (a + b + c)/(b + c + d)?
 
 x and y are positive with x/y = 4/5.
 
-> **Column A:**  (x + 4)/(y + 4)
-> **Column B:**  x/y
+> **Quantity A:**  (x + 4)/(y + 4)
+> **Quantity B:**  x/y
 
 **Q23** · `ARI-RAT-065` · Select all that apply · 95s
 
@@ -231,8 +231,8 @@ a:b = 3:5, with a and b positive. Which of the following are equal to b/(a + b)?
 
 p, q and r are positive, with p:q = 2:3 and q:r = 3:5.
 
-> **Column A:**  p + r
-> **Column B:**  2q
+> **Quantity A:**  p + r
+> **Quantity B:**  2q
 
 **Q25** · `ARI-RAT-069` · MCQ · 90s
 
@@ -254,8 +254,8 @@ If a:b:c = 2:3:4, what is the value of (a^2 + b^2 + c^2)/(ab + bc + ca)?
 
 x, y and z are positive, with x:y = 2:3 and y:z = 4:5.
 
-> **Column A:**  x(y + z)
-> **Column B:**  y(x + z)
+> **Quantity A:**  x(y + z)
+> **Quantity B:**  y(x + z)
 
 **Q27** · `ARI-RAT-074` · MCQ · 100s
 
@@ -366,9 +366,9 @@ Answer: 4:11.
 ### Q4 · `ARI-RAT-016` — Answer: A
 
 Step 1 — name the multiplier: m = 5k, n = 9k, with k > 0.
-Step 2 — Column A = m + n = 14k.
-Step 3 — Column B = 2m = 10k.
-Step 4 — 14k > 10k for every positive k, so the answer does not depend on k at all. Column A is greater.
+Step 2 — Quantity A = m + n = 14k.
+Step 3 — Quantity B = 2m = 10k.
+Step 4 — 14k > 10k for every positive k, so the answer does not depend on k at all. Quantity A is greater.
 
 **Trap.** Choosing D because no actual values are given. Once both columns are written in terms of the same k, the k cancels out of the comparison - a ratio question is 'not determinable' only if the two columns scale differently.
 
@@ -438,7 +438,7 @@ Answer: A, B, D.
 Step 1 — inverse variation means the PRODUCT is constant: xy = c.
 Step 2 — c = 6 x 8 = 48.
 Step 3 — when x = 4: y = 48/4 = 12.
-Column A = 12 = Column B, so the two quantities are equal.
+Quantity A = 12 = Quantity B, so the two quantities are equal.
 
 **Trap.** Scaling y the same direction as x. Here x falls by a factor of 6/4 = 1.5, so students shrink y as well and get around 5.3. Under inverse variation the two move in opposite directions: x divided by 1.5 means y multiplied by 1.5, and 8 x 1.5 = 12.
 
@@ -467,9 +467,9 @@ Answer: 70.
 
 ### Q13 · `ARI-RAT-036` — Answer: B
 
-Column A = 2/5 and Column B = 3/7.
+Quantity A = 2/5 and Quantity B = 3/7.
 Cross-multiply to compare without decimals: 2 x 7 = 14 against 5 x 3 = 15.
-The product on the Column B side is larger, so 3/7 > 2/5. Column B is greater.
+The product on the Quantity B side is larger, so 3/7 > 2/5. Quantity B is greater.
 Decimal check: 2/5 = 0.400 and 3/7 = 0.4286. Correct.
 
 **Trap.** Comparing numerators and denominators separately - 2 < 3 and 5 < 7, so 'it could go either way', which leads to D. Two positive fractions can always be ordered by cross-multiplication, so D is never right here.
@@ -496,10 +496,10 @@ Answer: $3,000.
 Step 1 — name separate multipliers: a = 3k, b = 4k, c = 5m, d = 6m.
 Step 2 — ac = 3k x 5m = 15km, and bd = 4k x 6m = 24km.
 Step 3 — (ac):(bd) = 15km : 24km = 15:24, since km cancels.
-Column B is also 15:24, so the two are equal.
+Quantity B is also 15:24, so the two are equal.
 Note that 15:24 both reduce to 5:8, but a ratio and its reduced form are the same ratio - the comparison is unaffected.
 
-**Trap.** Choosing D because a, b, c, d are unknown, or B because Column A 'ought to be simplified to 5:8' and 5:8 looks smaller than 15:24. Ratios multiply term by term - (a/b) x (c/d) = ac/bd - and 15:24 and 5:8 are the same number.
+**Trap.** Choosing D because a, b, c, d are unknown, or B because Quantity A 'ought to be simplified to 5:8' and 5:8 looks smaller than 15:24. Ratios multiply term by term - (a/b) x (c/d) = ac/bd - and 15:24 and 5:8 are the same number.
 
 ### Q16 · `ARI-RAT-053` — Answer: 48
 
@@ -582,7 +582,7 @@ Step 1 — x/y = 4/5 < 1, so x < y.
 Step 2 — adding the same positive amount to the top and bottom of a fraction pulls it towards 1. Below 1, that means it goes UP.
 Step 3 — test it with the smallest case, x = 4 and y = 5: (4 + 4)/(5 + 4) = 8/9 = 0.889, which is greater than 4/5 = 0.8.
 Step 4 — test a scaled case, x = 40 and y = 50: 44/54 = 0.815, still greater than 0.8.
-The direction never changes, so Column A is greater.
+The direction never changes, so Quantity A is greater.
 Proof if you want it: (x + 4)/(y + 4) - x/y = 4(y - x)/[y(y + 4)], which is positive whenever y > x.
 
 **Trap.** Believing that adding the same number to both parts leaves a ratio alone - that is true for MULTIPLYING both parts, not adding. Note the rule has a direction: a fraction below 1 rises, a fraction above 1 falls, and both are moving towards 1.
@@ -603,9 +603,9 @@ Answer: A, B, C, D.
 
 Step 1 — the q term is already 3 in both ratios, so the chain needs no rescaling: p:q:r = 2:3:5.
 Step 2 — write them on one multiplier: p = 2k, q = 3k, r = 5k.
-Step 3 — Column A = p + r = 2k + 5k = 7k.
-Step 4 — Column B = 2q = 6k.
-Step 5 — 7k > 6k for every positive k, so the k cancels out of the comparison. Column A is greater.
+Step 3 — Quantity A = p + r = 2k + 5k = 7k.
+Step 4 — Quantity B = 2q = 6k.
+Step 5 — 7k > 6k for every positive k, so the k cancels out of the comparison. Quantity A is greater.
 
 **Trap.** Choosing D because no actual values are given. The whole comparison reduces to 7 against 6 once both columns are on the same multiplier. Watch also for the case where the shared term does NOT already match - here q is 3 in both ratios, which is why no rescaling was needed; if it had been 3 and 4 you would have to build 8:12:20 first.
 
@@ -626,10 +626,10 @@ Step 1 — build the chain. y is 3 in the first ratio and 4 in the second, so sc
 x:y = 2:3 = 8:12
 y:z = 4:5 = 12:15
 So x:y:z = 8:12:15, meaning x = 8k, y = 12k, z = 15k.
-Step 2 — Column A = 8k(12k + 15k) = 8k x 27k = 216k^2.
-Step 3 — Column B = 12k(8k + 15k) = 12k x 23k = 276k^2.
-Step 4 — 276k^2 > 216k^2 for every positive k, so Column B is greater.
-A cleaner way to see it: expand both columns. Column A = xy + xz and Column B = xy + yz. The xy term is common to both, so the whole comparison is xz against yz, i.e. x against y - and x < y. Column B wins without any arithmetic.
+Step 2 — Quantity A = 8k(12k + 15k) = 8k x 27k = 216k^2.
+Step 3 — Quantity B = 12k(8k + 15k) = 12k x 23k = 276k^2.
+Step 4 — 276k^2 > 216k^2 for every positive k, so Quantity B is greater.
+A cleaner way to see it: expand both columns. Quantity A = xy + xz and Quantity B = xy + yz. The xy term is common to both, so the whole comparison is xz against yz, i.e. x against y - and x < y. Quantity B wins without any arithmetic.
 
 **Trap.** Choosing D because no actual values are given. Every term in both columns is degree 2 in k, so k^2 cancels and the comparison is completely determined. The other slip is failing to rescale y to 12 before chaining, which gives the wrong numbers for z even though the final letter happens to survive.
 

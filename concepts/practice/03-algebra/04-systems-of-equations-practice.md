@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ Which of the following systems of equations has NO solution?
 
 3x + y = 14 and x + 3y = 10
 
-> **Column A:**  y
-> **Column B:**  x
+> **Quantity A:**  y
+> **Quantity B:**  x
 
 **Q4** · `ALG-LN2-007` · Numeric Entry · 40s
 
@@ -99,15 +99,15 @@ If x/2 + y/3 = 7 and x/2 - y/3 = 1, what is the value of y?
 
 4x + y = 14 and 2x - y = 4
 
-> **Column A:**  x + y
-> **Column B:**  5
+> **Quantity A:**  x + y
+> **Quantity B:**  5
 
 **Q10** · `ALG-SIM-017` · QC · 75s
 
 6x - 15y = 9 and 10x - 25y = 15
 
-> **Column A:**  the number of ordered pairs (x, y) that satisfy both equations
-> **Column B:**  1
+> **Quantity A:**  the number of ordered pairs (x, y) that satisfy both equations
+> **Quantity B:**  1
 
 **Q11** · `ALG-SIM-015` · Numeric Entry · 85s
 
@@ -195,15 +195,15 @@ The functions f and g are given by f(x) = ax + b and g(x) = cx + d, where a, b, 
 
 2x - y = 5 and x + 2y = k, where k is a constant greater than 10
 
-> **Column A:**  x
-> **Column B:**  4
+> **Quantity A:**  x
+> **Quantity B:**  4
 
 **Q20** · `ALG-LN2-045` · QC · 100s
 
 m is a constant, and the lines y = mx + 2 and y = (m + 1)x + 5 intersect at a point whose x-coordinate is x0.
 
-> **Column A:**  x0
-> **Column B:**  -3
+> **Quantity A:**  x0
+> **Quantity B:**  -3
 
 **Q21** · `ALG-SIM-036` · Numeric Entry · 105s
 
@@ -273,8 +273,8 @@ x and y are nonzero real numbers with x + y = m and xy = n, where n is not 0. Wh
 
 a is a real constant, and the system (a - 1)x + 2y = 5 and 3x + (a + 1)y = 7 does NOT have exactly one solution.
 
-> **Column A:**  a
-> **Column B:**  0
+> **Quantity A:**  a
+> **Quantity B:**  0
 
 **Q29** · `ALG-SIM-050` · Numeric Entry · 120s
 
@@ -360,12 +360,12 @@ Answer: E.
 
 Step 1 — the question compares y with x, so find y - x rather than each variable separately.
 Step 2 — subtract the first equation from the second. Every term of the first changes sign: (x - 3x) + (3y - y) = 10 - 14, so -2x + 2y = -4.
-Step 3 — divide by 2: y - x = -2, which is negative, so y is less than x and Column B is greater.
+Step 3 — divide by 2: y - x = -2, which is negative, so y is less than x and Quantity B is greater.
 Step 4 — for confirmation, add the equations: 4x + 4y = 24, so x + y = 6. With x - y = 2 this gives x = 4 and y = 2.
-Check: substitute (x, y) = (4, 2) into BOTH original equations. First: 3(4) + 2 = 12 + 2 = 14. Correct. Second: 4 + 3(2) = 4 + 6 = 10. Correct. Column A is 2 and Column B is 4.
+Check: substitute (x, y) = (4, 2) into BOTH original equations. First: 3(4) + 2 = 12 + 2 = 14. Correct. Second: 4 + 3(2) = 4 + 6 = 10. Correct. Quantity A is 2 and Quantity B is 4.
 Answer: B.
 
-**Trap.** Subtracting in the wrong order, writing (3x + y) - (x + 3y) = 14 - 10 and reading 2x - 2y = 4 as y - x = 2; that sign slip makes Column A look larger and produces choice A. Choosing D because neither variable is given numerically is also wrong: the system pins both values exactly.
+**Trap.** Subtracting in the wrong order, writing (3x + y) - (x + 3y) = 14 - 10 and reading 2x - 2y = 4 as y - x = 2; that sign slip makes Quantity A look larger and produces choice A. Choosing D because neither variable is given numerically is also wrong: the system pins both values exactly.
 
 ### Q4 · `ALG-LN2-007` — Answer: 4
 
@@ -426,7 +426,7 @@ Answer: D.
 
 Step 1 — the question wants x + y, so look for a combination that produces it in one move.
 Step 2 — subtract the second equation from the first: (4x - 2x) + (y - (-y)) = 14 - 4, so 2x + 2y = 10.
-Step 3 — divide by 2: x + y = 5. Column A equals Column B.
+Step 3 — divide by 2: x + y = 5. Quantity A equals Quantity B.
 Step 4 — for confirmation, add the equations: 6x = 18, so x = 3, and then 4(3) + y = 14 gives y = 2, and x + y = 5.
 Check: substitute (x, y) = (3, 2) into BOTH original equations. First: 4(3) + 2 = 12 + 2 = 14. Correct. Second: 2(3) - 2 = 6 - 2 = 4. Correct.
 Answer: C.
@@ -438,7 +438,7 @@ Answer: C.
 Step 1 — do not solve, and do not trust the eye: 6 and 10 look unrelated to 15 and 25. Compute the three coefficient ratios: 6/10 = 3/5, (-15)/(-25) = 3/5, and 9/15 = 3/5.
 Step 2 — all three ratios agree at 3/5, so the first equation is exactly 3/5 of the second. The two equations describe the same line.
 Step 3 — a single line contains infinitely many points, so the number of ordered pairs satisfying both is infinite, which is greater than 1.
-Check: pick a point on the first line, say (4, 1). Substitute into BOTH equations: 6(4) - 15(1) = 24 - 15 = 9. Correct. 10(4) - 25(1) = 40 - 25 = 15. Correct. Now pick (9, 3): 6(9) - 15(3) = 54 - 45 = 9. Correct. 10(9) - 25(3) = 90 - 75 = 15. Correct. Two different solutions already exist, so Column A exceeds 1.
+Check: pick a point on the first line, say (4, 1). Substitute into BOTH equations: 6(4) - 15(1) = 24 - 15 = 9. Correct. 10(4) - 25(1) = 40 - 25 = 15. Correct. Now pick (9, 3): 6(9) - 15(3) = 54 - 45 = 9. Correct. 10(9) - 25(3) = 90 - 75 = 15. Correct. Two different solutions already exist, so Quantity A exceeds 1.
 Answer: A.
 
 **Trap.** Assuming that two equations in two unknowns always determine exactly one pair and choosing C. The dependence check comes first, and here the multiplier is 5/3 rather than a visible 2, so the match is easy to miss: 6/10, -15/-25 and 9/15 are all 3/5. Choosing B treats the matching slopes as parallel lines with no solution, which would require the constant ratio to differ from 3/5.
@@ -550,7 +550,7 @@ Answer: C.
 Step 1 — k is not a number, so no numerical solution is available. Solve structurally, carrying k through.
 Step 2 — the first equation isolates y cheaply: y = 2x - 5. Substitute into the second: x + 2(2x - 5) = k, so x + 4x - 10 = k.
 Step 3 — collect: 5x = k + 10, so x = (k + 10)/5.
-Step 4 — apply the condition. k > 10 gives k + 10 > 20, so x = (k + 10)/5 > 20/5 = 4. Column A exceeds Column B for every allowed k, so the relationship is determined even though x is not.
+Step 4 — apply the condition. k > 10 gives k + 10 > 20, so x = (k + 10)/5 > 20/5 = 4. Quantity A exceeds Quantity B for every allowed k, so the relationship is determined even though x is not.
 Check: take k = 15, which satisfies k > 10. Then x = 25/5 = 5 and y = 2(5) - 5 = 5. Substitute (x, y) = (5, 5) into BOTH original equations. First: 2(5) - 5 = 10 - 5 = 5. Correct. Second: 5 + 2(5) = 5 + 10 = 15 = k. Correct. And x = 5 > 4. At the excluded boundary k = 10 the formula gives x exactly 4, which is why the strict inequality on k matters.
 Answer: A.
 
@@ -658,7 +658,7 @@ Answer: A.
 Step 1 — a two-by-two system has exactly one solution precisely when the x-ratio and the y-ratio differ, that is when (a - 1)/3 is not equal to 2/(a + 1). So 'not exactly one solution' means those ratios agree.
 Step 2 — set them equal and cross-multiply: (a - 1)(a + 1) = 2 * 3, so a^2 - 1 = 6.
 Step 3 — a^2 = 7, so a = sqrt(7) or a = -sqrt(7). Both are real, and both make the ratios agree, so both give a system with no solution or infinitely many - either way, not exactly one.
-Step 4 — sqrt(7) is approximately 2.646, which is greater than 0, and -sqrt(7) is approximately -2.646, which is less than 0. The stem allows both, so Column A can be greater than Column B or less than it.
+Step 4 — sqrt(7) is approximately 2.646, which is greater than 0, and -sqrt(7) is approximately -2.646, which is less than 0. The stem allows both, so Quantity A can be greater than Quantity B or less than it.
 Check at a = sqrt(7): the system is (sqrt(7) - 1)x + 2y = 5 and 3x + (sqrt(7) + 1)y = 7. The x-ratio is (sqrt(7) - 1)/3, approximately 0.5486, and the y-ratio is 2/(sqrt(7) + 1) = 2(sqrt(7) - 1)/((sqrt(7) + 1)(sqrt(7) - 1)) = 2(sqrt(7) - 1)/6 = (sqrt(7) - 1)/3. The two ratios are identical, so the coefficient rows are proportional and the system does not have a unique solution. Correct. At a = -sqrt(7) the same cancellation gives (-sqrt(7) - 1)/3 = 2/(1 - sqrt(7)), again identical. Correct.
 Answer: D.
 

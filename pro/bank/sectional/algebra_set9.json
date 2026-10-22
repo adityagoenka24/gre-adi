@@ -222,7 +222,7 @@
       ],
       "answer": "D",
       "explanation": "Test the smallest allowed integer pairs, since j must be at least 2.\nWith j = 2 and k = 3: Quantity A = 2^3 = 8 and Quantity B = 3^2 = 9, so Quantity B is greater.\nWith j = 2 and k = 4: Quantity A = 2^4 = 16 and Quantity B = 4^2 = 16, so the two are equal.\nWith j = 3 and k = 4: Quantity A = 3^4 = 81 and Quantity B = 4^3 = 64, so Quantity A is greater.\nAll three outcomes occur under the stated constraints, so no fixed relationship holds and the answer is D.",
-      "trap": "Stopping after the first pair, j = 2 and k = 3, and committing to B. The behaviour changes once j reaches 3: from there on the smaller base with the larger exponent takes over and Quantity A wins. The opposite trap is assuming the larger exponent always dominates and choosing A, which fails at j = 2, k = 3.",
+      "trap": "Stopping after the first pair, j = 2 and k = 3, and committing to B. The behavior changes once j reaches 3: from there on the smaller base with the larger exponent takes over and Quantity A wins. The opposite trap is assuming the larger exponent always dominates and choosing A, which fails at j = 2, k = 3.",
       "estimated_time_seconds": 100,
       "tags": [
         "exponents",
@@ -375,7 +375,7 @@
         "C"
       ],
       "explanation": "Start with the three that can be settled outright. Since r is negative and t is positive, r*t is negative, so D is impossible. Dividing that negative number by the positive number s keeps it negative, so E is impossible. And 0 < s < t forces s/t < 1, so F is impossible.\nFor the first three, examine the difference: r*t/s - r*t = r*t*(1/s - 1) = r*t*(1 - s)/s, where r*t < 0 and s > 0.\nIf s > 1, then 1 - s is negative, so the whole expression is negative times negative over positive, which is positive, giving r*t/s > r*t. Example: r = -1, s = 2, t = 3 gives r*t/s = -1.5 and r*t = -3, and -1.5 > -3. So A is possible.\nIf s = 1, the expression is 0 and the two are equal. Example: r = -1, s = 1, t = 2 gives -2 and -2. So B is possible.\nIf 0 < s < 1, then 1 - s is positive and the expression is negative, giving r*t/s < r*t. Example: r = -1, s = 0.5, t = 1 gives r*t/s = -2 and r*t = -1, and -2 < -1. So C is possible.",
-      "trap": "Assuming that dividing by the positive number s must shrink the quantity, and selecting only C. Dividing a negative number by a value between 0 and 1 does push it further below zero, but dividing by a value above 1 pulls it toward zero, which makes it larger. Since s is only known to be positive, both behaviours are available.",
+      "trap": "Assuming that dividing by the positive number s must shrink the quantity, and selecting only C. Dividing a negative number by a value between 0 and 1 does push it further below zero, but dividing by a value above 1 pulls it toward zero, which makes it larger. Since s is only known to be positive, both behaviors are available.",
       "estimated_time_seconds": 115,
       "tags": [
         "sign-analysis",

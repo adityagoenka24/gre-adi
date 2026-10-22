@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ Maria earns a base salary of $3,200 per month plus a commission of 5 percent of 
 
 A shirt has a list price of $50. Store X sells it at 20 percent off the list price. Store Y sells the same shirt for $42.
 
-> **Column A:**  The price at Store X
-> **Column B:**  The price at Store Y
+> **Quantity A:**  The price at Store X
+> **Quantity B:**  The price at Store Y
 
 **Q4** · `WRD-PCT-002` · Numeric Entry · 55s
 
@@ -93,15 +93,15 @@ A school has 800 students, 55 percent of whom are boys. Some girls then enrol, a
 
 Tom's salary is 25 percent more than Sarah's salary. Both salaries are positive.
 
-> **Column A:**  Sarah's salary as a percent of Tom's salary
-> **Column B:**  75 percent
+> **Quantity A:**  Sarah's salary as a percent of Tom's salary
+> **Quantity B:**  75 percent
 
 **Q9** · `WRD-PCT-052` · QC · 90s
 
 In 2020, 15 percent of the employees of a certain company worked remotely. In 2021, 24 percent of the employees of that company worked remotely.
 
-> **Column A:**  The percent increase, from 2020 to 2021, in the NUMBER of employees who worked remotely
-> **Column B:**  60 percent
+> **Quantity A:**  The percent increase, from 2020 to 2021, in the NUMBER of employees who worked remotely
+> **Quantity B:**  60 percent
 
 **Q10** · `WRD-PCT-031` · Numeric Entry · 75s
 
@@ -155,15 +155,15 @@ A tank is 5/8 full of water. After 45 litres are drawn off, the tank is 40 perce
 
 In City X, 65 percent of the residents own a car, and 40 percent of the car owners also own a motorcycle. In City Y, 50 percent of the residents own a car, and 52 percent of the car owners also own a motorcycle.
 
-> **Column A:**  The percent of City X residents who own both a car and a motorcycle
-> **Column B:**  The percent of City Y residents who own both a car and a motorcycle
+> **Quantity A:**  The percent of City X residents who own both a car and a motorcycle
+> **Quantity B:**  The percent of City Y residents who own both a car and a motorcycle
 
 **Q16** · `WRD-PCT-055` · QC · 105s
 
 A magazine's print circulation fell from 60,000 to 50,000, while over the same period its digital circulation rose from 20,000 to 24,000.
 
-> **Column A:**  The percent by which TOTAL circulation must now rise to return to its former total
-> **Column B:**  The percent by which PRINT circulation must now rise to return to its former print level
+> **Quantity A:**  The percent by which TOTAL circulation must now rise to return to its former total
+> **Quantity B:**  The percent by which PRINT circulation must now rise to return to its former print level
 
 **Q17** · `WRD-PCT-056` · MCQ · 100s
 
@@ -269,8 +269,8 @@ From 2023 to 2024 a university's total enrolment rose by 10 percent, and its num
 
 Last year School A had 800 students, 35 percent of whom studied Latin, and School B had 1,200 students, 25 percent of whom studied Latin. This year each school's enrolment is 20 percent higher than last year, and the number of Latin students at each school is 30 percent higher than last year.
 
-> **Column A:**  The percent of School A's students who study Latin this year
-> **Column B:**  The percent of School B's students who study Latin this year
+> **Quantity A:**  The percent of School A's students who study Latin this year
+> **Quantity B:**  The percent of School B's students who study Latin this year
 
 **Q29** · `WRD-PCT-067` · Select all that apply · 125s
 
@@ -358,12 +358,12 @@ Answer: B.
 
 Step 1 — The 20 percent is taken off the list price, so the base is $50.
 Step 2 — Discount = 0.20 * 50 = 10, so Store X charges 50 - 10 = 40.
-Step 3 — Store Y charges 42. Since 40 < 42, Column B is greater.
+Step 3 — Store Y charges 42. Since 40 < 42, Quantity B is greater.
 Faster: 20% off means paying 80% of list, and 0.80 * 50 = 40 directly.
 Check: $42 off a $50 list is a discount of 8/50 = 16%, a smaller cut than 20%, so Store Y must indeed be the dearer shop. Correct.
 Answer: B.
 
-**Trap.** Reading "20 percent off" as "pay 20 percent" gives 0.20 * 50 = $10 and the wrong conclusion that Column A is far smaller for the wrong reason; reading it as 20 percent off Store Y's price gives 0.80 * 42 = 33.60 and again mislocates the base. The discount base is the $50 list price.
+**Trap.** Reading "20 percent off" as "pay 20 percent" gives 0.20 * 50 = $10 and the wrong conclusion that Quantity A is far smaller for the wrong reason; reading it as 20 percent off Store Y's price gives 0.80 * 42 = 33.60 and again mislocates the base. The discount base is the $50 list price.
 
 ### Q4 · `WRD-PCT-002` — Answer: 33600
 
@@ -416,7 +416,7 @@ Answer: C.
 
 Step 1 — "25 percent more than Sarah's" attaches the 25 percent to Sarah's salary, so Tom = 1.25 * Sarah.
 Step 2 — Sarah / Tom = 1 / 1.25 = 0.80, so Sarah earns 80 percent of Tom's salary.
-Step 3 — 80 > 75, so Column A is greater.
+Step 3 — 80 > 75, so Quantity A is greater.
 Step 4 — Concretely, let Sarah earn 100. Then Tom earns 125, and 100/125 = 0.80 = 80 percent.
 Check: if Sarah earned 75 percent of Tom, then with Tom at 100 Sarah would be 75, and Tom would be (100 - 75)/75 = 33.3 percent more than Sarah, not 25 percent. Correct.
 Answer: A.
@@ -427,13 +427,13 @@ Answer: A.
 
 Step 1 — The stem gives two shares, not two headcounts. The number of remote workers is (share) * (total employees), and the total is never stated for either year.
 Step 2 — Suppose the company had 1,000 employees in both years. Remote workers go from 150 to 240, an increase of 90/150 = 60 percent, so the columns are equal.
-Step 3 — Now suppose the company had 1,000 employees in 2020 and 2,000 in 2021. Remote workers go from 150 to 480, an increase of 330/150 = 220 percent, so Column A is greater.
-Step 4 — Now suppose the company shrank from 1,000 employees to 500. Remote workers go from 150 to 120, a DECREASE, so Column B is greater.
+Step 3 — Now suppose the company had 1,000 employees in 2020 and 2,000 in 2021. Remote workers go from 150 to 480, an increase of 330/150 = 220 percent, so Quantity A is greater.
+Step 4 — Now suppose the company shrank from 1,000 employees to 500. Remote workers go from 150 to 120, a DECREASE, so Quantity B is greater.
 Step 5 — Three legal scenarios give three different orderings, so the relationship cannot be determined.
 Check: each scenario respects the stem exactly — 15 percent remote in 2020, 24 percent in 2021 — and nothing in the stem fixes the headcount. Correct.
 Answer: D.
 
-**Trap.** Computing (24 - 15)/15 = 60 percent and keying C. That calculation is right only if the workforce is the same size in both years, which the stem never says. A separate error reads the move from 15 percent to 24 percent as "a 9 percent increase" — it is 9 percentage points, and 9 percent would put Column B ahead and give B.
+**Trap.** Computing (24 - 15)/15 = 60 percent and keying C. That calculation is right only if the workforce is the same size in both years, which the stem never says. A separate error reads the move from 15 percent to 24 percent as "a 9 percent increase" — it is 9 percentage points, and 9 percent would put Quantity B ahead and give B.
 
 ### Q10 · `WRD-PCT-031` — Answer: 200
 
@@ -505,10 +505,10 @@ Answer: C.
 
 ### Q16 · `WRD-PCT-055` — Answer: B
 
-Step 1 — Column B first. Print must go from 50,000 back to 60,000, a rise of 10,000 measured against the CURRENT print figure: 10000/50000 = 0.20 = 20 percent.
-Step 2 — Column A. Former total = 60000 + 20000 = 80,000. Current total = 50000 + 24000 = 74,000.
+Step 1 — Quantity B first. Print must go from 50,000 back to 60,000, a rise of 10,000 measured against the CURRENT print figure: 10000/50000 = 0.20 = 20 percent.
+Step 2 — Quantity A. Former total = 60000 + 20000 = 80,000. Current total = 50000 + 24000 = 74,000.
 Step 3 — Total must rise by 6,000 from a current base of 74,000: 6000/74000 = 0.0811, about 8.1 percent.
-Step 4 — 8.1 < 20, so Column B is greater.
+Step 4 — 8.1 < 20, so Quantity B is greater.
 Step 5 — You can see it without the division: the total is short by 6,000 on a base of 74,000, while print is short by 10,000 on a much smaller base of 50,000 — a bigger shortfall on a smaller base must be the larger percentage.
 Check: 50,000 * 1.20 = 60,000 and 74,000 * 1.081 = 80,000 (to the nearest hundred). Correct.
 Answer: B.
@@ -665,7 +665,7 @@ Answer: D.
 Step 1 — A share this year = (last year's Latin count * 1.30) / (last year's enrolment * 1.20).
 Step 2 — That is (last year's share) * (1.30/1.20) for BOTH schools, because both schools are given the same pair of growth rates.
 Step 3 — The two shares are therefore multiplied by the identical factor 13/12, so their order is exactly last year's order: 35 percent against 25 percent.
-Step 4 — School A's share is the larger, so Column A is greater. The enrolments of 800 and 1,200 never matter.
+Step 4 — School A's share is the larger, so Quantity A is greater. The enrolments of 800 and 1,200 never matter.
 Step 5 — Confirming with the numbers: School A has 0.35 * 800 = 280 Latin students in 960 students this year, 280 * 1.3 = 364 out of 960, which is 37.9 percent. School B has 300 * 1.3 = 390 out of 1,440, which is 27.1 percent.
 Check: 37.9/35 = 1.0833 and 27.1/25 = 1.0833, the same 13/12 factor for both. Correct.
 Answer: A.

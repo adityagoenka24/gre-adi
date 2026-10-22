@@ -36,8 +36,8 @@
         "E. 36"
       ],
       "answer": "C",
-      "explanation": "Step 1 — prime factorise both. 12 = 2^2 x 3 and 18 = 2 x 3^2.\nStep 2 — the GCD takes the LOWEST power of each SHARED prime. The shared primes are 2 and 3.\nLowest power of 2: 2^1. Lowest power of 3: 3^1.\nStep 3 — multiply: GCD = 2 x 3 = 6.\nCheck: 12/6 = 2 and 18/6 = 3, both integers, and GCD(2, 3) = 1, so nothing larger than 6 can divide both.\nAnswer: C, 6.",
-      "trap": "Choosing 36 (option E) computes the LCM, 2^2 x 3^2, by taking the highest power of each prime. A GCD can never exceed the smaller number, so 36 is impossible on sight. Choosing 3 (option B) stops at one shared prime and forgets the shared 2. Choosing 9 (option D) uses 3^2, but 12 contains only one 3.",
+      "explanation": "Step 1 — prime factorize both. 12 = 2^2 x 3 and 18 = 2 x 3^2.\nStep 2 — the greatest common divisor takes the LOWEST power of each SHARED prime. The shared primes are 2 and 3.\nLowest power of 2: 2^1. Lowest power of 3: 3^1.\nStep 3 — multiply: greatest common divisor = 2 x 3 = 6.\nCheck: 12/6 = 2 and 18/6 = 3, both integers, and the greatest common divisor of 2 and 3 = 1, so nothing larger than 6 can divide both.\nAnswer: C, 6.",
+      "trap": "Choosing 36 (option E) computes the least common multiple, 2^2 x 3^2, by taking the highest power of each prime. A greatest common divisor can never exceed the smaller number, so 36 is impossible on sight. Choosing 3 (option B) stops at one shared prime and forgets the shared 2. Choosing 9 (option D) uses 3^2, but 12 contains only one 3.",
       "estimated_time_seconds": 45,
       "tags": [
         "gcd",
@@ -161,8 +161,8 @@
         "E. 600"
       ],
       "answer": "D",
-      "explanation": "Using the key identity: GCD(a,b) × LCM(a,b) = a × b. So 5 × 60 = 300. Therefore a × b = 300.",
-      "trap": "Students may try to add GCD and LCM (5 + 60 = 65) or confuse the formula. The identity is GCD × LCM = product of the two numbers.",
+      "explanation": "Using the key identity: the greatest common divisor of a and b × the least common multiple of a and b = a × b. So 5 × 60 = 300. Therefore a × b = 300.",
+      "trap": "Students may try to add greatest common divisor and the least common multiple of 5 + 60 = 65 or confuse the formula. The identity is greatest common divisor × least common multiple = product of the two numbers.",
       "estimated_time_seconds": 40,
       "tags": [
         "gcd",
@@ -201,8 +201,8 @@
         "E. 14 and 21"
       ],
       "answer": "C",
-      "explanation": "Relatively prime means GCD = 1. Check 8 and 21: 8 = 2³, 21 = 3 × 7. They share no common prime factors, so GCD(8,21) = 1. All other pairs share a common factor greater than 1: GCD(4,6)=2, GCD(9,15)=3, GCD(12,18)=6, GCD(14,21)=7.",
-      "trap": "Students may confuse 'relatively prime' with 'both are prime numbers.' The numbers 8 and 21 are not themselves prime, but their GCD is 1.",
+      "explanation": "Relatively prime means greatest common divisor = 1. Check 8 and 21: 8 = 2³, 21 = 3 × 7. They share no common prime factors, so the greatest common divisor of 8 and 21 = 1. All other pairs share a common factor greater than 1: the greatest common divisor of 4 and 6=2, the greatest common divisor of 9 and 15=3, the greatest common divisor of 12 and 18=6, the greatest common divisor of 14 and 21=7.",
+      "trap": "Students may confuse 'relatively prime' with 'both are prime numbers.' The numbers 8 and 21 are not themselves prime, but their greatest common divisor is 1.",
       "estimated_time_seconds": 55,
       "tags": [
         "coprime",
@@ -227,8 +227,8 @@
       "question": "What is the least common multiple of 8 and 12?",
       "options": null,
       "answer": "24",
-      "explanation": "8 = 2³ and 12 = 2² × 3. LCM = 2^max(3,2) × 3^max(0,1) = 2³ × 3¹ = 8 × 3 = 24. Alternatively, LCM = 8 × 12 / GCD(8,12) = 96/4 = 24.",
-      "trap": "Students may compute LCM = 8 × 12 = 96 without dividing by GCD(8,12) = 4. LCM equals the product only when GCD = 1 (coprime numbers).",
+      "explanation": "8 = 2³ and 12 = 2² × 3. Least common multiple = 2^max(3,2) × 3^max(0,1) = 2³ × 3¹ = 8 × 3 = 24. Alternatively, least common multiple = 8 × 12 / the greatest common divisor of 8 and 12 = 96/4 = 24.",
+      "trap": "Students may compute least common multiple = 8 × 12 = 96 without dividing by the greatest common divisor of 8 and 12 = 4. Least common multiple equals the product only when greatest common divisor = 1 (coprime numbers).",
       "estimated_time_seconds": 45,
       "tags": [
         "lcm",
@@ -269,7 +269,7 @@
         "E. p + q"
       ],
       "answer": "D",
-      "explanation": "A prime number has exactly two factors: 1 and itself. Since p and q are distinct primes, they share no prime factors. Therefore GCD(p, q) = 1.",
+      "explanation": "A prime number has exactly two factors: 1 and itself. Since p and q are distinct primes, they share no prime factors. Therefore the greatest common divisor of p and q = 1.",
       "trap": "Students may think that being prime makes numbers share some special divisor. But distinct primes are always coprime — they share no common factor other than 1.",
       "estimated_time_seconds": 40,
       "tags": [
@@ -358,8 +358,8 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "D",
-      "explanation": "If GCD(a,b) = 6, then a = 6m and b = 6n where GCD(m,n) = 1. LCM(a,b) = 6mn. With m=1, n=1: a=b=6, LCM=6 < 36. With m=1, n=6: a=6, b=36, LCM=36 = Quantity B. With m=1, n=7: a=6, b=42, LCM=42 > 36. The relationship cannot be determined.",
-      "trap": "Students may think LCM must be 6² = 36, confusing this with the fact that LCM is always a multiple of GCD. LCM(a,b) = 6mn and mn can be any value ≥ 1.",
+      "explanation": "If the greatest common divisor of a and b = 6, then a = 6m and b = 6n where the greatest common divisor of m and n = 1. The least common multiple of a and b = 6mn. With m=1, n=1: a=b=6, least common multiple=6 < 36. With m=1, n=6: a=6, b=36, least common multiple=36 = Quantity B. With m=1, n=7: a=6, b=42, least common multiple=42 > 36. The relationship cannot be determined.",
+      "trap": "Students may think least common multiple must be 6² = 36, confusing this with the fact that least common multiple is always a multiple of greatest common divisor. The least common multiple of a and b = 6mn and mn can be any value ≥ 1.",
       "estimated_time_seconds": 60,
       "tags": [
         "lcm",
@@ -399,7 +399,7 @@
       ],
       "answer": "C",
       "explanation": "For no leftover, the piece length must divide 48 evenly. Check: 48/6=8 ✓, 48/8=6 ✓, 48/10=4.8 ✗, 48/12=4 ✓, 48/16=3 ✓. Only 10 does not divide 48, so 10 cannot be the piece length.",
-      "trap": "Students may try to find LCM instead of asking which number divides 48. This is a divisibility question: piece length must be a factor of 48.",
+      "trap": "Students may try to find least common multiple instead of asking which number divides 48. This is a divisibility question: piece length must be a factor of 48.",
       "estimated_time_seconds": 50,
       "tags": [
         "gcd",
@@ -420,11 +420,11 @@
       "id": "NUM-GCL-011",
       "difficulty": "easy",
       "type": "numeric_entry",
-      "question": "Bus A departs every 6 minutes and Bus B departs every 9 minutes. Both depart at 8:00 AM. How many minutes after 8:00 AM do they next depart at the same time? Enter your answer as a number.",
+      "question": "Bus A departs every 6 minutes and Bus B departs every 9 minutes. Both depart at 8:00 AM. How many minutes after 8:00 AM do they next depart at the same time?",
       "options": null,
       "answer": "18",
-      "explanation": "Step 1 — 'when do the two cycles next coincide' is an LCM question, not a GCD question.\nStep 2 — prime factorise: 6 = 2 x 3 and 9 = 3^2.\nStep 3 — the LCM takes the highest power of every prime present: 2^1 x 3^2 = 18.\nCheck: Bus A departs at 6, 12, 18; Bus B departs at 9, 18. The first shared minute is 18.\nAnswer: 18.",
-      "trap": "Answering 3, which is GCD(6, 9). GCD answers 'how large can the equal groups be'; LCM answers 'when do the cycles line up again'. Answering 54 multiplies 6 x 9: that is a common multiple, but not the least one, because 6 and 9 already share a factor of 3.",
+      "explanation": "Step 1 — 'when do the two cycles next coincide' is an least common multiple question, not a greatest common divisor question.\nStep 2 — prime factorize: 6 = 2 x 3 and 9 = 3^2.\nStep 3 — the least common multiple takes the highest power of every prime present: 2^1 x 3^2 = 18.\nCheck: Bus A departs at 6, 12, 18; Bus B departs at 9, 18. The first shared minute is 18.\nAnswer: 18.",
+      "trap": "Answering 3, which is the greatest common divisor of 6 and 9. Greatest common divisor answers 'how large can the equal groups be'; least common multiple answers 'when do the cycles line up again'. Answering 54 multiplies 6 x 9: that is a common multiple, but not the least one, because 6 and 9 already share a factor of 3.",
       "estimated_time_seconds": 50,
       "tags": [
         "lcm",
@@ -453,8 +453,8 @@
         "E. The greatest common divisor of a and b is 1"
       ],
       "answer": "C",
-      "explanation": "Step 1 — LCM(a, b) is by definition a multiple of b. If that LCM equals a, then a is a multiple of b.\nStep 2 — 'a is a multiple of b' is the same statement as 'b divides a', so C is forced.\nStep 3 — test the others on a = 12, b = 6, where LCM(12, 6) = 12 = a. Here a is not equal to b, so A fails; a does not divide b, so D fails; GCD(12, 6) = 6, not 1, so E fails.\nStep 4 — B fails on a = b = 6, which also satisfies LCM(a, b) = a but has a not greater than b.\nCheck: when b divides a, the multiples of b already contain a, so the least common multiple is a itself.\nAnswer: C.",
-      "trap": "Picking A (a = b) or B (a > b): both describe cases that satisfy the condition, but neither is forced, since a = 12, b = 6 kills A and a = b = 6 kills B. Picking D reverses the divisibility - if a divided b the LCM would be b, not a.",
+      "explanation": "Step 1 — the least common multiple of a and b is by definition a multiple of b. If that least common multiple equals a, then a is a multiple of b.\nStep 2 — 'a is a multiple of b' is the same statement as 'b divides a', so C is forced.\nStep 3 — test the others on a = 12, b = 6, where the least common multiple of 12 and 6 = 12 = a. Here a is not equal to b, so A fails; a does not divide b, so D fails; the greatest common divisor of 12 and 6 = 6, not 1, so E fails.\nStep 4 — B fails on a = b = 6, which also satisfies the least common multiple of a and b = a but has a not greater than b.\nCheck: when b divides a, the multiples of b already contain a, so the least common multiple is a itself.\nAnswer: C.",
+      "trap": "Picking A (a = b) or B (a > b): both describe cases that satisfy the condition, but neither is forced, since a = 12, b = 6 kills A and a = b = 6 kills B. Picking D reverses the divisibility - if a divided b the least common multiple would be b, not a.",
       "estimated_time_seconds": 55,
       "tags": [
         "lcm",
@@ -503,8 +503,8 @@
         "C",
         "D"
       ],
-      "explanation": "Step 1 — prime factorise: 30 = 2 x 3 x 5 and 45 = 3^2 x 5.\nStep 2 — GCD = lowest power of each shared prime = 3 x 5 = 15. Every common divisor of 30 and 45 is a divisor of 15.\nStep 3 — the divisors of 15 are 1, 3, 5, 15. Now test each option.\nA - 1 divides every integer. TRUE.\nB - 30/3 = 10 and 45/3 = 15. TRUE.\nC - 30/5 = 6 and 45/5 = 9. TRUE.\nD - 30/15 = 2 and 45/15 = 3. TRUE.\nE - 45/30 = 1.5, not an integer. FALSE.\nCheck: the largest TRUE option is 15, which matches GCD(30, 45) = 15.\nAnswer: A, B, C, D.",
-      "trap": "Selecting only D because 15 is the GREATEST common divisor. The question asks for common divisors, and every divisor of the GCD is one. Selecting E treats 30 as common because it is one of the two numbers, but 30 does not divide 45.",
+      "explanation": "Step 1 — prime factorize: 30 = 2 x 3 x 5 and 45 = 3^2 x 5.\nStep 2 — greatest common divisor = lowest power of each shared prime = 3 x 5 = 15. Every common divisor of 30 and 45 is a divisor of 15.\nStep 3 — the divisors of 15 are 1, 3, 5, 15. Now test each option.\nA - 1 divides every integer. TRUE.\nB - 30/3 = 10 and 45/3 = 15. TRUE.\nC - 30/5 = 6 and 45/5 = 9. TRUE.\nD - 30/15 = 2 and 45/15 = 3. TRUE.\nE - 45/30 = 1.5, not an integer. FALSE.\nCheck: the largest TRUE option is 15, which matches the greatest common divisor of 30 and 45 = 15.\nAnswer: A, B, C, D.",
+      "trap": "Selecting only D because 15 is the GREATEST common divisor. The question asks for common divisors, and every divisor of the greatest common divisor is one. Selecting E treats 30 as common because it is one of the two numbers, but 30 does not divide 45.",
       "estimated_time_seconds": 55,
       "tags": [
         "gcd",
@@ -577,8 +577,8 @@
         "E. 25"
       ],
       "answer": "B",
-      "explanation": "15 = 3 × 5, 25 = 5², 35 = 5 × 7. The only prime factor common to all three is 5 (to the first power). GCD(15, 25, 35) = 5.",
-      "trap": "Students may compute GCD of only two numbers (e.g., GCD(15,25)=5 and GCD(25,35)=5) and arrive at the right answer without recognizing they must verify the factor is common to ALL three.",
+      "explanation": "15 = 3 × 5, 25 = 5², 35 = 5 × 7. The only prime factor common to all three is 5 (to the first power). The greatest common divisor of 15, 25 and 35 = 5.",
+      "trap": "Students may compute greatest common divisor of only two numbers (e.g., the greatest common divisor of 15 and 25=5 and the greatest common divisor of 25 and 35=5) and arrive at the right answer without recognizing they must verify the factor is common to ALL three.",
       "estimated_time_seconds": 55,
       "tags": [
         "gcd",
@@ -620,8 +620,8 @@
         "E. 72"
       ],
       "answer": "C",
-      "explanation": "Using GCD × LCM = a × b: 8 × 96 = 24 × b. So 768 = 24b, giving b = 768/24 = 32. Verify: GCD(24,32) = 8 ✓ (24=2³×3, 32=2⁵, GCD=2³=8), LCM(24,32) = 24×32/8 = 768/8 = 96 ✓.",
-      "trap": "Students may divide 96 by 24 to get 4, then try to use that. The reliable method is GCD × LCM = a × b, giving b = (8 × 96)/24 = 32.",
+      "explanation": "Using greatest common divisor × least common multiple = a × b: 8 × 96 = 24 × b. So 768 = 24b, giving b = 768/24 = 32. Verify: the greatest common divisor of 24 and 32 = 8 ✓ (24=2³×3, 32=2⁵, greatest common divisor=2³=8), the least common multiple of 24 and 32 = 24×32/8 = 768/8 = 96 ✓.",
+      "trap": "Students may divide 96 by 24 to get 4, then try to use that. The reliable method is greatest common divisor × least common multiple = a × b, giving b = (8 × 96)/24 = 32.",
       "estimated_time_seconds": 65,
       "tags": [
         "gcd",
@@ -655,8 +655,8 @@
       "question": "The greatest common divisor of two positive integers is 12 and their least common multiple is 180. What is the product of the two integers?",
       "options": null,
       "answer": "2160",
-      "explanation": "By the identity GCD(a,b) × LCM(a,b) = a × b, the product = 12 × 180 = 2160.",
-      "trap": "Students may try to find the actual numbers (which would require more work) when the question only asks for the product. The identity GCD × LCM = a × b gives the product directly.",
+      "explanation": "By the identity the greatest common divisor of a and b × the least common multiple of a and b = a × b, the product = 12 × 180 = 2160.",
+      "trap": "Students may try to find the actual numbers (which would require more work) when the question only asks for the product. The identity greatest common divisor × least common multiple = a × b gives the product directly.",
       "estimated_time_seconds": 40,
       "tags": [
         "gcd",
@@ -691,7 +691,7 @@
       "id": "NUM-GCL-018",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "Which of the following could be values of a and b if GCD(a, b) = 6 and LCM(a, b) = 60?",
+      "question": "Which of the following could be values of a and b if the greatest common divisor of a and b = 6 and the least common multiple of a and b = 60?",
       "options": [
         "A. a = 6, b = 30",
         "B. a = 12, b = 30",
@@ -700,8 +700,8 @@
         "E. a = 10, b = 36"
       ],
       "answer": "B",
-      "explanation": "For GCD(a,b) = 6, both a and b must be multiples of 6. Eliminate C (20 not divisible by 6), D (15 not divisible by 6), E (10 not divisible by 6). Check A: GCD(6,60)=6 ✓, LCM(6,60)=60 ✓ — valid. Check B: GCD(12,30): 12=2²×3, 30=2×3×5, GCD=2×3=6 ✓; LCM=12×30/6=60 ✓ — valid. Both A and B satisfy all conditions. Since the question asks which COULD be a pair, B (12, 30) is the intended answer as it requires insight beyond the obvious pair.",
-      "trap": "Students eliminate choices where a number is not a multiple of 6, but may not verify the LCM condition for remaining options. Always check BOTH GCD and LCM conditions.",
+      "explanation": "For the greatest common divisor of a and b = 6, both a and b must be multiples of 6. Eliminate C (20 not divisible by 6), D (15 not divisible by 6), E (10 not divisible by 6). Check A: the greatest common divisor of 6 and 60=6 ✓, the least common multiple of 6 and 60=60 ✓ — valid. Check B: the greatest common divisor of 12 and 30: 12=2²×3, 30=2×3×5, greatest common divisor=2×3=6 ✓; least common multiple=12×30/6=60 ✓ — valid. Both A and B satisfy all conditions. Since the question asks which COULD be a pair, B (12, 30) is the intended answer as it requires insight beyond the obvious pair.",
+      "trap": "Students eliminate choices where a number is not a multiple of 6, but may not verify the least common multiple condition for remaining options. Always check BOTH greatest common divisor and least common multiple conditions.",
       "estimated_time_seconds": 75,
       "tags": [
         "gcd",
@@ -753,7 +753,7 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
-      "explanation": "Step 1 — let d = GCD(n, n + 1). Then d divides n and d divides n + 1.\nStep 2 — anything dividing both also divides their difference: (n + 1) - n = 1.\nStep 3 — the only positive integer that divides 1 is 1, so d = 1.\nStep 4 — this argument uses nothing about n, so the columns are equal for every positive integer n.\nCheck: GCD(8, 9) = 1, GCD(35, 36) = 1, GCD(100, 101) = 1.\nAnswer: C.",
+      "explanation": "Step 1 — let d = the greatest common divisor of n and n + 1. Then d divides n and d divides n + 1.\nStep 2 — anything dividing both also divides their difference: (n + 1) - n = 1.\nStep 3 — the only positive integer that divides 1 is 1, so d = 1.\nStep 4 — this argument uses nothing about n, so the columns are equal for every positive integer n.\nCheck: the greatest common divisor of 8 and 9 = 1, the greatest common divisor of 35 and 36 = 1, the greatest common divisor of 100 and 101 = 1.\nAnswer: C.",
       "trap": "Answering A for large n, reasoning that big numbers must share big factors. Consecutive integers are always coprime; one of them being even does not help, because the other is then odd. Answering D because n is unspecified misses that the difference argument pins d to 1 for every n.",
       "estimated_time_seconds": 65,
       "tags": [
@@ -793,8 +793,8 @@
         "E. 1:20 PM"
       ],
       "answer": "D",
-      "explanation": "They ring together after LCM(4, 6, 10) minutes. 4=2², 6=2×3, 10=2×5. LCM = 2² × 3 × 5 = 60 minutes. They next ring together at noon + 60 minutes = 1:00 PM.",
-      "trap": "Students may compute LCM of only two bells (LCM(4,6)=12 or LCM(6,10)=30) and forget the third. All three intervals must be included when finding the common period.",
+      "explanation": "They ring together after the least common multiple of 4, 6 and 10 minutes. 4=2², 6=2×3, 10=2×5. Least common multiple = 2² × 3 × 5 = 60 minutes. They next ring together at noon + 60 minutes = 1:00 PM.",
+      "trap": "Students may compute least common multiple of only two bells (the least common multiple of 4 and 6=12 or the least common multiple of 6 and 10=30) and forget the third. All three intervals must be included when finding the common period.",
       "estimated_time_seconds": 70,
       "tags": [
         "lcm",
@@ -819,8 +819,8 @@
       "question": "What is the least common multiple of 12, 15, and 20?",
       "options": null,
       "answer": "60",
-      "explanation": "Step 1 — prime factorise each: 12 = 2^2 x 3, 15 = 3 x 5, 20 = 2^2 x 5.\nStep 2 — the LCM takes the highest power of every prime that appears anywhere.\nPrime 2: highest exponent 2, so 2^2.\nPrime 3: highest exponent 1, so 3.\nPrime 5: highest exponent 1, so 5.\nStep 3 — LCM = 4 x 3 x 5 = 60.\nCheck: 60/12 = 5, 60/15 = 4, 60/20 = 3, all integers. The next smaller candidate, 30, fails because 30/20 = 1.5.\nAnswer: 60.",
-      "trap": "Multiplying all three, 12 x 15 x 20 = 3600. That is a common multiple but nowhere near the least, because the three numbers share factors. Answering 1 computes GCD(12, 15, 20) instead, which is indeed 1 - the GCD and the LCM of a set are opposite ends of the same table.",
+      "explanation": "Step 1 — prime factorize each: 12 = 2^2 x 3, 15 = 3 x 5, 20 = 2^2 x 5.\nStep 2 — the least common multiple takes the highest power of every prime that appears anywhere.\nPrime 2: highest exponent 2, so 2^2.\nPrime 3: highest exponent 1, so 3.\nPrime 5: highest exponent 1, so 5.\nStep 3 — least common multiple = 4 x 3 x 5 = 60.\nCheck: 60/12 = 5, 60/15 = 4, 60/20 = 3, all integers. The next smaller candidate, 30, fails because 30/20 = 1.5.\nAnswer: 60.",
+      "trap": "Multiplying all three, 12 x 15 x 20 = 3600. That is a common multiple but nowhere near the least, because the three numbers share factors. Answering 1 computes the greatest common divisor of 12, 15 and 20 instead, which is indeed 1 - the greatest common divisor and the least common multiple of a set are opposite ends of the same table.",
       "estimated_time_seconds": 70,
       "tags": [
         "lcm",
@@ -854,7 +854,7 @@
       "id": "NUM-GCL-022",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "If GCD(a, b) = 4 and LCM(a, b) = 48, which of the following could be a value of a? Select all that apply.",
+      "question": "If the greatest common divisor of a and b = 4 and the least common multiple of a and b = 48, which of the following could be a value of a? Select all that apply.",
       "options": [
         "A. 4",
         "B. 8",
@@ -867,8 +867,8 @@
         "C",
         "D"
       ],
-      "explanation": "Since GCD(a,b)=4, write a=4m and b=4n with GCD(m,n)=1. Then LCM(a,b)=4mn=48, so mn=12. Coprime factor pairs of 12: (1,12), (3,4), (4,3), (12,1). Possible a values: 4×1=4, 4×3=12, 4×4=16, 4×12=48. From the answer choices: A(4=4×1, m=1, n=12, GCD(1,12)=1) ✓, B(8=4×2, m=2, n=6, GCD(2,6)=2≠1) ✗, C(12=4×3, m=3, n=4, GCD(3,4)=1) ✓, D(16=4×4, m=4, n=3, GCD(4,3)=1) ✓, E(24=4×6, m=6, n=2, GCD(6,2)=2≠1) ✗. Valid: A, C, D.",
-      "trap": "Students may accept any multiple of 4 that is ≤ 48, not realizing that a=4m requires m and n=12/m to be coprime. For B: m=2 and n=6 share factor 2, so GCD(8,24)=8≠4, which violates the condition.",
+      "explanation": "Since the greatest common divisor of a and b=4, write a=4m and b=4n with the greatest common divisor of m and n=1. Then the least common multiple of a and b=4mn=48, so mn=12. Coprime factor pairs of 12: (1,12), (3,4), (4,3), (12,1). Possible a values: 4×1=4, 4×3=12, 4×4=16, 4×12=48. From the answer choices: A(4=4×1, m=1, n=12, the greatest common divisor of 1 and 12=1) ✓, B(8=4×2, m=2, n=6, the greatest common divisor of 2 and 6=2≠1) ✗, C(12=4×3, m=3, n=4, the greatest common divisor of 3 and 4=1) ✓, D(16=4×4, m=4, n=3, the greatest common divisor of 4 and 3=1) ✓, E(24=4×6, m=6, n=2, the greatest common divisor of 6 and 2=2≠1) ✗. Valid: A, C, D.",
+      "trap": "Students may accept any multiple of 4 that is ≤ 48, not realizing that a=4m requires m and n=12/m to be coprime. For B: m=2 and n=6 share factor 2, so the greatest common divisor of 8 and 24=8≠4, which violates the condition.",
       "estimated_time_seconds": 85,
       "tags": [
         "gcd",
@@ -903,8 +903,8 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "D",
-      "explanation": "LCM(x,y) is always divisible by x (by definition), so LCM(x,y) ≥ x. Case 1: y divides x (e.g., x=6, y=2): LCM(6,2)=6=x, so Quantity A = Quantity B. Case 2: y does not divide x (e.g., x=4, y=3): LCM(4,3)=12 > 4=x, so Quantity A > Quantity B. The relationship is not always the same — it depends on whether y divides x. Answer: D.",
-      "trap": "Students may think LCM always exceeds both numbers, choosing A. But when y divides x, LCM(x,y) = x exactly. Two cases yield different relationships, so D is correct.",
+      "explanation": "The least common multiple of x and y is always divisible by x (by definition), so the least common multiple of x and y ≥ x. Case 1: y divides x (e.g., x=6, y=2): the least common multiple of 6 and 2=6=x, so Quantity A = Quantity B. Case 2: y does not divide x (e.g., x=4, y=3): the least common multiple of 4 and 3=12 > 4=x, so Quantity A > Quantity B. The relationship is not always the same — it depends on whether y divides x. Answer: D.",
+      "trap": "Students may think least common multiple always exceeds both numbers, choosing A. But when y divides x, the least common multiple of x and y = x exactly. Two cases yield different relationships, so D is correct.",
       "estimated_time_seconds": 75,
       "tags": [
         "lcm",
@@ -943,7 +943,7 @@
         "E. 84"
       ],
       "answer": "D",
-      "explanation": "Step 1 — a tile of side s fits exactly only if s divides 84 and s divides 126, so s is a common divisor of the two dimensions.\nStep 2 — 'largest possible' therefore means s = GCD(84, 126).\nStep 3 — 84 = 2^2 x 3 x 7 and 126 = 2 x 3^2 x 7. Take the lowest power of each shared prime: 2^1 x 3^1 x 7^1 = 42.\nStep 4 — s = 42 feet.\nCheck: 84/42 = 2 tiles across and 126/42 = 3 tiles down, 6 tiles in all, with nothing cut.\nAnswer: D, 42.",
+      "explanation": "Step 1 — a tile of side s fits exactly only if s divides 84 and s divides 126, so s is a common divisor of the two dimensions.\nStep 2 — 'largest possible' therefore means s = the greatest common divisor of 84 and 126.\nStep 3 — 84 = 2^2 x 3 x 7 and 126 = 2 x 3^2 x 7. Take the lowest power of each shared prime: 2^1 x 3^1 x 7^1 = 42.\nStep 4 — s = 42 feet.\nCheck: 84/42 = 2 tiles across and 126/42 = 3 tiles down, 6 tiles in all, with nothing cut.\nAnswer: D, 42.",
       "trap": "Each wrong option drops one of the three shared primes. Choosing 6 (option A) keeps 2 x 3 and forgets the 7 that both numbers contain; choosing 14 (option B) keeps 2 x 7 and forgets the 3; choosing 21 (option C) keeps 3 x 7 and forgets the 2. Choosing 84 (option E) assumes the tile can be as large as the shorter side, but 126/84 = 1.5, so those tiles would have to be cut.",
       "estimated_time_seconds": 75,
       "tags": [
@@ -967,8 +967,8 @@
       "question": "The greatest common divisor of two positive integers a and b is 7. What is the greatest common divisor of 2a and 2b?",
       "options": null,
       "answer": "14",
-      "explanation": "GCD(2a, 2b) = 2 × GCD(a, b) = 2 × 7 = 14. In general, GCD(ka, kb) = k × GCD(a, b) for any positive integer k.",
-      "trap": "Students may think GCD(2a, 2b) = GCD(a, b) = 7, not accounting for the factor of 2 multiplied into both numbers. Scaling both numbers by k scales their GCD by k.",
+      "explanation": "The greatest common divisor of 2a and 2b = 2 × the greatest common divisor of a and b = 2 × 7 = 14. In general, the greatest common divisor of ka and kb = k × the greatest common divisor of a and b for any positive integer k.",
+      "trap": "Students may think the greatest common divisor of 2a and 2b = the greatest common divisor of a and b = 7, not accounting for the factor of 2 multiplied into both numbers. Scaling both numbers by k scales their greatest common divisor by k.",
       "estimated_time_seconds": 60,
       "tags": [
         "gcd",
@@ -1010,7 +1010,7 @@
         "E. 320"
       ],
       "answer": "C",
-      "explanation": "Step 1 — write a = 4m and b = 4n where m and n have greatest common divisor 1. Since a and b are at most 20, both m and n are at most 5.\nStep 2 — the least common multiple of a and b = 4 x m x n, so maximising the least common multiple means maximising m x n over coprime pairs with m, n <= 5.\nStep 3 — the largest such product is m = 4, n = 5, since the greatest common divisor of 4 and 5 = 1 and 4 x 5 = 20. The pair m = 5, n = 5 is not allowed because the greatest common divisor of 5 and 5 = 5.\nStep 4 — least common multiple = 4 x 20 = 80, reached at a = 16 and b = 20.\nCheck: the greatest common divisor of 16 and 20 = 4 and the least common multiple of 16 and 20 = 80, and 4 x 80 = 320 = 16 x 20. Both numbers are at most 20. Correct.\nAnswer: C, 80.",
+      "explanation": "Step 1 — write a = 4m and b = 4n where m and n have greatest common divisor 1. Since a and b are at most 20, both m and n are at most 5.\nStep 2 — the least common multiple of a and b = 4 x m x n, so maximizing the least common multiple means maximizing m x n over coprime pairs with m, n <= 5.\nStep 3 — the largest such product is m = 4, n = 5, since the greatest common divisor of 4 and 5 = 1 and 4 x 5 = 20. The pair m = 5, n = 5 is not allowed because the greatest common divisor of 5 and 5 = 5.\nStep 4 — least common multiple = 4 x 20 = 80, reached at a = 16 and b = 20.\nCheck: the greatest common divisor of 16 and 20 = 4 and the least common multiple of 16 and 20 = 80, and 4 x 80 = 320 = 16 x 20. Both numbers are at most 20. Correct.\nAnswer: C, 80.",
       "trap": "Choosing 20 (option A) applies the greatest common divisor range rule to the least common multiple: the greatest common divisor lies between 1 and min(a, b), but the least common multiple runs the other way, max(a, b) <= least common multiple <= a x b, so it may be far larger than 20. Choosing 60 (option B) stops at the coprime pair m = 3, n = 5 and misses that m = 4, n = 5 is also coprime. Choosing 100 (option D) takes a = b = 20 and applies (greatest common divisor) x (least common multiple) = a x b as 400/4, but the greatest common divisor of 20 and 20 = 20, not 4. Choosing 320 (option E) uses least common multiple = a x b = 16 x 20; that equality holds only when a and b are coprime, and here they share a factor of 4.",
       "estimated_time_seconds": 85,
       "tags": [
@@ -1049,7 +1049,7 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "D",
-      "explanation": "Write a=4m, b=4n with GCD(m,n)=1 and 4mn=60, so mn=15. Coprime pairs (m,n) with mn=15: (1,15) and (3,5). Pair (1,15): a=4, b=60, sum=64 → Quantity A = Quantity B. Pair (3,5): a=12, b=20, sum=32 < 64 → Quantity B is greater. Two cases give different outcomes, so D.",
+      "explanation": "Write a=4m, b=4n with the greatest common divisor of m and n=1 and 4mn=60, so mn=15. Coprime pairs (m,n) with mn=15: (1,15) and (3,5). Pair (1,15): a=4, b=60, sum=64 → Quantity A = Quantity B. Pair (3,5): a=12, b=20, sum=32 < 64 → Quantity B is greater. Two cases give different outcomes, so D.",
       "trap": "Students may find one solution (a=4, b=60, sum=64) and choose C. Always check ALL valid pairs. The pair (12,20) gives sum=32, proving the relationship is not fixed.",
       "estimated_time_seconds": 80,
       "tags": [
@@ -1091,8 +1091,8 @@
         "E. 2^5 x 3^4 x 5 x 7"
       ],
       "answer": "B",
-      "explanation": "Step 1 — the GCD takes the LOWEST power of each prime that appears in BOTH numbers.\nStep 2 — prime 2: exponents 5 and 3, so take 2^3.\nStep 3 — prime 3: exponents 2 and 4, so take 3^2.\nStep 4 — prime 5 appears only in b and prime 7 only in a, so neither is shared and neither enters the GCD.\nStep 5 — GCD = 2^3 x 3^2 = 8 x 9 = 72.\nCheck: a = 32 x 9 x 7 = 2016 and b = 8 x 81 x 5 = 3240. 2016/72 = 28 and 3240/72 = 45, both integers, and GCD(28, 45) = 1, so 72 cannot be improved on.\nAnswer: B.",
-      "trap": "Choosing D, 2^5 x 3^4, takes the HIGHEST power of each shared prime - that builds an LCM, not a GCD - and it equals 2592, larger than a itself, which no GCD can be. Choosing E is the full LCM, 2^5 x 3^4 x 5 x 7. Choosing C uses the right exponents but attaches 5 and 7, primes that are not shared. Choosing A, 2 x 3, uses exponent 1 everywhere instead of the true minimum.",
+      "explanation": "Step 1 — the greatest common divisor takes the LOWEST power of each prime that appears in BOTH numbers.\nStep 2 — prime 2: exponents 5 and 3, so take 2^3.\nStep 3 — prime 3: exponents 2 and 4, so take 3^2.\nStep 4 — prime 5 appears only in b and prime 7 only in a, so neither is shared and neither enters the greatest common divisor.\nStep 5 — greatest common divisor = 2^3 x 3^2 = 8 x 9 = 72.\nCheck: a = 32 x 9 x 7 = 2016 and b = 8 x 81 x 5 = 3240. 2016/72 = 28 and 3240/72 = 45, both integers, and the greatest common divisor of 28 and 45 = 1, so 72 cannot be improved on.\nAnswer: B.",
+      "trap": "Choosing D, 2^5 x 3^4, takes the HIGHEST power of each shared prime - that builds an least common multiple, not a greatest common divisor - and it equals 2592, larger than a itself, which no greatest common divisor can be. Choosing E is the full least common multiple, 2^5 x 3^4 x 5 x 7. Choosing C uses the right exponents but attaches 5 and 7, primes that are not shared. Choosing A, 2 x 3, uses exponent 1 everywhere instead of the true minimum.",
       "estimated_time_seconds": 80,
       "tags": [
         "gcd",
@@ -1133,11 +1133,11 @@
       "id": "NUM-GCL-029",
       "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "Three ropes of lengths 24 m, 36 m and 48 m are to be cut into equal pieces of the greatest possible length, with no rope left over. How many pieces are produced in total? Enter your answer as a number.",
+      "question": "Three ropes of lengths 24 m, 36 m and 48 m are to be cut into equal pieces of the greatest possible length, with no rope left over. How many pieces are produced in total?",
       "options": null,
       "answer": "9",
-      "explanation": "Step 1 — the piece length must divide 24, 36 and 48, and it should be as large as possible, so it is GCD(24, 36, 48).\nStep 2 — 24 = 2^3 x 3, 36 = 2^2 x 3^2, 48 = 2^4 x 3. Lowest power of each shared prime: 2^2 x 3 = 12.\nStep 3 — count the pieces rope by rope: 24/12 = 2, 36/12 = 3, 48/12 = 4.\nStep 4 — total = 2 + 3 + 4 = 9 pieces.\nCheck: 9 pieces of 12 m is 108 m, and 24 + 36 + 48 = 108 m. Nothing is wasted.\nAnswer: 9.",
-      "trap": "Stopping at 12 and entering the piece LENGTH instead of the number of pieces. The other slip is using LCM(24, 36, 48) = 144, which is longer than any of the ropes - a cutting length can never exceed the shortest rope.",
+      "explanation": "Step 1 — the piece length must divide 24, 36 and 48, and it should be as large as possible, so it is the greatest common divisor of 24, 36 and 48.\nStep 2 — 24 = 2^3 x 3, 36 = 2^2 x 3^2, 48 = 2^4 x 3. Lowest power of each shared prime: 2^2 x 3 = 12.\nStep 3 — count the pieces rope by rope: 24/12 = 2, 36/12 = 3, 48/12 = 4.\nStep 4 — total = 2 + 3 + 4 = 9 pieces.\nCheck: 9 pieces of 12 m is 108 m, and 24 + 36 + 48 = 108 m. Nothing is wasted.\nAnswer: 9.",
+      "trap": "Stopping at 12 and entering the piece LENGTH instead of the number of pieces. The other slip is using the least common multiple of 24, 36 and 48 = 144, which is longer than any of the ropes - a cutting length can never exceed the shortest rope.",
       "estimated_time_seconds": 80,
       "tags": [
         "gcd",
@@ -1157,7 +1157,7 @@
       "id": "NUM-GCL-030",
       "difficulty": "hard",
       "type": "mcq",
-      "question": "a and b are positive integers and GCD(a, b) = d. Which of the following must be true?",
+      "question": "a and b are positive integers and the greatest common divisor of a and b = d. Which of the following must be true?",
       "options": [
         "A. d^2 divides a + b",
         "B. a/d and b/d are both prime",
@@ -1166,8 +1166,8 @@
         "E. d divides a - b only when a > b"
       ],
       "answer": "C",
-      "explanation": "Step 1 — write a = d x m and b = d x n, where GCD(m, n) = 1. That is exactly what 'd is the greatest common divisor' means.\nStep 2 — C: LCM(a, b) = d x m x n, so d x LCM(a, b) = d^2 x m x n = (d x m) x (d x n) = a x b. TRUE for every pair.\nStep 3 — A fails on a = 2, b = 4, d = 2: a + b = 6 and d^2 = 4, and 4 does not divide 6.\nStep 4 — B fails on a = 4, b = 8, d = 4: a/d = 1 and b/d = 2, and 1 is not prime.\nStep 5 — D fails because GCD(a/d, b/d) = GCD(m, n) = 1, not d. On a = 4, b = 8, d = 4: GCD(1, 2) = 1.\nStep 6 — E fails because d divides a and d divides b, so d divides a - b whatever the sign. On a = 4, b = 8, d = 4: a - b = -4 and 4 divides -4.\nCheck the key identity on a = 12, b = 18: d = 6, LCM = 36, and 6 x 36 = 216 = 12 x 18.\nAnswer: C.",
-      "trap": "Choosing A garbles the identity: it is the PRODUCT a x b that carries a factor of d^2, never the sum a + b. Choosing B assumes the co-factors a/d and b/d must be prime; all that is guaranteed is that they are coprime, and one of them can be 1. Choosing D is the commonest slip - dividing out the GCD leaves co-factors whose GCD is 1, not d.",
+      "explanation": "Step 1 — write a = d x m and b = d x n, where the greatest common divisor of m and n = 1. That is exactly what 'd is the greatest common divisor' means.\nStep 2 — C: the least common multiple of a and b = d x m x n, so d x the least common multiple of a and b = d^2 x m x n = (d x m) x (d x n) = a x b. TRUE for every pair.\nStep 3 — A fails on a = 2, b = 4, d = 2: a + b = 6 and d^2 = 4, and 4 does not divide 6.\nStep 4 — B fails on a = 4, b = 8, d = 4: a/d = 1 and b/d = 2, and 1 is not prime.\nStep 5 — D fails because the greatest common divisor of a/d and b/d = the greatest common divisor of m and n = 1, not d. On a = 4, b = 8, d = 4: the greatest common divisor of 1 and 2 = 1.\nStep 6 — E fails because d divides a and d divides b, so d divides a - b whatever the sign. On a = 4, b = 8, d = 4: a - b = -4 and 4 divides -4.\nCheck the key identity on a = 12, b = 18: d = 6, least common multiple = 36, and 6 x 36 = 216 = 12 x 18.\nAnswer: C.",
+      "trap": "Choosing A garbles the identity: it is the PRODUCT a x b that carries a factor of d^2, never the sum a + b. Choosing B assumes the co-factors a/d and b/d must be prime; all that is guaranteed is that they are coprime, and one of them can be 1. Choosing D is the commonest slip - dividing out the greatest common divisor leaves co-factors whose greatest common divisor is 1, not d.",
       "estimated_time_seconds": 100,
       "tags": [
         "gcd-lcm-identity",
@@ -1201,8 +1201,8 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
-      "explanation": "a divides a² (since a²=a×a), so a is a common divisor of a and a². Also, GCD(a, a²) ≤ a (since GCD divides a, and the largest divisor of a is a itself). Therefore GCD(a, a²) = a. The two quantities are always equal.",
-      "trap": "Students may think GCD(a, a²) could be a² (since a² is one of the numbers). But GCD must divide BOTH numbers, and a² does not divide a (for a>1). So GCD = a.",
+      "explanation": "a divides a² (since a²=a×a), so a is a common divisor of a and a². Also, the greatest common divisor of a and a² ≤ a (since greatest common divisor divides a, and the largest divisor of a is a itself). Therefore the greatest common divisor of a and a² = a. The two quantities are always equal.",
+      "trap": "Students may think the greatest common divisor of a and a² could be a² (since a² is one of the numbers). But greatest common divisor must divide BOTH numbers, and a² does not divide a (for a>1). So greatest common divisor = a.",
       "estimated_time_seconds": 55,
       "tags": [
         "gcd",
@@ -1235,7 +1235,7 @@
       "question": "The least common multiple of two positive integers is 120 and their greatest common divisor is 6. If one of the integers is 30, what is the sum of the two integers?",
       "options": null,
       "answer": "54",
-      "explanation": "Using GCD × LCM = a × b: 6 × 120 = 30 × b. So b = 720/30 = 24. Sum = 30 + 24 = 54. Verify: GCD(30,24)=6 ✓ (30=2×3×5, 24=2³×3, GCD=2×3=6), LCM(30,24)=30×24/6=720/6=120 ✓.",
+      "explanation": "Using greatest common divisor × least common multiple = a × b: 6 × 120 = 30 × b. So b = 720/30 = 24. Sum = 30 + 24 = 54. Verify: the greatest common divisor of 30 and 24=6 ✓ (30=2×3×5, 24=2³×3, greatest common divisor=2×3=6), the least common multiple of 30 and 24=30×24/6=720/6=120 ✓.",
       "trap": "Students may find b correctly (24) but forget the question asks for the SUM, not the value of b. Always re-read what is being asked.",
       "estimated_time_seconds": 65,
       "tags": [
@@ -1282,8 +1282,8 @@
         "B",
         "D"
       ],
-      "explanation": "A - the LCM is a multiple of a, and the smallest positive multiple of a is a itself, so LCM(a, b) >= a. TRUE.\nB - a x b is always a common multiple of a and b, and the LCM is the LEAST common multiple, so it cannot exceed a x b. TRUE.\nC - equality holds only when GCD(a, b) = 1. Take a = 4, b = 6: LCM = 12 but a x b = 24. FALSE.\nD - GCD(a, b) divides a, and a divides LCM(a, b), so the GCD divides the LCM. TRUE.\nE - the inequality is strict, and that fails when a = b: GCD(6, 6) = 6 and LCM(6, 6) = 6, equal, not less. FALSE.\nCheck on a = 4, b = 6: GCD = 2, LCM = 12. Indeed 12 >= 4, 12 <= 24, and 12 is a multiple of 2.\nAnswer: A, B, D.",
-      "trap": "Selecting C because LCM = a x b is the case students meet most often - it is exactly the coprime case, and it breaks the moment a and b share a factor, as 4 and 6 do. Selecting E is the 'GCD is always smaller than LCM' reflex; the two coincide precisely when a = b.",
+      "explanation": "A - the least common multiple is a multiple of a, and the smallest positive multiple of a is a itself, so the least common multiple of a and b >= a. TRUE.\nB - a x b is always a common multiple of a and b, and the least common multiple is the LEAST common multiple, so it cannot exceed a x b. TRUE.\nC - equality holds only when the greatest common divisor of a and b = 1. Take a = 4, b = 6: least common multiple = 12 but a x b = 24. FALSE.\nD - the greatest common divisor of a and b divides a, and a divides the least common multiple of a and b, so the greatest common divisor divides the least common multiple. TRUE.\nE - the inequality is strict, and that fails when a = b: the greatest common divisor of 6 and 6 = 6 and the least common multiple of 6 and 6 = 6, equal, not less. FALSE.\nCheck on a = 4, b = 6: greatest common divisor = 2, least common multiple = 12. Indeed 12 >= 4, 12 <= 24, and 12 is a multiple of 2.\nAnswer: A, B, D.",
+      "trap": "Selecting C because least common multiple = a x b is the case students meet most often - it is exactly the coprime case, and it breaks the moment a and b share a factor, as 4 and 6 do. Selecting E is the 'greatest common divisor is always smaller than least common multiple' reflex; the two coincide precisely when a = b.",
       "estimated_time_seconds": 85,
       "tags": [
         "lcm",
@@ -1327,8 +1327,8 @@
         "E. 216"
       ],
       "answer": "C",
-      "explanation": "The smallest number divisible by both 18 and 24 is LCM(18, 24). 18 = 2 × 3², 24 = 2³ × 3. LCM = 2³ × 3² = 8 × 9 = 72. Verify: 72/18=4 ✓, 72/24=3 ✓.",
-      "trap": "Students may guess 48 (a multiple of 24 that looks small) without checking divisibility by 18: 48/18 = 2.67, not an integer. Always compute LCM systematically using prime factorization.",
+      "explanation": "The smallest number divisible by both 18 and 24 is the least common multiple of 18 and 24. 18 = 2 × 3², 24 = 2³ × 3. Least common multiple = 2³ × 3² = 8 × 9 = 72. Verify: 72/18=4 ✓, 72/24=3 ✓.",
+      "trap": "Students may guess 48 (a multiple of 24 that looks small) without checking divisibility by 18: 48/18 = 2.67, not an integer. Always compute least common multiple systematically using prime factorization.",
       "estimated_time_seconds": 65,
       "tags": [
         "lcm",
@@ -1400,8 +1400,8 @@
         "E. 33"
       ],
       "answer": "A",
-      "explanation": "Divisible by both 4 and 6 means divisible by LCM(4,6) = 12. Multiples of 12 less than 100: 12, 24, 36, 48, 60, 72, 84, 96. Count = 8. (floor(99/12) = floor(8.25) = 8.)",
-      "trap": "Students may count multiples of 4 AND multiples of 6 separately and use inclusion-exclusion — an unnecessarily complex approach. The direct approach: find LCM(4,6)=12, then count multiples of 12 below 100.",
+      "explanation": "Divisible by both 4 and 6 means divisible by the least common multiple of 4 and 6 = 12. Multiples of 12 less than 100: 12, 24, 36, 48, 60, 72, 84, 96. Count = 8. (floor(99/12) = floor(8.25) = 8.)",
+      "trap": "Students may count multiples of 4 AND multiples of 6 separately and use inclusion-exclusion — an unnecessarily complex approach. The direct approach: find the least common multiple of 4 and 6=12, then count multiples of 12 below 100.",
       "estimated_time_seconds": 65,
       "tags": [
         "lcm",
@@ -1425,8 +1425,8 @@
       "question": "The greatest common divisor of two positive integers is 14 and their least common multiple is 168. If one of the integers is 56, what is the other integer?",
       "options": null,
       "answer": "42",
-      "explanation": "GCD × LCM = a × b. So 14 × 168 = 56 × b. 2352 = 56b. b = 2352/56 = 42. Verify: GCD(56,42): 56=2³×7, 42=2×3×7, GCD=2×7=14 ✓. LCM=56×42/14=2352/14=168 ✓.",
-      "trap": "Students may compute LCM/one_number = 168/56 = 3, then multiply by GCD to get 42 — which gives the right answer but for wrong reasoning. The reliable identity is GCD × LCM = a × b.",
+      "explanation": "Greatest common divisor × least common multiple = a × b. So 14 × 168 = 56 × b. 2352 = 56b. b = 2352/56 = 42. Verify: the greatest common divisor of 56 and 42: 56=2³×7, 42=2×3×7, greatest common divisor=2×7=14 ✓. Least common multiple=56×42/14=2352/14=168 ✓.",
+      "trap": "Students may compute least common multiple/one_number = 168/56 = 3, then multiply by greatest common divisor to get 42 — which gives the right answer but for wrong reasoning. The reliable identity is greatest common divisor × least common multiple = a × b.",
       "estimated_time_seconds": 60,
       "tags": [
         "gcd",
@@ -1471,8 +1471,8 @@
         "B",
         "C"
       ],
-      "explanation": "We need GCD=3 and LCM=45. Check each: A(3,45): GCD(3,45)=3 ✓, LCM(3,45)=45 ✓. B(9,15): 9=3², 15=3×5, GCD=3 ✓, LCM=3²×5=45 ✓. C(15,9): same pair as B in reverse — GCD and LCM are symmetric ✓. D(5,27): GCD(5,27)=1≠3 ✗. E(6,45): GCD(6,45)=3 ✓ but LCM(6,45): 6=2×3, 45=3²×5, LCM=2×3²×5=90≠45 ✗. Answer: A, B, C.",
-      "trap": "Students may reject C as a 'duplicate' of B without realizing that (15,9) is a distinct ordered pair from (9,15). For ordered pairs, both orderings count. Also, students may miss checking LCM for option E after confirming GCD=3.",
+      "explanation": "We need greatest common divisor=3 and least common multiple=45. Check each: A(3,45): the greatest common divisor of 3 and 45=3 ✓, the least common multiple of 3 and 45=45 ✓. B(9,15): 9=3², 15=3×5, greatest common divisor=3 ✓, least common multiple=3²×5=45 ✓. C(15,9): same pair as B in reverse — greatest common divisor and least common multiple are symmetric ✓. D(5,27): the greatest common divisor of 5 and 27=1≠3 ✗. E(6,45): the greatest common divisor of 6 and 45=3 ✓ but the least common multiple of 6 and 45: 6=2×3, 45=3²×5, least common multiple=2×3²×5=90≠45 ✗. Answer: A, B, C.",
+      "trap": "Students may reject C as a 'duplicate' of B without realizing that (15,9) is a distinct ordered pair from (9,15). For ordered pairs, both orderings count. Also, students may miss checking least common multiple for option E after confirming greatest common divisor=3.",
       "estimated_time_seconds": 85,
       "tags": [
         "gcd",
@@ -1513,8 +1513,8 @@
         "E. 60"
       ],
       "answer": "B",
-      "explanation": "Step 1 — GCD(a, b, c) divides GCD(a, b) = 12, and it also divides GCD(b, c) = 15.\nStep 2 — so it divides GCD(12, 15). Since 12 = 2^2 x 3 and 15 = 3 x 5, GCD(12, 15) = 3.\nStep 3 — the divisors of 3 are 1 and 3, so the triple GCD is at most 3.\nStep 4 — 3 is attainable: take a = 12, b = 60, c = 15. Then GCD(12, 60) = 12 and GCD(60, 15) = 15, as required.\nCheck that triple: 12 = 2^2 x 3, 60 = 2^2 x 3 x 5, 15 = 3 x 5. The only prime all three share is 3, to the first power, so GCD(12, 60, 15) = 3.\nAnswer: B, 3.",
-      "trap": "Answering 1 (option A) by assuming a, b, c must end up coprime because 12 and 15 look unrelated - they still share a 3. Answering 4 (option C) keeps the 2^2 from 12, but 15 is odd, so no power of 2 can survive into the triple GCD. Answering 6 (option D) takes 2 x 3, importing the same forbidden factor of 2. Answering 60 (option E) computes LCM(12, 15) instead of a GCD; a common divisor here can never exceed 12.",
+      "explanation": "Step 1 — the greatest common divisor of a, b and c divides the greatest common divisor of a and b = 12, and it also divides the greatest common divisor of b and c = 15.\nStep 2 — so it divides the greatest common divisor of 12 and 15. Since 12 = 2^2 x 3 and 15 = 3 x 5, the greatest common divisor of 12 and 15 = 3.\nStep 3 — the divisors of 3 are 1 and 3, so the triple greatest common divisor is at most 3.\nStep 4 — 3 is attainable: take a = 12, b = 60, c = 15. Then the greatest common divisor of 12 and 60 = 12 and the greatest common divisor of 60 and 15 = 15, as required.\nCheck that triple: 12 = 2^2 x 3, 60 = 2^2 x 3 x 5, 15 = 3 x 5. The only prime all three share is 3, to the first power, so the greatest common divisor of 12, 60 and 15 = 3.\nAnswer: B, 3.",
+      "trap": "Answering 1 (option A) by assuming a, b, c must end up coprime because 12 and 15 look unrelated - they still share a 3. Answering 4 (option C) keeps the 2^2 from 12, but 15 is odd, so no power of 2 can survive into the triple greatest common divisor. Answering 6 (option D) takes 2 x 3, importing the same forbidden factor of 2. Answering 60 (option E) computes the least common multiple of 12 and 15 instead of a greatest common divisor; a common divisor here can never exceed 12.",
       "estimated_time_seconds": 100,
       "tags": [
         "gcd",
@@ -1587,8 +1587,8 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "D",
-      "explanation": "12 divides a and b; 18 divides b and c. So b is a multiple of 36, a is a multiple of 12, and c is a multiple of 18, and GCD(a, c) is at least GCD(12, 18) = 6. Case 1: a = 12, b = 36, c = 18. Then GCD(a, b) = 12, GCD(b, c) = 18, and GCD(a, c) = 6, so Quantity A = Quantity B. Case 2: a = 60, b = 36, c = 90. Then GCD(60, 36) = 12, GCD(36, 90) = 18, and GCD(60, 90) = 30 > 6, so Quantity A is greater. Two cases give different outcomes, so D.",
-      "trap": "Students may conclude GCD(a,c) = 6 always (since GCD(12,18)=6). But a and c can share additional common factors beyond 6, making GCD(a,c) > 6 in some cases.",
+      "explanation": "12 divides a and b; 18 divides b and c. So b is a multiple of 36, a is a multiple of 12, and c is a multiple of 18, and the greatest common divisor of a and c is at least the greatest common divisor of 12 and 18 = 6. Case 1: a = 12, b = 36, c = 18. Then the greatest common divisor of a and b = 12, the greatest common divisor of b and c = 18, and the greatest common divisor of a and c = 6, so Quantity A = Quantity B. Case 2: a = 60, b = 36, c = 90. Then the greatest common divisor of 60 and 36 = 12, the greatest common divisor of 36 and 90 = 18, and the greatest common divisor of 60 and 90 = 30 > 6, so Quantity A is greater. Two cases give different outcomes, so D.",
+      "trap": "Students may conclude the greatest common divisor of a and c = 6 always (since the greatest common divisor of 12 and 18=6). But a and c can share additional common factors beyond 6, making the greatest common divisor of a and c > 6 in some cases.",
       "estimated_time_seconds": 100,
       "tags": [
         "gcd",
@@ -1636,8 +1636,8 @@
         "E. 18 and 18"
       ],
       "answer": "B",
-      "explanation": "Step 1 — write the pair as a = d x m and b = d x n with GCD(m, n) = 1, where d = GCD(a, b). Then LCM(a, b) = d x m x n.\nStep 2 — the condition LCM = 5 x GCD gives d x m x n = 5 x d, so m x n = 5.\nStep 3 — with m and n coprime positive integers, m x n = 5 forces {m, n} = {1, 5}. There is no other factorisation of a prime.\nStep 4 — so the pair is {d, 5d} and the sum is 6d = 36, giving d = 6.\nStep 5 — the two integers are 6 and 30.\nCheck: GCD(6, 30) = 6, LCM(6, 30) = 30, and 30 = 5 x 6. Sum = 36. Correct.\nAnswer: B.",
-      "trap": "Choosing C because 12 and 24 sum to 36 and 'look like a GCD-LCM pair' - their ratio is 1 to 2, so LCM(12, 24) = 24 = 2 x GCD, not 5 x GCD. The condition forces the ratio 1 to 5. Choosing D gives GCD(15, 21) = 3 and LCM = 105 = 35 x GCD; choosing A gives GCD(4, 32) = 4 and LCM = 32 = 8 x GCD; choosing E gives GCD = LCM = 18, a ratio of 1.",
+      "explanation": "Step 1 — write the pair as a = d x m and b = d x n with the greatest common divisor of m and n = 1, where d = the greatest common divisor of a and b. Then the least common multiple of a and b = d x m x n.\nStep 2 — the condition least common multiple = 5 x greatest common divisor gives d x m x n = 5 x d, so m x n = 5.\nStep 3 — with m and n coprime positive integers, m x n = 5 forces {m, n} = {1, 5}. There is no other factorization of a prime.\nStep 4 — so the pair is {d, 5d} and the sum is 6d = 36, giving d = 6.\nStep 5 — the two integers are 6 and 30.\nCheck: the greatest common divisor of 6 and 30 = 6, the least common multiple of 6 and 30 = 30, and 30 = 5 x 6. Sum = 36. Correct.\nAnswer: B.",
+      "trap": "Choosing C because 12 and 24 sum to 36 and 'look like a greatest common divisor-least common multiple pair' - their ratio is 1 to 2, so the least common multiple of 12 and 24 = 24 = 2 x greatest common divisor, not 5 x greatest common divisor. The condition forces the ratio 1 to 5. Choosing D gives the greatest common divisor of 15 and 21 = 3 and least common multiple = 105 = 35 x greatest common divisor; choosing A gives the greatest common divisor of 4 and 32 = 4 and least common multiple = 32 = 8 x greatest common divisor; choosing E gives greatest common divisor = least common multiple = 18, a ratio of 1.",
       "estimated_time_seconds": 100,
       "tags": [
         "gcd-lcm-ratio",
@@ -1716,8 +1716,8 @@
       "question": "What is the least common multiple of 2^4 x 3^2 x 5 and 2^2 x 3^3 x 7?",
       "options": null,
       "answer": "15120",
-      "explanation": "LCM takes the maximum exponent of each prime appearing in either number. LCM = 2^max(4,2) × 3^max(2,3) × 5^max(1,0) × 7^max(0,1) = 2⁴ × 3³ × 5 × 7 = 16 × 27 × 5 × 7. Calculate: 16 × 27 = 432; 432 × 5 = 2160; 2160 × 7 = 15120.",
-      "trap": "Students may use minimum exponents (giving GCD instead of LCM), or only include primes common to both numbers. LCM uses maximum exponents of ALL primes appearing in EITHER number.",
+      "explanation": "Least common multiple takes the maximum exponent of each prime appearing in either number. Least common multiple = 2^max(4,2) × 3^max(2,3) × 5^max(1,0) × 7^max(0,1) = 2⁴ × 3³ × 5 × 7 = 16 × 27 × 5 × 7. Calculate: 16 × 27 = 432; 432 × 5 = 2160; 2160 × 7 = 15120.",
+      "trap": "Students may use minimum exponents (giving greatest common divisor instead of least common multiple), or only include primes common to both numbers. Least common multiple uses maximum exponents of ALL primes appearing in EITHER number.",
       "estimated_time_seconds": 85,
       "tags": [
         "lcm",
@@ -1757,7 +1757,7 @@
       "id": "NUM-GCL-045",
       "difficulty": "hard",
       "type": "quantitative_comparison",
-      "question": "a, b, and c are distinct positive integers each greater than 1.\n\nQuantity A: GCD(a, b) × GCD(b, c) × GCD(a, c)\nQuantity B: GCD(a, b, c) × LCM(a, b, c)",
+      "question": "a, b, and c are distinct positive integers each greater than 1.\n\nQuantity A: the greatest common divisor of a and b × the greatest common divisor of b and c × the greatest common divisor of a and c\nQuantity B: the greatest common divisor of a, b and c × the least common multiple of a, b and c",
       "options": [
         "A. Quantity A is greater.",
         "B. Quantity B is greater.",
@@ -1765,8 +1765,8 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "D",
-      "explanation": "Test case 1: a=2, b=4, c=8. GCD(2,4)=2, GCD(4,8)=4, GCD(2,8)=2. Col A=2×4×2=16. GCD(2,4,8)=2, LCM(2,4,8)=8. Col B=2×8=16. Equal. Test case 2: a=2, b=3, c=5 (distinct primes). GCD(2,3)=1, GCD(3,5)=1, GCD(2,5)=1. Col A=1×1×1=1. GCD(2,3,5)=1, LCM(2,3,5)=30. Col B=1×30=30. Col B > Col A. Two cases give different outcomes → D.",
-      "trap": "Students may evaluate only one case (e.g., the geometric case) and conclude C. Testing both cases — one where numbers share factors and one where they don't — reveals the relationship varies.",
+      "explanation": "Test case 1: a=2, b=4, c=8. The greatest common divisor of 2 and 4=2, the greatest common divisor of 4 and 8=4, the greatest common divisor of 2 and 8=2. Col A=2×4×2=16. The greatest common divisor of 2, 4 and 8=2, the least common multiple of 2, 4 and 8=8. Col B=2×8=16. Equal. Test case 2: a=2, b=3, c=5 (distinct primes). The greatest common divisor of 2 and 3=1, the greatest common divisor of 3 and 5=1, the greatest common divisor of 2 and 5=1. Col A=1×1×1=1. The greatest common divisor of 2, 3 and 5=1, the least common multiple of 2, 3 and 5=30. Col B=1×30=30. Col B > Col A. Two cases give different outcomes → D.",
+      "trap": "Students may evaluate only one case (e.g., the geometric case) and conclude C. Testing both cases — one where numbers share factors and one where they do not — reveals the relationship varies.",
       "estimated_time_seconds": 110,
       "tags": [
         "gcd",
@@ -1803,8 +1803,8 @@
         "E. 12"
       ],
       "answer": "C",
-      "explanation": "GCD(a,b,c) must divide GCD(a,b)=8, GCD(b,c)=12, and GCD(a,c)=10. So GCD(a,b,c) divides GCD(8,12,10). GCD(8,12)=4; GCD(4,10)=2. So GCD(a,b,c) must divide 2. The only positive divisors of 2 are 1 and 2. Therefore GCD(a,b,c) can only be 1 or 2. Option D(6): 6 does not divide 2 (and also 6 ∤ 8), so GCD(a,b,c) cannot be 6.",
-      "trap": "Students may think GCD(a,b,c) must simply be less than the smallest pairwise GCD (which is 8). But GCD(a,b,c) must divide ALL pairwise GCDs, so it must divide GCD(8,12,10)=2. Any value exceeding 2 is impossible.",
+      "explanation": "The greatest common divisor of a, b and c must divide the greatest common divisor of a and b=8, the greatest common divisor of b and c=12, and the greatest common divisor of a and c=10. So the greatest common divisor of a, b and c divides the greatest common divisor of 8, 12 and 10. The greatest common divisor of 8 and 12=4; the greatest common divisor of 4 and 10=2. So the greatest common divisor of a, b and c must divide 2. The only positive divisors of 2 are 1 and 2. Therefore the greatest common divisor of a, b and c can only be 1 or 2. Option D(6): 6 does not divide 2 (and also 6 ∤ 8), so the greatest common divisor of a, b and c cannot be 6.",
+      "trap": "Students may think the greatest common divisor of a, b and c must simply be less than the smallest pairwise the greatest common divisor of which is 8. But the greatest common divisor of a, b and c must divide ALL pairwise GCDs, so it must divide the greatest common divisor of 8, 12 and 10=2. Any value exceeding 2 is impossible.",
       "estimated_time_seconds": 100,
       "tags": [
         "gcd",
@@ -1842,8 +1842,8 @@
       "question": "How many integers from 1 to 200, inclusive, are divisible by 6, by 10, or by both?",
       "options": null,
       "answer": "47",
-      "explanation": "Use inclusion-exclusion. Divisible by 6: floor(200/6)=33. Divisible by 10: floor(200/10)=20. Divisible by both (divisible by LCM(6,10)=30): floor(200/30)=6. By inclusion-exclusion: 33+20−6=47.",
-      "trap": "Students may add 33+20=53 without subtracting the overlap. Numbers divisible by both 6 and 10 (i.e., divisible by LCM(6,10)=30) are counted twice in 33+20, so they must be subtracted once.",
+      "explanation": "Use inclusion-exclusion. Divisible by 6: floor(200/6)=33. Divisible by 10: floor(200/10)=20. Divisible by both (divisible by the least common multiple of 6 and 10=30): floor(200/30)=6. By inclusion-exclusion: 33+20−6=47.",
+      "trap": "Students may add 33+20=53 without subtracting the overlap. Numbers divisible by both 6 and 10 (i.e., divisible by the least common multiple of 6 and 10=30) are counted twice in 33+20, so they must be subtracted once.",
       "estimated_time_seconds": 85,
       "tags": [
         "lcm",
@@ -1906,7 +1906,7 @@
       "id": "NUM-GCL-049",
       "difficulty": "hard",
       "type": "quantitative_comparison",
-      "question": "p is a prime number greater than 3.\nQuantity A: GCD(p^2 - 1, 24)\nQuantity B: 24",
+      "question": "p is a prime number greater than 3.\nQuantity A: the greatest common divisor of p^2 - 1 and 24\nQuantity B: 24",
       "options": [
         "A. Quantity A is greater.",
         "B. Quantity B is greater.",
@@ -1914,8 +1914,8 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "C",
-      "explanation": "Step 1 — factor: p^2 - 1 = (p - 1)(p + 1), the two integers on either side of p.\nStep 2 — p is prime and greater than 3, so p is odd. Then p - 1 and p + 1 are consecutive EVEN numbers, and one of any two consecutive even numbers is a multiple of 4. So the product carries at least 2 x 4 = 2^3.\nStep 3 — p is not a multiple of 3 either, so one of p - 1, p + 1 must be a multiple of 3.\nStep 4 — therefore 2^3 x 3 = 24 always divides p^2 - 1, which makes GCD(p^2 - 1, 24) = 24.\nStep 5 — and the GCD cannot exceed 24, because 24 is itself one of the two numbers. So it is exactly 24 and the columns are equal.\nCheck: p = 5 gives 24 and GCD(24, 24) = 24. p = 7 gives 48 and GCD(48, 24) = 24. p = 11 gives 120 and GCD(120, 24) = 24. p = 13 gives 168 and GCD(168, 24) = 24.\nAnswer: C.",
-      "trap": "Answering A after testing p = 7, where p^2 - 1 = 48 is bigger than 24. The column is not p^2 - 1; it is the GCD with 24, which can never exceed 24. Answering D because p is unspecified misses that every prime above 3 is odd and not a multiple of 3 - precisely the two facts that force the 2^3 and the 3.",
+      "explanation": "Step 1 — factor: p^2 - 1 = (p - 1)(p + 1), the two integers on either side of p.\nStep 2 — p is prime and greater than 3, so p is odd. Then p - 1 and p + 1 are consecutive EVEN numbers, and one of any two consecutive even numbers is a multiple of 4. So the product carries at least 2 x 4 = 2^3.\nStep 3 — p is not a multiple of 3 either, so one of p - 1, p + 1 must be a multiple of 3.\nStep 4 — therefore 2^3 x 3 = 24 always divides p^2 - 1, which makes the greatest common divisor of p^2 - 1 and 24 = 24.\nStep 5 — and the greatest common divisor cannot exceed 24, because 24 is itself one of the two numbers. So it is exactly 24 and the columns are equal.\nCheck: p = 5 gives 24 and the greatest common divisor of 24 and 24 = 24. p = 7 gives 48 and the greatest common divisor of 48 and 24 = 24. p = 11 gives 120 and the greatest common divisor of 120 and 24 = 24. p = 13 gives 168 and the greatest common divisor of 168 and 24 = 24.\nAnswer: C.",
+      "trap": "Answering A after testing p = 7, where p^2 - 1 = 48 is bigger than 24. The column is not p^2 - 1; it is the greatest common divisor with 24, which can never exceed 24. Answering D because p is unspecified misses that every prime above 3 is odd and not a multiple of 3 - precisely the two facts that force the 2^3 and the 3.",
       "estimated_time_seconds": 105,
       "tags": [
         "gcd",
@@ -2000,8 +2000,8 @@
         "E. 41"
       ],
       "answer": "B",
-      "explanation": "Step 1 — all three coincide exactly on the days that are common multiples of 12, 8 and 15, so the coinciding days are the multiples of LCM(12, 8, 15).\nStep 2 — prime factorise: 12 = 2^2 x 3, 8 = 2^3, 15 = 3 x 5.\nStep 3 — take the highest power of each prime: 2^3 x 3^1 x 5^1 = 8 x 3 x 5 = 120.\nStep 4 — count the multiples of 120 in the range 1 to 1000: 120, 240, 360, 480, 600, 720, 840, 960.\nStep 5 — 120 x 8 = 960 and 120 x 9 = 1080, which is past day 1000, so there are 8 such days.\nCheck: 960/12 = 80, 960/8 = 120, 960/15 = 64, all integers, and no multiple of 120 lies between 960 and 1000.\nAnswer: B, 8.",
-      "trap": "Answering 9 (option C) counts day 0 itself; the stem restricts the count to days 1 through 1000. Answering 4 (option A) uses LCM = 240 by taking 3^2 because a 3 appears in both 12 and 15 - the LCM takes the highest power of a prime inside any ONE number, which is 3^1, not a tally of how many numbers contain it - and 1000/240 gives 4. Answering 16 (option D) uses LCM(12, 15) = 60 and assumes the 8-day cycle tags along, but 8 needs 2^3 while 12 supplies only 2^2; 1000/60 gives 16. Answering 41 (option E) uses LCM(12, 8) = 24 and forgets the 15 entirely.",
+      "explanation": "Step 1 — all three coincide exactly on the days that are common multiples of 12, 8 and 15, so the coinciding days are the multiples of the least common multiple of 12, 8 and 15.\nStep 2 — prime factorize: 12 = 2^2 x 3, 8 = 2^3, 15 = 3 x 5.\nStep 3 — take the highest power of each prime: 2^3 x 3^1 x 5^1 = 8 x 3 x 5 = 120.\nStep 4 — count the multiples of 120 in the range 1 to 1000: 120, 240, 360, 480, 600, 720, 840, 960.\nStep 5 — 120 x 8 = 960 and 120 x 9 = 1080, which is past day 1000, so there are 8 such days.\nCheck: 960/12 = 80, 960/8 = 120, 960/15 = 64, all integers, and no multiple of 120 lies between 960 and 1000.\nAnswer: B, 8.",
+      "trap": "Answering 9 (option C) counts day 0 itself; the stem restricts the count to days 1 through 1000. Answering 4 (option A) uses least common multiple = 240 by taking 3^2 because a 3 appears in both 12 and 15 - the least common multiple takes the highest power of a prime inside any ONE number, which is 3^1, not a tally of how many numbers contain it - and 1000/240 gives 4. Answering 16 (option D) uses the least common multiple of 12 and 15 = 60 and assumes the 8-day cycle tags along, but 8 needs 2^3 while 12 supplies only 2^2; 1000/60 gives 16. Answering 41 (option E) uses the least common multiple of 12 and 8 = 24 and forgets the 15 entirely.",
       "estimated_time_seconds": 100,
       "tags": [
         "lcm",
@@ -2063,8 +2063,8 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "B",
-      "explanation": "Step 1 — GCD of all three takes the LOWEST exponent of each prime shared by all three.\nPrime 2: min(3, 2, 1) = 1. Prime 3: min(2, 1, 3) = 1. Prime 5: min(1, 2, 1) = 1. Prime 7 is absent from a and c.\nSo GCD = 2 x 3 x 5 = 30.\nStep 2 — LCM takes the HIGHEST exponent of every prime present.\nPrime 2: max(3, 2, 1) = 3. Prime 3: max(2, 1, 3) = 3. Prime 5: max(1, 2, 1) = 2. Prime 7: 1.\nSo LCM = 2^3 x 3^3 x 5^2 x 7 = 8 x 27 x 25 x 7 = 37,800.\nStep 3 — Quantity A = 30 x 37,800 = 1,134,000.\nStep 4 — Quantity B: a = 360, b = 2,100, c = 270, so a x b x c = 360 x 2,100 x 270 = 204,120,000.\nStep 5 — 204,120,000 is far larger, so Quantity B is greater.\nCheck by exponents alone, on the prime 2: Quantity A carries 1 + 3 = 4 copies of it, Quantity B carries 3 + 2 + 1 = 6. Quantity B wins on that prime, and the same happens on 3 and on 5.\nAnswer: B.",
-      "trap": "Answering C by applying GCD x LCM = product. That identity holds for TWO numbers only. With three numbers the GCD takes each prime's minimum exponent and the LCM takes its maximum, so the middle exponent is never counted at all. The one-second sanity check is 2, 4, 8: GCD = 2, LCM = 8, and 2 x 8 = 16, but 2 x 4 x 8 = 64.",
+      "explanation": "Step 1 — greatest common divisor of all three takes the LOWEST exponent of each prime shared by all three.\nPrime 2: min(3, 2, 1) = 1. Prime 3: min(2, 1, 3) = 1. Prime 5: min(1, 2, 1) = 1. Prime 7 is absent from a and c.\nSo greatest common divisor = 2 x 3 x 5 = 30.\nStep 2 — least common multiple takes the HIGHEST exponent of every prime present.\nPrime 2: max(3, 2, 1) = 3. Prime 3: max(2, 1, 3) = 3. Prime 5: max(1, 2, 1) = 2. Prime 7: 1.\nSo least common multiple = 2^3 x 3^3 x 5^2 x 7 = 8 x 27 x 25 x 7 = 37,800.\nStep 3 — Quantity A = 30 x 37,800 = 1,134,000.\nStep 4 — Quantity B: a = 360, b = 2,100, c = 270, so a x b x c = 360 x 2,100 x 270 = 204,120,000.\nStep 5 — 204,120,000 is far larger, so Quantity B is greater.\nCheck by exponents alone, on the prime 2: Quantity A carries 1 + 3 = 4 copies of it, Quantity B carries 3 + 2 + 1 = 6. Quantity B wins on that prime, and the same happens on 3 and on 5.\nAnswer: B.",
+      "trap": "Answering C by applying greatest common divisor x least common multiple = product. That identity holds for TWO numbers only. With three numbers the greatest common divisor takes each prime's minimum exponent and the least common multiple takes its maximum, so the middle exponent is never counted at all. The one-second sanity check is 2, 4, 8: greatest common divisor = 2, least common multiple = 8, and 2 x 8 = 16, but 2 x 4 x 8 = 64.",
       "estimated_time_seconds": 110,
       "tags": [
         "gcd-lcm-identity",
@@ -2231,7 +2231,7 @@
       "id": "NUM-GCL-057",
       "difficulty": "extreme_hard",
       "type": "mcq",
-      "question": "a and b are positive integers with a x b = 1440. What is the greatest possible value of GCD(a, b)?",
+      "question": "a and b are positive integers with a x b = 1440. What is the greatest possible value of the greatest common divisor of a and b?",
       "options": [
         "A. 12",
         "B. 24",
@@ -2240,8 +2240,8 @@
         "E. 120"
       ],
       "answer": "A",
-      "explanation": "Step 1 — write d = GCD(a, b), a = d x m, b = d x n with GCD(m, n) = 1. Then a x b = d^2 x m x n = 1440.\nStep 2 — the insight: it is d^2, not d, that must divide 1440.\nStep 3 — factorise: 1440 = 2^5 x 3^2 x 5. The largest perfect square dividing it uses even exponents only: 2^4 x 3^2 = 144.\nStep 4 — so d^2 <= 144 and d <= 12.\nStep 5 — check d = 12 is actually reachable: m x n = 1440/144 = 10 = 2 x 5, and 2 and 5 are coprime, so m = 2 and n = 5 works, giving a = 24 and b = 60.\nStep 6 — rule out the bigger options: d = 24 needs 576 to divide 1440, but 1440/576 = 2.5; d = 36 needs 1296, and 1440/1296 is not an integer; d = 48 needs 2304, which already exceeds 1440.\nCheck: 24 x 60 = 1440 and GCD(24, 60) = 12. Correct.\nAnswer: A, 12.",
-      "trap": "Choosing 24 (option B) by finding the pair 24 and 60 and reading off the larger number instead of their GCD. Choosing 120 (option E) spots the factor pair 12 x 120 = 1440 and reports 120, but GCD(12, 120) = 12, not 120. Choosing 36 (option C) hunts for the largest square factor of 1440 but takes 2^2 instead of 2^4, getting 2^2 x 3^2 = 36, and then reports that square factor itself rather than its square root. Choosing 48 (option D) comes from hunting for a balanced factor pair, landing on 30 x 48 = 1440, and reporting one member of the pair rather than their GCD, which is 6. The binding constraint is always that d^2 divides the product.",
+      "explanation": "Step 1 — write d = the greatest common divisor of a and b, a = d x m, b = d x n with the greatest common divisor of m and n = 1. Then a x b = d^2 x m x n = 1440.\nStep 2 — the insight: it is d^2, not d, that must divide 1440.\nStep 3 — factorize: 1440 = 2^5 x 3^2 x 5. The largest perfect square dividing it uses even exponents only: 2^4 x 3^2 = 144.\nStep 4 — so d^2 <= 144 and d <= 12.\nStep 5 — check d = 12 is actually reachable: m x n = 1440/144 = 10 = 2 x 5, and 2 and 5 are coprime, so m = 2 and n = 5 works, giving a = 24 and b = 60.\nStep 6 — rule out the bigger options: d = 24 needs 576 to divide 1440, but 1440/576 = 2.5; d = 36 needs 1296, and 1440/1296 is not an integer; d = 48 needs 2304, which already exceeds 1440.\nCheck: 24 x 60 = 1440 and the greatest common divisor of 24 and 60 = 12. Correct.\nAnswer: A, 12.",
+      "trap": "Choosing 24 (option B) by finding the pair 24 and 60 and reading off the larger number instead of their greatest common divisor. Choosing 120 (option E) spots the factor pair 12 x 120 = 1440 and reports 120, but the greatest common divisor of 12 and 120 = 12, not 120. Choosing 36 (option C) hunts for the largest square factor of 1440 but takes 2^2 instead of 2^4, getting 2^2 x 3^2 = 36, and then reports that square factor itself rather than its square root. Choosing 48 (option D) comes from hunting for a balanced factor pair, landing on 30 x 48 = 1440, and reporting one member of the pair rather than their greatest common divisor, which is 6. The binding constraint is always that d^2 divides the product.",
       "estimated_time_seconds": 120,
       "tags": [
         "gcd",
@@ -2364,8 +2364,8 @@
         "C",
         "E"
       ],
-      "explanation": "Step 1 — the simplification that cracks the question: if n divides 100, then GCD(n, 100) = n and LCM(n, 100) = 100.\nStep 2 — so S(n) = n + 100, and the achievable values are exactly 100 plus a divisor of 100.\nStep 3 — 100 = 2^2 x 5^2, whose divisors are 1, 2, 4, 5, 10, 20, 25, 50, 100. So S(n) can only be 101, 102, 104, 105, 110, 120, 125, 150 or 200.\nA - 101 needs n = 1, and 1 divides 100. TRUE.\nB - 108 needs n = 8, but 100/8 = 12.5, so 8 is not a divisor of 100. FALSE.\nC - 125 needs n = 25, and 100/25 = 4. TRUE.\nD - 180 needs n = 80, and 80 does not divide 100. FALSE.\nE - 200 needs n = 100, which divides itself: GCD(100, 100) = 100 and LCM(100, 100) = 100, sum 200. TRUE.\nCheck C the long way: n = 25 gives GCD(25, 100) = 25 and LCM(25, 100) = 100, so S = 125. Correct.\nAnswer: A, C, E.",
-      "trap": "Grinding out the GCD and LCM separately for each candidate instead of noticing that n dividing 100 collapses them to n and 100. Selecting B or D treats any n up to 100 as eligible: 8 and 80 are built from 100's primes but are not themselves divisors of 100, and for n = 8 the true value is GCD(8, 100) + LCM(8, 100) = 4 + 200 = 204, not 108.",
+      "explanation": "Step 1 — the simplification that cracks the question: if n divides 100, then the greatest common divisor of n and 100 = n and the least common multiple of n and 100 = 100.\nStep 2 — so S(n) = n + 100, and the achievable values are exactly 100 plus a divisor of 100.\nStep 3 — 100 = 2^2 x 5^2, whose divisors are 1, 2, 4, 5, 10, 20, 25, 50, 100. So S(n) can only be 101, 102, 104, 105, 110, 120, 125, 150 or 200.\nA - 101 needs n = 1, and 1 divides 100. TRUE.\nB - 108 needs n = 8, but 100/8 = 12.5, so 8 is not a divisor of 100. FALSE.\nC - 125 needs n = 25, and 100/25 = 4. TRUE.\nD - 180 needs n = 80, and 80 does not divide 100. FALSE.\nE - 200 needs n = 100, which divides itself: the greatest common divisor of 100 and 100 = 100 and the least common multiple of 100 and 100 = 100, sum 200. TRUE.\nCheck C the long way: n = 25 gives the greatest common divisor of 25 and 100 = 25 and the least common multiple of 25 and 100 = 100, so S = 125. Correct.\nAnswer: A, C, E.",
+      "trap": "Grinding out the greatest common divisor and least common multiple separately for each candidate instead of noticing that n dividing 100 collapses them to n and 100. Selecting B or D treats any n up to 100 as eligible: 8 and 80 are built from 100's primes but are not themselves divisors of 100, and for n = 8 the true value is the greatest common divisor of 8 and 100 + the least common multiple of 8 and 100 = 4 + 200 = 204, not 108.",
       "estimated_time_seconds": 115,
       "tags": [
         "gcd",
@@ -2412,8 +2412,8 @@
         "E. 85"
       ],
       "answer": "B",
-      "explanation": "Step 1 — if d leaves remainder 9 when it divides 400, then d divides 400 - 9 = 391 exactly. The same reasoning applies to the other two.\nStep 2 — subtract each remainder: 400 - 9 = 391, 435 - 10 = 425, 541 - 14 = 527.\nStep 3 — the answer is GCD(391, 425, 527).\nStep 4 — factorise: 391 = 17 x 23, 425 = 5^2 x 17, 527 = 17 x 31.\nStep 5 — the only prime shared by all three is 17, to the first power, so the GCD is 17.\nStep 6 — a remainder must be smaller than the divisor, so d must exceed the largest remainder, 14. Since 17 > 14, the answer is legal.\nCheck: 400 = 17 x 23 + 9, 435 = 17 x 25 + 10, 541 = 17 x 31 + 14. All three remainders come out right.\nAnswer: B, 17.",
-      "trap": "Computing GCD(400, 435, 541) directly without subtracting the remainders; that GCD is 1, which leaves no room for remainders of 9, 10 and 14. Options A, C and D each divide exactly ONE of the shifted numbers - 5 divides 425, 23 divides 391, 31 divides 527 - so each is a factor of one, not a common factor of all three. Option E, 85 = 5 x 17, imports the 5 that only 425 contains.",
+      "explanation": "Step 1 — if d leaves remainder 9 when it divides 400, then d divides 400 - 9 = 391 exactly. The same reasoning applies to the other two.\nStep 2 — subtract each remainder: 400 - 9 = 391, 435 - 10 = 425, 541 - 14 = 527.\nStep 3 — the answer is the greatest common divisor of 391, 425 and 527.\nStep 4 — factorize: 391 = 17 x 23, 425 = 5^2 x 17, 527 = 17 x 31.\nStep 5 — the only prime shared by all three is 17, to the first power, so the greatest common divisor is 17.\nStep 6 — a remainder must be smaller than the divisor, so d must exceed the largest remainder, 14. Since 17 > 14, the answer is legal.\nCheck: 400 = 17 x 23 + 9, 435 = 17 x 25 + 10, 541 = 17 x 31 + 14. All three remainders come out right.\nAnswer: B, 17.",
+      "trap": "Computing the greatest common divisor of 400, 435 and 541 directly without subtracting the remainders; that greatest common divisor is 1, which leaves no room for remainders of 9, 10 and 14. Options A, C and D each divide exactly ONE of the shifted numbers - 5 divides 425, 23 divides 391, 31 divides 527 - so each is a factor of one, not a common factor of all three. Option E, 85 = 5 x 17, imports the 5 that only 425 contains.",
       "estimated_time_seconds": 105,
       "tags": [
         "gcd",
@@ -2513,8 +2513,8 @@
       "question": "What is the least positive integer n for which n/3, n/4, n/5, n/6, n/9, n/10, and n/12 are all integers?",
       "options": null,
       "answer": "180",
-      "explanation": "n must be a common multiple of 3, 4, 5, 6, 9, 10, and 12, so n is their least common multiple.\nPrime factorize each: 3=3, 4=2^2, 5=5, 6=2*3, 9=3^2, 10=2*5, 12=2^2*3.\nTake the highest power of each prime that appears: 2^2, 3^2, 5^1.\nLCM = 4 * 9 * 5 = 180.",
-      "trap": "Students multiply all seven divisors together (3*4*5*6*9*10*12) instead of computing the LCM via prime factorization, arriving at a number far larger than 180.",
+      "explanation": "n must be a common multiple of 3, 4, 5, 6, 9, 10, and 12, so n is their least common multiple.\nPrime factorize each: 3=3, 4=2^2, 5=5, 6=2*3, 9=3^2, 10=2*5, 12=2^2*3.\nTake the highest power of each prime that appears: 2^2, 3^2, 5^1.\nLeast common multiple = 4 * 9 * 5 = 180.",
+      "trap": "Students multiply all seven divisors together (3*4*5*6*9*10*12) instead of computing the least common multiple via prime factorization, arriving at a number far larger than 180.",
       "estimated_time_seconds": 100,
       "tags": [
         "lcm",
@@ -2539,8 +2539,8 @@
         "E. 360"
       ],
       "answer": "D",
-      "explanation": "n(n + 2) = 360 gives n = 18, so the integers are 18 and 20 (18*20 = 360).\n18 = 2*3^2 and 20 = 2^2*5.\nLCM = 2^2*3^2*5 = 180.\nCheck: two consecutive even integers share the factor 2, so LCM = product/2 = 360/2 = 180.",
-      "trap": "Assuming neighbouring integers share no factor, so that LCM = product = 360 (E). Consecutive even integers have gcd 2, not 1.",
+      "explanation": "n(n + 2) = 360 gives n = 18, so the integers are 18 and 20 (18*20 = 360).\n18 = 2*3^2 and 20 = 2^2*5.\nLeast common multiple = 2^2*3^2*5 = 180.\nCheck: two consecutive even integers share the factor 2, so least common multiple = product/2 = 360/2 = 180.",
+      "trap": "Assuming neighboring integers share no factor, so that least common multiple = product = 360 (E). Consecutive even integers have gcd 2, not 1.",
       "estimated_time_seconds": 60,
       "tags": [
         "lcm",
@@ -2580,7 +2580,7 @@
       "options": null,
       "answer": "6",
       "explanation": "Step 1: p = 0.036k = 9k/250, and gcd(9, 250) = 1, so p is an integer exactly when 250 divides k.\nStep 2: q = 0.15k = 3k/20, and gcd(3, 20) = 1, so q is an integer exactly when 20 divides k.\nStep 3: k must be a multiple of both 250 and 20, i.e. a multiple of lcm(250, 20) = 500.\nStep 4: Multiples of 500 from 1 to 3,000: 500, 1000, 1500, 2000, 2500, 3000, which is 6 values.\nCheck: k = 500 gives p = 18 and q = 75, both integers.",
-      "trap": "Counting multiples of 250 only (3000/250) gives 12; multiplying 250 by 20 instead of taking the LCM gives 5000, and then no value qualifies (0).",
+      "trap": "Counting multiples of 250 only (3000/250) gives 12; multiplying 250 by 20 instead of taking the least common multiple gives 5000, and then no value qualifies (0).",
       "estimated_time_seconds": 100,
       "tags": [
         "lcm",
@@ -2597,7 +2597,7 @@
       "id": "NUM-GCL-KMF-005",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "Marco waters both of his plants on July 1. After that he waters the first plant every 4th day (July 5, July 9, and so on) and the second plant every 6th day (July 7, July 13, and so on), continuing through July 31. Find the number of days in July on which exactly one of the two plants receives water.",
+      "question": "Marco waters both of his plants on July 1. After that he waters the first plant every 4th day (July 5, July 9, and so on) and the second plant every 6th day (July 7, July 13, and so on), continuing through July 31. What is the number of days in July on which exactly one of the two plants receives water?",
       "options": null,
       "answer": "8",
       "explanation": "1. First plant watered on July 1, 5, 9, 13, 17, 21, 25, 29: 8 days.\n2. Second plant watered on July 1, 7, 13, 19, 25, 31: 6 days.\n3. Days when both are watered repeat every lcm(4, 6) = 12 days from July 1: July 1, 13, 25: 3 days.\n4. Exactly one plant: (8 - 3) + (6 - 3) = 5 + 3 = 8 days.\n5. Check by listing: first only: 5, 9, 17, 21, 29 (5 days); second only: 7, 19, 31 (3 days); total 8.",
@@ -2641,7 +2641,7 @@
       "question": "For how many positive integers n < 396 does each of 6, 9 and 12 divide n + 5 with no remainder?",
       "options": null,
       "answer": "11",
-      "explanation": "1. Divisible by each of 6, 9 and 12 means divisible by their LCM: 6 = 2*3, 9 = 3^2, 12 = 2^2*3, so the LCM is 2^2 * 3^2 = 36.\n2. So n + 5 = 36k for a positive integer k, and n = 36k - 5.\n3. We need 1 <= n <= 395, so 36k <= 400, so k <= 11.\n4. k = 1 to 11 gives n = 31, 67, 103, 139, 175, 211, 247, 283, 319, 355, 391, which is 11 values.\nCheck: k = 12 would give n = 427, which is too big.",
+      "explanation": "1. Divisible by each of 6, 9 and 12 means divisible by their least common multiple: 6 = 2*3, 9 = 3^2, 12 = 2^2*3, so the least common multiple is 2^2 * 3^2 = 36.\n2. So n + 5 = 36k for a positive integer k, and n = 36k - 5.\n3. We need 1 <= n <= 395, so 36k <= 400, so k <= 11.\n4. k = 1 to 11 gives n = 31, 67, 103, 139, 175, 211, 247, 283, 319, 355, 391, which is 11 values.\nCheck: k = 12 would give n = 427, which is too big.",
       "trap": "Counting multiples of 36 below 396 instead of numbers that are 5 less than a multiple (ignoring the shift of 5) stops at 360 and gives 10.",
       "estimated_time_seconds": 90,
       "tags": [

@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -60,8 +60,8 @@ Five years ago Elena was 17 years old. How old will Elena be 8 years from now? E
 
 Nina is currently twice as old as her brother Marcus, and Marcus is at least 1 year old.
 
-> **Column A:**  The difference between Nina's and Marcus's ages 10 years from now
-> **Column B:**  The difference between Nina's and Marcus's ages today
+> **Quantity A:**  The difference between Nina's and Marcus's ages 10 years from now
+> **Quantity B:**  The difference between Nina's and Marcus's ages today
 
 ---
 
@@ -125,8 +125,8 @@ Priya is currently 35 years old and her son Dev is currently 11 years old. How m
 
 The sum of Mei's and Jordan's current ages is 56, and Mei is strictly older than Jordan.
 
-> **Column A:**  Mei's current age
-> **Column B:**  28
+> **Quantity A:**  Mei's current age
+> **Quantity B:**  28
 
 **Q13** · `WRD-AGE-026` · Select all that apply · 90s
 
@@ -158,8 +158,8 @@ Carlos is 3 times as old as Mei, and Jordan is 5 years older than Mei. Five year
 
 Priya is currently twice as old as Sasha, and the sum of their present ages is 72.
 
-> **Column A:**  The number of years from now until Priya's age is exactly 5/4 of Sasha's age
-> **Column B:**  24
+> **Quantity A:**  The number of years from now until Priya's age is exactly 5/4 of Sasha's age
+> **Quantity B:**  24
 
 **Q16** · `WRD-AGE-029` · Numeric Entry · 110s
 
@@ -181,8 +181,8 @@ The sum of Marcus's and Zoe's present ages is 66, and Marcus is 18 years older t
 
 Six years ago Ana was 5 times as old as Beto was then. Twelve years from now Ana will be exactly twice as old as Beto will be then.
 
-> **Column A:**  Ana's current age
-> **Column B:**  40
+> **Quantity A:**  Ana's current age
+> **Quantity B:**  40
 
 **Q19** · `WRD-AGE-032` · Select all that apply · 105s
 
@@ -214,8 +214,8 @@ Carlos is 20 percent older than Mei, and Mei is 25 percent younger than Jordan. 
 
 Six years ago the ratio of Sasha's age to Marcus's age was 2 to 3. Both ages are positive whole numbers of years.
 
-> **Column A:**  Sasha's present age
-> **Column B:**  20
+> **Quantity A:**  Sasha's present age
+> **Quantity B:**  20
 
 **Q23** · `WRD-AGE-036` · Select all that apply · 105s
 
@@ -263,8 +263,8 @@ Carlos is 5 years older than Beto, and Divya is 10 years older than Beto. Five y
 
 Marcus's age is a prime number strictly between 20 and 40. Sasha's age equals Marcus's age minus 14. The ratio of Marcus's age to Sasha's age is strictly between 2.5 and 4.
 
-> **Column A:**  Marcus's age
-> **Column B:**  27
+> **Quantity A:**  Marcus's age
+> **Quantity B:**  27
 
 **Q28** · `WRD-AGE-039` · Numeric Entry · 120s
 
@@ -468,7 +468,7 @@ Answer: 3.
 Step 1 — let Jordan be j, so Mei is 56 - j.
 Step 2 — 'Mei is strictly older' means 56 - j > j, so 56 > 2j and j < 28.
 Step 3 — then Mei = 56 - j > 56 - 28 = 28.
-Step 4 — Column A exceeds 28 for every admissible pair, so Column A is greater.
+Step 4 — Quantity A exceeds 28 for every admissible pair, so Quantity A is greater.
 Check: try Jordan 27, Mei 29: sum 56 and Mei older, and 29 > 28. Try Jordan 6, Mei 50: sum 56 and Mei older, and 50 > 28. The only way Mei could be 28 is Jordan 28 as well, which the word 'strictly' forbids.
 Answer: A.
 
@@ -512,7 +512,7 @@ Step 3 — the condition is 48 + t = (5/4)*(24 + t).
 Step 4 — multiply both sides by 4: 192 + 4t = 5*(24 + t) = 120 + 5t.
 Step 5 — so 72 = t.
 Faster route: the difference is 48 - 24 = 24 forever. A 5:4 ratio means the difference is 1 part, so 1 part = 24 and Sasha's age must be 4 parts = 96, which is 96 - 24 = 72 years from now.
-Step 6 — Column A is 72 and Column B is 24, so Column A is greater.
+Step 6 — Quantity A is 72 and Quantity B is 24, so Quantity A is greater.
 Check: in 72 years Priya is 120 and Sasha is 96. (5/4)*96 = 120, and 120 - 96 = 24, the same difference as today. Correct.
 Answer: A.
 
@@ -552,7 +552,7 @@ Step 2 — twelve years from now they are a + 12 and b + 12, so a + 12 = 2*(b + 
 Step 3 — set the two expressions equal: 5b - 24 = 2b + 12, so 3b = 36 and b = 12.
 Step 4 — then a = 2*12 + 12 = 36. Ana is 36 today.
 Faster route: the difference a - b never changes. Six years ago '5 times' makes the difference 4 parts of Beto's age then, and in twelve years 'twice' makes the difference equal to Beto's age then, so 4*(b - 6) = b + 12, giving 3b = 36 and b = 12, and the difference is 24.
-Step 5 — Column A is 36 and Column B is 40, so Column B is greater.
+Step 5 — Quantity A is 36 and Quantity B is 40, so Quantity B is greater.
 Check: today Ana 36 and Beto 12. Six years ago 30 and 6, and 30 = 5*6. Twelve years from now 48 and 24, and 48 = 2*24. The difference is 24 at all three moments. Correct.
 Answer: B.
 
@@ -671,11 +671,11 @@ Step 1 — list the primes strictly between 20 and 40: 23, 29, 31, 37.
 Step 2 — subtract 14 from each to get the matching Sasha age: 9, 15, 17, 23.
 Step 3 — form each ratio. 23/9 = 2.56; 29/15 = 1.93; 31/17 = 1.82; 37/23 = 1.61.
 Step 4 — the ratio falls as Marcus's age rises, because the 14-year gap is a shrinking share of a growing age. Only 2.56 lies strictly between 2.5 and 4, so Marcus is 23 and Sasha is 9.
-Step 5 — Column A = 23 and Column B = 27, so Column B is greater.
+Step 5 — Quantity A = 23 and Quantity B = 27, so Quantity B is greater.
 Check: 23 is prime and lies strictly between 20 and 40; 23 - 14 = 9; 23/9 = 2.56, which is strictly between 2.5 and 4; and 23 < 27. Exactly one pair survives all three conditions, so the comparison is determined.
 Answer: B.
 
-**Trap.** The third condition is the whole item, and it is the one students skip. Every other candidate prime beats 27: Marcus 29, 31 or 37 all make Column A greater and produce choice A. Only 23 survives the ratio test, and 23 < 27. Choice D is the other draw, since no age is stated outright and the item looks indeterminate, but three conditions leave exactly one pair. Choice C, 27, is what a student gets by picking the prime nearest to Column B rather than testing the ratio.
+**Trap.** The third condition is the whole item, and it is the one students skip. Every other candidate prime beats 27: Marcus 29, 31 or 37 all make Quantity A greater and produce choice A. Only 23 survives the ratio test, and 23 < 27. Choice D is the other draw, since no age is stated outright and the item looks indeterminate, but three conditions leave exactly one pair. Choice C, 27, is what a student gets by picking the prime nearest to Quantity B rather than testing the ratio.
 
 ### Q28 · `WRD-AGE-039` — Answer: 4
 

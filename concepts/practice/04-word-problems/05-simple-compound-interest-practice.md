@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ An investment of $1,200 earns 10 percent per year, compounded annually. What is 
 
 A deposit of $1,000 earns interest at 10 percent per year for exactly 1 year.
 
-> **Column A:**  The total amount if the interest is simple
-> **Column B:**  The total amount if the interest is compounded annually
+> **Quantity A:**  The total amount if the interest is simple
+> **Quantity B:**  The total amount if the interest is compounded annually
 
 **Q5** · `WRD-INT-012` · Numeric Entry · 50s
 
@@ -79,8 +79,8 @@ A sum of $4,000 is invested at a nominal annual rate of 5 percent, compounded se
 
 A principal of $2,000 is invested for 2 years at 8 percent per year.
 
-> **Column A:**  The total amount if the interest is simple
-> **Column B:**  The total amount if the interest is compounded annually
+> **Quantity A:**  The total amount if the interest is simple
+> **Quantity B:**  The total amount if the interest is compounded annually
 
 **Q8** · `WRD-INT-019` · Numeric Entry · 65s
 
@@ -92,8 +92,8 @@ A deposit of $800 grows to $1,040 under simple interest at 5 percent per year. I
 
 A principal of $10,000 is invested for 1 year at a nominal annual rate of 12 percent.
 
-> **Column A:**  The total amount if interest is compounded monthly
-> **Column B:**  The total amount if interest is compounded quarterly
+> **Quantity A:**  The total amount if interest is compounded monthly
+> **Quantity B:**  The total amount if interest is compounded quarterly
 
 **Q10** · `WRD-INT-026` · Select all that apply · 90s
 
@@ -171,8 +171,8 @@ An account compounds interest semi-annually and turns a $10,000 deposit into $11
 
 A principal of $5,000 is invested for 3 years.
 
-> **Column A:**  The total amount at 9 percent per year, compounded annually
-> **Column B:**  The total amount at 10 percent per year, simple interest
+> **Quantity A:**  The total amount at 9 percent per year, compounded annually
+> **Quantity B:**  The total amount at 10 percent per year, simple interest
 
 **Q18** · `WRD-INT-038` · MCQ · 100s
 
@@ -214,8 +214,8 @@ Investment X is $5,000 at 5 percent per year simple interest. Investment Y is $4
 
 An amount of $1,000 is invested at r percent per year, compounded annually, where r > 0.
 
-> **Column A:**  The interest earned during the third year
-> **Column B:**  Twice the interest earned during the first year
+> **Quantity A:**  The interest earned during the third year
+> **Quantity B:**  Twice the interest earned during the first year
 
 **Q23** · `WRD-INT-043` · MCQ · 100s
 
@@ -263,8 +263,8 @@ Alice and Bob each invest $10,000 at the same moment. Alice earns 8 percent per 
 
 A sum of money is invested at a constant annual rate, compounded annually.
 
-> **Column A:**  The number of years the sum takes to double at 8 percent per year
-> **Column B:**  Half the number of years the sum takes to double at 4 percent per year
+> **Quantity A:**  The number of years the sum takes to double at 8 percent per year
+> **Quantity B:**  Half the number of years the sum takes to double at 4 percent per year
 
 **Q28** · `WRD-INT-048` · Numeric Entry · 120s
 
@@ -372,8 +372,8 @@ Answer: D.
 
 ### Q4 · `WRD-INT-011` — Answer: C
 
-Step 1 — Column A: simple interest gives A = P(1 + r*t) = 1000 * (1 + 0.10*1) = 1100.
-Step 2 — Column B: annual compounding gives A = P(1 + r)^t = 1000 * (1.10)^1 = 1100.
+Step 1 — Quantity A: simple interest gives A = P(1 + r*t) = 1000 * (1 + 0.10*1) = 1100.
+Step 2 — Quantity B: annual compounding gives A = P(1 + r)^t = 1000 * (1.10)^1 = 1100.
 Step 3 — the structural reason: compounding only helps once interest has been added to the balance, and after exactly one compounding period no interest has yet been re-invested. Simple and compound agree at t = 1 and diverge only afterwards.
 Check: both accounts pay 10 percent of 1,000 = 100 for the single year, so both hold 1,100. Correct.
 Answer: C.
@@ -403,9 +403,9 @@ Answer: E.
 
 ### Q7 · `WRD-INT-015` — Answer: B
 
-Step 1 — Column A: A = 2000 * (1 + 0.08*2) = 2000 * 1.16 = 2320.
-Step 2 — Column B: A = 2000 * (1.08)^2 = 2000 * 1.1664 = 2332.80.
-Step 3 — the structural route needs no multiplication of the whole amount: over exactly 2 years the compound account beats the simple account by P*r^2 = 2000 * (0.08)^2 = 2000 * 0.0064 = 12.80, and 12.80 is positive, so Column B is greater.
+Step 1 — Quantity A: A = 2000 * (1 + 0.08*2) = 2000 * 1.16 = 2320.
+Step 2 — Quantity B: A = 2000 * (1.08)^2 = 2000 * 1.1664 = 2332.80.
+Step 3 — the structural route needs no multiplication of the whole amount: over exactly 2 years the compound account beats the simple account by P*r^2 = 2000 * (0.08)^2 = 2000 * 0.0064 = 12.80, and 12.80 is positive, so Quantity B is greater.
 Check: 2320 + 12.80 = 2332.80, matching Step 2. Correct.
 Answer: B.
 
@@ -423,13 +423,13 @@ Answer: 6.
 
 ### Q9 · `WRD-INT-024` — Answer: A
 
-Step 1 — Column A: monthly means rate per period 0.12/12 = 0.01 and 12 periods, so A = 10000 * (1.01)^12 = 10000 * 1.126825 = 11268.25.
-Step 2 — Column B: quarterly means rate per period 0.12/4 = 0.03 and 4 periods, so A = 10000 * (1.03)^4 = 10000 * 1.12550881 = 11255.09.
-Step 3 — the structural route: for a fixed nominal rate, every extra split of the year puts interest to work sooner, so the amount strictly increases with the number of compounding periods. Monthly has 12 periods against quarterly's 4, so Column A must be larger without computing either power.
+Step 1 — Quantity A: monthly means rate per period 0.12/12 = 0.01 and 12 periods, so A = 10000 * (1.01)^12 = 10000 * 1.126825 = 11268.25.
+Step 2 — Quantity B: quarterly means rate per period 0.12/4 = 0.03 and 4 periods, so A = 10000 * (1.03)^4 = 10000 * 1.12550881 = 11255.09.
+Step 3 — the structural route: for a fixed nominal rate, every extra split of the year puts interest to work sooner, so the amount strictly increases with the number of compounding periods. Monthly has 12 periods against quarterly's 4, so Quantity A must be larger without computing either power.
 Check: 11268.25 is greater than 11255.09, and both exceed the 11,200 that simple interest would give. Correct.
 Answer: A.
 
-**Trap.** Answering C because 'the nominal rate is 12 percent in both columns' treats the stated annual rate as the effective rate; the nominal rate is the same but the effective rates, 12.68 percent and 12.55 percent, are not. Multiplying the rate by the number of periods instead of dividing, 12 * 12 = 144 percent for Column A, produces an absurd balance and should be caught by inspection.
+**Trap.** Answering C because 'the nominal rate is 12 percent in both columns' treats the stated annual rate as the effective rate; the nominal rate is the same but the effective rates, 12.68 percent and 12.55 percent, are not. Multiplying the rate by the number of periods instead of dividing, 12 * 12 = 144 percent for Quantity A, produces an absurd balance and should be caught by inspection.
 
 ### Q10 · `WRD-INT-026` — Answer: B, D, E
 
@@ -513,11 +513,11 @@ Answer: C.
 
 ### Q17 · `WRD-INT-037` — Answer: B
 
-Step 1 — Column B is the easy one: A = 5000 * (1 + 0.10*3) = 5000 * 1.30 = 6500.
-Step 2 — Column A: (1.09)^2 = 1.1881, and (1.09)^3 = 1.1881 * 1.09 = 1.295029.
+Step 1 — Quantity B is the easy one: A = 5000 * (1 + 0.10*3) = 5000 * 1.30 = 6500.
+Step 2 — Quantity A: (1.09)^2 = 1.1881, and (1.09)^3 = 1.1881 * 1.09 = 1.295029.
 Step 3 — A = 5000 * 1.295029 = 6475.145, which is 6475.15 to the nearest cent.
-Step 4 — 6475.15 is less than 6500, so Column B is greater.
-Check year by year for Column A: 5000 -> 5450 -> 5940.50 -> 6475.145, and each year's interest (450, 490.50, 534.645) is indeed rising as the balance grows, yet the total still falls short of the flat 500 per year that 10 percent simple pays. Correct.
+Step 4 — 6475.15 is less than 6500, so Quantity B is greater.
+Check year by year for Quantity A: 5000 -> 5450 -> 5940.50 -> 6475.145, and each year's interest (450, 490.50, 534.645) is indeed rising as the balance grows, yet the total still falls short of the flat 500 per year that 10 percent simple pays. Correct.
 Answer: B.
 
 **Trap.** Answering A on the reflex that compound always beats simple ignores the one percentage point the simple account has in hand. Over only 3 years the compounding bonus for 9 percent is worth about 2.5 percent of the principal (1.09^3 - (1 + 0.09*3) = 1.295029 - 1.27 = 0.025029), less than the 3 percent that the extra point of simple interest is worth, so the higher rate wins. The reflex becomes right soon after: by year 4 the 9 percent compound account overtakes, since 5000*(1.09)^4 = 7057.91 against 5000*(1 + 0.10*4) = 7000.
@@ -574,14 +574,14 @@ Answer: C.
 
 Step 1 — write the decimal rate as d = r/100, with d > 0.
 Step 2 — the first year's interest is earned on the opening balance of 1,000: it is 1000*d.
-Step 3 — the third year's interest is earned on the balance at the start of year 3, which is 1000*(1 + d)^2. So Column A = 1000*d*(1 + d)^2.
-Step 4 — Column B = 2000*d. Dividing both columns by the positive quantity 1000*d, the comparison is (1 + d)^2 against 2.
+Step 3 — the third year's interest is earned on the balance at the start of year 3, which is 1000*(1 + d)^2. So Quantity A = 1000*d*(1 + d)^2.
+Step 4 — Quantity B = 2000*d. Dividing both columns by the positive quantity 1000*d, the comparison is (1 + d)^2 against 2.
 Step 5 — (1 + d)^2 = 2 exactly when d = sqrt(2) - 1 = 0.4142, that is r = 41.42 percent.
-Step 6 — test r = 10: (1.10)^2 = 1.21 < 2, so Column B is greater. Test r = 50: (1.50)^2 = 2.25 > 2, so Column A is greater. The relationship flips.
-Check the two cases in dollars. At r = 10: year 1 interest 100, year 3 interest 1000*0.10*1.21 = 121, and Column B = 200 > 121. At r = 50: year 1 interest 500, year 3 interest 1000*0.50*2.25 = 1125, and Column B = 1000 < 1125. Correct.
+Step 6 — test r = 10: (1.10)^2 = 1.21 < 2, so Quantity B is greater. Test r = 50: (1.50)^2 = 2.25 > 2, so Quantity A is greater. The relationship flips.
+Check the two cases in dollars. At r = 10: year 1 interest 100, year 3 interest 1000*0.10*1.21 = 121, and Quantity B = 200 > 121. At r = 50: year 1 interest 500, year 3 interest 1000*0.50*2.25 = 1125, and Quantity B = 1000 < 1125. Correct.
 Answer: D.
 
-**Trap.** Answering B looks safe because at every ordinary bank rate the balance has not come close to doubling by year 3, so the third year's interest is well under twice the first year's. That reasoning quietly assumes r is small; the stem allows any r > 0, and above about 41.4 percent the balance more than doubles in two years and Column A wins. Answering A on the reflex 'compound interest grows fast' fails for exactly the same reason in the other direction.
+**Trap.** Answering B looks safe because at every ordinary bank rate the balance has not come close to doubling by year 3, so the third year's interest is well under twice the first year's. That reasoning quietly assumes r is small; the stem allows any r > 0, and above about 41.4 percent the balance more than doubles in two years and Quantity A wins. Answering A on the reflex 'compound interest grows fast' fails for exactly the same reason in the other direction.
 
 ### Q23 · `WRD-INT-043` — Answer: B
 
@@ -633,15 +633,15 @@ Answer: C.
 
 ### Q27 · `WRD-INT-047` — Answer: A
 
-Step 1 — let T8 be the doubling time at 8 percent and T4 the doubling time at 4 percent. Column A is T8 and Column B is T4/2.
+Step 1 — let T8 be the doubling time at 8 percent and T4 the doubling time at 4 percent. Quantity A is T8 and Quantity B is T4/2.
 Step 2 — the comparison T8 against T4/2 is the same as 2*T8 against T4: does doubling at 4 percent take more or less than twice as long as doubling at 8 percent?
 Step 3 — the insight is to compare one year at 8 percent with two years at 4 percent. (1.04)^2 = 1.0816, which is greater than 1.08.
 Step 4 — so every two years at 4 percent grow the money slightly more than one year at 8 percent does. The 4 percent account therefore reaches double in less than twice the time the 8 percent account needs: T4 < 2*T8.
-Step 5 — dividing by 2, T4/2 < T8, so Column A is greater.
+Step 5 — dividing by 2, T4/2 < T8, so Quantity A is greater.
 Check with numbers: (1.08)^9 = 1.9990, just short of 2, so T8 is a little over 9 years, about 9.006. (1.04)^17 = 1.9479 and (1.04)^18 = 2.0258, so T4 is about 17.67 and T4/2 is about 8.84. Indeed 9.006 > 8.84. Correct.
 Answer: A.
 
-**Trap.** The Rule of 72 gives 72/8 = 9 and 72/4 = 18, so Column B looks like exactly 18/2 = 9 and the answer looks like C. The Rule of 72 is an approximation whose error grows with the rate, and here the two estimates are wrong by different amounts, so it cannot settle a comparison this tight. The exact structure does settle it: (1.04)^2 = 1.0816 exceeds 1.08, and that single inequality decides the whole question. Answering D on the ground that the principal is unstated also fails, since the doubling time does not depend on the principal.
+**Trap.** The Rule of 72 gives 72/8 = 9 and 72/4 = 18, so Quantity B looks like exactly 18/2 = 9 and the answer looks like C. The Rule of 72 is an approximation whose error grows with the rate, and here the two estimates are wrong by different amounts, so it cannot settle a comparison this tight. The exact structure does settle it: (1.04)^2 = 1.0816 exceeds 1.08, and that single inequality decides the whole question. Answering D on the ground that the principal is unstated also fails, since the doubling time does not depend on the principal.
 
 ### Q28 · `WRD-INT-048` — Answer: 20000
 

@@ -153,7 +153,7 @@ one tier apart.
 **Minimal fix.** Change the second condition to an aggregate one, which both adds a step and breaks the
 template collision with 011:
 "Twelve years from now, the sum of their two ages will be exactly 3 times Beto's age at that time."
-**Verified myself:** (3b + 12) + (b + 12) = 3(b + 12) → 4b + 24 = 3b + 36 → b = 12, Ana = 36, so Column A
+**Verified myself:** (3b + 12) + (b + 12) = 3(b + 12) → 4b + 24 = 3b + 36 → b = 12, Ana = 36, so Quantity A
 is still 36 < 40 and the key stays **B**. Check: in 12 years 48 + 24 = 72 = 3*24 ✓.
 
 ### Cosmetic note (no fix required)
@@ -218,16 +218,16 @@ condition **except 039** (D1), and the only other tier-inflated items are 028 (D
 
 ## 4. WRD-AGE-035 — indeterminacy confirmed
 
-Stem: six years ago Sasha : Marcus = 2 : 3, ages positive whole numbers. Column A = Sasha now, Column B = 20.
+Stem: six years ago Sasha : Marcus = 2 : 3, ages positive whole numbers. Quantity A = Sasha now, Quantity B = 20.
 
 Independent parametrisation: six years ago Sasha = 2k, Marcus = 3k with k a positive integer (k must be an
 integer for both ages to be whole), so Sasha now = 2k + 6, unbounded. Two concrete valid scenarios with
 **opposite orderings**:
 
 - k = 1: six years ago Sasha 2, Marcus 3 (2/3 ✓, both positive whole numbers). Today Sasha **8**, Marcus 9.
-  8 < 20 → **Column B greater**.
+  8 < 20 → **Quantity B greater**.
 - k = 10: six years ago Sasha 20, Marcus 30 (20/30 = 2/3 ✓). Today Sasha **26**, Marcus 36.
-  26 > 20 → **Column A greater**.
+  26 > 20 → **Quantity A greater**.
 
 (And k = 7 gives Sasha exactly 20 — equality is also attainable, which the stored trap paragraph correctly
 names as the source of the C mis-key.) Every scenario satisfies every stated condition, no age is negative,

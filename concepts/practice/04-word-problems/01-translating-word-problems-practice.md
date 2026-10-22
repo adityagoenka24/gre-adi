@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ A shop sells apples for $2 each and oranges for $3 each. A customer buys x apple
 
 A father is 30 years older than his son, and the son is currently 10 years old.
 
-> **Column A:**  The father's age in 5 years
-> **Column B:**  45
+> **Quantity A:**  The father's age in 5 years
+> **Quantity B:**  45
 
 **Q5** · `WRD-MST-051` · Select all that apply · 50s
 
@@ -115,15 +115,15 @@ The difference between two positive integers is 14 and their sum is 46. What is 
 
 Three consecutive integers have a sum of 3k, where k is a positive integer.
 
-> **Column A:**  The middle integer
-> **Column B:**  k
+> **Quantity A:**  The middle integer
+> **Quantity B:**  k
 
 **Q12** · `WRD-MST-052` · QC · 85s
 
 The numbers n and m satisfy m > 4, and n is 5 less than 3 times m.
 
-> **Column A:**  n
-> **Column B:**  2m + 1
+> **Quantity A:**  n
+> **Quantity B:**  2m + 1
 
 **Q13** · `ALG-WPM-021` · Select all that apply · 90s
 
@@ -195,15 +195,15 @@ At a bakery a muffin costs $2 more than a scone, and 3 muffins cost the same as 
 
 A man's age 5 years ago was 4 times his son's age at that time. Ten years from now the man's age will be twice his son's age at that point.
 
-> **Column A:**  The man's current age
-> **Column B:**  45
+> **Quantity A:**  The man's current age
+> **Quantity B:**  45
 
 **Q20** · `WRD-MST-055` · QC · 105s
 
 Three shelves hold 114 books in total. The upper shelf holds 12 fewer books than three times the number of books on the lower shelf, and the middle shelf holds half as many books as the lower shelf.
 
-> **Column A:**  The number of books on the upper shelf
-> **Column B:**  66
+> **Quantity A:**  The number of books on the upper shelf
+> **Quantity B:**  66
 
 **Q21** · `ALG-WPM-046` · Numeric Entry · 100s
 
@@ -273,8 +273,8 @@ A shelf holds only novels and manuals. If 6 more novels were placed on the shelf
 
 x and y are positive numbers with x > y, and the sum of x and y is 4 more than twice their difference.
 
-> **Column A:**  x
-> **Column B:**  3y + 4
+> **Quantity A:**  x
+> **Quantity B:**  3y + 4
 
 **Q29** · `WRD-MST-060` · Numeric Entry · 125s
 
@@ -377,11 +377,11 @@ Answer: 4.
 
 Step 1 — translate 'is 30 years older than'. Father's age now = son's age now + 30 = 10 + 30 = 40.
 Step 2 — translate 'in 5 years'. Five years from now the father will be 40 + 5 = 45.
-Step 3 — compare. Column A = 45 and Column B = 45, so the two quantities are equal.
+Step 3 — compare. Quantity A = 45 and Quantity B = 45, so the two quantities are equal.
 Check: in 5 years the son is 15 and the father is 45, and 45 - 15 = 30, the stated gap. Correct.
 Answer: C.
 
-**Trap.** Reading '30 years older' backwards gives a father of 10 - 30 = -20 now, or 30 - 10 = 20 now and 25 in five years, both pointing to choice B. A second route to B is adding the 5 years to the son instead of the father, getting a father of 40 against Column B's 45.
+**Trap.** Reading '30 years older' backwards gives a father of 10 - 30 = -20 now, or 30 - 10 = 20 now and 25 in five years, both pointing to choice B. A second route to B is adding the 5 years to the son instead of the father, getting a father of 40 against Quantity B's 45.
 
 ### Q5 · `WRD-MST-051` — Answer: A, C, E
 
@@ -477,25 +477,25 @@ Step 1 — name the unknown around the MIDDLE term, which is the efficient choic
 Step 2 — translate 'have a sum of 3k'.
 (m - 1) + m + (m + 1) = 3m = 3k
 Step 3 — solve. The -1 and +1 cancel, so 3m = 3k gives m = k exactly, for every allowed k.
-Column A = m = k = Column B, so the two quantities are equal.
+Quantity A = m = k = Quantity B, so the two quantities are equal.
 Check with k = 5: the sum is 15, and the three integers are 4, 5, 6, whose middle term is 5 = k. Try k = 100: the sum is 300 and the integers are 99, 100, 101, middle 100 = k. Correct.
 Answer: C.
 
-**Trap.** Choosing D on the grounds that the actual integers are never named. They do not need to be: the sum of three consecutive integers is always 3 times the middle one, so the middle term is pinned to k no matter which k is used. Setting the integers up as n, n + 1, n + 2 instead gives 3n + 3 = 3k, so n = k - 1; a student who then compares n rather than the middle term n + 1 wrongly concludes that Column B is greater.
+**Trap.** Choosing D on the grounds that the actual integers are never named. They do not need to be: the sum of three consecutive integers is always 3 times the middle one, so the middle term is pinned to k no matter which k is used. Setting the integers up as n, n + 1, n + 2 instead gives 3n + 3 = 3k, so n = k - 1; a student who then compares n rather than the middle term n + 1 wrongly concludes that Quantity B is greater.
 
 ### Q12 · `WRD-MST-052` — Answer: D
 
 Step 1 — translate '5 less than 3 times m'. Three times m is 3m, and 5 less than that is 3m - 5. So n = 3m - 5.
 Step 2 — compare the two columns as expressions in m.
-Column A - Column B = (3m - 5) - (2m + 1) = m - 6
+Quantity A - Quantity B = (3m - 5) - (2m + 1) = m - 6
 Step 3 — test the sign of m - 6 against the only condition given, m > 4.
-If m = 5: Column A = 10 and Column B = 11, so Column B is greater.
-If m = 7: Column A = 16 and Column B = 15, so Column A is greater.
+If m = 5: Quantity A = 10 and Quantity B = 11, so Quantity B is greater.
+If m = 7: Quantity A = 16 and Quantity B = 15, so Quantity A is greater.
 Step 4 — the comparison changes direction inside the allowed range, so it cannot be determined.
 Check: the two columns are equal exactly at m = 6, which m > 4 permits, and m may lie on either side of 6. Correct.
 Answer: D.
 
-**Trap.** Reading '5 less than 3 times m' as 5 - 3m makes Column A negative while Column B is at least 9, which points confidently at B. The phrase 'less than' reverses the order: the quantity being reduced, 3m, comes first. Students who translate correctly but then test only m = 5 also stop at B without checking whether m - 6 can turn positive.
+**Trap.** Reading '5 less than 3 times m' as 5 - 3m makes Quantity A negative while Quantity B is at least 9, which points confidently at B. The phrase 'less than' reverses the order: the quantity being reduced, 3m, comes first. Students who translate correctly but then test only m = 5 also stop at B without checking whether m - 6 can turn positive.
 
 ### Q13 · `ALG-WPM-021` — Answer: B, C, D
 
@@ -609,7 +609,7 @@ m + 10 = 2s + 20, so m = 2s + 10
 Step 4 — set the two expressions for m equal.
 4s - 15 = 2s + 10
 2s = 25, so s = 12.5 and m = 2(12.5) + 10 = 35
-Step 5 — compare. Column A = 35 and Column B = 45, so Column B is greater.
+Step 5 — compare. Quantity A = 35 and Quantity B = 45, so Quantity B is greater.
 Check: 5 years ago the ages were 30 and 7.5, and 30 = 4 * 7.5; in 10 years they will be 45 and 22.5, and 45 = 2 * 22.5. Correct.
 Answer: B.
 
@@ -625,7 +625,7 @@ L + L/2 + (3L - 12) = 114
 (9/2)L = 126
 L = 126 * 2/9 = 28
 Step 4 — answer the column, not L. Upper shelf = 3(28) - 12 = 84 - 12 = 72.
-Step 5 — compare. 72 > 66, so Column A is greater.
+Step 5 — compare. 72 > 66, so Quantity A is greater.
 Check: lower 28, middle 14, upper 72, and 28 + 14 + 72 = 114; 72 is 12 fewer than 3 * 28 = 84. Correct.
 Answer: A.
 
@@ -763,9 +763,9 @@ Step 2 — expand and collect.
 x + y = 2x - 2y + 4
 3y - 4 = x
 Step 3 — compare the columns using that single relationship. No individual value of x or y is needed.
-Column A - Column B = (3y - 4) - (3y + 4) = -8
-Step 4 — the difference is the constant -8, so Column A is always exactly 8 less than Column B, whatever y is. Column B is greater.
-Check with y = 5: x = 3(5) - 4 = 11, and 11 + 5 = 16 while 2(11 - 5) + 4 = 16, so the story holds; Column A = 11 and Column B = 19, a gap of 8. Try y = 10: x = 26, 26 + 10 = 36 = 2(16) + 4, and Column B = 34, again a gap of 8. Correct.
+Quantity A - Quantity B = (3y - 4) - (3y + 4) = -8
+Step 4 — the difference is the constant -8, so Quantity A is always exactly 8 less than Quantity B, whatever y is. Quantity B is greater.
+Check with y = 5: x = 3(5) - 4 = 11, and 11 + 5 = 16 while 2(11 - 5) + 4 = 16, so the story holds; Quantity A = 11 and Quantity B = 19, a gap of 8. Try y = 10: x = 26, 26 + 10 = 36 = 2(16) + 4, and Quantity B = 34, again a gap of 8. Correct.
 Answer: B.
 
 **Trap.** Choosing D because one equation cannot pin down two unknowns. It does not need to: the equation forces x = 3y - 4, and that is enough to fix the GAP between the two columns at -8 forever. The other error is the parenthesis slip, reading '4 more than twice their difference' as 2(x - y + 4) = 2x - 2y + 8, which gives x = 3y - 8 and still points at B, or reversing the difference to y - x, which gives 3x = y + 4 and again B - so a careless student can reach the right letter for the wrong reason and should verify the gap.

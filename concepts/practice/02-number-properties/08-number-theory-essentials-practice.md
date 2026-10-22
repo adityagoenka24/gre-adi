@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -42,8 +42,8 @@ The integer 0 is a factor of the integer k. Which of the following must be true?
 
 **Q3** · `NUM-NTH-004` · QC · 45s
 
-> **Column A:**  The number of integers n with -2.5 < n < 3.5
-> **Column B:**  6
+> **Quantity A:**  The number of integers n with -2.5 < n < 3.5
+> **Quantity B:**  6
 
 **Q4** · `NUM-NTH-005` · MCQ · 50s
 
@@ -81,8 +81,8 @@ Which of the following numbers is irrational?
 
 n is an integer.
 
-> **Column A:**  n^3
-> **Column B:**  n^2
+> **Quantity A:**  n^3
+> **Quantity B:**  n^2
 
 **Q8** · `NUM-NTH-013` · Numeric Entry · 75s
 
@@ -156,8 +156,8 @@ Which of the following integers CANNOT be written as the difference of the squar
 
 a is a number with 0 < a < 1.
 
-> **Column A:**  sqrt(a)
-> **Column B:**  a^2 + a
+> **Quantity A:**  sqrt(a)
+> **Quantity B:**  a^2 + a
 
 **Q16** · `NUM-NTH-029` · Numeric Entry · 100s
 
@@ -189,8 +189,8 @@ a is a number such that a^2 is rational. Which of the following must also be rat
 
 a and b are non-zero numbers with a x b > 0 and a > b.
 
-> **Column A:**  1/b
-> **Column B:**  1/a
+> **Quantity A:**  1/b
+> **Quantity B:**  1/a
 
 **Q20** · `NUM-NTH-033` · MCQ · 105s
 
@@ -222,8 +222,8 @@ Which of the following statements must be true for all numbers a and b? Select a
 
 a is a number such that a^5 = a^3.
 
-> **Column A:**  a^2
-> **Column B:**  a^4
+> **Quantity A:**  a^2
+> **Quantity B:**  a^4
 
 **Q24** · `NUM-NTH-041` · Numeric Entry · 110s
 
@@ -267,8 +267,8 @@ How many integers n with 1 <= n <= 1,000 are neither a perfect square, nor a per
 
 a and b are positive numbers with a + b = 1 and a is not equal to b.
 
-> **Column A:**  1/a + 1/b
-> **Column B:**  4
+> **Quantity A:**  1/a + 1/b
+> **Quantity B:**  4
 
 **Q29** · `NUM-NTH-040` · MCQ · 125s
 
@@ -363,11 +363,11 @@ Answer: B.
 Step 1 — the endpoints are not integers, so simply list the integers strictly inside the interval.
 Step 2 — they are -2, -1, 0, 1, 2, 3.
 Step 3 — count them: 6 integers. Do not forget 0 - it is an integer.
-Column A = 6, Column B = 6.
+Quantity A = 6, Quantity B = 6.
 Check: -3 is below -2.5 and 4 is above 3.5, so nothing else qualifies.
 Answer: C.
 
-**Trap.** Forgetting that 0 is an integer and counting only 5, which makes Column B look greater (choice B). A second route to 5 is counting the positive integers 1, 2, 3 and the negative integers -1, -2 and stopping there.
+**Trap.** Forgetting that 0 is an integer and counting only 5, which makes Quantity B look greater (choice B). A second route to 5 is counting the positive integers 1, 2, 3 and the negative integers -1, -2 and stopping there.
 
 ### Q4 · `NUM-NTH-005` — Answer: B
 
@@ -410,13 +410,13 @@ Answer: D.
 ### Q7 · `NUM-NTH-012` — Answer: D
 
 Step 1 — n is an integer with no sign restriction, so run the FROZEN cases: zero, one, a negative, and a large value.
-Step 2 — n = 2: Column A = 8, Column B = 4. Column A is greater.
-Step 3 — n = -2: Column A = -8, Column B = 4. Column B is greater.
+Step 2 — n = 2: Quantity A = 8, Quantity B = 4. Quantity A is greater.
+Step 3 — n = -2: Quantity A = -8, Quantity B = 4. Quantity B is greater.
 Step 4 — two cases disagree, so the relationship is not fixed. (n = 0 and n = 1 even make them equal.)
 Check: a cube keeps the sign of the base while a square never does, so any negative n reverses the comparison found for positive n.
 Answer: D.
 
-**Trap.** Testing only n = 2, 3, 4 and concluding Column A is greater (choice A). The stem says integer, not positive integer, so n = -2 is legal and flips the result; n = 0 and n = 1 make the two columns equal.
+**Trap.** Testing only n = 2, 3, 4 and concluding Quantity A is greater (choice A). The stem says integer, not positive integer, so n = -2 is legal and flips the result; n = 0 and n = 1 make the two columns equal.
 
 ### Q8 · `NUM-NTH-013` — Answer: 6
 
@@ -509,14 +509,14 @@ Answer: C.
 
 ### Q15 · `NUM-NTH-028` — Answer: D
 
-Step 1 — on the interval 0 < a < 1 the standard chain is a^2 < a < sqrt(a) < 1, so sqrt(a) beats a alone. But Column B adds a^2 on top of a, so the chain does not settle it.
-Step 2 — test a small value: a = 0.25. Column A = sqrt(0.25) = 0.5. Column B = 0.0625 + 0.25 = 0.3125. Column A is greater.
-Step 3 — test a value near 1: a = 0.81. Column A = sqrt(0.81) = 0.9. Column B = 0.6561 + 0.81 = 1.4661. Column B is greater.
+Step 1 — on the interval 0 < a < 1 the standard chain is a^2 < a < sqrt(a) < 1, so sqrt(a) beats a alone. But Quantity B adds a^2 on top of a, so the chain does not settle it.
+Step 2 — test a small value: a = 0.25. Quantity A = sqrt(0.25) = 0.5. Quantity B = 0.0625 + 0.25 = 0.3125. Quantity A is greater.
+Step 3 — test a value near 1: a = 0.81. Quantity A = sqrt(0.81) = 0.9. Quantity B = 0.6561 + 0.81 = 1.4661. Quantity B is greater.
 Step 4 — the two cases disagree, so no fixed relationship holds on the whole interval.
-Check: at a = 0.25 the gap is +0.19 for Column A, at a = 0.81 it is +0.57 for Column B, so the comparison genuinely crosses over inside (0, 1).
+Check: at a = 0.25 the gap is +0.19 for Quantity A, at a = 0.81 it is +0.57 for Quantity B, so the comparison genuinely crosses over inside (0, 1).
 Answer: D.
 
-**Trap.** Applying the memorised chain a^2 < a < sqrt(a) and answering A, as if adding a^2 to a could not push the sum past sqrt(a). Near a = 1 all four of a^2, a, sqrt(a) crowd toward 1, so a^2 + a approaches 2 while sqrt(a) approaches 1, and Column B wins.
+**Trap.** Applying the memorised chain a^2 < a < sqrt(a) and answering A, as if adding a^2 to a could not push the sum past sqrt(a). Near a = 1 all four of a^2, a, sqrt(a) crowd toward 1, so a^2 + a approaches 2 while sqrt(a) approaches 1, and Quantity B wins.
 
 ### Q16 · `NUM-NTH-029` — Answer: 10
 
@@ -562,7 +562,7 @@ Step 1 — a x b > 0 forces a and b to have the SAME sign. That is the condition
 Step 2 — subtract: 1/b - 1/a = (a - b)/(a x b).
 Step 3 — the numerator a - b is positive because a > b, and the denominator a x b is positive by the stem.
 Step 4 — so 1/b - 1/a > 0, i.e. 1/b > 1/a, in every allowed case.
-Check both signs. Positives: a = 3, b = 1 gives 1/b = 1 and 1/a = 0.333 - Column A greater. Negatives: a = -1, b = -3 gives 1/b = -0.333 and 1/a = -1, and -0.333 > -1 - Column A greater again.
+Check both signs. Positives: a = 3, b = 1 gives 1/b = 1 and 1/a = 0.333 - Quantity A greater. Negatives: a = -1, b = -3 gives 1/b = -0.333 and 1/a = -1, and -0.333 > -1 - Quantity A greater again.
 Answer: A.
 
 **Trap.** Answering D on the grounds that a and b might be negative. Negativity is exactly what a x b > 0 controls: with a common sign, taking reciprocals always reverses the order, so the larger number a has the smaller reciprocal. D would be right only if the signs could differ (e.g. a = 2, b = -1 would give 1/b = -1 < 1/a = 0.5).
@@ -607,11 +607,11 @@ Answer: A, B and E.
 Step 1 — solve the condition without dividing by a. a^5 - a^3 = 0 gives a^3(a^2 - 1) = 0, so a^3 = 0 or a^2 = 1.
 Step 2 — the complete solution set is a = 0, a = 1, a = -1. Dividing by a^3 at the start would have lost a = 0.
 Step 3 — evaluate both columns at each root.
-a = 0: Column A = 0, Column B = 0. Equal.
-a = 1: Column A = 1, Column B = 1. Equal.
-a = -1: Column A = (-1)^2 = 1, Column B = (-1)^4 = 1. Equal.
+a = 0: Quantity A = 0, Quantity B = 0. Equal.
+a = 1: Quantity A = 1, Quantity B = 1. Equal.
+a = -1: Quantity A = (-1)^2 = 1, Quantity B = (-1)^4 = 1. Equal.
 Step 4 — all three allowed values give equality, so the relationship is fixed.
-Check algebraically: a^4 = a^2 x a^2 and the condition forces a^2 to be 0 or 1, and both of those satisfy a^2 = (a^2)^2. So Column A always equals Column B.
+Check algebraically: a^4 = a^2 x a^2 and the condition forces a^2 to be 0 or 1, and both of those satisfy a^2 = (a^2)^2. So Quantity A always equals Quantity B.
 Answer: C.
 
 **Trap.** Answering D because 'a could be negative'. Raising to the even powers 2 and 4 erases the sign, so a = -1 gives the same pair of values as a = 1. Answering A after testing only a = -1 and misreading (-1)^4 as -1 - a fourth power is never negative.
@@ -667,11 +667,11 @@ Answer: 960.
 
 ### Q28 · `NUM-NTH-039` — Answer: A
 
-Step 1 — combine Column A over a common denominator: 1/a + 1/b = (a + b)/(a x b) = 1/(a x b), using a + b = 1.
+Step 1 — combine Quantity A over a common denominator: 1/a + 1/b = (a + b)/(a x b) = 1/(a x b), using a + b = 1.
 Step 2 — so the comparison reduces to 1/(a x b) against 4, i.e. to a x b against 1/4.
 Step 3 — with b = 1 - a, the product is a x (1 - a) = a - a^2 = 1/4 - (a - 1/2)^2.
 Step 4 — the squared term is never negative, and it is zero only when a = 1/2 - which would force b = 1/2 and a = b, excluded by the stem. So (a - 1/2)^2 > 0 strictly and a x b < 1/4 strictly.
-Step 5 — since 0 < a x b < 1/4, taking reciprocals reverses the inequality: 1/(a x b) > 4. Column A is greater, always.
+Step 5 — since 0 < a x b < 1/4, taking reciprocals reverses the inequality: 1/(a x b) > 4. Quantity A is greater, always.
 Check: a = 0.25, b = 0.75 gives 4 + 1.333 = 5.333 > 4. a = 0.49, b = 0.51 gives 2.0408 + 1.9608 = 4.0016 > 4. Even pressed right up against a = b the value stays above 4.
 Answer: A.
 

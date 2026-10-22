@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ What is 0.4 x 0.06?
 
 n < 0
 
-> **Column A:**  n/3
-> **Column B:**  n/4
+> **Quantity A:**  n/3
+> **Quantity B:**  n/4
 
 **Q5** · `ARI-FRC-020` · Select all that apply · 60s
 
@@ -93,8 +93,8 @@ A tank is 2/5 full. After 30 gallons are added, it is 4/5 full. What is the tota
 
 0 < x < 1
 
-> **Column A:**  x + 1/x
-> **Column B:**  2
+> **Quantity A:**  x + 1/x
+> **Quantity B:**  2
 
 **Q9** · `ARI-FRC-029` · MCQ · 75s
 
@@ -110,8 +110,8 @@ What is 0.00045 / 0.009?
 
 a and b are positive integers with a > b.
 
-> **Column A:**  a/b
-> **Column B:**  (a + 1)/(b + 1)
+> **Quantity A:**  a/b
+> **Quantity B:**  (a + 1)/(b + 1)
 
 **Q11** · `ARI-FRC-048` · MCQ · 75s
 
@@ -159,8 +159,8 @@ What is the value of 1 / (1 + 1 / (1 + 1/2))?
 
 0 < x < 1
 
-> **Column A:**  x / (1 - x)
-> **Column B:**  x^2 / (1 - x^2)
+> **Quantity A:**  x / (1 - x)
+> **Quantity B:**  x^2 / (1 - x^2)
 
 **Q16** · `ARI-FRC-053` · Numeric Entry · 100s
 
@@ -266,8 +266,8 @@ What is the value of (1 - 1/4)(1 - 1/9)(1 - 1/16) ... (1 - 1/100), where the fac
 
 a and b are digits, not both zero, and x = 0.ababab... , the decimal in which the two-digit block ab repeats forever.
 
-> **Column A:**  x
-> **Column B:**  (10a + b)/99
+> **Quantity A:**  x
+> **Quantity B:**  (10a + b)/99
 
 **Q28** · `ARI-FRC-077` · Numeric Entry · 115s
 
@@ -287,8 +287,8 @@ Which of the following fractions have a decimal expansion whose repeating block 
 
 **Q30** · `ARI-FRC-080` · QC · 130s
 
-> **Column A:**  1/(2^2 - 1) + 1/(3^2 - 1) + 1/(4^2 - 1) + ... + 1/(10^2 - 1), the sum of 1/(n^2 - 1) for n = 2, 3, 4, ..., 10
-> **Column B:**  13/20
+> **Quantity A:**  1/(2^2 - 1) + 1/(3^2 - 1) + 1/(4^2 - 1) + ... + 1/(10^2 - 1), the sum of 1/(n^2 - 1) for n = 2, 3, 4, ..., 10
+> **Quantity B:**  13/20
 
 ---
 
@@ -365,9 +365,9 @@ Answer: 0.024.
 ### Q4 · `ARI-FRC-018` — Answer: B
 
 Step 1 — test a convenient value. Let n = -12. Then n/3 = -4 and n/4 = -3.
-Step 2 — compare on the number line: -3 sits to the right of -4, so -3 is greater. Column B is greater.
-Step 3 — confirm it always holds. n/3 - n/4 = 4n/12 - 3n/12 = n/12. Since n < 0, n/12 < 0, so Column A - Column B is always negative.
-Column B is greater for every negative n.
+Step 2 — compare on the number line: -3 sits to the right of -4, so -3 is greater. Quantity B is greater.
+Step 3 — confirm it always holds. n/3 - n/4 = 4n/12 - 3n/12 = n/12. Since n < 0, n/12 < 0, so Quantity A - Quantity B is always negative.
+Quantity B is greater for every negative n.
 
 **Trap.** Carrying over the positive-number rule 'dividing by the smaller number gives the bigger result' and choosing A. That rule holds only for n > 0. Dividing a negative number by 3 pushes it FURTHER from zero than dividing it by 4 does, so n/3 is the more negative - and more negative means smaller. Note also that the stem pins n < 0, so D is wrong: the relationship is fully determined.
 
@@ -407,11 +407,11 @@ Answer: 75 gallons.
 ### Q8 · `ARI-FRC-027` — Answer: A
 
 Step 1 — a proper fraction and its reciprocal sit on opposite sides of 1. For 0 < x < 1 the reciprocal 1/x is greater than 1: x = 1/4 gives 1/x = 4, x = 0.9 gives 1/x = 1.111...
-Step 2 — do not test values one at a time - subtract Column B and combine over the common denominator x:
+Step 2 — do not test values one at a time - subtract Quantity B and combine over the common denominator x:
 x + 1/x - 2 = (x^2 + 1 - 2x)/x = (x - 1)^2 / x.
 Step 3 — the numerator (x - 1)^2 is a square, and it is strictly positive because the stem excludes x = 1. The denominator x is positive. So the whole expression is positive, i.e. x + 1/x > 2 for every x in the range.
 Check x = 1/2: 0.5 + 2 = 2.5 > 2. Check x = 0.9: 0.9 + 1.1111 = 2.0111 > 2. Check x = 0.99: 0.99 + 1.0101 = 2.0001 > 2. The gap shrinks as x approaches 1 but never reaches zero.
-Column A is greater.
+Quantity A is greater.
 
 **Trap.** Choosing C by testing x = 1, where x + 1/x = 1 + 1 = 2 exactly - but the stem excludes 1, and that endpoint is the only place the columns tie. Choosing B by rounding the reciprocal down: at x = 0.9 a student who calls 1/0.9 'about 1' gets 1.9, which is less than 2; the true value is 1.1111 and the sum is 2.0111. Choosing D because x is unspecified is the third error: the sign of (x - 1)^2 / x is fixed across the whole interval, so the comparison resolves.
 
@@ -430,8 +430,8 @@ Answer: 0.05.
 
 Step 1 — both denominators b and b + 1 are positive, so cross-multiplication is legal and does not flip the inequality.
 Step 2 — cross-multiply: a(b + 1) vs b(a + 1), i.e. ab + a vs ab + b.
-Step 3 — cancel ab from both sides: the comparison is just a vs b. The stem says a > b, so Column A is greater. Always.
-Check with a = 5, b = 2: 5/2 = 2.5 and 6/3 = 2. Check with a = 100, b = 99: 100/99 = 1.0101 and 101/100 = 1.01. Column A wins both.
+Step 3 — cancel ab from both sides: the comparison is just a vs b. The stem says a > b, so Quantity A is greater. Always.
+Check with a = 5, b = 2: 5/2 = 2.5 and 6/3 = 2. Check with a = 100, b = 99: 100/99 = 1.0101 and 101/100 = 1.01. Quantity A wins both.
 The principle: adding the same positive amount to the top and bottom drags a fraction TOWARD 1. Here a/b > 1, so being dragged toward 1 means getting smaller.
 
 **Trap.** Testing one pair of numbers, seeing the two values come out close, and choosing D. The algebra settles it in one line: after cancelling ab the whole question reduces to a vs b, which the stem has already answered. Choosing B is the mirror error - it would be correct only for a PROPER fraction (a < b), where adding 1 to both raises the value toward 1.
@@ -485,16 +485,16 @@ Answer: 3/5.
 
 ### Q15 · `ARI-FRC-052` — Answer: A
 
-Step 1 — factor the denominator of Column B as a difference of squares: 1 - x^2 = (1 - x)(1 + x).
-Step 2 — split Column B to expose Column A inside it:
+Step 1 — factor the denominator of Quantity B as a difference of squares: 1 - x^2 = (1 - x)(1 + x).
+Step 2 — split Quantity B to expose Quantity A inside it:
 x^2/((1 - x)(1 + x)) = [x/(1 - x)] x [x/(1 + x)].
-So Column B = Column A x [x/(1 + x)].
+So Quantity B = Quantity A x [x/(1 + x)].
 Step 3 — bound the extra factor. For 0 < x < 1 we have x < 1 + x, so 0 < x/(1 + x) < 1.
-Step 4 — Column A is positive (numerator x > 0, denominator 1 - x > 0), and multiplying a positive number by a factor strictly below 1 makes it smaller. So Column B < Column A.
-Check with x = 1/2: Column A = (1/2)/(1/2) = 1; Column B = (1/4)/(3/4) = 1/3. Check with x = 9/10: Column A = 9; Column B = 0.81/0.19 = 4.26. Column A wins both.
-Column A is greater.
+Step 4 — Quantity A is positive (numerator x > 0, denominator 1 - x > 0), and multiplying a positive number by a factor strictly below 1 makes it smaller. So Quantity B < Quantity A.
+Check with x = 1/2: Quantity A = (1/2)/(1/2) = 1; Quantity B = (1/4)/(3/4) = 1/3. Check with x = 9/10: Quantity A = 9; Quantity B = 0.81/0.19 = 4.26. Quantity A wins both.
+Quantity A is greater.
 
-**Trap.** Reading Column B as 'Column A squared' and, since squaring shrinks numbers below 1, guessing the answer flips somewhere - it does not. The real relationship is Column B = Column A x x/(1 + x), and that multiplier is below 1 for every allowed x, so Column A wins on the whole interval. Choosing D because one test value gave Column A = 1 (a value that could go either way against Column B) is the other slip; the algebra covers all x at once.
+**Trap.** Reading Quantity B as 'Quantity A squared' and, since squaring shrinks numbers below 1, guessing the answer flips somewhere - it does not. The real relationship is Quantity B = Quantity A x x/(1 + x), and that multiplier is below 1 for every allowed x, so Quantity A wins on the whole interval. Choosing D because one test value gave Quantity A = 1 (a value that could go either way against Quantity B) is the other slip; the algebra covers all x at once.
 
 ### Q16 · `ARI-FRC-053` — Answer: 1/7
 
@@ -642,7 +642,7 @@ Step 2 — shift by the block length. Since the block is 2 digits, multiply x by
 100x = N.ababab...
 Step 3 — the tail after the decimal point in 100x is identical to x itself, so 100x = N + x.
 Step 4 — solve: 99x = N, hence x = N/99 = (10a + b)/99.
-That is exactly Column B, for every allowed pair of digits. The two quantities are equal.
+That is exactly Quantity B, for every allowed pair of digits. The two quantities are equal.
 Check with a = 1, b = 2: x = 0.121212... and (10 + 2)/99 = 12/99 = 4/33 = 0.121212... Check with a = 9, b = 0: x = 0.909090... and 90/99 = 10/11 = 0.909090... Both agree.
 
 **Trap.** Choosing D on the grounds that a and b are unknown. They never need to be known: the shift-and-subtract works symbolically, and the digits cancel out of the comparison entirely. The other route to D is testing a single case such as a = b = 3 (x = 0.3333... = 33/99 = 1/3), getting equality, and then doubting whether it survives other digits - it does, because Step 4 used nothing about a and b beyond their being the repeating block.
@@ -689,7 +689,7 @@ Step 3 — because each negative term is two places ahead, cancellation leaves T
 Sum = (1/2)[1 + 1/2 - 1/10 - 1/11]
 Step 4 — evaluate the bracket over 110: 110/110 + 55/110 - 11/110 - 10/110 = 144/110.
 Sum = (1/2)(144/110) = 72/110 = 36/55.
-Step 5 — compare 36/55 with 13/20 by cross-multiplication: 36 x 20 = 720 versus 13 x 55 = 715. Since 720 > 715, Column A is greater.
-Column A = 36/55 = 0.6545..., Column B = 0.65. Column A is greater.
+Step 5 — compare 36/55 with 13/20 by cross-multiplication: 36 x 20 = 720 versus 13 x 55 = 715. Since 720 > 715, Quantity A is greater.
+Quantity A = 36/55 = 0.6545..., Quantity B = 0.65. Quantity A is greater.
 
 **Trap.** Two traps stack. First, forgetting the factor of 1/2 in the partial fraction: 1/((n-1)(n+1)) is NOT 1/(n-1) - 1/(n+1), which would double the answer to 72/55. Second, assuming only one term survives at each end, as in the familiar 1/(n(n+1)) telescope - here the gap of 2 means two terms survive at each end, and dropping the 1/2 and the -1/11 gives (1/2)(1 - 1/10) = 9/20 = 0.45, which would point the wrong way. The margin is only 720 versus 715, so estimating to two decimals and calling it equal (choice C) is exactly the wrong move.

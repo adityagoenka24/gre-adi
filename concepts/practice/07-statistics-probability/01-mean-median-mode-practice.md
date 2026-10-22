@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ What is the median of the set {3, 14, 5, 10}?
 
 Set S = {10, 20, 30, 40, 50}
 
-> **Column A:**  Mean of Set S
-> **Column B:**  Median of Set S
+> **Quantity A:**  Mean of Set S
+> **Quantity B:**  Median of Set S
 
 **Q5** · `STA-MMM-009` · MCQ · 45s
 
@@ -73,8 +73,8 @@ Which of the following correctly describes the mode or modes of the set {3, 3, 5
 
 A set contains the five values 2, 4, 6, 8, and n, where n > 6.
 
-> **Column A:**  Mean of the set
-> **Column B:**  Median of the set
+> **Quantity A:**  Mean of the set
+> **Quantity B:**  Median of the set
 
 **Q7** · `STA-MMM-018` · Numeric Entry · 70s
 
@@ -158,8 +158,8 @@ The average (arithmetic mean) of five numbers is 30. The average of the three la
 
 A set of 10 positive integers has a mean of 15 and a median of 12.
 
-> **Column A:**  The sum of the 5 largest values
-> **Column B:**  The sum of the 5 smallest values
+> **Quantity A:**  The sum of the 5 largest values
+> **Quantity B:**  The sum of the 5 smallest values
 
 **Q16** · `STA-MMM-041` · Numeric Entry · 100s
 
@@ -187,8 +187,8 @@ A set of 5 distinct positive integers has a mean of 18 and a median of 16. The s
 
 A set of 6 positive integers has a mean of 10, and its two smallest values are each equal to 1.
 
-> **Column A:**  The greatest possible value of the median of the set
-> **Column B:**  11
+> **Quantity A:**  The greatest possible value of the median of the set
+> **Quantity B:**  11
 
 **Q20** · `STA-MMM-045` · Select all that apply · 90s
 
@@ -272,8 +272,8 @@ A set of 5 positive integers has a mean of 16, a median of 15, and a unique mode
 
 A company has 100 employees. The mean salary is $60,000, the median salary is $50,000, and the highest-paid employee earns $500,000. That employee's salary is then changed to $60,000, and no other salary changes.
 
-> **Column A:**  The new mean salary
-> **Column B:**  The new median salary
+> **Quantity A:**  The new mean salary
+> **Quantity B:**  The new median salary
 
 **Q29** · `STA-MMM-057` · Select all that apply · 115s
 
@@ -289,8 +289,8 @@ A set of 5 integers, not necessarily distinct, has a mean of 10, a smallest valu
 
 The numbers a1 <= a2 <= ... <= a2n, where n >= 2, are such that the average of the n smallest equals the average of the n largest, and each of those two averages is M.
 
-> **Column A:**  The mean of all 2n numbers
-> **Column B:**  The median of all 2n numbers
+> **Quantity A:**  The mean of all 2n numbers
+> **Quantity B:**  The median of all 2n numbers
 
 ---
 
@@ -366,8 +366,8 @@ Answer: 7.5.
 
 ### Q4 · `STA-MMM-007` — Answer: C
 
-Column B: the set is already sorted and has 5 values, so the median is the 3rd value, 30.
-Column A: sum = 10 + 20 + 30 + 40 + 50 = 150, and 150/5 = 30.
+Quantity B: the set is already sorted and has 5 values, so the median is the 3rd value, 30.
+Quantity A: sum = 10 + 20 + 30 + 40 + 50 = 150, and 150/5 = 30.
 Both are 30, so the two quantities are equal.
 Faster route: the values are evenly spaced (a constant gap of 10), and for an evenly spaced set mean = median = (first + last)/2 = (10 + 50)/2 = 30. No addition needed.
 
@@ -384,12 +384,12 @@ Answer: two modes, 3 and 7.
 
 ### Q6 · `STA-MMM-017` — Answer: D
 
-Step 1 — pin down the median. Since n > 6, when the set is sorted n lands in the 4th or the 5th position, so the middle (3rd) value is always 6. Column B = 6, whatever n is.
+Step 1 — pin down the median. Since n > 6, when the set is sorted n lands in the 4th or the 5th position, so the middle (3rd) value is always 6. Quantity B = 6, whatever n is.
 Step 2 — the mean is (2 + 4 + 6 + 8 + n)/5 = (20 + n)/5.
 Step 3 — the mean beats 6 exactly when 20 + n > 30, that is when n > 10.
 Step 4 — test both sides of that threshold, staying inside n > 6:
-n = 7 gives mean = 27/5 = 5.4, which is LESS than the median 6, so Column B is greater.
-n = 20 gives mean = 40/5 = 8, which is MORE than 6, so Column A is greater.
+n = 7 gives mean = 27/5 = 5.4, which is LESS than the median 6, so Quantity B is greater.
+n = 20 gives mean = 40/5 = 8, which is MORE than 6, so Quantity A is greater.
 Two legal values of n give opposite answers, so the relationship cannot be determined.
 
 **Trap.** Choosing A on the reasoning that n could be enormous and would drag the mean up. All we are told is n > 6, and every n from just above 6 up to 10 leaves the mean BELOW the fixed median of 6. On any mean-versus-median comparison with a free variable, test one value just inside the constraint and one far outside it before committing.
@@ -488,11 +488,11 @@ Answer: 33.
 
 ### Q15 · `STA-MMM-040` — Answer: A
 
-Step 1 — the whole set: sum = 10 x 15 = 150. The two columns split that total, so Column A + Column B = 150.
+Step 1 — the whole set: sum = 10 x 15 = 150. The two columns split that total, so Quantity A + Quantity B = 150.
 Step 2 — use the median. For 10 sorted values the median is the average of the 5th and 6th, so the 5th value + the 6th value = 24. Since the 5th is no larger than the 6th, the 5th value is at most 12.
-Step 3 — every one of the 5 smallest values is at most the 5th value, hence at most 12. So Column B <= 5 x 12 = 60.
-Step 4 — therefore Column A = 150 - Column B >= 150 - 60 = 90.
-Column A is at least 90 while Column B is at most 60, so Column A is greater no matter what the actual numbers are.
+Step 3 — every one of the 5 smallest values is at most the 5th value, hence at most 12. So Quantity B <= 5 x 12 = 60.
+Step 4 — therefore Quantity A = 150 - Quantity B >= 150 - 60 = 90.
+Quantity A is at least 90 while Quantity B is at most 60, so Quantity A is greater no matter what the actual numbers are.
 
 **Trap.** Choosing D because no individual values are given. Two facts settle it: the median caps each of the bottom five at 12 (at most 60 altogether), while the mean fixes the whole set at 150. Whenever a set's mean sits above its median, the weight of the set is in its upper half.
 
@@ -534,7 +534,7 @@ Step 1 — sum = 6 x 10 = 60. Two of the values are 1, so the other four sum to 
 Step 2 — with 6 sorted values the median is (v3 + v4)/2, so the job is to make v3 + v4 as large as possible.
 Step 3 — the ceiling comes from the top pair: v5 and v6 are each at least v4, so v5 + v6 >= 2 x v4 >= v3 + v4. Since (v3 + v4) + (v5 + v6) = 58, that forces v3 + v4 <= 29.
 Step 4 — 29 is not reachable with integers: it would need v4 >= 15, leaving only 29 for v5 + v6 while both must be at least 15. So try 28: v3 = v4 = 14 and v5 = v6 = 15 gives {1, 1, 14, 14, 15, 15}, which sums to 1 + 1 + 14 + 14 + 15 + 15 = 60. Valid.
-Step 5 — the greatest possible median is 28/2 = 14, and 14 > 11. Column A is greater.
+Step 5 — the greatest possible median is 28/2 = 14, and 14 > 11. Quantity A is greater.
 
 **Trap.** Assuming the median cannot exceed the mean of 10 and choosing B. Two values are pinned at 1, which frees a large share of the total for the middle of the set. The real ceiling comes from the requirement that the two values ABOVE the median be at least as large as the median's own pair - that is what caps v3 + v4 at 28.
 
@@ -632,11 +632,11 @@ Answer: 25.
 
 ### Q28 · `STA-MMM-056` — Answer: A
 
-Step 1 — Column A is pinned exactly. Old total = 100 x 60,000 = 6,000,000. Replacing 500,000 with 60,000 removes 440,000, so the new total is 5,560,000 and the new mean is 5,560,000/100 = 55,600.
-Step 2 — cap Column B. Sort the old salaries v1 <= v2 <= ... <= v100. The median says v50 + v51 = 100,000, and since v50 <= v51 the 50th salary is at most 50,000.
+Step 1 — Quantity A is pinned exactly. Old total = 100 x 60,000 = 6,000,000. Replacing 500,000 with 60,000 removes 440,000, so the new total is 5,560,000 and the new mean is 5,560,000/100 = 55,600.
+Step 2 — cap Quantity B. Sort the old salaries v1 <= v2 <= ... <= v100. The median says v50 + v51 = 100,000, and since v50 <= v51 the 50th salary is at most 50,000.
 Step 3 — the new list is v1 ... v99 with 60,000 in place of v100. Because 60,000 is larger than v50 (which is at most 50,000), the bottom 50 positions are still v1 ... v50, and the 51st position is whichever is smaller, v51 or 60,000.
 Step 4 — so the new median = (v50 + the smaller of v51 and 60,000)/2, which is at most (v50 + v51)/2 = 50,000.
-Column A is exactly 55,600 and Column B is at most 50,000, so Column A is greater.
+Quantity A is exactly 55,600 and Quantity B is at most 50,000, so Quantity A is greater.
 
 **Trap.** Choosing D because the individual salaries are unknown. The mean is fixed exactly and the median is capped by the old median - no arrangement of the other 99 salaries can push it past 50,000, so the comparison resolves without knowing a single value. Choosing C assumes the mean collapses onto the median once the outlier is gone; it does not, because the other 99 salaries have not moved.
 
@@ -658,11 +658,11 @@ Answer: B, C, D.
 
 ### Q30 · `STA-MMM-060` — Answer: C
 
-Step 1 — Column A. The bottom half sums to nM and the top half sums to nM, so all 2n numbers sum to 2nM and the mean is 2nM/(2n) = M.
-Step 2 — Column B looks unpinned, but the sorted order hides a very strong consequence. Pair each bottom value with the top value the same distance along the list: a1 with a_{n+1}, a2 with a_{n+2}, and so on up to a_n with a_2n. Because the list is sorted, a_i <= a_{n+i} for every i from 1 to n.
+Step 1 — Quantity A. The bottom half sums to nM and the top half sums to nM, so all 2n numbers sum to 2nM and the mean is 2nM/(2n) = M.
+Step 2 — Quantity B looks unpinned, but the sorted order hides a very strong consequence. Pair each bottom value with the top value the same distance along the list: a1 with a_{n+1}, a2 with a_{n+2}, and so on up to a_n with a_2n. Because the list is sorted, a_i <= a_{n+i} for every i from 1 to n.
 Step 3 — add those n inequalities: a1 + ... + a_n <= a_{n+1} + ... + a_2n. We are told both sides equal nM, so the sum of the inequalities is actually an equality - which can only happen if EVERY one of them is an equality. Hence a_i = a_{n+i} for all i.
 Step 4 — combine that with the sorted order: a1 = a_{n+1} forces a1 = a2 = ... = a_{n+1}, and the same chain carries through to a_2n. Every value in the set is the same number, and since the mean is M, every value equals M.
 Step 5 — the median of a list whose values are all M is M.
-Column A = Column B = M. The two quantities are equal.
+Quantity A = Quantity B = M. The two quantities are equal.
 
 **Trap.** Choosing D on the grounds that no actual numbers are given. The condition is far stronger than it looks: for a SORTED list, the bottom half can match the top half's total only if the two halves agree value by value, which collapses the whole set to one repeated number. Drop the sorting and the conclusion dies - the six numbers 0, 1, 29 (mean 10) and 9, 9, 12 (mean 10) also have overall mean 10, but their median is 9.

@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -22,8 +22,8 @@ Every question below is live in the question bank under the ID shown — the she
 
 **Q1** · `ARI-EXP-006` · QC · 45s
 
-> **Column A:**  (-2)^4
-> **Column B:**  -2^4
+> **Quantity A:**  (-2)^4
+> **Quantity B:**  -2^4
 
 **Q2** · `ARI-EXP-008` · MCQ · 45s
 
@@ -91,8 +91,8 @@ Which of the following is equal to sqrt(8)/sqrt(6), with no radical in the denom
 
 0 < x < 1
 
-> **Column A:**  x^3
-> **Column B:**  x^2
+> **Quantity A:**  x^3
+> **Quantity B:**  x^2
 
 **Q9** · `ARI-EXP-037` · Select all that apply · 80s
 
@@ -128,8 +128,8 @@ Which of the following is equal to (2x^3 y^2)^3 ?
 
 **Q13** · `ARI-EXP-049` · QC · 85s
 
-> **Column A:**  (1/2)^100
-> **Column B:**  (1/3)^70
+> **Quantity A:**  (1/2)^100
+> **Quantity B:**  (1/3)^70
 
 ---
 
@@ -151,8 +151,8 @@ Which of the following is the greatest?
 
 x is a nonzero real number.
 
-> **Column A:**  x^2
-> **Column B:**  x^3
+> **Quantity A:**  x^2
+> **Quantity B:**  x^3
 
 **Q16** · `ARI-EXP-054` · MCQ · 85s
 
@@ -198,8 +198,8 @@ Which of the following is equal to 3/(2 + sqrt(5)) with a rational denominator?
 
 x > 0
 
-> **Column A:**  x^(1/2)
-> **Column B:**  x^(1/3)
+> **Quantity A:**  x^(1/2)
+> **Quantity B:**  x^(1/3)
 
 **Q21** · `ARI-EXP-061` · MCQ · 80s
 
@@ -283,8 +283,8 @@ x is a positive number and x + 1/x = sqrt(5). What is the value of x^4 + 1/x^4 ?
 
 **Q30** · `ARI-EXP-079` · QC · 115s
 
-> **Column A:**  sqrt(6 + sqrt(6 + sqrt(6 + ...))), where the nesting continues without end
-> **Column B:**  3
+> **Quantity A:**  sqrt(6 + sqrt(6 + sqrt(6 + ...))), where the nesting continues without end
+> **Quantity B:**  3
 
 ---
 
@@ -330,10 +330,10 @@ x is a positive number and x + 1/x = sqrt(5). What is the value of x^4 + 1/x^4 ?
 ### Q1 · `ARI-EXP-006` — Answer: A
 
 The whole question is where the brackets sit.
-Step 1 - Column A. The brackets make -2 the base, so all four factors are -2: (-2)(-2)(-2)(-2). An even number of negative factors gives a positive product, so (-2)^4 = 16.
-Step 2 - Column B. There are no brackets, so the exponent attaches only to the 2 and the minus sign is applied afterwards: -2^4 = -(2^4) = -16.
-Step 3 - compare. 16 > -16, so Column A is greater.
-Check: Column A is positive and Column B is negative, so no arithmetic beyond the sign is needed.
+Step 1 - Quantity A. The brackets make -2 the base, so all four factors are -2: (-2)(-2)(-2)(-2). An even number of negative factors gives a positive product, so (-2)^4 = 16.
+Step 2 - Quantity B. There are no brackets, so the exponent attaches only to the 2 and the minus sign is applied afterwards: -2^4 = -(2^4) = -16.
+Step 3 - compare. 16 > -16, so Quantity A is greater.
+Check: Quantity A is positive and Quantity B is negative, so no arithmetic beyond the sign is needed.
 
 **Trap.** Reading both columns the same way and choosing C. Without brackets only the 2 is raised, so -2^4 = -16; with brackets the negative is part of the base, so (-2)^4 = +16. The two differ by a sign, never by nothing.
 
@@ -402,8 +402,8 @@ Check numerically: sqrt(8) = 2.828, sqrt(6) = 2.449, and 2.828/2.449 = 1.155. Al
 Step 1 - relate the two columns instead of computing them: x^3 = x^2 x x.
 Step 2 - x^2 is positive (x is not 0), and the extra factor x is strictly between 0 and 1.
 Step 3 - multiplying a positive number by something less than 1 makes it SMALLER, so x^3 < x^2 for every x in the range.
-Check with x = 1/2: x^2 = 1/4 = 0.25 and x^3 = 1/8 = 0.125. Check with x = 0.9: 0.81 versus 0.729. Column B wins both times.
-Column B is greater.
+Check with x = 1/2: x^2 = 1/4 = 0.25 and x^3 = 1/8 = 0.125. Check with x = 0.9: 0.81 versus 0.729. Quantity B wins both times.
+Quantity B is greater.
 
 **Trap.** Assuming a bigger exponent always means a bigger number and choosing A. That rule holds only for bases greater than 1. Between 0 and 1 the direction reverses, because each extra factor shrinks the product. Note the stem pins x strictly between 0 and 1, so the relationship is fixed and D is wrong.
 
@@ -460,7 +460,7 @@ Step 2 - compare 2^100 with 3^70 by forcing a common exponent. Both 100 and 70 a
 3^70 = (3^7)^10 = 2187^10
 Step 3 - 2187 > 1024, so 3^70 > 2^100.
 Step 4 - the bigger denominator makes the smaller fraction, so 1/3^70 < 1/2^100.
-Column A is greater.
+Quantity A is greater.
 
 **Trap.** Reasoning that the larger exponent (100) must make the smaller number and choosing B. With different bases the exponents alone decide nothing; rewrite both with a common exponent and compare the bases. The second error is forgetting the reciprocal flip - once 3^70 is shown to be the larger number, its reciprocal is the SMALLER quantity.
 
@@ -481,9 +481,9 @@ Answer: 3^20.
 ### Q15 · `ARI-EXP-052` — Answer: D
 
 The stem allows x to be anything except 0, so test the three regions that behave differently.
-Case 1 - x > 1, say x = 2: x^2 = 4 and x^3 = 8. Column B is greater.
-Case 2 - 0 < x < 1, say x = 1/2: x^2 = 0.25 and x^3 = 0.125. Column A is greater.
-Case 3 - x < 0, say x = -2: x^2 = 4 (positive) and x^3 = -8 (negative). Column A is greater.
+Case 1 - x > 1, say x = 2: x^2 = 4 and x^3 = 8. Quantity B is greater.
+Case 2 - 0 < x < 1, say x = 1/2: x^2 = 0.25 and x^3 = 0.125. Quantity A is greater.
+Case 3 - x < 0, say x = -2: x^2 = 4 (positive) and x^3 = -8 (negative). Quantity A is greater.
 Two different orderings occur, so the relationship cannot be determined.
 Answer: D.
 
@@ -535,8 +535,8 @@ Check numerically: sqrt(5) = 2.236, so 3/(2 + 2.236) = 3/4.236 = 0.708. And 3(2.
 ### Q20 · `ARI-EXP-060` — Answer: D
 
 x^(1/2) is the square root of x and x^(1/3) is the cube root of x. Which root is larger depends entirely on which side of 1 the base sits.
-Case 1 - x > 1, say x = 64: x^(1/2) = 8 and x^(1/3) = 4. Column A is greater.
-Case 2 - 0 < x < 1, say x = 1/64: x^(1/2) = 1/8 = 0.125 and x^(1/3) = 1/4 = 0.25. Column B is greater.
+Case 1 - x > 1, say x = 64: x^(1/2) = 8 and x^(1/3) = 4. Quantity A is greater.
+Case 2 - 0 < x < 1, say x = 1/64: x^(1/2) = 1/8 = 0.125 and x^(1/3) = 1/4 = 0.25. Quantity B is greater.
 Case 3 - x = 1: both equal 1.
 All three orderings are possible, so the relationship cannot be determined.
 Answer: D.
@@ -653,7 +653,7 @@ Check: x + 1/x = sqrt(5) gives x = (sqrt(5) + 1)/2 = 1.618, so x^4 = 6.854 and 1
 ### Q30 · `ARI-EXP-079` — Answer: C
 
 An infinite nested radical repeats itself, so name the whole thing and use that repetition.
-Step 1 - let x be the value of Column A. Everything under the outermost radical is 6 plus the SAME infinite expression, so x = sqrt(6 + x).
+Step 1 - let x be the value of Quantity A. Everything under the outermost radical is 6 plus the SAME infinite expression, so x = sqrt(6 + x).
 Step 2 - square both sides: x^2 = 6 + x.
 Step 3 - solve: x^2 - x - 6 = 0, which factors as (x - 3)(x + 2) = 0, giving x = 3 or x = -2.
 Step 4 - a square root is never negative, so reject x = -2. Hence x = 3.

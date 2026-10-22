@@ -57,12 +57,12 @@ Labelled `hard`, but it is one equation in one unknown, `x + (3x - 12) = 96`. Wo
 the same "one part is three times the other, given the total" template as **ALG-WPM-015**,
 which sits at `medium` in this same set — the -12 is the only new content.
 
-Minimal fix — same id, same story, key still **A** (Column A greater):
+Minimal fix — same id, same story, key still **A** (Quantity A greater):
 "Three shelves hold 114 books in total. The upper shelf holds 12 fewer books than three
 times the number of books on the lower shelf, and the middle shelf holds half as many books
-as the lower shelf. / Column A: The number of books on the upper shelf / Column B: 66"
+as the lower shelf. / Quantity A: The number of books on the upper shelf / Quantity B: 66"
 **Verified in Python**: 4.5l = 126 → lower 28, middle 14, upper 72; 28 + 14 + 72 = 114 and
-72 = 3(28) - 12. Column A = 72 > 66 → A. Three quantities and a fractional coefficient, so
+72 = 3(28) - 12. Quantity A = 72 > 66 → A. Three quantities and a fractional coefficient, so
 it is no longer a clone of ALG-WPM-015, and the existing trap (putting the 12 inside the
 parentheses) still fires.
 
@@ -121,7 +121,7 @@ s = 13 via the second condition gives m = 36.
 
 ### Non-defects checked and cleared
 - **QC decidability**: 008 = C, 023 = C, 055 = A, 059 = B, 040 = B all resolve under the
-  stated conditions; **052 is genuinely D** — Column A - Column B = m - 6, and m > 4 admits
+  stated conditions; **052 is genuinely D** — Quantity A - Quantity B = m - 6, and m > 4 admits
   m = 5 (B), m = 6 (equal) and m = 7 (A). Neither a false D nor a missed D anywhere.
 - **Select-all robustness**: 051 (A,C,E), 021 (B,C,D), 044 (A,C), 057 (A,B,E), 061 (B,C,D).
   Each has 2-3 correct options; each hinges on a condition actually stated in the stem
@@ -163,7 +163,7 @@ E each appear in two keys, and only one key (044) is a pure {A,B,C} subset.
 ## 3. WRD-MST-040 adjudication — the son aged 12.5
 
 **Computation, independent**: m - 5 = 4(s - 5) and m + 10 = 2(s + 10) give
-2s = 25, so s = 12.5 and m = 35. Column A = 35 < 45. **Key B is correct.**
+2s = 25, so s = 12.5 and m = 35. Quantity A = 35 < 45. **Key B is correct.**
 
 **Verdict: acceptable, not an authoring error. Keep it.** Three reasons.
 
@@ -193,11 +193,11 @@ replacement that keeps the same pedagogical hook (a non-integer answer is legal)
 `hard` / `quantitative_comparison` slot, and the same key letter **B**:
 
 > Two numbers have a sum of 31, and the larger is 4 more than three times the smaller.
-> Column A: The smaller number
-> Column B: 7
+> Quantity A: The smaller number
+> Quantity B: 7
 
 **Verified in sympy**: s + (3s + 4) = 31 → 4s = 27 → smaller = 6.75, larger = 24.25, sum
-31. Column A = 6.75 < 7, so **B**, and it is decidable with no unstated condition. The
+31. Quantity A = 6.75 < 7, so **B**, and it is decidable with no unstated condition. The
 "4 more than three times" order trap fires (reading it as 4 - 3s or 3(s + 4) both break),
 and a student who insists the numbers are integers gets stuck and guesses.
 **Honest caveat on my own proposal**: it is in the same family as ALG-WPM-001 ("the larger

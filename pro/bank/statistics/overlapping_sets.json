@@ -101,7 +101,7 @@
       "id": "STA-OVL-003",
       "difficulty": "easy",
       "type": "numeric_entry",
-      "question": "In a group of 60 students, 35 study French and 28 study Spanish. Every student studies at least one of the two languages. How many students study both French and Spanish? Enter your answer as a number.",
+      "question": "In a group of 60 students, 35 study French and 28 study Spanish. Every student studies at least one of the two languages. How many students study both French and Spanish?",
       "options": null,
       "answer": "3",
       "explanation": "Step 1 — read the 'every student studies at least one' clause. It says neither = 0, so the union is the whole group: French or Spanish = 60.\nStep 2 — inclusion-exclusion: (French or Spanish) = French + Spanish - both.\n60 = 35 + 28 - both\nStep 3 — solve: both = 63 - 60 = 3.\nCheck the four regions: French only 32, Spanish only 25, both 3, neither 0. Total 32 + 25 + 3 = 60. Correct.\nAnswer: 3.",
@@ -252,7 +252,7 @@
       "question": "In a survey of 200 people, 120 read newspaper A and 90 read newspaper B. If 40 people read both newspapers, how many people read at least one newspaper?",
       "options": null,
       "answer": "170",
-      "explanation": "|A ∪ B| = |A| + |B| - |A ∩ B| = 120 + 90 - 40 = 170.",
+      "explanation": "The number who read at least one newspaper = 120 + 90 - 40 = 170 (adding the two groups counts the 40 who read both twice, so subtract them once).",
       "trap": "Students add 120 + 90 = 210 without subtracting 40, getting 210 instead of 170. The 40 who read both are counted in both the 120 and the 90.",
       "estimated_time_seconds": 40,
       "tags": [
@@ -635,7 +635,7 @@
       "id": "STA-OVL-021",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "In a survey of 100 people, 70 like Brand X and 60 like Brand Y. Select all values that COULD represent the number of people who like neither brand.",
+      "question": "In a survey of 100 people, 70 like Brand X and 60 like Brand Y.\n\nWhich of the following values could represent the number of people who like neither brand?\n\nIndicate all such values.",
       "options": [
         "A. 0",
         "B. 5",
@@ -819,7 +819,7 @@
       "id": "STA-OVL-027",
       "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "A hotel surveyed its guests: 40 percent ordered room service, 35 percent used the spa, and 25 percent used neither service. What percent of guests used both room service and the spa? Enter your answer as a number.",
+      "question": "A hotel surveyed its guests: 40 percent ordered room service, 35 percent used the spa, and 25 percent used neither service. What percent of guests used both room service and the spa?",
       "options": null,
       "answer": "0",
       "explanation": "Step 1 — union: used at least one service = 100% - 25% = 75%.\nStep 2 — inclusion-exclusion: 75 = 40 + 35 - both.\nStep 3 — both = 75 - 75 = 0%.\nSo no guest used both services: the 40% and the 35% happen to fit into the 75% union with nothing left over.\nCheck the four regions: room service only 40, spa only 35, both 0, neither 25. They sum to 100. Correct.\nAnswer: 0.",
@@ -1086,7 +1086,7 @@
       "id": "STA-OVL-035",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "In a survey of 200 people about three streaming services X, Y, and Z, 110 use X, 95 use Y, and 80 use Z. 45 use both X and Y, 35 use both X and Z, and 30 use both Y and Z; each of these pairwise counts includes everyone who uses all three services. Every person surveyed uses at least one of the three services. How many people use all three services? Enter your answer as a number.",
+      "question": "In a survey of 200 people about three streaming services X, Y, and Z, 110 use X, 95 use Y, and 80 use Z. 45 use both X and Y, 35 use both X and Z, and 30 use both Y and Z; each of these pairwise counts includes everyone who uses all three services. Every person surveyed uses at least one of the three services. How many people use all three services?",
       "options": null,
       "answer": "25",
       "explanation": "Step 1 — 'every person uses at least one' means the union is the whole survey: |X or Y or Z| = 200.\nStep 2 — three-set inclusion-exclusion, with the pairwise numbers taken as full intersections:\n200 = 110 + 95 + 80 - 45 - 35 - 30 + T\nStep 3 — collect: 110 + 95 + 80 = 285 and 45 + 35 + 30 = 110, so 200 = 285 - 110 + T = 175 + T.\nStep 4 — T = 200 - 175 = 25.\nCheck every region: X only = 110 - 45 - 35 + 25 = 55; Y only = 95 - 45 - 30 + 25 = 45; Z only = 80 - 35 - 30 + 25 = 40; XY only = 20; XZ only = 10; YZ only = 5; all three = 25. Sum = 55 + 45 + 40 + 20 + 10 + 5 + 25 = 200. Correct.\nAnswer: 25.",
@@ -1148,7 +1148,7 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "A",
-      "explanation": "Step 1 — minimise the overlap for Quantity A. The union can never exceed 100%, so 70 + 80 - both <= 100, giving both >= 50%. The smallest possible overlap is 50%, reached when nobody fails both exams.\nStep 2 — maximise 'neither' for Quantity B. Neither = 100 - union, so making 'neither' as large as possible means making the union as small as possible. The union can never be smaller than the larger of the two sets, so union >= 80%. The smallest union is 80%, reached when every exam-A passer also passed exam B, and then neither = 100 - 80 = 20%.\nStep 3 — compare: 50% > 20%, so Quantity A is greater.\nNote that the two scenarios describe different classes; each column is optimised on its own, which is exactly what 'smallest possible' and 'largest possible' ask for.\nAnswer: A.",
+      "explanation": "Step 1 — minimize the overlap for Quantity A. The union can never exceed 100%, so 70 + 80 - both <= 100, giving both >= 50%. The smallest possible overlap is 50%, reached when nobody fails both exams.\nStep 2 — maximize 'neither' for Quantity B. Neither = 100 - union, so making 'neither' as large as possible means making the union as small as possible. The union can never be smaller than the larger of the two sets, so union >= 80%. The smallest union is 80%, reached when every exam-A passer also passed exam B, and then neither = 100 - 80 = 20%.\nStep 3 — compare: 50% > 20%, so Quantity A is greater.\nNote that the two scenarios describe different classes; each column is optimised on its own, which is exactly what 'smallest possible' and 'largest possible' ask for.\nAnswer: A.",
       "trap": "Reading Quantity A as the LARGEST possible overlap, which is min(70, 80) = 70%, or reading Quantity B as the smallest 'neither', which is 0%. A second slip is computing the maximum 'neither' as 100 - 70 = 30% by shrinking the union to the wrong set - the union must contain the bigger set, 80%, not the smaller one.",
       "estimated_time_seconds": 100,
       "tags": [
@@ -1169,7 +1169,7 @@
       "id": "STA-OVL-038",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "In a group of 120 people, 75 have taken a cooking class, 60 have taken a pottery class, and 45 have taken a painting class. 30 have taken both cooking and pottery, 25 have taken both cooking and painting, and 20 have taken both pottery and painting; each of these three pairwise counts includes the 10 people who have taken all three classes. Some people have taken none of the three. How many people have taken exactly two of the three classes? Enter your answer as a number.",
+      "question": "In a group of 120 people, 75 have taken a cooking class, 60 have taken a pottery class, and 45 have taken a painting class. 30 have taken both cooking and pottery, 25 have taken both cooking and painting, and 20 have taken both pottery and painting; each of these three pairwise counts includes the 10 people who have taken all three classes. Some people have taken none of the three. How many people have taken exactly two of the three classes?",
       "options": null,
       "answer": "45",
       "explanation": "Step 1 — add the pairwise intersections: 30 + 25 + 20 = 75.\nStep 2 — see what that sum actually counts. Someone in exactly two classes appears in exactly one of the three pairwise groups, so they are counted once. Someone in all three appears in all three pairwise groups, so they are counted three times.\nSo 75 = (exactly two) + 3 x (all three).\nStep 3 — exactly two = 75 - 3 x 10 = 75 - 30 = 45.\nCheck by region: cooking only = 75 - 30 - 25 + 10 = 30; pottery only = 60 - 30 - 20 + 10 = 20; painting only = 45 - 25 - 20 + 10 = 10. Exactly-two regions: 20, 15, 10, which sum to 45. Union = 60 + 45 + 10 = 115, so 5 people took none - consistent with 120. Correct.\nAnswer: 45.",
@@ -1202,7 +1202,7 @@
         "E. 60%"
       ],
       "answer": "E",
-      "explanation": "This is a double matrix: location down the side, leads-a-team across the top. Fill the leader column one row at a time, because each percent applies to its own row.\nStep 1 — row sizes: city = 0.50 x 400 = 200; remote = 0.35 x 400 = 140; satellite = 400 - 200 - 140 = 60.\nStep 2 — leaders in each row: city = 0.30 x 200 = 60; remote = 0.20 x 140 = 28; satellite = 0.20 x 60 = 12.\nStep 3 — total leaders = 60 + 28 + 12 = 100.\nStep 4 — the question asks for a share OF THE LEADERS, so the base is 100, not 400: 60/100 = 60%.\nCheck: 60 + 28 + 12 = 100 leaders and 140 + 112 + 48 = 300 non-leaders, and 100 + 300 = 400. Correct.\nAnswer: 60%.",
+      "explanation": "This is a two-way table: location down the side, leads-a-team across the top. Fill the leader column one row at a time, because each percent applies to its own row.\nStep 1 — row sizes: city = 0.50 x 400 = 200; remote = 0.35 x 400 = 140; satellite = 400 - 200 - 140 = 60.\nStep 2 — leaders in each row: city = 0.30 x 200 = 60; remote = 0.20 x 140 = 28; satellite = 0.20 x 60 = 12.\nStep 3 — total leaders = 60 + 28 + 12 = 100.\nStep 4 — the question asks for a share OF THE LEADERS, so the base is 100, not 400: 60/100 = 60%.\nCheck: 60 + 28 + 12 = 100 leaders and 140 + 112 + 48 = 300 non-leaders, and 100 + 300 = 400. Correct.\nAnswer: 60%.",
       "trap": "Choice D, 50%, assumes leaders are spread through the company in the same proportion as employees - but the city office has the highest leadership rate, so it is over-represented among leaders. Choice C, 30%, quotes the city leadership RATE instead of the city share of leaders; choice B, 25%, answers a different question (100 leaders out of 400 employees); choice A, 20%, is the remote rate.",
       "estimated_time_seconds": 100,
       "tags": [
@@ -1287,7 +1287,7 @@
       "id": "STA-OVL-042",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "In a school of 80 students, every student belongs to at least one of three clubs: A, B, or C. Club A has 50 members, club B has 45 members, and club C has 38 members. Exactly 15 students belong to A and B but not C, exactly 12 belong to A and C but not B, and exactly 10 belong to B and C but not A. How many students belong to all three clubs? Enter your answer as a number.",
+      "question": "In a school of 80 students, every student belongs to at least one of three clubs: A, B, or C. Club A has 50 members, club B has 45 members, and club C has 38 members. Exactly 15 students belong to A and B but not C, exactly 12 belong to A and C but not B, and exactly 10 belong to B and C but not A. How many students belong to all three clubs?",
       "options": null,
       "answer": "8",
       "explanation": "The three given numbers are EXACTLY-TWO counts, not full pairwise intersections, so the standard inclusion-exclusion formula does not apply as written. Use the membership-counting identity instead.\nStep 1 — name the regions: let T be the number in all three. Exactly two = 15 + 12 + 10 = 37. Since every student is in at least one club, exactly one = 80 - 37 - T = 43 - T.\nStep 2 — count club memberships. Adding the three club sizes counts a one-club student once, a two-club student twice, and a three-club student three times:\n50 + 45 + 38 = (exactly one) + 2(exactly two) + 3T\n133 = (43 - T) + 2(37) + 3T\n133 = 43 - T + 74 + 3T = 117 + 2T\nStep 3 — 2T = 16, so T = 8.\nCheck each club: A only = 50 - 15 - 12 - 8 = 15; B only = 45 - 15 - 10 - 8 = 12; C only = 38 - 12 - 10 - 8 = 8. Exactly one = 15 + 12 + 8 = 35, and 35 + 37 + 8 = 80. Correct.\nAnswer: 8.",
@@ -1413,7 +1413,7 @@
         "E. 150"
       ],
       "answer": "C",
-      "explanation": "The insight: compare the number of PEOPLE with the number of language memberships.\nStep 1 — let e1, e2, e3 be the numbers speaking exactly one, exactly two, and all three languages. Since everyone speaks at least one:\ne1 + e2 + e3 = 200\nStep 2 — adding the three language totals counts a one-language speaker once, a two-language speaker twice, and a three-language speaker three times:\ne1 + 2e2 + 3e3 = 140 + 120 + 90 = 350\nStep 3 — subtract the first equation from the second:\ne2 + 2e3 = 350 - 200 = 150\nStep 4 — maximise e3. Since e2 cannot be negative, 2e3 <= 150, so e3 <= 75.\nStep 5 — check that 75 is achievable. Put e2 = 0 and e3 = 75. Then English only = 140 - 75 = 65, French only = 120 - 75 = 45, Mandarin only = 90 - 75 = 15, all non-negative, and 65 + 45 + 15 + 75 = 200. It works.\nAnswer: 75.",
+      "explanation": "The insight: compare the number of PEOPLE with the number of language memberships.\nStep 1 — let e1, e2, e3 be the numbers speaking exactly one, exactly two, and all three languages. Since everyone speaks at least one:\ne1 + e2 + e3 = 200\nStep 2 — adding the three language totals counts a one-language speaker once, a two-language speaker twice, and a three-language speaker three times:\ne1 + 2e2 + 3e3 = 140 + 120 + 90 = 350\nStep 3 — subtract the first equation from the second:\ne2 + 2e3 = 350 - 200 = 150\nStep 4 — maximize e3. Since e2 cannot be negative, 2e3 <= 150, so e3 <= 75.\nStep 5 — check that 75 is achievable. Put e2 = 0 and e3 = 75. Then English only = 140 - 75 = 65, French only = 120 - 75 = 45, Mandarin only = 90 - 75 = 15, all non-negative, and 65 + 45 + 15 + 75 = 200. It works.\nAnswer: 75.",
       "trap": "Choice D, 90, is the standard two-set instinct - 'the overlap cannot exceed the smallest set' - which gives a valid upper bound but not a reachable one: 90 people in all three would force 350 - 270 = 80 memberships across the remaining 110 people, which is impossible since each of them needs at least one. Choice E, 150, is the raw excess e2 + 2e3; choice A, 50, divides that excess by 3 instead of 2. Choice B, 60, is the two-set formula 140 + 120 - 200 read as a ceiling; that number is the SMALLEST possible English-and-French overlap, not the largest, and it says nothing about Mandarin.",
       "estimated_time_seconds": 125,
       "tags": [
@@ -1434,7 +1434,7 @@
       "id": "STA-OVL-047",
       "difficulty": "extreme_hard",
       "type": "numeric_entry",
-      "question": "In a survey of 400 people, 60 percent like product A, 50 percent like product B, and 35 percent like product C. Every person likes at least one of the three products, and the number of people who like exactly two of the products is three times the number who like all three. How many people like exactly one product? Enter your answer as a number.",
+      "question": "In a survey of 400 people, 60 percent like product A, 50 percent like product B, and 35 percent like product C. Every person likes at least one of the three products, and the number of people who like exactly two of the products is three times the number who like all three. How many people like exactly one product?",
       "options": null,
       "answer": "256",
       "explanation": "Step 1 — convert to counts: A = 0.60 x 400 = 240; B = 0.50 x 400 = 200; C = 0.35 x 400 = 140. Their sum is 580 product-likes.\nStep 2 — name the regions. Let t be the number who like all three; then exactly two = 3t, and since everyone likes at least one, exactly one = 400 - 3t - t = 400 - 4t.\nStep 3 — write the membership identity. One-product people contribute 1 each, two-product people 2 each, three-product people 3 each:\n580 = (400 - 4t) + 2(3t) + 3t\n580 = 400 - 4t + 6t + 3t = 400 + 5t\nStep 4 — 5t = 180, so t = 36. Then exactly two = 108 and exactly one = 400 - 144 = 256.\nCheck both equations: 256 + 108 + 36 = 400 people, and 256 + 2(108) + 3(36) = 256 + 216 + 108 = 580 memberships. Correct.\nAnswer: 256.",
@@ -1520,11 +1520,11 @@
       "id": "STA-OVL-050",
       "difficulty": "extreme_hard",
       "type": "numeric_entry",
-      "question": "A company has 300 employees, each of whom speaks at least one of three languages: English, Spanish, and French. The number who speak English only is twice the number who speak Spanish only, and the number who speak Spanish only is twice the number who speak French only. Exactly 30 speak English and Spanish but not French, exactly 10 speak English and French but not Spanish, exactly 5 speak Spanish and French but not English, and exactly 10 speak all three languages. How many employees speak English? Enter your answer as a number.",
+      "question": "A company has 300 employees, each of whom speaks at least one of three languages: English, Spanish, and French. The number who speak English only is twice the number who speak Spanish only, and the number who speak Spanish only is twice the number who speak French only. Exactly 30 speak English and Spanish but not French, exactly 10 speak English and French but not Spanish, exactly 5 speak Spanish and French but not English, and exactly 10 speak all three languages. How many employees speak English?",
       "options": null,
       "answer": "190",
       "explanation": "All seven regions of the Venn diagram are either given or expressible in one variable, so build them and add.\nStep 1 — let f be the number who speak French only. Then Spanish only = 2f and English only = 4f.\nStep 2 — the four multilingual regions are given outright: 30 + 10 + 5 = 45 speak exactly two, and 10 speak all three.\nStep 3 — everyone speaks at least one language, so the seven regions fill the company:\n4f + 2f + f + 45 + 10 = 300\n7f + 55 = 300, so 7f = 245 and f = 35.\nStep 4 — the regions: French only 35, Spanish only 70, English only 140.\nStep 5 — the question asks for the ENGLISH SET, which is four regions, not one:\nEnglish = English only + (English and Spanish only) + (English and French only) + (all three)\nEnglish = 140 + 30 + 10 + 10 = 190\nCheck the whole company: 140 + 70 + 35 + 30 + 10 + 5 + 10 = 300. Correct.\nAnswer: 190.",
-      "trap": "Answering 140 - that is English ONLY, the centre-most region of the English circle rather than the whole circle. Answering 180 is the same error stopped one step short: adding the two exactly-two English regions but forgetting the 10 who speak all three, who are also English speakers.",
+      "trap": "Answering 140 - that is English ONLY, the center-most region of the English circle rather than the whole circle. Answering 180 is the same error stopped one step short: adding the two exactly-two English regions but forgetting the 10 who speak all three, who are also English speakers.",
       "estimated_time_seconds": 130,
       "tags": [
         "three-sets",
@@ -1968,7 +1968,7 @@
       "id": "STA-OVL-KMF-012",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "A club has 180 members. Of them, 55 percent joined the choir and 75 percent joined the orchestra. Select all of the numbers that could be the count of members who joined neither group.",
+      "question": "A club has 180 members. Of them, 55 percent joined the choir and 75 percent joined the orchestra.\n\nWhich of the following numbers could be the count of members who joined neither group?\n\nIndicate all such numbers.",
       "options": [
         "A. 8",
         "B. 27",
@@ -2095,7 +2095,7 @@
       "id": "STA-OVL-KMF-017",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "A language school has 90 students, and each student takes French, Spanish, or both. Of these students, 50 take French, including 18 who take both languages. Select every statement that must hold.",
+      "question": "A language school has 90 students, and each student takes French, Spanish, or both. Of these students, 50 take French, including 18 who take both languages.\n\nWhich of the following statement must hold?\n\nIndicate all such statements.",
       "options": [
         "A. 58 students take Spanish.",
         "B. 40 students take Spanish but not French.",
@@ -2356,7 +2356,7 @@
       "id": "STA-OVL-KMF-024",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "Z has 9 more elements than Y, where X, Y and Z are all finite, and the overlap of X with Z has 9 more elements than the overlap of X with Y. Select all of the statements that must be true.",
+      "question": "Z has 9 more elements than Y, where X, Y and Z are all finite, and the overlap of X with Z has 9 more elements than the overlap of X with Y.\n\nWhich of the following statements must be true?\n\nIndicate all such statements.",
       "options": [
         "A. X union Y and X union Z contain the same number of elements",
         "B. Z has more elements outside X than Y has outside X",
@@ -2483,7 +2483,7 @@
       "id": "STA-OVL-KMF-028",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "Of the 80 employees at a firm, 35 attend a yoga class. Some employees attend a meditation class, some attend both classes, and some attend neither.\nIndicate all statements that, taken one at a time, make it possible to find how many employees attend both classes.",
+      "question": "Of the 80 employees at a firm, 35 attend a yoga class. Some employees attend a meditation class, some attend both classes, and some attend neither.\nWhich of the following statements, taken one at a time, make it possible to determine how many employees attend both classes?\n\nIndicate all such statements.",
       "options": [
         "A. Of the 80 employees, 40 attend the meditation class.",
         "B. Of the 80 employees, 20 attend neither class.",

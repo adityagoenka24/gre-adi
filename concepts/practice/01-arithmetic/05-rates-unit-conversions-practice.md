@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -112,8 +112,8 @@ Working at the same constant rate, 8 workers can build a wall in 15 days. How ma
 
 A car travels 100 km at a constant 50 km/h, then immediately travels a further 100 km at a constant 100 km/h.
 
-> **Column A:**  The car's average speed over the full 200 km
-> **Column B:**  75 km/h
+> **Quantity A:**  The car's average speed over the full 200 km
+> **Quantity B:**  75 km/h
 
 **Q11** · `ARI-RAE-029` · Select all that apply · 85s
 
@@ -229,22 +229,22 @@ A pool has two inlet pipes - A fills it in 6 hours and B fills it in 12 hours - 
 
 A alone can finish a certain job in a days and B alone can finish the same job in b days, where 0 < a < b.
 
-> **Column A:**  The number of days A and B take to finish the job working together
-> **Column B:**  b/2
+> **Quantity A:**  The number of days A and B take to finish the job working together
+> **Quantity B:**  b/2
 
 **Q24** · `ARI-RAE-058` · QC · 100s
 
 Two routes between the same pair of towns have the same length D. On Route 1 a car travels the first half of the DISTANCE at 60 km/h and the second half of the distance at 40 km/h. On Route 2 a car travels the first half of its TRAVEL TIME at 60 km/h and the second half of its travel time at 40 km/h.
 
-> **Column A:**  Average speed on Route 1
-> **Column B:**  Average speed on Route 2
+> **Quantity A:**  Average speed on Route 1
+> **Quantity B:**  Average speed on Route 2
 
 **Q25** · `ARI-RAE-062` · QC · 85s
 
 Working alone, A and B each complete the same job at constant rates, and their rates in jobs per day are in the ratio 3 : 2.
 
-> **Column A:**  (the number of days A takes alone) / (the number of days B takes alone)
-> **Column B:**  2/3
+> **Quantity A:**  (the number of days A takes alone) / (the number of days B takes alone)
+> **Quantity B:**  2/3
 
 ---
 
@@ -266,8 +266,8 @@ Pipe A alone fills an empty tank in a hours and pipe B alone empties a full tank
 
 n workers, all working at the same constant rate, complete a job in d days. Had there been k additional workers of the same kind from the start, the same job would have been completed in d - x days. Here n, d, k and x are positive and 0 < x < d.
 
-> **Column A:**  k
-> **Column B:**  nx/(d - x)
+> **Quantity A:**  k
+> **Quantity B:**  nx/(d - x)
 
 **Q28** · `ARI-RAE-068` · Select all that apply · 120s
 
@@ -289,8 +289,8 @@ A works 50% faster than B, and both work at constant rates. Working together the
 
 A delivery van covers the first 50% of a route at a constant 20 km/h, the next 30% of the route at a constant 40 km/h, and the final 20% of the route at a constant 60 km/h.
 
-> **Column A:**  The van's average speed for the whole route
-> **Column B:**  30 km/h
+> **Quantity A:**  The van's average speed for the whole route
+> **Quantity B:**  30 km/h
 
 ---
 
@@ -447,7 +447,7 @@ Step 1 — time for the first leg: 100/50 = 2 hours.
 Step 2 — time for the second leg: 100/100 = 1 hour.
 Step 3 — total time = 3 hours, total distance = 200 km.
 Step 4 — average speed = 200/3 = 66.67 km/h.
-66.67 < 75, so Column B is greater.
+66.67 < 75, so Quantity B is greater.
 The harmonic-mean shortcut for two EQUAL distances: 2ab/(a+b) = 2(50)(100)/150 = 10000/150 = 66.67. Same answer.
 
 **Trap.** Averaging the two speeds - (50 + 100)/2 = 75 - and choosing C. The legs cover the same distance but NOT the same time: the car spends 2 hours crawling and only 1 hour flying, so the slow speed gets double weight and the average must be pulled below the midpoint. For equal distances the answer is always strictly less than the plain average of the speeds.
@@ -621,9 +621,9 @@ Step 3 — compare T with b/2 symbolically rather than by testing numbers:
 ab/(a + b) vs b/2
 Divide both sides by b (positive): a/(a + b) vs 1/2
 Cross-multiply (a + b > 0): 2a vs a + b, i.e. a vs b.
-Step 4 — the stem gives a < b, so the left side is the smaller one: T < b/2 for every allowed pair. Column B is greater.
+Step 4 — the stem gives a < b, so the left side is the smaller one: T < b/2 for every allowed pair. Quantity B is greater.
 Numerical check: a = 4, b = 12 gives T = 48/16 = 3 against b/2 = 6. Squeeze the two times together: a = 9, b = 10 gives T = 90/19 = 4.74 against b/2 = 5, still below. Correct.
-Column B is greater.
+Quantity B is greater.
 
 **Trap.** Choosing C by taking a = b, where T = a/2 = b/2 exactly - but the stem makes the inequality strict, and a = b is the only case that ties. Choosing D because a and b are unspecified is the second error: the comparison collapses to 'a versus b', which the stem settles, so it resolves for every allowed pair. Choosing A comes from swapping the roles of a and b and comparing T with half of the FASTER worker's time; T is indeed greater than a/2, but b is the slower time and T never reaches half of it.
 
@@ -633,11 +633,11 @@ Route 1 - equal distances, so use the harmonic mean:
 2(60)(40)/(60 + 40) = 4800/100 = 48 km/h.
 Route 2 - equal times, so the plain average is correct:
 (60 + 40)/2 = 50 km/h.
-48 < 50, so Column B is greater.
+48 < 50, so Quantity B is greater.
 Why Route 1 loses: splitting the DISTANCE evenly forces the car to spend more TIME at 40 km/h than at 60 km/h, so the slow speed carries more weight. Splitting the time evenly weights the two speeds equally.
 Neither value depends on D, so D cancels and the comparison is fixed.
 
-**Trap.** Choosing C because both routes 'use half and half at 60 and 40'. Half the distance and half the time are different halves. The harmonic mean is always less than or equal to the arithmetic mean of the same two numbers, so the equal-distance split can never beat the equal-time split - Column A is smaller for any two unequal speeds.
+**Trap.** Choosing C because both routes 'use half and half at 60 and 40'. Half the distance and half the time are different halves. The harmonic mean is always less than or equal to the arithmetic mean of the same two numbers, so the equal-distance split can never beat the equal-time split - Quantity A is smaller for any two unequal speeds.
 
 ### Q25 · `ARI-RAE-062` — Answer: C
 
@@ -647,10 +647,10 @@ Step 2 — the solo times are 1/(3k) and 1/(2k) days.
 Step 3 — the ratio of the times:
 (1/(3k)) / (1/(2k)) = (1/(3k)) x (2k/1) = 2/3.
 The k cancels, so the answer does not depend on how fast either worker actually is.
-Column A = 2/3 = Column B, so the two quantities are equal.
+Quantity A = 2/3 = Quantity B, so the two quantities are equal.
 Check with numbers: rates 3 and 2 jobs per day give times 1/3 and 1/2 days, and (1/3)/(1/2) = 2/3. Correct.
 
-**Trap.** Copying the rate ratio straight across and answering 3/2, which makes Column A look greater. Rates and times run in opposite directions: the worker with the LARGER rate takes the SMALLER time, so the ratio of times is the reciprocal of the ratio of rates. Choosing D because k is unknown is the other error - k cancels out of the ratio.
+**Trap.** Copying the rate ratio straight across and answering 3/2, which makes Quantity A look greater. Rates and times run in opposite directions: the worker with the LARGER rate takes the SMALLER time, so the ratio of times is the reciprocal of the ratio of rates. Choosing D because k is unknown is the other error - k cancels out of the ratio.
 
 ### Q26 · `ARI-RAE-064` — Answer: C
 
@@ -676,7 +676,7 @@ k = nd/(d - x) - n
 k = [nd - n(d - x)]/(d - x)
 k = [nd - nd + nx]/(d - x)
 k = nx/(d - x)
-That is exactly Column B, for every allowed n, d and x. The two quantities are equal.
+That is exactly Quantity B, for every allowed n, d and x. The two quantities are equal.
 Check with numbers: n = 20, d = 10, x = 2. Then k = 20(2)/8 = 5, and 25 workers x 8 days = 200 = 20 x 10 worker-days. Correct.
 
 **Trap.** Choosing D because four letters are unspecified. They are not free - the equation (n + k)(d - x) = nd pins k down exactly, so nothing is left to vary. The competing algebraic slip is writing k = nx/d, dividing by the ORIGINAL number of days instead of the new one; with n = 20, d = 10, x = 2 that gives 4 workers, and 24 x 8 = 192 worker-days, short of the 200 the job needs.
@@ -718,7 +718,7 @@ Step 2 — time for each leg:
 20/60 = 1/3 hour, about 0.333
 Step 3 — total time = 2.5 + 0.75 + 1/3 = 30/12 + 9/12 + 4/12 = 43/12 hours, about 3.583 hours.
 Step 4 — average speed = 100/(43/12) = 1200/43 = 27.9 km/h.
-27.9 < 30, so Column B is greater. The 100 km was a free choice and cancels, so the result holds for any route length.
+27.9 < 30, so Quantity B is greater. The 100 km was a free choice and cancels, so the result holds for any route length.
 Estimate first: over half the distance is driven at 20 km/h, and that leg alone eats 2.5 of the 3.58 hours - about 70% of the trip time - so the average must sit close to 20, nowhere near the middle of the speed range.
 
-**Trap.** Weighting the SPEEDS by the distance shares: 0.5(20) + 0.3(40) + 0.2(60) = 10 + 12 + 12 = 34, which is above 30 and points at Column A. Distance shares are the wrong weights - average speed is a weighted average of the speeds by TIME, and the slow leg hogs the time. Because 27.9 and 34 fall on opposite sides of 30, this shortcut does not merely lose precision, it reverses the answer.
+**Trap.** Weighting the SPEEDS by the distance shares: 0.5(20) + 0.3(40) + 0.2(60) = 10 + 12 + 12 = 34, which is above 30 and points at Quantity A. Distance shares are the wrong weights - average speed is a weighted average of the speeds by TIME, and the slow leg hogs the time. Because 27.9 and 34 fall on opposite sides of 30, this shortcut does not merely lose precision, it reverses the answer.

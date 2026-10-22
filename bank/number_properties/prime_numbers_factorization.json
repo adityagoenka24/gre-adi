@@ -55,8 +55,8 @@
         "E. 9"
       ],
       "answer": "B",
-      "explanation": "Step 1 — GCD(a, b) = 1 means a and b share no prime. Since a x b = n, each prime power of n must go ENTIRELY to a or entirely to b: p^2 cannot be split, and neither can q^2 or r.\nStep 2 — building a pair is therefore three independent two-way choices, one per distinct prime: 2 x 2 x 2 = 8 ORDERED pairs (a, b).\nStep 3 — the condition a <= b keeps one of each mirror pair. No pair has a = b, since n is not a perfect square (r has exponent 1), so the 8 ordered pairs form 4 mirror pairs.\nStep 4 — 8/2 = 4.\nCheck with p = 2, q = 3, r = 7: n = 4 x 9 x 7 = 252. The coprime pairs with a <= b are (1, 252), (4, 63), (7, 36) and (9, 28). Four of them.\nAnswer: B.",
-      "trap": "Answering 8 (option D) by counting ordered pairs and ignoring that a <= b identifies (a, b) with (b, a). Answering 3 (option A) comes from discarding (1, n) as trivial, but 1 is coprime to everything and that pair is legitimate. Answering 6 (option C) comes from counting the 8 ordered pairs and then striking out both trivial ones, (1, n) and (n, 1), to get 2^3 - 2 = 6; that both forgets to halve for a <= b and wrongly rejects (1, n), which is a genuine coprime pair. Answering 9 (option E) drops the GCD condition altogether: n has (2+1)(2+1)(1+1) = 18 factors, which form 9 unordered pairs with product n, only 4 of which are coprime.",
+      "explanation": "Step 1 — the greatest common divisor of a and b = 1 means a and b share no prime. Since a x b = n, each prime power of n must go ENTIRELY to a or entirely to b: p^2 cannot be split, and neither can q^2 or r.\nStep 2 — building a pair is therefore three independent two-way choices, one per distinct prime: 2 x 2 x 2 = 8 ORDERED pairs (a, b).\nStep 3 — the condition a <= b keeps one of each mirror pair. No pair has a = b, since n is not a perfect square (r has exponent 1), so the 8 ordered pairs form 4 mirror pairs.\nStep 4 — 8/2 = 4.\nCheck with p = 2, q = 3, r = 7: n = 4 x 9 x 7 = 252. The coprime pairs with a <= b are (1, 252), (4, 63), (7, 36) and (9, 28). Four of them.\nAnswer: B.",
+      "trap": "Answering 8 (option D) by counting ordered pairs and ignoring that a <= b identifies (a, b) with (b, a). Answering 3 (option A) comes from discarding (1, n) as trivial, but 1 is coprime to everything and that pair is legitimate. Answering 6 (option C) comes from counting the 8 ordered pairs and then striking out both trivial ones, (1, n) and (n, 1), to get 2^3 - 2 = 6; that both forgets to halve for a <= b and wrongly rejects (1, n), which is a genuine coprime pair. Answering 9 (option E) drops the greatest common divisor condition altogether: n has (2+1)(2+1)(1+1) = 18 factors, which form 9 unordered pairs with product n, only 4 of which are coprime.",
       "estimated_time_seconds": 120,
       "tags": [
         "coprime-factor-pairs",
@@ -326,8 +326,8 @@
         "E. 18"
       ],
       "answer": "D",
-      "explanation": "Prime factorize both: 24 = 2³ × 3 and 36 = 2² × 3². GCD uses the minimum exponent of each shared prime: GCD = 2^min(3,2) × 3^min(1,2) = 2² × 3 = 4 × 3 = 12.",
-      "trap": "Students choose 6 (taking 2 × 3) or 8 (taking 2³ without including the 3 factor). The GCD takes the minimum power of each prime that appears in BOTH factorizations.",
+      "explanation": "Prime factorize both: 24 = 2³ × 3 and 36 = 2² × 3². Greatest common divisor uses the minimum exponent of each shared prime: greatest common divisor = 2^min(3,2) × 3^min(1,2) = 2² × 3 = 4 × 3 = 12.",
+      "trap": "Students choose 6 (taking 2 × 3) or 8 (taking 2³ without including the 3 factor). The greatest common divisor takes the minimum power of each prime that appears in BOTH factorizations.",
       "estimated_time_seconds": 55,
       "tags": [
         "gcd",
@@ -358,7 +358,7 @@
       "id": "NUM-PRF-007",
       "difficulty": "easy",
       "type": "mcq",
-      "question": "What is the least common multiple (LCM) of 12 and 18?",
+      "question": "What is the least common multiple of 12 and 18?",
       "options": [
         "A. 6",
         "B. 24",
@@ -367,8 +367,8 @@
         "E. 216"
       ],
       "answer": "C",
-      "explanation": "Prime factorize: 12 = 2² × 3 and 18 = 2 × 3². LCM uses the maximum exponent of each prime: LCM = 2^max(2,1) × 3^max(1,2) = 2² × 3² = 4 × 9 = 36.",
-      "trap": "Students multiply 12 × 18 = 216 and write that as the answer, or they confuse GCD with LCM and answer 6. LCM takes the MAX exponent of each prime, not the product of the numbers.",
+      "explanation": "Prime factorize: 12 = 2² × 3 and 18 = 2 × 3². Least common multiple uses the maximum exponent of each prime: least common multiple = 2^max(2,1) × 3^max(1,2) = 2² × 3² = 4 × 9 = 36.",
+      "trap": "Students multiply 12 × 18 = 216 and write that as the answer, or they confuse greatest common divisor with least common multiple and answer 6. Least common multiple takes the MAX exponent of each prime, not the product of the numbers.",
       "estimated_time_seconds": 55,
       "tags": [
         "lcm",
@@ -506,7 +506,7 @@
         "E. 54"
       ],
       "answer": "C",
-      "explanation": "Step 1 — prime factorise: 1500 = 15 x 100 = (3 x 5)(2^2 x 5^2) = 2^2 x 3^1 x 5^3.\nStep 2 — a perfect cube needs every exponent to be a multiple of 3.\nThe 2s sit at 2 and need one more to reach 3.\nThe 3s sit at 1 and need two more to reach 3.\nThe 5s sit at 3 already. Nothing needed.\nStep 3 — k = 2^1 x 3^2 = 2 x 9 = 18.\nCheck independently: 1500 x 18 = 27000, and 30 x 30 x 30 = 900 x 30 = 27000, so 27000 = 30^3 exactly. Nothing smaller works, because any k missing the extra 2 leaves 2^2 and any k missing a 3 leaves 3^1 or 3^2.\nAnswer: C. 18.",
+      "explanation": "Step 1 — prime factorize: 1500 = 15 x 100 = (3 x 5)(2^2 x 5^2) = 2^2 x 3^1 x 5^3.\nStep 2 — a perfect cube needs every exponent to be a multiple of 3.\nThe 2s sit at 2 and need one more to reach 3.\nThe 3s sit at 1 and need two more to reach 3.\nThe 5s sit at 3 already. Nothing needed.\nStep 3 — k = 2^1 x 3^2 = 2 x 9 = 18.\nCheck independently: 1500 x 18 = 27000, and 30 x 30 x 30 = 900 x 30 = 27000, so 27000 = 30^3 exactly. Nothing smaller works, because any k missing the extra 2 leaves 2^2 and any k missing a 3 leaves 3^1 or 3^2.\nAnswer: C. 18.",
       "trap": "Answering 6 (option A) by adding one 2 and one 3, which lifts the 3s only to 3^2 - one short of a cube. Answering 15 (option B) solves the perfect-SQUARE version by mistake: for a square you need one 3 and one 5, giving k = 15 and 22500 = 150^2. Answering 30 (option D) reports the cube root 30 instead of the multiplier k. Answering 54 = 2 x 3^3 (option E) adds three 3s rather than the two that are missing, pushing the exponent to 4.",
       "estimated_time_seconds": 80,
       "tags": [
@@ -537,7 +537,7 @@
       ],
       "answer": "C",
       "explanation": "n = 2² × 3¹ × p¹, where p is a prime > 3. The number of factors is (2+1)(1+1)(1+1) = 3 × 2 × 2 = 12. This count does not depend on which prime p is — only on the exponents. The smallest such n uses p = 5: n = 4 × 3 × 5 = 60, which has 12 factors.",
-      "trap": "Students may think that using a larger prime p changes the factor count. It doesn't — the formula depends only on the exponents, not the actual prime values. The factor count is always 12 regardless of which prime p > 3 is chosen.",
+      "trap": "Students may think that using a larger prime p changes the factor count. It does not — the formula depends only on the exponents, not the actual prime values. The factor count is always 12 regardless of which prime p > 3 is chosen.",
       "estimated_time_seconds": 70,
       "tags": [
         "factor-count",
@@ -557,11 +557,11 @@
       "id": "NUM-PRF-018",
       "difficulty": "easy",
       "type": "numeric_entry",
-      "question": "What is the least common multiple of 14, 21, and 35? Enter your answer as a number.",
+      "question": "What is the least common multiple of 14, 21, and 35?",
       "options": null,
       "answer": "210",
-      "explanation": "Step 1 — prime factorise each number: 14 = 2 x 7, 21 = 3 x 7, 35 = 5 x 7.\nStep 2 — the LCM takes the HIGHEST power of every prime that appears anywhere: 2^1, 3^1, 5^1, 7^1.\nStep 3 — LCM = 2 x 3 x 5 x 7 = 210.\nCheck: 210/14 = 15, 210/21 = 10, 210/35 = 6. All three divide exactly, and no smaller positive integer does.\nAnswer: 210.",
-      "trap": "Multiplying all three numbers, 14 x 21 x 35 = 10290. That is a common multiple but not the LEAST one, because the shared 7 gets counted three times instead of once. The mirror error is taking only the primes common to all three, which gives 7 - that is the GCD, not the LCM.",
+      "explanation": "Step 1 — prime factorize each number: 14 = 2 x 7, 21 = 3 x 7, 35 = 5 x 7.\nStep 2 — the least common multiple takes the HIGHEST power of every prime that appears anywhere: 2^1, 3^1, 5^1, 7^1.\nStep 3 — least common multiple = 2 x 3 x 5 x 7 = 210.\nCheck: 210/14 = 15, 210/21 = 10, 210/35 = 6. All three divide exactly, and no smaller positive integer does.\nAnswer: 210.",
+      "trap": "Multiplying all three numbers, 14 x 21 x 35 = 10290. That is a common multiple but not the LEAST one, because the shared 7 gets counted three times instead of once. The mirror error is taking only the primes common to all three, which gives 7 - that is the greatest common divisor, not the least common multiple.",
       "estimated_time_seconds": 70,
       "tags": [
         "lcm",
@@ -862,7 +862,7 @@
       "id": "NUM-PRF-040",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "What is the smallest positive integer that is divisible by each of 2, 3, 5 and 7 and has exactly 32 positive factors? Enter your answer as a number.",
+      "question": "What is the smallest positive integer that is divisible by each of 2, 3, 5 and 7 and has exactly 32 positive factors?",
       "options": null,
       "answer": "840",
       "explanation": "Step 1 — the number must contain all four primes, so it is 2^a x 3^b x 5^c x 7^d with a, b, c, d all at least 1 (it may contain no other prime, since an extra prime would only add another factor of at least 2 to the count).\nStep 2 — the factor count is (a + 1)(b + 1)(c + 1)(d + 1) = 32, where every bracket is at least 2.\nStep 3 — 32 = 2^5 split into four brackets each at least 2: the only option is 2 x 2 x 2 x 4, because 2 x 2 x 2 x 2 = 16 is too small and any bracket of 8 or more forces another bracket below 2.\nStep 4 — so three exponents are 1 and one exponent is 3.\nStep 5 — to make the number as small as possible, put the large exponent on the SMALLEST prime: 2^3 x 3 x 5 x 7 = 8 x 105 = 840.\nCheck: 840 = 2^3 x 3 x 5 x 7 gives (3+1)(1+1)(1+1)(1+1) = 4 x 2 x 2 x 2 = 32 factors, and 840 is divisible by 2, 3, 5 and 7.\nAnswer: 840.",
@@ -946,7 +946,7 @@
       "id": "NUM-PRF-043",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "What is the exponent of 3 in the prime factorization of 30! ? Enter your answer as a number.",
+      "question": "What is the exponent of 3 in the prime factorization of 30! ?",
       "options": null,
       "answer": "14",
       "explanation": "Step 1 — count how many of 1, 2, ..., 30 contribute a factor of 3. Each multiple of 3 contributes at least one: floor(30/3) = 10.\nStep 2 — each multiple of 9 contributes a SECOND 3 that step 1 has not counted: floor(30/9) = 3 (namely 9, 18, 27).\nStep 3 — each multiple of 27 contributes a THIRD 3: floor(30/27) = 1 (namely 27).\nStep 4 — 81 > 30, so stop. Total exponent = 10 + 3 + 1 = 14.\nCheck the three special numbers directly: 9 = 3^2, 18 = 2 x 3^2, 27 = 3^3. The other seven multiples of 3 (3, 6, 12, 15, 21, 24, 30) carry one 3 each: 7 + 2 + 2 + 3 = 14. Correct.\nAnswer: 14.",
@@ -1065,7 +1065,7 @@
       "id": "NUM-PRF-047",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "What is the smallest positive integer n such that n! has at least 10 trailing zeros? Enter your answer as a number.",
+      "question": "What is the smallest positive integer n such that n! has at least 10 trailing zeros?",
       "options": null,
       "answer": "45",
       "explanation": "Step 1 — a trailing zero comes from a factor of 10 = 2 x 5. In n! the 2s are far more plentiful than the 5s, so the number of trailing zeros equals the exponent of 5.\nStep 2 — that exponent is floor(n/5) + floor(n/25) + floor(n/125) + ...\nStep 3 — try n = 40: floor(40/5) + floor(40/25) = 8 + 1 = 9 zeros. Not enough.\nStep 4 — try n = 44: floor(44/5) + floor(44/25) = 8 + 1 = 9. Still 9.\nStep 5 — try n = 45: floor(45/5) + floor(45/25) = 9 + 1 = 10 zeros. This is the first time the count reaches 10.\nCheck: the count only changes when n crosses a multiple of 5, and 44! has 9 zeros while 45! has 10. Correct.\nAnswer: 45.",
@@ -1097,7 +1097,7 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "B",
-      "explanation": "Step 1 — the only primes dividing p x q are p and q, so any common divisor of p + q and p x q must be built from p and q.\nStep 2 — could p divide p + q? p divides p, so p would have to divide q as well. But q is prime and q is not equal to p, so p does not divide q. Therefore p does not divide p + q.\nStep 3 — the same argument rules out q.\nStep 4 — with no shared prime, GCD(p + q, p x q) = 1. Quantity A = 1.\nCheck: p = 3, q = 5 gives GCD(8, 15) = 1. p = 5, q = 7 gives GCD(12, 35) = 1. p = 3, q = 11 gives GCD(14, 33) = 1.\n1 < 2, so Quantity B is greater.\nAnswer: B.",
+      "explanation": "Step 1 — the only primes dividing p x q are p and q, so any common divisor of p + q and p x q must be built from p and q.\nStep 2 — could p divide p + q? p divides p, so p would have to divide q as well. But q is prime and q is not equal to p, so p does not divide q. Therefore p does not divide p + q.\nStep 3 — the same argument rules out q.\nStep 4 — with no shared prime, the greatest common divisor of p + q and p x q = 1. Quantity A = 1.\nCheck: p = 3, q = 5 gives the greatest common divisor of 8 and 15 = 1. p = 5, q = 7 gives the greatest common divisor of 12 and 35 = 1. p = 3, q = 11 gives the greatest common divisor of 14 and 33 = 1.\n1 < 2, so Quantity B is greater.\nAnswer: B.",
       "trap": "Noticing that p + q is even (odd + odd) and concluding that 2 is a common factor, so Quantity A = 2 and the answer is C. But p x q is a product of two ODD primes, so p x q is odd and 2 cannot divide it. The 2 sitting in p + q has nothing to pair with on the other side.",
       "estimated_time_seconds": 105,
       "tags": [

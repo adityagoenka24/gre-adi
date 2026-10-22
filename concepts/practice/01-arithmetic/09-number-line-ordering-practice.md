@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -48,8 +48,8 @@ Which of the following numbers lies strictly between -1/2 and 1/4 on the number 
 
 **Q4** · `ARI-NLO-007` · QC · 45s
 
-> **Column A:**  The distance from -5 to 3 on the number line
-> **Column B:**  The distance from 2 to -6 on the number line
+> **Quantity A:**  The distance from -5 to 3 on the number line
+> **Quantity B:**  The distance from 2 to -6 on the number line
 
 **Q5** · `ARI-NLO-010` · Numeric Entry · 45s
 
@@ -77,8 +77,8 @@ Which of the following lists -3/4, 0.7, -0.8, sqrt(0.5), -5/8 from least to grea
 
 x is a negative number.
 
-> **Column A:**  x
-> **Column B:**  x^2
+> **Quantity A:**  x
+> **Quantity B:**  x^2
 
 **Q8** · `ARI-NLO-019` · MCQ · 75s
 
@@ -120,8 +120,8 @@ If -3 <= x <= 5 and -2 <= y <= 4, what is the maximum possible value of x - y? E
 
 0 < x < 1
 
-> **Column A:**  x^2
-> **Column B:**  x^3
+> **Quantity A:**  x^2
+> **Quantity B:**  x^3
 
 **Q13** · `ARI-NLO-026` · Select all that apply · 80s
 
@@ -143,8 +143,8 @@ On the number line, which of the following points are strictly closer to -2 than
 
 x < y < 0
 
-> **Column A:**  x^2 - y^2
-> **Column B:**  0
+> **Quantity A:**  x^2 - y^2
+> **Quantity B:**  0
 
 **Q15** · `ARI-NLO-028` · MCQ · 100s
 
@@ -182,8 +182,8 @@ Real numbers x, y, z satisfy z < x < y < 0. Which of the following must be true?
 
 -1 < x < 0
 
-> **Column A:**  x + 1/x
-> **Column B:**  -2
+> **Quantity A:**  x + 1/x
+> **Quantity B:**  -2
 
 **Q19** · `ARI-NLO-032` · Select all that apply · 95s
 
@@ -215,8 +215,8 @@ Points P and Q lie on a number line at coordinates p and q, with p < q. The dist
 
 a, b and c are real numbers with a < b < c.
 
-> **Column A:**  (a + c)/2
-> **Column B:**  b
+> **Quantity A:**  (a + c)/2
+> **Quantity B:**  b
 
 **Q23** · `ARI-NLO-036` · Numeric Entry · 105s
 
@@ -270,8 +270,8 @@ III. a/b and b/a have opposite signs.
 
 x and y are non-zero real numbers with xy < 0 and x + y > 0.
 
-> **Column A:**  |x + y|
-> **Column B:**  |x| + |y|
+> **Quantity A:**  |x + y|
+> **Quantity B:**  |x| + |y|
 
 **Q28** · `ARI-NLO-039` · Select all that apply · 125s
 
@@ -287,8 +287,8 @@ Let f(x) = |x - 3| + |x + 2|. For which of the following values of x does f(x) a
 
 x is a real number satisfying x^3 < x < x^2.
 
-> **Column A:**  x
-> **Column B:**  -1
+> **Quantity A:**  x
+> **Quantity B:**  -1
 
 **Q30** · `ARI-NLO-043` · Numeric Entry · 125s
 
@@ -371,13 +371,13 @@ Answer: D.
 
 ### Q4 · `ARI-NLO-007` — Answer: C
 
-Step 1 — Column A: |-5 - 3| = |-8| = 8.
-Step 2 — Column B: |2 - (-6)| = |2 + 6| = 8.
+Step 1 — Quantity A: |-5 - 3| = |-8| = 8.
+Step 2 — Quantity B: |2 - (-6)| = |2 + 6| = 8.
 Step 3 — 8 = 8, so the two quantities are equal.
-Check by counting Column B: from -6 to 0 is 6 units, from 0 to 2 is 2 units, total 8. Correct.
+Check by counting Quantity B: from -6 to 0 is 6 units, from 0 to 2 is 2 units, total 8. Correct.
 Answer: C.
 
-**Trap.** In Column B, reading 2 - (-6) as 2 - 6 = -4 and taking the distance as 4, which makes Column A look greater and points at choice A. Subtracting a negative adds; the two points are on opposite sides of zero, so their distance is the sum of the two gaps, not the difference.
+**Trap.** In Quantity B, reading 2 - (-6) as 2 - 6 = -4 and taking the distance as 4, which makes Quantity A look greater and points at choice A. Subtracting a negative adds; the two points are on opposite sides of zero, so their distance is the sum of the two gaps, not the difference.
 
 ### Q5 · `ARI-NLO-010` — Answer: -2
 
@@ -406,14 +406,14 @@ Answer: A.
 
 ### Q7 · `ARI-NLO-012` — Answer: B
 
-Step 1 — locate each column relative to zero. x is negative, so Column A < 0. A square of a non-zero number is positive, so Column B > 0.
+Step 1 — locate each column relative to zero. x is negative, so Quantity A < 0. A square of a non-zero number is positive, so Quantity B > 0.
 Step 2 — anything negative is left of anything positive on the number line, so x < x^2 for EVERY negative x.
 Step 3 — sample all of the negative territory to be sure:
-x = -5: Column A = -5, Column B = 25. B greater.
-x = -1: Column A = -1, Column B = 1. B greater.
-x = -0.5: Column A = -0.5, Column B = 0.25. B greater.
-x = -0.001: Column A = -0.001, Column B = 0.000001. B greater.
-Column B is greater in every case.
+x = -5: Quantity A = -5, Quantity B = 25. B greater.
+x = -1: Quantity A = -1, Quantity B = 1. B greater.
+x = -0.5: Quantity A = -0.5, Quantity B = 0.25. B greater.
+x = -0.001: Quantity A = -0.001, Quantity B = 0.000001. B greater.
+Quantity B is greater in every case.
 Answer: B.
 
 **Trap.** Choosing D because squaring behaves differently on x < -1 (it enlarges the magnitude) than on -1 < x < 0 (it shrinks it). That difference is real but irrelevant here: whatever the magnitude does, the sign flips to positive, and a positive always beats a negative. Never key D just because the magnitudes vary - check whether the ORDER varies.
@@ -464,13 +464,13 @@ Answer: 7.
 
 ### Q12 · `ARI-NLO-023` — Answer: A
 
-Step 1 — write Column B in terms of Column A: x^3 = x^2 times x.
+Step 1 — write Quantity B in terms of Quantity A: x^3 = x^2 times x.
 Step 2 — on the interval 0 < x < 1, multiplying a positive number by x SHRINKS it, because the multiplier is between 0 and 1. So x^3 < x^2.
 Step 3 — test across the whole interval, including the ends:
-x = 0.9: Column A = 0.81, Column B = 0.729. A greater.
-x = 0.5: Column A = 0.25, Column B = 0.125. A greater.
-x = 0.1: Column A = 0.01, Column B = 0.001. A greater.
-Column A is greater everywhere in the interval.
+x = 0.9: Quantity A = 0.81, Quantity B = 0.729. A greater.
+x = 0.5: Quantity A = 0.25, Quantity B = 0.125. A greater.
+x = 0.1: Quantity A = 0.01, Quantity B = 0.001. A greater.
+Quantity A is greater everywhere in the interval.
 Answer: A.
 
 **Trap.** Applying 'a higher power is a bigger number' and choosing B. That rule holds only for x > 1. For 0 < x < 1 each extra factor of x drags the value further LEFT toward zero, so the powers run x > x^2 > x^3 > ... The stem pins x inside (0, 1), so the relationship never flips and D is wrong.
@@ -492,7 +492,7 @@ Answer: A, B, C.
 
 Step 1 — translate the condition. x < y < 0 puts both numbers left of zero with x further left, so |x| > |y|.
 Step 2 — squaring depends only on magnitude: x^2 = |x|^2 and y^2 = |y|^2. Since |x| > |y| > 0, squaring preserves that: x^2 > y^2.
-Step 3 — therefore x^2 - y^2 > 0 = Column B.
+Step 3 — therefore x^2 - y^2 > 0 = Quantity B.
 Factored view: x^2 - y^2 = (x - y)(x + y). Here x - y < 0 (x is left of y) and x + y < 0 (both negative), and a negative times a negative is positive. Same conclusion.
 Check two very different pairs. x = -4, y = -2: 16 - 4 = 12 > 0. x = -0.5, y = -0.1: 0.25 - 0.01 = 0.24 > 0. Both give A.
 Answer: A.
@@ -538,10 +538,10 @@ Answer: C.
 ### Q18 · `ARI-NLO-031` — Answer: B
 
 Step 1 — locate 1/x. For -1 < x < 0 the reciprocal of a negative stays negative, and because |x| < 1 the reciprocal has magnitude greater than 1: 1/x < -1.
-Step 2 — so Column A is the sum of a number in (-1, 0) and a number below -1, giving something below -1. How far below?
-Step 3 — do it algebraically. Column A - Column B = x + 1/x + 2 = (x^2 + 2x + 1)/x = (x + 1)^2 / x.
+Step 2 — so Quantity A is the sum of a number in (-1, 0) and a number below -1, giving something below -1. How far below?
+Step 3 — do it algebraically. Quantity A - Quantity B = x + 1/x + 2 = (x^2 + 2x + 1)/x = (x + 1)^2 / x.
 On this interval (x + 1)^2 > 0 (it is zero only at x = -1, which is excluded) while x < 0, so the whole fraction is NEGATIVE.
-Therefore Column A < -2 for every allowed x, and Column B is greater.
+Therefore Quantity A < -2 for every allowed x, and Quantity B is greater.
 Check across the interval:
 x = -0.9: -0.9 + (-1.111) = -2.011 < -2.
 x = -0.5: -0.5 + (-2) = -2.5 < -2.
@@ -587,10 +587,10 @@ Answer: B.
 
 ### Q22 · `ARI-NLO-035` — Answer: D
 
-Column A is the midpoint of the two OUTER numbers. Column B is the middle number, which the stem only requires to lie somewhere between a and c - anywhere at all.
-Case 1 — b sits exactly halfway: a = 1, b = 2, c = 3. Column A = (1 + 3)/2 = 2 = Column B. Equal.
-Case 2 — b hugs the left end: a = 1, b = 2, c = 10. Column A = 5.5, Column B = 2. Column A greater.
-Case 3 — b hugs the right end: a = 1, b = 9, c = 10. Column A = 5.5, Column B = 9. Column B greater.
+Quantity A is the midpoint of the two OUTER numbers. Quantity B is the middle number, which the stem only requires to lie somewhere between a and c - anywhere at all.
+Case 1 — b sits exactly halfway: a = 1, b = 2, c = 3. Quantity A = (1 + 3)/2 = 2 = Quantity B. Equal.
+Case 2 — b hugs the left end: a = 1, b = 2, c = 10. Quantity A = 5.5, Quantity B = 2. Quantity A greater.
+Case 3 — b hugs the right end: a = 1, b = 9, c = 10. Quantity A = 5.5, Quantity B = 9. Quantity B greater.
 All three outcomes occur, so no relationship holds in general.
 Answer: D.
 
@@ -662,15 +662,15 @@ Answer: A.
 
 Step 1 — read the conditions. xy < 0 says x and y have OPPOSITE signs. x + y > 0 says the positive one has the larger magnitude.
 Step 2 — take x > 0 and y < 0 (the other case is the same with the letters swapped).
-Column A = |x + y| = x + y, since the sum is positive.
-Column B = |x| + |y| = x + (-y) = x - y, since |y| = -y for negative y.
-Step 3 — subtract: Column B - Column A = (x - y) - (x + y) = -2y. Because y < 0, -2y > 0.
-So Column B exceeds Column A by exactly 2|y|, which is strictly positive since y is non-zero.
+Quantity A = |x + y| = x + y, since the sum is positive.
+Quantity B = |x| + |y| = x + (-y) = x - y, since |y| = -y for negative y.
+Step 3 — subtract: Quantity B - Quantity A = (x - y) - (x + y) = -2y. Because y < 0, -2y > 0.
+So Quantity B exceeds Quantity A by exactly 2|y|, which is strictly positive since y is non-zero.
 Check across different magnitudes:
-x = 5, y = -1: Column A = 4, Column B = 6.
-x = 5, y = -4.9: Column A = 0.1, Column B = 9.9.
-x = 100, y = -0.01: Column A = 99.99, Column B = 100.01.
-Column B is greater every time.
+x = 5, y = -1: Quantity A = 4, Quantity B = 6.
+x = 5, y = -4.9: Quantity A = 0.1, Quantity B = 9.9.
+x = 100, y = -0.01: Quantity A = 99.99, Quantity B = 100.01.
+Quantity B is greater every time.
 Answer: B.
 
 **Trap.** Recognising the triangle inequality |x + y| <= |x| + |y| and settling on C because equality is the familiar case. Equality holds only when x and y point the SAME way; here xy < 0 forces opposite directions, so the inequality is strict and B wins. The gap can be made as small as you like (the third check gives 0.02) but it is never zero, which is exactly why the answer is B and not D.
@@ -703,7 +703,7 @@ x > 1, take x = 2: x^3 = 8, x = 2, x^2 = 4. Is 8 < 2? No. Rejected.
 x < -1, take x = -2: x^3 = -8, x = -2, x^2 = 4. Is -8 < -2 < 4? Yes. Accepted.
 Boundaries: x = 0 gives 0 < 0 < 0, false; x = 1 gives 1 < 1, false; x = -1 gives -1 < -1, false. All rejected.
 So the condition holds precisely when x < -1.
-Therefore Column A < -1 = Column B, and Column B is greater.
+Therefore Quantity A < -1 = Quantity B, and Quantity B is greater.
 Why x < -1 is the only survivor: x < x^2 rules out 0 <= x <= 1, and x^3 < x forces |x| > 1 whenever x is negative, since cubing a number between -1 and 0 pulls it toward zero instead of away.
 Answer: B.
 

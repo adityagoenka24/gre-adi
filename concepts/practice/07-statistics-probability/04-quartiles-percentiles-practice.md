@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -62,8 +62,8 @@ Data set A: 2, 4, 6, 8, 10
 
 Quartiles are found by the standard method, with the median excluded from each half.
 
-> **Column A:**  The interquartile range of Data set A
-> **Column B:**  The range of Data set A
+> **Quantity A:**  The interquartile range of Data set A
+> **Quantity B:**  The range of Data set A
 
 ---
 
@@ -83,8 +83,8 @@ Data set X: 10, 20, 30, 40, 50
 
 Data set Y is formed by adding 100 to every value in Data set X.
 
-> **Column A:**  The interquartile range of Data set Y
-> **Column B:**  The interquartile range of Data set X
+> **Quantity A:**  The interquartile range of Data set Y
+> **Quantity B:**  The interquartile range of Data set X
 
 **Q8** · `STA-IQR-015` · Select all that apply · 80s
 
@@ -168,8 +168,8 @@ Seven numbers listed in increasing order are 3, k, 15, 20, 28, m, 42, where 3 < 
 
 Data set A consists of 9 numbers. Data set B is formed from A by replacing the largest number in A with a number that is 100 greater. Quartiles are found by the standard method, with the median excluded from each half.
 
-> **Column A:**  The interquartile range of Data set A
-> **Column B:**  The interquartile range of Data set B
+> **Quantity A:**  The interquartile range of Data set A
+> **Quantity B:**  The interquartile range of Data set B
 
 **Q17** · `STA-IQR-030` · MCQ · 85s
 
@@ -195,8 +195,8 @@ Data set B is Data set A with the value 50 replaced by 500.
 
 Quartiles are found by the standard method, with the median excluded from each half.
 
-> **Column A:**  The interquartile range of Data set A
-> **Column B:**  The interquartile range of Data set B
+> **Quantity A:**  The interquartile range of Data set A
+> **Quantity B:**  The interquartile range of Data set B
 
 **Q20** · `STA-IQR-033` · Select all that apply · 110s
 
@@ -232,8 +232,8 @@ Data set T consists of 10 values: one 0, eight 50s, and one 100.
 
 Quartiles are found by the standard method.
 
-> **Column A:**  The interquartile range of Data set S
-> **Column B:**  The interquartile range of Data set T
+> **Quantity A:**  The interquartile range of Data set S
+> **Quantity B:**  The interquartile range of Data set T
 
 **Q24** · `STA-IQR-041` · MCQ · 105s
 
@@ -287,8 +287,8 @@ A data set consists of 8 positive integers. Its first quartile is 12, its median
 
 A data set of 12 integers has an interquartile range of 20, and every value in it is less than 1000. Three more values, each equal to 1000, are appended to form a new data set of 15 values. Quartiles are found by the standard method, with the median excluded from each half.
 
-> **Column A:**  The interquartile range of the new 15-value data set
-> **Column B:**  20
+> **Quantity A:**  The interquartile range of the new 15-value data set
+> **Quantity B:**  20
 
 **Q29** · `STA-IQR-040` · Select all that apply · 120s
 
@@ -398,10 +398,10 @@ Answer: C.
 
 ### Q5 · `STA-IQR-010` — Answer: B
 
-Step 1 — Column B first, because it is quicker: range = max - min = 10 - 2 = 8.
-Step 2 — Column A. With 5 values the median is the 3rd value, 6. Lower half = {2, 4}, so Q1 = 3. Upper half = {8, 10}, so Q3 = 9.
+Step 1 — Quantity B first, because it is quicker: range = max - min = 10 - 2 = 8.
+Step 2 — Quantity A. With 5 values the median is the 3rd value, 6. Lower half = {2, 4}, so Q1 = 3. Upper half = {8, 10}, so Q3 = 9.
 Step 3 — IQR = 9 - 3 = 6.
-Step 4 — compare: 6 < 8, so Column B is greater.
+Step 4 — compare: 6 < 8, so Quantity B is greater.
 Check: the IQR covers only the middle two of the four gaps in this evenly spaced list, so it must be smaller. Correct.
 
 **Trap.** Choosing C by treating the IQR as 'the range of the middle part' and assuming it matches the range. Q1 is always at or above the minimum and Q3 is always at or below the maximum, so IQR is never greater than the range; here the two whiskers eat 2 units, one at each end.
@@ -562,7 +562,7 @@ Answer: 146.
 Step 1 — Data set A. Median = 30. Lower half {10, 20} gives Q1 = 15; upper half {40, 50} gives Q3 = 45. IQR = 45 - 15 = 30.
 Step 2 — Data set B = 10, 20, 30, 40, 500. Median is still 30. Lower half {10, 20} still gives Q1 = 15; upper half is now {40, 500}, so Q3 = (40 + 500)/2 = 270.
 Step 3 — IQR of B = 270 - 15 = 255.
-Step 4 — 255 > 30, so Column B is greater.
+Step 4 — 255 > 30, so Quantity B is greater.
 Why the IQR moved so much: with only 5 values the upper half holds just two numbers, so the MAXIMUM is one of the two values averaged to make Q3. In a small data set the extreme value is a quartile ingredient.
 
 **Trap.** Choosing C on the rule of thumb that the IQR ignores outliers. That rule holds when the data set is large enough that the extreme sits beyond the quartile positions; here n = 5 and Q3 = (v4 + v5)/2 uses the maximum directly, so replacing 50 with 500 drags Q3 from 45 to 270. Compare STA-IQR-029, where 9 values do keep the maximum out of Q3.
@@ -682,7 +682,7 @@ New Q1 = middle of positions 1-7 = v4. New Q3 = middle of positions 9-15 = the 4
 So the new IQR is v12 - v4 - a completely different pair of values from the ones that produced 20.
 Step 3 — make it bigger. Take 0, 0, 0, 0, 10, 10, 10, 10, 20, 20, 100, 100. Then Q1 = (0 + 0)/2 = 0, Q3 = (20 + 20)/2 = 20, so the original IQR is 20. The new IQR is v12 - v4 = 100 - 0 = 100 > 20.
 Step 4 — make it smaller. Take 1, 2, 3, 27, 28, 30, 32, 33, 34, 36, 38, 40. Then Q1 = (3 + 27)/2 = 15 and Q3 = (34 + 36)/2 = 35, so the original IQR is 20. The new IQR is v12 - v4 = 40 - 27 = 13 < 20.
-Step 5 — Column A can exceed, equal or fall below 20, so the relationship cannot be determined.
+Step 5 — Quantity A can exceed, equal or fall below 20, so the relationship cannot be determined.
 Answer: D.
 
 **Trap.** Choosing C on the rule of thumb that the IQR ignores extreme values. Appending three values does more than add outliers: it changes n from 12 to 15, which moves the quartile POSITIONS. Q3 stops being an average of the 9th and 10th values and becomes the old maximum v12, so the new IQR is measured between two entirely different data points and can land anywhere.

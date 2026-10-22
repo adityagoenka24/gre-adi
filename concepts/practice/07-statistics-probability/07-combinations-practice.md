@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ A set has 4 distinct elements. How many subsets does it have in total, counting 
 
 There are 5 distinct books. In each column no book may be used more than once.
 
-> **Column A:**  The number of ways to choose 3 of the books to donate, where the order of choice does not matter
-> **Column B:**  The number of ways to place 3 of the books into display slots labelled 1, 2 and 3, where the slot each book occupies does matter
+> **Quantity A:**  The number of ways to choose 3 of the books to donate, where the order of choice does not matter
+> **Quantity B:**  The number of ways to place 3 of the books into display slots labelled 1, 2 and 3, where the slot each book occupies does matter
 
 **Q4** · `STA-CMB-013` · Numeric Entry · 55s
 
@@ -103,15 +103,15 @@ A club has 12 distinct members. It must form a finance committee of 3 members an
 
 n is an integer greater than 2.
 
-> **Column A:**  C(n, 2)
-> **Column B:**  C(n-1, 2) + (n - 1)
+> **Quantity A:**  C(n, 2)
+> **Quantity B:**  C(n-1, 2) + (n - 1)
 
 **Q10** · `STA-CMB-034` · QC · 65s
 
 A 10-person committee must pick a 3-person subcommittee. All 10 people are distinct, and in both columns order does not matter.
 
-> **Column A:**  The number of ways to choose the 3 people who WILL serve on the subcommittee
-> **Column B:**  The number of ways to choose the 7 people who will NOT serve on the subcommittee
+> **Quantity A:**  The number of ways to choose the 3 people who WILL serve on the subcommittee
+> **Quantity B:**  The number of ways to choose the 7 people who will NOT serve on the subcommittee
 
 **Q11** · `STA-CMB-018` · Numeric Entry · 65s
 
@@ -195,15 +195,15 @@ A committee of 4 is to be chosen from a group of 9 distinct people. The members 
 
 A committee of 3 is to be chosen from 8 distinct people, one of whom is person A. The members hold no distinct roles, so order does not matter.
 
-> **Column A:**  The number of such committees that include person A
-> **Column B:**  The number of such committees that exclude person A
+> **Quantity A:**  The number of such committees that include person A
+> **Quantity B:**  The number of such committees that exclude person A
 
 **Q20** · `STA-CMB-051` · QC · 110s
 
 A 5-card hand is dealt from a standard 52-card deck containing 13 hearts and 39 non-hearts. The order of the cards within a hand does not matter.
 
-> **Column A:**  The number of hands containing exactly 2 hearts
-> **Column B:**  The number of hands containing exactly 3 hearts
+> **Quantity A:**  The number of hands containing exactly 2 hearts
+> **Quantity B:**  The number of hands containing exactly 3 hearts
 
 **Q21** · `STA-CMB-044` · Numeric Entry · 85s
 
@@ -273,8 +273,8 @@ Ten distinct people are to be divided into one group of 4 and one group of 6. Th
 
 n is an integer greater than or equal to 3.
 
-> **Column A:**  C(2n, n)
-> **Column B:**  2 x C(2n-1, n-1)
+> **Quantity A:**  C(2n, n)
+> **Quantity B:**  2 x C(2n-1, n-1)
 
 **Q29** · `STA-CMB-055` · Numeric Entry · 110s
 
@@ -354,12 +354,12 @@ Answer: 16.
 
 ### Q3 · `STA-CMB-011` — Answer: B
 
-Column A - order does not matter, so this is a combination.
+Quantity A - order does not matter, so this is a combination.
 C(5,3) = (5 x 4 x 3)/(3 x 2 x 1) = 60/6 = 10.
-Column B - the slots are labelled, so the same 3 books in different slots are different displays. This is a permutation.
+Quantity B - the slots are labelled, so the same 3 books in different slots are different displays. This is a permutation.
 P(5,3) = 5 x 4 x 3 = 60.
-60 > 10, so Column B is greater.
-The general link: P(n,r) = C(n,r) x r!, so Column B = Column A x 3! = 10 x 6 = 60. A permutation count is never smaller than the matching combination count.
+60 > 10, so Quantity B is greater.
+The general link: P(n,r) = C(n,r) x r!, so Quantity B = Quantity A x 3! = 10 x 6 = 60. A permutation count is never smaller than the matching combination count.
 
 **Trap.** Reading both columns as 'pick 3 from 5' and choosing C. The words that decide it are 'order does not matter' versus 'labelled slots'. Whenever the r selected items get distinct roles or positions, multiply the combination by r! to get the permutation.
 
@@ -425,25 +425,25 @@ Answer: 27720.
 
 ### Q9 · `STA-CMB-024` — Answer: C
 
-Column A: C(n,2) = n(n-1)/2.
-Column B: C(n-1,2) + (n-1) = (n-1)(n-2)/2 + (n-1).
-Factor out (n-1)/2 from Column B: (n-1)/2 x [(n-2) + 2] = (n-1)/2 x n = n(n-1)/2.
-That is exactly Column A, for every n > 2, so the two quantities are equal.
+Quantity A: C(n,2) = n(n-1)/2.
+Quantity B: C(n-1,2) + (n-1) = (n-1)(n-2)/2 + (n-1).
+Factor out (n-1)/2 from Quantity B: (n-1)/2 x [(n-2) + 2] = (n-1)/2 x n = n(n-1)/2.
+That is exactly Quantity A, for every n > 2, so the two quantities are equal.
 The counting reason (Pascal's identity, C(n,r) = C(n-1,r) + C(n-1,r-1)): to pick 2 people from n, either both come from the first n-1 people, which is C(n-1,2) ways, or one of them is the nth person and the partner is any of the other n-1, which is n-1 ways.
-Check with n = 5: Column A = C(5,2) = 10; Column B = C(4,2) + 4 = 6 + 4 = 10. Equal. Test n = 8 too: 28 versus 21 + 7 = 28. Equal.
+Check with n = 5: Quantity A = C(5,2) = 10; Quantity B = C(4,2) + 4 = 6 + 4 = 10. Equal. Test n = 8 too: 28 versus 21 + 7 = 28. Equal.
 Answer: C.
 
-**Trap.** Choosing D because n is unknown. The identity holds for EVERY integer n > 2, so the variable never gets a chance to make the columns differ - plug in two different values of n and both give equality. The other error is expecting Column B to be smaller because it starts from C(n-1,2); the added (n-1) is exactly the shortfall.
+**Trap.** Choosing D because n is unknown. The identity holds for EVERY integer n > 2, so the variable never gets a chance to make the columns differ - plug in two different values of n and both give equality. The other error is expecting Quantity B to be smaller because it starts from C(n-1,2); the added (n-1) is exactly the shortfall.
 
 ### Q10 · `STA-CMB-034` — Answer: C
 
-Column A: C(10,3) = (10 x 9 x 8)/(3 x 2 x 1) = 720/6 = 120.
-Column B: C(10,7) = C(10,3) = 120 by the symmetry rule.
-The reason is a one-to-one match: naming the 3 who serve automatically names the 7 who do not, and naming the 7 who do not automatically names the 3 who do. Every choice in Column A corresponds to exactly one choice in Column B, so the counts must be equal.
+Quantity A: C(10,3) = (10 x 9 x 8)/(3 x 2 x 1) = 720/6 = 120.
+Quantity B: C(10,7) = C(10,3) = 120 by the symmetry rule.
+The reason is a one-to-one match: naming the 3 who serve automatically names the 7 who do not, and naming the 7 who do not automatically names the 3 who do. Every choice in Quantity A corresponds to exactly one choice in Quantity B, so the counts must be equal.
 That is the identity C(n,r) = C(n, n-r), with 3 + 7 = 10.
 Answer: C.
 
-**Trap.** Assuming Column B is larger because 7 > 3, and choosing B. Choosing which people to leave out is the same act as choosing which people to take. When r is large, convert with the symmetry rule and compute the smaller one: C(10,7) should always be evaluated as C(10,3).
+**Trap.** Assuming Quantity B is larger because 7 > 3, and choosing B. Choosing which people to leave out is the same act as choosing which people to take. When r is large, convert with the symmetry rule and compute the smaller one: C(10,7) should always be evaluated as C(10,3).
 
 ### Q11 · `STA-CMB-018` — Answer: 21
 
@@ -538,9 +538,9 @@ Answer: 105.
 
 ### Q19 · `STA-CMB-046` — Answer: B
 
-Column A - person A takes one seat, so 2 seats remain and they are filled from the other 7 people: C(7,2) = (7 x 6)/2 = 21.
-Column B - person A is out, so all 3 seats are filled from the other 7: C(7,3) = (7 x 6 x 5)/6 = 210/6 = 35.
-35 > 21, so Column B is greater.
+Quantity A - person A takes one seat, so 2 seats remain and they are filled from the other 7 people: C(7,2) = (7 x 6)/2 = 21.
+Quantity B - person A is out, so all 3 seats are filled from the other 7: C(7,3) = (7 x 6 x 5)/6 = 210/6 = 35.
+35 > 21, so Quantity B is greater.
 Check that the two columns partition everything: 21 + 35 = 56 = C(8,3), the total number of 3-person committees. Correct.
 The structural reason: including A costs a seat, leaving fewer ways to finish; excluding A costs a person but leaves all 3 seats free, and with 8 people and a committee this small the extra seat is worth more than the extra person.
 
@@ -549,14 +549,14 @@ The structural reason: including A costs a seat, leaving fewer ways to finish; e
 ### Q20 · `STA-CMB-051` — Answer: A
 
 Each hand splits into hearts and non-hearts, so each column is a product of two combinations.
-Column A = C(13,2) x C(39,3) = 78 x 9139.
-Column B = C(13,3) x C(39,2) = 286 x 741.
+Quantity A = C(13,2) x C(39,3) = 78 x 9139.
+Quantity B = C(13,3) x C(39,2) = 286 x 741.
 Do not multiply these out - compare by ratio.
-Column A / Column B = [C(13,2)/C(13,3)] x [C(39,3)/C(39,2)]
+Quantity A / Quantity B = [C(13,2)/C(13,3)] x [C(39,3)/C(39,2)]
 C(13,2)/C(13,3) = 78/286 = 3/11.
 C(39,3)/C(39,2) = [39 x 38 x 37/6] / [39 x 38/2] = 37/3.
 Ratio = (3/11) x (37/3) = 37/11, which is about 3.4 and clearly greater than 1.
-So Column A is greater. (The exact values are 712842 and 211926.)
+So Quantity A is greater. (The exact values are 712842 and 211926.)
 The intuition: only about a quarter of the deck is hearts, so hands lean toward having FEWER hearts; moving from 2 hearts to 3 hearts trades a plentiful non-heart for a scarce heart.
 
 **Trap.** Choosing C because both columns 'use the same numbers' - C(13,2)C(39,3) and C(13,3)C(39,2) look like mirror images, but the two pools have very different sizes, so swapping which pool supplies the extra card changes the count by a factor of about 3.4. Choosing B by reasoning that 3 hearts is 'a stronger hand' confuses rarity with count: the rarer event has the SMALLER count.
@@ -650,17 +650,17 @@ Answer: 42.
 
 ### Q28 · `STA-CMB-056` — Answer: C
 
-Step 1 — split Column A with Pascal's identity C(m, r) = C(m-1, r-1) + C(m-1, r), taking m = 2n and r = n:
+Step 1 — split Quantity A with Pascal's identity C(m, r) = C(m-1, r-1) + C(m-1, r), taking m = 2n and r = n:
 C(2n, n) = C(2n-1, n-1) + C(2n-1, n).
 Step 2 — apply the symmetry rule to the second term. In C(2n-1, n), the top is 2n-1 and (2n-1) - n = n-1, so
 C(2n-1, n) = C(2n-1, n-1).
 Step 3 — the two pieces are therefore identical, so
 C(2n, n) = C(2n-1, n-1) + C(2n-1, n-1) = 2 x C(2n-1, n-1),
-which is exactly Column B. This holds for every n, so the columns are equal.
-Numerical check, n = 3: Column A = C(6,3) = 20; Column B = 2 x C(5,2) = 2 x 10 = 20. And n = 4: C(8,4) = 70; 2 x C(7,3) = 2 x 35 = 70. Equal both times.
+which is exactly Quantity B. This holds for every n, so the columns are equal.
+Numerical check, n = 3: Quantity A = C(6,3) = 20; Quantity B = 2 x C(5,2) = 2 x 10 = 20. And n = 4: C(8,4) = 70; 2 x C(7,3) = 2 x 35 = 70. Equal both times.
 Answer: C.
 
-**Trap.** Choosing D because n is a variable, or choosing A on the feeling that C(2n, n) is 'much bigger' than a combination with a smaller top number - the factor of 2 in Column B closes the gap exactly. Testing one value of n and getting equality should push you to prove it rather than guess D; the identity is Pascal's rule plus symmetry, and it holds for every n.
+**Trap.** Choosing D because n is a variable, or choosing A on the feeling that C(2n, n) is 'much bigger' than a combination with a smaller top number - the factor of 2 in Quantity B closes the gap exactly. Testing one value of n and getting equality should push you to prove it rather than guess D; the identity is Pascal's rule plus symmetry, and it holds for every n.
 
 ### Q29 · `STA-CMB-055` — Answer: 10
 

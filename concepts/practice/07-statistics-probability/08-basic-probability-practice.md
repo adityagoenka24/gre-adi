@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -60,8 +60,8 @@ A fair six-sided die is rolled once. What is the probability of rolling a 3 or a
 
 A fair six-sided die, with faces numbered 1 through 6, is rolled once.
 
-> **Column A:**  P(the result is a prime number)
-> **Column B:**  P(the result is a composite number)
+> **Quantity A:**  P(the result is a prime number)
+> **Quantity B:**  P(the result is a composite number)
 
 ---
 
@@ -111,8 +111,8 @@ One student is chosen at random from those who did NOT name Science. What is the
 
 Events A and B are mutually exclusive, with P(A) = 0.4 and P(B) = 0.5.
 
-> **Column A:**  P(A or B)
-> **Column B:**  P(A) + P(B) - P(A and B)
+> **Quantity A:**  P(A or B)
+> **Quantity B:**  P(A) + P(B) - P(A and B)
 
 **Q10** · `STA-PRB-025` · Select all that apply · 85s
 
@@ -138,8 +138,8 @@ A square has side length 10. A circle of radius 3 is drawn with its centre at th
 
 An integer is chosen at random from the integers 1 through 20, inclusive.
 
-> **Column A:**  P(the integer is a multiple of 3)
-> **Column B:**  P(the integer is a multiple of 4)
+> **Quantity A:**  P(the integer is a multiple of 3)
+> **Quantity B:**  P(the integer is a multiple of 4)
 
 **Q13** · `STA-PRB-061` · MCQ · 65s
 
@@ -171,8 +171,8 @@ Events A and B are mutually exclusive, and P(A) = 3 x P(B). If P(A or B) = 0.6, 
 
 One card is drawn at random from a standard 52-card deck.
 
-> **Column A:**  P(the card is an ace or a spade)
-> **Column B:**  P(the card is a king or a red card)
+> **Quantity A:**  P(the card is an ace or a spade)
+> **Quantity B:**  P(the card is a king or a red card)
 
 **Q16** · `STA-PRB-030` · Select all that apply · 100s
 
@@ -240,8 +240,8 @@ A bag contains only red, blue and yellow marbles. The probability of drawing a r
 
 A bag contains 5 red and 5 blue balls. Three balls are drawn at random, all at once and without replacement.
 
-> **Column A:**  P(at least one of the three balls is red)
-> **Column B:**  11/12
+> **Quantity A:**  P(at least one of the three balls is red)
+> **Quantity B:**  11/12
 
 **Q24** · `STA-PRB-052` · MCQ · 105s
 
@@ -269,8 +269,8 @@ A class has 10 students, two of whom are named Ana and Ben. A committee of 3 stu
 
 A jar contains 4 red, 3 blue and 3 green marbles and no others. Two marbles are drawn at random at the same time, without replacement.
 
-> **Column A:**  P(the two marbles are the same colour)
-> **Column B:**  1/4
+> **Quantity A:**  P(the two marbles are the same colour)
+> **Quantity B:**  1/4
 
 **Q27** · `STA-PRB-048` · Select all that apply · 125s
 
@@ -389,8 +389,8 @@ Answer: 1/3.
 Step 1 — the primes on a die are 2, 3 and 5: three outcomes, so P(prime) = 3/6 = 1/2.
 Step 2 — the composites are 4 and 6: two outcomes, so P(composite) = 2/6 = 1/3.
 Step 3 — 1 is neither prime nor composite, so it belongs to neither group. The counts 3 + 2 + 1 = 6 account for the whole die.
-Step 4 — compare over a common denominator: 1/2 = 3/6 and 1/3 = 2/6, so Column A is greater.
-Answer: Column A is greater.
+Step 4 — compare over a common denominator: 1/2 = 3/6 and 1/3 = 2/6, so Quantity A is greater.
+Answer: Quantity A is greater.
 
 **Trap.** Counting 1 as composite gives P(composite) = 3/6 = 1/2 and the wrong answer C. Counting 1 as prime gives P(prime) = 4/6, which still points at A but for the wrong reason. The number 1 is neither prime nor composite and simply sits out of both lists.
 
@@ -428,13 +428,13 @@ Answer: 1/2.
 ### Q9 · `STA-PRB-024` — Answer: C
 
 Step 1 — mutually exclusive means A and B cannot both occur, so P(A and B) = 0.
-Step 2 — Column B = 0.4 + 0.5 - 0 = 0.9.
-Step 3 — for mutually exclusive events the probabilities add directly, so Column A = P(A or B) = 0.4 + 0.5 = 0.9.
+Step 2 — Quantity B = 0.4 + 0.5 - 0 = 0.9.
+Step 3 — for mutually exclusive events the probabilities add directly, so Quantity A = P(A or B) = 0.4 + 0.5 = 0.9.
 Step 4 — both columns equal 0.9.
-The deeper point: Column B is the general addition rule, which holds for ANY two events, and Column A is the left side of that same identity. The two columns would be equal even if the numbers were different.
+The deeper point: Quantity B is the general addition rule, which holds for ANY two events, and Quantity A is the left side of that same identity. The two columns would be equal even if the numbers were different.
 Answer: the two quantities are equal.
 
-**Trap.** Computing P(A and B) as P(A) x P(B) = 0.4 x 0.5 = 0.2, which drops Column B to 0.7 and points at A. Multiplying is the test for INDEPENDENT events; mutually exclusive is the opposite situation, in which the overlap is 0. Two events with positive probabilities can never be both mutually exclusive and independent.
+**Trap.** Computing P(A and B) as P(A) x P(B) = 0.4 x 0.5 = 0.2, which drops Quantity B to 0.7 and points at A. Multiplying is the test for INDEPENDENT events; mutually exclusive is the opposite situation, in which the overlap is 0. Two events with positive probabilities can never be both mutually exclusive and independent.
 
 ### Q10 · `STA-PRB-025` — Answer: B, C, E
 
@@ -464,10 +464,10 @@ Answer: 9pi/100.
 Both columns have the same denominator, 20, so the comparison is really a count.
 Step 1 — multiples of 3 up to 20: 3, 6, 9, 12, 15, 18. That is 6 numbers, because 20/3 = 6.67 and only whole multiples count. P = 6/20 = 3/10.
 Step 2 — multiples of 4 up to 20: 4, 8, 12, 16, 20. That is 5 numbers, since 20/4 = 5 exactly. P = 5/20 = 1/4.
-Step 3 — 6/20 > 5/20, so Column A is greater.
-Answer: Column A is greater.
+Step 3 — 6/20 > 5/20, so Quantity A is greater.
+Answer: Quantity A is greater.
 
-**Trap.** Rounding 20/3 = 6.67 up to 7 and reporting 7/20 for Column A, or assuming the smaller divisor must produce the smaller count and choosing B. Count multiples by taking the floor of 20/d, and note the boundary: 20 itself is a multiple of 4, while the next multiple of 3 after 18 is 21, outside the range.
+**Trap.** Rounding 20/3 = 6.67 up to 7 and reporting 7/20 for Quantity A, or assuming the smaller divisor must produce the smaller count and choosing B. Count multiples by taking the floor of 20/d, and note the boundary: 20 itself is a multiple of 4, while the next multiple of 3 after 18 is 21, outside the range.
 
 ### Q13 · `STA-PRB-061` — Answer: B
 
@@ -493,15 +493,15 @@ Answer: 0.55.
 ### Q15 · `STA-PRB-029` — Answer: B
 
 Both events overlap, so both columns need inclusion-exclusion, and the overlaps are not the same size.
-Column A: P(ace) = 4/52 and P(spade) = 13/52. Exactly one card, the ace of spades, is in both lists, so the overlap is 1/52.
+Quantity A: P(ace) = 4/52 and P(spade) = 13/52. Exactly one card, the ace of spades, is in both lists, so the overlap is 1/52.
 P(ace or spade) = 4/52 + 13/52 - 1/52 = 16/52 = 4/13.
-Column B: P(king) = 4/52 and P(red) = 26/52. Two cards, the king of hearts and the king of diamonds, are in both lists, so the overlap is 2/52.
+Quantity B: P(king) = 4/52 and P(red) = 26/52. Two cards, the king of hearts and the king of diamonds, are in both lists, so the overlap is 2/52.
 P(king or red) = 4/52 + 26/52 - 2/52 = 28/52 = 7/13.
-4/13 < 7/13, so Column B is greater.
-Check by counting cards: Column A covers the 13 spades plus the 3 aces in other suits = 16 cards; Column B covers the 26 red cards plus the 2 black kings = 28 cards. Correct.
-Answer: Column B is greater.
+4/13 < 7/13, so Quantity B is greater.
+Check by counting cards: Quantity A covers the 13 spades plus the 3 aces in other suits = 16 cards; Quantity B covers the 26 red cards plus the 2 black kings = 28 cards. Correct.
+Answer: Quantity B is greater.
 
-**Trap.** Treating 'red card' as 'heart'. That turns Column B into 4/52 + 13/52 - 1/52 = 16/52, identical to Column A, and points at C; a standard deck has 26 red cards, the diamonds as well as the hearts. Reading Column B's 'or' as 'and' is the other way to go wrong: P(the card is a red king) = 2/52 is far below Column A's 16/52 and points at A.
+**Trap.** Treating 'red card' as 'heart'. That turns Quantity B into 4/52 + 13/52 - 1/52 = 16/52, identical to Quantity A, and points at C; a standard deck has 26 red cards, the diamonds as well as the hearts. Reading Quantity B's 'or' as 'and' is the other way to go wrong: P(the card is a red king) = 2/52 is far below Quantity A's 16/52 and points at A.
 
 ### Q16 · `STA-PRB-030` — Answer: A, C, E
 
@@ -599,7 +599,7 @@ Step 1 — 'at least one' calls for the complement: P(at least one red) = 1 - P(
 Step 2 — count the sample space: C(10,3) = (10 x 9 x 8)/(3 x 2 x 1) = 120 selections.
 Step 3 — count the all-blue selections: C(5,3) = (5 x 4 x 3)/(3 x 2 x 1) = 10.
 Step 4 — P(all blue) = 10/120 = 1/12, so P(at least one red) = 1 - 1/12 = 11/12.
-Column A = 11/12 = Column B.
+Quantity A = 11/12 = Quantity B.
 Check by the sequential route: (5/10)(4/9)(3/8) = 60/720 = 1/12, the same all-blue probability. Correct.
 Answer: the two quantities are equal.
 
@@ -636,9 +636,9 @@ green: C(3,2) = 3
 Total same-colour pairs = 6 + 3 + 3 = 12.
 Step 3 — P(same colour) = 12/45 = 4/15.
 Step 4 — compare 4/15 with 1/4 over the common denominator 60: 4/15 = 16/60 and 1/4 = 15/60.
-16/60 > 15/60, so Column A is greater - but only by 1/60.
+16/60 > 15/60, so Quantity A is greater - but only by 1/60.
 Check the complement: P(different colours) = 1 - 4/15 = 11/15, and the direct count (4x3 + 4x3 + 3x3)/45 = (12 + 12 + 9)/45 = 33/45 = 11/15. Correct.
-Answer: Column A is greater.
+Answer: Quantity A is greater.
 
 **Trap.** Mixing ordered and unordered counting: using 10 x 10 = 100 as the total gives (4x3 + 3x2 + 3x2)/100 = 24/100 = 6/25 = 0.24, which is BELOW 1/4 and points at B. Keep both counts in the same currency - 12 unordered same-colour pairs out of C(10,2) = 45. The other failure is eyeballing 4/15 as 'about a quarter' and answering C; the two differ by exactly 1/60.
 

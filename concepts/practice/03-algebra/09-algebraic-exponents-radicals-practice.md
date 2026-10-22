@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ x is a nonzero number. Which of the following is equal to 1/x^5?
 
 x > 0
 
-> **Column A:**  x^(2/3) * x^(3/4)
-> **Column B:**  x^(17/12)
+> **Quantity A:**  x^(2/3) * x^(3/4)
+> **Quantity B:**  x^(17/12)
 
 **Q4** · `ALG-EXR-008` · Numeric Entry · 40s
 
@@ -103,15 +103,15 @@ x and y are nonzero. Simplify (x^(-2) * y^3) / (x^2 * y^(-1)).
 
 x > 0
 
-> **Column A:**  x^(1/2) * x^(1/3)
-> **Column B:**  x^(5/6)
+> **Quantity A:**  x^(1/2) * x^(1/3)
+> **Quantity B:**  x^(5/6)
 
 **Q10** · `ALG-EXR-028` · QC · 70s
 
 x is a nonzero real number.
 
-> **Column A:**  x^(-2)
-> **Column B:**  -x^2
+> **Quantity A:**  x^(-2)
+> **Quantity B:**  -x^2
 
 **Q11** · `ALG-EXR-016` · Numeric Entry · 70s
 
@@ -195,15 +195,15 @@ Which of the following is equal to sqrt(x^2 - 6x + 9) for every real number x?
 
 n is an integer greater than 1.
 
-> **Column A:**  7^(n+1) - 7^(n-1)
-> **Column B:**  48 * 7^(n-1)
+> **Quantity A:**  7^(n+1) - 7^(n-1)
+> **Quantity B:**  48 * 7^(n-1)
 
 **Q20** · `ALG-EXR-044` · QC · 95s
 
 a and b are nonzero real numbers.
 
-> **Column A:**  sqrt(a^2 + b^2)
-> **Column B:**  |a + b|
+> **Quantity A:**  sqrt(a^2 + b^2)
+> **Quantity B:**  |a + b|
 
 **Q21** · `ALG-EXR-036` · Numeric Entry · 95s
 
@@ -273,8 +273,8 @@ x > 0 and p = x^(1/2) + x^(-1/2). Which of the following is equal to x + x^(-1)?
 
 0 < x < 1
 
-> **Column A:**  x^x
-> **Column B:**  x^(x^2)
+> **Quantity A:**  x^x
+> **Quantity B:**  x^(x^2)
 
 **Q29** · `ALG-EXR-049` · Numeric Entry · 120s
 
@@ -355,13 +355,13 @@ Answer: E.
 
 ### Q3 · `ALG-EXR-011` — Answer: C
 
-Step 1 — Column A multiplies two powers of the same base x, so the product rule applies: keep the base and add the exponents.
+Step 1 — Quantity A multiplies two powers of the same base x, so the product rule applies: keep the base and add the exponents.
 Step 2 — add 2/3 and 3/4 over the common denominator 12: 2/3 = 8/12 and 3/4 = 9/12, so 8/12 + 9/12 = 17/12.
-Step 3 — Column A is therefore x^(17/12), which is exactly Column B. Because x > 0, every fractional power here is defined and positive, so the two columns agree for every allowed x.
-Check: at x = 4096, Column A = 4096^(2/3) * 4096^(3/4) = 256 * 512 = 131072 and Column B = 4096^(17/12) = 2^17 = 131072. At x = 1/4096 both columns equal 1/131072. Equal both times. Correct.
+Step 3 — Quantity A is therefore x^(17/12), which is exactly Quantity B. Because x > 0, every fractional power here is defined and positive, so the two columns agree for every allowed x.
+Check: at x = 4096, Quantity A = 4096^(2/3) * 4096^(3/4) = 256 * 512 = 131072 and Quantity B = 4096^(17/12) = 2^17 = 131072. At x = 1/4096 both columns equal 1/131072. Equal both times. Correct.
 Answer: C.
 
-**Trap.** Multiplying the exponents instead of adding them gives (2/3)*(3/4) = 1/2, so Column A would read x^(1/2), which is smaller than x^(17/12) for x > 1 and larger for x < 1; that split invites D. Adding the fractions by adding numerators and denominators gives 5/7, again not 17/12. Exponents multiply only for a power of a power, while a product of powers of one base adds them, which is the case here.
+**Trap.** Multiplying the exponents instead of adding them gives (2/3)*(3/4) = 1/2, so Quantity A would read x^(1/2), which is smaller than x^(17/12) for x > 1 and larger for x < 1; that split invites D. Adding the fractions by adding numerators and denominators gives 5/7, again not 17/12. Exponents multiply only for a power of a power, while a product of powers of one base adds them, which is the case here.
 
 ### Q4 · `ALG-EXR-008` — Answer: 8
 
@@ -423,18 +423,18 @@ Answer: E.
 
 Step 1 — multiplying like bases adds the exponents: x^(1/2) * x^(1/3) = x^(1/2 + 1/3).
 Step 2 — add the fractions over the common denominator 6: 1/2 = 3/6 and 1/3 = 2/6, so 3/6 + 2/6 = 5/6.
-Step 3 — Column A is therefore x^(5/6), which is Column B, for every x > 0.
-Check: at x = 64, Column A = 64^(1/2) * 64^(1/3) = 8 * 4 = 32, and Column B = 64^(5/6) = (64^(1/6))^5 = 2^5 = 32. Equal. Correct.
+Step 3 — Quantity A is therefore x^(5/6), which is Quantity B, for every x > 0.
+Check: at x = 64, Quantity A = 64^(1/2) * 64^(1/3) = 8 * 4 = 32, and Quantity B = 64^(5/6) = (64^(1/6))^5 = 2^5 = 32. Equal. Correct.
 Answer: C.
 
 **Trap.** Multiplying the exponents instead of adding them gives x^(1/6), which at x = 64 is 2 rather than 32 and points to answer B. Adding the fractions by adding numerators and denominators gives x^(2/5), which at x = 64 is about 5.3, again pointing to B. There is no rule that multiplies exponents when powers are multiplied; that rule belongs to a power of a power.
 
 ### Q10 · `ALG-EXR-028` — Answer: A
 
-Step 1 — rewrite Column A with the negative-exponent rule: x^(-2) = 1/x^2. Since x is not 0, x^2 > 0, so Column A is positive for every allowed x.
-Step 2 — read Column B carefully. The minus sign sits outside the power, so -x^2 means -(x^2), and x^2 > 0 makes Column B negative for every allowed x.
+Step 1 — rewrite Quantity A with the negative-exponent rule: x^(-2) = 1/x^2. Since x is not 0, x^2 > 0, so Quantity A is positive for every allowed x.
+Step 2 — read Quantity B carefully. The minus sign sits outside the power, so -x^2 means -(x^2), and x^2 > 0 makes Quantity B negative for every allowed x.
 Step 3 — a positive quantity beats a negative one, whatever x is.
-Check: at x = 3, Column A = 1/9 and Column B = -9. At x = -1/2, Column A = 4 and Column B = -1/4. Column A is greater both times, and the negative test value shows the sign of x does not matter. Correct.
+Check: at x = 3, Quantity A = 1/9 and Quantity B = -9. At x = -1/2, Quantity A = 4 and Quantity B = -1/4. Quantity A is greater both times, and the negative test value shows the sign of x does not matter. Correct.
 Answer: A.
 
 **Trap.** Reading x^(-2) as -x^2 makes the two columns identical and produces answer C; at x = 3 that claims 1/9 = -9. Suspecting that a negative x might flip the comparison and answering D is the other error: both columns square x first, so the sign of x is erased before anything else happens.
@@ -527,26 +527,26 @@ Answer: E.
 
 ### Q19 · `ALG-EXR-037` — Answer: C
 
-Step 1 — do not evaluate either column. Factor out the smallest power of 7 in Column A, which is 7^(n-1).
+Step 1 — do not evaluate either column. Factor out the smallest power of 7 in Quantity A, which is 7^(n-1).
 Step 2 — write the larger power in terms of it: 7^(n+1) = 7^(n-1) * 7^2 = 49 * 7^(n-1).
-Step 3 — Column A = 49 * 7^(n-1) - 1 * 7^(n-1) = 7^(n-1) * (49 - 1) = 48 * 7^(n-1).
-Step 4 — that is Column B exactly, and the n cancelled out of the comparison entirely.
-Check: at n = 2, Column A = 7^3 - 7^1 = 343 - 7 = 336 and Column B = 48 * 7 = 336. At n = 3, Column A = 2401 - 49 = 2352 and Column B = 48 * 49 = 2352. Equal both times. Correct.
+Step 3 — Quantity A = 49 * 7^(n-1) - 1 * 7^(n-1) = 7^(n-1) * (49 - 1) = 48 * 7^(n-1).
+Step 4 — that is Quantity B exactly, and the n cancelled out of the comparison entirely.
+Check: at n = 2, Quantity A = 7^3 - 7^1 = 343 - 7 = 336 and Quantity B = 48 * 7 = 336. At n = 3, Quantity A = 2401 - 49 = 2352 and Quantity B = 48 * 49 = 2352. Equal both times. Correct.
 Answer: C.
 
-**Trap.** Subtracting the exponents, as though 7^(n+1) - 7^(n-1) were 7^((n+1)-(n-1)) = 7^2 = 49, freezes Column A at 49 while Column B grows with n, giving answer B for every n > 1. Exponents subtract when powers are DIVIDED; a difference of powers with the same base gets factored instead.
+**Trap.** Subtracting the exponents, as though 7^(n+1) - 7^(n-1) were 7^((n+1)-(n-1)) = 7^2 = 49, freezes Quantity A at 49 while Quantity B grows with n, giving answer B for every n > 1. Exponents subtract when powers are DIVIDED; a difference of powers with the same base gets factored instead.
 
 ### Q20 · `ALG-EXR-044` — Answer: D
 
 Step 1 — both columns are non-negative, so no sign argument settles this and both may be squared without changing the comparison.
-Step 2 — squaring gives Column A^2 = a^2 + b^2 and Column B^2 = (a + b)^2 = a^2 + 2ab + b^2. The columns differ by exactly the cross term 2ab, so the comparison turns entirely on the sign of the product ab.
-Step 3 — take a = 3 and b = 4, where ab is positive. Column A = sqrt(9 + 16) = 5 and Column B = |7| = 7, so Column B is greater.
-Step 4 — take a = 3 and b = -4, where ab is negative. Column A = sqrt(9 + 16) = 5 again, but Column B = |-1| = 1, so Column A is greater.
+Step 2 — squaring gives Quantity A^2 = a^2 + b^2 and Quantity B^2 = (a + b)^2 = a^2 + 2ab + b^2. The columns differ by exactly the cross term 2ab, so the comparison turns entirely on the sign of the product ab.
+Step 3 — take a = 3 and b = 4, where ab is positive. Quantity A = sqrt(9 + 16) = 5 and Quantity B = |7| = 7, so Quantity B is greater.
+Step 4 — take a = 3 and b = -4, where ab is negative. Quantity A = sqrt(9 + 16) = 5 again, but Quantity B = |-1| = 1, so Quantity A is greater.
 Step 5 — two legal choices give opposite comparisons, so the relationship is not determined.
 Check: both pairs consist of nonzero real numbers, the only stated condition; nothing in the stem forces a and b to share a sign. Note also that a = 3 and b = 0 is barred, which is where the two columns would have been equal. Correct.
 Answer: D.
 
-**Trap.** Assuming a and b share a sign and using the true fact that sqrt(a^2 + b^2) < |a + b| in that case gives answer B. The inequality is real but the hypothesis is not stated, and it is the sign of the product ab, not the sign of either number alone, that decides. Noticing that Column A is blind to sign does not settle it either, because the absolute value makes Column B blind to an overall sign flip too. The other error is splitting the root over the sum, writing sqrt(a^2 + b^2) = |a + b| and answering C, which at a = 3 and b = 4 claims 5 = 7.
+**Trap.** Assuming a and b share a sign and using the true fact that sqrt(a^2 + b^2) < |a + b| in that case gives answer B. The inequality is real but the hypothesis is not stated, and it is the sign of the product ab, not the sign of either number alone, that decides. Noticing that Quantity A is blind to sign does not settle it either, because the absolute value makes Quantity B blind to an overall sign flip too. The other error is splitting the root over the sum, writing sqrt(a^2 + b^2) = |a + b| and answering C, which at a = 3 and b = 4 claims 5 = 7.
 
 ### Q21 · `ALG-EXR-036` — Answer: 7
 
@@ -633,12 +633,12 @@ Answer: B.
 
 Step 1 — the two columns share the base x, so the comparison turns on the exponents - but the base lies between 0 and 1, which reverses the usual direction.
 Step 2 — establish the direction. For 0 < x < 1 a larger exponent gives a SMALLER value: x^0 = 1, x^1 = x < 1, x^2 < x. So on this base, the smaller exponent produces the larger quantity.
-Step 3 — compare the exponents themselves. Multiplying a number between 0 and 1 by itself shrinks it, so x^2 < x. Column B carries the smaller exponent.
-Step 4 — smaller exponent on a base between 0 and 1 means larger value, so Column B is greater for every x in the range.
-Check: at x = 1/2, Column A = 0.5^0.5 = 0.707 and Column B = 0.5^0.25 = 0.841. At x = 0.9, Column A = 0.9^0.9 = 0.9095 and Column B = 0.9^0.81 = 0.9182. Column B is greater both times. Correct.
+Step 3 — compare the exponents themselves. Multiplying a number between 0 and 1 by itself shrinks it, so x^2 < x. Quantity B carries the smaller exponent.
+Step 4 — smaller exponent on a base between 0 and 1 means larger value, so Quantity B is greater for every x in the range.
+Check: at x = 1/2, Quantity A = 0.5^0.5 = 0.707 and Quantity B = 0.5^0.25 = 0.841. At x = 0.9, Quantity A = 0.9^0.9 = 0.9095 and Quantity B = 0.9^0.81 = 0.9182. Quantity B is greater both times. Correct.
 Answer: B.
 
-**Trap.** Importing the intuition from bases greater than 1, where a bigger exponent means a bigger number, turns x > x^2 into Column A is greater and produces answer A; at x = 1/2 that claims 0.707 > 0.841. A second error reads x^(x^2) as (x^x)^2, which is x^(2x) and a different quantity altogether: at x = 1/2 it equals 0.5, not 0.841.
+**Trap.** Importing the intuition from bases greater than 1, where a bigger exponent means a bigger number, turns x > x^2 into Quantity A is greater and produces answer A; at x = 1/2 that claims 0.707 > 0.841. A second error reads x^(x^2) as (x^x)^2, which is x^(2x) and a different quantity altogether: at x = 1/2 it equals 0.5, not 0.841.
 
 ### Q29 · `ALG-EXR-049` — Answer: 17
 

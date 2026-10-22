@@ -321,7 +321,7 @@
       "id": "ALG-INQ-010",
       "difficulty": "easy",
       "type": "numeric_entry",
-      "question": "What is the largest integer value of x that satisfies 4x - 5 < 15 ? Enter your answer as a number.",
+      "question": "What is the largest integer value of x that satisfies 4x - 5 < 15 ?",
       "options": null,
       "answer": "4",
       "explanation": "Step 1 — add 5 to both sides: 4x < 20.\nStep 2 — divide both sides by 4, a positive number, so the sign is unchanged: x < 5.\nStep 3 — the sign is strict, so x = 5 itself is not allowed. The largest integer strictly below 5 is 4.\nCheck: substitute both candidates into the original inequality. x = 4 gives 4(4) - 5 = 11 < 15, true. x = 5 gives 4(5) - 5 = 15, and 15 < 15 is false, so 5 is genuinely excluded. Correct.\nAnswer: 4.",
@@ -591,7 +591,7 @@
       "id": "ALG-INQ-018",
       "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "How many integers x satisfy both 3x > -7 and 2x - 1 <= 9 ? Enter your answer as a number.",
+      "question": "How many integers x satisfy both 3x > -7 and 2x - 1 <= 9 ?",
       "options": null,
       "answer": "8",
       "explanation": "Step 1 — solve the first inequality. Divide 3x > -7 by the positive 3: x > -7/3, and -7/3 = -2.333...\nStep 2 — translate that into integers. The smallest integer strictly greater than -2.333... is -2, since -3 < -2.333... and -2 > -2.333...\nStep 3 — solve the second inequality. Add 1: 2x <= 10, then divide by the positive 2: x <= 5. The sign is <=, so 5 is included.\nStep 4 — the word 'both' means intersect the two solution sets: -7/3 < x <= 5, so the integers run from -2 up to 5.\nStep 5 — count with (last - first) + 1 = 5 - (-2) + 1 = 8.\nCheck: list them, -2, -1, 0, 1, 2, 3, 4, 5, that is 8 values, and test the two edge cases in the original inequalities. x = -2: 3(-2) = -6 > -7, true, and 2(-2) - 1 = -5 <= 9, true. x = 5: 3(5) = 15 > -7, true, and 2(5) - 1 = 9 <= 9, true. The next integers out, -3 and 6, each fail one condition: 3(-3) = -9 is not > -7, and 2(6) - 1 = 11 is not <= 9. Correct.\nAnswer: 8.",
@@ -773,10 +773,10 @@
       "id": "ALG-INQ-024",
       "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "If -1 <= x <= 3, what is the maximum value of (2 - x)^2 ? Enter your answer as a number.",
+      "question": "If -1 <= x <= 3, what is the maximum value of (2 - x)^2 ?",
       "options": null,
       "answer": "9",
-      "explanation": "Step 1 — do not maximise x; maximise the whole expression. Squaring destroys sign, so what matters is how far 2 - x is from zero, not whether it is positive or negative.\nStep 2 — find the range of the inside first. From -1 <= x <= 3, multiply all three parts by -1 and reverse both signs: -3 <= -x <= 1. Add 2 to all three parts: -1 <= 2 - x <= 3.\nStep 3 — the inside runs from -1 to 3, so its largest absolute value is 3, and that is reached at the left endpoint x = -1, where 2 - x = 3.\nStep 4 — square it: the maximum of (2 - x)^2 is 3^2 = 9.\nCheck: evaluate at both endpoints and at the point where the inside vanishes. x = -1 gives (2 + 1)^2 = 9. x = 3 gives (2 - 3)^2 = (-1)^2 = 1. x = 2 gives 0, the minimum. So 9 is the maximum. Correct.\nAnswer: 9.",
+      "explanation": "Step 1 — do not maximize x; maximize the whole expression. Squaring destroys sign, so what matters is how far 2 - x is from zero, not whether it is positive or negative.\nStep 2 — find the range of the inside first. From -1 <= x <= 3, multiply all three parts by -1 and reverse both signs: -3 <= -x <= 1. Add 2 to all three parts: -1 <= 2 - x <= 3.\nStep 3 — the inside runs from -1 to 3, so its largest absolute value is 3, and that is reached at the left endpoint x = -1, where 2 - x = 3.\nStep 4 — square it: the maximum of (2 - x)^2 is 3^2 = 9.\nCheck: evaluate at both endpoints and at the point where the inside vanishes. x = -1 gives (2 + 1)^2 = 9. x = 3 gives (2 - 3)^2 = (-1)^2 = 1. x = 2 gives 0, the minimum. So 9 is the maximum. Correct.\nAnswer: 9.",
       "trap": "Substituting the largest allowed x, x = 3, because the expression 'should' grow with x. That gives (2 - 3)^2 = 1, far from the maximum: the expression is smallest near x = 2 and grows as x moves away from 2 in either direction, so the maximum sits at whichever endpoint is farther from 2, and -1 is 3 away while 3 is only 1 away. Answering 3 reports the inside value rather than its square.",
       "estimated_time_seconds": 80,
       "tags": [
@@ -807,7 +807,7 @@
       ],
       "answer": "D",
       "explanation": "Given x < -3. (A) x + 3: since x < -3, x + 3 < 0. Negative. (B) x² - 9: if x = -4, (-4)² - 9 = 16 - 9 = 7 > 0. If x = -3.1, (-3.1)² - 9 = 9.61 - 9 = 0.61 > 0. Since x < -3, |x| > 3, so x² > 9, so x² - 9 > 0. True. (C) x² + 6x + 9 = (x+3)². If x < -3, then x + 3 < 0, so (x+3)² > 0. True. (D) -(x+3): since x + 3 < 0, -(x+3) > 0. True. (E) x + 6: if x = -4, x + 6 = 2 > 0. If x = -10, x + 6 = -4 < 0. Not always positive. So B, C, and D are all positive, and E is not guaranteed. Since the question asks which MUST be positive, and E fails, the primary answer highlighting the key concept is D (most directly follows from x < -3 → x + 3 < 0 → -(x+3) > 0).",
-      "trap": "Students choose E (x + 6 > 0 → x > -6), thinking since x < -3 implies x > -6 is sometimes true. But x could be -100, making x + 6 = -94 < 0. Students don't test large negative values.",
+      "trap": "Students choose E (x + 6 > 0 → x > -6), thinking since x < -3 implies x > -6 is sometimes true. But x could be -100, making x + 6 = -94 < 0. Students do not test large negative values.",
       "estimated_time_seconds": 80,
       "tags": [
         "linear-inequality",
@@ -993,7 +993,7 @@
       "id": "ALG-INQ-031",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "Solve: x² - 7x + 10 > 0. Which describes the solution set?",
+      "question": "Which of the following describes the solution set of x² - 7x + 10 > 0?",
       "options": [
         "A. 2 < x < 5",
         "B. x < 2 or x > 5",
@@ -1063,7 +1063,7 @@
       ],
       "answer": "B",
       "explanation": "(A) |x| > -1: Since |x| ≥ 0 > -1 for all x, this is always true. Not impossible. (B) |x - 3| < -2: |x - 3| ≥ 0 always, so it can never be less than -2. No solution. (C) |x + 1| ≥ 0: Always true (absolute value is always non-negative). (D) |2x - 5| ≥ 0: Always true. (E) |x| < 100: True for -100 < x < 100. The only inequality with no solution is B.",
-      "trap": "Students are confused by A (|x| > -1, which seems tricky) and think it has no solution because the right side is negative. They forget that |x| ≥ 0 > -1 makes A always true, and don't test B carefully.",
+      "trap": "Students are confused by A (|x| > -1, which seems tricky) and think it has no solution because the right side is negative. They forget that |x| ≥ 0 > -1 makes A always true, and do not test B carefully.",
       "estimated_time_seconds": 70,
       "tags": [
         "linear-inequality",
@@ -1099,7 +1099,7 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "D",
-      "explanation": "By AM-GM inequality, xy ≤ ((x+y)/2)² = (10/2)² = 25, with equality when x = y = 5. If x = y = 5: xy = 25. Quantity A = Quantity B. If x = 1, y = 9: xy = 9 < 25. Quantity B > Quantity A. If x = 3, y = 7: xy = 21 < 25. Quantity B > Quantity A. Since xy ≤ 25 always (with equality only when x = y = 5), and both cases (equal and less than) are possible, the relationship cannot be determined from the information given.",
+      "explanation": "Because (x - y)² ≥ 0, we have 4xy ≤ (x + y)² = 100, so xy ≤ 25, with equality when x = y = 5. If x = y = 5: xy = 25. Quantity A = Quantity B. If x = 1, y = 9: xy = 9 < 25. Quantity B > Quantity A. If x = 3, y = 7: xy = 21 < 25. Quantity B > Quantity A. Since xy ≤ 25 always (with equality only when x = y = 5), and both cases (equal and less than) are possible, the relationship cannot be determined from the information given.",
       "trap": "Students pick a specific case like x = 2, y = 8 giving xy = 16 < 25, and immediately conclude Quantity B > Quantity A (option B). They miss that x = y = 5 gives equality, making the answer D.",
       "estimated_time_seconds": 80,
       "tags": [
@@ -1165,7 +1165,7 @@
         "E"
       ],
       "explanation": "(A) xy < 0: negative × positive = negative. TRUE. (B) x - y < 0: negative minus positive = more negative. TRUE. (C) x/y < 0: negative / positive = negative. TRUE. (D) x² > y²: x² = |x|² and y² = |y|². We have no info about magnitudes of |x| and |y|. If x = -1, y = 2: x² = 1, y² = 4. x² < y². FALSE (not always true). (E) x + y could equal 0: if x = -3 and y = 3, x + y = 0. TRUE — it's possible. So A, B, C, E are all true statements.",
-      "trap": "Students choose D, assuming x < 0 means |x| could be anything so they pick a large x. They might miss E, thinking x and y can't sum to 0 since one is positive and one negative. In fact, they can — just pick equal magnitudes.",
+      "trap": "Students choose D, assuming x < 0 means |x| could be anything so they pick a large x. They might miss E, thinking x and y cannot sum to 0 since one is positive and one negative. In fact, they can — just pick equal magnitudes.",
       "estimated_time_seconds": 85,
       "tags": [
         "linear-inequality",
@@ -1235,7 +1235,7 @@
       ],
       "answer": "E",
       "explanation": "Given a > b > 0. (A) a - b > 0: a > b → a - b > 0. Always true. (B) a/b > 1: a > b and both positive → a/b > 1. Always true. (C) a² > b²: since a > b > 0, squaring preserves order for positives. Always true. (D) a³ > b³: cubing preserves order for positives. Always true. (E) 1/a > 1/b: taking reciprocals of positive numbers REVERSES the inequality. Since a > b, 1/a < 1/b. This is FALSE (the statement 1/a > 1/b is false when a > b > 0). So E is the one that could be (always) false.",
-      "trap": "Students see a > b and assume all comparisons maintain the same direction, including reciprocals. They don't recall that taking reciprocals of positive numbers reverses the inequality.",
+      "trap": "Students see a > b and assume all comparisons maintain the same direction, including reciprocals. They do not recall that taking reciprocals of positive numbers reverses the inequality.",
       "estimated_time_seconds": 75,
       "tags": [
         "linear-inequality",
@@ -1360,7 +1360,7 @@
       "id": "ALG-INQ-042",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "The solution set of 1/(x - 3) > 2 is the interval a < x < b. What is the value of b - a ? Enter your answer as a number.",
+      "question": "The solution set of 1/(x - 3) > 2 is the interval a < x < b. What is the value of b - a ?",
       "options": null,
       "answer": "0.5",
       "explanation": "Step 1 — do NOT multiply both sides by x - 3. Its sign is unknown, and multiplying an inequality by a quantity of unknown sign is illegal.\nStep 2 — settle the sign first. If x - 3 were negative, the left side 1/(x - 3) would be negative and could not exceed 2. If x - 3 were zero the expression is undefined. So x - 3 > 0, that is x > 3.\nStep 3 — now that x - 3 is known to be positive, multiplying by it is legal and the sign does not flip: 1 > 2(x - 3).\nStep 4 — expand and solve: 1 > 2x - 6, so 7 > 2x, so x < 3.5.\nStep 5 — combine the two conditions: 3 < x < 3.5. So a = 3, b = 3.5 and b - a = 0.5.\nCheck: test inside, outside and at each boundary. x = 3.2 gives 1/0.2 = 5 > 2, true. x = 3.6 gives 1/0.6 = 1.667, not greater than 2, false. x = 2 gives 1/(-1) = -1, not greater than 2, false, confirming the left ray is excluded. At x = 3.5, 1/0.5 = 2 exactly, which is not strictly greater, so 3.5 is correctly an open end. Correct.\nAnswer: 0.5.",
@@ -1466,7 +1466,7 @@
         "C"
       ],
       "explanation": "(A) x² - 4 < 0 → (x-2)(x+2) < 0 → -2 < x < 2. Bounded interval. ✓ (B) x² + 2x - 8 > 0 → (x+4)(x-2) > 0 → x < -4 or x > 2. Extends to ±∞. Not bounded. (C) |2x-3| < 7 → -7 < 2x-3 < 7 → -4 < 2x < 10 → -2 < x < 5. Bounded interval. ✓ (D) |x+1| > 4 → x < -5 or x > 3. Extends to ±∞. Not bounded. (E) 3x - 1 < 8 → x < 3. Extends to -∞. Not bounded. Answers: A and C.",
-      "trap": "Students include B thinking 'quadratic = bounded.' They don't check whether the quadratic inequality gives the interior or exterior region. The greater-than quadratic gives the exterior (unbounded) region.",
+      "trap": "Students include B thinking 'quadratic = bounded.' They do not check whether the quadratic inequality gives the interior or exterior region. The greater-than quadratic gives the exterior (unbounded) region.",
       "estimated_time_seconds": 100,
       "tags": [
         "quadratic",
@@ -1536,7 +1536,7 @@
       "id": "ALG-INQ-047",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "It is given that 4 < x < 9 and 2 < y < 6. If k is an integer such that x + 2*y < k holds for every pair (x, y) satisfying those two conditions, what is the least possible value of k ? Enter your answer as a number.",
+      "question": "It is given that 4 < x < 9 and 2 < y < 6. If k is an integer such that x + 2*y < k holds for every pair (x, y) satisfying those two conditions, what is the least possible value of k ?",
       "options": null,
       "answer": "21",
       "explanation": "Step 1 — find how large x + 2*y can get. The y-range must be scaled before it is added, because the expression carries a coefficient of 2 on y.\nStep 2 — multiply every part of 2 < y < 6 by the positive number 2. Multiplying by a positive leaves both signs unchanged: 4 < 2*y < 12.\nStep 3 — add this to 4 < x < 9 part by part. Two inequalities pointing the same way may be added: 4 + 4 < x + 2*y < 9 + 12, so 8 < x + 2*y < 21.\nStep 4 — so x + 2*y is always strictly less than 21, and it gets arbitrarily close to 21 without reaching it: x = 8.99 and y = 5.99 give 8.99 + 11.98 = 20.97.\nStep 5 — k must satisfy x + 2*y < k for every allowed pair. k = 21 works, because x + 2*y < 21 always. k = 20 fails, because the pair x = 8.9, y = 5.9 is allowed and gives x + 2*y = 8.9 + 11.8 = 20.7, and 20.7 < 20 is false.\nStep 6 — the least integer that works is 21.\nCheck: confirm the bound is not attained, so that the strict inequality really does hold with k = 21. Reaching 21 would need x = 9 and y = 6 exactly, and both are excluded by the strict inequalities, so x + 2*y < 21 for every allowed pair. Confirm k = 20 fails with the allowed pair (8.9, 5.9), for which x + 2*y = 20.7 and 20.7 < 20 is false. Correct.\nAnswer: 21.",
@@ -1730,7 +1730,7 @@
       "id": "ALG-INQ-053",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "How many integers n satisfy both n^2 < 50 and n^3 > -100 ? Enter your answer as a number.",
+      "question": "How many integers n satisfy both n^2 < 50 and n^3 > -100 ?",
       "options": null,
       "answer": "12",
       "explanation": "Step 1 — handle n^2 < 50. An even power destroys sign, so this is a two-sided condition, not a one-sided one: it says n is within sqrt(50) of zero, and sqrt(50) is about 7.07.\nStep 2 — so -7.07 < n < 7.07, and for integers that means -7 <= n <= 7. Confirm the edges: 7^2 = 49 < 50, while 8^2 = 64 is not less than 50.\nStep 3 — handle n^3 > -100. An odd power keeps sign, so this is a one-sided condition on the negative end only. Test: (-4)^3 = -64, and -64 > -100 is true. (-5)^3 = -125, and -125 > -100 is false.\nStep 4 — so n >= -4. There is no upper restriction from the cube, since every n >= 0 has n^3 >= 0 > -100.\nStep 5 — intersect the two sets: -4 <= n <= 7.\nStep 6 — count with (last - first) + 1 = 7 - (-4) + 1 = 12.\nCheck: list them, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5, 6, 7, which is 12 values, and test the integers just outside. n = -5 gives (-5)^3 = -125, which fails the cube condition. n = 8 gives 64, which fails the square condition. Correct.\nAnswer: 12.",
@@ -1766,7 +1766,7 @@
         "E. 12"
       ],
       "answer": "C",
-      "explanation": "Step 1 — the constraint is a disc of radius 1 centred at the origin, and 3x + 4y is being maximised over it. The maximum is attained on the boundary circle x^2 + y^2 = 1, since moving outward from any interior point in the direction that increases 3x + 4y keeps increasing it.\nStep 2 — bound the expression. For any real x and y, (3x + 4y)^2 <= (3^2 + 4^2)(x^2 + y^2). This is the Cauchy-Schwarz inequality, and it can be verified directly: (3^2 + 4^2)(x^2 + y^2) - (3x + 4y)^2 = 9x^2 + 9y^2 + 16x^2 + 16y^2 - 9x^2 - 24xy - 16y^2 = 16x^2 - 24xy + 9y^2 = (4x - 3y)^2, which is never negative.\nStep 3 — so (3x + 4y)^2 <= 25 * (x^2 + y^2) <= 25 * 1 = 25, giving 3x + 4y <= 5.\nStep 4 — the bound is reached when the leftover square (4x - 3y)^2 is zero and the constraint is tight, that is 4x = 3y with x^2 + y^2 = 1. Take x = 3/5 and y = 4/5: then 4(3/5) = 12/5 = 3(4/5), and (3/5)^2 + (4/5)^2 = 9/25 + 16/25 = 1.\nStep 5 — at that point 3x + 4y = 9/5 + 16/5 = 25/5 = 5, so the bound 5 is attained and is the maximum.\nCheck: try some other boundary points and confirm none beats 5. x = 1, y = 0 gives 3. x = 0, y = 1 gives 4. x = 0.8, y = 0.6 gives 2.4 + 2.4 = 4.8. x = 0.6, y = 0.8 gives 1.8 + 3.2 = 5. Correct.\nAnswer: C.",
+      "explanation": "Step 1 — the constraint is a disc of radius 1 centered at the origin, and 3x + 4y is being maximized over it. The maximum is attained on the boundary circle x^2 + y^2 = 1, since moving outward from any interior point in the direction that increases 3x + 4y keeps increasing it.\nStep 2 — bound the expression. For any real x and y, (3x + 4y)^2 <= (3^2 + 4^2)(x^2 + y^2). This is the Cauchy-Schwarz inequality, and it can be verified directly: (3^2 + 4^2)(x^2 + y^2) - (3x + 4y)^2 = 9x^2 + 9y^2 + 16x^2 + 16y^2 - 9x^2 - 24xy - 16y^2 = 16x^2 - 24xy + 9y^2 = (4x - 3y)^2, which is never negative.\nStep 3 — so (3x + 4y)^2 <= 25 * (x^2 + y^2) <= 25 * 1 = 25, giving 3x + 4y <= 5.\nStep 4 — the bound is reached when the leftover square (4x - 3y)^2 is zero and the constraint is tight, that is 4x = 3y with x^2 + y^2 = 1. Take x = 3/5 and y = 4/5: then 4(3/5) = 12/5 = 3(4/5), and (3/5)^2 + (4/5)^2 = 9/25 + 16/25 = 1.\nStep 5 — at that point 3x + 4y = 9/5 + 16/5 = 25/5 = 5, so the bound 5 is attained and is the maximum.\nCheck: try some other boundary points and confirm none beats 5. x = 1, y = 0 gives 3. x = 0, y = 1 gives 4. x = 0.8, y = 0.6 gives 2.4 + 2.4 = 4.8. x = 0.6, y = 0.8 gives 1.8 + 3.2 = 5. Correct.\nAnswer: C.",
       "trap": "Maximising the two terms separately, taking x = 1 and y = 1 to get 3 + 4 = 7, choice D. That point has x^2 + y^2 = 2, which violates the constraint: x and y cannot both reach 1 at once. Choice E, 12, multiplies the coefficients instead of combining them. Choices B and A are the values at the two axis points, 4 at (0, 1) and 3 at (1, 0), each obtained by setting one variable to zero and never checking a mixed point.",
       "estimated_time_seconds": 130,
       "tags": [
@@ -1882,7 +1882,7 @@
       "id": "ALG-INQ-057",
       "difficulty": "extreme_hard",
       "type": "numeric_entry",
-      "question": "a and b are positive numbers with a + b = 1 and a is not equal to b. What is the greatest integer k such that 1/a + 1/b > k holds for every such pair (a, b) ? Enter your answer as a number.",
+      "question": "a and b are positive numbers with a + b = 1 and a is not equal to b. What is the greatest integer k such that 1/a + 1/b > k holds for every such pair (a, b) ?",
       "options": null,
       "answer": "4",
       "explanation": "Step 1 — combine the two fractions over a common denominator: 1/a + 1/b = (b + a)/(ab).\nStep 2 — use the constraint a + b = 1 in the numerator: the expression is simply 1/(ab). So the question becomes: how large can ab be?\nStep 3 — bound ab. Write b = 1 - a, so ab = a(1 - a) = a - a^2. Then 1/4 - ab = 1/4 - a + a^2 = (a - 1/2)^2, which is never negative and is zero only when a = 1/2.\nStep 4 — so ab <= 1/4, with equality only at a = b = 1/2. The stem excludes a = b, so ab < 1/4 strictly.\nStep 5 — ab is positive because a and b are positive, so taking reciprocals of two positive numbers reverses the inequality: 1/(ab) > 4.\nStep 6 — therefore 1/a + 1/b > 4 for every allowed pair, so k = 4 works. And k = 5 fails: a = 0.51, b = 0.49 gives ab = 0.2499 and 1/(ab) = 4.0016, which is not greater than 5. The greatest integer that always works is 4.\nCheck: evaluate at several pairs and confirm all exceed 4 while approaching it. a = 0.6, b = 0.4: 1/0.6 + 1/0.4 = 1.667 + 2.5 = 4.167. a = 0.9, b = 0.1: 1.111 + 10 = 11.111. a = 0.51, b = 0.49: 1.9608 + 2.0408 = 4.0016. The values dip toward 4 but never reach it, and 4.0016 already rules out k = 5. Correct.\nAnswer: 4.",
@@ -2787,7 +2787,7 @@
         "C"
       ],
       "explanation": "Start with the three that can be settled outright. Since r is negative and t is positive, r*t is negative, so D is impossible. Dividing that negative number by the positive number s keeps it negative, so E is impossible. And 0 < s < t forces s/t < 1, so F is impossible.\nFor the first three, examine the difference: r*t/s - r*t = r*t*(1/s - 1) = r*t*(1 - s)/s, where r*t < 0 and s > 0.\nIf s > 1, then 1 - s is negative, so the whole expression is negative times negative over positive, which is positive, giving r*t/s > r*t. Example: r = -1, s = 2, t = 3 gives r*t/s = -1.5 and r*t = -3, and -1.5 > -3. So A is possible.\nIf s = 1, the expression is 0 and the two are equal. Example: r = -1, s = 1, t = 2 gives -2 and -2. So B is possible.\nIf 0 < s < 1, then 1 - s is positive and the expression is negative, giving r*t/s < r*t. Example: r = -1, s = 0.5, t = 1 gives r*t/s = -2 and r*t = -1, and -2 < -1. So C is possible.",
-      "trap": "Assuming that dividing by the positive number s must shrink the quantity, and selecting only C. Dividing a negative number by a value between 0 and 1 does push it further below zero, but dividing by a value above 1 pulls it toward zero, which makes it larger. Since s is only known to be positive, both behaviours are available.",
+      "trap": "Assuming that dividing by the positive number s must shrink the quantity, and selecting only C. Dividing a negative number by a value between 0 and 1 does push it further below zero, but dividing by a value above 1 pulls it toward zero, which makes it larger. Since s is only known to be positive, both behaviors are available.",
       "estimated_time_seconds": 115,
       "tags": [
         "sign-analysis",
@@ -2855,7 +2855,7 @@
       ],
       "answer": "A",
       "explanation": "The numerator 20 is fixed and positive, so the fraction is largest when the denominator x - y is positive and as small as possible. Since x is at least 12 and y is at most 7, the difference x - y is always at least 12 - 7 = 5, and that smallest difference is actually attainable by taking x = 12 and y = 7. Because x and y are integers, no value of x - y between 0 and 5 exists. The greatest possible value is therefore 20/5 = 4. Since 4 is greater than 3, Quantity A is greater.",
-      "trap": "Students try to 'maximise' by pushing x to its largest value and y to its smallest, taking x = 30 and y = 2 to get 20/28, which is less than 1, and then choose B. With a fixed positive numerator the fraction grows as the denominator shrinks, so the goal is to make x - y as small as possible, not as large as possible.",
+      "trap": "Students try to 'maximize' by pushing x to its largest value and y to its smallest, taking x = 30 and y = 2 to get 20/28, which is less than 1, and then choose B. With a fixed positive numerator the fraction grows as the denominator shrinks, so the goal is to make x - y as small as possible, not as large as possible.",
       "estimated_time_seconds": 100,
       "tags": [
         "inequalities",
@@ -2950,7 +2950,7 @@
       "id": "ALG-INQ-KMF-004",
       "difficulty": "extreme_hard",
       "type": "multiple_answer",
-      "question": "A tray holds 15 seedlings, and every seedling carries exactly one label: basil, thyme or sage. The tray contains at least 2 basil seedlings, at least 4 thyme seedlings and at least 4 sage seedlings. The thyme count is an even number and the sage count is an even number. Indicate each number that could be the basil count.",
+      "question": "A tray holds 15 seedlings, and every seedling carries exactly one label: basil, thyme or sage. The tray contains at least 2 basil seedlings, at least 4 thyme seedlings and at least 4 sage seedlings. The thyme count is an even number and the sage count is an even number.\n\nWhich of the following number could be the basil count?\n\nIndicate all such numbers.",
       "options": [
         "A. 2",
         "B. 3",
@@ -2982,7 +2982,7 @@
       "id": "ALG-INQ-KMF-005",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "Consider real numbers y with y > -2. Select all of the following values of y for which y^3/4 is greater than (y/4)^3.",
+      "question": "Consider real numbers y with y > -2.\n\nWhich of the following values of y for y^3/4 is greater than (y/4)^3?\n\nIndicate all such values.",
       "options": [
         "A. -1.5",
         "B. -0.5",
@@ -3011,7 +3011,7 @@
       "id": "ALG-INQ-KMF-006",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "x is a real number between 2 and 3. Select all of the following values of x for which 12/x is greater than 7x/4.",
+      "question": "x is a real number between 2 and 3.\n\nWhich of the following values of x for 12/x is greater than 7x/4?\n\nIndicate all such values.",
       "options": [
         "A. x = 2.1",
         "B. x = 2.4",
@@ -3041,7 +3041,7 @@
       "id": "ALG-INQ-KMF-007",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "m and n are real numbers with m > n. Select all of the following statements that must be true.",
+      "question": "m and n are real numbers with m > n.\n\nWhich of the following statements must be true?\n\nIndicate all such statements.",
       "options": [
         "A. 3m - n > 2m",
         "B. m^2 > n^2",
@@ -3072,7 +3072,7 @@
       "id": "ALG-INQ-KMF-008",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "Printer P takes longer to print a pages at a steady b pages per minute than printer Q takes to print c pages at a steady d pages per minute. The numbers a, b, c, and d are all positive. Select all of the inequalities that must hold.",
+      "question": "Printer P takes longer to print a pages at a steady b pages per minute than printer Q takes to print c pages at a steady d pages per minute. The numbers a, b, c, and d are all positive.\n\nWhich of the following inequalities must hold?\n\nIndicate all such inequalities.",
       "options": [
         "A. ad > bc",
         "B. a/c > b/d",
@@ -3340,7 +3340,7 @@
       "id": "ALG-INQ-KMF-018",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "The integer m is from 4 through 9, inclusive, and the integer n is from 11 through 16, inclusive. Determine the smallest number that 12/(m-n) can equal.",
+      "question": "The integer m is from 4 through 9, inclusive, and the integer n is from 11 through 16, inclusive. What is the smallest number that 12/(m-n) can equal?",
       "options": null,
       "answer": "-6",
       "explanation": "Every allowed m is smaller than every allowed n, so m - n is always negative and 12/(m-n) is always negative.\nThe expression is smallest (most negative) when |m - n| is smallest, because dividing 12 by a smaller magnitude gives a larger magnitude.\nSmallest |m - n| uses the largest m and the smallest n: m = 9, n = 11, so m - n = -2.\nLeast value = 12/(-2) = -6.\nCheck: the other extreme, m = 4, n = 16, gives 12/(-12) = -1, which is larger than -6. A difference of -1 is impossible because the ranges are separated by a gap.",
@@ -3441,7 +3441,7 @@
       "id": "ALG-INQ-KMF-022",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "Real numbers x and y satisfy |x + 2| < 3 and |y| < 4. Indicate every statement about the product xy that is guaranteed to hold.",
+      "question": "Real numbers x and y satisfy |x + 2| < 3 and |y| < 4.\n\nWhich of the following statement about the product xy is guaranteed to hold?\n\nIndicate all such statements.",
       "options": [
         "A. -20 < xy < 20",
         "B. -16 < xy < 16",
@@ -3472,7 +3472,7 @@
       "id": "ALG-INQ-KMF-023",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "An orchard has 240 apple trees and 100 pear trees. The orchard plants x new trees of each kind, so both counts rise by x. Once planting is done, the ratio of apple trees to pear trees is to be below 1.5. Indicate all values x could take.",
+      "question": "An orchard has 240 apple trees and 100 pear trees. The orchard plants x new trees of each kind, so both counts rise by x. Once planting is done, the ratio of apple trees to pear trees is to be below 1.5. Which of the following values could x take?\n\nIndicate all such values.",
       "options": [
         "A. 150",
         "B. 180",
@@ -3522,7 +3522,7 @@
       "id": "ALG-INQ-KMF-025",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "Which of the listed numbers, when substituted for x, make the expression (2x+7)^8 (x-8)^3 / (x+3)^2 negative? Select all such numbers.",
+      "question": "Which of the listed numbers, when substituted for x, make the expression (2x+7)^8 (x-8)^3 / (x+3)^2 negative?\n\nIndicate all such numbers.",
       "options": [
         "A. -7",
         "B. -3.5",
@@ -3631,7 +3631,7 @@
       "id": "ALG-INQ-KMF-029",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "n is a positive integer. Select all values of n for which the average (arithmetic mean) of n, n^2 and 1/n is greater than n + 3.",
+      "question": "n is a positive integer.\n\nWhich of the following values of n for the average (arithmetic mean) of n, n^2 and 1/n is greater than n + 3?\n\nIndicate all such values.",
       "options": [
         "A. 1",
         "B. 3",
@@ -3662,7 +3662,7 @@
       "id": "ALG-INQ-KMF-030",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "Real numbers a and b satisfy -4 < a < -2 and 3 < b < 5. Select every statement that is guaranteed to hold for all such pairs (a, b).",
+      "question": "Real numbers a and b satisfy -4 < a < -2 and 3 < b < 5.\n\nWhich of the following statement is guaranteed to hold for all such pairs (a, b)?\n\nIndicate all such statements.",
       "options": [
         "A. ab < -6",
         "B. a + b > 1",
@@ -3739,7 +3739,7 @@
       "id": "ALG-INQ-KMF-033",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "Consider each condition below on its own, for a real number t. Select every condition that, if it holds, is enough to guarantee that t lies strictly between 0 and 1.",
+      "question": "Consider each condition below on its own, for a real number t.\n\nWhich of the following condition that, if it holds, is enough to guarantee t lies strictly between 0 and 1?\n\nIndicate all such conditions.",
       "options": [
         "A. t^2 < t^3",
         "B. t^3 < t",
@@ -3838,7 +3838,7 @@
       "id": "ALG-INQ-KMF-037",
       "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "The positive integers m, n and k satisfy m < n < k, and m + k = 36. Select all values that k could equal.",
+      "question": "The positive integers m, n and k satisfy m < n < k, and m + k = 36.\n\nWhich of the following values k could equal?\n\nIndicate all such values.",
       "options": [
         "A. 12",
         "B. 18",
@@ -3870,7 +3870,7 @@
       "id": "ALG-INQ-KMF-038",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "Indicate every value of x listed below for which the inequality |x + 1| < 5 - x is true.",
+      "question": "Which of the following value of x for the inequality |x + 1| < 5 - x is true?\n\nIndicate all such values.",
       "options": [
         "A. -6",
         "B. -1",
@@ -4003,7 +4003,7 @@
       "id": "ALG-INQ-KMF-043",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "The real numbers w and z satisfy w^3 < -64 and z^2 > 9. Select every statement that must be true.",
+      "question": "The real numbers w and z satisfy w^3 < -64 and z^2 > 9.\n\nWhich of the following statement must be true?\n\nIndicate all such statements.",
       "options": [
         "A. w < -4",
         "B. w^2 > 16",

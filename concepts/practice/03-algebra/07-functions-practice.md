@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -40,8 +40,8 @@ The functions f and g are defined by f(x) = 3x - 2 and g(x) = x^2 - 1. What is g
 
 f(x) = x^2 + 1 for all real numbers x.
 
-> **Column A:**  f(3)
-> **Column B:**  f(-3)
+> **Quantity A:**  f(3)
+> **Quantity B:**  f(-3)
 
 **Q4** · `ALG-FNC-009` · MCQ · 40s
 
@@ -89,8 +89,8 @@ The function f is defined by f(x) = (3x + 1)/2 for all real numbers x. What is t
 
 f(x) = 2x + 3 and g(x) = x - 1 for all real numbers x.
 
-> **Column A:**  f(g(5))
-> **Column B:**  g(f(5))
+> **Quantity A:**  f(g(5))
+> **Quantity B:**  g(f(5))
 
 **Q9** · `ALG-FNC-023` · Select all that apply · 90s
 
@@ -106,8 +106,8 @@ The function f is defined by f(x) = x^2 - 4, and g is defined by g(x) = sqrt(f(x
 
 f(x) = x^2 + 2x + 1 for all real numbers x.
 
-> **Column A:**  f(-4)
-> **Column B:**  f(2)
+> **Quantity A:**  f(-4)
+> **Quantity B:**  f(2)
 
 **Q11** · `ALG-FNC-026` · Numeric Entry · 85s
 
@@ -197,8 +197,8 @@ For how many values of c is f(c) = 2?
 
 f(x) = x/(x + 1) for all x > 0.
 
-> **Column A:**  f(f(f(3)))
-> **Column B:**  f(1/3)
+> **Quantity A:**  f(f(f(3)))
+> **Quantity B:**  f(1/3)
 
 **Q20** · `ALG-FNC-044` · Numeric Entry · 100s
 
@@ -230,8 +230,8 @@ The function f is defined by f(x) = (x - 2)/(x^2 - 5x + 6) for every real number
 
 The functions f and g are defined by f(x) = 3x - 1 and g(x) = x/2 for all real numbers x, and h is defined by h(x) = f(g(x)). The notation ^(-1) denotes the inverse of a function.
 
-> **Column A:**  h^(-1)(5)
-> **Column B:**  g^(-1)(f^(-1)(5))
+> **Quantity A:**  h^(-1)(5)
+> **Quantity B:**  g^(-1)(f^(-1)(5))
 
 **Q24** · `ALG-FNC-049` · Numeric Entry · 105s
 
@@ -297,8 +297,8 @@ A function f satisfies f(x)*f(1 - x) = 1 for every x at which both values are de
 
 f(x) = x + 1/x for all x > 0. The numbers a and b are positive and satisfy a + b = 4.
 
-> **Column A:**  f(a) + f(b)
-> **Column B:**  f(4)
+> **Quantity A:**  f(a) + f(b)
+> **Quantity B:**  f(4)
 
 **Q30** · `ALG-FNC-058` · Select all that apply · 125s
 
@@ -373,13 +373,13 @@ Answer: D.
 
 ### Q3 · `ALG-FNC-008` — Answer: C
 
-Step 1 — evaluate Column A: f(3) = 3^2 + 1 = 9 + 1 = 10.
-Step 2 — evaluate Column B, keeping the brackets: f(-3) = (-3)^2 + 1 = 9 + 1 = 10.
+Step 1 — evaluate Quantity A: f(3) = 3^2 + 1 = 9 + 1 = 10.
+Step 2 — evaluate Quantity B, keeping the brackets: f(-3) = (-3)^2 + 1 = 9 + 1 = 10.
 Step 3 — compare: 10 and 10 are equal.
 Check: the only place x appears in the rule is inside a square, and squaring destroys the sign, so f(-a) = f(a) for every a. Testing a second pair, f(2) = 5 and f(-2) = 5, confirms the pattern rather than just the one case. Correct.
 Answer: C.
 
-**Trap.** Writing f(-3) = -3^2 + 1 = -9 + 1 = -8, which makes Column A look greater and produces choice A. The input is -3, so the whole of -3 is squared. Choice D tempts anyone who assumes a negative input must change the answer without actually computing it.
+**Trap.** Writing f(-3) = -3^2 + 1 = -9 + 1 = -8, which makes Quantity A look greater and produces choice A. The input is -3, so the whole of -3 is squared. Choice D tempts anyone who assumes a negative input must change the answer without actually computing it.
 
 ### Q4 · `ALG-FNC-009` — Answer: B
 
@@ -423,10 +423,10 @@ Answer: 11.
 
 ### Q8 · `ALG-FNC-020` — Answer: B
 
-Step 1 — evaluate Column A from the inside out. g(5) = 5 - 1 = 4, then f(4) = 2*4 + 3 = 11.
-Step 2 — evaluate Column B from the inside out. f(5) = 2*5 + 3 = 13, then g(13) = 13 - 1 = 12.
-Step 3 — compare: 11 is less than 12, so Column B is greater.
-Check: compose in general to see that the gap is not an accident of x = 5. f(g(x)) = 2(x - 1) + 3 = 2x + 1, while g(f(x)) = (2x + 3) - 1 = 2x + 2. The second exceeds the first by 1 for every x, so Column B is greater no matter what number the stem had used. Correct.
+Step 1 — evaluate Quantity A from the inside out. g(5) = 5 - 1 = 4, then f(4) = 2*4 + 3 = 11.
+Step 2 — evaluate Quantity B from the inside out. f(5) = 2*5 + 3 = 13, then g(13) = 13 - 1 = 12.
+Step 3 — compare: 11 is less than 12, so Quantity B is greater.
+Check: compose in general to see that the gap is not an accident of x = 5. f(g(x)) = 2(x - 1) + 3 = 2x + 1, while g(f(x)) = (2x + 3) - 1 = 2x + 2. The second exceeds the first by 1 for every x, so Quantity B is greater no matter what number the stem had used. Correct.
 Answer: B.
 
 **Trap.** Assuming the two columns must be equal because the same two functions and the same input appear in both, and answering C. Order changes the result: subtracting 1 before doubling removes 2 from the final total, while subtracting 1 after doubling removes only 1. Answering D on the grounds that composition order is unpredictable is the other error; both columns are fully determined here.
@@ -447,8 +447,8 @@ Answer: A, D and E.
 
 ### Q10 · `ALG-FNC-025` — Answer: C
 
-Step 1 — evaluate Column A: f(-4) = (-4)^2 + 2*(-4) + 1 = 16 - 8 + 1 = 9.
-Step 2 — evaluate Column B: f(2) = 2^2 + 2*2 + 1 = 4 + 4 + 1 = 9.
+Step 1 — evaluate Quantity A: f(-4) = (-4)^2 + 2*(-4) + 1 = 16 - 8 + 1 = 9.
+Step 2 — evaluate Quantity B: f(2) = 2^2 + 2*2 + 1 = 4 + 4 + 1 = 9.
 Step 3 — compare: both are 9, so the quantities are equal.
 Check: the rule factors as f(x) = (x + 1)^2, so f(a) depends only on how far a sits from -1. Both -4 and 2 are exactly 3 away from -1, so both give 3^2 = 9. That explains the coincidence instead of merely reporting it, and it predicts further pairs: f(-3) = f(1) = 4. Correct.
 Answer: C.
@@ -547,16 +547,16 @@ Answer: C.
 
 ### Q19 · `ALG-FNC-043` — Answer: A
 
-Step 1 — work the innermost application in Column A first: f(3) = 3/(3 + 1) = 3/4.
+Step 1 — work the innermost application in Quantity A first: f(3) = 3/(3 + 1) = 3/4.
 Step 2 — feed that output back in: f(3/4) = (3/4)/((3/4) + 1) = (3/4)/(7/4). The 4s cancel, leaving 3/7.
-Step 3 — once more: f(3/7) = (3/7)/((3/7) + 1) = (3/7)/(10/7) = 3/10. So Column A is 3/10.
+Step 3 — once more: f(3/7) = (3/7)/((3/7) + 1) = (3/7)/(10/7) = 3/10. So Quantity A is 3/10.
 Step 4 — the fast route, worth seeing: each application keeps the numerator x and adds x to the denominator, since x/(x + 1) fed back in gives x/(2x + 1), then x/(3x + 1). Applying f three times to x gives x/(3x + 1), and at x = 3 that is 3/10 directly.
-Step 5 — Column B: f(1/3) = (1/3)/((1/3) + 1) = (1/3)/(4/3) = 1/4.
-Step 6 — compare 3/10 and 1/4 over the common denominator 20: 3/10 = 6/20 and 1/4 = 5/20. Column A is greater.
+Step 5 — Quantity B: f(1/3) = (1/3)/((1/3) + 1) = (1/3)/(4/3) = 1/4.
+Step 6 — compare 3/10 and 1/4 over the common denominator 20: 3/10 = 6/20 and 1/4 = 5/20. Quantity A is greater.
 Check: cross-multiply as a second route, safe here because both denominators are positive. 3*4 = 12 and 10*1 = 10, and 12 > 10, so 3/10 > 1/4. Correct.
 Answer: A.
 
-**Trap.** Dropping the brackets in Column B and reading f(1/3) as (1/3)/(1/3) + 1 = 2. That makes Column B look far larger and produces choice B. The whole of x + 1 sits under the fraction bar, so the denominator is 4/3, not 1/3. Reading the triple application as f(3) cubed, 27/64, or as 3*f(3) = 9/4 reaches the right letter for the wrong reason and would fail on closer columns. Answering D because three nested applications look unpredictable ignores that x is pinned at 3 and every value is computable.
+**Trap.** Dropping the brackets in Quantity B and reading f(1/3) as (1/3)/(1/3) + 1 = 2. That makes Quantity B look far larger and produces choice B. The whole of x + 1 sits under the fraction bar, so the denominator is 4/3, not 1/3. Reading the triple application as f(3) cubed, 27/64, or as 3*f(3) = 9/4 reaches the right letter for the wrong reason and would fail on closer columns. Answering D because three nested applications look unpredictable ignores that x is pinned at 3 and every value is computable.
 
 ### Q20 · `ALG-FNC-044` — Answer: 2
 
@@ -598,15 +598,15 @@ Answer: A, C and D.
 ### Q23 · `ALG-FNC-047` — Answer: C
 
 Step 1 — build h explicitly, inner function first: h(x) = f(g(x)) = f(x/2) = 3*(x/2) - 1 = (3x)/2 - 1.
-Step 2 — Column A asks which input h sends to 5. Solve (3x)/2 - 1 = 5: (3x)/2 = 6, so 3x = 12 and x = 4.
-Step 3 — Column B, inner first. f^(-1)(5) asks which input f sends to 5: 3x - 1 = 5 gives 3x = 6 and x = 2.
+Step 2 — Quantity A asks which input h sends to 5. Solve (3x)/2 - 1 = 5: (3x)/2 = 6, so 3x = 12 and x = 4.
+Step 3 — Quantity B, inner first. f^(-1)(5) asks which input f sends to 5: 3x - 1 = 5 gives 3x = 6 and x = 2.
 Step 4 — now the outer piece. g^(-1)(2) asks which input g sends to 2: x/2 = 2 gives x = 4.
 Step 5 — both columns equal 4, so the quantities are equal.
 Step 6 — the general fact behind it, which decides the comparison without any arithmetic: h applies g and then f, so undoing h means undoing f first and then g. That is (f(g(x)))^(-1) evaluated at y equals g^(-1)(f^(-1)(y)) for every y, not only for y = 5. The two columns are the same quantity written two ways.
 Check: run the common value forward through h. h(4) = 3*(4/2) - 1 = 6 - 1 = 5, which is the number both columns were asked about. Correct.
 Answer: C.
 
-**Trap.** Undoing the composite in the order it was built rather than in reverse: computing f^(-1)(g^(-1)(5)) = f^(-1)(10) = 11/3, which is less than 4 and points at choice A. Inverses of a composite come off in the opposite order, outermost first. A second error is reading h^(-1)(5) as the reciprocal 1/h(5) = 1/(13/2) = 2/13, far below Column B, which points at choice B. A third is answering D on the grounds that nothing is known about the inverses, when both f and g are one-to-one linear rules whose inverses are explicit.
+**Trap.** Undoing the composite in the order it was built rather than in reverse: computing f^(-1)(g^(-1)(5)) = f^(-1)(10) = 11/3, which is less than 4 and points at choice A. Inverses of a composite come off in the opposite order, outermost first. A second error is reading h^(-1)(5) as the reciprocal 1/h(5) = 1/(13/2) = 2/13, far below Quantity B, which points at choice B. A third is answering D on the grounds that nothing is known about the inverses, when both f and g are one-to-one linear rules whose inverses are explicit.
 
 ### Q24 · `ALG-FNC-049` — Answer: 254
 
@@ -675,12 +675,12 @@ Answer: E.
 
 ### Q29 · `ALG-FNC-057` — Answer: A
 
-Step 1 — write out Column A: f(a) + f(b) = a + 1/a + b + 1/b = (a + b) + (1/a + 1/b) = 4 + (1/a + 1/b).
-Step 2 — combine the two reciprocals over a common denominator: 1/a + 1/b = (b + a)/(ab) = 4/(ab). So Column A = 4 + 4/(ab).
-Step 3 — evaluate Column B: f(4) = 4 + 1/4 = 4.25.
-Step 4 — compare. Column A beats Column B exactly when 4/(ab) > 1/4, that is when ab < 16. So the question reduces to: how large can ab be, given that a and b are positive with a + b = 4?
+Step 1 — write out Quantity A: f(a) + f(b) = a + 1/a + b + 1/b = (a + b) + (1/a + 1/b) = 4 + (1/a + 1/b).
+Step 2 — combine the two reciprocals over a common denominator: 1/a + 1/b = (b + a)/(ab) = 4/(ab). So Quantity A = 4 + 4/(ab).
+Step 3 — evaluate Quantity B: f(4) = 4 + 1/4 = 4.25.
+Step 4 — compare. Quantity A beats Quantity B exactly when 4/(ab) > 1/4, that is when ab < 16. So the question reduces to: how large can ab be, given that a and b are positive with a + b = 4?
 Step 5 — bound the product. Since (a - b)^2 >= 0, expanding gives a^2 - 2ab + b^2 >= 0, so (a + b)^2 >= 4ab, that is 16 >= 4ab and ab <= 4. The product can never exceed 4, which is comfortably below 16, and it is reached only when a = b = 2.
-Step 6 — conclude. At the largest possible product, ab = 4, Column A is 4 + 4/4 = 5, and every other admissible pair makes ab smaller and so Column A larger. The smallest Column A can ever be is 5, and 5 > 4.25, so Column A is greater for every permitted pair.
+Step 6 — conclude. At the largest possible product, ab = 4, Quantity A is 4 + 4/4 = 5, and every other admissible pair makes ab smaller and so Quantity A larger. The smallest Quantity A can ever be is 5, and 5 > 4.25, so Quantity A is greater for every permitted pair.
 Check: test the extremes. At a = b = 2: f(2) + f(2) = 2.5 + 2.5 = 5 > 4.25. At a = 1, b = 3: f(1) + f(3) = 2 + 10/3 = 16/3, about 5.33 > 4.25. At a = 0.1, b = 3.9: f(0.1) = 10.1 alone already exceeds 4.25. Correct.
 Answer: A.
 

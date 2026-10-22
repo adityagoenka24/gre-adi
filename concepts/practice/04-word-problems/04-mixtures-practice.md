@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -54,8 +54,8 @@ Cashews worth $8 per pound are mixed with peanuts worth $3 per pound to make 10 
 
 A 20-liter solution of 30% acid is diluted by adding 10 liters of pure water.
 
-> **Column A:**  The new acid concentration
-> **Column B:**  20%
+> **Quantity A:**  The new acid concentration
+> **Quantity B:**  20%
 
 **Q5** · `WRD-MIX-015` · Select all that apply · 60s
 
@@ -125,8 +125,8 @@ Solution X is made by mixing 20 liters of 50% alcohol with 30 liters of 30% alco
 
 Solution Y is made by mixing 25 liters of 50% alcohol with 25 liters of 30% alcohol.
 
-> **Column A:**  The alcohol concentration of Solution X
-> **Column B:**  The alcohol concentration of Solution Y
+> **Quantity A:**  The alcohol concentration of Solution X
+> **Quantity B:**  The alcohol concentration of Solution Y
 
 **Q12** · `WRD-MIX-032` · MCQ · 80s
 
@@ -170,8 +170,8 @@ Solution A is 70% acid, Solution B is 40% acid, and Solution C is 10% acid. A an
 
 A barrel holds W liters of wine, where W > 0. In one round, k liters of the contents is drawn off and replaced with water, where 0 < k < W. After two such rounds the wine makes up 49/100 of the barrel.
 
-> **Column A:**  k/W
-> **Column B:**  1/10
+> **Quantity A:**  k/W
+> **Quantity B:**  1/10
 
 **Q17** · `WRD-MIX-045` · Select all that apply · 110s
 
@@ -199,8 +199,8 @@ Process 1: from 60 liters of a 40% alcohol solution, some of the alcohol evapora
 
 Process 2: from a separate 60 liters of a 40% alcohol solution, some of the water evaporates and an equal volume of pure alcohol is added, leaving the solution 55% alcohol.
 
-> **Column A:**  The volume of alcohol that evaporates in Process 1
-> **Column B:**  The volume of water that evaporates in Process 2
+> **Quantity A:**  The volume of alcohol that evaporates in Process 1
+> **Quantity B:**  The volume of water that evaporates in Process 2
 
 **Q20** · `WRD-MIX-048` · MCQ · 100s
 
@@ -236,8 +236,8 @@ A tank of capacity 200 liters currently holds 120 liters of a 30% acid solution.
 
 Container P holds 90 liters of a 40% alcohol solution and Container Q holds 60 liters of a 70% alcohol solution. Exactly 30 liters is poured from P into Q and stirred thoroughly; then exactly 30 liters is poured from Q back into P.
 
-> **Column A:**  The final alcohol concentration in P
-> **Column B:**  40%
+> **Quantity A:**  The final alcohol concentration in P
+> **Quantity B:**  40%
 
 **Q24** · `WRD-MIX-053` · Numeric Entry · 110s
 
@@ -267,8 +267,8 @@ Alloy P contains copper and zinc in the ratio 3:2, Alloy Q contains copper and z
 
 A 200-liter tank starts full of a 50% acid solution. In each cycle, 50 liters of the mixture is drained and the tank is refilled with pure water. Cycles continue until the acid concentration first falls below 10%.
 
-> **Column A:**  The number of cycles performed
-> **Column B:**  7
+> **Quantity A:**  The number of cycles performed
+> **Quantity B:**  7
 
 **Q28** · `WRD-MIX-057` · MCQ · 130s
 
@@ -379,9 +379,9 @@ Step 2 — ask what the water changed. Water is a 0% solution, so it adds no aci
 new total = 20 + 10 = 30 liters
 Step 3 — divide.
 6/30 = 0.20 = 20%.
-Column A = 20% = Column B, so the two quantities are equal.
+Quantity A = 20% = Quantity B, so the two quantities are equal.
 
-**Trap.** Leaving the denominator at 20 and reporting 6/20 = 30%, that is, treating the added water as if it changed nothing - which is the only thing it does change. The other error is averaging the concentrations, (30 + 0)/2 = 15%, which makes Column B look greater.
+**Trap.** Leaving the denominator at 20 and reporting 6/20 = 30%, that is, treating the added water as if it changed nothing - which is the only thing it does change. The other error is averaging the concentrations, (30 + 0)/2 = 15%, which makes Quantity B look greater.
 
 ### Q5 · `WRD-MIX-015` — Answer: B, C, D
 
@@ -469,7 +469,7 @@ Step 1 — pure alcohol in X.
 Step 2 — pure alcohol in Y.
 0.50 x 25 + 0.30 x 25 = 12.5 + 7.5 = 20 liters, in 25 + 25 = 50 liters.
 20/50 = 0.40 = 40%.
-Step 3 — 40% > 38%, so Column B is greater.
+Step 3 — 40% > 38%, so Quantity B is greater.
 No-arithmetic route: both blends use the same two solutions and both total 50 liters, but X is tilted toward the weaker 30% solution (30 L against 25 L), so X must sit lower.
 
 **Trap.** Both columns use the same two solutions and the same 50-liter total, so C looks safe. The totals matching is irrelevant - what fixes a weighted average is the SPLIT between the sources, and only Y is split evenly.
@@ -548,7 +548,7 @@ Step 2 — set that equal to what the stem gives.
 Step 3 — take the square root. Since 0 < k < W, the quantity 1 - k/W is strictly positive, so only the positive root is admissible.
 1 - k/W = 7/10
 k/W = 3/10
-Step 4 — compare. 3/10 > 1/10, so Column A is greater.
+Step 4 — compare. 3/10 > 1/10, so Quantity A is greater.
 Check: draw off 3/10 twice and the wine is left at (7/10)^2 = 49/100. Correct.
 
 **Trap.** Skipping the square root and reading 1 - k/W = 49/100, which gives k/W = 51/100. That happens to land on the same side of 1/10, so the letter comes out right by luck and the error survives to the next question. The other error is treating two rounds as removing 2k/W of the wine, giving 1 - 2k/W = 49/100 and k/W = 51/200.
@@ -596,7 +596,7 @@ y = 9 liters.
 Both are 9 liters, so the two quantities are equal.
 Why they match: 25% is 15 points below 40% and 55% is 15 points above it, and in each process the volume that leaves is entirely one component, so the alcohol moves one-for-one with that volume. 15% of 60 is 9 in both directions.
 
-**Trap.** Reading these as ordinary draw-off-and-replace problems, where what leaves is a MIXTURE and carries away only 40% of its volume as alcohol. Here only one component leaves, so the exchange is one-for-one with no proportional loss. Assuming a mixture scoop in Process 1 gives (24 - 0.4x)/60 = 0.25, i.e. x = 22.5, and Column A looks far larger.
+**Trap.** Reading these as ordinary draw-off-and-replace problems, where what leaves is a MIXTURE and carries away only 40% of its volume as alcohol. Here only one component leaves, so the exchange is one-for-one with no proportional loss. Assuming a mixture scoop in Process 1 gives (24 - 0.4x)/60 = 0.25, i.e. x = 22.5, and Quantity A looks far larger.
 
 ### Q20 · `WRD-MIX-048` — Answer: C
 
@@ -656,7 +656,7 @@ Step 2 — Q after receiving it. Q held 0.70 x 60 = 42 liters of alcohol; it now
 Step 3 — the pour back. 30 liters of a 60% mixture carries 0.60 x 30 = 18 liters of alcohol.
 Step 4 — P at the end. Alcohol = 24 + 18 = 42 liters in a total of 60 + 30 = 90 liters.
 42/90 = 46.67%.
-46.67% > 40%, so Column A is greater.
+46.67% > 40%, so Quantity A is greater.
 The shortcut: P sent liquid out at 40% and got liquid back at 60%, so it must end richer than it began. That settles the comparison with no arithmetic at all.
 
 **Trap.** Assuming the two equal pours cancel and P returns to 40%, choice C. The volumes cancel; the concentrations do not, because the returning liquid comes from a container that was richer. The second error is forgetting that P gave away 30 liters before it received 30 back, and dividing the final 42 liters of alcohol by 120 instead of 90: that gives 35%, which points to choice B. P's volume returns to the 90 liters it started with.
@@ -719,8 +719,8 @@ n = 3: 0.4219 -> 21.09%
 n = 4: 0.3164 -> 15.82%
 n = 5: 0.2373 -> 11.87%, still above 10%
 n = 6: 0.1780 -> 8.90%, below 10%
-Step 3 — the concentration first drops below 10% on the 6th cycle, so Column A = 6.
-6 < 7, so Column B is greater.
+Step 3 — the concentration first drops below 10% on the 6th cycle, so Quantity A = 6.
+6 < 7, so Quantity B is greater.
 
 **Trap.** Stopping at n = 5, whose 11.87% looks close enough to 10% to count, or overshooting to n = 7 by checking only the value that is comfortably below the threshold instead of the FIRST one that clears it. The deeper error is linear thinking - 'a quarter goes each time, so four cycles empty it'. Each cycle takes a quarter of a shrinking amount, so the concentration falls forever without reaching zero.
 

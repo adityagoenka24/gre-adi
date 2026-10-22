@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -60,8 +60,8 @@ Which of the following is true for every real number x?
 
 x is a nonzero real number.
 
-> **Column A:**  |x|
-> **Column B:**  x
+> **Quantity A:**  |x|
+> **Quantity B:**  x
 
 ---
 
@@ -89,8 +89,8 @@ What is the product of all values of x that satisfy |x + 4| = 7? Enter your answ
 
 a and b are both negative.
 
-> **Column A:**  |a + b|
-> **Column B:**  |a| + |b|
+> **Quantity A:**  |a + b|
+> **Quantity B:**  |a| + |b|
 
 **Q9** · `NUM-ABS-016` · Select all that apply · 80s
 
@@ -106,8 +106,8 @@ Which of the following values of x satisfy |x - 1| <= 3? Select all that apply.
 
 x > 0
 
-> **Column A:**  |x^2 - 4|
-> **Column B:**  x^2 - 4
+> **Quantity A:**  |x^2 - 4|
+> **Quantity B:**  x^2 - 4
 
 **Q11** · `NUM-ABS-020` · Select all that apply · 90s
 
@@ -171,8 +171,8 @@ a and b are real numbers with |a - b| = 5 and |a + b| = 3. What is the value of 
 
 x and y are nonzero real numbers.
 
-> **Column A:**  |xy|/(xy)
-> **Column B:**  (|x|/x)(|y|/y)
+> **Quantity A:**  |xy|/(xy)
+> **Quantity B:**  (|x|/x)(|y|/y)
 
 **Q18** · `NUM-ABS-031` · Select all that apply · 95s
 
@@ -204,8 +204,8 @@ On the number line, point P is at -3 and point Q is at 9. Point R lies on the nu
 
 x and y are real numbers with xy < 0.
 
-> **Column A:**  |x + y|
-> **Column B:**  |x - y|
+> **Quantity A:**  |x + y|
+> **Quantity B:**  |x - y|
 
 **Q22** · `NUM-ABS-035` · MCQ · 100s
 
@@ -237,8 +237,8 @@ What is the sum of all distinct real solutions to |2x - 6| = x^2 - 9? Enter your
 
 x < 3
 
-> **Column A:**  sqrt(x^2 - 6x + 9)
-> **Column B:**  3 - x
+> **Quantity A:**  sqrt(x^2 - 6x + 9)
+> **Quantity B:**  3 - x
 
 ---
 
@@ -266,8 +266,8 @@ What is the sum of all real solutions to |x^2 - 3x| = |x^2 - 3|? Enter your answ
 
 n is a positive integer.
 
-> **Column A:**  |(-2)^n + (-2)^(n+1)|
-> **Column B:**  2^n
+> **Quantity A:**  |(-2)^n + (-2)^(n+1)|
+> **Quantity B:**  2^n
 
 **Q29** · `NUM-ABS-040` · Select all that apply · 125s
 
@@ -372,8 +372,8 @@ Answer: D.
 ### Q5 · `NUM-ABS-010` — Answer: D
 
 Test one positive and one negative value - those are the only two cases the bars distinguish.
-Case x = 4: Column A = |4| = 4, Column B = 4. The columns are equal.
-Case x = -4: Column A = |-4| = 4, Column B = -4. Column A is greater.
+Case x = 4: Quantity A = |4| = 4, Quantity B = 4. The columns are equal.
+Case x = -4: Quantity A = |-4| = 4, Quantity B = -4. Quantity A is greater.
 One case points to C and the other to A, so no single relationship holds for all allowed x.
 Answer: D.
 
@@ -404,10 +404,10 @@ Answer: -33.
 ### Q8 · `NUM-ABS-015` — Answer: C
 
 Step 1 — since a < 0 and b < 0, the sum a + b is negative too.
-Step 2 — for a negative quantity n, |n| = -n. So Column A = -(a + b) = -a - b.
-Step 3 — likewise |a| = -a and |b| = -b, so Column B = -a - b.
+Step 2 — for a negative quantity n, |n| = -n. So Quantity A = -(a + b) = -a - b.
+Step 3 — likewise |a| = -a and |b| = -b, so Quantity B = -a - b.
 The two columns are the same expression, so they are equal for every pair of negative a and b.
-Check with numbers: a = -3, b = -5. Column A = |-8| = 8; Column B = 3 + 5 = 8. Equal.
+Check with numbers: a = -3, b = -5. Quantity A = |-8| = 8; Quantity B = 3 + 5 = 8. Equal.
 Answer: C.
 
 **Trap.** Choosing B because the triangle inequality |a + b| <= |a| + |b| is remembered as strict. It is strict only when a and b have OPPOSITE signs, where partial cancellation shrinks the left side. With the same sign there is nothing to cancel and the two sides match exactly. Choosing D because a and b are unnamed is the other error - the stem pins both signs, which is all the equality needs.
@@ -428,8 +428,8 @@ Answer: B, C, D.
 ### Q10 · `NUM-ABS-017` — Answer: D
 
 |n| = n exactly when n >= 0, so the columns tie whenever x^2 - 4 >= 0 and separate whenever x^2 - 4 < 0.
-Case x = 3: x^2 - 4 = 5, positive. Column A = |5| = 5, Column B = 5. Equal.
-Case x = 1: x^2 - 4 = -3, negative. Column A = |-3| = 3, Column B = -3. Column A is greater.
+Case x = 3: x^2 - 4 = 5, positive. Quantity A = |5| = 5, Quantity B = 5. Equal.
+Case x = 1: x^2 - 4 = -3, negative. Quantity A = |-3| = 3, Quantity B = -3. Quantity A is greater.
 Both x = 3 and x = 1 obey the stem's x > 0, so two different relationships are possible.
 Answer: D.
 
@@ -515,8 +515,8 @@ Answer: it cannot be determined.
 ### Q17 · `NUM-ABS-030` — Answer: C
 
 For any nonzero n, |n|/n equals +1 when n > 0 and -1 when n < 0 - it is nothing but the sign of n.
-So Column B is (sign of x) x (sign of y), and Column A is the sign of the product xy.
-Algebraically: |xy| = |x| x |y| (absolute value does distribute over multiplication), so Column A = (|x| x |y|)/(xy) = (|x|/x)(|y|/y) = Column B.
+So Quantity B is (sign of x) x (sign of y), and Quantity A is the sign of the product xy.
+Algebraically: |xy| = |x| x |y| (absolute value does distribute over multiplication), so Quantity A = (|x| x |y|)/(xy) = (|x|/x)(|y|/y) = Quantity B.
 Check all four sign cases:
 x > 0, y > 0: xy > 0, so A = 1; B = (1)(1) = 1. Equal.
 x > 0, y < 0: xy < 0, so A = -1; B = (1)(-1) = -1. Equal.
@@ -574,12 +574,12 @@ Both columns are non-negative, so comparing their squares is safe - the larger s
 |x - y|^2 = (x - y)^2 = x^2 - 2xy + y^2
 Subtract: |x - y|^2 - |x + y|^2 = -4xy.
 The stem gives xy < 0, so -4xy > 0. Therefore |x - y|^2 > |x + y|^2, and taking square roots of two non-negative numbers preserves the order: |x - y| > |x + y|.
-Check with numbers: x = 3, y = -5 gives Column A = |-2| = 2 and Column B = |8| = 8.
-Another: x = -1, y = 6 gives Column A = |5| = 5 and Column B = |-7| = 7.
-Column B is greater in every allowed case.
+Check with numbers: x = 3, y = -5 gives Quantity A = |-2| = 2 and Quantity B = |8| = 8.
+Another: x = -1, y = 6 gives Quantity A = |5| = 5 and Quantity B = |-7| = 7.
+Quantity B is greater in every allowed case.
 Answer: B.
 
-**Trap.** Choosing D because x and y are unnamed. The single condition xy < 0 - opposite signs - is enough: adding numbers of opposite signs cancels, while subtracting them accumulates. The other error is testing only x = 1, y = -1, where Column A collapses to 0 and the gap looks like an artefact of that particular choice rather than a rule.
+**Trap.** Choosing D because x and y are unnamed. The single condition xy < 0 - opposite signs - is enough: adding numbers of opposite signs cancels, while subtracting them accumulates. The other error is testing only x = 1, y = -1, where Quantity A collapses to 0 and the gap looks like an artefact of that particular choice rather than a rule.
 
 ### Q22 · `NUM-ABS-035` — Answer: C
 
@@ -630,12 +630,12 @@ Step 1 — factor what is under the root: x^2 - 6x + 9 = (x - 3)^2.
 Step 2 — the square root of a square is an absolute value, not the thing itself: sqrt((x - 3)^2) = |x - 3|.
 Step 3 — the stem says x < 3, so x - 3 is negative, and for a negative quantity n we have |n| = -n.
 |x - 3| = -(x - 3) = 3 - x.
-So Column A = 3 - x = Column B for every x < 3.
-Check with numbers: x = -1 gives Column A = sqrt(1 + 6 + 9) = sqrt(16) = 4 and Column B = 3 - (-1) = 4. Equal.
-x = 2.5 gives Column A = sqrt(6.25 - 15 + 9) = sqrt(0.25) = 0.5 and Column B = 0.5. Equal.
+So Quantity A = 3 - x = Quantity B for every x < 3.
+Check with numbers: x = -1 gives Quantity A = sqrt(1 + 6 + 9) = sqrt(16) = 4 and Quantity B = 3 - (-1) = 4. Equal.
+x = 2.5 gives Quantity A = sqrt(6.25 - 15 + 9) = sqrt(0.25) = 0.5 and Quantity B = 0.5. Equal.
 Answer: C.
 
-**Trap.** Writing sqrt((x - 3)^2) = x - 3. With x < 3 that value is negative, while a square root is never negative, and the student then sees a negative Column A beside a positive Column B and answers B. The identity is sqrt(t^2) = |t|, and the sign condition supplied in the stem is precisely what turns |x - 3| into 3 - x rather than x - 3.
+**Trap.** Writing sqrt((x - 3)^2) = x - 3. With x < 3 that value is negative, while a square root is never negative, and the student then sees a negative Quantity A beside a positive Quantity B and answers B. The identity is sqrt(t^2) = |t|, and the sign condition supplied in the stem is precisely what turns |x - 3| into 3 - x rather than x - 3.
 
 ### Q26 · `NUM-ABS-037` — Answer: C
 
@@ -670,7 +670,7 @@ Step 1 — (-2)^(n+1) = (-2)^n x (-2), so
 (-2)^n + (-2)^(n+1) = (-2)^n [1 + (-2)] = (-2)^n x (-1) = -(-2)^n.
 Step 2 — the bars remove the leading minus: |-(-2)^n| = |(-2)^n|.
 Step 3 — |(-2)^n| = |-2|^n = 2^n, using |ab| = |a| x |b| repeatedly.
-So Column A = 2^n = Column B for every positive integer n, whatever its parity.
+So Quantity A = 2^n = Quantity B for every positive integer n, whatever its parity.
 Check n = 1: |-2 + 4| = |2| = 2 = 2^1. Check n = 2: |4 + (-8)| = |-4| = 4 = 2^2. Check n = 3: |-8 + 16| = |8| = 8 = 2^3. Correct.
 Answer: C.
 

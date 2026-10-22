@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -90,13 +90,13 @@ If 4.8 x 10^n = 480,000, what is the value of n? Enter your answer as a number.
 
 **Q8** · `ARI-P10-014` · QC · 65s
 
-> **Column A:**  (2 x 10^3)^2
-> **Column B:**  4 x 10^6
+> **Quantity A:**  (2 x 10^3)^2
+> **Quantity B:**  4 x 10^6
 
 **Q9** · `ARI-P10-016` · QC · 65s
 
-> **Column A:**  10^(-3)
-> **Column B:**  (0.1)^3
+> **Quantity A:**  10^(-3)
+> **Quantity B:**  (0.1)^3
 
 **Q10** · `ARI-P10-019` · Select all that apply · 75s
 
@@ -158,8 +158,8 @@ If 10^x = 5 x 10^7 and 10^y = 2 x 10^3, what is the value of x + y? Enter your a
 
 **Q16** · `ARI-P10-029` · QC · 85s
 
-> **Column A:**  (3 x 10^(-4)) - (2 x 10^(-5))
-> **Column B:**  2.8 x 10^(-4)
+> **Quantity A:**  (3 x 10^(-4)) - (2 x 10^(-5))
+> **Quantity B:**  2.8 x 10^(-4)
 
 **Q17** · `ARI-P10-030` · MCQ · 100s
 
@@ -191,8 +191,8 @@ For which of the following values of n is (2 x 10^n)(5 x 10^(-4)) < 10^(-6)? Sel
 
 n is a positive integer.
 
-> **Column A:**  9 x 10^n + 10^n
-> **Column B:**  10^(n+1)
+> **Quantity A:**  9 x 10^n + 10^n
+> **Quantity B:**  10^(n+1)
 
 **Q21** · `ARI-P10-034` · MCQ · 100s
 
@@ -212,8 +212,8 @@ If 10^a = 64 and 10^b = 0.25, what is the value of 10^(a + 2b)? Enter your answe
 
 **Q23** · `ARI-P10-036` · QC · 95s
 
-> **Column A:**  The number of zeros between the decimal point and the first nonzero digit when (2 x 10^(-4))(5 x 10^(-3)) is written as a decimal
-> **Column B:**  6
+> **Quantity A:**  The number of zeros between the decimal point and the first nonzero digit when (2 x 10^(-4))(5 x 10^(-3)) is written as a decimal
+> **Quantity B:**  6
 
 **Q24** · `ARI-P10-041` · MCQ · 105s
 
@@ -261,8 +261,8 @@ The number 10^100 is called a googol. When 1/(4 x 10^100) is written as a decima
 
 p and q are nonnegative integers with p > q.
 
-> **Column A:**  10^p - 10^q
-> **Column B:**  10^(p - q)
+> **Quantity A:**  10^p - 10^q
+> **Quantity B:**  10^(p - q)
 
 **Q29** · `ARI-P10-040` · Select all that apply · 125s
 
@@ -400,20 +400,20 @@ Answer: 5.
 Step 1 — the outer power hits BOTH factors: (2 x 10^3)^2 = 2^2 x (10^3)^2.
 Step 2 — square the coefficient: 2^2 = 4.
 Step 3 — square the power: (10^3)^2 = 10^(3x2) = 10^6. Note that a power of a power MULTIPLIES the exponents.
-Step 4 — Column A = 4 x 10^6, which is exactly Column B.
+Step 4 — Quantity A = 4 x 10^6, which is exactly Quantity B.
 Check in full: 2,000^2 = 4,000,000 = 4 x 10^6. Correct.
 The two quantities are equal.
 
-**Trap.** Squaring only the power of 10 and leaving the coefficient alone gives 2 x 10^6 = 2,000,000, which makes Column B look greater. The other slip is adding the exponents, (10^3)^2 = 10^5, which also points to Column B. Everything inside the bracket gets squared, and a power raised to a power multiplies.
+**Trap.** Squaring only the power of 10 and leaving the coefficient alone gives 2 x 10^6 = 2,000,000, which makes Quantity B look greater. The other slip is adding the exponents, (10^3)^2 = 10^5, which also points to Quantity B. Everything inside the bracket gets squared, and a power raised to a power multiplies.
 
 ### Q9 · `ARI-P10-016` — Answer: C
 
-Column A: 10^(-3) = 1/10^3 = 1/1000 = 0.001.
-Column B: rewrite the base as a power of 10 first. 0.1 = 10^(-1), so (0.1)^3 = (10^(-1))^3 = 10^(-1 x 3) = 10^(-3).
+Quantity A: 10^(-3) = 1/10^3 = 1/1000 = 0.001.
+Quantity B: rewrite the base as a power of 10 first. 0.1 = 10^(-1), so (0.1)^3 = (10^(-1))^3 = 10^(-1 x 3) = 10^(-3).
 Both columns equal 0.001, so the two quantities are equal.
 Check by direct multiplication: 0.1 x 0.1 x 0.1 = 0.01 x 0.1 = 0.001. Correct.
 
-**Trap.** Computing (0.1)^3 as 0.1 x 3 = 0.3, which makes Column B look much greater. Cubing a number between 0 and 1 makes it SMALLER, not larger. The reliable move is to convert every decimal to a power of 10 before doing anything else - once 0.1 becomes 10^(-1), the comparison is a one-line exponent calculation.
+**Trap.** Computing (0.1)^3 as 0.1 x 3 = 0.3, which makes Quantity B look much greater. Cubing a number between 0 and 1 makes it SMALLER, not larger. The reliable move is to convert every decimal to a power of 10 before doing anything else - once 0.1 becomes 10^(-1), the comparison is a one-line exponent calculation.
 
 ### Q10 · `ARI-P10-019` — Answer: A, C, E
 
@@ -492,10 +492,10 @@ Adding or subtracting in scientific notation requires MATCHING exponents first -
 Step 1 — rewrite the second term with exponent -4. Moving from 10^(-5) up to 10^(-4) raises the exponent by 1, so the coefficient must shrink by a factor of 10:
 2 x 10^(-5) = 0.2 x 10^(-4)
 Step 2 — subtract the coefficients: (3 - 0.2) x 10^(-4) = 2.8 x 10^(-4).
-Step 3 — that is exactly Column B, so the two quantities are equal.
+Step 3 — that is exactly Quantity B, so the two quantities are equal.
 Check in decimals: 0.0003 - 0.00002 = 0.00028 = 2.8 x 10^(-4). Correct.
 
-**Trap.** Subtracting the coefficients as they stand, 3 - 2 = 1, and reporting 1 x 10^(-4) or 1 x 10^(-5) - both make Column B look greater. The exponents are one apart, so 2 x 10^(-5) is only a tenth of a unit of 10^(-4), not two units. The mirror error is shifting the point the wrong way, turning 2 x 10^(-5) into 20 x 10^(-4), which would make Column A negative.
+**Trap.** Subtracting the coefficients as they stand, 3 - 2 = 1, and reporting 1 x 10^(-4) or 1 x 10^(-5) - both make Quantity B look greater. The exponents are one apart, so 2 x 10^(-5) is only a tenth of a unit of 10^(-4), not two units. The mirror error is shifting the point the wrong way, turning 2 x 10^(-5) into 20 x 10^(-4), which would make Quantity A negative.
 
 ### Q17 · `ARI-P10-030` — Answer: C
 
@@ -539,14 +539,14 @@ Answer: A, B, C.
 
 ### Q20 · `ARI-P10-033` — Answer: C
 
-Step 1 — Column A is a sum of like terms. Factor out 10^n:
+Step 1 — Quantity A is a sum of like terms. Factor out 10^n:
 9 x 10^n + 10^n = (9 + 1) x 10^n = 10 x 10^n
 Step 2 — renormalise the coefficient 10, which is 10^1:
 10 x 10^n = 10^1 x 10^n = 10^(n+1)
-Step 3 — that is exactly Column B, and no step used the value of n, so the two quantities are equal for every positive integer n.
-Check with n = 3: Column A = 9,000 + 1,000 = 10,000; Column B = 10^4 = 10,000. Correct.
+Step 3 — that is exactly Quantity B, and no step used the value of n, so the two quantities are equal for every positive integer n.
+Check with n = 3: Quantity A = 9,000 + 1,000 = 10,000; Quantity B = 10^4 = 10,000. Correct.
 
-**Trap.** Assuming Column A must be smaller because 9 + 1 is only 10 while Column B is a whole extra power of ten - it is exactly the same thing, since ten copies of 10^n IS 10^(n+1). The opposite error is treating the sum as an exponent operation, 10^n + 10^n = 10^(2n), which would make Column A explode and point to A. Addition of like powers changes only the coefficient. Because the identity holds for every n, D is also wrong.
+**Trap.** Assuming Quantity A must be smaller because 9 + 1 is only 10 while Quantity B is a whole extra power of ten - it is exactly the same thing, since ten copies of 10^n IS 10^(n+1). The opposite error is treating the sum as an exponent operation, 10^n + 10^n = 10^(2n), which would make Quantity A explode and point to A. Addition of like powers changes only the coefficient. Because the identity holds for every n, D is also wrong.
 
 ### Q21 · `ARI-P10-034` — Answer: D
 
@@ -578,7 +578,7 @@ Step 2 — renormalise. The coefficient 10 is 10^1, so 10 x 10^(-7) = 10^(1-7) =
 Step 3 — turn the exponent into a zero count. In a x 10^(-k) with 1 <= a < 10, the first nonzero digit sits in the k-th decimal place, so exactly k - 1 zeros stand between the decimal point and it.
 Here k = 6, so there are 5 zeros.
 Check by writing it out: 10^(-6) = 0.000001 - five zeros, then the 1. Correct.
-Column A = 5, Column B = 6, so Column B is greater.
+Quantity A = 5, Quantity B = 6, so Quantity B is greater.
 
 **Trap.** Two errors both land on 6 and point at C. First, stopping at 10 x 10^(-7) and using k = 7, which gives 7 - 1 = 6. Second, renormalising correctly to 10^(-6) but then reporting the exponent 6 as the zero count. The first significant digit occupies one of those decimal places, so the zero count is always one less than the size of the exponent.
 
@@ -639,15 +639,15 @@ Answer: 100.
 ### Q28 · `ARI-P10-039` — Answer: D
 
 The stem allows q = 0, and that boundary case reverses the comparison. Test both regions.
-Case 1 - q = 0. Then Column A = 10^p - 1 and Column B = 10^(p-0) = 10^p. Subtracting 1 from 10^p leaves something strictly smaller than 10^p, so Column B is greater.
-Example: p = 3, q = 0 gives A = 1,000 - 1 = 999 and B = 1,000. Column B wins.
-Case 2 - q >= 1. Factor Column A: 10^p - 10^q = 10^q(10^(p-q) - 1). Write m = p - q >= 1. Then
-Column A = 10^q x (10^m - 1) >= 10 x (10^m - 1) = 10^(m+1) - 10
-and since m >= 1, 10^(m+1) - 10 >= 10^m x 10 - 10 > 10^m = Column B.
-Example: p = 3, q = 1 gives A = 1,000 - 10 = 990 and B = 10^2 = 100. Column A wins.
+Case 1 - q = 0. Then Quantity A = 10^p - 1 and Quantity B = 10^(p-0) = 10^p. Subtracting 1 from 10^p leaves something strictly smaller than 10^p, so Quantity B is greater.
+Example: p = 3, q = 0 gives A = 1,000 - 1 = 999 and B = 1,000. Quantity B wins.
+Case 2 - q >= 1. Factor Quantity A: 10^p - 10^q = 10^q(10^(p-q) - 1). Write m = p - q >= 1. Then
+Quantity A = 10^q x (10^m - 1) >= 10 x (10^m - 1) = 10^(m+1) - 10
+and since m >= 1, 10^(m+1) - 10 >= 10^m x 10 - 10 > 10^m = Quantity B.
+Example: p = 3, q = 1 gives A = 1,000 - 10 = 990 and B = 10^2 = 100. Quantity A wins.
 Both outcomes occur, so the relationship cannot be determined.
 
-**Trap.** Testing only q = 1, 2, 3 - where Column A always wins by a wide margin - and confidently choosing A. The single case q = 0 flips it, because then Column B stops being a small leftover and becomes the full 10^p, one unit above Column A. On any QC with 'nonnegative', deliberately test the value 0 before committing.
+**Trap.** Testing only q = 1, 2, 3 - where Quantity A always wins by a wide margin - and confidently choosing A. The single case q = 0 flips it, because then Quantity B stops being a small leftover and becomes the full 10^p, one unit above Quantity A. On any QC with 'nonnegative', deliberately test the value 0 before committing.
 
 ### Q29 · `ARI-P10-040` — Answer: A, C, D
 

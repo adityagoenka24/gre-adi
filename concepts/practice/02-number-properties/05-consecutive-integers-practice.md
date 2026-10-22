@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -60,8 +60,8 @@ Five consecutive odd integers have a sum of 85. What is the largest of these int
 
 n is a positive integer.
 
-> **Column A:**  The sum of n, n+1, and n+2
-> **Column B:**  3n + 3
+> **Quantity A:**  The sum of n, n+1, and n+2
+> **Quantity B:**  3n + 3
 
 ---
 
@@ -103,8 +103,8 @@ Which of the following MUST be true for any set of five consecutive integers? Se
 
 p and q are consecutive integers with p < q.
 
-> **Column A:**  p^2 + q
-> **Column B:**  q^2 + p
+> **Quantity A:**  p^2 + q
+> **Quantity B:**  q^2 + p
 
 **Q10** · `NUM-CON-026` · MCQ · 75s
 
@@ -180,8 +180,8 @@ The product of four consecutive positive integers is 116,280. What is the sum of
 
 n is an integer greater than 1.
 
-> **Column A:**  The remainder when the product n(n+1)(n+2)...(2n-1) of n consecutive integers is divided by (n+1)!
-> **Column B:**  0
+> **Quantity A:**  The remainder when the product n(n+1)(n+2)...(2n-1) of n consecutive integers is divided by (n+1)!
+> **Quantity B:**  0
 
 **Q19** · `NUM-CON-037` · MCQ · 105s
 
@@ -207,8 +207,8 @@ Which of the following statements are ALWAYS true for any set of 5 consecutive i
 
 a, b and c are consecutive integers with a < b < c.
 
-> **Column A:**  a^2 + b^2 + c^2
-> **Column B:**  ((a + b + c)^2)/3
+> **Quantity A:**  a^2 + b^2 + c^2
+> **Quantity B:**  ((a + b + c)^2)/3
 
 **Q22** · `NUM-CON-041` · MCQ · 110s
 
@@ -266,8 +266,8 @@ How many different sets of 3 or more consecutive positive integers have a sum of
 
 n is an integer greater than 1. S is the sum of the integers from 1 to n^2, inclusive. T is the sum of the integers from n+1 to n^2, inclusive.
 
-> **Column A:**  S/T
-> **Column B:**  (n^2 + 1)/(n^2 - n)
+> **Quantity A:**  S/T
+> **Quantity B:**  (n^2 + 1)/(n^2 - n)
 
 **Q28** · `NUM-CON-048` · Numeric Entry · 130s
 
@@ -289,8 +289,8 @@ A set of consecutive integers has a mean of 15 and a sum greater than 250 and le
 
 k is an integer greater than 1. P is the product of all the integers from 1 to 2k, inclusive. Q is the product of all the even integers from 2 to 2k, inclusive.
 
-> **Column A:**  P/Q
-> **Column B:**  k!
+> **Quantity A:**  P/Q
+> **Quantity B:**  k!
 
 ---
 
@@ -373,9 +373,9 @@ Answer: C, 21.
 
 ### Q5 · `NUM-CON-009` — Answer: C
 
-Step 1 — add Column A term by term: n + (n+1) + (n+2) = 3n + 3.
-Step 2 — that is exactly Column B, for every n. The quantities are identical expressions, so no value of n can separate them.
-Check with n = 4: Column A = 4 + 5 + 6 = 15; Column B = 3(4) + 3 = 15. With n = 100: Column A = 100 + 101 + 102 = 303; Column B = 303.
+Step 1 — add Quantity A term by term: n + (n+1) + (n+2) = 3n + 3.
+Step 2 — that is exactly Quantity B, for every n. The quantities are identical expressions, so no value of n can separate them.
+Check with n = 4: Quantity A = 4 + 5 + 6 = 15; Quantity B = 3(4) + 3 = 15. With n = 100: Quantity A = 100 + 101 + 102 = 303; Quantity B = 303.
 Answer: C.
 
 **Trap.** Adding the offsets as 1 + 2 = 3 but then also carrying a spare unit gives 3n + 6 and the wrong pick of A. The other failure is choosing D on the grounds that n is unknown: the comparison is between two expressions that simplify to the same thing, so the unknown is irrelevant.
@@ -416,14 +416,14 @@ Answer: A, C, D.
 ### Q9 · `NUM-CON-023` — Answer: D
 
 Step 1 — consecutive with p < q means q = p + 1.
-Step 2 — Column A = p^2 + p + 1. Column B = (p+1)^2 + p = p^2 + 3p + 1.
-Step 3 — subtract: Column B - Column A = 2p. The comparison is decided entirely by the sign of p, which the stem never fixes.
-Step 4 — test the three cases. p = 3, q = 4: A = 13, B = 19, Column B is greater. p = 0, q = 1: A = 1, B = 1, equal. p = -3, q = -2: A = 7, B = 1, Column A is greater.
+Step 2 — Quantity A = p^2 + p + 1. Quantity B = (p+1)^2 + p = p^2 + 3p + 1.
+Step 3 — subtract: Quantity B - Quantity A = 2p. The comparison is decided entirely by the sign of p, which the stem never fixes.
+Step 4 — test the three cases. p = 3, q = 4: A = 13, B = 19, Quantity B is greater. p = 0, q = 1: A = 1, B = 1, equal. p = -3, q = -2: A = 7, B = 1, Quantity A is greater.
 Since all three outcomes occur, the relationship cannot be determined.
-Check the gap formula with p = 5, q = 6: Column A = 25 + 6 = 31, Column B = 36 + 5 = 41, and 41 - 31 = 10 = 2 x 5. Correct.
+Check the gap formula with p = 5, q = 6: Quantity A = 25 + 6 = 31, Quantity B = 36 + 5 = 41, and 41 - 31 = 10 = 2 x 5. Correct.
 Answer: D.
 
-**Trap.** Testing only small positive values such as p = 1, 2, 3 - every one of them makes Column B larger - and settling on B. Nothing in the stem says the integers are positive, and p = 0 gives equality while any negative p flips the comparison. Squaring a negative is exactly where this question is won.
+**Trap.** Testing only small positive values such as p = 1, 2, 3 - every one of them makes Quantity B larger - and settling on B. Nothing in the stem says the integers are positive, and p = 0 gives equality while any negative p flips the comparison. Squaring a negative is exactly where this question is won.
 
 ### Q10 · `NUM-CON-026` — Answer: A
 
@@ -513,11 +513,11 @@ Answer: C, 74.
 
 ### Q18 · `NUM-CON-035` — Answer: D
 
-Step 1 — count the factors in Column A. The run goes from n up to 2n-1, so it holds (2n-1) - n + 1 = n consecutive integers.
+Step 1 — count the factors in Quantity A. The run goes from n up to 2n-1, so it holds (2n-1) - n + 1 = n consecutive integers.
 Step 2 — the k! rule guarantees that a product of k consecutive integers is divisible by k!, so this product is certainly divisible by n!. The divisor here is (n+1)! = n! x (n+1), one factor of (n+1) more than the rule delivers. That extra factor is NOT guaranteed, so the remainder is 0 only sometimes.
 Step 3 — write the quotient: n(n+1)...(2n-1) / n! = (2n-1)! / [(n-1)! n!], which is the integer C(2n-1, n). The remainder is 0 exactly when (n+1) divides C(2n-1, n).
-Step 4 — test n = 2: the product is 2 x 3 = 6 and (n+1)! = 3! = 6, so 6 divides exactly and the remainder is 0. Column A = Column B.
-Step 5 — test n = 3: the product is 3 x 4 x 5 = 60 and (n+1)! = 4! = 24. 60 = 24 x 2 + 12, so the remainder is 12. Column A > Column B. (Here C(5,3) = 10, which is not a multiple of 4.)
+Step 4 — test n = 2: the product is 2 x 3 = 6 and (n+1)! = 3! = 6, so 6 divides exactly and the remainder is 0. Quantity A = Quantity B.
+Step 5 — test n = 3: the product is 3 x 4 x 5 = 60 and (n+1)! = 4! = 24. 60 = 24 x 2 + 12, so the remainder is 12. Quantity A > Quantity B. (Here C(5,3) = 10, which is not a multiple of 4.)
 Step 6 — two different outcomes occur among the allowed values of n, so the relationship is not determined. It is not a lone edge case either: n = 7 gives remainder 20160, while n = 4, 5, 6 and 8 all give 0.
 Answer: D.
 
@@ -548,9 +548,9 @@ Answer: A, B, C, E.
 ### Q21 · `NUM-CON-039` — Answer: A
 
 Step 1 — centre on the middle integer: a = b-1 and c = b+1.
-Step 2 — Column A = (b-1)^2 + b^2 + (b+1)^2 = (b^2 - 2b + 1) + b^2 + (b^2 + 2b + 1) = 3b^2 + 2.
-Step 3 — a + b + c = 3b, so Column B = (3b)^2/3 = 9b^2/3 = 3b^2.
-Step 4 — Column A - Column B = 2, a constant, for every integer b. Column A is always greater, and by exactly 2.
+Step 2 — Quantity A = (b-1)^2 + b^2 + (b+1)^2 = (b^2 - 2b + 1) + b^2 + (b^2 + 2b + 1) = 3b^2 + 2.
+Step 3 — a + b + c = 3b, so Quantity B = (3b)^2/3 = 9b^2/3 = 3b^2.
+Step 4 — Quantity A - Quantity B = 2, a constant, for every integer b. Quantity A is always greater, and by exactly 2.
 Check with 4, 5, 6: A = 16 + 25 + 36 = 77; B = 15^2/3 = 225/3 = 75. Check with -6, -5, -4: A = 36 + 25 + 16 = 77; B = (-15)^2/3 = 75. Check with -1, 0, 1: A = 1 + 0 + 1 = 2; B = 0.
 Answer: A.
 
@@ -619,13 +619,13 @@ Answer: C, 5.
 
 Step 1 — S = n^2(n^2 + 1)/2 by the triangular formula.
 Step 2 — T is S with the head 1 through n removed: T = S - n(n+1)/2 = [n^2(n^2 + 1) - n(n + 1)]/2 = n[n^3 + n - n - 1]/2 = n(n^3 - 1)/2 = n(n - 1)(n^2 + n + 1)/2.
-Step 3 — Column A = S/T = n^2(n^2 + 1) / [n(n - 1)(n^2 + n + 1)] = n(n^2 + 1) / [(n - 1)(n^2 + n + 1)].
-Step 4 — Column B = (n^2 + 1)/[n(n - 1)], since n^2 - n = n(n - 1). Divide A by B: [n(n^2 + 1)/((n-1)(n^2+n+1))] x [n(n-1)/(n^2+1)] = n^2/(n^2 + n + 1).
-Step 5 — n^2 + n + 1 > n^2 for every n > 1, so that ratio is less than 1 and Column A is always smaller. Both columns are positive, so the comparison is settled.
+Step 3 — Quantity A = S/T = n^2(n^2 + 1) / [n(n - 1)(n^2 + n + 1)] = n(n^2 + 1) / [(n - 1)(n^2 + n + 1)].
+Step 4 — Quantity B = (n^2 + 1)/[n(n - 1)], since n^2 - n = n(n - 1). Divide A by B: [n(n^2 + 1)/((n-1)(n^2+n+1))] x [n(n-1)/(n^2+1)] = n^2/(n^2 + n + 1).
+Step 5 — n^2 + n + 1 > n^2 for every n > 1, so that ratio is less than 1 and Quantity A is always smaller. Both columns are positive, so the comparison is settled.
 Check with n = 2: S = 1+2+3+4 = 10, T = 3+4 = 7, so A = 10/7 = 1.43; B = 5/2 = 2.5. With n = 3: S = 45, T = 45 - 6 = 39, A = 45/39 = 1.15; B = 10/6 = 1.67.
 Answer: B.
 
-**Trap.** Choosing C because Column B looks like a tidied-up version of S/T - it is the value you get if you wrongly take T = n^2(n^2 - n)/2 or cancel the (n^2 + 1) factor out of S before removing the head. Choosing D because n is unspecified also fails: the ratio of the columns is n^2/(n^2 + n + 1), which is below 1 for every allowed n. A third slip is defining T from n instead of n+1, which leaves the integer n in the tail and still does not rescue Column A.
+**Trap.** Choosing C because Quantity B looks like a tidied-up version of S/T - it is the value you get if you wrongly take T = n^2(n^2 - n)/2 or cancel the (n^2 + 1) factor out of S before removing the head. Choosing D because n is unspecified also fails: the ratio of the columns is n^2/(n^2 + n + 1), which is below 1 for every allowed n. A third slip is defining T from n instead of n+1, which leaves the integer n in the tail and still does not rescue Quantity A.
 
 ### Q28 · `NUM-CON-048` — Answer: 4032
 
@@ -656,10 +656,10 @@ Answer: B, E.
 ### Q30 · `NUM-CON-050` — Answer: A
 
 Step 1 — split P into its even and its odd factors: P = (2k)! = [2 x 4 x ... x 2k] x [1 x 3 x ... x (2k-1)] = Q x [1 x 3 x ... x (2k-1)].
-Step 2 — so Column A = P/Q = 1 x 3 x 5 x ... x (2k-1), the product of the first k odd integers. It is NOT k!; k! is what you get by factoring a 2 out of each even factor, Q = 2^k x k!.
-Step 3 — compare the two products factor by factor. Column A is the product of 1, 3, 5, ..., 2k-1 and Column B is the product of 1, 2, 3, ..., k. Pair the i-th factors: 2i - 1 against i. For i = 1 they tie (1 = 1), and for every i >= 2, 2i - 1 > i since 2i - 1 - i = i - 1 > 0.
-Step 4 — k > 1, so at least one pair (i = 2, giving 3 against 2) is a strict inequality and all factors are positive. The product in Column A is therefore strictly greater for every allowed k.
+Step 2 — so Quantity A = P/Q = 1 x 3 x 5 x ... x (2k-1), the product of the first k odd integers. It is NOT k!; k! is what you get by factoring a 2 out of each even factor, Q = 2^k x k!.
+Step 3 — compare the two products factor by factor. Quantity A is the product of 1, 3, 5, ..., 2k-1 and Quantity B is the product of 1, 2, 3, ..., k. Pair the i-th factors: 2i - 1 against i. For i = 1 they tie (1 = 1), and for every i >= 2, 2i - 1 > i since 2i - 1 - i = i - 1 > 0.
+Step 4 — k > 1, so at least one pair (i = 2, giving 3 against 2) is a strict inequality and all factors are positive. The product in Quantity A is therefore strictly greater for every allowed k.
 Check k = 2: P = 4! = 24, Q = 2 x 4 = 8, P/Q = 3, and 2! = 2, so 3 > 2. Check k = 3: P = 720, Q = 2 x 4 x 6 = 48, P/Q = 15, and 3! = 6, so 15 > 6. Check k = 4: P/Q = 1 x 3 x 5 x 7 = 105 against 4! = 24.
 Answer: A.
 
-**Trap.** Choosing C comes from mis-splitting P as Q x k!: after the even factors are removed what is left is the product of the ODD integers 1 x 3 x ... x (2k-1), not k!. (The k! is hiding inside Q, which equals 2^k x k!.) Choosing D comes from noticing that k = 1 would make both columns 1 and calling the relationship undetermined - but the stem now excludes k = 1, and for every k >= 2 each odd factor 2i - 1 is at least as large as its counterpart i and strictly larger once i >= 2, so Column A always wins.
+**Trap.** Choosing C comes from mis-splitting P as Q x k!: after the even factors are removed what is left is the product of the ODD integers 1 x 3 x ... x (2k-1), not k!. (The k! is hiding inside Q, which equals 2^k x k!.) Choosing D comes from noticing that k = 1 would make both columns 1 and calling the relationship undetermined - but the stem now excludes k = 1, and for every k >= 2 each odd factor 2i - 1 is at least as large as its counterpart i and strictly larger once i >= 2, so Quantity A always wins.

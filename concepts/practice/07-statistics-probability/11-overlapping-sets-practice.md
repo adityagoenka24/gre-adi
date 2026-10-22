@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -40,8 +40,8 @@ In a class, 18 students play chess and 14 students play checkers. Exactly 6 stud
 
 In a class of 50 students, 28 like math, 22 like science, and 10 like both subjects.
 
-> **Column A:**  The number of students who like math but not science
-> **Column B:**  The number of students who like science but not math
+> **Quantity A:**  The number of students who like math but not science
+> **Quantity B:**  The number of students who like science but not math
 
 **Q4** · `STA-OVL-011` · MCQ · 45s
 
@@ -103,8 +103,8 @@ In a neighborhood of 250 households, 60 percent subscribe to a streaming service
 
 In a study, 70 percent of participants exercise regularly, 60 percent maintain a healthy diet, and 10 percent do neither.
 
-> **Column A:**  The percent of participants who both exercise regularly and maintain a healthy diet
-> **Column B:**  40%
+> **Quantity A:**  The percent of participants who both exercise regularly and maintain a healthy diet
+> **Quantity B:**  40%
 
 **Q10** · `STA-OVL-025` · MCQ · 90s
 
@@ -178,8 +178,8 @@ Of 500 adults surveyed, 60 percent drink coffee, 45 percent drink tea, and 25 pe
 
 In a class, 70 percent of the students passed exam A and 80 percent passed exam B. Nothing else is known about how the two groups overlap.
 
-> **Column A:**  The smallest possible percent of the class that passed both exams
-> **Column B:**  The largest possible percent of the class that passed neither exam
+> **Quantity A:**  The smallest possible percent of the class that passed both exams
+> **Quantity B:**  The largest possible percent of the class that passed neither exam
 
 **Q18** · `STA-OVL-038` · Numeric Entry · 100s
 
@@ -201,8 +201,8 @@ A company has 400 employees, each of whom works at exactly one of three location
 
 In a large group of people, 65 percent like product A. Of the people who like product A, 40 percent also like product B. 10 percent of the group like neither product.
 
-> **Column A:**  The percent of the group who like product B but not product A
-> **Column B:**  20%
+> **Quantity A:**  The percent of the group who like product B but not product A
+> **Quantity B:**  20%
 
 **Q21** · `STA-OVL-041` · Select all that apply · 100s
 
@@ -234,8 +234,8 @@ In a survey of 500 people, 55 percent like red, 45 percent like blue, and 30 per
 
 In a class of 60 students, 35 study art and 28 study music. No information is given about how many study both.
 
-> **Column A:**  The number of students who study both art and music
-> **Column B:**  The number of students who study neither art nor music
+> **Quantity A:**  The number of students who study both art and music
+> **Quantity B:**  The number of students who study neither art nor music
 
 **Q25** · `STA-OVL-045` · Select all that apply · 110s
 
@@ -273,8 +273,8 @@ In a survey of 400 people, 60 percent like product A, 50 percent like product B,
 
 In a group of 100 students, 50 belong to club X, 40 belong to club Y, and 30 belong to club Z. Every student belongs to at least one of the three clubs. Nothing is given about the pairwise overlaps.
 
-> **Column A:**  The number of students who belong to all three clubs
-> **Column B:**  5
+> **Quantity A:**  The number of students who belong to all three clubs
+> **Quantity B:**  5
 
 **Q29** · `STA-OVL-049` · Select all that apply · 125s
 
@@ -357,7 +357,7 @@ Answer: 12.
 
 Step 1 — math only = 28 - 10 = 18.
 Step 2 — science only = 22 - 10 = 12.
-Step 3 — 18 > 12, so Column A is greater.
+Step 3 — 18 > 12, so Quantity A is greater.
 Check the whole class: 18 + 12 + 10 = 40 in at least one subject, so 10 like neither. All regions are non-negative, so the data is consistent.
 Answer: A.
 
@@ -425,7 +425,7 @@ Answer: 110.
 Step 1 — union: at least one healthy habit = 100% - 10% = 90%.
 Step 2 — inclusion-exclusion: 90 = 70 + 60 - both.
 Step 3 — both = 130 - 90 = 40%.
-Column A = 40% = Column B, so the quantities are equal.
+Quantity A = 40% = Quantity B, so the quantities are equal.
 Check the four regions: exercise only 30, diet only 20, both 40, neither 10. They sum to 100. Correct.
 Answer: C.
 
@@ -516,13 +516,13 @@ Answer: 9/16.
 
 ### Q17 · `STA-OVL-037` — Answer: A
 
-Step 1 — minimise the overlap for Column A. The union can never exceed 100%, so 70 + 80 - both <= 100, giving both >= 50%. The smallest possible overlap is 50%, reached when nobody fails both exams.
-Step 2 — maximise 'neither' for Column B. Neither = 100 - union, so making 'neither' as large as possible means making the union as small as possible. The union can never be smaller than the larger of the two sets, so union >= 80%. The smallest union is 80%, reached when every exam-A passer also passed exam B, and then neither = 100 - 80 = 20%.
-Step 3 — compare: 50% > 20%, so Column A is greater.
+Step 1 — minimise the overlap for Quantity A. The union can never exceed 100%, so 70 + 80 - both <= 100, giving both >= 50%. The smallest possible overlap is 50%, reached when nobody fails both exams.
+Step 2 — maximise 'neither' for Quantity B. Neither = 100 - union, so making 'neither' as large as possible means making the union as small as possible. The union can never be smaller than the larger of the two sets, so union >= 80%. The smallest union is 80%, reached when every exam-A passer also passed exam B, and then neither = 100 - 80 = 20%.
+Step 3 — compare: 50% > 20%, so Quantity A is greater.
 Note that the two scenarios describe different classes; each column is optimised on its own, which is exactly what 'smallest possible' and 'largest possible' ask for.
 Answer: A.
 
-**Trap.** Reading Column A as the LARGEST possible overlap, which is min(70, 80) = 70%, or reading Column B as the smallest 'neither', which is 0%. A second slip is computing the maximum 'neither' as 100 - 70 = 30% by shrinking the union to the wrong set - the union must contain the bigger set, 80%, not the smaller one.
+**Trap.** Reading Quantity A as the LARGEST possible overlap, which is min(70, 80) = 70%, or reading Quantity B as the smallest 'neither', which is 0%. A second slip is computing the maximum 'neither' as 100 - 70 = 30% by shrinking the union to the wrong set - the union must contain the bigger set, 80%, not the smaller one.
 
 ### Q18 · `STA-OVL-038` — Answer: 45
 
@@ -553,7 +553,7 @@ Set the group to 100 people and build the 2x2 table.
 Step 1 — like A = 65.
 Step 2 — the 40 percent is taken of the A group, not of the whole group: both = 0.40 x 65 = 26. So A but not B = 65 - 26 = 39.
 Step 3 — the not-A row has 100 - 65 = 35 people. Of those, 10 like neither product, so B but not A = 35 - 10 = 25.
-Step 4 — 25 > 20, so Column A is greater.
+Step 4 — 25 > 20, so Quantity A is greater.
 Check the table: both 26 + A only 39 + B only 25 + neither 10 = 100. Correct. (For reference, B's total is 26 + 25 = 51, which the stem never had to give.)
 Answer: A.
 
@@ -602,9 +602,9 @@ Answer: 9%.
 Do not guess D just because 'both' is unknown - write the algebra and see whether the unknown cancels.
 Step 1 — let b be the number who study both. Union = 35 + 28 - b = 63 - b.
 Step 2 — neither = 60 - union = 60 - (63 - b) = b - 3.
-Step 3 — compare: Column A - Column B = b - (b - 3) = 3.
-The unknown b cancels, so Column A exceeds Column B by exactly 3 no matter what b is. Column A is greater.
-Range check: neither >= 0 forces b >= 3, and b <= min(35, 28) = 28. Test the endpoints - b = 3 gives neither = 0 (3 vs 0), and b = 28 gives neither = 25 (28 vs 25). Column A wins at both ends and everywhere between.
+Step 3 — compare: Quantity A - Quantity B = b - (b - 3) = 3.
+The unknown b cancels, so Quantity A exceeds Quantity B by exactly 3 no matter what b is. Quantity A is greater.
+Range check: neither >= 0 forces b >= 3, and b <= min(35, 28) = 28. Test the endpoints - b = 3 gives neither = 0 (3 vs 0), and b = 28 gives neither = 25 (28 vs 25). Quantity A wins at both ends and everywhere between.
 Answer: A.
 
 **Trap.** Choosing D because the overlap is never stated. The two quantities are locked together: since 35 + 28 = 63 exceeds the class size by 3, 'both' is always exactly 3 more than 'neither'. Whenever the two set totals overshoot the group total by d, both - neither = d for every legal configuration.
@@ -659,9 +659,9 @@ Step 1 — let e1, e2, e3 be the numbers in exactly one, exactly two, and all th
 Step 2 — the club totals count memberships: e1 + 2e2 + 3e3 = 50 + 40 + 30 = 120.
 Step 3 — subtract: e2 + 2e3 = 20. That single equation is ALL the data pins down; e3 is not determined.
 Step 4 — test the two extremes.
-e3 = 0 (so e2 = 20): let X-and-Y-only = 10, X-and-Z-only = 5, Y-and-Z-only = 5. Then X only = 50 - 15 = 35, Y only = 40 - 15 = 25, Z only = 30 - 10 = 20. Regions: 35 + 25 + 20 + 20 = 100. Valid, and Column A = 0 < 5.
-e3 = 10 (so e2 = 0): X only = 40, Y only = 30, Z only = 20, all three = 10. Regions: 40 + 30 + 20 + 10 = 100. Valid, and Column A = 10 > 5.
-Since Column A can be below 5 and above 5, the relationship cannot be determined.
+e3 = 0 (so e2 = 20): let X-and-Y-only = 10, X-and-Z-only = 5, Y-and-Z-only = 5. Then X only = 50 - 15 = 35, Y only = 40 - 15 = 25, Z only = 30 - 10 = 20. Regions: 35 + 25 + 20 + 20 = 100. Valid, and Quantity A = 0 < 5.
+e3 = 10 (so e2 = 0): X only = 40, Y only = 30, Z only = 20, all three = 10. Regions: 40 + 30 + 20 + 10 = 100. Valid, and Quantity A = 10 > 5.
+Since Quantity A can be below 5 and above 5, the relationship cannot be determined.
 Answer: D.
 
 **Trap.** Feeding the numbers into the three-set formula as though the pairwise intersections were known and reporting a single value for the triple. Compare a problem that DOES give |X and Y|, |X and Z|, |Y and Z|: there the triple is forced. Here only the combination e2 + 2e3 = 20 is fixed, so the triple ranges from 0 to 10 and both C and A are wrong.

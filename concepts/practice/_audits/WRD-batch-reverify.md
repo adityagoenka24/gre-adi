@@ -50,7 +50,7 @@ inverted middle relation -> 6L = 126, L = 21, upper 51 (< 66, lands B);
 `3(L - 12)` misplacement -> L = 100/3 and upper = 3*(100/3) - 36 = **64** exactly (< 66,
 lands B); comparing L = 28 or middle 14 with 66 also lands B. Genuine 3-relation system
 in 3 unknowns; each condition load-bearing (dropping any one leaves the upper shelf
-undetermined). Column B = 66 is well chosen: all three wrong routes fall below it.
+undetermined). Quantity B = 66 is well chosen: all three wrong routes fall below it.
 Minor observation: the `3(L - 12)` route passes through a non-integer book count (33.33)
 before landing on the whole number 64 — a student may abandon it earlier than the trap
 assumes. Cosmetic only.
@@ -137,7 +137,7 @@ Options distinct. All three conditions load-bearing.
 s = 24, Priya 48; 48 + t = (5/4)(24 + t) -> **t = 72**, stored A (72 > 24).
 Invariant route confirms: difference 24 = 1 part, Sasha must be 96, i.e. 72 years out.
 Reversed condition gives t = -144 (negative), which is the B route as the trap says.
-Both conditions load-bearing; D correctly rejected. Column B = 24 deliberately equals both
+Both conditions load-bearing; D correctly rejected. Quantity B = 24 deliberately equals both
 Sasha's present age and the invariant difference — a good C trap.
 
 ### WRD-AGE-031 — PASS on mathematics; see D-1 for a template collision
@@ -240,9 +240,9 @@ curation pass; not a correctness issue.
 **D-1 — WRD-AGE-031 and WRD-MST-040 are now the same question. Severity: should-fix
 (structural), not a correctness blocker.**
 After the rewrite, 031 is "k years ago A was n times B; m years from now A will be twice
-B; Column A = A's current age, Column B = a round number", key **B**, type QC, tier hard.
-WRD-MST-040 is "5 years ago the man was 4 times the son; 10 years from now twice; Column A
-= man's current age, Column B = 45", key **B**, type QC, tier hard. Same template, same
+B; Quantity A = A's current age, Quantity B = a round number", key **B**, type QC, tier hard.
+WRD-MST-040 is "5 years ago the man was 4 times the son; 10 years from now twice; Quantity A
+= man's current age, Quantity B = 45", key **B**, type QC, tier hard. Same template, same
 column structure, same key, in two sheets a student works through in the same topic. Note
 this is a regression against the prior audit: `WRD-MST-verify.md` D9 already flagged that
 031 duplicated 040, and the rewrite moved 031 from a present-ratio + future condition onto
@@ -254,7 +254,7 @@ the WRD-MST QC distribution.
 Fix on the 031 side is possible but costs quality, and I verified both variants myself:
 replacing 031's second condition with "today the sum of their ages is 48" still gives
 b = 12, a = 36 and key B, but the shift-only-Beto error then yields a = 35, which still
-lands on B and so destroys the C-landing trap. Re-pointing Column A at Beto's age would
+lands on B and so destroys the C-landing trap. Re-pointing Quantity A at Beto's age would
 key the item C and break the WRD-AGE QC distribution (C is already used once). So do not
 fix this on 031.
 
@@ -263,8 +263,8 @@ The item is mathematically airtight (t = 72 verified, 120 = (5/4)*96, difference
 preserved), and the explanation openly says the moment is "far in the future", but a
 5/4 ratio moment 72 years out puts a living person at 120. Minimal fix, if wanted: scale
 the present ages down (e.g. sum 36 -> Sasha 12, Priya 24, t = 36, ages 48 and 60 — I
-verified this: 24 + 36 = 60 = (5/4)*48, still key A against Column B = 24). The cost is
-that Column B = 24 stops coinciding with Sasha's present age and the invariant difference,
+verified this: 24 + 36 = 60 = (5/4)*48, still key A against Quantity B = 24). The cost is
+that Quantity B = 24 stops coinciding with Sasha's present age and the invariant difference,
 which is the item's designed C trap — so I recommend leaving it as is.
 
 No other defect found. Every arithmetic claim the fix agents made in a trap or an

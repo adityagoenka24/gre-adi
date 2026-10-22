@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ What is the solution set of x^2 + 3x = 0?
 
 x and y are integers with x^2 = 16, y^2 = 25, and x > 0.
 
-> **Column A:**  x + y
-> **Column B:**  9
+> **Quantity A:**  x + y
+> **Quantity B:**  9
 
 **Q4** · `ALG-QDR-010` · Numeric Entry · 55s
 
@@ -113,8 +113,8 @@ What is the minimum value of 2x^2 - 12x + 23?
 
 k is a real number, and the equation x^2 + 4x + k = 0 has no real solutions.
 
-> **Column A:**  k
-> **Column B:**  4
+> **Quantity A:**  k
+> **Quantity B:**  4
 
 **Q11** · `ALG-QDR-024` · Numeric Entry · 75s
 
@@ -188,22 +188,22 @@ In the xy-plane, the graph of y = ax^2 + bx + c has its vertex at (2, -1) and pa
 
 k is a real number, and the equation x^2 - 2kx + (k^2 - 9) = 0 has roots r and s with r > s.
 
-> **Column A:**  r - s
-> **Column B:**  6
+> **Quantity A:**  r - s
+> **Quantity B:**  6
 
 **Q19** · `ALG-QDR-042` · QC · 95s
 
 x is a real number with x^2 - x - 6 = 0.
 
-> **Column A:**  x^2
-> **Column B:**  2x + 3
+> **Quantity A:**  x^2
+> **Quantity B:**  2x + 3
 
 **Q20** · `ALG-QDR-051` · QC · 100s
 
 p and q are the roots of x^2 + 3x + 1 = 0.
 
-> **Column A:**  p^3 + q^3
-> **Column B:**  -18
+> **Quantity A:**  p^3 + q^3
+> **Quantity B:**  -18
 
 **Q21** · `ALG-QDR-040` · Numeric Entry · 100s
 
@@ -273,8 +273,8 @@ n is an integer with -10 <= n <= 10. For how many values of n does x^2 - 2nx + (
 
 p is a real number for which x^2 + px + p = 0 has real roots.
 
-> **Column A:**  the least possible value of r^2 + s^2, where r and s are the roots, over all real p for which the roots are real
-> **Column B:**  2
+> **Quantity A:**  the least possible value of r^2 + s^2, where r and s are the roots, over all real p for which the roots are real
+> **Quantity B:**  2
 
 **Q29** · `ALG-QDR-055` · Numeric Entry · 125s
 
@@ -357,11 +357,11 @@ Answer: D.
 
 Step 1 — solve x^2 = 16. Taking the square root of both sides gives x = 4 or x = -4. The stem says x > 0, so x = 4.
 Step 2 — solve y^2 = 25 the same way: y = 5 or y = -5. Nothing in the stem restricts the sign of y, so both survive.
-Step 3 — evaluate Column A in each case. If y = 5, then x + y = 4 + 5 = 9, equal to Column B. If y = -5, then x + y = 4 - 5 = -1, less than Column B.
+Step 3 — evaluate Quantity A in each case. If y = 5, then x + y = 4 + 5 = 9, equal to Quantity B. If y = -5, then x + y = 4 - 5 = -1, less than Quantity B.
 Check: 4^2 = 16 and 4 > 0; 5^2 = 25 and (-5)^2 = 25. Both values of y are legal, and they give different comparisons.
 Answer: D.
 
-**Trap.** Taking only the positive square root of y^2 = 25 gives y = 5, Column A = 9, and the confident answer C. The condition x > 0 is stated for x and deliberately not stated for y; a squared variable carries two roots until something in the stem removes one.
+**Trap.** Taking only the positive square root of y^2 = 25 gives y = 5, Quantity A = 9, and the confident answer C. The condition x > 0 is stated for x and deliberately not stated for y; a squared variable carries two roots until something in the stem removes one.
 
 ### Q4 · `ALG-QDR-010` — Answer: 17
 
@@ -438,7 +438,7 @@ Answer: C.
 Step 1 — 'no real solutions' is exactly the statement D < 0.
 Step 2 — with a = 1, b = 4, c = k: D = 4^2 - 4(1)(k) = 16 - 4k.
 Step 3 — impose 16 - 4k < 0, so 16 < 4k and k > 4.
-Step 4 — every legal k is strictly greater than 4, so Column A is greater for every value the stem allows.
+Step 4 — every legal k is strictly greater than 4, so Quantity A is greater for every value the stem allows.
 Check k = 5: x^2 + 4x + 5 has D = 16 - 20 = -4 < 0, no real roots, and 5 > 4. Check the boundary k = 4: x^2 + 4x + 4 = (x + 2)^2 has the real root x = -2, so k = 4 is not allowed and the inequality is strict.
 Answer: A.
 
@@ -538,8 +538,8 @@ Answer: C.
 ### Q19 · `ALG-QDR-042` — Answer: D
 
 Step 1 — solve the constraint. x^2 - x - 6 = (x - 3)(x + 2) = 0, so x = 3 or x = -2. Both are legal; nothing in the stem removes either.
-Step 2 — test x = 3. Column A = 9. Column B = 2(3) + 3 = 9. The two are equal.
-Step 3 — test x = -2. Column A = 4. Column B = 2(-2) + 3 = -1. Column A is greater.
+Step 2 — test x = 3. Quantity A = 9. Quantity B = 2(3) + 3 = 9. The two are equal.
+Step 3 — test x = -2. Quantity A = 4. Quantity B = 2(-2) + 3 = -1. Quantity A is greater.
 Step 4 — one root gives C and the other gives A, so the relationship is not determined.
 Check both roots in the original equation: 9 - 3 - 6 = 0 and 4 + 2 - 6 = 0. Both genuinely satisfy the constraint.
 Answer: D.
@@ -551,11 +551,11 @@ Answer: D.
 Step 1 — the roots are irrational, so work from the coefficients. p + q = -b/a = -3 and pq = c/a = 1.
 Step 2 — use the identity p^3 + q^3 = (p + q)^3 - 3pq(p + q).
 Step 3 — substitute: (-3)^3 - 3(1)(-3) = -27 + 9 = -18.
-Step 4 — Column A = -18 = Column B.
+Step 4 — Quantity A = -18 = Quantity B.
 Check numerically: the roots are (-3 +/- sqrt(5))/2, about -0.382 and -2.618. Their cubes are about -0.0557 and -17.944, summing to about -18.00. Correct.
 Answer: C.
 
-**Trap.** Taking p + q = 3 instead of -3 gives 27 - 9 = 18, which is not Column B, and the answer A. Using p^3 + q^3 = (p + q)^3 with the cross term dropped gives -27 and the answer B. The minus sign in -b/a and the -3pq(p + q) correction are the two places this question can fail, and each one alone changes the answer.
+**Trap.** Taking p + q = 3 instead of -3 gives 27 - 9 = 18, which is not Quantity B, and the answer A. Using p^3 + q^3 = (p + q)^3 with the cross term dropped gives -27 and the answer B. The minus sign in -b/a and the -3pq(p + q) correction are the two places this question can fail, and each one alone changes the answer.
 
 ### Q21 · `ALG-QDR-040` — Answer: 4
 
@@ -645,12 +645,12 @@ Answer: A.
 
 ### Q28 · `ALG-QDR-056` — Answer: B
 
-Step 1 — Column A ranges over every real p that makes the roots real, so first express r^2 + s^2 in terms of p. Vieta gives r + s = -p and rs = p, so r^2 + s^2 = (r + s)^2 - 2rs = p^2 - 2p.
+Step 1 — Quantity A ranges over every real p that makes the roots real, so first express r^2 + s^2 in terms of p. Vieta gives r + s = -p and rs = p, so r^2 + s^2 = (r + s)^2 - 2rs = p^2 - 2p.
 Step 2 — find which p are allowed. Real roots requires D >= 0: D = p^2 - 4p >= 0, so p(p - 4) >= 0, which holds when p <= 0 or p >= 4.
 Step 3 — minimise f(p) = p^2 - 2p on that set, not on all real numbers. The unrestricted vertex of f is at p = 1, which is forbidden.
 Step 4 — on the branch p <= 0, f is decreasing as p rises toward 0, so the smallest value there is f(0) = 0 - 0 = 0.
 Step 5 — on the branch p >= 4, f is increasing, so the smallest value there is f(4) = 16 - 8 = 8.
-Step 6 — the least value over all admissible p is min(0, 8) = 0, and 0 < 2, so Column B is greater.
+Step 6 — the least value over all admissible p is min(0, 8) = 0, and 0 < 2, so Quantity B is greater.
 Check p = 0: the equation is x^2 = 0, with the real repeated root r = s = 0, and r^2 + s^2 = 0. Legal and attained. Check p = -1: x^2 - x - 1 = 0 has D = 5 > 0, and p^2 - 2p = 1 + 2 = 3, larger than 0 as predicted.
 Answer: B.
 

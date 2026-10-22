@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -96,8 +96,8 @@ A shopkeeper buys apples at 10 for $6 and sells them at 8 for $6. What is his pr
 
 A merchant sells item J at a profit equal to 25 percent of J's cost price, and he sells item K at a profit equal to 25 percent of K's selling price. Each item has a positive cost price.
 
-> **Column A:**  The merchant's profit in dollars on item J
-> **Column B:**  The merchant's profit in dollars on item K
+> **Quantity A:**  The merchant's profit in dollars on item J
+> **Quantity B:**  The merchant's profit in dollars on item K
 
 **Q9** · `WRD-PNL-026` · Numeric Entry · 85s
 
@@ -157,8 +157,8 @@ A trader's profit on item X is 20 percent of the selling price of X, and his pro
 
 A retailer buys an item for x dollars and sells it for y dollars, making a profit of 25 percent on cost price. He then buys a second item for y dollars and sells it at a price that gives him the same profit in DOLLARS as the first item gave him. x > 0.
 
-> **Column A:**  His profit percent on cost price over the two items taken together
-> **Column B:**  22%
+> **Quantity A:**  His profit percent on cost price over the two items taken together
+> **Quantity B:**  22%
 
 **Q16** · `WRD-PNL-037` · MCQ · 100s
 
@@ -184,8 +184,8 @@ At a certain shop, the profit on every article sold is exactly 15 percent of tha
 
 A merchant sells exactly two articles, one at a profit of 30 percent and the other at a loss of 30 percent. Each percent is measured on the cost price of that article.
 
-> **Column A:**  His total selling price as a percent of his total cost, if the two articles are sold at the same SELLING price
-> **Column B:**  His total selling price as a percent of his total cost, if the two articles have the same COST price
+> **Quantity A:**  His total selling price as a percent of his total cost, if the two articles are sold at the same SELLING price
+> **Quantity B:**  His total selling price as a percent of his total cost, if the two articles have the same COST price
 
 **Q19** · `WRD-PNL-040` · MCQ · 105s
 
@@ -207,8 +207,8 @@ A dealer buys an article and sells it to a second dealer at a profit of 20 perce
 
 A shopkeeper marks his goods x percent above cost price and then allows a discount of x percent on the marked price, where x > 0.
 
-> **Column A:**  His selling price as a percent of his cost price
-> **Column B:**  100%
+> **Quantity A:**  His selling price as a percent of his cost price
+> **Quantity B:**  100%
 
 **Q22** · `WRD-PNL-043` · Select all that apply · 110s
 
@@ -234,8 +234,8 @@ A seller marks an item 80 percent above cost price. He then allows a discount of
 
 A trader prices his goods for a profit of 25 percent on his true cost per kilogram. He also cheats on both sides of the counter: when he buys, he receives 10 percent more goods than he pays for, and when he sells, he delivers only 90 percent of the weight he charges for.
 
-> **Column A:**  His actual profit percent on his true cost
-> **Column B:**  50%
+> **Quantity A:**  His actual profit percent on his true cost
+> **Quantity B:**  50%
 
 **Q25** · `WRD-PNL-051` · MCQ · 105s
 
@@ -273,8 +273,8 @@ A shopkeeper marks all his goods 25 percent above cost price. He sells goods tha
 
 A trader buys n items at p dollars each, where n and p are positive. He sells n - k of them at a profit of 40 percent on cost and the remaining k of them at a loss of 20 percent on cost, and 0 < k < n. Over the whole transaction he exactly breaks even.
 
-> **Column A:**  k/n
-> **Column B:**  2/3
+> **Quantity A:**  k/n
+> **Quantity B:**  2/3
 
 **Q29** · `WRD-PNL-049` · Select all that apply · 125s
 
@@ -414,8 +414,8 @@ Answer: E.
 
 Step 1 — convert K's rule to a cost-price rule so the two are comparable. For K, profit = 0.25*SP and profit = SP - CP, so CP = 0.75*SP and profit = 0.25*SP = (1/3)*CP. K's profit is 33.33 percent of K's cost, which is a higher RATE than J's 25 percent.
 Step 2 — but the question asks for dollars, and the two cost prices are never linked. Let J cost $c and K cost $k. Then J's profit is 0.25c and K's profit is k/3.
-Step 3 — take c = 300 and k = 300: J's profit is $75 and K's profit is $100, so Column B is greater.
-Step 4 — now take c = 600 and k = 300: J's profit is $150 and K's profit is $100, so Column A is greater.
+Step 3 — take c = 300 and k = 300: J's profit is $75 and K's profit is $100, so Quantity B is greater.
+Step 4 — now take c = 600 and k = 300: J's profit is $150 and K's profit is $100, so Quantity A is greater.
 Step 5 — both orders occur, so the relationship cannot be determined.
 Check the second case against K's own rule: CP = 300 and profit = 100 give SP = $400, and 100/400 = 0.25, exactly 25 percent of the selling price, as required. Correct.
 Answer: D.
@@ -499,7 +499,7 @@ Step 2 — the second item costs y = 1.25*x, and its profit is the same number o
 Step 3 — total profit = 0.25x + 0.25x = 0.50x.
 Step 4 — total cost = x + 1.25x = 2.25x.
 Step 5 — combined profit percent = 0.50x/2.25x = 50/225 = 2/9 = 22.22 percent, and x cancels, so the answer does not depend on x.
-Step 6 — 22.22 is greater than 22, so Column A is greater.
+Step 6 — 22.22 is greater than 22, so Quantity A is greater.
 Check with x = 400: the first item costs $400 and sells for $500, a $100 profit; the second costs $500 and sells for $600, also $100. Total profit $200 on a total cost of $900, and 200/900 = 0.2222. Correct.
 Answer: A.
 
@@ -532,11 +532,11 @@ Answer: A, B and D.
 
 ### Q18 · `WRD-PNL-039` — Answer: B
 
-Step 1 — Column B first, because it is the easier case. Let each cost price be 100, so total cost = 200. The articles sell for 130 and 70, total 200. Total SP as a percent of total cost = (200/200)*100 = 100, so Column B = 100.
-Step 2 — Column A. The capsule's equal-percent shortcut applies: when two articles sell for the SAME price at equal and opposite percentages x, the result is always a net loss of (x/10)^2 percent, here (30/10)^2 = 9 percent. So total SP is 91 percent of total cost and Column A = 91.
+Step 1 — Quantity B first, because it is the easier case. Let each cost price be 100, so total cost = 200. The articles sell for 130 and 70, total 200. Total SP as a percent of total cost = (200/200)*100 = 100, so Quantity B = 100.
+Step 2 — Quantity A. The capsule's equal-percent shortcut applies: when two articles sell for the SAME price at equal and opposite percentages x, the result is always a net loss of (x/10)^2 percent, here (30/10)^2 = 9 percent. So total SP is 91 percent of total cost and Quantity A = 91.
 Step 3 — confirm the 91 by building the case. Let the common selling price be S. The profitable article cost S/1.30 and the other cost S/0.70. Take S = 91: the costs are 91/1.30 = 70 and 91/0.70 = 130, a total cost of 200, while the total selling price is 91 + 91 = 182.
 Step 4 — 182/200 = 0.91, so total SP is 91 percent of total cost, matching the shortcut.
-Step 5 — Column A = 91 and Column B = 100, so Column B is greater.
+Step 5 — Quantity A = 91 and Quantity B = 100, so Quantity B is greater.
 Why the two cases differ: each percent is measured on a cost price, so the two effects cancel in dollars only when the two cost prices are equal. With the selling prices matched instead, the article sold at a loss must have had the larger cost, so the loss is applied to the larger base and a net loss is unavoidable.
 Check: 70*1.30 = 91 and 130*0.70 = 91, so both articles really do sell for $91. Correct.
 Answer: B.
@@ -573,7 +573,7 @@ Answer: 280.
 Step 1 — set CP = 100, so MP = 100 + x.
 Step 2 — the discount is on the marked price: SP = (100 + x)*(1 - x/100).
 Step 3 — expand: SP = (100 + x) - x*(100 + x)/100 = 100 + x - x - x^2/100 = 100 - x^2/100.
-Step 4 — since x > 0, x^2/100 > 0, so SP < 100 for every allowed x. Column A is always below 100, so Column B is greater.
+Step 4 — since x > 0, x^2/100 > 0, so SP < 100 for every allowed x. Quantity A is always below 100, so Quantity B is greater.
 Check with x = 20: MP = 120 and SP = 120*0.80 = 96, which is 96 percent of cost, a 4 percent loss. With x = 50: MP = 150 and SP = 150*0.50 = 75, a 25 percent loss. Both are below 100. Correct.
 Answer: B.
 
@@ -611,12 +611,12 @@ Step 2 — buying cheat: he actually receives 110 kg for that $100.
 Step 3 — his price is 25 percent above the honest cost, so he charges 1*1.25 = $1.25 per kilogram charged.
 Step 4 — selling cheat: each kilogram he charges for delivers only 0.90 kg, so his 110 kg of stock covers 110/0.90 = 122.22 kg of charged weight.
 Step 5 — revenue = 122.22*1.25 = $152.78 on an outlay of $100.
-Step 6 — profit percent = 52.78, which is greater than 50, so Column A is greater.
+Step 6 — profit percent = 52.78, which is greater than 50, so Quantity A is greater.
 Multiplier route: 1.25*(1.10/0.90) = 1.25*1.2222 = 1.5278, a profit of 52.78 percent.
 Check: 122.22 kg charged at 90 percent delivery is 122.22*0.90 = 110 kg actually handed over, exactly the stock he holds, and 110 kg cost him $100. Correct.
 Answer: A.
 
-**Trap.** Adding the three percentages, 25 + 10 + 10 = 45, puts Column A below 50 and gives the answer B. Each cheat is a separate multiplier on a different base: the buying cheat multiplies the goods received by 1.10 and the selling cheat divides the goods delivered by 0.90, and 1.10/0.90 = 1.2222, not 1.20. Using 1.25*1.20 = 1.50 makes the columns look equal and produces the answer C.
+**Trap.** Adding the three percentages, 25 + 10 + 10 = 45, puts Quantity A below 50 and gives the answer B. Each cheat is a separate multiplier on a different base: the buying cheat multiplies the goods received by 1.10 and the selling cheat divides the goods delivered by 0.90, and 1.10/0.90 = 1.2222, not 1.20. Using 1.25*1.20 = 1.50 makes the columns look equal and produces the answer C.
 
 ### Q25 · `WRD-PNL-051` — Answer: A
 
@@ -661,11 +661,11 @@ Step 2 — the items sold at a gain contribute (n - k)*0.40*p of profit.
 Step 3 — the items sold at a loss contribute k*0.20*p of loss.
 Step 4 — breaking even means the two are equal: 0.40*(n - k)*p = 0.20*k*p.
 Step 5 — p cancels and both sides divide by 0.20: 2*(n - k) = k, so 2n = 3k.
-Step 6 — k/n = 2/3, so Column A equals Column B.
+Step 6 — k/n = 2/3, so Quantity A equals Quantity B.
 Check with numbers: n = 3 and k = 2, with p = 100. One item sells at 140 and two sell at 80 each, total 140 + 160 = 300, against a total cost of 300. Break-even exactly. Correct.
 Answer: C.
 
-**Trap.** Answering D because n, k and p are all unknown; p cancels and the break-even condition pins the ratio k/n exactly. The commoner numerical error balances the percentages rather than the dollars, reasoning that 40 and 20 are in a 2:1 ratio so the counts must be 1:2 the other way and k/n = 1/3, which makes Column B greater and gives B. The loss items are the ones that must be more numerous, since each loses only half of what each gaining item earns.
+**Trap.** Answering D because n, k and p are all unknown; p cancels and the break-even condition pins the ratio k/n exactly. The commoner numerical error balances the percentages rather than the dollars, reasoning that 40 and 20 are in a 2:1 ratio so the counts must be 1:2 the other way and k/n = 1/3, which makes Quantity B greater and gives B. The loss items are the ones that must be more numerous, since each loses only half of what each gaining item earns.
 
 ### Q29 · `WRD-PNL-049` — Answer: C, D, E
 

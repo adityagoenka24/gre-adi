@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -46,8 +46,8 @@ In a class the ratio of students who passed a test to students who failed it is 
 
 A mixture consists only of water and juice, and the ratio of water to juice is 2:3.
 
-> **Column A:**  The fraction of the mixture that is water
-> **Column B:**  2/5
+> **Quantity A:**  The fraction of the mixture that is water
+> **Quantity B:**  2/5
 
 **Q5** · `WRD-RAT-010` · MCQ · 55s
 
@@ -135,8 +135,8 @@ In a parking lot the ratio of cars to trucks is 5:8, and every vehicle in the lo
 
 Solution P consists only of salt and water, in which the ratio of salt to water is 1:9. Solution Q consists only of salt and water, in which the ratio of salt to water is 2:13.
 
-> **Column A:**  The fraction of solution P that is salt
-> **Column B:**  The fraction of solution Q that is salt
+> **Quantity A:**  The fraction of solution P that is salt
+> **Quantity B:**  The fraction of solution Q that is salt
 
 ---
 
@@ -158,8 +158,8 @@ A box contains only red and blue balls, in the ratio 3:5. After 6 red balls are 
 
 x is a positive integer.
 
-> **Column A:**  (x + 2)/(x + 5)
-> **Column B:**  (x + 5)/(x + 9)
+> **Quantity A:**  (x + 2)/(x + 5)
+> **Quantity B:**  (x + 5)/(x + 9)
 
 **Q16** · `WRD-RAT-036` · Numeric Entry · 105s
 
@@ -181,8 +181,8 @@ At a factory the ratio of managers to supervisors is 2:3, the ratio of superviso
 
 A box contains red, green and yellow balls in the ratio 2:3:4. Then 9 green balls are added to the box and no other change is made.
 
-> **Column A:**  The ratio of red balls to green balls after the addition
-> **Column B:**  The ratio of red balls to yellow balls before the addition
+> **Quantity A:**  The ratio of red balls to green balls after the addition
+> **Quantity B:**  The ratio of red balls to yellow balls before the addition
 
 **Q19** · `WRD-RAT-039` · Select all that apply · 95s
 
@@ -208,8 +208,8 @@ In a school the ratio of teachers to students is 1:18, and among the students th
 
 P, Q and R are positive numbers with P:Q = 3:4 and Q:R = 5:6.
 
-> **Column A:**  P/R
-> **Column B:**  5/8
+> **Quantity A:**  P/R
+> **Quantity B:**  5/8
 
 **Q22** · `WRD-RAT-044` · Numeric Entry · 105s
 
@@ -279,8 +279,8 @@ Liquids X and Y are combined in the ratio 3:2 by volume. The resulting mixture i
 
 In Company A the ratio of managers to workers is 1:9. In Company B the ratio of managers to workers is 1:11. Every employee of each company is either a manager or a worker. The two companies merge into a single company, and no one joins or leaves.
 
-> **Column A:**  (number of managers)/(number of workers) in the merged company
-> **Column B:**  1/10
+> **Quantity A:**  (number of managers)/(number of workers) in the merged company
+> **Quantity B:**  1/10
 
 **Q30** · `WRD-RAT-050` · Select all that apply · 125s
 
@@ -367,7 +367,7 @@ Answer: 30.
 
 Step 1 — name k. Water = 2k and juice = 3k. The mixture is ONLY these two liquids, so the whole is 2k + 3k = 5k.
 Step 2 — the fraction that is water = 2k/5k = 2/5. The k cancels, so the actual size of the mixture never matters.
-Column A = 2/5 = Column B.
+Quantity A = 2/5 = Quantity B.
 Answer: The two quantities are equal.
 
 **Trap.** Reading 2:3 as the fraction 2/3 and choosing A. That is part-to-PART; the question asks part-to-WHOLE, whose denominator is the sum of the parts, 2 + 3 = 5. A second error is choosing D because the mixture size is unknown - but k cancels, so the fraction is fixed. Note the word 'only': it is what guarantees the two parts add up to the whole, and without it the denominator could be larger than 5k.
@@ -475,11 +475,11 @@ Answer: A, C, D.
 ### Q13 · `WRD-RAT-033` — Answer: B
 
 Concentration is salt divided by the WHOLE solution. Each solution is only salt and water, so each denominator is the sum of the two parts.
-Column A: 1/(1 + 9) = 1/10.
-Column B: 2/(2 + 13) = 2/15.
+Quantity A: 1/(1 + 9) = 1/10.
+Quantity B: 2/(2 + 13) = 2/15.
 Compare 1/10 and 2/15 with a common denominator of 30: 1/10 = 3/30 and 2/15 = 4/30.
-4/30 > 3/30, so Column B is greater.
-Answer: Column B is greater.
+4/30 > 3/30, so Quantity B is greater.
+Answer: Quantity B is greater.
 
 **Trap.** Comparing 1/9 with 2/13 (part-to-part) instead of 1/10 with 2/15 (part-to-whole). Here it happens to give the same verdict, so the habit goes unpunished - but concentration always means salt over TOTAL. Choosing D because no volumes are given is also wrong: k cancels out of every concentration.
 
@@ -504,18 +504,18 @@ Answer: 10.
 ### Q15 · `WRD-RAT-035` — Answer: D
 
 Both denominators are positive because x > 0, so cross-multiplication is safe and preserves the direction of the comparison.
-Column A gives (x + 2)(x + 9) = x^2 + 11x + 18.
-Column B gives (x + 5)(x + 5) = x^2 + 10x + 25.
+Quantity A gives (x + 2)(x + 9) = x^2 + 11x + 18.
+Quantity B gives (x + 5)(x + 5) = x^2 + 10x + 25.
 Subtract: (x^2 + 11x + 18) - (x^2 + 10x + 25) = x - 7.
 The verdict is the sign of x - 7, and that is not fixed for positive integers x:
-x = 1: Column A = 3/6 = 0.500, Column B = 6/10 = 0.600, so B is greater.
-x = 7: Column A = 9/12 = 0.750, Column B = 12/16 = 0.750, so they are equal.
-x = 10: Column A = 12/15 = 0.800, Column B = 15/19 = 0.789, so A is greater.
+x = 1: Quantity A = 3/6 = 0.500, Quantity B = 6/10 = 0.600, so B is greater.
+x = 7: Quantity A = 9/12 = 0.750, Quantity B = 12/16 = 0.750, so they are equal.
+x = 10: Quantity A = 12/15 = 0.800, Quantity B = 15/19 = 0.789, so A is greater.
 Three legal values give three different verdicts.
-Why the familiar rule does not settle it: Column B is NOT Column A with the same amount added to top and bottom - the top gains 3 and the bottom gains 4. Adding equal amounts to both parts of a fraction below 1 always raises it, but the extra 1 on the bottom pulls the other way, and which effect wins depends on how large x is.
+Why the familiar rule does not settle it: Quantity B is NOT Quantity A with the same amount added to top and bottom - the top gains 3 and the bottom gains 4. Adding equal amounts to both parts of a fraction below 1 always raises it, but the extra 1 on the bottom pulls the other way, and which effect wins depends on how large x is.
 Answer: The relationship cannot be determined from the information given.
 
-**Trap.** Testing one small value - x = 1 gives 0.500 against 0.600 - and locking in choice B; the 'adding to the top and the bottom drags a fraction toward 1' rule points the same way and feels like confirmation. That rule needs the SAME amount added to both parts, and here it is +3 over +4, so from x = 8 onward Column A wins. Choice C is what testing x = 7 alone produces.
+**Trap.** Testing one small value - x = 1 gives 0.500 against 0.600 - and locking in choice B; the 'adding to the top and the bottom drags a fraction toward 1' rule points the same way and feels like confirmation. That rule needs the SAME amount added to both parts, and here it is +3 over +4, so from x = 8 onward Quantity A wins. Choice C is what testing x = 7 alone produces.
 
 ### Q16 · `WRD-RAT-036` — Answer: 48
 
@@ -548,8 +548,8 @@ Answer: 48.
 ### Q18 · `WRD-RAT-038` — Answer: D
 
 Step 1 — name k. Red = 2k, green = 3k, yellow = 4k, with k a positive integer.
-Step 2 — Column B first, because it is the simple one: red : yellow = 2k : 4k = 1/2. The k cancels, so Column B is 1/2 no matter what.
-Step 3 — Column A: only green changed, so it is 2k/(3k + 9). Here the k does NOT cancel, because the 9 is a fixed number of balls, not a number of parts.
+Step 2 — Quantity B first, because it is the simple one: red : yellow = 2k : 4k = 1/2. The k cancels, so Quantity B is 1/2 no matter what.
+Step 3 — Quantity A: only green changed, so it is 2k/(3k + 9). Here the k does NOT cancel, because the 9 is a fixed number of balls, not a number of parts.
 Step 4 — test values.
 k = 1: 2/12 = 1/6, which is less than 1/2.
 k = 9: 18/36 = 1/2, which is equal.
@@ -557,7 +557,7 @@ k = 20: 40/69 = 0.58, which is greater than 1/2.
 All three verdicts occur, so the relationship cannot be determined.
 Answer: D.
 
-**Trap.** Picking k = 1, getting 2:12 = 1/6, and concluding that Column B is greater. A ratio plus a fixed change is not another ratio - it is an equation waiting for k, and here nothing in the problem pins k down. Solving 2k/(3k + 9) = 1/2 shows the crossover sits at k = 9, so both directions are reachable.
+**Trap.** Picking k = 1, getting 2:12 = 1/6, and concluding that Quantity B is greater. A ratio plus a fixed change is not another ratio - it is an equation waiting for k, and here nothing in the problem pins k down. Solving 2k/(3k + 9) = 1/2 shows the crossover sits at k = 9, so both directions are reachable.
 
 ### Q19 · `WRD-RAT-039` — Answer: A, B, D
 
@@ -591,7 +591,7 @@ P:Q = 3:4, multiply by 5 -> 15:20
 Q:R = 5:6, multiply by 4 -> 20:24
 Step 2 — chain them: P:Q:R = 15:20:24.
 Step 3 — P/R = 15/24 = 5/8.
-Column A = 5/8 = Column B, so the two quantities are equal.
+Quantity A = 5/8 = Quantity B, so the two quantities are equal.
 Check with numbers: take Q = 20. Then P = 15 and R = 24, and 15/24 = 0.625 = 5/8. Correct.
 Answer: The two quantities are equal.
 
@@ -720,7 +720,7 @@ Step 1 — two independent ratios need two independent multipliers. Nothing link
 Company A: a managers and 9a workers.
 Company B: b managers and 11b workers.
 Step 2 — merge by adding the raw counts, never by averaging the ratios.
-Column A = (a + b)/(9a + 11b).
+Quantity A = (a + b)/(9a + 11b).
 Step 3 — compare with 1/10 by cross-multiplying (both denominators are positive):
 10(a + b) versus 1(9a + 11b)
 10a + 10b versus 9a + 11b

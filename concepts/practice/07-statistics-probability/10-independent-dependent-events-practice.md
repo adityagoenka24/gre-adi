@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -50,8 +50,8 @@ Which of the following describes a pair of INDEPENDENT events?
 
 A jar holds 5 red and 5 blue chips. One chip is drawn at random, its color is noted, and it is returned to the jar before a second chip is drawn.
 
-> **Column A:**  P(the first chip is red)
-> **Column B:**  P(the second chip is red, given that the first chip was red)
+> **Quantity A:**  P(the first chip is red)
+> **Quantity B:**  P(the second chip is red, given that the first chip was red)
 
 **Q5** · `STA-IDE-010` · MCQ · 55s
 
@@ -125,8 +125,8 @@ A bag holds 5 red and 5 blue marbles. Two marbles are drawn one at a time, witho
 
 One card is drawn at random from a standard 52-card deck, which has 26 red cards and 13 hearts, all hearts being red.
 
-> **Column A:**  P(the card is red, given that it is a heart)
-> **Column B:**  P(the card is a heart, given that it is red)
+> **Quantity A:**  P(the card is red, given that it is a heart)
+> **Quantity B:**  P(the card is a heart, given that it is red)
 
 **Q13** · `STA-IDE-025` · Select all that apply · 90s
 
@@ -158,8 +158,8 @@ A bag contains 4 red and 6 blue marbles. Three marbles are drawn at random, one 
 
 A jar holds 4 red marbles and 6 green marbles and no others. In each column below, two marbles are drawn at random, one at a time.
 
-> **Column A:**  P(the second marble is red, given that the first marble is green), when the draws are made WITHOUT replacement
-> **Column B:**  P(the second marble is red), when the draws are made WITH replacement
+> **Quantity A:**  P(the second marble is red, given that the first marble is green), when the draws are made WITHOUT replacement
+> **Quantity B:**  P(the second marble is red), when the draws are made WITH replacement
 
 **Q16** · `STA-IDE-029` · Numeric Entry · 95s
 
@@ -201,8 +201,8 @@ A bag holds 5 red and 3 blue balls. Balls are drawn at random one at a time, wit
 
 Events A and B are independent, with P(A) = p and P(B) = q, where 0 < p < 1 and 0 < q < 1.
 
-> **Column A:**  P(A or B)
-> **Column B:**  p + q
+> **Quantity A:**  P(A or B)
+> **Quantity B:**  p + q
 
 **Q21** · `STA-IDE-034` · Numeric Entry · 100s
 
@@ -234,8 +234,8 @@ A fair six-sided die is rolled three times. Select all of the following probabil
 
 A box holds 3 red and 3 blue balls. Two balls are drawn at random, one at a time, without replacement.
 
-> **Column A:**  P(the second ball is red, given that the first ball is red)
-> **Column B:**  P(the second ball is red)
+> **Quantity A:**  P(the second ball is red, given that the first ball is red)
+> **Quantity B:**  P(the second ball is red)
 
 **Q25** · `STA-IDE-042` · Numeric Entry · 105s
 
@@ -263,8 +263,8 @@ A bag contains 3 red and 5 blue marbles and no others. Two marbles are drawn at 
 
 A bag contains n red and n blue marbles, where n is an integer and n >= 2. Two marbles are drawn at random, without replacement.
 
-> **Column A:**  P(the two marbles are the same color)
-> **Column B:**  P(the two marbles are different colors)
+> **Quantity A:**  P(the two marbles are the same color)
+> **Quantity B:**  P(the two marbles are different colors)
 
 **Q28** · `STA-IDE-039` · Numeric Entry · 130s
 
@@ -367,8 +367,8 @@ Answer: C.
 ### Q4 · `STA-IDE-009` — Answer: C
 
 Step 1 — read the mechanism. The chip is returned, so the jar is back to 5 red and 5 blue before the second draw. The draws are independent.
-Step 2 — Column A: P(first red) = 5/10 = 1/2.
-Step 3 — Column B: the conditioning event is 'the first chip was red', but that chip went back in. The jar the second draw sees is identical, so P(second red | first red) = 5/10 = 1/2.
+Step 2 — Quantity A: P(first red) = 5/10 = 1/2.
+Step 3 — Quantity B: the conditioning event is 'the first chip was red', but that chip went back in. The jar the second draw sees is identical, so P(second red | first red) = 5/10 = 1/2.
 Both columns equal 1/2, so the quantities are equal.
 This is the formal test for independence in action: P(B | A) = P(B).
 
@@ -455,9 +455,9 @@ Answer: 5/9.
 ### Q12 · `STA-IDE-022` — Answer: A
 
 A conditional probability restricts the universe to the condition, so the two columns count within different universes.
-Column A - restrict to the 13 hearts. Every heart is red, so 13 of 13 qualify: P(red | heart) = 13/13 = 1.
-Column B - restrict to the 26 red cards. Of these, 13 are hearts and 13 are diamonds: P(heart | red) = 13/26 = 1/2.
-1 > 1/2, so Column A is greater.
+Quantity A - restrict to the 13 hearts. Every heart is red, so 13 of 13 qualify: P(red | heart) = 13/13 = 1.
+Quantity B - restrict to the 26 red cards. Of these, 13 are hearts and 13 are diamonds: P(heart | red) = 13/26 = 1/2.
+1 > 1/2, so Quantity A is greater.
 Both columns use the same joint probability P(red and heart) = 13/52; only the denominator changes, and a smaller denominator gives a bigger conditional.
 
 **Trap.** Answering C because the two expressions look like mirror images. P(X | Y) and P(Y | X) are not interchangeable: they divide the same overlap by two different totals. Here the hearts sit entirely inside the reds, so one direction is certainty and the other is a coin flip.
@@ -489,15 +489,15 @@ Check with combinations, which ignore order automatically: C(4,2) x C(6,1) / C(1
 
 ### Q15 · `STA-IDE-028` — Answer: A
 
-Column A - the condition says a GREEN marble has left the jar and stayed out. Rebuild the jar: 4 red and 5 green, 9 marbles in all. The red count never moved, because the marble removed was green.
+Quantity A - the condition says a GREEN marble has left the jar and stayed out. Rebuild the jar: 4 red and 5 green, 9 marbles in all. The red count never moved, because the marble removed was green.
 P(second is red | first is green) = 4/9.
-Column B - with replacement the jar is identical for the second draw, so the two draws are independent and the first one carries no information: P(second is red) = 4/10 = 2/5.
+Quantity B - with replacement the jar is identical for the second draw, so the two draws are independent and the first one carries no information: P(second is red) = 4/10 = 2/5.
 Compare over the denominator 45: 4/9 = 20/45 and 2/5 = 18/45.
-20/45 > 18/45, so Column A is greater.
+20/45 > 18/45, so Quantity A is greater.
 The mechanism: replacement is what makes draws independent. Without it, removing a green marble raises red's share of what is left, from 4 out of 10 to 4 out of 9.
-Answer: Column A is greater.
+Answer: Quantity A is greater.
 
-**Trap.** Answering C on the symmetry rule 'the second draw is just as likely to be red as the first, 4/10, whatever the mechanism'. That rule is about the UNCONDITIONAL second draw; Column A has already been told a green marble is gone, which lifts it to 4/9. Answering B is the mirror error - assuming that removing a marble must lower the chance of red. It lowers it only for the colour actually removed; a green leaving makes red relatively more plentiful.
+**Trap.** Answering C on the symmetry rule 'the second draw is just as likely to be red as the first, 4/10, whatever the mechanism'. That rule is about the UNCONDITIONAL second draw; Quantity A has already been told a green marble is gone, which lifts it to 4/9. Answering B is the mirror error - assuming that removing a marble must lower the chance of red. It lowers it only for the colour actually removed; a green leaving makes red relatively more plentiful.
 
 ### Q16 · `STA-IDE-029` — Answer: 0.6
 
@@ -551,10 +551,10 @@ Answer: 15/56.
 Step 1 — the general addition rule always holds:
 P(A or B) = P(A) + P(B) - P(A and B).
 Step 2 — independence supplies the overlap: P(A and B) = pq.
-Step 3 — so Column A = p + q - pq, and Column B = p + q. The columns differ by exactly pq.
+Step 3 — so Quantity A = p + q - pq, and Quantity B = p + q. The columns differ by exactly pq.
 Step 4 — the constraints 0 < p < 1 and 0 < q < 1 make pq strictly positive, so p + q - pq < p + q for every allowed p and q.
-Column B is greater, and the conclusion does not depend on the particular values, so D is wrong.
-Spot-check p = 0.5, q = 0.4: Column A = 0.5 + 0.4 - 0.20 = 0.70, Column B = 0.90.
+Quantity B is greater, and the conclusion does not depend on the particular values, so D is wrong.
+Spot-check p = 0.5, q = 0.4: Quantity A = 0.5 + 0.4 - 0.20 = 0.70, Quantity B = 0.90.
 
 **Trap.** Answering C by using P(A or B) = P(A) + P(B), which is the addition rule for MUTUALLY EXCLUSIVE events. Independent events with positive probabilities are never mutually exclusive: their overlap pq is strictly positive, so it must be subtracted once. A second temptation is D, since p and q are unnamed - but pq > 0 holds throughout the stated range, so the comparison is settled.
 
@@ -597,15 +597,15 @@ Answer: A, B, E.
 
 ### Q24 · `STA-IDE-041` — Answer: B
 
-Column A - the condition removes one red ball, leaving 2 red among 5. P(second red | first red) = 2/5 = 0.4.
-Column B - here nothing is known about the first ball, so both cases must be weighted:
+Quantity A - the condition removes one red ball, leaving 2 red among 5. P(second red | first red) = 2/5 = 0.4.
+Quantity B - here nothing is known about the first ball, so both cases must be weighted:
 P(second red) = P(first red)P(second red | first red) + P(first blue)P(second red | first blue)
 = (3/6)(2/5) + (3/6)(3/5) = 6/30 + 9/30 = 15/30 = 1/2.
-1/2 > 2/5, so Column B is greater.
-The short route to Column B: before any ball is drawn, every one of the 6 balls is equally likely to be the one that lands in the second position, and 3 of the 6 are red, so the answer is 3/6 = 1/2 by symmetry - the same as P(the first ball is red).
+1/2 > 2/5, so Quantity B is greater.
+The short route to Quantity B: before any ball is drawn, every one of the 6 balls is equally likely to be the one that lands in the second position, and 3 of the 6 are red, so the answer is 3/6 = 1/2 by symmetry - the same as P(the first ball is red).
 The gap between the columns, 1/2 against 2/5, is precisely the dependence created by not replacing the first ball.
 
-**Trap.** Answering C by reasoning that the draws are 'symmetric', so the second ball must behave like the first. Column B is indeed 1/2 by that symmetry, but Column A is not an unconditional probability - it has already been told a red ball is gone, which leaves the box 2 red against 3 blue. The reverse error is answering A, from a vague sense that conditioning on red should make red more likely; without replacement it does the opposite.
+**Trap.** Answering C by reasoning that the draws are 'symmetric', so the second ball must behave like the first. Quantity B is indeed 1/2 by that symmetry, but Quantity A is not an unconditional probability - it has already been told a red ball is gone, which leaves the box 2 red against 3 blue. The reverse error is answering A, from a vague sense that conditioning on red should make red more likely; without replacement it does the opposite.
 
 ### Q25 · `STA-IDE-042` — Answer: 1/11
 
@@ -636,7 +636,7 @@ Answer: 2/7.
 
 Step 1 — the insight: fix the first marble, whatever color it turns out to be. The bag then holds 2n - 1 marbles, of which n - 1 match it and n do not.
 Step 2 — so P(same color) = (n - 1)/(2n - 1) and P(different colors) = n/(2n - 1). The two columns have the SAME denominator.
-Step 3 — compare the numerators: n > n - 1 for every n, so Column B is greater. Nothing about the size of n can change this, so D is wrong.
+Step 3 — compare the numerators: n > n - 1 for every n, so Quantity B is greater. Nothing about the size of n can change this, so D is wrong.
 The algebraic route agrees: P(same) = 2 x [n/(2n)][(n-1)/(2n-1)] = (n-1)/(2n-1).
 Spot-check n = 2: same = 1/3, different = 2/3. Spot-check n = 10: same = 9/19, different = 10/19.
 Note that as n grows the two columns approach 1/2 each, but they never meet - the gap 1/(2n-1) stays positive.

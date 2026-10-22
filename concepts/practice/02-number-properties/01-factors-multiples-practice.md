@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -32,8 +32,8 @@ Which of the following is NOT a factor of 24?
 
 **Q2** · `NUM-FAM-005` · QC · 45s
 
-> **Column A:**  The number of positive factors of 16
-> **Column B:**  The number of positive factors of 15
+> **Quantity A:**  The number of positive factors of 16
+> **Quantity B:**  The number of positive factors of 15
 
 **Q3** · `NUM-FAM-007` · Numeric Entry · 50s
 
@@ -93,8 +93,8 @@ How many integers from 1 to 200, inclusive, are multiples of both 4 and 6? Enter
 
 p and q are distinct prime numbers.
 
-> **Column A:**  The number of positive factors of pq
-> **Column B:**  The number of positive factors of p^2
+> **Quantity A:**  The number of positive factors of pq
+> **Quantity B:**  The number of positive factors of p^2
 
 **Q10** · `NUM-FAM-024` · MCQ · 80s
 
@@ -168,8 +168,8 @@ n is a positive integer and n^3 is divisible by 54. What is the smallest possibl
 
 x is a positive integer.
 
-> **Column A:**  The number of even positive factors of 12x
-> **Column B:**  The number of odd positive factors of 12x
+> **Quantity A:**  The number of even positive factors of 12x
+> **Quantity B:**  The number of odd positive factors of 12x
 
 **Q18** · `NUM-FAM-045` · MCQ · 100s
 
@@ -201,8 +201,8 @@ N = 4 x 9 x 25. How many positive factors of N are not factors of 4, not factors
 
 a and b are positive integers with GCD(a, b) = 6 and LCM(a, b) = 60.
 
-> **Column A:**  a + b
-> **Column B:**  42
+> **Quantity A:**  a + b
+> **Quantity B:**  42
 
 **Q22** · `NUM-FAM-050` · MCQ · 100s
 
@@ -224,8 +224,8 @@ How many positive factors of 4200 are even but not divisible by 4? Enter your an
 
 n is an integer greater than 1.
 
-> **Column A:**  The number of positive factors of n that are less than n
-> **Column B:**  The number of positive factors of n that are greater than 1
+> **Quantity A:**  The number of positive factors of n that are less than n
+> **Quantity B:**  The number of positive factors of n that are greater than 1
 
 **Q25** · `NUM-FAM-053` · Select all that apply · 100s
 
@@ -267,8 +267,8 @@ What is the sum of all positive integers n <= 1000 that have exactly 5 positive 
 
 p is an odd prime and k = p^2 - 1.
 
-> **Column A:**  The number of positive factors of k
-> **Column B:**  6
+> **Quantity A:**  The number of positive factors of k
+> **Quantity B:**  6
 
 **Q29** · `NUM-FAM-059` · Select all that apply · 120s
 
@@ -343,12 +343,12 @@ Check: 24/1 = 24, 24/4 = 6, 24/6 = 4, 24/8 = 3, all integers. Answer: E.
 
 ### Q2 · `NUM-FAM-005` — Answer: A
 
-Step 1 — Column A: 16 = 2^4, so the factor count is 4 + 1 = 5. The factors are 1, 2, 4, 8, 16.
-Step 2 — Column B: 15 = 3 x 5, so the factor count is (1+1)(1+1) = 4. The factors are 1, 3, 5, 15.
-Step 3 — compare: 5 > 4, so Column A is greater.
+Step 1 — Quantity A: 16 = 2^4, so the factor count is 4 + 1 = 5. The factors are 1, 2, 4, 8, 16.
+Step 2 — Quantity B: 15 = 3 x 5, so the factor count is (1+1)(1+1) = 4. The factors are 1, 3, 5, 15.
+Step 3 — compare: 5 > 4, so Quantity A is greater.
 Check: both lists were written out in full and counted. Answer: A.
 
-**Trap.** Counting distinct PRIME factors instead of all factors: 16 has one prime (2) and 15 has two (3 and 5), which makes Column B look bigger and points at B. Factor count depends on the exponents through (e+1), not on how many different primes appear.
+**Trap.** Counting distinct PRIME factors instead of all factors: 16 has one prime (2) and 15 has two (3 and 5), which makes Quantity B look bigger and points at B. Factor count depends on the exponents through (e+1), not on how many different primes appear.
 
 ### Q3 · `NUM-FAM-007` — Answer: 12
 
@@ -414,9 +414,9 @@ Check: 12, 24, 36, ..., 192 is 16 values. Answer: 16.
 
 ### Q9 · `NUM-FAM-023` — Answer: A
 
-Step 1 — Column A: pq = p^1 x q^1 with p and q distinct, so the count is (1+1)(1+1) = 4. The factors are 1, p, q, pq.
-Step 2 — Column B: p^2 has count 2 + 1 = 3. The factors are 1, p, p^2.
-Step 3 — 4 > 3 for every choice of distinct primes, so Column A is always greater.
+Step 1 — Quantity A: pq = p^1 x q^1 with p and q distinct, so the count is (1+1)(1+1) = 4. The factors are 1, p, q, pq.
+Step 2 — Quantity B: p^2 has count 2 + 1 = 3. The factors are 1, p, p^2.
+Step 3 — 4 > 3 for every choice of distinct primes, so Quantity A is always greater.
 Check with p = 2, q = 3: 6 has factors 1, 2, 3, 6 (four); 4 has 1, 2, 4 (three). With p = 5, q = 7: 35 has 1, 5, 7, 35 (four); 25 has 1, 5, 25 (three).
 Answer: A.
 
@@ -504,13 +504,13 @@ Answer: B.
 
 Use the capsule's split: odd factors come from dropping all the 2s, and every factor is an odd factor times a power of 2.
 Step 1 — write 12x = 2^a x m with m odd. Since 12 = 2^2 x 3 already contributes two 2s, a >= 2 for every x.
-Step 2 — let t be the number of factors of m, that is the number of ODD factors of 12x. Column B = t.
-Step 3 — an even factor is 2^i x d with 1 <= i <= a and d a factor of m, so Column A = a x t.
-Step 4 — a >= 2 gives Column A = a x t >= 2t > t = Column B for every positive integer x.
-Check x = 1: 12 = 2^2 x 3 has factors 1, 2, 3, 4, 6, 12; even ones are 2, 4, 6, 12 (four), odd ones are 1, 3 (two). Check x = 25: 300 = 2^2 x 3 x 5^2 has 18 factors, 6 odd and 12 even. Column A wins both times.
+Step 2 — let t be the number of factors of m, that is the number of ODD factors of 12x. Quantity B = t.
+Step 3 — an even factor is 2^i x d with 1 <= i <= a and d a factor of m, so Quantity A = a x t.
+Step 4 — a >= 2 gives Quantity A = a x t >= 2t > t = Quantity B for every positive integer x.
+Check x = 1: 12 = 2^2 x 3 has factors 1, 2, 3, 4, 6, 12; even ones are 2, 4, 6, 12 (four), odd ones are 1, 3 (two). Check x = 25: 300 = 2^2 x 3 x 5^2 has 18 factors, 6 odd and 12 even. Quantity A wins both times.
 Answer: A.
 
-**Trap.** Choosing D because x is unknown and 12x could be anything. The ratio is locked: every odd factor is matched by a even ones, and 12 guarantees a >= 2, so Column A is at least twice Column B. Choosing C comes from imagining the factors split evenly into odd and even, which happens only when a = 1 - impossible here.
+**Trap.** Choosing D because x is unknown and 12x could be anything. The ratio is locked: every odd factor is matched by a even ones, and 12 guarantees a >= 2, so Quantity A is at least twice Quantity B. Choosing C comes from imagining the factors split evenly into odd and even, which happens only when a = 1 - impossible here.
 
 ### Q18 · `NUM-FAM-045` — Answer: C
 
@@ -583,8 +583,8 @@ Check the same way from the other side: factors with 2^2 or 2^3 number 2 x 12 = 
 ### Q24 · `NUM-FAM-052` — Answer: C
 
 Step 1 — let n have d positive factors in total.
-Step 2 — Column A takes the full factor list and removes exactly one member, n itself, so Column A = d - 1.
-Step 3 — Column B takes the same list and removes exactly one member, 1, so Column B = d - 1.
+Step 2 — Quantity A takes the full factor list and removes exactly one member, n itself, so Quantity A = d - 1.
+Step 3 — Quantity B takes the same list and removes exactly one member, 1, so Quantity B = d - 1.
 Step 4 — since n > 1, the numbers 1 and n are distinct, so each column drops exactly one element. They are always equal.
 Check with n = 12 (factors 1, 2, 3, 4, 6, 12): below 12 gives 1, 2, 3, 4, 6, five; above 1 gives 2, 3, 4, 6, 12, five. With the prime n = 7 (factors 1, 7): one each. With the square n = 9 (factors 1, 3, 9): two each.
 Answer: C.
@@ -629,8 +629,8 @@ Check: 16 has factors 1, 2, 4, 8, 16 (five) and 961 has 1, 31, 961 (three). Both
 ### Q28 · `NUM-FAM-058` — Answer: D
 
 Step 1 — factor the expression: k = p^2 - 1 = (p - 1)(p + 1), the two even numbers on either side of p.
-Step 2 — test p = 3: k = 8 = 2^3, with 3 + 1 = 4 factors. 4 < 6, so Column B is greater here.
-Step 3 — test p = 5: k = 24 = 2^3 x 3, with (3+1)(1+1) = 8 factors. 8 > 6, so Column A is greater here.
+Step 2 — test p = 3: k = 8 = 2^3, with 3 + 1 = 4 factors. 4 < 6, so Quantity B is greater here.
+Step 3 — test p = 5: k = 24 = 2^3 x 3, with (3+1)(1+1) = 8 factors. 8 > 6, so Quantity A is greater here.
 Step 4 — two opposite outcomes, so the relationship is not determined.
 Check a third value, p = 7: k = 48 = 2^4 x 3 with (4+1)(1+1) = 10 factors, again above 6; but p = 3 has already broken the pattern.
 Answer: D.

@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -62,8 +62,8 @@ Set M = {1, 5, 9}
 
 Set N = {1, 5, 9, 7}
 
-> **Column A:**  Range of Set M
-> **Column B:**  Range of Set N
+> **Quantity A:**  Range of Set M
+> **Quantity B:**  Range of Set N
 
 ---
 
@@ -87,8 +87,8 @@ Data set A = {0, 0, 0, 12}
 
 Data set B = {3, 3, 3, 3}
 
-> **Column A:**  Standard deviation of Data set A
-> **Column B:**  Standard deviation of Data set B
+> **Quantity A:**  Standard deviation of Data set A
+> **Quantity B:**  Standard deviation of Data set B
 
 **Q8** · `STA-RSD-026` · QC · 70s
 
@@ -96,8 +96,8 @@ Data set P = {2, 4, 6, 8, 10}
 
 Data set Q = {20, 40, 60, 80, 100}
 
-> **Column A:**  Standard deviation of Data set P
-> **Column B:**  (Standard deviation of Data set Q) divided by 10
+> **Quantity A:**  Standard deviation of Data set P
+> **Quantity B:**  (Standard deviation of Data set Q) divided by 10
 
 **Q9** · `STA-RSD-027` · MCQ · 65s
 
@@ -161,8 +161,8 @@ Set A = {x, x + 4, x + 8, x + 12, x + 16}, where x is a real number. What is the
 
 Set G = {1, 2, 3, 4, 5, 6, 7}. Set H consists of the seven values of Set G together with one additional value v, where v is an integer and 1 <= v <= 7.
 
-> **Column A:**  Standard deviation of Set H
-> **Column B:**  Standard deviation of Set G
+> **Quantity A:**  Standard deviation of Set H
+> **Quantity B:**  Standard deviation of Set G
 
 **Q16** · `STA-RSD-036` · Numeric Entry · 105s
 
@@ -184,8 +184,8 @@ The heights of the adults in a large population are normally distributed with a 
 
 A data set consists of 6 distinct positive integers whose range is 10.
 
-> **Column A:**  The greatest possible standard deviation of the data set
-> **Column B:**  5
+> **Quantity A:**  The greatest possible standard deviation of the data set
+> **Quantity B:**  5
 
 **Q19** · `STA-RSD-039` · Select all that apply · 110s
 
@@ -259,8 +259,8 @@ The data set {1, 3, 5, 7, 9} has mean 5, range 8, and variance 8. Which of the f
 
 Set A consists of n integers, where n > 1, and has mean m and standard deviation s, where s > 0. Set B consists of the n integers of Set A together with one additional value equal to m + s.
 
-> **Column A:**  Standard deviation of Set B
-> **Column B:**  s
+> **Quantity A:**  Standard deviation of Set B
+> **Quantity B:**  s
 
 **Q27** · `STA-RSD-047` · Numeric Entry · 130s
 
@@ -409,10 +409,10 @@ Answer: B.
 
 ### Q7 · `STA-RSD-023` — Answer: A
 
-Step 1 — Column B first, because it is instant. Every value in B is 3, so all four values equal the mean and every deviation is 0. SD(B) = 0.
-Step 2 — Column A. Mean = (0 + 0 + 0 + 12)/4 = 3. The values are not all identical, so SD(A) > 0. That already settles it.
+Step 1 — Quantity B first, because it is instant. Every value in B is 3, so all four values equal the mean and every deviation is 0. SD(B) = 0.
+Step 2 — Quantity A. Mean = (0 + 0 + 0 + 12)/4 = 3. The values are not all identical, so SD(A) > 0. That already settles it.
 Step 3 — for completeness: squared deviations are 9, 9, 9, and 81. Variance = (9 + 9 + 9 + 81)/4 = 108/4 = 27, so SD(A) = sqrt(27) = 5.20.
-5.20 > 0, so Column A is greater.
+5.20 > 0, so Quantity A is greater.
 Answer: A.
 
 **Trap.** Both sets have the same four-value count, the same sum (12) and the same mean (3), so students conclude the SDs match and pick C. Mean and sum say nothing about spread. The instant that one set has two different values in it and the other does not, the first set's SD is strictly larger - no arithmetic needed.
@@ -421,7 +421,7 @@ Answer: A.
 
 Step 1 — spot the relationship between the sets. Every element of Q is 10 times the matching element of P, so Q = 10 x P.
 Step 2 — apply the scaling rule. Multiplying every value by k multiplies the SD by |k|, so SD(Q) = 10 x SD(P).
-Step 3 — Column B = SD(Q)/10 = 10 x SD(P)/10 = SD(P) = Column A.
+Step 3 — Quantity B = SD(Q)/10 = 10 x SD(P)/10 = SD(P) = Quantity A.
 The two quantities are equal.
 Check by computing: P has mean 6 and squared deviations 16, 4, 0, 4, 16, so variance = 40/5 = 8 and SD(P) = sqrt(8) = 2.83. Q has mean 60 and variance 800, so SD(Q) = sqrt(800) = 28.28, and 28.28/10 = 2.83. Correct.
 Answer: C.
@@ -498,9 +498,9 @@ Answer: sqrt(32).
 ### Q15 · `STA-RSD-035` — Answer: D
 
 Set G has mean 4 and squared deviations 9, 4, 1, 0, 1, 4, 9, summing to 28, so variance = 28/7 = 4 and SD(G) = 2. The added value is unspecified, so test the extremes of what v may be.
-Case 1: v = 4, the mean. The mean of H is still (28 + 4)/8 = 4, and the new value contributes a squared deviation of 0. Variance(H) = 28/8 = 3.5, so SD(H) = sqrt(3.5) = 1.87 < 2. Column B is greater here.
-Case 2: v = 1, as far from the mean as v is allowed to go. H = {1, 1, 2, 3, 4, 5, 6, 7}, mean = 29/8 = 3.625. The squared deviations sum to 35.875, so variance = 35.875/8 = 4.484 and SD(H) = 2.118 > 2. Column A is greater here.
-One legal choice of v makes Column A bigger and another makes Column B bigger, so no relationship holds in general.
+Case 1: v = 4, the mean. The mean of H is still (28 + 4)/8 = 4, and the new value contributes a squared deviation of 0. Variance(H) = 28/8 = 3.5, so SD(H) = sqrt(3.5) = 1.87 < 2. Quantity B is greater here.
+Case 2: v = 1, as far from the mean as v is allowed to go. H = {1, 1, 2, 3, 4, 5, 6, 7}, mean = 29/8 = 3.625. The squared deviations sum to 35.875, so variance = 35.875/8 = 4.484 and SD(H) = 2.118 > 2. Quantity A is greater here.
+One legal choice of v makes Quantity A bigger and another makes Quantity B bigger, so no relationship holds in general.
 Answer: D.
 The underlying rule: a new value pulls the SD DOWN if it sits closer to the mean than a typical member does, and pushes it UP if it sits further out. Here v = 2, 3, 4, 5, 6 all lower the SD and only v = 1 or v = 7 raise it.
 
@@ -541,7 +541,7 @@ Step 2 — to push the SD as high as possible, drive every value as far from the
 Step 3 — evaluate it. Mean = (1 + 2 + 3 + 9 + 10 + 11)/6 = 36/6 = 6.
 Squared deviations: 25, 16, 9, 9, 16, 25. Sum = 100.
 Variance = 100/6 = 16.67, so SD = sqrt(16.67) = 4.08.
-Step 4 — compare. The greatest possible SD is about 4.08, which is less than 5, so Column B is greater.
+Step 4 — compare. The greatest possible SD is about 4.08, which is less than 5, so Quantity B is greater.
 Answer: B.
 Why 5 is unreachable: even without the distinctness rule, the absolute ceiling on the SD of a set with range R is R/2 = 5, achieved only by putting every value at one of the two extremes. Six DISTINCT integers cannot do that, so the true maximum lands strictly below 5.
 
@@ -640,7 +640,7 @@ Step 4 — put in d = s, the distance specified in the stem:
 variance(B) = [n x s^2 + n x s^2/(n + 1)]/(n + 1) = n x s^2 x (n + 2)/(n + 1)^2.
 Step 5 — compare the multiplier with 1:
 n(n + 2)/(n + 1)^2 = (n^2 + 2n)/(n^2 + 2n + 1), which is less than 1 for every n.
-So variance(B) < s^2 and therefore SD(B) < s, no matter what n is and no matter what the integers are. Column B is greater.
+So variance(B) < s^2 and therefore SD(B) < s, no matter what n is and no matter what the integers are. Quantity B is greater.
 Check with a concrete set: A = {1, 2, 3} has m = 2 and s = 0.8165, so the added value is 2.8165. B = {1, 2, 3, 2.8165} has mean 2.2041 and squared deviations 1.4499, 0.0417, 0.6335, 0.3750, summing to 2.5001. Variance(B) = 0.6250 < s^2 = 0.6667, and SD(B) = 0.7906 < 0.8165. Correct.
 The short reason: appending a value at distance d LOWERS the variance whenever d^2 < s^2(n + 1)/n. Since d = s here, that condition reads s^2 < s^2(n + 1)/n, which is always true.
 Answer: B.

@@ -774,8 +774,8 @@
       "question": "In triangle ABC, AB = 13, BC = 14, and AC = 15. What is the area of the triangle?",
       "options": null,
       "answer": "84",
-      "explanation": "Use Heron's formula. Semi-perimeter s = (13+14+15)/2 = 42/2 = 21. Area = √[s(s-a)(s-b)(s-c)] = √[21×(21-13)×(21-14)×(21-15)] = √[21×8×7×6] = √[21×8×42] = √[7056] = 84.",
-      "trap": "Using ½ × base × height without finding the actual height, or computing s incorrectly as 42 instead of 21.",
+      "explanation": "Drop the altitude from A to side BC, and let its foot be at distance x from B, so it is at distance 14 - x from C.\nThe two right triangles give h² = 13² - x² and h² = 15² - (14 - x)².\nSetting them equal: 169 - x² = 225 - (196 - 28x + x²), so 169 = 29 + 28x, giving x = 5.\nThen h² = 169 - 25 = 144, so h = 12.\nArea = ½ × base × height = ½ × 14 × 12 = 84.",
+      "trap": "Using ½ × base × height with a second side in place of the height — for example ½ × 14 × 15 = 105 — instead of finding the true height, 12.",
       "estimated_time_seconds": 100,
       "tags": [
         "triangle-area",
@@ -1191,7 +1191,7 @@
       ],
       "answer": "B",
       "explanation": "The area of a triangle equals 4/3 the area of the triangle formed by its three medians. The medians 9, 12, 15 satisfy 9² + 12² = 15², so that triangle is right-angled with area ½(9)(12) = 54. Therefore area ABC = (4/3)(54) = 72.",
-      "trap": "Using the medians directly as sides of the original triangle to compute area via Heron's formula, rather than recognizing the relationship between medians and area.",
+      "trap": "Using the medians directly as sides of the original triangle to compute the area from the three side lengths, rather than recognizing the relationship between medians and area.",
       "estimated_time_seconds": 120,
       "tags": [
         "triangle-area",
@@ -1415,7 +1415,7 @@
       ],
       "answer": "B",
       "explanation": "Check: 7²+24²=49+576=625=25². This is a right triangle (7-24-25 triple) with legs 7 and 24.\nArea=(1/2)×7×24=84.",
-      "trap": "Students do not recognise the 7-24-25 right triple and use Heron's formula (which also gives 84 but is slower). Option A=42 catches students who forget to halve the product; option C=105 catches Heron's arithmetic errors.",
+      "trap": "Students do not recognize the 7-24-25 right triple and work from the three side lengths (which also gives 84 but is slower). Option A=42 catches students who forget to halve the product; option C=105 catches Heron's arithmetic errors.",
       "estimated_time_seconds": 105,
       "tags": [
         "pythagorean-triples",

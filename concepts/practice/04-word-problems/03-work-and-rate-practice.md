@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -56,8 +56,8 @@ Two printers working together print a report in 4 hours. Printer A alone takes 1
 
 Worker A can complete a job in 10 hours and Worker B can complete the same job in 15 hours. Both work at constant rates.
 
-> **Column A:**  The number of hours A and B take to complete the job working together
-> **Column B:**  6 hours
+> **Quantity A:**  The number of hours A and B take to complete the job working together
+> **Quantity B:**  6 hours
 
 ---
 
@@ -105,15 +105,15 @@ Three friends working together clean a house in 3 hours. The first friend alone 
 
 n > 0. Worker A works at a constant rate of 1/n of a job per hour and Worker B works at a constant rate of 1/(2n) of the same job per hour.
 
-> **Column A:**  The number of hours A and B take to complete the job working together
-> **Column B:**  2n/3 hours
+> **Quantity A:**  The number of hours A and B take to complete the job working together
+> **Quantity B:**  2n/3 hours
 
 **Q11** · `WRD-WRK-031` · QC · 90s
 
 Worker A alone takes 8 hours and Worker B alone takes 12 hours to finish a job. They start together, but A stops working exactly 2 hours before the job is finished; B works from the start until the job is done.
 
-> **Column A:**  The total number of hours from the start until the job is finished
-> **Column B:**  6 hours
+> **Quantity A:**  The total number of hours from the start until the job is finished
+> **Quantity B:**  6 hours
 
 **Q12** · `WRD-WRK-021` · Select all that apply · 90s
 
@@ -195,15 +195,15 @@ Pipe A alone fills an empty tank in 5 hours and pipe B alone fills it in 20 hour
 
 Workers A and B, each working at a constant rate, together finish a job in 6 hours. Working alone, A would take a hours and B would take b hours, where 0 < a < b.
 
-> **Column A:**  b - a
-> **Column B:**  5
+> **Quantity A:**  b - a
+> **Quantity B:**  5
 
 **Q20** · `WRD-WRK-052` · QC · 90s
 
 Pipe A alone fills an empty pool in 3 hours. Pipe B alone empties a full pool in 5 hours. Both are opened on an empty pool at time zero and both stay open. The pool cannot hold more than its full volume; any excess water simply overflows and is lost.
 
-> **Column A:**  The fraction of the pool that is filled 14 hours after the pipes are opened
-> **Column B:**  1
+> **Quantity A:**  The fraction of the pool that is filled 14 hours after the pipes are opened
+> **Quantity B:**  1
 
 **Q21** · `WRD-WRK-041` · Numeric Entry · 105s
 
@@ -289,8 +289,8 @@ Workers A and B work at constant rates. A alone completes one task in 16 hours a
 
 Each machine of type X works at one constant rate and each machine of type Y works at another constant rate. Three X machines and five Y machines, working together, complete a job in 8 hours. Five X machines and three Y machines, working together, complete the same job in 6 hours.
 
-> **Column A:**  The number of hours four X machines and four Y machines, working together, take to complete the job
-> **Column B:**  7
+> **Quantity A:**  The number of hours four X machines and four Y machines, working together, take to complete the job
+> **Quantity B:**  7
 
 ---
 
@@ -383,11 +383,11 @@ Answer: 6.
 Step 1 — let the job = LCM(10, 15) = 30 units.
 Step 2 — A does 30/10 = 3 units per hour; B does 30/15 = 2 units per hour.
 Step 3 — together they do 3 + 2 = 5 units per hour, so the time is 30/5 = 6 hours.
-Step 4 — Column A = 6 and Column B = 6, so the two quantities are equal.
+Step 4 — Quantity A = 6 and Quantity B = 6, so the two quantities are equal.
 Check against the story: in 6 hours A finishes 6/10 = 3/5 of the job and B finishes 6/15 = 2/5, and 3/5 + 2/5 = 1 whole job. Correct.
 Answer: C.
 
-**Trap.** Averaging the times gives (10 + 15)/2 = 12.5 hours, which makes Column A look larger and points to choice A. That answer is impossible before any arithmetic: two workers together must beat A's own 10 hours, so Column A must be below 10.
+**Trap.** Averaging the times gives (10 + 15)/2 = 12.5 hours, which makes Quantity A look larger and points to choice A. That answer is impossible before any arithmetic: two workers together must beat A's own 10 hours, so Quantity A must be below 10.
 
 ### Q6 · `WRD-WRK-016` — Answer: B
 
@@ -439,11 +439,11 @@ Answer: 18.
 
 Step 1 — rates add: 1/n + 1/(2n) = 2/(2n) + 1/(2n) = 3/(2n) jobs per hour.
 Step 2 — time = 1/(combined rate) = 2n/3 hours.
-Step 3 — Column A = 2n/3, which is exactly Column B, for every n > 0.
+Step 3 — Quantity A = 2n/3, which is exactly Quantity B, for every n > 0.
 Check against the story with n = 6: A takes 6 hours, B takes 12 hours, together (6 x 12)/18 = 4 hours, and 2n/3 = 12/3 = 4. Correct.
 Answer: C.
 
-**Trap.** Choosing D because n is unknown. The n cancels: the answer is the same algebraic expression for every positive n, so the relationship is fully determined. The other live error inverts once too often, reporting the combined RATE 3/(2n) as if it were the time, which makes Column B look larger and points to B.
+**Trap.** Choosing D because n is unknown. The n cancels: the answer is the same algebraic expression for every positive n, so the relationship is fully determined. The other live error inverts once too often, reporting the combined RATE 3/(2n) as if it were the time, which makes Quantity B look larger and points to B.
 
 ### Q11 · `WRD-WRK-031` — Answer: C
 
@@ -451,11 +451,11 @@ Step 1 — let the total time be T hours. B works all T hours; A works T - 2 hou
 Step 2 — the two contributions must sum to one whole job: (T - 2)/8 + T/12 = 1.
 Step 3 — multiply through by 24: 3(T - 2) + 2T = 24.
 Step 4 — 3T - 6 + 2T = 24, so 5T = 30 and T = 6.
-Step 5 — Column A = 6 hours = Column B.
+Step 5 — Quantity A = 6 hours = Quantity B.
 Check against the story: A works 4 hours and does 4/8 = 1/2 the job; B works 6 hours and does 6/12 = 1/2 the job; the halves sum to one job and A did indeed stop 2 hours early. Correct.
 Answer: C.
 
-**Trap.** Computing the together-time first, (8 x 12)/20 = 4.8 hours, and then adding the 2 solo hours to get 6.8, which makes Column A look larger and points to choice A. The 2 hours are not extra time bolted on; they are the tail of the job during which only B is working, and the whole schedule must be solved as one equation.
+**Trap.** Computing the together-time first, (8 x 12)/20 = 4.8 hours, and then adding the 2 solo hours to get 6.8, which makes Quantity A look larger and points to choice A. The 2 hours are not extra time bolted on; they are the tail of the job during which only B is working, and the whole schedule must be solved as one equation.
 
 ### Q12 · `WRD-WRK-021` — Answer: B, C, D
 
@@ -551,7 +551,7 @@ Answer: C.
 Step 1 — the only constraint is 1/a + 1/b = 1/6 with 0 < a < b. Solve for b: 1/b = 1/6 - 1/a = (a - 6)/(6a), so b = 6a/(a - 6).
 Step 2 — a < b forces a < 12, and b > 0 forces a > 6, so a ranges over 6 < a < 12 and every such a gives a legal pair.
 Step 3 — take a = 9: b = 54/3 = 18, and b - a = 9, which is greater than 5.
-Step 4 — take a = 10: b = 60/4 = 15, and b - a = 5, which equals Column B.
+Step 4 — take a = 10: b = 60/4 = 15, and b - a = 5, which equals Quantity B.
 Step 5 — take a = 11: b = 66/5 = 13.2, and b - a = 2.2, which is less than 5.
 Step 6 — all three pairs satisfy the stem, and they give all three orderings, so the relationship is not determined.
 Check against the story: 1/9 + 1/18 = 2/18 + 1/18 = 1/6; 1/10 + 1/15 = 3/30 + 2/30 = 1/6; 1/11 + 5/66 = 6/66 + 5/66 = 11/66 = 1/6. Every pair really does finish in 6 hours. Correct.
@@ -566,11 +566,11 @@ Step 2 — the net rate is positive, so the level rises steadily until the pool 
 Step 3 — the pool reaches capacity at 1/(2/15) = 15/2 = 7.5 hours.
 Step 4 — 14 hours is well past 7.5 hours, so the pool has been full for 6.5 hours.
 Step 5 — the level cannot pass 1: the excess overflows. The fraction filled at 14 hours is exactly 1.
-Step 6 — Column A = 1 = Column B.
+Step 6 — Quantity A = 1 = Quantity B.
 Check against the story: 14 x 2/15 = 28/15, which is about 1.87 pools' worth of net inflow; the first 15/15 fills the pool and the remaining 13/15 runs over the edge. Correct.
 Answer: C.
 
-**Trap.** Carrying the net rate straight past the 7.5-hour mark: 14 x 2/15 = 28/15, which is greater than 1, and concluding that Column A is greater, choice A. A pool cannot be 1.87 pools full - the cap is what the overflow sentence is for. Adding the rates as if B also filled, 1/3 + 1/5 = 8/15, fills the pool in 15/8 hours and gets to C by an accident of arithmetic. Choice B would require the pool to be under capacity at 14 hours, which needs the net rate to be negative; here A is the faster pipe, so the level rises.
+**Trap.** Carrying the net rate straight past the 7.5-hour mark: 14 x 2/15 = 28/15, which is greater than 1, and concluding that Quantity A is greater, choice A. A pool cannot be 1.87 pools full - the cap is what the overflow sentence is for. Adding the rates as if B also filled, 1/3 + 1/5 = 8/15, fills the pool in 15/8 hours and gets to C by an accident of arithmetic. Choice B would require the pool to be under capacity at 14 hours, which needs the net rate to be negative; here A is the faster pipe, so the level rises.
 
 ### Q21 · `WRD-WRK-041` — Answer: 15
 
@@ -694,8 +694,8 @@ Step 2 — the two crews give 3x + 5y = 1/8 and 5x + 3y = 1/6.
 Step 3 — the insight: (3, 5) + (5, 3) = (8, 8), which is exactly twice the target crew (4, 4). Add the two equations instead of solving them separately.
 Step 4 — 8x + 8y = 1/8 + 1/6 = 3/24 + 4/24 = 7/24.
 Step 5 — halve both sides: 4x + 4y = 7/48 of the job per hour.
-Step 6 — time = 48/7 = 6 6/7 hours, which is less than 7, so Column B is greater.
+Step 6 — time = 48/7 = 6 6/7 hours, which is less than 7, so Quantity B is greater.
 Check against the story: solving in full gives x = 11/384 and y = 3/384, so 3x + 5y = 33/384 + 15/384 = 48/384 = 1/8 and 5x + 3y = 55/384 + 9/384 = 64/384 = 1/6, both as stated, and 4x + 4y = 44/384 + 12/384 = 56/384 = 7/48. Correct.
 Answer: B.
 
-**Trap.** Averaging the two given times, (8 + 6)/2 = 7, lands exactly on Column B and gives choice C. Times never average; rates do, and the average of the rates 1/8 and 1/6 is 7/48 per hour, whose reciprocal 48/7 is below 7. Solving for x and then timing four X machines alone, 4x = 44/384 = 11/96 per hour, gives 96/11 = 8 8/11 hours, above 7, choice A; that forgets the four Y machines. Choice D tempts because two unknown rates look underdetermined, but the symmetric crew (4, 4) is the average of (3, 5) and (5, 3), so the sum of the two equations settles the comparison without ever finding x and y.
+**Trap.** Averaging the two given times, (8 + 6)/2 = 7, lands exactly on Quantity B and gives choice C. Times never average; rates do, and the average of the rates 1/8 and 1/6 is 7/48 per hour, whose reciprocal 48/7 is below 7. Solving for x and then timing four X machines alone, 4x = 44/384 = 11/96 per hour, gives 96/11 = 8 8/11 hours, above 7, choice A; that forgets the four Y machines. Choice D tempts because two unknown rates look underdetermined, but the symmetric crew (4, 4) is the average of (3, 5) and (5, 3), so the sum of the two equations settles the comparison without ever finding x and y.

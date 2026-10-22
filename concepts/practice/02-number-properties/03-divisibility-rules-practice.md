@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ Which of the following numbers are divisible by 3? Select all that apply.
 
 N = 4,200
 
-> **Column A:**  The remainder when N is divided by 6
-> **Column B:**  The remainder when N is divided by 5
+> **Quantity A:**  The remainder when N is divided by 6
+> **Quantity B:**  The remainder when N is divided by 5
 
 **Q4** · `NUM-DIV-007` · Numeric Entry · 45s
 
@@ -135,8 +135,8 @@ What is the largest 3-digit integer that is divisible by both 8 and 9? Enter you
 
 p is a positive integer divisible by 12.
 
-> **Column A:**  The remainder when p is divided by 8
-> **Column B:**  0
+> **Quantity A:**  The remainder when p is divided by 8
+> **Quantity B:**  0
 
 ---
 
@@ -198,22 +198,22 @@ N is a 3-digit integer whose hundreds digit is greater than its units digit. M i
 
 N is a positive integer. The sum of the digits of N is 18, and the last two digits of N are 4 and 0, in that order.
 
-> **Column A:**  The greatest integer that must divide N
-> **Column B:**  72
+> **Quantity A:**  The greatest integer that must divide N
+> **Quantity B:**  72
 
 **Q20** · `NUM-DIV-023` · QC · 100s
 
 a and b are positive integers and a + b is divisible by 9.
 
-> **Column A:**  The remainder when a is divided by 9
-> **Column B:**  The remainder when b is divided by 9
+> **Quantity A:**  The remainder when a is divided by 9
+> **Quantity B:**  The remainder when b is divided by 9
 
 **Q21** · `NUM-DIV-053` · QC · 95s
 
 N is a 3-digit integer whose digits sum to 12.
 
-> **Column A:**  The remainder when N is divided by 9
-> **Column B:**  3
+> **Quantity A:**  The remainder when N is divided by 9
+> **Quantity B:**  3
 
 **Q22** · `NUM-DIV-035` · Numeric Entry · 110s
 
@@ -267,8 +267,8 @@ N is the integer written with exactly k sevens and no other digits, so N = 77...
 
 n is a positive integer.
 
-> **Column A:**  The remainder when 10^n + 1 is divided by 11
-> **Column B:**  The remainder when 10^n - 1 is divided by 9
+> **Quantity A:**  The remainder when 10^n + 1 is divided by 11
+> **Quantity B:**  The remainder when 10^n - 1 is divided by 9
 
 **Q28** · `NUM-DIV-054` · Numeric Entry · 130s
 
@@ -358,11 +358,11 @@ Answer: A, C and D.
 
 ### Q3 · `NUM-DIV-010` — Answer: C
 
-Column A: test 6 as 2 and 3, which are coprime.
+Quantity A: test 6 as 2 and 3, which are coprime.
 4,200 ends in 0, so it is even: divisible by 2.
 Digit sum = 4 + 2 + 0 + 0 = 6, a multiple of 3: divisible by 3.
 So 6 divides 4,200 and the remainder is 0. (4,200/6 = 700.)
-Column B: 4,200 ends in 0, so 5 divides it and the remainder is 0. (4,200/5 = 840.)
+Quantity B: 4,200 ends in 0, so 5 divides it and the remainder is 0. (4,200/5 = 840.)
 Both remainders are 0, so the columns are equal.
 Check: 4,200 = 6 x 700 exactly and 4,200 = 5 x 840 exactly, so both remainders are 0.
 Answer: C.
@@ -492,11 +492,11 @@ Answer: 936.
 ### Q13 · `NUM-DIV-019` — Answer: D
 
 The temptation is to say that 12 contains a factor of 4 and p is even, so 8 must divide p. Test it instead.
-Case p = 12: 12 = 8 x 1 + 4, so Column A = 4. Column A is greater.
-Case p = 24: 24 = 8 x 3 + 0, so Column A = 0. The columns are equal.
+Case p = 12: 12 = 8 x 1 + 4, so Quantity A = 4. Quantity A is greater.
+Case p = 24: 24 = 8 x 3 + 0, so Quantity A = 0. The columns are equal.
 Two different relationships occur, so nothing is determined.
 Why it splits: p = 12k = 4 x 3k, so p carries exactly two factors of 2 when k is odd and at least three when k is even. Divisibility by 8 needs three factors of 2, which 12 alone does not supply.
-Check: p = 12 gives 12 = 8 x 1 + 4 (Column A = 4), p = 24 gives 24 = 8 x 3 (Column A = 0).
+Check: p = 12 gives 12 = 8 x 1 + 4 (Quantity A = 4), p = 24 gives 24 = 8 x 3 (Quantity A = 0).
 Answer: D.
 
 **Trap.** Concluding 'p is divisible by 4 and p is even, so p is divisible by 4 x 2 = 8' and keying C. Those two factors are not coprime, so they cannot be multiplied together; p = 12 is divisible by 4 and even yet leaves remainder 4 on division by 8. Note also that a remainder can never be less than 0, so choice B is impossible here for any p.
@@ -572,8 +572,8 @@ Answer: D. 99.
 Step 1 - what the digit sum gives. A digit sum of 18 is a multiple of 9, so 9 divides N.
 Step 2 - what the last two digits give. The 4-test reads the last TWO digits: 40 = 4 x 10, so 4 divides N. The last digit is 0, so 5 divides N as well.
 Step 3 - combine correctly. 4 and 5 are coprime, so 20 divides N. 9 and 20 are coprime, so 9 x 20 = 180 divides N.
-Step 4 - is 180 the greatest forced divisor? Take two numbers that fit the stem: N = 5,940 (digit sum 18, ends in 40) = 180 x 33, and N = 6,840 (digit sum 18, ends in 40) = 180 x 38. 33 and 38 share no common factor, so nothing larger than 180 can divide both. Column A = 180.
-Step 5 - 180 > 72, so Column A is greater.
+Step 4 - is 180 the greatest forced divisor? Take two numbers that fit the stem: N = 5,940 (digit sum 18, ends in 40) = 180 x 33, and N = 6,840 (digit sum 18, ends in 40) = 180 x 38. 33 and 38 share no common factor, so nothing larger than 180 can divide both. Quantity A = 180.
+Step 5 - 180 > 72, so Quantity A is greater.
 Check: 5,940/180 = 33 and 6,840/180 = 38, while 5,940/72 = 82.5 - so 72 does not even divide every such N.
 Answer: A.
 
@@ -584,8 +584,8 @@ Answer: A.
 Step 1 — the 9-rule in its stronger form: an integer leaves the same remainder on division by 9 as its digit sum does, and remainders add. So if a leaves remainder r, then b must leave remainder 9 - r (or 0 when r = 0) for the sum to be a multiple of 9.
 Step 2 — nothing in the stem pins r down. Divisibility of a SUM does not force either term to be divisible, or even to match the other.
 Case a = 9, b = 9: a + b = 18, a multiple of 9. Both remainders are 0, so the columns are equal.
-Case a = 1, b = 8: a + b = 9. Column A = 1 and Column B = 8, so Column B is greater.
-Case a = 8, b = 1: a + b = 9. Column A = 8 and Column B = 1, so Column A is greater.
+Case a = 1, b = 8: a + b = 9. Quantity A = 1 and Quantity B = 8, so Quantity B is greater.
+Case a = 8, b = 1: a + b = 9. Quantity A = 8 and Quantity B = 1, so Quantity A is greater.
 Step 3 — three different relationships occur, so nothing is determined.
 Check: 9 divides 1 + 8 = 9 while 9 divides neither 1 nor 8, which is the whole point.
 Answer: D.
@@ -597,11 +597,11 @@ Answer: D.
 Step 1 — the fact behind the 9-rule is stronger than the rule itself: every integer leaves the SAME remainder on division by 9 as its digit sum does.
 Why: 100a + 10b + c = (99a + 9b) + (a + b + c), and 99a + 9b is a multiple of 9, so only a + b + c survives.
 Step 2 — here the digit sum is 12, and 12 = 9 x 1 + 3, so the remainder is 3.
-Step 3 — that holds for every 3-digit N with digit sum 12, so Column A = 3 = Column B.
+Step 3 — that holds for every 3-digit N with digit sum 12, so Quantity A = 3 = Quantity B.
 Check three different numbers: 903 -> 903 = 9 x 100 + 3, remainder 3. 480 -> 480 = 9 x 53 + 3, remainder 3. 336 -> 336 = 9 x 37 + 3, remainder 3. Same remainder every time.
 Answer: C.
 
-**Trap.** Keying D because N is not a single number - 903, 480 and 336 all qualify - without noticing that the digit sum alone fixes the remainder mod 9. The other live error is reading 'digit sum 12 is a multiple of 3' and concluding the remainder is 0, which gives Column B greater, choice B; that argument settles division by 3, not by 9.
+**Trap.** Keying D because N is not a single number - 903, 480 and 336 all qualify - without noticing that the digit sum alone fixes the remainder mod 9. The other live error is reading 'digit sum 12 is a multiple of 3' and concluding the remainder is 0, which gives Quantity B greater, choice B; that argument settles division by 3, not by 9.
 
 ### Q22 · `NUM-DIV-035` — Answer: 3
 
@@ -673,19 +673,19 @@ Answer: C. 18.
 
 ### Q27 · `NUM-DIV-055` — Answer: D
 
-Column B first, because it is fixed. 10^n - 1 is the number written as n nines: 9, 99, 999, and so on. Its digit sum is 9n, a multiple of 9, so 9 divides it and Column B = 0 for every n.
-Column A moves. 10^n + 1 is a 1, then n - 1 zeros, then a 1, for example 101, 1001, 10001. Apply the 11-test - the alternating sum.
-n = 1: the number is 11. Alternating sum (1) - (1) = 0, so 11 divides it and Column A = 0.
-n = 2: the number is 101. Alternating sum (1 + 1) - (0) = 2, not a multiple of 11, so Column A = 101 - 99 = 2.
-n = 3: the number is 1,001. Alternating sum (1 + 0) - (0 + 1) = 0, so Column A = 0.
-n = 4: the number is 10,001. Alternating sum (1 + 0 + 1) - (0 + 0) = 2, so Column A = 2.
+Quantity B first, because it is fixed. 10^n - 1 is the number written as n nines: 9, 99, 999, and so on. Its digit sum is 9n, a multiple of 9, so 9 divides it and Quantity B = 0 for every n.
+Quantity A moves. 10^n + 1 is a 1, then n - 1 zeros, then a 1, for example 101, 1001, 10001. Apply the 11-test - the alternating sum.
+n = 1: the number is 11. Alternating sum (1) - (1) = 0, so 11 divides it and Quantity A = 0.
+n = 2: the number is 101. Alternating sum (1 + 1) - (0) = 2, not a multiple of 11, so Quantity A = 101 - 99 = 2.
+n = 3: the number is 1,001. Alternating sum (1 + 0) - (0 + 1) = 0, so Quantity A = 0.
+n = 4: the number is 10,001. Alternating sum (1 + 0 + 1) - (0 + 0) = 2, so Quantity A = 2.
 The pattern: the two 1s sit in the same position class when n is even (both odd positions), so they add to 2; they sit in opposite classes when n is odd, so they cancel to 0.
-Now compare. n = 1: Column A = 0 = Column B, the columns are equal. n = 2: Column A = 2 > 0 = Column B, Column A is greater.
+Now compare. n = 1: Quantity A = 0 = Quantity B, the columns are equal. n = 2: Quantity A = 2 > 0 = Quantity B, Quantity A is greater.
 Two different relationships occur, so nothing is determined.
-Check: n = 2 gives 101 = 11 x 9 + 2, so Column A = 2, while 10^2 - 1 = 99 = 9 x 11, so Column B = 0.
+Check: n = 2 gives 101 = 11 x 9 + 2, so Quantity A = 2, while 10^2 - 1 = 99 = 9 x 11, so Quantity B = 0.
 Answer: D.
 
-**Trap.** Testing n = 1 alone, getting 0 and 0, and keying C. Column B really is invariant, which makes the coincidence at n = 1 look conclusive; Column A flips with the parity of n, so any single test case is worthless. Keying A after testing only n = 2 is the mirror error. Whenever one column depends on n, test an odd n and an even n before answering.
+**Trap.** Testing n = 1 alone, getting 0 and 0, and keying C. Quantity B really is invariant, which makes the coincidence at n = 1 look conclusive; Quantity A flips with the parity of n, so any single test case is worthless. Keying A after testing only n = 2 is the mirror error. Whenever one column depends on n, test an odd n and an even n before answering.
 
 ### Q28 · `NUM-DIV-054` — Answer: 3740
 

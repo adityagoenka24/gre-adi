@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -134,8 +134,8 @@ Consider the arithmetic sequence 6, 10, 14, 18, ... , which continues without en
 
 Sequence A is arithmetic with first term 4 and common difference 15. Sequence B is geometric with first term 4 and common ratio 2.
 
-> **Column A:**  The 5th term of sequence A
-> **Column B:**  The 5th term of sequence B
+> **Quantity A:**  The 5th term of sequence A
+> **Quantity B:**  The 5th term of sequence B
 
 ---
 
@@ -197,20 +197,20 @@ An arithmetic sequence has exactly 19 terms. The sum of all 19 terms is 380 and 
 
 S is the sum of the infinite series 1/2 + 1/4 + 1/8 + 1/16 + ... , in which each term is half the term before it.
 
-> **Column A:**  S
-> **Column B:**  1 - 1/2^100
+> **Quantity A:**  S
+> **Quantity B:**  1 - 1/2^100
 
 **Q20** · `ARI-SEQ-051` · QC · 90s
 
 A sequence is defined by a_1 = 1 and a_n = a_(n-1) + n - 1 for every integer n >= 2.
 
-> **Column A:**  a_10
-> **Column B:**  46
+> **Quantity A:**  a_10
+> **Quantity B:**  46
 
 **Q21** · `ARI-SEQ-061` · QC · 105s
 
-> **Column A:**  The number of multiples of 3 from 3 to 300, inclusive, that are not multiples of 5
-> **Column B:**  The number of integers from 50 to 150, inclusive, that are not multiples of 5
+> **Quantity A:**  The number of multiples of 3 from 3 to 300, inclusive, that are not multiples of 5
+> **Quantity B:**  The number of integers from 50 to 150, inclusive, that are not multiples of 5
 
 **Q22** · `ARI-SEQ-043` · Numeric Entry · 105s
 
@@ -264,15 +264,15 @@ In a geometric sequence every term is positive. The sum of the first two terms i
 
 An infinite geometric sequence has first term a > 0 and common ratio r with 0 < r < 1. S denotes the sum of the entire infinite series.
 
-> **Column A:**  The sum of the first 10 terms of the sequence
-> **Column B:**  S x (1 - r^10)
+> **Quantity A:**  The sum of the first 10 terms of the sequence
+> **Quantity B:**  S x (1 - r^10)
 
 **Q28** · `ARI-SEQ-059` · QC · 120s
 
 An arithmetic sequence has first term a and common difference d, where a > 0 and d > 0, and n is a positive integer.
 
-> **Column A:**  (the sum of the first 2n terms) divided by (the sum of the first n terms)
-> **Column B:**  4
+> **Quantity A:**  (the sum of the first 2n terms) divided by (the sum of the first n terms)
+> **Quantity B:**  4
 
 **Q29** · `ARI-SEQ-056` · Numeric Entry · 125s
 
@@ -462,14 +462,14 @@ Answer: A, B, C.
 
 ### Q13 · `ARI-SEQ-019` — Answer: C
 
-Step 1 — Column A, arithmetic: a_5 = 4 + (5 - 1) x 15 = 4 + 60 = 64.
-Step 2 — Column B, geometric: b_5 = 4 x 2^(5-1) = 4 x 2^4 = 4 x 16 = 64.
+Step 1 — Quantity A, arithmetic: a_5 = 4 + (5 - 1) x 15 = 4 + 60 = 64.
+Step 2 — Quantity B, geometric: b_5 = 4 x 2^(5-1) = 4 x 2^4 = 4 x 16 = 64.
 Step 3 — 64 = 64, so the two quantities are equal.
 Check by listing. A: 4, 19, 34, 49, 64. B: 4, 8, 16, 32, 64. Both fifth entries are 64. Correct.
 Note the shape of the two formulas: the arithmetic term adds d exactly (n - 1) times and the geometric term multiplies by r exactly (n - 1) times. Here 4 additions of 15 and 4 doublings happen to land on the same number; one term later the doubling has already run away, 128 against 79.
 Answer: The two quantities are equal.
 
-**Trap.** Using the exponent n instead of n - 1 in Column B: 4 x 2^5 = 128, which makes Column B look greater and gives choice B. The mirror slip, reading the geometric term as first term x n x r = 4 x 5 x 2 = 40, makes Column A look greater and gives choice A. The exponent is n - 1 = 4, exactly parallel to the (n - 1)d = 4 x 15 in Column A, and with the exponent right the columns tie at 64.
+**Trap.** Using the exponent n instead of n - 1 in Quantity B: 4 x 2^5 = 128, which makes Quantity B look greater and gives choice B. The mirror slip, reading the geometric term as first term x n x r = 4 x 5 x 2 = 40, makes Quantity A look greater and gives choice A. The exponent is n - 1 = 4, exactly parallel to the (n - 1)d = 4 x 15 in Quantity A, and with the exponent right the columns tie at 64.
 
 ### Q14 · `ARI-SEQ-039` — Answer: B
 
@@ -534,11 +534,11 @@ Answer: 47.
 
 ### Q19 · `ARI-SEQ-046` — Answer: A
 
-Column A - the series is geometric with a = 1/2 and r = 1/2. Since |r| < 1 it converges:
+Quantity A - the series is geometric with a = 1/2 and r = 1/2. Since |r| < 1 it converges:
 S = a/(1 - r) = (1/2)/(1 - 1/2) = (1/2)/(1/2) = 1.
-Column B - 1/2^100 is a positive number, tiny but not zero, so 1 - 1/2^100 is strictly less than 1.
-Therefore Column A = 1 > Column B. Column A is greater.
-Where Column B comes from: the sum of the first n terms of this series is exactly 1 - 1/2^n, so Column B is the 100th PARTIAL sum. Every partial sum falls short of 1; only the completed infinite sum reaches it.
+Quantity B - 1/2^100 is a positive number, tiny but not zero, so 1 - 1/2^100 is strictly less than 1.
+Therefore Quantity A = 1 > Quantity B. Quantity A is greater.
+Where Quantity B comes from: the sum of the first n terms of this series is exactly 1 - 1/2^n, so Quantity B is the 100th PARTIAL sum. Every partial sum falls short of 1; only the completed infinite sum reaches it.
 
 **Trap.** Choosing C because 1/2^100 is 'basically zero'. It is unimaginably small but strictly positive, so the two quantities are never equal - a partial sum of a positive-term series is always less than the full sum. The opposite error is choosing B on the belief that an endless sum of positive numbers must exceed any fixed bound; with |r| < 1 it converges to a ceiling it never passes.
 
@@ -555,24 +555,24 @@ a_7 = 16 + 6 = 22
 a_8 = 22 + 7 = 29
 a_9 = 29 + 8 = 37
 a_10 = 37 + 9 = 46
-Column A = 46 = Column B, so the two quantities are equal.
+Quantity A = 46 = Quantity B, so the two quantities are equal.
 Faster route: the increments added on the way to a_10 are 1, 2, 3, ..., 9, so a_10 = 1 + (1 + 2 + ... + 9) = 1 + 9 x 10/2 = 1 + 45 = 46. Correct.
 
 **Trap.** Adding 1 + 2 + ... + 10 = 55 to nothing, or adding the increments up to 10 instead of 9: reaching a_10 takes 9 steps, and the step into a_n adds n - 1, so the last increment is 9. Reading the rule as 'add n' instead of 'add n - 1' gives 1 + 54 = 55 and the wrong column.
 
 ### Q21 · `ARI-SEQ-061` — Answer: C
 
-Step 1 — Column A, count the multiples of 3 from 3 to 300. They are 3 x 1, 3 x 2, ..., 3 x 100, so there are 100 of them; the spacing formula agrees: (300 - 3)/3 + 1 = 99 + 1 = 100.
+Step 1 — Quantity A, count the multiples of 3 from 3 to 300. They are 3 x 1, 3 x 2, ..., 3 x 100, so there are 100 of them; the spacing formula agrees: (300 - 3)/3 + 1 = 99 + 1 = 100.
 Step 2 — strip out the ones that are also multiples of 5, that is the multiples of 15: 15, 30, ..., 300, and (300 - 15)/15 + 1 = 19 + 1 = 20 of them.
-Step 3 — Column A = 100 - 20 = 80.
-Step 4 — Column B, count the integers from 50 to 150: 150 - 50 + 1 = 101.
+Step 3 — Quantity A = 100 - 20 = 80.
+Step 4 — Quantity B, count the integers from 50 to 150: 150 - 50 + 1 = 101.
 Step 5 — strip out the multiples of 5 in that range: 50, 55, ..., 150, and (150 - 50)/5 + 1 = 20 + 1 = 21 of them.
-Step 6 — Column B = 101 - 21 = 80.
+Step 6 — Quantity B = 101 - 21 = 80.
 80 = 80, so the two quantities are equal.
 Check: all four counts are (last - first)/step + 1, and each one needs its own +1. Drop a single one of those four +1s and the tie disappears, which is exactly what the wrong answers are made of.
 Answer: The two quantities are equal.
 
-**Trap.** Dropping the +1 on the total in Column B, 150 - 50 = 100, gives 100 - 21 = 79 and makes Column A look greater, choice A. Dropping the +1 on the multiples of 5 instead, (150 - 50)/5 = 20, gives 101 - 20 = 81 and makes Column B look greater, choice B - the same off-by-one lands on either wrong letter depending on which of the four counts it hits. Forgetting to remove the multiples of 15 from Column A leaves 100 against 80 and also points at A.
+**Trap.** Dropping the +1 on the total in Quantity B, 150 - 50 = 100, gives 100 - 21 = 79 and makes Quantity A look greater, choice A. Dropping the +1 on the multiples of 5 instead, (150 - 50)/5 = 20, gives 101 - 20 = 81 and makes Quantity B look greater, choice B - the same off-by-one lands on either wrong letter depending on which of the four counts it hits. Forgetting to remove the multiples of 15 from Quantity A leaves 100 against 80 and also points at A.
 
 ### Q22 · `ARI-SEQ-043` — Answer: 440
 
@@ -639,18 +639,18 @@ Answer: 84.
 ### Q27 · `ARI-SEQ-041` — Answer: C
 
 Step 1 — write each column algebraically.
-Column A = a(1 - r^10)/(1 - r), the partial-sum formula written so the numerator is positive for 0 < r < 1.
-Column B: S = a/(1 - r), so Column B = [a/(1 - r)] x (1 - r^10) = a(1 - r^10)/(1 - r).
+Quantity A = a(1 - r^10)/(1 - r), the partial-sum formula written so the numerator is positive for 0 < r < 1.
+Quantity B: S = a/(1 - r), so Quantity B = [a/(1 - r)] x (1 - r^10) = a(1 - r^10)/(1 - r).
 Step 2 — the two expressions are identical, for every legal a and r. The two quantities are equal.
 Why this is not a coincidence: the terms from the 11th onward are just the whole series scaled by r^10, so their sum is S x r^10. Removing them leaves S - S x r^10 = S(1 - r^10), which is exactly the first ten terms.
 Check numerically with a = 5, r = 1/3: the first ten terms sum to 147620/19683, and S x (1 - r^10) = (15/2) x (1 - 1/59049) = 147620/19683. Identical. Correct.
 
-**Trap.** Choosing B because a partial sum must be less than the infinite sum - true of S alone, but Column B is S shrunk by the factor (1 - r^10), which is exactly the right amount to remove the tail. Choosing D because a and r are unknown is the other error: both columns carry the same a and the same r, so the unknowns cancel identically and the relationship is fixed.
+**Trap.** Choosing B because a partial sum must be less than the infinite sum - true of S alone, but Quantity B is S shrunk by the factor (1 - r^10), which is exactly the right amount to remove the tail. Choosing D because a and r are unknown is the other error: both columns carry the same a and the same r, so the unknowns cancel identically and the relationship is fixed.
 
 ### Q28 · `ARI-SEQ-059` — Answer: D
 
 Step 1 — write the ratio. S_n = (n/2)[2a + (n-1)d], so
-Column A = [n(2a + (2n-1)d)] / [(n/2)(2a + (n-1)d)] = 2(2a + (2n-1)d)/(2a + (n-1)d).
+Quantity A = [n(2a + (2n-1)d)] / [(n/2)(2a + (n-1)d)] = 2(2a + (2n-1)d)/(2a + (n-1)d).
 The n does not cancel out of the brackets, so the ratio depends on a, d and n together. Test the extremes.
 Step 2 — make d small next to a. Take a = 1, d = 1, n = 1: S_2 = 1 + 2 = 3 and S_1 = 1, so the ratio is 3, which is LESS than 4.
 Step 3 — make d large next to a. Take a = 1, d = 100, n = 1: S_2 = 1 + 101 = 102 and S_1 = 1, so the ratio is 102, which is GREATER than 4.

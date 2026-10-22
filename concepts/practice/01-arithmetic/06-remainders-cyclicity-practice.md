@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -46,8 +46,8 @@ When 53 is divided by 8, the remainder is r. What is the value of r? Enter your 
 
 n is a positive integer.
 
-> **Column A:**  The remainder when 2n is divided by 2
-> **Column B:**  The remainder when 2n + 1 is divided by 2
+> **Quantity A:**  The remainder when 2n is divided by 2
+> **Quantity B:**  The remainder when 2n + 1 is divided by 2
 
 **Q4** · `NUM-REM-007` · MCQ · 40s
 
@@ -99,8 +99,8 @@ What is the remainder when 2^10 is divided by 5?
 
 When the integer m is divided by 6 the remainder is 4, and when the integer n is divided by 6 the remainder is 3.
 
-> **Column A:**  The remainder when mn is divided by 6
-> **Column B:**  The remainder when m + n is divided by 6
+> **Quantity A:**  The remainder when mn is divided by 6
+> **Quantity B:**  The remainder when m + n is divided by 6
 
 **Q9** · `NUM-REM-019` · Select all that apply · 75s
 
@@ -186,8 +186,8 @@ What is the remainder when 3^100 + 4^100 is divided by 5?
 
 n is a positive integer, and when n is divided by 3 the remainder is 2.
 
-> **Column A:**  The remainder when n^2 + n is divided by 3
-> **Column B:**  The remainder when n^2 - n is divided by 3
+> **Quantity A:**  The remainder when n^2 + n is divided by 3
+> **Quantity B:**  The remainder when n^2 - n is divided by 3
 
 **Q18** · `NUM-REM-038` · Select all that apply · 105s
 
@@ -209,8 +209,8 @@ What is the remainder when 17^50 is divided by 100? Enter your answer as a numbe
 
 p is a prime number greater than 3.
 
-> **Column A:**  The remainder when p^2 is divided by 12
-> **Column B:**  1
+> **Quantity A:**  The remainder when p^2 is divided by 12
+> **Quantity B:**  1
 
 **Q21** · `NUM-REM-041` · MCQ · 90s
 
@@ -242,8 +242,8 @@ For each positive integer n, let R(n) denote the remainder when n is divided by 
 
 t is a positive integer.
 
-> **Column A:**  The remainder when 6t + 5 is divided by 6
-> **Column B:**  The remainder when 6t + 5 is divided by 5
+> **Quantity A:**  The remainder when 6t + 5 is divided by 6
+> **Quantity B:**  The remainder when 6t + 5 is divided by 5
 
 **Q25** · `NUM-REM-045` · Select all that apply · 105s
 
@@ -281,8 +281,8 @@ A positive integer n leaves a remainder of 2 when divided by 3, a remainder of 3
 
 n is a positive integer.
 
-> **Column A:**  The remainder when n^3 - n is divided by 6
-> **Column B:**  The remainder when 2^n + 1 is divided by 3
+> **Quantity A:**  The remainder when n^3 - n is divided by 6
+> **Quantity B:**  The remainder when 2^n + 1 is divided by 3
 
 **Q29** · `NUM-REM-049` · Numeric Entry · 120s
 
@@ -365,12 +365,12 @@ Answer: 5.
 
 ### Q3 · `NUM-REM-006` — Answer: B
 
-Column A: 2n is even for every integer n, and an even number divided by 2 leaves nothing over. Column A = 0.
-Column B: 2n + 1 is odd for every integer n, and an odd number divided by 2 leaves 1. Column B = 1.
+Quantity A: 2n is even for every integer n, and an even number divided by 2 leaves nothing over. Quantity A = 0.
+Quantity B: 2n + 1 is odd for every integer n, and an odd number divided by 2 leaves 1. Quantity B = 1.
 Check with n = 3: 6 divided by 2 is 3 remainder 0; 7 divided by 2 is 3 remainder 1. And with n = 10: 20 leaves 0, 21 leaves 1.
-1 > 0, so Column B is greater.
+1 > 0, so Quantity B is greater.
 
-**Trap.** Treating Column A as 'no remainder' and therefore as blank or undefined, and choosing D. A remainder of 0 is a perfectly ordinary value - it is what divisibility looks like - so Column A is the number 0 and the comparison resolves.
+**Trap.** Treating Quantity A as 'no remainder' and therefore as blank or undefined, and choosing D. A remainder of 0 is a perfectly ordinary value - it is what divisibility looks like - so Quantity A is the number 0 and the comparison resolves.
 
 ### Q4 · `NUM-REM-007` — Answer: D
 
@@ -421,10 +421,10 @@ Answer: 4.
 ### Q8 · `NUM-REM-017` — Answer: B
 
 Reduce first, multiply or add second, then reduce again.
-Column A: rem(mn) = rem(4 x 3) = rem(12) = 0, since 12 = 6 x 2.
-Column B: rem(m + n) = rem(4 + 3) = rem(7) = 1, since 7 = 6 x 1 + 1.
+Quantity A: rem(mn) = rem(4 x 3) = rem(12) = 0, since 12 = 6 x 2.
+Quantity B: rem(m + n) = rem(4 + 3) = rem(7) = 1, since 7 = 6 x 1 + 1.
 Check with actual numbers: m = 10, n = 9. Then mn = 90 = 6 x 15, remainder 0; m + n = 19 = 6 x 3 + 1, remainder 1. Try m = 16, n = 15: mn = 240 = 6 x 40, remainder 0; m + n = 31 = 6 x 5 + 1, remainder 1. The two remainders never move.
-1 > 0, so Column B is greater.
+1 > 0, so Quantity B is greater.
 
 **Trap.** Comparing 4 x 3 = 12 against 4 + 3 = 7, seeing 12 > 7, and choosing A. Neither number is a remainder yet: both must be reduced mod 6, and that reverses the comparison to 0 versus 1. The bigger intermediate product does not mean the bigger remainder.
 
@@ -529,12 +529,12 @@ Answer: 2.
 
 Work with the remainder of n, which is 2, and reduce at each step.
 Step 1 — rem(n^2) = rem(2 x 2) = rem(4) = 1.
-Step 2 — Column A: rem(n^2 + n) = rem(1 + 2) = rem(3) = 0.
-Step 3 — Column B: rem(n^2 - n) = rem(1 - 2) = rem(-1). A negative value is not a legal remainder, so add the divisor: -1 + 3 = 2.
+Step 2 — Quantity A: rem(n^2 + n) = rem(1 + 2) = rem(3) = 0.
+Step 3 — Quantity B: rem(n^2 - n) = rem(1 - 2) = rem(-1). A negative value is not a legal remainder, so add the divisor: -1 + 3 = 2.
 Check with n = 2: n^2 + n = 6, remainder 0; n^2 - n = 2, remainder 2. Check with n = 5: 30 leaves 0, and 20 = 3 x 6 + 2 leaves 2. Check with n = 8: 72 leaves 0, and 56 = 3 x 18 + 2 leaves 2. The values never move.
-0 < 2, so Column B is greater.
+0 < 2, so Quantity B is greater.
 
-**Trap.** Two failures compete. One is stopping at rem(-1) and calling Column B negative, hence smaller than 0 - the GRE only uses remainders in the range 0 to d - 1, so -1 becomes 2. The other is testing n = 2, getting 0 and 2, then choosing D out of doubt that other values of n might behave differently. Since only the remainder of n enters the calculation and that remainder is fixed at 2, both columns are locked.
+**Trap.** Two failures compete. One is stopping at rem(-1) and calling Quantity B negative, hence smaller than 0 - the GRE only uses remainders in the range 0 to d - 1, so -1 becomes 2. The other is testing n = 2, getting 0 and 2, then choosing D out of doubt that other values of n might behave differently. Since only the remainder of n enters the calculation and that remainder is fixed at 2, both columns are locked.
 
 ### Q18 · `NUM-REM-038` — Answer: A, C, E
 
@@ -573,7 +573,7 @@ Step 1 — describe every prime above 3. Such a p is divisible by neither 2 nor 
 Step 2 — square that form: p^2 = (6k +/- 1)^2 = 36k^2 +/- 12k + 1 = 12(3k^2 +/- k) + 1.
 Step 3 — the bracket is an integer, so p^2 is a multiple of 12 plus 1, and 1 < 12 is already reduced. The remainder is 1 for every prime p > 3.
 Check: 5^2 = 25 = 12 x 2 + 1. 7^2 = 49 = 12 x 4 + 1. 11^2 = 121 = 12 x 10 + 1. 13^2 = 169 = 12 x 14 + 1.
-Column A = 1 = Column B, so the two quantities are equal.
+Quantity A = 1 = Quantity B, so the two quantities are equal.
 
 **Trap.** Testing two or three primes, getting 1 every time, and still choosing D because 'p could be any prime'. The 6k +/- 1 form covers every prime above 3 at once, so the result is proved, not sampled. The stem's 'greater than 3' matters: p = 3 gives 9, and p = 2 gives 4, neither of which is 1.
 
@@ -614,13 +614,13 @@ Answer: 241.
 
 ### Q24 · `NUM-REM-044` — Answer: A
 
-Step 1 — Column A: 6t is a multiple of 6 whatever t is, so 6t + 5 is already in the form 6(t) + 5 with 5 < 6. The remainder is exactly 5, always.
-Step 2 — Column B: reduce each piece mod 5. 6 leaves 1, so 6t leaves the same as t; and 5 leaves 0. So the remainder of 6t + 5 on division by 5 equals the remainder of t on division by 5, which is 0, 1, 2, 3 or 4 depending on t.
-Step 3 — compare. Column B is at most 4, because any remainder on division by 5 is under 5. Column A is fixed at 5. So Column A > Column B for every t.
-Check: t = 1 gives 11 - remainders 5 and 1. t = 4 gives 29 - remainders 5 and 4. t = 5 gives 35 - remainders 5 and 0. Column A wins every time.
-Column A is greater.
+Step 1 — Quantity A: 6t is a multiple of 6 whatever t is, so 6t + 5 is already in the form 6(t) + 5 with 5 < 6. The remainder is exactly 5, always.
+Step 2 — Quantity B: reduce each piece mod 5. 6 leaves 1, so 6t leaves the same as t; and 5 leaves 0. So the remainder of 6t + 5 on division by 5 equals the remainder of t on division by 5, which is 0, 1, 2, 3 or 4 depending on t.
+Step 3 — compare. Quantity B is at most 4, because any remainder on division by 5 is under 5. Quantity A is fixed at 5. So Quantity A > Quantity B for every t.
+Check: t = 1 gives 11 - remainders 5 and 1. t = 4 gives 29 - remainders 5 and 4. t = 5 gives 35 - remainders 5 and 0. Quantity A wins every time.
+Quantity A is greater.
 
-**Trap.** Choosing D because Column B moves as t changes. It moves, but it is trapped below 5 by the definition of a remainder, while Column A is pinned at 5 - a varying quantity can still be decisively smaller. The other slip is computing Column B at t = 5, getting 0, and assuming Column A must also collapse to 0 there; 35 divided by 6 still leaves 5.
+**Trap.** Choosing D because Quantity B moves as t changes. It moves, but it is trapped below 5 by the definition of a remainder, while Quantity A is pinned at 5 - a varying quantity can still be decisively smaller. The other slip is computing Quantity B at t = 5, getting 0, and assuming Quantity A must also collapse to 0 there; 35 divided by 6 still leaves 5.
 
 ### Q25 · `NUM-REM-045` — Answer: B, C, D
 
@@ -669,17 +669,17 @@ Answer: 53.
 
 ### Q28 · `NUM-REM-048` — Answer: D
 
-Column A is fixed. Factor: n^3 - n = n(n^2 - 1) = (n - 1)n(n + 1), the product of three consecutive integers. Among any three consecutive integers at least one is even and exactly one is a multiple of 3, so the product is divisible by 2 x 3 = 6. Column A = 0 for every n.
-Column B moves. Powers of 2 mod 3 cycle (2, 1) with length 2, because 2 is one less than 3 and so behaves like -1:
+Quantity A is fixed. Factor: n^3 - n = n(n^2 - 1) = (n - 1)n(n + 1), the product of three consecutive integers. Among any three consecutive integers at least one is even and exactly one is a multiple of 3, so the product is divisible by 2 x 3 = 6. Quantity A = 0 for every n.
+Quantity B moves. Powers of 2 mod 3 cycle (2, 1) with length 2, because 2 is one less than 3 and so behaves like -1:
 n odd -> 2^n leaves 2 -> 2^n + 1 leaves 2 + 1 = 3, which reduces to 0.
 n even -> 2^n leaves 1 -> 2^n + 1 leaves 1 + 1 = 2.
 Now compare:
-n = 1: Column A = 0 (0 divided by 6) and Column B = 0 (3 divided by 3). The columns are EQUAL.
-n = 2: Column A = 0 (n^3 - n = 6, and 6 divided by 6 leaves 0). Column B: 2^2 + 1 = 5, and 5 = 3 x 1 + 2, so Column B = 2. Column B is GREATER.
-n = 3: Column A = 0 (24 divided by 6) and Column B = 0 (9 divided by 3). Equal again.
+n = 1: Quantity A = 0 (0 divided by 6) and Quantity B = 0 (3 divided by 3). The columns are EQUAL.
+n = 2: Quantity A = 0 (n^3 - n = 6, and 6 divided by 6 leaves 0). Quantity B: 2^2 + 1 = 5, and 5 = 3 x 1 + 2, so Quantity B = 2. Quantity B is GREATER.
+n = 3: Quantity A = 0 (24 divided by 6) and Quantity B = 0 (9 divided by 3). Equal again.
 Two different relationships occur, so the relationship cannot be determined.
 
-**Trap.** Testing only n = 1, where both columns happen to be 0, and choosing C. Column A is genuinely invariant, but Column B swings between 0 and 2 with the parity of n - and 'leaves remainder 3, so 0' at odd n is exactly the coincidence that makes n = 1 look conclusive. Whenever a column depends on n, test at least an odd and an even value before answering.
+**Trap.** Testing only n = 1, where both columns happen to be 0, and choosing C. Quantity A is genuinely invariant, but Quantity B swings between 0 and 2 with the parity of n - and 'leaves remainder 3, so 0' at odd n is exactly the coincidence that makes n = 1 look conclusive. Whenever a column depends on n, test at least an odd and an even value before answering.
 
 ### Q29 · `NUM-REM-049` — Answer: 3
 

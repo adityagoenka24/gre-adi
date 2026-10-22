@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -44,8 +44,8 @@ Alex walks from home to school in 30 minutes. The school is 1.5 miles from home.
 
 Train P travels 300 miles at a constant 75 miles per hour. Train Q travels 240 miles at a constant 60 miles per hour.
 
-> **Column A:**  The time taken by Train P
-> **Column B:**  The time taken by Train Q
+> **Quantity A:**  The time taken by Train P
+> **Quantity B:**  The time taken by Train Q
 
 **Q4** · `WRD-DST-013` · Numeric Entry · 35s
 
@@ -103,15 +103,15 @@ A cheetah begins chasing a deer that is 200 meters ahead of it. The cheetah runs
 
 Car A and Car B start from the same point and travel along the same road in the same direction. Car A travels at a constant 50 miles per hour and Car B at a constant 70 miles per hour. Car A departs 2 hours before Car B.
 
-> **Column A:**  The number of hours after Car B departs until Car B catches Car A
-> **Column B:**  5 hours
+> **Quantity A:**  The number of hours after Car B departs until Car B catches Car A
+> **Quantity B:**  5 hours
 
 **Q10** · `WRD-DST-033` · QC · 85s
 
 One runner's average speed for a certain race is 8 miles per hour. A second runner covers the same race in 20 percent less time than the first runner.
 
-> **Column A:**  The second runner's average speed
-> **Column B:**  10 miles per hour
+> **Quantity A:**  The second runner's average speed
+> **Quantity B:**  10 miles per hour
 
 **Q11** · `WRD-DST-019` · Numeric Entry · 80s
 
@@ -195,15 +195,15 @@ A train travels the first 200 kilometers of its route at a constant 100 kilomete
 
 A motorist drives from X to Y. She drives the first half of the time at a constant 40 miles per hour and the second half of the time at a constant 60 miles per hour.
 
-> **Column A:**  Her average speed for the trip
-> **Column B:**  48 miles per hour
+> **Quantity A:**  Her average speed for the trip
+> **Quantity B:**  48 miles per hour
 
 **Q20** · `WRD-DST-046` · QC · 95s
 
 Train A and Train B start at the same moment from opposite ends of a 600-kilometer track and move toward each other at constant speeds. The ratio of Train A's speed to Train B's speed is 3:2.
 
-> **Column A:**  The distance between the point where the trains meet and the midpoint of the track
-> **Column B:**  60 kilometers
+> **Quantity A:**  The distance between the point where the trains meet and the midpoint of the track
+> **Quantity B:**  60 kilometers
 
 **Q21** · `WRD-DST-041` · Numeric Entry · 105s
 
@@ -273,8 +273,8 @@ Runner A completes one lap of a circular track in 40 seconds and Runner B comple
 
 A car travels from P to Q. It covers the first half of the DISTANCE at a constant a kilometers per hour and the second half of the distance at a constant b kilometers per hour, where a > 0, b > 0 and a is not equal to b.
 
-> **Column A:**  The car's average speed for the trip
-> **Column B:**  sqrt(a*b)
+> **Quantity A:**  The car's average speed for the trip
+> **Quantity B:**  sqrt(a*b)
 
 **Q29** · `WRD-DST-060` · Numeric Entry · 130s
 
@@ -359,7 +359,7 @@ Step 3 — 4 = 4, so the two times are equal.
 Check: 75 * 4 = 300 and 60 * 4 = 240, both matching the stated distances. Correct.
 Answer: C.
 
-**Trap.** Comparing the distances instead of the times: 300 > 240, so Column A looks greater, choice A. Train P is also faster, which reinforces the wrong instinct; the larger distance and the larger speed cancel exactly.
+**Trap.** Comparing the distances instead of the times: 300 > 240, so Quantity A looks greater, choice A. Train P is also faster, which reinforces the wrong instinct; the larger distance and the larger speed cancel exactly.
 
 ### Q4 · `WRD-DST-013` — Answer: 18
 
@@ -418,22 +418,22 @@ Answer: D.
 
 Step 1 — find the head start. In 2 hours Car A covers 50 * 2 = 100 miles, so the gap when Car B starts is 100 miles.
 Step 2 — same direction, so the gap closes at 70 - 50 = 20 mph.
-Step 3 — time to catch = 100/20 = 5 hours. Column A = 5.
+Step 3 — time to catch = 100/20 = 5 hours. Quantity A = 5.
 Step 4 — 5 = 5, so the quantities are equal.
 Check: in those 5 hours Car B covers 70 * 5 = 350 miles; Car A has by then been driving 7 hours, covering 50 * 7 = 350 miles. Same point. Correct.
 Answer: C.
 
-**Trap.** Forgetting the head start and dividing nothing by 20, or using the head start in HOURS rather than miles: 2/20 = 0.1 hour, which makes Column B look far greater, choice B. The head start must be converted to a distance before it can be closed.
+**Trap.** Forgetting the head start and dividing nothing by 20, or using the head start in HOURS rather than miles: 2/20 = 0.1 hour, which makes Quantity B look far greater, choice B. The head start must be converted to a distance before it can be closed.
 
 ### Q10 · `WRD-DST-033` — Answer: C
 
 Step 1 — the distance is the same for both runners, so speed and time are inversely proportional: S = D/T.
 Step 2 — the second runner's time is 0.80 of the first runner's time, so the second runner's speed is 1/0.80 = 1.25 times the first runner's speed.
-Step 3 — second runner's speed = 8 * 1.25 = 10 mph. Column A = 10.
+Step 3 — second runner's speed = 8 * 1.25 = 10 mph. Quantity A = 10.
 Check: pick a distance, say 40 miles. First runner: 40/8 = 5 hours. Second runner: 20 percent less is 4 hours, and 40/4 = 10 mph. Correct.
 Answer: C.
 
-**Trap.** Reading '20 percent less time' as '20 percent more speed' and computing 8 * 1.20 = 9.6 mph, which makes Column B greater, choice B. Time down by a factor 0.8 means speed up by a factor 1/0.8 = 1.25, not 1.20.
+**Trap.** Reading '20 percent less time' as '20 percent more speed' and computing 8 * 1.20 = 9.6 mph, which makes Quantity B greater, choice B. Time down by a factor 0.8 means speed up by a factor 1/0.8 = 1.25, not 1.20.
 
 ### Q11 · `WRD-DST-019` — Answer: 2
 
@@ -535,11 +535,11 @@ Answer: C.
 Step 1 — the two halves are equal in time, not in distance. Let each half be t hours, so the total time is 2t.
 Step 2 — distance = 40t + 60t = 100t miles.
 Step 3 — average speed = 100t/(2t) = 50 mph. With equal times the plain average of the speeds is correct.
-Step 4 — 50 > 48, so Column A is greater.
+Step 4 — 50 > 48, so Quantity A is greater.
 Check: take t = 1 hour. She drives 40 miles then 60 miles, 100 miles in 2 hours, which is 50 mph. Correct.
 Answer: A.
 
-**Trap.** Reading the trip as two equal DISTANCES and reaching for the harmonic mean 2 * 40 * 60/(40 + 60) = 48, which is exactly Column B, then choosing C. The harmonic mean applies only when the two legs are equal in distance; here they are equal in time, so the plain average (40 + 60)/2 = 50 governs, and it always exceeds the harmonic mean when the speeds differ.
+**Trap.** Reading the trip as two equal DISTANCES and reaching for the harmonic mean 2 * 40 * 60/(40 + 60) = 48, which is exactly Quantity B, then choosing C. The harmonic mean applies only when the two legs are equal in distance; here they are equal in time, so the plain average (40 + 60)/2 = 50 governs, and it always exceeds the harmonic mean when the speeds differ.
 
 ### Q20 · `WRD-DST-046` — Answer: C
 
@@ -642,11 +642,11 @@ Answer: D.
 ### Q28 · `WRD-DST-057` — Answer: B
 
 Step 1 — let the total distance be 2d. Time = d/a + d/b = d(a + b)/(a*b).
-Step 2 — average speed = 2d / [d(a + b)/(a*b)] = 2*a*b/(a + b). Column A is the harmonic mean of a and b.
-Step 3 — Column B is the geometric mean sqrt(a*b). Compare them: the harmonic mean equals (geometric mean)^2 / (arithmetic mean), that is 2ab/(a + b) = (ab)/((a + b)/2).
+Step 2 — average speed = 2d / [d(a + b)/(a*b)] = 2*a*b/(a + b). Quantity A is the harmonic mean of a and b.
+Step 3 — Quantity B is the geometric mean sqrt(a*b). Compare them: the harmonic mean equals (geometric mean)^2 / (arithmetic mean), that is 2ab/(a + b) = (ab)/((a + b)/2).
 Step 4 — since a is not equal to b, the AM-GM inequality is strict: (a + b)/2 > sqrt(a*b). Dividing the positive quantity ab by a LARGER number gives a smaller result, so 2ab/(a + b) < ab/sqrt(ab) = sqrt(ab).
-Step 5 — therefore Column A < Column B for every admissible a and b. Column B is greater.
-Check with a = 4 and b = 9: Column A = 2 * 4 * 9/13 = 72/13 = 5.54; Column B = sqrt(36) = 6. Again with a = 1 and b = 100: Column A = 200/101 = 1.98; Column B = 10. Column B wins both times. Correct.
+Step 5 — therefore Quantity A < Quantity B for every admissible a and b. Quantity B is greater.
+Check with a = 4 and b = 9: Quantity A = 2 * 4 * 9/13 = 72/13 = 5.54; Quantity B = sqrt(36) = 6. Again with a = 1 and b = 100: Quantity A = 200/101 = 1.98; Quantity B = 10. Quantity B wins both times. Correct.
 Answer: B.
 
 **Trap.** Choosing D on the grounds that a and b are unknown - the inequality HM < GM < AM holds for all distinct positive values, so the comparison is settled without any numbers. Choosing C comes from remembering that all three means coincide, which is true only when a = b, a case the stem explicitly excludes.

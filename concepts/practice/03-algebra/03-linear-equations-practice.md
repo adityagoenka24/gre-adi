@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -24,8 +24,8 @@ Every question below is live in the question bank under the ID shown — the she
 
 x + 4 = 10
 
-> **Column A:**  x
-> **Column B:**  7
+> **Quantity A:**  x
+> **Quantity B:**  7
 
 **Q2** · `ALG-LIN-005` · MCQ · 45s
 
@@ -99,8 +99,8 @@ A number is increased by 12 and the result is then multiplied by 3. The final re
 
 5x - 3 = 3x + 9
 
-> **Column A:**  x
-> **Column B:**  x + 1
+> **Quantity A:**  x
+> **Quantity B:**  x + 1
 
 **Q10** · `ALG-LIN-027` · Numeric Entry · 75s
 
@@ -164,8 +164,8 @@ Solve for x: (2x + 5)^2 - (2x - 3)^2 = 176. Enter your answer as a number.
 
 p and q are nonzero constants, and the equation px + 5 = qx + 3 has no solution.
 
-> **Column A:**  p
-> **Column B:**  q
+> **Quantity A:**  p
+> **Quantity B:**  q
 
 **Q17** · `ALG-LIN-042` · MCQ · 110s
 
@@ -197,15 +197,15 @@ Solve for x in terms of a, b and c: (x - a)/b = (x + a)/c, where b and c are non
 
 In the equation 4 - c(x + 2) = k, c is a nonzero constant, k is a given constant and x is the resulting solution.
 
-> **Column A:**  the value of x when k = 1
-> **Column B:**  the value of x when k = 7
+> **Quantity A:**  the value of x when k = 1
+> **Quantity B:**  the value of x when k = 7
 
 **Q21** · `ALG-LIN-049` · QC · 105s
 
 n is a positive integer, and x satisfies (n + 1)x = n^2 + 2n.
 
-> **Column A:**  x
-> **Column B:**  n + 1
+> **Quantity A:**  x
+> **Quantity B:**  n + 1
 
 **Q22** · `ALG-LIN-050` · MCQ · 105s
 
@@ -273,8 +273,8 @@ At one firm every employee's net pay N is computed as N = G - r*G - F, where G i
 
 a and b are real numbers, a + b is not 0, and 3a + 5b = 7a + 3b + 12.
 
-> **Column A:**  (a + 2b)/(a + b)
-> **Column B:**  5/3
+> **Quantity A:**  (a + 2b)/(a + b)
+> **Quantity B:**  5/3
 
 **Q29** · `ALG-LIN-056` · Numeric Entry · 130s
 
@@ -336,11 +336,11 @@ In the equation (2x + a)/(x - b) = 3, a and b are integers and x is not equal to
 ### Q1 · `ALG-LIN-004` — Answer: B
 
 Step 1 — solve for x. Subtract 4 from both sides: x = 10 - 4 = 6.
-Step 2 — compare. Column A = 6, Column B = 7, so Column B is greater.
+Step 2 — compare. Quantity A = 6, Quantity B = 7, so Quantity B is greater.
 Check: substitute back into the original equation. 6 + 4 = 10. Correct.
 Answer: B.
 
-**Trap.** Adding 4 instead of subtracting it gives x = 14, which makes Column A look greater and produces choice A. The operation must undo the +4, so it is subtraction.
+**Trap.** Adding 4 instead of subtracting it gives x = 14, which makes Quantity A look greater and produces choice A. The operation must undo the +4, so it is subtraction.
 
 ### Q2 · `ALG-LIN-005` — Answer: B
 
@@ -418,13 +418,13 @@ Answer: A.
 
 ### Q9 · `ALG-LIN-024` — Answer: B
 
-Step 1 — notice that the comparison does not need the value of x. Whatever x is, x + 1 is exactly 1 more than x, so Column B is greater.
+Step 1 — notice that the comparison does not need the value of x. Whatever x is, x + 1 is exactly 1 more than x, so Quantity B is greater.
 Step 2 — confirm that x is in fact a single fixed number, so the comparison is well defined. 5x - 3 = 3x + 9 gives 2x = 12, so x = 6.
-Step 3 — compare: Column A = 6, Column B = 7.
+Step 3 — compare: Quantity A = 6, Quantity B = 7.
 Check: substitute into the original equation. 5(6) - 3 = 27 and 3(6) + 9 = 27. Correct.
 Answer: B.
 
-**Trap.** Solving for x, getting 6, and then comparing 6 against the literal expression 'x + 1' as though the answer depended on the sign of x. It does not: x + 1 exceeds x for every real x. Answering D because a variable appears in Column B is the error this question is built to catch.
+**Trap.** Solving for x, getting 6, and then comparing 6 against the literal expression 'x + 1' as though the answer depended on the sign of x. It does not: x + 1 exceeds x for every real x. Answering D because a variable appears in Quantity B is the error this question is built to catch.
 
 ### Q10 · `ALG-LIN-027` — Answer: 7
 
@@ -554,10 +554,10 @@ Answer: A.
 
 Step 1 — clear the bracket once, keeping both letters: 4 - c*x - 2c = k.
 Step 2 — isolate x: -c*x = k - 4 + 2c, so x = (4 - 2c - k)/c.
-Step 3 — compare by difference rather than by computing either column. Column A - Column B = [(4 - 2c - 1) - (4 - 2c - 7)]/c = 6/c.
+Step 3 — compare by difference rather than by computing either column. Quantity A - Quantity B = [(4 - 2c - 1) - (4 - 2c - 7)]/c = 6/c.
 Step 4 — read that difference. It is never 0, since c is never 0, so the columns are never equal. But its sign is the sign of c, and the stem fixes only that c is not 0.
-Step 5 — both signs are permitted. If c > 0 the coefficient of x after the bracket is cleared is -c, a negative number, so dividing by it reverses the order and the larger k gives the smaller x: Column A is greater. If c < 0 that coefficient is positive, the order is preserved, and Column B is greater.
-Check: substitute back into the original equation. With c = 3, k = 1 gives 4 - 3(x + 2) = 1, so -3x = 3 and x = -1; k = 7 gives 4 - 3(x + 2) = 7, so -3x = 9 and x = -3; here Column A is greater. With c = -3, k = 1 gives 4 + 3(x + 2) = 1, so 3x = -9 and x = -3; k = 7 gives 4 + 3(x + 2) = 7, so 3x = -3 and x = -1; here Column B is greater. Two permitted values of c give opposite orders. Correct.
+Step 5 — both signs are permitted. If c > 0 the coefficient of x after the bracket is cleared is -c, a negative number, so dividing by it reverses the order and the larger k gives the smaller x: Quantity A is greater. If c < 0 that coefficient is positive, the order is preserved, and Quantity B is greater.
+Check: substitute back into the original equation. With c = 3, k = 1 gives 4 - 3(x + 2) = 1, so -3x = 3 and x = -1; k = 7 gives 4 - 3(x + 2) = 7, so -3x = 9 and x = -3; here Quantity A is greater. With c = -3, k = 1 gives 4 + 3(x + 2) = 1, so 3x = -9 and x = -3; k = 7 gives 4 + 3(x + 2) = 7, so 3x = -3 and x = -1; here Quantity B is greater. Two permitted values of c give opposite orders. Correct.
 Answer: D.
 
 **Trap.** Answering A is the trained reflex from the fixed-coefficient version of this equation: clear the bracket, see a minus in front of x, and conclude that the larger k must give the smaller x. That conclusion depends on c being positive, which the stem never says. Answering B is the untrained reflex, that a larger number on the right forces a larger x, and it happens to be right only when c is negative. Answering C confuses 'the difference does not depend on k' with 'the difference is 0'; the difference is 6/c, which is never 0.
@@ -565,7 +565,7 @@ Answer: D.
 ### Q21 · `ALG-LIN-049` — Answer: B
 
 Step 1 — solve for x: x = (n^2 + 2n)/(n + 1). The division is legal because n is positive, so n + 1 is not 0.
-Step 2 — do not compute; compare instead. Column B squared would be (n + 1)^2 = n^2 + 2n + 1.
+Step 2 — do not compute; compare instead. Quantity B squared would be (n + 1)^2 = n^2 + 2n + 1.
 Step 3 — so (n + 1)(n + 1) = n^2 + 2n + 1, which is exactly 1 more than the right side of the given equation.
 Step 4 — therefore (n + 1)x = n^2 + 2n < (n + 1)(n + 1). Dividing both sides by the positive number n + 1 gives x < n + 1, for every positive integer n.
 Check: substitute n = 3 into the original equation. 4x = 9 + 6 = 15, so x = 3.75, and n + 1 = 4. Indeed 3.75 < 4. Correct.
@@ -657,15 +657,15 @@ Answer: E.
 ### Q28 · `ALG-LIN-055` — Answer: D
 
 Step 1 — collect the given equation: 5b - 3b = 7a - 3a + 12, so 2b = 4a + 12 and b = 2a + 6. This is one relationship between two letters; a is still free.
-Step 2 — substitute b = 2a + 6 into both parts of Column A. Numerator: a + 2b = a + 2(2a + 6) = 5a + 12. Denominator: a + b = a + 2a + 6 = 3a + 6.
+Step 2 — substitute b = 2a + 6 into both parts of Quantity A. Numerator: a + 2b = a + 2(2a + 6) = 5a + 12. Denominator: a + b = a + 2a + 6 = 3a + 6.
 Step 3 — note what the stem's condition buys. a + b is not 0 means 3a + 6 is not 0, that is a is not -2, so the division is safe. Nothing else pins a down.
 Step 4 — compare by subtracting, not by cross-multiplying, because the sign of the denominator 3a + 6 is unknown and cross-multiplying by a negative would flip the comparison unnoticed:
 (5a + 12)/(3a + 6) - 5/3 = [3(5a + 12) - 5(3a + 6)]/[3(3a + 6)] = (15a + 36 - 15a - 30)/(9a + 18) = 6/(9a + 18).
-Step 5 — read that difference. The numerator 6 is fixed and positive, so the sign of the difference is the sign of 9a + 18, that is the sign of a + 2. It is never 0, so the columns are never equal, but a > -2 makes Column A greater and a < -2 makes Column B greater. Both are permitted, so the relationship cannot be determined.
-Check: substitute two permitted pairs into the original equation and into Column A. Take a = 0, b = 6: left = 0 + 30 = 30 and right = 0 + 18 + 12 = 30, and (0 + 12)/(0 + 6) = 2, which is greater than 5/3. Take a = -3, b = 0: left = -9 + 0 = -9 and right = -21 + 0 + 12 = -9, and (-3 + 0)/(-3 + 0) = 1, which is less than 5/3. Correct.
+Step 5 — read that difference. The numerator 6 is fixed and positive, so the sign of the difference is the sign of 9a + 18, that is the sign of a + 2. It is never 0, so the columns are never equal, but a > -2 makes Quantity A greater and a < -2 makes Quantity B greater. Both are permitted, so the relationship cannot be determined.
+Check: substitute two permitted pairs into the original equation and into Quantity A. Take a = 0, b = 6: left = 0 + 30 = 30 and right = 0 + 18 + 12 = 30, and (0 + 12)/(0 + 6) = 2, which is greater than 5/3. Take a = -3, b = 0: left = -9 + 0 = -9 and right = -21 + 0 + 12 = -9, and (-3 + 0)/(-3 + 0) = 1, which is less than 5/3. Correct.
 Answer: D.
 
-**Trap.** Answering C is the trap the constant 12 is there to set. Without it the relationship would be b = 2a, the numerator and denominator would both carry a factor of a, that factor would cancel, and Column A would be 5/3 for every a. The 12 breaks that cancellation: b = 2a + 6 leaves (5a + 12)/(3a + 6), whose value moves with a. Answering A or B comes from testing a single value of a - a = 0 gives 2 and suggests A, a = -3 gives 1 and suggests B - and stopping there. The one value worth hunting for is a = -2, where the denominator would vanish; the stem excludes it, which is exactly the hint that a is otherwise free on both sides of it.
+**Trap.** Answering C is the trap the constant 12 is there to set. Without it the relationship would be b = 2a, the numerator and denominator would both carry a factor of a, that factor would cancel, and Quantity A would be 5/3 for every a. The 12 breaks that cancellation: b = 2a + 6 leaves (5a + 12)/(3a + 6), whose value moves with a. Answering A or B comes from testing a single value of a - a = 0 gives 2 and suggests A, a = -3 gives 1 and suggests B - and stopping there. The one value worth hunting for is a = -2, where the denominator would vanish; the stem excludes it, which is exactly the hint that a is otherwise free on both sides of it.
 
 ### Q29 · `ALG-LIN-056` — Answer: 50
 

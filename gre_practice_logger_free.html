@@ -2028,7 +2028,7 @@ function bankRenderQuestion(){
   }else{
     const isMulti=q.type==='multiple_answer';
     bodyHTML=`<p class="pq-question-text">${escHtml(q.question)}</p>
-    ${isMulti?'<p style="font-size:12px;color:var(--warning);font-family:var(--font-mono);margin-bottom:12px;">⚠️ Select ALL that apply</p>':''}
+    ${isMulti?'<p style="font-size:13.5px;color:#4a545e;font-style:italic;font-family:Arial,Helvetica,sans-serif;margin-bottom:12px;">Select all that apply.</p>':''}
     <div class="pq-options">${q.options.map((o,i)=>{
       const l=String.fromCharCode(65+i);
       return`<button class="pq-option" id="pq-opt-${l}" onclick="bankSelectOpt('${l}',this)" data-letter="${l}">
@@ -2646,7 +2646,7 @@ function examRenderQuestion(idx) {
   } else {
     const isMulti = q.type === 'multiple_answer';
     bodyHTML = `<p class="pq-question-text">${escHtml(q.question)}</p>
-      ${isMulti ? '<p style="font-size:12px;color:var(--warning);font-family:var(--font-mono);margin-bottom:12px;">⚠️ Select ALL that apply</p>' : ''}
+      ${isMulti ? '<p style="font-size:13.5px;color:#4a545e;font-style:italic;font-family:Arial,Helvetica,sans-serif;margin-bottom:12px;">Select all that apply.</p>' : ''}
       <div class="pq-options">${q.options.map((o,i)=>{
         const l = String.fromCharCode(65+i);
         return `<button class="pq-option" id="pq-opt-${l}" onclick="examSelectOpt('${l}',this)" data-letter="${l}">

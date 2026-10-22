@@ -13,7 +13,7 @@ Every question below is live in the question bank under the ID shown — the she
 ## Part A — Questions
 
 > **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
 ### Level 1 · Easy — 5 questions · ~4 min
@@ -40,8 +40,8 @@ A shirt is priced at $80. During a sale it is marked 25% off. What is the sale p
 
 A price increases from $50 to $60.
 
-> **Column A:**  The percent increase
-> **Column B:**  20%
+> **Quantity A:**  The percent increase
+> **Quantity B:**  20%
 
 **Q4** · `ARI-PCT-011` · Numeric Entry · 55s
 
@@ -79,8 +79,8 @@ A laptop's price is reduced from $1,200 to $900. By what percent was the price r
 
 A jacket costs $150. Store A offers a 30% discount followed by an additional 10% off the discounted price. Store B offers a flat 40% discount.
 
-> **Column A:**  Final price at Store A
-> **Column B:**  Final price at Store B
+> **Quantity A:**  Final price at Store A
+> **Quantity B:**  Final price at Store B
 
 **Q8** · `ARI-PCT-025` · Select all that apply · 85s
 
@@ -100,8 +100,8 @@ After a 20% increase followed by a 20% decrease, a number becomes 576. What was 
 
 **Q10** · `ARI-PCT-027` · QC · 60s
 
-> **Column A:**  The percent increase when a quantity goes from 80 to 100
-> **Column B:**  The percent decrease when a quantity goes from 100 to 80
+> **Quantity A:**  The percent increase when a quantity goes from 80 to 100
+> **Quantity B:**  The percent decrease when a quantity goes from 100 to 80
 
 **Q11** · `ARI-PCT-033` · MCQ · 85s
 
@@ -149,8 +149,8 @@ A retailer sells an item at a 25% profit on cost. The cost price then rises by 2
 
 N and p are positive. A number N is increased by p%, and the result is then decreased by p%.
 
-> **Column A:**  The final number
-> **Column B:**  N
+> **Quantity A:**  The final number
+> **Quantity B:**  N
 
 **Q16** · `ARI-PCT-053` · Numeric Entry · 85s
 
@@ -208,8 +208,8 @@ In 2020 the ratio of A's salary to B's salary was 3:4. In 2021 A's salary rose b
 
 A product's price increases by 10% each year for 7 years.
 
-> **Column A:**  The total percent increase over the 7 years
-> **Column B:**  70%
+> **Quantity A:**  The total percent increase over the 7 years
+> **Quantity B:**  70%
 
 **Q23** · `ARI-PCT-066` · MCQ · 95s
 
@@ -287,8 +287,8 @@ Numbers A, B, C and D satisfy: A is 20% more than B, B is 25% less than C, and C
 
 An item's price increases by r% each year for n years.
 
-> **Column A:**  The total percent increase when r = 10 and n = 10
-> **Column B:**  The total percent increase when r = 5 and n = 20
+> **Quantity A:**  The total percent increase when r = 10 and n = 10
+> **Quantity B:**  The total percent increase when r = 5 and n = 20
 
 ---
 
@@ -356,9 +356,9 @@ Percent change = (New - Old)/Old x 100.
 Step 1 — the change: 60 - 50 = 10.
 Step 2 — the base is the ORIGINAL value, 50.
 Step 3 — 10/50 x 100 = 0.2 x 100 = 20%.
-Column A = 20% = Column B, so the two quantities are equal.
+Quantity A = 20% = Quantity B, so the two quantities are equal.
 
-**Trap.** Dividing the $10 change by the new price: 10/60 = 16.7%, which makes Column B look greater. Percent change divides by the value you started from, never the value you ended at.
+**Trap.** Dividing the $10 change by the new price: 10/60 = 16.7%, which makes Quantity B look greater. Percent change divides by the value you started from, never the value you ended at.
 
 ### Q4 · `ARI-PCT-011` — Answer: 300
 
@@ -394,7 +394,7 @@ Answer: 25%.
 Store A - build one chain: 150 x 0.70 x 0.90.
 0.70 x 0.90 = 0.63, so 150 x 0.63 = $94.50.
 Store B: 150 x 0.60 = $90.00.
-$94.50 > $90.00, so Column A is greater.
+$94.50 > $90.00, so Quantity A is greater.
 
 **Trap.** Reading 30% then 10% as a combined 40% and choosing C. Successive discounts never add: 0.70 x 0.90 = 0.63, an effective 37% off, because the 10% is taken from an already reduced price. Two successive discounts are always weaker than their sum.
 
@@ -421,9 +421,9 @@ Answer: 600.
 
 ### Q10 · `ARI-PCT-027` — Answer: A
 
-Column A: change = 20, base = 80 (where you started), so 20/80 x 100 = 25%.
-Column B: change = 20, base = 100 (where you started), so 20/100 x 100 = 20%.
-25% > 20%, so Column A is greater.
+Quantity A: change = 20, base = 80 (where you started), so 20/80 x 100 = 25%.
+Quantity B: change = 20, base = 100 (where you started), so 20/100 x 100 = 20%.
+25% > 20%, so Quantity A is greater.
 
 **Trap.** Both moves cover the same 20 units, so students pick C. The base flips: going up you divide by 80, coming down you divide by 100. A rise and the fall that undoes it are never the same percent.
 
@@ -470,7 +470,7 @@ Step 3 — profit = 125 - 120 = 5, and profit percent is always taken on COST.
 Final = N x (1 + p/100) x (1 - p/100).
 This is a difference of squares: (1 + p/100)(1 - p/100) = 1 - p^2/10000.
 Since p > 0, the term p^2/10000 is strictly positive, so the multiplier is strictly less than 1.
-With N > 0, the final number is always less than N, whatever p is. Column B is greater.
+With N > 0, the final number is always less than N, whatever p is. Quantity B is greater.
 The loss is exactly p^2/100 percent - for p = 10 that is 1%, for p = 20 it is 4%, for p = 50 it is 25%.
 
 **Trap.** Choosing C because the same p goes up and comes back down. The rise is p% of N, but the fall is p% of the LARGER number N(1 + p/100), so more is removed than was added. Note the answer does not depend on the size of p, so D is also wrong.
@@ -550,7 +550,7 @@ Answer: 5:4.
 The price multiplier is 1.10^7.
 Build it in pieces: 1.10^2 = 1.21, so 1.10^4 = 1.21^2 = 1.4641, and 1.10^3 = 1.331.
 1.10^7 = 1.10^4 x 1.10^3 = 1.4641 x 1.331 = 1.9487.
-That is a 94.87% increase, comfortably above 70%. Column A is greater.
+That is a 94.87% increase, comfortably above 70%. Quantity A is greater.
 You do not even need the exact value: 1.10^7 = 1.10^4 x 1.10^3 > 1.4 x 1.3 = 1.82, already a 82% rise.
 
 **Trap.** Multiplying 10% x 7 = 70% and choosing C. That is simple-interest thinking. Once there is more than one period, each year's rise is computed on a larger amount, so compound growth always exceeds the simple sum.
@@ -638,9 +638,9 @@ Answer: 54%.
 
 ### Q30 · `ARI-PCT-077` — Answer: B
 
-Column A: 1.10^10. Build it up - 1.10^2 = 1.21, 1.10^4 = 1.4641, 1.10^5 = 1.61051, and 1.10^10 = 1.61051^2 = 2.5937. That is a 159.4% increase.
-Column B: 1.05^20. Here 1.05^2 = 1.1025, 1.05^4 = 1.2155, 1.05^5 = 1.2763, 1.05^10 = 1.2763^2 = 1.6289, and 1.05^20 = 1.6289^2 = 2.6533. That is a 165.3% increase.
-165.3% > 159.4%, so Column B is greater.
+Quantity A: 1.10^10. Build it up - 1.10^2 = 1.21, 1.10^4 = 1.4641, 1.10^5 = 1.61051, and 1.10^10 = 1.61051^2 = 2.5937. That is a 159.4% increase.
+Quantity B: 1.05^20. Here 1.05^2 = 1.1025, 1.05^4 = 1.2155, 1.05^5 = 1.2763, 1.05^10 = 1.2763^2 = 1.6289, and 1.05^20 = 1.6289^2 = 2.6533. That is a 165.3% increase.
+165.3% > 159.4%, so Quantity B is greater.
 The principle: for a fixed product r x n, spreading the growth over more compounding periods always ends higher, because interest gets more chances to earn interest.
 
 **Trap.** Both columns have r x n = 100, so students read them as equivalent and choose C. That would only hold under simple growth. Under compounding the number of periods matters on its own, and more periods at a smaller rate wins.

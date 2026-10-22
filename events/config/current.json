@@ -39,7 +39,7 @@
         "E. 12"
       ],
       "answer": "C",
-      "explanation": "Step 1 — the constraint is a disc of radius 1 centred at the origin, and 3x + 4y is being maximised over it. The maximum is attained on the boundary circle x^2 + y^2 = 1, since moving outward from any interior point in the direction that increases 3x + 4y keeps increasing it.\nStep 2 — bound the expression. For any real x and y, (3x + 4y)^2 <= (3^2 + 4^2)(x^2 + y^2). This is the Cauchy-Schwarz inequality, and it can be verified directly: (3^2 + 4^2)(x^2 + y^2) - (3x + 4y)^2 = 9x^2 + 9y^2 + 16x^2 + 16y^2 - 9x^2 - 24xy - 16y^2 = 16x^2 - 24xy + 9y^2 = (4x - 3y)^2, which is never negative.\nStep 3 — so (3x + 4y)^2 <= 25 * (x^2 + y^2) <= 25 * 1 = 25, giving 3x + 4y <= 5.\nStep 4 — the bound is reached when the leftover square (4x - 3y)^2 is zero and the constraint is tight, that is 4x = 3y with x^2 + y^2 = 1. Take x = 3/5 and y = 4/5: then 4(3/5) = 12/5 = 3(4/5), and (3/5)^2 + (4/5)^2 = 9/25 + 16/25 = 1.\nStep 5 — at that point 3x + 4y = 9/5 + 16/5 = 25/5 = 5, so the bound 5 is attained and is the maximum.\nCheck: try some other boundary points and confirm none beats 5. x = 1, y = 0 gives 3. x = 0, y = 1 gives 4. x = 0.8, y = 0.6 gives 2.4 + 2.4 = 4.8. x = 0.6, y = 0.8 gives 1.8 + 3.2 = 5. Correct.\nAnswer: C.",
+      "explanation": "Step 1 — the constraint is a disc of radius 1 centered at the origin, and 3x + 4y is being maximized over it. The maximum is attained on the boundary circle x^2 + y^2 = 1, since moving outward from any interior point in the direction that increases 3x + 4y keeps increasing it.\nStep 2 — bound the expression. For any real x and y, (3x + 4y)^2 <= (3^2 + 4^2)(x^2 + y^2). This is the Cauchy-Schwarz inequality, and it can be verified directly: (3^2 + 4^2)(x^2 + y^2) - (3x + 4y)^2 = 9x^2 + 9y^2 + 16x^2 + 16y^2 - 9x^2 - 24xy - 16y^2 = 16x^2 - 24xy + 9y^2 = (4x - 3y)^2, which is never negative.\nStep 3 — so (3x + 4y)^2 <= 25 * (x^2 + y^2) <= 25 * 1 = 25, giving 3x + 4y <= 5.\nStep 4 — the bound is reached when the leftover square (4x - 3y)^2 is zero and the constraint is tight, that is 4x = 3y with x^2 + y^2 = 1. Take x = 3/5 and y = 4/5: then 4(3/5) = 12/5 = 3(4/5), and (3/5)^2 + (4/5)^2 = 9/25 + 16/25 = 1.\nStep 5 — at that point 3x + 4y = 9/5 + 16/5 = 25/5 = 5, so the bound 5 is attained and is the maximum.\nCheck: try some other boundary points and confirm none beats 5. x = 1, y = 0 gives 3. x = 0, y = 1 gives 4. x = 0.8, y = 0.6 gives 2.4 + 2.4 = 4.8. x = 0.6, y = 0.8 gives 1.8 + 3.2 = 5. Correct.\nAnswer: C.",
       "trap": "Maximising the two terms separately, taking x = 1 and y = 1 to get 3 + 4 = 7, choice D. That point has x^2 + y^2 = 2, which violates the constraint: x and y cannot both reach 1 at once. Choice E, 12, multiplies the coefficients instead of combining them. Choices B and A are the values at the two axis points, 4 at (0, 1) and 3 at (1, 0), each obtained by setting one variable to zero and never checking a mixed point.",
       "estimated_time_seconds": 130,
       "tags": [
@@ -81,7 +81,7 @@
       "id": "ALG-INQ-057",
       "difficulty": "extreme_hard",
       "type": "numeric_entry",
-      "question": "a and b are positive numbers with a + b = 1 and a is not equal to b. What is the greatest integer k such that 1/a + 1/b > k holds for every such pair (a, b) ? Enter your answer as a number.",
+      "question": "a and b are positive numbers with a + b = 1 and a is not equal to b. What is the greatest integer k such that 1/a + 1/b > k holds for every such pair (a, b) ?",
       "options": null,
       "answer": "4",
       "explanation": "Step 1 — combine the two fractions over a common denominator: 1/a + 1/b = (b + a)/(ab).\nStep 2 — use the constraint a + b = 1 in the numerator: the expression is simply 1/(ab). So the question becomes: how large can ab be?\nStep 3 — bound ab. Write b = 1 - a, so ab = a(1 - a) = a - a^2. Then 1/4 - ab = 1/4 - a + a^2 = (a - 1/2)^2, which is never negative and is zero only when a = 1/2.\nStep 4 — so ab <= 1/4, with equality only at a = b = 1/2. The stem excludes a = b, so ab < 1/4 strictly.\nStep 5 — ab is positive because a and b are positive, so taking reciprocals of two positive numbers reverses the inequality: 1/(ab) > 4.\nStep 6 — therefore 1/a + 1/b > 4 for every allowed pair, so k = 4 works. And k = 5 fails: a = 0.51, b = 0.49 gives ab = 0.2499 and 1/(ab) = 4.0016, which is not greater than 5. The greatest integer that always works is 4.\nCheck: evaluate at several pairs and confirm all exceed 4 while approaching it. a = 0.6, b = 0.4: 1/0.6 + 1/0.4 = 1.667 + 2.5 = 4.167. a = 0.9, b = 0.1: 1.111 + 10 = 11.111. a = 0.51, b = 0.49: 1.9608 + 2.0408 = 4.0016. The values dip toward 4 but never reach it, and 4.0016 already rules out k = 5. Correct.\nAnswer: 4.",
@@ -257,7 +257,7 @@
         "C",
         "E"
       ],
-      "explanation": "A - FALSE. Take x^2 - 2 = 0, with a = 1, b = 0, c = -2 all integers and D = 8 > 0. Its roots are sqrt(2) and -sqrt(2), both irrational. The roots are rational only when the discriminant is a perfect square.\nB - two distinct real roots is the definition of a positive discriminant. TRUE.\nC - Vieta: dividing through by a gives x^2 + (b/a)x + c/a = 0, and the sum of the roots of a monic quadratic is the negative of the linear coefficient. So r + s = -b/a. TRUE.\nD - FALSE. Take x^2 - x - 6 = 0, whose roots are 3 and -2. Their signs differ, because rs = c/a = -6 is negative. The roots share a sign exactly when c/a > 0, which the stem does not require.\nE - from the same monic form used in C, the product of the roots is the constant term, so rs = c/a. TRUE.\nAnswer: B, C and E.",
+      "explanation": "A - FALSE. Take x^2 - 2 = 0, with a = 1, b = 0, c = -2 all integers and D = 8 > 0. Its roots are sqrt(2) and -sqrt(2), both irrational. The roots are rational only when the discriminant is a perfect square.\nB - two distinct real roots is the definition of a positive discriminant. TRUE.\nC - the sum and product of the roots: dividing through by a gives x^2 + (b/a)x + c/a = 0, and the sum of the roots of a monic quadratic is the negative of the linear coefficient. So r + s = -b/a. TRUE.\nD - FALSE. Take x^2 - x - 6 = 0, whose roots are 3 and -2. Their signs differ, because rs = c/a = -6 is negative. The roots share a sign exactly when c/a > 0, which the stem does not require.\nE - from the same monic form used in C, the product of the roots is the constant term, so rs = c/a. TRUE.\nAnswer: B, C and E.",
       "trap": "Choice A is the trap: 'the discriminant is positive, so the roots are real, so they come out of the formula as ordinary numbers' slides into assuming the square root is rational. D > 0 guarantees real; only D a perfect square guarantees rational. Choice D is selected by students who remember rs = c/a but not that c/a can be negative, in which case one root sits on each side of zero.",
       "estimated_time_seconds": 90,
       "tags": [
@@ -301,7 +301,7 @@
       "id": "ARI-FRC-057",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "a and b are positive numbers with 1/a + 1/b = 1/6 and ab = 192. What is a + b? Enter your answer as a number.",
+      "question": "a and b are positive numbers with 1/a + 1/b = 1/6 and ab = 192. What is a + b?",
       "options": null,
       "answer": "32",
       "explanation": "The insight: never solve for a and b separately. Combine the reciprocals over a common denominator and the two given facts line up.\nStep 1 — 1/a + 1/b = b/(ab) + a/(ab) = (a + b)/(ab).\nStep 2 — substitute the given product: (a + b)/192 = 1/6.\nStep 3 — cross-multiply: 6(a + b) = 192, so a + b = 32.\nCheck by finding the actual pair: a = 8 and b = 24 give ab = 192 and 1/8 + 1/24 = 3/24 + 1/24 = 4/24 = 1/6. And 8 + 24 = 32. Correct.\nAnswer: 32.",
@@ -318,7 +318,7 @@
       "id": "NUM-DIV-035",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "In the 4-digit number 5d8e, d and e are single digits (the digits are 5, d, 8, e from left to right). How many ordered pairs (d, e) make 5d8e divisible by 36? Enter your answer as a number.",
+      "question": "In the 4-digit number 5d8e, d and e are single digits (the digits are 5, d, 8, e from left to right). How many ordered pairs (d, e) make 5d8e divisible by 36?",
       "options": null,
       "answer": "3",
       "explanation": "Step 1 — split 36 into COPRIME factors: 36 = 4 x 9. Both tests must pass.\nStep 2 — the 4-test reads the last two digits, 8e, that is 80 + e. Since 80 is already a multiple of 4, we need e divisible by 4: e = 0, 4 or 8.\nStep 3 — the 9-test reads the digit sum: 5 + d + 8 + e = 13 + d + e, which must be a multiple of 9.\nStep 4 — take the three allowed values of e in turn.\ne = 0: need 13 + d a multiple of 9. d runs 0 to 9, so 13 + d runs 13 to 22; the only multiple of 9 there is 18, giving d = 5. Pair (5, 0), number 5,580.\ne = 4: need 17 + d a multiple of 9, running 17 to 26; the only multiple is 18, giving d = 1. Pair (1, 4), number 5,184.\ne = 8: need 21 + d a multiple of 9, running 21 to 30; the only multiple is 27, giving d = 6. Pair (6, 8), number 5,688.\nStep 5 — that is 3 pairs.\nCheck: 5,580/36 = 155, 5,184/36 = 144, 5,688/36 = 158. All integers.\nAnswer: 3.",
@@ -392,7 +392,7 @@
       ],
       "answer": "A",
       "explanation": "Convert ax + by = 6 to slope-intercept: by = -ax + 6 → y = (-a/b)x + 6/b. Slope = -a/b.\nSince a and b are positive integers with a < b: the ratio a/b satisfies 0 < a/b < 1, so 0 > -a/b > -1.\nTherefore the slope lies strictly between -1 and 0, meaning slope > -1.\nQuantity A > Quantity B. The answer is always A regardless of which valid (a, b) pair is chosen.",
-      "trap": "Students test a specific case like a=1, b=2 (slope = -1/2 > -1, so A wins), but then worry whether other values could reverse this. They don't recognize that a < b always guarantees a/b < 1 and therefore -a/b > -1, so they choose D instead of A.",
+      "trap": "Students test a specific case like a=1, b=2 (slope = -1/2 > -1, so A wins), but then worry whether other values could reverse this. They do not recognize that a < b always guarantees a/b < 1 and therefore -a/b > -1, so they choose D instead of A.",
       "estimated_time_seconds": 100,
       "tags": [
         "equation-of-line",
@@ -490,7 +490,7 @@
       ],
       "answer": "C",
       "explanation": "New dimensions: 1.4s by 0.6s. New area = 1.4s × 0.6s = 0.84s². Original area = s². Change = (0.84 − 1) × 100% = −16%. The area decreases by 16%.",
-      "trap": "Students reason that +40% and −40% cancel to give 0% net change (choosing D). This is the successive-percent trap: they don't cancel, as 1.4 × 0.6 = 0.84, not 1.",
+      "trap": "Students reason that +40% and −40% cancel to give 0% net change (choosing D). This is the successive-percent trap: they do not cancel, as 1.4 × 0.6 = 0.84, not 1.",
       "estimated_time_seconds": 85,
       "tags": [
         "area",
@@ -537,7 +537,7 @@
         "E. 84"
       ],
       "answer": "D",
-      "explanation": "Step 1 — prime factorise: 28 = 2^2 x 7.\nStep 2 — the sum-of-factors rule uses one bracket per prime: (2^0 + 2^1 + 2^2)(7^0 + 7^1) = (1 + 2 + 4)(1 + 7).\nStep 3 — multiply: 7 x 8 = 56.\nCheck by listing: 1 + 2 + 4 + 7 + 14 + 28 = 56. Correct.\nAnswer: D.",
+      "explanation": "Step 1 — prime factorize: 28 = 2^2 x 7.\nStep 2 — the sum-of-factors rule uses one bracket per prime: (2^0 + 2^1 + 2^2)(7^0 + 7^1) = (1 + 2 + 4)(1 + 7).\nStep 3 — multiply: 7 x 8 = 56.\nCheck by listing: 1 + 2 + 4 + 7 + 14 + 28 = 56. Correct.\nAnswer: D.",
       "trap": "Answering 28 (option B) by summing only the factors below 28: 1 + 2 + 4 + 7 + 14 = 28, which is what makes 28 a perfect number and makes the wrong answer look deliberate. Adding the brackets instead of multiplying gives 7 + 8 = 15 (option A), dropping the factor 1 gives 55 (option C), and counting 28 twice gives 84 (option E).",
       "estimated_time_seconds": 80,
       "tags": [
@@ -642,11 +642,11 @@
       "id": "NUM-FAM-017",
       "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "How many integers between 100 and 1000, inclusive, are multiples of 6 but NOT multiples of 8? Enter your answer as a number.",
+      "question": "How many integers between 100 and 1000, inclusive, are multiples of 6 but NOT multiples of 8?",
       "options": null,
       "answer": "113",
-      "explanation": "Step 1 — count the multiples of 6 in the range: floor(1000/6) - floor(99/6) = 166 - 16 = 150.\nStep 2 — an integer is a multiple of both 6 and 8 exactly when it is a multiple of LCM(6, 8). Since 6 = 2 x 3 and 8 = 2^3, LCM = 2^3 x 3 = 24.\nStep 3 — count the multiples of 24 in the range: floor(1000/24) - floor(99/24) = 41 - 4 = 37.\nStep 4 — subtract the overlap from the total: 150 - 37 = 113.\nCheck by endpoints: the multiples of 6 run 102 through 996, that is 6 x 17 through 6 x 166, and 166 - 17 + 1 = 150; the multiples of 24 run 120 through 984, that is 41 - 5 + 1 = 37. 150 - 37 = 113. Answer: 113.",
-      "trap": "Using the product 6 x 8 = 48 in place of LCM(6, 8) = 24 when counting what to exclude: that removes floor(1000/48) - floor(99/48) = 20 - 2 = 18 instead of 37, giving 150 - 18 = 132, because every multiple of 24 that is not a multiple of 48 is left in by mistake. The other slip is stopping before the exclusion and answering 150, the count of multiples of 6, or answering 37, the size of the overlap itself instead of what remains after removing it.",
+      "explanation": "Step 1 — count the multiples of 6 in the range: floor(1000/6) - floor(99/6) = 166 - 16 = 150.\nStep 2 — an integer is a multiple of both 6 and 8 exactly when it is a multiple of the least common multiple of 6 and 8. Since 6 = 2 x 3 and 8 = 2^3, least common multiple = 2^3 x 3 = 24.\nStep 3 — count the multiples of 24 in the range: floor(1000/24) - floor(99/24) = 41 - 4 = 37.\nStep 4 — subtract the overlap from the total: 150 - 37 = 113.\nCheck by endpoints: the multiples of 6 run 102 through 996, that is 6 x 17 through 6 x 166, and 166 - 17 + 1 = 150; the multiples of 24 run 120 through 984, that is 41 - 5 + 1 = 37. 150 - 37 = 113. Answer: 113.",
+      "trap": "Using the product 6 x 8 = 48 in place of the least common multiple of 6 and 8 = 24 when counting what to exclude: that removes floor(1000/48) - floor(99/48) = 20 - 2 = 18 instead of 37, giving 150 - 18 = 132, because every multiple of 24 that is not a multiple of 48 is left in by mistake. The other slip is stopping before the exclusion and answering 150, the count of multiples of 6, or answering 37, the size of the overlap itself instead of what remains after removing it.",
       "estimated_time_seconds": 90,
       "tags": [
         "counting-multiples",
