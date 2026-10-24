@@ -94,7 +94,7 @@
         '<input class="gqp-input" type="email" id="gqp-email" placeholder="you@example.com" autocomplete="email">' +
         '<button class="gqp-btn" id="gqp-submit">Log In</button>' +
         '<div class="gqp-status" id="gqp-status"></div>' +
-        '<div class="gqp-footer">Not a Pro student yet? <a href="/pricing.html">See pricing &rarr;</a><br>Device issue? <a href="mailto:goenka.aditya.kol@gmail.com">Email Coach Aditya</a></div>' +
+        '<div class="gqp-footer">Not a Pro student yet? <a href="/pricing.html">See pricing &rarr;</a><br>Device issue? <a href="mailto:goenka.aditya.kol@gmail.com">Email our team</a></div>' +
       '</div>';
     document.body.appendChild(overlay);
     document.addEventListener('keydown', onKeydown);
@@ -142,11 +142,11 @@
             afterRegister();
           } else if (data.status === 'revoked') {
             localStorage.removeItem(STORAGE_KEY);
-            showError('Your Pro access has been revoked. Email Coach Aditya for help.');
+            showError('Your Pro access has been revoked. Email our team for help.');
           } else if (data.status === 'unknown_email') {
             showError('This email isn’t registered for Pro access.');
           } else if (data.status === 'device_limit') {
-            showError('This account is already active on another device. Email Coach Aditya to reset it.');
+            showError('This account is already active on another device. Email our team to reset it.');
           } else {
             showError('Unexpected error. Please try again.');
           }
