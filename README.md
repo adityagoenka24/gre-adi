@@ -1,6 +1,6 @@
 # GRE Quant Logger — Free Version
 
-**Coach Aditya Goenka** · goenka.aditya.kol@gmail.com
+**our coaching team** · goenka.aditya.kol@gmail.com
 
 A free GRE Quant practice tool with access to 2 subtopics, Easy + Medium difficulty, and up to 10 questions per session.
 

@@ -3,159 +3,6 @@
   "subtopic": "Prime Numbers",
   "questions": [
     {
-      "id": "NUM-FAM-054",
-      "difficulty": "extreme_hard",
-      "type": "numeric_entry",
-      "question": "How many positive integers n ≤ 1000 have the property that the number of factors of n equals n/p for some prime factor p of n?",
-      "options": null,
-      "answer": "54",
-      "explanation": "We need: number_of_factors(n) = n/p for some prime p | n. Let τ(n) = number of factors. Need τ(n) = n/p, so n = p × τ(n). Try small cases: n = p × τ(n) means n is p times the factor count. Test n = 1: τ(1)=1, no prime factors ✗. Try n = p^k: τ(p^k) = k+1, need k+1 = p^k/p = p^(k-1). For p=2, k=2: τ=3, p^(k-1)=2 — 3≠2 ✗. For p=2, k=1: τ=2, p^0=1 — 2≠1 ✗. Try p=2: need 2×τ(n) = n. n=2: τ=2, 2×2=4≠2 ✗. n=4: τ=3, 2×3=6≠4 ✗. n=8: τ=4, 2×4=8=8 ✓. n=12: τ=6, 2×6=12 ✓. n=2^a: τ=a+1, need 2(a+1)=2^a → a+1=2^(a-1). a=3: 4=4 ✓ → n=8. a=4: 5=8 ✗. n=12=2²×3: τ=6, need n/p: try p=2: 12/2=6=τ(12)=6 ✓. n=24=2³×3: τ=8, 24/2=12≠8, 24/3=8=8 ✓. n=48=2⁴×3: τ=10, 48/2=24≠10, 48/3=16≠10 ✗. n=2^a×3: τ=(a+1)×2. Try p=3: n/3=2^a, need (a+1)×2=2^a → a+1=2^(a-1). a=3: n=24 ✓. a=4: 5=8 ✗. Try other forms. n=p (prime): τ=2, n/p=1, 2≠1 ✗. n=p²: τ=3, n/p=p, need p=3 ✓ so n=9: τ(9)=3=9/3 ✓. Let me verify n=9: τ(9)=3, 9/3=3 ✓. So n=8,9,12,24 so far ≤1000. Check n=24: verified above. Look for more: n=2^a×3^b with various a,b. This problem is complex; confirmed valid solutions ≤1000 include at minimum 8, 12, 24. More careful analysis shows n=1 (trivially, no), and through exhaustive checking, the valid set ≤1000 is {8, 12, 24}, giving 3 values.",
-      "trap": "Students may find n=8 or n=12 but miss n=24, or include n=9 (which also works: τ(9)=3, 9/3=3). A full count yields n ∈ {8, 9, 12, 24} for n ≤ 1000, giving 4 solutions. This is an extremely hard problem requiring systematic case analysis.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "factors",
-        "number-of-factors",
-        "prime-factorization",
-        "multi-step"
-      ],
-      "ets_score": 2,
-      "ets_tags": [
-        "explanation_error",
-        "grindy_computation"
-      ],
-      "ets_note": "Key 54 is right but explanation concludes {8,12,24} (3) and trap says 4; needs exhaustive search, not GRE-doable.",
-      "ets_key_disputed": false,
-      "ets_auditor_answer": "54",
-      "ets_triage": {
-        "verdict": "key_wrong",
-        "action": "change_key",
-        "date": "2026-10-08"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "wrong_key",
-          "grindy_computation"
-        ],
-        "prev_note": "Key answer 4 is wrong (true count 54); also unsolvable by hand, not ETS-like.",
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "NUM-FAM-056",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "n = p^2 x q^2 x r, where p, q, and r are distinct primes. How many pairs of positive integers (a, b) with a <= b satisfy a x b = n and have 1 as the greatest common divisor of a and b?",
-      "options": [
-        "A. 3",
-        "B. 4",
-        "C. 6",
-        "D. 8",
-        "E. 9"
-      ],
-      "answer": "B",
-      "explanation": "Step 1 — the greatest common divisor of a and b = 1 means a and b share no prime. Since a x b = n, each prime power of n must go ENTIRELY to a or entirely to b: p^2 cannot be split, and neither can q^2 or r.\nStep 2 — building a pair is therefore three independent two-way choices, one per distinct prime: 2 x 2 x 2 = 8 ORDERED pairs (a, b).\nStep 3 — the condition a <= b keeps one of each mirror pair. No pair has a = b, since n is not a perfect square (r has exponent 1), so the 8 ordered pairs form 4 mirror pairs.\nStep 4 — 8/2 = 4.\nCheck with p = 2, q = 3, r = 7: n = 4 x 9 x 7 = 252. The coprime pairs with a <= b are (1, 252), (4, 63), (7, 36) and (9, 28). Four of them.\nAnswer: B.",
-      "trap": "Answering 8 (option D) by counting ordered pairs and ignoring that a <= b identifies (a, b) with (b, a). Answering 3 (option A) comes from discarding (1, n) as trivial, but 1 is coprime to everything and that pair is legitimate. Answering 6 (option C) comes from counting the 8 ordered pairs and then striking out both trivial ones, (1, n) and (n, 1), to get 2^3 - 2 = 6; that both forgets to halve for a <= b and wrongly rejects (1, n), which is a genuine coprime pair. Answering 9 (option E) drops the greatest common divisor condition altogether: n has (2+1)(2+1)(1+1) = 18 factors, which form 9 unordered pairs with product n, only 4 of which are coprime.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "coprime-factor-pairs",
-        "distinct-primes"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Routine coprime-split counting labelled extreme_hard.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "spelled out greatest common divisor / least common multiple"
-        ],
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "terminology_nonets"
-        ],
-        "prev_note": "Bare abbreviation GCD; ETS writes greatest common divisor.",
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "NUM-FAM-058",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "p is an odd prime and k = p^2 - 1.\nQuantity A: The number of positive factors of k\nQuantity B: 6",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — factor the expression: k = p^2 - 1 = (p - 1)(p + 1), the two even numbers on either side of p.\nStep 2 — test p = 3: k = 8 = 2^3, with 3 + 1 = 4 factors. 4 < 6, so Quantity B is greater here.\nStep 3 — test p = 5: k = 24 = 2^3 x 3, with (3+1)(1+1) = 8 factors. 8 > 6, so Quantity A is greater here.\nStep 4 — two opposite outcomes, so the relationship is not determined.\nCheck a third value, p = 7: k = 48 = 2^4 x 3 with (4+1)(1+1) = 10 factors, again above 6; but p = 3 has already broken the pattern.\nAnswer: D.",
-      "trap": "Testing p = 5, 7 and 11 (factor counts 8, 10 and 16, all above 6) and settling on A. The smallest odd prime is the exception: p = 3 gives p^2 - 1 = 8, a pure power of 2 with only 4 factors. On QC, always test the smallest legal value before committing.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "qc",
-        "factor-count",
-        "test-cases"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Two small tests settle it; extreme_hard overstated.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "prev_note": "Hard for 'extreme_hard' label? fine; acceptable.",
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "NUM-FAM-059",
-      "difficulty": "extreme_hard",
-      "type": "multiple_answer",
-      "question": "For which of the following values of k are there exactly 15 multiples of k between 200 and 700, inclusive? Select all that apply.",
-      "options": [
-        "A. 31",
-        "B. 32",
-        "C. 33",
-        "D. 35",
-        "E. 36"
-      ],
-      "answer": [
-        "B",
-        "C",
-        "D"
-      ],
-      "explanation": "Use count = floor(700/k) - floor(199/k), which counts the multiples of k up to 700 and removes those below 200.\nA - k = 31: floor(700/31) = 22 (31 x 22 = 682) and floor(199/31) = 6 (31 x 6 = 186). 22 - 6 = 16. FALSE.\nB - k = 32: floor(700/32) = 21 (32 x 21 = 672) and floor(199/32) = 6 (32 x 6 = 192). 21 - 6 = 15. TRUE.\nC - k = 33: floor(700/33) = 21 (33 x 21 = 693) and floor(199/33) = 6 (33 x 6 = 198). 21 - 6 = 15. TRUE.\nD - k = 35: floor(700/35) = 20 (35 x 20 = 700, included) and floor(199/35) = 5 (35 x 5 = 175). 20 - 5 = 15. TRUE.\nE - k = 36: floor(700/36) = 19 (36 x 19 = 684) and floor(199/36) = 5 (36 x 5 = 180). 19 - 5 = 14. FALSE.\nCheck D by endpoints: the multiples run 210, 245, ..., 700, that is 35 x 6 through 35 x 20, and 20 - 6 + 1 = 15.\nAnswer: B, C, D.",
-      "trap": "Estimating the count as (700 - 200)/k, the length of the range over k: that gives 16.1 at k = 31 and 13.9 at k = 36, so the estimate wrongly admits A, whose true count is 16, and wrongly rejects nothing, since its low reading at k = 36 matches the true count of 14. E is the honest near-miss: k = 36 really does give 14, one short. The other slip is at k = 35: dropping the endpoint 700 = 35 x 20 because the range 'ends' there gives 14 and wrongly rejects D.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "counting-multiples",
-        "floor-division",
-        "multiple-answer"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Five floor calculations, endpoint trap; extreme_hard overstated; trap text garbled.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "prev_note": "Label extreme_hard is generous but acceptable.",
-        "agree_with_key": true
-      }
-    },
-    {
       "id": "NUM-PRF-001",
       "difficulty": "easy",
       "type": "mcq",
@@ -174,17 +21,7 @@
       "tags": [
         "prime-definition",
         "conceptual"
-      ],
-      "ets_score": 3,
-      "ets_tags": [],
-      "ets_note": "Plain recognition item; trap text weak.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [],
-        "prev_note": "Plain recall item.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-002",
@@ -205,89 +42,7 @@
       "tags": [
         "prime-definition",
         "memorisation"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "filler_distractors"
-      ],
-      "ets_note": "Options are consecutive integers 6-10, mostly filler.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [],
-        "prev_note": "Plain recall count; serviceable.",
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "NUM-PRF-003",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "What is the prime factorization of 60?",
-      "options": [
-        "A. 2 x 3 x 5",
-        "B. 2^2 x 3 x 5",
-        "C. 2^2 x 15",
-        "D. 4 x 15",
-        "E. 2 x 30"
-      ],
-      "answer": "B",
-      "explanation": "Step 1 — build a factor tree: 60 = 6 x 10.\nStep 2 — break each branch down: 6 = 2 x 3 and 10 = 2 x 5.\nStep 3 — collect the leaves: 60 = 2 x 3 x 2 x 5 = 2^2 x 3 x 5. Every leaf is prime, so the tree is finished.\nCheck: 2^2 x 3 x 5 = 4 x 15 = 60. Correct.\nAnswer: B. 2^2 x 3 x 5.",
-      "trap": "Choosing C or D: 15 and 4 are genuine factors of 60, but 15 = 3 x 5 and 4 = 2^2 are not prime, so neither expression is a PRIME factorization. Choice A drops one of the two 2s and multiplies back to 30, not 60 - always multiply back before committing.",
-      "estimated_time_seconds": 45,
-      "tags": [
-        "prime-factorization",
-        "factor-tree"
-      ],
-      "ets_score": 2,
-      "ets_tags": [
-        "textbook_phrasing",
-        "filler_distractors"
-      ],
-      "ets_note": "Options C, D, E are plainly not prime factorizations; stem is textbook-style.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "textbook_phrasing"
-        ],
-        "prev_note": "Plain textbook recall; options contain non-prime forms as distractors.",
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "NUM-PRF-004",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "Which of the following is the only even prime number?",
-      "options": [
-        "A. 1",
-        "B. 2",
-        "C. 4",
-        "D. 6",
-        "E. There is no even prime number"
-      ],
-      "answer": "B",
-      "explanation": "2 is prime because its only positive divisors are 1 and 2 — exactly two distinct divisors. Every other even number is divisible by 2 (and also by itself and 1), giving at least 3 divisors, so it is composite. Thus 2 is the unique even prime.",
-      "trap": "Students may choose E, believing all primes must be odd. While all primes greater than 2 are odd, 2 itself is even and prime.",
-      "estimated_time_seconds": 35,
-      "tags": [
-        "prime-definition",
-        "conceptual",
-        "memorisation"
-      ],
-      "ets_score": 2,
-      "ets_tags": [
-        "textbook_phrasing"
-      ],
-      "ets_note": "Stem asserts one exists, so option E is contradicted by the stem; pure recall.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [],
-        "prev_note": "Trivial; textbook recall.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-005",
@@ -302,16 +57,7 @@
       "tags": [
         "prime-definition",
         "memorisation"
-      ],
-      "ets_score": 3,
-      "ets_tags": [],
-      "ets_note": "Pure recall, minimal reasoning.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-006",
@@ -333,26 +79,7 @@
         "gcd",
         "prime-factorization",
         "two-step"
-      ],
-      "ets_score": 3,
-      "ets_tags": [],
-      "ets_note": "Direct computation item with textbook-style stem.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "removed bare \"(GCD)\" abbreviation"
-        ],
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "terminology_nonets"
-        ],
-        "prev_note": "Bare \"GCD\" abbreviation after the spelled term; ETS avoids it.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-007",
@@ -374,20 +101,7 @@
         "lcm",
         "prime-factorization",
         "two-step"
-      ],
-      "ets_score": 3,
-      "ets_tags": [],
-      "ets_note": "Stem uses (LCM) abbreviation; options 24 and 54 are filler.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "textbook_phrasing",
-          "terminology_nonets"
-        ],
-        "prev_note": "Bare abbreviation (LCM) in parentheses; plain recall item.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-008",
@@ -402,16 +116,7 @@
       "tags": [
         "factor-count",
         "prime-factorization"
-      ],
-      "ets_score": 3,
-      "ets_tags": [],
-      "ets_note": "Formula recall; plain.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-009",
@@ -431,67 +136,7 @@
       "tags": [
         "distinct-prime-factors",
         "qc"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "Label easy fine but item trivial; mild.",
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "NUM-PRF-010",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "Is 91 a prime number?",
-      "options": [
-        "A. Yes, 91 is prime",
-        "B. No, 91 = 7 × 13",
-        "C. No, 91 = 3 × 31",
-        "D. No, 91 = 9 × 11",
-        "E. No, 91 = 7 × 11"
-      ],
-      "answer": "B",
-      "explanation": "To test primality of 91, check all primes up to √91 ≈ 9.5: test 2, 3, 5, 7. 91 is odd (not divisible by 2). Digit sum = 10, not divisible by 3. Doesn't end in 0 or 5 (not divisible by 5). 91 ÷ 7 = 13 exactly. So 91 = 7 × 13 and is composite.",
-      "trap": "A: 91 passes the divisibility rules for 2, 3 and 5, so students call it prime and forget to test 7. C, D and E offer factor pairs that do not multiply to 91 (93, 99 and 77).",
-      "estimated_time_seconds": 60,
-      "tags": [
-        "primality-testing",
-        "conceptual"
-      ],
-      "ets_score": 2,
-      "ets_tags": [
-        "textbook_phrasing",
-        "filler_distractors"
-      ],
-      "ets_note": "Yes/no stem with option-embedded factorizations; wrong products (93, 99, 77) are easily eliminated.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "replaced incoherent reasoning and 'cannot be determined' options with wrong factorizations (each product checked: 93, 99, 77)"
-        ],
-        "confidence": "high"
-      },
-      "ets_option_fix": {
-        "date": "2026-10-09",
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "textbook_phrasing",
-          "filler_distractors",
-          "malformed_type"
-        ],
-        "prev_note": "Yes/No MCQ with incoherent reasoning options and \"cannot be determined without a calculator\"; unlike ETS.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-016",
@@ -513,15 +158,7 @@
         "perfect-cube",
         "prime-factorisation",
         "exponents"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-017",
@@ -543,15 +180,7 @@
         "factor-count",
         "prime-factorization",
         "conceptual"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-018",
@@ -566,59 +195,7 @@
       "tags": [
         "lcm",
         "prime-factorization"
-      ],
-      "ets_score": 3,
-      "ets_tags": [],
-      "ets_note": "Plain, easy label fits.",
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "medium",
-        "work_required": "LCM of three small numbers with a shared factor 7; one step.",
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "textbook_phrasing",
-          "terminology_nonets",
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "Bare 'LCM' wording, 'Enter your answer as a number' filler; one-step item labelled medium.",
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "NUM-PRF-019",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "n is a positive integer.\nQuantity A: The number of distinct prime factors of n²\nQuantity B: The number of distinct prime factors of n",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "C",
-      "explanation": "If n = p1^a × p2^b × ..., then n² = p1^(2a) × p2^(2b) × .... Squaring only doubles the exponents — it does not introduce new prime factors or eliminate existing ones. So n and n² always have exactly the same set of distinct prime factors. Quantity A = Quantity B for all positive integers n.",
-      "trap": "Students may think n² has more prime factors because it is a larger number. Squaring changes the exponents but not which primes appear. Example: n=6=2×3 has 2 distinct primes; n²=36=2²×3² also has 2 distinct primes.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "prime-factorization",
-        "qc",
-        "conceptual"
-      ],
-      "ets_score": 2,
-      "ets_tags": [
-        "duplicate_stem"
-      ],
-      "ets_note": "Near-duplicate of NUM-NTH-019 in this batch (differs only in n>1 vs n positive).",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-020",
@@ -640,15 +217,7 @@
         "factor-count",
         "prime-factorization",
         "two-step"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-021",
@@ -664,68 +233,7 @@
         "trailing-zeros",
         "factorial",
         "legendre-formula"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "NUM-PRF-022",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "Which of the following statements about prime numbers are true? Indicate all such statements.",
-      "options": [
-        "A. Every prime greater than 3 is of the form 6k - 1 or 6k + 1 for some positive integer k",
-        "B. The sum of two distinct primes is always even",
-        "C. There are infinitely many primes",
-        "D. If p and q are distinct primes, then the greatest common divisor of p and q is 1",
-        "E. The product of any two primes is always odd"
-      ],
-      "answer": [
-        "A",
-        "C",
-        "D"
-      ],
-      "explanation": "A - Any integer is 6k, 6k + 1, 6k + 2, 6k + 3, 6k + 4 or 6k + 5. The forms 6k, 6k + 2 and 6k + 4 are even, and 6k + 3 is a multiple of 3, so a prime above 3 must be 6k + 1 or 6k + 5 = 6(k+1) - 1. TRUE.\nB - Take 2 and 3: 2 + 3 = 5, which is odd. The claim only holds when both primes are odd, and 2 is prime. FALSE.\nC - There is no largest prime; the primes go on forever. TRUE.\nD - Distinct primes share no prime factor, so their only common positive divisor is 1. TRUE.\nE - Take 2 x 3 = 6, which is even. Any product involving the prime 2 is even. FALSE.\nAnswer: A, C, D.",
-      "trap": "Selecting B and E by quietly assuming every prime is odd. The single exception, p = 2, breaks both: 2 + 3 = 5 is odd and 2 x 3 = 6 is even. Whenever a statement says 'primes', test p = 2 first. Note that A survives this test, because it is explicitly restricted to primes greater than 3.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "prime-properties",
-        "two-is-even-prime",
-        "6k-form"
-      ],
-      "ets_score": 2,
-      "ets_tags": [
-        "textbook_phrasing"
-      ],
-      "ets_note": "Abstract number-theory statements (6k+-1 form, infinitude of primes) read as textbook, not ETS; B and E trivial via p=2.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "spelled out greatest common divisor / least common multiple in option D",
-          "\"Select all that apply\" -> \"Indicate all such statements\""
-        ],
-        "confidence": "high"
-      },
-      "ets_option_fix": {
-        "date": "2026-10-09",
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "terminology_nonets",
-          "textbook_phrasing"
-        ],
-        "prev_note": "Uses bare GCD; 'infinitely many primes' is a proof-style fact; ETS would not ask this.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-023",
@@ -746,15 +254,7 @@
         "remainder",
         "odd-square",
         "qc"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-024",
@@ -776,15 +276,7 @@
         "prime-factorization",
         "perfect-square",
         "two-step"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-025",
@@ -800,18 +292,7 @@
         "prime-factorization",
         "inclusion-exclusion",
         "multi-step"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "grindy_computation"
-        ],
-        "prev_note": "Multi-step counting with no conceptual shortcut presented.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-039",
@@ -833,30 +314,7 @@
         "primality-test",
         "square-root-bound",
         "primes"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "textbook_phrasing",
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Textbook primality-test framing, not ETS style; hard label overstates a single sqrt-bound idea.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "removed 'up to and including a certain prime' construction",
-          "made the question target the largest prime that must be tested"
-        ],
-        "confidence": "medium"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "textbook_phrasing"
-        ],
-        "prev_note": "Meta-question about primality-test bound is textbook; ETS asks no such item. Distractors 439, 881 are filler.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-040",
@@ -872,15 +330,7 @@
         "factor-count",
         "minimization",
         "prime-exponents"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-041",
@@ -902,15 +352,7 @@
         "factor-count",
         "qc",
         "conceptual"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-042",
@@ -932,15 +374,7 @@
         "divisibility",
         "prime-divides-product",
         "counting"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-043",
@@ -955,18 +389,7 @@
       "tags": [
         "factorial-exponent",
         "prime-power-count"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Same one-formula method as the medium trailing-zeros item, yet labelled hard.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-044",
@@ -987,15 +410,7 @@
         "sum-of-factors",
         "primes",
         "qc"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-045",
@@ -1017,15 +432,7 @@
         "perfect-cube",
         "factor-count",
         "prime-exponents"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-046",
@@ -1051,15 +458,7 @@
         "odd-factor-count",
         "perfect-square",
         "must-be-true"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-047",
@@ -1075,15 +474,7 @@
         "trailing-zeros",
         "factorial-exponent",
         "exponent-of-5"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-048",
@@ -1104,25 +495,7 @@
         "gcd",
         "coprime",
         "odd-primes"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "spelled out greatest common divisor / least common multiple"
-        ],
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "terminology_nonets"
-        ],
-        "prev_note": "Uses bare 'GCD' and 'x' for multiplication; ETS spells out greatest common divisor.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-054",
@@ -1144,15 +517,7 @@
         "trailing-zeros",
         "exponent-of-5",
         "skipped-values"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-056",
@@ -1173,24 +538,7 @@
         "primality-test",
         "smallest-prime-factor",
         "qc"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "extreme_hard",
-        "work_required": "Two quick test cases (a prime n and a composite n) are enough to reach D; no deep structure needed.",
-        "confidence": "medium"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "Quick case test; extreme_hard far exceeds work required.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-057",
@@ -1207,28 +555,7 @@
         "factorial",
         "legendre-formula",
         "multi-step"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "grindy_computation"
-      ],
-      "ets_note": "Plain seven-term Legendre sum, no conceptual turn; near-duplicate method of other items in set.",
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "extreme_hard",
-        "work_required": "One application of Legendre's formula with a short sum; a single known technique with no reframing.",
-        "confidence": "medium"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "grindy_computation",
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "Legendary-factorial-exponent formula; extreme_hard overlabelled, standard Legendre drill.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-058",
@@ -1250,23 +577,7 @@
         "unique-factorization",
         "exponent-parity",
         "must-be-true"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "extreme_hard",
-        "work_required": "Parity of exponent in a^2 forces the p-exponent of a^2 to be at least 4; needs structural reasoning over three statements like the hard anchor NUM-PRF-046.",
-        "confidence": "medium"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [
-          "difficulty_mislabelled"
-        ],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-059",
@@ -1292,33 +603,7 @@
         "factor-count",
         "semiprime",
         "primality-test"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Factoring five small numbers labelled extreme_hard; easier than several hard items in the set.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "replaced 187, 221, 231, 289, 703 with 77, 91, 105, 121, 133 (same truth pattern, same letters A, B, E; ascending) so factoring is by small primes",
-          "'positive divisors' and 'Indicate all such integers.' wording"
-        ],
-        "confidence": "medium"
-      },
-      "ets_option_fix": {
-        "date": "2026-10-09",
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "grindy_computation"
-        ],
-        "prev_note": "Requires trial-factoring three-digit numbers; no insight.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "NUM-PRF-060",
@@ -1339,15 +624,7 @@
         "factor-count",
         "prime-exponents",
         "cases"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     }
   ],
   "meta": {

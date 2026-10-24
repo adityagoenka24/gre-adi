@@ -56,14 +56,14 @@ PRO_TRUST = 'One payment &middot; 1-year access &middot; 7-day money-back guaran
 
 # handbook section number -> (Pro topic name, questions in that topic, example subtopics)
 BANK = {
-    '1': ('Arithmetic', 1320, 'Percentages, Ratios &amp; Proportions, Rates &amp; Unit Conversions'),
-    '2': ('Number Properties', 1100, 'GCD &amp; LCM, Divisibility Rules, Consecutive Integers'),
-    '3': ('Algebra', 1200, 'Inequalities, Quadratic Equations, Functions'),
-    '4': ('Word Problems', 470, 'Work &amp; Rate, Mixtures, Distance-Speed-Time'),
-    '5': ('Geometry', 1780, 'Circles, Triangles, Special Triangles'),
-    '6': ('Coordinate Geometry', 740, 'Slope &amp; Intercepts, Distance Between Points, Quadratic Graphs'),
-    '7': ('Statistics &amp; Probability', 1120, 'Mean, Median &amp; Mode, Basic Probability, Combinations'),
-    '8': ('Data Interpretation', 580, 'Bar Graphs, Pie Charts, Percentage Change from Graphs'),
+    '1': ('Arithmetic', 1537, 'Percentages, Ratios &amp; Proportions, Rates &amp; Unit Conversions'),
+    '2': ('Number Properties', 1286, 'GCD &amp; LCM, Divisibility Rules, Consecutive Integers'),
+    '3': ('Algebra', 1438, 'Inequalities, Quadratic Equations, Functions'),
+    '4': ('Word Problems', 559, 'Work &amp; Rate, Mixtures, Distance-Speed-Time'),
+    '5': ('Geometry', 1893, 'Circles, Triangles, Special Triangles'),
+    '6': ('Coordinate Geometry', 839, 'Slope &amp; Intercepts, Distance Between Points, Quadratic Graphs'),
+    '7': ('Statistics &amp; Probability', 1420, 'Mean, Median &amp; Mode, Basic Probability, Combinations'),
+    '8': ('Data Interpretation', 569, 'Bar Graphs, Pie Charts, Percentage Change from Graphs'),
 }
 
 
@@ -81,7 +81,7 @@ def section_callout(num):
     """The 'practice this' box at the end of a section. Screen only."""
     if num == '9':
         title = 'Drill these 25 traps until they stop working on you'
-        body = ('Every one of the 8,390+ Pro questions is trap-tagged, and every wrong answer names '
+        body = ('Every one of the 9,629 Pro questions is trap-tagged, and every wrong answer names '
                 'the exact trap you fell into &mdash; the same traps this section lists.')
     else:
         topic, count, subs = BANK[num]
@@ -117,7 +117,7 @@ BRIDGE = f"""
       <p class="hb-bridge-sub">Knowing a formula and applying it in ninety seconds, with a trap sitting in
       the answer choices, are two different skills. The question bank is where the second one is built.</p>
       <div class="hb-bridge-grid">
-        <div><b>8,390+ trap-tagged questions</b>
+        <div><b>9,629 trap-tagged questions</b>
           <span>All 95 subtopics, every difficulty level. A wrong answer shows the exact trap you fell
           into &mdash; the same ones named in Section 9.</span></div>
         <div><b>10 full-length mocks</b>
@@ -130,14 +130,14 @@ BRIDGE = f"""
         {pro_link('bridge', 'See Pro plans &mdash; from &#8377;399')}
         {free_link('bridge')}
       </div>
-      <p class="hb-bridge-trust">{PRO_TRUST}. Built by a 170/170 GRE Quant coach.</p>
+      <p class="hb-bridge-trust">{PRO_TRUST}.</p>
     </section>
 """
 
 RAIL_CARD = f"""
         <div class="hb-rail-pro">
           <b>Done revising?</b>
-          <span>Practice it with 8,390+ trap-tagged questions.</span>
+          <span>Practice it with 9,629 trap-tagged questions.</span>
           {pro_link('rail', 'See Pro plans', 'btn btn-primary btn-sm')}
         </div>
 """
@@ -246,7 +246,7 @@ def shell(body, extra_head=''):
               '"educationalLevel":"Graduate admissions test preparation",'
               '"teaches":"GRE Quantitative Reasoning",'
               '"isAccessibleForFree":true,'
-              '"author":{"@type":"Person","name":"Aditya Goenka"},'
+              '"author":{"@type":"Organization","name":"GRE Quant Pro"},'
               '"provider":{"@type":"Organization","name":"GRE Quant Pro",'
               f'"url":"{ORIGIN}"}}}}')
 
@@ -340,7 +340,7 @@ def shell(body, extra_head=''):
       <a href="/pricing.html">Pricing</a>
       <a href="mailto:goenka.aditya.kol@gmail.com">Contact</a>
     </div>
-    <div class="footer-copy">Built by Coach Aditya Goenka · <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a></div>
+    <div class="footer-copy">Built and maintained by the GRE Quant Pro team · <a href="mailto:goenka.aditya.kol@gmail.com">Contact us</a></div>
   </div>
 </footer>
 
@@ -756,7 +756,7 @@ def main():
     # stripped from the document body to avoid saying it all twice.
     html = re.sub(r'^<h1>.*?</h1>\s*', '', html, count=1, flags=re.S)
     html = re.sub(r'^<p><strong>Every formula.*?</p>\s*', '', html, count=1, flags=re.S)
-    html = re.sub(r'^<p>Coach Aditya Goenka.*?</p>\s*', '', html, count=1, flags=re.S)
+    html = re.sub(r'^<p>The GRE Quant Pro team.*?</p>\s*', '', html, count=1, flags=re.S)
     html = re.sub(r'^<hr\s*/?>\s*', '', html, count=1)
 
     html, toc = add_ids_and_toc(html)

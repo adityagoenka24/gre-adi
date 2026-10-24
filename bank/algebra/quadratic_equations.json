@@ -3,168 +3,6 @@
   "subtopic": "Quadratic Equations",
   "questions": [
     {
-      "id": "ALG-INQ-054",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "x and y are real numbers with x^2 + y^2 <= 1. What is the maximum possible value of 3x + 4y ?",
-      "options": [
-        "A. 3",
-        "B. 4",
-        "C. 5",
-        "D. 7",
-        "E. 12"
-      ],
-      "answer": "C",
-      "explanation": "Step 1 — the constraint is a disc of radius 1 centered at the origin, and 3x + 4y is being maximized over it. The maximum is attained on the boundary circle x^2 + y^2 = 1, since moving outward from any interior point in the direction that increases 3x + 4y keeps increasing it.\nStep 2 — bound the expression. For any real x and y, (3x + 4y)^2 <= (3^2 + 4^2)(x^2 + y^2). This is the Cauchy-Schwarz inequality, and it can be verified directly: (3^2 + 4^2)(x^2 + y^2) - (3x + 4y)^2 = 9x^2 + 9y^2 + 16x^2 + 16y^2 - 9x^2 - 24xy - 16y^2 = 16x^2 - 24xy + 9y^2 = (4x - 3y)^2, which is never negative.\nStep 3 — so (3x + 4y)^2 <= 25 * (x^2 + y^2) <= 25 * 1 = 25, giving 3x + 4y <= 5.\nStep 4 — the bound is reached when the leftover square (4x - 3y)^2 is zero and the constraint is tight, that is 4x = 3y with x^2 + y^2 = 1. Take x = 3/5 and y = 4/5: then 4(3/5) = 12/5 = 3(4/5), and (3/5)^2 + (4/5)^2 = 9/25 + 16/25 = 1.\nStep 5 — at that point 3x + 4y = 9/5 + 16/5 = 25/5 = 5, so the bound 5 is attained and is the maximum.\nCheck: try some other boundary points and confirm none beats 5. x = 1, y = 0 gives 3. x = 0, y = 1 gives 4. x = 0.8, y = 0.6 gives 2.4 + 2.4 = 4.8. x = 0.6, y = 0.8 gives 1.8 + 3.2 = 5. Correct.\nAnswer: C.",
-      "trap": "Maximising the two terms separately, taking x = 1 and y = 1 to get 3 + 4 = 7, choice D. That point has x^2 + y^2 = 2, which violates the constraint: x and y cannot both reach 1 at once. Choice E, 12, multiplies the coefficients instead of combining them. Choices B and A are the values at the two axis points, 4 at (0, 1) and 3 at (1, 0), each obtained by setting one variable to zero and never checking a mixed point.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "constrained-maximum",
-        "cauchy-schwarz",
-        "boundary"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "ALG-INQ-055",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "x and y are nonzero real numbers with x + 2y < -10, x - y > -1, and 1/x > 1/y.\n\nQuantity A: x\nQuantity B: y",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — first eliminate x from the two linear conditions. Inequalities may be added only when they point the same way, so turn the second one around: multiply x - y > -1 by -1 and reverse the sign, giving -x + y < 1.\nStep 2 — both now read 'less than', so they may be added to x + 2y < -10 part by part: (x + 2y) + (-x + y) < -10 + 1, and the x terms cancel to give 3y < -9.\nStep 3 — divide by the positive 3, no flip: y < -3. So y is negative and 1/y is negative.\nStep 4 — now use 1/x > 1/y. Do NOT read it as y > x. Taking reciprocals reverses an inequality only when both sides have the SAME sign; here the sign of x is still unknown, so split into cases.\nStep 5 — case x > 0. Then 1/x is positive and 1/y is negative, so 1/x > 1/y holds automatically and adds no restriction. In this case x > 0 > y, so Quantity A is greater.\nStep 6 — case x < 0. Then x and y are both negative, so the product xy is positive. Multiplying 1/x > 1/y by the positive xy preserves the sign and gives y > x, so Quantity B is greater.\nStep 7 — both cases really occur, so check a pair in each. x = 1, y = -10: x + 2y = 1 - 20 = -19 < -10, x - y = 1 + 10 = 11 > -1, and 1/x = 1 while 1/y = -0.1, so 1 > -0.1. Here Quantity A is greater. x = -5, y = -4.5: x + 2y = -5 - 9 = -14 < -10, x - y = -5 + 4.5 = -0.5 > -1, and 1/x = -0.2 while 1/y = -0.2222, so -0.2 > -0.2222. Here Quantity B is greater.\nStep 8 — two admissible pairs give opposite relationships, so the comparison is not determined.\nCheck: both witness pairs were tested against all three stated conditions and both pass, and they differ in the sign of x, which is exactly the freedom the third condition fails to remove. Correct.\nAnswer: D.",
-      "trap": "Reading 1/x > 1/y as y > x and answering B. That reversal is legal only when x and y share a sign. Here the first two conditions force y < -3, but they leave x free to be positive, and a positive x makes 1/x positive and 1/y negative, so the third condition holds with x far greater than y. Answering A comes from finding only the x > 0 branch and stopping. Subtracting the second inequality from the first to eliminate x is never a legal move; flip it and add instead, which is what gives 3y < -9.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "qc",
-        "reciprocals-across-zero",
-        "eliminate-variable"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "ALG-INQ-056",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "The set of real numbers x for which (x² − 4)(x² − 1) < 0 is a union of intervals. What is the sum of the lengths of these intervals?",
-      "options": [
-        "A. 2",
-        "B. 3",
-        "C. 4",
-        "D. 6",
-        "E. 8"
-      ],
-      "answer": "A",
-      "explanation": "Factor: (x - 2)(x + 2)(x - 1)(x + 1) < 0, with roots at -2, -1, 1, 2. Testing the sign in each region, the product is negative only on -2 < x < -1 and 1 < x < 2. Each interval has length 1, so the total length is L = 1 + 1 = 2.",
-      "trap": "Students find the correct solution regions (-2,-1) and (1,2) but compute the total length as the distance from -2 to 2 = 4, forgetting to subtract the middle gap from -1 to 1. They choose option C (L=4).",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "quadratic",
-        "multi-step",
-        "range",
-        "factoring"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "extreme_hard",
-        "work_required": "Sign analysis of a quartic product with four roots, then sum interval lengths.",
-        "confidence": "medium"
-      },
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "replaced 'how many real solutions' + parenthetical redefinition with a single clear question about total length",
-          "dropped 'L =' from options"
-        ],
-        "confidence": "high"
-      },
-      "ets_option_fix": {
-        "date": "2026-10-09",
-        "confidence": "high"
-      },
-      "ets_option_order": {
-        "date": "2026-10-11",
-        "from": [
-          "A",
-          "D",
-          "C",
-          "B",
-          "E"
-        ],
-        "note": "options sorted ascending; answer and letter references recomputed"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 1,
-        "prev_tags": [
-          "ambiguous_stem",
-          "options_unordered",
-          "telegraphed_method",
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "Stem asks 'how many solutions' (infinite) then redefines as length; options unordered; method telegraphed.",
-        "agree_with_key": true
-      }
-    },
-    {
-      "id": "ALG-INQ-061",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "Which of the following inequalities has a solution set that is a bounded interval, that is, an interval of finite length? Select all that apply.",
-      "options": [
-        "A. x^2 - 4 < 0",
-        "B. x^2 + 2x - 8 > 0",
-        "C. -6 < 5 - 2x < 4",
-        "D. x^3 - x < 0",
-        "E. 1/(x - 2) > 3"
-      ],
-      "answer": [
-        "A",
-        "C",
-        "E"
-      ],
-      "explanation": "Step 1 — solve each one and describe the shape of its solution set, not just its endpoints.\nA. x^2 - 4 < 0 factors as (x - 2)(x + 2) < 0. Critical points -2 and 2. Testing x = 0 gives (-2)(2) = -4, negative, so the middle region works; testing x = 3 gives (1)(5) = 5, positive. Solution: -2 < x < 2, a single interval of length 4. TRUE.\nB. x^2 + 2x - 8 > 0 factors as (x + 4)(x - 2) > 0. Critical points -4 and 2. Testing x = 0 gives (4)(-2) = -8, negative, so the middle fails; testing x = -5 gives (-1)(-7) = 7 and x = 3 gives (7)(1) = 7, both positive. Solution: x < -4 or x > 2, two rays of infinite length. FALSE.\nC. -6 < 5 - 2x < 4 is a compound inequality. Subtract 5 from all three parts: -11 < -2x < -1. Divide all three parts by -2 and reverse BOTH signs, which also swaps which end is which: 1/2 < x < 11/2. Solution: 0.5 < x < 5.5, a single interval of length 5. TRUE.\nD. x^3 - x < 0 factors as x(x - 1)(x + 1) < 0. Critical points -1, 0 and 1. Testing x = -2 gives (-2)(-3)(-1) = -6, negative; x = -0.5 gives (-0.5)(-1.5)(0.5) = 0.375, positive; x = 0.5 gives (0.5)(-0.5)(1.5) = -0.375, negative; x = 2 gives (2)(1)(3) = 6, positive. Solution: x < -1 or 0 < x < 1. One piece is a ray, so the set is not a bounded interval. FALSE.\nE. 1/(x - 2) > 3. The denominator's sign must be settled first. If x - 2 < 0 the left side is negative and can never exceed 3, so every solution has x - 2 > 0. Multiplying by the now positive x - 2 keeps the sign: 1 > 3(x - 2), so 1 > 3x - 6, so 7 > 3x and x < 7/3. Combining with x > 2: 2 < x < 7/3, an interval of length 1/3. TRUE.\nCheck: for each TRUE option name a number outside its set to confirm the set really does stop. A stops by x = 2, since 2^2 - 4 = 0 is not < 0; C stops by x = 5.5, since 5 - 11 = -6 is not > -6; E stops by x = 2.5, since 1/(0.5) = 2 is not > 3. For each FALSE option name an arbitrarily large solution: B is satisfied by x = 1000, and D by x = -1000. Correct.\nAnswer: A, C and E.",
-      "trap": "Rejecting E because multiplying by x - 2 looks illegal while the sign of x - 2 is unknown; the inequality itself forces x - 2 > 0, since 1/(x - 2) is negative whenever x < 2 and a negative number is never greater than 3. Multiplying by x - 2 without settling that sign gives x < 7/3 on its own, an unbounded ray, which makes E look false. Selecting B applies the 'outside the roots' pattern without noticing that outside the roots is exactly where the set runs to infinity. Selecting D is the subtler error: x^3 - x < 0 does contain the bounded piece 0 < x < 1, but it also contains the ray x < -1, so the full solution set is unbounded. In C, dividing -11 < -2x < -1 by -2 without reversing gives 5.5 < x < 0.5, an empty statement, which can make a bounded set look like no set at all.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "sign-chart",
-        "bounded-interval",
-        "rational-inequality"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "duplicate_stem"
-      ],
-      "ets_note": "Near-duplicate of ALG-INQ-045 in stem and in options A and B; adds D and E but same idea.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
-    },
-    {
       "id": "ALG-QDR-001",
       "difficulty": "easy",
       "type": "mcq",
@@ -183,21 +21,7 @@
       "tags": [
         "quadratic",
         "factoring"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "textbook_phrasing"
-      ],
-      "ets_note": "Bare one-step factoring drill; plain stem, not ETS-flavoured.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "textbook_phrasing"
-        ],
-        "prev_note": "Pure textbook factoring; options reasonable.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-002",
@@ -218,21 +42,7 @@
       "tags": [
         "quadratic",
         "factoring"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "textbook_phrasing"
-      ],
-      "ets_note": "One-step drill; 'x=-9 only' is filler.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "textbook_phrasing"
-        ],
-        "prev_note": "Trivial and textbook; 'only' distractors are the whole content.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-003",
@@ -247,19 +57,7 @@
       "tags": [
         "quadratic",
         "factoring"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "textbook_phrasing"
-      ],
-      "ets_note": "Trivial perfect-square drill; trap text rambles.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [],
-        "prev_note": "Plain.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-004",
@@ -280,29 +78,7 @@
       "tags": [
         "quadratic",
         "quadratic-formula"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "textbook_phrasing"
-      ],
-      "ets_note": "Plain factoring drill; explanation uses quadratic formula for a factorable quadratic.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "removed 'Using the quadratic formula'"
-        ],
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "telegraphed_method",
-          "textbook_phrasing"
-        ],
-        "prev_note": "Stem names the method ('Using the quadratic formula'); ETS would not.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-005",
@@ -323,32 +99,7 @@
       "tags": [
         "quadratic",
         "vieta-formulas"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "trap_mismatch"
-      ],
-      "ets_note": "Trap says choose C (5/2); 5/2 is option D, C is -3/2. Plain Vieta recall.",
-      "ets_option_order": {
-        "date": "2026-10-11",
-        "from": [
-          "B",
-          "D",
-          "E",
-          "C",
-          "A"
-        ],
-        "note": "options sorted ascending; answer and letter references recomputed"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "options_unordered"
-        ],
-        "prev_note": "Numeric options 5,-5,5/2,-5/2,-3/2 not ascending.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-006",
@@ -369,40 +120,7 @@
       "tags": [
         "quadratic",
         "vieta-formulas"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "trap_mismatch"
-      ],
-      "ets_note": "Trap says choose A (7/3); A is -7/3, 7/3 is E. Plain Vieta recall.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "tightened 'For the quadratic equation... what is'"
-        ],
-        "confidence": "high"
-      },
-      "ets_option_order": {
-        "date": "2026-10-11",
-        "from": [
-          "B",
-          "D",
-          "C",
-          "E",
-          "A"
-        ],
-        "note": "options sorted ascending; answer and letter references recomputed"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "options_unordered",
-          "textbook_phrasing"
-        ],
-        "prev_note": "Numeric options not ascending; textbook Vieta item.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-007",
@@ -424,32 +142,7 @@
         "discriminant",
         "repeated-root",
         "real-solutions"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "removed 'discriminant' (telegraphed) and the two-part answer format; stem now asks only the count",
-          "D = 0 filler options replaced with plain counts; answer stays B"
-        ],
-        "confidence": "high"
-      },
-      "ets_option_fix": {
-        "date": "2026-10-09",
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "telegraphed_method",
-          "textbook_phrasing",
-          "filler_distractors"
-        ],
-        "prev_note": "Names discriminant; three options share D=0 as filler; ETS does not ask it this way.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-008",
@@ -471,21 +164,7 @@
         "zero-product",
         "lost-root",
         "factoring-to-solve"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "textbook_phrasing"
-      ],
-      "ets_note": "Drill-level; stem 'solution set' is textbook.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "textbook_phrasing"
-        ],
-        "prev_note": "'Solution set' phrasing textbook; trivial.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-009",
@@ -507,30 +186,7 @@
         "quadratic",
         "discriminant",
         "conceptual"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "textbook_phrasing"
-      ],
-      "ets_note": "Drill-level discriminant check; 'infinitely many' is filler.",
-      "ets_lastmile": {
-        "date": "2026-10-10",
-        "defect": "banned_option",
-        "changes": [
-          "replaced 'Cannot be determined' with 'Two real solutions, both negative'",
-          "removed off-syllabus mention of complex solutions from explanation"
-        ],
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "malformed_type"
-        ],
-        "prev_note": "'Cannot be determined' (E) in single-answer MCQ violates 1.4; option D is filler.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-010",
@@ -546,15 +202,7 @@
         "vieta",
         "sum-of-roots",
         "product-of-roots"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-016",
@@ -576,29 +224,7 @@
         "quadratic",
         "vieta-formulas",
         "two-step"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_option_order": {
-        "date": "2026-10-11",
-        "from": [
-          "D",
-          "A",
-          "B",
-          "E",
-          "C"
-        ],
-        "note": "options sorted ascending; answer and letter references recomputed"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "options_unordered"
-        ],
-        "prev_note": "Numeric options -1,1,4,-4,3 not in ascending order.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-017",
@@ -620,31 +246,7 @@
         "quadratic",
         "factoring",
         "two-step"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "filler_distractors"
-      ],
-      "ets_note": "Option E (7/4 +- sqrt(25/4)) is an implausible formula-shaped filler distractor.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "removed 'by factoring'",
-          "ETS-style stem"
-        ],
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "textbook_phrasing",
-          "telegraphed_method",
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "'Solve by factoring' names the method; one-step item labelled medium.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-018",
@@ -666,15 +268,7 @@
         "vieta-formulas",
         "qc",
         "conceptual"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-019",
@@ -690,15 +284,7 @@
         "quadratic",
         "discriminant",
         "two-step"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-020",
@@ -720,18 +306,7 @@
         "quadratic",
         "word-problem-setup",
         "factoring"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "Solve-by-inspection; medium arguably easy. Option 7 fine; adequate but plain.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-021",
@@ -753,15 +328,7 @@
         "discriminant",
         "repeated-root",
         "parameter-condition"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-022",
@@ -782,15 +349,7 @@
         "discriminant",
         "root-difference",
         "qc"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-023",
@@ -812,18 +371,7 @@
         "quadratic",
         "word-problem-setup",
         "factoring"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "trap_mismatch"
-      ],
-      "ets_note": "Standard garden problem; trap for B (8) is incoherent and 10/12/15 are filler.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-024",
@@ -839,15 +387,7 @@
         "vieta",
         "sum-of-squares",
         "roots-without-solving"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-025",
@@ -869,15 +409,7 @@
         "quadratic-formula",
         "set-to-zero",
         "irrational-roots"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-039",
@@ -899,18 +431,7 @@
         "quadratic",
         "vieta-formulas",
         "multi-step"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "textbook_phrasing"
-        ],
-        "prev_note": "Roots-sum Vieta identity expressions; 'express in terms of' textbook and beyond GRE.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-040",
@@ -926,18 +447,7 @@
         "vieta",
         "algebraic-expansion",
         "product-of-roots"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Two-step expansion with ab=1; closer to medium than hard.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-041",
@@ -959,15 +469,7 @@
         "discriminant",
         "sign-of-roots",
         "counting-integers"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-042",
@@ -988,15 +490,7 @@
         "two-roots",
         "qc",
         "case-check"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-043",
@@ -1018,15 +512,7 @@
         "quadratic-in-disguise",
         "substitution",
         "both-branches"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-044",
@@ -1042,15 +528,7 @@
         "vieta",
         "named-roots",
         "missing-negative-root"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-045",
@@ -1072,24 +550,7 @@
         "quadratic",
         "vieta-formulas",
         "conceptual"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "hard",
-        "work_required": "Product of roots equals c, so reciprocal roots give c=1.",
-        "confidence": "high"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "One-step Vieta result labelled hard; also ignores real-root condition.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-046",
@@ -1111,18 +572,7 @@
         "vieta-formulas",
         "qc",
         "multi-step"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Difference is just 2ab=12>0; quick, so hard label overstated.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-047",
@@ -1144,18 +594,7 @@
         "extraneous-roots",
         "radical-equation",
         "check-in-original"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Classic extraneous-root item, medium work; option C is filler.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-048",
@@ -1181,15 +620,7 @@
         "discriminant",
         "vieta",
         "must-be-true"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-054",
@@ -1211,24 +642,7 @@
         "reciprocal-roots",
         "vieta",
         "build-from-roots"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "extreme_hard",
-        "work_required": "Vieta on a non-factorable quadratic, transform to reciprocal roots, rebuild monic quadratic; comparable to the hard two-quadratic anchor.",
-        "confidence": "medium"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 3,
-        "prev_tags": [
-          "difficulty_mislabelled"
-        ],
-        "prev_note": "Two Vieta steps; hard, not extreme_hard.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-055",
@@ -1244,18 +658,7 @@
         "vieta",
         "power-sums",
         "nested-identity"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Two applications of one identity; extreme_hard label overstated.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-056",
@@ -1276,16 +679,7 @@
         "discriminant",
         "constrained-minimum",
         "vieta"
-      ],
-      "ets_score": 3,
-      "ets_tags": [],
-      "ets_note": "Quantity A is a verbal constrained-minimum; convoluted for a QC, key trap text is muddled.",
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-057",
@@ -1307,15 +701,7 @@
         "discriminant",
         "vieta",
         "sign-of-roots"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-058",
@@ -1331,30 +717,7 @@
         "quadratic",
         "vieta-formulas",
         "multi-step"
-      ],
-      "ets_score": 3,
-      "ets_tags": [
-        "difficulty_mislabelled"
-      ],
-      "ets_note": "Routine chain of power sums; textbook-style stem and extreme_hard label overstated.",
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "'Find the value' → 'What is the value'",
-          "replaced the term-by-term recurrence with a two-product shortcut"
-        ],
-        "confidence": "medium"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "grindy_computation",
-          "terminology_nonets"
-        ],
-        "prev_note": "Newton-sum recurrence grind, 'Find the value' wording; beyond GRE scope in spirit.",
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-059",
@@ -1380,15 +743,7 @@
         "discriminant",
         "integer-constraints",
         "select-all"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 4,
-        "prev_tags": [],
-        "agree_with_key": true
-      }
+      ]
     },
     {
       "id": "ALG-QDR-060",
@@ -1410,35 +765,7 @@
         "quadratic",
         "vieta-formulas",
         "multi-step"
-      ],
-      "ets_score": 4,
-      "ets_tags": [],
-      "ets_difficulty_recal": {
-        "date": "2026-10-08",
-        "was": "extreme_hard",
-        "work_required": "Compute (x+y)^2 and (x-y)^2 from the given sums then square each; two chained identities.",
-        "confidence": "medium"
-      },
-      "ets_rewrite": {
-        "date": "2026-10-09",
-        "changes": [
-          "filler options replaced by named expansion errors, sorted ascending; ANSWER LETTER MOVES from A to D (value 272 unchanged)",
-          "trap rewritten (old one described the correct value)",
-          "note: 'extreme_hard' looks over-labelled"
-        ],
-        "confidence": "medium"
-      },
-      "ets_rescore": {
-        "date": "2026-10-19",
-        "prev_score": 2,
-        "prev_tags": [
-          "options_unordered",
-          "difficulty_mislabelled",
-          "trap_mismatch"
-        ],
-        "prev_note": "Numeric options not ascending; two-step item labelled extreme_hard; trap describes the correct value.",
-        "agree_with_key": true
-      }
+      ]
     }
   ],
   "meta": {

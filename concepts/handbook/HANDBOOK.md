@@ -1,7 +1,7 @@
 # GRE Quant — Final Revision Handbook
 
 **Every formula, rule and trap in GRE Quant, in one place.**
-Coach Aditya Goenka · GRE Quant Pro
+The GRE Quant Pro team
 
 ---
 

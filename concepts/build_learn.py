@@ -192,7 +192,7 @@ def shell(title, description, canonical, body, extra_head='', extra_js=''):
       <a href="/pricing.html">Pricing</a>
       <a href="mailto:goenka.aditya.kol@gmail.com">Contact</a>
     </div>
-    <div class="footer-copy">Built by Coach Aditya Goenka · <a href="mailto:goenka.aditya.kol@gmail.com">goenka.aditya.kol@gmail.com</a></div>
+    <div class="footer-copy">Built and maintained by the GRE Quant Pro team · <a href="mailto:goenka.aditya.kol@gmail.com">Contact us</a></div>
   </div>
 </footer>
 
@@ -269,7 +269,7 @@ def capsule_page(c, prev_c, next_c):
             f'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>'
             f'<h2>The rest of this note is part of Pro</h2>'
             f'<p>Must-know rules, three worked examples, the GRE traps, speed tricks and a '
-            f'self-check — plus every one of the 75 concept notes and all 8,390 questions.</p>'
+            f'self-check — plus every one of the 75 concept notes and all 9,629 questions.</p>'
             f'<div class="lrn-gate-btns">'
             f'<a class="btn btn-primary" href="/pricing.html" data-track="buy_pro_clicked" data-track-from="learn_gate">Get Pro — ₹499 for the year</a>'
             f'<button class="btn btn-secondary" id="lrnLogin">I already have Pro</button>'
@@ -441,7 +441,7 @@ def build_practice(taxonomy, capsules):
                 f'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>'
                 f'<h2>The rest of this sheet is part of Pro</h2>'
                 f'<p>All 30 questions, the answer key and full worked solutions with '
-                f'every trap named — plus 75 concept notes and 8,390 questions.</p>'
+                f'every trap named — plus 75 concept notes and 9,629 questions.</p>'
                 f'<div class="lrn-gate-btns">'
                 f'<a class="btn btn-primary" href="/pricing.html" data-track="buy_pro_clicked" data-track-from="learn_gate">Get Pro — \u20b9499 for the year</a>'
                 f'<button class="btn btn-secondary" id="lrnLogin">I already have Pro</button>'

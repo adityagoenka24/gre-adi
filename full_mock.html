@@ -11,15 +11,15 @@
 <meta name="robots" content="index, follow">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="GRE Quant Pro">
-<meta property="og:title" content="GRE Quant Pro — Free Mocks — Coach Aditya Goenka">
+<meta property="og:title" content="GRE Quant Pro — Free Mocks — our coaching team">
 <meta property="og:description" content="Take a free full-length GRE Quant mock in a pixel-accurate ETS-replica interface. Get an instant diagnosis of your weakest subtopics and the trap pattern behind your errors.">
 <meta property="og:url" content="https://grequantpro.com/full_mock.html">
 <meta property="og:image" content="https://grequantpro.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="GRE Quant Pro — Free Mocks — Coach Aditya Goenka">
+<meta name="twitter:title" content="GRE Quant Pro — Free Mocks — our coaching team">
 <meta name="twitter:description" content="Take a free full-length GRE Quant mock in a pixel-accurate ETS-replica interface. Get an instant diagnosis of your weakest subtopics and the trap pattern behind your errors.">
 <meta name="twitter:image" content="https://grequantpro.com/og-image.png">
-<title>GRE Quant Pro — Free Mocks — Coach Aditya Goenka</title>
+<title>GRE Quant Pro — Free Mocks — our coaching team</title>
 <link rel="stylesheet" href="gre-exam-theme.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
@@ -31,13 +31,14 @@
   .gre-svg{text-align:center;margin:8px 0 26px;}
   .gre-svg svg{max-width:100%;}
 </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 <body>
 <div class="app">
   <div class="app-header">
     <div class="logo">
       <h1>GRE Quant <span>Pro</span></h1>
-      <p>Full Mock Tests · Coach Aditya Goenka</p>
+      <p>Full Mock Tests · our coaching team</p>
     </div>
     <span class="badge-free">FREE MOCKS</span>
   </div>
@@ -55,6 +56,7 @@
     <h2 class="section-title">Free Mock Tests</h2>
     <p class="section-sub">2 full-length ETS-style GRE Quant mocks · Section 1: 12 Q / 21 min · Section 2: 15 Q / 26 min · Adaptive S2 · Real-GRE test interface</p>
     <div class="mocks-grid" id="mocks-grid"></div>
+    <div id="mock-history" style="margin-top:28px"></div>
 
     <div class="result-upgrade" style="margin-top:32px;">
       <div class="ru-inner">
@@ -93,7 +95,7 @@
             <div class="ru-price-vs">vs Magoosh ₹10,000+/yr · Manhattan ₹15,000+/yr</div>
             <div class="ru-features" style="margin-top:14px;">
               <div class="ru-feat">8 Pro mocks (Mocks 3–10)</div>
-              <div class="ru-feat">95 subtopics · 8,390+ questions</div>
+              <div class="ru-feat">95 subtopics · 9,629 questions</div>
               <div class="ru-feat">Trap analysis on every question</div>
               <div class="ru-feat">All future content included</div>
             </div>
@@ -116,7 +118,7 @@
       <h2 id="reg-mock-title">Mock Test 1</h2>
       <p>Enter your details to begin. Your result will be saved for review.</p>
       <div class="form-group">
-        <label for="reg-name">Your Name</label>
+        <label for="reg-name">Your Name <span style="font-weight:400;color:var(--gre-text2)">(optional — leave blank to start as Guest)</span></label>
         <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name">
       </div>
       <div class="form-group">
@@ -181,7 +183,7 @@
         </svg>
         <div class="score-ring-label">
           <div class="score-val" id="res-score-val">—</div>
-          <div class="score-sub">CORRECT</div>
+          <div class="score-sub" id="res-score-sub">EST. Q SCORE</div>
         </div>
       </div>
     </div>
@@ -191,13 +193,14 @@
     <div class="diagnosis-card" id="diagnosis-card"></div>
     <div class="result-upgrade" id="result-upgrade"></div>
     <div class="result-actions">
-      <button class="btn btn-ghost" onclick="downloadResult()">Download Result</button>
+      <button class="btn btn-primary" onclick="downloadResultPDF()">📄 Download PDF report</button>
+      <button class="btn btn-ghost" onclick="downloadResult()">Raw data (JSON)</button>
       <button class="btn btn-outline" onclick="reviewAnswers()">Review All Answers</button>
       <button class="btn btn-primary" onclick="goTo('screen-select')">← All Mocks</button>
     </div>
     <div class="review-section" id="review-section" style="display:none;">
       <h3>Question Review <button class="review-toggle" onclick="toggleReview()">hide</button></h3>
-      <div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into the result file you download and isn't saved anywhere else. <span id="le-count"></span></div>
+      <div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into your PDF report, the raw data file, and your attempt history on this device. <span id="le-count"></span></div>
       <div class="review-list" id="review-list"></div>
     </div>
   </div>
@@ -789,6 +792,104 @@ function showBreak() {
   goTo('screen-break');
 }
 
+// ─── SCORE ESTIMATION ────────────────────────────────────────────────────────
+// A 27-question mock cannot reproduce the real adaptive algorithm, so we
+// difficulty-weight the raw accuracy and map it onto the 130-170 Quant scale.
+// Always shown with a band, never as a single confident number.
+const DIFF_WEIGHT = { easy:1.00, medium:1.15, hard:1.35, extreme_hard:1.55 };
+const SCALE_ANCHORS = [[0,134],[0.25,145],[0.40,152],[0.50,156],[0.60,159],[0.70,162],[0.80,165],[0.90,168],[1,170]];
+const PACE_TARGET = 105; // seconds per question at real-GRE pace
+
+// Question tags are slugs ("number-properties"); show them the way the site does.
+const TOPIC_LABELS = {
+  'arithmetic':'Arithmetic', 'algebra':'Algebra', 'geometry':'Geometry',
+  'number-properties':'Number Properties', 'number_properties':'Number Properties',
+  'word-problems':'Word Problems', 'word_problems':'Word Problems',
+  'coordinate-geometry':'Coordinate Geometry', 'coordinate_geometry':'Coordinate Geometry',
+  'statistics':'Statistics & Probability', 'statistics-probability':'Statistics & Probability',
+  'statistics_probability':'Statistics & Probability', 'probability':'Statistics & Probability',
+  'data-interpretation':'Data Interpretation', 'data_interpretation':'Data Interpretation',
+  'general':'General'
+};
+function topicLabel(t) {
+  if (!t) return 'General';
+  const k = String(t).toLowerCase();
+  if (TOPIC_LABELS[k]) return TOPIC_LABELS[k];
+  return String(t).replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
+}
+
+function weightedAccuracy() {
+  let num = 0, den = 0;
+  state.mockData.sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      const w = DIFF_WEIGHT[q.difficulty] || 1;
+      den += w;
+      if (checkAnswer(q, state.answers[si+1][qi])) num += w;
+    });
+  });
+  return den ? num / den : 0;
+}
+
+function estimateScaled(wacc) {
+  for (let i = 0; i < SCALE_ANCHORS.length - 1; i++) {
+    const [x0, y0] = SCALE_ANCHORS[i], [x1, y1] = SCALE_ANCHORS[i+1];
+    if (wacc >= x0 && wacc <= x1) {
+      const t = (x1 === x0) ? 0 : (wacc - x0) / (x1 - x0);
+      return Math.round(y0 + t * (y1 - y0));
+    }
+  }
+  return 170;
+}
+
+// Per-topic and per-type accuracy plus pace, used by the weakness report.
+function buildBreakdown() {
+  const byTopic = {}, byType = {};
+  state.mockData.sections.forEach((sec, si) => {
+    sec.questions.forEach((q, qi) => {
+      const ok = checkAnswer(q, state.answers[si+1][qi]);
+      const t = q.tags?.[0] || 'General';
+      const ty = q.type || 'mcq';
+      const secs = state.timings[si+1][qi] || 0;
+      (byTopic[t] = byTopic[t] || {correct:0,total:0,time:0}),
+      byTopic[t].total++, byTopic[t].time += secs, ok && byTopic[t].correct++;
+      (byType[ty] = byType[ty] || {correct:0,total:0,time:0}),
+      byType[ty].total++, byType[ty].time += secs, ok && byType[ty].correct++;
+    });
+  });
+  return { byTopic, byType };
+}
+
+// ─── ATTEMPT HISTORY (this device) ───────────────────────────────────────────
+const HIST_KEY = 'gqp_mock_history';
+function histLoad() {
+  try { const v = JSON.parse(localStorage.getItem(HIST_KEY) || '[]'); return Array.isArray(v) ? v : []; }
+  catch(e) { return []; }
+}
+function histAdd(entry) {
+  try {
+    const h = histLoad();
+    h.unshift(entry);
+    localStorage.setItem(HIST_KEY, JSON.stringify(h.slice(0, 50)));
+  } catch(e) { /* private mode / storage blocked — results still show on screen */ }
+}
+function renderHistory() {
+  const el = document.getElementById('mock-history');
+  if (!el) return;
+  const h = histLoad();
+  if (!h.length) { el.innerHTML = ''; return; }
+  const rows = h.map(a => `<div class="topic-row" style="gap:12px">
+      <span class="topic-name" style="min-width:150px">${a.mock_title || a.mock_id}</span>
+      <span style="font-size:13px;color:var(--gre-text2);min-width:110px">${a.date}</span>
+      <span style="font-weight:700;min-width:70px">${a.scaled ? 'Q ' + a.scaled : a.pct + '%'}</span>
+      <span style="font-size:13px;color:var(--gre-text2)">${a.correct}/${a.total} correct${a.weakest ? ' · weakest: ' + a.weakest : ''}</span>
+    </div>`).join('');
+  el.innerHTML = `<h3 style="margin-bottom:10px">Your attempts on this device</h3>
+    <div class="topic-bars">${rows}</div>
+    <p style="font-size:12.5px;color:var(--gre-text2);margin-top:10px">
+      Saved in this browser only — clearing site data or switching device clears it.
+      Download the PDF report after each mock to keep a permanent copy.</p>`;
+}
+
 // ─── RESULTS ─────────────────────────────────────────────────────────────────
 function showResults() {
   leReset();
@@ -801,9 +902,14 @@ function showResults() {
   document.getElementById('res-subtitle').textContent =
     `${state.student.name} · ${state.mockMeta.title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}`;
 
+  const wacc = weightedAccuracy();
+  const scaled = estimateScaled(wacc);
+  const bandLo = Math.max(130, scaled - 3), bandHi = Math.min(170, scaled + 3);
+
   setTimeout(() => {
     const arc = document.getElementById('score-arc');
-    arc.style.strokeDashoffset = 427 - (427 * pct / 100);
+    const arcPct = Math.max(0, Math.min(100, ((scaled - 130) / 40) * 100));
+    arc.style.strokeDashoffset = 427 - (427 * arcPct / 100);
     arc.style.transition = 'stroke-dashoffset 1s ease';
     if (pct >= 80) arc.style.stroke = 'var(--gre-success)';
     else if (pct >= 60) arc.style.stroke = 'var(--gre-blue)';
@@ -811,13 +917,19 @@ function showResults() {
     else arc.style.stroke = 'var(--gre-danger)';
   }, 100);
 
-  document.getElementById('res-score-val').textContent = `${totalCorrect}/${totalQs}`;
+  const scoreValEl = document.getElementById('res-score-val');
+  scoreValEl.textContent = scaled;
+  scoreValEl.style.fontSize = '44px';
 
   const totalTime = r1.timeUsed + r2.timeUsed;
-  const avgTime = Math.round(totalTime / totalQs);
+  // Per-question timings are the honest basis here: the section clock also counts
+  // time on the review screen, which is not time spent on any one question.
+  let timedSum = 0, timedCount = 0;
+  [1,2].forEach(sn => Object.values(state.timings[sn] || {}).forEach(v => { if (v > 0) { timedSum += v; timedCount++; } }));
+  const avgTime = timedCount ? Math.round(timedSum / timedCount) : Math.round(totalTime / totalQs);
   document.getElementById('res-stats').innerHTML = `
-    <div class="stat-card"><div class="stat-val">${pct}%</div><div class="stat-lbl">Accuracy</div></div>
-    <div class="stat-card"><div class="stat-val">${totalCorrect}</div><div class="stat-lbl">Correct</div></div>
+    <div class="stat-card"><div class="stat-val">${bandLo}–${bandHi}</div><div class="stat-lbl">Likely Score Range</div></div>
+    <div class="stat-card"><div class="stat-val">${totalCorrect}/${totalQs}</div><div class="stat-lbl">Correct</div></div>
     <div class="stat-card"><div class="stat-val">${totalQs - totalCorrect}</div><div class="stat-lbl">Wrong / Skipped</div></div>
     <div class="stat-card"><div class="stat-val">${avgTime}s</div><div class="stat-lbl">Avg / Question</div></div>
   `;
@@ -846,48 +958,102 @@ function showResults() {
     const tp = Math.round((v.correct/v.total)*100);
     const color = tp >= 75 ? 'var(--gre-success)' : tp >= 50 ? 'var(--gre-warning)' : 'var(--gre-danger)';
     return `<div class="topic-row">
-      <span class="topic-name">${t}</span>
+      <span class="topic-name">${topicLabel(t)}</span>
       <div class="topic-bar-bg"><div class="topic-bar-fill" style="width:${tp}%;background:${color}"></div></div>
       <span class="topic-pct">${tp}%</span>
     </div>`;
   }).join('');
   document.getElementById('topic-bars').innerHTML = `<h3>Topic Breakdown</h3>${topicHtml}`;
 
-  const diagBand = renderDiagnosis(pct, totalCorrect, totalQs);
+  const diagBand = renderDiagnosis(pct, totalCorrect, totalQs, scaled, wacc);
   renderUpgradeCTA(pct);
 
   const payload = buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2);
   payload.diagnosis = diagBand;
+  payload.estimated_scaled_score = scaled;
+  payload.weighted_accuracy = Math.round(wacc * 1000) / 1000;
   saveAttempt(payload);
+
+  histAdd({
+    mock_id: state.mockMeta.id,
+    mock_title: state.mockMeta.title,
+    date: new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}),
+    iso: new Date().toISOString(),
+    scaled, pct, correct: totalCorrect, total: totalQs,
+    weakest: state._lastWeakest || ''
+  });
+  renderHistory();
 
   goTo('screen-results');
 }
 
-function renderDiagnosis(pct, correct, total) {
-  let band, bandClass, message, steps;
-  if (pct >= 80) {
-    band='STRONG'; bandClass='strong';
-    message=`Excellent work, ${state.student.name}! You answered ${correct} out of ${total} correctly. You're performing at the 165–170 level. Focus on eliminating careless errors.`;
-    steps=['Review every wrong answer carefully — at this level, mistakes are often careless, not conceptual.','Time yourself on harder questions — efficiency is your edge.','Challenge yourself with harder mocks to keep improving.'];
-  } else if (pct >= 65) {
-    band='CLOSE'; bandClass='close';
-    message=`Good performance, ${state.student.name}. You got ${correct}/${total} right. You're in the 158–165 band. Targeted practice on weak topics will push you higher.`;
-    steps=['Identify the 2–3 topics where you missed the most and drill subtopic practice.','Review medium-difficulty questions you got wrong — biggest score gains are here.','Work on time management — slow easy questions cost you hard question attempts.'];
-  } else if (pct >= 50) {
-    band='NEEDS FOCUS'; bandClass='focus';
-    message=`You got ${correct}/${total} correct, ${state.student.name}. You're at the 150–158 level. Clear concept gaps exist — focused fundamentals study will make a big difference.`;
-    steps=['Go back to basics: arithmetic, algebra, and number properties first.','Spend 2 weeks on subtopic drills before attempting more full mocks.','Focus on understanding why wrong answers are wrong, not just the right answer.'];
-  } else {
-    band='HIGH RISK'; bandClass='risk';
-    message=`You got ${correct}/${total} right, ${state.student.name}. This is a foundation-building phase. Don't be discouraged — everyone starts somewhere.`;
-    steps=['Start with easy-only practice to build confidence and concept clarity.','Read each explanation even for questions you got right — method matters.','Set a goal: improve by 10% on the next mock before tackling harder ones.'];
+function renderDiagnosis(pct, correct, total, scaled, wacc) {
+  const { byTopic, byType } = buildBreakdown();
+  const TYPE_LABEL = { mcq:'Multiple choice', multiple_answer:'Multiple-answer', numeric_entry:'Numeric entry', qc:'Quantitative Comparison', quantitative_comparison:'Quantitative Comparison' };
+
+  // Band kept for the submission payload and the colour treatment.
+  let band, bandClass;
+  if (scaled >= 165)      { band='STRONG';      bandClass='strong'; }
+  else if (scaled >= 158) { band='CLOSE';       bandClass='close';  }
+  else if (scaled >= 150) { band='NEEDS FOCUS'; bandClass='focus';  }
+  else                    { band='HIGH RISK';   bandClass='risk';   }
+
+  // Weakest topic with at least 2 questions, by accuracy then by volume missed.
+  const topics = Object.entries(byTopic).filter(([,v]) => v.total >= 2);
+  topics.sort((a,b) => (a[1].correct/a[1].total) - (b[1].correct/b[1].total) || (b[1].total - a[1].total));
+  const weakest = topics[0] || null;
+
+  // Slowest area against real-GRE pace.
+  const paced = Object.entries(byTopic).filter(([,v]) => v.total >= 2)
+    .map(([t,v]) => [t, v, v.time / v.total]);
+  paced.sort((a,b) => b[2] - a[2]);
+  const slowest = paced[0] || null;
+
+  // Weakest question format.
+  const types = Object.entries(byType).filter(([,v]) => v.total >= 2);
+  types.sort((a,b) => (a[1].correct/a[1].total) - (b[1].correct/b[1].total));
+  const weakType = types[0] || null;
+
+  const lines = [];
+  if (weakest) {
+    const [t, v] = weakest;
+    const acc = Math.round((v.correct/v.total)*100);
+    const avg = Math.round(v.time/v.total);
+    lines.push(`<strong>${topicLabel(t)}</strong> is your weakest area: ${v.correct} of ${v.total} correct (${acc}%), averaging ${avg}s a question.`);
   }
+  if (slowest && Math.round(slowest[2]) > PACE_TARGET) {
+    const [t,,avg] = slowest;
+    const over = Math.round(avg - PACE_TARGET);
+    lines.push(`You are slowest on <strong>${topicLabel(t)}</strong> — ${Math.round(avg)}s a question against a ${PACE_TARGET}s target, ${over}s over. Across a full section that is roughly ${Math.max(1, Math.round(over * slowest[1].total / 60))} minute(s) you did not have for the hard questions.`);
+  }
+  if (weakType && weakType[1].correct/weakType[1].total < 0.7) {
+    const [ty, v] = weakType;
+    lines.push(`By format, <strong>${TYPE_LABEL[ty] || ty}</strong> is costing you most: ${v.correct} of ${v.total}.`);
+  }
+  const skipped = (function(){ let n=0; state.mockData.sections.forEach((sec,si)=>sec.questions.forEach((q,qi)=>{ const g=state.answers[si+1][qi]; if(!g && g!==0) n++; })); return n; })();
+  if (skipped) lines.push(`You left <strong>${skipped}</strong> question(s) unanswered. On the real GRE an unanswered question scores the same as a wrong one, so always guess.`);
+  if (!lines.length) lines.push('No single weak area stands out on this paper — your misses are spread evenly, which usually means pacing rather than concepts.');
+
+  const drillTopic = weakest ? weakest[0] : '';
+  const steps = [];
+  if (drillTopic) steps.push(`Drill <strong>${topicLabel(drillTopic)}</strong> next — 20 questions, Practice Mode, read every trap note even on the ones you get right.`);
+  if (slowest && Math.round(slowest[2]) > PACE_TARGET) steps.push(`Re-run a ${topicLabel(slowest[0])} set with a hard 1:45 per-question cap. Guess and move when the cap hits — the aim is pacing, not accuracy.`);
+  steps.push('Open Review All Answers below and read the trap note on every question you missed. The trap is the reason, the answer is only the symptom.');
+  if (scaled < 158) steps.push('Before your next mock, work the free Concept Notes for your weakest topic — a mock diagnoses, it does not teach.');
+
   document.getElementById('diagnosis-card').innerHTML = `
     <h3>Your Diagnosis</h3>
-    <div class="band ${bandClass}">${band}</div>
-    <p class="diag-text">${message}</p>
-    <ul class="recovery-steps">${steps.map((s,i)=>`<li><span class="step-num">${i+1}</span><span>${s}</span></li>`).join('')}</ul>
+    <div class="band ${bandClass}">${band} &nbsp;·&nbsp; EST. Q ${scaled}</div>
+    <p class="diag-text" style="margin-bottom:10px">
+      <strong>Estimated Quant score: ${scaled}</strong> (likely range ${Math.max(130,scaled-3)}–${Math.min(170,scaled+3)}).
+      This is a difficulty-weighted estimate from ${total} questions — ${Math.round(wacc*100)}% weighted accuracy against ${pct}% raw.
+      It is an indication, not an official score.
+    </p>
+    <p class="diag-text">${lines.join(' ')}</p>
+    <ul class="recovery-steps">${steps.map((x,i)=>`<li><span class="step-num">${i+1}</span><span>${x}</span></li>`).join('')}</ul>
+    ${drillTopic ? `<div style="margin-top:14px"><a class="btn btn-primary" href="gre_practice_logger_free.html?start=guided&topic=${encodeURIComponent(drillTopic)}" data-track="drill_from_mock" data-track-from="diagnosis">Drill ${topicLabel(drillTopic)} now &rarr;</a></div>` : ''}
   `;
+  state._lastWeakest = drillTopic;
   return band;
 }
 
@@ -930,7 +1096,7 @@ function renderUpgradeCTA(pct) {
           <div class="ru-features">
             <span class="ru-feat">8 more full-length mocks</span>
             <span class="ru-feat">All 95 subtopics</span>
-            <span class="ru-feat">8,390+ practice questions</span>
+            <span class="ru-feat">9,629 practice questions</span>
             <span class="ru-feat">All future content included</span>
           </div>
         </div>
@@ -1060,6 +1226,22 @@ function toggleReview() {
 }
 
 // ─── DOWNLOAD ─────────────────────────────────────────────────────────────────
+function downloadResultPDF() {
+  const el = document.getElementById('screen-results');
+  if (!el || typeof html2pdf === 'undefined') { showModal('PDF unavailable', 'The PDF library did not load. Use "Raw data (JSON)" instead, or print this page.', [{label:'OK', cls:'btn-primary'}]); return; }
+  const hidden = el.querySelectorAll('.result-actions, .result-upgrade');
+  hidden.forEach(n => n.style.display = 'none');
+  const name = (state.student.name || 'Student').replace(/\s+/g,'-');
+  html2pdf().set({
+    margin: [8,8],
+    filename: `${name}_${state.mockMeta.id}_report.pdf`,
+    image: { type:'jpeg', quality:0.95 },
+    html2canvas: { scale:2, backgroundColor:'#ffffff', useCORS:true },
+    jsPDF: { unit:'mm', format:'a4', orientation:'portrait' }
+  }).from(el).save().then(() => { hidden.forEach(n => n.style.display = ''); })
+    .catch(() => { hidden.forEach(n => n.style.display = ''); });
+}
+
 function downloadResult() {
   const r1 = state.sectionResults[1];
   const r2 = state.sectionResults[2];
@@ -1093,6 +1275,7 @@ document.addEventListener('keydown', (e) => {
 // ─── INIT ─────────────────────────────────────────────────────────────────────
 renderMockGrid();
 goTo('screen-select');
+renderHistory();
 </script>
 </body>
 </html>

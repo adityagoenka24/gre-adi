@@ -1,6 +1,6 @@
 /* ============================================================
    GREMath — plain-text math → typeset math
-   Converts the notation used across Adi's GRE question bank
+   Converts the notation used across the GRE Quant Pro question bank
    (x^2, 13², √194, 2ab/(a+b), y^(3/4), 1/x^4, (y^3)^(1/4) …)
    into properly typeset math. Uses KaTeX when available, with a
    pure-HTML fallback (stacked fractions, sup exponents).

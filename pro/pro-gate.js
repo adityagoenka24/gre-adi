@@ -97,11 +97,11 @@
       : 'none';
     setMessage(
       label + ' isn’t part of your plan',
-      'Your current Pro access includes: ' + have + '. Email Coach Aditya to add ' + label + ' to your plan.',
+      'Your current Pro access includes: ' + have + '. Email our coaching team to add ' + label + ' to your plan.',
       false
     );
     document.getElementById('pg-status').innerHTML =
-      '<a href="mailto:goenka.aditya.kol@gmail.com?subject=Upgrade%20GRE%20Pro%20Access" style="color:#1a5da6;">Email Coach Aditya →</a>';
+      '<a href="mailto:goenka.aditya.kol@gmail.com?subject=Upgrade%20GRE%20Pro%20Access" style="color:#1a5da6;">Email our coaching team →</a>';
   }
 
   // ---------- same fingerprint algorithm as the practice logger ----------
@@ -171,13 +171,13 @@
       try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
       setMessage(
         'Your Pro access was revoked',
-        'Please contact Coach Aditya at goenka.aditya.kol@gmail.com for assistance.',
+        'Please contact our coaching team at goenka.aditya.kol@gmail.com for assistance.',
         true
       );
     } else if (data && data.status === 'device_limit') {
       setMessage(
         'This account is active on another device',
-        'To reset your device access, email Coach Aditya at goenka.aditya.kol@gmail.com',
+        'To reset your device access, email our coaching team at goenka.aditya.kol@gmail.com',
         true
       );
     } else {

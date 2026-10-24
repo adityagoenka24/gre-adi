@@ -1,6 +1,6 @@
 /**
  * GRE Pro Auth Worker
- * Coach Aditya Goenka — goenka.aditya.kol@gmail.com
+ * our coaching team — goenka.aditya.kol@gmail.com
  *
  * KV Namespace: GRE_AUTH (bind as GRE_AUTH in Cloudflare dashboard)
  *
