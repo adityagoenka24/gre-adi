@@ -16,7 +16,8 @@ Everything below is **uncommitted in the working tree**.
 | `handbook/gre-quant-formula-handbook.pdf` | 63 pages, A4, 904 KB. |
 | `cloudflare/worker.js` | Patched: `POST /lead`, `GET /admin/leads`. Backup at `worker.js.bak_pre_lead_2026-10-24`. |
 | `sitemap.xml` | `/handbook/` added at priority 0.9. |
-| `index.html`, `diagnostic.html` | "Handbook" added to both the nav and the mobile menu. |
+| `index.html`, `diagnostic.html` | Nav and mobile menu now club **Concept Notes + Handbook** under one "Study Material" dropdown, mirroring "Free Practice". Backups: `*.bak_pre_study_2026-10-24`. |
+| `index.html` `#study` | New "Study Material" section directly below the ETS diagnostic band and above Free Practice: two cards (Concept Notes, Handbook), tracked as `study_concepts_clicked` / `study_handbook_clicked`. |
 | `cloudflare/admin.html` | New **Leads** tab. Backup at `admin.html.bak_pre_leads_2026-10-24`. |
 | `concepts/handbook/_patch_*.py` | The three patch scripts. Idempotent; kept for the record. |
 
