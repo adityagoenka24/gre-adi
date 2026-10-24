@@ -859,7 +859,6 @@ body.ets-lock{overflow:hidden;}
   <div class="tabs">
     <button class="tab-btn active" id="tab-btn-bank" onclick="switchTab('bank',this)">🎯 Practice from Bank</button>
     <button class="tab-btn" id="tab-btn-progress" onclick="switchTab('progress',this)">📊 My Progress</button>
-    <button class="tab-btn" id="tab-btn-session" onclick="switchTab('session',this)">✏️ Log a Session</button>
   </div>
 
   <!-- ========== SESSION TAB ========== -->
@@ -963,8 +962,6 @@ body.ets-lock{overflow:hidden;}
       <div id="printable-report"></div>
       <div class="report-actions">
         <button class="btn btn-primary" onclick="downloadPDF()">📄 Download PDF</button>
-        <button class="btn btn-success" onclick="downloadJSON()">💾 Save Session Data</button>
-        <button class="btn btn-outline" onclick="sendSessionMailto()">📧 Send to Tutor</button>
         <button class="btn btn-ghost" onclick="startNewSession()">🔄 New Session</button>
       </div>
     </div>
@@ -1138,8 +1135,6 @@ body.ets-lock{overflow:hidden;}
       <div class="table-card" style="margin-bottom:24px;"><h3>Time Per Question</h3><div id="exam-time-table"></div></div>
       <div id="exam-wrong-section"></div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;">
-        <button class="btn btn-success" onclick="saveBankSessionAsJSON()">💾 Save Session</button>
-        <button class="btn btn-outline" onclick="sendBankMailto()">📧 Send to Tutor</button>
         <button class="btn btn-primary" onclick="resetBankSession()">🔄 New Session</button>
       </div>
     </div>
@@ -1161,8 +1156,6 @@ body.ets-lock{overflow:hidden;}
         </div>
         <div id="bank-complete-breakdown" style="margin-bottom:28px;text-align:left;"></div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <button class="btn btn-success" onclick="saveBankSessionAsJSON()">💾 Save Session Data</button>
-          <button class="btn btn-outline" onclick="sendBankMailto()">📧 Send to Tutor</button>
           <button class="btn btn-primary" onclick="resetBankSession()">🔄 Practice Again</button>
         </div>
         <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);font-family:var(--font-mono);">
@@ -1177,25 +1170,13 @@ body.ets-lock{overflow:hidden;}
   <div class="tab-panel" id="tab-progress">
     <div class="setup-card">
       <h2>Consolidated Progress Dashboard</h2>
-      <p style="color:var(--text2);font-size:14px;margin-bottom:24px;">Your sessions are saved automatically and load here on any device you log in from. You can also add session JSON files by hand — bank drills, manual sessions, or a downloaded Sectional Test result — to include practice done elsewhere.</p>
+      <p style="color:var(--text2);font-size:14px;margin-bottom:24px;">Every practice session, sectional and mock you complete is saved automatically and appears here — on any device you log in from. Nothing to upload.</p>
       <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:16px;">our coaching team · <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none;">Contact us</a></p>
-      <div class="upload-zone" id="upload-zone" onclick="document.getElementById('json-file-input').click()">
-        <div class="upload-icon">📁</div>
-        <h3>Drop your session files here</h3>
-        <p>Click to browse or drag &amp; drop your <strong style="color:var(--accent)">.json</strong> session files</p>
-      </div>
-      <input type="file" id="json-file-input" multiple accept=".json" onchange="handleFileUpload(event)">
-      <div class="uploaded-files-list" id="uploaded-files-list"></div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <button class="btn btn-primary" onclick="generateConsolidated()" id="generate-consolidated-btn" disabled>📊 Generate Dashboard</button>
-        <button class="btn btn-ghost" onclick="clearUploadedFiles()">🗑 Clear All</button>
-      </div>
     </div>
     <div id="consolidated-dashboard">
       <div id="printable-consolidated"></div>
       <div class="report-actions" style="margin-top:24px;">
         <button class="btn btn-primary" onclick="downloadConsolidatedPDF()">📄 Download PDF</button>
-        <button class="btn btn-outline" onclick="sendConsolidatedMailto()">📧 Send to Tutor</button>
       </div>
     </div>
   </div><!-- /tab-progress -->
@@ -1502,9 +1483,6 @@ async function syncProgressTab(){
 
   if(!uploadedSessions.length) return;
 
-  renderUploadedFiles();
-  const btn = document.getElementById('generate-consolidated-btn');
-  if(btn) btn.disabled = false;
   generateConsolidated();
   showToast(uploadedSessions.length + ' saved session' + (uploadedSessions.length===1?'':'s') + ' loaded', 'success');
 }
@@ -2207,8 +2185,8 @@ function resetSession(){
   // Switch to session tab
   document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-  document.getElementById('tab-session').classList.add('active');
-  document.getElementById('tab-btn-session').classList.add('active');
+  document.getElementById('tab-session')?.classList.add('active');
+  document.getElementById('tab-btn-session')?.classList.add('active');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
@@ -3812,7 +3790,7 @@ function handleFileUpload(e){
         if(!data.studentName||!data.questions)throw new Error();
         uploadedSessions.push({file:file.name,data});
         renderUploadedFiles();
-        document.getElementById('generate-consolidated-btn').disabled=false;
+        document.getElementById('generate-consolidated-btn')?.removeAttribute('disabled');
         showToast(`${file.name} loaded`,'success');
       }catch{showToast(`${file.name} — invalid session file`,'error');}
     };
@@ -3821,16 +3799,12 @@ function handleFileUpload(e){
   e.target.value='';
 }
 
-const uploadZone=document.getElementById('upload-zone');
-uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('drag-over');});
-uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('drag-over'));
-uploadZone.addEventListener('drop',e=>{
-  e.preventDefault();uploadZone.classList.remove('drag-over');
-  handleFileUpload({target:{files:e.dataTransfer.files,value:''}});
-});
-
 function renderUploadedFiles(){
-  document.getElementById('uploaded-files-list').innerHTML=uploadedSessions.map((s,i)=>`
+  // The uploaded-files list was removed along with the import zone; sessions
+  // now arrive from the server. Kept as a no-op so older callers are safe.
+  const list=document.getElementById('uploaded-files-list');
+  if(!list) return;
+  list.innerHTML=uploadedSessions.map((s,i)=>`
     <div class="uploaded-file-item">
       <div class="file-info"><span style="font-size:20px">📄</span>
         <div><div class="file-name">${s.file}</div><div class="file-meta">${s.data.studentName} · ${fmtDate(s.data.date)} · ${s.data.questions.length} questions</div></div>
@@ -3841,12 +3815,12 @@ function renderUploadedFiles(){
 
 function removeFile(idx){
   uploadedSessions.splice(idx,1);renderUploadedFiles();
-  if(!uploadedSessions.length){document.getElementById('generate-consolidated-btn').disabled=true;document.getElementById('consolidated-dashboard').classList.remove('visible');}
+  if(!uploadedSessions.length){document.getElementById('generate-consolidated-btn')?.setAttribute('disabled','');document.getElementById('consolidated-dashboard')?.classList.remove('visible');}
 }
 
 function clearUploadedFiles(){
   uploadedSessions=[];renderUploadedFiles();
-  document.getElementById('generate-consolidated-btn').disabled=true;
+  document.getElementById('generate-consolidated-btn')?.setAttribute('disabled','');
   document.getElementById('consolidated-dashboard').classList.remove('visible');
 }
 

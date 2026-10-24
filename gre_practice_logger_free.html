@@ -858,8 +858,6 @@ tr:hover td{background:rgba(26,93,166,0.04);}
       <div id="printable-report"></div>
       <div class="report-actions">
         <button class="btn btn-primary" onclick="downloadPDF()">📄 Download PDF</button>
-        <button class="btn btn-success" onclick="downloadJSON()">💾 Save Session Data</button>
-        <button class="btn btn-outline" onclick="sendSessionMailto()">📧 Send to Tutor</button>
         <button class="btn btn-ghost" onclick="startNewSession()">🔄 New Session</button>
       </div>
     </div>
@@ -1001,8 +999,6 @@ tr:hover td{background:rgba(26,93,166,0.04);}
       <div class="table-card" style="margin-bottom:24px;"><h3>Time Per Question</h3><div id="exam-time-table"></div></div>
       <div id="exam-wrong-section"></div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
-        <button class="btn btn-success" onclick="saveBankSessionAsJSON()">💾 Save Session</button>
-        <button class="btn btn-outline" onclick="sendBankMailto()">📧 Send to Tutor</button>
         <button class="btn btn-primary" onclick="resetBankSession()">🔄 New Session</button>
       </div>
       <div id="tutor-teaser-exam"></div>
@@ -1025,8 +1021,6 @@ tr:hover td{background:rgba(26,93,166,0.04);}
         </div>
         <div id="bank-complete-breakdown" style="margin-bottom:28px;text-align:left;"></div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <button class="btn btn-success" onclick="saveBankSessionAsJSON()">💾 Save Session Data</button>
-          <button class="btn btn-outline" onclick="sendBankMailto()">📧 Send to Tutor</button>
           <button class="btn btn-primary" onclick="resetBankSession()">🔄 Practice Again</button>
         </div>
         <div id="tutor-teaser-block"></div>
@@ -1042,25 +1036,13 @@ tr:hover td{background:rgba(26,93,166,0.04);}
   <div class="tab-panel" id="tab-progress">
     <div class="setup-card">
       <h2>Consolidated Progress Dashboard</h2>
-      <p style="color:var(--text2);font-size:14px;margin-bottom:24px;">Upload your saved session JSON files — bank drills, manual sessions, or a downloaded Sectional Test result — to get complete analytics across all sessions. Report will be auto-sent to tutor.</p>
+      <p style="color:var(--text2);font-size:14px;margin-bottom:24px;">Go Pro and every practice session, sectional and mock you complete is saved automatically and tracked here — accuracy trend, topic mastery and your weakest subtopics over time.</p>
       <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:16px;">our coaching team · <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none;">Contact us</a></p>
-      <div class="upload-zone" id="upload-zone" onclick="document.getElementById('json-file-input').click()">
-        <div class="upload-icon">📁</div>
-        <h3>Drop your session files here</h3>
-        <p>Click to browse or drag &amp; drop your <strong style="color:var(--accent)">.json</strong> session files</p>
-      </div>
-      <input type="file" id="json-file-input" multiple accept=".json" onchange="handleFileUpload(event)">
-      <div class="uploaded-files-list" id="uploaded-files-list"></div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;">
-        <button class="btn btn-primary" onclick="generateConsolidated()" id="generate-consolidated-btn" disabled>📊 Generate Dashboard</button>
-        <button class="btn btn-ghost" onclick="clearUploadedFiles()">🗑 Clear All</button>
-      </div>
     </div>
     <div id="consolidated-dashboard">
       <div id="printable-consolidated"></div>
       <div class="report-actions" style="margin-top:24px;">
         <button class="btn btn-primary" onclick="downloadConsolidatedPDF()">📄 Download PDF</button>
-        <button class="btn btn-outline" onclick="sendConsolidatedMailto()">📧 Send to Tutor</button>
       </div>
     </div>
   </div><!-- /tab-progress -->
@@ -3167,7 +3149,7 @@ function handleFileUpload(e){
         if(!data.studentName||!data.questions)throw new Error();
         uploadedSessions.push({file:file.name,data});
         renderUploadedFiles();
-        document.getElementById('generate-consolidated-btn').disabled=false;
+        document.getElementById('generate-consolidated-btn')?.removeAttribute('disabled');
         showToast(`${file.name} loaded`,'success');
       }catch{showToast(`${file.name} — invalid session file`,'error');}
     };
@@ -3176,16 +3158,12 @@ function handleFileUpload(e){
   e.target.value='';
 }
 
-const uploadZone=document.getElementById('upload-zone');
-uploadZone.addEventListener('dragover',e=>{e.preventDefault();uploadZone.classList.add('drag-over');});
-uploadZone.addEventListener('dragleave',()=>uploadZone.classList.remove('drag-over'));
-uploadZone.addEventListener('drop',e=>{
-  e.preventDefault();uploadZone.classList.remove('drag-over');
-  handleFileUpload({target:{files:e.dataTransfer.files,value:''}});
-});
-
 function renderUploadedFiles(){
-  document.getElementById('uploaded-files-list').innerHTML=uploadedSessions.map((s,i)=>`
+  // The uploaded-files list was removed along with the import zone; sessions
+  // now arrive from the server. Kept as a no-op so older callers are safe.
+  const list=document.getElementById('uploaded-files-list');
+  if(!list) return;
+  list.innerHTML=uploadedSessions.map((s,i)=>`
     <div class="uploaded-file-item">
       <div class="file-info"><span style="font-size:20px">📄</span>
         <div><div class="file-name">${s.file}</div><div class="file-meta">${s.data.studentName} · ${fmtDate(s.data.date)} · ${s.data.questions.length} questions</div></div>
@@ -3196,12 +3174,12 @@ function renderUploadedFiles(){
 
 function removeFile(idx){
   uploadedSessions.splice(idx,1);renderUploadedFiles();
-  if(!uploadedSessions.length){document.getElementById('generate-consolidated-btn').disabled=true;document.getElementById('consolidated-dashboard').classList.remove('visible');}
+  if(!uploadedSessions.length){document.getElementById('generate-consolidated-btn')?.setAttribute('disabled','');document.getElementById('consolidated-dashboard')?.classList.remove('visible');}
 }
 
 function clearUploadedFiles(){
   uploadedSessions=[];renderUploadedFiles();
-  document.getElementById('generate-consolidated-btn').disabled=true;
+  document.getElementById('generate-consolidated-btn')?.setAttribute('disabled','');
   document.getElementById('consolidated-dashboard').classList.remove('visible');
 }
 

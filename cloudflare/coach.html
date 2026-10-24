@@ -63,13 +63,29 @@ tr.clickable:hover td{background:var(--surface2);}
 .back{background:none;border:none;color:var(--accent);font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;padding:0;margin-bottom:14px;}
 .detail-name{font-size:19px;font-weight:700;}
 .detail-email{font-family:var(--font-mono);font-size:12.5px;color:var(--text3);margin-top:3px;}
+/* Attempt-type chips and cards */
+.chips{display:flex;gap:5px;flex-wrap:wrap;}
+.chip{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:6px;background:var(--surface2);
+  border:1px solid var(--border);font-family:var(--font-mono);font-size:11px;color:var(--text2);white-space:nowrap;}
+.chip b{color:var(--text);font-weight:600;}
+.typecards{display:grid;grid-template-columns:repeat(auto-fit,minmax(215px,1fr));gap:12px;margin-bottom:8px;}
+.typecard{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:15px 17px;}
+.typecard .tc-h{display:flex;align-items:center;gap:8px;margin-bottom:11px;}
+.typecard .tc-ic{font-size:17px;}
+.typecard .tc-n{font-size:13.5px;font-weight:700;}
+.typecard .tc-s{font-size:10.5px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.5px;}
+.typecard .tc-row{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:5px;font-family:var(--font-mono);}
+.qdetail{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:0;margin:0;}
+.qdetail table{font-size:12.5px;}
+.qdetail th{font-size:9.5px;}
+.qdetail td{padding:8px 10px;}
 @media (max-width:600px){ body{padding:20px 14px;} .card{padding:18px;} }
 </style>
 </head>
 <body>
 <div class="wrapper">
   <h1>Coach View</h1>
-  <div class="subtitle">Student progress &amp; attempt analytics · <a href="admin.html">← Admin panel</a></div>
+  <div class="subtitle">Student-by-student progress · <a href="admin.html">← Admin panel</a></div>
 
   <!-- Reuses the same two localStorage keys as admin.html, so setting the
        config on either page unlocks both. -->
@@ -91,37 +107,20 @@ tr.clickable:hover td{background:var(--surface2);}
 
   <div class="tabs">
     <button class="tab-btn active" data-tab="students" onclick="switchTab('students')">Students</button>
-    <button class="tab-btn" data-tab="cohort" onclick="switchTab('cohort')">Cohort weakness</button>
-    <button class="tab-btn" data-tab="mocks" onclick="switchTab('mocks')">Mock attempts</button>
+    <button class="tab-btn" data-tab="mocks" onclick="switchTab('mocks')">Event mock attempts</button>
   </div>
 
   <div class="tab-panel active" data-tab-panel="students">
     <div class="card" id="student-list-card">
-      <h2>Pro students with saved progress</h2>
+      <h2>Students</h2>
       <div class="row" style="margin-bottom:16px;">
         <div class="field"><label for="student-filter">Filter by name or email</label><input id="student-filter" type="text" oninput="renderStudents()" placeholder="Type to filter…"></div>
         <button class="btn btn-ghost" onclick="loadStudents()">Refresh</button>
       </div>
       <div class="table-wrap" id="students-table"><div class="empty">Set the connection above to load students.</div></div>
+      <div class="hint">Click any student for their full history.</div>
     </div>
     <div class="card" id="student-detail-card" style="display:none;"></div>
-  </div>
-
-  <div class="tab-panel" data-tab-panel="cohort">
-    <div class="card">
-      <h2>Weakest subtopics across all students</h2>
-      <div class="row" style="margin-bottom:16px;">
-        <div class="field"><label for="min-attempts">Minimum attempts</label><input id="min-attempts" type="number" value="5" min="1"></div>
-        <button class="btn btn-ghost" onclick="loadCohort()">Load</button>
-      </div>
-      <div class="table-wrap" id="cohort-table"><div class="empty">Load to see where the whole cohort is losing marks.</div></div>
-      <div class="hint">Ordered worst-first. This is the list to write more questions for — or to check for defective ones.</div>
-    </div>
-    <div class="card">
-      <h2>Lowest-scoring individual questions</h2>
-      <div class="table-wrap" id="hardest-table"><div class="empty">Loads with the cohort table.</div></div>
-      <div class="hint">A question almost everyone gets wrong is either genuinely hard or wrong itself. Worth an eye on the bottom few.</div>
-    </div>
   </div>
 
   <div class="tab-panel" data-tab-panel="mocks">
@@ -133,28 +132,45 @@ tr.clickable:hover td{background:var(--surface2);}
         <button class="btn btn-ghost" onclick="loadMocks()">Load</button>
       </div>
       <div class="table-wrap" id="mocks-table"><div class="empty">Load to see mock attempts.</div></div>
-      <div class="hint">These come from the free/event mock flow, which is stored separately from Pro progress. Anyone who took a mock appears here, Pro or not.</div>
+      <div class="hint">From the free/event mock flow, stored separately from Pro progress. Anyone who took a mock appears here, Pro or not — including students with no Pro account.</div>
     </div>
   </div>
 </div>
 
 <script>
 /* ════════════════════════════════════════════════════════════════════════════
-   Coach View
+   Coach View — student-centric
 
-   Read-only companion to admin.html. Pulls from four Worker endpoints:
-     GET /admin/progress-students   — the student list
-     GET /admin/progress?email=     — one student's sessions + subtopic stats
-     GET /admin/cohort-weakness     — subtopic accuracy across everyone
-     GET /admin/mock-attempts       — the existing free/event mock records
+   Three Worker endpoints:
+     GET /admin/progress-students          — list, with per-type session counts
+     GET /admin/progress?email=&include_payloads=1
+                                           — one student, with full session JSON
+                                             so question-level drill-down needs
+                                             no extra request
+     GET /admin/mock-attempts              — the separate free/event mock records
 
-   Shares admin.html's localStorage keys on purpose, so the secret is entered
-   once for both pages. No external libraries: charts are inline SVG and CSS,
-   matching admin.html.
+   Shares admin.html's localStorage keys, so the secret is entered once for
+   both pages. No external libraries: charts are inline SVG and CSS.
    ══════════════════════════════════════════════════════════════════════════ */
 
 let students = [];
 let mockAttempts = [];
+let currentDetail = null;   // { email, data } for the open student
+
+/* How each stored session_type is presented. `group` rolls the two topic-test
+   modes together where a coarser split reads better. */
+const TYPE_META = {
+  bank_practice: { label:'Topic Test',     sub:'Practice',  icon:'🎯', group:'Topic Tests' },
+  bank_exam:     { label:'Topic Test',     sub:'Exam Mode', icon:'⏱',  group:'Topic Tests' },
+  sectional:     { label:'Sectional',      sub:'',          icon:'📐', group:'Sectionals'  },
+  full_mock:     { label:'Full Mock',      sub:'',          icon:'📝', group:'Mocks'       },
+  event_mock:    { label:'Event Mock',     sub:'',          icon:'🏆', group:'Mocks'       },
+  manual:        { label:'Logged Session', sub:'',          icon:'✏️', group:'Other'       },
+};
+
+function typeMeta(t) {
+  return TYPE_META[t] || { label: String(t || 'Session').replace(/_/g, ' '), sub:'', icon:'•', group:'Other' };
+}
 
 /* ─── Config ─────────────────────────────────────────────────────────────── */
 function getConfig() {
@@ -208,44 +224,44 @@ function switchTab(name) {
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
 }
 
-/* ─── Small helpers ──────────────────────────────────────────────────────── */
+/* ─── Helpers ────────────────────────────────────────────────────────────── */
 function esc(v) {
   return String(v == null ? '' : v).replace(/[&<>"']/g, c => (
     { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
   ));
 }
-
 function accBadge(pct) {
   const cls = pct >= 75 ? 'badge-ok' : pct >= 50 ? 'badge-warn' : 'badge-bad';
   return '<span class="badge ' + cls + '">' + pct + '%</span>';
 }
-
 function accColor(pct) {
   return pct >= 75 ? 'var(--success)' : pct >= 50 ? 'var(--warning)' : 'var(--danger)';
 }
-
 function bar(pct) {
   return '<div class="bar-track"><div class="bar-fill" style="width:' + Math.max(0, Math.min(100, pct)) +
          '%;background:' + accColor(pct) + ';"></div></div>';
 }
-
 function fmtTime(sec) {
   const s = Math.round(Number(sec) || 0);
   return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
 }
-
 function fmtDate(d) {
   if (!d) return '—';
-  const parsed = new Date(d);
-  if (!isFinite(parsed.getTime())) return esc(d);
-  return parsed.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: '2-digit' });
+  const p = new Date(d);
+  if (!isFinite(p.getTime())) return esc(d);
+  return p.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: '2-digit' });
 }
-
 function setBusy(elId, msg) {
   document.getElementById(elId).innerHTML = '<div class="empty">' + esc(msg) + '</div>';
 }
+function typeChip(t, n) {
+  const m = typeMeta(t);
+  return '<span class="chip" title="' + esc(m.label + (m.sub ? ' · ' + m.sub : '')) + '">' +
+         m.icon + ' ' + esc(m.label === 'Topic Test' && m.sub ? (m.sub === 'Exam Mode' ? 'Exam' : 'Practice') : m.label) +
+         ' <b>' + n + '</b></span>';
+}
 
-/* ─── Students ───────────────────────────────────────────────────────────── */
+/* ─── Students list ──────────────────────────────────────────────────────── */
 async function loadStudents() {
   setBusy('students-table', 'Loading students…');
   try {
@@ -270,23 +286,30 @@ function renderStudents() {
 
   document.getElementById('students-table').innerHTML =
     '<table><thead><tr>' +
-      '<th>Student</th><th>Sessions</th><th>Questions</th><th>Accuracy</th><th>First seen</th><th>Last session</th>' +
+      '<th>Student</th><th>What they have attempted</th><th>Sessions</th>' +
+      '<th>Questions</th><th>Accuracy</th><th>Last active</th>' +
     '</tr></thead><tbody>' +
-    rows.map(s => (
-      '<tr class="clickable" data-email="' + esc(s.email) + '">' +
+    rows.map(s => {
+      const types = s.by_type || {};
+      const chips = Object.keys(types).length
+        ? '<div class="chips">' + Object.keys(types)
+            .sort((a, b) => types[b].sessions - types[a].sessions)
+            .map(t => typeChip(t, types[t].sessions)).join('') + '</div>'
+        : '<span style="color:var(--text3);">—</span>';
+      return '<tr class="clickable" data-email="' + esc(s.email) + '">' +
         '<td><div style="font-weight:600;">' + esc(s.student_name || '—') + '</div>' +
           '<div class="mono" style="font-size:11.5px;color:var(--text3);">' + esc(s.email) + '</div></td>' +
+        '<td>' + chips + '</td>' +
         '<td class="mono">' + (s.sessions || 0) + '</td>' +
         '<td class="mono">' + (s.questions || 0) + '</td>' +
         '<td>' + accBadge(s.accuracy || 0) + '</td>' +
-        '<td class="mono" style="color:var(--text3);">' + fmtDate(s.first_date) + '</td>' +
         '<td class="mono">' + fmtDate(s.last_date) + '</td>' +
-      '</tr>'
-    )).join('') +
+      '</tr>';
+    }).join('') +
     '</tbody></table>';
 
-  // Bound here rather than via an inline onclick, so an apostrophe in an
-  // email or name can never break the handler.
+  // Bound here rather than via inline onclick, so an apostrophe in an email
+  // or name can never break the handler.
   document.querySelectorAll('#students-table tr.clickable').forEach(tr => {
     tr.addEventListener('click', () => openStudent(tr.dataset.email));
   });
@@ -301,7 +324,10 @@ async function openStudent(email) {
   card.scrollIntoView({ behavior: 'smooth', block: 'start' });
 
   try {
-    const d = await api('/admin/progress?email=' + encodeURIComponent(email));
+    // include_payloads gives us every question of every session in one call,
+    // which is what makes the per-session drill-down instant.
+    const d = await api('/admin/progress?email=' + encodeURIComponent(email) + '&include_payloads=1');
+    currentDetail = { email, data: d };
     renderStudentDetail(email, d);
   } catch (e) {
     card.innerHTML = '<button class="back" onclick="closeStudent()">← All students</button>' +
@@ -310,8 +336,10 @@ async function openStudent(email) {
 }
 
 function closeStudent() {
+  currentDetail = null;
   document.getElementById('student-detail-card').style.display = 'none';
   document.getElementById('student-list-card').style.display = 'block';
+  document.getElementById('student-list-card').scrollIntoView({ behavior: 'smooth', block: 'start' });
 }
 
 function renderStudentDetail(email, d) {
@@ -321,14 +349,14 @@ function renderStudentDetail(email, d) {
   const totalCorrect = sessions.reduce((a, s) => a + (s.correct || 0), 0);
   const totalTime = sessions.reduce((a, s) => a + (s.total_time || 0), 0);
   const overall = totalQs ? Math.round((totalCorrect / totalQs) * 100) : 0;
+  const last = sessions.length ? sessions[sessions.length - 1].date : null;
 
-  // Worst first — that is what a coach acts on.
   const subs = (d.subtopics || []).slice().sort((a, b) => a.accuracy - b.accuracy);
   const weakest = subs.filter(s => s.attempts >= 3 && s.accuracy < 60);
 
   let html = '<button class="back" onclick="closeStudent()">← All students</button>' +
     '<div style="margin-bottom:20px;"><div class="detail-name">' + esc(name) + '</div>' +
-    '<div class="detail-email">' + esc(email) + '</div></div>' +
+    '<div class="detail-email">' + esc(email) + (last ? ' · last active ' + fmtDate(last) : '') + '</div></div>' +
     '<div class="kpis">' +
       '<div class="kpi"><div class="v" style="color:' + accColor(overall) + ';">' + overall + '%</div><div class="l">Overall accuracy</div></div>' +
       '<div class="kpi"><div class="v">' + sessions.length + '</div><div class="l">Sessions</div></div>' +
@@ -342,11 +370,33 @@ function renderStudentDetail(email, d) {
     return;
   }
 
-  html += '<h2>Accuracy trend</h2>' + trendSvg(sessions);
+  // ── What they've attempted, broken out by type ──
+  const byType = (d.by_type || []).slice().sort((a, b) => b.sessions - a.sessions);
+  if (byType.length) {
+    html += '<h2>What they have attempted</h2><div class="typecards">' +
+      byType.map(t => {
+        const m = typeMeta(t.session_type);
+        const avg = t.questions ? Math.round(t.total_time / t.questions) : 0;
+        return '<div class="typecard">' +
+          '<div class="tc-h"><span class="tc-ic">' + m.icon + '</span><div>' +
+            '<div class="tc-n">' + esc(m.label) + '</div>' +
+            (m.sub ? '<div class="tc-s">' + esc(m.sub) + '</div>' : '') +
+          '</div></div>' +
+          '<div class="tc-row"><span>Sessions</span><span style="color:var(--text);">' + t.sessions + '</span></div>' +
+          '<div class="tc-row"><span>Questions</span><span style="color:var(--text);">' + (t.questions || 0) + '</span></div>' +
+          '<div class="tc-row"><span>Avg / question</span><span style="color:var(--text);">' + fmtTime(avg) + '</span></div>' +
+          '<div style="display:flex;align-items:center;gap:9px;margin-top:10px;">' + bar(t.accuracy) +
+            '<span class="mono" style="font-size:12px;color:' + accColor(t.accuracy) + ';">' + t.accuracy + '%</span></div>' +
+          '<div class="tc-s" style="margin-top:9px;">' + fmtDate(t.first_date) + ' → ' + fmtDate(t.last_date) + '</div>' +
+        '</div>';
+      }).join('') + '</div>';
+  }
+
+  html += '<h2 style="margin-top:26px;">Accuracy trend</h2>' + trendSvg(sessions);
 
   if (weakest.length) {
     html += '<h2 style="margin-top:26px;">Needs work</h2><div style="margin-bottom:18px;">' +
-      weakest.slice(0, 6).map(s =>
+      weakest.slice(0, 8).map(s =>
         '<span class="badge badge-bad" style="margin:0 6px 6px 0;">' + esc(s.subtopic) +
         ' · ' + s.accuracy + '% (' + s.attempts + ')</span>'
       ).join('') + '</div>';
@@ -381,24 +431,72 @@ function renderStudentDetail(email, d) {
       ).join('') + '</tbody></table></div>';
   }
 
-  html += '<h2 style="margin-top:26px;">Sessions</h2><div class="table-wrap"><table><thead><tr>' +
-    '<th>Date</th><th>Type</th><th>Topic</th><th>Questions</th><th>Accuracy</th><th>Time</th>' +
+  // ── Session log, newest first, each row expandable to its questions ──
+  const ordered = sessions.slice().reverse();
+  html += '<h2 style="margin-top:26px;">Every session</h2><div class="table-wrap"><table><thead><tr>' +
+    '<th>Date</th><th>Type</th><th>Topic</th><th>Questions</th><th>Accuracy</th><th>Time</th><th></th>' +
     '</tr></thead><tbody>' +
-    sessions.slice().reverse().map(s =>
-      '<tr><td class="mono">' + fmtDate(s.date) + '</td>' +
-      '<td><span class="badge badge-mute">' + esc(String(s.session_type || 'manual').replace(/_/g, ' ')) + '</span></td>' +
-      '<td>' + esc(s.topic || '—') + (s.subtopic ? '<span style="color:var(--text3);"> · ' + esc(s.subtopic) + '</span>' : '') + '</td>' +
-      '<td class="mono">' + (s.total_questions || 0) + '</td>' +
-      '<td>' + accBadge(s.accuracy || 0) + '</td>' +
-      '<td class="mono" style="color:var(--text2);">' + fmtTime(s.total_time) + '</td></tr>'
-    ).join('') + '</tbody></table></div>';
+    ordered.map((s, i) => {
+      const m = typeMeta(s.session_type);
+      const hasQs = s.data && Array.isArray(s.data.questions) && s.data.questions.length;
+      return '<tr class="' + (hasQs ? 'clickable' : '') + '" data-sess="' + i + '">' +
+        '<td class="mono">' + fmtDate(s.date) + '</td>' +
+        '<td><span class="badge badge-mute">' + m.icon + ' ' + esc(m.label) + '</span>' +
+          (m.sub ? '<div class="mono" style="font-size:10.5px;color:var(--text3);margin-top:3px;">' + esc(m.sub) + '</div>' : '') + '</td>' +
+        '<td>' + esc(s.topic || '—') + (s.subtopic ? '<span style="color:var(--text3);"> · ' + esc(s.subtopic) + '</span>' : '') + '</td>' +
+        '<td class="mono">' + (s.total_questions || 0) + '</td>' +
+        '<td>' + accBadge(s.accuracy || 0) + '</td>' +
+        '<td class="mono" style="color:var(--text2);">' + fmtTime(s.total_time) + '</td>' +
+        '<td class="mono" style="color:var(--accent);font-size:11px;">' + (hasQs ? 'view ▾' : '') + '</td>' +
+      '</tr>' +
+      '<tr id="qrow-' + i + '" style="display:none;"><td colspan="7" style="padding:0 12px 14px;"><div class="qdetail" id="qdetail-' + i + '"></div></td></tr>';
+    }).join('') + '</tbody></table></div>';
 
-  document.getElementById('student-detail-card').innerHTML = html;
+  const card = document.getElementById('student-detail-card');
+  card.innerHTML = html;
+
+  card.querySelectorAll('tr.clickable[data-sess]').forEach(tr => {
+    tr.addEventListener('click', () => toggleSessionDetail(Number(tr.dataset.sess), ordered));
+  });
+}
+
+/* Expand one session into its question list. Rendered on first open and then
+   cached in the DOM, so re-opening is instant. */
+function toggleSessionDetail(idx, ordered) {
+  const row = document.getElementById('qrow-' + idx);
+  const box = document.getElementById('qdetail-' + idx);
+  if (!row || !box) return;
+
+  if (row.style.display !== 'none') { row.style.display = 'none'; return; }
+  row.style.display = '';
+
+  if (box.dataset.rendered === '1') return;
+  box.dataset.rendered = '1';
+
+  const qs = (ordered[idx].data && ordered[idx].data.questions) || [];
+  box.innerHTML =
+    '<table><thead><tr><th>#</th><th>Topic / Subtopic</th><th>Difficulty</th>' +
+    '<th>Type</th><th>Result</th><th>Time</th><th>Question ID</th></tr></thead><tbody>' +
+    qs.map((q, i) => {
+      const result = q.correct === null || q.correct === undefined
+        ? '<span class="badge badge-mute">skipped</span>'
+        : (q.correct ? '<span class="badge badge-ok">correct</span>'
+                     : '<span class="badge badge-bad">wrong</span>');
+      const slow = (Number(q.timeTaken) || 0) > 180;
+      return '<tr><td class="mono" style="color:var(--text3);">' + (i + 1) + '</td>' +
+        '<td>' + esc(q.subtopic || q.topic || '—') +
+          (q.subtopic && q.topic ? '<div class="mono" style="font-size:10.5px;color:var(--text3);">' + esc(q.topic) + '</div>' : '') + '</td>' +
+        '<td class="mono" style="color:var(--text2);">' + esc(q.difficulty || '—') + '</td>' +
+        '<td class="mono" style="color:var(--text3);">' + esc(q.type || '—') + '</td>' +
+        '<td>' + result + '</td>' +
+        '<td class="mono" style="color:' + (slow ? 'var(--warning)' : 'var(--text2)') + ';">' + fmtTime(q.timeTaken) + '</td>' +
+        '<td class="mono" style="font-size:11px;color:var(--text3);">' + esc(q.bank_question_id || '—') + '</td></tr>';
+    }).join('') + '</tbody></table>';
 }
 
 /* Inline SVG line chart — no chart library, same as the rest of this tool.
    Oldest session on the left; the y-axis is pinned to 0–100 so the slope
-   means the same thing for every student. */
+   means the same thing for every student. Hovering a dot names the session. */
 function trendSvg(sessions) {
   const pts = sessions.map(s => Number(s.accuracy) || 0);
   if (pts.length < 2) {
@@ -415,12 +513,13 @@ function trendSvg(sessions) {
     '" stroke="var(--border)" stroke-width="1" stroke-dasharray="' + (v === 0 ? '0' : '4 5') + '"/>' +
     '<text x="2" y="' + (y(v) - 3) + '" fill="var(--text3)" font-size="11" font-family="monospace">' + v + '</text>'
   ).join('');
-  const dots = coords.map((c, i) =>
-    '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="4" fill="' + accColor(pts[i]) +
-    '"><title>Session ' + (i + 1) + ': ' + pts[i] + '%</title></circle>'
-  ).join('');
+  const dots = coords.map((c, i) => {
+    const m = typeMeta(sessions[i].session_type);
+    return '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="4" fill="' + accColor(pts[i]) +
+      '"><title>' + esc(fmtDate(sessions[i].date) + ' · ' + m.label + (m.sub ? ' (' + m.sub + ')' : '') +
+      ' · ' + pts[i] + '%') + '</title></circle>';
+  }).join('');
   const delta = pts[pts.length - 1] - pts[0];
-  const deltaTxt = (delta >= 0 ? '+' : '') + delta + ' pts across ' + pts.length + ' sessions';
 
   return '<svg class="trend" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Accuracy trend">' +
     grid +
@@ -428,56 +527,11 @@ function trendSvg(sessions) {
     '<polyline points="' + line + '" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>' +
     dots +
     '</svg>' +
-    '<div class="hint" style="color:' + (delta >= 0 ? 'var(--success)' : 'var(--danger)') + ';">' + deltaTxt + '</div>';
+    '<div class="hint" style="color:' + (delta >= 0 ? 'var(--success)' : 'var(--danger)') + ';">' +
+    (delta >= 0 ? '+' : '') + delta + ' pts across ' + pts.length + ' sessions · hover a point for the session</div>';
 }
 
-/* ─── Cohort ─────────────────────────────────────────────────────────────── */
-async function loadCohort() {
-  setBusy('cohort-table', 'Loading…');
-  setBusy('hardest-table', 'Loading…');
-  const min = Math.max(1, Number(document.getElementById('min-attempts').value) || 5);
-  try {
-    const d = await api('/admin/cohort-weakness?min_attempts=' + min);
-
-    const subs = d.subtopics || [];
-    if (!subs.length) {
-      setBusy('cohort-table', 'Nothing yet at ' + min + '+ attempts. Lower the threshold.');
-    } else {
-      document.getElementById('cohort-table').innerHTML =
-        '<table><thead><tr><th>Subtopic</th><th>Topic</th><th>Students</th><th>Attempts</th>' +
-        '<th style="width:140px;">Accuracy</th><th>Avg time</th></tr></thead><tbody>' +
-        subs.map(s =>
-          '<tr><td>' + esc(s.subtopic) + '</td>' +
-          '<td style="color:var(--text3);">' + esc(s.topic || '—') + '</td>' +
-          '<td class="mono">' + (s.students || 0) + '</td>' +
-          '<td class="mono">' + s.attempts + '</td>' +
-          '<td><div style="display:flex;align-items:center;gap:9px;">' + bar(s.accuracy) +
-            '<span class="mono" style="font-size:12px;color:' + accColor(s.accuracy) + ';">' + s.accuracy + '%</span></div></td>' +
-          '<td class="mono" style="color:var(--text2);">' + fmtTime(s.avg_time) + '</td></tr>'
-        ).join('') + '</tbody></table>';
-    }
-
-    const hard = d.hardest_questions || [];
-    if (!hard.length) {
-      setBusy('hardest-table', 'Needs at least 3 attempts on a question.');
-    } else {
-      document.getElementById('hardest-table').innerHTML =
-        '<table><thead><tr><th>Question ID</th><th>Subtopic</th><th>Attempts</th><th>Correct</th><th>Accuracy</th></tr></thead><tbody>' +
-        hard.map(q =>
-          '<tr><td class="mono">' + esc(q.bank_question_id) + '</td>' +
-          '<td>' + esc(q.subtopic || '—') + '</td>' +
-          '<td class="mono">' + q.attempts + '</td>' +
-          '<td class="mono">' + q.correct + '</td>' +
-          '<td>' + accBadge(q.accuracy) + '</td></tr>'
-        ).join('') + '</tbody></table>';
-    }
-  } catch (e) {
-    setBusy('cohort-table', e.message);
-    setBusy('hardest-table', '—');
-  }
-}
-
-/* ─── Mock attempts (existing KV records) ────────────────────────────────── */
+/* ─── Event mock attempts (the separate KV records) ──────────────────────── */
 async function loadMocks() {
   setBusy('mocks-table', 'Loading attempts…');
   const days = Math.min(180, Math.max(1, Number(document.getElementById('mock-days').value) || 30));
@@ -509,6 +563,7 @@ function renderMocks() {
     rows.map(a => {
       const s = a.student || {};
       const band = (a.diagnosis && (a.diagnosis.band || a.diagnosis.label)) || '';
+      const bandTxt = typeof band === 'object' ? (band.label || '') : band;
       return '<tr><td class="mono">' + fmtDate(a.submitted_at || a.date) + '</td>' +
         '<td><div style="font-weight:600;">' + esc(s.name || '—') + '</div>' +
           '<div class="mono" style="font-size:11.5px;color:var(--text3);">' + esc(s.email || '—') + '</div></td>' +
@@ -518,7 +573,7 @@ function renderMocks() {
         '<td>' + accBadge(Math.round(Number(a.accuracy) || 0)) + '</td>' +
         '<td class="mono">' + (a.correct || 0) + '/' + (a.total_questions || 0) + '</td>' +
         '<td class="mono" style="color:var(--text2);">' + fmtTime(a.total_time_seconds) + '</td>' +
-        '<td>' + (band ? '<span class="badge badge-mute">' + esc(band) + '</span>' : '—') + '</td></tr>';
+        '<td>' + (bandTxt ? '<span class="badge badge-mute">' + esc(bandTxt) + '</span>' : '—') + '</td></tr>';
     }).join('') + '</tbody></table>';
 }
 

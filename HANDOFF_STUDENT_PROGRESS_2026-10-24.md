@@ -276,3 +276,182 @@ Modified: `pro/gre_practice_logger_pro.html`, `gre_practice_logger_free.html`,
 `events/mock_test.html`, `events/team_battle.html`
 
 New: `progress-local.js`
+
+---
+
+# Round 3 — UI cleanup + student-centric Coach View
+
+## 15. Buttons removed
+
+Gone from both loggers:
+
+| Screen | Removed |
+|---|---|
+| Exam Mode analysis | Save Session · Send to Tutor |
+| Bank practice complete | Save Session Data · Send to Tutor |
+| My Progress (consolidated) | Send to Tutor (Download PDF kept) |
+| Manual session report | Save Session Data · Send to Tutor |
+
+`New Session` / `Practice Again` / `Download PDF` all kept.
+
+The Pro logger's **"Log a Session"** tab button is removed, so the manual
+logger is no longer reachable.
+
+**The panel markup was deliberately left in the DOM.** Two statements run at
+page load — `document.getElementById('session-date').value = …` at lines 2814
+and 4379 — with no null guard. Deleting the panel would throw during load and
+take the whole logger down. Without an `.active` class the panel never
+displays, so removing the tab button is sufficient. `resetSession()` also
+reached for that tab; those two lines are now optional-chained.
+
+The now-unreachable functions (`startSession`, `endSession`,
+`buildReviewPanel`, `renderSessionReport`, `generateReport`, `downloadJSON`,
+`downloadPDF`, `sendSessionMailto`, `sendBankMailto`,
+`saveBankSessionAsJSON`, `sendConsolidatedMailto`) were left in place.
+Excising ~600 interdependent lines from a 4,300-line live file is a much
+bigger risk than dead code. `buildBankSessionData()` is still live and must
+stay — the progress saves depend on it.
+
+The free logger's "New Session" tab was already commented out, so it only
+needed the button removals.
+
+## 16. Coach View rebuilt around the student
+
+The cohort tab is gone. Two tabs remain: **Students** and **Event mock
+attempts**.
+
+**Attempt types are now named.** Every stored `session_type` maps to a label
+and icon:
+
+| `session_type` | Shown as | Group |
+|---|---|---|
+| `bank_practice` | 🎯 Topic Test · Practice | Topic Tests |
+| `bank_exam` | ⏱ Topic Test · Exam Mode | Topic Tests |
+| `sectional` | 📐 Sectional | Sectionals |
+| `full_mock` | 📝 Full Mock | Mocks |
+| `event_mock` | 🏆 Event Mock | Mocks |
+| `manual` | ✏️ Logged Session | Other |
+
+**Students table** — one row per student with a chip row showing the mix of
+what they've attempted (`🎯 Practice 2  ⏱ Exam 1  📐 Sectional 2 …`), plus
+sessions, questions, accuracy and last-active. Click anywhere on a row.
+
+**Student detail** —
+1. Name, email, last active
+2. KPI cards: overall accuracy, sessions, questions, avg/question
+3. **What they have attempted** — a card per attempt type with session count,
+   question count, avg time, accuracy bar and date range
+4. Accuracy trend (inline SVG, y-axis pinned 0–100; hovering a point names
+   the date, the attempt type and the score)
+5. Needs work — weak subtopic badges (≥3 attempts, under 60%)
+6. Full subtopic breakdown, worst first
+7. Difficulty breakdown
+8. **Every session** — with a type badge, and each row expands to that
+   session's question-by-question detail: subtopic, difficulty, type,
+   correct/wrong/skipped, time (over 3 min flagged amber) and question ID
+
+The drill-down costs no extra request: the detail view calls
+`/admin/progress?email=…&include_payloads=1`, so every question of every
+session arrives in one response and expanding a row is instant.
+
+## 17. Worker: per-type counts
+
+`/admin/progress-students` now returns `by_type` per student —
+`{bank_practice:{sessions,questions,correct,accuracy}, …}` — from a second
+`GROUP BY email, session_type` query.
+
+`/admin/progress?email=` now returns a `by_type` array with per-type
+sessions, questions, correct, total_time and date range.
+
+`/admin/cohort-weakness` is **still in the Worker but no longer used by any
+page.** Left in place in case the cohort view is wanted back; safe to delete
+(it is self-contained) if not.
+
+## 18. Round 3 verification
+
+- **23 checks** on the extended Worker endpoints, against real SQLite with a
+  mixed set of 7 sessions across all 5 types: per-type session counts,
+  per-type accuracy, preserved totals, `by_type` date ranges, payload
+  inclusion for drill-down, payload field stripped from the response,
+  ordering, and unchanged auth.
+- **22 checks** driving the Coach View's real render functions under a DOM
+  shim with worker-shaped fixtures: type chips, HTML escaping of an
+  apostrophe in a student name, type cards, trend SVG and its tooltips, weak
+  subtopics, the session table, the question drill-down, and confirmation
+  that no cohort markup remains.
+- Round 1 and 2 suites re-run: no regressions.
+
+**97 checks across four suites, all passing.**
+
+## 19. Round 3 files
+
+Modified: `cloudflare/worker.js`, `cloudflare/coach.html` (rebuilt),
+`pro/gre_practice_logger_pro.html`, `gre_practice_logger_free.html`
+
+---
+
+# Round 4 — Import zone removed from My Progress
+
+With auto-save covering every surface and the "Save Session" buttons gone,
+students can no longer produce session JSON files, so the drag-and-drop
+import zone had nothing left to import. Removed from both loggers.
+
+Taken out: the drop zone, the hidden file input, the uploaded-files list, and
+the **Generate Dashboard** / **Clear All** buttons. The Progress tab is now a
+header card plus the dashboard and its **Download PDF** button.
+
+**The part that would have broken the page.** Three load-time or
+auto-load-time dependencies had to go with the markup:
+
+1. `const uploadZone = document.getElementById('upload-zone')` followed
+   immediately by `uploadZone.addEventListener(...)` — this ran at page load
+   and would have thrown on a null element, taking the whole logger down.
+   The listener block was removed.
+2. `renderUploadedFiles()` wrote into `#uploaded-files-list` and is called by
+   `syncProgressTab()`. It now returns early if the element is absent, and
+   `syncProgressTab()` no longer calls it.
+3. `handleFileUpload`, `removeFile` and `clearUploadedFiles` each dereferenced
+   `#generate-consolidated-btn` unguarded. All three are now optional-chained,
+   even though no markup can reach them any more.
+
+`generateConsolidated()` reveals the dashboard itself (`classList.add('visible')`),
+so the auto-load path never needed the button — `syncProgressTab()` is now
+fetch → populate `uploadedSessions` → `generateConsolidated()`.
+
+`uploadedSessions` **stays**: it is the array `generateConsolidated()` reads and
+the one `syncProgressTab()` fills from the server. The `.upload-zone` CSS is now
+unused but harmless and was left alone.
+
+Copy updated to match reality — Pro: "Every practice session, sectional and
+mock you complete is saved automatically and appears here — on any device you
+log in from. Nothing to upload." Free: the same sentence as the Pro pitch.
+
+## Cohort endpoint deleted
+
+`/admin/cohort-weakness` and `handleAdminCohortWeakness()` are gone from the
+Worker (route + handler, ~1,900 characters). The Worker is now 1,500 lines.
+
+The `attempts` table **stays** — it is what makes per-student subtopic and
+difficulty accuracy a single `GROUP BY`, which is what the coach view reads.
+Only the cross-student rollup was removed. The doc comment at the top of the
+progress section was corrected to say so, since it had justified the table by
+the cohort view.
+
+Four progress endpoints remain:
+
+| Endpoint | Auth |
+|---|---|
+| `POST /progress/save` | student token |
+| `GET /progress/sessions` | student token |
+| `GET /admin/progress-students` | `X-Admin-Secret` |
+| `GET /admin/progress?email=` | `X-Admin-Secret` |
+
+## Verification
+
+Two test suites had referenced the deleted endpoint and were updated rather
+than dropped: both now assert it returns **404**, and the admin-auth check
+that had used it was repointed at `/admin/progress-students`.
+
+All four suites: **29 + 22 + 23 + 22 = 96 checks, 0 failures.** Every touched
+file passes a JS syntax check, and no markup references the removed import
+handlers.

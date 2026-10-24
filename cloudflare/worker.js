@@ -142,9 +142,6 @@ export default {
       if (path === '/admin/progress' && request.method === 'GET') {
         return await handleAdminProgress(request, env, url);
       }
-      if (path === '/admin/cohort-weakness' && request.method === 'GET') {
-        return await handleAdminCohortWeakness(request, env, url);
-      }
 
       return jsonResponse({ error: 'Not found' }, 404);
 
@@ -1092,8 +1089,8 @@ async function handleAdminLeads(request, env) {
  *               generateConsolidated() already consumes, so the dashboard
  *               renderer needed no rewrite.
  *   attempts  — one row per question. This is what KV could never do: it
- *               makes cohort-wide questions ("which subtopic is everyone
- *               weakest at") a single GROUP BY.
+ *               makes per-student subtopic and difficulty accuracy a single
+ *               GROUP BY, which is what the coach view reads.
  *
  * Writes are batched: one session row + N attempt rows per save. D1's free
  * tier allows 100k row writes/day, so a 10-question session costs 11 of them.
@@ -1369,7 +1366,7 @@ async function handleAdminProgressStudents(request, env) {
   if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
   if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
 
-  const { results } = await env.GRE_DB.prepare(
+  const totals = env.GRE_DB.prepare(
     `SELECT email,
             MAX(student_name)       AS student_name,
             COUNT(*)                AS sessions,
@@ -1383,9 +1380,34 @@ async function handleAdminProgressStudents(request, env) {
       ORDER BY last_saved DESC`
   ).all();
 
-  const students = (results || []).map(r => ({
+  // Per-type counts, so the coach table can show at a glance whether a student
+  // has been doing topic tests, sectionals or full mocks — not just a total.
+  const byType = env.GRE_DB.prepare(
+    `SELECT email, session_type,
+            COUNT(*)             AS sessions,
+            SUM(total_questions) AS questions,
+            SUM(correct)         AS correct
+       FROM sessions
+      GROUP BY email, session_type`
+  ).all();
+
+  const [totalRows, typeRows] = await Promise.all([totals, byType]);
+
+  const typeMap = new Map();
+  for (const r of typeRows.results || []) {
+    if (!typeMap.has(r.email)) typeMap.set(r.email, {});
+    typeMap.get(r.email)[r.session_type || 'manual'] = {
+      sessions: r.sessions,
+      questions: r.questions,
+      correct: r.correct,
+      accuracy: r.questions ? Math.round((r.correct / r.questions) * 100) : 0,
+    };
+  }
+
+  const students = (totalRows.results || []).map(r => ({
     ...r,
     accuracy: r.questions ? Math.round((r.correct / r.questions) * 100) : 0,
+    by_type: typeMap.get(r.email) || {},
   }));
 
   return jsonResponse({ status: 'ok', count: students.length, students });
@@ -1422,6 +1444,20 @@ async function handleAdminProgress(request, env, url) {
       ORDER BY attempts DESC`
   ).bind(email).all();
 
+  const byTypeQuery = env.GRE_DB.prepare(
+    `SELECT session_type,
+            COUNT(*)             AS sessions,
+            SUM(total_questions) AS questions,
+            SUM(correct)         AS correct,
+            SUM(total_time)      AS total_time,
+            MIN(date)            AS first_date,
+            MAX(date)            AS last_date
+       FROM sessions
+      WHERE email = ?
+      GROUP BY session_type
+      ORDER BY sessions DESC`
+  ).bind(email).all();
+
   const difficultyQuery = env.GRE_DB.prepare(
     `SELECT difficulty,
             COUNT(*)               AS attempts,
@@ -1432,8 +1468,8 @@ async function handleAdminProgress(request, env, url) {
       GROUP BY difficulty`
   ).bind(email).all();
 
-  const [sessions, subtopics, difficulty] = await Promise.all([
-    sessionsQuery, subtopicsQuery, difficultyQuery,
+  const [sessions, subtopics, difficulty, byType] = await Promise.all([
+    sessionsQuery, subtopicsQuery, difficultyQuery, byTypeQuery,
   ]);
 
   const rows = (sessions.results || []).map(r => {
@@ -1456,59 +1492,9 @@ async function handleAdminProgress(request, env, url) {
     sessions: rows,
     subtopics: withAccuracy(subtopics.results),
     difficulty: withAccuracy(difficulty.results),
-  });
-}
-
-/**
- * GET /admin/cohort-weakness?min_attempts=5
- * Subtopic accuracy across every student — tells you which subtopics need
- * more or better questions.
- */
-async function handleAdminCohortWeakness(request, env, url) {
-  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
-  if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
-
-  const minAttempts = Math.min(Math.max(parseInt(url.searchParams.get('min_attempts') || '5', 10) || 5, 1), 1000);
-
-  const { results } = await env.GRE_DB.prepare(
-    `SELECT subtopic, topic,
-            COUNT(*)                         AS attempts,
-            COUNT(DISTINCT email)            AS students,
-            SUM(correct)                     AS correct,
-            ROUND(AVG(time_taken))           AS avg_time
-       FROM attempts
-      WHERE subtopic <> ''
-      GROUP BY subtopic, topic
-     HAVING attempts >= ?
-      ORDER BY (CAST(SUM(correct) AS REAL) / COUNT(*)) ASC`
-  ).bind(minAttempts).all();
-
-  const subtopics = (results || []).map(r => ({
-    ...r,
-    accuracy: r.attempts ? Math.round((r.correct / r.attempts) * 100) : 0,
-  }));
-
-  const hardest = env.GRE_DB.prepare(
-    `SELECT bank_question_id, subtopic,
-            COUNT(*)      AS attempts,
-            SUM(correct)  AS correct
-       FROM attempts
-      WHERE bank_question_id <> ''
-      GROUP BY bank_question_id
-     HAVING attempts >= 3
-      ORDER BY (CAST(SUM(correct) AS REAL) / COUNT(*)) ASC
-      LIMIT 25`
-  ).all();
-
-  const hardestRows = (await hardest).results || [];
-
-  return jsonResponse({
-    status: 'ok',
-    min_attempts: minAttempts,
-    subtopics,
-    hardest_questions: hardestRows.map(r => ({
+    by_type: (byType.results || []).map(r => ({
       ...r,
-      accuracy: r.attempts ? Math.round((r.correct / r.attempts) * 100) : 0,
+      accuracy: r.questions ? Math.round((r.correct / r.questions) * 100) : 0,
     })),
   });
 }
