@@ -178,3 +178,101 @@ New: `cloudflare/coach.html`, `cloudflare/schema.sql`
 
 902 insertions, 10 deletions. No non-GRE folders touched. No personal name or
 credential claim introduced anywhere.
+
+---
+
+# Round 2 — Exam Mode fix + full free-tier coverage
+
+## 10. Bug found in testing: Exam Mode never saved
+
+The first round hooked `bankFinish()`, which is the **practice mode** exit path.
+Exam Mode has a completely separate one — `examSubmit()` — so an exam session
+was scored, rendered, and then dropped. `/progress/sessions` returned
+`200 {"count":0}` with a valid token and a working D1 binding, which is what
+pointed at the client rather than the backend.
+
+`examSubmit()` scores into the same `bankState.results` shape as `bankSubmit()`
+and sets `sessionStartTime`, so `buildBankSessionData()` worked unchanged — it
+just needed calling. It now takes an optional `sessionType`, and Exam Mode
+saves as `bank_exam`.
+
+The same gap existed in the free logger, where `FREE_CONFIG.examMode` is
+`true` — free users can reach Exam Mode too. Fixed there as well.
+
+**Lesson for future work:** this app has more than one exit path per surface.
+Before wiring anything to "when a session ends", enumerate them. The audit:
+
+| File | Exit path | Hook |
+|---|---|---|
+| `pro/gre_practice_logger_pro.html` | `bankFinish()` (practice) | `saveProgressSession` |
+| `pro/gre_practice_logger_pro.html` | `examSubmit()` (exam) | `saveProgressSession` |
+| `pro/gre_practice_logger_pro.html` | `generateReport()` (manual) | `saveProgressSession` |
+| `pro/sectional.html` | `saveAttempt()` | `GREProgress.save` |
+| `pro/full_mock.html` | `showResults()` | `GREProgress.save` |
+| `gre_practice_logger_free.html` | `bankFinish()` | `recordFreeSession` |
+| `gre_practice_logger_free.html` | `examSubmit()` | `recordFreeSession` |
+| `gre_practice_logger_free.html` | `generateReport()` | `recordFreeSession` |
+| `sectional.html` (free) | `saveAttempt()` | `GREProgressLocal.recordAttemptPayload` |
+| `full_mock.html` (free) | `showResults()` | `GREProgressLocal.record` |
+| `events/events_common.js` | `submitEvent()` | `GREProgressLocal.recordAttemptPayload` |
+
+`bankState.results` is assigned in exactly two places per logger (practice and
+exam), both now covered.
+
+## 11. Free-tier coverage extended to every surface
+
+Free history previously covered only the practice logger. It now covers
+**topic tests, sectionals and mocks** — every surface a free student can reach.
+
+New file **`progress-local.js`** (repo root) holds one implementation of the
+free history: one key (`gqp_free_sessions`), one cap (50), and the converter
+from the flat submission payload used by sectionals and event mocks into the
+v2.0 session shape. Written as a shared file rather than inlined in four
+places so the key and cap cannot drift apart.
+
+API: `read()`, `count()`, `record(session)`,
+`recordAttemptPayload(payload, {session_type, topic, label})`, `capWord()`.
+
+Loaded by: `gre_practice_logger_free.html`, `sectional.html`,
+`full_mock.html`, `events/mock_test.html`, `events/team_battle.html`
+(the last two via `../progress-local.js`).
+
+`gre_practice_logger_free.html` now delegates its `readFreeHistory()` and
+`recordFreeSession()` to this helper instead of keeping its own copy.
+
+`full_mock.html` builds its own v2.0 session rather than using
+`recordAttemptPayload`, because a mock's per-question detail lives in
+`state.mockData` / `state.answers` / `state.timings` rather than a flat
+results array, and correctness has to come from `checkAnswer()`.
+
+Every call site is guarded with `if (window.GREProgressLocal)`, so a failed
+script load degrades the carry-over without touching the result screens.
+
+Event mocks continue to POST to `/mock/submission` exactly as before — that
+KV path is untouched. The local record is additional, not a replacement.
+
+## 12. Round 2 verification
+
+21 further automated checks, run against the real `progress-local.js` under a
+`localStorage` shim and then through the real Worker into real SQLite:
+payload conversion (type mapping, title-casing, skipped-as-`null`, distinct
+timestamps), the 50-session cap, and the **full upgrade path** — free sessions
+recorded locally, backfilled into D1, re-read in dashboard shape, with a
+repeat backfill proving no duplication.
+
+21 passed, 0 failed. With round 1, **52 checks, all passing.**
+
+## 13. Stale file noticed, not touched
+
+Root `mock_test.html` references `events_common.js` (which exists only in
+`events/`) and `../ads-config.js`, so its paths cannot resolve from the repo
+root. The live event mock is `events/mock_test.html`. The root copy looks like
+a leftover and was left alone — worth deleting once confirmed unused.
+
+## 14. Round 2 files
+
+Modified: `pro/gre_practice_logger_pro.html`, `gre_practice_logger_free.html`,
+`sectional.html`, `full_mock.html`, `events/events_common.js`,
+`events/mock_test.html`, `events/team_battle.html`
+
+New: `progress-local.js`

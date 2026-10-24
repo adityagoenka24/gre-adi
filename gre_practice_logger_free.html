@@ -1070,6 +1070,7 @@ tr:hover td{background:rgba(26,93,166,0.04);}
 <div class="toast" id="toast"><span class="toast-icon" id="toast-icon">✅</span><span class="toast-text" id="toast-text"></span></div>
 <div class="loading-overlay" id="loading-overlay"><div class="spinner"></div><div class="loading-text" id="loading-text">Processing…</div></div>
 
+<script src="progress-local.js"></script>
 <script>
 /* ============================================================
    APP CONFIG — change this line only to switch free ↔ pro
@@ -2221,7 +2222,7 @@ function bankFinish(){
 
 /* Builds the v2.0 session object for a bank practice session. Shared by the
    download button and the local history, so both hold identical data. */
-function buildBankSessionData(){
+function buildBankSessionData(sessionType){
   const qs=bankState.results.map((r,i)=>({
     id:i+1,startTime:bankState.sessionStartTime+(i*1000),
     endTime:bankState.sessionStartTime+(i*1000)+(r.timeTaken*1000),
@@ -2238,7 +2239,8 @@ function buildBankSessionData(){
     topic:bankState.topic,source:"GRE Quant Pro Question Bank · our coaching team",
     notes:bankState.subtopic+' — '+bankState.results.length+' questions from bank',
     startTime:bankState.sessionStartTime,endTime:Date.now(),questions:qs,
-    exportedAt:new Date().toISOString(),version:'2.0',session_type:'bank_practice'};
+    exportedAt:new Date().toISOString(),version:'2.0',
+    session_type:sessionType||'bank_practice'};
   return data;
 }
 
@@ -2318,27 +2320,15 @@ loadBankIndex();
 const FREE_HISTORY_KEY = 'gqp_free_sessions';
 const FREE_HISTORY_MAX = 50;
 
+/* Both delegate to progress-local.js, which every other free surface
+   (sectional.html, full_mock.html, the event mocks) also writes through —
+   one key, one cap, so the count and the Pro carry-over stay consistent. */
 function readFreeHistory(){
-  try{
-    const raw=localStorage.getItem(FREE_HISTORY_KEY);
-    const parsed=raw?JSON.parse(raw):[];
-    return Array.isArray(parsed)?parsed:[];
-  }catch(e){ return []; }
+  return window.GREProgressLocal ? GREProgressLocal.read() : [];
 }
 
 function recordFreeSession(session){
-  if(!session||!Array.isArray(session.questions)||!session.questions.length) return 0;
-  try{
-    const history=readFreeHistory();
-    history.push(session);
-    // Keep the most recent ones; oldest fall off first.
-    const trimmed=history.slice(-FREE_HISTORY_MAX);
-    localStorage.setItem(FREE_HISTORY_KEY,JSON.stringify(trimmed));
-    return trimmed.length;
-  }catch(e){
-    // Quota full or storage blocked — the session result itself is unaffected.
-    return readFreeHistory().length;
-  }
+  return window.GREProgressLocal ? GREProgressLocal.record(session) : 0;
 }
 
 /* The upgrade panel shown after a free session. Their own accuracy is real and
@@ -2949,6 +2939,11 @@ function examSubmit() {
 
   document.getElementById('bank-active-screen').style.display = 'none';
   examRenderAnalysis();
+
+  // FREE_CONFIG.examMode is true, so free users reach this path as well. It
+  // must feed the local history for the same reason bankFinish() does.
+  recordFreeSession(buildBankSessionData('bank_exam'));
+  renderLockedHistory();
 }
 
 // ============================================================

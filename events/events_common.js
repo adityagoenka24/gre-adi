@@ -855,6 +855,14 @@ const Events = (() => {
     });
     renderResults(result, timedOut);
     saveAttempt(result);
+    // Free event mocks also feed this browser's local history, so they count
+    // toward the upgrade prompt and carry over if the student goes Pro.
+    if (window.GREProgressLocal) {
+      GREProgressLocal.recordAttemptPayload(result, {
+        session_type: 'event_mock',
+        label: result.event_name || 'Event Mock'
+      });
+    }
   }
 
   async function initStudentPage({ teamMode = false } = {}) {

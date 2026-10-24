@@ -46,6 +46,7 @@
 <script defer src="gre-math.js"></script>
 <script defer src="gre-calculator.js"></script>
 <script defer src="ads-config.js"></script>
+<script defer src="progress-local.js"></script>
 <script defer src="analytics.js"></script>
 <style>
   .gre-shell.screen{display:none;}
@@ -655,6 +656,11 @@ function buildSubmissionPayload(){
 }
 
 function saveAttempt(payload){
+  // Keep it in this browser's free history too, so the count in the upgrade
+  // prompt is real and the session carries over if the student goes Pro.
+  if (window.GREProgressLocal) {
+    GREProgressLocal.recordAttemptPayload(payload, { session_type: 'sectional' });
+  }
   try {
     fetch(SUBMISSION_ENDPOINT, {
       method: 'POST',

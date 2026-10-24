@@ -2742,7 +2742,7 @@ function bankFinish(){
 
 /* Builds the v2.0 session object for a bank practice session. Shared by the
    download button and the background save, so both send identical data. */
-function buildBankSessionData(){
+function buildBankSessionData(sessionType){
   const qs=bankState.results.map((r,i)=>({
     id:i+1,startTime:bankState.sessionStartTime+(i*1000),
     endTime:bankState.sessionStartTime+(i*1000)+(r.timeTaken*1000),
@@ -2759,7 +2759,8 @@ function buildBankSessionData(){
     topic:bankState.topic,source:"GRE Quant Pro Question Bank · our coaching team",
     notes:bankState.subtopic+' — '+bankState.results.length+' questions from bank',
     startTime:bankState.sessionStartTime,endTime:Date.now(),questions:qs,
-    exportedAt:new Date().toISOString(),version:'2.0',session_type:'bank_practice'};
+    exportedAt:new Date().toISOString(),version:'2.0',
+    session_type:sessionType||'bank_practice'};
   return data;
 }
 
@@ -3396,6 +3397,13 @@ function examSubmit() {
 
   document.getElementById('bank-active-screen').style.display = 'none';
   examRenderAnalysis();
+
+  // Exam Mode is a separate exit path from bankFinish(), and scores into the
+  // same bankState.results shape — so it needs its own save call. Without
+  // this, an exam session is never stored.
+  saveProgressSession(buildBankSessionData('bank_exam')).then(ok=>{
+    if(ok) progressAutoLoaded = false;
+  });
 }
 
 // ============================================================
