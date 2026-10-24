@@ -42,6 +42,147 @@ DESCRIPTION = ('Every GRE Quant formula, rule and trap on one page: arithmetic, 
                'data interpretation. Free to read, free to print.')
 
 
+# --------------------------------------------------------------------------
+# Pro conversion layer
+#
+# Every figure below is copied from pricing.html (the single place prices and
+# bank sizes live). If pricing.html changes, change these. Nothing here is
+# invented: no countdowns, no fake scarcity, no "students enrolled" claims.
+# --------------------------------------------------------------------------
+
+PRO_URL = '/pricing.html#plans'
+FREE_URL = '/gre_practice_logger_free.html'
+PRO_TRUST = 'One payment &middot; 1-year access &middot; 7-day money-back guarantee &middot; all future questions included'
+
+# handbook section number -> (Pro topic name, questions in that topic, example subtopics)
+BANK = {
+    '1': ('Arithmetic', 1320, 'Percentages, Ratios &amp; Proportions, Rates &amp; Unit Conversions'),
+    '2': ('Number Properties', 1100, 'GCD &amp; LCM, Divisibility Rules, Consecutive Integers'),
+    '3': ('Algebra', 1200, 'Inequalities, Quadratic Equations, Functions'),
+    '4': ('Word Problems', 470, 'Work &amp; Rate, Mixtures, Distance-Speed-Time'),
+    '5': ('Geometry', 1780, 'Circles, Triangles, Special Triangles'),
+    '6': ('Coordinate Geometry', 740, 'Slope &amp; Intercepts, Distance Between Points, Quadratic Graphs'),
+    '7': ('Statistics &amp; Probability', 1120, 'Mean, Median &amp; Mode, Basic Probability, Combinations'),
+    '8': ('Data Interpretation', 580, 'Bar Graphs, Pie Charts, Percentage Change from Graphs'),
+}
+
+
+def pro_link(slot, label, cls='btn btn-primary'):
+    return (f'<a class="{cls}" href="{PRO_URL}" data-track="handbook_pro_clicked" '
+            f'data-track-from="{slot}">{label}</a>')
+
+
+def free_link(slot, label='Try the free app first'):
+    return (f'<a class="hb-free" href="{FREE_URL}" data-track="handbook_free_app_clicked" '
+            f'data-track-from="{slot}">{label}</a>')
+
+
+def section_callout(num):
+    """The 'practice this' box at the end of a section. Screen only."""
+    if num == '9':
+        title = 'Drill these 25 traps until they stop working on you'
+        body = ('Every one of the 8,390+ Pro questions is trap-tagged, and every wrong answer names '
+                'the exact trap you fell into &mdash; the same traps this section lists.')
+    else:
+        topic, count, subs = BANK[num]
+        title = f'Practice this section: {count:,} {topic} questions'
+        body = (f'In Pro: {subs}, and more &mdash; every difficulty level. '
+                'Every wrong answer shows the exact trap you fell into.')
+    return (f'<aside class="hb-pro" aria-label="Practice this section">'
+            f'<div class="hb-pro-text"><b>{title}</b><span>{body}</span></div>'
+            f'<div class="hb-pro-act">{pro_link("section_" + num, "See Pro plans")}'
+            f'{free_link("section_" + num, "Try free first")}</div></aside>')
+
+
+def inject_section_callouts(html):
+    """Insert a callout at the end of Sections 1-9 (just before the next h2)."""
+    heads = [(m.start(), re.sub(r'<[^>]+>', '', m.group(1)))
+             for m in re.finditer(r'<h2 id="[^"]*"[^>]*>(.*?)</h2>', html, flags=re.S)]
+    inserts = []
+    for i, (pos, label) in enumerate(heads):
+        m = re.match(r'Section (\d)\b', label)
+        if not m:
+            continue
+        end = heads[i + 1][0] if i + 1 < len(heads) else len(html)
+        inserts.append((end, section_callout(m.group(1))))
+    for pos, block in sorted(inserts, reverse=True):
+        html = html[:pos] + block + '\n' + html[pos:]
+    return html
+
+
+BRIDGE = f"""
+    <section class="hb-bridge" id="pro" aria-labelledby="hbBridgeTitle">
+      <div class="hb-bridge-eyebrow">After you revise</div>
+      <h2 id="hbBridgeTitle">This handbook tells you what to remember. Pro makes sure you can use it on the clock.</h2>
+      <p class="hb-bridge-sub">Knowing a formula and applying it in ninety seconds, with a trap sitting in
+      the answer choices, are two different skills. The question bank is where the second one is built.</p>
+      <div class="hb-bridge-grid">
+        <div><b>8,390+ trap-tagged questions</b>
+          <span>All 95 subtopics, every difficulty level. A wrong answer shows the exact trap you fell
+          into &mdash; the same ones named in Section 9.</span></div>
+        <div><b>10 full-length mocks</b>
+          <span>In the real GRE interface, from Balanced up to Expert (170). Score, diagnosis and trap
+          review after each one.</span></div>
+        <div><b>Sectional tests with real timing</b>
+          <span>One topic, exam-timed sets, so you find the weak section before the exam does.</span></div>
+      </div>
+      <div class="hb-bridge-act">
+        {pro_link('bridge', 'See Pro plans &mdash; from &#8377;399')}
+        {free_link('bridge')}
+      </div>
+      <p class="hb-bridge-trust">{PRO_TRUST}. Built by a 170/170 GRE Quant coach.</p>
+    </section>
+"""
+
+RAIL_CARD = f"""
+        <div class="hb-rail-pro">
+          <b>Done revising?</b>
+          <span>Practice it with 8,390+ trap-tagged questions.</span>
+          {pro_link('rail', 'See Pro plans', 'btn btn-primary btn-sm')}
+        </div>
+"""
+
+ENDCARD = f"""
+        <section class="hb-end" aria-labelledby="hbEndTitle">
+          <div class="hb-end-eyebrow">What to do next</div>
+          <h2 id="hbEndTitle">You have the formulas. Now build the speed.</h2>
+          <p>The marks lost on test day are rarely missing formulas. They are traps recognized a second
+          too late. Pro is where you practice until you recognize them in time.</p>
+          <div class="hb-end-plans">
+            <div><b>Topic-wise Practice</b><span>All 95 subtopics, unlimited questions</span><em>&#8377;499</em></div>
+            <div><b>Sectional Tests</b><span>Every topic, exam timing</span><em>&#8377;399</em></div>
+            <div><b>Full-Length Mocks</b><span>All 10, Balanced to Expert (170)</span><em>&#8377;599</em></div>
+            <div class="is-best"><b>The full bundle</b><span>Everything above, one payment</span><em>&#8377;999 <s>&#8377;1,497</s></em></div>
+          </div>
+          <div class="hb-end-act">
+            {pro_link('endcard', 'Get Pro &mdash; see plans')}
+            {free_link('endcard', 'Or start with the free app')}
+          </div>
+          <p class="hb-end-trust">{PRO_TRUST}.</p>
+          <p class="hb-print-only">grequantpro.com/pricing.html</p>
+        </section>
+"""
+
+MOBILE_BAR = f"""
+<div class="hb-bar" id="hbBar" hidden>
+  <span>Done revising? Practice it in Pro.</span>
+  {pro_link('mobile_bar', 'See plans', 'btn btn-primary btn-sm')}
+  <button type="button" id="hbBarX" aria-label="Dismiss">&times;</button>
+</div>
+<script>
+(function(){{
+  var bar=document.getElementById('hbBar'); if(!bar) return;
+  try{{ if(sessionStorage.getItem('gqp_hb_bar')==='x') return; }}catch(e){{}}
+  function show(){{ if(window.scrollY>1400){{ bar.hidden=false; window.removeEventListener('scroll',show); }} }}
+  window.addEventListener('scroll',show,{{passive:true}}); show();
+  document.getElementById('hbBarX').addEventListener('click',function(){{
+    bar.hidden=true; try{{ sessionStorage.setItem('gqp_hb_bar','x'); }}catch(e){{}}
+  }});
+}})();
+</script>
+"""
+
+
 def esc(s):
     return (str(s).replace('&', '&amp;').replace('<', '&lt;')
             .replace('>', '&gt;').replace('"', '&quot;'))
@@ -141,13 +282,26 @@ def shell(body, extra_head=''):
     <a href="/" class="nav-logo">GRE Quant <em>Pro</em></a>
     <div class="nav-links">
       <a href="/index.html#how">How it works</a>
-      <a href="/learn/">Concept Notes</a>
-      <a href="/handbook/" class="is-current">Handbook</a>
+      <div class="nav-dropdown">
+        <a href="/handbook/" class="is-current">Study Material <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="/learn/">Concept Notes</a>
+          <a href="/handbook/" class="is-current">Handbook</a>
+        </div>
+      </div>
       <a href="/diagnostic.html">Diagnostic</a>
-      <a href="/index.html#free">Free Practice</a>
+      <div class="nav-dropdown">
+        <a href="/index.html#free">Free Practice <span class="nav-caret">▾</span></a>
+        <div class="nav-dropdown-menu">
+          <a href="/full_mock.html">Full Mock</a>
+          <a href="/gre_practice_logger_free.html">Topic-wise Practice</a>
+          <a href="/sectional.html">Sectional Tests</a>
+          <a href="/events/mock_test.html">Daily Challenge</a>
+        </div>
+      </div>
       <a href="/pricing.html">Pricing</a>
       <a href="#" class="nav-cta-ghost" data-gqp-login>Log in</a>
-      <a href="/pricing.html" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — ₹499</a>
+      <a href="/pricing.html" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — from ₹399</a>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -156,14 +310,22 @@ def shell(body, extra_head=''):
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="/index.html#how">How it works</a>
-  <a href="/learn/">Concept Notes</a>
-  <a href="/handbook/">Handbook</a>
-  <a href="/diagnostic.html">Diagnostic</a>
+  <a href="/handbook/">Study Material</a>
+  <div class="mobile-submenu">
+    <a href="/learn/">Concept Notes</a>
+    <a href="/handbook/">Handbook</a>
+  </div>
+  <a href="/diagnostic.html">Analyse My Diagnostic</a>
   <a href="/index.html#free">Free Practice</a>
-  <a href="/sectional.html">Sectional Tests</a>
+  <div class="mobile-submenu">
+    <a href="/full_mock.html">Full Mock</a>
+    <a href="/gre_practice_logger_free.html">Topic-wise Practice</a>
+    <a href="/sectional.html">Sectional Tests</a>
+    <a href="/events/mock_test.html">Daily Challenge</a>
+  </div>
   <a href="/pricing.html">Pricing</a>
   <a href="#" data-gqp-login>Log in to Pro</a>
-  <a href="/pricing.html" style="color:var(--accent);font-weight:800">Get Pro — ₹499 →</a>
+  <a href="/pricing.html" style="color:var(--accent);font-weight:800">Get Pro — from ₹399 →</a>
 </div>
 
 {body}
@@ -254,6 +416,13 @@ GATE_JS = """
                      'Open in a new tab</a>';
     note.textContent = msg || 'Done — the download has started.';
     note.classList.add('is-ok');
+    if(!document.getElementById('hbAfter')){
+      var nx = document.createElement('p');
+      nx.id = 'hbAfter'; nx.className = 'hb-after';
+      nx.innerHTML = 'Next step: <a href="/pricing.html#plans" data-track="handbook_pro_clicked" ' +
+                     'data-track-from="after_pdf">practice what you just revised with Pro &rarr;</a>';
+      note.parentNode.appendChild(nx);
+    }
     var a = document.createElement('a');
     a.href = PDF; a.download = ''; document.body.appendChild(a); a.click(); a.remove();
   }
@@ -264,6 +433,11 @@ GATE_JS = """
       form.innerHTML = '<a class="btn btn-primary hb-dl" href="' + PDF + '" download>' +
                        'Download the PDF</a>';
       note.textContent = 'You already have access to this — download away.';
+      var rx = document.createElement('p');
+      rx.className = 'hb-after';
+      rx.innerHTML = 'Next step: <a href="/pricing.html#plans" data-track="handbook_pro_clicked" ' +
+                     'data-track-from="after_pdf_return">practice what you revise with Pro &rarr;</a>';
+      note.parentNode.appendChild(rx);
       return;
     }
   }catch(e){}
@@ -389,8 +563,71 @@ def build_css():
 .hb-tablewrap{overflow-x:auto;margin:0 0 20px}
 .hb-tablewrap table{margin:0}
 
+/* ---------- Pro conversion layer ---------- */
+.btn-sm{padding:0 16px;min-height:38px;font-size:14px;white-space:nowrap}
+.hb-free{font-size:14.5px;font-weight:600;color:var(--blue);text-decoration:none;border-bottom:1px solid rgba(26,93,166,.35)}
+.hb-free:hover{border-bottom-color:var(--blue)}
+.hb-print-only{display:none}
+.hb-after{font-size:14px;margin:10px 0 0;color:var(--ink2)}
+.hb-after a{font-weight:700;color:var(--accent);text-decoration:none}
+.hb-after a:hover{text-decoration:underline}
+
+/* bridge band: right under the hero */
+.hb-bridge{background:var(--navy-deep);color:#e9eef3;border-radius:var(--radius-lg);padding:38px 42px;margin:0 0 40px;box-shadow:var(--shadow)}
+.hb-bridge-eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#f0a878;font-weight:700;margin-bottom:12px}
+.hb-bridge h2{font-family:var(--fd);font-weight:640;font-size:clamp(23px,3vw,31px);line-height:1.2;letter-spacing:-.3px;color:#fff;margin:0 0 12px;max-width:780px}
+.hb-bridge-sub{font-size:16px;line-height:1.65;color:#c9d4de;max-width:700px;margin:0 0 24px}
+.hb-bridge-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:26px}
+.hb-bridge-grid>div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:16px 18px}
+.hb-bridge-grid b{display:block;font-family:var(--fd);font-weight:640;font-size:16.5px;color:#fff;margin-bottom:6px}
+.hb-bridge-grid span{display:block;font-size:14px;line-height:1.55;color:#b9c6d2}
+.hb-bridge-act{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.hb-bridge-act .btn{min-height:48px;padding:0 26px;font-size:15.5px}
+.hb-bridge .hb-free{color:#fff;border-bottom-color:rgba(255,255,255,.45)}
+.hb-bridge .hb-free:hover{border-bottom-color:#fff}
+.hb-bridge-trust{font-size:13px;color:#93a3b3;margin:16px 0 0}
+
+/* contents-rail card */
+.hb-rail-pro{background:var(--accent-soft);border:1px solid #f0d3bd;border-radius:var(--radius-sm);padding:13px 14px;margin:0 10px 18px 0}
+.hb-rail-pro b{display:block;font-family:var(--fd);font-weight:640;font-size:15px;color:var(--navy);margin-bottom:3px}
+.hb-rail-pro span{display:block;font-size:13px;line-height:1.45;color:var(--ink2);margin-bottom:10px}
+.hb-rail-pro .btn.btn-primary{display:flex;align-items:center;justify-content:center;width:100%;padding:0 12px;color:#fff;line-height:1}
+
+/* end-of-section prompt */
+.hb-pro{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:14px 24px;background:var(--accent-soft);border:1px solid #f0d3bd;border-left:4px solid var(--accent);border-radius:var(--radius-sm);padding:16px 20px;margin:34px 0 0}
+.hb-pro-text{flex:1 1 320px;min-width:0}
+.hb-pro-text b{display:block;font-family:var(--fd);font-weight:640;font-size:16.5px;color:var(--navy);margin-bottom:3px;line-height:1.3}
+.hb-pro-text span{display:block;font-size:14px;line-height:1.55;color:var(--ink2)}
+.hb-pro-act{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.hb-pro-act .btn{min-height:42px;padding:0 20px;font-size:14.5px;white-space:nowrap}
+
+/* end-of-handbook offer */
+.hb-end{margin-top:34px;background:var(--navy-deep);color:#e9eef3;border-radius:var(--radius-lg);padding:36px 42px;box-shadow:var(--shadow)}
+.hb-end-eyebrow{font-family:var(--fm);font-size:12px;letter-spacing:.09em;text-transform:uppercase;color:#f0a878;font-weight:700;margin-bottom:10px}
+.hb-end h2{font-family:var(--fd);font-weight:640;font-size:clamp(23px,3vw,30px);line-height:1.2;color:#fff;margin:0 0 10px;letter-spacing:-.3px}
+.hb-end>p{font-size:15.5px;line-height:1.65;color:#c9d4de;max-width:640px;margin:0 0 22px}
+.hb-end-plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:12px;margin-bottom:24px}
+.hb-end-plans>div{position:relative;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius-sm);padding:14px 16px 40px}
+.hb-end-plans b{display:block;font-family:var(--fd);font-weight:640;font-size:15.5px;color:#fff;margin-bottom:4px}
+.hb-end-plans span{display:block;font-size:13px;line-height:1.5;color:#b9c6d2}
+.hb-end-plans em{position:absolute;left:16px;bottom:12px;font-style:normal;font-family:var(--fm);font-weight:700;font-size:16px;color:#fff}
+.hb-end-plans s{font-family:var(--ff);font-weight:400;font-size:13px;color:#8fa0b0;margin-left:6px}
+.hb-end-plans .is-best{background:rgba(198,93,33,.18);border-color:#d9763b}
+.hb-end-act{display:flex;flex-wrap:wrap;align-items:center;gap:18px}
+.hb-end-act .btn{min-height:48px;padding:0 26px;font-size:15.5px}
+.hb-end .hb-free{color:#fff;border-bottom-color:rgba(255,255,255,.45)}
+.hb-end-trust{font-size:13px;color:#93a3b3;margin:16px 0 0!important}
+
+/* mobile bar */
+.hb-bar{position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;align-items:center;gap:12px;padding:10px 14px calc(10px + env(safe-area-inset-bottom));background:var(--navy-deep);color:#fff;box-shadow:0 -6px 20px rgba(0,0,0,.18);font-size:14px}
+.hb-bar span{flex:1 1 auto;min-width:0;line-height:1.3}
+.hb-bar .btn{flex:0 0 auto;width:auto}
+.hb-bar button{background:none;border:none;color:#9fb0c0;font-size:24px;line-height:1;padding:4px 8px;cursor:pointer}
+.hb-bar[hidden]{display:none!important}
+
 /* ---------- responsive ---------- */
 @media(max-width:1040px){
+  .hb-bar:not([hidden]){display:flex}
   .hb-layout{grid-template-columns:1fr;gap:0}
   .hb-toc{display:none}
   .hb-toc-mobile{display:block;margin-bottom:26px;background:var(--card);border:1px solid var(--line);border-radius:var(--radius-sm)}
@@ -410,6 +647,11 @@ def build_css():
   .hb-doc table{font-size:13.5px}
   .hb-doc th,.hb-doc td{padding:7px 9px}
   .hb-cta{padding:18px}
+  .hb-bridge,.hb-end{padding:26px 20px}
+  .hb-bridge-act,.hb-end-act{flex-direction:column;align-items:stretch;gap:14px;text-align:center}
+  .hb-pro{padding:15px 16px}
+  .hb-pro-act{width:100%}
+  .hb-pro-act .btn{flex:1}
 }
 
 /* ============================================================
@@ -420,7 +662,8 @@ def build_css():
   @page{margin:12mm 12mm}
 
   nav,.mobile-menu,footer,.glow-1,.glow-2,
-  .hb-toc,.hb-toc-mobile,.hb-cta,.hb-print-hint,.hb-modes{display:none!important}
+  .hb-toc,.hb-toc-mobile,.hb-cta,.hb-print-hint,.hb-modes,
+  .hb-bridge,.hb-pro,.hb-rail-pro,.hb-bar,.hb-after{display:none!important}
 
   html,body{background:#fff!important;color:#000!important}
 
@@ -478,6 +721,24 @@ def build_css():
   .hb-doc tr{break-inside:avoid;page-break-inside:avoid}
 
   a{color:#000!important;text-decoration:none}
+
+  /* The one place the PDF mentions Pro: a compact box on the last page. */
+  .hb-end{background:#fff;color:#000;border:1pt solid #000;border-radius:0;box-shadow:none;
+          padding:4mm 5mm;margin-top:6mm;break-inside:avoid;page-break-inside:avoid}
+  .hb-end-eyebrow{color:#000;font-size:7.5pt;margin-bottom:1mm}
+  .hb-end h2{font-size:12pt;color:#000;margin:0 0 1.5mm;border:none;padding:0;break-before:auto;page-break-before:auto}
+  .hb-end>p{font-size:9pt;color:#000;margin:0 0 2.5mm;max-width:none}
+  .hb-end-plans{display:block;margin:0 0 2.5mm}
+  .hb-end-plans>div{display:block;background:none;border:none;border-bottom:.5pt solid #999;border-radius:0;padding:.9mm 0}
+  .hb-end-plans b{display:inline;color:#000;font-size:8.8pt}
+  .hb-end-plans span{display:inline;color:#000;font-size:8.3pt}
+  .hb-end-plans span::before{content:" \\2014\\00a0"}
+  .hb-end-plans em{position:static;color:#000;font-size:8.8pt;float:right}
+  .hb-end-plans s{color:#000}
+  .hb-end-plans .is-best{background:none;border-color:#999}
+  .hb-end-plans .is-best b{text-decoration:underline}
+  .hb-end-act,.hb-end-trust{display:none!important}
+  .hb-print-only{display:block;font-family:"DM Mono","Courier New",monospace;font-size:9pt;margin:0}
 }
 """
 
@@ -499,6 +760,7 @@ def main():
     html = re.sub(r'^<hr\s*/?>\s*', '', html, count=1)
 
     html, toc = add_ids_and_toc(html)
+    html = inject_section_callouts(html)
 
     # Wide reference tables need to scroll rather than overflow on a phone.
     html = re.sub(r'(<table>.*?</table>)',
@@ -509,9 +771,10 @@ def main():
   <div class="hb-wrap">
 
     <header class="hb-hero">{HERO}</header>
-
+{BRIDGE}
     <div class="hb-layout">
       <aside class="hb-toc" aria-label="Contents">
+{RAIL_CARD}
         <h2>Contents</h2>
         <ul>
 {toc}
@@ -529,6 +792,7 @@ def main():
         <article class="hb-doc">
 {html}
         </article>
+{ENDCARD}
       </div>
     </div>
 
@@ -558,7 +822,7 @@ def main():
 """
 
     os.makedirs(OUTDIR, exist_ok=True)
-    page = shell(body).replace('</body>', gate + scroll_js + '</body>')
+    page = shell(body).replace('</body>', gate + scroll_js + MOBILE_BAR + '</body>')
     with open(os.path.join(OUTDIR, 'index.html'), 'w', encoding='utf-8') as f:
         f.write(page)
     with open(os.path.join(OUTDIR, 'handbook.css'), 'w', encoding='utf-8') as f:
