@@ -16,7 +16,7 @@
    The shipped pair is the site's own navy + accent:
      #16324f (correct) / #c65d21 (wrong)
      CVD ΔE 25.9 · normal-vision ΔE 35.6 · both PASS
-   Those are the two signature brand colours, so the chart reads
+   Those are Adi's two signature brand colours, so the chart reads
    as part of the site rather than as a bolted-on widget, and orange
    pulls the eye to the errors — which is the point of a diagnostic.
 
