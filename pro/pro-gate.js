@@ -158,8 +158,12 @@
     if (data && data.status === 'ok') {
       var access = (data.access && data.access.length) ? data.access : ['practice', 'sectional', 'mocks'];
       try {
+        var patch = { access: access };
+        // The Worker knows the student's name; keep the local copy current so
+        // saved sessions carry it instead of a placeholder.
+        if (data.name) patch.name = data.name;
         localStorage.setItem(STORAGE_KEY, JSON.stringify(
-          Object.assign({}, stored, { access: access })
+          Object.assign({}, stored, patch)
         ));
       } catch (e) {}
       // Refresh the progress token on every validated load, so a token that

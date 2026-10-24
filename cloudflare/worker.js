@@ -81,6 +81,9 @@ export default {
       if (path === '/admin/add-student' && request.method === 'POST') {
         return await handleAdminAddStudent(request, env);
       }
+      if (path === '/admin/set-name' && request.method === 'POST') {
+        return await handleAdminSetName(request, env);
+      }
       if (path === '/admin/set-access' && request.method === 'POST') {
         return await handleAdminSetAccess(request, env);
       }
@@ -218,19 +221,19 @@ async function handleValidate(request, env) {
 
   // No fingerprint registered yet → new device, allow registration
   if (fingerprints.length === 0) {
-    return jsonResponse({ status: 'ok', needsRegister: true, access, progress_token: await issueProgressToken(env, email) });
+    return jsonResponse({ status: 'ok', needsRegister: true, access, name: student.name || '', progress_token: await issueProgressToken(env, email) });
   }
 
   // Fingerprint matches one of their registered devices → let them in
   if (fingerprints.includes(fingerprint)) {
-    return jsonResponse({ status: 'ok', needsRegister: false, access, progress_token: await issueProgressToken(env, email) });
+    return jsonResponse({ status: 'ok', needsRegister: false, access, name: student.name || '', progress_token: await issueProgressToken(env, email) });
   }
 
   // Fingerprint doesn't match — check if they're under device limit
   const maxDevices = parseInt(env.MAX_DEVICES || '2');
   if (fingerprints.length < maxDevices) {
     // Under limit → allow, but register this new device
-    return jsonResponse({ status: 'ok', needsRegister: true, access, progress_token: await issueProgressToken(env, email) });
+    return jsonResponse({ status: 'ok', needsRegister: true, access, name: student.name || '', progress_token: await issueProgressToken(env, email) });
   }
 
   // Over device limit, fingerprint mismatch → block
@@ -547,6 +550,38 @@ async function handleAdminAddStudent(request, env) {
   return jsonResponse({ status: 'added', email: record.email, access: normalizedAccess });
 }
 
+/**
+ * POST /admin/set-name  — { email, name }
+ *
+ * The buyer's name is not always present in a Razorpay payload, so this is
+ * how a coach fills it in or corrects it afterwards. An empty name is allowed
+ * and clears the stored one.
+ */
+async function handleAdminSetName(request, env) {
+  if (!isAdmin(request, env)) {
+    return jsonResponse({ error: 'Unauthorized' }, 401);
+  }
+
+  const body = await safeJson(request);
+  const email = String(body.email || '').toLowerCase().trim();
+  if (!email) {
+    return jsonResponse({ error: 'Missing email' }, 400);
+  }
+
+  const key = `student:${email}`;
+  const raw = await env.GRE_AUTH.get(key);
+  if (!raw) {
+    return jsonResponse({ error: 'Student not found' }, 404);
+  }
+
+  const student = JSON.parse(raw);
+  student.name = String(body.name == null ? '' : body.name).trim().slice(0, 120);
+  student.nameUpdatedAt = new Date().toISOString();
+  await env.GRE_AUTH.put(key, JSON.stringify(student));
+
+  return jsonResponse({ status: 'ok', email, name: student.name });
+}
+
 // ─── ADMIN: SET ACCESS ────────────────────────────────────────────────────────
 // Dial an existing student's access up or down after the fact — e.g. give a
 // beta tester sectional-only, or upgrade someone to full access later.
@@ -787,6 +822,45 @@ async function handleAdminDismissWebhookItem(request, env) {
 //
 // KV record written: student:{email} → { email, name, fingerprints:[], addedAt,
 //   lastSeen:null, plan:'pro', paidAt, paymentId, source:'razorpay_webhook', access }
+/**
+ * Razorpay does not put the buyer's name in one dependable place, so try each
+ * spot it is known to appear, in descending order of trustworthiness:
+ *   - payment_link.entity.customer.name — set when the payment came from a
+ *     Payment Link that collected a name (the most reliable source, and the
+ *     one our pricing links use)
+ *   - payment.notes.* — whatever the link's notes carried
+ *   - payment.card.name — the cardholder name on card payments
+ * Returns '' when none of them is usable, which the caller treats as
+ * "leave it for the coach to fill in".
+ */
+function razorpayName(body, payment) {
+  const candidates = [];
+
+  const link = body && body.payload && body.payload.payment_link
+    && body.payload.payment_link.entity;
+  if (link && link.customer) candidates.push(link.customer.name);
+
+  const notes = (payment && payment.notes) || {};
+  for (const k of ['name', 'Name', 'full_name', 'fullName', 'student_name',
+                   'studentName', 'customer_name', 'customerName']) {
+    candidates.push(notes[k]);
+  }
+
+  if (payment && payment.card) candidates.push(payment.card.name);
+
+  for (const c of candidates) {
+    const v = String(c == null ? '' : c).trim();
+    // Reject values that are clearly not names: an email, a bare phone
+    // number, or Razorpay's own placeholders.
+    if (!v || v.length > 120) continue;
+    if (v.includes('@')) continue;
+    if (/^[+\d][\d\s()-]{5,}$/.test(v)) continue;
+    if (/^(na|n\/a|none|null|undefined|-)$/i.test(v)) continue;
+    return v.slice(0, 120);
+  }
+  return '';
+}
+
 async function handleRazorpayWebhook(request, env) {
   // Read raw body first — signature is computed over the raw bytes
   const rawBody = await request.text();
@@ -822,6 +896,7 @@ async function handleRazorpayWebhook(request, env) {
   }
 
   const email = String(payment.email || '').toLowerCase().trim();
+  const buyerName = razorpayName(body, payment);
   const amount = Number(payment.amount || 0); // in paise
   const paymentId = String(payment.id || '');
   const paidAt = payment.created_at
@@ -832,7 +907,7 @@ async function handleRazorpayWebhook(request, env) {
     // Razorpay payment had no email — log to KV for manual follow-up
     await env.GRE_AUTH.put(
       `webhook_noemail:${paymentId}`,
-      JSON.stringify({ paymentId, amount, paidAt, contact: payment.contact || '' }),
+      JSON.stringify({ paymentId, amount, paidAt, contact: payment.contact || '', name: buyerName }),
       { expirationTtl: 60 * 60 * 24 * 90 } // keep 90 days
     );
     return jsonResponse({ status: 'no_email', paymentId });
@@ -843,7 +918,7 @@ async function handleRazorpayWebhook(request, env) {
     // Unrecognized amount — log for manual review, don't auto-provision
     await env.GRE_AUTH.put(
       `webhook_manual:${paymentId}`,
-      JSON.stringify({ paymentId, email, amount, paidAt }),
+      JSON.stringify({ paymentId, email, amount, paidAt, name: buyerName }),
       { expirationTtl: 60 * 60 * 24 * 90 }
     );
     return jsonResponse({ status: 'manual_review_required', amount, email, paymentId });
@@ -866,8 +941,9 @@ async function handleRazorpayWebhook(request, env) {
       student.paymentId = paymentId;
       student.source = 'razorpay_webhook';
       student.access = access.slice();
+      if (!student.name && buyerName) student.name = buyerName;
       await env.GRE_AUTH.put(key, JSON.stringify(student));
-      return jsonResponse({ status: 'reactivated', email, plan, access: student.access });
+      return jsonResponse({ status: 'reactivated', email, plan, access: student.access, name: student.name || '' });
     }
     // Already has access — merge in whatever this payment adds (e.g. an
     // upgrade from a single feature to a combo), never narrowing existing access.
@@ -877,14 +953,15 @@ async function handleRazorpayWebhook(request, env) {
     student.paidAt = paidAt;
     student.paymentId = paymentId;
     student.source = 'razorpay_webhook';
+    if (!student.name && buyerName) student.name = buyerName;
     await env.GRE_AUTH.put(key, JSON.stringify(student));
-    return jsonResponse({ status: 'already_exists', email, plan, access: student.access });
+    return jsonResponse({ status: 'already_exists', email, plan, access: student.access, name: student.name || '' });
   }
 
   // New student — create record and grant exactly the access this payment paid for.
   const record = {
     email,
-    name: '', // Razorpay doesn't reliably carry the buyer's name; can be updated manually
+    name: buyerName, // best effort from the payload; editable via /admin/set-name
     fingerprints: [],
     addedAt: paidAt,
     lastSeen: null,
@@ -896,7 +973,7 @@ async function handleRazorpayWebhook(request, env) {
   };
 
   await env.GRE_AUTH.put(key, JSON.stringify(record));
-  return jsonResponse({ status: 'provisioned', email, plan, access: record.access });
+  return jsonResponse({ status: 'provisioned', email, plan, access: record.access, name: record.name });
 }
 
 // Verify Razorpay webhook signature.

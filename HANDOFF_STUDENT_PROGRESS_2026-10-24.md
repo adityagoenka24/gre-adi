@@ -455,3 +455,93 @@ that had used it was repointed at `/admin/progress-students`.
 All four suites: **29 + 22 + 23 + 22 = 96 checks, 0 failures.** Every touched
 file passes a JS syntax check, and no markup references the removed import
 handlers.
+
+---
+
+# Round 5 — Student names stop being the student's problem
+
+Three connected changes: the app stops asking a logged-in Pro student for a
+name it already has, the webhook captures the buyer's name when Razorpay
+supplies it, and the admin panel can set or correct a name by hand.
+
+## 20. Pro students are no longer asked for their name
+
+`/validate` now returns `name` alongside `access` and `progress_token`, on all
+three success paths. The Pro logger stores it in `gre_pro_auth` and
+`applyStudentName()` fills the topic-test setup field silently, hiding only its
+wrapper.
+
+**The input stays in the DOM on purpose.** `startBankSession()` and the Exam
+Mode override both read `#bank-student-name`.value, and both still validate
+that it is non-empty. Pre-filling it rather than removing it means neither
+code path changed, so neither could break. The new wrapper id
+`bank-student-name-group` is what gets hidden.
+
+A legacy student whose record has no name still sees the field, so nobody is
+locked out of starting a session. Once a name exists the field never appears
+again, and `saveAuth()` keeps any name it already had if a later response
+carries none.
+
+`pro-gate.js` stores the name too, so `sectional.html` and `full_mock.html`
+save sessions under the real name instead of the `'Pro Student'` placeholder.
+
+The **free** logger still asks, which is correct — free users have no account
+to read a name from.
+
+## 21. Webhook captures the buyer's name
+
+New `razorpayName(body, payment)` helper. Razorpay puts the name in different
+places depending on how the payment was made, so it tries each in descending
+order of reliability:
+
+1. `payload.payment_link.entity.customer.name` — present when the payment came
+   from a Payment Link that collected a name, which is what the pricing links
+   do. Most reliable.
+2. `payment.notes.*` — `name`, `Name`, `full_name`, `fullName`,
+   `student_name`, `studentName`, `customer_name`, `customerName`
+3. `payment.card.name` — the cardholder name on card payments
+
+Values that are clearly not names are rejected rather than stored: anything
+containing `@`, anything matching a bare phone number, the placeholders
+`na`/`n/a`/`none`/`null`/`undefined`/`-`, blanks, and anything over 120
+characters. A rejected value leaves the name empty for a coach to fill in.
+
+**A name is never overwritten once set.** New records take the extracted name.
+Repeat payments, upgrades and reactivations fill the name only if the stored
+one is blank, so a correction made in the admin panel survives the student's
+next payment. The name is also recorded on the `webhook_manual:` and
+`webhook_noemail:` queue entries, so a manual provision has something to work
+from.
+
+## 22. Admin panel: add / edit a student's name
+
+New `POST /admin/set-name` — `{ email, name }` — trims, caps at 120
+characters, normalises the email, stamps `nameUpdatedAt`, returns 404 for an
+unknown student and 400 without an email. An empty name clears the stored one.
+
+In `admin.html`, a **🙋 Student Name** card in the Access tab (email + name +
+Save), and a per-row button in the student table reading **Edit Name** or
+**+ Add Name** depending on whether one is stored. The button jumps to the
+card with both fields pre-filled, mirroring the existing Edit Access flow.
+Clearing a name asks for confirmation first.
+
+## 23. Round 5 verification
+
+30 new checks, including webhook calls signed with real HMAC signatures:
+
+- name extracted from each of the three sources
+- `payment_link` taking precedence over notes and card
+- every rubbish-value rejection (email, phone, `NA`, whitespace, over-long)
+- a hand-set name surviving a later webhook, a blank name being filled, and
+  reactivation filling a blank name
+- `/validate` returning the name on all three success paths, and `''` rather
+  than `undefined` when the record has none
+- `/admin/set-name` trimming, clearing, capping, email normalisation, 404,
+  400, 401, and leaving `access` untouched
+
+All five suites: **29 + 22 + 23 + 22 + 30 = 126 checks, 0 failures.**
+
+## 24. Round 5 files
+
+Modified: `cloudflare/worker.js`, `cloudflare/admin.html`,
+`pro/gre_practice_logger_pro.html`, `pro/pro-gate.js`

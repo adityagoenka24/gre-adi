@@ -173,6 +173,29 @@ td:last-child{white-space:nowrap;}
     </div>
 
     <!-- Reset Device -->
+    <div class="card" id="name-card">
+      <h2>🙋 Student Name</h2>
+      <div class="row">
+        <div class="field">
+          <label>Student Email</label>
+          <input type="email" id="name-email" placeholder="student@gmail.com">
+        </div>
+        <div class="field">
+          <label>Full Name</label>
+          <input type="text" id="name-value" placeholder="Priya Sharma">
+        </div>
+        <button class="btn btn-primary" onclick="setStudentName()">Save Name</button>
+      </div>
+      <p style="font-size:12px;color:var(--text3);margin-top:10px;line-height:1.55;">
+        Razorpay does not always include the buyer's name, so webhook-provisioned
+        students can arrive without one. The name set here is what the student
+        sees in the app and what shows against their sessions in Coach View —
+        they are never asked to type it themselves. Leave the field empty and
+        save to clear it.
+      </p>
+      <div class="result" id="name-result"></div>
+    </div>
+
     <div class="card" id="reset-card">
       <h2>🔄 Reset Device (Student Changed Phone / Laptop)</h2>
       <div class="row">
@@ -790,6 +813,41 @@ async function reactivateStudent(email) {
 }
 
 // ─── Reset Device ─────────────────────────────────────────────────────────────
+async function setStudentName() {
+  const { url, secret } = getConfig();
+  const email = document.getElementById('name-email').value.trim();
+  const name  = document.getElementById('name-value').value.trim();
+  const el    = document.getElementById('name-result');
+  if (!url || !secret) return showResult(el, 'error', 'Set your Worker URL and Admin Secret first.');
+  if (!email) return showResult(el, 'error', 'Email is required.');
+  if (!name && !confirm(`Clear the stored name for ${email}?`)) return;
+  try {
+    const res  = await fetch(`${url}/admin/set-name`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify({ email, name }),
+    });
+    const data = await res.json();
+    if (data.status === 'ok') {
+      showResult(el, 'success', data.name
+        ? `✅ Name set for ${data.email}: ${data.name}`
+        : `✅ Name cleared for ${data.email}`);
+      document.getElementById('name-email').value = '';
+      document.getElementById('name-value').value = '';
+      loadStudents();
+    } else { showResult(el, 'error', JSON.stringify(data)); }
+  } catch (e) { showResult(el, 'error', `Network error: ${e.message}`); }
+}
+
+/* Row shortcut: jump to the card with both fields pre-filled. */
+function editNameFor(email, name) {
+  switchTab('access');
+  document.getElementById('name-email').value = email;
+  document.getElementById('name-value').value = name || '';
+  document.getElementById('name-card').scrollIntoView({ behavior: 'smooth' });
+  document.getElementById('name-value').focus();
+}
+
 async function resetDevice() {
   const { url, secret } = getConfig();
   const email = document.getElementById('reset-email').value.trim();
@@ -1001,6 +1059,9 @@ function renderStudents() {
         <td>${accessBadges(s.access)}</td>
         <td>
           <div class="action-btns">
+            <button class="btn btn-ghost btn-sm" data-email="${email}" data-name="${escapeHtml(s.name || '')}" onclick="editNameFor(this.dataset.email, this.dataset.name)">
+              ${s.name ? 'Edit Name' : '+ Add Name'}
+            </button>
             <button class="btn btn-ghost btn-sm" data-email="${email}" data-access="${accessJson}" onclick="editAccessFor(this.dataset.email, JSON.parse(this.dataset.access))">
               Edit Access
             </button>

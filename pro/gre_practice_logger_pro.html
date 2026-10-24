@@ -984,7 +984,7 @@ body.ets-lock{overflow:hidden;}
         </div>
 
         <div class="form-grid" style="margin-bottom:20px;">
-          <div class="form-group"><label>Student Name</label><input type="text" id="bank-student-name" placeholder="Your full name"></div>
+          <div class="form-group" id="bank-student-name-group"><label>Student Name</label><input type="text" id="bank-student-name" placeholder="Your full name"></div>
           <div class="form-group">
             <label>Topic</label>
             <select id="bank-topic" onchange="bankTopicChanged()">
@@ -1306,8 +1306,9 @@ async function submitAuthToWorker(email, fp) {
         });
       }
       // Save to localStorage and unlock
-      saveAuth(email, fp, data.progress_token);
+      saveAuth(email, fp, data.progress_token, data.name);
       unlockApp();
+      applyStudentName();
       // Carry over any free-tier history from this browser, then load
       // whatever is already stored for this student.
       backfillFreeHistory().then(()=>{ progressAutoLoaded = false; });
@@ -1385,13 +1386,36 @@ function resetAuthBtn() {
 /* ============================================================
    AUTH — LOCALSTORAGE HELPERS
    ============================================================ */
-function saveAuth(email, fingerprint, progressToken) {
+function saveAuth(email, fingerprint, progressToken, name) {
+  const prev = getStoredAuth() || {};
   localStorage.setItem(AUTH_CONFIG.STORAGE_KEY, JSON.stringify({
     email,
     fingerprint,
+    // Keep whatever name we already had if this response did not carry one,
+    // so a student is never asked again once we know it.
+    name: (name || prev.name || ''),
     savedAt: Date.now(),
   }));
   setProgressToken(progressToken);
+}
+
+/* A logged-in Pro student's name is already on their account, so the topic-test
+   setup screen should not ask for it. The input stays in the DOM and is filled
+   in silently — startBankSession() and the Exam Mode override both read it —
+   and only its wrapper is hidden. A legacy student with no stored name still
+   sees the field. */
+function applyStudentName() {
+  const input = document.getElementById('bank-student-name');
+  const group = document.getElementById('bank-student-name-group');
+  if (!input) return;
+  const stored = getStoredAuth() || {};
+  const name = (stored.name || '').trim();
+  if (name) {
+    input.value = name;
+    if (group) group.style.display = 'none';
+  } else if (group) {
+    group.style.display = '';
+  }
 }
 
 function getStoredAuth() {
