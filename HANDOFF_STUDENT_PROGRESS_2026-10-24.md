@@ -545,3 +545,58 @@ All five suites: **29 + 22 + 23 + 22 + 30 = 126 checks, 0 failures.**
 
 Modified: `cloudflare/worker.js`, `cloudflare/admin.html`,
 `pro/gre_practice_logger_pro.html`, `pro/pro-gate.js`
+
+---
+
+# Round 6 — Marketing copy + repo cleanup
+
+## 25. Website copy now sells the tracking
+
+**New homepage section** (`index.html`, `#tracking`, placed between the
+diagnostic band and pricing): *"Most prep tells you your score. This one
+remembers every question."* Four numbered cards — practise anywhere, your
+history follows you, read down to the question, know what to fix next —
+reusing the existing `.access-steps` / `.access-step` components so it carries
+the site's own design language rather than introducing a new one. Verified by
+rendering `index.html` headlessly: section present, four cards, no page
+errors.
+
+**Pro feature list** (both `index.html` and `pricing.html`, JS-built):
+two lines appended, shown whichever features are selected —
+
+- Every session saved automatically — your full history on any device you log in from
+- Accuracy trend, topic mastery & weakest subtopics, reviewed by our coaching team
+
+**Free plan list**: two new locked rows — *Progress saved across every device*
+and *Accuracy trend & weakest-subtopic tracking*.
+
+**Comparison table** (`pricing.html`): the row *"My Progress multi-session
+dashboard — ✓ Free sessions only"* was **factually wrong** after the free tier
+moved to a locked view; corrected to "— Locked". Five rows added covering
+automatic saving, cross-device progress, accuracy trend, weakest-subtopic
+tracking and coaching-team review.
+
+All claims are limited to what the system actually does. No personal name or
+credential claim was introduced — checked against the diff.
+
+## 26. Repo cleanup
+
+Deleted (all were committed to git first, so every one is recoverable with
+`git checkout <commit> -- <path>`):
+
+| What | Why |
+|---|---|
+| 9 superseded `HANDOFF_*.md` | Each is mirrored in the claude.ai project docs, and all remain in git history |
+| 7 `.DS_Store` files | macOS junk, never wanted in the repo |
+| `previous.html` (3,343 lines) | Orphaned old logger — nothing links to it, and its title still read "GRE Quant Logger — Coach Aditya Goenka", so it was a publicly reachable page carrying a personal name against the site's own positioning |
+| `mock_test.html` (repo root) | Orphaned. Every reference across the site resolves to `events/mock_test.html`; the root copy loaded `events_common.js` and `../ads-config.js`, neither of which resolves from the root |
+
+**Deliberately kept:**
+
+- `HANDOFF_STUDENT_PROGRESS_2026-10-24.md` — this file, the current one
+- `ETS_RUBRIC.md`, `README.md` — reference material, not handoffs
+- `diagnostic/test-*.mjs` — real Node test scripts for the diagnostic
+  planner ("Phase 2 tests"). No page references them, which is normal for test
+  scripts; deleting them would drop that coverage
+- `afd/`, `sdp/`, `internship/`, root `dashboard.html` — non-GRE, never touched
+- `events/mock_test.html` — the live event mock

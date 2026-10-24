@@ -120,6 +120,8 @@
         <li><span class="f-check">✓</span> Session reports + PDF export</li>
         <li class="locked"><span class="f-lock">🔒</span> All 95 subtopics (24 free)</li>
         <li class="locked"><span class="f-lock">🔒</span> Unlimited questions per session</li>
+        <li class="locked"><span class="f-lock">🔒</span> Progress saved across every device</li>
+        <li class="locked"><span class="f-lock">🔒</span> Accuracy trend &amp; weakest-subtopic tracking</li>
         <li class="locked"><span class="f-lock">🔒</span> Send for Expert Review</li>
       </ul>
     </div>
@@ -239,7 +241,12 @@
       <tr><td>Max questions per session</td><td>20</td><td>Unlimited</td></tr>
       <tr class="cat-header"><td colspan="3">Analytics</td></tr>
       <tr><td>Per-session report + PDF</td><td class="tick">✓</td><td class="tick">✓</td></tr>
-      <tr><td>My Progress multi-session dashboard</td><td>✓ Free sessions only</td><td class="tick">✓ Unlimited</td></tr>
+      <tr><td>My Progress multi-session dashboard</td><td class="cross">— Locked</td><td class="tick">✓ Unlimited</td></tr>
+      <tr><td>Sessions saved automatically</td><td>This browser only</td><td class="tick">✓ To your account</td></tr>
+      <tr><td>Progress on any device you log in from</td><td class="cross">—</td><td class="tick">✓</td></tr>
+      <tr><td>Accuracy trend across sessions</td><td class="cross">—</td><td class="tick">✓</td></tr>
+      <tr><td>Weakest-subtopic tracking, worst first</td><td class="cross">—</td><td class="tick">✓</td></tr>
+      <tr><td>Reviewed question by question by our coaching team</td><td class="cross">—</td><td class="tick">✓</td></tr>
       <tr><td>Send for Expert Review</td><td class="cross">—</td><td class="tick">✓</td></tr>
       <tr class="cat-header"><td colspan="3">Technical</td></tr>
       <tr><td>No account / no login required</td><td class="tick">✓</td><td class="tick">✓</td></tr>
@@ -496,6 +503,8 @@ function updateProSelector(){
   }
 
   listEl.innerHTML = selected.map(f => '<li><span class="f-check">✓</span> ' + FEATURE_LABELS[f] + ' — ' + FEATURE_DESCS[f] + '</li>').join('')
+    + '<li><span class="f-check">✓</span> Every session saved automatically — your full history on any device you log in from</li>'
+    + '<li><span class="f-check">✓</span> Accuracy trend, topic mastery &amp; weakest subtopics, reviewed by our coaching team</li>'
     + '<li><span class="f-check">✓</span> All future questions in your selected features included</li>';
 }
 
