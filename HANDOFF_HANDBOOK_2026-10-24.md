@@ -17,7 +17,8 @@ Everything below is **uncommitted in the working tree**.
 | `cloudflare/worker.js` | Patched: `POST /lead`, `GET /admin/leads`. Backup at `worker.js.bak_pre_lead_2026-10-24`. |
 | `sitemap.xml` | `/handbook/` added at priority 0.9. |
 | `index.html`, `diagnostic.html` | "Handbook" added to both the nav and the mobile menu. |
-| `concepts/handbook/_patch_worker.py`, `_patch_nav.py` | The two patch scripts. Idempotent; kept for the record. |
+| `cloudflare/admin.html` | New **Leads** tab. Backup at `admin.html.bak_pre_leads_2026-10-24`. |
+| `concepts/handbook/_patch_*.py` | The three patch scripts. Idempotent; kept for the record. |
 
 To rebuild after editing the markdown:
 
@@ -98,8 +99,12 @@ be worth grepping for across the bank and mock explanations.
    handbook. Tested: invalid email is rejected, a worker outage still releases the download, and a
    returning visitor skips the gate via `localStorage`. If you would rather hard-gate it, that is one
    change in `GATE_JS` in the build script.
-3. **Read the leads.** `GET /admin/leads` with the `X-Admin-Secret` header. Not yet wired into
-   `cloudflare/admin.html` — a table there is maybe 20 lines.
+3. **Read the leads.** A **Leads** tab is now in `cloudflare/admin.html`, between Webhooks and
+   Analytics: total, last-7-days and per-source counts, a table of email / first seen / last seen /
+   times / source, and a CSV download. It calls `GET /admin/leads` with the existing
+   `X-Admin-Secret` header, so it starts working the moment the Worker is deployed. Backup at
+   `admin.html.bak_pre_leads_2026-10-24`. Tested against a mocked response: tab switching and
+   persistence, rendering, repeat-visit counts, CSV download, no console errors.
 4. **Nav on the rest of the site.** `pricing.html`, `sectional.html`, `thank-you.html` and the
    generated `/learn/` pages do not link to the handbook yet. The `/learn/` pages need the nav
    template in `build_learn.py` patched and a rebuild.
