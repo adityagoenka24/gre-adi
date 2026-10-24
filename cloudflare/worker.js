@@ -130,6 +130,22 @@ export default {
         return await handleAdminDismissWebhookItem(request, env);
       }
 
+      if (path === '/progress/save' && request.method === 'POST') {
+        return await handleProgressSave(request, env);
+      }
+      if (path === '/progress/sessions' && request.method === 'GET') {
+        return await handleProgressSessions(request, env, url);
+      }
+      if (path === '/admin/progress-students' && request.method === 'GET') {
+        return await handleAdminProgressStudents(request, env);
+      }
+      if (path === '/admin/progress' && request.method === 'GET') {
+        return await handleAdminProgress(request, env, url);
+      }
+      if (path === '/admin/cohort-weakness' && request.method === 'GET') {
+        return await handleAdminCohortWeakness(request, env, url);
+      }
+
       return jsonResponse({ error: 'Not found' }, 404);
 
     } catch (err) {
@@ -205,19 +221,19 @@ async function handleValidate(request, env) {
 
   // No fingerprint registered yet → new device, allow registration
   if (fingerprints.length === 0) {
-    return jsonResponse({ status: 'ok', needsRegister: true, access });
+    return jsonResponse({ status: 'ok', needsRegister: true, access, progress_token: await issueProgressToken(env, email) });
   }
 
   // Fingerprint matches one of their registered devices → let them in
   if (fingerprints.includes(fingerprint)) {
-    return jsonResponse({ status: 'ok', needsRegister: false, access });
+    return jsonResponse({ status: 'ok', needsRegister: false, access, progress_token: await issueProgressToken(env, email) });
   }
 
   // Fingerprint doesn't match — check if they're under device limit
   const maxDevices = parseInt(env.MAX_DEVICES || '2');
   if (fingerprints.length < maxDevices) {
     // Under limit → allow, but register this new device
-    return jsonResponse({ status: 'ok', needsRegister: true, access });
+    return jsonResponse({ status: 'ok', needsRegister: true, access, progress_token: await issueProgressToken(env, email) });
   }
 
   // Over device limit, fingerprint mismatch → block
@@ -1060,4 +1076,439 @@ async function handleAdminLeads(request, env) {
 
   leads.sort((a, b) => String(b.firstSeen || '').localeCompare(String(a.firstSeen || '')));
   return jsonResponse({ count: leads.length, leads });
+}
+
+
+/* ============================================================================
+ * STUDENT PROGRESS  (Cloudflare D1, binding: GRE_DB)
+ * ----------------------------------------------------------------------------
+ * Pro students only. Every completed session (bank practice, sectional, full
+ * mock) is written to D1 so "My Progress" rebuilds itself on any device
+ * instead of asking the student to re-upload JSON files.
+ *
+ * Two tables, on purpose:
+ *   sessions  — one row per session, with the full v2.0 session JSON in
+ *               `payload`. That payload is exactly what the logger's existing
+ *               generateConsolidated() already consumes, so the dashboard
+ *               renderer needed no rewrite.
+ *   attempts  — one row per question. This is what KV could never do: it
+ *               makes cohort-wide questions ("which subtopic is everyone
+ *               weakest at") a single GROUP BY.
+ *
+ * Writes are batched: one session row + N attempt rows per save. D1's free
+ * tier allows 100k row writes/day, so a 10-question session costs 11 of them.
+ *
+ * Auth is a stateless signed token, NOT a KV record: /validate runs on every
+ * page load, and a KV-stored token would spend a KV write each time against a
+ * 1,000/day free limit. See issueProgressToken below.
+ * ==========================================================================*/
+
+const PROGRESS_TOKEN_TTL_SECONDS = 60 * 60 * 24 * 30; // 30 days
+const PROGRESS_MAX_SESSIONS_PER_CALL = 50;            // caps a free-tier backfill
+const PROGRESS_MAX_QUESTIONS_PER_SESSION = 200;
+
+// PROGRESS_SECRET is preferred; ADMIN_SECRET is the fallback so progress keeps
+// working if that variable has not been added in the dashboard yet.
+function progressSecret(env) {
+  return env.PROGRESS_SECRET || env.ADMIN_SECRET || '';
+}
+
+function b64urlFromBytes(bytes) {
+  let binary = '';
+  for (const b of bytes) binary += String.fromCharCode(b);
+  return btoa(binary).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+function bytesFromB64url(text) {
+  const padded = String(text).replace(/-/g, '+').replace(/_/g, '/');
+  const binary = atob(padded + '='.repeat((4 - (padded.length % 4)) % 4));
+  const out = new Uint8Array(binary.length);
+  for (let i = 0; i < binary.length; i++) out[i] = binary.charCodeAt(i);
+  return out;
+}
+
+async function hmacHex(secret, message) {
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const sig = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(message));
+  return [...new Uint8Array(sig)].map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+// Length-independent compare so a wrong signature does not leak its prefix.
+function timingSafeEqual(a, b) {
+  const x = String(a), y = String(b);
+  if (x.length !== y.length) return false;
+  let diff = 0;
+  for (let i = 0; i < x.length; i++) diff |= x.charCodeAt(i) ^ y.charCodeAt(i);
+  return diff === 0;
+}
+
+// token = base64url({ e: email, x: expiry }) + "." + hmac
+async function issueProgressToken(env, email) {
+  const secret = progressSecret(env);
+  if (!secret) return '';
+  const payload = b64urlFromBytes(new TextEncoder().encode(JSON.stringify({
+    e: String(email || '').toLowerCase().trim(),
+    x: Math.floor(Date.now() / 1000) + PROGRESS_TOKEN_TTL_SECONDS,
+  })));
+  return payload + '.' + (await hmacHex(secret, payload));
+}
+
+// Returns the student's email, or '' if the token is missing/forged/expired.
+async function verifyProgressToken(env, token) {
+  const secret = progressSecret(env);
+  if (!secret || !token) return '';
+  const parts = String(token).split('.');
+  if (parts.length !== 2) return '';
+  const [payload, signature] = parts;
+  if (!timingSafeEqual(signature, await hmacHex(secret, payload))) return '';
+  try {
+    const claims = JSON.parse(new TextDecoder().decode(bytesFromB64url(payload)));
+    if (!claims || !claims.e) return '';
+    if (!Number.isFinite(claims.x) || claims.x < Math.floor(Date.now() / 1000)) return '';
+    return String(claims.e).toLowerCase().trim();
+  } catch {
+    return '';
+  }
+}
+
+// A session's id is derived from its own content, so re-uploading the same
+// session (a retry, or a free-tier backfill run twice) overwrites one row
+// instead of creating a duplicate.
+async function stableSessionId(email, session) {
+  const basis = [
+    email,
+    session.startTime || '',
+    session.date || '',
+    session.session_type || '',
+    session.topic || '',
+    session.notes || '',
+    Array.isArray(session.questions) ? session.questions.length : 0,
+  ].join('|');
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(basis));
+  return [...new Uint8Array(digest)].slice(0, 16).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+function progressText(value, max) {
+  return String(value == null ? '' : value).slice(0, max);
+}
+
+// Derives the row values from a v2.0 session JSON. Accuracy is recomputed here
+// rather than trusted from the client.
+function summarizeSession(session) {
+  const questions = Array.isArray(session.questions)
+    ? session.questions.slice(0, PROGRESS_MAX_QUESTIONS_PER_SESSION)
+    : [];
+  const marked = questions.filter(q => q && q.correct !== null && q.correct !== undefined);
+  const correct = marked.filter(q => q.correct).length;
+  const totalTime = questions.reduce((sum, q) => sum + (Number(q && q.timeTaken) || 0), 0);
+  return {
+    questions,
+    total: questions.length,
+    correct,
+    accuracy: marked.length ? Math.round((correct / marked.length) * 100) : 0,
+    totalTime,
+  };
+}
+
+/**
+ * POST /progress/save
+ *
+ * Body: { token, session }  or  { token, sessions: [...] }  (backfill)
+ * The array form is how a student's free-tier history is carried over when
+ * they upgrade and log in on the same browser.
+ */
+async function handleProgressSave(request, env) {
+  if (!env.GRE_DB) {
+    return jsonResponse({ error: 'Progress storage not configured' }, 503);
+  }
+
+  const body = await safeJson(request);
+  const email = await verifyProgressToken(env, body && body.token);
+  if (!email) {
+    return jsonResponse({ error: 'Unauthorized' }, 401);
+  }
+
+  const incoming = Array.isArray(body.sessions)
+    ? body.sessions
+    : (body.session ? [body.session] : []);
+  if (!incoming.length) {
+    return jsonResponse({ error: 'Missing session payload' }, 400);
+  }
+
+  const sessions = incoming
+    .filter(s => s && Array.isArray(s.questions) && s.questions.length)
+    .slice(0, PROGRESS_MAX_SESSIONS_PER_CALL);
+  if (!sessions.length) {
+    return jsonResponse({ error: 'No session contained questions' }, 400);
+  }
+
+  const now = Date.now();
+  const statements = [];
+  const savedIds = [];
+
+  for (const session of sessions) {
+    const id = await stableSessionId(email, session);
+    const s = summarizeSession(session);
+    const date = session.date || indiaDate(new Date(session.startTime || now));
+    const subtopic = progressText(session.subtopic || '', 120);
+
+    savedIds.push(id);
+
+    statements.push(
+      env.GRE_DB.prepare(
+        `INSERT OR REPLACE INTO sessions
+           (id, email, student_name, session_type, topic, subtopic, date,
+            total_questions, correct, accuracy, total_time, payload, created_at)
+         VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)`
+      ).bind(
+        id,
+        email,
+        progressText(session.studentName, 120),
+        progressText(session.session_type || 'manual', 40),
+        progressText(session.topic, 120),
+        subtopic,
+        progressText(date, 10),
+        s.total,
+        s.correct,
+        s.accuracy,
+        s.totalTime,
+        JSON.stringify(session).slice(0, 600000),
+        now
+      )
+    );
+
+    // Replace rather than append, so a re-saved session cannot double-count.
+    statements.push(
+      env.GRE_DB.prepare('DELETE FROM attempts WHERE session_id = ?').bind(id)
+    );
+
+    for (const q of s.questions) {
+      statements.push(
+        env.GRE_DB.prepare(
+          `INSERT INTO attempts
+             (session_id, email, bank_question_id, topic, subtopic,
+              difficulty, qtype, correct, time_taken, date)
+           VALUES (?,?,?,?,?,?,?,?,?,?)`
+        ).bind(
+          id,
+          email,
+          progressText(q.bank_question_id, 80),
+          progressText(q.topic || session.topic, 120),
+          progressText(q.subtopic || subtopic, 120),
+          progressText(q.difficulty, 40),
+          progressText(q.type, 20),
+          q.correct ? 1 : 0,
+          Number(q.timeTaken) || 0,
+          progressText(q.sessionDate || date, 10)
+        )
+      );
+    }
+  }
+
+  await env.GRE_DB.batch(statements);
+
+  return jsonResponse({
+    status: 'ok',
+    saved: savedIds.length,
+    session_ids: savedIds,
+    skipped: incoming.length - sessions.length,
+  });
+}
+
+/**
+ * GET /progress/sessions?token=...&limit=200
+ *
+ * Returns the student's stored session payloads, newest first. The logger
+ * drops these straight into its `uploadedSessions` array.
+ */
+async function handleProgressSessions(request, env, url) {
+  if (!env.GRE_DB) {
+    return jsonResponse({ error: 'Progress storage not configured' }, 503);
+  }
+
+  const token = url.searchParams.get('token') || request.headers.get('X-Progress-Token');
+  const email = await verifyProgressToken(env, token);
+  if (!email) {
+    return jsonResponse({ error: 'Unauthorized' }, 401);
+  }
+
+  const limit = Math.min(Math.max(parseInt(url.searchParams.get('limit') || '200', 10) || 200, 1), 400);
+  const { results } = await env.GRE_DB.prepare(
+    `SELECT id, date, created_at, payload
+       FROM sessions
+      WHERE email = ?
+      ORDER BY date DESC, created_at DESC
+      LIMIT ?`
+  ).bind(email, limit).all();
+
+  const sessions = [];
+  for (const row of results || []) {
+    try {
+      sessions.push({ id: row.id, date: row.date, data: JSON.parse(row.payload) });
+    } catch {
+      // A corrupt payload should cost one session, not the whole dashboard.
+    }
+  }
+
+  return jsonResponse({ status: 'ok', count: sessions.length, sessions });
+}
+
+/* ─── COACH / ADMIN VIEWS ─────────────────────────────────────────────────── */
+
+/**
+ * GET /admin/progress-students
+ * One row per student who has any stored progress, for the coach page list.
+ */
+async function handleAdminProgressStudents(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
+
+  const { results } = await env.GRE_DB.prepare(
+    `SELECT email,
+            MAX(student_name)       AS student_name,
+            COUNT(*)                AS sessions,
+            SUM(total_questions)    AS questions,
+            SUM(correct)            AS correct,
+            MIN(date)               AS first_date,
+            MAX(date)               AS last_date,
+            MAX(created_at)         AS last_saved
+       FROM sessions
+      GROUP BY email
+      ORDER BY last_saved DESC`
+  ).all();
+
+  const students = (results || []).map(r => ({
+    ...r,
+    accuracy: r.questions ? Math.round((r.correct / r.questions) * 100) : 0,
+  }));
+
+  return jsonResponse({ status: 'ok', count: students.length, students });
+}
+
+/**
+ * GET /admin/progress?email=...&include_payloads=1
+ * Everything the coach view needs for one student.
+ */
+async function handleAdminProgress(request, env, url) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
+
+  const email = String(url.searchParams.get('email') || '').toLowerCase().trim();
+  if (!email) return jsonResponse({ error: 'Missing email' }, 400);
+  const includePayloads = url.searchParams.get('include_payloads') === '1';
+
+  const cols = includePayloads
+    ? 'id, date, created_at, student_name, session_type, topic, subtopic, total_questions, correct, accuracy, total_time, payload'
+    : 'id, date, created_at, student_name, session_type, topic, subtopic, total_questions, correct, accuracy, total_time';
+
+  const sessionsQuery = env.GRE_DB.prepare(
+    `SELECT ${cols} FROM sessions WHERE email = ? ORDER BY date ASC, created_at ASC`
+  ).bind(email).all();
+
+  const subtopicsQuery = env.GRE_DB.prepare(
+    `SELECT subtopic, topic,
+            COUNT(*)                        AS attempts,
+            SUM(correct)                    AS correct,
+            ROUND(AVG(time_taken))          AS avg_time
+       FROM attempts
+      WHERE email = ? AND subtopic <> ''
+      GROUP BY subtopic, topic
+      ORDER BY attempts DESC`
+  ).bind(email).all();
+
+  const difficultyQuery = env.GRE_DB.prepare(
+    `SELECT difficulty,
+            COUNT(*)               AS attempts,
+            SUM(correct)           AS correct,
+            ROUND(AVG(time_taken)) AS avg_time
+       FROM attempts
+      WHERE email = ? AND difficulty <> ''
+      GROUP BY difficulty`
+  ).bind(email).all();
+
+  const [sessions, subtopics, difficulty] = await Promise.all([
+    sessionsQuery, subtopicsQuery, difficultyQuery,
+  ]);
+
+  const rows = (sessions.results || []).map(r => {
+    if (!includePayloads) return r;
+    try {
+      return { ...r, data: JSON.parse(r.payload), payload: undefined };
+    } catch {
+      return { ...r, payload: undefined };
+    }
+  });
+
+  const withAccuracy = list => (list || []).map(r => ({
+    ...r,
+    accuracy: r.attempts ? Math.round((r.correct / r.attempts) * 100) : 0,
+  }));
+
+  return jsonResponse({
+    status: 'ok',
+    email,
+    sessions: rows,
+    subtopics: withAccuracy(subtopics.results),
+    difficulty: withAccuracy(difficulty.results),
+  });
+}
+
+/**
+ * GET /admin/cohort-weakness?min_attempts=5
+ * Subtopic accuracy across every student — tells you which subtopics need
+ * more or better questions.
+ */
+async function handleAdminCohortWeakness(request, env, url) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
+
+  const minAttempts = Math.min(Math.max(parseInt(url.searchParams.get('min_attempts') || '5', 10) || 5, 1), 1000);
+
+  const { results } = await env.GRE_DB.prepare(
+    `SELECT subtopic, topic,
+            COUNT(*)                         AS attempts,
+            COUNT(DISTINCT email)            AS students,
+            SUM(correct)                     AS correct,
+            ROUND(AVG(time_taken))           AS avg_time
+       FROM attempts
+      WHERE subtopic <> ''
+      GROUP BY subtopic, topic
+     HAVING attempts >= ?
+      ORDER BY (CAST(SUM(correct) AS REAL) / COUNT(*)) ASC`
+  ).bind(minAttempts).all();
+
+  const subtopics = (results || []).map(r => ({
+    ...r,
+    accuracy: r.attempts ? Math.round((r.correct / r.attempts) * 100) : 0,
+  }));
+
+  const hardest = env.GRE_DB.prepare(
+    `SELECT bank_question_id, subtopic,
+            COUNT(*)      AS attempts,
+            SUM(correct)  AS correct
+       FROM attempts
+      WHERE bank_question_id <> ''
+      GROUP BY bank_question_id
+     HAVING attempts >= 3
+      ORDER BY (CAST(SUM(correct) AS REAL) / COUNT(*)) ASC
+      LIMIT 25`
+  ).all();
+
+  const hardestRows = (await hardest).results || [];
+
+  return jsonResponse({
+    status: 'ok',
+    min_attempts: minAttempts,
+    subtopics,
+    hardest_questions: hardestRows.map(r => ({
+      ...r,
+      accuracy: r.attempts ? Math.round((r.correct / r.attempts) * 100) : 0,
+    })),
+  });
 }

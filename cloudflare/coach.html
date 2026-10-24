@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GRE Pro — Coach View</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* Same tokens as admin.html, so the two pages read as one tool. */
+:root {
+  --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a28; --border:#2a2a45;
+  --accent:#6c63ff; --success:#43e97b; --danger:#ff6584; --warning:#f7971e;
+  --text:#e8e8f0; --text2:#9898b8; --text3:#5a5a7a;
+  --font-body:'Outfit',sans-serif; --font-mono:'DM Mono',monospace;
+  --radius:12px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;padding:32px 20px;}
+.wrapper{max-width:1180px;margin:0 auto;}
+h1{font-size:24px;font-weight:700;margin-bottom:4px;}
+.subtitle{font-size:13px;color:var(--text3);font-family:var(--font-mono);margin-bottom:24px;}
+.subtitle a{color:var(--accent);text-decoration:none;}
+.subtitle a:hover{text-decoration:underline;}
+.card{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;}
+.card h2{font-size:14px;font-weight:600;margin-bottom:16px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-mono);}
+.field{display:flex;flex-direction:column;gap:6px;}
+label{font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;}
+input{background:var(--surface2);border:1px solid var(--border);border-radius:8px;color:var(--text);font-family:var(--font-body);font-size:14px;padding:10px 14px;outline:none;width:100%;}
+input:focus{border-color:var(--accent);}
+.btn{padding:10px 20px;border:none;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.btn-primary{background:var(--accent);color:#fff;}
+.btn-ghost{background:var(--surface2);color:var(--text2);border:1px solid var(--border);}
+.btn:hover{opacity:.85;}
+.row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
+.row .field{flex:1;min-width:180px;}
+.tabs{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;}
+.tab-btn{padding:10px 18px;border:1px solid var(--border);background:var(--surface);color:var(--text2);border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;}
+.tab-btn.active{background:var(--accent);color:#fff;border-color:var(--accent);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.table-wrap{overflow-x:auto;}
+table{width:100%;border-collapse:collapse;font-size:13.5px;}
+th{text-align:left;padding:10px 12px;font-family:var(--font-mono);font-size:10.5px;text-transform:uppercase;letter-spacing:1px;color:var(--text3);border-bottom:1px solid var(--border);white-space:nowrap;}
+td{padding:11px 12px;border-bottom:1px solid var(--border);vertical-align:middle;}
+tr:last-child td{border-bottom:none;}
+tr.clickable{cursor:pointer;}
+tr.clickable:hover td{background:var(--surface2);}
+.mono{font-family:var(--font-mono);}
+.badge{display:inline-block;padding:3px 9px;border-radius:999px;font-family:var(--font-mono);font-size:11.5px;font-weight:500;}
+.badge-ok{background:rgba(67,233,123,.12);color:var(--success);}
+.badge-warn{background:rgba(247,151,30,.12);color:var(--warning)}
+.badge-bad{background:rgba(255,101,132,.12);color:var(--danger);}
+.badge-mute{background:var(--surface2);color:var(--text3);}
+.empty{padding:28px 8px;text-align:center;color:var(--text3);font-family:var(--font-mono);font-size:13px;}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px;}
+.kpi{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
+.kpi .v{font-size:25px;font-weight:700;line-height:1.1;}
+.kpi .l{font-size:10.5px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-top:6px;}
+.bar-track{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;min-width:70px;}
+.bar-fill{height:100%;border-radius:3px;}
+.trend{width:100%;height:150px;display:block;}
+.hint{font-size:12px;color:var(--text3);line-height:1.55;margin-top:10px;}
+.back{background:none;border:none;color:var(--accent);font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;padding:0;margin-bottom:14px;}
+.detail-name{font-size:19px;font-weight:700;}
+.detail-email{font-family:var(--font-mono);font-size:12.5px;color:var(--text3);margin-top:3px;}
+@media (max-width:600px){ body{padding:20px 14px;} .card{padding:18px;} }
+</style>
+</head>
+<body>
+<div class="wrapper">
+  <h1>Coach View</h1>
+  <div class="subtitle">Student progress &amp; attempt analytics · <a href="admin.html">← Admin panel</a></div>
+
+  <!-- Reuses the same two localStorage keys as admin.html, so setting the
+       config on either page unlocks both. -->
+  <div class="card">
+    <h2>Connection</h2>
+    <div class="row">
+      <div class="field">
+        <label for="worker-url">Worker URL</label>
+        <input id="worker-url" type="text" placeholder="https://gre-auth.xxx.workers.dev">
+      </div>
+      <div class="field">
+        <label for="admin-secret">Admin secret</label>
+        <input id="admin-secret" type="password" placeholder="••••••••">
+      </div>
+      <button class="btn btn-primary" onclick="saveConfig()">Save &amp; load</button>
+    </div>
+    <div class="hint" id="conn-hint"></div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab-btn active" data-tab="students" onclick="switchTab('students')">Students</button>
+    <button class="tab-btn" data-tab="cohort" onclick="switchTab('cohort')">Cohort weakness</button>
+    <button class="tab-btn" data-tab="mocks" onclick="switchTab('mocks')">Mock attempts</button>
+  </div>
+
+  <div class="tab-panel active" data-tab-panel="students">
+    <div class="card" id="student-list-card">
+      <h2>Pro students with saved progress</h2>
+      <div class="row" style="margin-bottom:16px;">
+        <div class="field"><label for="student-filter">Filter by name or email</label><input id="student-filter" type="text" oninput="renderStudents()" placeholder="Type to filter…"></div>
+        <button class="btn btn-ghost" onclick="loadStudents()">Refresh</button>
+      </div>
+      <div class="table-wrap" id="students-table"><div class="empty">Set the connection above to load students.</div></div>
+    </div>
+    <div class="card" id="student-detail-card" style="display:none;"></div>
+  </div>
+
+  <div class="tab-panel" data-tab-panel="cohort">
+    <div class="card">
+      <h2>Weakest subtopics across all students</h2>
+      <div class="row" style="margin-bottom:16px;">
+        <div class="field"><label for="min-attempts">Minimum attempts</label><input id="min-attempts" type="number" value="5" min="1"></div>
+        <button class="btn btn-ghost" onclick="loadCohort()">Load</button>
+      </div>
+      <div class="table-wrap" id="cohort-table"><div class="empty">Load to see where the whole cohort is losing marks.</div></div>
+      <div class="hint">Ordered worst-first. This is the list to write more questions for — or to check for defective ones.</div>
+    </div>
+    <div class="card">
+      <h2>Lowest-scoring individual questions</h2>
+      <div class="table-wrap" id="hardest-table"><div class="empty">Loads with the cohort table.</div></div>
+      <div class="hint">A question almost everyone gets wrong is either genuinely hard or wrong itself. Worth an eye on the bottom few.</div>
+    </div>
+  </div>
+
+  <div class="tab-panel" data-tab-panel="mocks">
+    <div class="card">
+      <h2>Event &amp; free mock attempts</h2>
+      <div class="row" style="margin-bottom:16px;">
+        <div class="field"><label for="mock-days">Days</label><input id="mock-days" type="number" value="30" min="1" max="180"></div>
+        <div class="field"><label for="mock-filter">Filter by name or email</label><input id="mock-filter" type="text" oninput="renderMocks()" placeholder="Type to filter…"></div>
+        <button class="btn btn-ghost" onclick="loadMocks()">Load</button>
+      </div>
+      <div class="table-wrap" id="mocks-table"><div class="empty">Load to see mock attempts.</div></div>
+      <div class="hint">These come from the free/event mock flow, which is stored separately from Pro progress. Anyone who took a mock appears here, Pro or not.</div>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ════════════════════════════════════════════════════════════════════════════
+   Coach View
+
+   Read-only companion to admin.html. Pulls from four Worker endpoints:
+     GET /admin/progress-students   — the student list
+     GET /admin/progress?email=     — one student's sessions + subtopic stats
+     GET /admin/cohort-weakness     — subtopic accuracy across everyone
+     GET /admin/mock-attempts       — the existing free/event mock records
+
+   Shares admin.html's localStorage keys on purpose, so the secret is entered
+   once for both pages. No external libraries: charts are inline SVG and CSS,
+   matching admin.html.
+   ══════════════════════════════════════════════════════════════════════════ */
+
+let students = [];
+let mockAttempts = [];
+
+/* ─── Config ─────────────────────────────────────────────────────────────── */
+function getConfig() {
+  try {
+    return {
+      url: (localStorage.getItem('gre_admin_url') || '').replace(/\/+$/, ''),
+      secret: localStorage.getItem('gre_admin_secret') || '',
+    };
+  } catch (e) { return { url: '', secret: '' }; }
+}
+
+function loadConfig() {
+  const { url, secret } = getConfig();
+  if (url) document.getElementById('worker-url').value = url;
+  if (secret) document.getElementById('admin-secret').value = secret;
+  document.getElementById('conn-hint').textContent = (url && secret)
+    ? 'Using the same saved credentials as the admin panel.'
+    : 'Not set yet. If you have already saved these in the admin panel, they will appear here automatically.';
+}
+
+function saveConfig() {
+  const url = document.getElementById('worker-url').value.trim().replace(/\/+$/, '');
+  const secret = document.getElementById('admin-secret').value.trim();
+  if (!url || !secret) { alert('Both fields are required.'); return; }
+  try {
+    localStorage.setItem('gre_admin_url', url);
+    localStorage.setItem('gre_admin_secret', secret);
+  } catch (e) {}
+  loadConfig();
+  loadStudents();
+}
+
+/* Single place that talks to the Worker, so every caller gets the same
+   error handling instead of each one inventing its own. */
+async function api(path) {
+  const { url, secret } = getConfig();
+  if (!url || !secret) throw new Error('Set the Worker URL and admin secret first.');
+  const res = await fetch(url + path, { headers: { 'X-Admin-Secret': secret } });
+  let data = null;
+  try { data = await res.json(); } catch (e) {}
+  if (res.status === 401) throw new Error('Rejected — check the admin secret.');
+  if (res.status === 503) throw new Error('The Worker has no D1 binding yet. Add a binding named GRE_DB.');
+  if (!res.ok) throw new Error((data && data.error) || ('Request failed (' + res.status + ')'));
+  if (data && data.error) throw new Error(data.error);
+  return data || {};
+}
+
+/* ─── Tabs ───────────────────────────────────────────────────────────────── */
+function switchTab(name) {
+  document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tabPanel === name));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+}
+
+/* ─── Small helpers ──────────────────────────────────────────────────────── */
+function esc(v) {
+  return String(v == null ? '' : v).replace(/[&<>"']/g, c => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]
+  ));
+}
+
+function accBadge(pct) {
+  const cls = pct >= 75 ? 'badge-ok' : pct >= 50 ? 'badge-warn' : 'badge-bad';
+  return '<span class="badge ' + cls + '">' + pct + '%</span>';
+}
+
+function accColor(pct) {
+  return pct >= 75 ? 'var(--success)' : pct >= 50 ? 'var(--warning)' : 'var(--danger)';
+}
+
+function bar(pct) {
+  return '<div class="bar-track"><div class="bar-fill" style="width:' + Math.max(0, Math.min(100, pct)) +
+         '%;background:' + accColor(pct) + ';"></div></div>';
+}
+
+function fmtTime(sec) {
+  const s = Math.round(Number(sec) || 0);
+  return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0');
+}
+
+function fmtDate(d) {
+  if (!d) return '—';
+  const parsed = new Date(d);
+  if (!isFinite(parsed.getTime())) return esc(d);
+  return parsed.toLocaleDateString('en-IN', { day: '2-digit', month: 'short', year: '2-digit' });
+}
+
+function setBusy(elId, msg) {
+  document.getElementById(elId).innerHTML = '<div class="empty">' + esc(msg) + '</div>';
+}
+
+/* ─── Students ───────────────────────────────────────────────────────────── */
+async function loadStudents() {
+  setBusy('students-table', 'Loading students…');
+  try {
+    const data = await api('/admin/progress-students');
+    students = data.students || [];
+    renderStudents();
+  } catch (e) {
+    setBusy('students-table', e.message);
+  }
+}
+
+function renderStudents() {
+  const q = (document.getElementById('student-filter').value || '').toLowerCase().trim();
+  const rows = students.filter(s =>
+    !q || String(s.email).toLowerCase().includes(q) || String(s.student_name || '').toLowerCase().includes(q)
+  );
+
+  if (!rows.length) {
+    setBusy('students-table', students.length ? 'No student matches that filter.' : 'No saved progress yet.');
+    return;
+  }
+
+  document.getElementById('students-table').innerHTML =
+    '<table><thead><tr>' +
+      '<th>Student</th><th>Sessions</th><th>Questions</th><th>Accuracy</th><th>First seen</th><th>Last session</th>' +
+    '</tr></thead><tbody>' +
+    rows.map(s => (
+      '<tr class="clickable" data-email="' + esc(s.email) + '">' +
+        '<td><div style="font-weight:600;">' + esc(s.student_name || '—') + '</div>' +
+          '<div class="mono" style="font-size:11.5px;color:var(--text3);">' + esc(s.email) + '</div></td>' +
+        '<td class="mono">' + (s.sessions || 0) + '</td>' +
+        '<td class="mono">' + (s.questions || 0) + '</td>' +
+        '<td>' + accBadge(s.accuracy || 0) + '</td>' +
+        '<td class="mono" style="color:var(--text3);">' + fmtDate(s.first_date) + '</td>' +
+        '<td class="mono">' + fmtDate(s.last_date) + '</td>' +
+      '</tr>'
+    )).join('') +
+    '</tbody></table>';
+
+  // Bound here rather than via an inline onclick, so an apostrophe in an
+  // email or name can never break the handler.
+  document.querySelectorAll('#students-table tr.clickable').forEach(tr => {
+    tr.addEventListener('click', () => openStudent(tr.dataset.email));
+  });
+}
+
+/* ─── One student ────────────────────────────────────────────────────────── */
+async function openStudent(email) {
+  const card = document.getElementById('student-detail-card');
+  document.getElementById('student-list-card').style.display = 'none';
+  card.style.display = 'block';
+  card.innerHTML = '<div class="empty">Loading ' + esc(email) + '…</div>';
+  card.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  try {
+    const d = await api('/admin/progress?email=' + encodeURIComponent(email));
+    renderStudentDetail(email, d);
+  } catch (e) {
+    card.innerHTML = '<button class="back" onclick="closeStudent()">← All students</button>' +
+                     '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+function closeStudent() {
+  document.getElementById('student-detail-card').style.display = 'none';
+  document.getElementById('student-list-card').style.display = 'block';
+}
+
+function renderStudentDetail(email, d) {
+  const sessions = d.sessions || [];
+  const name = (sessions.find(s => s.student_name) || {}).student_name || '—';
+  const totalQs = sessions.reduce((a, s) => a + (s.total_questions || 0), 0);
+  const totalCorrect = sessions.reduce((a, s) => a + (s.correct || 0), 0);
+  const totalTime = sessions.reduce((a, s) => a + (s.total_time || 0), 0);
+  const overall = totalQs ? Math.round((totalCorrect / totalQs) * 100) : 0;
+
+  // Worst first — that is what a coach acts on.
+  const subs = (d.subtopics || []).slice().sort((a, b) => a.accuracy - b.accuracy);
+  const weakest = subs.filter(s => s.attempts >= 3 && s.accuracy < 60);
+
+  let html = '<button class="back" onclick="closeStudent()">← All students</button>' +
+    '<div style="margin-bottom:20px;"><div class="detail-name">' + esc(name) + '</div>' +
+    '<div class="detail-email">' + esc(email) + '</div></div>' +
+    '<div class="kpis">' +
+      '<div class="kpi"><div class="v" style="color:' + accColor(overall) + ';">' + overall + '%</div><div class="l">Overall accuracy</div></div>' +
+      '<div class="kpi"><div class="v">' + sessions.length + '</div><div class="l">Sessions</div></div>' +
+      '<div class="kpi"><div class="v">' + totalQs + '</div><div class="l">Questions</div></div>' +
+      '<div class="kpi"><div class="v">' + fmtTime(totalQs ? totalTime / totalQs : 0) + '</div><div class="l">Avg / question</div></div>' +
+    '</div>';
+
+  if (!sessions.length) {
+    document.getElementById('student-detail-card').innerHTML =
+      html + '<div class="empty">No sessions stored for this student yet.</div>';
+    return;
+  }
+
+  html += '<h2>Accuracy trend</h2>' + trendSvg(sessions);
+
+  if (weakest.length) {
+    html += '<h2 style="margin-top:26px;">Needs work</h2><div style="margin-bottom:18px;">' +
+      weakest.slice(0, 6).map(s =>
+        '<span class="badge badge-bad" style="margin:0 6px 6px 0;">' + esc(s.subtopic) +
+        ' · ' + s.accuracy + '% (' + s.attempts + ')</span>'
+      ).join('') + '</div>';
+  }
+
+  if (subs.length) {
+    html += '<h2 style="margin-top:26px;">Subtopic breakdown</h2><div class="table-wrap"><table><thead><tr>' +
+      '<th>Subtopic</th><th>Topic</th><th>Attempts</th><th style="width:140px;">Accuracy</th><th>Avg time</th>' +
+      '</tr></thead><tbody>' +
+      subs.map(s =>
+        '<tr><td>' + esc(s.subtopic) + '</td>' +
+        '<td style="color:var(--text3);">' + esc(s.topic || '—') + '</td>' +
+        '<td class="mono">' + s.attempts + '</td>' +
+        '<td><div style="display:flex;align-items:center;gap:9px;">' + bar(s.accuracy) +
+          '<span class="mono" style="font-size:12px;color:' + accColor(s.accuracy) + ';">' + s.accuracy + '%</span></div></td>' +
+        '<td class="mono" style="color:var(--text2);">' + fmtTime(s.avg_time) + '</td></tr>'
+      ).join('') + '</tbody></table></div>';
+  }
+
+  if ((d.difficulty || []).length) {
+    const order = { 'Easy': 0, 'Medium': 1, 'Hard': 2, 'Extreme Hard': 3 };
+    const rank = v => (order[v] == null ? 9 : order[v]);
+    const diff = d.difficulty.slice().sort((a, b) => rank(a.difficulty) - rank(b.difficulty));
+    html += '<h2 style="margin-top:26px;">By difficulty</h2><div class="table-wrap"><table><thead><tr>' +
+      '<th>Difficulty</th><th>Attempts</th><th style="width:140px;">Accuracy</th><th>Avg time</th>' +
+      '</tr></thead><tbody>' +
+      diff.map(s =>
+        '<tr><td>' + esc(s.difficulty) + '</td><td class="mono">' + s.attempts + '</td>' +
+        '<td><div style="display:flex;align-items:center;gap:9px;">' + bar(s.accuracy) +
+          '<span class="mono" style="font-size:12px;color:' + accColor(s.accuracy) + ';">' + s.accuracy + '%</span></div></td>' +
+        '<td class="mono" style="color:var(--text2);">' + fmtTime(s.avg_time) + '</td></tr>'
+      ).join('') + '</tbody></table></div>';
+  }
+
+  html += '<h2 style="margin-top:26px;">Sessions</h2><div class="table-wrap"><table><thead><tr>' +
+    '<th>Date</th><th>Type</th><th>Topic</th><th>Questions</th><th>Accuracy</th><th>Time</th>' +
+    '</tr></thead><tbody>' +
+    sessions.slice().reverse().map(s =>
+      '<tr><td class="mono">' + fmtDate(s.date) + '</td>' +
+      '<td><span class="badge badge-mute">' + esc(String(s.session_type || 'manual').replace(/_/g, ' ')) + '</span></td>' +
+      '<td>' + esc(s.topic || '—') + (s.subtopic ? '<span style="color:var(--text3);"> · ' + esc(s.subtopic) + '</span>' : '') + '</td>' +
+      '<td class="mono">' + (s.total_questions || 0) + '</td>' +
+      '<td>' + accBadge(s.accuracy || 0) + '</td>' +
+      '<td class="mono" style="color:var(--text2);">' + fmtTime(s.total_time) + '</td></tr>'
+    ).join('') + '</tbody></table></div>';
+
+  document.getElementById('student-detail-card').innerHTML = html;
+}
+
+/* Inline SVG line chart — no chart library, same as the rest of this tool.
+   Oldest session on the left; the y-axis is pinned to 0–100 so the slope
+   means the same thing for every student. */
+function trendSvg(sessions) {
+  const pts = sessions.map(s => Number(s.accuracy) || 0);
+  if (pts.length < 2) {
+    return '<div class="empty">One session so far — a trend needs at least two.</div>';
+  }
+  const W = 1000, H = 150, pad = 14;
+  const stepX = (W - pad * 2) / (pts.length - 1);
+  const y = v => H - pad - (v / 100) * (H - pad * 2);
+  const coords = pts.map((v, i) => [pad + i * stepX, y(v)]);
+  const line = coords.map(c => c[0].toFixed(1) + ',' + c[1].toFixed(1)).join(' ');
+  const area = line + ' ' + (W - pad) + ',' + (H - pad) + ' ' + pad + ',' + (H - pad);
+  const grid = [0, 50, 75, 100].map(v =>
+    '<line x1="' + pad + '" y1="' + y(v) + '" x2="' + (W - pad) + '" y2="' + y(v) +
+    '" stroke="var(--border)" stroke-width="1" stroke-dasharray="' + (v === 0 ? '0' : '4 5') + '"/>' +
+    '<text x="2" y="' + (y(v) - 3) + '" fill="var(--text3)" font-size="11" font-family="monospace">' + v + '</text>'
+  ).join('');
+  const dots = coords.map((c, i) =>
+    '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="4" fill="' + accColor(pts[i]) +
+    '"><title>Session ' + (i + 1) + ': ' + pts[i] + '%</title></circle>'
+  ).join('');
+  const delta = pts[pts.length - 1] - pts[0];
+  const deltaTxt = (delta >= 0 ? '+' : '') + delta + ' pts across ' + pts.length + ' sessions';
+
+  return '<svg class="trend" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Accuracy trend">' +
+    grid +
+    '<polygon points="' + area + '" fill="var(--accent)" opacity="0.10"/>' +
+    '<polyline points="' + line + '" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>' +
+    dots +
+    '</svg>' +
+    '<div class="hint" style="color:' + (delta >= 0 ? 'var(--success)' : 'var(--danger)') + ';">' + deltaTxt + '</div>';
+}
+
+/* ─── Cohort ─────────────────────────────────────────────────────────────── */
+async function loadCohort() {
+  setBusy('cohort-table', 'Loading…');
+  setBusy('hardest-table', 'Loading…');
+  const min = Math.max(1, Number(document.getElementById('min-attempts').value) || 5);
+  try {
+    const d = await api('/admin/cohort-weakness?min_attempts=' + min);
+
+    const subs = d.subtopics || [];
+    if (!subs.length) {
+      setBusy('cohort-table', 'Nothing yet at ' + min + '+ attempts. Lower the threshold.');
+    } else {
+      document.getElementById('cohort-table').innerHTML =
+        '<table><thead><tr><th>Subtopic</th><th>Topic</th><th>Students</th><th>Attempts</th>' +
+        '<th style="width:140px;">Accuracy</th><th>Avg time</th></tr></thead><tbody>' +
+        subs.map(s =>
+          '<tr><td>' + esc(s.subtopic) + '</td>' +
+          '<td style="color:var(--text3);">' + esc(s.topic || '—') + '</td>' +
+          '<td class="mono">' + (s.students || 0) + '</td>' +
+          '<td class="mono">' + s.attempts + '</td>' +
+          '<td><div style="display:flex;align-items:center;gap:9px;">' + bar(s.accuracy) +
+            '<span class="mono" style="font-size:12px;color:' + accColor(s.accuracy) + ';">' + s.accuracy + '%</span></div></td>' +
+          '<td class="mono" style="color:var(--text2);">' + fmtTime(s.avg_time) + '</td></tr>'
+        ).join('') + '</tbody></table>';
+    }
+
+    const hard = d.hardest_questions || [];
+    if (!hard.length) {
+      setBusy('hardest-table', 'Needs at least 3 attempts on a question.');
+    } else {
+      document.getElementById('hardest-table').innerHTML =
+        '<table><thead><tr><th>Question ID</th><th>Subtopic</th><th>Attempts</th><th>Correct</th><th>Accuracy</th></tr></thead><tbody>' +
+        hard.map(q =>
+          '<tr><td class="mono">' + esc(q.bank_question_id) + '</td>' +
+          '<td>' + esc(q.subtopic || '—') + '</td>' +
+          '<td class="mono">' + q.attempts + '</td>' +
+          '<td class="mono">' + q.correct + '</td>' +
+          '<td>' + accBadge(q.accuracy) + '</td></tr>'
+        ).join('') + '</tbody></table>';
+    }
+  } catch (e) {
+    setBusy('cohort-table', e.message);
+    setBusy('hardest-table', '—');
+  }
+}
+
+/* ─── Mock attempts (existing KV records) ────────────────────────────────── */
+async function loadMocks() {
+  setBusy('mocks-table', 'Loading attempts…');
+  const days = Math.min(180, Math.max(1, Number(document.getElementById('mock-days').value) || 30));
+  try {
+    const d = await api('/admin/mock-attempts?days=' + days);
+    mockAttempts = d.attempts || [];
+    renderMocks();
+  } catch (e) {
+    setBusy('mocks-table', e.message);
+  }
+}
+
+function renderMocks() {
+  const q = (document.getElementById('mock-filter').value || '').toLowerCase().trim();
+  const rows = mockAttempts.filter(a => {
+    if (!q) return true;
+    const s = a.student || {};
+    return String(s.email || '').toLowerCase().includes(q) || String(s.name || '').toLowerCase().includes(q);
+  });
+
+  if (!rows.length) {
+    setBusy('mocks-table', mockAttempts.length ? 'No attempt matches that filter.' : 'No attempts in this window.');
+    return;
+  }
+
+  document.getElementById('mocks-table').innerHTML =
+    '<table><thead><tr><th>Date</th><th>Student</th><th>Event</th><th>Score</th>' +
+    '<th>Accuracy</th><th>Correct</th><th>Time</th><th>Band</th></tr></thead><tbody>' +
+    rows.map(a => {
+      const s = a.student || {};
+      const band = (a.diagnosis && (a.diagnosis.band || a.diagnosis.label)) || '';
+      return '<tr><td class="mono">' + fmtDate(a.submitted_at || a.date) + '</td>' +
+        '<td><div style="font-weight:600;">' + esc(s.name || '—') + '</div>' +
+          '<div class="mono" style="font-size:11.5px;color:var(--text3);">' + esc(s.email || '—') + '</div></td>' +
+        '<td>' + esc(a.event_name || a.event_id || '—') +
+          (a.event_type ? '<div class="mono" style="font-size:11px;color:var(--text3);">' + esc(a.event_type) + '</div>' : '') + '</td>' +
+        '<td class="mono">' + (a.score || 0) + '</td>' +
+        '<td>' + accBadge(Math.round(Number(a.accuracy) || 0)) + '</td>' +
+        '<td class="mono">' + (a.correct || 0) + '/' + (a.total_questions || 0) + '</td>' +
+        '<td class="mono" style="color:var(--text2);">' + fmtTime(a.total_time_seconds) + '</td>' +
+        '<td>' + (band ? '<span class="badge badge-mute">' + esc(band) + '</span>' : '—') + '</td></tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ─── Boot ───────────────────────────────────────────────────────────────── */
+loadConfig();
+if (getConfig().url && getConfig().secret) loadStudents();
+</script>
+</body>
+</html>

@@ -660,6 +660,65 @@ function saveAttempt(payload){
       body: JSON.stringify({ result: payload })
     }).catch(function(e){ console.warn('Could not save sectional attempt', e); });
   } catch(e) { console.warn('Could not save sectional attempt', e); }
+
+  // Also store it as a session in the student's own progress history, so it
+  // shows up in My Progress alongside their practice sessions.
+  if (window.GREProgress) GREProgress.save(buildProgressSession(payload));
+}
+
+/* Converts this page's submission payload into the v2.0 session shape the
+   progress store and the My Progress dashboard both use. Mirrors
+   normalizeSectionalSession() in gre_practice_logger_pro.html, which does the
+   same job for a manually uploaded sectional file. */
+function buildProgressSession(payload){
+  function capWord(s){
+    return s ? String(s).replace(/[_-]+/g,' ').replace(/\b\w/g,function(c){ return c.toUpperCase(); }).trim() : '';
+  }
+  var who = window.GREProgress ? GREProgress.student() : { name:'', email:'' };
+  var sec = payload.sectional || {};
+  var topicName = capWord(sec.topic_name || payload.event_name || 'Sectional Practice');
+  var setNo = sec.set || '';
+  var label = 'Sectional Test — ' + topicName + (setNo ? ' Set ' + setNo : '');
+
+  // Real timestamps, not nulls: the progress store derives a session's id from
+  // its content, so two attempts at the same set on the same day must differ.
+  var endedAt = Date.parse(payload.submitted_at || '') || Date.now();
+  var startedAt = endedAt - (Number(payload.total_time_seconds) || 0) * 1000;
+
+  var questions = (payload.results || []).map(function(r, i){
+    return {
+      id: i + 1,
+      startTime: null,
+      endTime: null,
+      timeTaken: Number(r.time_taken_seconds) || 0,
+      type: r.type === 'numeric_entry' ? 'numeric' : (r.type === 'multiple_answer' ? 'multi' : 'mcq'),
+      answers: r.given_answer ? String(r.given_answer).split(',') : [],
+      numericAnswer: r.type === 'numeric_entry' ? String(r.given_answer || '') : '',
+      topic: topicName,
+      subtopic: capWord(r.topic) + (r.subtopic ? ' — ' + capWord(r.subtopic) : ''),
+      correct: r.skipped ? null : !!r.correct,
+      difficulty: capWord(r.difficulty),
+      notes: '',
+      submitted: !r.skipped,
+      bank_question_id: r.id,
+      source: label
+    };
+  });
+
+  return {
+    studentName: who.name || 'Pro Student',
+    date: new Date(endedAt).toISOString().slice(0, 10),
+    topic: topicName,
+    subtopic: setNo ? 'Set ' + setNo : '',
+    source: 'Sectional Test',
+    notes: label + ' — ' + questions.length + ' questions',
+    startTime: startedAt,
+    endTime: endedAt,
+    questions: questions,
+    exportedAt: new Date().toISOString(),
+    version: '2.0',
+    session_type: 'sectional'
+  };
 }
 
 // Export the attempt in the shape pro/analytics.html ingests.

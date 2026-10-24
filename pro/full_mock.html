@@ -650,6 +650,62 @@ function showBreak() {
 }
 
 // ─── RESULTS ─────────────────────────────────────────────────────────────────
+/* Converts this mock attempt into the v2.0 session shape used by the progress
+   store and the My Progress dashboard. Built from state rather than from the
+   download payload, because the per-question detail (topic, difficulty, time,
+   correctness) lives in state.mockData / state.answers / state.timings. */
+function buildProgressSession() {
+  function capWord(s) {
+    return s ? String(s).replace(/[_-]+/g, ' ').replace(/\b\w/g, function (c) { return c.toUpperCase(); }).trim() : '';
+  }
+  const meta = state.mockMeta || {};
+  const label = 'Full Mock — ' + (meta.title || meta.id || 'Mock');
+  const questions = [];
+  let totalTime = 0;
+
+  (state.mockData && state.mockData.sections ? state.mockData.sections : []).forEach(function (sec, si) {
+    (sec.questions || []).forEach(function (q, qi) {
+      const given = state.answers[si + 1] ? state.answers[si + 1][qi] : undefined;
+      const skipped = !given && given !== 0;
+      const secs = Math.round((state.timings[si + 1] && state.timings[si + 1][qi]) || 0);
+      totalTime += secs;
+      questions.push({
+        id: questions.length + 1,
+        startTime: null,
+        endTime: null,
+        timeTaken: secs,
+        type: q.type === 'numeric_entry' ? 'numeric' : (q.type === 'multiple_answer' ? 'multi' : 'mcq'),
+        answers: Array.isArray(given) ? given : (skipped ? [] : [given]),
+        numericAnswer: q.type === 'numeric_entry' ? (skipped ? '' : String(given)) : '',
+        topic: capWord((q.tags && q.tags[0]) || 'Mixed Practice'),
+        subtopic: capWord((q.tags && q.tags[1]) || ''),
+        correct: skipped ? null : !!checkAnswer(q, given),
+        difficulty: capWord(q.difficulty),
+        notes: '',
+        submitted: !skipped,
+        bank_question_id: q.id,
+        source: label + ' · Section ' + (si + 1)
+      });
+    });
+  });
+
+  const endedAt = Date.now();
+  return {
+    studentName: (state.student && state.student.name) || 'Pro Student',
+    date: new Date(endedAt).toISOString().slice(0, 10),
+    topic: 'Mixed Practice',
+    subtopic: meta.id ? String(meta.id) : '',
+    source: 'Full-Length Mock',
+    notes: label + ' — ' + questions.length + ' questions',
+    startTime: endedAt - totalTime * 1000,
+    endTime: endedAt,
+    questions: questions,
+    exportedAt: new Date().toISOString(),
+    version: '2.0',
+    session_type: 'full_mock'
+  };
+}
+
 function showResults() {
   leReset();
   const r1 = state.sectionResults[1];
@@ -657,6 +713,13 @@ function showResults() {
   const totalCorrect = r1.correct + r2.correct;
   const totalQs = r1.total + r2.total;
   const pct = Math.round((totalCorrect / totalQs) * 100);
+
+  // Store the attempt in the student's progress history. Fire-and-forget, so
+  // the result screen below renders regardless of what the network does.
+  if (window.GREProgress) {
+    try { GREProgress.save(buildProgressSession()); }
+    catch (e) { console.warn('Could not save mock progress', e); }
+  }
 
   document.getElementById('res-subtitle').textContent =
     `${state.student.name} · ${state.mockMeta.title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}`;

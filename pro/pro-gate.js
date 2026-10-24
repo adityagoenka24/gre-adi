@@ -162,6 +162,11 @@
           Object.assign({}, stored, { access: access })
         ));
       } catch (e) {}
+      // Refresh the progress token on every validated load, so a token that
+      // expired while the student was away is replaced silently.
+      if (data.progress_token) {
+        try { localStorage.setItem('gre_progress_token', data.progress_token); } catch (e) {}
+      }
       if (FEATURE && access.indexOf(FEATURE) === -1) {
         showFeatureLocked(access);
       } else {
@@ -191,4 +196,52 @@
       true
     );
   });
+})();
+
+
+/* ============================================================
+   GREProgress — shared progress saver for Pro pages
+
+   The practice logger has its own copy of this (it also needs to
+   READ progress back for the My Progress dashboard). This lighter
+   version is just the write side, for pages that only produce a
+   result: sectional.html and full_mock.html.
+
+   Each page builds the v2.0 session object itself — it knows its
+   own result shape best — and hands it here. Saves are
+   fire-and-forget: a student's result screen must never wait on,
+   or be affected by, the network.
+   ============================================================ */
+window.GREProgress = (function () {
+  var WORKER_URL = 'https://gre-auth.goenka-aditya-kol.workers.dev';
+  var TOKEN_KEY = 'gre_progress_token';
+  var AUTH_KEY = 'gre_pro_auth';
+
+  function token() {
+    try { return localStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return ''; }
+  }
+
+  /* The student's name/email, for pages whose own result payload
+     leaves them blank (sectional.html does). */
+  function student() {
+    try {
+      var raw = localStorage.getItem(AUTH_KEY);
+      var parsed = raw ? JSON.parse(raw) : null;
+      return { email: (parsed && parsed.email) || '', name: (parsed && parsed.name) || '' };
+    } catch (e) { return { email: '', name: '' }; }
+  }
+
+  function save(session) {
+    var t = token();
+    if (!t || !session || !session.questions || !session.questions.length) return;
+    try {
+      fetch(WORKER_URL + '/progress/save', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ token: t, session: session })
+      }).catch(function (e) { console.warn('Could not save progress', e); });
+    } catch (e) { console.warn('Could not save progress', e); }
+  }
+
+  return { token: token, student: student, save: save };
 })();

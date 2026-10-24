@@ -1177,7 +1177,7 @@ body.ets-lock{overflow:hidden;}
   <div class="tab-panel" id="tab-progress">
     <div class="setup-card">
       <h2>Consolidated Progress Dashboard</h2>
-      <p style="color:var(--text2);font-size:14px;margin-bottom:24px;">Upload your saved session JSON files — bank drills, manual sessions, or a downloaded Sectional Test result — to get complete analytics across all sessions. Report will be auto-sent to tutor.</p>
+      <p style="color:var(--text2);font-size:14px;margin-bottom:24px;">Your sessions are saved automatically and load here on any device you log in from. You can also add session JSON files by hand — bank drills, manual sessions, or a downloaded Sectional Test result — to include practice done elsewhere.</p>
       <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:16px;">our coaching team · <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none;">Contact us</a></p>
       <div class="upload-zone" id="upload-zone" onclick="document.getElementById('json-file-input').click()">
         <div class="upload-icon">📁</div>
@@ -1325,8 +1325,11 @@ async function submitAuthToWorker(email, fp) {
         });
       }
       // Save to localStorage and unlock
-      saveAuth(email, fp);
+      saveAuth(email, fp, data.progress_token);
       unlockApp();
+      // Carry over any free-tier history from this browser, then load
+      // whatever is already stored for this student.
+      backfillFreeHistory().then(()=>{ progressAutoLoaded = false; });
 
     } else if (data.status === 'revoked') {
       // Clear any cached session immediately
@@ -1401,12 +1404,13 @@ function resetAuthBtn() {
 /* ============================================================
    AUTH — LOCALSTORAGE HELPERS
    ============================================================ */
-function saveAuth(email, fingerprint) {
+function saveAuth(email, fingerprint, progressToken) {
   localStorage.setItem(AUTH_CONFIG.STORAGE_KEY, JSON.stringify({
     email,
     fingerprint,
     savedAt: Date.now(),
   }));
+  setProgressToken(progressToken);
 }
 
 function getStoredAuth() {
@@ -1420,6 +1424,121 @@ function isSessionExpired(stored) {
   if (!stored || !stored.savedAt) return true;
   const hours = (Date.now() - stored.savedAt) / (1000 * 60 * 60);
   return hours > AUTH_CONFIG.SESSION_HOURS;
+}
+
+
+/* ============================================================
+   PROGRESS SYNC — server-side session history (Pro only)
+
+   Every completed session is pushed to the Worker, which stores it
+   in Cloudflare D1. The My Progress tab then rebuilds itself on any
+   device instead of asking the student to re-upload JSON files.
+
+   Three rules this follows:
+   - Saves are fire-and-forget. A network failure must never block
+     or alter the student's result screen.
+   - The server payload is the SAME v2.0 session object the download
+     already produces, so generateConsolidated() needed no rewrite.
+   - Free-tier history kept in localStorage is uploaded once, on the
+     first Pro login in that browser, then cleared.
+   ============================================================ */
+const PROGRESS_CONFIG = {
+  TOKEN_KEY: 'gre_progress_token',        // signed token returned by /validate
+  FREE_HISTORY_KEY: 'gqp_free_sessions',  // free-tier local history (shared origin)
+};
+
+let progressAutoLoaded = false;
+
+function getProgressToken(){
+  try{ return localStorage.getItem(PROGRESS_CONFIG.TOKEN_KEY) || ''; }catch(e){ return ''; }
+}
+
+function setProgressToken(token){
+  try{ if(token) localStorage.setItem(PROGRESS_CONFIG.TOKEN_KEY, token); }catch(e){}
+}
+
+/* Push one completed session. Returns true/false, never throws. */
+async function saveProgressSession(session){
+  const token = getProgressToken();
+  if(!token || !session || !Array.isArray(session.questions) || !session.questions.length) return false;
+  try{
+    const res = await fetch(`${AUTH_CONFIG.WORKER_URL}/progress/save`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ token, session }),
+    });
+    return res.ok;
+  }catch(e){ return false; }
+}
+
+/* Pull this student's stored sessions. Returns [] on any failure. */
+async function fetchProgressSessions(){
+  const token = getProgressToken();
+  if(!token) return [];
+  try{
+    const res = await fetch(`${AUTH_CONFIG.WORKER_URL}/progress/sessions?token=${encodeURIComponent(token)}`);
+    if(!res.ok) return [];
+    const data = await res.json();
+    return Array.isArray(data.sessions) ? data.sessions : [];
+  }catch(e){ return []; }
+}
+
+/* Load stored sessions into the Progress tab and render the dashboard.
+   Runs once per page load, and only when nothing has been uploaded by
+   hand, so a student comparing specific files is never overridden. */
+async function syncProgressTab(){
+  if(progressAutoLoaded || uploadedSessions.length) return;
+  progressAutoLoaded = true;
+
+  const stored = await fetchProgressSessions();
+  if(!stored.length) return;
+
+  stored.forEach(s=>{
+    if(!s || !s.data || !s.data.questions) return;
+    const d = s.data;
+    const label = [d.topic || 'Session', d.date || ''].filter(Boolean).join(' · ');
+    uploadedSessions.push({ file:'Saved · ' + label, data:d });
+  });
+
+  if(!uploadedSessions.length) return;
+
+  renderUploadedFiles();
+  const btn = document.getElementById('generate-consolidated-btn');
+  if(btn) btn.disabled = false;
+  generateConsolidated();
+  showToast(uploadedSessions.length + ' saved session' + (uploadedSessions.length===1?'':'s') + ' loaded', 'success');
+}
+
+/* Carry a student's free-tier history over on their first Pro login
+   in this browser. Best-effort by nature: localStorage is per-browser
+   and the student may have cleared it, so nothing here is promised
+   anywhere in the UI. */
+async function backfillFreeHistory(){
+  const token = getProgressToken();
+  if(!token) return;
+
+  let sessions = [];
+  try{
+    const raw = localStorage.getItem(PROGRESS_CONFIG.FREE_HISTORY_KEY);
+    if(!raw) return;
+    sessions = JSON.parse(raw);
+  }catch(e){ return; }
+
+  if(!Array.isArray(sessions) || !sessions.length) return;
+  const valid = sessions.filter(s=>s && Array.isArray(s.questions) && s.questions.length).slice(0,50);
+  if(!valid.length) return;
+
+  try{
+    const res = await fetch(`${AUTH_CONFIG.WORKER_URL}/progress/save`, {
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({ token, sessions: valid }),
+    });
+    if(!res.ok) return;
+    // Only clear once the server has it, so a failure keeps it for next login.
+    localStorage.removeItem(PROGRESS_CONFIG.FREE_HISTORY_KEY);
+    showToast(valid.length + ' earlier free session' + (valid.length===1?'':'s') + ' added to My Progress 🎉','success');
+  }catch(e){ /* keep the local copy for the next attempt */ }
 }
 
 const FREE_CONFIG = {
@@ -1473,6 +1592,7 @@ function switchTab(name,btn){
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   document.getElementById('tab-'+name).classList.add('active');
   btn.classList.add('active');
+  if(name==='progress' && typeof syncProgressTab==='function') syncProgressTab();
 }
 
 // ============================================================
@@ -1809,6 +1929,12 @@ function generateReport(){
     const rp=document.getElementById('report-panel');
     rp.classList.add('visible');
     rp.scrollIntoView({behavior:'smooth'});
+    // Only now are answers marked, so this is the earliest point a manual
+    // session is worth storing.
+    saveProgressSession({...sessionData,exportedAt:new Date().toISOString(),
+      version:'2.0',session_type:'manual'}).then(ok=>{
+      if(ok) progressAutoLoaded = false;
+    });
     // autoSendEmail(); // EmailJS — commented out until ready
   },400);
 }
@@ -2606,9 +2732,17 @@ function bankFinish(){
     </div>`;
   window.scrollTo({top:0,behavior:'smooth'});
   showToast('Session complete! '+acc+'% accuracy 🎉',acc>=75?'success':'info');
+
+  // Save to the student's progress history in the background. Deliberately
+  // not awaited — the result screen is already on screen and must not wait.
+  saveProgressSession(buildBankSessionData()).then(ok=>{
+    if(ok) progressAutoLoaded = false; // next Progress tab visit refetches
+  });
 }
 
-function saveBankSessionAsJSON(){
+/* Builds the v2.0 session object for a bank practice session. Shared by the
+   download button and the background save, so both send identical data. */
+function buildBankSessionData(){
   const qs=bankState.results.map((r,i)=>({
     id:i+1,startTime:bankState.sessionStartTime+(i*1000),
     endTime:bankState.sessionStartTime+(i*1000)+(r.timeTaken*1000),
@@ -2626,6 +2760,11 @@ function saveBankSessionAsJSON(){
     notes:bankState.subtopic+' — '+bankState.results.length+' questions from bank',
     startTime:bankState.sessionStartTime,endTime:Date.now(),questions:qs,
     exportedAt:new Date().toISOString(),version:'2.0',session_type:'bank_practice'};
+  return data;
+}
+
+function saveBankSessionAsJSON(){
+  const data=buildBankSessionData();
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;

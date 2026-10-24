@@ -11,3 +11,16 @@ id = "PASTE_YOUR_KV_NAMESPACE_ID_HERE"
 # Environment variables — set these as secrets, not here
 # Run: wrangler secret put ADMIN_SECRET
 # Run: wrangler secret put MAX_DEVICES
+
+# D1 database binding — student progress (Pro students only).
+# Created and bound through the Cloudflare dashboard:
+#   D1 SQL database -> gre-progress
+#   Workers & Pages -> gre-auth -> Bindings -> D1 database -> variable GRE_DB
+# Schema lives in schema.sql in this folder.
+[[d1_databases]]
+binding = "GRE_DB"
+database_name = "gre-progress"
+database_id = "PASTE_YOUR_D1_DATABASE_ID_HERE"
+
+# Run: wrangler secret put PROGRESS_SECRET
+# Signs the /progress/* student tokens. Falls back to ADMIN_SECRET if unset.

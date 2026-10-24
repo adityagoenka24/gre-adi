@@ -1469,6 +1469,10 @@ function generateReport(){
     const rp=document.getElementById('report-panel');
     rp.classList.add('visible');
     rp.scrollIntoView({behavior:'smooth'});
+    // Answers are only marked by this point, so this is the earliest a manual
+    // session is worth keeping in the local history.
+    recordFreeSession({...sessionData,exportedAt:new Date().toISOString(),
+      version:'2.0',session_type:'manual'});
     // autoSendEmail(); // EmailJS — commented out until ready
   },400);
 }
@@ -2211,9 +2215,13 @@ function bankFinish(){
   window.scrollTo({top:0,behavior:'smooth'});
   showToast('Session complete! '+acc+'% accuracy 🎉',acc>=75?'success':'info');
   showTutorTeaser();
+  recordFreeSession(buildBankSessionData());
+  renderLockedHistory();
 }
 
-function saveBankSessionAsJSON(){
+/* Builds the v2.0 session object for a bank practice session. Shared by the
+   download button and the local history, so both hold identical data. */
+function buildBankSessionData(){
   const qs=bankState.results.map((r,i)=>({
     id:i+1,startTime:bankState.sessionStartTime+(i*1000),
     endTime:bankState.sessionStartTime+(i*1000)+(r.timeTaken*1000),
@@ -2231,12 +2239,17 @@ function saveBankSessionAsJSON(){
     notes:bankState.subtopic+' — '+bankState.results.length+' questions from bank',
     startTime:bankState.sessionStartTime,endTime:Date.now(),questions:qs,
     exportedAt:new Date().toISOString(),version:'2.0',session_type:'bank_practice'};
+  return data;
+}
+
+function saveBankSessionAsJSON(){
+  const data=buildBankSessionData();
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;
   a.download='gre_bank_'+bankState.topic.toLowerCase()+'_'+bankState.subtopic.toLowerCase().replace(/\s+/g,'_')+'_'+data.date+'.json';
   a.click();URL.revokeObjectURL(url);
-  showToast('Session saved! Upload to My Progress for trend tracking 💾','success');
+  showToast('Session file downloaded 💾','success');
 }
 
 function sendBankMailto(){
@@ -2282,6 +2295,107 @@ loadBankIndex();
 // ============================================================
 // FREE / PRO GATING
 // ============================================================
+
+
+/* ============================================================
+   FREE SESSION HISTORY
+
+   Free practice is not stored on the server — that is a Pro
+   feature. But the sessions are kept in this browser, for two
+   reasons:
+
+   1. The locked history panel below can show a real number
+      ("4 sessions saved"), which is a far better upgrade prompt
+      than a generic one.
+   2. When the student upgrades and logs into the Pro app in this
+      same browser, that history is uploaded and their trend
+      starts populated instead of empty. Same origin, so the Pro
+      logger can read this key.
+
+   Best-effort by nature: localStorage is per-browser and the
+   student may clear it. Nothing in the UI promises otherwise.
+   ============================================================ */
+const FREE_HISTORY_KEY = 'gqp_free_sessions';
+const FREE_HISTORY_MAX = 50;
+
+function readFreeHistory(){
+  try{
+    const raw=localStorage.getItem(FREE_HISTORY_KEY);
+    const parsed=raw?JSON.parse(raw):[];
+    return Array.isArray(parsed)?parsed:[];
+  }catch(e){ return []; }
+}
+
+function recordFreeSession(session){
+  if(!session||!Array.isArray(session.questions)||!session.questions.length) return 0;
+  try{
+    const history=readFreeHistory();
+    history.push(session);
+    // Keep the most recent ones; oldest fall off first.
+    const trimmed=history.slice(-FREE_HISTORY_MAX);
+    localStorage.setItem(FREE_HISTORY_KEY,JSON.stringify(trimmed));
+    return trimmed.length;
+  }catch(e){
+    // Quota full or storage blocked — the session result itself is unaffected.
+    return readFreeHistory().length;
+  }
+}
+
+/* The upgrade panel shown after a free session. Their own accuracy is real and
+   visible; what is locked is the history and the trend across sessions. */
+function renderLockedHistory(){
+  const anchor=document.getElementById('bank-complete-breakdown');
+  if(!anchor) return;
+
+  const history=readFreeHistory();
+  const count=history.length;
+  const totalQs=history.reduce((sum,s)=>sum+(s.questions?s.questions.length:0),0);
+
+  const existing=document.getElementById('locked-history');
+  if(existing) existing.remove();
+
+  const headline=count>1
+    ? count+' sessions saved in this browser'
+    : 'This session is saved in this browser only';
+  const sub=count>1
+    ? totalQs+' questions across '+count+' sessions. Go Pro and all of it moves into My Progress — accuracy trend, topic mastery, and your weakest subtopics over time.'
+    : 'Practice more and they stack up here. Go Pro and your history moves into My Progress — accuracy trend, topic mastery, and your weakest subtopics over time.';
+
+  anchor.insertAdjacentHTML('afterend', `
+    <div id="locked-history" style="margin-top:20px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px;">
+      <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Progress History</div>
+      <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
+        <div style="width:40px;height:40px;border-radius:50%;background:rgba(26,93,166,0.1);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">🔒</div>
+        <div style="flex:1;min-width:220px;">
+          <div style="font-size:15px;font-weight:700;color:var(--text);margin-bottom:4px;">${headline}</div>
+          <div style="font-size:13.5px;line-height:1.55;color:var(--text2);">${sub}</div>
+        </div>
+      </div>
+      <div style="position:relative;margin-top:16px;border-radius:var(--radius-sm);overflow:hidden;border:1px solid var(--border);">
+        <div aria-hidden="true" style="filter:blur(3px);opacity:0.5;pointer-events:none;user-select:none;padding:16px 18px;background:var(--surface3);">
+          <div style="display:flex;gap:10px;margin-bottom:12px;">
+            <div style="flex:1;height:38px;background:var(--surface2);border-radius:6px;"></div>
+            <div style="flex:1;height:38px;background:var(--surface2);border-radius:6px;"></div>
+            <div style="flex:1;height:38px;background:var(--surface2);border-radius:6px;"></div>
+          </div>
+          <div style="display:flex;align-items:flex-end;gap:7px;height:62px;">
+            <div style="flex:1;height:38%;background:var(--accent);opacity:.55;border-radius:3px 3px 0 0;"></div>
+            <div style="flex:1;height:56%;background:var(--accent);opacity:.55;border-radius:3px 3px 0 0;"></div>
+            <div style="flex:1;height:47%;background:var(--accent);opacity:.55;border-radius:3px 3px 0 0;"></div>
+            <div style="flex:1;height:71%;background:var(--accent);opacity:.55;border-radius:3px 3px 0 0;"></div>
+            <div style="flex:1;height:64%;background:var(--accent);opacity:.55;border-radius:3px 3px 0 0;"></div>
+            <div style="flex:1;height:83%;background:var(--accent);opacity:.55;border-radius:3px 3px 0 0;"></div>
+          </div>
+        </div>
+        <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;">
+          <a href="pricing.html" style="display:inline-block;padding:11px 22px;border-radius:9px;background:var(--accent);color:#fff;text-decoration:none;font-weight:700;font-size:14px;box-shadow:0 6px 18px rgba(20,30,40,.18);">Unlock My Progress →</a>
+        </div>
+      </div>
+      <div style="font-size:11.5px;color:var(--text3);margin-top:11px;line-height:1.5;">
+        Saved in this browser only. Clearing your browser data removes it, and it does not follow you to another device until you go Pro.
+      </div>
+    </div>`);
+}
 
 function isFreeTier() { return APP_MODE === 'free'; }
 
