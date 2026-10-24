@@ -600,3 +600,30 @@ Deleted (all were committed to git first, so every one is recoverable with
   scripts; deleting them would drop that coverage
 - `afd/`, `sdp/`, `internship/`, root `dashboard.html` — non-GRE, never touched
 - `events/mock_test.html` — the live event mock
+
+## 27. Copy trimmed
+
+Measured prose per homepage section by rendering the page and counting words
+in `.section-sub`, `.free-list li`, `.access-step-body` and friends. Two
+sections dominated, and were cut roughly in half:
+
+| Section | Before | After |
+|---|---|---|
+| `#how-built` ("Judge the explanations") | 246 words | 118 |
+| `#tracking` (the new one) | 143 words | 76 |
+| **Homepage total** | **761** | **557** |
+
+Nothing in the argument was dropped from `#how-built` — it still runs
+can't-verify-a-score → named traps → band calibration → written ETS standard →
+nothing AI-generated unread → report-it-and-we-pull-it plus the refund. Only
+the restatements went: "writing those is the whole job", "a wrong practice
+question is worse than no practice question", and the sentence explaining the
+guarantee twice.
+
+**A layout bug the trim exposed:** in `.free-list`, a bold lead longer than
+about 35 characters wraps to a second line and knocks the body text out of
+alignment with the other bullets. "Difficulty is calibrated to score bands."
+did exactly that, so it became "Calibrated to score bands." Verified by
+counting client rects on each `<strong>` at 1280px and 390px — all four leads
+now occupy a single line, with no horizontal overflow at either width. Worth
+remembering when writing future bullets for this component.
