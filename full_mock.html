@@ -26,6 +26,7 @@
 <script defer src="gre-math.js"></script>
 <script defer src="gre-calculator.js"></script>
 <script defer src="progress-local.js"></script>
+<script defer src="score-scale.js"></script>
 <style>
   .gre-shell.screen{display:none;}
   .gre-shell.screen.active{display:flex;}
@@ -794,11 +795,13 @@ function showBreak() {
 }
 
 // ─── SCORE ESTIMATION ────────────────────────────────────────────────────────
-// A 27-question mock cannot reproduce the real adaptive algorithm, so we
-// difficulty-weight the raw accuracy and map it onto the 130-170 Quant scale.
+// A 27-question mock cannot reproduce the real adaptive algorithm, so the raw
+// accuracy is difficulty-weighted and mapped onto the 130-170 Quant scale.
 // Always shown with a band, never as a single confident number.
-const DIFF_WEIGHT = { easy:1.00, medium:1.15, hard:1.35, extreme_hard:1.55 };
-const SCALE_ANCHORS = [[0,134],[0.25,145],[0.40,152],[0.50,156],[0.60,159],[0.70,162],[0.80,165],[0.90,168],[1,170]];
+//
+// The weights and the anchor table now live in score-scale.js, so a mock, a
+// sectional and a topic test all scale the same accuracy to the same number
+// and the coach view can reproduce exactly what the student was shown.
 const PACE_TARGET = 105; // seconds per question at real-GRE pace
 
 // Question tags are slugs ("number-properties"); show them the way the site does.
@@ -819,27 +822,26 @@ function topicLabel(t) {
   return String(t).replace(/[-_]+/g, ' ').replace(/\b\w/g, c => c.toUpperCase());
 }
 
-function weightedAccuracy() {
-  let num = 0, den = 0;
+/* The estimate for this paper, or null if score-scale.js did not load — in
+   which case the result screen falls back to raw accuracy rather than
+   inventing a second scale of its own. */
+function mockScore() {
+  if (!window.GREScore) return null;
+  const rows = [];
   state.mockData.sections.forEach((sec, si) => {
     sec.questions.forEach((q, qi) => {
-      const w = DIFF_WEIGHT[q.difficulty] || 1;
-      den += w;
-      if (checkAnswer(q, state.answers[si+1][qi])) num += w;
+      rows.push({ difficulty: q.difficulty, correct: checkAnswer(q, state.answers[si+1][qi]) });
     });
   });
-  return den ? num / den : 0;
+  return GREScore.fromQuestions(rows, 'mock');
 }
 
-function estimateScaled(wacc) {
-  for (let i = 0; i < SCALE_ANCHORS.length - 1; i++) {
-    const [x0, y0] = SCALE_ANCHORS[i], [x1, y1] = SCALE_ANCHORS[i+1];
-    if (wacc >= x0 && wacc <= x1) {
-      const t = (x1 === x0) ? 0 : (wacc - x0) / (x1 - x0);
-      return Math.round(y0 + t * (y1 - y0));
-    }
-  }
-  return 170;
+/* Only used when there is no estimate to show. */
+function rawBand(pct) {
+  if (pct >= 80) return { label:'STRONG', key:'strong' };
+  if (pct >= 65) return { label:'CLOSE', key:'close' };
+  if (pct >= 50) return { label:'NEEDS FOCUS', key:'focus' };
+  return { label:'HIGH RISK', key:'risk' };
 }
 
 // Per-topic and per-type accuracy plus pace, used by the weakness report.
@@ -959,13 +961,14 @@ function showResults() {
   document.getElementById('res-subtitle').textContent =
     `${state.student.name} · ${state.mockMeta.title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}`;
 
-  const wacc = weightedAccuracy();
-  const scaled = estimateScaled(wacc);
-  const bandLo = Math.max(130, scaled - 3), bandHi = Math.min(170, scaled + 3);
+  const est = mockScore();
+  const scaled = est ? est.scaled : null;
 
   setTimeout(() => {
     const arc = document.getElementById('score-arc');
-    const arcPct = Math.max(0, Math.min(100, ((scaled - 130) / 40) * 100));
+    const arcPct = est
+      ? Math.max(0, Math.min(100, ((est.scaled - est.min) / (est.max - est.min)) * 100))
+      : pct;
     arc.style.strokeDashoffset = 427 - (427 * arcPct / 100);
     arc.style.transition = 'stroke-dashoffset 1s ease';
     if (pct >= 80) arc.style.stroke = 'var(--gre-success)';
@@ -975,8 +978,9 @@ function showResults() {
   }, 100);
 
   const scoreValEl = document.getElementById('res-score-val');
-  scoreValEl.textContent = scaled;
+  scoreValEl.textContent = est ? est.scaled : (totalCorrect + '/' + totalQs);
   scoreValEl.style.fontSize = '44px';
+  document.getElementById('res-score-sub').textContent = est ? 'EST. Q SCORE' : 'CORRECT';
 
   const totalTime = r1.timeUsed + r2.timeUsed;
   // Per-question timings are the honest basis here: the section clock also counts
@@ -985,7 +989,7 @@ function showResults() {
   [1,2].forEach(sn => Object.values(state.timings[sn] || {}).forEach(v => { if (v > 0) { timedSum += v; timedCount++; } }));
   const avgTime = timedCount ? Math.round(timedSum / timedCount) : Math.round(totalTime / totalQs);
   document.getElementById('res-stats').innerHTML = `
-    <div class="stat-card"><div class="stat-val">${bandLo}–${bandHi}</div><div class="stat-lbl">Likely Score Range</div></div>
+    <div class="stat-card"><div class="stat-val">${est ? est.range : pct + '%'}</div><div class="stat-lbl">${est ? 'Likely Score Range' : 'Accuracy'}</div></div>
     <div class="stat-card"><div class="stat-val">${totalCorrect}/${totalQs}</div><div class="stat-lbl">Correct</div></div>
     <div class="stat-card"><div class="stat-val">${totalQs - totalCorrect}</div><div class="stat-lbl">Wrong / Skipped</div></div>
     <div class="stat-card"><div class="stat-val">${avgTime}s</div><div class="stat-lbl">Avg / Question</div></div>
@@ -1022,13 +1026,17 @@ function showResults() {
   }).join('');
   document.getElementById('topic-bars').innerHTML = `<h3>Topic Breakdown</h3>${topicHtml}`;
 
-  const diagBand = renderDiagnosis(pct, totalCorrect, totalQs, scaled, wacc);
+  const diagBand = renderDiagnosis(pct, totalCorrect, totalQs, est);
   renderUpgradeCTA(pct);
 
   const payload = buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2);
   payload.diagnosis = diagBand;
-  payload.estimated_scaled_score = scaled;
-  payload.weighted_accuracy = Math.round(wacc * 1000) / 1000;
+  if (est) {
+    payload.estimated_scaled_score = est.scaled;
+    payload.estimated_score_low = est.low;
+    payload.estimated_score_high = est.high;
+    payload.weighted_accuracy = est.wacc;
+  }
   saveAttempt(payload);
 
   histAdd({
@@ -1036,7 +1044,7 @@ function showResults() {
     mock_title: state.mockMeta.title,
     date: new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}),
     iso: new Date().toISOString(),
-    scaled, pct, correct: totalCorrect, total: totalQs,
+    scaled: est ? est.scaled : null, pct, correct: totalCorrect, total: totalQs,
     weakest: state._lastWeakest || ''
   });
   renderHistory();
@@ -1044,16 +1052,15 @@ function showResults() {
   goTo('screen-results');
 }
 
-function renderDiagnosis(pct, correct, total, scaled, wacc) {
+function renderDiagnosis(pct, correct, total, est) {
   const { byTopic, byType } = buildBreakdown();
   const TYPE_LABEL = { mcq:'Multiple choice', multiple_answer:'Multiple-answer', numeric_entry:'Numeric entry', qc:'Quantitative Comparison', quantitative_comparison:'Quantitative Comparison' };
 
-  // Band kept for the submission payload and the colour treatment.
-  let band, bandClass;
-  if (scaled >= 165)      { band='STRONG';      bandClass='strong'; }
-  else if (scaled >= 158) { band='CLOSE';       bandClass='close';  }
-  else if (scaled >= 150) { band='NEEDS FOCUS'; bandClass='focus';  }
-  else                    { band='HIGH RISK';   bandClass='risk';   }
+  // Band kept for the submission payload and the colour treatment. Cut on the
+  // estimated score where there is one, so the verdict and the number agree.
+  const verdict = est ? GREScore.bandFor(est.scaled) : rawBand(pct);
+  const band = verdict.label;
+  const bandClass = verdict.key === 'foundation' ? 'risk' : verdict.key;
 
   // Weakest topic with at least 2 questions, by accuracy then by volume missed.
   const topics = Object.entries(byTopic).filter(([,v]) => v.total >= 2);
@@ -1096,16 +1103,16 @@ function renderDiagnosis(pct, correct, total, scaled, wacc) {
   if (drillTopic) steps.push(`Drill <strong>${topicLabel(drillTopic)}</strong> next — 20 questions, Practice Mode, read every trap note even on the ones you get right.`);
   if (slowest && Math.round(slowest[2]) > PACE_TARGET) steps.push(`Re-run a ${topicLabel(slowest[0])} set with a hard 1:45 per-question cap. Guess and move when the cap hits — the aim is pacing, not accuracy.`);
   steps.push('Open Review All Answers below and read the trap note on every question you missed. The trap is the reason, the answer is only the symptom.');
-  if (scaled < 158) steps.push('Before your next mock, work the free Concept Notes for your weakest topic — a mock diagnoses, it does not teach.');
+  if (!est || est.scaled < 158) steps.push('Before your next mock, work the free Concept Notes for your weakest topic — a mock diagnoses, it does not teach.');
 
   document.getElementById('diagnosis-card').innerHTML = `
     <h3>Your Diagnosis</h3>
-    <div class="band ${bandClass}">${band} &nbsp;·&nbsp; EST. Q ${scaled}</div>
-    <p class="diag-text" style="margin-bottom:10px">
-      <strong>Estimated Quant score: ${scaled}</strong> (likely range ${Math.max(130,scaled-3)}–${Math.min(170,scaled+3)}).
-      This is a difficulty-weighted estimate from ${total} questions — ${Math.round(wacc*100)}% weighted accuracy against ${pct}% raw.
-      It is an indication, not an official score.
-    </p>
+    <div class="band ${bandClass}">${band}${est ? ' &nbsp;·&nbsp; EST. Q ' + est.scaled : ' &nbsp;·&nbsp; ' + pct + '%'}</div>
+    ${est ? `<p class="diag-text" style="margin-bottom:10px">
+      <strong>Estimated Quant score: ${est.scaled} / ${est.max}</strong> (likely range ${est.range}).
+      Difficulty-weighted from ${total} questions — ${Math.round(est.wacc*100)}% weighted accuracy against ${pct}% raw.
+      ${est.note}
+    </p>` : ''}
     <p class="diag-text">${lines.join(' ')}</p>
     <ul class="recovery-steps">${steps.map((x,i)=>`<li><span class="step-num">${i+1}</span><span>${x}</span></li>`).join('')}</ul>
     ${drillTopic ? `<div style="margin-top:14px"><a class="btn btn-primary" href="gre_practice_logger_free.html?start=guided&topic=${encodeURIComponent(drillTopic)}" data-track="drill_from_mock" data-track-from="diagnosis">Drill ${topicLabel(drillTopic)} now &rarr;</a></div>` : ''}

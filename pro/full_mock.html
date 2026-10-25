@@ -18,6 +18,7 @@
 </head>
 <body>
 <script src="pro-gate.js" data-feature="mocks"></script>
+<script src="../score-scale.js"></script>
 <div class="app">
   <div class="app-header">
     <div class="logo">
@@ -112,7 +113,7 @@
         </svg>
         <div class="score-ring-label">
           <div class="score-val" id="res-score-val">—</div>
-          <div class="score-sub">CORRECT</div>
+          <div class="score-sub" id="res-score-sub">CORRECT</div>
         </div>
       </div>
     </div>
@@ -706,6 +707,22 @@ function buildProgressSession() {
   };
 }
 
+/* The estimated Quant score for this paper, or null if score-scale.js did not
+   load — in which case the screen falls back to raw accuracy rather than
+   inventing a scale of its own. Difficulty and correctness come from the same
+   checkAnswer() the rest of the page uses, so the number the student sees here
+   is reproducible from the stored session in the coach view. */
+function mockScore() {
+  if (!window.GREScore) return null;
+  const rows = [];
+  (state.mockData && state.mockData.sections ? state.mockData.sections : []).forEach(function (sec, si) {
+    (sec.questions || []).forEach(function (q, qi) {
+      rows.push({ difficulty: q.difficulty, correct: checkAnswer(q, state.answers[si+1][qi]) });
+    });
+  });
+  return GREScore.fromQuestions(rows, 'mock');
+}
+
 function showResults() {
   leReset();
   const r1 = state.sectionResults[1];
@@ -713,6 +730,7 @@ function showResults() {
   const totalCorrect = r1.correct + r2.correct;
   const totalQs = r1.total + r2.total;
   const pct = Math.round((totalCorrect / totalQs) * 100);
+  const est = mockScore();
 
   // Store the attempt in the student's progress history. Fire-and-forget, so
   // the result screen below renders regardless of what the network does.
@@ -727,7 +745,10 @@ function showResults() {
   setTimeout(() => {
     const arc = document.getElementById('score-arc');
     const circumference = 427;
-    arc.style.strokeDashoffset = circumference - (circumference * pct / 100);
+    const arcPct = est
+      ? Math.max(0, Math.min(100, ((est.scaled - est.min) / (est.max - est.min)) * 100))
+      : pct;
+    arc.style.strokeDashoffset = circumference - (circumference * arcPct / 100);
     arc.style.transition = 'stroke-dashoffset 1s ease';
     if (pct >= 80) arc.style.stroke = 'var(--gre-success)';
     else if (pct >= 60) arc.style.stroke = 'var(--gre-blue)';
@@ -735,11 +756,13 @@ function showResults() {
     else arc.style.stroke = 'var(--gre-danger)';
   }, 100);
 
-  document.getElementById('res-score-val').textContent = `${totalCorrect}/${totalQs}`;
+  document.getElementById('res-score-val').textContent = est ? est.scaled : `${totalCorrect}/${totalQs}`;
+  document.getElementById('res-score-sub').textContent = est ? 'EST. Q SCORE' : 'CORRECT';
 
   const totalTime = r1.timeUsed + r2.timeUsed;
   const avgTime = Math.round(totalTime / totalQs);
   document.getElementById('res-stats').innerHTML = `
+    ${est ? `<div class="stat-card"><div class="stat-val">${est.range}</div><div class="stat-lbl">Likely Score Range</div></div>` : ''}
     <div class="stat-card"><div class="stat-val">${pct}%</div><div class="stat-lbl">Accuracy</div></div>
     <div class="stat-card"><div class="stat-val">${totalCorrect}</div><div class="stat-lbl">Correct</div></div>
     <div class="stat-card"><div class="stat-val">${totalQs - totalCorrect}</div><div class="stat-lbl">Wrong / Skipped</div></div>
@@ -778,35 +801,51 @@ function showResults() {
   }).join('');
   document.getElementById('topic-bars').innerHTML = `<h3>Topic Breakdown</h3>${topicHtml}`;
 
-  renderDiagnosis(pct, totalCorrect, totalQs, r1, r2);
+  renderDiagnosis(pct, totalCorrect, totalQs, est);
   goTo('screen-results');
 }
 
-function renderDiagnosis(pct, correct, total, r1, r2) {
-  let band, bandClass, message, steps;
-  if (pct >= 80) {
-    band='STRONG'; bandClass='strong';
-    message=`Excellent work, ${state.student.name}! You answered ${correct} out of ${total} correctly. You're performing at the 165–170 level. Focus on eliminating careless errors in the questions you got wrong.`;
-    steps=['Review every wrong answer carefully — at this level, mistakes are often careless, not conceptual.','Time yourself on extreme hard questions — efficiency is your edge.','Simulate test conditions with full mocks to maintain peak performance.'];
-  } else if (pct >= 65) {
-    band='CLOSE'; bandClass='close';
-    message=`Good performance, ${state.student.name}. You got ${correct}/${total} right. You're in the 158–165 band. Targeted practice on your weak topics will push you into the 165+ range.`;
-    steps=['Identify the 2-3 topics where you missed the most and drill them with subtopic practice.','Review medium-difficulty questions you got wrong — these are your biggest score gains.','Work on time management — being slow on easy questions costs you hard question attempts.'];
-  } else if (pct >= 50) {
-    band='NEEDS FOCUS'; bandClass='focus';
-    message=`You got ${correct}/${total} correct, ${state.student.name}. You're at the 150–158 level. There are clear concept gaps — focused study on fundamentals will make a big difference.`;
-    steps=['Go back to basics: arithmetic, algebra, and number properties need to be solid before harder topics.','Do not attempt full mocks yet — spend 2 weeks on subtopic drills first.','Focus on understanding why wrong answers are wrong, not just what the right answer is.'];
-  } else {
-    band='HIGH RISK'; bandClass='risk';
-    message=`You got ${correct}/${total} right, ${state.student.name}. This is a foundation-building phase. Don't be discouraged — everyone starts somewhere.`;
-    steps=['Start with easy-only practice across all topics to build confidence and concept clarity.','Read each explanation even for questions you got right — understanding the method matters.','Set a goal: improve by 10% on the next mock before attempting harder difficulty questions.'];
-  }
+function renderDiagnosis(pct, correct, total, est) {
+  // Cut the verdict on the estimated score where there is one, so the band and
+  // the number can never disagree — the old version banded on raw percentage
+  // and then quoted a score range at the student, which is two scales at once.
+  const key = est ? GREScore.bandFor(est.scaled).key
+                  : (pct >= 80 ? 'strong' : pct >= 65 ? 'close' : pct >= 50 ? 'focus' : 'foundation');
+  const COPY = {
+    strong: {
+      band:'STRONG',
+      steps:['Review every wrong answer carefully — at this level, mistakes are often careless, not conceptual.','Time yourself on extreme hard questions — efficiency is your edge.','Simulate test conditions with full mocks to maintain peak performance.'],
+      line:`Excellent work, ${state.student.name}. ${correct} of ${total} correct. Focus on eliminating careless errors in the ones you missed.`
+    },
+    close: {
+      band:'CLOSE',
+      steps:['Identify the 2-3 topics where you missed the most and drill them with subtopic practice.','Review medium-difficulty questions you got wrong — these are your biggest score gains.','Work on time management — being slow on easy questions costs you hard question attempts.'],
+      line:`Good performance, ${state.student.name}. ${correct} of ${total} correct. Targeted work on your weak topics is what pushes this into the 165+ range.`
+    },
+    focus: {
+      band:'NEEDS FOCUS',
+      steps:['Go back to basics: arithmetic, algebra, and number properties need to be solid before harder topics.','Do not attempt full mocks back to back yet — spend two weeks on subtopic drills first.','Focus on understanding why wrong answers are wrong, not just what the right answer is.'],
+      line:`${correct} of ${total} correct, ${state.student.name}. There are clear concept gaps — focused study on fundamentals will move this the most.`
+    },
+    foundation: {
+      band:'FOUNDATION',
+      steps:['Start with easy-only practice across all topics to build concept clarity.','Read each explanation even for questions you got right — the method matters more than the answer.','Set a goal: beat this estimate by 4-5 points on the next mock before attempting harder difficulty.'],
+      line:`${correct} of ${total} correct, ${state.student.name}. This is a foundation-building phase — everyone starts somewhere.`
+    }
+  };
+  const c = COPY[key];
+  const bandClass = key === 'foundation' ? 'risk' : key;
 
   document.getElementById('diagnosis-card').innerHTML = `
     <h3>Your Diagnosis</h3>
-    <div class="band ${bandClass}">${band}</div>
-    <p class="diag-text">${message}</p>
-    <ul class="recovery-steps">${steps.map((s,i)=>`<li><span class="step-num">${i+1}</span><span>${s}</span></li>`).join('')}</ul>
+    <div class="band ${bandClass}">${c.band}${est ? ' &nbsp;·&nbsp; EST. Q ' + est.scaled : ' &nbsp;·&nbsp; ' + pct + '%'}</div>
+    ${est ? `<p class="diag-text" style="margin-bottom:10px">
+      <strong>Estimated Quant score: ${est.scaled} / ${est.max}</strong> (likely range ${est.range}).
+      Difficulty-weighted from ${total} questions — ${Math.round(est.wacc*100)}% weighted accuracy against ${pct}% raw.
+      ${est.note}
+    </p>` : ''}
+    <p class="diag-text">${c.line}</p>
+    <ul class="recovery-steps">${c.steps.map((s,i)=>`<li><span class="step-num">${i+1}</span><span>${s}</span></li>`).join('')}</ul>
   `;
 }
 

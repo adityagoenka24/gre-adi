@@ -7,6 +7,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
+<!-- The identical scale model the student's own result screen ran, so a score
+     shown here is the score they were shown, not a second calculation. -->
+<script src="../score-scale.js"></script>
 <style>
 /* Same tokens as admin.html, so the two pages read as one tool. */
 :root {
@@ -94,6 +97,8 @@ tr.clickable:hover td{background:var(--surface2);}
 .qdetail table{font-size:12.5px;}
 .qdetail th{font-size:9.5px;}
 .qdetail td{padding:8px 10px;}
+.score-cell{font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--warm);white-space:nowrap;}
+.score-cell small{display:block;font-weight:400;font-size:10.5px;color:var(--text3);}
 @media (max-width:600px){ body{padding:20px 14px;} .card{padding:18px;} }
 </style>
 </head>
@@ -133,7 +138,9 @@ tr.clickable:hover td{background:var(--surface2);}
         <button class="btn btn-ghost" onclick="loadStudents()">Refresh</button>
       </div>
       <div class="table-wrap" id="students-table"><div class="empty">Set the connection above to load students.</div></div>
-      <div class="hint">Click any student for their full history.</div>
+      <div class="hint">Click any student for their full history. <strong>Est. score</strong> is their
+        difficulty-weighted accuracy across everything they have attempted, mapped onto the 130&ndash;170
+        Quant scale — a running read on where they stand, not a mock result. Hover it for the caveat.</div>
     </div>
     <div class="card" id="student-detail-card" style="display:none;"></div>
   </div>
@@ -185,6 +192,34 @@ const TYPE_META = {
 
 function typeMeta(t) {
   return TYPE_META[t] || { label: String(t || 'Session').replace(/_/g, ' '), sub:'', icon:'•', group:'Other' };
+}
+
+/* ─── Estimated Quant score ──────────────────────────────────────────────────
+   Recomputed here from the stored questions rather than read from a saved
+   field, for two reasons: it covers every session already in the database,
+   including ones saved before scores existed, and there is exactly one
+   implementation of the scale (score-scale.js) shared with every student-facing
+   page. A score shown in this view is reproducible from the session itself.
+
+   Returns null when score-scale.js did not load or the session has no
+   per-question difficulty — the column then reads "—" rather than guessing. */
+function sessionScore(sess) {
+  if (!window.GREScore || !sess || !sess.data) return null;
+  return GREScore.fromSession(sess.data);
+}
+
+/* A student's whole body of work on the scale. Built from the difficulty
+   rollup, which both Worker endpoints now return. */
+function overallScore(diffRows, scope) {
+  if (!window.GREScore) return null;
+  return GREScore.fromCounts(diffRows || [], scope || 'mock');
+}
+
+/* One cell: the score, with its likely range underneath. */
+function scoreCell(est) {
+  if (!est) return '<span style="color:var(--text3);">—</span>';
+  return '<span class="score-cell" title="' + esc(est.note) + '">' + est.scaled +
+         '<small>' + est.range + '</small></span>';
 }
 
 /* ─── Config ─────────────────────────────────────────────────────────────── */
@@ -302,7 +337,7 @@ function renderStudents() {
   document.getElementById('students-table').innerHTML =
     '<table><thead><tr>' +
       '<th>Student</th><th>What they have attempted</th><th>Sessions</th>' +
-      '<th>Questions</th><th>Accuracy</th><th>Last active</th>' +
+      '<th>Questions</th><th>Accuracy</th><th>Est. score</th><th>Last active</th>' +
     '</tr></thead><tbody>' +
     rows.map(s => {
       const types = s.by_type || {};
@@ -318,6 +353,7 @@ function renderStudents() {
         '<td class="mono">' + (s.sessions || 0) + '</td>' +
         '<td class="mono">' + (s.questions || 0) + '</td>' +
         '<td>' + accBadge(s.accuracy || 0) + '</td>' +
+        '<td>' + scoreCell(overallScore(s.by_difficulty, 'mock')) + '</td>' +
         '<td class="mono">' + fmtDate(s.last_date) + '</td>' +
       '</tr>';
     }).join('') +
@@ -366,6 +402,7 @@ function renderStudentDetail(email, d) {
   const overall = totalQs ? Math.round((totalCorrect / totalQs) * 100) : 0;
   const last = sessions.length ? sessions[sessions.length - 1].date : null;
 
+  const overallEst = overallScore(d.difficulty, 'mock');
   const subs = (d.subtopics || []).slice().sort((a, b) => a.accuracy - b.accuracy);
   const weakest = subs.filter(s => s.attempts >= 3 && s.accuracy < 60);
 
@@ -377,6 +414,10 @@ function renderStudentDetail(email, d) {
       : '') +
     '</div>' +
     '<div class="kpis">' +
+      (overallEst
+        ? '<div class="kpi"><div class="v" style="color:var(--warm);">' + overallEst.scaled +
+          '</div><div class="l">Est. Quant score · ' + overallEst.range + '</div></div>'
+        : '') +
       '<div class="kpi"><div class="v" style="color:' + accColor(overall) + ';">' + overall + '%</div><div class="l">Overall accuracy</div></div>' +
       '<div class="kpi"><div class="v">' + sessions.length + '</div><div class="l">Sessions</div></div>' +
       '<div class="kpi"><div class="v">' + totalQs + '</div><div class="l">Questions</div></div>' +
@@ -391,6 +432,23 @@ function renderStudentDetail(email, d) {
 
   // ── What they've attempted, broken out by type ──
   const byType = (d.by_type || []).slice().sort((a, b) => b.sessions - a.sessions);
+
+  // Per-type scores come from the payloads rather than a Worker rollup: each
+  // type is scored in its own scope (a mock's band is tighter than a topic
+  // test's), which needs the questions, not just totals.
+  const estByType = {};
+  if (window.GREScore) {
+    sessions.forEach(sess => {
+      const t = sess.session_type || 'manual';
+      const qs = (sess.data && sess.data.questions) || [];
+      if (!qs.length) return;
+      (estByType[t] = estByType[t] || []).push.apply(estByType[t], qs);
+    });
+    Object.keys(estByType).forEach(t => {
+      estByType[t] = GREScore.fromQuestions(estByType[t], GREScore.scopeFor(t));
+    });
+  }
+
   if (byType.length) {
     html += '<h2>What they have attempted</h2><div class="typecards">' +
       byType.map(t => {
@@ -404,6 +462,11 @@ function renderStudentDetail(email, d) {
           '<div class="tc-row"><span>Sessions</span><span style="color:var(--text);">' + t.sessions + '</span></div>' +
           '<div class="tc-row"><span>Questions</span><span style="color:var(--text);">' + (t.questions || 0) + '</span></div>' +
           '<div class="tc-row"><span>Avg / question</span><span style="color:var(--text);">' + fmtTime(avg) + '</span></div>' +
+          (estByType[t.session_type]
+            ? '<div class="tc-row"><span>Est. score</span><span style="color:var(--warm);font-weight:600;">' +
+              estByType[t.session_type].scaled + ' <span style="color:var(--text3);font-weight:400;">(' +
+              estByType[t.session_type].range + ')</span></span></div>'
+            : '') +
           '<div style="display:flex;align-items:center;gap:9px;margin-top:10px;">' + bar(t.accuracy) +
             '<span class="mono" style="font-size:12px;color:' + accColor(t.accuracy) + ';">' + t.accuracy + '%</span></div>' +
           '<div class="tc-s" style="margin-top:9px;">' + fmtDate(t.first_date) + ' → ' + fmtDate(t.last_date) + '</div>' +
@@ -411,7 +474,8 @@ function renderStudentDetail(email, d) {
       }).join('') + '</div>';
   }
 
-  html += '<h2 style="margin-top:26px;">Accuracy trend</h2>' + trendSvg(sessions);
+  html += '<h2 style="margin-top:26px;">Estimated score trend</h2>' + trendSvg(sessions, 'score');
+  html += '<h2 style="margin-top:26px;">Accuracy trend</h2>' + trendSvg(sessions, 'accuracy');
 
   if (weakest.length) {
     html += '<h2 style="margin-top:26px;">Needs work</h2><div style="margin-bottom:18px;">' +
@@ -453,7 +517,8 @@ function renderStudentDetail(email, d) {
   // ── Session log, newest first, each row expandable to its questions ──
   const ordered = sessions.slice().reverse();
   html += '<h2 style="margin-top:26px;">Every session</h2><div class="table-wrap"><table><thead><tr>' +
-    '<th>Date</th><th>Type</th><th>Topic</th><th>Questions</th><th>Accuracy</th><th>Time</th><th></th>' +
+    '<th>Date</th><th>Type</th><th>Topic</th><th>Questions</th><th>Accuracy</th>' +
+    '<th>Est. score</th><th>Time</th><th></th>' +
     '</tr></thead><tbody>' +
     ordered.map((s, i) => {
       const m = typeMeta(s.session_type);
@@ -465,13 +530,14 @@ function renderStudentDetail(email, d) {
         '<td>' + esc(s.topic || '—') + (s.subtopic ? '<span style="color:var(--text3);"> · ' + esc(s.subtopic) + '</span>' : '') + '</td>' +
         '<td class="mono">' + (s.total_questions || 0) + '</td>' +
         '<td>' + accBadge(s.accuracy || 0) + '</td>' +
+        '<td>' + scoreCell(sessionScore(s)) + '</td>' +
         '<td class="mono" style="color:var(--text2);">' + fmtTime(s.total_time) + '</td>' +
         '<td style="white-space:nowrap;">' +
           (hasQs ? '<span class="mono" style="color:var(--accent);font-size:11px;">view ▾</span>' : '') +
           '<button class="row-del" data-del="' + esc(s.id) + '" title="Delete this session">✕</button>' +
         '</td>' +
       '</tr>' +
-      '<tr id="qrow-' + i + '" style="display:none;"><td colspan="7" style="padding:0 12px 14px;"><div class="qdetail" id="qdetail-' + i + '"></div></td></tr>';
+      '<tr id="qrow-' + i + '" style="display:none;"><td colspan="8" style="padding:0 12px 14px;"><div class="qdetail" id="qdetail-' + i + '"></div></td></tr>';
     }).join('') + '</tbody></table></div>';
 
   const card = document.getElementById('student-detail-card');
@@ -560,41 +626,80 @@ function toggleSessionDetail(idx, ordered) {
 }
 
 /* Inline SVG line chart — no chart library, same as the rest of this tool.
-   Oldest session on the left; the y-axis is pinned to 0–100 so the slope
-   means the same thing for every student. Hovering a dot names the session. */
-function trendSvg(sessions) {
-  const pts = sessions.map(s => Number(s.accuracy) || 0);
-  if (pts.length < 2) {
-    return '<div class="empty">One session so far — a trend needs at least two.</div>';
+   Oldest session on the left. Hovering a dot names the session.
+
+   Two modes, because accuracy and score answer different questions and must
+   not share an axis: 60% on a topic test and 60% on a mock are the same
+   accuracy but not the same score.
+
+     'accuracy' — y pinned 0-100, so a slope means the same thing for every
+                  student.
+     'score'    — y pinned to the full 130-170 Quant scale for exactly the same
+                  reason. A session with no per-question difficulty has no
+                  score and is skipped, so this chart can be shorter than the
+                  accuracy one. */
+function trendSvg(sessions, mode) {
+  const scored = mode === 'score';
+  const rows = [];
+  sessions.forEach(s => {
+    if (scored) {
+      const est = sessionScore(s);
+      if (est) rows.push({ s: s, v: est.scaled, est: est });
+    } else {
+      rows.push({ s: s, v: Number(s.accuracy) || 0 });
+    }
+  });
+
+  if (rows.length < 2) {
+    return '<div class="empty">' + (
+      scored
+        ? (rows.length
+            ? 'One scored session so far — a trend needs at least two.'
+            : 'No scored sessions yet. A score needs per-question difficulty, which sessions saved before scoring shipped do not carry.')
+        : 'One session so far — a trend needs at least two.'
+    ) + '</div>';
   }
+
+  const lo = scored ? (window.GREScore ? GREScore.MIN : 130) : 0;
+  const hi = scored ? (window.GREScore ? GREScore.MAX : 170) : 100;
+  const ticks = scored ? [130, 145, 155, 160, 165, 170] : [0, 50, 75, 100];
+  const stroke = scored ? 'var(--warm)' : 'var(--accent)';
+
+  const pts = rows.map(r => r.v);
   const W = 1000, H = 170, padL = 42, padR = 16, padY = 18;
   const stepX = (W - padL - padR) / (pts.length - 1);
-  const y = v => H - padY - (v / 100) * (H - padY * 2);
+  const y = v => H - padY - ((v - lo) / (hi - lo)) * (H - padY * 2);
   const coords = pts.map((v, i) => [padL + i * stepX, y(v)]);
   const line = coords.map(c => c[0].toFixed(1) + ',' + c[1].toFixed(1)).join(' ');
   const area = line + ' ' + (W - padR) + ',' + (H - padY) + ' ' + padL + ',' + (H - padY);
-  const grid = [0, 50, 75, 100].map(v =>
+  const grid = ticks.map((v, idx) =>
     '<line x1="' + padL + '" y1="' + y(v) + '" x2="' + (W - padR) + '" y2="' + y(v) +
-    '" stroke="var(--border)" stroke-width="1" stroke-dasharray="' + (v === 0 ? '0' : '4 5') + '"/>' +
+    '" stroke="var(--border)" stroke-width="1" stroke-dasharray="' + (idx === 0 ? '0' : '4 5') + '"/>' +
     '<text x="' + (padL - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end" fill="var(--text3)" ' +
     'font-size="12" font-family="var(--font-mono)">' + v + '</text>'
   ).join('');
   const dots = coords.map((c, i) => {
-    const m = typeMeta(sessions[i].session_type);
-    return '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="4" fill="' + accColor(pts[i]) +
-      '"><title>' + esc(fmtDate(sessions[i].date) + ' · ' + m.label + (m.sub ? ' (' + m.sub + ')' : '') +
-      ' · ' + pts[i] + '%') + '</title></circle>';
+    const r = rows[i];
+    const m = typeMeta(r.s.session_type);
+    const label = fmtDate(r.s.date) + ' · ' + m.label + (m.sub ? ' (' + m.sub + ')' : '') + ' · ' +
+      (scored ? 'est. ' + r.v + ' (' + r.est.range + ', ' + r.est.total + ' questions)' : r.v + '%');
+    return '<circle cx="' + c[0].toFixed(1) + '" cy="' + c[1].toFixed(1) + '" r="4" fill="' +
+      (scored ? stroke : accColor(r.v)) + '"><title>' + esc(label) + '</title></circle>';
   }).join('');
   const delta = pts[pts.length - 1] - pts[0];
 
-  return '<svg class="trend" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Accuracy trend">' +
+  return '<svg class="trend" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="' +
+    (scored ? 'Estimated score trend' : 'Accuracy trend') + '">' +
     grid +
-    '<polygon points="' + area + '" fill="var(--accent)" opacity="0.10"/>' +
-    '<polyline points="' + line + '" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>' +
+    '<polygon points="' + area + '" fill="' + stroke + '" opacity="0.10"/>' +
+    '<polyline points="' + line + '" fill="none" stroke="' + stroke + '" stroke-width="2.5" stroke-linejoin="round"/>' +
     dots +
     '</svg>' +
     '<div class="hint" style="color:' + (delta >= 0 ? 'var(--success)' : 'var(--danger)') + ';">' +
-    (delta >= 0 ? '+' : '') + delta + ' pts across ' + pts.length + ' sessions · hover a point for the session</div>';
+    (delta >= 0 ? '+' : '') + delta + (scored ? ' points on the 130\u2013170 scale across ' : ' pts across ') +
+    pts.length + (scored ? ' scored sessions' : ' sessions') + ' · hover a point for the session' +
+    (scored ? '. Each point is scored in its own scope, so a topic test carries a wider band than a mock.' : '') +
+    '</div>';
 }
 
 /* ─── Event mock attempts (the separate KV records) ──────────────────────── */

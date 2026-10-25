@@ -47,6 +47,7 @@
 <script defer src="gre-calculator.js"></script>
 <script defer src="ads-config.js"></script>
 <script defer src="progress-local.js"></script>
+<script defer src="score-scale.js"></script>
 <script defer src="analytics.js"></script>
 <style>
   .gre-shell.screen{display:none;}
@@ -102,6 +103,16 @@
   .sx-score-big{font-size:52px;font-weight:800;color:var(--gre-blue);line-height:1;}
   .sx-score-big small{font-size:22px;color:var(--gre-text3);font-weight:700;}
   .sx-band{display:inline-block;margin-top:12px;padding:7px 18px;border-radius:20px;font-size:13.5px;font-weight:700;}
+  /* Raw score and estimated Quant score side by side: the drill result and
+     what it is worth on the 130-170 scale are two different questions, and a
+     student asks both. */
+  .sx-score-row{display:flex;justify-content:center;align-items:flex-end;gap:38px;flex-wrap:wrap;}
+  .sx-score-cell{min-width:120px;}
+  .sx-score-lbl{font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;
+    color:var(--gre-text3);margin-top:7px;}
+  .sx-scaled{color:var(--gre-warning);}
+  .sx-score-range{font-size:12.5px;color:var(--gre-text2);margin-top:3px;font-weight:600;}
+  .sx-score-note{max-width:620px;margin:14px auto 0;font-size:12.5px;line-height:1.6;color:var(--gre-text3);}
 
   @media (max-width:640px){
     .app{padding:0 12px 40px;}
@@ -208,8 +219,19 @@
       <p id="res-subtitle"></p>
     </div>
     <div class="sx-score">
-      <div class="sx-score-big"><span id="res-correct">0</span><small>/<span id="res-total">12</span></small></div>
+      <div class="sx-score-row">
+        <div class="sx-score-cell">
+          <div class="sx-score-big"><span id="res-correct">0</span><small>/<span id="res-total">12</span></small></div>
+          <div class="sx-score-lbl">Correct</div>
+        </div>
+        <div class="sx-score-cell" id="res-scaled-cell" style="display:none;">
+          <div class="sx-score-big sx-scaled"><span id="res-scaled">—</span><small>/170</small></div>
+          <div class="sx-score-lbl">Est. Quant Score</div>
+          <div class="sx-score-range" id="res-scaled-range"></div>
+        </div>
+      </div>
       <div><span class="sx-band" id="res-band"></span></div>
+      <div class="sx-score-note" id="res-scaled-note"></div>
     </div>
     <div class="stats-grid" id="res-stats"></div>
     <div class="topic-bars" id="res-concepts"></div>
@@ -608,6 +630,14 @@ function submitSection(autoSubmit){
   var limit = (state.data.meta && state.data.meta.time_limit_seconds) || SECTION_SECONDS;
   var timeUsed = limit - Math.max(0, state.timeLeft);
   state.result = { perQ:perQ, correct:correct, total:list.length, timeUsed:timeUsed, limit:limit, autoSubmit:autoSubmit };
+  // Estimated Quant score for this section. Scored from the same perQ the
+  // screen renders, so the student's number, the saved payload and the coach
+  // view all agree. Null if score-scale.js did not load.
+  state.result.est = window.GREScore
+    ? GREScore.fromQuestions(perQ.map(function(x){
+        return { difficulty: x.q.difficulty, correct: x.correct && !x.skipped };
+      }), 'sectional')
+    : null;
   saveAttempt(buildSubmissionPayload());
   renderResults();
   track('sectional_completed', {topic:state.topic.id, set:state.setNo, correct:correct, total:list.length});
@@ -650,6 +680,10 @@ function buildSubmissionPayload(){
     total_time_seconds: r.timeUsed,
     average_time_seconds: Math.round(r.timeUsed / r.total),
     sectional: { topic: state.topic.id, topic_name: state.topic.name, set: state.setNo, time_limit_seconds: r.limit, auto_submitted: !!r.autoSubmit },
+    estimated_scaled_score: r.est ? r.est.scaled : null,
+    estimated_score_low: r.est ? r.est.low : null,
+    estimated_score_high: r.est ? r.est.high : null,
+    weighted_accuracy: r.est ? r.est.wacc : null,
     diagnosis: null,
     results: results
   };
@@ -709,6 +743,16 @@ function renderResults(){
   var bandEl = document.getElementById('res-band');
   bandEl.textContent = pct + '% · ' + band.label;
   bandEl.style.background = band.bg; bandEl.style.color = band.fg;
+
+  var est = r.est;
+  document.getElementById('res-scaled-cell').style.display = est ? '' : 'none';
+  if (est) {
+    document.getElementById('res-scaled').textContent = est.scaled;
+    document.getElementById('res-scaled-range').textContent = 'Likely ' + est.range;
+    document.getElementById('res-scaled-note').textContent = est.note;
+  } else {
+    document.getElementById('res-scaled-note').textContent = '';
+  }
 
   var skipped = r.perQ.filter(function(x){ return x.skipped; }).length;
   var wrong = r.total - r.correct - skipped;

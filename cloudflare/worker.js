@@ -1526,7 +1526,21 @@ async function handleAdminProgressStudents(request, env) {
       GROUP BY email, session_type`
   ).all();
 
-  const [totalRows, typeRows] = await Promise.all([totals, byType]);
+  // Attempts grouped by difficulty, so the coach list can show each student's
+  // estimated Quant score. The scale itself is NOT applied here: score-scale.js
+  // owns it, and the student's own result screen already used that file. Doing
+  // the weighting a second time in SQL would be a second source of truth, and
+  // the two would drift the first time an anchor moved.
+  const byDifficulty = env.GRE_DB.prepare(
+    `SELECT email, difficulty,
+            COUNT(*)     AS attempts,
+            SUM(correct) AS correct
+       FROM attempts
+      WHERE difficulty <> ''
+      GROUP BY email, difficulty`
+  ).all();
+
+  const [totalRows, typeRows, diffRows] = await Promise.all([totals, byType, byDifficulty]);
 
   const typeMap = new Map();
   for (const r of typeRows.results || []) {
@@ -1539,10 +1553,21 @@ async function handleAdminProgressStudents(request, env) {
     };
   }
 
+  const diffMap = new Map();
+  for (const r of diffRows.results || []) {
+    if (!diffMap.has(r.email)) diffMap.set(r.email, []);
+    diffMap.get(r.email).push({
+      difficulty: r.difficulty,
+      attempts: r.attempts,
+      correct: r.correct,
+    });
+  }
+
   const students = (totalRows.results || []).map(r => ({
     ...r,
     accuracy: r.questions ? Math.round((r.correct / r.questions) * 100) : 0,
     by_type: typeMap.get(r.email) || {},
+    by_difficulty: diffMap.get(r.email) || [],
   }));
 
   return jsonResponse({ status: 'ok', count: students.length, students });

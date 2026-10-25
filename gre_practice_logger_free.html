@@ -466,6 +466,13 @@ tr:hover td{background:rgba(26,93,166,0.04);}
 .bank-complete-title{font-family:var(--font-display);font-size:32px;margin-bottom:8px;}
 .bank-complete-sub{font-size:15px;color:var(--text2);margin-bottom:32px;}
 .bank-score-display{display:inline-flex;flex-direction:column;align-items:center;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius);padding:24px 48px;margin-bottom:32px;gap:4px;}
+/* Accuracy and estimated Quant score sit side by side: a drill result and what
+   that result is worth on the 130-170 scale answer two different questions. */
+.bank-score-row{display:flex;justify-content:center;align-items:stretch;gap:16px;flex-wrap:wrap;margin-bottom:16px;}
+.bank-score-row .bank-score-display{margin-bottom:0;}
+.bank-score-sub{font-size:12px;color:var(--text2);font-family:var(--font-mono);}
+.bank-score-note{max-width:640px;margin:0 auto 26px;font-size:12.5px;line-height:1.6;color:var(--text3);}
+.exam-score-note{max-width:820px;margin:-6px 0 22px;font-size:12.5px;line-height:1.6;color:var(--text3);}
 .bank-score-number{font-family:var(--font-display);font-size:56px;color:var(--accent);}
 .bank-score-label{font-size:13px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;}
 .bank-stat-row{display:flex;justify-content:center;gap:32px;margin-bottom:32px;flex-wrap:wrap;}
@@ -992,6 +999,7 @@ tr:hover td{background:rgba(26,93,166,0.04);}
         </div>
       </div>
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:24px;" id="exam-kpi-row"></div>
+      <div class="exam-score-note" id="exam-score-note"></div>
       <div class="charts-grid" style="margin-bottom:24px;">
         <div class="chart-card"><h3>By Difficulty</h3><div id="exam-diff-bars"></div></div>
         <div class="chart-card"><h3>By Question Type</h3><div id="exam-type-bars"></div></div>
@@ -1009,10 +1017,18 @@ tr:hover td{background:rgba(26,93,166,0.04);}
       <div class="bank-complete-card">
         <div class="bank-complete-title">Session Complete! 🎉</div>
         <div class="bank-complete-sub" id="bank-complete-sub">Here's how you did</div>
-        <div class="bank-score-display">
-          <div class="bank-score-number" id="bank-final-score">—</div>
-          <div class="bank-score-label">Accuracy</div>
+        <div class="bank-score-row">
+          <div class="bank-score-display">
+            <div class="bank-score-number" id="bank-final-score">—</div>
+            <div class="bank-score-label">Accuracy</div>
+          </div>
+          <div class="bank-score-display" id="bank-scaled-box" style="display:none;">
+            <div class="bank-score-number" id="bank-scaled-score" style="color:var(--warning)">—</div>
+            <div class="bank-score-label">Est. Quant Score / 170</div>
+            <div class="bank-score-sub" id="bank-scaled-range"></div>
+          </div>
         </div>
+        <div class="bank-score-note" id="bank-scaled-note"></div>
         <div class="bank-stat-row">
           <div class="bank-stat"><div class="bank-stat-val" id="bank-stat-correct" style="color:var(--success)">—</div><div class="bank-stat-lbl">Correct</div></div>
           <div class="bank-stat"><div class="bank-stat-val" id="bank-stat-wrong" style="color:var(--danger)">—</div><div class="bank-stat-lbl">Wrong</div></div>
@@ -1053,6 +1069,7 @@ tr:hover td{background:rgba(26,93,166,0.04);}
 <div class="loading-overlay" id="loading-overlay"><div class="spinner"></div><div class="loading-text" id="loading-text">Processing…</div></div>
 
 <script src="progress-local.js"></script>
+<script src="score-scale.js"></script>
 <script>
 /* ============================================================
    APP CONFIG — change this line only to switch free ↔ pro
@@ -2155,6 +2172,31 @@ function bankNext(){
   if (qArea) qArea.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
+/* ─── ESTIMATED QUANT SCORE ──────────────────────────────────────────────────
+   A topic test is a drill, not a section, so this is "what a student scoring
+   this accuracy at this difficulty looks like on the 130-170 scale" — not a
+   predicted section score. The weights, the anchor table and the honest
+   caveat all live in score-scale.js, shared with the sectionals, the full
+   mocks and the coach view, so the same attempt never scales two ways.
+   Returns null if that file did not load; every caller handles null. */
+function bankScore(){
+  if(!window.GREScore) return null;
+  return GREScore.fromQuestions(bankState.results.map(function(r){
+    return { difficulty: r.question.difficulty, correct: !!r.correct };
+  }), 'topic');
+}
+
+function renderBankScaled(est){
+  var box = document.getElementById('bank-scaled-box');
+  var note = document.getElementById('bank-scaled-note');
+  if(!box || !note) return;
+  if(!est){ box.style.display='none'; note.textContent=''; return; }
+  box.style.display='';
+  document.getElementById('bank-scaled-score').textContent = est.scaled;
+  document.getElementById('bank-scaled-range').textContent = 'Likely ' + est.range;
+  note.textContent = est.note;
+}
+
 function bankFinish(){
   if(bankState.bankSessionTimer)clearInterval(bankState.bankSessionTimer);
   if(bankState.bankQTimer)clearInterval(bankState.bankQTimer);
@@ -2175,6 +2217,7 @@ function bankFinish(){
   document.getElementById('bank-stat-wrong').textContent=wrong;
   document.getElementById('bank-stat-time').textContent=fmtTime(avgTime);
   document.getElementById('bank-stat-total').textContent=fmtTime(totalTime);
+  renderBankScaled(bankScore());
 
   const byDiff={};
   res.forEach(r=>{const d=r.question.difficulty;if(!byDiff[d])byDiff[d]={total:0,correct:0};byDiff[d].total++;if(r.correct)byDiff[d].correct++;});
@@ -2954,7 +2997,10 @@ function examRenderAnalysis() {
 
   // KPI row
   const accColor = acc >= 75 ? 'var(--success)' : acc >= 50 ? 'var(--warning)' : 'var(--danger)';
+  const est = bankScore();
+  document.getElementById('exam-score-note').textContent = est ? est.note : '';
   document.getElementById('exam-kpi-row').innerHTML = `
+    ${est ? kpiCard('📊', est.scaled + ' <small style="font-size:14px;opacity:.75">/170</small>', 'Est. Q Score · ' + est.range, 'var(--warning)') : ''}
     ${kpiCard('🎯', acc + '%', 'Accuracy', 'var(--accent)')}
     ${kpiCard('✅', correct, 'Correct', 'var(--success)')}
     ${kpiCard('❌', wrong, 'Incorrect', 'var(--danger)')}

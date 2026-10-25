@@ -708,3 +708,174 @@ read cleanly at any width.
   in raw-content URLs. It is non-GRE and explicitly kept, but it is worth
   deciding whether it should sit on this domain at all.
 - The Pro bank being publicly reachable — excluded from this audit by request.
+
+---
+
+# Round 8 — Estimated Quant score (out of 170) on every surface
+
+Full mocks, sectionals and topic tests now all report an estimated Quant score
+on the real 130–170 scale, to the student on their result screen and to the
+coach in Coach View. Before this, only the **free** full mock had a scaled
+score; the Pro mock showed `17/27` and a diagnosis that asserted "you're
+performing at the 165–170 level" from raw percentage alone, and sectionals and
+topic tests showed accuracy only.
+
+## 30. One model, one file: `score-scale.js`
+
+New file at the repo root. It owns the difficulty weights, the anchor table,
+the confidence band and the caveat wording. Seven pages load it:
+
+`full_mock.html`, `sectional.html`, `gre_practice_logger_free.html`,
+`pro/full_mock.html`, `pro/sectional.html`,
+`pro/gre_practice_logger_pro.html`, `cloudflare/coach.html` (as
+`../score-scale.js`).
+
+**The anchors and weights are lifted verbatim from `full_mock.html`.** Verified
+at 2,001 points against the old inline implementation: no past free-mock score
+moves by a single point. `DIFF_WEIGHT` and `SCALE_ANCHORS` are gone from
+`full_mock.html`; there is now exactly one copy of the scale in the repo.
+
+| | |
+|---|---|
+| Weights | Easy 1.00 · Medium 1.15 · Hard 1.35 · Extreme Hard 1.55 |
+| Anchors | 0%→134, 25%→145, 40%→152, 50%→156, 60%→159, 70%→162, 80%→165, 90%→168, 100%→170 (weighted accuracy → scaled) |
+| Band | `round(16/√n)` + scope penalty, clamped 3–10. Constant chosen to put a 27-question mock at the ±3 the free mock always showed |
+| Scope penalty | mock +0 · sectional +1 · topic test +2 |
+
+Difficulty keys normalise, so `extreme_hard` (bank), `Extreme Hard` (v2.0
+session) and `extreme hard` all land on the same weight.
+
+API: `fromQuestions(list, scope)` · `fromResults(list, scope)` ·
+`fromSession(v2session)` (scope inferred from `session_type`) ·
+`fromCounts(difficultyRollup, scope)` · `scaledFromWeighted(w)` ·
+`bandFor(scaled)` · `scopeFor(type)`.
+
+## 31. Why a topic test gets a score at all
+
+A 10-question drill on one subtopic cannot predict a section score, and the
+copy says so rather than pretending otherwise. What it *can* say — and what
+coaches and students actually want — is "this accuracy, at this difficulty, is
+what a 154 scorer looks like." That is well defined. Three things keep it
+honest:
+
+- **The band widens as the sample narrows.** 27-question mock ±3, 14-question
+  sectional ±6, 10-question topic test ±7, 5-question set ±9.
+- **`confidence`** is `high` / `moderate` / `low` / `indicative`, computed once
+  rather than left to each page.
+- **`note`** carries scope-specific wording that every page prints verbatim,
+  so two surfaces can never make different promises about the same number.
+  Topic tests read "a drill, not a section"; a set under 8 questions is
+  prefixed "Too few questions to be reliable yet".
+
+**Nothing to score is reported as nothing.** An empty set returns `null`, and
+so does a session where no question carries a recognised difficulty — the
+columns show "—". That matters because mapping raw accuracy onto the scale with
+every weight at 1 would *look* like a difficulty-weighted score without being
+one. It only affects sessions stored before difficulty was recorded; every live
+surface sends it.
+
+## 32. What each surface shows
+
+| Surface | Before | Now |
+|---|---|---|
+| `full_mock.html` (free) | ring = est. score, ±3 range card | unchanged numbers, now from the shared file |
+| `pro/full_mock.html` | ring = `17/27`, label CORRECT | ring = est. score, label EST. Q SCORE, arc fills on the 130–170 scale, Likely Score Range card, diagnosis quotes `158 / 170` and its range |
+| `sectional.html`, `pro/sectional.html` | `9/12` + accuracy pill | two-up headline: Correct **and** Est. Quant Score /170 with its likely range, plus the caveat under it |
+| topic test, practice mode (both loggers) | accuracy % box | second box beside it: Est. Quant Score /170, likely range, caveat |
+| topic test, exam mode (both loggers) | 6 KPI cards | new leading card 📊 Est. Q Score with the range in its label, caveat under the row |
+
+The Pro mock's diagnosis was rewritten: it banded on raw percentage and then
+quoted a score range at the student, which is two scales at once. It now cuts
+the verdict on `GREScore.bandFor()`, so the band and the number cannot
+disagree, and the "165–170 level" / "158–165 band" assertions are gone.
+
+Saved payloads carry `estimated_scaled_score`, `estimated_score_low`,
+`estimated_score_high` and `weighted_accuracy` — a record of what the student
+was actually shown.
+
+## 33. Coach View
+
+- **Students list** — new **Est. score** column: the student's
+  difficulty-weighted accuracy across everything they have attempted, mapped
+  onto the scale, with the range underneath. Hover for the caveat. A student
+  with no difficulty data shows "—".
+- **Student detail** — leading KPI *Est. Quant score · 156–162*; an **Est.
+  score** row on every attempt-type card, each scored *in its own scope* (so
+  the mock card's band is tighter than the topic-test card's); an **Est.
+  score** column on every row of the session log.
+- **Estimated score trend** — a second inline SVG above the accuracy trend,
+  y-axis pinned to the full 130–170 with ticks at 130/145/155/160/165/170.
+  Separate charts on purpose: 60% on a topic test and 60% on a mock are the
+  same accuracy but not the same score, so they must not share an axis.
+  Sessions with no difficulty are skipped, and the empty state explains why
+  rather than rendering blank.
+
+**Scores here are recomputed from the stored questions, not read from a saved
+field.** That covers every session already in D1, including ones saved before
+scores existed, and it means the coach view runs the identical code the
+student's own result screen ran. Verified: the list rollup, the detail KPI and
+a recomputation from the raw payloads all return the same number.
+
+## 34. Worker
+
+One change: `/admin/progress-students` now returns `by_difficulty` per student
+— `[{difficulty, attempts, correct}]` from one extra `GROUP BY email,
+difficulty` on `attempts`.
+
+**The scale is deliberately not applied in SQL.** `score-scale.js` owns it and
+the student's result screen already used that file; weighting a second time in
+the Worker would be a second source of truth, and the two would drift the first
+time an anchor moved. The Worker returns counts; the page scales them.
+
+`/admin/progress?email=` needed nothing — it already returned the `difficulty`
+rollup and, with `include_payloads=1`, every question of every session.
+
+## 35. Verification — 128 checks, 0 failures
+
+| Suite | Checks | What it drives |
+|---|---|---|
+| `score-scale.js` unit | 24 | anchor parity at 2,001 points vs the old inline model; key normalisation; clamping; band widening by scope; skipped-counts-as-wrong; difficulty actually moving the number; all four entry points agreeing on the same data; null for unscoreable sets |
+| Worker | 18 | real SQLite + the real `schema.sql` behind a D1 facade, seeded through the real `/progress/save`: per-difficulty counts, totals reconciling to the student's question count, cross-student isolation, `by_type`/accuracy untouched, 401 without the secret, 503 with no binding, and list/detail/payload scores all equal |
+| free sectional | 13 | real browser, real question set, real submit path |
+| free full mock | 11 | 27-question paper; ±3 preserved; no private scale copy left on the page |
+| free topic test | 16 | both exit paths (`bankFinish`, `examRenderAnalysis`) |
+| Pro surfaces | 22 | pro mock, pro sectional, pro logger practice + exam mode, past the Pro gate |
+| Coach View | 24 | real render functions with Worker-shaped fixtures: both score columns, the KPI, type cards, both trend axes, drill-down colspan, apostrophe escaping, and the legacy no-difficulty student |
+
+Browser suites ran headless Chromium against the real pages and asserted no JS
+errors and no horizontal overflow at 390px and 1280px.
+
+## 36. Two things to decide
+
+**The calibration is generous and now trivially changeable.** On these
+anchors, 58% raw on a sectional returns 158 and 50% weighted returns 156. Real
+GRE Quant tends to put ~58% nearer 152–155. These were already the live
+free-mock numbers and were kept deliberately so no student's past score moved,
+but every surface now inherits them. The whole calibration is one line —
+`ANCHORS` in `score-scale.js` — and changing it re-scores every page and the
+coach view together.
+
+**Event mocks were left alone.** `events/events_common.js` has its own
+diagnosis system shared with team battles, and its result rows may not carry
+difficulty. Coach View will score an `event_mock` session if its questions
+carry difficulty, so a student could see accuracy only on the event screen
+while the coach sees a score. Worth closing if event mocks stay in use.
+
+## 37. Flagged, not touched
+
+The Pro logger's **exam analysis** screen overflows 114px horizontally at
+390px, from the "By Question Type" chart card. Measured identical with and
+without the new score card, so it predates this change. The practice-mode
+screen — where the new two-up score row lives — is 0px at 390px.
+
+## 38. Round 8 files
+
+New: `score-scale.js`
+
+Modified: `full_mock.html`, `sectional.html`, `gre_practice_logger_free.html`,
+`pro/full_mock.html`, `pro/sectional.html`,
+`pro/gre_practice_logger_pro.html`, `cloudflare/coach.html`,
+`cloudflare/worker.js`
+
+456 insertions, 100 deletions across the 8 modified files. Nothing committed —
+the working tree holds the change.
