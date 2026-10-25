@@ -4,24 +4,33 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>GRE Pro — Coach View</title>
-<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:opsz,wght@9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 /* Same tokens as admin.html, so the two pages read as one tool. */
 :root {
-  --bg:#0a0a0f; --surface:#12121a; --surface2:#1a1a28; --border:#2a2a45;
-  --accent:#6c63ff; --success:#43e97b; --danger:#ff6584; --warning:#f7971e;
-  --text:#e8e8f0; --text2:#9898b8; --text3:#5a5a7a;
-  --font-body:'Outfit',sans-serif; --font-mono:'DM Mono',monospace;
+  /* Mirrors site.css, so these tools read as part of grequantpro.com
+     rather than a separate dark console. */
+  --bg:#faf8f4; --surface:#ffffff; --surface2:#f3efe7; --border:#e6dfd3;
+  --accent:#1a5da6; --accent-dark:#124a87; --warm:#c65d21;
+  --success:#1e7e46; --danger:#b3402e; --warning:#a97b12;
+  --success-soft:#e5f2ea; --danger-soft:#f9e9e6; --warning-soft:#f7efdb; --accent-soft:#e8f0f8;
+  --text:#152a3d; --text2:#46586a; --text3:#7c8b99;
+  --font-body:'Source Sans 3','Segoe UI',system-ui,sans-serif;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-mono:'DM Mono','Courier New',monospace;
   --radius:12px;
+  --shadow:0 1px 2px rgba(22,50,79,.05),0 12px 32px rgba(22,50,79,.07);
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);min-height:100vh;padding:32px 20px;}
 .wrapper{max-width:1180px;margin:0 auto;}
-h1{font-size:24px;font-weight:700;margin-bottom:4px;}
+h1{font-family:var(--font-display);font-size:28px;font-weight:640;letter-spacing:-.01em;color:#16324f;margin-bottom:4px;}
 .subtitle{font-size:13px;color:var(--text3);font-family:var(--font-mono);margin-bottom:24px;}
 .subtitle a{color:var(--accent);text-decoration:none;}
 .subtitle a:hover{text-decoration:underline;}
-.card{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;}
+.card{min-width:0;background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:20px;box-shadow:var(--shadow);}
 .card h2{font-size:14px;font-weight:600;margin-bottom:16px;color:var(--text2);text-transform:uppercase;letter-spacing:1px;font-family:var(--font-mono);}
 .field{display:flex;flex-direction:column;gap:6px;}
 label{font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;}
@@ -30,6 +39,12 @@ input:focus{border-color:var(--accent);}
 .btn{padding:10px 20px;border:none;border-radius:8px;font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;transition:all .2s;white-space:nowrap;}
 .btn-primary{background:var(--accent);color:#fff;}
 .btn-ghost{background:var(--surface2);color:var(--text2);border:1px solid var(--border);}
+.btn-danger{background:transparent;color:var(--danger);border:1px solid rgba(179,64,46,.35);}
+.btn-danger:hover{background:var(--danger);color:#fff;opacity:1;}
+.btn-sm{padding:4px 11px;font-size:12px;border-radius:6px;}
+.detail-head{display:flex;justify-content:space-between;align-items:flex-start;gap:16px;flex-wrap:wrap;margin-bottom:20px;}
+.row-del{background:none;border:none;color:var(--text3);cursor:pointer;font-size:13px;padding:2px 6px;border-radius:5px;line-height:1;}
+.row-del:hover{color:var(--danger);background:var(--danger-soft);}
 .btn:hover{opacity:.85;}
 .row{display:flex;gap:10px;align-items:flex-end;flex-wrap:wrap;}
 .row .field{flex:1;min-width:180px;}
@@ -47,21 +62,21 @@ tr.clickable{cursor:pointer;}
 tr.clickable:hover td{background:var(--surface2);}
 .mono{font-family:var(--font-mono);}
 .badge{display:inline-block;padding:3px 9px;border-radius:999px;font-family:var(--font-mono);font-size:11.5px;font-weight:500;}
-.badge-ok{background:rgba(67,233,123,.12);color:var(--success);}
-.badge-warn{background:rgba(247,151,30,.12);color:var(--warning)}
-.badge-bad{background:rgba(255,101,132,.12);color:var(--danger);}
+.badge-ok{background:var(--success-soft);color:var(--success);}
+.badge-warn{background:var(--warning-soft);color:var(--warning)}
+.badge-bad{background:var(--danger-soft);color:var(--danger);}
 .badge-mute{background:var(--surface2);color:var(--text3);}
 .empty{padding:28px 8px;text-align:center;color:var(--text3);font-family:var(--font-mono);font-size:13px;}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin-bottom:22px;}
 .kpi{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:16px 18px;}
-.kpi .v{font-size:25px;font-weight:700;line-height:1.1;}
+.kpi .v{font-family:var(--font-display);font-size:26px;font-weight:640;line-height:1.1;}
 .kpi .l{font-size:10.5px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-top:6px;}
 .bar-track{height:6px;background:var(--surface2);border-radius:3px;overflow:hidden;min-width:70px;}
 .bar-fill{height:100%;border-radius:3px;}
-.trend{width:100%;height:150px;display:block;}
+.trend{width:100%;height:auto;display:block;}
 .hint{font-size:12px;color:var(--text3);line-height:1.55;margin-top:10px;}
 .back{background:none;border:none;color:var(--accent);font-family:var(--font-body);font-size:13px;font-weight:600;cursor:pointer;padding:0;margin-bottom:14px;}
-.detail-name{font-size:19px;font-weight:700;}
+.detail-name{font-family:var(--font-display);font-size:22px;font-weight:640;color:#16324f;}
 .detail-email{font-family:var(--font-mono);font-size:12.5px;color:var(--text3);margin-top:3px;}
 /* Attempt-type chips and cards */
 .chips{display:flex;gap:5px;flex-wrap:wrap;}
@@ -75,7 +90,7 @@ tr.clickable:hover td{background:var(--surface2);}
 .typecard .tc-n{font-size:13.5px;font-weight:700;}
 .typecard .tc-s{font-size:10.5px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:.5px;}
 .typecard .tc-row{display:flex;justify-content:space-between;font-size:12px;color:var(--text2);margin-bottom:5px;font-family:var(--font-mono);}
-.qdetail{background:var(--bg);border:1px solid var(--border);border-radius:8px;padding:0;margin:0;}
+.qdetail{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:0;margin:0;}
 .qdetail table{font-size:12.5px;}
 .qdetail th{font-size:9.5px;}
 .qdetail td{padding:8px 10px;}
@@ -355,8 +370,12 @@ function renderStudentDetail(email, d) {
   const weakest = subs.filter(s => s.attempts >= 3 && s.accuracy < 60);
 
   let html = '<button class="back" onclick="closeStudent()">← All students</button>' +
-    '<div style="margin-bottom:20px;"><div class="detail-name">' + esc(name) + '</div>' +
+    '<div class="detail-head"><div><div class="detail-name">' + esc(name) + '</div>' +
     '<div class="detail-email">' + esc(email) + (last ? ' · last active ' + fmtDate(last) : '') + '</div></div>' +
+    (sessions.length
+      ? '<button class="btn btn-danger btn-sm" id="wipe-btn">Delete all progress</button>'
+      : '') +
+    '</div>' +
     '<div class="kpis">' +
       '<div class="kpi"><div class="v" style="color:' + accColor(overall) + ';">' + overall + '%</div><div class="l">Overall accuracy</div></div>' +
       '<div class="kpi"><div class="v">' + sessions.length + '</div><div class="l">Sessions</div></div>' +
@@ -447,7 +466,10 @@ function renderStudentDetail(email, d) {
         '<td class="mono">' + (s.total_questions || 0) + '</td>' +
         '<td>' + accBadge(s.accuracy || 0) + '</td>' +
         '<td class="mono" style="color:var(--text2);">' + fmtTime(s.total_time) + '</td>' +
-        '<td class="mono" style="color:var(--accent);font-size:11px;">' + (hasQs ? 'view ▾' : '') + '</td>' +
+        '<td style="white-space:nowrap;">' +
+          (hasQs ? '<span class="mono" style="color:var(--accent);font-size:11px;">view ▾</span>' : '') +
+          '<button class="row-del" data-del="' + esc(s.id) + '" title="Delete this session">✕</button>' +
+        '</td>' +
       '</tr>' +
       '<tr id="qrow-' + i + '" style="display:none;"><td colspan="7" style="padding:0 12px 14px;"><div class="qdetail" id="qdetail-' + i + '"></div></td></tr>';
     }).join('') + '</tbody></table></div>';
@@ -458,6 +480,49 @@ function renderStudentDetail(email, d) {
   card.querySelectorAll('tr.clickable[data-sess]').forEach(tr => {
     tr.addEventListener('click', () => toggleSessionDetail(Number(tr.dataset.sess), ordered));
   });
+
+  const wipe = card.querySelector('#wipe-btn');
+  if (wipe) wipe.addEventListener('click', () => deleteProgress(email, null, sessions.length));
+
+  // stopPropagation, or the click also toggles the row open underneath.
+  card.querySelectorAll('button[data-del]').forEach(btn => {
+    btn.addEventListener('click', ev => {
+      ev.stopPropagation();
+      deleteProgress(email, btn.dataset.del, 1);
+    });
+  });
+}
+
+/* Permanent, so it asks first and says exactly what will go. Passing a
+   sessionId deletes that one session; null deletes the student's history. */
+async function deleteProgress(email, sessionId, count) {
+  const what = sessionId
+    ? 'Delete this one session for ' + email + '?'
+    : 'Delete ALL ' + count + ' session' + (count === 1 ? '' : 's') + ' for ' + email + '?';
+  if (!confirm(what + '\n\nThis cannot be undone.')) return;
+
+  const { url, secret } = getConfig();
+  try {
+    const res = await fetch(url + '/admin/progress/delete', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify(sessionId ? { email, session_id: sessionId } : { email }),
+    });
+    const data = await res.json();
+    if (data.status === 'deleted') {
+      // Reload the list either way; reopen the student only if they still have history.
+      await loadStudents();
+      if (sessionId) openStudent(email); else closeStudent();
+    } else if (data.status === 'nothing_to_delete') {
+      alert('Nothing to delete — it may already be gone. Refreshing.');
+      await loadStudents();
+      closeStudent();
+    } else {
+      alert('Could not delete: ' + (data.error || JSON.stringify(data)));
+    }
+  } catch (e) {
+    alert('Network error: ' + e.message);
+  }
 }
 
 /* Expand one session into its question list. Rendered on first open and then
@@ -502,16 +567,17 @@ function trendSvg(sessions) {
   if (pts.length < 2) {
     return '<div class="empty">One session so far — a trend needs at least two.</div>';
   }
-  const W = 1000, H = 150, pad = 14;
-  const stepX = (W - pad * 2) / (pts.length - 1);
-  const y = v => H - pad - (v / 100) * (H - pad * 2);
-  const coords = pts.map((v, i) => [pad + i * stepX, y(v)]);
+  const W = 1000, H = 170, padL = 42, padR = 16, padY = 18;
+  const stepX = (W - padL - padR) / (pts.length - 1);
+  const y = v => H - padY - (v / 100) * (H - padY * 2);
+  const coords = pts.map((v, i) => [padL + i * stepX, y(v)]);
   const line = coords.map(c => c[0].toFixed(1) + ',' + c[1].toFixed(1)).join(' ');
-  const area = line + ' ' + (W - pad) + ',' + (H - pad) + ' ' + pad + ',' + (H - pad);
+  const area = line + ' ' + (W - padR) + ',' + (H - padY) + ' ' + padL + ',' + (H - padY);
   const grid = [0, 50, 75, 100].map(v =>
-    '<line x1="' + pad + '" y1="' + y(v) + '" x2="' + (W - pad) + '" y2="' + y(v) +
+    '<line x1="' + padL + '" y1="' + y(v) + '" x2="' + (W - padR) + '" y2="' + y(v) +
     '" stroke="var(--border)" stroke-width="1" stroke-dasharray="' + (v === 0 ? '0' : '4 5') + '"/>' +
-    '<text x="2" y="' + (y(v) - 3) + '" fill="var(--text3)" font-size="11" font-family="monospace">' + v + '</text>'
+    '<text x="' + (padL - 8) + '" y="' + (y(v) + 4) + '" text-anchor="end" fill="var(--text3)" ' +
+    'font-size="12" font-family="var(--font-mono)">' + v + '</text>'
   ).join('');
   const dots = coords.map((c, i) => {
     const m = typeMeta(sessions[i].session_type);
@@ -521,7 +587,7 @@ function trendSvg(sessions) {
   }).join('');
   const delta = pts[pts.length - 1] - pts[0];
 
-  return '<svg class="trend" viewBox="0 0 ' + W + ' ' + H + '" preserveAspectRatio="none" role="img" aria-label="Accuracy trend">' +
+  return '<svg class="trend" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Accuracy trend">' +
     grid +
     '<polygon points="' + area + '" fill="var(--accent)" opacity="0.10"/>' +
     '<polyline points="' + line + '" fill="none" stroke="var(--accent)" stroke-width="2.5" stroke-linejoin="round"/>' +

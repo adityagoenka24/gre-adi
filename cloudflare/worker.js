@@ -142,6 +142,9 @@ export default {
       if (path === '/admin/progress-students' && request.method === 'GET') {
         return await handleAdminProgressStudents(request, env);
       }
+      if (path === '/admin/progress/delete' && request.method === 'POST') {
+        return await handleAdminProgressDelete(request, env);
+      }
       if (path === '/admin/progress' && request.method === 'GET') {
         return await handleAdminProgress(request, env, url);
       }
@@ -1431,6 +1434,61 @@ async function handleProgressSessions(request, env, url) {
   }
 
   return jsonResponse({ status: 'ok', count: sessions.length, sessions });
+}
+
+/**
+ * POST /admin/progress/delete  — { email, session_id? }
+ *
+ * With a session_id, deletes that one session. Without, deletes every session
+ * the student has. Both forms clear the matching `attempts` rows too, so no
+ * orphans are left behind to skew the subtopic and difficulty figures.
+ *
+ * This is permanent — D1 has no undo here — so the coach page confirms first.
+ */
+async function handleAdminProgressDelete(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
+
+  const body = await safeJson(request);
+  const email = String(body.email || '').toLowerCase().trim();
+  const sessionId = String(body.session_id || '').trim();
+  if (!email) return jsonResponse({ error: 'Missing email' }, 400);
+
+  // Count first, so the response can tell the coach what actually went.
+  const countSql = sessionId
+    ? 'SELECT COUNT(*) AS n FROM sessions WHERE email = ? AND id = ?'
+    : 'SELECT COUNT(*) AS n FROM sessions WHERE email = ?';
+  const countStmt = sessionId
+    ? env.GRE_DB.prepare(countSql).bind(email, sessionId)
+    : env.GRE_DB.prepare(countSql).bind(email);
+  const counted = await countStmt.all();
+  const sessions = ((counted.results || [])[0] || {}).n || 0;
+
+  if (!sessions) {
+    return jsonResponse({ status: 'nothing_to_delete', email, session_id: sessionId || null, sessions: 0 });
+  }
+
+  // attempts first: if the second statement somehow failed, orphaned attempts
+  // would be worse than orphaned sessions, which still render on their own.
+  if (sessionId) {
+    await env.GRE_DB.batch([
+      env.GRE_DB.prepare('DELETE FROM attempts WHERE email = ? AND session_id = ?').bind(email, sessionId),
+      env.GRE_DB.prepare('DELETE FROM sessions WHERE email = ? AND id = ?').bind(email, sessionId),
+    ]);
+  } else {
+    await env.GRE_DB.batch([
+      env.GRE_DB.prepare('DELETE FROM attempts WHERE email = ?').bind(email),
+      env.GRE_DB.prepare('DELETE FROM sessions WHERE email = ?').bind(email),
+    ]);
+  }
+
+  return jsonResponse({
+    status: 'deleted',
+    email,
+    session_id: sessionId || null,
+    sessions,
+    scope: sessionId ? 'session' : 'all',
+  });
 }
 
 /* ─── COACH / ADMIN VIEWS ─────────────────────────────────────────────────── */

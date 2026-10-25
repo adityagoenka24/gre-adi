@@ -627,3 +627,84 @@ did exactly that, so it became "Calibrated to score bands." Verified by
 counting client rects on each `<strong>` at 1280px and 390px — all four leads
 now occupy a single line, with no horizontal overflow at either width. Worth
 remembering when writing future bullets for this component.
+
+---
+
+# Round 7 — Delete progress, light theme, pre-launch audit
+
+## 28. Delete a student's progress
+
+New `POST /admin/progress/delete` — `{ email, session_id? }`. With a
+`session_id` it removes that one session; without, the student's whole
+history. Both clear the matching `attempts` rows in the same batch, so no
+orphan rows survive to skew the subtopic and difficulty figures.
+
+Coach View gains **Delete all progress** in the student header and a small
+**✕** on each session row (the row click still expands the drill-down —
+the button calls `stopPropagation`). Both confirm first and name exactly what
+will go, because D1 has no undo here.
+
+21 checks, including: a session's attempts going with it, no orphans left,
+deleting twice returning `nothing_to_delete` rather than erroring, one
+student being unable to delete another's session by id, the other student's
+rows surviving a full wipe, and a wiped student being able to start a fresh
+history.
+
+## 29. Admin + Coach now match the site
+
+Both were a dark console (`#0a0a0f`, indigo accent, Outfit) against a light
+scholarly site. They now use **site.css's own palette** — paper `#faf8f4`,
+navy ink, `--blue` `#1a5da6`, warm `#c65d21`, with Fraunces headings,
+Source Sans 3 body and DM Mono labels.
+
+The swap was cheap because both files already declared the same token *names*:
+redefining the values in `:root` re-themed every downstream rule. Beyond that
+only the dark-dependent bits needed touching — `rgba(…,.12)` badge fills that
+vanish on light became the soft tokens (`--success-soft` and friends), card
+shadows were added back (the dark theme relied on contrast alone), and the
+`#1a7a3a` button green became `--success`.
+
+**A chart bug this exposed:** the accuracy trend used
+`preserveAspectRatio="none"`, which stretched the SVG — and its axis labels —
+horizontally, and clipped "75" at the left edge. It now scales uniformly with
+asymmetric padding (`padL` 42 for the labels), so all four gridline labels
+read cleanly at any width.
+
+## 30. Pre-launch audit
+
+**Passed:**
+
+- **Links** — 3,850 internal `href`/`src` targets resolved; 0 broken. The only
+  flagged hit was `${loginUrl}` inside a JS template literal.
+- **Live site** — 57 URLs fetched (every sitemap entry plus the key app pages
+  and assets): all 200. The two deleted pages correctly 404, and nothing
+  links to them.
+- **Sitemap** — all 43 `<loc>` entries resolve to real files.
+- **Numeric claims** — verified against `pro/bank/index.json`:
+  9,629 questions ✓, 95 subtopics ✓, 24 free subtopics ✓, 10 mocks ✓,
+  2 free mocks ✓. The manifest's 9 "topics" includes *Mixed Practice*, a mode
+  rather than a content topic, so the copy's "8 topics" is right; and the
+  10,047 questions on disk exceed the advertised 9,629 by exactly the 418 in
+  `pro/bank/sectional/`, which sits outside the topic-wise count.
+- **Runtime** — no JS errors and no horizontal overflow at 1280px or 390px
+  across the homepage, pricing, coach, admin and the free logger.
+- **Live round-trip** — `GREProgressLocal` on the deployed free logger
+  records and reads back a converted sectional payload correctly.
+- **No personal name** on any GRE page.
+
+**Found and fixed:**
+
+| Issue | Why it mattered |
+|---|---|
+| Free app's upgrade modal said **"Lifetime access"** | The site sells 12 months in 15 other places. A refund dispute waiting to happen |
+| Two free-tier teasers promised the session report is *"sent to our coaching team in one click"* | That button was removed in Round 3, so the claim had become false. Rewritten around what now actually happens — automatic saving plus coach review — which is both true and a stronger pitch |
+| Pro upgrade blurb still listed "Send to Tutor" as a benefit | Same removed feature |
+| Pricing table row *"My Progress — ✓ Free sessions only"* | Wrong once the free tier moved to a locked view (fixed in Round 6) |
+
+**Flagged, not changed:**
+
+- `dashboard.html` (the pharma tool) is publicly reachable at
+  `grequantpro.com/dashboard.html` and its source contains the GitHub username
+  in raw-content URLs. It is non-GRE and explicitly kept, but it is worth
+  deciding whether it should sit on this domain at all.
+- The Pro bank being publicly reachable — excluded from this audit by request.
