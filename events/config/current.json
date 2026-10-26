@@ -1,711 +1,528 @@
 {
   "event_id": "mock_001",
-  "event_name": "GRE Quant Pro Mixed Bag",
-  "event_type": "mock_test",
-  "created_at": "2026-05-23T11:48:14.823Z",
-  "timer_seconds": 3150,
-  "question_count": 30,
+  "event_name": "GRE Quant Pro Sunday Mock 1",
+  "event_type": "full_mock_event",
+  "created_at": "2026-10-26T09:18:39.755Z",
+  "timer_seconds": 2820,
+  "question_count": 27,
+  "sections": [
+    {
+      "name": "Section 1",
+      "question_count": 12,
+      "time_limit_seconds": 1260
+    },
+    {
+      "name": "Section 2",
+      "question_count": 15,
+      "time_limit_seconds": 1560
+    }
+  ],
   "shuffle_questions_for_students": true,
   "allow_navigation": true,
   "show_feedback_during_test": false,
-  "instructions": "Answer all questions. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after submission.",
+  "instructions": "This is a full-length mock with two timed sections. Each section has its own clock and locks when you end it or time runs out, so you cannot return to it. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after you submit Section 2.",
   "source_filters": {
-    "bank_source": "../bank/",
-    "topic": "Mixed Practice",
-    "subtopic": "General Mixed (free bank, all topics)",
+    "bank_source": "../pro/bank/",
+    "topic": "Full Mock",
+    "subtopic": "Mock Test 1",
     "difficulties": [
+      "easy",
       "medium",
-      "hard",
-      "extreme_hard"
+      "hard"
     ],
     "types": [
       "mcq",
       "numeric_entry",
       "quantitative_comparison",
       "multiple_answer"
-    ]
+    ],
+    "paper_source": "../pro/mocks/mock_01.json",
+    "section_2_form": "hard"
   },
   "questions": [
     {
-      "id": "ALG-INQ-054",
-      "difficulty": "extreme_hard",
+      "id": "MOCK-01-S1-001",
+      "difficulty": "easy",
       "type": "mcq",
-      "question": "x and y are real numbers with x^2 + y^2 <= 1. What is the maximum possible value of 3x + 4y ?",
+      "question": "A store marks up a product by 40% from its cost price and then offers a 20% discount on the marked price. What is the net profit percentage on the cost price?",
       "options": [
-        "A. 3",
-        "B. 4",
-        "C. 5",
-        "D. 7",
-        "E. 12"
+        "A. 8%",
+        "B. 10%",
+        "C. 12%",
+        "D. 14%",
+        "E. 20%"
       ],
       "answer": "C",
-      "explanation": "Step 1 — the constraint is a disc of radius 1 centered at the origin, and 3x + 4y is being maximized over it. The maximum is attained on the boundary circle x^2 + y^2 = 1, since moving outward from any interior point in the direction that increases 3x + 4y keeps increasing it.\nStep 2 — bound the expression. For any real x and y, (3x + 4y)^2 <= (3^2 + 4^2)(x^2 + y^2). This is the Cauchy-Schwarz inequality, and it can be verified directly: (3^2 + 4^2)(x^2 + y^2) - (3x + 4y)^2 = 9x^2 + 9y^2 + 16x^2 + 16y^2 - 9x^2 - 24xy - 16y^2 = 16x^2 - 24xy + 9y^2 = (4x - 3y)^2, which is never negative.\nStep 3 — so (3x + 4y)^2 <= 25 * (x^2 + y^2) <= 25 * 1 = 25, giving 3x + 4y <= 5.\nStep 4 — the bound is reached when the leftover square (4x - 3y)^2 is zero and the constraint is tight, that is 4x = 3y with x^2 + y^2 = 1. Take x = 3/5 and y = 4/5: then 4(3/5) = 12/5 = 3(4/5), and (3/5)^2 + (4/5)^2 = 9/25 + 16/25 = 1.\nStep 5 — at that point 3x + 4y = 9/5 + 16/5 = 25/5 = 5, so the bound 5 is attained and is the maximum.\nCheck: try some other boundary points and confirm none beats 5. x = 1, y = 0 gives 3. x = 0, y = 1 gives 4. x = 0.8, y = 0.6 gives 2.4 + 2.4 = 4.8. x = 0.6, y = 0.8 gives 1.8 + 3.2 = 5. Correct.\nAnswer: C.",
-      "trap": "Maximising the two terms separately, taking x = 1 and y = 1 to get 3 + 4 = 7, choice D. That point has x^2 + y^2 = 2, which violates the constraint: x and y cannot both reach 1 at once. Choice E, 12, multiplies the coefficients instead of combining them. Choices B and A are the values at the two axis points, 4 at (0, 1) and 3 at (1, 0), each obtained by setting one variable to zero and never checking a mixed point.",
-      "estimated_time_seconds": 130,
+      "explanation": "Let cost price = 100. Marked price = 100 × 1.40 = 140. After 20% discount: selling price = 140 × 0.80 = 112. Profit = 112 − 100 = 12. Profit % = 12/100 × 100 = 12%.",
+      "trap": "Students often subtract 40% − 20% = 20% and choose E. The discount applies to the marked price, not the cost price, so the effects don't simply add or subtract.",
+      "estimated_time_seconds": 55,
       "tags": [
-        "constrained-maximum",
-        "cauchy-schwarz",
-        "boundary"
+        "arithmetic",
+        "percentages",
+        "markup-discount"
       ],
-      "topic": "Algebra",
-      "subtopic": "Inequalities"
+      "topic": "Arithmetic",
+      "subtopic": "Percentages",
+      "section": 0
     },
     {
-      "id": "ALG-LIN-057",
-      "difficulty": "extreme_hard",
-      "type": "multiple_answer",
-      "question": "In the equation (2x + a)/(x - b) = 3, a and b are integers and x is not equal to b. If x = 5 is a solution, which of the following must be true? Select all that apply.",
-      "options": [
-        "A. a + 3b = 5",
-        "B. 2b - a = 10",
-        "C. a - 2 is divisible by 3",
-        "D. b can be any integer",
-        "E. a + b = 5"
-      ],
-      "answer": [
-        "A",
-        "C"
-      ],
-      "explanation": "Step 1 — substitute x = 5: (10 + a)/(5 - b) = 3. This is legal only because x is not equal to b, so 5 - b is not 0.\nStep 2 — clear the denominator: 10 + a = 3(5 - b) = 15 - 3b.\nStep 3 — rearrange: a + 3b = 5, equivalently a = 5 - 3b. That single relation is everything the stem gives; a and b are not individually determined.\nA. TRUE - a + 3b = 5 is exactly Step 3.\nB. FALSE - 2b - a = 10 together with a = 5 - 3b gives 2b - 5 + 3b = 10, so 5b = 15 and b = 3. That is one particular case, not a must.\nC. TRUE - from Step 3, a - 2 = (5 - 3b) - 2 = 3 - 3b = 3(1 - b). Since b is an integer, a - 2 is 3 times an integer.\nD. FALSE - b = 5 is impossible. Clearing the denominator in general gives 2x + a = 3x - 3b, so x = a + 3b; with a + 3b = 5 the only root is x = 5. If b were 5, that root would equal b, which the stem excludes, and the equation would have no permitted solution.\nE. FALSE - a + b = 5 with a = 5 - 3b gives 5 - 3b + b = 5, so 2b = 0 and b = 0. It holds in one case only.\nCheck: substitute a test pair back into the original equation (2x + a)/(x - b) = 3. Take b = 1, so a = 2. Then (2(5) + 2)/(5 - 1) = 12/4 = 3. Correct, and a + 3b = 2 + 3 = 5 and a - 2 = 0 = 3 * 0, while a + b = 3, not 5.\nAnswer: A and C.",
-      "trap": "Selecting E because a + b = 5 resembles the correct a + 3b = 5; it holds only when b = 0. Selecting D because the stem calls a and b integers and says nothing more about b - but b = 5 would place the excluded value x = b exactly at the root x = 5, leaving the equation with no permitted solution.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "rational-to-linear",
-        "must-be-true",
-        "excluded-value"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Linear Equations (1 var)"
-    },
-    {
-      "id": "ALG-INQ-057",
-      "difficulty": "extreme_hard",
-      "type": "numeric_entry",
-      "question": "a and b are positive numbers with a + b = 1 and a is not equal to b. What is the greatest integer k such that 1/a + 1/b > k holds for every such pair (a, b) ?",
-      "options": null,
-      "answer": "4",
-      "explanation": "Step 1 — combine the two fractions over a common denominator: 1/a + 1/b = (b + a)/(ab).\nStep 2 — use the constraint a + b = 1 in the numerator: the expression is simply 1/(ab). So the question becomes: how large can ab be?\nStep 3 — bound ab. Write b = 1 - a, so ab = a(1 - a) = a - a^2. Then 1/4 - ab = 1/4 - a + a^2 = (a - 1/2)^2, which is never negative and is zero only when a = 1/2.\nStep 4 — so ab <= 1/4, with equality only at a = b = 1/2. The stem excludes a = b, so ab < 1/4 strictly.\nStep 5 — ab is positive because a and b are positive, so taking reciprocals of two positive numbers reverses the inequality: 1/(ab) > 4.\nStep 6 — therefore 1/a + 1/b > 4 for every allowed pair, so k = 4 works. And k = 5 fails: a = 0.51, b = 0.49 gives ab = 0.2499 and 1/(ab) = 4.0016, which is not greater than 5. The greatest integer that always works is 4.\nCheck: evaluate at several pairs and confirm all exceed 4 while approaching it. a = 0.6, b = 0.4: 1/0.6 + 1/0.4 = 1.667 + 2.5 = 4.167. a = 0.9, b = 0.1: 1.111 + 10 = 11.111. a = 0.51, b = 0.49: 1.9608 + 2.0408 = 4.0016. The values dip toward 4 but never reach it, and 4.0016 already rules out k = 5. Correct.\nAnswer: 4.",
-      "trap": "Taking a = b = 1/2 to get 2 + 2 = 4 and answering that the expression equals 4, missing that a = b is excluded and that 4 is a floor the expression never touches. Answering 5 assumes the expression stays comfortably above 4, but pairs like (0.51, 0.49) push it to 4.0016. A third error is forgetting to reverse the sign when passing from ab < 1/4 to 1/(ab) > 4, which yields 1/(ab) < 4 and no valid k at all.",
-      "estimated_time_seconds": 130,
-      "tags": [
-        "bounding-an-expression",
-        "reciprocal-reversal",
-        "greatest-valid-bound"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Inequalities"
-    },
-    {
-      "id": "ALG-LIN-055",
-      "difficulty": "extreme_hard",
+      "id": "MOCK-01-S1-002",
+      "difficulty": "easy",
       "type": "quantitative_comparison",
-      "question": "a and b are real numbers, a + b is not 0, and 3a + 5b = 7a + 3b + 12.\n\nQuantity A: (a + 2b)/(a + b)\nQuantity B: 5/3",
+      "question": "Quantity A: The number of distinct prime factors of 72\nQuantity B: The number of distinct prime factors of 48",
       "options": [
         "A. Quantity A is greater.",
         "B. Quantity B is greater.",
         "C. The two quantities are equal.",
         "D. The relationship cannot be determined from the information given."
       ],
-      "answer": "D",
-      "explanation": "Step 1 — collect the given equation: 5b - 3b = 7a - 3a + 12, so 2b = 4a + 12 and b = 2a + 6. This is one relationship between two letters; a is still free.\nStep 2 — substitute b = 2a + 6 into both parts of Quantity A. Numerator: a + 2b = a + 2(2a + 6) = 5a + 12. Denominator: a + b = a + 2a + 6 = 3a + 6.\nStep 3 — note what the stem's condition buys. a + b is not 0 means 3a + 6 is not 0, that is a is not -2, so the division is safe. Nothing else pins a down.\nStep 4 — compare by subtracting, not by cross-multiplying, because the sign of the denominator 3a + 6 is unknown and cross-multiplying by a negative would flip the comparison unnoticed:\n(5a + 12)/(3a + 6) - 5/3 = [3(5a + 12) - 5(3a + 6)]/[3(3a + 6)] = (15a + 36 - 15a - 30)/(9a + 18) = 6/(9a + 18).\nStep 5 — read that difference. The numerator 6 is fixed and positive, so the sign of the difference is the sign of 9a + 18, that is the sign of a + 2. It is never 0, so the columns are never equal, but a > -2 makes Quantity A greater and a < -2 makes Quantity B greater. Both are permitted, so the relationship cannot be determined.\nCheck: substitute two permitted pairs into the original equation and into Quantity A. Take a = 0, b = 6: left = 0 + 30 = 30 and right = 0 + 18 + 12 = 30, and (0 + 12)/(0 + 6) = 2, which is greater than 5/3. Take a = -3, b = 0: left = -9 + 0 = -9 and right = -21 + 0 + 12 = -9, and (-3 + 0)/(-3 + 0) = 1, which is less than 5/3. Correct.\nAnswer: D.",
-      "trap": "Answering C is the trap the constant 12 is there to set. Without it the relationship would be b = 2a, the numerator and denominator would both carry a factor of a, that factor would cancel, and Quantity A would be 5/3 for every a. The 12 breaks that cancellation: b = 2a + 6 leaves (5a + 12)/(3a + 6), whose value moves with a. Answering A or B comes from testing a single value of a - a = 0 gives 2 and suggests A, a = -3 gives 1 and suggests B - and stopping there. The one value worth hunting for is a = -2, where the denominator would vanish; the stem excludes it, which is exactly the hint that a is otherwise free on both sides of it.",
-      "estimated_time_seconds": 125,
+      "answer": "C",
+      "explanation": "72 = 2³ × 3². Distinct prime factors: {2, 3} → count = 2. 48 = 2⁴ × 3. Distinct prime factors: {2, 3} → count = 2. Both equal 2.",
+      "trap": "Students count total prime factors with multiplicity: 72 has 5 (three 2s + two 3s) and 48 has 5 (four 2s + one 3). With that reading both are still equal, but the trap is miscounting and getting different numbers.",
+      "estimated_time_seconds": 50,
       "tags": [
-        "qc",
-        "sign-cases",
-        "compare-by-difference"
+        "number-properties",
+        "prime-factors"
       ],
-      "topic": "Algebra",
-      "subtopic": "Linear Equations (1 var)"
+      "topic": "Number Properties",
+      "subtopic": "Prime Factors",
+      "section": 0
     },
     {
-      "id": "ALG-QDR-043",
-      "difficulty": "hard",
+      "id": "MOCK-01-S1-003",
+      "difficulty": "easy",
       "type": "mcq",
-      "question": "What is the solution set of (x^2 - 3x)^2 - 2(x^2 - 3x) - 8 = 0 over the real numbers?",
+      "question": "The ratio of boys to girls in a class is 3:5. If there are 24 boys, how many girls are there?",
       "options": [
-        "A. x = -2 and 4",
-        "B. x = -1 and 4",
-        "C. x = 1 and 2",
-        "D. x = -4 and 1",
-        "E. x = -1, 1, 2 and 4"
-      ],
-      "answer": "E",
-      "explanation": "Step 1 — the bracket x^2 - 3x repeats, so substitute u = x^2 - 3x. The equation becomes u^2 - 2u - 8 = 0.\nStep 2 — factor: two numbers with product -8 and sum -2 are -4 and 2, so (u - 4)(u + 2) = 0 and u = 4 or u = -2.\nStep 3 — undo the substitution on the first branch. x^2 - 3x = 4 becomes x^2 - 3x - 4 = 0, which factors as (x - 4)(x + 1) = 0, so x = 4 or x = -1.\nStep 4 — second branch. x^2 - 3x = -2 becomes x^2 - 3x + 2 = 0, which factors as (x - 1)(x - 2) = 0, so x = 1 or x = 2.\nStep 5 — both branches are legal, so there are four real solutions: -1, 1, 2 and 4.\nCheck x = -1 in the ORIGINAL: x^2 - 3x = 1 + 3 = 4, so 4^2 - 2(4) - 8 = 16 - 8 - 8 = 0. Correct. Check x = 2: x^2 - 3x = 4 - 6 = -2, so (-2)^2 - 2(-2) - 8 = 4 + 4 - 8 = 0. Correct.\nAnswer: E.",
-      "trap": "Solving for u and stopping gives u = 4 and u = -2, reported as x = -2 and 4, choice A — two of those numbers are not solutions at all. Choice B solves only the u = 4 branch and abandons u = -2 as though a negative value of x^2 - 3x were impossible, which it is not. Choice C keeps only the u = -2 branch. Choice D mis-signs the factors of x^2 - 3x - 4 as (x + 4)(x - 1).",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "quadratic-in-disguise",
-        "substitution",
-        "both-branches"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Quadratic Equations"
-    },
-    {
-      "id": "ARI-FRC-054",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "p, q, r and s are positive numbers with p/q = r/s. Which of the following must also equal p/q?",
-      "options": [
-        "A. (p + r)/(q + s)",
-        "B. (p + q)/(r + s)",
-        "C. (p + s)/(q + r)",
-        "D. p^2/q^2",
-        "E. (p + 1)/(q + 1)"
-      ],
-      "answer": "A",
-      "explanation": "Set the common value to k, so p/q = r/s = k. Then p = kq and r = ks.\nA - (p + r)/(q + s) = (kq + ks)/(q + s) = k(q + s)/(q + s) = k. The (q + s) cancels for every choice of q and s, so this always equals p/q. TRUE.\nB - (p + q)/(r + s) = (kq + q)/(ks + s) = q(k + 1)/(s(k + 1)) = q/s. That is q/s, not k. With k = 7/3, q = 5, s = 2 (so p = 35/3, r = 14/3), it gives 5/2, not 7/3. FALSE.\nC - (p + s)/(q + r) pairs the terms across the two ratios. Same numbers: (35/3 + 2)/(5 + 14/3) = (41/3)/(29/3) = 41/29, not 7/3. FALSE.\nD - p^2/q^2 = k^2, which equals k only when k = 1. FALSE in general.\nE - (p + 1)/(q + 1) = (35/3 + 1)/(5 + 1) = (38/3)/6 = 19/9, not 7/3. Adding 1 to top and bottom drags the fraction toward 1. FALSE.\nAnswer: A.",
-      "trap": "Choice E is the most tempting because A and E look like the same move. They are not: in A the numerator gains r and the denominator gains s, and r/s is ITSELF equal to k, so the added piece is already in the right proportion. In E the added piece is 1/1, a ratio of 1, which pulls the value toward 1. The rule to keep: you may add numerators to numerators and denominators to denominators only when the two ratios are equal.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "algebraic-fractions",
-        "equal-ratios",
-        "mediant"
-      ],
-      "topic": "Arithmetic",
-      "subtopic": "Fractions & Decimals"
-    },
-    {
-      "id": "ARI-PCT-071",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "A merchant mixes tea costing $40 per kg with tea costing $60 per kg and sells the mixture at $60 per kg, making a 25% profit on his average cost. In what ratio, by weight, did he mix the two varieties?",
-      "options": [
-        "A. 2:3",
-        "B. 1:1",
-        "C. 3:2",
-        "D. 3:1",
-        "E. 4:1"
+        "A. 32",
+        "B. 36",
+        "C. 40",
+        "D. 45",
+        "E. 48"
       ],
       "answer": "C",
-      "explanation": "Step 1 — recover the cost from the selling price. A 25% profit means SP = 1.25 x cost, so cost = 60/1.25 = $48 per kg.\nStep 2 — alligation on the average cost of 48:\ndistance from the $40 tea: 48 - 40 = 8\ndistance from the $60 tea: 60 - 48 = 12\nStep 3 — the quantities are in the INVERSE ratio of these distances: cheap : dear = 12 : 8 = 3 : 2.\nCheck: (3 x 40 + 2 x 60)/5 = (120 + 120)/5 = 240/5 = $48. Correct.\nAnswer: 3:2.",
-      "trap": "Two traps stack. First, taking 25% OFF the selling price (60 x 0.75 = 45) instead of dividing by 1.25 - profit is measured on cost, so the cost is SP/1.25 = 48, not 45. Second, writing the ratio as 8:12 = 2:3 (choice A): in alligation the quantities are the inverse of the distances, so the tea whose price is CLOSER to the average is the one you need MORE of.",
-      "estimated_time_seconds": 115,
+      "explanation": "Ratio 3:5 means for every 3 boys there are 5 girls. Scale factor = 24 ÷ 3 = 8. Girls = 5 × 8 = 40.",
+      "trap": "Students compute 24 × (5/3) = 40 correctly, but some do 24 × (3/5) = 14.4 or add 24 + 5 = 29 incorrectly.",
+      "estimated_time_seconds": 40,
       "tags": [
-        "weighted-average",
-        "alligation",
-        "profit",
-        "extreme-hard"
+        "arithmetic",
+        "ratios-proportions"
       ],
       "topic": "Arithmetic",
-      "subtopic": "Percentages"
+      "subtopic": "Ratios Proportions",
+      "section": 0
     },
     {
-      "id": "ARI-RAT-054",
-      "difficulty": "hard",
+      "id": "MOCK-01-S1-004",
+      "difficulty": "medium",
       "type": "mcq",
-      "question": "x, y, a and b are positive with x:y = a:b. Which of the following is NOT necessarily true?",
+      "question": "The average of 5 numbers is 18. When a 6th number is added, the new average becomes 20. What is the 6th number?",
       "options": [
-        "A. (x + y):(x - y) = (a + b):(a - b), given x is not equal to y",
-        "B. (2x + y):(2x - y) = (2a + b):(2a - b), given 2x is not equal to y",
-        "C. x^2:y^2 = a^2:b^2",
-        "D. (x + y):y = (a + b):b",
-        "E. (x + 2):(y + 2) = (a + 2):(b + 2)"
+        "A. 22",
+        "B. 24",
+        "C. 26",
+        "D. 28",
+        "E. 30"
       ],
       "answer": "E",
-      "explanation": "x:y = a:b means x = ta and y = tb for some positive t. Everything hinges on whether t survives the operation.\nA - (x + y)/(x - y) = (ta + tb)/(ta - tb) = t(a + b)/[t(a - b)] = (a + b)/(a - b). The t cancels. TRUE.\nB - (2ta + tb)/(2ta - tb) = t(2a + b)/[t(2a - b)] = (2a + b)/(2a - b). The t cancels. TRUE.\nC - (ta)^2/(tb)^2 = t^2 a^2/(t^2 b^2) = a^2/b^2. TRUE.\nD - (x + y)/y = (ta + tb)/(tb) = (a + b)/b. The t cancels. TRUE.\nE - (ta + 2)/(tb + 2). The 2 is not multiplied by t, so it does not cancel. Take a:b = 1:2 with t = 3, so x = 3 and y = 6: (3 + 2)/(6 + 2) = 5/8, while (1 + 2)/(2 + 2) = 3/4. Different. FALSE.\nAnswer: E.",
-      "trap": "Assuming every algebraic move preserves a ratio. The test is simple: multiplying, dividing, squaring, and adding or subtracting MULTIPLES of the terms all keep the common factor t in play so it cancels. Adding a plain CONSTANT does not - it sits outside the scaling and destroys the proportion.",
-      "estimated_time_seconds": 105,
+      "explanation": "Sum of 5 numbers = 5 × 18 = 90. Sum of 6 numbers = 6 × 20 = 120. 6th number = 120 − 90 = 30.",
+      "trap": "Students compute (18 + 20) × something or simply average the two averages: (18+20)/2 = 19, which is not the answer. Always work with sums, not averages directly.",
+      "estimated_time_seconds": 55,
       "tags": [
-        "ratio-invariance",
-        "algebraic",
-        "add-a-constant"
+        "statistics",
+        "mean",
+        "averages"
       ],
-      "topic": "Arithmetic",
-      "subtopic": "Ratios & Proportions"
+      "topic": "Statistics",
+      "subtopic": "Mean",
+      "section": 0
     },
     {
-      "id": "COG-EQL-034",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "Line L has slope m and passes through the point (a, b). A second line K is perpendicular to L and passes through the point (b, a). If m is a non-zero real number, what is the x-intercept of line K?",
-      "options": [
-        "A. b - am",
-        "B. am - b",
-        "C. b/m + a",
-        "D. am + b",
-        "E. b + a/m"
-      ],
-      "answer": "D",
-      "explanation": "The slope of K (perpendicular to L): slope of K = -1/m.\nEquation of K through (b, a) using point-slope: y - a = (-1/m)(x - b).\nSet y = 0 to find x-intercept: -a = (-1/m)(x - b).\nMultiply both sides by -m: am = x - b.\nSolve: x = am + b.\nThe x-intercept is am + b.",
-      "trap": "Students multiply -a = (-1/m)(x-b) incorrectly: they divide by (-1/m) instead of multiplying by -m, getting x - b = -a × (-m/1) = am but then write x = am - b instead of x = am + b, choosing B.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "equation-of-line",
-        "slope",
-        "x-intercept",
-        "multi-step"
-      ],
-      "topic": "Coordinate Geometry",
-      "subtopic": "Equation of a Line"
-    },
-    {
-      "id": "ALG-QDR-048",
-      "difficulty": "hard",
+      "id": "MOCK-01-S1-005",
+      "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "The equation ax^2 + bx + c = 0, where a is not 0, has two distinct real roots r and s. Which of the following must be true? Select all that apply.",
+      "question": "Which of the following values of x satisfy −3 < 2x − 1 < 5? Select all that apply.",
       "options": [
-        "A. If a, b and c are integers, then r and s are both rational.",
-        "B. b^2 - 4ac > 0",
-        "C. r + s = -b/a",
-        "D. r and s have the same sign.",
-        "E. rs = c/a"
+        "A. x = −2",
+        "B. x = 0",
+        "C. x = 1",
+        "D. x = 2",
+        "E. x = 3"
       ],
       "answer": [
         "B",
-        "C",
-        "E"
-      ],
-      "explanation": "A - FALSE. Take x^2 - 2 = 0, with a = 1, b = 0, c = -2 all integers and D = 8 > 0. Its roots are sqrt(2) and -sqrt(2), both irrational. The roots are rational only when the discriminant is a perfect square.\nB - two distinct real roots is the definition of a positive discriminant. TRUE.\nC - the sum and product of the roots: dividing through by a gives x^2 + (b/a)x + c/a = 0, and the sum of the roots of a monic quadratic is the negative of the linear coefficient. So r + s = -b/a. TRUE.\nD - FALSE. Take x^2 - x - 6 = 0, whose roots are 3 and -2. Their signs differ, because rs = c/a = -6 is negative. The roots share a sign exactly when c/a > 0, which the stem does not require.\nE - from the same monic form used in C, the product of the roots is the constant term, so rs = c/a. TRUE.\nAnswer: B, C and E.",
-      "trap": "Choice A is the trap: 'the discriminant is positive, so the roots are real, so they come out of the formula as ordinary numbers' slides into assuming the square root is rational. D > 0 guarantees real; only D a perfect square guarantees rational. Choice D is selected by students who remember rs = c/a but not that c/a can be negative, in which case one root sits on each side of zero.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "discriminant",
-        "vieta",
-        "must-be-true"
-      ],
-      "topic": "Algebra",
-      "subtopic": "Quadratic Equations"
-    },
-    {
-      "id": "ARI-PCT-055",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "A store offers successive discounts of 20%, 10%, and 5% on an item. Which of the following are true? Select all that apply.",
-      "options": [
-        "A. The effective discount is 35%",
-        "B. The effective discount is less than 35%",
-        "C. The final price is 68.4% of the original",
-        "D. The order in which the three discounts are applied does not affect the final price",
-        "E. A single discount of 35% would give a lower final price than these three discounts"
-      ],
-      "answer": [
-        "B",
-        "C",
-        "D",
-        "E"
-      ],
-      "explanation": "Build the chain: 0.80 x 0.90 x 0.95.\n0.80 x 0.90 = 0.72, and 0.72 x 0.95 = 0.684.\nSo the final price is 68.4% of the original and the effective discount is 100 - 68.4 = 31.6%.\nA - 31.6% is not 35%. FALSE.\nB - 31.6% < 35%. TRUE.\nC - final price = 68.4% of the original. TRUE.\nD - multiplication is commutative, so any order gives 0.684. TRUE.\nE - a single 35% discount leaves 65% of the price, and 65% < 68.4%, so it is the cheaper deal. TRUE.\nAnswer: B, C, D, E.",
-      "trap": "A is the obvious bait - adding 20 + 10 + 5. The subtler one is E: because successive discounts are weaker than their sum, the single 35% discount actually beats the three, so a student who reasons 'successive discounts must be better for the customer' gets E backwards.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "successive-discount",
-        "multiple-answer",
-        "hard"
-      ],
-      "topic": "Arithmetic",
-      "subtopic": "Percentages"
-    },
-    {
-      "id": "ARI-FRC-057",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "a and b are positive numbers with 1/a + 1/b = 1/6 and ab = 192. What is a + b?",
-      "options": null,
-      "answer": "32",
-      "explanation": "The insight: never solve for a and b separately. Combine the reciprocals over a common denominator and the two given facts line up.\nStep 1 — 1/a + 1/b = b/(ab) + a/(ab) = (a + b)/(ab).\nStep 2 — substitute the given product: (a + b)/192 = 1/6.\nStep 3 — cross-multiply: 6(a + b) = 192, so a + b = 32.\nCheck by finding the actual pair: a = 8 and b = 24 give ab = 192 and 1/8 + 1/24 = 3/24 + 1/24 = 4/24 = 1/6. And 8 + 24 = 32. Correct.\nAnswer: 32.",
-      "trap": "Setting up the quadratic and grinding for a and b individually - a longer road to the same place, and easy to abandon halfway. The arithmetic error to watch for is 1/a + 1/b = 1/(a + b), which would give a + b = 6; that identity is false, as 1/8 + 1/24 = 1/6 while 1/(8 + 24) = 1/32 shows. The correct identity is (a + b)/ab.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "algebraic-fractions",
-        "sum-of-reciprocals"
-      ],
-      "topic": "Arithmetic",
-      "subtopic": "Fractions & Decimals"
-    },
-    {
-      "id": "NUM-DIV-035",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "In the 4-digit number 5d8e, d and e are single digits (the digits are 5, d, 8, e from left to right). How many ordered pairs (d, e) make 5d8e divisible by 36?",
-      "options": null,
-      "answer": "3",
-      "explanation": "Step 1 — split 36 into COPRIME factors: 36 = 4 x 9. Both tests must pass.\nStep 2 — the 4-test reads the last two digits, 8e, that is 80 + e. Since 80 is already a multiple of 4, we need e divisible by 4: e = 0, 4 or 8.\nStep 3 — the 9-test reads the digit sum: 5 + d + 8 + e = 13 + d + e, which must be a multiple of 9.\nStep 4 — take the three allowed values of e in turn.\ne = 0: need 13 + d a multiple of 9. d runs 0 to 9, so 13 + d runs 13 to 22; the only multiple of 9 there is 18, giving d = 5. Pair (5, 0), number 5,580.\ne = 4: need 17 + d a multiple of 9, running 17 to 26; the only multiple is 18, giving d = 1. Pair (1, 4), number 5,184.\ne = 8: need 21 + d a multiple of 9, running 21 to 30; the only multiple is 27, giving d = 6. Pair (6, 8), number 5,688.\nStep 5 — that is 3 pairs.\nCheck: 5,580/36 = 155, 5,184/36 = 144, 5,688/36 = 158. All integers.\nAnswer: 3.",
-      "trap": "Splitting 36 as 6 x 6 and testing divisibility by 6 twice. Those factors are not coprime, and the test they give is only divisibility by 6, which admits far more pairs. The other live error is requiring the digit sum to be a multiple of 3 instead of 9, which triples the count. Answering 9 - the number of values of d alone, ignoring the 4-test on e - is the third.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "coprime-factors",
-        "two-unknown-digits",
-        "divisible-by-36"
-      ],
-      "topic": "Number Properties",
-      "subtopic": "Divisibility Rules"
-    },
-    {
-      "id": "ARI-RAT-059",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "m and n are positive integers. m:n = 7:11.\nQuantity A: m² + n²\nQuantity B: (m+n)²/2",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "A",
-      "explanation": "m=7k, n=11k. Quantity A = (7k)²+(11k)² = 49k²+121k² = 170k². Quantity B = (7k+11k)²/2 = (18k)²/2 = 324k²/2 = 162k². 170k² > 162k². Quantity A is greater.",
-      "trap": "Students compute (m+n)² = m²+2mn+n², so (m+n)²/2 = (m²+n²)/2+mn. Since mn>0, Quantity B > (m²+n²)/2. But we need Quantity B vs m²+n², not vs (m²+n²)/2. Full comparison needed.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "ratio-basics",
-        "algebraic",
-        "qc"
-      ],
-      "topic": "Arithmetic",
-      "subtopic": "Ratios & Proportions"
-    },
-    {
-      "id": "COG-DST-035",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "In the xy-plane, B = (4, 3) and C is a point on the y-axis such that BC = 5.\n\nQuantity A: The y-coordinate of C\nQuantity B: 7",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "B",
-      "explanation": "C is on the y-axis, so C = (0, c). Distance BC = √((0−4)²+(c−3)²) = √(16+(c−3)²) = 5. Squaring: 16+(c−3)² = 25 → (c−3)² = 9 → c = 6 or c = 0. In both cases, the y-coordinate of C is less than 7. Quantity B (= 7) is greater for either valid position of C.",
-      "trap": "Students find only one solution (c = 6) and may incorrectly choose D, thinking there might be a solution greater than 7. Both solutions (6 and 0) are less than 7, so Quantity B is always greater.",
-      "estimated_time_seconds": 110,
-      "tags": [
-        "distance-formula",
-        "qc",
-        "multi-step",
-        "two-step"
-      ],
-      "topic": "Coordinate Geometry",
-      "subtopic": "Distance Between Points"
-    },
-    {
-      "id": "COG-EQL-035",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "Line L has equation ax + by = 6 where a and b are positive integers satisfying a < b.\n\nQuantity A: The slope of line L\nQuantity B: -1",
-      "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
-      ],
-      "answer": "A",
-      "explanation": "Convert ax + by = 6 to slope-intercept: by = -ax + 6 → y = (-a/b)x + 6/b. Slope = -a/b.\nSince a and b are positive integers with a < b: the ratio a/b satisfies 0 < a/b < 1, so 0 > -a/b > -1.\nTherefore the slope lies strictly between -1 and 0, meaning slope > -1.\nQuantity A > Quantity B. The answer is always A regardless of which valid (a, b) pair is chosen.",
-      "trap": "Students test a specific case like a=1, b=2 (slope = -1/2 > -1, so A wins), but then worry whether other values could reverse this. They do not recognize that a < b always guarantees a/b < 1 and therefore -a/b > -1, so they choose D instead of A.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "equation-of-line",
-        "slope",
-        "linear-equation",
-        "qc",
-        "multi-step"
-      ],
-      "topic": "Coordinate Geometry",
-      "subtopic": "Equation of a Line"
-    },
-    {
-      "id": "COG-DST-018",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "A line segment has one endpoint at (2, −1) and a length of 13. If the other endpoint has x-coordinate 2, what are the possible y-coordinates of the other endpoint?",
-      "options": [
-        "A. 12 only",
-        "B. −14 only",
-        "C. 12 or −14",
-        "D. 12 or 14",
-        "E. 13 or −13"
-      ],
-      "answer": "C",
-      "explanation": "Since both endpoints share x = 2, the segment is vertical. Length = |y2 − (−1)| = |y2 + 1| = 13. Case 1: y2 + 1 = 13 → y2 = 12. Case 2: y2 + 1 = −13 → y2 = −14. The other endpoint is at (2, 12) or (2, −14).",
-      "trap": "Students solve only the positive case (y = 12) and miss y = −14. An absolute value equation |y + 1| = 13 always has two solutions.",
-      "estimated_time_seconds": 70,
-      "tags": [
-        "distance-formula",
-        "coordinate-geometry",
-        "two-step"
-      ],
-      "topic": "Coordinate Geometry",
-      "subtopic": "Distance Between Points"
-    },
-    {
-      "id": "COG-EQL-050",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "In the xy-plane, line L₁ has equation y = 3x - 2 and line L₂ has equation y = -2x + 8. A third line L₃ passes through the intersection of L₁ and L₂ and also passes through the origin. What is the equation of L₃?",
-      "options": [
-        "A. y = −2x",
-        "B. y = (1/2)x",
-        "C. y = (4/3)x",
-        "D. y = 2x",
-        "E. y = 3x"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — Find the intersection of L₁ and L₂: set 3x - 2 = -2x + 8 → 5x = 10 → x = 2. Then y = 3(2) - 2 = 4. Intersection point: (2, 4).\nStep 2 — L₃ passes through (0, 0) and (2, 4). Slope = (4 - 0)/(2 - 0) = 4/2 = 2. Equation: y = 2x.",
-      "trap": "A uses the slope of L₂. B inverts the slope of the segment from the origin (x/y). C comes from the slip 3x + 2x = 8 − 2 = 6, giving the point (6/5, 8/5). E uses the slope of L₁. The intersection is (2, 4), so the correct slope is 2.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "equation-of-line",
-        "two-variable-system",
-        "slope",
-        "multi-step"
-      ],
-      "topic": "Coordinate Geometry",
-      "subtopic": "Slope & Intercepts"
-    },
-    {
-      "id": "GEO-CIR-020",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "The area of a sector is 12π and the radius of the circle is 6. What is the central angle of the sector?",
-      "options": [
-        "A. 60°",
-        "B. 90°",
-        "C. 120°",
-        "D. 150°",
-        "E. 180°"
-      ],
-      "answer": "C",
-      "explanation": "Sector area = (θ/360) × πr². So 12π = (θ/360) × π(36) = (θ/360) × 36π. Dividing both sides by 36π: 12/36 = θ/360 → 1/3 = θ/360 → θ = 120°.",
-      "trap": "Setting up 12π = (θ/360) × 6π (using radius instead of r²) and getting θ = 720°, which is impossible.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "sector-area",
-        "two-step"
-      ],
-      "topic": "Geometry",
-      "subtopic": "Circles"
-    },
-    {
-      "id": "GEO-PNA-044",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "A square with side s is reshaped into a rectangle by increasing one side by 40% and decreasing the other side by 40%. By what percent does the area change?",
-      "options": [
-        "A. 56% decrease",
-        "B. 40% decrease",
-        "C. 16% decrease",
-        "D. 0% (no change)",
-        "E. 16% increase"
-      ],
-      "answer": "C",
-      "explanation": "New dimensions: 1.4s by 0.6s. New area = 1.4s × 0.6s = 0.84s². Original area = s². Change = (0.84 − 1) × 100% = −16%. The area decreases by 16%.",
-      "trap": "Students reason that +40% and −40% cancel to give 0% net change (choosing D). This is the successive-percent trap: they do not cancel, as 1.4 × 0.6 = 0.84, not 1.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "area",
-        "scaling",
-        "two-step"
-      ],
-      "topic": "Geometry",
-      "subtopic": "Perimeter & Area"
-    },
-    {
-      "id": "NUM-DIV-015",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "In the 4-digit number 83d6, d is a single digit (the digits are 8, 3, d, 6 from left to right). For how many values of d is 83d6 divisible by 8?",
-      "options": [
-        "A. 1",
-        "B. 2",
-        "C. 3",
-        "D. 5",
-        "E. 10"
-      ],
-      "answer": "B",
-      "explanation": "Step 1 — the test for 8 reads the last THREE digits, which here are 3d6, that is the number 300 + 10d + 6 = 306 + 10d.\nStep 2 — run d from 0 to 9:\nd = 0: 306 = 8 x 38 + 2. No.\nd = 1: 316 = 8 x 39 + 4. No.\nd = 2: 326 = 8 x 40 + 6. No.\nd = 3: 336 = 8 x 42. Works.\nd = 4: 346 = 8 x 43 + 2. No.\nd = 5: 356 = 8 x 44 + 4. No.\nd = 6: 366 = 8 x 45 + 6. No.\nd = 7: 376 = 8 x 47. Works.\nd = 8: 386 = 8 x 48 + 2. No.\nd = 9: 396 = 8 x 49 + 4. No.\nStep 3 — the working values are d = 3 and d = 7: two of them.\nFaster: 306 leaves remainder 2 on division by 8 and 10d leaves remainder 2d, so we need 2 + 2d to be a multiple of 8, i.e. d + 1 a multiple of 4, i.e. d = 3 or d = 7.\nCheck: 8,336/8 = 1,042 and 8,376/8 = 1,047.\nAnswer: B. Two values.",
-      "trap": "Confusing the 8-rule with the 4-rule and reading only the last TWO digits, d6: that is a multiple of 4 for every odd d, which reports five values and is choice D. The digit-sum errors are the other family: 8 + 3 + d + 6 = 17 + d treated as a multiple of 9 forces d = 1 and gives 1, choice A, while treated as a multiple of 3 it allows d = 1, 4, 7 and gives 3, choice C. Digit sums settle 3 and 9 only. Choice E is for stopping at the 2-test, since the last digit 6 is even whatever d is.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "divisible-by-8",
-        "last-three-digits",
-        "count-values"
-      ],
-      "topic": "Number Properties",
-      "subtopic": "Divisibility Rules"
-    },
-    {
-      "id": "NUM-FAM-024",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "What is the sum of all the positive factors of 28?",
-      "options": [
-        "A. 15",
-        "B. 28",
-        "C. 55",
-        "D. 56",
-        "E. 84"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — prime factorize: 28 = 2^2 x 7.\nStep 2 — the sum-of-factors rule uses one bracket per prime: (2^0 + 2^1 + 2^2)(7^0 + 7^1) = (1 + 2 + 4)(1 + 7).\nStep 3 — multiply: 7 x 8 = 56.\nCheck by listing: 1 + 2 + 4 + 7 + 14 + 28 = 56. Correct.\nAnswer: D.",
-      "trap": "Answering 28 (option B) by summing only the factors below 28: 1 + 2 + 4 + 7 + 14 = 28, which is what makes 28 a perfect number and makes the wrong answer look deliberate. Adding the brackets instead of multiplying gives 7 + 8 = 15 (option A), dropping the factor 1 gives 55 (option C), and counting 28 twice gives 84 (option E).",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "sum-of-factors",
-        "prime-factorisation"
-      ],
-      "topic": "Number Properties",
-      "subtopic": "Factors & Multiples"
-    },
-    {
-      "id": "COG-SLO-020",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "Which of the following lines have a negative slope? Select all that apply.",
-      "options": [
-        "A. y = -2x + 5",
-        "B. 3x - y = 7",
-        "C. y = 4 - x",
-        "D. x + 2y = 8",
-        "E. y = 3"
-      ],
-      "answer": [
-        "A",
         "C",
         "D"
       ],
-      "explanation": "A: y = -2x + 5 → slope = -2 (negative). B: 3x - y = 7 → y = 3x - 7 → slope = 3 (positive). C: y = 4 - x = -x + 4 → slope = -1 (negative). D: x + 2y = 8 → 2y = -x + 8 → y = -x/2 + 4 → slope = -1/2 (negative). E: y = 3 is horizontal → slope = 0.",
-      "trap": "Students may include B (positive slope) because the equation has a positive x-coefficient before converting. They may also miss C by not recognizing 4 - x as -1 times x.",
-      "estimated_time_seconds": 85,
+      "explanation": "Solve: −3 < 2x − 1 < 5. Add 1: −2 < 2x < 6. Divide by 2: −1 < x < 3. Check each option: A (−2): not in range. B (0): 0 is in (−1, 3) ✓. C (1): ✓. D (2): ✓. E (3): 3 is not strictly less than 3, fails.",
+      "trap": "Students include x = −2 (forgetting strict inequality means −1 < x, not −1 ≤ x) and x = 3 (forgetting the upper bound is strict).",
+      "estimated_time_seconds": 75,
       "tags": [
-        "slope",
-        "multiple-answer",
-        "linear-equation"
+        "algebra",
+        "inequalities"
       ],
-      "topic": "Coordinate Geometry",
-      "subtopic": "Slope & Intercepts"
+      "topic": "Algebra",
+      "subtopic": "Inequalities",
+      "section": 0
     },
     {
-      "id": "DAT-PIE-045",
+      "id": "MOCK-01-S1-006",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "What is the least common multiple (LCM) of 12 and 18?",
+      "options": null,
+      "answer": "36",
+      "explanation": "12 = 2² × 3. 18 = 2 × 3². LCM = highest power of each prime = 2² × 3² = 4 × 9 = 36.",
+      "trap": "Students confuse LCM with GCD: GCD(12,18) = 6, not the answer. Others multiply 12 × 18 = 216 and forget to divide by GCD.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "number-properties",
+        "lcm-gcd"
+      ],
+      "topic": "Number Properties",
+      "subtopic": "Lcm Gcd",
+      "section": 0
+    },
+    {
+      "id": "MOCK-01-S1-007",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Pipe A can fill a tank in 6 hours and Pipe B can fill the same tank in 4 hours. If both pipes are opened simultaneously, how long will it take to fill the tank?",
+      "options": [
+        "A. 2 hours",
+        "B. 2 hours 24 minutes",
+        "C. 2 hours 30 minutes",
+        "D. 3 hours",
+        "E. 5 hours"
+      ],
+      "answer": "B",
+      "explanation": "Rate of A = 1/6 tank/hr. Rate of B = 1/4 tank/hr. Combined rate = 1/6 + 1/4 = 2/12 + 3/12 = 5/12 tank/hr. Time = 1 ÷ (5/12) = 12/5 = 2.4 hours = 2 hours 24 minutes.",
+      "trap": "Students average the times: (6 + 4)/2 = 5 hours (option E). Work-rate problems require adding rates, not averaging times.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "word-problems",
+        "work-rate"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Work Rate",
+      "section": 0
+    },
+    {
+      "id": "MOCK-01-S1-008",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The table below shows units sold by a store across three months:\n\nMonth    | Electronics | Clothing | Books\nJanuary  |    120      |    85    |  45\nFebruary |     95      |   110    |  60\nMarch    |    140      |    75    |  55\n\nWhat is the total number of Clothing items sold over the three months?",
+      "options": [
+        "A. 250",
+        "B. 260",
+        "C. 265",
+        "D. 270",
+        "E. 275"
+      ],
+      "answer": "D",
+      "explanation": "Clothing sold: January = 85, February = 110, March = 75. Total = 85 + 110 + 75 = 270.",
+      "trap": "Students accidentally add the Electronics column (120 + 95 + 140 = 355) or include the Books column in their sum.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "data-interpretation",
+        "tables"
+      ],
+      "topic": "Data Interpretation",
+      "subtopic": "Tables",
+      "section": 0
+    },
+    {
+      "id": "MOCK-01-S1-009",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "n is a positive integer.\nQuantity A: The remainder when (4n + 3) is divided by 4\nQuantity B: The remainder when (4n − 1) is divided by 4",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "4n is a multiple of 4, so 4n + 3 leaves remainder 3 when divided by 4. For 4n − 1, write 4n − 1 = 4(n − 1) + 3; since n ≥ 1, 4(n − 1) is a nonnegative multiple of 4 and 0 ≤ 3 < 4, so the remainder is also 3. Both remainders equal 3.",
+      "trap": "Students take the remainder of 4n − 1 to be −1 (forgetting that a remainder r must satisfy 0 ≤ r < 4), conclude Quantity A is greater, and choose A.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "number-properties",
+        "remainders",
+        "modular-arithmetic"
+      ],
+      "topic": "Number Properties",
+      "subtopic": "Remainders",
+      "section": 0
+    },
+    {
+      "id": "MOCK-01-S1-010",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A company's quarterly sales (in thousands of dollars) are: Q1 = $45K, Q2 = $60K, Q3 = $75K, Q4 = $80K. What is the percentage increase in sales from Q1 to Q4, rounded to one decimal place?",
+      "options": [
+        "A. 56.5%",
+        "B. 64.0%",
+        "C. 77.8%",
+        "D. 80.0%",
+        "E. 88.9%"
+      ],
+      "answer": "C",
+      "explanation": "Percentage increase = (New − Old)/Old × 100 = (80 − 45)/45 × 100 = 35/45 × 100 = 77.78% ≈ 77.8%.",
+      "trap": "Students compute 35/80 × 100 = 43.75% (using Q4 as denominator), or compute (80−45)/80 × 100. Percentage change always uses the original value as the base.",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "data-interpretation",
+        "percentage-change"
+      ],
+      "topic": "Data Interpretation",
+      "subtopic": "Percentage Change",
+      "section": 0
+    },
+    {
+      "id": "MOCK-01-S1-011",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A stock's value decreased by 20% in Year 1 and then increased by 25% in Year 2. What is the overall percentage change from the start of Year 1 to the end of Year 2?",
+      "options": [
+        "A. −5%",
+        "B. −2%",
+        "C. 0%",
+        "D. +2%",
+        "E. +5%"
+      ],
+      "answer": "C",
+      "explanation": "Let initial value = 100. After 20% decrease: 100 × 0.80 = 80. After 25% increase: 80 × 1.25 = 100. Overall change = 0%.",
+      "trap": "Students add −20% + 25% = +5% and choose E. Percentage changes compound multiplicatively, not additively.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "arithmetic",
+        "percentages",
+        "percent-change"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Percentages",
+      "section": 0
+    },
+    {
+      "id": "MOCK-01-S1-012",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Two parallel lines are cut by a transversal. One of the co-interior angles (same-side interior angles) measures 65°. What is the measure of the other co-interior angle?",
+      "options": [
+        "A. 65°",
+        "B. 90°",
+        "C. 105°",
+        "D. 115°",
+        "E. 125°"
+      ],
+      "answer": "D",
+      "explanation": "Co-interior angles (also called consecutive interior or same-side interior angles) are supplementary: they add up to 180°. So the other angle = 180° − 65° = 115°.",
+      "trap": "Students confuse co-interior angles with alternate interior angles (which are equal). Alternate interior = 65°, but co-interior = 180° − 65° = 115°.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "geometry",
+        "parallel-lines",
+        "angles"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 225\" width=\"330\" height=\"225\" role=\"img\"><line x1=\"26\" y1=\"69.1\" x2=\"304\" y2=\"69.1\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"26\" y1=\"155.9\" x2=\"304\" y2=\"155.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"124.6\" y1=\"25.8\" x2=\"205.4\" y2=\"199.2\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><path d=\"M 56.4 73.1 L 62.4 69.1 L 56.4 65.1\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><path d=\"M 56.4 159.9 L 62.4 155.9 L 56.4 151.9\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><path d=\"M 162.7 69.1 A 18 18 0 0 1 152.4 85.4\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><path d=\"M 177.6 139.6 A 18 18 0 0 1 203.3 155.9\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"167.5\" y=\"89\" font-family=\"Georgia,serif\" font-size=\"11\" fill=\"#16191d\" text-anchor=\"start\">65°</text></svg>",
+      "topic": "Geometry",
+      "subtopic": "Parallel Lines",
+      "section": 0
+    },
+    {
+      "id": "MOCK-01-S2-001",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "The five numbers 3, 7, x, 15, and 19 are listed in ascending order. If the median of these five numbers is 11, what is the value of x?",
+      "options": null,
+      "answer": "11",
+      "explanation": "For five numbers in ascending order, the median is the 3rd value. The numbers in order are 3, 7, x, 15, 19, so the median = x. Since median = 11, x = 11. (Check: 7 ≤ 11 ≤ 15 confirms ascending order holds.)",
+      "trap": "Students compute the average of all 5 numbers, setting (3+7+x+15+19)/5 = 11, giving x = 11 coincidentally but using the wrong method. The correct method is that median = middle value = x directly.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "statistics",
+        "median"
+      ],
+      "topic": "Statistics",
+      "subtopic": "Median",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-002",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "Which of the following is equal to (2⁵ × 3³) / (6³ × 2²)?",
+      "options": [
+        "A. 1/4",
+        "B. 1/2",
+        "C. 1",
+        "D. 2",
+        "E. 4"
+      ],
+      "answer": "C",
+      "explanation": "6³ = (2×3)³ = 2³ × 3³. So denominator = 2³ × 3³ × 2² = 2⁵ × 3³. Expression = (2⁵ × 3³)/(2⁵ × 3³) = 1.",
+      "trap": "Students forget to expand 6³ as (2×3)³ and instead treat it as a separate base, reaching incorrect values like 2 or 1/2.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "arithmetic",
+        "exponents"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Exponents",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-003",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "Same pie chart: Salaries 40%, Raw Materials 25%, Marketing 15%, R&D 10%, Others 10%.\n\nWhich categories individually represent MORE than 1/7 of total expenses? Select all that apply.",
+      "question": "n is a positive integer. Which of the following expressions must always be even? Select all that apply.",
       "options": [
-        "A. Salaries",
-        "B. Raw Materials",
-        "C. Marketing",
-        "D. R&D",
-        "E. Others"
+        "A. n + n",
+        "B. n² + n",
+        "C. n² − n",
+        "D. n² + 1",
+        "E. 2n + 1"
       ],
       "answer": [
         "A",
         "B",
         "C"
       ],
-      "explanation": "1/7≈14.29%.\nSalaries 40%>14.29% ✓, Raw Materials 25%>14.29% ✓, Marketing 15%>14.29% ✓, R&D 10%<14.29% ✗, Others 10%<14.29% ✗.",
-      "trap": "Students approximate 1/7≈15% and exclude Marketing (exactly 15%, which seems 'equal to' rather than 'more than'). Since 1/7=14.28...%<15%, Marketing strictly exceeds 1/7. The precision of the threshold is the key discriminator.",
-      "estimated_time_seconds": 110,
+      "explanation": "A: n + n = 2n, always even ✓. B: n² + n = n(n+1), product of consecutive integers, always even ✓. C: n² − n = n(n−1), product of consecutive integers, always even ✓. D: n² + 1 is even when n is odd (odd+1=even) but odd when n is even (even+1=odd) ✗. E: 2n + 1 is always odd ✗.",
+      "trap": "Students include D, noticing it's even for n=1,3,5 without checking n=2 (which gives 5, odd). Always test both even and odd values of n.",
+      "estimated_time_seconds": 80,
       "tags": [
-        "data-interpretation",
-        "pie-chart",
-        "threshold-comparison"
-      ],
-      "topic": "Data Interpretation",
-      "subtopic": "Pie Charts"
-    },
-    {
-      "id": "GEO-CIR-051",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "A circle has equation x² + y² − 6x + 8y − 11 = 0. What is the radius of this circle?",
-      "options": null,
-      "answer": "6",
-      "explanation": "Complete the square: (x² − 6x) + (y² + 8y) = 11. (x² − 6x + 9) + (y² + 8y + 16) = 11 + 9 + 16 = 36. (x − 3)² + (y + 4)² = 36. So r² = 36, r = 6.",
-      "trap": "Reading the equation as r² = 11 (using only the constant term) and reporting r = √11.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "circle-area",
-        "multi-step"
-      ],
-      "topic": "Geometry",
-      "subtopic": "Circles"
-    },
-    {
-      "id": "GEO-PNA-047",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "A carpet is 4 yards long and 3 yards wide. A store charges $2.50 per square foot to clean it. What is the total cleaning cost, in dollars? (1 yard = 3 feet)",
-      "options": null,
-      "answer": "270",
-      "explanation": "Convert to feet: 4 yards = 12 feet, 3 yards = 9 feet. Area = 12 × 9 = 108 sq ft. Cost = 108 × $2.50 = $270.",
-      "trap": "Students compute area in square yards (4 × 3 = 12 sq yd) and multiply directly by $2.50, getting $30. Even if they attempt conversion, they may multiply 12 sq yd × 3 = 36 sq ft (using the linear factor instead of squaring it: 1 sq yd = 9 sq ft, so 12 × 9 = 108 sq ft).",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "area",
-        "unit-conversion",
-        "multi-step"
-      ],
-      "topic": "Geometry",
-      "subtopic": "Perimeter & Area"
-    },
-    {
-      "id": "NUM-FAM-017",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "How many integers between 100 and 1000, inclusive, are multiples of 6 but NOT multiples of 8?",
-      "options": null,
-      "answer": "113",
-      "explanation": "Step 1 — count the multiples of 6 in the range: floor(1000/6) - floor(99/6) = 166 - 16 = 150.\nStep 2 — an integer is a multiple of both 6 and 8 exactly when it is a multiple of the least common multiple of 6 and 8. Since 6 = 2 x 3 and 8 = 2^3, least common multiple = 2^3 x 3 = 24.\nStep 3 — count the multiples of 24 in the range: floor(1000/24) - floor(99/24) = 41 - 4 = 37.\nStep 4 — subtract the overlap from the total: 150 - 37 = 113.\nCheck by endpoints: the multiples of 6 run 102 through 996, that is 6 x 17 through 6 x 166, and 166 - 17 + 1 = 150; the multiples of 24 run 120 through 984, that is 41 - 5 + 1 = 37. 150 - 37 = 113. Answer: 113.",
-      "trap": "Using the product 6 x 8 = 48 in place of the least common multiple of 6 and 8 = 24 when counting what to exclude: that removes floor(1000/48) - floor(99/48) = 20 - 2 = 18 instead of 37, giving 150 - 18 = 132, because every multiple of 24 that is not a multiple of 48 is left in by mistake. The other slip is stopping before the exclusion and answering 150, the count of multiples of 6, or answering 37, the size of the overlap itself instead of what remains after removing it.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "counting-multiples",
-        "lcm",
-        "exclusion"
+        "number-properties",
+        "even-odd",
+        "always-true"
       ],
       "topic": "Number Properties",
-      "subtopic": "Factors & Multiples"
+      "subtopic": "Even Odd",
+      "section": 1
     },
     {
-      "id": "DAT-TBL-042",
+      "id": "MOCK-01-S2-004",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "Product B sells 30,000 units at a selling price of $350 and a cost of $280 per unit. Product D sells 20,000 units at a selling price of $500 and a cost of $380 per unit. Profit margin is profit expressed as a percent of the selling price.\n\nQuantity A: Profit margin of Product B\nQuantity B: Profit margin of Product D",
+      "question": "x, y, z are positive numbers with x:y = 3:4 and y:z = 2:5.\nQuantity A: x:z\nQuantity B: 3:10",
       "options": [
         "A. Quantity A is greater.",
         "B. Quantity B is greater.",
         "C. The two quantities are equal.",
         "D. The relationship cannot be determined from the information given."
       ],
-      "answer": "B",
-      "explanation": "B: (350−280)/350×100=70/350×100=20%.\nD: (500−380)/500×100=120/500×100=24%.\n24%>20%, so Quantity B (Product D's margin) is greater.",
-      "trap": "Students confuse markup (profit/cost) with margin (profit/SP). B's markup=70/280=25%, D's markup=120/380=31.6%. Either way D wins, but the trap is using the wrong denominator.",
-      "estimated_time_seconds": 110,
+      "answer": "C",
+      "explanation": "Make y consistent: x:y = 3:4, so x=3, y=4. y:z = 2:5 → scale to y=4: y:z = 4:10. So x:z = 3:10. Quantity A = Quantity B.",
+      "trap": "Students try to combine ratios by multiplying numerators and denominators separately: (3×2):(4×5) = 6:20 = 3:10, which is correct but some make arithmetic errors in the scaling.",
+      "estimated_time_seconds": 70,
       "tags": [
-        "data-interpretation",
-        "tables",
-        "profit-margin"
+        "arithmetic",
+        "ratios-proportions",
+        "chained-ratios"
       ],
-      "topic": "Data Interpretation",
-      "subtopic": "Tables & Data Sets"
+      "topic": "Arithmetic",
+      "subtopic": "Ratios Proportions",
+      "section": 1
     },
     {
-      "id": "GEO-TRI-072",
+      "id": "MOCK-01-S2-005",
       "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "Quantity A: Area of an equilateral triangle with side 4\nQuantity B: Area of a right isosceles triangle with legs 4",
+      "type": "mcq",
+      "question": "Maria is currently three times as old as her son. In 8 years, she will be twice as old as her son. How old is Maria now?",
       "options": [
-        "A. Quantity A is greater.",
-        "B. Quantity B is greater.",
-        "C. The two quantities are equal.",
-        "D. The relationship cannot be determined from the information given."
+        "A. 18",
+        "B. 21",
+        "C. 24",
+        "D. 27",
+        "E. 30"
       ],
-      "answer": "B",
-      "explanation": "Col A (equilateral, side 4): Area=(√3/4)×16=4√3≈6.93.\nCol B (right isosceles, legs 4): Area=(1/2)×4×4=8.\nSince 8>4√3, Quantity B is greater.",
-      "trap": "Students compute the equilateral height as 4/2=2 (instead of 4×√3/2=2√3), getting area=(1/2)×4×2=4, making the comparison seem obvious for the wrong reason.",
+      "answer": "C",
+      "explanation": "Let son's current age = x. Maria's age = 3x. In 8 years: 3x + 8 = 2(x + 8) → 3x + 8 = 2x + 16 → x = 8. Maria = 3(8) = 24.",
+      "trap": "Students write 3x + 8 = 2x + 8 (forgetting to add 8 to son's age as well) and solve x = 0.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "word-problems",
+        "age-problems",
+        "linear-equations"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Age Problems",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-006",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The equation x² + bx + 12 = 0 has two positive integer roots. Which of the following could be the value of b?",
+      "options": [
+        "A. −13",
+        "B. −5",
+        "C. 5",
+        "D. 7",
+        "E. 13"
+      ],
+      "answer": "A",
+      "explanation": "By Vieta's formulas, if roots are r and s: r + s = −b and r × s = 12. Positive integer pairs (r, s) with r × s = 12: (1,12), (2,6), (3,4). Their sums: 13, 8, 7. So −b ∈ {7, 8, 13}, meaning b ∈ {−7, −8, −13}. Only −13 appears in the options.",
+      "trap": "Students might try b = 7 or b = 13 (positive values), forgetting that for positive roots, r + s = −b means b must be negative.",
       "estimated_time_seconds": 100,
       "tags": [
-        "equilateral-triangle",
-        "area"
+        "algebra",
+        "quadratic-equations",
+        "vieta-formulas"
       ],
-      "topic": "Geometry",
-      "subtopic": "Triangles"
+      "topic": "Algebra",
+      "subtopic": "Quadratic Equations",
+      "section": 1
     },
     {
-      "id": "NUM-PRF-056",
-      "difficulty": "medium",
+      "id": "MOCK-01-S2-007",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "What is the units digit of 3⁴⁷?",
+      "options": null,
+      "answer": "7",
+      "explanation": "Powers of 3 cycle in units digits with period 4: 3¹=3, 3²=9, 3³=27 (units 7), 3⁴=81 (units 1), 3⁵=243 (units 3), ... Since 47 = 11×4 + 3, dividing 47 by 4 leaves remainder 3, so the units digit of 3⁴⁷ matches the units digit of 3³ = 27, which is 7.",
+      "trap": "Students find the remainder 3 correctly (47 = 11×4 + 3) but look up the wrong position in the cycle, picking 3 (position 1) instead of 7 (position 3).",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "arithmetic",
+        "exponents",
+        "units-digit"
+      ],
+      "topic": "Arithmetic",
+      "subtopic": "Exponents",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-008",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A chemist has a 30% acid solution and a 70% acid solution. How many liters of the 30% solution must be mixed with 20 liters of the 70% solution to obtain a 50% acid solution?",
+      "options": [
+        "A. 10",
+        "B. 15",
+        "C. 20",
+        "D. 25",
+        "E. 30"
+      ],
+      "answer": "C",
+      "explanation": "Let x = liters of 30% solution. Acid from 30% solution: 0.30x. Acid from 70% solution: 0.70(20) = 14. Total acid = 0.50(x + 20). Equation: 0.30x + 14 = 0.50x + 10 → 4 = 0.20x → x = 20.",
+      "trap": "Students set up the equation with total volume as x+20 but forget to distribute: 0.30x + 14 = 0.50x + 10 is correct, but some write 0.30x + 0.70(20) = 0.50(20) using only 20 on the right side.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "word-problems",
+        "mixture-problems"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Mixture Problems",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-009",
+      "difficulty": "hard",
       "type": "quantitative_comparison",
-      "question": "n is an integer greater than 1, and p is the smallest prime factor of n.\nQuantity A: p\nQuantity B: sqrt(n)",
+      "question": "x is any real number.\nQuantity A: |x − 3| + |x + 1|\nQuantity B: 4",
       "options": [
         "A. Quantity A is greater.",
         "B. Quantity B is greater.",
@@ -713,16 +530,161 @@
         "D. The relationship cannot be determined from the information given."
       ],
       "answer": "D",
-      "explanation": "Test the three shapes n can take.\nCase 1 — n = 6: the smallest prime factor is 2, and sqrt(6) = 2.449... Quantity B is greater.\nCase 2 — n = 4: the smallest prime factor is 2, and sqrt(4) = 2. The two are equal.\nCase 3 — n = 3, which is prime: its smallest (indeed only) prime factor is 3 itself, and sqrt(3) = 1.732... Quantity A is greater.\nAll three outcomes occur, so the relationship is not determined.\nWhy the pull toward B: the primality shortcut says that to test n you only need primes up to sqrt(n). That works because a COMPOSITE n must have a prime factor at most sqrt(n). It says nothing about prime n, where the smallest prime factor is n itself and n > sqrt(n) for every n > 1.\nAnswer: D. The relationship cannot be determined from the information given.",
-      "trap": "Reading 'test divisibility only up to sqrt(n)' as a guarantee that p <= sqrt(n) for every n, and choosing B. That bound applies only when n is composite, and even then it can be an equality (n = 4 gives p = 2 = sqrt(4), n = 9 gives p = 3 = sqrt(9)). A prime n flips the comparison the other way, so D is the only defensible answer.",
-      "estimated_time_seconds": 115,
+      "explanation": "|x−3| + |x+1| represents the sum of distances from x to 3 and from x to −1 on the number line. Distance between 3 and −1 is 4. The minimum value of the sum equals 4, achieved when x is between −1 and 3. For x outside [−1,3], the sum exceeds 4. So Col A ≥ 4 always — sometimes equal, sometimes greater. Answer: D.",
+      "trap": "Students see A ≥ B and pick A (Quantity A is greater), not realizing equality is possible (e.g., x = 0 gives |−3|+|1| = 4). Since the relationship is not always strictly >, D is correct.",
+      "estimated_time_seconds": 100,
       "tags": [
-        "primality-test",
-        "smallest-prime-factor",
-        "qc"
+        "algebra",
+        "absolute-value",
+        "inequalities"
+      ],
+      "topic": "Algebra",
+      "subtopic": "Absolute Value",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-010",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A box contains 3 red, 4 blue, and 5 green balls. Two balls are drawn without replacement. What is the probability that both balls are the same color?",
+      "options": [
+        "A. 2/11",
+        "B. 1/4",
+        "C. 5/18",
+        "D. 19/66",
+        "E. 1/3"
+      ],
+      "answer": "D",
+      "explanation": "Total = 12 balls. P(both red) = (3/12)(2/11) = 6/132. P(both blue) = (4/12)(3/11) = 12/132. P(both green) = (5/12)(4/11) = 20/132. Total = 38/132 = 19/66.",
+      "trap": "Students compute P(same color) = (3²+4²+5²)/12² = 50/144 = 25/72, treating draws as independent (with replacement). Without replacement, the second draw probability changes.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "statistics",
+        "probability",
+        "without-replacement"
+      ],
+      "topic": "Statistics",
+      "subtopic": "Probability",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-011",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "The product of three consecutive even integers is 960. What is the smallest of the three integers?",
+      "options": null,
+      "answer": "8",
+      "explanation": "Let the integers be n−2, n, n+2. Product = (n−2)(n)(n+2) = n(n²−4) = 960. Try n=10: 10 × 96 = 960. ✓ So integers are 8, 10, 12. Smallest = 8. (Alternatively: cube root of 960 ≈ 9.9, so middle integer ≈ 10.)",
+      "trap": "Students set up (n)(n+2)(n+4) = 960 (consecutive even starting at n) instead of centering on the middle integer. Both work but the centered form is easier to solve.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "number-properties",
+        "consecutive-integers",
+        "word-problems"
       ],
       "topic": "Number Properties",
-      "subtopic": "Prime Numbers"
+      "subtopic": "Consecutive Integers",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-012",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A student received scores of 72, 80, and 68 on three tests weighted at 25%, 35%, and 40% respectively. What is the student's weighted average score?",
+      "options": [
+        "A. 72.0",
+        "B. 72.8",
+        "C. 73.2",
+        "D. 73.6",
+        "E. 74.0"
+      ],
+      "answer": "C",
+      "explanation": "Weighted average = 0.25(72) + 0.35(80) + 0.40(68) = 18 + 28 + 27.2 = 73.2.",
+      "trap": "Students take a simple average: (72+80+68)/3 = 220/3 ≈ 73.3, which is close but wrong. Weighted averages require multiplying each score by its weight.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "statistics",
+        "weighted-average"
+      ],
+      "topic": "Statistics",
+      "subtopic": "Weighted Average",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-013",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A circle with radius 6 has a sector with central angle 120°. What is the area of this sector?",
+      "options": [
+        "A. 6π",
+        "B. 9π",
+        "C. 12π",
+        "D. 18π",
+        "E. 24π"
+      ],
+      "answer": "C",
+      "explanation": "Area of sector = (θ/360°) × πr² = (120/360) × π × 36 = (1/3) × 36π = 12π.",
+      "trap": "Students use the arc length formula (θ/360 × 2πr) instead of the sector area formula, getting (1/3)(12π) = 4π.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "geometry",
+        "circles",
+        "sector-area"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><path d=\"M 120 120 L 201.4 73 A 94 94 0 0 0 38.6 73 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"120\" cy=\"120\" r=\"94\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"120\" cy=\"120\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><path d=\"M 104.4 111 A 18 18 0 0 1 135.6 111\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"155.7\" y=\"89.6\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"end\">6</text><text x=\"120\" y=\"94.2\" font-family=\"Georgia,serif\" font-size=\"11\" fill=\"#16191d\" text-anchor=\"middle\">120°</text><text x=\"120\" y=\"139.9\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">O</text></svg>",
+      "topic": "Geometry",
+      "subtopic": "Circles",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-014",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A merchant buys an article at 20% below the listed price and sells it at 15% above the listed price. What is the merchant's profit percentage based on the cost price?",
+      "options": [
+        "A. 35%",
+        "B. 37.5%",
+        "C. 40%",
+        "D. 43.75%",
+        "E. 45%"
+      ],
+      "answer": "D",
+      "explanation": "Let listed price = 100. Cost price = 80 (20% below listed). Selling price = 115 (15% above listed). Profit = 115 − 80 = 35. Profit % on cost = (35/80) × 100 = 43.75%.",
+      "trap": "Students compute (115−80)/100 = 35% using the listed price as base instead of the cost price. Profit percentage is always based on cost.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "word-problems",
+        "profit-loss",
+        "percentages"
+      ],
+      "topic": "Word Problems",
+      "subtopic": "Profit Loss",
+      "section": 1
+    },
+    {
+      "id": "MOCK-01-S2-015",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "The GCD of two positive integers a and b is 8, and their LCM is 480. If a < b, how many ordered pairs (a, b) are possible?",
+      "options": [
+        "A. 2",
+        "B. 3",
+        "C. 4",
+        "D. 5",
+        "E. 6"
+      ],
+      "answer": "C",
+      "explanation": "Since GCD(a,b) = 8, write a = 8m and b = 8n where GCD(m,n) = 1. Then a × b = GCD × LCM = 8 × 480 = 3840, so 64mn = 3840 → mn = 60. Need pairs (m,n) with m < n, mn = 60, GCD(m,n) = 1. Factor pairs of 60 with m < n: (1,60): GCD=1 ✓; (2,30): GCD=2 ✗; (3,20): GCD=1 ✓; (4,15): GCD=1 ✓; (5,12): GCD=1 ✓; (6,10): GCD=2 ✗. Valid pairs: 4.",
+      "trap": "Students include (2,30) and (6,10) without checking GCD = 1, getting 6 pairs. The coprimality condition mn with GCD(m,n)=1 is the key constraint.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "number-properties",
+        "lcm-gcd",
+        "counting"
+      ],
+      "topic": "Number Properties",
+      "subtopic": "Lcm Gcd",
+      "section": 1
     }
   ]
 }
