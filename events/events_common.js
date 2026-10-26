@@ -1,7 +1,31 @@
 const Events = (() => {
   const SUBMISSION_ENDPOINT = "https://gre-auth.goenka-aditya-kol.workers.dev/mock/submission";
   const $ = (id) => document.getElementById(id);
-  const state = { config: null, current: 0, answers: [], qTimes: [], qStartedAt: 0, startedAt: null, submitted: false, timer: null, remaining: 0 };
+  const state = { config: null, current: 0, answers: [], qTimes: [], qStartedAt: 0, startedAt: null, submitted: false, timer: null, remaining: 0,
+    sectionIndex: 0, sectionStartedAt: 0, sectionUsed: [], onBreak: false };
+
+  // ── Full-mock events: a paper split into timed sections ──────────────────
+  // A config with 2+ entries in `sections` runs like the real test: each
+  // section has its own timer, the student moves freely inside the current
+  // section, and once a section ends it can't be reopened. Every question
+  // carries a 0-based `section` index. Configs without `sections` (topic
+  // tests, team battles) take none of these paths.
+  function isSectioned() {
+    return !!state.config && Array.isArray(state.config.sections) && state.config.sections.length > 1;
+  }
+  function sectionBounds(si) {
+    let first = -1, last = -1;
+    state.config.questions.forEach((q, i) => {
+      if ((q.section || 0) === si) { if (first < 0) first = i; last = i; }
+    });
+    return [first, last];
+  }
+  function currentBounds() {
+    return isSectioned() ? sectionBounds(state.sectionIndex) : [0, state.config.questions.length - 1];
+  }
+  function questionLabel(i) {
+    return isSectioned() ? i - sectionBounds(state.config.questions[i].section || 0)[0] + 1 : i + 1;
+  }
 
   function escapeHtml(value) {
     return String(value ?? "").replace(/[&<>"']/g, (m) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[m]));
@@ -98,7 +122,14 @@ const Events = (() => {
       const resolvedPath = target.includes("/") ? target : `config/${target}`;
       return loadConfig(resolvedPath, false);
     }
-    if (config.shuffle_questions_for_students) config.questions = shuffle(config.questions || []);
+    if (config.shuffle_questions_for_students) {
+      if (Array.isArray(config.sections) && config.sections.length > 1) {
+        // Shuffle inside each section so a question never crosses into the other one.
+        config.questions = config.sections.flatMap((_, si) => shuffle((config.questions || []).filter((q) => (q.section || 0) === si)));
+      } else {
+        config.questions = shuffle(config.questions || []);
+      }
+    }
     return config;
   }
 
@@ -295,7 +326,8 @@ const Events = (() => {
         subtopic: q.subtopic || "Mixed",
         tags: q.tags || [],
         explanation: q.explanation || "",
-        trap: q.trap || ""
+        trap: q.trap || "",
+        ...(isSectioned() ? { section: (q.section || 0) + 1 } : {})
       };
     });
     const summary = summarize(results);
@@ -307,7 +339,9 @@ const Events = (() => {
       team: team || null,
       started_at: state.startedAt.toISOString(),
       submitted_at: submittedAt.toISOString(),
-      total_time_seconds: Math.max(0, Math.round((submittedAt - state.startedAt) / 1000)),
+      total_time_seconds: isSectioned()
+        ? Math.max(0, Math.round(state.sectionUsed.reduce((sum, t) => sum + (t || 0), 0)))
+        : Math.max(0, Math.round((submittedAt - state.startedAt) / 1000)),
       score: summary.score,
       total_questions: summary.total_questions,
       accuracy: summary.accuracy,
@@ -323,6 +357,25 @@ const Events = (() => {
       },
       results
     };
+    if (isSectioned()) {
+      result.sections = state.config.sections.map((sec, si) => {
+        const rows = results.filter((r) => r.section === si + 1);
+        const correct = rows.filter((r) => r.correct).length;
+        const skipped = rows.filter((r) => r.skipped).length;
+        return {
+          section: si + 1,
+          name: sec.name || `Section ${si + 1}`,
+          total: rows.length,
+          correct,
+          incorrect: rows.length - correct - skipped,
+          skipped,
+          accuracy: rows.length ? Number(((correct / rows.length) * 100).toFixed(2)) : 0,
+          time_limit_seconds: Number(sec.time_limit_seconds) || 0,
+          time_used_seconds: Math.round(state.sectionUsed[si] || 0)
+        };
+      });
+    }
+    result.tier = "free";
     result.diagnosis = buildDiagnosis(result);
     return result;
   }
@@ -337,12 +390,13 @@ const Events = (() => {
   function renderQuestion() {
     const q = state.config.questions[state.current];
     const diff = q.difficulty || "medium";
-    const isLast = state.current === state.config.questions.length - 1;
+    const [secFirst, secLast] = currentBounds();
+    const isLast = state.current === secLast;
     $("eventQuestionArea").innerHTML = `
       <div class="practice-q-card">
         <div class="pq-header">
           <div class="pq-left">
-            <span class="q-number">Q${state.current + 1}</span>
+            <span class="q-number">Q${questionLabel(state.current)}</span>
             <!-- <span class="pq-badge ${escapeHtml(diff)}">${escapeHtml(difficultyLabel(diff))}</span> -->
             <span class="pq-type-badge">${escapeHtml(typeLabel(q.type))}</span>
           </div>
@@ -350,7 +404,7 @@ const Events = (() => {
         </div>
         <div class="pq-body">${q.svg ? `<div class="pq-figure">${q.svg}</div>` : ""}${renderAnswerControl(q, state.answers[state.current])}</div>
         <div class="pq-footer">
-          <button class="btn btn-ghost btn-sm" id="prevBtn" onclick="Events.prevQuestion()" ${state.current === 0 || state.config.allow_navigation === false ? "disabled" : ""}>Prev</button>
+          <button class="btn btn-ghost btn-sm" id="prevBtn" onclick="Events.prevQuestion()" ${state.current === secFirst || state.config.allow_navigation === false ? "disabled" : ""}>Prev</button>
           <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);" id="examQuestionStatus"></span>
           <button class="btn btn-primary btn-sm" id="nextBtn" onclick="Events.nextQuestion()">${isLast ? "Last Question" : "Next"}</button>
         </div>
@@ -398,13 +452,18 @@ const Events = (() => {
   }
 
   function renderNav() {
-    const answeredCount = state.answers.filter((a) => a && (!Array.isArray(a) || a.length)).length;
-    const unanswered = state.answers.length - answeredCount;
-    $("progressText").textContent = `Q ${state.current + 1} / ${state.config.questions.length}${state.answers[state.current] && (!Array.isArray(state.answers[state.current]) || state.answers[state.current].length) ? " ✓" : ""}`;
-    $("numberNav").innerHTML = state.config.questions.map((_, i) => {
+    const [secFirst, secLast] = currentBounds();
+    const inScope = state.answers.slice(secFirst, secLast + 1);
+    const answeredCount = inScope.filter((a) => a && (!Array.isArray(a) || a.length)).length;
+    const unanswered = inScope.length - answeredCount;
+    const doneMark = state.answers[state.current] && (!Array.isArray(state.answers[state.current]) || state.answers[state.current].length) ? " ✓" : "";
+    $("progressText").textContent = isSectioned()
+      ? `Section ${state.sectionIndex + 1} of ${state.config.sections.length} · Q ${questionLabel(state.current)} / ${secLast - secFirst + 1}${doneMark}`
+      : `Q ${state.current + 1} / ${state.config.questions.length}${doneMark}`;
+    $("numberNav").innerHTML = state.config.questions.map((_, i) => ({ i })).filter(({ i }) => i >= secFirst && i <= secLast).map(({ i }) => {
       const canJump = state.config.allow_navigation !== false;
       const click = canJump ? `onclick="Events.goQuestion(${i})"` : "";
-      return `<button class="exam-dot ${i === state.current ? "current" : ""} ${state.answers[i] && (!Array.isArray(state.answers[i]) || state.answers[i].length) ? "answered" : ""}" ${click} ${canJump ? "" : "disabled"}>${i + 1}</button>`;
+      return `<button class="exam-dot ${i === state.current ? "current" : ""} ${state.answers[i] && (!Array.isArray(state.answers[i]) || state.answers[i].length) ? "answered" : ""}" ${click} ${canJump ? "" : "disabled"}>${questionLabel(i)}</button>`;
     }).join("");
     if ($("unansweredWarning")) {
       $("unansweredWarning").textContent = unanswered > 0 ? `${unanswered} unanswered` : "All answered";
@@ -435,7 +494,8 @@ const Events = (() => {
   }
 
   function goQuestion(index) {
-    if (index < 0 || index >= state.config.questions.length) return;
+    const [secFirst, secLast] = currentBounds();
+    if (index < secFirst || index > secLast) return;
     if (state.config.allow_navigation === false && index !== state.current + 1) return;
     setQuestionTime(state.current);
     state.current = index;
@@ -443,28 +503,95 @@ const Events = (() => {
   }
 
   function nextQuestion() {
-    if (state.current < state.config.questions.length - 1) goQuestion(state.current + 1);
+    if (state.current < currentBounds()[1]) goQuestion(state.current + 1);
     else $("numberNav").scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   function prevQuestion() {
     if (state.config.allow_navigation === false) return;
-    if (state.current > 0) goQuestion(state.current - 1);
+    if (state.current > currentBounds()[0]) goQuestion(state.current - 1);
   }
 
   function startTimer() {
-    state.remaining = Number(state.config.timer_seconds) || 0;
+    clearInterval(state.timer);
+    const sectioned = isSectioned();
+    const limit = sectioned
+      ? Number(state.config.sections[state.sectionIndex].time_limit_seconds) || 0
+      : Number(state.config.timer_seconds) || 0;
+    state.remaining = limit;
+    state.sectionStartedAt = Date.now();
     const tick = () => {
-      $("timer").textContent = state.config.timer_seconds ? formatTime(state.remaining) : "Untimed";
+      $("timer").textContent = limit ? formatTime(state.remaining) : "Untimed";
       $("timer").classList.toggle("critical", state.remaining > 0 && state.remaining <= 120);
-      if (state.config.timer_seconds && state.remaining <= 0) {
-        submitEvent(true);
+      if (limit && state.remaining <= 0) {
+        clearInterval(state.timer);
+        if (sectioned) endSection(true); else submitEvent(true);
         return;
       }
       if (state.remaining > 0) state.remaining -= 1;
     };
     tick();
     if (state.remaining) state.timer = setInterval(tick, 1000);
+  }
+
+  // Close the current section. The last one submits the whole paper; an
+  // earlier one shows the break card, and the next section's clock only
+  // starts when the student presses the button on it.
+  function endSection(timedOut = false) {
+    if (state.submitted || state.onBreak) return;
+    const [secFirst, secLast] = currentBounds();
+    if (!timedOut && state.sectionIndex < state.config.sections.length - 1) {
+      const open = state.answers.slice(secFirst, secLast + 1).filter((a) => !(a && (!Array.isArray(a) || a.length))).length;
+      const msg = `End Section ${state.sectionIndex + 1}?` + (open ? ` ${open} question${open === 1 ? " is" : "s are"} unanswered.` : "") + " You will not be able to come back to it.";
+      if (!window.confirm(msg)) return;
+    }
+    setQuestionTime(state.current);
+    clearInterval(state.timer);
+    state.sectionUsed[state.sectionIndex] = Math.min(
+      (Date.now() - state.sectionStartedAt) / 1000,
+      Number(state.config.sections[state.sectionIndex].time_limit_seconds) || Infinity
+    );
+    if (state.sectionIndex >= state.config.sections.length - 1) {
+      submitEvent(timedOut);
+      return;
+    }
+    const answered = state.answers.slice(secFirst, secLast + 1).filter((a) => a && (!Array.isArray(a) || a.length)).length;
+    const total = secLast - secFirst + 1;
+    const next = state.config.sections[state.sectionIndex + 1];
+    state.onBreak = true;
+    $("numberNav").innerHTML = "";
+    $("timer").textContent = "Break";
+    $("timer").classList.remove("critical");
+    $("progressText").textContent = `Section ${state.sectionIndex + 1} of ${state.config.sections.length} complete`;
+    if ($("unansweredWarning")) $("unansweredWarning").textContent = "";
+    $("submitBtn").disabled = true;
+    $("eventQuestionArea").innerHTML = `
+      <div class="practice-q-card">
+        <div class="pq-body" style="text-align:center;padding:40px 24px;">
+          <div class="eyebrow">${timedOut ? "Time is up" : "Section complete"}</div>
+          <h2 style="margin:8px 0 12px;">Section ${state.sectionIndex + 1} of ${state.config.sections.length} is finished</h2>
+          <p class="muted">You answered ${answered} of ${total} questions. This section is now locked.</p>
+          <p class="muted" style="margin-top:14px;">Next: <strong>${escapeHtml(next.name || `Section ${state.sectionIndex + 2}`)}</strong> · ${next.question_count || ""} questions · ${formatTime(next.time_limit_seconds)}. Take a breather. The clock for the next section starts only when you press the button.</p>
+          <div class="actions" style="justify-content:center;margin-top:22px;"><button class="primary-btn" onclick="Events.startNextSection()">Start Section ${state.sectionIndex + 2}</button></div>
+        </div>
+      </div>`;
+  }
+
+  function startNextSection() {
+    if (!state.onBreak || state.submitted) return;
+    state.onBreak = false;
+    state.sectionIndex += 1;
+    state.current = currentBounds()[0];
+    state.qStartedAt = Date.now();
+    $("submitBtn").disabled = false;
+    $("submitBtn").textContent = sectionButtonLabel();
+    renderQuestion();
+    startTimer();
+  }
+
+  function sectionButtonLabel() {
+    if (!isSectioned()) return "Submit";
+    return state.sectionIndex >= state.config.sections.length - 1 ? "Submit Test" : `End Section ${state.sectionIndex + 1}`;
   }
 
   function kpiCard(icon, value, label, color) {
@@ -525,7 +652,7 @@ const Events = (() => {
       ${result.results.map((r, i) => {
         const icon = r.correct ? "✅" : r.skipped ? "⏭" : "❌";
         return `<tr>
-          <td style="font-family:var(--font-mono);">Q${i + 1}</td>
+          <td style="font-family:var(--font-mono);">${r.section ? `S${r.section}·Q${result.results.slice(0, i).filter((x) => x.section === r.section).length + 1}` : `Q${i + 1}`}</td>
           <td><span class="tag tag-${escapeHtml(String(r.difficulty).replace("_", "-"))}">${escapeHtml(dLabels[r.difficulty] || difficultyLabel(r.difficulty))}</span></td>
           <td style="font-size:12px;color:var(--text2);">${escapeHtml(typeLabel(r.type))}</td>
           <td style="font-family:var(--font-mono);font-size:12px;color:var(--text3);">${formatTime(r.estimated_time_seconds || 90)}</td>
@@ -794,6 +921,18 @@ const Events = (() => {
       kpiCard("⏱", formatTime(result.total_time_seconds), "Total Time", "var(--warning)"),
       kpiCard("⚡", `${formatTime(result.average_time_seconds)}/q`, "Avg per Q", "var(--accent2)")
     ].join("");
+    const oldSectionCard = document.getElementById("exam-section-card");
+    if (oldSectionCard) oldSectionCard.remove();
+    if (result.sections && result.sections.length) {
+      $("exam-kpi-row").insertAdjacentHTML("afterend", `
+        <div class="chart-card" id="exam-section-card" style="margin-bottom:24px;"><h3>By Section</h3>
+          ${result.sections.map((sec) => {
+            const pct = Math.round(sec.accuracy);
+            const col = pct >= 75 ? "var(--success)" : pct >= 50 ? "var(--warning)" : "var(--danger)";
+            return barRow(`${sec.name} · ${formatTime(sec.time_used_seconds)}`, sec.correct, sec.total, pct, col);
+          }).join("")}
+        </div>`);
+    }
     renderAnalysisBars(result);
     renderTimeTable(result);
     if ($("proCta")) $("proCta").innerHTML = renderSmartDiagnosis(result) + renderProCta(result);
@@ -801,7 +940,10 @@ const Events = (() => {
     errorMeta = {};
     $("exam-wrong-section").innerHTML = leHint() + renderQuestionReference(result) + renderWrongReview(result);
     $("exam-wrong-section").onclick = leClick;
-    if (window.GREMath) window.GREMath.renderIn($("resultsSection"));
+    // Typeset only the question review. The rest of this page is statistics
+    // ("0:01 / 47:00", "7/12 (58%)"), and the typesetter would turn every
+    // slash in those into a stacked fraction.
+    if (window.GREMath) window.GREMath.renderIn($("exam-wrong-section"));
     $("downloadResultBtn").onclick = () => {
       const errors = leEntries();
       downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, errors.length ? { ...result, error_log: errors } : result);
@@ -871,7 +1013,9 @@ const Events = (() => {
       state.config.questions = (state.config.questions || []).map((q) => enrichQuestion(q, q.topic, q.subtopic));
       if (teamMode) state.config.event_type = "team_battle";
       $("eventName").textContent = state.config.event_name || "GRE Quant Pro Event";
-      $("eventDetails").textContent = `${state.config.question_count || state.config.questions.length} questions · ${state.config.timer_seconds ? formatTime(state.config.timer_seconds) : "Untimed"} · ${state.config.allow_navigation === false ? "Locked order" : "Navigation allowed"}`;
+      $("eventDetails").textContent = isSectioned()
+        ? `${state.config.question_count || state.config.questions.length} questions · ${state.config.sections.map((sec) => `${sec.question_count || ""} Q in ${formatTime(sec.time_limit_seconds)}`).join(" + ")} · each section timed separately`
+        : `${state.config.question_count || state.config.questions.length} questions · ${state.config.timer_seconds ? formatTime(state.config.timer_seconds) : "Untimed"} · ${state.config.allow_navigation === false ? "Locked order" : "Navigation allowed"}`;
       $("instructions").textContent = state.config.instructions || "Answer all questions. Feedback is shown only after submission.";
       $("startBtn").onclick = () => {
         if (!$("studentName").value.trim() || !$("studentEmail").value.trim()) {
@@ -895,10 +1039,15 @@ const Events = (() => {
         state.answers = new Array(state.config.questions.length).fill(null);
         state.qTimes = new Array(state.config.questions.length).fill(0);
         state.qStartedAt = Date.now();
+        state.sectionIndex = 0;
+        state.sectionUsed = [];
+        state.onBreak = false;
+        state.current = 0;
+        $("submitBtn").textContent = sectionButtonLabel();
         renderQuestion();
         startTimer();
       };
-      $("submitBtn").onclick = () => submitEvent(false);
+      $("submitBtn").onclick = () => (isSectioned() ? endSection(false) : submitEvent(false));
     } catch (error) {
       $("startSection").innerHTML = `<div class="notice danger">Could not load event config. ${escapeHtml(error.message)}</div>`;
     }
@@ -906,6 +1055,6 @@ const Events = (() => {
 
   return {
     $, state, escapeHtml, slug, formatTime, downloadJson, downloadText, shuffle, loadJson, enrichQuestion, isCorrect, summarize, breakdown,
-    chooseOption, setAnswer, goQuestion, nextQuestion, prevQuestion, submitEvent, initStudentPage
+    chooseOption, setAnswer, goQuestion, nextQuestion, prevQuestion, submitEvent, endSection, startNextSection, initStudentPage
   };
 })();

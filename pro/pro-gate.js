@@ -80,6 +80,9 @@
 
   function unlock() {
     overlay.remove();
+    // Lets other scripts (the error log's "finish your log" check) wait until
+    // the student is validated rather than racing the Worker call.
+    try { document.dispatchEvent(new CustomEvent('gre:pro-unlocked')); } catch (e) {}
   }
 
   function showLocked() {
@@ -235,16 +238,23 @@ window.GREProgress = (function () {
     } catch (e) { return { email: '', name: '' }; }
   }
 
+  /* Still fire-and-forget for every existing caller. It now also returns a
+     promise for the server's session id (or null on any failure), which the
+     error log needs to attach a student's tags to the saved session. */
   function save(session) {
     var t = token();
-    if (!t || !session || !session.questions || !session.questions.length) return;
+    if (!t || !session || !session.questions || !session.questions.length) return Promise.resolve(null);
     try {
-      fetch(WORKER_URL + '/progress/save', {
+      return fetch(WORKER_URL + '/progress/save', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ token: t, session: session })
-      }).catch(function (e) { console.warn('Could not save progress', e); });
-    } catch (e) { console.warn('Could not save progress', e); }
+      }).then(function (res) {
+        return res.ok ? res.json() : null;
+      }).then(function (j) {
+        return j && j.session_ids && j.session_ids.length ? j.session_ids[0] : null;
+      }).catch(function (e) { console.warn('Could not save progress', e); return null; });
+    } catch (e) { console.warn('Could not save progress', e); return Promise.resolve(null); }
   }
 
   return { token: token, student: student, save: save };

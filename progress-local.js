@@ -118,10 +118,28 @@ window.GREProgressLocal = (function () {
     });
   }
 
+  /* Name + email the student typed on a free attempt, remembered in this
+     browser so the next mock, sectional or event is pre-filled. The same
+     two values are what the coach view lists against each attempt. */
+  var STUDENT_KEY = 'gqp_free_student';
+  function student() {
+    try {
+      var o = JSON.parse(localStorage.getItem(STUDENT_KEY) || '{}') || {};
+      return { name: String(o.name || ''), email: String(o.email || '') };
+    } catch (e) { return { name: '', email: '' }; }
+  }
+  function rememberStudent(name, email) {
+    try { localStorage.setItem(STUDENT_KEY, JSON.stringify({ name: name, email: email })); } catch (e) {}
+  }
+  function validEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(String(email || '').trim()); }
+
   return {
     read: read,
     count: count,
     record: record,
+    student: student,
+    rememberStudent: rememberStudent,
+    validEmail: validEmail,
     recordAttemptPayload: recordAttemptPayload,
     capWord: capWord,
     KEY: KEY,

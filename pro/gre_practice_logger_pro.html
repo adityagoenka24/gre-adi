@@ -9,6 +9,7 @@
 <script defer src="../gre-math.js"></script>
 <script defer src="../gre-calculator.js"></script>
 <script defer src="../score-scale.js"></script>
+<script src="error-log.js"></script>
 <style>.gre-math{white-space:normal}.katex{font-size:1.08em!important}.pq-question-text .katex,.pq-qc-content .katex{font-size:1.12em!important}</style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -1144,7 +1145,7 @@ body.ets-lock{overflow:hidden;}
       <div class="table-card" style="margin-bottom:24px;"><h3>Time Per Question</h3><div id="exam-time-table"></div></div>
       <div id="exam-wrong-section"></div>
       <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:32px;">
-        <button class="btn btn-primary" onclick="resetBankSession()">🔄 New Session</button>
+        <button class="btn btn-primary" id="exam-new-session-btn" onclick="resetBankSession()">🔄 New Session</button>
       </div>
     </div>
 
@@ -1172,8 +1173,9 @@ body.ets-lock{overflow:hidden;}
           <div class="bank-stat"><div class="bank-stat-val" id="bank-stat-total">—</div><div class="bank-stat-lbl">Total Time</div></div>
         </div>
         <div id="bank-complete-breakdown" style="margin-bottom:28px;text-align:left;"></div>
+        <div id="bank-errorlog-section" style="margin-bottom:24px;text-align:left;"></div>
         <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="resetBankSession()">🔄 Practice Again</button>
+          <button class="btn btn-primary" id="bank-practice-again-btn" onclick="resetBankSession()">🔄 Practice Again</button>
         </div>
         <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);font-family:var(--font-mono);">
           GRE Quant Pro Question Bank · <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none;">Contact us</a>
@@ -1377,6 +1379,9 @@ function unlockApp() {
   document.getElementById('auth-gate').style.display = 'none';
   // Now safe to load the bank index — app is unlocked
   loadBankIndex();
+  // A session left without tagging its mistakes must be finished first.
+  // Fails open: any error, or no error-log tables yet, means no lock.
+  try { if (window.GREErrorLog) GREErrorLog.resume(); } catch (e) {}
 }
 
 function showAuthError(msg) {
@@ -1480,17 +1485,25 @@ function setProgressToken(token){
 }
 
 /* Push one completed session. Returns true/false, never throws. */
-async function saveProgressSession(session){
+async function saveProgressSessionFull(session){
   const token = getProgressToken();
-  if(!token || !session || !Array.isArray(session.questions) || !session.questions.length) return false;
+  if(!token || !session || !Array.isArray(session.questions) || !session.questions.length) return { ok:false, id:null };
   try{
     const res = await fetch(`${AUTH_CONFIG.WORKER_URL}/progress/save`, {
       method:'POST',
       headers:{'Content-Type':'application/json'},
       body:JSON.stringify({ token, session }),
     });
-    return res.ok;
-  }catch(e){ return false; }
+    if(!res.ok) return { ok:false, id:null };
+    let id = null;
+    try{ const j = await res.json(); id = (j.session_ids && j.session_ids[0]) || null; }catch(e){}
+    return { ok:true, id };
+  }catch(e){ return { ok:false, id:null }; }
+}
+
+/* Same contract as before: true/false, never throws. */
+async function saveProgressSession(session){
+  return (await saveProgressSessionFull(session)).ok;
 }
 
 /* Pull this student's stored sessions. Returns [] on any failure. */
@@ -2780,9 +2793,101 @@ function bankFinish(){
 
   // Save to the student's progress history in the background. Deliberately
   // not awaited — the result screen is already on screen and must not wait.
-  saveProgressSession(buildBankSessionData()).then(ok=>{
-    if(ok) progressAutoLoaded = false; // next Progress tab visit refetches
+  const bankSess = buildBankSessionData();
+  const bankSave = saveProgressSessionFull(bankSess);
+  bankSave.then(r=>{
+    if(r.ok) progressAutoLoaded = false; // next Progress tab visit refetches
   });
+  startBankErrorLog(bankSess);
+  renderBankMistakeReview();
+  attachBankErrorLog(bankSave);
+}
+
+/* ─── ERROR LOG (Pro) ─────────────────────────────────────────────────────────
+   After a session the student tags WHY each wrong or skipped question went
+   wrong. The controller, chips, sync and the gate state live in error-log.js;
+   this block only adapts the logger's result shape to it. If that file failed
+   to load, bankErrReview is null and nothing here locks anything. */
+function startBankErrorLog(sess){
+  window.bankErrSession = sess;
+  window.bankErrReview = null;
+  if(!window.GREErrorLog) return null;
+  const rv = GREErrorLog.review({ blocking:true, onUpdate:syncBankErrorGate });
+  bankState.results.forEach((r,i)=>{
+    if(r.correct) return;
+    rv.require(i,{
+      status: r.studentAnswer==='(no answer)' ? 'skipped' : 'wrong',
+      time: r.timeTaken,
+      difficulty: String(r.question.difficulty||'').replace('_',' '),
+      question_id: r.question.id
+    });
+  });
+  window.bankErrReview = rv;
+  return rv;
+}
+
+function attachBankErrorLog(savePromise){
+  const rv = window.bankErrReview;
+  if(!rv) return;
+  rv.attach(savePromise.then(r=>r.id), window.bankErrSession);
+}
+
+function syncBankErrorGate(p){
+  if(!window.GREErrorLog) return;
+  const locked = !!(p && p.total && !p.complete);
+  GREErrorLog.setLocked(
+    [document.getElementById('bank-practice-again-btn'), document.getElementById('exam-new-session-btn')],
+    locked, 'Tag why you missed each question first'
+  );
+}
+
+function refreshBankErrorUi(){
+  const rv = window.bankErrReview;
+  if(!rv) return;
+  rv.refreshBanners();
+  syncBankErrorGate(rv.progress());
+  const box = document.getElementById('exam-wrong-section');
+  if(box && window.GREMath) GREMath.renderIn(box);
+}
+
+/* Practice mode shows feedback one question at a time, so it has no list of
+   mistakes at the end. This renders one, with the tag chips under each. */
+function renderBankMistakeReview(){
+  const box = document.getElementById('bank-errorlog-section');
+  if(!box) return;
+  const rv = window.bankErrReview;
+  if(!rv || !rv.order.length){ box.innerHTML=''; syncBankErrorGate({total:0}); return; }
+  const res = bankState.results;
+  box.innerHTML = `<div class="table-card" style="margin-bottom:8px;">
+    <h3>Log your mistakes (${rv.order.length})</h3>
+    ${rv.banner()}
+    <div class="wrong-q-list">${rv.order.map(i=>{
+      const r = res[i], q = r.question;
+      const cAns = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
+      const mine = Array.isArray(r.studentAnswer) ? r.studentAnswer.join(', ') : r.studentAnswer;
+      const diffLabel = String(q.difficulty||'').replace('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
+      return `<div class="wrong-q-card">
+        <div class="wrong-q-header">
+          <span class="pq-badge ${q.difficulty}">${diffLabel}</span>
+          <span class="pq-type-badge">${bankTypeLabel(q.type)}</span>
+          <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);">${q.id}</span>
+        </div>
+        <div class="wrong-q-body">
+          <div class="wrong-q-text">${escHtml(q.question)}</div>
+          <div class="wrong-q-answers">
+            <span class="wrong-q-your">Your answer: ${escHtml(mine)}</span>
+            <span style="color:var(--text3);">·</span>
+            <span class="wrong-q-correct">Correct: ${escHtml(cAns)}</span>
+          </div>
+          <div class="wrong-q-explanation">${escHtml(q.explanation)}</div>
+          <div class="wrong-q-trap">⚠️ Trap: ${escHtml(q.trap)}</div>
+          ${rv.html(i)}
+        </div>
+      </div>`;
+    }).join('')}</div></div>`;
+  rv.refreshBanners();
+  syncBankErrorGate(rv.progress());
+  if(window.GREMath) GREMath.renderIn(box);
 }
 
 /* Builds the v2.0 session object for a bank practice session. Shared by the
@@ -2805,7 +2910,7 @@ function buildBankSessionData(sessionType){
     notes:bankState.subtopic+' — '+bankState.results.length+' questions from bank',
     startTime:bankState.sessionStartTime,endTime:Date.now(),questions:qs,
     exportedAt:new Date().toISOString(),version:'2.0',
-    session_type:sessionType||'bank_practice'};
+    session_type:sessionType||'bank_practice',requires_error_log:true};
   return data;
 }
 
@@ -3441,14 +3546,21 @@ function examSubmit() {
   });
 
   document.getElementById('bank-active-screen').style.display = 'none';
+  // The error-log controller must exist BEFORE the analysis renders, because
+  // the mistake cards embed its tag chips.
+  const examSess = buildBankSessionData('bank_exam');
+  startBankErrorLog(examSess);
   examRenderAnalysis();
+  refreshBankErrorUi();
 
   // Exam Mode is a separate exit path from bankFinish(), and scores into the
   // same bankState.results shape — so it needs its own save call. Without
   // this, an exam session is never stored.
-  saveProgressSession(buildBankSessionData('bank_exam')).then(ok=>{
-    if(ok) progressAutoLoaded = false;
+  const examSave = saveProgressSessionFull(examSess);
+  examSave.then(r=>{
+    if(r.ok) progressAutoLoaded = false;
   });
+  attachBankErrorLog(examSave);
 }
 
 // ============================================================
@@ -3536,10 +3648,12 @@ function examRenderAnalysis() {
 
   // Wrong questions
   const wrongOnes = res.filter(r => !r.correct);
+  const errRv = window.bankErrReview;
   if (wrongOnes.length) {
     document.getElementById('exam-wrong-section').innerHTML = `
       <div class="table-card" style="margin-bottom:24px;">
         <h3>Questions to Review (${wrongOnes.length})</h3>
+        ${errRv ? errRv.banner() : ''}
         <div class="wrong-q-list">
           ${wrongOnes.map((r,i) => {
             const q = r.question;
@@ -3561,6 +3675,7 @@ function examRenderAnalysis() {
                 </div>
                 <div class="wrong-q-explanation">${escHtml(q.explanation)}</div>
                 <div class="wrong-q-trap">⚠️ Trap: ${escHtml(q.trap)}</div>
+                ${errRv ? errRv.html(res.indexOf(r)) : ''}
               </div>
             </div>`;
           }).join('')}
@@ -3803,6 +3918,19 @@ examSubmit = function () { _etsExamSubmit(); etsLeave(); };
 const _etsReset = resetBankSession;
 resetBankSession = function () { _etsReset(); etsLeave(); };
 
+// Error log: a session's mistakes must be tagged before another can start.
+// Outermost wrapper on purpose, so nothing earlier can be reached around it.
+const _gelResetGuard = resetBankSession;
+resetBankSession = function () {
+  if (window.GREErrorLog && GREErrorLog.isBlocking()) {
+    showToast('Tag why you missed each question first', 'info');
+    return;
+  }
+  if (window.bankErrReview && window.GREErrorLog) delete GREErrorLog._registry[window.bankErrReview.id];
+  window.bankErrReview = null;
+  _gelResetGuard();
+};
+
 const _etsStart = startBankSession;
 startBankSession = async function () {
   await _etsStart();
@@ -3961,6 +4089,8 @@ function generateConsolidated(){
       </div>
 
       ${renderConsolidatedSubtopicHeatmap(allQ)}
+      <div class="section-title" style="margin-top:8px;">⚑ Your mistake patterns</div>
+      <div id="gel-panels" style="margin-bottom:24px;"></div>
       <div class="table-card" style="margin-bottom:24px;">
         <h3>Session History</h3>
         <table>
@@ -3983,6 +4113,7 @@ function generateConsolidated(){
       </div>`;
 
     document.getElementById('printable-consolidated').innerHTML=html;
+    try{ if(window.GREErrorLog) GREErrorLog.mountPanels(document.getElementById('gel-panels'), allQ, {}); }catch(e){ console.warn('mistake panels', e); }
     document.getElementById('consolidated-dashboard').classList.add('visible');
 
     setTimeout(()=>{

@@ -118,15 +118,16 @@
   <div id="screen-register" class="screen">
     <div class="reg-card">
       <h2 id="reg-mock-title">Mock Test 1</h2>
-      <p>Enter your details to begin. Your result will be saved for review.</p>
+      <p>Enter your details to begin. Your result is saved so our coaching team can review it and follow up.</p>
       <div class="form-group">
-        <label for="reg-name">Your Name <span style="font-weight:400;color:var(--gre-text2)">(optional — leave blank to start as Guest)</span></label>
-        <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name">
+        <label for="reg-name">Your Name</label>
+        <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name" required>
       </div>
       <div class="form-group">
-        <label for="reg-email">Email (optional)</label>
-        <input type="email" id="reg-email" placeholder="priya@email.com" autocomplete="email">
+        <label for="reg-email">Email</label>
+        <input type="email" id="reg-email" placeholder="priya@email.com" autocomplete="email" required>
       </div>
+      <p id="reg-error" role="alert" style="color:var(--gre-danger,#b3261e);font-size:13px;margin:-6px 0 12px;display:none;"></p>
       <div style="display:flex;gap:12px;margin-top:8px;">
         <button class="btn btn-ghost" onclick="goTo('screen-select')">← Back</button>
         <button class="btn btn-primary" onclick="startInstructions()">Continue →</button>
@@ -321,6 +322,7 @@ function buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2) {
     event_id: state.mockMeta.id,
     event_name: state.mockMeta.title,
     event_type: 'full_mock',
+    tier: 'free',
     submitted_at: new Date().toISOString(),
     student: {
       name: state.student.name,
@@ -421,6 +423,12 @@ function selectMock(mockId, title) {
   state.mockMeta = MOCK_INDEX.find(m => m.id === mockId);
   document.getElementById('reg-mock-title').textContent = title;
   loadMock(mockId);
+  if (window.GREProgressLocal && GREProgressLocal.student) {
+    var saved = GREProgressLocal.student();
+    if (!document.getElementById('reg-name').value) document.getElementById('reg-name').value = saved.name;
+    if (!document.getElementById('reg-email').value) document.getElementById('reg-email').value = saved.email;
+  }
+  document.getElementById('reg-error').style.display = 'none';
   goTo('screen-register');
 }
 
@@ -443,8 +451,21 @@ async function loadMock(mockId) {
 
 // ─── REGISTRATION ─────────────────────────────────────────────────────────────
 function startInstructions() {
-  state.student.name = document.getElementById('reg-name').value.trim() || 'Student';
-  state.student.email = document.getElementById('reg-email').value.trim();
+  var regName = document.getElementById('reg-name').value.trim();
+  var regEmail = document.getElementById('reg-email').value.trim();
+  var regError = document.getElementById('reg-error');
+  var emailOk = window.GREProgressLocal && GREProgressLocal.validEmail
+    ? GREProgressLocal.validEmail(regEmail) : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(regEmail);
+  if (!regName || !emailOk) {
+    regError.textContent = !regName ? 'Please enter your name to begin.' : 'Please enter a valid email address to begin.';
+    regError.style.display = 'block';
+    (!regName ? document.getElementById('reg-name') : document.getElementById('reg-email')).focus();
+    return;
+  }
+  regError.style.display = 'none';
+  state.student.name = regName;
+  state.student.email = regEmail;
+  if (window.GREProgressLocal && GREProgressLocal.rememberStudent) GREProgressLocal.rememberStudent(regName, regEmail);
   if (!state.mockData) {
     if (state.loadError) {
       showModal('Load Error', 'Failed to load mock: ' + state.loadError + '<br><br>Please check that the mock JSON file exists.', [{label:'OK', cls:'btn-primary'}]);

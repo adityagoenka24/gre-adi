@@ -19,6 +19,7 @@
 <body>
 <script src="pro-gate.js" data-feature="mocks"></script>
 <script src="../score-scale.js"></script>
+<script src="error-log.js"></script>
 <div class="app">
   <div class="app-header">
     <div class="logo">
@@ -121,6 +122,7 @@
     <div class="section-compare" id="section-compare"></div>
     <div class="topic-bars" id="topic-bars"></div>
     <div class="diagnosis-card" id="diagnosis-card"></div>
+    <div id="gel-results-banner"></div>
     <div class="result-actions">
       <button class="btn btn-ghost" onclick="downloadResult()">Download Result</button>
       <button class="btn btn-outline" onclick="reviewAnswers()">Review All Answers</button>
@@ -128,7 +130,7 @@
     </div>
     <div class="review-section" id="review-section" style="display:none;">
       <h3>Question Review <button class="review-toggle" onclick="toggleReview()">hide</button></h3>
-      <div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into the result file you download and isn't saved anywhere else. <span id="le-count"></span></div>
+      <div class="le-hint">Tag what went wrong on every question you missed or skipped. It is saved to your progress and builds your mistake patterns. <strong>Log Error</strong> on a question you got right (a lucky guess, say) only goes into the result file you download. <span id="le-count"></span></div>
       <div class="review-list" id="review-list"></div>
     </div>
   </div>
@@ -703,7 +705,8 @@ function buildProgressSession() {
     questions: questions,
     exportedAt: new Date().toISOString(),
     version: '2.0',
-    session_type: 'full_mock'
+    session_type: 'full_mock',
+    requires_error_log: true
   };
 }
 
@@ -734,10 +737,13 @@ function showResults() {
 
   // Store the attempt in the student's progress history. Fire-and-forget, so
   // the result screen below renders regardless of what the network does.
+  let mockSess = null, mockSave = Promise.resolve(null);
   if (window.GREProgress) {
-    try { GREProgress.save(buildProgressSession()); }
+    try { mockSess = buildProgressSession(); mockSave = GREProgress.save(mockSess); }
     catch (e) { console.warn('Could not save mock progress', e); }
   }
+  state.errSession = mockSess;
+  state.errSave = mockSave;
 
   document.getElementById('res-subtitle').textContent =
     `${state.student.name} · ${state.mockMeta.title} · ${new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'})}`;
@@ -802,8 +808,72 @@ function showResults() {
   document.getElementById('topic-bars').innerHTML = `<h3>Topic Breakdown</h3>${topicHtml}`;
 
   renderDiagnosis(pct, totalCorrect, totalQs, est);
+  setupMockErrorLog();
   goTo('screen-results');
 }
+
+/* ─── ERROR LOG (Pro) ─────────────────────────────────────────────────────────
+   Every wrong or skipped question must be tagged before the student can leave
+   the results. The controller, chips, sync and gate state live in error-log.js;
+   this adapts the mock's result shape to it. Question index = position in the
+   saved session, which buildProgressSession() lays out section 1 then section 2.
+   If that file did not load, nothing here locks anything. */
+function setupMockErrorLog() {
+  state.errReview = null;
+  const banner = document.getElementById('gel-results-banner');
+  if (banner) banner.innerHTML = '';
+  if (!window.GREErrorLog) return;
+  const rv = GREErrorLog.review({ blocking: true, onUpdate: syncMockErrorGate });
+  let flat = 0;
+  ((state.mockData && state.mockData.sections) || []).forEach((sec, si) => {
+    (sec.questions || []).forEach((q, qi) => {
+      const given = state.answers[si + 1] ? state.answers[si + 1][qi] : undefined;
+      const skipped = !given && given !== 0;
+      if (skipped || !checkAnswer(q, given)) {
+        const givenStr = Array.isArray(given) ? given.join(', ') : (given || '—');
+        rv.require(flat, {
+          status: skipped ? 'skipped' : 'wrong',
+          time: Math.round((state.timings[si + 1] && state.timings[si + 1][qi]) || 0),
+          difficulty: q.difficulty, question_id: q.id,
+          // the keys the downloaded error_log has always carried
+          section: si + 1, question_number: qi + 1,
+          topic: (q.tags && q.tags[0]) || 'general',
+          given_answer: givenStr === '—' ? '' : givenStr,
+          correct_answer: Array.isArray(q.answer) ? q.answer.join(', ') : q.answer
+        });
+      }
+      flat++;
+    });
+  });
+  state.errReview = rv;
+  rv.attach(state.errSave || Promise.resolve(null), state.errSession);
+  if (rv.order.length) {
+    if (banner) banner.innerHTML = rv.banner();
+    reviewAnswers(true);          // the review is no longer optional
+  }
+  rv.refreshBanners();
+  syncMockErrorGate(rv.progress());
+}
+
+function syncMockErrorGate(p) {
+  if (!window.GREErrorLog) return;
+  const locked = !!(p && p.total && !p.complete);
+  const btns = Array.from(document.querySelectorAll('.result-actions .btn'))
+    .filter(b => (b.getAttribute('onclick') || '').indexOf('reviewAnswers') === -1);
+  GREErrorLog.setLocked(btns, locked, 'Tag why you missed each question first');
+}
+
+// Leaving the results for the mock list is blocked while a log is owed.
+// Wraps goTo so no button, present or future, can reach around the gate.
+const _gelGoTo = goTo;
+goTo = function (screenId) {
+  if (screenId === 'screen-select' && window.GREErrorLog && GREErrorLog.isBlocking()) {
+    const b = document.getElementById('gel-results-banner');
+    if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  return _gelGoTo.apply(this, arguments);
+};
 
 function renderDiagnosis(pct, correct, total, est) {
   // Cut the verdict on the estimated score where there is one, so the band and
@@ -913,20 +983,27 @@ function leRefresh(key) {
 
 // Everything logged so far, in question order, ready for the download.
 function leEntries() {
-  return Object.keys(errorMeta).filter(k => errorLog[k]).map(k => (
+  const legacy = Object.keys(errorMeta).filter(k => errorLog[k]).map(k => (
     { ...errorMeta[k], error_type: errorLog[k].type, note: errorLog[k].note }
   ));
+  // Wrong/skipped questions are logged with the new chips; same keys, plus the cause.
+  const fresh = state.errReview ? state.errReview.exportRows().map(r => (
+    { ...r.meta, error_type: r.error_type, error_cause: r.error_cause, note: r.note }
+  )) : [];
+  return fresh.concat(legacy).sort((a, b) => ((a.section || 0) - (b.section || 0)) || ((a.question_number || 0) - (b.question_number || 0)));
 }
 
 // ─── POST-TEST ANSWER REVIEW ─────────────────────────────────────────────────
-function reviewAnswers() {
+function reviewAnswers(noScroll) {
   const reviewEl = document.getElementById('review-section');
   reviewEl.style.display = 'block';
   const list = document.getElementById('review-list');
   let html = '';
+  let flat = 0;                       // position in the saved session
   state.mockData.sections.forEach((sec, si) => {
     html += `<div class="section-label-row">── Section ${si+1} ──</div>`;
     sec.questions.forEach((q, qi) => {
+      const fidx = flat++;
       const given = state.answers[si+1][qi];
       const isCorrect = checkAnswer(q, given);
       const isSkipped = !given && given !== 0;
@@ -941,7 +1018,7 @@ function reviewAnswers() {
         </div>
         ${q.explanation ? `<div class="review-exp">${escapeHtml(q.explanation)}</div>` : ''}
         ${q.trap ? `<div class="review-trap">⚠ Trap: ${escapeHtml(q.trap)}</div>` : ''}
-        ${leBox(`${si+1}-${qi+1}`, {
+        ${(state.errReview && state.errReview.items[fidx]) ? state.errReview.html(fidx) : leBox(`${si+1}-${qi+1}`, {
           section: si+1,
           question_number: qi+1,
           question_id: q.id,
@@ -955,7 +1032,7 @@ function reviewAnswers() {
   });
   list.innerHTML = html;
   if (window.GREMath) GREMath.renderIn(list);
-  reviewEl.scrollIntoView({ behavior:'smooth' });
+  if (!noScroll) reviewEl.scrollIntoView({ behavior:'smooth' });
 }
 
 function toggleReview() {
@@ -967,6 +1044,7 @@ function toggleReview() {
 
 // ─── DOWNLOAD ─────────────────────────────────────────────────────────────────
 function downloadResult() {
+  if (window.GREErrorLog && GREErrorLog.isBlocking()) return;
   const r1 = state.sectionResults[1];
   const r2 = state.sectionResults[2];
   const totalCorrect = r1.correct + r2.correct;

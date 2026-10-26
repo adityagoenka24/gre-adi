@@ -10,6 +10,8 @@
 <!-- The identical scale model the student's own result screen ran, so a score
      shown here is the score they were shown, not a second calculation. -->
 <script src="../score-scale.js"></script>
+<!-- Same taxonomy and panel code the students see, so a label here is the label they tapped. -->
+<script src="../pro/error-log.js"></script>
 <style>
 /* Same tokens as admin.html, so the two pages read as one tool. */
 :root {
@@ -99,6 +101,8 @@ tr.clickable:hover td{background:var(--surface2);}
 .qdetail td{padding:8px 10px;}
 .score-cell{font-family:var(--font-mono);font-size:13px;font-weight:600;color:var(--warm);white-space:nowrap;}
 .score-cell small{display:block;font-weight:400;font-size:10.5px;color:var(--text3);}
+.logbanner{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;background:var(--warning-soft);
+  border:1px solid rgba(169,123,18,.3);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:13px;color:var(--text);line-height:1.5;}
 @media (max-width:600px){ body{padding:20px 14px;} .card{padding:18px;} }
 </style>
 </head>
@@ -127,7 +131,7 @@ tr.clickable:hover td{background:var(--surface2);}
 
   <div class="tabs">
     <button class="tab-btn active" data-tab="students" onclick="switchTab('students')">Students</button>
-    <button class="tab-btn" data-tab="mocks" onclick="switchTab('mocks')">Event mock attempts</button>
+    <button class="tab-btn" data-tab="mocks" onclick="switchTab('mocks')">Free attempts</button>
   </div>
 
   <div class="tab-panel active" data-tab-panel="students">
@@ -147,14 +151,19 @@ tr.clickable:hover td{background:var(--surface2);}
 
   <div class="tab-panel" data-tab-panel="mocks">
     <div class="card">
-      <h2>Event &amp; free mock attempts</h2>
-      <div class="row" style="margin-bottom:16px;">
+      <h2>Free attempts &mdash; mocks, sectionals &amp; events</h2>
+      <div class="row" style="margin-bottom:12px;">
         <div class="field"><label for="mock-days">Days</label><input id="mock-days" type="number" value="30" min="1" max="180"></div>
         <div class="field"><label for="mock-filter">Filter by name or email</label><input id="mock-filter" type="text" oninput="renderMocks()" placeholder="Type to filter…"></div>
         <button class="btn btn-ghost" onclick="loadMocks()">Load</button>
       </div>
-      <div class="table-wrap" id="mocks-table"><div class="empty">Load to see mock attempts.</div></div>
-      <div class="hint">From the free/event mock flow, stored separately from Pro progress. Anyone who took a mock appears here, Pro or not — including students with no Pro account.</div>
+      <div class="chips" id="mock-kinds" style="margin-bottom:10px;"></div>
+      <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;text-transform:none;letter-spacing:0;font-size:12.5px;cursor:pointer;">
+        <input type="checkbox" id="mock-include-pro" onchange="renderMocks()" style="width:auto;min-height:0;"> Include Pro students' sectional attempts
+      </label>
+      <div class="hint" id="mock-summary" style="margin:0 0 12px;"></div>
+      <div class="table-wrap" id="mocks-table"><div class="empty">Load to see free attempts.</div></div>
+      <div class="hint">Every attempt on the free full mock, free sectionals and the event papers, newest first. Name and email are required on all three, so they appear for every attempt from now on. Attempts saved before that change may show a dash. They are kept apart from Pro progress, and people with no Pro account appear here too.</div>
     </div>
   </div>
 </div>
@@ -177,6 +186,8 @@ tr.clickable:hover td{background:var(--surface2);}
 
 let students = [];
 let mockAttempts = [];
+let mockKind = 'all';       // all | mock | sectional | event
+let mocksLoaded = false;
 let currentDetail = null;   // { email, data } for the open student
 
 /* How each stored session_type is presented. `group` rolls the two topic-test
@@ -272,6 +283,8 @@ async function api(path) {
 function switchTab(name) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tabPanel === name));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
+  // First visit to the attempts tab loads it; no separate Load click needed.
+  if (name === 'mocks' && !mocksLoaded && getConfig().url && getConfig().secret) loadMocks();
 }
 
 /* ─── Helpers ────────────────────────────────────────────────────────────── */
@@ -337,7 +350,7 @@ function renderStudents() {
   document.getElementById('students-table').innerHTML =
     '<table><thead><tr>' +
       '<th>Student</th><th>What they have attempted</th><th>Sessions</th>' +
-      '<th>Questions</th><th>Accuracy</th><th>Est. score</th><th>Last active</th>' +
+      '<th>Questions</th><th>Accuracy</th><th>Est. score</th><th>Error log</th><th>Last active</th>' +
     '</tr></thead><tbody>' +
     rows.map(s => {
       const types = s.by_type || {};
@@ -354,6 +367,9 @@ function renderStudents() {
         '<td class="mono">' + (s.questions || 0) + '</td>' +
         '<td>' + accBadge(s.accuracy || 0) + '</td>' +
         '<td>' + scoreCell(overallScore(s.by_difficulty, 'mock')) + '</td>' +
+        '<td>' + (s.unlogged > 0
+          ? '<span class="badge badge-warn" title="Mistakes this student still has to tag. Their review is locked until they finish.">' + s.unlogged + ' to tag</span>'
+          : '<span style="color:var(--text3);">—</span>') + '</td>' +
         '<td class="mono">' + fmtDate(s.last_date) + '</td>' +
       '</tr>';
     }).join('') +
@@ -406,13 +422,25 @@ function renderStudentDetail(email, d) {
   const subs = (d.subtopics || []).slice().sort((a, b) => a.accuracy - b.accuracy);
   const weakest = subs.filter(s => s.attempts >= 3 && s.accuracy < 60);
 
+  // Sessions whose mistakes the student has not finished tagging. While any
+  // exist, their Pro pages keep exit buttons locked, so this is the one place a
+  // coach can release a student who cannot or will not finish.
+  const pendingLogs = sessions.filter(s => s.log_status && !s.log_status.waived && s.log_status.logged < s.log_status.needed);
+  const pendingCount = pendingLogs.reduce((a, s) => a + (s.log_status.needed - s.log_status.logged), 0);
+  const logBanner = pendingLogs.length
+    ? '<div class="logbanner"><div><b>' + pendingCount + ' mistake' + (pendingCount === 1 ? '' : 's') + ' still to tag</b> across ' +
+      pendingLogs.length + ' session' + (pendingLogs.length === 1 ? '' : 's') + '. Their review is locked until they finish. ' +
+      'Waive only if they genuinely cannot complete it.</div>' +
+      '<button class="btn btn-ghost btn-sm" id="waive-all-btn">Waive pending logs</button></div>'
+    : '';
+
   let html = '<button class="back" onclick="closeStudent()">← All students</button>' +
     '<div class="detail-head"><div><div class="detail-name">' + esc(name) + '</div>' +
     '<div class="detail-email">' + esc(email) + (last ? ' · last active ' + fmtDate(last) : '') + '</div></div>' +
     (sessions.length
       ? '<button class="btn btn-danger btn-sm" id="wipe-btn">Delete all progress</button>'
       : '') +
-    '</div>' +
+    '</div>' + logBanner +
     '<div class="kpis">' +
       (overallEst
         ? '<div class="kpi"><div class="v" style="color:var(--warm);">' + overallEst.scaled +
@@ -485,6 +513,20 @@ function renderStudentDetail(email, d) {
       ).join('') + '</div>';
   }
 
+  // Mistake patterns: the student's own tags, with the same self-diagnosis check
+  // they see. Question times and difficulties come from the stored session, so
+  // "tagged careless but spent 3 minutes on a hard question" is checkable here.
+  const taggedQs = [];
+  sessions.forEach(sess => {
+    const qs = (sess.data && sess.data.questions) || [];
+    qs.forEach(q => { if (q && q.error_type) taggedQs.push(Object.assign({}, q, { sessionDate: fmtDate(sess.date) })); });
+  });
+  const logTablesOk = d.error_log_ok !== false;
+  html += '<h2 style="margin-top:26px;">Mistake patterns</h2>' +
+    (logTablesOk
+      ? '<div id="coach-gel"></div>'
+      : '<div class="hint">The error-log tables are not in D1 yet. Run the new statements from schema.sql in the D1 console to start collecting these.</div>');
+
   if (subs.length) {
     html += '<h2 style="margin-top:26px;">Subtopic breakdown</h2><div class="table-wrap"><table><thead><tr>' +
       '<th>Subtopic</th><th>Topic</th><th>Attempts</th><th style="width:140px;">Accuracy</th><th>Avg time</th>' +
@@ -518,7 +560,7 @@ function renderStudentDetail(email, d) {
   const ordered = sessions.slice().reverse();
   html += '<h2 style="margin-top:26px;">Every session</h2><div class="table-wrap"><table><thead><tr>' +
     '<th>Date</th><th>Type</th><th>Topic</th><th>Questions</th><th>Accuracy</th>' +
-    '<th>Est. score</th><th>Time</th><th></th>' +
+    '<th>Est. score</th><th>Error log</th><th>Time</th><th></th>' +
     '</tr></thead><tbody>' +
     ordered.map((s, i) => {
       const m = typeMeta(s.session_type);
@@ -531,13 +573,14 @@ function renderStudentDetail(email, d) {
         '<td class="mono">' + (s.total_questions || 0) + '</td>' +
         '<td>' + accBadge(s.accuracy || 0) + '</td>' +
         '<td>' + scoreCell(sessionScore(s)) + '</td>' +
+        '<td>' + logCell(s.log_status) + '</td>' +
         '<td class="mono" style="color:var(--text2);">' + fmtTime(s.total_time) + '</td>' +
         '<td style="white-space:nowrap;">' +
           (hasQs ? '<span class="mono" style="color:var(--accent);font-size:11px;">view ▾</span>' : '') +
           '<button class="row-del" data-del="' + esc(s.id) + '" title="Delete this session">✕</button>' +
         '</td>' +
       '</tr>' +
-      '<tr id="qrow-' + i + '" style="display:none;"><td colspan="8" style="padding:0 12px 14px;"><div class="qdetail" id="qdetail-' + i + '"></div></td></tr>';
+      '<tr id="qrow-' + i + '" style="display:none;"><td colspan="9" style="padding:0 12px 14px;"><div class="qdetail" id="qdetail-' + i + '"></div></td></tr>';
     }).join('') + '</tbody></table></div>';
 
   const card = document.getElementById('student-detail-card');
@@ -550,6 +593,19 @@ function renderStudentDetail(email, d) {
   const wipe = card.querySelector('#wipe-btn');
   if (wipe) wipe.addEventListener('click', () => deleteProgress(email, null, sessions.length));
 
+  const panelEl = card.querySelector('#coach-gel');
+  if (panelEl && window.GREErrorLog) {
+    GREErrorLog.mountPanels(panelEl, taggedQs, {
+      third: true,
+      emptyText: 'No mistakes tagged yet. Students tag every wrong or skipped question after a Pro session; patterns appear here once they have tagged ' + GREErrorLog.MIN_FOR_PATTERNS + '.',
+    });
+  } else if (panelEl) {
+    panelEl.innerHTML = '<div class="hint">Could not load the error-log panels (pro/error-log.js).</div>';
+  }
+
+  const waiveAll = card.querySelector('#waive-all-btn');
+  if (waiveAll) waiveAll.addEventListener('click', () => waiveLog(email, null));
+
   // stopPropagation, or the click also toggles the row open underneath.
   card.querySelectorAll('button[data-del]').forEach(btn => {
     btn.addEventListener('click', ev => {
@@ -557,6 +613,38 @@ function renderStudentDetail(email, d) {
       deleteProgress(email, btn.dataset.del, 1);
     });
   });
+}
+
+/* One cell for the Error log column. Empty for sessions that never needed a log
+   (older sessions, free pages, flawless runs). */
+function logCell(st) {
+  if (!st) return '<span style="color:var(--text3);">—</span>';
+  if (st.waived) return '<span class="badge badge-mute" title="A coach released this log">waived</span>';
+  if (st.logged >= st.needed) return '<span class="badge badge-ok">' + st.logged + '/' + st.needed + ' tagged</span>';
+  return '<span class="badge badge-warn">' + st.logged + '/' + st.needed + ' tagged</span>';
+}
+
+/* Releases a student whose review is locked on an unfinished log. Their
+   existing tags stay; only the requirement goes. Never deletes anything. */
+async function waiveLog(email, sessionId) {
+  if (!confirm('Waive the pending error log for ' + email + '?\n\nTheir review unlocks. Tags they already saved are kept.')) return;
+  const { url, secret } = getConfig();
+  try {
+    const res = await fetch(url + '/admin/progress/waive-log', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: JSON.stringify(sessionId ? { email, session_id: sessionId } : { email }),
+    });
+    const data = await res.json();
+    if (data.status === 'waived' || data.status === 'nothing_to_waive') {
+      await loadStudents();
+      openStudent(email);
+    } else {
+      alert('Could not waive: ' + (data.error || JSON.stringify(data)));
+    }
+  } catch (e) {
+    alert('Network error: ' + e.message);
+  }
 }
 
 /* Permanent, so it asks first and says exactly what will go. Passing a
@@ -702,47 +790,92 @@ function trendSvg(sessions, mode) {
     '</div>';
 }
 
-/* ─── Event mock attempts (the separate KV records) ──────────────────────── */
+/* ─── Free attempts (the separate KV records) ───────────────────────────── */
+/* Three kinds, whatever the stored event_type: the free full mock
+   ('full_mock'), free sectionals ('sectional'), and everything run from the
+   event builder (topic tests, team battles, full-mock events). */
+const KIND_META = {
+  mock:      { label:'Full Mock', icon:'📝' },
+  sectional: { label:'Sectional', icon:'📐' },
+  event:     { label:'Event',     icon:'🏆' },
+};
+const EVENT_SUB = { mock_test:'Topic test', team_battle:'Team battle', full_mock_event:'Full mock event' };
+
+function attemptKind(a) {
+  const t = String(a.event_type || '');
+  if (t === 'sectional') return 'sectional';
+  if (t === 'full_mock') return 'mock';
+  return 'event';
+}
+
 async function loadMocks() {
   setBusy('mocks-table', 'Loading attempts…');
   const days = Math.min(180, Math.max(1, Number(document.getElementById('mock-days').value) || 30));
   try {
     const d = await api('/admin/mock-attempts?days=' + days);
     mockAttempts = d.attempts || [];
+    mocksLoaded = true;
     renderMocks();
   } catch (e) {
     setBusy('mocks-table', e.message);
   }
 }
 
+function setMockKind(k) { mockKind = k; renderMocks(); }
+
 function renderMocks() {
   const q = (document.getElementById('mock-filter').value || '').toLowerCase().trim();
-  const rows = mockAttempts.filter(a => {
+  const includePro = document.getElementById('mock-include-pro').checked;
+
+  // Pro students' sectionals also land in these records. Unless asked for,
+  // they stay out: this tab is the free funnel.
+  const pool = mockAttempts.filter(a => includePro || a.tier !== 'pro');
+
+  const counts = { all: pool.length, mock: 0, sectional: 0, event: 0 };
+  pool.forEach(a => { counts[attemptKind(a)] += 1; });
+  document.getElementById('mock-kinds').innerHTML =
+    [['all', 'All', ''], ['mock', KIND_META.mock.label, KIND_META.mock.icon], ['sectional', KIND_META.sectional.label, KIND_META.sectional.icon], ['event', KIND_META.event.label, KIND_META.event.icon]]
+      .map(([k, label, icon]) =>
+        '<button class="btn btn-sm ' + (mockKind === k ? 'btn-primary' : 'btn-ghost') + '" onclick="setMockKind(\'' + k + '\')">' +
+        (icon ? icon + ' ' : '') + esc(label) + ' · ' + counts[k] + '</button>').join('');
+
+  const rows = pool.filter(a => {
+    if (mockKind !== 'all' && attemptKind(a) !== mockKind) return false;
     if (!q) return true;
     const s = a.student || {};
     return String(s.email || '').toLowerCase().includes(q) || String(s.name || '').toLowerCase().includes(q);
   });
 
+  const people = new Set(rows.map(a => String((a.student || {}).email || '').toLowerCase()).filter(Boolean));
+  const noEmail = rows.filter(a => !String((a.student || {}).email || '').trim()).length;
+  document.getElementById('mock-summary').textContent = rows.length
+    ? rows.length + ' attempt' + (rows.length === 1 ? '' : 's') + ' · ' + people.size + ' distinct email' + (people.size === 1 ? '' : 's') +
+      (noEmail ? ' · ' + noEmail + ' with no email on record' : '')
+    : '';
+
   if (!rows.length) {
-    setBusy('mocks-table', mockAttempts.length ? 'No attempt matches that filter.' : 'No attempts in this window.');
+    setBusy('mocks-table', mockAttempts.length ? 'No attempt matches those filters.' : 'No attempts in this window.');
     return;
   }
 
+  const dash = '<span style="color:var(--text3);">—</span>';
   document.getElementById('mocks-table').innerHTML =
-    '<table><thead><tr><th>Date</th><th>Student</th><th>Event</th><th>Score</th>' +
-    '<th>Accuracy</th><th>Correct</th><th>Time</th><th>Band</th></tr></thead><tbody>' +
+    '<table><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Type</th><th>Paper</th><th>Score</th>' +
+    '<th>Accuracy</th><th>Time</th><th>Band</th></tr></thead><tbody>' +
     rows.map(a => {
       const s = a.student || {};
+      const km = KIND_META[attemptKind(a)];
+      const sub = attemptKind(a) === 'event' ? (EVENT_SUB[a.event_type] || '') : '';
       const band = (a.diagnosis && (a.diagnosis.band || a.diagnosis.label)) || '';
       const bandTxt = typeof band === 'object' ? (band.label || '') : band;
       return '<tr><td class="mono">' + fmtDate(a.submitted_at || a.date) + '</td>' +
-        '<td><div style="font-weight:600;">' + esc(s.name || '—') + '</div>' +
-          '<div class="mono" style="font-size:11.5px;color:var(--text3);">' + esc(s.email || '—') + '</div></td>' +
-        '<td>' + esc(a.event_name || a.event_id || '—') +
-          (a.event_type ? '<div class="mono" style="font-size:11px;color:var(--text3);">' + esc(a.event_type) + '</div>' : '') + '</td>' +
-        '<td class="mono">' + (a.score || 0) + '</td>' +
-        '<td>' + accBadge(Math.round(Number(a.accuracy) || 0)) + '</td>' +
+        '<td style="font-weight:600;">' + (s.name ? esc(s.name) : dash) + '</td>' +
+        '<td class="mono" style="font-size:12.5px;">' + (s.email ? esc(s.email) : dash) + '</td>' +
+        '<td><span class="chip">' + km.icon + ' ' + esc(km.label) + '</span>' +
+          (sub ? '<div class="mono" style="font-size:11px;color:var(--text3);margin-top:3px;">' + esc(sub) + '</div>' : '') + '</td>' +
+        '<td>' + esc(a.event_name || a.event_id || '—') + '</td>' +
         '<td class="mono">' + (a.correct || 0) + '/' + (a.total_questions || 0) + '</td>' +
+        '<td>' + accBadge(Math.round(Number(a.accuracy) || 0)) + '</td>' +
         '<td class="mono" style="color:var(--text2);">' + fmtTime(a.total_time_seconds) + '</td>' +
         '<td>' + (bandTxt ? '<span class="badge badge-mute">' + esc(bandTxt) + '</span>' : '—') + '</td></tr>';
     }).join('') + '</tbody></table>';

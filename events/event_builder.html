@@ -24,7 +24,7 @@
       <div class="panel builder-intro">
         <div class="eyebrow">Coach Tool</div>
         <h1>Build a fixed event paper.</h1>
-        <p>Choose a bank source, filters, timer, and question count. The builder downloads a self-contained current.json so the landing page and mock links automatically use the latest paper.</p>
+        <p>Choose a bank source, filters, timer, and question count, or switch the event type to a two-section full mock. The builder downloads a self-contained current.json so the landing page and mock links automatically use the latest paper.</p>
       </div>
       <div class="panel builder-source-card">
         <h2>Bank Source</h2>
@@ -45,12 +45,31 @@
         <h2>Event Settings</h2>
         <div class="builder-form-grid">
           <div class="field"><label for="eventId">Event ID</label><input id="eventId" value="mock_001"></div>
-          <div class="field"><label for="eventType">Event Type</label><select id="eventType"><option value="mock_test">Mock Test</option><option value="team_battle">Team Battle</option></select></div>
+          <div class="field"><label for="eventType">Event Type</label><select id="eventType"><option value="mock_test">Mock Test (topic test)</option><option value="team_battle">Team Battle</option><option value="full_mock_event">Full Mock (2 sections)</option></select></div>
         </div>
         <div class="field"><label for="eventName">Event Name</label><input id="eventName" value="GRE Quant Pro Sunday Mock 1"></div>
-        <div class="builder-form-grid">
+        <div class="builder-form-grid" id="flatPaperFields">
           <div class="field"><label for="questionCount">Questions</label><input id="questionCount" type="number" min="1" value="27"></div>
           <div class="field"><label for="secondsPerQuestion">Seconds per Question</label><input id="secondsPerQuestion" type="number" min="15" value="105"></div>
+        </div>
+        <div id="fullMockFields" class="hidden">
+          <div class="field">
+            <label for="paperSource">Paper</label>
+            <select id="paperSource"></select>
+            <p class="muted" id="paperHint" style="margin-top:6px"></p>
+          </div>
+          <div class="field" id="section2FormField">
+            <label for="section2Form">Section 2 form</label>
+            <select id="section2Form"><option value="easy">Standard</option><option value="hard">Higher difficulty</option></select>
+            <p class="muted" style="margin-top:6px">Existing mocks adapt Section 2 to the student. An event is one fixed paper for everyone, so pick the form here.</p>
+          </div>
+          <div class="builder-form-grid">
+            <div class="field"><label for="s1Count">Section 1 questions</label><input id="s1Count" type="number" min="1" value="12"></div>
+            <div class="field"><label for="s1Minutes">Section 1 minutes</label><input id="s1Minutes" type="number" min="1" value="21"></div>
+            <div class="field"><label for="s2Count">Section 2 questions</label><input id="s2Count" type="number" min="1" value="15"></div>
+            <div class="field"><label for="s2Minutes">Section 2 minutes</label><input id="s2Minutes" type="number" min="1" value="26"></div>
+          </div>
+          <p class="muted" id="fullMockHint">Real GRE Quant format: 12 questions in 21 minutes, then 15 in 26. Each section is timed separately and locks when it ends. When assembling from the bank, keep Topic on All topics so the paper spans the whole syllabus.</p>
         </div>
         <div class="field"><label for="instructions">Instructions</label><textarea id="instructions">Answer all questions. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after submission.</textarea></div>
         <div class="builder-toggle-row">
@@ -122,6 +141,41 @@
       multiple_answer:"Multi-Answer"
     };
 
+    const DEFAULT_TOPIC_INSTRUCTIONS = Events.$("instructions").value;
+    const DEFAULT_FULL_MOCK_INSTRUCTIONS = "This is a full-length mock with two timed sections. Each section has its own clock and locks when you end it or time runs out, so you cannot return to it. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after you submit Section 2.";
+
+    function isFullMock(){ return Events.$("eventType").value === "full_mock_event"; }
+
+    function populatePaperSources(){
+      const pro = Events.$("bankSource").value.includes("pro/");
+      const dir = pro ? "../pro/mocks/" : "../mocks/";
+      const count = pro ? 10 : 2;
+      const opts = [`<option value="bank">Assemble from the bank (balanced across topics)</option>`];
+      for (let i = 1; i <= count; i++) {
+        const id = String(i).padStart(2, "0");
+        opts.push(`<option value="${dir}mock_${id}.json">Existing full mock ${id}${pro ? " (Pro)" : ""}</option>`);
+      }
+      const prev = Events.$("paperSource").value;
+      Events.$("paperSource").innerHTML = opts.join("");
+      if ([...Events.$("paperSource").options].some(o => o.value === prev)) Events.$("paperSource").value = prev;
+      syncEventType();
+    }
+
+    function syncEventType(){
+      const full = isFullMock();
+      Events.$("flatPaperFields").classList.toggle("hidden", full);
+      Events.$("fullMockFields").classList.toggle("hidden", !full);
+      const fromMock = Events.$("paperSource").value !== "bank";
+      Events.$("section2FormField").classList.toggle("hidden", !full || !fromMock);
+      Events.$("paperHint").textContent = fromMock
+        ? "Uses the questions exactly as they appear in that mock. Question counts and section clocks come from the file, and the filters on the right do not apply."
+        : "Draws from the filtered pool on the right, spread across topics, with an even difficulty mix in both sections.";
+      ["s1Count","s2Count","s1Minutes","s2Minutes"].forEach(id => { Events.$(id).disabled = full && fromMock; });
+      const box = Events.$("instructions");
+      if (box.value === DEFAULT_TOPIC_INSTRUCTIONS && full) box.value = DEFAULT_FULL_MOCK_INSTRUCTIONS;
+      else if (box.value === DEFAULT_FULL_MOCK_INSTRUCTIONS && !full) box.value = DEFAULT_TOPIC_INSTRUCTIONS;
+    }
+
     function checkedValues(containerId){
       return [...document.querySelectorAll(`#${containerId} .builder-pill.active`)].map(btn => btn.dataset.value);
     }
@@ -151,6 +205,7 @@
       renderChecks("typeChecks", allTypes, allTypes);
       topicSelect.onchange = populateSubtopics;
       populateSubtopics();
+      populatePaperSources();
       Events.$("bankStatus").textContent = `${builder.manifest.bank || "Bank"} loaded.`;
       await loadSelectedPool();
     }
@@ -189,7 +244,105 @@
       return questions;
     }
 
-    function buildConfig(){
+    const RANK = { easy:0, medium:1, hard:2, extreme_hard:3 };
+    const prettify = (tag) => String(tag || "").replace(/[-_]+/g, " ").replace(/\b\w/g, c => c.toUpperCase()).trim();
+
+    // Spread the paper across topics (round-robin over shuffled topic piles),
+    // then deal the picks into the two sections easiest-first so both sections
+    // end up with the same difficulty mix.
+    function assembleFromBank(pool, n1, n2){
+      const total = n1 + n2;
+      const piles = {};
+      Events.shuffle(pool).forEach(q => { (piles[q.topic] = piles[q.topic] || []).push(q); });
+      const order = Events.shuffle(Object.keys(piles));
+      const picked = [];
+      while (picked.length < total && order.some(t => piles[t].length)) {
+        for (const t of order) { if (piles[t].length && picked.length < total) picked.push(piles[t].pop()); }
+      }
+      picked.sort((a, b) => (RANK[a.difficulty] ?? 1) - (RANK[b.difficulty] ?? 1));
+      const sec = [[], []];
+      picked.forEach((q, i) => {
+        // give the question to whichever section is further behind its quota
+        const behind1 = n1 - sec[0].length, behind2 = n2 - sec[1].length;
+        const toFirst = behind1 > 0 && (behind2 <= 0 || behind1 / n1 >= behind2 / n2);
+        sec[toFirst ? 0 : 1].push(q);
+      });
+      return sec;
+    }
+
+    async function sectionsFromMock(path, form){
+      const mock = await Events.loadJson(path);
+      const out = (mock.sections || []).slice(0, 2).map(sec => {
+        const list = sec.questions || (sec.forms && (sec.forms[form] || sec.forms.easy || Object.values(sec.forms)[0])) || [];
+        return {
+          limit: Number(sec.time_limit_seconds) || 0,
+          questions: list.filter(q => !(q && q.ets_withdrawn)).map(q => Events.enrichQuestion(q, prettify((q.tags || [])[0]), prettify((q.tags || [])[1])))
+        };
+      });
+      return { title: (mock.meta && mock.meta.title) || path, sections: out };
+    }
+
+    async function buildFullMockConfig(){
+      const source = Events.$("paperSource").value;
+      let secs, limits, paperName = null;
+      if (source === "bank") {
+        const n1 = Math.max(1, Number(Events.$("s1Count").value) || 12);
+        const n2 = Math.max(1, Number(Events.$("s2Count").value) || 15);
+        if (builder.questions.length < n1 + n2) {
+          Events.$("poolStatus").textContent = `The filtered pool has ${builder.questions.length} questions but this paper needs ${n1 + n2}. Widen the filters.`;
+          return null;
+        }
+        secs = assembleFromBank(builder.questions, n1, n2);
+        limits = [Math.max(1, Number(Events.$("s1Minutes").value) || 21) * 60, Math.max(1, Number(Events.$("s2Minutes").value) || 26) * 60];
+      } else {
+        const m = await sectionsFromMock(source, Events.$("section2Form").value);
+        if (m.sections.length < 2 || m.sections.some(s => !s.questions.length)) {
+          Events.$("poolStatus").textContent = "That mock file does not have two populated sections.";
+          return null;
+        }
+        secs = m.sections.map(s => s.questions);
+        // The mock file's own clocks (the minute fields are disabled for this source).
+        limits = m.sections.map((s, i) => s.limit || (i ? 1560 : 1260));
+        paperName = m.title;
+      }
+      const questions = secs.flatMap((list, si) => list.map(q => ({ ...q, section: si })));
+      const sections = secs.map((list, si) => ({ name: `Section ${si + 1}`, question_count: list.length, time_limit_seconds: limits[si] }));
+      return {
+        event_id: Events.$("eventId").value.trim() || `event_${Date.now()}`,
+        event_name: Events.$("eventName").value.trim() || paperName || "GRE Quant Pro Full Mock",
+        event_type: "full_mock_event",
+        created_at: new Date().toISOString(),
+        timer_seconds: limits.reduce((a, b) => a + b, 0),
+        question_count: questions.length,
+        sections,
+        shuffle_questions_for_students: Events.$("shuffleForStudents").checked,
+        allow_navigation: Events.$("allowNavigation").checked,
+        show_feedback_during_test: false,
+        instructions: Events.$("instructions").value.trim(),
+        source_filters: {
+          bank_source: builder.base,
+          topic: "Full Mock",
+          subtopic: source === "bank" ? "Mixed topics" : (paperName || source),
+          difficulties: checkedValues("difficultyChecks"),
+          types: checkedValues("typeChecks"),
+          paper_source: source,
+          section_2_form: source === "bank" ? null : Events.$("section2Form").value
+        },
+        questions
+      };
+    }
+
+    async function buildConfig(){
+      if (isFullMock()) {
+        const config = await buildFullMockConfig();
+        if (!config) return;
+        builder.config = config;
+        Events.$("downloadBtn").disabled = false;
+        Events.$("configPreview").textContent = JSON.stringify(config, null, 2);
+        Events.$("poolStatus").textContent = `Built a full mock: ${config.sections.map(s => `${s.question_count} questions in ${Math.round(s.time_limit_seconds / 60)} min`).join(" + ")}.`;
+        localStorage.setItem("gre_quant_last_event_config", JSON.stringify(config));
+        return;
+      }
       const questions = builder.questions.length ? builder.questions : [];
       const requested = Math.max(1, Number(Events.$("questionCount").value) || 1);
       if (!questions.length) {
@@ -229,7 +382,13 @@
     Events.$("topicSelect").onchange = () => { populateSubtopics(); loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message); };
     Events.$("subtopicSelect").onchange = () => loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
     Events.$("previewBtn").onclick = () => loadSelectedPool().catch(error => Events.$("poolStatus").textContent = error.message);
-    Events.$("buildBtn").onclick = async () => { await loadSelectedPool(); buildConfig(); };
+    Events.$("buildBtn").onclick = async () => {
+      try { await loadSelectedPool(); await buildConfig(); }
+      catch (error) { Events.$("poolStatus").textContent = error.message; }
+    };
+    Events.$("eventType").onchange = syncEventType;
+    Events.$("paperSource").onchange = syncEventType;
+    Events.$("bankSource").onchange = populatePaperSources;
     Events.$("downloadBtn").onclick = () => Events.downloadJson("current.json", builder.config);
     document.querySelectorAll(".builder-toggle").forEach(btn => {
       syncToggleButton(btn);

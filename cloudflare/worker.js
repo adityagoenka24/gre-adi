@@ -148,6 +148,15 @@ export default {
       if (path === '/admin/progress' && request.method === 'GET') {
         return await handleAdminProgress(request, env, url);
       }
+      if (path === '/progress/error-log' && request.method === 'POST') {
+        return await handleErrorLogSave(request, env);
+      }
+      if (path === '/progress/pending-log' && request.method === 'GET') {
+        return await handlePendingLog(request, env, url);
+      }
+      if (path === '/admin/progress/waive-log' && request.method === 'POST') {
+        return await handleAdminWaiveLog(request, env);
+      }
 
       return jsonResponse({ error: 'Not found' }, 404);
 
@@ -413,6 +422,7 @@ async function handleMockSubmission(request, env) {
     event_id: String(result.event_id || ''),
     event_name: String(result.event_name || ''),
     event_type: String(result.event_type || ''),
+    tier: result.tier === 'pro' ? 'pro' : (result.tier === 'free' ? 'free' : ''),
     submitted_at: submittedAt,
     student: {
       name: String(student.name || '').slice(0, 120),
@@ -1065,6 +1075,7 @@ function summarizeAttempt(record) {
     event_id: record.event_id,
     event_name: record.event_name,
     event_type: record.event_type,
+    tier: record.tier || (record.result && record.result.tier) || '',
     submitted_at: record.submitted_at,
     student: record.student,
     team: record.team,
@@ -1390,6 +1401,27 @@ async function handleProgressSave(request, env) {
 
   await env.GRE_DB.batch(statements);
 
+  // Sessions from the new client are flagged `requires_error_log`. Record which
+  // questions the student still has to tag. Deliberately AFTER the main batch
+  // and inside try/catch: if the error-log tables have not been created yet,
+  // saving a session must still succeed exactly as it did before.
+  const logStatements = [];
+  sessions.forEach((session, i) => {
+    if (!session || session.requires_error_log !== true) return;
+    const needed = neededLogIndices(session);
+    if (!needed.length) return;
+    logStatements.push(
+      env.GRE_DB.prepare(
+        `INSERT INTO log_required (session_id, email, needed, created_at)
+         VALUES (?,?,?,?)
+         ON CONFLICT(session_id) DO UPDATE SET needed = excluded.needed, email = excluded.email`
+      ).bind(savedIds[i], email, needed.join(','), now)
+    );
+  });
+  if (logStatements.length) {
+    try { await env.GRE_DB.batch(logStatements); } catch (e) { /* tables not created yet */ }
+  }
+
   return jsonResponse({
     status: 'ok',
     saved: savedIds.length,
@@ -1433,7 +1465,15 @@ async function handleProgressSessions(request, env, url) {
     }
   }
 
-  return jsonResponse({ status: 'ok', count: sessions.length, sessions });
+  // Merge the student's error-log tags into each stored payload so My Progress
+  // can analyse them. Best-effort: if the table is missing, error_log_ok is
+  // false and the dashboard simply has no tags to show.
+  const tags = await loadErrorTags(env, email);
+  if (tags.ok) {
+    for (const s of sessions) applyErrorTags(s.data, tags.bySession.get(s.id));
+  }
+
+  return jsonResponse({ status: 'ok', count: sessions.length, sessions, error_log_ok: tags.ok });
 }
 
 /**
@@ -1482,6 +1522,21 @@ async function handleAdminProgressDelete(request, env) {
     ]);
   }
 
+  // Clear the matching error-log rows too. Best-effort (the tables may not exist).
+  try {
+    if (sessionId) {
+      await env.GRE_DB.batch([
+        env.GRE_DB.prepare('DELETE FROM error_log WHERE email = ? AND session_id = ?').bind(email, sessionId),
+        env.GRE_DB.prepare('DELETE FROM log_required WHERE email = ? AND session_id = ?').bind(email, sessionId),
+      ]);
+    } else {
+      await env.GRE_DB.batch([
+        env.GRE_DB.prepare('DELETE FROM error_log WHERE email = ?').bind(email),
+        env.GRE_DB.prepare('DELETE FROM log_required WHERE email = ?').bind(email),
+      ]);
+    }
+  } catch (e) { /* tables not created yet */ }
+
   return jsonResponse({
     status: 'deleted',
     email,
@@ -1489,6 +1544,272 @@ async function handleAdminProgressDelete(request, env) {
     sessions,
     scope: sessionId ? 'session' : 'all',
   });
+}
+
+/* ─── ERROR LOG ───────────────────────────────────────────────────────────────
+ *
+ * After a Pro session, the student tags WHY each wrong or skipped question went
+ * wrong. Two small tables, both created by schema.sql with CREATE IF NOT EXISTS:
+ *
+ *   log_required  one row per saved session that needs a log: the question
+ *                 indices that must be tagged, and a `waived` flag a coach can
+ *                 set so a student is never stranded.
+ *   error_log     one row per tagged question, keyed (session_id, q_index).
+ *
+ * These live in their own tables on purpose. /progress/save replaces a
+ * session's `attempts` rows on every re-save, so tags kept there would be lost
+ * by a retry. Here they survive. Every read that touches these tables is
+ * wrapped so the app behaves exactly as before if they have not been created.
+ * ==========================================================================*/
+
+// Stable slugs, never display strings. The labels live in pro/error-log.js.
+const ERROR_TYPES = [
+  'concept_gap', 'method_not_recalled', 'misread', 'calculation_slip',
+  'careless', 'fell_for_trap', 'diagram_misread', 'no_start',
+];
+const ERROR_CAUSES = ['rushed', 'fatigue', 'changed_answer', 'guessed', 'overthought'];
+const ERROR_NOTE_MAX = 300;
+const ERROR_LOG_MAX_PENDING = 10;
+
+// Indices of the questions a student must tag: everything not answered correctly
+// (wrong, skipped, or unmarked).
+function neededLogIndices(session) {
+  const qs = Array.isArray(session && session.questions)
+    ? session.questions.slice(0, PROGRESS_MAX_QUESTIONS_PER_SESSION)
+    : [];
+  const out = [];
+  qs.forEach((q, i) => { if (q && q.correct !== true) out.push(i); });
+  return out;
+}
+
+function parseNeeded(text) {
+  return String(text || '').split(',').filter(x => x !== '').map(Number).filter(Number.isInteger);
+}
+
+// session_id -> Map(q_index -> tag). `ok` is false if the table is missing.
+async function loadErrorTags(env, email) {
+  const bySession = new Map();
+  try {
+    const { results } = await env.GRE_DB.prepare(
+      'SELECT session_id, q_index, error_type, error_cause, note FROM error_log WHERE email = ?'
+    ).bind(email).all();
+    for (const r of results || []) {
+      if (!bySession.has(r.session_id)) bySession.set(r.session_id, new Map());
+      bySession.get(r.session_id).set(r.q_index, r);
+    }
+    return { ok: true, bySession };
+  } catch (e) {
+    return { ok: false, bySession };
+  }
+}
+
+// Copies tags onto the questions of a payload that is about to be returned.
+// Never persisted: the stored payload is not touched.
+function applyErrorTags(data, tagMap) {
+  if (!data || !Array.isArray(data.questions) || !tagMap) return data;
+  for (const [idx, t] of tagMap) {
+    const q = data.questions[idx];
+    if (q) {
+      q.error_type = t.error_type;
+      q.error_cause = t.error_cause || '';
+      q.error_note = t.note || '';
+    }
+  }
+  return data;
+}
+
+function pendingItem(q, i) {
+  const answers = Array.isArray(q.answers) ? q.answers : [];
+  const skipped = q.correct === null || q.correct === undefined || q.submitted === false ||
+    (answers.length && answers.every(a => a === '(no answer)'));
+  return {
+    q_index: i,
+    bank_question_id: progressText(q.bank_question_id, 80),
+    topic: progressText(q.topic, 120),
+    subtopic: progressText(q.subtopic, 120),
+    difficulty: progressText(q.difficulty, 40),
+    time_taken: Number(q.timeTaken) || 0,
+    status: skipped ? 'skipped' : 'wrong',
+    your_answer: skipped ? '' : progressText(q.numericAnswer || answers.join(', '), 120),
+  };
+}
+
+/**
+ * POST /progress/error-log
+ * Body: { token, session_id, entries: [{ q_index, error_type, error_cause?, note? }] }
+ * Idempotent: re-posting an index overwrites it. Only indices the session
+ * actually requires are accepted, and only for the token's own session.
+ */
+async function handleErrorLogSave(request, env) {
+  if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
+
+  const body = await safeJson(request);
+  const email = await verifyProgressToken(env, body && body.token);
+  if (!email) return jsonResponse({ error: 'Unauthorized' }, 401);
+
+  const sessionId = progressText(body.session_id, 64);
+  const entries = Array.isArray(body.entries) ? body.entries.slice(0, PROGRESS_MAX_QUESTIONS_PER_SESSION) : [];
+  if (!sessionId || !entries.length) return jsonResponse({ error: 'Missing session_id or entries' }, 400);
+
+  const found = await env.GRE_DB.prepare(
+    'SELECT payload FROM sessions WHERE id = ? AND email = ?'
+  ).bind(sessionId, email).all();
+  const row = (found.results || [])[0];
+  if (!row) return jsonResponse({ error: 'Session not found' }, 404);
+
+  let session;
+  try { session = JSON.parse(row.payload); } catch (e) { return jsonResponse({ error: 'Session unreadable' }, 422); }
+  const needed = neededLogIndices(session);
+  const neededSet = new Set(needed);
+
+  const now = Date.now();
+  const statements = [];
+  let rejected = 0;
+  for (const e of entries) {
+    const idx = e && Number.isInteger(e.q_index) ? e.q_index : -1;
+    const type = e && String(e.error_type || '');
+    const cause = e && e.error_cause ? String(e.error_cause) : '';
+    if (!neededSet.has(idx) || !ERROR_TYPES.includes(type) || (cause && !ERROR_CAUSES.includes(cause))) {
+      rejected++;
+      continue;
+    }
+    statements.push(
+      env.GRE_DB.prepare(
+        `INSERT OR REPLACE INTO error_log
+           (session_id, email, q_index, bank_question_id, error_type, error_cause, note, logged_at)
+         VALUES (?,?,?,?,?,?,?,?)`
+      ).bind(
+        sessionId, email, idx,
+        progressText(session.questions[idx] && session.questions[idx].bank_question_id, 80),
+        type, cause, progressText(e.note, ERROR_NOTE_MAX), now
+      )
+    );
+  }
+  if (!statements.length) return jsonResponse({ error: 'No valid entries', rejected }, 400);
+
+  // Self-healing: make sure the requirement row exists, in case the save-time
+  // insert ran before the tables did.
+  statements.push(
+    env.GRE_DB.prepare(
+      `INSERT INTO log_required (session_id, email, needed, created_at)
+       VALUES (?,?,?,?)
+       ON CONFLICT(session_id) DO UPDATE SET needed = excluded.needed`
+    ).bind(sessionId, email, needed.join(','), now)
+  );
+
+  try {
+    await env.GRE_DB.batch(statements);
+  } catch (e) {
+    return jsonResponse({ error: 'Error log storage not configured' }, 503);
+  }
+
+  const logged = await env.GRE_DB.prepare(
+    'SELECT q_index FROM error_log WHERE session_id = ? AND email = ?'
+  ).bind(sessionId, email).all();
+  const loggedSet = new Set((logged.results || []).map(r => r.q_index));
+  const remaining = needed.filter(i => !loggedSet.has(i));
+
+  return jsonResponse({
+    status: 'ok',
+    saved: statements.length - 1,
+    rejected,
+    remaining: remaining.length,
+    complete: remaining.length === 0,
+  });
+}
+
+/**
+ * GET /progress/pending-log?token=...
+ * Sessions with mistakes the student still has to tag (waived ones excluded).
+ * `enabled:false` means the tables do not exist yet, and the client must NOT
+ * lock anything.
+ */
+async function handlePendingLog(request, env, url) {
+  if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
+
+  const token = url.searchParams.get('token') || request.headers.get('X-Progress-Token');
+  const email = await verifyProgressToken(env, token);
+  if (!email) return jsonResponse({ error: 'Unauthorized' }, 401);
+
+  let reqs;
+  let logged;
+  try {
+    reqs = await env.GRE_DB.prepare(
+      'SELECT session_id, needed FROM log_required WHERE email = ? AND waived = 0 ORDER BY created_at DESC'
+    ).bind(email).all();
+    logged = await env.GRE_DB.prepare(
+      'SELECT session_id, q_index FROM error_log WHERE email = ?'
+    ).bind(email).all();
+  } catch (e) {
+    return jsonResponse({ status: 'ok', enabled: false, pending: [] });
+  }
+
+  const loggedBy = new Map();
+  for (const r of logged.results || []) {
+    if (!loggedBy.has(r.session_id)) loggedBy.set(r.session_id, new Set());
+    loggedBy.get(r.session_id).add(r.q_index);
+  }
+
+  const pending = [];
+  for (const r of reqs.results || []) {
+    if (pending.length >= ERROR_LOG_MAX_PENDING) break;
+    const needed = parseNeeded(r.needed);
+    const have = loggedBy.get(r.session_id) || new Set();
+    const left = needed.filter(i => !have.has(i));
+    if (!left.length) continue;
+
+    const found = await env.GRE_DB.prepare(
+      'SELECT date, session_type, topic, subtopic, payload FROM sessions WHERE id = ? AND email = ?'
+    ).bind(r.session_id, email).all();
+    const s = (found.results || [])[0];
+    if (!s) continue;
+    let data;
+    try { data = JSON.parse(s.payload); } catch (e) { continue; }
+    pending.push({
+      session_id: r.session_id,
+      date: s.date,
+      session_type: s.session_type,
+      topic: s.topic,
+      subtopic: s.subtopic,
+      needed: needed.length,
+      remaining: left.length,
+      items: left.filter(i => data.questions && data.questions[i]).map(i => pendingItem(data.questions[i], i)),
+    });
+  }
+
+  return jsonResponse({ status: 'ok', enabled: true, count: pending.length, pending });
+}
+
+/**
+ * POST /admin/progress/waive-log — { email, session_id? }
+ * A coach's escape hatch: stops a student being locked behind a session they
+ * can no longer finish. Without session_id, waives every open session.
+ */
+async function handleAdminWaiveLog(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_DB) return jsonResponse({ error: 'Progress storage not configured' }, 503);
+
+  const body = await safeJson(request);
+  const email = String(body.email || '').toLowerCase().trim();
+  const sessionId = String(body.session_id || '').trim();
+  if (!email) return jsonResponse({ error: 'Missing email' }, 400);
+
+  try {
+    const open = sessionId
+      ? await env.GRE_DB.prepare('SELECT COUNT(*) AS n FROM log_required WHERE email = ? AND session_id = ? AND waived = 0').bind(email, sessionId).all()
+      : await env.GRE_DB.prepare('SELECT COUNT(*) AS n FROM log_required WHERE email = ? AND waived = 0').bind(email).all();
+    const n = ((open.results || [])[0] || {}).n || 0;
+    if (!n) return jsonResponse({ status: 'nothing_to_waive', email, waived: 0 });
+
+    if (sessionId) {
+      await env.GRE_DB.prepare('UPDATE log_required SET waived = 1 WHERE email = ? AND session_id = ?').bind(email, sessionId).run();
+    } else {
+      await env.GRE_DB.prepare('UPDATE log_required SET waived = 1 WHERE email = ?').bind(email).run();
+    }
+    return jsonResponse({ status: 'waived', email, session_id: sessionId || null, waived: n });
+  } catch (e) {
+    return jsonResponse({ error: 'Error log storage not configured' }, 503);
+  }
 }
 
 /* ─── COACH / ADMIN VIEWS ─────────────────────────────────────────────────── */
@@ -1563,11 +1884,28 @@ async function handleAdminProgressStudents(request, env) {
     });
   }
 
+  // Mistakes still waiting to be tagged, per student (waived sessions excluded).
+  const unlogged = new Map();
+  try {
+    const reqs = await env.GRE_DB.prepare(
+      'SELECT session_id, email, needed FROM log_required WHERE waived = 0'
+    ).all();
+    const done = await env.GRE_DB.prepare(
+      'SELECT session_id, COUNT(*) AS n FROM error_log GROUP BY session_id'
+    ).all();
+    const doneMap = new Map((done.results || []).map(r => [r.session_id, r.n]));
+    for (const r of reqs.results || []) {
+      const left = parseNeeded(r.needed).length - (doneMap.get(r.session_id) || 0);
+      if (left > 0) unlogged.set(r.email, (unlogged.get(r.email) || 0) + left);
+    }
+  } catch (e) { /* tables not created yet */ }
+
   const students = (totalRows.results || []).map(r => ({
     ...r,
     accuracy: r.questions ? Math.round((r.correct / r.questions) * 100) : 0,
     by_type: typeMap.get(r.email) || {},
     by_difficulty: diffMap.get(r.email) || [],
+    unlogged: unlogged.get(r.email) || 0,
   }));
 
   return jsonResponse({ status: 'ok', count: students.length, students });
@@ -1646,9 +1984,30 @@ async function handleAdminProgress(request, env, url) {
     accuracy: r.attempts ? Math.round((r.correct / r.attempts) * 100) : 0,
   }));
 
+  // Error-log tags and per-session log status (best-effort; tables may not exist).
+  const tags = await loadErrorTags(env, email);
+  let logReq = new Map();
+  try {
+    const rr = await env.GRE_DB.prepare(
+      'SELECT session_id, needed, waived FROM log_required WHERE email = ?'
+    ).bind(email).all();
+    logReq = new Map((rr.results || []).map(r => [r.session_id, r]));
+  } catch (e) { /* tables not created yet */ }
+  for (const row of rows) {
+    const t = tags.bySession.get(row.id);
+    if (includePayloads && row.data) applyErrorTags(row.data, t);
+    const req = logReq.get(row.id);
+    if (req) {
+      const needed = parseNeeded(req.needed);
+      const logged = needed.filter(i => t && t.has(i)).length;
+      row.log_status = { needed: needed.length, logged, waived: !!req.waived };
+    }
+  }
+
   return jsonResponse({
     status: 'ok',
     email,
+    error_log_ok: tags.ok,
     sessions: rows,
     subtopics: withAccuracy(subtopics.results),
     difficulty: withAccuracy(difficulty.results),
