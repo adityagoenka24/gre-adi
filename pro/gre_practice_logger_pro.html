@@ -269,6 +269,8 @@ tr:hover td{background:rgba(26,93,166,0.04);}
 #consolidated-dashboard{display:none;}
 #consolidated-dashboard.visible{display:block;}
 .section-title{font-family:var(--font-display);font-size:28px;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid var(--border);}
+.gel-panels-intro{font-size:14px;line-height:1.6;color:var(--text2);max-width:72ch;margin:-12px 0 18px;}
+.gel-panels-intro i{font-style:italic;color:var(--text);}
 .topic-bars{display:flex;flex-direction:column;gap:14px;}
 .topic-bar-item{display:flex;flex-direction:column;gap:6px;}
 .topic-bar-header{display:flex;justify-content:space-between;font-size:13px;color:var(--text2);}
@@ -1382,6 +1384,8 @@ function unlockApp() {
   // A session left without tagging its mistakes must be finished first.
   // Fails open: any error, or no error-log tables yet, means no lock.
   try { if (window.GREErrorLog) GREErrorLog.resume(); } catch (e) {}
+  // The member hub links here as #progress.
+  try { if (location.hash === '#progress') switchTab('progress', document.getElementById('tab-btn-progress')); } catch (e) {}
 }
 
 function showAuthError(msg) {
@@ -1532,7 +1536,7 @@ async function syncProgressTab(){
     if(!s || !s.data || !s.data.questions) return;
     const d = s.data;
     const label = [d.topic || 'Session', d.date || ''].filter(Boolean).join(' · ');
-    uploadedSessions.push({ file:'Saved · ' + label, data:d });
+    uploadedSessions.push({ file:'Saved · ' + label, data:d, sid:s.id || null });
   });
 
   if(!uploadedSessions.length) return;
@@ -4030,10 +4034,11 @@ function generateConsolidated(){
   showLoading('Building your dashboard…');
   setTimeout(()=>{
     const allQ=[];const summaries=[];
-    uploadedSessions.forEach(s=>{
+    uploadedSessions.forEach((s,si)=>{
       const qs=s.data.questions;const m=qs.filter(q=>q.correct!==null);const c=m.filter(q=>q.correct).length;const a=m.length?Math.round((c/m.length)*100):0;
       summaries.push({date:s.data.date,topic:s.data.topic,questions:qs.length,accuracy:a,correct:c,wrong:m.length-c,source:s.data.source||'—'});
-      allQ.push(...qs.map(q=>({...q,sessionDate:s.data.date})));
+      const sKey = s.sid || ((s.file || 'session') + '#' + si);
+      allQ.push(...qs.map(q=>({...q,sessionDate:s.data.date,sessionKey:sKey,sessionType:s.data.session_type||s.data.source||''})));
     });
     summaries.sort((a,b)=>new Date(a.date)-new Date(b.date));
     const totalQ=allQ.length;
@@ -4089,7 +4094,10 @@ function generateConsolidated(){
       </div>
 
       ${renderConsolidatedSubtopicHeatmap(allQ)}
-      <div class="section-title" style="margin-top:8px;">⚑ Your mistake patterns</div>
+      <div class="section-title" style="margin-top:8px;">⚑ Why You Lose Marks</div>
+      <p class="gel-panels-intro">Everything above is <i>what</i> you got wrong. This is <i>why</i> — built from the tag you put on every
+        mistake during review, read against the clock and the difficulty of the question. The fix for a careless slip and the fix for a
+        concept gap are not the same, so this is the part that tells you what to actually do next.</p>
       <div id="gel-panels" style="margin-bottom:24px;"></div>
       <div class="table-card" style="margin-bottom:24px;">
         <h3>Session History</h3>

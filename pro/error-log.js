@@ -50,13 +50,44 @@
   var ACTIONS = {
     concept_gap:         'Relearn the concept, then drill the subtopic.',
     method_not_recalled: 'Re-read the concept note, write the method on one line, then drill.',
-    misread:             'Slow-read drill: underline what is being asked before you touch the numbers.',
-    calculation_slip:    'Write each step; re-do the arithmetic once before you lock the answer.',
-    careless:            'Slow-down drill: check sign, unit and what was asked before you lock the answer.',
+    misread:             'Slow-read drill: underline what is being asked before touching the numbers.',
+    calculation_slip:    'Write every step, and re-do the arithmetic once before locking the answer.',
+    careless:            'Slow-down drill: check sign, unit and what was asked before locking the answer.',
     fell_for_trap:       'Read the trap note on each miss, then drill the same question style.',
     diagram_misread:     'Redraw or re-read the figure or table first; label every given.',
     no_start:            'Study the worked solution, then retry the question cold tomorrow.'
   };
+
+  /* The three families every mistake type belongs to. This is the cut that
+     changes what a student should actually do next: more studying, a reading
+     routine, or a checking routine. Order is deliberate — knowledge first,
+     because it is the slowest to fix. */
+  var FAMILY_ORDER = ['knowledge', 'reading', 'execution'];
+  var FAMILY_OF = {
+    concept_gap: 'knowledge', method_not_recalled: 'knowledge', no_start: 'knowledge',
+    misread: 'reading', diagram_misread: 'reading', fell_for_trap: 'reading',
+    calculation_slip: 'execution', careless: 'execution'
+  };
+  var FAMILY_META = {
+    knowledge: {
+      label: 'Knowledge gaps', color: '#2f5597', meaning: 'needs studying',
+      verdict: function () { return 'The fix is study, not test technique: learn the method cold, then drill the subtopic.'; }
+    },
+    reading: {
+      label: 'Reading and setup', color: '#b0761a', meaning: 'needs a reading routine',
+      verdict: function () { return 'The maths is not the problem. The fix is a fixed reading routine before any arithmetic starts.'; }
+    },
+    execution: {
+      label: 'Execution', color: '#c0392b', meaning: 'needs a checking routine',
+      verdict: function () { return 'The method is there and it breaks on the way to the answer. A checking routine will move the score faster than more theory.'; }
+    }
+  };
+  var TYPE_COLOR = {
+    concept_gap: '#1f3a68', method_not_recalled: '#2f5597', no_start: '#6487c4',
+    misread: '#8f5e05', diagram_misread: '#b0761a', fell_for_trap: '#cfa03c',
+    calculation_slip: '#a8321f', careless: '#d4694a'
+  };
+  function typeColor(s) { return TYPE_COLOR[s] || '#6b7a88'; }
 
   function byslug(list) { var m = {}; list.forEach(function (x) { m[x.slug] = x; }); return m; }
   var TYPE_MAP = byslug(TYPES), CAUSE_MAP = byslug(CAUSES);
@@ -133,27 +164,109 @@
     '.gel-modal-foot{margin-top:14px;font-size:12.5px;color:#7c8b99}',
     '.gel-modal-foot a{color:#1a5da6}',
     /* panels (My Progress + Coach View) */
-    '.gel-p{font-family:inherit;color:#152a3d}',
-    '.gel-p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px;margin-bottom:16px}',
-    '.gel-p-card{background:#fff;border:1px solid #e1e7ec;border-radius:12px;padding:18px 18px 12px}',
-    '.gel-p-card h3{margin:0 0 12px;font-size:16px}',
-    '.gel-p-row{display:block;width:100%;appearance:none;text-align:left;background:#fff;border:1px solid #e1e7ec;border-radius:10px;padding:9px 12px;margin-bottom:8px;cursor:pointer;font:inherit;color:inherit}',
-    '.gel-p-row:hover{border-color:#1a5da6}',
-    '.gel-p-row.gel-on{border-color:#1a5da6;background:#eef4fb}',
-    '.gel-p-line{display:flex;justify-content:space-between;gap:10px;font-size:14px;margin-bottom:6px}',
-    '.gel-p-line b{font-variant-numeric:tabular-nums}',
-    '.gel-p-bar{height:7px;background:#eef1f4;border-radius:999px;overflow:hidden}',
-    '.gel-p-bar i{display:block;height:100%;border-radius:999px;background:#7a3fe0}',
-    '.gel-p-causes .gel-p-bar i{background:#e8940c}',
-    '.gel-p-note{font-size:12.5px;color:#5c6b79;margin:0 0 12px}',
-    '.gel-p-insight{font-size:14px;line-height:1.55;padding:10px 12px;border-radius:10px;background:#f7efdb;color:#5d4410;margin-bottom:8px}',
-    '.gel-p-action{font-size:13.5px;line-height:1.5;margin:0 0 8px;padding:10px 12px;border-radius:10px;background:#eef4fb;color:#16324f}',
-    '.gel-p-action a{color:#1a5da6;font-weight:700}',
-    '.gel-p-locked{padding:18px;border:1px dashed #c9d2da;border-radius:12px;text-align:center;color:#5c6b79;font-size:14px}',
-    '.gel-p-list{margin-top:6px}',
-    '.gel-p-li{border:1px solid #e1e7ec;border-radius:10px;padding:10px 12px;margin-bottom:8px;font-size:13.5px}',
-    '.gel-p-li small{display:block;color:#7c8b99;margin-top:2px}',
-    '.gel-p-clear{appearance:none;background:none;border:none;color:#1a5da6;font:inherit;font-size:13px;cursor:pointer;padding:0 0 8px}',
+    /* ── analytics dashboard ──────────────────────────────────────────────
+       Colours come from the host page's own tokens where they exist, so this
+       reads as part of the practice logger and as part of Coach View without
+       either needing to know about the other. */
+    '.gel-p{font-family:inherit;color:var(--text,#152a3d);display:grid;gap:14px}',
+    '.gel-p *{box-sizing:border-box}',
+    '.gel-p-card{background:var(--surface,#fff);border:1px solid var(--border,#e1e7ec);border-radius:12px;padding:18px}',
+    '.gel-p-card h3{margin:0;font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--text,#152a3d)}',
+    '.gel-p-head{margin-bottom:14px}',
+    '.gel-p-head p{margin:5px 0 0;font-size:12.5px;line-height:1.5;color:var(--text3,#7c8b99);max-width:62ch}',
+    '.gel-p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(255px,1fr));gap:14px}',
+    /* headline strip */
+    '.gel-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}',
+    '.gel-stat{background:var(--surface,#fff);border:1px solid var(--border,#e1e7ec);border-left:3px solid var(--gel-accent,#1a5da6);border-radius:10px;padding:13px 15px}',
+    '.gel-stat b{display:block;font-size:24px;font-weight:700;line-height:1.1;font-variant-numeric:tabular-nums;color:var(--gel-accent,#16324f)}',
+    '.gel-stat span{display:block;margin-top:4px;font-size:11.5px;line-height:1.4;color:var(--text3,#7c8b99)}',
+    '.gel-stat-warn{--gel-accent:#b06000}.gel-stat-ok{--gel-accent:#1e7e46}',
+    '.gel-stat-down{--gel-accent:#1e7e46}.gel-stat-up{--gel-accent:#c0392b}.gel-stat-flat{--gel-accent:#7c8b99}',
+    /* family split */
+    '.gel-fam-bar{display:flex;height:14px;border-radius:999px;overflow:hidden;background:var(--surface2,#f1f4f7)}',
+    '.gel-fam-bar i{display:block;height:100%}',
+    '.gel-fam-key{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;margin-top:14px}',
+    '.gel-fam-k{font-size:12.5px;line-height:1.45;color:var(--text2,#46586a);padding-left:16px;position:relative}',
+    '.gel-fam-k span{position:absolute;left:0;top:4px;width:9px;height:9px;border-radius:2px}',
+    '.gel-fam-k b{color:var(--text,#152a3d);font-weight:700}',
+    '.gel-fam-k em{display:block;font-style:normal;color:var(--text3,#7c8b99);font-size:11.5px;margin-top:1px}',
+    /* bar rows */
+    '.gel-p-row{display:block;width:100%;appearance:none;text-align:left;background:none;border:none;border-radius:8px;padding:7px 8px;margin-bottom:2px;cursor:pointer;font:inherit;color:inherit;transition:background .12s}',
+    '.gel-p-row:hover{background:var(--surface2,#f3f6f9)}',
+    '.gel-p-row.gel-on{background:var(--surface2,#eef4fb);box-shadow:inset 0 0 0 1px var(--accent,#1a5da6)}',
+    '.gel-p-line{display:flex;justify-content:space-between;gap:10px;align-items:baseline;font-size:13px;margin-bottom:5px}',
+    '.gel-p-line b{font-variant-numeric:tabular-nums;white-space:nowrap}',
+    '.gel-p-line i{font-style:normal;font-weight:400;color:var(--text3,#7c8b99);font-size:11px;margin-left:5px}',
+    '.gel-p-bar{height:6px;background:var(--surface2,#eef1f4);border-radius:999px;overflow:hidden}',
+    '.gel-p-bar i{display:block;height:100%;border-radius:999px}',
+    /* insights */
+    '.gel-p-note{font-size:12.5px;line-height:1.5;color:var(--text3,#7c8b99);margin:0 0 10px}',
+    '.gel-p-insight{font-size:13.5px;line-height:1.55;padding:11px 13px;border-radius:9px;margin-bottom:8px;border-left:3px solid}',
+    '.gel-p-insight:last-child{margin-bottom:0}',
+    '.gel-i-warn{background:#fdf6e6;border-color:#b06000;color:#5d4410}',
+    '.gel-i-info{background:#eef4fb;border-color:#1a5da6;color:#16324f}',
+    '.gel-i-key{background:#f3eee8;border-color:#8a5a2b;color:#4a3420;font-weight:600}',
+    /* plan */
+    '.gel-plan{list-style:none;margin:0;padding:0;counter-reset:gp}',
+    '.gel-plan li{display:flex;gap:12px;padding:12px 0;border-top:1px solid var(--border,#e9edf1)}',
+    '.gel-plan li:first-child{border-top:none;padding-top:2px}',
+    '.gel-plan-n{flex:0 0 22px;height:22px;border-radius:50%;color:#fff;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}',
+    '.gel-plan b{display:block;font-size:13.5px;line-height:1.5;font-weight:600;color:var(--text,#152a3d)}',
+    '.gel-plan span{display:block;font-size:12.5px;line-height:1.45;color:var(--text3,#7c8b99);margin-top:3px}',
+    '.gel-plan a{display:inline-block;margin-top:5px;font-size:12.5px;font-weight:700;color:var(--accent,#1a5da6);text-decoration:none}',
+    /* matrix */
+    '.gel-mx-wrap{overflow-x:auto;margin:0 -4px;padding:0 4px}',
+    'table.gel-mx{border-collapse:separate;border-spacing:3px;font-size:12px;width:max-content;max-width:100%;margin:0}',
+    /* the host pages style their own tables; none of that applies here */
+    '.gel-mx th,.gel-mx td{border:none;background:none;text-transform:none;letter-spacing:normal}',
+    '.gel-mx th{font-weight:600;color:var(--text3,#7c8b99);font-size:10.5px;text-align:center;padding:2px;white-space:nowrap;line-height:1.3}',
+    '.gel-mx th span{display:block;width:26px;height:3px;border-radius:2px;margin:0 auto 5px}',
+    '.gel-mx th[scope=row]{text-align:left;color:var(--text2,#46586a);font-size:12px;padding-right:10px;width:auto;max-width:170px;white-space:normal}',
+    '.gel-mx td{text-align:center;padding:0}',
+    '.gel-mx-c{appearance:none;border:none;width:100%;min-width:46px;padding:8px 6px;border-radius:5px;font:inherit;font-size:12.5px;font-weight:700;font-variant-numeric:tabular-nums;cursor:pointer}',
+    '.gel-mx-c:hover{outline:2px solid var(--accent,#1a5da6);outline-offset:-2px}',
+    '.gel-mx-c.gel-on{outline:2px solid var(--text,#16324f);outline-offset:-2px}',
+    '.gel-mx-0{color:#cfd7de;font-size:13px}',
+    '.gel-mx-tot{color:var(--text3,#7c8b99);font-variant-numeric:tabular-nums;padding-left:6px;font-size:11.5px}',
+    /* session trend */
+    '.gel-trend{margin:0 auto}',
+    '.gel-trend-svg{display:block;width:100%;height:112px}',
+    '.gel-trend-labels{display:grid;gap:2.2%;margin-top:6px}',
+    '.gel-tl{text-align:center;font-size:10.5px;line-height:1.35;color:var(--text3,#7c8b99);min-width:0}',
+    '.gel-tl b{display:inline;font-size:12px;color:var(--text,#152a3d);font-variant-numeric:tabular-nums}',
+    '.gel-tl em{display:block;font-style:normal;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}',
+    /* time signature */
+    '.gel-ts-row{display:grid;grid-template-columns:minmax(80px,1.1fr) 2fr auto;gap:10px;align-items:center;margin-bottom:7px}',
+    '.gel-ts-l{font-size:12.5px;color:var(--text2,#46586a);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}',
+    '.gel-ts-track{position:relative;height:16px;background:var(--surface2,#f3f6f9);border-radius:4px}',
+    '.gel-ts-track i{position:absolute;top:3px;height:10px;border-radius:2px;min-width:2px}',
+    '.gel-ts-track u{position:absolute;left:50%;top:-2px;bottom:-2px;width:1px;background:var(--text3,#9aa6b1)}',
+    '.gel-ts-v{font-size:11.5px;color:var(--text3,#7c8b99);font-variant-numeric:tabular-nums;white-space:nowrap}',
+    '.gel-ts-key{margin:10px 0 0}',
+    /* logged list */
+    '.gel-p-filter{font-size:12.5px;color:var(--text2,#46586a);margin-bottom:10px}',
+    '.gel-p-filter b{font-variant-numeric:tabular-nums}',
+    '.gel-p-list{display:grid;gap:6px}',
+    '.gel-p-li{display:flex;gap:9px;align-items:flex-start;border:1px solid var(--border,#e9edf1);border-radius:9px;padding:9px 11px;font-size:13px}',
+    '.gel-p-dot{flex:0 0 7px;height:7px;border-radius:50%;margin-top:5px}',
+    '.gel-p-li b{font-weight:600}',
+    '.gel-p-li em{font-style:normal;color:var(--text2,#46586a)}',
+    '.gel-p-li small{display:block;color:var(--text3,#7c8b99);margin-top:2px;font-size:11.5px}',
+    '.gel-p-quote{font-style:italic}',
+    '.gel-p-clear{appearance:none;background:none;border:none;color:var(--accent,#1a5da6);font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;padding:0 0 0 4px}',
+    /* empty + threshold */
+    '.gel-p-locked{padding:20px;border:1px dashed var(--border,#c9d2da);border-radius:12px;text-align:center;color:var(--text2,#5c6b79);font-size:13.5px;line-height:1.6}',
+    '.gel-p-progress{height:5px;max-width:260px;margin:12px auto 0;background:var(--surface2,#eef1f4);border-radius:999px;overflow:hidden}',
+    '.gel-p-progress i{display:block;height:100%;background:var(--accent,#1a5da6);border-radius:999px}',
+    /* phone: the label matters more than the single-line row, so stack it */
+    '@media (max-width:560px){',
+    '.gel-p-card{padding:15px}',
+    '.gel-ts-row{grid-template-columns:1fr auto;grid-template-areas:"l l" "t v";row-gap:4px;margin-bottom:11px}',
+    '.gel-ts-l{grid-area:l;white-space:normal;overflow:visible;text-overflow:clip}',
+    '.gel-ts-track{grid-area:t}.gel-ts-v{grid-area:v}',
+    '.gel-stat b{font-size:21px}',
+    '}',
+    '@media print{.gel-p-card{break-inside:avoid;page-break-inside:avoid}}',
     '@media (max-width:520px){.gel-chip{font-size:13px;padding:8px 11px}.gel-modal{padding:10px 8px}.gel-modal-card{padding:18px 14px}}'
   ].join('');
   var cssInjected = false;
@@ -471,26 +584,83 @@
   }
 
   /* ============================================================
-     ANALYSIS + PANELS (My Progress and Coach View)
+     ANALYSIS + PANELS (student My Progress, and Coach View)
+
+     One renderer, two audiences. `opts.third` switches the wording from
+     "you" to "they"; everything else is identical, so a coach and a student
+     are always looking at the same numbers computed the same way.
      ============================================================ */
   function isHard(d) { return /hard|extreme/i.test(String(d || '')); }
   function isEasy(d) { return /easy/i.test(String(d || '')); }
+  function pct(n, d) { return d ? Math.round((n / d) * 100) : 0; }
+  function plural(n, one, many) { return n === 1 ? one : (many || one + 's'); }
+
+  /* A mistake is any question not answered correctly: wrong, skipped or
+     unmarked. Same rule the gate uses, so the counts agree. */
+  function isMistake(q) { return q && q.correct !== true; }
 
   /* questions: stored questions carrying error_type / error_cause (merged by
-     the Worker). Each may also carry sessionDate. Returns counts only; no
-     opinion is formed until MIN_FOR_PATTERNS mistakes are logged. */
+     the Worker). Each may also carry sessionDate / sessionType. Returns counts
+     only; no opinion is formed until MIN_FOR_PATTERNS mistakes are logged. */
   function analyse(questions, third) {
-    var subj = third ? 'They' : 'You', yourSp = third ? 'they spent' : 'you spent';
-    var tagged = (questions || []).filter(function (q) { return q && q.error_type; });
-    var res = { logged: tagged.length, ready: tagged.length >= MIN_FOR_PATTERNS, min: MIN_FOR_PATTERNS,
-      types: {}, causes: {}, bySub: {}, selfCheck: [], clusters: [], tagged: tagged };
+    var all = (questions || []).filter(Boolean);
+    var subj = third ? 'They' : 'You', subjLower = third ? 'they' : 'you';
+    var poss = third ? 'their' : 'your', possCap = third ? 'Their' : 'Your';
+    var obj = third ? 'them' : 'you';
+    var tagged = all.filter(function (q) { return q.error_type; });
+    var mistakes = all.filter(isMistake);
+    var res = {
+      logged: tagged.length, ready: tagged.length >= MIN_FOR_PATTERNS, min: MIN_FOR_PATTERNS,
+      questions: all.length, mistakes: mistakes.length, untagged: Math.max(0, mistakes.length - tagged.length),
+      types: {}, causes: {}, bySub: {}, families: {}, sessions: [],
+      selfCheck: [], clusters: [], plan: [], timeSig: [], tagged: tagged,
+      avgAll: 0, topFamily: null, trend: null,
+      words: { subj: subj, subjLower: subjLower, poss: poss, possCap: possCap, obj: obj, third: !!third }
+    };
+
+    var timed = all.filter(function (q) { return (Number(q.timeTaken) || 0) > 0; });
+    res.avgAll = timed.length
+      ? Math.round(timed.reduce(function (a, q) { return a + Number(q.timeTaken); }, 0) / timed.length)
+      : 0;
+
+    var sessMap = {};
     tagged.forEach(function (q) {
       res.types[q.error_type] = (res.types[q.error_type] || 0) + 1;
       if (q.error_cause) res.causes[q.error_cause] = (res.causes[q.error_cause] || 0) + 1;
+      var fam = FAMILY_OF[q.error_type] || 'knowledge';
+      res.families[fam] = (res.families[fam] || 0) + 1;
       var sub = q.subtopic || q.topic || 'General';
       if (!res.bySub[sub]) res.bySub[sub] = { total: 0, types: {}, topic: q.topic || '' };
-      res.bySub[sub].total++; res.bySub[sub].types[q.error_type] = (res.bySub[sub].types[q.error_type] || 0) + 1;
+      res.bySub[sub].total++;
+      res.bySub[sub].types[q.error_type] = (res.bySub[sub].types[q.error_type] || 0) + 1;
+      var key = q.sessionKey || q.sessionDate || '—';
+      if (!sessMap[key]) sessMap[key] = { key: key, date: q.sessionDate || '', total: 0, fam: {}, questions: 0 };
+      sessMap[key].total++;
+      sessMap[key].fam[fam] = (sessMap[key].fam[fam] || 0) + 1;
     });
+    // Session size, so "6 mistakes" can be read against how many were attempted.
+    all.forEach(function (q) {
+      var key = q.sessionKey || q.sessionDate || '—';
+      if (sessMap[key]) sessMap[key].questions++;
+    });
+    res.sessions = Object.keys(sessMap).map(function (k) { return sessMap[k]; })
+      .sort(function (a, b) {
+        var d = String(a.date), e = String(b.date);
+        return d === e ? (String(a.key) < String(b.key) ? -1 : 1) : (d < e ? -1 : 1);
+      });
+
+    // Time signature: how long each mistake type took, against the overall average.
+    Object.keys(res.types).forEach(function (ty) {
+      var rows = tagged.filter(function (q) { return q.error_type === ty && (Number(q.timeTaken) || 0) > 0; });
+      if (!rows.length) return;
+      var avg = Math.round(rows.reduce(function (a, q) { return a + Number(q.timeTaken); }, 0) / rows.length);
+      res.timeSig.push({ type: ty, n: res.types[ty], avg: avg, delta: res.avgAll ? avg - res.avgAll : 0 });
+    });
+    res.timeSig.sort(function (a, b) { return b.n - a.n; });
+
+    var famKeys = Object.keys(res.families).sort(function (a, b) { return res.families[b] - res.families[a]; });
+    if (famKeys.length) res.topFamily = { key: famKeys[0], n: res.families[famKeys[0]], share: pct(res.families[famKeys[0]], tagged.length) };
+
     if (!res.ready) return res;
 
     // Cross-cut: where does each mistake type concentrate?
@@ -504,87 +674,326 @@
     });
     res.clusters.sort(function (a, b) { return b.n - a.n; });
 
-    // Self-diagnosis check: compare what they said with what we measured.
+    /* ---- Reality check: what they said, against what we measured ---- */
     var care = tagged.filter(function (q) { return q.error_type === 'careless' || q.error_type === 'calculation_slip'; });
     var careHard = care.filter(function (q) { return isHard(q.difficulty) && (Number(q.timeTaken) || 0) >= 150; });
-    if (careHard.length >= 2) res.selfCheck.push(subj + ' tagged ' + care.length + ' mistakes careless or a calculation slip, but ' + careHard.length +
-      ' of them were hard questions where ' + yourSp + ' over 2.5 minutes. That usually points to a method gap rather than carelessness.');
+    if (careHard.length >= 2) res.selfCheck.push({
+      tone: 'warn',
+      text: subj + ' tagged ' + care.length + ' ' + plural(care.length, 'mistake') + ' careless or a calculation slip, but ' + careHard.length +
+        ' of them were hard questions where ' + subjLower + ' spent over 2.5 minutes. A long grind on a hard question is usually a method gap, not carelessness.'
+    });
+
     var cg = tagged.filter(function (q) { return q.error_type === 'concept_gap'; });
     var cgFast = cg.filter(function (q) { return isEasy(q.difficulty) && (Number(q.timeTaken) || 0) > 0 && (Number(q.timeTaken) || 0) < 45; });
-    if (cgFast.length >= 2) res.selfCheck.push(cgFast.length + ' of ' + (third ? 'their ' : 'your ') + cg.length + ' concept-gap mistakes were easy questions answered in under 45 seconds. Check whether you misread them before relearning the concept.');
+    if (cgFast.length >= 2) res.selfCheck.push({
+      tone: 'warn',
+      text: cgFast.length + ' of ' + poss + ' ' + cg.length + ' concept-gap mistakes were easy questions answered in under 45 seconds. ' +
+        'Check whether ' + subjLower + ' misread them before relearning the concept.'
+    });
+
+    // "Rushed" on questions that actually took longer than average = stuck, not rushed.
+    var rushed = tagged.filter(function (q) { return q.error_cause === 'rushed' && (Number(q.timeTaken) || 0) > 0; });
+    var rushedSlow = rushed.filter(function (q) { return res.avgAll && Number(q.timeTaken) > res.avgAll * 1.25; });
+    if (rushed.length >= 3 && rushedSlow.length / rushed.length >= 0.5) res.selfCheck.push({
+      tone: 'warn',
+      text: subj + ' put ' + rushed.length + ' ' + plural(rushed.length, 'mistake') + ' down to rushing, but ' + rushedSlow.length +
+        ' of those took longer than ' + poss + ' average question. That is being stuck, not being rushed — the clock is the symptom, not the cause.'
+    });
+
+    // A single subtopic owning the "didn't know where to start" tags is a syllabus hole.
+    var ns = tagged.filter(function (q) { return q.error_type === 'no_start'; });
+    if (ns.length >= 3) {
+      var nsSub = {};
+      ns.forEach(function (q) { var s = q.subtopic || q.topic || 'General'; nsSub[s] = (nsSub[s] || 0) + 1; });
+      var nsTop = Object.keys(nsSub).sort(function (a, b) { return nsSub[b] - nsSub[a]; })[0];
+      if (nsSub[nsTop] >= 3) res.selfCheck.push({
+        tone: 'info',
+        text: nsSub[nsTop] + ' of ' + ns.length + ' "didn\'t know where to start" mistakes are in ' + nsTop +
+          '. That is a gap in what ' + subjLower + ' ' + (third ? 'has' : 'have') + ' studied, not a test-day problem. Learn it before drilling it.'
+      });
+    }
+
+    // The headline: one family dominating changes what to work on entirely.
+    if (res.topFamily && res.topFamily.share >= 50 && tagged.length >= MIN_FOR_PATTERNS) {
+      var fm = FAMILY_META[res.topFamily.key];
+      res.selfCheck.push({ tone: 'key', text: res.topFamily.share + '% of ' + poss + ' logged mistakes are ' + fm.label.toLowerCase() + '. ' + fm.verdict(res.words) });
+    }
+
+    /* ---- Trend: is the biggest leak shrinking? ---- */
+    if (res.sessions.length >= 4 && res.topFamily) {
+      var half = Math.floor(res.sessions.length / 2);
+      var older = res.sessions.slice(0, half), newer = res.sessions.slice(res.sessions.length - half);
+      var sum = function (list, pick) { return list.reduce(function (a, s) { return a + pick(s); }, 0); };
+      var oldQ = sum(older, function (s) { return s.questions; }), newQ = sum(newer, function (s) { return s.questions; });
+      var k = res.topFamily.key;
+      var oldN = sum(older, function (s) { return s.fam[k] || 0; }), newN = sum(newer, function (s) { return s.fam[k] || 0; });
+      if (oldQ >= 10 && newQ >= 10) {
+        var oldRate = oldN / oldQ, newRate = newN / newQ;
+        var change = oldRate ? Math.round(((newRate - oldRate) / oldRate) * 100) : 0;
+        res.trend = {
+          family: k, oldRate: oldRate, newRate: newRate, change: change,
+          label: FAMILY_META[k].label,
+          dir: change <= -20 ? 'down' : (change >= 20 ? 'up' : 'flat')
+        };
+      }
+    }
+
+    /* ---- Action plan: at most three, strongest evidence first ---- */
+    var seen = {};
+    res.clusters.slice(0, 3).forEach(function (c) {
+      seen[c.type] = true;
+      res.plan.push({
+        type: c.type, sub: c.sub, topic: c.topic, n: c.n, of: c.of,
+        why: typeLabel(c.type) + ' shows up in ' + c.sub + ' ' + c.n + ' times out of ' + c.of + '.',
+        how: ACTIONS[c.type] || ''
+      });
+    });
+    Object.keys(res.types).sort(function (a, b) { return res.types[b] - res.types[a]; }).forEach(function (ty) {
+      if (res.plan.length >= 3 || seen[ty] || res.types[ty] < 2) return;
+      res.plan.push({
+        type: ty, sub: '', topic: '', n: res.types[ty], of: tagged.length,
+        why: typeLabel(ty) + ' accounts for ' + res.types[ty] + ' of ' + tagged.length + ' logged mistakes.',
+        how: ACTIONS[ty] || ''
+      });
+    });
     return res;
   }
 
-  function barRows(map, labelFn, attr, active) {
+  /* ---------- small chart helpers (inline SVG, no chart library) ---------- */
+
+  function barRows(map, labelFn, attr, active, colorFn) {
     var keys = Object.keys(map).sort(function (a, b) { return map[b] - map[a]; });
     var max = keys.length ? map[keys[0]] : 1;
+    var total = keys.reduce(function (a, k) { return a + map[k]; }, 0);
     return keys.map(function (k) {
+      var col = colorFn ? colorFn(k) : '#1a5da6';
       return '<button type="button" class="gel-p-row' + (active === k ? ' gel-on' : '') + '" ' + attr + '="' + esc(k) + '">' +
-        '<div class="gel-p-line"><span>' + esc(labelFn(k)) + '</span><b>' + map[k] + '</b></div>' +
-        '<div class="gel-p-bar"><i style="width:' + Math.max(6, Math.round(map[k] / max * 100)) + '%"></i></div></button>';
+        '<div class="gel-p-line"><span>' + esc(labelFn(k)) + '</span><b>' + map[k] +
+          '<i>' + pct(map[k], total) + '%</i></b></div>' +
+        '<div class="gel-p-bar"><i style="width:' + Math.max(5, Math.round(map[k] / max * 100)) + '%;background:' + col + '"></i></div></button>';
     }).join('');
   }
 
-  /* Renders the panels into `el` and wires tap-to-filter.
-     opts: { drillHref(topic, subtopic) -> url|'' , emptyText } */
+  /* Stacked bars, one per session, coloured by family. Counts are shown against
+     the session size underneath, because 6 mistakes in 40 questions and 6 in 10
+     are not the same thing. */
+  function trendSvg(sessions, maxBars) {
+    var rows = sessions.slice(-(maxBars || 10));
+    if (rows.length < 2) return '';
+    var W = 100, gap = 2.2, bw = (W - gap * (rows.length - 1)) / rows.length;
+    var peak = Math.max.apply(null, rows.map(function (s) { return s.total; })) || 1;
+    var bars = '', labels = '';
+    rows.forEach(function (s, i) {
+      var x = i * (bw + gap), y = 0;
+      FAMILY_ORDER.forEach(function (f) {
+        var n = s.fam[f] || 0; if (!n) return;
+        var h = (n / peak) * 86;
+        bars += '<rect x="' + x.toFixed(2) + '" y="' + (86 - y - h).toFixed(2) + '" width="' + bw.toFixed(2) + '" height="' + h.toFixed(2) +
+          '" fill="' + FAMILY_META[f].color + '" rx="0.7"><title>' + esc(s.date) + ' — ' + FAMILY_META[f].label + ': ' + n + '</title></rect>';
+        y += h;
+      });
+      labels += '<div class="gel-tl"><b>' + s.total + '</b><span>/' + s.questions + 'q</span><em>' + esc(shortDate(s.date)) + '</em></div>';
+    });
+    var cap = 'max-width:' + (rows.length * 108) + 'px';
+    return '<div class="gel-trend" style="' + cap + '"><svg viewBox="0 0 100 90" preserveAspectRatio="none" class="gel-trend-svg" aria-hidden="true">' + bars +
+      '<line x1="0" y1="86.4" x2="100" y2="86.4" stroke="#d7dee5" stroke-width="0.5"/></svg>' +
+      '<div class="gel-trend-labels" style="grid-template-columns:repeat(' + rows.length + ',1fr)">' + labels + '</div></div>';
+  }
+
+  function shortDate(d) {
+    var m = String(d || '').match(/^(\d{4})-(\d{2})-(\d{2})/);
+    if (!m) return String(d || '').slice(0, 6);
+    return m[3] + ' ' + ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][Number(m[2]) - 1];
+  }
+
+  /* Diverging bars around the student's own average time per question. */
+  function timeSigHtml(a) {
+    if (!a.avgAll || !a.timeSig.length) return '';
+    var span = Math.max.apply(null, a.timeSig.map(function (r) { return Math.abs(r.delta); })) || 1;
+    return '<div class="gel-ts">' + a.timeSig.slice(0, 6).map(function (r) {
+      var even = Math.abs(r.delta) <= 5;              // within 5s of average
+      var w = even ? 4 : Math.max(3, Math.min(50, Math.round(Math.abs(r.delta) / span * 46)));
+      var slower = r.delta >= 0;
+      var pos = even ? 'left:48%' : (slower ? 'left:50%' : 'right:50%');
+      return '<div class="gel-ts-row"><span class="gel-ts-l">' + esc(typeLabel(r.type)) + '</span>' +
+        '<span class="gel-ts-track">' +
+          '<i style="' + pos + ';width:' + w + '%;background:' + typeColor(r.type) + '"></i>' +
+          '<u></u></span>' +
+        '<span class="gel-ts-v">' + (even ? 'on pace' : fmtSecs(r.avg)) + '</span></div>';
+    }).join('') +
+      '<p class="gel-p-note gel-ts-key">Average time on each kind of mistake, against an overall average of <b>' + fmtSecs(a.avgAll) +
+      '</b> per question. Bars to the right took longer, to the left were faster.</p></div>';
+  }
+
+  /* Subtopic × mistake-type grid. The cell is the whole story in one glance:
+     a dark column is a habit, a dark row is a topic problem. */
+  function matrixHtml(a, state) {
+    var subs = Object.keys(a.bySub).sort(function (x, y) { return a.bySub[y].total - a.bySub[x].total; }).slice(0, 8);
+    var types = Object.keys(a.types).sort(function (x, y) { return a.types[y] - a.types[x]; });
+    if (subs.length < 2 || types.length < 2) return '';
+    var peak = 1;
+    subs.forEach(function (s) { types.forEach(function (t) { peak = Math.max(peak, a.bySub[s].types[t] || 0); }); });
+    var head = '<tr><th class="gel-mx-corner"></th>' + types.map(function (t) {
+      return '<th><span style="background:' + typeColor(t) + '"></span>' + esc(shortType(t)) + '</th>';
+    }).join('') + '<th class="gel-mx-tot">All</th></tr>';
+    var body = subs.map(function (s) {
+      return '<tr><th scope="row">' + esc(s) + '</th>' + types.map(function (t) {
+        var n = a.bySub[s].types[t] || 0;
+        var on = state.sub === s && state.type === t;
+        if (!n) return '<td class="gel-mx-0">·</td>';
+        return '<td><button type="button" class="gel-mx-c' + (on ? ' gel-on' : '') + '" data-gel-fcell="' + esc(s) + '|' + esc(t) +
+          '" style="background:' + shade(typeColor(t), n / peak) + ';color:' + (n / peak > 0.55 ? '#fff' : '#16324f') + '" title="' +
+          esc(s + ' · ' + typeLabel(t) + ': ' + n) + '">' + n + '</button></td>';
+      }).join('') + '<td class="gel-mx-tot">' + a.bySub[s].total + '</td></tr>';
+    }).join('');
+    return '<div class="gel-mx-wrap"><table class="gel-mx">' + head + body + '</table></div>';
+  }
+
+  function shortType(t) {
+    return ({ concept_gap: 'Concept', method_not_recalled: 'Method', misread: 'Misread', calculation_slip: 'Calc slip',
+      careless: 'Careless', fell_for_trap: 'Trap', diagram_misread: 'Diagram', no_start: 'No start' })[t] || typeLabel(t);
+  }
+  /* Mix a hex toward white; `k` is 0..1 strength. */
+  function shade(hex, k) {
+    var m = /^#?([0-9a-f]{6})$/i.exec(hex); if (!m) return hex;
+    var v = parseInt(m[1], 16), r = (v >> 16) & 255, g = (v >> 8) & 255, b = v & 255;
+    var t = 0.18 + 0.82 * Math.max(0, Math.min(1, k));
+    var mix = function (c) { return Math.round(255 - (255 - c) * t); };
+    return 'rgb(' + mix(r) + ',' + mix(g) + ',' + mix(b) + ')';
+  }
+
+  /* ---------- the dashboard ---------- */
+
+  /* Renders the full mistake analytics into `el` and wires every filter.
+     opts: { third, drillHref(topic, subtopic) -> url|'', emptyText, compact } */
   function mountPanels(el, questions, opts) {
     opts = opts || {}; injectCss();
     var a = analyse(questions, opts.third), state = { type: '', cause: '', sub: '' };
+    var W = a.words;
+
+    function head(title, note) {
+      return '<div class="gel-p-head"><h3>' + esc(title) + '</h3>' + (note ? '<p>' + esc(note) + '</p>' : '') + '</div>';
+    }
 
     function draw() {
       if (!a.logged) {
-        el.innerHTML = '<div class="gel-p"><div class="gel-p-locked">' + esc(opts.emptyText || 'Your mistake patterns will appear here once you have logged your mistakes after a session.') + '</div></div>';
+        el.innerHTML = '<div class="gel-p"><div class="gel-p-locked">' + esc(opts.emptyText ||
+          (W.possCap + ' mistake patterns appear here once ' + W.subjLower + ' ' + (W.third ? 'has' : 'have') +
+           ' tagged mistakes after a session.')) + '</div></div>';
         return;
       }
       if (!a.ready) {
-        el.innerHTML = '<div class="gel-p"><div class="gel-p-locked"><b>' + a.logged + ' of ' + a.min + ' mistakes logged.</b><br>Patterns open at ' + a.min +
-          ' logged mistakes. With fewer, a single mistake looks like a trend.</div></div>';
+        el.innerHTML = '<div class="gel-p"><div class="gel-p-locked"><b>' + a.logged + ' of ' + a.min + ' mistakes logged.</b><br>' +
+          'Patterns open at ' + a.min + ' logged mistakes. With fewer, a single mistake looks like a trend.' +
+          '<div class="gel-p-progress"><i style="width:' + pct(a.logged, a.min) + '%"></i></div></div></div>';
         return;
       }
+
       var list = a.tagged.filter(function (q) {
         return (!state.type || q.error_type === state.type) && (!state.cause || q.error_cause === state.cause) &&
           (!state.sub || (q.subtopic || q.topic || 'General') === state.sub);
       });
       var subMap = {}; Object.keys(a.bySub).forEach(function (s) { subMap[s] = a.bySub[s].total; });
-      var top = Object.keys(subMap).sort(function (x, y) { return subMap[y] - subMap[x]; }).slice(0, 6), subTop = {};
-      top.forEach(function (s) { subTop[s] = subMap[s]; });
+      var topSubs = Object.keys(subMap).sort(function (x, y) { return subMap[y] - subMap[x]; }).slice(0, 6), subTop = {};
+      topSubs.forEach(function (s) { subTop[s] = subMap[s]; });
 
-      var actions = '';
-      a.clusters.slice(0, 3).forEach(function (c) {
-        var href = opts.drillHref ? opts.drillHref(c.topic, c.sub) : '';
-        actions += '<div class="gel-p-action"><b>' + esc(typeLabel(c.type)) + '</b> clusters in <b>' + esc(c.sub) + '</b> (' + c.n + ' of ' + c.of + '). ' +
-          esc(ACTIONS[c.type] || '') + (href ? ' <a href="' + esc(href) + '">Drill ' + esc(c.sub) + ' →</a>' : '') + '</div>';
-      });
-      if (!actions) {
-        var tk = Object.keys(a.types).sort(function (x, y) { return a.types[y] - a.types[x]; })[0];
-        if (tk) actions = '<div class="gel-p-action">' + (opts.third ? 'Their' : 'Your') + ' most common mistake is <b>' + esc(typeLabel(tk)) + '</b>. ' + esc(ACTIONS[tk] || '') + '</div>';
+      /* — headline strip — */
+      var fam = a.topFamily ? FAMILY_META[a.topFamily.key] : null;
+      var trendTile = '';
+      if (a.trend) {
+        var tArrow = a.trend.dir === 'down' ? '↓' : (a.trend.dir === 'up' ? '↑' : '→');
+        var tWord = a.trend.dir === 'down' ? 'improving' : (a.trend.dir === 'up' ? 'getting worse' : 'holding steady');
+        trendTile = '<div class="gel-stat gel-stat-' + a.trend.dir + '"><b>' + tArrow + ' ' + Math.abs(a.trend.change) + '%</b>' +
+          '<span>' + esc(a.trend.label) + ' rate, ' + tWord + '</span></div>';
       }
-      var insights = a.selfCheck.map(function (s) { return '<div class="gel-p-insight">' + esc(s) + '</div>'; }).join('');
+      var strip = '<div class="gel-stats">' +
+        '<div class="gel-stat"><b>' + a.logged + '</b><span>' + plural(a.logged, 'mistake') + ' logged across ' + a.sessions.length + ' ' + plural(a.sessions.length, 'session') + '</span></div>' +
+        (fam ? '<div class="gel-stat" style="--gel-accent:' + fam.color + '"><b>' + a.topFamily.share + '%</b><span>' +
+          esc(fam.label) + ' — ' + esc(fam.meaning) + '</span></div>' : '') +
+        trendTile +
+        (a.untagged > 0
+          ? '<div class="gel-stat gel-stat-warn"><b>' + a.untagged + '</b><span>' + plural(a.untagged, 'mistake') + ' not tagged yet</span></div>'
+          : '<div class="gel-stat gel-stat-ok"><b>100%</b><span>of mistakes tagged</span></div>') +
+      '</div>';
 
-      el.innerHTML = '<div class="gel-p">' +
+      /* — family split — the single most useful cut — */
+      var famTotal = FAMILY_ORDER.reduce(function (s, f) { return s + (a.families[f] || 0); }, 0) || 1;
+      var famBar = '<div class="gel-fam">' +
+        '<div class="gel-fam-bar">' + FAMILY_ORDER.map(function (f) {
+          var n = a.families[f] || 0; if (!n) return '';
+          return '<i style="width:' + (n / famTotal * 100) + '%;background:' + FAMILY_META[f].color + '" title="' + esc(FAMILY_META[f].label + ': ' + n) + '"></i>';
+        }).join('') + '</div>' +
+        '<div class="gel-fam-key">' + FAMILY_ORDER.map(function (f) {
+          var n = a.families[f] || 0; if (!n) return '';
+          return '<div class="gel-fam-k"><span style="background:' + FAMILY_META[f].color + '"></span>' +
+            '<b>' + esc(FAMILY_META[f].label) + '</b> ' + n + ' · ' + pct(n, famTotal) + '%' +
+            '<em>' + esc(FAMILY_META[f].meaning) + '</em></div>';
+        }).join('') + '</div></div>';
+
+      /* — reality check + plan — */
+      var checks = a.selfCheck.map(function (c) {
+        return '<div class="gel-p-insight gel-i-' + (c.tone || 'warn') + '">' + esc(c.text) + '</div>';
+      }).join('');
+
+      var plan = a.plan.length ? '<ol class="gel-plan">' + a.plan.map(function (p, i) {
+        var href = (opts.drillHref && p.sub) ? opts.drillHref(p.topic, p.sub) : '';
+        return '<li><div class="gel-plan-n" style="background:' + typeColor(p.type) + '">' + (i + 1) + '</div>' +
+          '<div><b>' + esc(p.how) + '</b><span>' + esc(p.why) + '</span>' +
+          (href ? '<a href="' + esc(href) + '">Drill ' + esc(p.sub) + ' →</a>' : '') + '</div></li>';
+      }).join('') + '</ol>' : '';
+
+      var filtered = (state.type || state.cause || state.sub);
+      var filterLine = filtered
+        ? '<div class="gel-p-filter">Showing <b>' + list.length + '</b> of ' + a.tagged.length + ' · ' +
+          [state.type ? typeLabel(state.type) : '', state.cause ? causeLabel(state.cause) : '', state.sub || ''].filter(Boolean).map(esc).join(' · ') +
+          ' <button type="button" class="gel-p-clear" data-gel-fclear>Clear</button></div>'
+        : '<p class="gel-p-note">Tap any bar or grid cell to filter this list.</p>';
+
+      el.innerHTML = '<div class="gel-p">' + strip +
+        '<section class="gel-p-card gel-span">' + head('Where the mistakes come from',
+          'Every logged mistake sorted into what actually has to change. This is the number to act on first.') + famBar + '</section>' +
+        (checks ? '<section class="gel-p-card gel-span">' + head('Reality check', 'Where the tags disagree with the clock and the difficulty.') + checks + '</section>' : '') +
         '<div class="gel-p-grid">' +
-          '<div class="gel-p-card"><h3>Most common mistakes</h3>' + barRows(a.types, typeLabel, 'data-gel-ftype', state.type) + '</div>' +
-          '<div class="gel-p-card gel-p-causes"><h3>Why it happened</h3>' +
-            (Object.keys(a.causes).length ? barRows(a.causes, causeLabel, 'data-gel-fcause', state.cause) : '<p class="gel-p-note">No causes logged yet. They are optional.</p>') + '</div>' +
-          '<div class="gel-p-card"><h3>Where they happen</h3>' + barRows(subTop, function (s) { return s; }, 'data-gel-fsub', state.sub) + '</div>' +
-        '</div>' + insights + actions +
-        '<div class="gel-p-card"><h3>' + (opts.third ? 'Logged mistakes' : 'Your logged mistakes') + (list.length !== a.tagged.length ? ' (' + list.length + ' of ' + a.tagged.length + ')' : '') + '</h3>' +
-          ((state.type || state.cause || state.sub) ? '<button type="button" class="gel-p-clear" data-gel-fclear>Clear filter</button>' : '<p class="gel-p-note">Tap any bar above to filter this list.</p>') +
+          '<section class="gel-p-card"><h3>Most common mistakes</h3>' + barRows(a.types, typeLabel, 'data-gel-ftype', state.type, typeColor) + '</section>' +
+          '<section class="gel-p-card"><h3>Why it happened</h3>' +
+            (Object.keys(a.causes).length ? barRows(a.causes, causeLabel, 'data-gel-fcause', state.cause, function () { return '#6b7a88'; })
+              : '<p class="gel-p-note">No causes logged yet — that chip is optional.</p>') + '</section>' +
+          '<section class="gel-p-card"><h3>Where they happen</h3>' + barRows(subTop, function (s) { return s; }, 'data-gel-fsub', state.sub, function () { return '#1a5da6'; }) + '</section>' +
+        '</div>' +
+        (matrixHtml(a, state) ? '<section class="gel-p-card gel-span">' + head('Mistake map',
+          'Subtopic against mistake type. A dark column is a habit that follows ' + W.obj + ' everywhere; a dark row is one topic that needs work.') +
+          matrixHtml(a, state) + '</section>' : '') +
+        (trendSvg(a.sessions) ? '<section class="gel-p-card gel-span">' + head('Session by session',
+          'Mistakes logged per session, against how many questions that session had.') + trendSvg(a.sessions) + '</section>' : '') +
+        (timeSigHtml(a) ? '<section class="gel-p-card gel-span">' + head('Time signature',
+          'Rushing and grinding leave different fingerprints. This is which one each mistake type has.') + timeSigHtml(a) + '</section>' : '') +
+        (plan ? '<section class="gel-p-card gel-span gel-p-planbox">' + head(W.third ? 'What to set them' : 'What to do next',
+          'Ranked by how much evidence there is, not by how bad it sounds.') + plan + '</section>' : '') +
+        '<section class="gel-p-card gel-span"><h3>' + (W.third ? 'Logged mistakes' : 'Your logged mistakes') + '</h3>' +
+          filterLine +
           '<div class="gel-p-list">' + list.slice(0, 60).map(function (q) {
-            return '<div class="gel-p-li"><b>' + esc(typeLabel(q.error_type)) + '</b>' + (q.error_cause ? ' · ' + esc(causeLabel(q.error_cause)) : '') +
+            return '<div class="gel-p-li"><span class="gel-p-dot" style="background:' + typeColor(q.error_type) + '"></span>' +
+              '<div><b>' + esc(typeLabel(q.error_type)) + '</b>' + (q.error_cause ? ' <em>· ' + esc(causeLabel(q.error_cause)) + '</em>' : '') +
               '<small>' + esc(q.sessionDate || '') + ' · ' + esc(q.subtopic || q.topic || '') + (q.difficulty ? ' · ' + esc(q.difficulty) : '') +
               (q.timeTaken ? ' · ' + fmtSecs(q.timeTaken) : '') + (q.bank_question_id ? ' · ' + esc(q.bank_question_id) : '') + '</small>' +
-              (q.error_note ? '<small>“' + esc(q.error_note) + '”</small>' : '') + '</div>';
-          }).join('') + (list.length > 60 ? '<p class="gel-p-note">Showing the 60 most recent of ' + list.length + '.</p>' : '') + '</div></div></div>';
+              (q.error_note ? '<small class="gel-p-quote">' + esc(q.error_note) + '</small>' : '') + '</div></div>';
+          }).join('') + (list.length > 60 ? '<p class="gel-p-note">Showing the 60 most recent of ' + list.length + '.</p>' : '') +
+          (!list.length ? '<p class="gel-p-note">Nothing matches that filter.</p>' : '') +
+        '</div></section></div>';
     }
 
     el.onclick = function (e) {
-      var t = e.target.closest ? e.target.closest('[data-gel-ftype],[data-gel-fcause],[data-gel-fsub],[data-gel-fclear]') : null;
+      var t = e.target.closest ? e.target.closest('[data-gel-ftype],[data-gel-fcause],[data-gel-fsub],[data-gel-fcell],[data-gel-fclear]') : null;
       if (!t) return;
       if (t.hasAttribute('data-gel-fclear')) state = { type: '', cause: '', sub: '' };
       else if (t.hasAttribute('data-gel-ftype')) { var v = t.getAttribute('data-gel-ftype'); state.type = state.type === v ? '' : v; }
       else if (t.hasAttribute('data-gel-fcause')) { var c = t.getAttribute('data-gel-fcause'); state.cause = state.cause === c ? '' : c; }
       else if (t.hasAttribute('data-gel-fsub')) { var s = t.getAttribute('data-gel-fsub'); state.sub = state.sub === s ? '' : s; }
+      else if (t.hasAttribute('data-gel-fcell')) {
+        var parts = t.getAttribute('data-gel-fcell').split('|');
+        var same = state.sub === parts[0] && state.type === parts[1];
+        state.sub = same ? '' : parts[0]; state.type = same ? '' : parts[1]; state.cause = '';
+      }
       draw();
     };
     draw();
@@ -593,7 +1002,8 @@
 
   window.GREErrorLog = {
     TYPES: TYPES, CAUSES: CAUSES, ACTIONS: ACTIONS, MIN_FOR_PATTERNS: MIN_FOR_PATTERNS,
-    typeLabel: typeLabel, causeLabel: causeLabel,
+    FAMILY_OF: FAMILY_OF, FAMILY_META: FAMILY_META, FAMILY_ORDER: FAMILY_ORDER,
+    typeLabel: typeLabel, causeLabel: causeLabel, typeColor: typeColor,
     review: function (opts) { return new Review(opts); },
     setLocked: setLocked, isBlocking: isBlocking,
     resume: resume, flushOutbox: flushOutbox,
