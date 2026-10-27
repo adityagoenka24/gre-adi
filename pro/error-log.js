@@ -16,6 +16,13 @@
      the new tables means NO lock (the pending check fails open).
    - Slugs are stored, never labels, so wording can change later.
    - Loading this file changes nothing by itself. Pages opt in.
+
+   REVIEW-FIRST GATE (review.hold): until the student has tagged every wrong or
+   skipped question, the page shows ONLY the review. Anything marked
+   `.gel-secret` (score, bands, charts, stats, downloads) is hidden, and a
+   greyed "Proceed to analytics" button waits under the review. It enables when
+   the log is complete, or when the coach waives it; a waived student sees their
+   analytics but not the error-log analytics. Every failure path releases.
    ============================================================ */
 (function () {
   'use strict';
@@ -23,7 +30,10 @@
   var WORKER_URL = window.GRE_WORKER_URL || 'https://gre-auth.goenka-aditya-kol.workers.dev';
   var TOKEN_KEY = 'gre_progress_token';
   var OUTBOX_KEY = 'gre_errlog_outbox';
+  /* EVENT MODE (see Review.attachEvent / resumeEvents) */
+  var EVENT_KEY = 'gre_event_attempts';   // event attempts in this browser that may still owe a log
   var MIN_FOR_PATTERNS = 10;      // logged mistakes before the insight panels open
+  var WATCH_MS = Number(window.GRE_LOG_WATCH_MS) > 0 ? Number(window.GRE_LOG_WATCH_MS) : 30000;   // waiver check while held
   var NOTE_MAX = 300;
 
   // What went wrong (required) — keep labels that existed in the old optional
@@ -152,6 +162,18 @@
     '.gel-banner{margin:0 0 16px;padding:12px 16px;border-radius:10px;font-size:14px;font-weight:600;background:#f9e9e6;color:#8c2f20;border:1px solid #efc4bb}',
     '.gel-banner.gel-clear{background:#e5f2ea;color:#1a6338;border-color:#bfdfca}',
     '.gel-locked{opacity:.45;cursor:not-allowed !important;pointer-events:auto}',
+    /* review-first gate: everything marked gel-secret is hidden until release */
+    'body.gel-held .gel-secret{display:none !important}',
+    'body.gel-held .gel-held-only{display:block !important}',
+    '.gel-banner{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}',
+    '.gel-banner.gel-sticky{position:sticky;top:8px;z-index:30;box-shadow:0 4px 14px rgba(20,40,60,.16)}',
+    '.gel-banner-go{appearance:none;border:1px solid currentColor;background:transparent;color:inherit;border-radius:999px;padding:5px 12px;font:inherit;font-size:12.5px;font-weight:700;cursor:pointer;white-space:nowrap}',
+    '.gel-proceed{margin:22px 0 6px;padding:16px 18px;border:1px solid #d9e1e8;border-radius:12px;background:#fff;color:#152a3d;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap;text-align:left}',
+    '.gel-proceed.gel-ready{border-color:#bfdfca;background:#f4faf6}',
+    '.gel-proceed-msg{margin:0;flex:1 1 240px;font-size:13.5px;line-height:1.5;color:#46586a}',
+    '.gel-proceed-btn{appearance:none;border:0;border-radius:10px;padding:13px 22px;font:inherit;font-size:15px;font-weight:700;background:#1a5da6;color:#fff;cursor:pointer;min-height:46px}',
+    '.gel-proceed-btn:hover:not(:disabled){background:#154d8a}',
+    '.gel-proceed-btn:disabled{background:#d5dce3;color:#7c8b99;cursor:not-allowed}',
     /* resume modal */
     '.gel-modal{position:fixed;inset:0;z-index:100000;background:rgba(15,30,45,.62);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding:24px 14px}',
     '.gel-modal-card{background:#fff;border-radius:14px;max-width:760px;width:100%;padding:24px 22px;box-shadow:0 20px 60px rgba(0,0,0,.3);color:#152a3d}',
@@ -161,14 +183,18 @@
     '.gel-item{border:1px solid #e1e7ec;border-radius:10px;padding:12px 14px;margin-bottom:12px}',
     '.gel-item-top{font-size:13.5px;font-weight:700;margin-bottom:2px}',
     '.gel-item-meta{font-size:12.5px;color:#5c6b79}',
+    '.gel-item-stem{font-size:12.5px;color:#27384a;margin:6px 0 0;padding:6px 9px;background:#f3f6f9;border-radius:7px}',
     '.gel-modal-foot{margin-top:14px;font-size:12.5px;color:#7c8b99}',
     '.gel-modal-foot a{color:#1a5da6}',
     /* panels (My Progress + Coach View) */
+    /* a light sheet for hosts with a dark theme (event pages): redefines the tokens the panels read */
+    '.gel-paper{--surface:#fff;--surface2:#f1f4f7;--border:#e1e7ec;--text:#152a3d;--text2:#46586a;--text3:#6b7a88;--accent:#1a5da6;background:#f6f8fa;color:#152a3d;border-radius:14px;padding:14px;font-size:14px;line-height:1.5}',
     /* ── analytics dashboard ──────────────────────────────────────────────
        Colours come from the host page's own tokens where they exist, so this
        reads as part of the practice logger and as part of Coach View without
        either needing to know about the other. */
-    '.gel-p{font-family:inherit;color:var(--text,#152a3d);display:grid;gap:14px}',
+    '.gel-p{font-family:inherit;color:var(--text,#152a3d);display:grid;grid-template-columns:minmax(0,1fr);gap:14px}',
+    '.gel-p>*,.gel-p-grid>*{min-width:0}',
     '.gel-p *{box-sizing:border-box}',
     '.gel-p-card{background:var(--surface,#fff);border:1px solid var(--border,#e1e7ec);border-radius:12px;padding:18px}',
     '.gel-p-card h3{margin:0;font-size:15px;font-weight:700;letter-spacing:-.01em;color:var(--text,#152a3d)}',
@@ -300,6 +326,15 @@
     this.items = {};             // idx -> { meta, type, cause, note, dirty }
     this.order = [];
     this.sessionId = opts.sessionId || null;
+    // 'pro' = login token, 'event' = no login (attempt_id is the key), 'local' = this
+    // browser only (anonymous free topic tests: nothing is sent anywhere)
+    this.kind = opts.kind === 'event' ? 'event' : (opts.kind === 'local' ? 'local' : 'pro');
+    this.holding = false;        // review-first gate active
+    this.released = false;       // gate has been passed (or never applied)
+    this.waived = false;         // coach cleared the log while the student was reviewing
+    this.clearedBy = '';         // what the server said: 'waived' (coach), 'complete' (tagged elsewhere) or 'none'
+    this.relOpts = null;
+    this.disabled = false;
     this.payload = null;
     this.blocking = opts.blocking !== false;
     this.onUpdate = opts.onUpdate || function () {};
@@ -335,7 +370,7 @@
   Review.prototype.inner = function (idx) {
     var it = this.items[idx], done = !!it.type, h = hintFor(it.meta);
     var out = '<div class="gel-head"><span>⚑ Log this mistake</span>' +
-      (done ? '<span class="gel-ok">✓ Logged</span>' : '<span class="gel-req">Required</span>') + '</div>';
+      (done ? '<span class="gel-ok">✓ Logged</span>' : ((this.disabled || this.waived) ? '<span class="gel-ok" style="color:#7c8b99">Optional</span>' : '<span class="gel-req">Required</span>')) + '</div>';
     if (h) out += '<p class="gel-hint">' + esc(h) + '</p>';
     out += '<div class="gel-label">What went wrong?</div><div class="gel-chips" role="group" aria-label="What went wrong">';
     TYPES.forEach(function (t) {
@@ -371,13 +406,27 @@
     var p = this.progress(), self = this;
     var els = document.querySelectorAll('.gel-banner[data-gel-banner="' + this.id + '"]');
     Array.prototype.forEach.call(els, function (el) {
-      if (!p.total) { el.style.display = 'none'; return; }
+      if (!p.total || self.disabled || self.released) { el.style.display = 'none'; return; }
       el.style.display = '';
+      if (self.holding) {
+        // Review-first gate: say what is being held back, and give a way down a long page.
+        var open = p.complete || self.waived;
+        el.classList.add('gel-sticky');
+        el.classList.toggle('gel-clear', open);
+        el.innerHTML = '<span>' + esc(self.waived && !p.complete
+            ? '✓ ' + (self.clearedBy === 'waived' ? 'Our coaching team has cleared this log.' : 'This log is already cleared.') + ' Press “' + self.label() + '” below.'
+            : (p.complete
+                ? '✓ All mistakes logged. Press “' + self.label() + '” below.'
+                : '⚑ Log why you missed each question to see your score (' + p.done + ' of ' + p.total + ' logged).')) + '</span>' +
+          '<button type="button" class="gel-banner-go" data-gel-go="' + self.id + '">' + (open ? 'Go to the button ↓' : 'Next untagged ↓') + '</button>';
+        return;
+      }
       el.classList.toggle('gel-clear', p.complete);
       el.textContent = p.complete
         ? '✓ All mistakes logged. You can continue.'
         : '⚑ Tag why you missed each question below to continue (' + p.done + ' of ' + p.total + ' logged).';
     });
+    this.refreshBars();
   };
 
   Review.prototype.changed = function () {
@@ -429,14 +478,179 @@
     }).catch(function () { self.persist(); });
   };
 
+  /* EVENT MODE. `p` resolves to the Worker's /mock/submission reply
+     ({ attempt_id, log:{enabled} }) or null if the save failed. A reply without
+     log.enabled (older Worker, tables not created yet) means the gate is off:
+     unlock and make the chips optional. A failed save keeps the gate on and
+     queues the attempt for a retry, so tags are never lost. */
+  Review.prototype.attachEvent = function (p, payload) {
+    var self = this; this.payload = payload || null;
+    Promise.resolve(p).then(function (r) {
+      if (r && r.attempt_id) {
+        if (!r.log || r.log.enabled !== true) { self.turnOff(); outboxDrop(self.ref); return; }
+        self.sessionId = r.attempt_id; self.payload = null;
+        trackEventAttempt(r.attempt_id);
+        self.persist();                   // swap the queued payload for the id, so a reload cannot resubmit
+        self.flush();
+      } else { self.persist(); }
+    }).catch(function () { self.persist(); });
+  };
+
+  Review.prototype.turnOff = function () {
+    this.disabled = true; this.blocking = false;
+    var self = this;
+    this.order.forEach(function (i) { self.rerender(i); });
+    if (this.holding) this.settle('off');        // the server holds no requirement: nothing to wait for
+    this.refreshBanners();
+    try { this.onUpdate(this.progress()); } catch (e) { /* page callback must not break tagging */ }
+  };
+
+  /* ---------- REVIEW-FIRST GATE ---------- */
+  Review.prototype.label = function () { return (this.relOpts && this.relOpts.label) || 'Proceed to analytics'; };
+
+  Review.prototype.canProceed = function () {
+    return !!this.holding && (this.progress().complete || this.waived || this.disabled);
+  };
+
+  /* opts: { at: element|selector for the Proceed button,
+             onRelease(info): info = { reason:'proceed'|'off'|'none', waived, logged, total, complete },
+             label, noScroll }
+     Call once the review (chips) is on the page. If anything about the setup is
+     off (nothing to tag, no place for the button, the gate switched off), the page
+     is simply released: a missing button must never trap a student. */
+  Review.prototype.hold = function (opts) {
+    this.relOpts = opts || {};
+    var host = this.relOpts.at;
+    if (typeof host === 'string') host = document.querySelector(host);
+    this.barHost = host || null;
+    if (!this.order.length) { this.settle('none'); return this; }
+    if (this.disabled) { this.settle('off'); return this; }
+    if (!this.barHost) { this.settle('none'); return this; }
+    this.holding = true; this.released = false;
+    this.renderBar();
+    this.refreshBanners();
+    syncHoldClass();
+    this.startWatch();
+    return this;
+  };
+
+  Review.prototype.renderBar = function () {
+    if (!this.barHost) return;
+    this.barHost.innerHTML = '<div class="gel-proceed" data-gel-proceed="' + this.id + '">' +
+      '<p class="gel-proceed-msg" aria-live="polite"></p>' +
+      '<button type="button" class="gel-proceed-btn" data-gel-proceed-btn="' + this.id + '" disabled aria-disabled="true">' + esc(this.label()) + ' →</button></div>';
+  };
+
+  Review.prototype.refreshBars = function () {
+    if (!this.holding) return;
+    var p = this.progress(), open = this.canProceed(), left = p.total - p.done, self = this;
+    var bars = document.querySelectorAll('.gel-proceed[data-gel-proceed="' + this.id + '"]');
+    Array.prototype.forEach.call(bars, function (bar) {
+      bar.classList.toggle('gel-ready', open);
+      var msg = bar.querySelector('.gel-proceed-msg'), btn = bar.querySelector('.gel-proceed-btn');
+      if (msg) msg.textContent = self.waived && !p.complete
+        ? (self.clearedBy === 'waived' ? 'Our coaching team has cleared this log' : 'This log is already cleared') + ', so your analytics are ready. The mistake-pattern analytics need a finished log, so they are skipped for this attempt.'
+        : (p.complete
+            ? 'All mistakes logged. Your score and analytics are ready.'
+            : 'Log the ' + left + ' remaining ' + (left === 1 ? 'mistake' : 'mistakes') + ' above to unlock your score and analytics.');
+      if (btn) { btn.disabled = !open; if (open) btn.removeAttribute('aria-disabled'); else btn.setAttribute('aria-disabled', 'true'); }
+    });
+  };
+
+  /* Ends the gate. reason: 'proceed' (student pressed the button), 'off' (server
+     has no log tables / no requirement) or 'none' (nothing to tag). */
+  Review.prototype.settle = function (reason) {
+    if (this.released) return;
+    var p = this.progress(), wasHolding = this.holding;
+    var info = { reason: reason, waived: !!this.waived && !p.complete, clearedBy: this.clearedBy, logged: p.done, total: p.total, complete: p.complete };
+    this.holding = false; this.released = true;
+    this.stopWatch();
+    if (this.barHost) this.barHost.innerHTML = '';
+    this.refreshBanners();
+    syncHoldClass();
+    var cb = this.relOpts && this.relOpts.onRelease;
+    if (cb) { try { cb(info); } catch (e) { if (window.console) console.warn('gel onRelease', e); } }
+    if (wasHolding && reason === 'proceed' && !(this.relOpts && this.relOpts.noScroll)) {
+      var all = document.querySelectorAll('.gel-secret'), first = null;
+      for (var i = 0; i < all.length; i++) { if (all[i].offsetParent !== null) { first = all[i]; break; } }
+      if (first && first.scrollIntoView) { try { first.scrollIntoView({ block: 'start' }); } catch (e) { first.scrollIntoView(); } }
+    }
+  };
+
+  Review.prototype.proceed = function () {
+    if (!this.canProceed()) return false;
+    clearTimeout(this.timer);
+    this.flush();                 // do not wait for the debounce: the student may close the tab right after
+    this.settle('proceed');
+    return true;
+  };
+
+  /* Pages that tear a result screen down call this instead of deleting from the
+     registry by hand, so the body class and the poller are always cleaned up. */
+  Review.prototype.dispose = function () {
+    this.stopWatch();
+    this.holding = false; this.released = true;
+    if (this.barHost) this.barHost.innerHTML = '';
+    delete registry[this.id];
+    syncHoldClass();
+  };
+
+  /* While the student reads the review, the coach may clear their log. A cheap
+     status call (on focus, when the tab becomes visible, and slowly in between)
+     picks that up. Errors are ignored: the student can always finish tagging. */
+  Review.prototype.startWatch = function () {
+    if (this.kind === 'local' || this.watching || typeof document === 'undefined') return;
+    var self = this;
+    this.watching = true;
+    this._onVis = function () { if (!document.hidden) self.checkWaiver(); };
+    this._onFocus = function () { self.checkWaiver(); };
+    document.addEventListener('visibilitychange', this._onVis);
+    window.addEventListener('focus', this._onFocus);
+    this._poll = setInterval(function () { if (!document.hidden) self.checkWaiver(); }, WATCH_MS);
+  };
+  Review.prototype.stopWatch = function () {
+    if (!this.watching) return;
+    this.watching = false;
+    clearInterval(this._poll);
+    document.removeEventListener('visibilitychange', this._onVis);
+    window.removeEventListener('focus', this._onFocus);
+  };
+
+  Review.prototype.checkWaiver = function () {
+    var self = this;
+    if (!this.holding || this.waived || this.checking || this.kind === 'local' || !this.sessionId) return Promise.resolve(false);
+    if (this.progress().complete) return Promise.resolve(false);
+    var path;
+    if (this.kind === 'event') path = '/mock/log-status?attempt_id=' + encodeURIComponent(this.sessionId);
+    else {
+      var t = token(); if (!t) return Promise.resolve(false);
+      path = '/progress/log-status?token=' + encodeURIComponent(t) + '&session_id=' + encodeURIComponent(this.sessionId);
+    }
+    this.checking = true;
+    return getJson(path).then(function (r) {
+      self.checking = false;
+      if (!self.holding || !r.ok || !r.json || r.json.enabled !== true) return false;
+      // waived: the coach cleared it. none: the server holds no requirement for it (fail open).
+      // complete: the tags arrived from another tab or device.
+      var st = r.json.state;
+      if (st !== 'waived' && st !== 'none' && st !== 'complete') return false;
+      self.waived = true; self.blocking = false; self.clearedBy = st;
+      self.order.forEach(function (i) { self.rerender(i); });
+      self.changed();
+      return true;
+    }).catch(function () { self.checking = false; return false; });
+  };
+
   Review.prototype.persist = function () {
+    if (this.kind === 'local') return;       // nothing leaves this browser
     var e = this.entries(false);
     if (!e.length && !this.payload) return;
-    outboxPut({ ref: this.ref, sessionId: this.sessionId, payload: this.sessionId ? null : this.payload, entries: e, ts: Date.now() });
+    outboxPut({ ref: this.ref, kind: this.kind, sessionId: this.sessionId, payload: this.sessionId ? null : this.payload, entries: e, ts: Date.now() });
   };
 
   Review.prototype.schedule = function () {
     var self = this;
+    if (this.kind === 'local') return;
     if (!this.sessionId) { this.persist(); return; }    // keep it safe until the id arrives
     clearTimeout(this.timer);
     this.timer = setTimeout(function () { self.flush(); }, 350);
@@ -444,17 +658,24 @@
 
   Review.prototype.flush = function () {
     var self = this;
+    if (this.kind === 'local') return Promise.resolve();
     if (!this.sessionId || this.flushing) { if (this.flushing) this.again = true; return Promise.resolve(); }
     var entries = this.entries(true);
     if (!entries.length) return Promise.resolve();
-    var t = token();
-    if (!t) { this.persist(); return Promise.resolve(); }
+    var t = token(), isEvent = this.kind === 'event';
+    if (!isEvent && !t) { this.persist(); return Promise.resolve(); }
     this.flushing = true;
-    return postJson('/progress/error-log', { token: t, session_id: this.sessionId, entries: entries }).then(function (r) {
+    var req = isEvent
+      ? postJson('/mock/error-log', { attempt_id: this.sessionId, entries: entries })
+      : postJson('/progress/error-log', { token: t, session_id: this.sessionId, entries: entries });
+    return req.then(function (r) {
       self.flushing = false;
       if (r.ok) {
         entries.forEach(function (e) { var it = self.items[e.q_index]; if (it) it.dirty = false; });
         outboxDrop(self.ref);                            // the server has them now
+        if (isEvent && r.json && r.json.complete) forgetEventAttempt(self.sessionId);
+      } else if (isEvent && (r.status === 404 || r.status === 400)) {
+        outboxDrop(self.ref);                            // can never succeed: stop retrying
       } else {
         self.persist();                                 // retried on the next load
       }
@@ -473,12 +694,32 @@
     });
   }
   function isBlocking() {
-    return Object.keys(registry).some(function (k) { var r = registry[k]; return r.blocking && r.order.length && !r.progress().complete; });
+    return Object.keys(registry).some(function (k) { var r = registry[k]; return r.blocking && !r.waived && r.order.length && !r.progress().complete; });
+  }
+  /* True while any review is holding back its page's score and analytics. */
+  function isHolding() {
+    return Object.keys(registry).some(function (k) { var r = registry[k]; return r.holding && !r.released; });
+  }
+  function syncHoldClass() {
+    if (typeof document === 'undefined' || !document.body) return;
+    document.body.classList.toggle('gel-held', isHolding());
   }
 
   /* ---------- delegated events (one set for every box on the page) ---------- */
   if (typeof document !== 'undefined') {
     document.addEventListener('click', function (e) {
+      var go = e.target.closest && e.target.closest('[data-gel-proceed-btn]');
+      if (go) { var pr = registry[go.getAttribute('data-gel-proceed-btn')]; if (pr) pr.proceed(); return; }
+      var jump = e.target.closest && e.target.closest('[data-gel-go]');
+      if (jump) {
+        var jr = registry[jump.getAttribute('data-gel-go')];
+        if (!jr) return;
+        var target = jr.canProceed()
+          ? document.querySelector('.gel-proceed[data-gel-proceed="' + jr.id + '"]')
+          : document.querySelector('.gel-box[data-gel-ctl="' + jr.id + '"]:not(.gel-done)');
+        if (target && target.scrollIntoView) { try { target.scrollIntoView({ behavior: 'smooth', block: 'center' }); } catch (x) { target.scrollIntoView(); } }
+        return;
+      }
       var chip = e.target.closest && e.target.closest('.gel-chip');
       var noteBtn = e.target.closest && e.target.closest('[data-gel-note]');
       var box = e.target.closest && e.target.closest('.gel-box');
@@ -501,11 +742,47 @@
   /* ============================================================
      RESUME — a session the student left without finishing
      ============================================================ */
+  /* ---------- EVENT MODE: attempts this browser may still owe a log for ---------- */
+  function readEventAttempts() {
+    try { var a = JSON.parse(localStorage.getItem(EVENT_KEY) || '[]'); return Array.isArray(a) ? a : []; } catch (e) { return []; }
+  }
+  function writeEventAttempts(list) {
+    try { localStorage.setItem(EVENT_KEY, JSON.stringify(list.slice(-10))); } catch (e) { /* best effort */ }
+  }
+  function trackEventAttempt(id) {
+    var list = readEventAttempts().filter(function (x) { return x.id !== id; });
+    list.push({ id: id, ts: Date.now() }); writeEventAttempts(list);
+  }
+  function forgetEventAttempt(id) { writeEventAttempts(readEventAttempts().filter(function (x) { return x.id !== id; })); }
+
+  function flushEventItem(item) {
+    var idP = item.sessionId
+      ? Promise.resolve(item.sessionId)
+      : (item.payload
+          ? postJson('/mock/submission', { result: item.payload }).then(function (r) {
+              if (!r.ok && r.status === 400) { outboxDrop(item.ref); return null; }   // can never succeed
+              if (!r.ok || !r.json || !r.json.attempt_id) return null;
+              if (!r.json.log || r.json.log.enabled !== true) { outboxDrop(item.ref); return null; }
+              trackEventAttempt(r.json.attempt_id); return r.json.attempt_id;
+            })
+          : Promise.resolve(null));
+    return idP.then(function (aid) {
+      if (!aid) return;
+      if (!item.entries || !item.entries.length) { outboxPut({ ref: item.ref, kind: 'event', sessionId: aid, payload: null, entries: [], ts: item.ts }); return; }
+      return postJson('/mock/error-log', { attempt_id: aid, entries: item.entries }).then(function (r) {
+        if (r.ok) { outboxDrop(item.ref); if (r.json && r.json.complete) forgetEventAttempt(aid); }
+        else if (r.status === 404 || r.status === 400) outboxDrop(item.ref);
+      });
+    });
+  }
+
   function flushOutbox() {
     var list = readOutbox(), t = token();
-    if (!list.length || !t) return Promise.resolve();
+    if (!list.length) return Promise.resolve();
     return list.reduce(function (chain, item) {
       return chain.then(function () {
+        if (item.kind === 'event') return flushEventItem(item);
+        if (!t) return;
         var idP = item.sessionId
           ? Promise.resolve(item.sessionId)
           : (item.payload
@@ -540,15 +817,42 @@
     }).catch(function () { resuming = false; return false; });
   }
 
+  /* EVENT MODE. Event students have no login, so the browser's own list of
+     attempt ids is what we ask the Worker about. Same fail-open rule. */
+  var resumingEvents = false;
+  function resumeEvents(opts) {
+    opts = opts || {};
+    if (resumingEvents || typeof document === 'undefined') return Promise.resolve(false);
+    resumingEvents = true;
+    return flushOutbox().then(function () {
+      var ids = readEventAttempts().map(function (x) { return x.id; });
+      if (!ids.length) return null;
+      return getJson('/mock/pending-log?attempt_ids=' + encodeURIComponent(ids.join(',')));
+    }).then(function (r) {
+      resumingEvents = false;
+      if (!r || !r.ok || !r.json || r.json.enabled !== true) return false;
+      var live = {}; (r.json.pending || []).forEach(function (p) { live[p.attempt_id] = true; });
+      writeEventAttempts(readEventAttempts().filter(function (x) { return live[x.id]; }));   // done, waived or unknown: forget
+      if (!r.json.pending || !r.json.pending.length) return false;
+      showResumeModal(r.json.pending.map(function (p) {
+        return { session_id: p.attempt_id, date: p.date, topic: p.event_name, subtopic: '', items: p.items };
+      }), { kind: 'event', onDone: opts.onDone });
+      return true;
+    }).catch(function () { resumingEvents = false; return false; });
+  }
+
   function showResumeModal(pending, opts) {
     injectCss();
     var modal = document.createElement('div');
     modal.className = 'gel-modal'; modal.setAttribute('role', 'dialog'); modal.setAttribute('aria-modal', 'true');
+    var isEvent = opts.kind === 'event';
     var reviews = [], html = '<div class="gel-modal-card"><h2>Finish your error log</h2>' +
-      '<p>You left a session before tagging your mistakes. Tag each one to continue. It takes about a minute, and these tags are what power your mistake patterns.</p>' +
+      (isEvent
+        ? '<p>You finished a test without tagging your mistakes. Tag each one to continue. It takes about a minute, and these tags are what turn a score into a plan.</p>'
+        : '<p>You left a session before tagging your mistakes. Tag each one to continue. It takes about a minute, and these tags are what power your mistake patterns.</p>') +
       '<div class="gel-banner" data-gel-banner="__resume__"></div>';
     pending.forEach(function (p) {
-      var rv = new Review({ sessionId: p.session_id, blocking: true });
+      var rv = new Review({ sessionId: p.session_id, blocking: true, kind: isEvent ? 'event' : 'pro' });
       reviews.push(rv);
       html += '<div class="gel-sess">' + esc(p.date || '') + ' · ' + esc(p.topic || 'Session') + (p.subtopic ? ' · ' + esc(p.subtopic) : '') + '</div>';
       (p.items || []).forEach(function (it) {
@@ -557,7 +861,7 @@
           (it.difficulty ? ' · ' + esc(it.difficulty) : '') + '</div><div class="gel-item-meta">' +
           (it.status === 'skipped' ? 'Skipped' : 'Wrong' + (it.your_answer ? ' · your answer: ' + esc(it.your_answer) : '')) +
           (it.time_taken ? ' · ' + fmtSecs(it.time_taken) : '') + (it.bank_question_id ? ' · ' + esc(it.bank_question_id) : '') +
-          '</div>' + rv.html(it.q_index) + '</div>';
+          '</div>' + (it.stem ? '<div class="gel-item-stem">' + esc(it.stem) + '</div>' : '') + rv.html(it.q_index) + '</div>';
       });
     });
     html += '<div class="gel-modal-foot">Cannot complete this? <a href="mailto:goenka.aditya.kol@gmail.com?subject=Error%20log%20help">Email our coaching team</a> and we will clear it for you.</div></div>';
@@ -602,20 +906,25 @@
   /* questions: stored questions carrying error_type / error_cause (merged by
      the Worker). Each may also carry sessionDate / sessionType. Returns counts
      only; no opinion is formed until MIN_FOR_PATTERNS mistakes are logged. */
-  function analyse(questions, third) {
+  function analyse(questions, third, aopts) {
+    aopts = aopts || {};
+    var MIN = aopts.min || MIN_FOR_PATTERNS;
     var all = (questions || []).filter(Boolean);
     var subj = third ? 'They' : 'You', subjLower = third ? 'they' : 'you';
     var poss = third ? 'their' : 'your', possCap = third ? 'Their' : 'Your';
-    var obj = third ? 'them' : 'you';
+    var obj = third ? 'them' : 'you', has = third ? 'has' : 'have';
+    if (aopts.cohort) {          // a whole event's students at once
+      subj = 'Students'; subjLower = 'students'; poss = 'the cohort\u2019s'; possCap = 'The cohort\u2019s'; obj = 'students'; has = 'have';
+    }
     var tagged = all.filter(function (q) { return q.error_type; });
     var mistakes = all.filter(isMistake);
     var res = {
-      logged: tagged.length, ready: tagged.length >= MIN_FOR_PATTERNS, min: MIN_FOR_PATTERNS,
+      logged: tagged.length, ready: tagged.length >= MIN, min: MIN,
       questions: all.length, mistakes: mistakes.length, untagged: Math.max(0, mistakes.length - tagged.length),
       types: {}, causes: {}, bySub: {}, families: {}, sessions: [],
       selfCheck: [], clusters: [], plan: [], timeSig: [], tagged: tagged,
       avgAll: 0, topFamily: null, trend: null,
-      words: { subj: subj, subjLower: subjLower, poss: poss, possCap: possCap, obj: obj, third: !!third }
+      words: { subj: subj, subjLower: subjLower, poss: poss, possCap: possCap, obj: obj, has: has, third: !!third, cohort: !!aopts.cohort }
     };
 
     var timed = all.filter(function (q) { return (Number(q.timeTaken) || 0) > 0; });
@@ -709,18 +1018,18 @@
       if (nsSub[nsTop] >= 3) res.selfCheck.push({
         tone: 'info',
         text: nsSub[nsTop] + ' of ' + ns.length + ' "didn\'t know where to start" mistakes are in ' + nsTop +
-          '. That is a gap in what ' + subjLower + ' ' + (third ? 'has' : 'have') + ' studied, not a test-day problem. Learn it before drilling it.'
+          '. That is a gap in what ' + subjLower + ' ' + has + ' studied, not a test-day problem. Learn it before drilling it.'
       });
     }
 
     // The headline: one family dominating changes what to work on entirely.
-    if (res.topFamily && res.topFamily.share >= 50 && tagged.length >= MIN_FOR_PATTERNS) {
+    if (res.topFamily && res.topFamily.share >= 50 && tagged.length >= MIN) {
       var fm = FAMILY_META[res.topFamily.key];
       res.selfCheck.push({ tone: 'key', text: res.topFamily.share + '% of ' + poss + ' logged mistakes are ' + fm.label.toLowerCase() + '. ' + fm.verdict(res.words) });
     }
 
     /* ---- Trend: is the biggest leak shrinking? ---- */
-    if (res.sessions.length >= 4 && res.topFamily) {
+    if (!aopts.noTrend && res.sessions.length >= 4 && res.topFamily) {
       var half = Math.floor(res.sessions.length / 2);
       var older = res.sessions.slice(0, half), newer = res.sessions.slice(res.sessions.length - half);
       var sum = function (list, pick) { return list.reduce(function (a, s) { return a + pick(s); }, 0); };
@@ -868,7 +1177,8 @@
      opts: { third, drillHref(topic, subtopic) -> url|'', emptyText, compact } */
   function mountPanels(el, questions, opts) {
     opts = opts || {}; injectCss();
-    var a = analyse(questions, opts.third), state = { type: '', cause: '', sub: '' };
+    var a = analyse(questions, opts.third || opts.cohort, opts), state = { type: '', cause: '', sub: '' };
+    var unit = opts.unit || 'session';
     var W = a.words;
 
     function head(title, note) {
@@ -878,7 +1188,7 @@
     function draw() {
       if (!a.logged) {
         el.innerHTML = '<div class="gel-p"><div class="gel-p-locked">' + esc(opts.emptyText ||
-          (W.possCap + ' mistake patterns appear here once ' + W.subjLower + ' ' + (W.third ? 'has' : 'have') +
+          (W.possCap + ' mistake patterns appear here once ' + W.subjLower + ' ' + W.has +
            ' tagged mistakes after a session.')) + '</div></div>';
         return;
       }
@@ -907,7 +1217,7 @@
           '<span>' + esc(a.trend.label) + ' rate, ' + tWord + '</span></div>';
       }
       var strip = '<div class="gel-stats">' +
-        '<div class="gel-stat"><b>' + a.logged + '</b><span>' + plural(a.logged, 'mistake') + ' logged across ' + a.sessions.length + ' ' + plural(a.sessions.length, 'session') + '</span></div>' +
+        '<div class="gel-stat"><b>' + a.logged + '</b><span>' + plural(a.logged, 'mistake') + ' logged across ' + a.sessions.length + ' ' + plural(a.sessions.length, unit) + '</span></div>' +
         (fam ? '<div class="gel-stat" style="--gel-accent:' + fam.color + '"><b>' + a.topFamily.share + '%</b><span>' +
           esc(fam.label) + ' — ' + esc(fam.meaning) + '</span></div>' : '') +
         trendTile +
@@ -963,18 +1273,18 @@
         (matrixHtml(a, state) ? '<section class="gel-p-card gel-span">' + head('Mistake map',
           'Subtopic against mistake type. A dark column is a habit that follows ' + W.obj + ' everywhere; a dark row is one topic that needs work.') +
           matrixHtml(a, state) + '</section>' : '') +
-        (trendSvg(a.sessions) ? '<section class="gel-p-card gel-span">' + head('Session by session',
+        (!opts.noTrend && trendSvg(a.sessions) ? '<section class="gel-p-card gel-span">' + head('Session by session',
           'Mistakes logged per session, against how many questions that session had.') + trendSvg(a.sessions) + '</section>' : '') +
         (timeSigHtml(a) ? '<section class="gel-p-card gel-span">' + head('Time signature',
           'Rushing and grinding leave different fingerprints. This is which one each mistake type has.') + timeSigHtml(a) + '</section>' : '') +
-        (plan ? '<section class="gel-p-card gel-span gel-p-planbox">' + head(W.third ? 'What to set them' : 'What to do next',
+        (plan ? '<section class="gel-p-card gel-span gel-p-planbox">' + head(W.cohort ? 'What to teach next' : (W.third ? 'What to set them' : 'What to do next'),
           'Ranked by how much evidence there is, not by how bad it sounds.') + plan + '</section>' : '') +
         '<section class="gel-p-card gel-span"><h3>' + (W.third ? 'Logged mistakes' : 'Your logged mistakes') + '</h3>' +
           filterLine +
           '<div class="gel-p-list">' + list.slice(0, 60).map(function (q) {
             return '<div class="gel-p-li"><span class="gel-p-dot" style="background:' + typeColor(q.error_type) + '"></span>' +
               '<div><b>' + esc(typeLabel(q.error_type)) + '</b>' + (q.error_cause ? ' <em>· ' + esc(causeLabel(q.error_cause)) + '</em>' : '') +
-              '<small>' + esc(q.sessionDate || '') + ' · ' + esc(q.subtopic || q.topic || '') + (q.difficulty ? ' · ' + esc(q.difficulty) : '') +
+              '<small>' + (q.student ? esc(q.student) + ' · ' : '') + esc(q.sessionDate || '') + ' · ' + esc(q.subtopic || q.topic || '') + (q.difficulty ? ' · ' + esc(q.difficulty) : '') +
               (q.timeTaken ? ' · ' + fmtSecs(q.timeTaken) : '') + (q.bank_question_id ? ' · ' + esc(q.bank_question_id) : '') + '</small>' +
               (q.error_note ? '<small class="gel-p-quote">' + esc(q.error_note) + '</small>' : '') + '</div></div>';
           }).join('') + (list.length > 60 ? '<p class="gel-p-note">Showing the 60 most recent of ' + list.length + '.</p>' : '') +
@@ -1000,13 +1310,36 @@
     return a;
   }
 
+  /* EVENT MODE. Flattens event attempts (as /admin/event-attempts returns them,
+     with `tags` merged) into the same question shape the Pro analytics read, so
+     one renderer serves both. `attempt.tags` is [{q_index,error_type,...}]. */
+  function fromEventAttempts(attempts, extra) {
+    var out = [];
+    (attempts || []).forEach(function (at) {
+      var rs = (at && at.result && at.result.results) || [];
+      var tagBy = {}; ((at && at.tags) || []).forEach(function (t) { tagBy[t.q_index] = t; });
+      var who = (extra && extra.withName && at.student) ? (at.student.name || '') : '';
+      rs.forEach(function (r, i) {
+        var t = tagBy[i];
+        out.push({
+          id: i, correct: r.correct === true, submitted: !r.skipped,
+          timeTaken: Number(r.time_taken_seconds) || 0, topic: r.topic, subtopic: r.subtopic, difficulty: r.difficulty,
+          bank_question_id: r.question_id, question_text: r.question_text,
+          error_type: t ? t.error_type : '', error_cause: t ? t.error_cause : '', error_note: t ? t.note : '',
+          sessionKey: at.attempt_id, sessionDate: at.date || '', student: who
+        });
+      });
+    });
+    return out;
+  }
+
   window.GREErrorLog = {
     TYPES: TYPES, CAUSES: CAUSES, ACTIONS: ACTIONS, MIN_FOR_PATTERNS: MIN_FOR_PATTERNS,
     FAMILY_OF: FAMILY_OF, FAMILY_META: FAMILY_META, FAMILY_ORDER: FAMILY_ORDER,
     typeLabel: typeLabel, causeLabel: causeLabel, typeColor: typeColor,
     review: function (opts) { return new Review(opts); },
-    setLocked: setLocked, isBlocking: isBlocking,
-    resume: resume, flushOutbox: flushOutbox,
+    setLocked: setLocked, isBlocking: isBlocking, holding: isHolding, syncHold: syncHoldClass,
+    resume: resume, resumeEvents: resumeEvents, flushOutbox: flushOutbox, fromEventAttempts: fromEventAttempts,
     analyse: analyse, mountPanels: mountPanels,
     _registry: registry
   };

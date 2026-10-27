@@ -16,7 +16,6 @@
       <nav class="nav">
         <a href="event_builder.html">Builder</a>
         <a href="mock_test.html">Mock Test</a>
-        <a href="team_battle.html">Team Battle</a>
       </nav>
     </div>
 
@@ -24,7 +23,7 @@
       <div class="panel">
         <div class="eyebrow">Coach Tool</div>
         <h1>Aggregate result JSONs.</h1>
-        <p>Upload student result files from mock tests or team battles. This page computes leaderboards, team averages, weak areas, question-level stats, and visual performance charts locally in the browser.</p>
+        <p>Upload student result files from mock tests. This page computes leaderboards, weak areas, question-level stats, and visual performance charts locally in the browser.</p>
       </div>
       <div class="panel">
         <h2>Upload Results</h2>
@@ -54,23 +53,18 @@
         <div class="chart-bars" id="topPerformerChart"></div>
       </div>
       <div class="result-card">
-        <h3>Team Battle Snapshot</h3>
-        <div id="teamChart"></div>
-      </div>
-    </section>
-    <section class="coach-charts">
-      <div class="result-card">
         <h3>Weakest Subtopics</h3>
         <div class="chart-bars" id="weakSubtopicChart"></div>
       </div>
+    </section>
+    <section class="coach-charts" style="grid-template-columns:1fr">
       <div class="result-card">
         <h3>Hardest Questions</h3>
         <div class="chart-bars" id="hardQuestionChart"></div>
       </div>
     </section>
-    <section class="grid" style="margin-top:18px">
+    <section class="grid" style="margin-top:18px;grid-template-columns:1fr">
       <div class="result-card"><h3>Leaderboard</h3><div class="table-wrap" id="leaderboard"></div></div>
-      <div class="result-card"><h3>Team Score</h3><div class="table-wrap" id="teams"></div></div>
     </section>
     <section class="grid" style="margin-top:18px">
       <div class="result-card"><h3>Weak Subtopics</h3><div class="table-wrap" id="weakSubtopics"></div></div>
@@ -141,16 +135,6 @@
       Events.$("hardQuestionChart").innerHTML = barChart(data.question_analysis.slice(0, 8).map(q => ({ name: q.question_id, value: Math.round(100 - q.accuracy) })), {
         labelKey: "name", valueKey: "value", suffix: "%", empty: "No question attempts yet."
       });
-      if (!data.teams.length) {
-        Events.$("teamChart").innerHTML = "<p class='muted'>Upload Team Battle results to see Red vs Blue performance.</p>";
-        return;
-      }
-      Events.$("teamChart").innerHTML = `<div class="team-compare">${data.teams.map(t => `
-        <div class="team-card ${t.team === "Red" ? "red" : "blue"}">
-          <span>${Events.escapeHtml(t.team)} avg accuracy</span>
-          <b class="${t.team === "Red" ? "team-red" : "team-blue"}">${t.average_accuracy}%</b>
-          <p class="muted" style="margin:8px 0 0">${t.students} students · top scorer: ${Events.escapeHtml(t.top_scorer || "-")}</p>
-        </div>`).join("")}</div>`;
     }
 
     function average(values){
@@ -165,7 +149,6 @@
           name: r.student?.name || "Unknown",
           email: r.student?.email || "",
           batch: r.student?.batch || "",
-          team: r.team || "",
           score: r.score,
           total_questions: r.total_questions,
           accuracy: Number(r.accuracy || 0),
@@ -174,19 +157,6 @@
           event_id: r.event_id,
           event_name: r.event_name
         }));
-
-      const teamNames = [...new Set(results.map(r => r.team).filter(Boolean))];
-      const teams = teamNames.map(team => {
-        const members = results.filter(r => r.team === team);
-        return {
-          team,
-          students: members.length,
-          average_accuracy: Number(average(members.map(r => r.accuracy)).toFixed(2)),
-          average_score: Number(average(members.map(r => r.score)).toFixed(2)),
-          average_time_seconds: Number(average(members.map(r => r.total_time_seconds)).toFixed(1)),
-          top_scorer: [...members].sort((a,b) => b.score - a.score || a.total_time_seconds - b.total_time_seconds)[0]?.student?.name || ""
-        };
-      }).sort((a,b) => b.average_accuracy - a.average_accuracy || a.average_time_seconds - b.average_time_seconds);
 
       const subtopicMap = new Map();
       const questionMap = new Map();
@@ -217,7 +187,6 @@
         average_score: Number(average(results.map(r => r.score)).toFixed(2)),
         submissions_raw: results,
         leaderboard,
-        teams,
         weak_subtopics,
         question_analysis
       };
@@ -229,15 +198,12 @@
         ["Submissions", aggregate.submissions],
         ["Avg Accuracy", `${aggregate.average_accuracy}%`],
         ["Avg Score", aggregate.average_score],
-        ["Teams", aggregate.teams.length || "N/A"]
+        ["Students", new Set(loadedResults.map(r => (r.student?.email || r.student?.name || "").toLowerCase()).filter(Boolean)).size || "N/A"]
       ].map(([label, value]) => `<div class="metric"><b>${value}</b><span>${label}</span></div>`).join("");
       renderCoachCharts(aggregate);
 
-      Events.$("leaderboard").innerHTML = rowsToTable(["Rank","Student","Team","Score","Accuracy","Time"], aggregate.leaderboard.map(r => [
-        r.rank, Events.escapeHtml(r.name), Events.escapeHtml(r.team), `${r.score}/${r.total_questions}`, `${r.accuracy}%`, Events.formatTime(r.total_time_seconds)
-      ]));
-      Events.$("teams").innerHTML = rowsToTable(["Team","Students","Avg Accuracy","Avg Score","Avg Time","Top Scorer"], aggregate.teams.map(t => [
-        `<strong class="${t.team === "Red" ? "team-red" : "team-blue"}">${Events.escapeHtml(t.team)}</strong>`, t.students, `${t.average_accuracy}%`, t.average_score, Events.formatTime(t.average_time_seconds), Events.escapeHtml(t.top_scorer)
+      Events.$("leaderboard").innerHTML = rowsToTable(["Rank","Student","Score","Accuracy","Time"], aggregate.leaderboard.map(r => [
+        r.rank, Events.escapeHtml(r.name), `${r.score}/${r.total_questions}`, `${r.accuracy}%`, Events.formatTime(r.total_time_seconds)
       ]));
       Events.$("weakSubtopics").innerHTML = rowsToTable(["Subtopic","Attempts","Correct","Skipped","Accuracy"], aggregate.weak_subtopics.slice(0, 12).map(s => [
         Events.escapeHtml(s.subtopic), s.total, s.correct, s.skipped, `${s.accuracy}%`
@@ -251,7 +217,7 @@
     }
 
     function toCsv(rows){
-      const headers = ["rank","name","email","batch","team","score","total_questions","accuracy","total_time_seconds","event_id"];
+      const headers = ["rank","name","email","batch","score","total_questions","accuracy","total_time_seconds","event_id"];
       const esc = value => `"${String(value ?? "").replaceAll('"','""')}"`;
       return [headers.join(","), ...rows.map(row => headers.map(h => esc(row[h])).join(","))].join("\n");
     }

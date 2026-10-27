@@ -27,6 +27,7 @@
 <script defer src="gre-calculator.js"></script>
 <script defer src="progress-local.js"></script>
 <script defer src="score-scale.js"></script>
+<script defer src="pro/error-log.js"></script>
 <style>
   .gre-shell.screen{display:none;}
   .gre-shell.screen.active{display:flex;}
@@ -178,7 +179,8 @@
       <h2>Mock Complete!</h2>
       <p id="res-subtitle"></p>
     </div>
-    <div class="score-ring-wrap">
+    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+    <div class="score-ring-wrap gel-secret">
       <div class="score-ring">
         <svg width="160" height="160" viewBox="0 0 160 160">
           <circle cx="80" cy="80" r="68" fill="none" stroke="#e2e8ee" stroke-width="12"/>
@@ -190,22 +192,24 @@
         </div>
       </div>
     </div>
-    <div class="stats-grid" id="res-stats"></div>
-    <div class="section-compare" id="section-compare"></div>
-    <div class="topic-bars" id="topic-bars"></div>
-    <div class="diagnosis-card" id="diagnosis-card"></div>
-    <div class="result-upgrade" id="result-upgrade"></div>
-    <div class="result-actions">
+    <div class="stats-grid gel-secret" id="res-stats"></div>
+    <div class="section-compare gel-secret" id="section-compare"></div>
+    <div class="topic-bars gel-secret" id="topic-bars"></div>
+    <div class="diagnosis-card gel-secret" id="diagnosis-card"></div>
+    <div class="result-upgrade gel-secret" id="result-upgrade"></div>
+    <div id="gel-results-banner"></div>
+    <div class="result-actions gel-secret">
       <button class="btn btn-primary" onclick="downloadResultPDF()">📄 Download PDF report</button>
       <button class="btn btn-ghost" onclick="downloadResult()">Raw data (JSON)</button>
       <button class="btn btn-outline" onclick="reviewAnswers()">Review All Answers</button>
       <button class="btn btn-primary" onclick="goTo('screen-select')">← All Mocks</button>
     </div>
     <div class="review-section" id="review-section" style="display:none;">
-      <h3>Question Review <button class="review-toggle" onclick="toggleReview()">hide</button></h3>
+      <h3>Question Review <button class="review-toggle gel-secret" onclick="toggleReview()">hide</button></h3>
       <div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into your PDF report, the raw data file, and your attempt history on this device. <span id="le-count"></span></div>
       <div class="review-list" id="review-list"></div>
     </div>
+    <div id="gel-proceed-host"></div>
   </div>
 
 </div><!-- /app -->
@@ -278,15 +282,22 @@
 // ─── CLOUDFLARE SUBMISSION ────────────────────────────────────────────────────
 const SUBMISSION_ENDPOINT = 'https://gre-auth.goenka-aditya-kol.workers.dev/mock/submission';
 
+// Resolves to the Worker's reply ({ attempt_id, log }) or null if the save did not go
+// through. Only a page that has the error-log script flags the attempt, so a cached
+// older page can never leave a student waiting on a log it does not know how to show.
 async function saveAttempt(result) {
+  const flagged = window.GREErrorLog ? { ...result, requires_error_log: true } : result;
+  state.errPayload = flagged;
   try {
-    await fetch(SUBMISSION_ENDPOINT, {
+    const res = await fetch(SUBMISSION_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ result })
+      body: JSON.stringify({ result: flagged })
     });
+    return res.ok ? await res.json() : null;
   } catch(e) {
     console.warn('Could not save mock attempt', e);
+    return null;
   }
 }
 
@@ -302,6 +313,9 @@ function buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2) {
       const isSkipped = !given && given !== 0;
       results.push({
         id: q.id,
+        question_id: q.id,
+        question_text: String(q.question || '').slice(0, 400),
+        student_answer: isSkipped ? null : (Array.isArray(given) ? given.join(',') : given),
         correct: isCorrect,
         skipped: isSkipped,
         time_taken_seconds: state.timings[si+1][qi] || 0,
@@ -1058,20 +1072,100 @@ function showResults() {
     payload.estimated_score_high = est.high;
     payload.weighted_accuracy = est.wacc;
   }
-  saveAttempt(payload);
+  state.errSave = saveAttempt(payload);
 
-  histAdd({
+  // "Your attempts on this device" shows the score, so the entry is only added once
+  // the review gate lets go (immediately when there is nothing to tag).
+  state.pendingHist = {
     mock_id: state.mockMeta.id,
     mock_title: state.mockMeta.title,
     date: new Date().toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}),
     iso: new Date().toISOString(),
     scaled: est ? est.scaled : null, pct, correct: totalCorrect, total: totalQs,
     weakest: state._lastWeakest || ''
-  });
-  renderHistory();
+  };
+  setupMockErrorLog();
+  if (!(window.GREErrorLog && GREErrorLog.holding())) commitMockHistory();
 
   goTo('screen-results');
 }
+
+function commitMockHistory() {
+  if (!state.pendingHist) return;
+  histAdd(state.pendingHist);
+  state.pendingHist = null;
+  renderHistory();
+}
+
+/* ─── ERROR LOG ───────────────────────────────────────────────────────────────
+   Every wrong or skipped question must be tagged before the score and analytics
+   appear. Free students have no login, so the attempt the Worker returns (its
+   attempt_id) is the key: the coach can clear a log from Coach View, and a student
+   who leaves mid-way is held at the door on their next visit. The chips and the
+   gate live in pro/error-log.js. Question index = position in the saved attempt
+   (section 1, then section 2). If that file did not load, or the Worker has no log
+   tables, nothing here locks anything. */
+function setupMockErrorLog() {
+  if (state.errReview) { try { state.errReview.dispose(); } catch (e) { /* already gone */ } }
+  state.errReview = null;
+  const banner = document.getElementById('gel-results-banner');
+  if (banner) banner.innerHTML = '';
+  if (!window.GREErrorLog) return;
+  const rv = GREErrorLog.review({ kind: 'event', blocking: true, onUpdate: syncMockErrorGate });
+  let flat = 0;
+  ((state.mockData && state.mockData.sections) || []).forEach((sec, si) => {
+    (sec.questions || []).forEach((q, qi) => {
+      const given = state.answers[si + 1] ? state.answers[si + 1][qi] : undefined;
+      const skipped = !given && given !== 0;
+      if (skipped || !checkAnswer(q, given)) {
+        const givenStr = Array.isArray(given) ? given.join(', ') : (given || '—');
+        rv.require(flat, {
+          status: skipped ? 'skipped' : 'wrong',
+          time: Math.round((state.timings[si + 1] && state.timings[si + 1][qi]) || 0),
+          difficulty: q.difficulty, question_id: q.id,
+          // the keys the downloaded error_log has always carried
+          section: si + 1, question_number: qi + 1,
+          topic: (q.tags && q.tags[0]) || 'general',
+          given_answer: givenStr === '—' ? '' : givenStr,
+          correct_answer: Array.isArray(q.answer) ? q.answer.join(', ') : q.answer
+        });
+      }
+      flat++;
+    });
+  });
+  state.errReview = rv;
+  rv.attachEvent(state.errSave, state.errPayload);
+  if (rv.order.length) {
+    if (banner) banner.innerHTML = rv.banner();
+    reviewAnswers(true);          // the review is no longer optional
+  }
+  rv.refreshBanners();
+  syncMockErrorGate(rv.progress());
+  // Review first: the score and analytics stay hidden until every miss is tagged
+  // (or the coach clears the log). If this throws, release rather than strand the page.
+  try { rv.hold({ at: '#gel-proceed-host', onRelease: () => { syncMockErrorGate(null); commitMockHistory(); } }); }
+  catch (e) { try { rv.dispose(); } catch (x) { /* nothing more to do */ } if (window.console) console.warn('review gate', e); }
+}
+
+function syncMockErrorGate(p) {
+  if (!window.GREErrorLog) return;
+  const locked = !!(p && p.total && !p.complete);
+  const btns = Array.from(document.querySelectorAll('.result-actions .btn'))
+    .filter(b => (b.getAttribute('onclick') || '').indexOf('reviewAnswers') === -1);
+  GREErrorLog.setLocked(btns, locked, 'Tag why you missed each question first');
+}
+
+// Leaving the results for the mock list is blocked while a log is owed.
+// Wraps goTo so no button, present or future, can reach around the gate.
+const _gelGoTo = goTo;
+goTo = function (screenId) {
+  if (screenId === 'screen-select' && window.GREErrorLog && GREErrorLog.isBlocking()) {
+    const b = document.getElementById('gel-results-banner');
+    if (b) b.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return;
+  }
+  return _gelGoTo.apply(this, arguments);
+};
 
 function renderDiagnosis(pct, correct, total, est) {
   const { byTopic, byType } = buildBreakdown();
@@ -1258,20 +1352,27 @@ function leRefresh(key) {
 
 // Everything logged so far, in question order, ready for the download.
 function leEntries() {
-  return Object.keys(errorMeta).filter(k => errorLog[k]).map(k => (
+  const legacy = Object.keys(errorMeta).filter(k => errorLog[k]).map(k => (
     { ...errorMeta[k], error_type: errorLog[k].type, note: errorLog[k].note }
   ));
+  // Wrong/skipped questions are logged with the new chips; same keys, plus the cause.
+  const fresh = state.errReview ? state.errReview.exportRows().map(r => (
+    { ...r.meta, error_type: r.error_type, error_cause: r.error_cause, note: r.note }
+  )) : [];
+  return fresh.concat(legacy).sort((a, b) => ((a.section || 0) - (b.section || 0)) || ((a.question_number || 0) - (b.question_number || 0)));
 }
 
 // ─── POST-TEST ANSWER REVIEW ─────────────────────────────────────────────────
-function reviewAnswers() {
+function reviewAnswers(noScroll) {
   const reviewEl = document.getElementById('review-section');
   reviewEl.style.display = 'block';
   const list = document.getElementById('review-list');
   let html = '';
+  let flat = 0;                       // position in the saved attempt
   state.mockData.sections.forEach((sec, si) => {
     html += `<div class="section-label-row">── Section ${si+1} ──</div>`;
     sec.questions.forEach((q, qi) => {
+      const fidx = flat++;
       const given = state.answers[si+1][qi];
       const isCorrect = checkAnswer(q, given);
       const isSkipped = !given && given !== 0;
@@ -1286,7 +1387,7 @@ function reviewAnswers() {
         </div>
         ${q.explanation ? `<div class="review-exp">${escapeHtml(q.explanation)}</div>` : ''}
         ${q.trap ? `<div class="review-trap">⚠ Trap: ${escapeHtml(q.trap)}</div>` : ''}
-        ${leBox(`${si+1}-${qi+1}`, {
+        ${(state.errReview && state.errReview.items[fidx]) ? state.errReview.html(fidx) : leBox(`${si+1}-${qi+1}`, {
           section: si+1,
           question_number: qi+1,
           question_id: q.id,
@@ -1300,7 +1401,7 @@ function reviewAnswers() {
   });
   list.innerHTML = html;
   if (window.GREMath) GREMath.renderIn(list);
-  reviewEl.scrollIntoView({ behavior:'smooth' });
+  if (!noScroll) reviewEl.scrollIntoView({ behavior:'smooth' });
 }
 
 function toggleReview() {
@@ -1312,6 +1413,7 @@ function toggleReview() {
 
 // ─── DOWNLOAD ─────────────────────────────────────────────────────────────────
 function downloadResultPDF() {
+  if (window.GREErrorLog && GREErrorLog.isBlocking()) return;
   const el = document.getElementById('screen-results');
   if (!el || typeof html2pdf === 'undefined') { showModal('PDF unavailable', 'The PDF library did not load. Use "Raw data (JSON)" instead, or print this page.', [{label:'OK', cls:'btn-primary'}]); return; }
   const hidden = el.querySelectorAll('.result-actions, .result-upgrade');
@@ -1328,6 +1430,7 @@ function downloadResultPDF() {
 }
 
 function downloadResult() {
+  if (window.GREErrorLog && GREErrorLog.isBlocking()) return;
   const r1 = state.sectionResults[1];
   const r2 = state.sectionResults[2];
   const totalCorrect = r1.correct + r2.correct;
@@ -1361,6 +1464,8 @@ document.addEventListener('keydown', (e) => {
 renderMockGrid();
 goTo('screen-select');
 renderHistory();
+// A student who left a previous attempt untagged is held at the door until it is done.
+window.addEventListener('load', function () { try { if (window.GREErrorLog) GREErrorLog.resumeEvents(); } catch (e) { /* the page works without it */ } });
 </script>
 </body>
 </html>

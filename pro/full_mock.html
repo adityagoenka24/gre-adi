@@ -106,7 +106,8 @@
       <h2>Mock Complete!</h2>
       <p id="res-subtitle"></p>
     </div>
-    <div class="score-ring-wrap">
+    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+    <div class="score-ring-wrap gel-secret">
       <div class="score-ring">
         <svg width="160" height="160" viewBox="0 0 160 160">
           <circle cx="80" cy="80" r="68" fill="none" stroke="#e2e8ee" stroke-width="12"/>
@@ -118,21 +119,22 @@
         </div>
       </div>
     </div>
-    <div class="stats-grid" id="res-stats"></div>
-    <div class="section-compare" id="section-compare"></div>
-    <div class="topic-bars" id="topic-bars"></div>
-    <div class="diagnosis-card" id="diagnosis-card"></div>
+    <div class="stats-grid gel-secret" id="res-stats"></div>
+    <div class="section-compare gel-secret" id="section-compare"></div>
+    <div class="topic-bars gel-secret" id="topic-bars"></div>
+    <div class="diagnosis-card gel-secret" id="diagnosis-card"></div>
     <div id="gel-results-banner"></div>
-    <div class="result-actions">
+    <div class="result-actions gel-secret">
       <button class="btn btn-ghost" onclick="downloadResult()">Download Result</button>
       <button class="btn btn-outline" onclick="reviewAnswers()">Review All Answers</button>
       <button class="btn btn-primary" onclick="goTo('screen-select')">← All Mocks</button>
     </div>
     <div class="review-section" id="review-section" style="display:none;">
-      <h3>Question Review <button class="review-toggle" onclick="toggleReview()">hide</button></h3>
+      <h3>Question Review <button class="review-toggle gel-secret" onclick="toggleReview()">hide</button></h3>
       <div class="le-hint">Tag what went wrong on every question you missed or skipped. It is saved to your progress and builds your mistake patterns. <strong>Log Error</strong> on a question you got right (a lucky guess, say) only goes into the result file you download. <span id="le-count"></span></div>
       <div class="review-list" id="review-list"></div>
     </div>
+    <div id="gel-proceed-host"></div>
   </div>
 
 </div><!-- /app -->
@@ -819,6 +821,7 @@ function showResults() {
    saved session, which buildProgressSession() lays out section 1 then section 2.
    If that file did not load, nothing here locks anything. */
 function setupMockErrorLog() {
+  if (state.errReview) { try { state.errReview.dispose(); } catch (e) { /* already gone */ } }
   state.errReview = null;
   const banner = document.getElementById('gel-results-banner');
   if (banner) banner.innerHTML = '';
@@ -853,6 +856,10 @@ function setupMockErrorLog() {
   }
   rv.refreshBanners();
   syncMockErrorGate(rv.progress());
+  // Review first: the score and analytics stay hidden until every miss is tagged
+  // (or the coach clears the log). If this throws, release rather than strand the page.
+  try { rv.hold({ at: '#gel-proceed-host', onRelease: () => syncMockErrorGate(null) }); }
+  catch (e) { try { rv.dispose(); } catch (x) { /* nothing more to do */ } if (window.console) console.warn('review gate', e); }
 }
 
 function syncMockErrorGate(p) {

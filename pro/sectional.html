@@ -219,7 +219,8 @@
       <h2 id="res-title">Section Complete</h2>
       <p id="res-subtitle"></p>
     </div>
-    <div class="sx-score">
+    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+    <div class="sx-score gel-secret">
       <div class="sx-score-row">
         <div class="sx-score-cell">
           <div class="sx-score-big"><span id="res-correct">0</span><small>/<span id="res-total">12</span></small></div>
@@ -234,11 +235,11 @@
       <div><span class="sx-band" id="res-band"></span></div>
       <div class="sx-score-note" id="res-scaled-note"></div>
     </div>
-    <div class="stats-grid" id="res-stats"></div>
-    <div class="topic-bars" id="res-concepts"></div>
-    <div class="diagnosis-card" id="res-diagnosis"></div>
+    <div class="stats-grid gel-secret" id="res-stats"></div>
+    <div class="topic-bars gel-secret" id="res-concepts"></div>
+    <div class="diagnosis-card gel-secret" id="res-diagnosis"></div>
     <div id="gel-results-banner"></div>
-    <div class="result-actions">
+    <div class="result-actions gel-secret">
       <button class="btn btn-primary" onclick="toggleReview()">Review Every Question</button>
       <button class="btn btn-outline" onclick="restartSet()">Retake This Set</button>
       <button class="btn btn-outline" onclick="downloadResults()">Download Results (JSON)</button>
@@ -249,7 +250,8 @@
       <div class="le-hint">Tag what went wrong on every question you missed or skipped. It is saved to your progress and builds your mistake patterns. <strong>Log Error</strong> on a question you got right (a lucky guess, say) only goes into the results file you download. <span id="le-count"></span></div>
       <div class="review-list" id="review-list"></div>
     </div>
-    <div class="result-upgrade" id="result-upgrade"></div>
+    <div id="gel-proceed-host"></div>
+    <div class="result-upgrade gel-secret" id="result-upgrade"></div>
   </div>
 
 </div>
@@ -873,6 +875,7 @@ function renderResults(){
    error-log.js; this adapts the sectional's result shape to it. If that file
    did not load, nothing here locks anything. */
 function setupSectionalErrorLog(){
+  if(state.errReview){ try { state.errReview.dispose(); } catch(e){} }
   state.errReview = null;
   var banner = document.getElementById('gel-results-banner');
   if(banner) banner.innerHTML = '';
@@ -902,6 +905,10 @@ function setupSectionalErrorLog(){
   }
   rv.refreshBanners();
   syncSectionalErrorGate(rv.progress());
+  // Review first: the score and analytics stay hidden until every miss is tagged
+  // (or the coach clears the log). If this throws, release rather than strand the page.
+  try { rv.hold({ at: '#gel-proceed-host', onRelease: function(){ syncSectionalErrorGate(null); } }); }
+  catch(e){ try { rv.dispose(); } catch(x){} if(window.console) console.warn('review gate', e); }
 }
 
 function syncSectionalErrorGate(p){

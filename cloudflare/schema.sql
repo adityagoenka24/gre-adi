@@ -72,3 +72,37 @@ CREATE TABLE IF NOT EXISTS log_required (
   created_at INTEGER NOT NULL
 );
 CREATE INDEX IF NOT EXISTS idx_log_required_email ON log_required(email, waived);
+
+-- ── Event error log ─────────────────────────────────────────────────────────
+-- Same idea as error_log / log_required, for event mocks (no login). The
+-- attempt_id, a random UUID returned only to the submitting browser, is the key.
+--
+-- event_log_required  one row per event attempt that must be tagged: the
+--                     result indices still to tag, the KV key of the stored
+--                     attempt, and a coach-set `waived` flag.
+-- event_error_log     one row per tagged question, keyed (attempt_id, q_index).
+
+CREATE TABLE IF NOT EXISTS event_log_required (
+  attempt_id TEXT PRIMARY KEY,
+  event_key  TEXT NOT NULL,
+  email      TEXT,
+  needed     TEXT NOT NULL,
+  kv_key     TEXT,
+  waived     INTEGER NOT NULL DEFAULT 0,
+  created_at INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_evlr_event ON event_log_required(event_key);
+
+CREATE TABLE IF NOT EXISTS event_error_log (
+  attempt_id  TEXT NOT NULL,
+  event_key   TEXT NOT NULL,
+  email       TEXT,
+  q_index     INTEGER NOT NULL,
+  question_id TEXT,
+  error_type  TEXT NOT NULL,
+  error_cause TEXT,
+  note        TEXT,
+  logged_at   INTEGER NOT NULL,
+  PRIMARY KEY (attempt_id, q_index)
+);
+CREATE INDEX IF NOT EXISTS idx_evel_event ON event_error_log(event_key);

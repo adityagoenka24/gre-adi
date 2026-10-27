@@ -48,6 +48,7 @@
 <script defer src="ads-config.js"></script>
 <script defer src="progress-local.js"></script>
 <script defer src="score-scale.js"></script>
+<script defer src="pro/error-log.js"></script>
 <script defer src="analytics.js"></script>
 <style>
   .gre-shell.screen{display:none;}
@@ -228,7 +229,8 @@
       <h2 id="res-title">Section Complete</h2>
       <p id="res-subtitle"></p>
     </div>
-    <div class="sx-score">
+    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+    <div class="sx-score gel-secret">
       <div class="sx-score-row">
         <div class="sx-score-cell">
           <div class="sx-score-big"><span id="res-correct">0</span><small>/<span id="res-total">12</span></small></div>
@@ -243,10 +245,11 @@
       <div><span class="sx-band" id="res-band"></span></div>
       <div class="sx-score-note" id="res-scaled-note"></div>
     </div>
-    <div class="stats-grid" id="res-stats"></div>
-    <div class="topic-bars" id="res-concepts"></div>
-    <div class="diagnosis-card" id="res-diagnosis"></div>
-    <div class="result-actions">
+    <div class="stats-grid gel-secret" id="res-stats"></div>
+    <div class="topic-bars gel-secret" id="res-concepts"></div>
+    <div class="diagnosis-card gel-secret" id="res-diagnosis"></div>
+    <div id="gel-results-banner"></div>
+    <div class="result-actions gel-secret">
       <button class="btn btn-primary" onclick="toggleReview()">Review Every Question</button>
       <button class="btn btn-outline" onclick="restartSet()">Retake This Set</button>
       <button class="btn btn-outline" onclick="downloadResults()">Download Results (JSON)</button>
@@ -257,7 +260,8 @@
       <div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into the results file you download and isn't saved anywhere else. <span id="le-count"></span></div>
       <div class="review-list" id="review-list"></div>
     </div>
-    <div class="result-upgrade" id="result-upgrade"></div>
+    <div id="gel-proceed-host"></div>
+    <div class="result-upgrade gel-secret" id="result-upgrade"></div>
   </div>
 
 </div>
@@ -682,6 +686,9 @@ function buildSubmissionPayload(){
   var results = r.perQ.map(function(x){
     return {
       id: x.q.id,
+      question_id: x.q.id,
+      question_text: String(x.q.question || '').slice(0, 400),
+      student_answer: x.skipped ? null : (Array.isArray(x.given) ? x.given.join(',') : x.given),
       correct: x.correct,
       skipped: x.skipped,
       time_taken_seconds: x.time,
@@ -726,17 +733,24 @@ function saveAttempt(payload){
   if (window.GREProgressLocal) {
     GREProgressLocal.recordAttemptPayload(payload, { session_type: 'sectional' });
   }
+  // Only a page that has the error-log script flags the attempt, so a cached older
+  // page can never leave a student waiting on a log it does not know how to show.
+  var flagged = window.GREErrorLog ? Object.assign({}, payload, { requires_error_log: true }) : payload;
+  state.errPayload = flagged;
+  state.errSave = Promise.resolve(null);
   try {
-    fetch(SUBMISSION_ENDPOINT, {
+    state.errSave = fetch(SUBMISSION_ENDPOINT, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ result: payload })
-    }).catch(function(e){ console.warn('Could not save sectional attempt', e); });
+      body: JSON.stringify({ result: flagged })
+    }).then(function(r){ return r.ok ? r.json() : null; })
+      .catch(function(e){ console.warn('Could not save sectional attempt', e); return null; });
   } catch(e) { console.warn('Could not save sectional attempt', e); }
 }
 
 // Export the attempt in the shape pro/analytics.html ingests.
 function downloadResults(){
+  if(errLogBlocked()) return;
   var payload = buildSubmissionPayload();
   var errors = leEntries();
   if(errors.length) payload.error_log = errors;
@@ -840,9 +854,63 @@ function renderResults(){
 
   document.getElementById('review-section').style.display = 'none';
   document.querySelector('.result-actions .btn-primary').textContent = 'Review Every Question';
+  setupSectionalErrorLog();
 }
 
-function toggleReview(){
+/* ─── ERROR LOG ───────────────────────────────────────────────────────────────
+   Every wrong or skipped question must be tagged before the score and analytics
+   appear. Free students have no login, so the attempt the Worker returns (its
+   attempt_id) is the key: the coach can clear a log from Coach View, and a student
+   who leaves mid-way is held at the door on their next visit. The chips and the
+   gate live in pro/error-log.js. If that file did not load, or the Worker has no
+   log tables, nothing here locks anything. */
+function setupSectionalErrorLog(){
+  if(state.errReview){ try { state.errReview.dispose(); } catch(e){} }
+  state.errReview = null;
+  var banner = document.getElementById('gel-results-banner');
+  if(banner) banner.innerHTML = '';
+  if(!window.GREErrorLog) return;
+  var rv = GREErrorLog.review({ kind:'event', blocking:true, onUpdate:syncSectionalErrorGate });
+  state.result.perQ.forEach(function(x){
+    if(x.correct && !x.skipped) return;
+    var correctStr = Array.isArray(x.q.answer) ? x.q.answer.join(', ') : x.q.answer;
+    var givenStr = Array.isArray(x.given) ? x.given.join(', ') : (x.given || '—');
+    rv.require(x.i, {
+      status: x.skipped ? 'skipped' : 'wrong',
+      time: x.time, difficulty: x.q.difficulty, question_id: x.q.id,
+      // the keys the downloaded error_log has always carried
+      question_number: x.i + 1,
+      topic: (x.q.tags && x.q.tags[0]) || 'general',
+      subtopic: (x.q.tags && x.q.tags[1]) || '',
+      given_answer: givenStr === '—' ? '' : givenStr,
+      correct_answer: correctStr
+    });
+  });
+  state.errReview = rv;
+  rv.attachEvent(state.errSave, state.errPayload);
+  if(rv.order.length){
+    if(banner) banner.innerHTML = rv.banner();
+    // Open the review straight away: it is no longer optional.
+    if(document.getElementById('review-section').style.display === 'none') toggleReview(true);
+  }
+  rv.refreshBanners();
+  syncSectionalErrorGate(rv.progress());
+  // Review first: the score and analytics stay hidden until every miss is tagged
+  // (or the coach clears the log). If this throws, release rather than strand the page.
+  try { rv.hold({ at: '#gel-proceed-host', onRelease: function(){ syncSectionalErrorGate(null); } }); }
+  catch(e){ try { rv.dispose(); } catch(x){} if(window.console) console.warn('review gate', e); }
+}
+
+function syncSectionalErrorGate(p){
+  if(!window.GREErrorLog) return;
+  var locked = !!(p && p.total && !p.complete);
+  var btns = Array.prototype.filter.call(document.querySelectorAll('.result-actions .btn'), function(b){
+    return (b.getAttribute('onclick') || '').indexOf('toggleReview') === -1;
+  });
+  GREErrorLog.setLocked(btns, locked, 'Tag why you missed each question first');
+}
+
+function toggleReview(noScroll){
   var sec = document.getElementById('review-section');
   var btn = document.querySelector('.result-actions .btn-primary');
   if(sec.style.display === 'none'){
@@ -866,7 +934,7 @@ function toggleReview(){
         '</div>' +
         (x.q.explanation ? '<div class="review-exp">' + escapeHtml(x.q.explanation) + '</div>' : '') +
         (x.q.trap ? '<div class="review-trap">⚠ Trap: ' + escapeHtml(x.q.trap) + '</div>' : '') +
-        leBox(x.i, {
+        ((state.errReview && state.errReview.items[x.i]) ? state.errReview.html(x.i) : leBox(x.i, {
           question_number: x.i + 1,
           question_id: x.q.id,
           topic: (x.q.tags && x.q.tags[0]) || 'general',
@@ -874,13 +942,13 @@ function toggleReview(){
           status: status,
           given_answer: givenStr === '—' ? '' : givenStr,
           correct_answer: correctStr
-        }) +
+        })) +
       '</div>';
     }).join('');
     if(window.GREMath) GREMath.renderIn(document.getElementById('review-list'));
     sec.style.display = 'block';
     btn.textContent = 'Hide Review';
-    sec.scrollIntoView({behavior:'smooth'});
+    if(!noScroll) sec.scrollIntoView({behavior:'smooth'});
   } else {
     sec.style.display = 'none';
     btn.textContent = 'Review Every Question';
@@ -951,13 +1019,26 @@ function leRefresh(key){
 
 // Everything logged so far, in question order, ready for the download.
 function leEntries(){
-  return Object.keys(errorMeta).filter(function(k){ return errorLog[k]; }).map(function(k){
+  var legacy = Object.keys(errorMeta).filter(function(k){ return errorLog[k]; }).map(function(k){
     return Object.assign({}, errorMeta[k], { error_type: errorLog[k].type, note: errorLog[k].note });
   });
+  // Wrong/skipped questions are logged with the new chips; same keys, plus the cause.
+  var fresh = state.errReview ? state.errReview.exportRows().map(function(r){
+    return Object.assign({}, r.meta, { error_type: r.error_type, error_cause: r.error_cause, note: r.note });
+  }) : [];
+  return fresh.concat(legacy).sort(function(a, b){ return (a.question_number || 0) - (b.question_number || 0); });
 }
 
-function restartSet(){ beginSection(); }
-function backToTopics(){ clearInterval(state.timerInterval); goTo('screen-topics'); }
+function errLogBlocked(){
+  if(window.GREErrorLog && GREErrorLog.isBlocking()){
+    var b = document.getElementById('gel-results-banner');
+    if(b) b.scrollIntoView({behavior:'smooth', block:'center'});
+    return true;
+  }
+  return false;
+}
+function restartSet(){ if(errLogBlocked()) return; beginSection(); }
+function backToTopics(){ if(errLogBlocked()) return; clearInterval(state.timerInterval); goTo('screen-topics'); }
 
 // Guard against losing an in-progress section
 window.addEventListener('beforeunload', function(e){
@@ -983,6 +1064,8 @@ function loadCatalogue(){
 }
 
 loadCatalogue();
+// A student who left a previous attempt untagged is held at the door until it is done.
+window.addEventListener('load', function(){ try { if(window.GREErrorLog) GREErrorLog.resumeEvents(); } catch(e){} });
 </script>
 </body>
 </html>

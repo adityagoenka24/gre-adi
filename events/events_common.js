@@ -9,7 +9,7 @@ const Events = (() => {
   // section has its own timer, the student moves freely inside the current
   // section, and once a section ends it can't be reopened. Every question
   // carries a 0-based `section` index. Configs without `sections` (topic
-  // tests, team battles) take none of these paths.
+  // tests) take none of these paths.
   function isSectioned() {
     return !!state.config && Array.isArray(state.config.sections) && state.config.sections.length > 1;
   }
@@ -306,7 +306,7 @@ const Events = (() => {
     };
   }
 
-  function buildResult(student, team) {
+  function buildResult(student) {
     const submittedAt = new Date();
     const results = state.config.questions.map((q, i) => {
       const answer = state.answers[i];
@@ -336,7 +336,6 @@ const Events = (() => {
       event_name: state.config.event_name,
       event_type: state.config.event_type,
       student,
-      team: team || null,
       started_at: state.startedAt.toISOString(),
       submitted_at: submittedAt.toISOString(),
       total_time_seconds: isSectioned()
@@ -670,6 +669,83 @@ const Events = (() => {
   let errorLog = {};   // result index -> { type, note }
   let errorMeta = {};  // result index -> question details, registered as the review renders
 
+  /* ── MANDATORY ERROR LOG ────────────────────────────────────────────────
+     Same gate as the Pro sessions (pro/error-log.js): every wrong or skipped
+     question must be tagged before the result can be downloaded or sent, and
+     a student who leaves mid-way is held at the door next time. If that script
+     did not load, or the Worker has no log tables yet, this all stays out of the
+     way and the optional box below is what the student sees. */
+  let evReview = null;       // pro/error-log.js controller for this attempt
+  let evResult = null;
+  let evInsightsShown = false;
+  let evUnloadWired = false;
+
+  function setupEventLog(result) {
+    if (evReview) { try { evReview.dispose(); } catch (e) { /* already gone */ } }
+    evReview = null; evResult = result; evInsightsShown = false;
+    if (!window.GREErrorLog) return false;
+    const rv = window.GREErrorLog.review({ kind: "event", blocking: true, onUpdate: syncEventLog });
+    (result.results || []).forEach((r, i) => {
+      if (r.correct) return;
+      rv.require(i, { status: r.skipped ? "skipped" : "wrong", time: r.time_taken_seconds, difficulty: r.difficulty, question_id: r.question_id });
+    });
+    evReview = rv;
+    if (!evUnloadWired) {
+      evUnloadWired = true;
+      window.addEventListener("beforeunload", (e) => {
+        if (window.GREErrorLog && window.GREErrorLog.isBlocking()) { e.preventDefault(); e.returnValue = ""; }
+      });
+    }
+    return true;
+  }
+
+  function syncEventLog() {
+    if (!window.GREErrorLog) return;
+    const blocking = window.GREErrorLog.isBlocking();
+    window.GREErrorLog.setLocked([$("downloadResultBtn"), $("emailResultBtn")], blocking, "Log your mistakes first");
+  }
+
+  // The review-first gate lets go: the score and analysis are now on screen. A
+  // student who finished the log gets the mistake pattern on top; one the coach
+  // cleared gets everything else and a note about what is missing.
+  function onEventRelease(info) {
+    syncEventLog();
+    if (info.reason !== "proceed" || !evReview || !evReview.order.length) return;
+    if (info.waived) {
+      const host = document.getElementById("ev-insights");
+      if (host) host.innerHTML = `<div class="notice" style="margin-bottom:24px;">${info.clearedBy === "waived" ? "Our coaching team cleared your error log" : "Your error log is already cleared"}, so the mistake-pattern analysis is skipped for this attempt. Everything else is below.</div>`;
+      return;
+    }
+    if (!evInsightsShown) showEventInsights();
+  }
+
+  // What Pro shows after every session, from the tags just logged: the payoff.
+  function showEventInsights() {
+    const host = document.getElementById("ev-insights");
+    if (!host || !evResult) return;
+    evInsightsShown = true;
+    const G = window.GREErrorLog;
+    const tags = evReview.entries(false);
+    const qs = G.fromEventAttempts([{ attempt_id: "me", date: String(evResult.submitted_at || "").slice(0, 10), result: evResult, tags }]);
+    const counts = {};
+    tags.forEach((t) => { counts[t.error_type] = (counts[t.error_type] || 0) + 1; });
+    const summary = Object.keys(counts).sort((a, b) => counts[b] - counts[a]).map((k) => `${G.typeLabel(k)} × ${counts[k]}`).join(" · ");
+    const full = qs.filter((q) => q.correct !== true).length >= 3;
+    host.innerHTML = `<div class="table-card" style="margin-bottom:24px;">
+      <h3>Your mistake pattern</h3>
+      <p style="margin:6px 0 14px;font-size:13px;color:var(--text2);">Built from the tags you just logged. This is what Pro builds for you after every session.</p>
+      <div id="ev-ins-body" class="gel-paper">${full ? "" : `<p style="margin:0;font-size:14px;">You logged ${tags.length} ${tags.length === 1 ? "mistake" : "mistakes"}: ${escapeHtml(summary)}. With three or more, this opens into a full breakdown of where they come from.</p>`}</div>
+      <div class="pro-analysis-cta" style="margin-top:16px;">
+        <div>
+          <h3>This is one mock. Pro shows the whole picture.</h3>
+          <p>Your tags carry across every Pro session: how each mistake type is trending, a map of mistakes against all 88 subtopics, and a ranked list of exactly what to practise next.</p>
+        </div>
+        <a class="primary-btn" href="https://grequantpro.com/#plans" onclick="if(window.GQP)window.GQP.track('pro_cta_clicked',{from:'mock_error_log',event_id:'${escapeHtml(String(evResult.event_id || ""))}'})">See what Pro adds</a>
+      </div>
+    </div>`;
+    if (full) G.mountPanels(document.getElementById("ev-ins-body"), qs, { min: 3, noTrend: true, unit: "mock" });
+  }
+
   function leHint() {
     return `<div class="le-hint"><strong>Log Error</strong> on any question to tag what went wrong. It goes into the result file you download and isn't saved anywhere else. <span id="le-count"></span></div>`;
   }
@@ -685,6 +761,7 @@ const Events = (() => {
       given_answer: given,
       correct_answer: Array.isArray(r.correct_answer) ? r.correct_answer.join(", ") : r.correct_answer
     };
+    if (evReview && !r.correct && evReview.items[index]) return evReview.html(index);   // required chips
     return `<div class="le-box" data-le="${index}">${leInner(index, false)}</div>`;
   }
 
@@ -738,9 +815,24 @@ const Events = (() => {
 
   // Everything logged so far, in question order, ready for the download.
   function leEntries() {
-    return Object.keys(errorMeta).filter((k) => errorLog[k]).map((k) => (
+    const rows = Object.keys(errorMeta).filter((k) => errorLog[k]).map((k) => (
       { ...errorMeta[k], error_type: errorLog[k].type, note: errorLog[k].note }
     ));
+    if (evReview) {
+      evReview.order.forEach((i) => {
+        const it = evReview.items[i];
+        if (it.type && errorMeta[i]) {
+          rows.push({
+            ...errorMeta[i],
+            error_type: window.GREErrorLog.typeLabel(it.type),
+            error_cause: window.GREErrorLog.causeLabel(it.cause),
+            note: it.note || ""
+          });
+        }
+      });
+      rows.sort((a, b) => a.question_number - b.question_number);
+    }
+    return rows;
   }
 
   function renderWrongReview(result) {
@@ -925,7 +1017,7 @@ const Events = (() => {
     if (oldSectionCard) oldSectionCard.remove();
     if (result.sections && result.sections.length) {
       $("exam-kpi-row").insertAdjacentHTML("afterend", `
-        <div class="chart-card" id="exam-section-card" style="margin-bottom:24px;"><h3>By Section</h3>
+        <div class="chart-card gel-secret" id="exam-section-card" style="margin-bottom:24px;"><h3>By Section</h3>
           ${result.sections.map((sec) => {
             const pct = Math.round(sec.accuracy);
             const col = pct >= 75 ? "var(--success)" : pct >= 50 ? "var(--warning)" : "var(--danger)";
@@ -938,8 +1030,17 @@ const Events = (() => {
     if ($("proCta")) $("proCta").innerHTML = renderSmartDiagnosis(result) + renderProCta(result);
     errorLog = {};
     errorMeta = {};
-    $("exam-wrong-section").innerHTML = leHint() + renderQuestionReference(result) + renderWrongReview(result);
+    const gated = setupEventLog(result);
+    document.querySelectorAll(".ev-top-banner").forEach((n) => n.remove());
+    if (gated && evReview.order.length) {
+      // A banner at the top as well as above the review, because the review is a long way down the page.
+      $("exam-kpi-row").insertAdjacentHTML("beforebegin", `<div class="ev-top-banner" style="position:sticky;top:8px;z-index:20;">${evReview.banner()}</div>`);
+    }
+    $("exam-wrong-section").innerHTML = (gated ? "" : leHint()) + renderQuestionReference(result) + renderWrongReview(result);
+    if (gated) evReview.refreshBanners();
     $("exam-wrong-section").onclick = leClick;
+    if ($("ev-insights")) $("ev-insights").innerHTML = "";
+    if ($("resultsHeldTitle")) $("resultsHeldTitle").textContent = timedOut ? "Time is up. Now the review." : "Test complete. Now the review.";
     // Typeset only the question review. The rest of this page is statistics
     // ("0:01 / 47:00", "7/12 (58%)"), and the typesetter would turn every
     // slash in those into a stacked fraction.
@@ -948,6 +1049,13 @@ const Events = (() => {
       const errors = leEntries();
       downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, errors.length ? { ...result, error_log: errors } : result);
     };
+    syncEventLog();
+    // Review first: until every miss is tagged (or the coach clears it) the score
+    // and analysis stay hidden. If this throws, release rather than strand the page.
+    if (gated) {
+      try { evReview.hold({ at: $("gelProceedHost"), onRelease: onEventRelease }); }
+      catch (e) { try { evReview.dispose(); } catch (x) { /* nothing more to do */ } if (window.console) console.warn("review gate", e); }
+    }
     document.getElementById("emailResultBtn").onclick = async () => {
   const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);
   const bodyText = `Hi our coaching team,\n\nAttached/pasted below is my event result JSON.\n\n${JSON.stringify(result, null, 2)}`;
@@ -963,15 +1071,22 @@ const Events = (() => {
 };
   }
 
+  // Resolves to the Worker's reply ({ attempt_id, log }) or null if the save did
+  // not go through. Only the new client sets requires_error_log, so an older
+  // cached page can never leave a student locked.
   async function saveAttempt(result) {
+    const flagged = window.GREErrorLog ? { ...result, requires_error_log: true } : result;
     try {
-      await fetch(SUBMISSION_ENDPOINT, {
+      const res = await fetch(SUBMISSION_ENDPOINT, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ result })
+        body: JSON.stringify({ result: flagged })
       });
+      if (!res.ok) return null;
+      return await res.json();
     } catch (error) {
       console.warn("Could not save mock attempt", error);
+      return null;
     }
   }
 
@@ -985,8 +1100,7 @@ const Events = (() => {
       email: $("studentEmail").value.trim(),
       batch: $("studentBatch").value.trim()
     };
-    const team = $("studentTeam") ? $("studentTeam").value : null;
-    const result = buildResult(student, team);
+    const result = buildResult(student);
     if (window.GQP) window.GQP.track('mock_submitted', {
       event_id: result.event_id,
       score: result.score,
@@ -996,7 +1110,8 @@ const Events = (() => {
       timed_out: timedOut
     });
     renderResults(result, timedOut);
-    saveAttempt(result);
+    const saved = saveAttempt(result);
+    if (evReview) evReview.attachEvent(saved, { ...result, requires_error_log: true });
     // Free event mocks also feed this browser's local history, so they count
     // toward the upgrade prompt and carry over if the student goes Pro.
     if (window.GREProgressLocal) {
@@ -1007,11 +1122,12 @@ const Events = (() => {
     }
   }
 
-  async function initStudentPage({ teamMode = false } = {}) {
+  async function initStudentPage() {
+    // A student who left a previous attempt untagged is held here until it is done.
+    if (window.GREErrorLog) window.GREErrorLog.resumeEvents();
     try {
       state.config = await loadConfig();
       state.config.questions = (state.config.questions || []).map((q) => enrichQuestion(q, q.topic, q.subtopic));
-      if (teamMode) state.config.event_type = "team_battle";
       $("eventName").textContent = state.config.event_name || "GRE Quant Pro Event";
       $("eventDetails").textContent = isSectioned()
         ? `${state.config.question_count || state.config.questions.length} questions · ${state.config.sections.map((sec) => `${sec.question_count || ""} Q in ${formatTime(sec.time_limit_seconds)}`).join(" + ")} · each section timed separately`
@@ -1022,18 +1138,14 @@ const Events = (() => {
           $("startError").textContent = "Name and email are required before starting.";
           return;
         }
-        if (teamMode && !$("studentTeam").value) {
-          $("startError").textContent = "Choose Red or Blue before starting.";
-          return;
-        }
         $("startSection").classList.add("hidden");
         $("examSection").classList.remove("hidden");
         if ($("eventMetaName")) $("eventMetaName").textContent = $("studentName").value.trim();
-        if ($("eventMetaTopic")) $("eventMetaTopic").textContent = teamMode && $("studentTeam") ? `${state.config.event_name} · ${$("studentTeam").value}` : state.config.event_name;
+        if ($("eventMetaTopic")) $("eventMetaTopic").textContent = state.config.event_name;
         if (window.GQP) window.GQP.track('mock_started', {
           event_id: state.config.event_id,
           event_name: state.config.event_name,
-          mode: teamMode ? 'team' : 'solo'
+          mode: 'solo'
         });
         state.startedAt = new Date();
         state.answers = new Array(state.config.questions.length).fill(null);

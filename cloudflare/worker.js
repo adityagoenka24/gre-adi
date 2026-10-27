@@ -26,8 +26,14 @@
  *   GET  /admin/analytics       — daily pageviews + unique visitors (protected by ADMIN_SECRET)
  *   POST /lead                  — capture an email for a free download (handbook PDF)
  *   GET  /admin/leads           — list captured emails (protected by ADMIN_SECRET)
- *   POST /mock/submission       — save a completed mock/team attempt
- *   GET  /admin/mock-attempts   — list saved mock/team attempts (protected by ADMIN_SECRET)
+ *   POST /mock/submission       — save a completed mock attempt
+ *   GET  /admin/mock-attempts   — list saved mock attempts (protected by ADMIN_SECRET)
+ *   POST /mock/error-log        — an event student tags a wrong/skipped question (attempt_id is the secret)
+ *   GET  /mock/pending-log      — attempts in this browser that still owe a log
+ *   GET  /mock/log-status       — one attempt: pending | complete | waived (cheap; polled while a student reviews)
+ *   GET  /admin/events          — one row per event, aggregated (protected by ADMIN_SECRET)
+ *   GET  /admin/event-attempts  — every attempt at one event, with tags (protected by ADMIN_SECRET)
+ *   POST /admin/event-log/waive — release a student from an event error log (protected by ADMIN_SECRET)
  *   POST /razorpay/webhook      — Razorpay webhook: auto-provisions Pro on payment.captured
  *   GET  /admin/webhook-queue   — list auto-provisioned, manual-review, and no-email payments (protected by ADMIN_SECRET)
  *   POST /admin/dismiss-webhook-item — remove a resolved item from the manual-review/no-email queue (protected by ADMIN_SECRET)
@@ -123,6 +129,24 @@ export default {
       if (path === '/admin/mock-attempts' && request.method === 'GET') {
         return await handleAdminMockAttempts(request, env, url);
       }
+      if (path === '/mock/error-log' && request.method === 'POST') {
+        return await handleEventErrorLogSave(request, env);
+      }
+      if (path === '/mock/pending-log' && request.method === 'GET') {
+        return await handleEventPendingLog(request, env, url);
+      }
+      if (path === '/mock/log-status' && request.method === 'GET') {
+        return await handleEventLogStatus(request, env, url);
+      }
+      if (path === '/admin/events' && request.method === 'GET') {
+        return await handleAdminEvents(request, env, url);
+      }
+      if (path === '/admin/event-attempts' && request.method === 'GET') {
+        return await handleAdminEventAttempts(request, env, url);
+      }
+      if (path === '/admin/event-log/waive' && request.method === 'POST') {
+        return await handleAdminEventWaive(request, env);
+      }
       if (path === '/razorpay/webhook' && request.method === 'POST') {
         return await handleRazorpayWebhook(request, env);
       }
@@ -153,6 +177,9 @@ export default {
       }
       if (path === '/progress/pending-log' && request.method === 'GET') {
         return await handlePendingLog(request, env, url);
+      }
+      if (path === '/progress/log-status' && request.method === 'GET') {
+        return await handleProgressLogStatus(request, env, url);
       }
       if (path === '/admin/progress/waive-log' && request.method === 'POST') {
         return await handleAdminWaiveLog(request, env);
@@ -444,7 +471,16 @@ async function handleMockSubmission(request, env) {
 
   const key = `mock_attempt:${date}:${eventId}:${attemptId}`;
   await env.GRE_AUTH.put(key, JSON.stringify(record));
-  return jsonResponse({ status: 'ok', attempt_id: attemptId, date });
+
+  // Only the new client sets this flag, so older cached pages never create a
+  // requirement. Anything going wrong here leaves the student unlocked.
+  let log = { enabled: false, needed: [] };
+  if (result.requires_error_log === true) {
+    log = await recordEventLogRequirement(env, {
+      result, attemptId, eventKey: eventId, email: record.student.email, kvKey: key,
+    });
+  }
+  return jsonResponse({ status: 'ok', attempt_id: attemptId, date, log });
 }
 
 // ─── ADMIN: MOCK ATTEMPTS ────────────────────────────────────────────────────
@@ -1719,6 +1755,36 @@ async function handleErrorLogSave(request, env) {
 }
 
 /**
+ * GET /progress/log-status?token=...&session_id=...
+ * One Pro session's gate state (see handleEventLogStatus). Cheap on purpose:
+ * it is polled while the student is looking at the review screen.
+ */
+async function handleProgressLogStatus(request, env, url) {
+  if (!env.GRE_DB) return jsonResponse({ status: 'ok', enabled: false, state: 'none', left: 0 });
+  const token = url.searchParams.get('token') || request.headers.get('X-Progress-Token');
+  const email = await verifyProgressToken(env, token);
+  if (!email) return jsonResponse({ error: 'Unauthorized' }, 401);
+  const sessionId = String(url.searchParams.get('session_id') || '').trim().slice(0, 120);
+  if (!sessionId) return jsonResponse({ error: 'Missing session_id' }, 400);
+  try {
+    const found = await env.GRE_DB.prepare(
+      'SELECT needed, waived FROM log_required WHERE session_id = ? AND email = ?'
+    ).bind(sessionId, email).all();
+    const req = (found.results || [])[0];
+    if (!req) return jsonResponse({ status: 'ok', enabled: true, state: 'none', left: 0 });
+    const logged = await env.GRE_DB.prepare(
+      'SELECT q_index FROM error_log WHERE session_id = ? AND email = ?'
+    ).bind(sessionId, email).all();
+    const have = new Set((logged.results || []).map(r => r.q_index));
+    const left = parseNeeded(req.needed).filter(i => !have.has(i)).length;
+    const state = left === 0 ? 'complete' : (req.waived ? 'waived' : 'pending');
+    return jsonResponse({ status: 'ok', enabled: true, state, left });
+  } catch (e) {
+    return jsonResponse({ status: 'ok', enabled: false, state: 'none', left: 0 });
+  }
+}
+
+/**
  * GET /progress/pending-log?token=...
  * Sessions with mistakes the student still has to tag (waived ones excluded).
  * `enabled:false` means the tables do not exist yet, and the client must NOT
@@ -1807,6 +1873,384 @@ async function handleAdminWaiveLog(request, env) {
       await env.GRE_DB.prepare('UPDATE log_required SET waived = 1 WHERE email = ?').bind(email).run();
     }
     return jsonResponse({ status: 'waived', email, session_id: sessionId || null, waived: n });
+  } catch (e) {
+    return jsonResponse({ error: 'Error log storage not configured' }, 503);
+  }
+}
+
+/* ─── EVENT ERROR LOG ─────────────────────────────────────────────────────────
+ *
+ * Event mocks (events/mock_test.html) have no login, so
+ * the Pro token cannot identify the student. Instead:
+ *
+ *   - /mock/submission stores the attempt in KV as before and, when the client
+ *     flags it `requires_error_log`, records which questions must be tagged in
+ *     `event_log_required`. It returns the new attempt_id.
+ *   - The attempt_id is a random UUID that only the submitting browser ever
+ *     sees. It is the bearer secret for POST /mock/error-log and for
+ *     GET /mock/pending-log, so nobody can read or write another student's log.
+ *   - Tags live in `event_error_log`, never in the KV record, so they cannot be
+ *     lost by anything that rewrites the attempt.
+ *
+ * Fail-open, like the Pro log: a missing table, a 5xx or a network error means
+ * the student is NOT locked. Only an attempt the new client flagged can lock.
+ * ==========================================================================*/
+
+const EVENT_LOG_MAX_PENDING = 10;
+const EVENT_ID_RE = /^[0-9a-f-]{8,64}$/i;
+
+// Every question not answered correctly (wrong or skipped) must be tagged.
+function eventNeededIndices(result) {
+  const rs = Array.isArray(result && result.results) ? result.results.slice(0, PROGRESS_MAX_QUESTIONS_PER_SESSION) : [];
+  const out = [];
+  rs.forEach((r, i) => { if (r && r.correct !== true) out.push(i); });
+  return out;
+}
+
+// Called from handleMockSubmission. Never throws.
+async function recordEventLogRequirement(env, ctx) {
+  const needed = eventNeededIndices(ctx.result);
+  if (!needed.length) return { enabled: true, needed: [] };
+  if (!env.GRE_DB) return { enabled: false, needed: [] };
+  try {
+    await env.GRE_DB.prepare(
+      `INSERT OR IGNORE INTO event_log_required
+         (attempt_id, event_key, email, needed, kv_key, waived, created_at)
+       VALUES (?,?,?,?,?,0,?)`
+    ).bind(ctx.attemptId, ctx.eventKey, ctx.email, needed.join(','), ctx.kvKey, Date.now()).run();
+    return { enabled: true, needed };
+  } catch (e) {
+    return { enabled: false, needed: [] };
+  }
+}
+
+async function loadEventRecord(env, kvKey) {
+  if (!kvKey) return null;
+  try {
+    const raw = await env.GRE_AUTH.get(kvKey);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+function eventPendingItem(r, i) {
+  const skipped = !!(r && (r.skipped || r.student_answer == null));
+  return {
+    q_index: i,
+    question_id: progressText(r && r.question_id, 80),
+    bank_question_id: progressText(r && r.question_id, 80),
+    topic: progressText(r && r.topic, 120),
+    subtopic: progressText(r && r.subtopic, 120),
+    difficulty: progressText(r && r.difficulty, 40),
+    time_taken: Number(r && r.time_taken_seconds) || 0,
+    status: skipped ? 'skipped' : 'wrong',
+    your_answer: skipped ? '' : progressText(Array.isArray(r.student_answer) ? r.student_answer.join(', ') : r.student_answer, 120),
+    stem: progressText(r && r.question_text, 160),
+  };
+}
+
+/**
+ * POST /mock/error-log
+ * Body: { attempt_id, entries: [{ q_index, error_type, error_cause?, note? }] }
+ * Idempotent. Only indices the attempt requires are accepted.
+ */
+async function handleEventErrorLogSave(request, env) {
+  if (!env.GRE_DB) return jsonResponse({ error: 'Storage not configured' }, 503);
+  const body = await safeJson(request);
+  const attemptId = String((body && body.attempt_id) || '').trim();
+  if (!EVENT_ID_RE.test(attemptId)) return jsonResponse({ error: 'Missing attempt_id' }, 400);
+  const entries = Array.isArray(body.entries) ? body.entries.slice(0, PROGRESS_MAX_QUESTIONS_PER_SESSION) : [];
+  if (!entries.length) return jsonResponse({ error: 'Missing entries' }, 400);
+
+  let req;
+  try {
+    const found = await env.GRE_DB.prepare(
+      'SELECT attempt_id, event_key, email, needed, kv_key FROM event_log_required WHERE attempt_id = ?'
+    ).bind(attemptId).all();
+    req = (found.results || [])[0];
+  } catch (e) {
+    return jsonResponse({ error: 'Error log storage not configured' }, 503);
+  }
+  if (!req) return jsonResponse({ error: 'Attempt not found' }, 404);
+
+  const needed = parseNeeded(req.needed);
+  const neededSet = new Set(needed);
+  const record = await loadEventRecord(env, req.kv_key);
+  const results = (record && record.result && record.result.results) || [];
+
+  const now = Date.now();
+  const statements = [];
+  let rejected = 0;
+  for (const e of entries) {
+    const idx = e && Number.isInteger(e.q_index) ? e.q_index : -1;
+    const type = e && String(e.error_type || '');
+    const cause = e && e.error_cause ? String(e.error_cause) : '';
+    if (!neededSet.has(idx) || !ERROR_TYPES.includes(type) || (cause && !ERROR_CAUSES.includes(cause))) {
+      rejected++;
+      continue;
+    }
+    statements.push(
+      env.GRE_DB.prepare(
+        `INSERT OR REPLACE INTO event_error_log
+           (attempt_id, event_key, email, q_index, question_id, error_type, error_cause, note, logged_at)
+         VALUES (?,?,?,?,?,?,?,?,?)`
+      ).bind(
+        attemptId, req.event_key, req.email, idx,
+        progressText(results[idx] && results[idx].question_id, 80),
+        type, cause, progressText(e.note, ERROR_NOTE_MAX), now
+      )
+    );
+  }
+  if (!statements.length) return jsonResponse({ error: 'No valid entries', rejected }, 400);
+
+  try {
+    await env.GRE_DB.batch(statements);
+  } catch (e) {
+    return jsonResponse({ error: 'Error log storage not configured' }, 503);
+  }
+
+  const logged = await env.GRE_DB.prepare(
+    'SELECT q_index FROM event_error_log WHERE attempt_id = ?'
+  ).bind(attemptId).all();
+  const loggedSet = new Set((logged.results || []).map(r => r.q_index));
+  const remaining = needed.filter(i => !loggedSet.has(i));
+  return jsonResponse({ status: 'ok', saved: statements.length, rejected, remaining: remaining.length, complete: remaining.length === 0 });
+}
+
+/**
+ * GET /mock/pending-log?attempt_ids=a,b
+ * Of the attempts this browser remembers, the ones still owing a log (waived
+ * excluded). `enabled:false` means the tables are missing: never lock.
+ */
+/**
+ * GET /mock/log-status?attempt_id=...
+ * One attempt's gate state, for a student who is on the review screen and may
+ * have been cleared by the coach in the meantime. The attempt_id is the secret.
+ * state: 'pending' (tags still owed), 'complete', 'waived', or 'none' (no
+ * requirement was recorded). enabled:false means "do not lock anything".
+ */
+async function handleEventLogStatus(request, env, url) {
+  if (!env.GRE_DB) return jsonResponse({ status: 'ok', enabled: false, state: 'none', left: 0 });
+  const id = String(url.searchParams.get('attempt_id') || '').trim();
+  if (!EVENT_ID_RE.test(id)) return jsonResponse({ error: 'Missing attempt_id' }, 400);
+  try {
+    const found = await env.GRE_DB.prepare(
+      'SELECT needed, waived FROM event_log_required WHERE attempt_id = ?'
+    ).bind(id).all();
+    const req = (found.results || [])[0];
+    if (!req) return jsonResponse({ status: 'ok', enabled: true, state: 'none', left: 0 });
+    const logged = await env.GRE_DB.prepare('SELECT q_index FROM event_error_log WHERE attempt_id = ?').bind(id).all();
+    const have = new Set((logged.results || []).map(r => r.q_index));
+    const left = parseNeeded(req.needed).filter(i => !have.has(i)).length;
+    const state = left === 0 ? 'complete' : (req.waived ? 'waived' : 'pending');
+    return jsonResponse({ status: 'ok', enabled: true, state, left });
+  } catch (e) {
+    return jsonResponse({ status: 'ok', enabled: false, state: 'none', left: 0 });
+  }
+}
+
+async function handleEventPendingLog(request, env, url) {
+  if (!env.GRE_DB) return jsonResponse({ status: 'ok', enabled: false, pending: [] });
+  const ids = String(url.searchParams.get('attempt_ids') || '').split(',')
+    .map(s => s.trim()).filter(s => EVENT_ID_RE.test(s)).slice(0, EVENT_LOG_MAX_PENDING);
+  if (!ids.length) return jsonResponse({ status: 'ok', enabled: true, count: 0, pending: [] });
+
+  const pending = [];
+  try {
+    for (const id of ids) {
+      const found = await env.GRE_DB.prepare(
+        'SELECT attempt_id, event_key, needed, kv_key FROM event_log_required WHERE attempt_id = ? AND waived = 0'
+      ).bind(id).all();
+      const req = (found.results || [])[0];
+      if (!req) continue;
+      const logged = await env.GRE_DB.prepare('SELECT q_index FROM event_error_log WHERE attempt_id = ?').bind(id).all();
+      const have = new Set((logged.results || []).map(r => r.q_index));
+      const needed = parseNeeded(req.needed);
+      const left = needed.filter(i => !have.has(i));
+      if (!left.length) continue;
+      const record = await loadEventRecord(env, req.kv_key);
+      if (!record || !record.result || !Array.isArray(record.result.results)) continue;
+      pending.push({
+        attempt_id: id,
+        event_id: record.event_id,
+        event_name: record.event_name,
+        date: record.date,
+        needed: needed.length,
+        remaining: left.length,
+        items: left.filter(i => record.result.results[i]).map(i => eventPendingItem(record.result.results[i], i)),
+      });
+    }
+  } catch (e) {
+    return jsonResponse({ status: 'ok', enabled: false, pending: [] });
+  }
+  return jsonResponse({ status: 'ok', enabled: true, count: pending.length, pending });
+}
+
+// attempt_id -> { needed, logged, waived } and event_key -> rollup. `ok` is
+// false when the tables do not exist. eventKey narrows the query to one event.
+async function loadEventLogState(env, eventKey) {
+  const attempts = new Map();
+  const tagsByAttempt = new Map();
+  if (!env.GRE_DB) return { ok: false, attempts, tagsByAttempt };
+  try {
+    const reqs = eventKey
+      ? await env.GRE_DB.prepare('SELECT attempt_id, event_key, needed, waived FROM event_log_required WHERE event_key = ?').bind(eventKey).all()
+      : await env.GRE_DB.prepare('SELECT attempt_id, event_key, needed, waived FROM event_log_required').all();
+    const tags = eventKey
+      ? await env.GRE_DB.prepare('SELECT attempt_id, q_index, error_type, error_cause, note FROM event_error_log WHERE event_key = ?').bind(eventKey).all()
+      : await env.GRE_DB.prepare('SELECT attempt_id, q_index, error_type, error_cause, note FROM event_error_log').all();
+    for (const t of tags.results || []) {
+      if (!tagsByAttempt.has(t.attempt_id)) tagsByAttempt.set(t.attempt_id, []);
+      tagsByAttempt.get(t.attempt_id).push({
+        q_index: t.q_index, error_type: t.error_type, error_cause: t.error_cause || '', note: t.note || '',
+      });
+    }
+    for (const r of reqs.results || []) {
+      const needed = parseNeeded(r.needed);
+      const have = new Set((tagsByAttempt.get(r.attempt_id) || []).map(t => t.q_index));
+      attempts.set(r.attempt_id, {
+        event_key: r.event_key,
+        required: true,
+        needed: needed.length,
+        logged: needed.filter(i => have.has(i)).length,
+        waived: !!r.waived,
+      });
+    }
+    return { ok: true, attempts, tagsByAttempt };
+  } catch (e) {
+    return { ok: false, attempts: new Map(), tagsByAttempt: new Map() };
+  }
+}
+
+function eventLogOf(state, attemptId) {
+  const s = state.attempts.get(attemptId);
+  // `required:false` = never gated (legacy attempt, or a clean paper).
+  return s ? { required: true, needed: s.needed, logged: s.logged, waived: s.waived } : { required: false, needed: 0, logged: 0, waived: false };
+}
+
+// Walks the KV keys for one date range. eventKey narrows by key prefix, which
+// is exact: keys are mock_attempt:{date}:{event}:{attemptId}.
+async function collectEventRecords(env, days, eventKey, summarise) {
+  const out = [];
+  for (const date of recentIndiaDates(days)) {
+    let cursor;
+    do {
+      const listed = await env.GRE_AUTH.list({
+        prefix: eventKey ? `mock_attempt:${date}:${eventKey}:` : `mock_attempt:${date}:`,
+        cursor,
+        limit: 1000,
+      });
+      for (const key of listed.keys) {
+        const raw = await env.GRE_AUTH.get(key.name);
+        if (!raw) continue;
+        try { out.push(summarise(JSON.parse(raw))); } catch (e) { /* skip unreadable */ }
+      }
+      cursor = listed.list_complete ? undefined : listed.cursor;
+    } while (cursor);
+  }
+  return out;
+}
+
+/**
+ * GET /admin/events?days=90
+ * One row per event, aggregated here so the coach list is a single small call.
+ */
+async function handleAdminEvents(request, env, url) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  const days = Math.min(Math.max(parseInt(url.searchParams.get('days') || '90', 10) || 90, 1), 365);
+  const state = await loadEventLogState(env, null);
+  const slim = (rec) => ({ ...summarizeAttempt(rec), log: eventLogOf(state, rec.attempt_id) });
+  const attempts = await collectEventRecords(env, days, null, slim);
+
+  const byEvent = new Map();
+  for (const a of attempts) {
+    const key = normalizeKeyPart(a.event_id || 'event');
+    if (!byEvent.has(key)) byEvent.set(key, { event_key: key, event_id: a.event_id, event_name: a.event_name, event_type: a.event_type, rows: [] });
+    byEvent.get(key).rows.push(a);
+  }
+  const events = [];
+  for (const e of byEvent.values()) {
+    const rows = e.rows;
+    const people = new Set(rows.map(r => (r.student && (r.student.email || r.student.name)) || r.attempt_id));
+    const dates = rows.map(r => r.date).sort();
+    const avg = (f) => rows.length ? rows.reduce((s, r) => s + (Number(f(r)) || 0), 0) / rows.length : 0;
+    const gated = rows.filter(r => r.log.required);
+    const open = gated.filter(r => !r.log.waived && r.log.logged < r.log.needed).length;
+    events.push({
+      event_key: e.event_key,
+      event_id: e.event_id,
+      event_name: e.event_name,
+      event_type: e.event_type,
+      attempts: rows.length,
+      students: people.size,
+      first_date: dates[0],
+      last_date: dates[dates.length - 1],
+      avg_accuracy: Math.round(avg(r => r.accuracy) * 10) / 10,
+      avg_correct: Math.round(avg(r => r.correct) * 10) / 10,
+      total_questions: Math.max(...rows.map(r => r.total_questions || 0)),
+      best_accuracy: Math.max(...rows.map(r => Number(r.accuracy) || 0)),
+      log: {
+        enabled: state.ok,
+        gated: gated.length,
+        complete: gated.filter(r => r.log.waived || r.log.logged >= r.log.needed).length,
+        open,
+        waived: gated.filter(r => r.log.waived).length,
+      },
+    });
+  }
+  events.sort((a, b) => String(b.last_date).localeCompare(String(a.last_date)));
+  return jsonResponse({ timezone: 'Asia/Kolkata', days, log_enabled: state.ok, count: events.length, events });
+}
+
+/**
+ * GET /admin/event-attempts?event_id=...&days=180
+ * Every attempt at one event, in full, with its error tags and log status.
+ * explanation/trap are dropped: the coach views never show them and they are
+ * most of the payload.
+ */
+async function handleAdminEventAttempts(request, env, url) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  const eventId = String(url.searchParams.get('event_id') || '').trim();
+  if (!eventId) return jsonResponse({ error: 'Missing event_id' }, 400);
+  const eventKey = normalizeKeyPart(eventId);
+  const days = Math.min(Math.max(parseInt(url.searchParams.get('days') || '180', 10) || 180, 1), 365);
+  const state = await loadEventLogState(env, eventKey);
+
+  const full = (rec) => {
+    const result = rec.result ? { ...rec.result } : null;
+    if (result && Array.isArray(result.results)) {
+      result.results = result.results.map(r => {
+        const { explanation, trap, ...rest } = r || {};
+        return rest;
+      });
+    }
+    return { ...rec, result, tags: state.tagsByAttempt.get(rec.attempt_id) || [], log: eventLogOf(state, rec.attempt_id) };
+  };
+  const attempts = await collectEventRecords(env, days, eventKey, full);
+  attempts.sort((a, b) => String(a.submitted_at || a.saved_at).localeCompare(String(b.submitted_at || b.saved_at)));
+  return jsonResponse({ timezone: 'Asia/Kolkata', event_id: eventId, days, log_enabled: state.ok, count: attempts.length, attempts });
+}
+
+/**
+ * POST /admin/event-log/waive — { attempt_id } or { event_id }
+ * Releases a student who cannot finish (new device, lost browser data). With
+ * event_id, waives every open attempt of that event. Never deletes tags.
+ */
+async function handleAdminEventWaive(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_DB) return jsonResponse({ error: 'Storage not configured' }, 503);
+  const body = await safeJson(request);
+  const attemptId = String(body.attempt_id || '').trim();
+  const eventId = String(body.event_id || '').trim();
+  if (!attemptId && !eventId) return jsonResponse({ error: 'Missing attempt_id or event_id' }, 400);
+  try {
+    const q = attemptId
+      ? env.GRE_DB.prepare('SELECT COUNT(*) AS n FROM event_log_required WHERE attempt_id = ? AND waived = 0').bind(attemptId)
+      : env.GRE_DB.prepare('SELECT COUNT(*) AS n FROM event_log_required WHERE event_key = ? AND waived = 0').bind(normalizeKeyPart(eventId));
+    const n = (((await q.all()).results || [])[0] || {}).n || 0;
+    if (!n) return jsonResponse({ status: 'nothing_to_waive', waived: 0 });
+    if (attemptId) await env.GRE_DB.prepare('UPDATE event_log_required SET waived = 1 WHERE attempt_id = ?').bind(attemptId).run();
+    else await env.GRE_DB.prepare('UPDATE event_log_required SET waived = 1 WHERE event_key = ?').bind(normalizeKeyPart(eventId)).run();
+    return jsonResponse({ status: 'waived', waived: n });
   } catch (e) {
     return jsonResponse({ error: 'Error log storage not configured' }, 503);
   }

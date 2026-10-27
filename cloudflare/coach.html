@@ -104,6 +104,18 @@ tr.clickable:hover td{background:var(--surface2);}
 .coach-gel-intro{font-size:13px;line-height:1.6;color:var(--text2);max-width:72ch;margin:-6px 0 16px;}
 .logbanner{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;background:var(--warning-soft);
   border:1px solid rgba(169,123,18,.3);border-radius:10px;padding:12px 16px;margin-bottom:18px;font-size:13px;color:var(--text);line-height:1.5;}
+
+/* Events tab */
+.ev-sub{font-family:var(--font-mono);font-size:11px;color:var(--text3);margin-top:2px;}
+.ev-note{font-size:12px;color:var(--text2);font-style:italic;margin-top:3px;max-width:240px;}
+.two{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:24px;margin-bottom:4px;}
+.hist{display:flex;align-items:flex-end;gap:10px;height:128px;padding:4px 2px 0;}
+.hist .hcol{flex:1;display:flex;flex-direction:column;justify-content:flex-end;align-items:center;gap:5px;height:100%;min-width:0;}
+.hist .hbar{width:100%;border-radius:5px 5px 0 0;min-height:2px;}
+.hist .hn{font-family:var(--font-mono);font-size:12px;font-weight:600;color:var(--text);}
+.hist .hl{font-family:var(--font-mono);font-size:10px;color:var(--text3);white-space:nowrap;}
+.tagp{display:inline-flex;align-items:center;gap:6px;font-size:12.5px;font-weight:600;color:var(--text);}
+.tagp i{width:8px;height:8px;border-radius:50%;background:var(--c,#6b7a88);flex:0 0 8px;}
 @media (max-width:600px){ body{padding:20px 14px;} .card{padding:18px;} }
 </style>
 </head>
@@ -132,6 +144,7 @@ tr.clickable:hover td{background:var(--surface2);}
 
   <div class="tabs">
     <button class="tab-btn active" data-tab="students" onclick="switchTab('students')">Students</button>
+    <button class="tab-btn" data-tab="events" onclick="switchTab('events')">Events</button>
     <button class="tab-btn" data-tab="mocks" onclick="switchTab('mocks')">Free attempts</button>
   </div>
 
@@ -148,6 +161,22 @@ tr.clickable:hover td{background:var(--surface2);}
         Quant scale — a running read on where they stand, not a mock result. Hover it for the caveat.</div>
     </div>
     <div class="card" id="student-detail-card" style="display:none;"></div>
+  </div>
+
+  <div class="tab-panel" data-tab-panel="events">
+    <div class="card" id="ev-list-card">
+      <h2>Events</h2>
+      <div class="row" style="margin-bottom:12px;">
+        <div class="field"><label for="ev-days">Days</label><input id="ev-days" type="number" value="90" min="1" max="365"></div>
+        <div class="field"><label for="ev-filter">Filter by event name</label><input id="ev-filter" type="text" oninput="renderEvents()" placeholder="Type to filter…"></div>
+        <button class="btn btn-ghost" onclick="loadEvents()">Refresh</button>
+      </div>
+      <div id="ev-note"></div>
+      <div class="table-wrap" id="ev-table"><div class="empty">Set the connection above to load events.</div></div>
+      <div class="hint">One row per event. Click an event for its overall analysis and every student who sat it, then click a student for their full breakdown, the same mistake analytics a Pro student sees about themselves.</div>
+    </div>
+    <div class="card" id="ev-event-card" style="display:none;"></div>
+    <div class="card" id="ev-student-card" style="display:none;"></div>
   </div>
 
   <div class="tab-panel" data-tab-panel="mocks">
@@ -281,11 +310,18 @@ async function api(path) {
 }
 
 /* ─── Tabs ───────────────────────────────────────────────────────────────── */
-function switchTab(name) {
+function switchTab(name, fromRoute) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tabPanel === name));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
   // First visit to the attempts tab loads it; no separate Load click needed.
   if (name === 'mocks' && !mocksLoaded && getConfig().url && getConfig().secret) loadMocks();
+  if (name === 'events' && !fromRoute) {
+    // Clicking the tab means "the list"; a deep link already picked its own view.
+    if (!/^#events/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search + '#events');
+    evRoute();
+  } else if (name !== 'events' && /^#events/.test(location.hash)) {
+    history.replaceState(null, '', location.pathname + location.search);
+  }
 }
 
 /* ─── Helpers ────────────────────────────────────────────────────────────── */
@@ -797,13 +833,13 @@ function trendSvg(sessions, mode) {
 /* ─── Free attempts (the separate KV records) ───────────────────────────── */
 /* Three kinds, whatever the stored event_type: the free full mock
    ('full_mock'), free sectionals ('sectional'), and everything run from the
-   event builder (topic tests, team battles, full-mock events). */
+   event builder (topic tests, full-mock events). */
 const KIND_META = {
   mock:      { label:'Full Mock', icon:'📝' },
   sectional: { label:'Sectional', icon:'📐' },
   event:     { label:'Event',     icon:'🏆' },
 };
-const EVENT_SUB = { mock_test:'Topic test', team_battle:'Team battle', full_mock_event:'Full mock event' };
+const EVENT_SUB = { mock_test:'Topic test', full_mock_event:'Full mock event', team_battle:'Team battle (retired)' };   // team_battle: old attempts still read properly
 
 function attemptKind(a) {
   const t = String(a.event_type || '');
@@ -885,9 +921,470 @@ function renderMocks() {
     }).join('') + '</tbody></table>';
 }
 
+/* ─── Events: one list of events, one analysis per event, one drill-down per student ───
+   Reads /admin/events (the list) and /admin/event-attempts (every attempt at one
+   event, with the error tags merged). The per-student view is the same analytics
+   renderer the Pro students see, so what a coach reads here is what a Pro
+   student reads about themselves, and an event student gets a taste of it.
+
+   Routes (so a view can be bookmarked or sent to a colleague):
+     #events                       the list
+     #events/<event>               one event: overall analysis + every student
+     #events/<event>/<attempt>     one student's attempt                       */
+let evList = [];
+let evLoaded = false;
+let evLogEnabled = true;
+let evCur = null;           // { key, attempts, logOk, A (analysis), rank, attemptNo, order }
+let evSort = 'rank';
+let evQFilter = 'all';
+
+const EV_DIFF = { easy: 'Easy', medium: 'Medium', hard: 'Hard', 'extreme hard': 'Extreme hard' };
+const EV_DIFF_ORDER = ['easy', 'medium', 'hard', 'extreme hard'];
+const EV_DASH = '<span style="color:var(--text3);">—</span>';
+
+function evNorm(d) { return String(d == null ? '' : d).toLowerCase().replace(/[_-]+/g, ' ').trim(); }
+function evAns(v) { return v == null || v === '' ? '—' : (Array.isArray(v) ? v.join(', ') : String(v)); }
+function evPct(n, d) { return d ? Math.round((n / d) * 100) : 0; }
+function evMedian(xs) {
+  if (!xs.length) return 0;
+  const s = xs.slice().sort((a, b) => a - b), m = Math.floor(s.length / 2);
+  return s.length % 2 ? s[m] : (s[m - 1] + s[m]) / 2;
+}
+function evMean(xs) { return xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0; }
+function evScope(a) {
+  const n = ((a.result && a.result.results) || []).length || a.total_questions || 0;
+  return (a.event_type === 'full_mock_event' || n >= 20) ? 'mock' : 'topic';
+}
+function evEst(a) {
+  if (!window.GREScore || !a.result || !Array.isArray(a.result.results)) return null;
+  return GREScore.fromResults(a.result.results, evScope(a));
+}
+function evLogOpen(a) { return !!(a.log && a.log.required && !a.log.waived && a.log.logged < a.log.needed); }
+function evPerson(a) { const s = a.student || {}; return String(s.email || s.name || a.attempt_id).toLowerCase(); }
+function evTagPill(slug) {
+  if (!slug || !window.GREErrorLog) return '';
+  return '<span class="tagp" style="--c:' + esc(GREErrorLog.typeColor(slug)) + '"><i></i>' + esc(GREErrorLog.typeLabel(slug)) + '</span>';
+}
+
+async function apiPost(path, body) {
+  const { url, secret } = getConfig();
+  if (!url || !secret) throw new Error('Set the Worker URL and admin secret first.');
+  const res = await fetch(url + path, {
+    method: 'POST', headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret }, body: JSON.stringify(body),
+  });
+  let data = null; try { data = await res.json(); } catch (e) {}
+  if (res.status === 401) throw new Error('Rejected — check the admin secret.');
+  if (!res.ok) throw new Error((data && data.error) || ('Request failed (' + res.status + ')'));
+  return data || {};
+}
+
+/* ── routing ── */
+function evGo(hash) { if (location.hash === hash) evRoute(); else location.hash = hash; }
+
+function evShow(which) {
+  ['list', 'event', 'student'].forEach(v => {
+    document.getElementById('ev-' + v + '-card').style.display = v === which ? 'block' : 'none';
+  });
+}
+
+async function evRoute() {
+  const m = location.hash.match(/^#events(?:\/([A-Za-z0-9_-]+))?(?:\/([A-Za-z0-9-]+))?$/);
+  if (!m) return;
+  if (!document.querySelector('[data-tab-panel="events"].active')) switchTab('events', true);
+  if (!m[1]) { evShow('list'); if (!evLoaded) loadEvents(); window.scrollTo({ top: 0 }); return; }
+  if (!evCur || evCur.key !== m[1]) await openEvent(m[1]);
+  if (!evCur || evCur.key !== m[1]) return;
+  if (m[2] && evCur.attempts.some(a => a.attempt_id === m[2])) renderEvStudent(m[2]);
+  else if (!m[2]) { evShow('event'); window.scrollTo({ top: 0 }); }
+}
+
+/* ── list ── */
+async function loadEvents() {
+  setBusy('ev-table', 'Loading events…');
+  const days = Math.min(365, Math.max(1, Number(document.getElementById('ev-days').value) || 90));
+  try {
+    const d = await api('/admin/events?days=' + days);
+    evList = d.events || []; evLogEnabled = d.log_enabled !== false; evLoaded = true;
+    renderEvents();
+  } catch (e) { setBusy('ev-table', e.message); }
+}
+
+function evLogRollup(l) {
+  if (!l || !l.enabled) return EV_DASH;
+  if (!l.gated) return '<span class="badge badge-mute" title="No attempt here needed a log">—</span>';
+  if (l.open) return '<span class="badge badge-warn">' + l.open + ' still to tag</span>';
+  return '<span class="badge badge-ok">all tagged</span>';
+}
+
+function renderEvents() {
+  const q = (document.getElementById('ev-filter').value || '').toLowerCase().trim();
+  const rows = evList.filter(e => !q || String(e.event_name || '').toLowerCase().includes(q) || String(e.event_id || '').toLowerCase().includes(q));
+  document.getElementById('ev-note').innerHTML = evLogEnabled ? ''
+    : '<div class="logbanner"><div><b>The event error-log tables are not in D1 yet.</b> Attempts are still listed. Run the new statements from schema.sql in the D1 console to start collecting students’ error logs.</div></div>';
+  if (!rows.length) { setBusy('ev-table', evList.length ? 'No event matches that filter.' : 'No event attempts in this window.'); return; }
+  document.getElementById('ev-table').innerHTML =
+    '<table><thead><tr><th>Event</th><th>Dates</th><th>Students</th><th>Attempts</th><th>Avg accuracy</th><th>Best</th><th>Error logs</th></tr></thead><tbody>' +
+    rows.map(e => {
+      const sub = EVENT_SUB[e.event_type] || e.event_type || '';
+      const dates = e.first_date === e.last_date ? fmtDate(e.first_date) : fmtDate(e.first_date) + ' → ' + fmtDate(e.last_date);
+      return '<tr class="clickable" data-ev="' + esc(e.event_key) + '">' +
+        '<td><div style="font-weight:600;">' + esc(e.event_name || e.event_id) + '</div>' +
+          '<div class="ev-sub">' + esc(e.event_id) + (sub ? ' · ' + esc(sub) : '') + '</div></td>' +
+        '<td class="mono" style="font-size:12.5px;">' + dates + '</td>' +
+        '<td class="mono">' + e.students + '</td><td class="mono">' + e.attempts + '</td>' +
+        '<td><div style="display:flex;align-items:center;gap:9px;">' + bar(e.avg_accuracy) + '<span class="mono" style="font-size:12px;color:' + accColor(e.avg_accuracy) + ';">' + Math.round(e.avg_accuracy) + '%</span></div></td>' +
+        '<td>' + accBadge(Math.round(e.best_accuracy)) + '</td>' +
+        '<td>' + evLogRollup(e.log) + '</td></tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ── one event ── */
+async function openEvent(key) {
+  evShow('event');
+  const card = document.getElementById('ev-event-card');
+  card.innerHTML = '<div class="empty">Loading event…</div>';
+  try {
+    const d = await api('/admin/event-attempts?event_id=' + encodeURIComponent(key) + '&days=365');
+    const attempts = d.attempts || [];
+    evCur = { key, attempts, logOk: d.log_enabled !== false };
+    evPrepare(); renderEvent();
+  } catch (e) {
+    evCur = null;
+    card.innerHTML = '<button class="back" onclick="evGo(\'#events\')">← All events</button><div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+
+/* Everything the views share, computed once per load. */
+function evPrepare() {
+  const attempts = evCur.attempts;
+  // Rank: most correct first, the faster finish breaks a tie.
+  const ranked = attempts.slice().sort((a, b) => (b.correct - a.correct) || (a.total_time_seconds - b.total_time_seconds));
+  evCur.rank = {}; ranked.forEach((a, i) => { evCur.rank[a.attempt_id] = i + 1; });
+  // "Attempt 2 of 3" for a student who took it more than once.
+  const by = {}; attempts.slice().sort((a, b) => String(a.submitted_at).localeCompare(String(b.submitted_at)))
+    .forEach(a => { (by[evPerson(a)] = by[evPerson(a)] || []).push(a.attempt_id); });
+  evCur.attemptNo = {};
+  Object.keys(by).forEach(p => by[p].forEach((id, i) => { evCur.attemptNo[id] = { n: i + 1, of: by[p].length }; }));
+
+  const A = { n: attempts.length, people: new Set(), items: new Map(), subs: new Map(), diffs: new Map(), sections: new Map(), papers: new Set(), hist: [0, 0, 0, 0, 0] };
+  attempts.forEach(a => {
+    A.people.add(evPerson(a));
+    const rs = (a.result && a.result.results) || [];
+    A.papers.add(rs.map(r => r.question_id).sort().join('|'));
+    A.hist[Math.min(4, Math.floor((Number(a.accuracy) || 0) / 20))]++;
+    rs.forEach(r => {
+      let it = A.items.get(r.question_id);
+      if (!it) {
+        it = { id: r.question_id, text: r.question_text || '', topic: r.topic || '', subtopic: r.subtopic || '', difficulty: r.difficulty || '',
+               type: r.type || '', n: 0, correct: 0, skipped: 0, time: 0, est: r.estimated_time_seconds || 0, wrong: {}, answer: evAns(r.correct_answer), pos: A.items.size };
+        A.items.set(r.question_id, it);
+      }
+      it.n++; it.time += Number(r.time_taken_seconds) || 0;
+      if (r.correct) it.correct++; else if (r.skipped) it.skipped++; else { const k = evAns(r.student_answer); it.wrong[k] = (it.wrong[k] || 0) + 1; }
+      const sk = r.subtopic || r.topic || 'General';
+      const s = A.subs.get(sk) || { name: sk, topic: r.topic || '', n: 0, correct: 0, time: 0 };
+      s.n++; s.time += Number(r.time_taken_seconds) || 0; if (r.correct) s.correct++; A.subs.set(sk, s);
+      const dk = evNorm(r.difficulty) || 'unrated';
+      const dd = A.diffs.get(dk) || { name: dk, n: 0, correct: 0, time: 0 };
+      dd.n++; dd.time += Number(r.time_taken_seconds) || 0; if (r.correct) dd.correct++; A.diffs.set(dk, dd);
+    });
+    ((a.result && a.result.sections) || []).forEach(sec => {
+      const s = A.sections.get(sec.name) || { name: sec.name, n: 0, acc: 0, time: 0 };
+      s.n++; s.acc += Number(sec.accuracy) || 0; s.time += Number(sec.time_used_seconds) || 0; A.sections.set(sec.name, s);
+    });
+  });
+  evCur.A = A;
+  evCur.name = (attempts[0] && (attempts[0].event_name || attempts[0].event_id)) || evCur.key;
+  evCur.order = ranked.map(a => a.attempt_id);
+}
+
+function evWaiveBanner(open, scopeLabel, btnId) {
+  return '<div class="logbanner"><div><b>' + open + ' attempt' + (open === 1 ? '' : 's') + ' still owe' + (open === 1 ? 's' : '') + ' an error log</b>' + scopeLabel +
+    ' Their Download and Email buttons stay locked until they finish. Waive only if they genuinely cannot complete it.</div>' +
+    '<button class="btn btn-ghost btn-sm" id="' + btnId + '">Waive pending logs</button></div>';
+}
+
+function renderEvent() {
+  const card = document.getElementById('ev-event-card');
+  const { attempts, A } = evCur;
+  const first = attempts[0] || {};
+  const accs = attempts.map(a => Number(a.accuracy) || 0);
+  const ests = attempts.map(evEst).filter(Boolean).map(e => e.scaled);
+  const gated = attempts.filter(a => a.log && a.log.required);
+  const open = attempts.filter(evLogOpen);
+  const dates = attempts.map(a => a.date).filter(Boolean).sort();
+  const sub = EVENT_SUB[first.event_type] || first.event_type || '';
+
+  let html = '<button class="back" onclick="evGo(\'#events\')">← All events</button>' +
+    '<div class="detail-head"><div><div class="detail-name">' + esc(evCur.name) + '</div>' +
+    '<div class="detail-email">' + esc(first.event_id || evCur.key) + (sub ? ' · ' + esc(sub) : '') +
+    (dates.length ? ' · ' + fmtDate(dates[0]) + (dates[dates.length - 1] !== dates[0] ? ' → ' + fmtDate(dates[dates.length - 1]) : '') : '') + '</div></div></div>' +
+    (open.length ? evWaiveBanner(open.length, ' across this event.', 'ev-waive-all') : '') +
+    '<div class="kpis">' +
+      '<div class="kpi"><div class="v">' + A.people.size + '</div><div class="l">Students' + (A.n !== A.people.size ? ' · ' + A.n + ' attempts' : '') + '</div></div>' +
+      '<div class="kpi"><div class="v" style="color:' + accColor(evMean(accs)) + ';">' + Math.round(evMean(accs)) + '%</div><div class="l">Average accuracy</div></div>' +
+      '<div class="kpi"><div class="v">' + Math.round(evMedian(accs)) + '%</div><div class="l">Median accuracy</div></div>' +
+      (ests.length ? '<div class="kpi"><div class="v" style="color:var(--warm);">' + Math.round(evMean(ests)) + '</div><div class="l">Avg est. Quant score</div></div>' : '') +
+      '<div class="kpi"><div class="v">' + fmtTime(evMean(attempts.map(a => Number(a.total_time_seconds) || 0))) + '</div><div class="l">Avg time taken</div></div>' +
+      '<div class="kpi"><div class="v">' + (evCur.logOk && gated.length ? evPct(gated.filter(a => a.log.waived || a.log.logged >= a.log.needed).length, gated.length) + '%' : '—') + '</div><div class="l">Error logs complete</div></div>' +
+    '</div>';
+
+  if (A.papers.size > 1) {
+    html += '<div class="hint" style="margin:-8px 0 18px;"><b>Note:</b> this event ID was used for ' + A.papers.size +
+      ' different papers. Question and topic figures below are computed per question, so they stay correct, but the headline numbers mix the papers.</div>';
+  }
+
+  /* — score spread + how the cohort split — */
+  const maxH = Math.max.apply(null, A.hist.concat([1]));
+  html += '<div class="two"><div><h2>Score spread</h2><div class="hist">' +
+    A.hist.map((n, i) => '<div class="hcol"><span class="hn">' + n + '</span><div class="hbar" style="height:' + Math.max(2, Math.round(n / maxH * 86)) + 'px;background:' + accColor(i * 20 + 10) + ';"></div><span class="hl">' + (i * 20) + '–' + (i === 4 ? 100 : i * 20 + 19) + '%</span></div>').join('') +
+    '</div></div><div><h2>By difficulty</h2>' + evDiffTable(A.diffs) + '</div></div>';
+
+  if (A.sections.size) {
+    html += '<h2 style="margin-top:26px;">By section</h2><div class="table-wrap"><table><thead><tr><th>Section</th><th>Avg accuracy</th><th>Avg time</th></tr></thead><tbody>' +
+      [...A.sections.values()].map(s => '<tr><td style="font-weight:600;">' + esc(s.name) + '</td><td>' +
+        '<div style="display:flex;align-items:center;gap:9px;">' + bar(s.acc / s.n) + '<span class="mono" style="font-size:12px;color:' + accColor(s.acc / s.n) + ';">' + Math.round(s.acc / s.n) + '%</span></div></td>' +
+        '<td class="mono">' + fmtTime(s.time / s.n) + '</td></tr>').join('') + '</tbody></table></div>';
+  }
+
+  /* — question by question — */
+  const items = [...A.items.values()];
+  const hard = items.filter(i => i.n >= 2).sort((a, b) => (a.correct / a.n) - (b.correct / b.n) || a.pos - b.pos);
+  html += '<h2 style="margin-top:26px;">Question by question</h2>' +
+    '<div class="hint" style="margin:-8px 0 12px;">Hardest first. <b>Trap answer</b> is the wrong answer students picked most often. If one wrong answer dominates, that is a trap worth teaching.</div>' +
+    '<div class="table-wrap"><table><thead><tr><th>Question</th><th>Topic</th><th>Diff</th><th>Correct</th><th>Skipped</th><th>Avg time</th><th>Answer</th><th>Trap answer</th></tr></thead><tbody>' +
+    (hard.length ? hard : items).map(it => {
+      const p = evPct(it.correct, it.n);
+      const top = Object.keys(it.wrong).sort((a, b) => it.wrong[b] - it.wrong[a])[0];
+      const slow = it.est && it.n && (it.time / it.n) > it.est * 1.25;
+      return '<tr><td><div class="mono" style="font-size:11.5px;color:var(--text3);">Q' + (it.pos + 1) + ' · ' + esc(it.id) + '</div>' +
+        '<div style="max-width:340px;font-size:12.5px;" title="' + esc(it.text) + '">' + esc(it.text.length > 90 ? it.text.slice(0, 90) + '…' : it.text) + '</div></td>' +
+        '<td style="font-size:12.5px;">' + esc(it.subtopic || it.topic || '—') + '</td>' +
+        '<td class="mono" style="font-size:12px;">' + esc(EV_DIFF[evNorm(it.difficulty)] || it.difficulty || '—') + '</td>' +
+        '<td><div style="display:flex;align-items:center;gap:9px;">' + bar(p) + '<span class="mono" style="font-size:12px;color:' + accColor(p) + ';">' + p + '%</span></div></td>' +
+        '<td class="mono">' + (it.skipped ? evPct(it.skipped, it.n) + '%' : '—') + '</td>' +
+        '<td class="mono" style="color:' + (slow ? 'var(--warning)' : 'var(--text2)') + ';">' + fmtTime(it.time / (it.n || 1)) + '<span style="color:var(--text3);"> / ' + fmtTime(it.est) + '</span></td>' +
+        '<td class="mono">' + esc(it.answer) + '</td>' +
+        '<td class="mono" style="font-size:12px;">' + (top ? esc(top) + ' <span style="color:var(--text3);">(' + it.wrong[top] + ' of ' + (it.n - it.correct) + ' misses)</span>' : '—') + '</td></tr>';
+    }).join('') + '</tbody></table></div>';
+
+  /* — topics — */
+  const subs = [...A.subs.values()].sort((a, b) => evPct(a.correct, a.n) - evPct(b.correct, b.n));
+  html += '<h2 style="margin-top:26px;">By subtopic</h2><div class="table-wrap"><table><thead><tr><th>Subtopic</th><th>Answers</th><th>Accuracy</th><th>Avg time</th></tr></thead><tbody>' +
+    subs.map(s => { const p = evPct(s.correct, s.n); return '<tr><td style="font-weight:600;">' + esc(s.name) + (s.topic && s.topic !== s.name ? '<div class="ev-sub">' + esc(s.topic) + '</div>' : '') + '</td>' +
+      '<td class="mono">' + s.correct + '/' + s.n + '</td><td><div style="display:flex;align-items:center;gap:9px;">' + bar(p) + '<span class="mono" style="font-size:12px;color:' + accColor(p) + ';">' + p + '%</span></div></td>' +
+      '<td class="mono" style="color:var(--text2);">' + fmtTime(s.time / (s.n || 1)) + '</td></tr>'; }).join('') + '</tbody></table></div>';
+
+  /* — cohort mistake patterns — */
+  html += '<h2 style="margin-top:26px;">Where the cohort lost marks</h2>' +
+    (evCur.logOk
+      ? '<p class="coach-gel-intro">Every mistake the students tagged, pooled. The reality check compares what they said went wrong with the clock and the difficulty, and the plan at the bottom is what to teach next.</p><div id="ev-cohort-gel"></div>'
+      : '<div class="hint">The event error-log tables are not in D1 yet, so no tags are being collected.</div>');
+
+  /* — every student — */
+  html += '<h2 style="margin-top:26px;">Every student</h2>' +
+    '<div class="row" style="margin-bottom:12px;"><div class="field"><label for="ev-st-filter">Filter by name or email</label><input id="ev-st-filter" type="text" placeholder="Type to filter…"></div>' +
+    '<div class="chips" id="ev-sorts" style="align-self:flex-end;padding-bottom:6px;"></div></div>' +
+    '<div class="table-wrap" id="ev-students"></div>' +
+    '<div class="hint">Click a student for their full analysis. A student appears here as soon as they submit; their error log fills in as they tag.</div>';
+
+  card.innerHTML = html;
+
+  const el = card.querySelector('#ev-cohort-gel');
+  if (el && window.GREErrorLog) {
+    // Attempts that were never asked for a log (taken before it existed) would only inflate "not tagged yet".
+    GREErrorLog.mountPanels(el, GREErrorLog.fromEventAttempts(attempts.filter(a => (a.log && a.log.required) || (a.tags || []).length), { withName: true }), {
+      cohort: true, min: 5, noTrend: true, unit: 'attempt',
+      emptyText: 'No mistakes tagged yet. Students tag every wrong or skipped question after the attempt; patterns appear here once the cohort has tagged 5.',
+    });
+  } else if (el) el.innerHTML = '<div class="hint">Could not load the error-log panels (pro/error-log.js).</div>';
+
+  const wa = card.querySelector('#ev-waive-all');
+  if (wa) wa.addEventListener('click', () => evWaive({ event_id: evCur.key }, 'every open attempt at this event'));
+  const f = card.querySelector('#ev-st-filter');
+  f.addEventListener('input', renderEvStudents);
+  renderEvStudents();
+}
+
+function evDiffTable(map) {
+  const keys = EV_DIFF_ORDER.filter(k => map.has(k)).concat([...map.keys()].filter(k => EV_DIFF_ORDER.indexOf(k) < 0));
+  if (!keys.length) return '<div class="hint">No difficulty data.</div>';
+  return '<div class="table-wrap"><table><thead><tr><th>Difficulty</th><th>Accuracy</th><th>Avg time</th></tr></thead><tbody>' + keys.map(k => {
+    const d = map.get(k), p = evPct(d.correct, d.n);
+    return '<tr><td style="font-weight:600;">' + esc(EV_DIFF[k] || k) + '</td><td><div style="display:flex;align-items:center;gap:9px;">' + bar(p) +
+      '<span class="mono" style="font-size:12px;color:' + accColor(p) + ';">' + p + '%</span></div></td><td class="mono" style="color:var(--text2);">' + fmtTime(d.time / (d.n || 1)) + '</td></tr>';
+  }).join('') + '</tbody></table></div>';
+}
+
+function setEvSort(k) { evSort = k; renderEvStudents(); }
+
+function renderEvStudents() {
+  if (!evCur) return;
+  const q = ((document.getElementById('ev-st-filter') || {}).value || '').toLowerCase().trim();
+  const sorts = [['rank', 'Rank'], ['name', 'Name'], ['time', 'Fastest'], ['date', 'Latest']];
+  document.getElementById('ev-sorts').innerHTML = sorts.map(([k, l]) =>
+    '<button class="btn btn-sm ' + (evSort === k ? 'btn-primary' : 'btn-ghost') + '" onclick="setEvSort(\'' + k + '\')">' + l + '</button>').join('');
+  let rows = evCur.attempts.filter(a => {
+    if (!q) return true; const s = a.student || {};
+    return String(s.email || '').toLowerCase().includes(q) || String(s.name || '').toLowerCase().includes(q);
+  });
+  const cmp = {
+    rank: (a, b) => evCur.rank[a.attempt_id] - evCur.rank[b.attempt_id],
+    name: (a, b) => String((a.student || {}).name || '').localeCompare(String((b.student || {}).name || '')),
+    time: (a, b) => a.total_time_seconds - b.total_time_seconds,
+    date: (a, b) => String(b.submitted_at).localeCompare(String(a.submitted_at)),
+  }[evSort];
+  rows = rows.slice().sort(cmp);
+  evCur.order = rows.map(a => a.attempt_id);
+  const host = document.getElementById('ev-students');
+  if (!rows.length) { host.innerHTML = '<div class="empty">No student matches that filter.</div>'; return; }
+  host.innerHTML = '<table><thead><tr><th>#</th><th>Student</th><th>Score</th><th>Accuracy</th><th>Est. score</th><th>Time</th><th>Error log</th></tr></thead><tbody>' +
+    rows.map(a => {
+      const s = a.student || {}, est = evEst(a), no = evCur.attemptNo[a.attempt_id] || { n: 1, of: 1 };
+      return '<tr class="clickable" data-att="' + esc(a.attempt_id) + '"><td class="mono" style="color:var(--text3);">' + evCur.rank[a.attempt_id] + '</td>' +
+        '<td><div style="font-weight:600;">' + (s.name ? esc(s.name) : EV_DASH) + (no.of > 1 ? ' <span class="chip">attempt ' + no.n + ' of ' + no.of + '</span>' : '') + '</div>' +
+        '<div class="mono" style="font-size:11.5px;color:var(--text3);">' + esc(s.email || '') + (s.batch ? ' · ' + esc(s.batch) : '') + '</div></td>' +
+        '<td class="mono">' + (a.correct || 0) + '/' + (a.total_questions || 0) + '</td><td>' + accBadge(Math.round(Number(a.accuracy) || 0)) + '</td>' +
+        '<td>' + scoreCell(est) + '</td><td class="mono" style="color:var(--text2);">' + fmtTime(a.total_time_seconds) + '</td>' +
+        '<td>' + (evCur.logOk ? logCell(a.log && a.log.required ? a.log : null) : EV_DASH) + '</td></tr>';
+    }).join('') + '</tbody></table>';
+}
+
+/* ── one student's attempt ── */
+function renderEvStudent(attemptId) {
+  const a = evCur.attempts.find(x => x.attempt_id === attemptId);
+  if (!a) return;
+  evShow('student');
+  const card = document.getElementById('ev-student-card');
+  const s = a.student || {}, rs = (a.result && a.result.results) || [];
+  const est = evEst(a), no = evCur.attemptNo[attemptId] || { n: 1, of: 1 };
+  const idx = evCur.order.indexOf(attemptId);
+  const prev = idx > 0 ? evCur.order[idx - 1] : '', next = idx >= 0 && idx < evCur.order.length - 1 ? evCur.order[idx + 1] : '';
+  const mistakes = rs.filter(r => r.correct !== true);
+  const tagBy = {}; (a.tags || []).forEach(t => { tagBy[t.q_index] = t; });
+  const A = evCur.A;
+
+  let html = '<button class="back" onclick="evGo(\'#events/' + esc(evCur.key) + '\')">← ' + esc(evCur.name) + '</button>' +
+    '<div class="detail-head"><div><div class="detail-name">' + (s.name ? esc(s.name) : 'Unnamed student') + '</div>' +
+    '<div class="detail-email">' + esc(s.email || 'no email on record') + (s.batch ? ' · ' + esc(s.batch) : '') +
+    ' · ' + fmtDate(a.submitted_at || a.date) + (no.of > 1 ? ' · attempt ' + no.n + ' of ' + no.of : '') + '</div></div>' +
+    '<div style="display:flex;gap:8px;"><button class="btn btn-ghost btn-sm" id="ev-prev"' + (prev ? '' : ' disabled style="opacity:.4"') + '>‹ Previous</button>' +
+    '<button class="btn btn-ghost btn-sm" id="ev-next"' + (next ? '' : ' disabled style="opacity:.4"') + '>Next ›</button></div></div>';
+
+  if (evLogOpen(a)) {
+    html += '<div class="logbanner"><div><b>' + (a.log.needed - a.log.logged) + ' mistake' + (a.log.needed - a.log.logged === 1 ? '' : 's') + ' still to tag</b> (' + a.log.logged + ' of ' + a.log.needed +
+      ' done). Their Download and Email buttons stay locked, and they are stopped at the next event they open, until they finish. Waive only if they genuinely cannot complete it.</div>' +
+      '<button class="btn btn-ghost btn-sm" id="ev-waive-one">Waive this log</button></div>';
+  } else if (a.log && a.log.waived) {
+    html += '<div class="hint" style="margin:0 0 16px;"><span class="badge badge-mute">waived</span> A coach released this error log. Tags already saved are kept.</div>';
+  }
+
+  const rank = evCur.rank[attemptId], accs = evCur.attempts.map(x => Number(x.accuracy) || 0);
+  const avgAcc = evMean(accs), acc = Number(a.accuracy) || 0;
+  html += '<div class="kpis">' +
+    '<div class="kpi"><div class="v">' + (a.correct || 0) + '/' + (a.total_questions || 0) + '</div><div class="l">Score</div></div>' +
+    '<div class="kpi"><div class="v" style="color:' + accColor(acc) + ';">' + Math.round(acc) + '%</div><div class="l">Accuracy · cohort ' + Math.round(avgAcc) + '%</div></div>' +
+    (est ? '<div class="kpi"><div class="v" style="color:var(--warm);">' + est.scaled + '</div><div class="l">Est. Quant score · ' + est.range + '</div></div>' : '') +
+    '<div class="kpi"><div class="v">' + rank + '<span style="font-size:15px;color:var(--text3);"> / ' + evCur.attempts.length + '</span></div><div class="l">Rank</div></div>' +
+    '<div class="kpi"><div class="v">' + fmtTime(a.total_time_seconds) + '</div><div class="l">Time · ' + fmtTime(a.average_time_seconds) + ' / question</div></div>' +
+    '<div class="kpi"><div class="v">' + (a.log && a.log.required ? a.log.logged + '/' + a.log.needed : '—') + '</div><div class="l">Mistakes tagged</div></div>' +
+  '</div>';
+
+  const secs = (a.result && a.result.sections) || [];
+  if (secs.length) {
+    html += '<h2>By section</h2><div class="table-wrap"><table><thead><tr><th>Section</th><th>Score</th><th>Accuracy</th><th>Time used</th></tr></thead><tbody>' +
+      secs.map(sc => '<tr><td style="font-weight:600;">' + esc(sc.name) + '</td><td class="mono">' + sc.correct + '/' + sc.total + '</td><td>' + accBadge(Math.round(Number(sc.accuracy) || 0)) +
+        '</td><td class="mono">' + fmtTime(sc.time_used_seconds) + '</td></tr>').join('') + '</tbody></table></div>';
+  }
+
+  /* — mistake patterns: the same renderer the Pro student sees — */
+  html += '<h2 style="margin-top:26px;">Mistake patterns</h2>';
+  if (!evCur.logOk) html += '<div class="hint">The event error-log tables are not in D1 yet.</div>';
+  else if (!mistakes.length) html += '<div class="hint">A clean paper: nothing to tag.</div>';
+  else if (!(a.log && a.log.required) && !(a.tags || []).length) html += '<div class="hint">No error log on record for this attempt. It was taken before event error logs existed, or the student’s page was an older cached copy.</div>';
+  else if (mistakes.length < 3) html += '<div class="hint">Only ' + mistakes.length + ' mistake' + (mistakes.length === 1 ? '' : 's') + ' on this paper, too few for patterns. The tags are in the table below.</div>';
+  else html += '<p class="coach-gel-intro">What this student says went wrong on each mistake, read against the clock and the difficulty of the question. Use the reality check as the agenda for their next call.</p><div id="ev-student-gel"></div>';
+
+  /* — topics against the cohort — */
+  const subs = new Map();
+  rs.forEach(r => { const k = r.subtopic || r.topic || 'General'; const s2 = subs.get(k) || { name: k, n: 0, c: 0, t: 0 }; s2.n++; s2.t += Number(r.time_taken_seconds) || 0; if (r.correct) s2.c++; subs.set(k, s2); });
+  html += '<h2 style="margin-top:26px;">By subtopic, against the cohort</h2><div class="table-wrap"><table><thead><tr><th>Subtopic</th><th>Score</th><th>This student</th><th>Cohort</th><th>Avg time</th></tr></thead><tbody>' +
+    [...subs.values()].sort((x, y) => evPct(x.c, x.n) - evPct(y.c, y.n)).map(s2 => {
+      const p = evPct(s2.c, s2.n), cs = A.subs.get(s2.name), cp = cs ? evPct(cs.correct, cs.n) : null, gap = cp == null ? 0 : p - cp;
+      return '<tr><td style="font-weight:600;">' + esc(s2.name) + '</td><td class="mono">' + s2.c + '/' + s2.n + '</td>' +
+        '<td><div style="display:flex;align-items:center;gap:9px;">' + bar(p) + '<span class="mono" style="font-size:12px;color:' + accColor(p) + ';">' + p + '%</span></div></td>' +
+        '<td class="mono" style="color:var(--text2);">' + (cp == null ? '—' : cp + '%') + (cp != null && Math.abs(gap) >= 15 ? ' <span class="badge ' + (gap > 0 ? 'badge-ok' : 'badge-bad') + '">' + (gap > 0 ? '+' : '') + gap + '</span>' : '') + '</td>' +
+        '<td class="mono" style="color:var(--text2);">' + fmtTime(s2.t / (s2.n || 1)) + '</td></tr>';
+    }).join('') + '</tbody></table></div>';
+
+  /* — every question — */
+  const filters = [['all', 'All ' + rs.length], ['wrong', 'Wrong ' + rs.filter(r => !r.correct && !r.skipped).length], ['skipped', 'Skipped ' + rs.filter(r => r.skipped).length], ['tagged', 'Tagged ' + (a.tags || []).length]];
+  html += '<h2 style="margin-top:26px;">Every question</h2><div class="chips" id="ev-qfilters" style="margin-bottom:12px;"></div><div class="table-wrap" id="ev-qtable"></div>';
+  card.innerHTML = html;
+
+  const gel = card.querySelector('#ev-student-gel');
+  if (gel && window.GREErrorLog) {
+    GREErrorLog.mountPanels(gel, GREErrorLog.fromEventAttempts([a]), {
+      third: true, min: 3, noTrend: true, unit: 'attempt',
+      emptyText: 'No mistakes tagged yet for this attempt.',
+    });
+  }
+  const w1 = card.querySelector('#ev-waive-one');
+  if (w1) w1.addEventListener('click', () => evWaive({ attempt_id: attemptId }, (s.name || s.email || 'this student') + '’s log'));
+  const go = (id) => id && evGo('#events/' + evCur.key + '/' + id);
+  card.querySelector('#ev-prev').addEventListener('click', () => go(prev));
+  card.querySelector('#ev-next').addEventListener('click', () => go(next));
+
+  function drawQ() {
+    document.getElementById('ev-qfilters').innerHTML = filters.map(([k, l]) =>
+      '<button class="btn btn-sm ' + (evQFilter === k ? 'btn-primary' : 'btn-ghost') + '" data-qf="' + k + '">' + esc(l) + '</button>').join('');
+    const list = rs.map((r, i) => ({ r, i })).filter(({ r, i }) =>
+      evQFilter === 'all' || (evQFilter === 'wrong' && !r.correct && !r.skipped) || (evQFilter === 'skipped' && r.skipped) || (evQFilter === 'tagged' && tagBy[i]));
+    document.getElementById('ev-qtable').innerHTML = !list.length ? '<div class="empty">Nothing in this view.</div>' :
+      '<table><thead><tr><th>Q</th><th>Topic</th><th>Diff</th><th>Answer</th><th>Correct</th><th>Time</th><th>Cohort</th><th>What went wrong</th></tr></thead><tbody>' +
+      list.map(({ r, i }) => {
+        const it = A.items.get(r.question_id), cp = it ? evPct(it.correct, it.n) : null;
+        const t = tagBy[i], slow = r.estimated_time_seconds && r.time_taken_seconds > r.estimated_time_seconds * 1.25;
+        const st = r.correct ? '<span class="badge badge-ok">correct</span>' : r.skipped ? '<span class="badge badge-mute">skipped</span>' : '<span class="badge badge-bad">wrong</span>';
+        return '<tr><td class="mono" style="color:var(--text3);" title="' + esc(r.question_text || '') + '">' + (i + 1) + '<div style="font-size:10px;">' + esc(r.question_id || '') + '</div></td>' +
+          '<td style="font-size:12.5px;">' + esc(r.subtopic || r.topic || '—') + '</td><td class="mono" style="font-size:12px;">' + esc(EV_DIFF[evNorm(r.difficulty)] || r.difficulty || '—') + '</td>' +
+          '<td>' + st + '<div class="mono" style="font-size:11.5px;color:var(--text2);margin-top:3px;">' + esc(r.skipped ? '' : evAns(r.student_answer)) + '</div></td>' +
+          '<td class="mono">' + esc(evAns(r.correct_answer)) + '</td>' +
+          '<td class="mono" style="color:' + (slow ? 'var(--warning)' : 'var(--text2)') + ';">' + fmtTime(r.time_taken_seconds) + '<span style="color:var(--text3);"> / ' + fmtTime(r.estimated_time_seconds) + '</span></td>' +
+          '<td class="mono" style="color:var(--text2);">' + (cp == null ? '—' : cp + '%') + '</td>' +
+          '<td>' + (t ? evTagPill(t.error_type) + (t.error_cause ? '<div class="ev-sub">' + esc(GREErrorLog.causeLabel(t.error_cause)) + '</div>' : '') + (t.note ? '<div class="ev-note">“' + esc(t.note) + '”</div>' : '')
+            : (r.correct ? '' : (a.log && a.log.waived ? '<span style="color:var(--text3);font-size:12px;">waived</span>' : '<span style="color:var(--text3);font-size:12px;">not tagged</span>'))) + '</td></tr>';
+      }).join('') + '</tbody></table>';
+  }
+  card.querySelector('#ev-qfilters').addEventListener('click', e => { const b = e.target.closest('[data-qf]'); if (b) { evQFilter = b.dataset.qf; drawQ(); } });
+  drawQ();
+  window.scrollTo({ top: 0 });
+}
+
+async function evWaive(body, label) {
+  if (!confirm('Waive the pending error log for ' + label + '?\n\nTheir Download and Email buttons unlock and they are no longer stopped at the next event. Tags already saved are kept.')) return;
+  try {
+    const r = await apiPost('/admin/event-log/waive', body);
+    if (r.status === 'waived' || r.status === 'nothing_to_waive') {
+      const key = evCur.key, att = (location.hash.match(/^#events\/[^\/]+\/([A-Za-z0-9-]+)$/) || [])[1];
+      await loadEvents(); evCur = null; await openEvent(key);
+      if (att) renderEvStudent(att);
+    } else alert('Could not waive: ' + (r.error || JSON.stringify(r)));
+  } catch (e) { alert('Could not waive: ' + e.message); }
+}
+
+document.addEventListener('click', e => {
+  const row = e.target.closest && e.target.closest('tr[data-ev]');
+  if (row) { evGo('#events/' + row.dataset.ev); return; }
+  const att = e.target.closest && e.target.closest('tr[data-att]');
+  if (att && evCur) evGo('#events/' + evCur.key + '/' + att.dataset.att);
+});
+window.addEventListener('hashchange', evRoute);
+
 /* ─── Boot ───────────────────────────────────────────────────────────────── */
 loadConfig();
 if (getConfig().url && getConfig().secret) loadStudents();
+if (/^#events/.test(location.hash)) evRoute();
 </script>
 </body>
 </html>

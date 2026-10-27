@@ -992,24 +992,27 @@ tr:hover td{background:rgba(26,93,166,0.04);}
     <!-- Exam Analysis Screen -->
     <div id="exam-analysis-screen" style="display:none;">
       <div class="analysis-header">
-        <div class="analysis-title">Exam Analysis 📊</div>
+        <div class="analysis-title gel-secret">Exam Analysis 📊</div>
+        <div class="gel-held-only" style="display:none"><div class="analysis-title">Exam complete. Now the review.</div></div>
         <div id="exam-analysis-meta" class="analysis-meta"></div>
         <div style="margin-top:16px;font-size:12px;color:var(--text3);font-family:var(--font-mono);">
           GRE Quant Pro Question Bank · <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none;">Contact us</a>
         </div>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:24px;" id="exam-kpi-row"></div>
-      <div class="exam-score-note" id="exam-score-note"></div>
-      <div class="charts-grid" style="margin-bottom:24px;">
+      <p class="gel-held-only" style="display:none;margin:0 0 18px;font-size:14px;line-height:1.55;color:var(--text2);text-align:left">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+      <div class="gel-secret" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:24px;" id="exam-kpi-row"></div>
+      <div class="exam-score-note gel-secret" id="exam-score-note"></div>
+      <div class="charts-grid gel-secret" style="margin-bottom:24px;">
         <div class="chart-card"><h3>By Difficulty</h3><div id="exam-diff-bars"></div></div>
         <div class="chart-card"><h3>By Question Type</h3><div id="exam-type-bars"></div></div>
       </div>
-      <div class="table-card" style="margin-bottom:24px;"><h3>Time Per Question</h3><div id="exam-time-table"></div></div>
+      <div class="table-card gel-secret" style="margin-bottom:24px;"><h3>Time Per Question</h3><div id="exam-time-table"></div></div>
       <div id="exam-wrong-section"></div>
-      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
-        <button class="btn btn-primary" onclick="resetBankSession()">🔄 New Session</button>
+      <div id="exam-proceed-host"></div>
+      <div class="gel-secret" style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:16px;">
+        <button class="btn btn-primary" id="exam-new-session-btn" onclick="resetBankSession()">🔄 New Session</button>
       </div>
-      <div id="tutor-teaser-exam"></div>
+      <div id="tutor-teaser-exam" class="gel-secret"></div>
     </div>
 
     <!-- Complete Screen -->
@@ -1017,7 +1020,8 @@ tr:hover td{background:rgba(26,93,166,0.04);}
       <div class="bank-complete-card">
         <div class="bank-complete-title">Session Complete! 🎉</div>
         <div class="bank-complete-sub" id="bank-complete-sub">Here's how you did</div>
-        <div class="bank-score-row">
+        <p class="gel-held-only" style="display:none;margin:0 0 18px;font-size:14px;line-height:1.55;color:var(--text2);text-align:left">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+        <div class="bank-score-row gel-secret">
           <div class="bank-score-display">
             <div class="bank-score-number" id="bank-final-score">—</div>
             <div class="bank-score-label">Accuracy</div>
@@ -1028,18 +1032,20 @@ tr:hover td{background:rgba(26,93,166,0.04);}
             <div class="bank-score-sub" id="bank-scaled-range"></div>
           </div>
         </div>
-        <div class="bank-score-note" id="bank-scaled-note"></div>
-        <div class="bank-stat-row">
+        <div class="bank-score-note gel-secret" id="bank-scaled-note"></div>
+        <div class="bank-stat-row gel-secret">
           <div class="bank-stat"><div class="bank-stat-val" id="bank-stat-correct" style="color:var(--success)">—</div><div class="bank-stat-lbl">Correct</div></div>
           <div class="bank-stat"><div class="bank-stat-val" id="bank-stat-wrong" style="color:var(--danger)">—</div><div class="bank-stat-lbl">Wrong</div></div>
           <div class="bank-stat"><div class="bank-stat-val" id="bank-stat-time" style="color:var(--accent)">—</div><div class="bank-stat-lbl">Avg Time/Q</div></div>
           <div class="bank-stat"><div class="bank-stat-val" id="bank-stat-total">—</div><div class="bank-stat-lbl">Total Time</div></div>
         </div>
-        <div id="bank-complete-breakdown" style="margin-bottom:28px;text-align:left;"></div>
-        <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-          <button class="btn btn-primary" onclick="resetBankSession()">🔄 Practice Again</button>
+        <div id="bank-complete-breakdown" class="gel-secret" style="margin-bottom:28px;text-align:left;"></div>
+        <div id="bank-errorlog-section" style="margin-bottom:24px;text-align:left;"></div>
+        <div id="bank-proceed-host" style="text-align:left;"></div>
+        <div class="gel-secret" style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+          <button class="btn btn-primary" id="bank-practice-again-btn" onclick="resetBankSession()">🔄 Practice Again</button>
         </div>
-        <div id="tutor-teaser-block"></div>
+        <div id="tutor-teaser-block" class="gel-secret"></div>
         <div style="margin-top:24px;padding-top:16px;border-top:1px solid var(--border);font-size:12px;color:var(--text3);font-family:var(--font-mono);">
           GRE Quant Pro Question Bank · <a href="mailto:goenka.aditya.kol@gmail.com" style="color:var(--accent);text-decoration:none;">Contact us</a>
         </div>
@@ -1070,6 +1076,7 @@ tr:hover td{background:rgba(26,93,166,0.04);}
 
 <script src="progress-local.js"></script>
 <script src="score-scale.js"></script>
+<script src="pro/error-log.js"></script>
 <script>
 /* ============================================================
    APP CONFIG — change this line only to switch free ↔ pro
@@ -2239,10 +2246,105 @@ function bankFinish(){
       ${breakdown}
     </div>`;
   window.scrollTo({top:0,behavior:'smooth'});
-  showToast('Session complete! '+acc+'% accuracy 🎉',acc>=75?'success':'info');
+  // With mistakes to log the score is held back, so the toast must not give it away.
+  if(window.GREErrorLog && wrong>0) showToast('Session complete! Log your mistakes to see your score.','info');
+  else showToast('Session complete! '+acc+'% accuracy 🎉',acc>=75?'success':'info');
   showTutorTeaser();
   recordFreeSession(buildBankSessionData());
   renderLockedHistory();
+  startBankErrorLog();
+  renderBankMistakeReview();
+  holdBankErrorLog('#bank-proceed-host');
+}
+
+/* ─── ERROR LOG (free topic tests) ────────────────────────────────────────────
+   Every wrong or skipped question must be tagged before the score and analytics
+   appear. Free topic tests are anonymous and stay in this browser, so the gate is
+   local: the chips and the hold come from pro/error-log.js (kind 'local'), nothing
+   is sent anywhere. If that file did not load, bankErrReview is null and nothing
+   here hides or locks anything. */
+function startBankErrorLog(){
+  window.bankErrReview = null;
+  if(!window.GREErrorLog) return null;
+  const rv = GREErrorLog.review({ kind:'local', blocking:true, onUpdate:syncBankErrorGate });
+  bankState.results.forEach((r,i)=>{
+    if(r.correct) return;
+    rv.require(i,{
+      status: r.studentAnswer==='(no answer)' ? 'skipped' : 'wrong',
+      time: r.timeTaken,
+      difficulty: String(r.question.difficulty||'').replace('_',' '),
+      question_id: r.question.id
+    });
+  });
+  window.bankErrReview = rv;
+  return rv;
+}
+
+/* Review first: the score and analytics stay hidden until every miss is tagged.
+   If this throws, release rather than strand the page. */
+function holdBankErrorLog(at){
+  const rv = window.bankErrReview;
+  if(!rv) return;
+  try { rv.hold({ at: at, onRelease: ()=>syncBankErrorGate(null) }); }
+  catch(e){ try { rv.dispose(); } catch(x){} if(window.console) console.warn('review gate', e); }
+}
+
+function syncBankErrorGate(p){
+  if(!window.GREErrorLog) return;
+  const locked = !!(p && p.total && !p.complete);
+  GREErrorLog.setLocked(
+    [document.getElementById('bank-practice-again-btn'), document.getElementById('exam-new-session-btn')],
+    locked, 'Tag why you missed each question first'
+  );
+}
+
+function refreshBankErrorUi(){
+  const rv = window.bankErrReview;
+  if(!rv) return;
+  rv.refreshBanners();
+  syncBankErrorGate(rv.progress());
+  const box = document.getElementById('exam-wrong-section');
+  if(box && window.GREMath) GREMath.renderIn(box);
+}
+
+/* Practice mode shows feedback one question at a time, so it has no list of
+   mistakes at the end. This renders one, with the tag chips under each. */
+function renderBankMistakeReview(){
+  const box = document.getElementById('bank-errorlog-section');
+  if(!box) return;
+  const rv = window.bankErrReview;
+  if(!rv || !rv.order.length){ box.innerHTML=''; syncBankErrorGate({total:0}); return; }
+  const res = bankState.results;
+  box.innerHTML = `<div class="table-card" style="margin-bottom:8px;">
+    <h3>Log your mistakes (${rv.order.length})</h3>
+    ${rv.banner()}
+    <div class="wrong-q-list">${rv.order.map(i=>{
+      const r = res[i], q = r.question;
+      const cAns = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
+      const mine = Array.isArray(r.studentAnswer) ? r.studentAnswer.join(', ') : r.studentAnswer;
+      const diffLabel = String(q.difficulty||'').replace('_',' ').replace(/\b\w/g,c=>c.toUpperCase());
+      return `<div class="wrong-q-card">
+        <div class="wrong-q-header">
+          <span class="pq-badge ${q.difficulty}">${diffLabel}</span>
+          <span class="pq-type-badge">${bankTypeLabel(q.type)}</span>
+          <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);">${q.id}</span>
+        </div>
+        <div class="wrong-q-body">
+          <div class="wrong-q-text">${escHtml(q.question)}</div>
+          <div class="wrong-q-answers">
+            <span class="wrong-q-your">Your answer: ${escHtml(mine)}</span>
+            <span style="color:var(--text3);">·</span>
+            <span class="wrong-q-correct">Correct: ${escHtml(cAns)}</span>
+          </div>
+          <div class="wrong-q-explanation">${escHtml(q.explanation)}</div>
+          <div class="wrong-q-trap">⚠️ Trap: ${escHtml(q.trap)}</div>
+          ${rv.html(i)}
+        </div>
+      </div>`;
+    }).join('')}</div></div>`;
+  rv.refreshBanners();
+  syncBankErrorGate(rv.progress());
+  if(window.GREMath) GREMath.renderIn(box);
 }
 
 /* Builds the v2.0 session object for a bank practice session. Shared by the
@@ -2377,7 +2479,7 @@ function renderLockedHistory(){
     : 'Practice more and they stack up here. Go Pro and your history moves into My Progress — accuracy trend, topic mastery, and your weakest subtopics over time.';
 
   anchor.insertAdjacentHTML('afterend', `
-    <div id="locked-history" style="margin-top:20px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px;">
+    <div id="locked-history" class="gel-secret" style="margin-top:20px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:20px;">
       <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">Progress History</div>
       <div style="display:flex;align-items:center;gap:14px;flex-wrap:wrap;">
         <div style="width:40px;height:40px;border-radius:50%;background:rgba(26,93,166,0.1);display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;">🔒</div>
@@ -2963,7 +3065,12 @@ function examSubmit() {
   });
 
   document.getElementById('bank-active-screen').style.display = 'none';
+  // The error-log controller must exist BEFORE the analysis renders, because
+  // the mistake cards embed its tag chips.
+  startBankErrorLog();
   examRenderAnalysis();
+  refreshBankErrorUi();
+  holdBankErrorLog('#exam-proceed-host');
 
   // FREE_CONFIG.examMode is true, so free users reach this path as well. It
   // must feed the local history for the same reason bankFinish() does.
@@ -3057,10 +3164,12 @@ function examRenderAnalysis() {
 
   // Wrong questions
   const wrongOnes = res.filter(r => !r.correct);
+  const errRv = window.bankErrReview;
   if (wrongOnes.length) {
     document.getElementById('exam-wrong-section').innerHTML = `
       <div class="table-card" style="margin-bottom:24px;">
         <h3>Questions to Review (${wrongOnes.length})</h3>
+        ${errRv ? errRv.banner() : ''}
         <div class="wrong-q-list">
           ${wrongOnes.map((r,i) => {
             const q = r.question;
@@ -3082,6 +3191,7 @@ function examRenderAnalysis() {
                 </div>
                 <div class="wrong-q-explanation">${escHtml(q.explanation)}</div>
                 <div class="wrong-q-trap">⚠️ Trap: ${escHtml(q.trap)}</div>
+                ${errRv ? errRv.html(res.indexOf(r)) : ''}
                 <div style="margin-top:10px;text-align:right;">
                   <button class="error-report-btn" style="opacity:1;" data-wrong-idx="${i}" onclick="openErrorReportForQuestion(bankState.results.filter(r=>!r.correct)[this.dataset.wrongIdx].question)">⚑ Report an error in this question</button>
                 </div>
@@ -3139,6 +3249,19 @@ resetBankSession = function() {
 
   window.examSelectedOptions = [];
   _origResetBankSession();
+};
+
+// Error log: a session's mistakes must be tagged before another can start.
+// Outermost wrapper on purpose, so nothing earlier can be reached around it.
+const _gelResetGuard = resetBankSession;
+resetBankSession = function () {
+  if (window.GREErrorLog && GREErrorLog.isBlocking()) {
+    showToast('Tag why you missed each question first', 'info');
+    return;
+  }
+  if (window.bankErrReview) { try { window.bankErrReview.dispose(); } catch (e) { /* already gone */ } }
+  window.bankErrReview = null;
+  _gelResetGuard();
 };
 
 // Init mode
