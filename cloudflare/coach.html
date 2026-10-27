@@ -192,6 +192,7 @@ tr.clickable:hover td{background:var(--surface2);}
         <input type="checkbox" id="mock-include-pro" onchange="renderMocks()" style="width:auto;min-height:0;"> Include Pro students' sectional attempts
       </label>
       <div class="hint" id="mock-summary" style="margin:0 0 12px;"></div>
+      <div id="mock-bulk" style="margin:0 0 12px;"></div>
       <div class="table-wrap" id="mocks-table"><div class="empty">Load to see free attempts.</div></div>
       <div class="hint">Every attempt on the free full mock, free sectionals and the event papers, newest first. Name and email are required on all three, so they appear for every attempt from now on. Attempts saved before that change may show a dash. They are kept apart from Pro progress, and people with no Pro account appear here too.</div>
     </div>
@@ -218,6 +219,7 @@ let students = [];
 let mockAttempts = [];
 let mockKind = 'all';       // all | mock | sectional | event
 let mocksLoaded = false;
+let mockShown = [];          // the rows currently on screen (after filters), for delete
 let currentDetail = null;   // { email, data } for the open student
 
 /* How each stored session_type is presented. `group` rolls the two topic-test
@@ -387,7 +389,7 @@ function renderStudents() {
   document.getElementById('students-table').innerHTML =
     '<table><thead><tr>' +
       '<th>Student</th><th>What they have attempted</th><th>Sessions</th>' +
-      '<th>Questions</th><th>Accuracy</th><th>Est. score</th><th>Error log</th><th>Last active</th>' +
+      '<th>Questions</th><th>Accuracy</th><th>Est. score</th><th>Error log</th><th>Last active</th><th></th>' +
     '</tr></thead><tbody>' +
     rows.map(s => {
       const types = s.by_type || {};
@@ -408,6 +410,7 @@ function renderStudents() {
           ? '<span class="badge badge-warn" title="Mistakes this student still has to tag. Their review is locked until they finish.">' + s.unlogged + ' to tag</span>'
           : '<span style="color:var(--text3);">—</span>') + '</td>' +
         '<td class="mono">' + fmtDate(s.last_date) + '</td>' +
+        '<td><button class="row-del" data-wipe="' + esc(s.email) + '" title="Delete all progress for this student">✕</button></td>' +
       '</tr>';
     }).join('') +
     '</tbody></table>';
@@ -416,6 +419,15 @@ function renderStudents() {
   // or name can never break the handler.
   document.querySelectorAll('#students-table tr.clickable').forEach(tr => {
     tr.addEventListener('click', () => openStudent(tr.dataset.email));
+  });
+  // The ✕ deletes the student's whole history. It must not also open the row.
+  document.querySelectorAll('#students-table button[data-wipe]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.stopPropagation();
+      const email = btn.dataset.wipe;
+      const s = students.find(x => x.email === email);
+      deleteProgress(email, null, (s && s.sessions) || 0);
+    });
   });
 }
 
@@ -886,6 +898,13 @@ function renderMocks() {
     return String(s.email || '').toLowerCase().includes(q) || String(s.name || '').toLowerCase().includes(q);
   });
 
+  mockShown = rows;
+  document.getElementById('mock-bulk').innerHTML = rows.length
+    ? '<button class="btn btn-danger btn-sm" id="mock-del-all">Delete all ' + rows.length + ' shown…</button>'
+    : '';
+  const bulk = document.getElementById('mock-del-all');
+  if (bulk) bulk.addEventListener('click', delMockShown);
+
   const people = new Set(rows.map(a => String((a.student || {}).email || '').toLowerCase()).filter(Boolean));
   const noEmail = rows.filter(a => !String((a.student || {}).email || '').trim()).length;
   document.getElementById('mock-summary').textContent = rows.length
@@ -901,8 +920,8 @@ function renderMocks() {
   const dash = '<span style="color:var(--text3);">—</span>';
   document.getElementById('mocks-table').innerHTML =
     '<table><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Type</th><th>Paper</th><th>Score</th>' +
-    '<th>Accuracy</th><th>Time</th><th>Band</th></tr></thead><tbody>' +
-    rows.map(a => {
+    '<th>Accuracy</th><th>Time</th><th>Band</th><th></th></tr></thead><tbody>' +
+    rows.map((a, i) => {
       const s = a.student || {};
       const km = KIND_META[attemptKind(a)];
       const sub = attemptKind(a) === 'event' ? (EVENT_SUB[a.event_type] || '') : '';
@@ -917,8 +936,12 @@ function renderMocks() {
         '<td class="mono">' + (a.correct || 0) + '/' + (a.total_questions || 0) + '</td>' +
         '<td>' + accBadge(Math.round(Number(a.accuracy) || 0)) + '</td>' +
         '<td class="mono" style="color:var(--text2);">' + fmtTime(a.total_time_seconds) + '</td>' +
-        '<td>' + (bandTxt ? '<span class="badge badge-mute">' + esc(bandTxt) + '</span>' : '—') + '</td></tr>';
+        '<td>' + (bandTxt ? '<span class="badge badge-mute">' + esc(bandTxt) + '</span>' : '—') + '</td>' +
+        '<td><button class="row-del" data-mockdel="' + i + '" title="Delete this attempt">✕</button></td></tr>';
     }).join('') + '</tbody></table>';
+  document.querySelectorAll('#mocks-table button[data-mockdel]').forEach(btn => {
+    btn.addEventListener('click', () => delMockAttempt(Number(btn.dataset.mockdel)));
+  });
 }
 
 /* ─── Events: one list of events, one analysis per event, one drill-down per student ───
@@ -1023,7 +1046,7 @@ function renderEvents() {
     : '<div class="logbanner"><div><b>The event error-log tables are not in D1 yet.</b> Attempts are still listed. Run the new statements from schema.sql in the D1 console to start collecting students’ error logs.</div></div>';
   if (!rows.length) { setBusy('ev-table', evList.length ? 'No event matches that filter.' : 'No event attempts in this window.'); return; }
   document.getElementById('ev-table').innerHTML =
-    '<table><thead><tr><th>Event</th><th>Dates</th><th>Students</th><th>Attempts</th><th>Avg accuracy</th><th>Best</th><th>Error logs</th></tr></thead><tbody>' +
+    '<table><thead><tr><th>Event</th><th>Dates</th><th>Students</th><th>Attempts</th><th>Avg accuracy</th><th>Best</th><th>Error logs</th><th></th></tr></thead><tbody>' +
     rows.map(e => {
       const sub = EVENT_SUB[e.event_type] || e.event_type || '';
       const dates = e.first_date === e.last_date ? fmtDate(e.first_date) : fmtDate(e.first_date) + ' → ' + fmtDate(e.last_date);
@@ -1034,7 +1057,8 @@ function renderEvents() {
         '<td class="mono">' + e.students + '</td><td class="mono">' + e.attempts + '</td>' +
         '<td><div style="display:flex;align-items:center;gap:9px;">' + bar(e.avg_accuracy) + '<span class="mono" style="font-size:12px;color:' + accColor(e.avg_accuracy) + ';">' + Math.round(e.avg_accuracy) + '%</span></div></td>' +
         '<td>' + accBadge(Math.round(e.best_accuracy)) + '</td>' +
-        '<td>' + evLogRollup(e.log) + '</td></tr>';
+        '<td>' + evLogRollup(e.log) + '</td>' +
+        '<td><button class="row-del" data-evdel="' + esc(e.event_key) + '" title="Delete this event and all its attempts">✕</button></td></tr>';
     }).join('') + '</tbody></table>';
 }
 
@@ -1118,7 +1142,8 @@ function renderEvent() {
   let html = '<button class="back" onclick="evGo(\'#events\')">← All events</button>' +
     '<div class="detail-head"><div><div class="detail-name">' + esc(evCur.name) + '</div>' +
     '<div class="detail-email">' + esc(first.event_id || evCur.key) + (sub ? ' · ' + esc(sub) : '') +
-    (dates.length ? ' · ' + fmtDate(dates[0]) + (dates[dates.length - 1] !== dates[0] ? ' → ' + fmtDate(dates[dates.length - 1]) : '') : '') + '</div></div></div>' +
+    (dates.length ? ' · ' + fmtDate(dates[0]) + (dates[dates.length - 1] !== dates[0] ? ' → ' + fmtDate(dates[dates.length - 1]) : '') : '') + '</div></div>' +
+    '<button class="btn btn-danger btn-sm" id="ev-del-event">Delete this event</button></div>' +
     (open.length ? evWaiveBanner(open.length, ' across this event.', 'ev-waive-all') : '') +
     '<div class="kpis">' +
       '<div class="kpi"><div class="v">' + A.people.size + '</div><div class="l">Students' + (A.n !== A.people.size ? ' · ' + A.n + ' attempts' : '') + '</div></div>' +
@@ -1201,6 +1226,7 @@ function renderEvent() {
 
   const wa = card.querySelector('#ev-waive-all');
   if (wa) wa.addEventListener('click', () => evWaive({ event_id: evCur.key }, 'every open attempt at this event'));
+  card.querySelector('#ev-del-event').addEventListener('click', () => delEvent(evCur.key));
   const f = card.querySelector('#ev-st-filter');
   f.addEventListener('input', renderEvStudents);
   renderEvStudents();
@@ -1238,7 +1264,7 @@ function renderEvStudents() {
   evCur.order = rows.map(a => a.attempt_id);
   const host = document.getElementById('ev-students');
   if (!rows.length) { host.innerHTML = '<div class="empty">No student matches that filter.</div>'; return; }
-  host.innerHTML = '<table><thead><tr><th>#</th><th>Student</th><th>Score</th><th>Accuracy</th><th>Est. score</th><th>Time</th><th>Error log</th></tr></thead><tbody>' +
+  host.innerHTML = '<table><thead><tr><th>#</th><th>Student</th><th>Score</th><th>Accuracy</th><th>Est. score</th><th>Time</th><th>Error log</th><th></th></tr></thead><tbody>' +
     rows.map(a => {
       const s = a.student || {}, est = evEst(a), no = evCur.attemptNo[a.attempt_id] || { n: 1, of: 1 };
       return '<tr class="clickable" data-att="' + esc(a.attempt_id) + '"><td class="mono" style="color:var(--text3);">' + evCur.rank[a.attempt_id] + '</td>' +
@@ -1246,7 +1272,8 @@ function renderEvStudents() {
         '<div class="mono" style="font-size:11.5px;color:var(--text3);">' + esc(s.email || '') + (s.batch ? ' · ' + esc(s.batch) : '') + '</div></td>' +
         '<td class="mono">' + (a.correct || 0) + '/' + (a.total_questions || 0) + '</td><td>' + accBadge(Math.round(Number(a.accuracy) || 0)) + '</td>' +
         '<td>' + scoreCell(est) + '</td><td class="mono" style="color:var(--text2);">' + fmtTime(a.total_time_seconds) + '</td>' +
-        '<td>' + (evCur.logOk ? logCell(a.log && a.log.required ? a.log : null) : EV_DASH) + '</td></tr>';
+        '<td>' + (evCur.logOk ? logCell(a.log && a.log.required ? a.log : null) : EV_DASH) + '</td>' +
+        '<td><button class="row-del" data-attdel="' + esc(a.attempt_id) + '" title="Delete this attempt">✕</button></td></tr>';
     }).join('') + '</tbody></table>';
 }
 
@@ -1268,7 +1295,8 @@ function renderEvStudent(attemptId) {
     '<div class="detail-head"><div><div class="detail-name">' + (s.name ? esc(s.name) : 'Unnamed student') + '</div>' +
     '<div class="detail-email">' + esc(s.email || 'no email on record') + (s.batch ? ' · ' + esc(s.batch) : '') +
     ' · ' + fmtDate(a.submitted_at || a.date) + (no.of > 1 ? ' · attempt ' + no.n + ' of ' + no.of : '') + '</div></div>' +
-    '<div style="display:flex;gap:8px;"><button class="btn btn-ghost btn-sm" id="ev-prev"' + (prev ? '' : ' disabled style="opacity:.4"') + '>‹ Previous</button>' +
+    '<div style="display:flex;gap:8px;flex-wrap:wrap;"><button class="btn btn-danger btn-sm" id="ev-del-one">Delete this attempt</button>' +
+    '<button class="btn btn-ghost btn-sm" id="ev-prev"' + (prev ? '' : ' disabled style="opacity:.4"') + '>‹ Previous</button>' +
     '<button class="btn btn-ghost btn-sm" id="ev-next"' + (next ? '' : ' disabled style="opacity:.4"') + '>Next ›</button></div></div>';
 
   if (evLogOpen(a)) {
@@ -1331,6 +1359,7 @@ function renderEvStudent(attemptId) {
   }
   const w1 = card.querySelector('#ev-waive-one');
   if (w1) w1.addEventListener('click', () => evWaive({ attempt_id: attemptId }, (s.name || s.email || 'this student') + '’s log'));
+  card.querySelector('#ev-del-one').addEventListener('click', () => delEventAttempt(attemptId));
   const go = (id) => id && evGo('#events/' + evCur.key + '/' + id);
   card.querySelector('#ev-prev').addEventListener('click', () => go(prev));
   card.querySelector('#ev-next').addEventListener('click', () => go(next));
@@ -1373,7 +1402,125 @@ async function evWaive(body, label) {
   } catch (e) { alert('Could not waive: ' + e.message); }
 }
 
+/* ─── Delete (permanent) ──────────────────────────────────────────────────
+   Event, free-mock and free-sectional attempts are the same kind of record, so
+   the Events tab and the Free attempts tab share one endpoint. A Pro student's
+   own progress is a different store and keeps using deleteProgress() above.
+   Single deletes ask once; anything bigger asks for the word DELETE. */
+const DEL_CHUNK = 20;      // matches ATTEMPT_DELETE_MAX in the Worker
+let delBusy = false;
+
+function typedConfirm(message) {
+  const a = prompt(message + '\n\nThis cannot be undone. Type DELETE to confirm.');
+  return a != null && a.trim().toUpperCase() === 'DELETE';
+}
+
+function attemptWho(a) {
+  const s = (a && a.student) || {};
+  return s.name || s.email || 'an unnamed student';
+}
+
+/* Sends the attempts in small chunks. Returns how many went. If a chunk fails
+   the error says how far it got; the caller refreshes either way. */
+async function deleteAttempts(list) {
+  let done = 0;
+  for (let i = 0; i < list.length; i += DEL_CHUNK) {
+    const chunk = list.slice(i, i + DEL_CHUNK).map(a => ({ attempt_id: a.attempt_id, date: a.date, event_id: a.event_id }));
+    let r;
+    try { r = await apiPost('/admin/attempts/delete', { attempts: chunk }); }
+    catch (e) { throw new Error(e.message + (done ? ' (' + done + ' deleted before that)' : '')); }
+    done += r.deleted || 0;
+    if (r.failed) throw new Error(r.failed + ' attempt' + (r.failed === 1 ? '' : 's') + ' could not be removed (' + (done) + ' deleted). Refresh and try again.');
+  }
+  return done;
+}
+
+/* Both lists are stale after any delete; the one on screen reloads, the other
+   reloads the next time its tab opens. */
+function attemptsChanged() { mocksLoaded = false; evLoaded = false; }
+
+/* Free attempts tab */
+async function delMockAttempt(i) {
+  const a = mockShown[i];
+  if (!a || delBusy) return;
+  const s = a.student || {};
+  if (!confirm('Delete this attempt?\n\n' + attemptWho(a) + (s.email && s.name ? ' · ' + s.email : '') + '\n' +
+    (a.event_name || a.event_id || 'attempt') + ' · ' + fmtDate(a.submitted_at || a.date) +
+    '\n\nIt also disappears from the Events tab, with any error-log tags. This cannot be undone.')) return;
+  delBusy = true;
+  setBusy('mocks-table', 'Deleting…');
+  try { await deleteAttempts([a]); }
+  catch (e) { alert('Could not delete: ' + e.message); }
+  delBusy = false;
+  attemptsChanged(); await loadMocks();
+}
+
+async function delMockShown() {
+  const rows = mockShown.slice();
+  if (!rows.length || delBusy) return;
+  if (!typedConfirm('Delete ALL ' + rows.length + ' attempt' + (rows.length === 1 ? '' : 's') + ' currently shown in this list?\n' +
+    'Change the filters first if that is not the set you mean. Their error-log tags go too.')) return;
+  delBusy = true;
+  setBusy('mocks-table', 'Deleting ' + rows.length + ' attempt' + (rows.length === 1 ? '' : 's') + '…');
+  try { await deleteAttempts(rows); }
+  catch (e) { alert('Could not finish deleting: ' + e.message); }
+  delBusy = false;
+  attemptsChanged(); await loadMocks();
+}
+
+/* Events tab */
+async function evAttemptsOf(key) {
+  if (evCur && evCur.key === key) return evCur.attempts;
+  const d = await api('/admin/event-attempts?event_id=' + encodeURIComponent(key) + '&days=365');
+  return d.attempts || [];
+}
+
+async function delEvent(key) {
+  if (delBusy) return;
+  let attempts;
+  try { attempts = await evAttemptsOf(key); }
+  catch (e) { alert('Could not load the event: ' + e.message); return; }
+  if (!attempts.length) { alert('That event has no attempts left. Refreshing.'); attemptsChanged(); evCur = null; evGo('#events'); return; }
+  const name = (evCur && evCur.key === key ? evCur.name : '') || (evList.find(x => x.event_key === key) || {}).event_name || attempts[0].event_name || key;
+  const people = new Set(attempts.map(a => ((a.student || {}).email || (a.student || {}).name || a.attempt_id)));
+  const tagged = attempts.reduce((n, a) => n + ((a.tags || []).length), 0);
+  if (!typedConfirm('Delete the event "' + name + '"?\n\n' + attempts.length + ' attempt' + (attempts.length === 1 ? '' : 's') + ' from ' +
+    people.size + ' student' + (people.size === 1 ? '' : 's') + (tagged ? ', and ' + tagged + ' tagged mistake' + (tagged === 1 ? '' : 's') : '') + ' will be removed.')) return;
+  delBusy = true;
+  evShow('event');
+  document.getElementById('ev-event-card').innerHTML = '<div class="empty">Deleting ' + attempts.length + ' attempt' + (attempts.length === 1 ? '' : 's') + '…</div>';
+  try { await deleteAttempts(attempts); }
+  catch (e) { alert('Could not finish deleting: ' + e.message); }
+  delBusy = false;
+  attemptsChanged(); evCur = null;
+  evGo('#events');
+  if (location.hash === '#events') await loadEvents();
+}
+
+async function delEventAttempt(attemptId) {
+  if (delBusy || !evCur) return;
+  const a = evCur.attempts.find(x => x.attempt_id === attemptId);
+  if (!a) return;
+  const s = a.student || {};
+  if (!confirm('Delete ' + attemptWho(a) + '’s attempt?\n\n' + (evCur.name || '') + ' · ' + fmtDate(a.submitted_at || a.date) +
+    (s.email && s.name ? '\n' + s.email : '') + '\n\nTheir error-log tags go with it. This cannot be undone.')) return;
+  const key = evCur.key, left = evCur.attempts.length - 1;
+  delBusy = true;
+  try { await deleteAttempts([a]); }
+  catch (e) { alert('Could not delete: ' + e.message); }
+  delBusy = false;
+  attemptsChanged(); evCur = null;
+  if (left > 0) { await openEvent(key); evGo('#events/' + key); }
+  else { evGo('#events'); if (location.hash === '#events') await loadEvents(); }
+}
+
 document.addEventListener('click', e => {
+  const del = e.target.closest && e.target.closest('[data-evdel],[data-attdel]');
+  if (del) {
+    e.stopPropagation();
+    if (del.dataset.evdel) delEvent(del.dataset.evdel); else delEventAttempt(del.dataset.attdel);
+    return;
+  }
   const row = e.target.closest && e.target.closest('tr[data-ev]');
   if (row) { evGo('#events/' + row.dataset.ev); return; }
   const att = e.target.closest && e.target.closest('tr[data-att]');

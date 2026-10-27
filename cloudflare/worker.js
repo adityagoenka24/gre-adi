@@ -34,6 +34,7 @@
  *   GET  /admin/events          — one row per event, aggregated (protected by ADMIN_SECRET)
  *   GET  /admin/event-attempts  — every attempt at one event, with tags (protected by ADMIN_SECRET)
  *   POST /admin/event-log/waive — release a student from an event error log (protected by ADMIN_SECRET)
+ *   POST /admin/attempts/delete — permanently delete event / free-mock / sectional attempts and their error-log rows (protected by ADMIN_SECRET)
  *   POST /razorpay/webhook      — Razorpay webhook: auto-provisions Pro on payment.captured
  *   GET  /admin/webhook-queue   — list auto-provisioned, manual-review, and no-email payments (protected by ADMIN_SECRET)
  *   POST /admin/dismiss-webhook-item — remove a resolved item from the manual-review/no-email queue (protected by ADMIN_SECRET)
@@ -146,6 +147,9 @@ export default {
       }
       if (path === '/admin/event-log/waive' && request.method === 'POST') {
         return await handleAdminEventWaive(request, env);
+      }
+      if (path === '/admin/attempts/delete' && request.method === 'POST') {
+        return await handleAdminAttemptsDelete(request, env);
       }
       if (path === '/razorpay/webhook' && request.method === 'POST') {
         return await handleRazorpayWebhook(request, env);
@@ -2254,6 +2258,85 @@ async function handleAdminEventWaive(request, env) {
   } catch (e) {
     return jsonResponse({ error: 'Error log storage not configured' }, 503);
   }
+}
+
+/**
+ * POST /admin/attempts/delete — { attempts: [{ attempt_id, date, event_id }, ...] }
+ *
+ * Permanently removes event, free-mock and free-sectional attempts (they all
+ * live in the same `mock_attempt:` KV records) and the error-log rows that
+ * belong to them. The coach page already holds each attempt's id, date and
+ * event, so it sends those and we rebuild the KV key here. No key string is
+ * ever taken from the request, so this can only ever touch `mock_attempt:`
+ * records.
+ *
+ * Small batches on purpose (ATTEMPT_DELETE_MAX): each attempt costs a KV read
+ * and a KV delete, both subrequests, and the Worker plan may allow only 50.
+ * The page loops over chunks to remove a whole event. An attempt that is not
+ * there (already deleted, or an event_id that does not match) is counted as
+ * `missing`, and its log rows are left alone.
+ *
+ * Pro progress is a different store (D1 sessions): see /admin/progress/delete.
+ * Nothing here undoes: the coach page confirms first.
+ */
+const ATTEMPT_DELETE_MAX = 20;
+const ATTEMPT_DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+
+async function handleAdminAttemptsDelete(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_AUTH) return jsonResponse({ error: 'Storage not configured' }, 503);
+
+  const body = await safeJson(request);
+  const items = Array.isArray(body.attempts) ? body.attempts : null;
+  if (!items || !items.length) return jsonResponse({ error: 'Missing attempts' }, 400);
+  if (items.length > ATTEMPT_DELETE_MAX) {
+    return jsonResponse({ error: 'Too many attempts in one request (max ' + ATTEMPT_DELETE_MAX + ')' }, 400);
+  }
+
+  // Validate everything before touching anything: one bad row rejects the lot.
+  const targets = [];
+  const seen = new Set();
+  for (const it of items) {
+    const id = String((it && it.attempt_id) || '').trim();
+    const date = String((it && it.date) || '').trim();
+    if (!EVENT_ID_RE.test(id) || !ATTEMPT_DATE_RE.test(date)) {
+      return jsonResponse({ error: 'Each attempt needs a valid attempt_id and date (YYYY-MM-DD)' }, 400);
+    }
+    if (seen.has(id)) continue;
+    seen.add(id);
+    targets.push({ id, key: `mock_attempt:${date}:${normalizeKeyPart((it && it.event_id) || 'event')}:${id}` });
+  }
+
+  // Records first (what the coach sees), log rows after (best effort).
+  const gone = [];
+  let failed = 0, missing = 0;
+  for (const t of targets) {
+    try {
+      if ((await env.GRE_AUTH.get(t.key)) == null) { missing += 1; continue; }
+      await env.GRE_AUTH.delete(t.key);
+      gone.push(t.id);
+    } catch (e) { failed += 1; }
+  }
+
+  let logCleaned = false;
+  if (env.GRE_DB && gone.length) {
+    const marks = gone.map(() => '?').join(',');
+    try {
+      await env.GRE_DB.batch([
+        env.GRE_DB.prepare(`DELETE FROM event_error_log WHERE attempt_id IN (${marks})`).bind(...gone),
+        env.GRE_DB.prepare(`DELETE FROM event_log_required WHERE attempt_id IN (${marks})`).bind(...gone),
+      ]);
+      logCleaned = true;
+    } catch (e) { /* event tables not created yet: nothing to clean */ }
+  }
+
+  return jsonResponse({
+    status: failed ? (gone.length ? 'partial' : 'failed') : 'deleted',
+    deleted: gone.length,
+    missing,
+    failed,
+    log_cleaned: logCleaned,
+  }, failed && !gone.length ? 500 : 200);
 }
 
 /* ─── COACH / ADMIN VIEWS ─────────────────────────────────────────────────── */
