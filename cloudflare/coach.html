@@ -170,10 +170,13 @@ tr.clickable:hover td{background:var(--surface2);}
         <div class="field"><label for="ev-days">Days</label><input id="ev-days" type="number" value="90" min="1" max="365"></div>
         <div class="field"><label for="ev-filter">Filter by event name</label><input id="ev-filter" type="text" oninput="renderEvents()" placeholder="Type to filter…"></div>
         <button class="btn btn-ghost" onclick="loadEvents()">Refresh</button>
+        <button class="btn btn-danger btn-sm" id="ev-del-all" onclick="delAllEvents()">Delete all events</button>
+        <button class="btn btn-ghost btn-sm" onclick="tidyAttempts()" title="One-off: index and clear out attempts stored before the 3-day expiry existed">Tidy up old storage</button>
       </div>
       <div id="ev-note"></div>
       <div class="table-wrap" id="ev-table"><div class="empty">Set the connection above to load events.</div></div>
       <div class="hint">One row per event. Click an event for its overall analysis and every student who sat it, then click a student for their full breakdown, the same mistake analytics a Pro student sees about themselves.</div>
+      <div class="hint" id="ev-retention"></div>
     </div>
     <div class="card" id="ev-event-card" style="display:none;"></div>
     <div class="card" id="ev-student-card" style="display:none;"></div>
@@ -1028,6 +1031,8 @@ async function loadEvents() {
   try {
     const d = await api('/admin/events?days=' + days);
     evList = d.events || []; evLogEnabled = d.log_enabled !== false; evLoaded = true;
+    evTtlDays = Number(d.detail_ttl_days) || 0;
+    evSource = d.source || '';
     renderEvents();
   } catch (e) { setBusy('ev-table', e.message); }
 }
@@ -1039,11 +1044,29 @@ function evLogRollup(l) {
   return '<span class="badge badge-ok">all tagged</span>';
 }
 
+/* How long a question-by-question drill-down survives, and how much of the
+   current list still has one. Scores and accuracy never expire; only the
+   stored answer sheet does, which is what keeps the KV read count down. */
+function renderRetention() {
+  const el = document.getElementById('ev-retention');
+  if (!el) return;
+  if (!evTtlDays) { el.innerHTML = ''; return; }
+  const live = evList.reduce((n, e) => n + (Number(e.detail_live) || 0), 0);
+  const total = evList.reduce((n, e) => n + (Number(e.attempts) || 0), 0);
+  el.innerHTML = 'Question-by-question detail is kept for <b>' + evTtlDays + ' days</b> after an attempt, then expires by itself. '
+    + 'Scores, accuracy, timings and error-log tags are kept for good. '
+    + (total ? '<b>' + live + '</b> of ' + total + ' attempt' + (total === 1 ? '' : 's') + ' in this window can still be opened in full.' : '')
+    + (evSource === 'kv' ? ' <b>The attempt index is not in D1 yet</b> — this view is reading KV directly, which is the slow and expensive path. Run the new statements from schema.sql.' : '');
+}
+
 function renderEvents() {
   const q = (document.getElementById('ev-filter').value || '').toLowerCase().trim();
   const rows = evList.filter(e => !q || String(e.event_name || '').toLowerCase().includes(q) || String(e.event_id || '').toLowerCase().includes(q));
   document.getElementById('ev-note').innerHTML = evLogEnabled ? ''
     : '<div class="logbanner"><div><b>The event error-log tables are not in D1 yet.</b> Attempts are still listed. Run the new statements from schema.sql in the D1 console to start collecting students’ error logs.</div></div>';
+  renderRetention();
+  const delAll = document.getElementById('ev-del-all');
+  if (delAll) delAll.style.display = evList.length ? '' : 'none';
   if (!rows.length) { setBusy('ev-table', evList.length ? 'No event matches that filter.' : 'No event attempts in this window.'); return; }
   document.getElementById('ev-table').innerHTML =
     '<table><thead><tr><th>Event</th><th>Dates</th><th>Students</th><th>Attempts</th><th>Avg accuracy</th><th>Best</th><th>Error logs</th><th></th></tr></thead><tbody>' +
@@ -1062,15 +1085,46 @@ function renderEvents() {
     }).join('') + '</tbody></table>';
 }
 
+/* Every attempt at one event, with its answer sheet where that still exists.
+   The Worker hands back the summaries in one go but reads the stored answer
+   sheets a page at a time, because each is a KV read and a Worker request may
+   make only so many. It reports detail_next / detail_done; we keep asking and
+   merge, so the caller sees one complete reply.
+
+   `onProgress` is for the loading line: a crowded event takes a few rounds. */
+async function loadEventAttempts(key, onProgress) {
+  const base = '/admin/event-attempts?event_id=' + encodeURIComponent(key) + '&days=365';
+  let d = await api(base);
+  const byId = new Map((d.attempts || []).map(a => [a.attempt_id, a]));
+  let guard = 0;
+  while (!d.detail_done && d.detail_next != null && guard++ < 40) {
+    if (onProgress) onProgress(d.detail_next, d.detail_total);
+    const page = await api(base + '&detail_offset=' + d.detail_next);
+    for (const a of page.attempts || []) {
+      // Only the answer sheet is new each round; everything else is identical.
+      const prev = byId.get(a.attempt_id);
+      if (!prev) { byId.set(a.attempt_id, a); continue; }
+      if (a.result) { prev.result = a.result; prev.detail_expired = false; prev.detail_pending = false; }
+      else if (!a.detail_pending) { prev.detail_pending = false; prev.detail_expired = a.detail_expired; }
+    }
+    // No forward movement means the Worker has nothing left to give.
+    if (page.detail_next === d.detail_next) break;
+    d = { ...page, attempts: d.attempts };
+  }
+  return { ...d, attempts: Array.from(byId.values()) };
+}
+
 /* ── one event ── */
 async function openEvent(key) {
   evShow('event');
   const card = document.getElementById('ev-event-card');
   card.innerHTML = '<div class="empty">Loading event…</div>';
   try {
-    const d = await api('/admin/event-attempts?event_id=' + encodeURIComponent(key) + '&days=365');
+    const d = await loadEventAttempts(key, (got, of) => {
+      card.innerHTML = '<div class="empty">Loading event… ' + got + ' of ' + of + ' answer sheets</div>';
+    });
     const attempts = d.attempts || [];
-    evCur = { key, attempts, logOk: d.log_enabled !== false };
+    evCur = { key, attempts, logOk: d.log_enabled !== false, ttlDays: Number(d.detail_ttl_days) || 0 };
     evPrepare(); renderEvent();
   } catch (e) {
     evCur = null;
@@ -1408,6 +1462,7 @@ async function evWaive(body, label) {
    own progress is a different store and keeps using deleteProgress() above.
    Single deletes ask once; anything bigger asks for the word DELETE. */
 const DEL_CHUNK = 20;      // matches ATTEMPT_DELETE_MAX in the Worker
+let evTtlDays = 0, evSource = '';   // retention window the Worker reports
 let delBusy = false;
 
 function typedConfirm(message) {
@@ -1438,6 +1493,24 @@ async function deleteAttempts(list) {
 /* Both lists are stale after any delete; the one on screen reloads, the other
    reloads the next time its tab opens. */
 function attemptsChanged() { mocksLoaded = false; evLoaded = false; }
+
+/* Bulk delete. /admin/attempts/purge clears the index rows and the error-log
+   rows in one statement whatever the size, and lets the stored answer sheets
+   expire on their own within the retention window — they go within days and
+   cost nothing, where deleting them by hand would spend the free tier's daily
+   delete allowance to remove records that were leaving anyway.
+
+   `hard` is for when the data has to be gone now. The Worker caps how many
+   keys it removes per call and reports `remaining`, so we loop. */
+async function purgeAttempts(body, onProgress) {
+  let total = 0, guard = 0;
+  for (;;) {
+    const r = await apiPost('/admin/attempts/purge', body);
+    total += r.deleted || 0;
+    if (!r.remaining || guard++ > 200) return { deleted: total, note: r.note || '' };
+    if (onProgress) onProgress(r.remaining);
+  }
+}
 
 /* Free attempts tab */
 async function delMockAttempt(i) {
@@ -1471,30 +1544,80 @@ async function delMockShown() {
 /* Events tab */
 async function evAttemptsOf(key) {
   if (evCur && evCur.key === key) return evCur.attempts;
-  const d = await api('/admin/event-attempts?event_id=' + encodeURIComponent(key) + '&days=365');
+  const d = await loadEventAttempts(key);
   return d.attempts || [];
 }
 
 async function delEvent(key) {
   if (delBusy) return;
-  let attempts;
-  try { attempts = await evAttemptsOf(key); }
-  catch (e) { alert('Could not load the event: ' + e.message); return; }
-  if (!attempts.length) { alert('That event has no attempts left. Refreshing.'); attemptsChanged(); evCur = null; evGo('#events'); return; }
-  const name = (evCur && evCur.key === key ? evCur.name : '') || (evList.find(x => x.event_key === key) || {}).event_name || attempts[0].event_name || key;
-  const people = new Set(attempts.map(a => ((a.student || {}).email || (a.student || {}).name || a.attempt_id)));
-  const tagged = attempts.reduce((n, a) => n + ((a.tags || []).length), 0);
-  if (!typedConfirm('Delete the event "' + name + '"?\n\n' + attempts.length + ' attempt' + (attempts.length === 1 ? '' : 's') + ' from ' +
-    people.size + ' student' + (people.size === 1 ? '' : 's') + (tagged ? ', and ' + tagged + ' tagged mistake' + (tagged === 1 ? '' : 's') : '') + ' will be removed.')) return;
+  const row = evList.find(x => x.event_key === key) || {};
+  const name = (evCur && evCur.key === key ? evCur.name : '') || row.event_name || key;
+  const n = Number(row.attempts) || (evCur && evCur.key === key ? evCur.attempts.length : 0);
+  const who = Number(row.students) || 0;
+  if (!typedConfirm('Delete the event "' + name + '"?\n\n' +
+    (n ? n + ' attempt' + (n === 1 ? '' : 's') : 'Every attempt') +
+    (who ? ' from ' + who + ' student' + (who === 1 ? '' : 's') : '') +
+    ', and every error-log tag that goes with them, will be removed.')) return;
   delBusy = true;
   evShow('event');
-  document.getElementById('ev-event-card').innerHTML = '<div class="empty">Deleting ' + attempts.length + ' attempt' + (attempts.length === 1 ? '' : 's') + '…</div>';
-  try { await deleteAttempts(attempts); }
+  document.getElementById('ev-event-card').innerHTML = '<div class="empty">Deleting…</div>';
+  let out = null;
+  try { out = await purgeAttempts({ scope: 'event', event_id: (evCur && evCur.key === key ? evCur.eventId : '') || row.event_id || key }); }
   catch (e) { alert('Could not finish deleting: ' + e.message); }
   delBusy = false;
   attemptsChanged(); evCur = null;
   evGo('#events');
   if (location.hash === '#events') await loadEvents();
+  if (out && out.note) alert('Deleted ' + out.deleted + ' attempt' + (out.deleted === 1 ? '' : 's') + '.\n\n' + out.note);
+}
+
+/* Everything, every event. The one the free tier actually needs. */
+async function delAllEvents() {
+  if (delBusy) return;
+  if (!evLoaded) { alert('Load the list first, so you can see what you are about to delete.'); return; }
+  const n = evList.reduce((s, e) => s + (Number(e.attempts) || 0), 0);
+  if (!n) { alert('There is nothing to delete in this window.'); return; }
+  if (!typedConfirm('Delete ALL ' + evList.length + ' event' + (evList.length === 1 ? '' : 's') +
+    ' and every one of their ' + n + ' attempt' + (n === 1 ? '' : 's') + '?\n\n' +
+    'Free-mock and sectional attempts go too — they are the same kind of record. ' +
+    'Every error-log tag goes with them. Pro students\u2019 own progress is a separate store and is not touched.')) return;
+  delBusy = true;
+  setBusy('ev-table', 'Deleting…');
+  let out = null;
+  try { out = await purgeAttempts({ scope: 'all' }); }
+  catch (e) { alert('Could not finish deleting: ' + e.message); }
+  delBusy = false;
+  attemptsChanged(); evCur = null;
+  evGo('#events');
+  await loadEvents();
+  if (out) alert('Deleted ' + out.deleted + ' attempt' + (out.deleted === 1 ? '' : 's') + '.' + (out.note ? '\n\n' + out.note : ''));
+}
+
+/* One-off after this ships: attempts stored before the expiry existed have no
+   index row and never expire. This indexes them so they keep showing, and
+   removes the ones already past the window. Safe to run again any time. */
+async function tidyAttempts() {
+  if (delBusy) return;
+  if (!confirm('Tidy up stored attempts?\n\nAttempts saved before the 3-day expiry existed are indexed so they keep showing in these lists, and any already older than that are removed from storage. Nothing current is affected.')) return;
+  delBusy = true;
+  const note = document.getElementById('ev-note');
+  let cursor = null, indexed = 0, deleted = 0, scanned = 0, guard = 0;
+  try {
+    for (;;) {
+      const r = await apiPost('/admin/attempts/reindex', cursor ? { cursor } : {});
+      indexed += r.indexed || 0; deleted += r.deleted || 0; scanned += r.scanned || 0;
+      if (note) note.innerHTML = '<div class="logbanner"><div>Tidying up… ' + indexed + ' indexed, ' + deleted + ' removed.</div></div>';
+      if (r.done || !r.cursor || guard++ > 300) break;
+      cursor = r.cursor;
+    }
+    if (note) note.innerHTML = '';
+    alert('Done. ' + indexed + ' attempt' + (indexed === 1 ? '' : 's') + ' indexed, ' + deleted + ' past the retention window removed.');
+  } catch (e) {
+    if (note) note.innerHTML = '';
+    alert('Could not finish: ' + e.message);
+  }
+  delBusy = false;
+  attemptsChanged(); await loadEvents();
 }
 
 async function delEventAttempt(attemptId) {

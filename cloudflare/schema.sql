@@ -106,3 +106,53 @@ CREATE TABLE IF NOT EXISTS event_error_log (
   PRIMARY KEY (attempt_id, q_index)
 );
 CREATE INDEX IF NOT EXISTS idx_evel_event ON event_error_log(event_key);
+
+-- ── Attempt index (added with the 3-day detail expiry) ──────────────────────
+-- One small, permanent row per event / free-mock / sectional attempt.
+--
+-- The full attempt record still goes to KV, but now with a 3-day expiry: it
+-- is the heavy half (every question, answer and time) and it is only wanted
+-- while an attempt is fresh enough to review question by question. The coach
+-- list views read this table instead, so opening the Events tab costs one SQL
+-- statement rather than hundreds of KV reads.
+--
+-- kv_key             where the full record lives while it lasts
+-- detail_expires_at  unix seconds; past it, the drill-down is gone and the
+--                    row is summary-only. The coach page says so.
+--
+-- Rows outlive the KV record on purpose: scores, accuracy and timings stay
+-- for ever at a few hundred bytes each.
+--
+-- The Worker treats a missing table as "index off" and falls back to the old
+-- KV scan, so it can be deployed before or after this runs.
+
+CREATE TABLE IF NOT EXISTS mock_attempt_index (
+  attempt_id           TEXT PRIMARY KEY,
+  kv_key               TEXT,
+  date                 TEXT NOT NULL,   -- YYYY-MM-DD, Asia/Kolkata
+  event_key            TEXT NOT NULL,   -- normalised event_id, matches the KV key
+  event_id             TEXT,
+  event_name           TEXT,
+  event_type           TEXT,
+  tier                 TEXT,            -- pro | free | '' (event)
+  submitted_at         TEXT,
+  saved_at             TEXT,
+  student_name         TEXT,
+  student_email        TEXT,
+  student_batch        TEXT,
+  team                 TEXT,            -- JSON, or NULL
+  score                REAL,
+  total_questions      INTEGER,
+  accuracy             REAL,
+  correct              INTEGER,
+  incorrect            INTEGER,
+  skipped              INTEGER,
+  total_time_seconds   INTEGER,
+  average_time_seconds REAL,
+  diagnosis            TEXT,            -- JSON, or NULL
+  detail_expires_at    INTEGER,         -- unix seconds
+  created_at           INTEGER NOT NULL
+);
+CREATE INDEX IF NOT EXISTS idx_mai_event ON mock_attempt_index(event_key, date);
+CREATE INDEX IF NOT EXISTS idx_mai_date  ON mock_attempt_index(date);
+CREATE INDEX IF NOT EXISTS idx_mai_email ON mock_attempt_index(student_email);

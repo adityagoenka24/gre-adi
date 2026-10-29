@@ -417,7 +417,7 @@
             ? '✓ ' + (self.clearedBy === 'waived' ? 'Our coaching team has cleared this log.' : 'This log is already cleared.') + ' Press “' + self.label() + '” below.'
             : (p.complete
                 ? '✓ All mistakes logged. Press “' + self.label() + '” below.'
-                : '⚑ Log why you missed each question to see your score (' + p.done + ' of ' + p.total + ' logged).')) + '</span>' +
+                : '⚑ Log why you missed each question to unlock your analysis (' + p.done + ' of ' + p.total + ' logged).')) + '</span>' +
           '<button type="button" class="gel-banner-go" data-gel-go="' + self.id + '">' + (open ? 'Go to the button ↓' : 'Next untagged ↓') + '</button>';
         return;
       }
@@ -549,10 +549,10 @@
       bar.classList.toggle('gel-ready', open);
       var msg = bar.querySelector('.gel-proceed-msg'), btn = bar.querySelector('.gel-proceed-btn');
       if (msg) msg.textContent = self.waived && !p.complete
-        ? (self.clearedBy === 'waived' ? 'Our coaching team has cleared this log' : 'This log is already cleared') + ', so your analytics are ready. The mistake-pattern analytics need a finished log, so they are skipped for this attempt.'
+        ? (self.clearedBy === 'waived' ? 'Our coaching team has cleared this log' : 'This log is already cleared') + ', so your analysis is ready. The mistake-pattern analytics need a finished log, so they are skipped for this attempt.'
         : (p.complete
-            ? 'All mistakes logged. Your score and analytics are ready.'
-            : 'Log the ' + left + ' remaining ' + (left === 1 ? 'mistake' : 'mistakes') + ' above to unlock your score and analytics.');
+            ? 'All mistakes logged. Your full analysis is ready.'
+            : 'Log the ' + left + ' remaining ' + (left === 1 ? 'mistake' : 'mistakes') + ' above to unlock your full analysis.');
       if (btn) { btn.disabled = !open; if (open) btn.removeAttribute('aria-disabled'); else btn.setAttribute('aria-disabled', 'true'); }
     });
   };

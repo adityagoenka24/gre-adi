@@ -27,6 +27,8 @@
 <script defer src="gre-calculator.js"></script>
 <script defer src="progress-local.js"></script>
 <script defer src="score-scale.js"></script>
+<script defer src="score-card.js"></script>
+<script defer src="gre-exhibit.js"></script>
 <script defer src="pro/error-log.js"></script>
 <style>
   .gre-shell.screen{display:none;}
@@ -148,7 +150,7 @@
       <ul class="instr-list">
         <li>The test screen replicates the real GRE: use <strong>Back / Next</strong> to move, <strong>Mark</strong> to flag a question, and <strong>Review</strong> to see the status of every question in the section.</li>
         <li>Section 1: <strong>12 questions, 21 minutes</strong>. Section 2: <strong>15 questions, 26 minutes</strong>. Time does not carry over.</li>
-        <li>Section 2 is adaptive — your S1 score selects the harder or standard S2 form automatically.</li>
+        <li>Section 2 is adaptive — how you do in Section 1 selects one of three Section 2 forms, as on the real test. The form you are given sets the highest score the paper can report.</li>
         <li>You can change your answer any time before exiting the section.</li>
         <li>When time runs out, the section is auto-submitted.</li>
         <li>There is a short break between Section 1 and Section 2.</li>
@@ -179,7 +181,7 @@
       <h2>Mock Complete!</h2>
       <p id="res-subtitle"></p>
     </div>
-    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">You have your score. Now tag why you missed each question below — it takes about a minute, and it is what turns a score into a plan. Your full analysis opens when you are done.</p>
     <div class="score-ring-wrap gel-secret">
       <div class="score-ring">
         <svg width="160" height="160" viewBox="0 0 160 160">
@@ -359,11 +361,18 @@ function buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2) {
 }
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
+/* Every paper is now built to the same real-GRE blueprint — Section 1 is
+   3 easy / 7 medium / 2 hard whichever mock you pick, and Section 2 adapts
+   to how that went. So the old 'Balanced → Expert' ladder is gone: a mock
+   is no longer easier or harder than the next one, and the score scale,
+   not the paper, is what separates a 150 from a 168. The cards say what
+   now actually distinguishes them, which is nothing but which questions
+   you get. */
 const MOCK_INDEX = [
-  { id:'mock_01', title:'Mock Test 1', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
-  { id:'mock_02', title:'Mock Test 2', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
+  { id:'mock_01', title:'Mock Test 1', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_02', title:'Mock Test 2', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
 ];
-const DIFF_COLORS = { Balanced:'#1a5da6', Moderate:'#1e7e46', 'Moderate-Hard':'#b06000', Hard:'#c0392b', 'Very Hard':'#8e44ad', Expert:'#6b1f6e' };
+const DIFF_COLORS = { 'Real GRE':'#1a5da6', Balanced:'#1a5da6', Moderate:'#1e7e46', 'Moderate-Hard':'#b06000', Hard:'#c0392b', 'Very Hard':'#8e44ad', Expert:'#6b1f6e' };
 const SECTION_TIMES = { 1: 21 * 60, 2: 26 * 60 }; // real GRE: S1=21min, S2=26min
 const ADAPTIVE_THRESHOLD = 7; // out of 12 correct → hard S2; else easy S2
 
@@ -572,7 +581,9 @@ function renderQuestion() {
   closeReview();
 
   const directions = TYPE_DIRECTIONS[q.type] || '';
-  const svgHtml = q.svg ? `<div class="gre-svg">${q.svg}</div>` : '';
+  // Charts and tables as well as figures: see gre-exhibit.js.
+  const svgHtml = window.GREExhibit ? GREExhibit.html(q)
+    : (q.svg ? `<div class="gre-svg">${q.svg}</div>` : '');
   let bodyHtml = '';
 
   if (q.type === 'quantitative_comparison' && /(Column|Quantity)\s*[AB]\s*:/i.test(q.question)) {
@@ -780,12 +791,43 @@ function submitSection(autoSubmit) {
     autoSubmit
   };
   if (state.currentSection === 1) {
-    state.section2Form = (correct >= ADAPTIVE_THRESHOLD) ? 'hard' : 'easy';
-    const s2forms = state.mockData.sections[1].forms;
-    state.mockData.sections[1].questions = s2forms[state.section2Form];
+    pickSection2(correct, qs.length);
     showBreak();
   } else {
     showResults();
+  }
+}
+
+/* Which Section 2 the student has earned.
+
+   The papers now carry three forms rather than two, with the Section 1 raw
+   scores for each in their own meta, so a form can be retuned without a code
+   change. score-scale.js owns both the thresholds and the picking, because
+   the form served sets the ceiling of what the paper can report: a page that
+   chose the easy section while the scorer thought it served the hard one
+   would print a number nobody could reproduce.
+
+   Falls back to the old two-form behaviour for a paper that has not been
+   rebuilt, and to the plain `questions` array for one that was never
+   adaptive at all. */
+function pickSection2(correct, total) {
+  const sec = state.mockData.sections[1];
+  const forms = sec && sec.forms;
+  if (!forms) { state.section2Form = null; return; }
+
+  let route = (correct >= ADAPTIVE_THRESHOLD) ? 'hard' : 'easy';
+  if (window.GREScore && GREScore.routeFor) {
+    route = GREScore.routeFor(correct, total, (state.mockMeta && state.mockMeta.routing) || null);
+  }
+  const chosen = (window.GREScore && GREScore.pickForm)
+    ? GREScore.pickForm(forms, route)
+    : (forms[route] ? { form: route, questions: forms[route] } : null);
+
+  if (chosen) {
+    state.section2Form = chosen.form;
+    sec.questions = chosen.questions;
+  } else {
+    state.section2Form = null;          // leave whatever the paper shipped
   }
 }
 
@@ -809,8 +851,10 @@ function checkAnswer(q, given) {
 function showBreak() {
   const r1 = state.sectionResults[1];
   const pct = Math.round((r1.correct / r1.total) * 100);
-  const s2Label = state.section2Form === 'hard' ? 'Higher Difficulty ↑' : 'Standard Difficulty';
-  const s2Color = state.section2Form === 'hard' ? 'var(--gre-warning)' : 'var(--gre-blue)';
+  const S2_FORM_LABEL = { hard: 'Higher Difficulty ↑', medium: 'Standard Difficulty', easy: 'Lower Difficulty ↓' };
+  const S2_FORM_COLOR = { hard: 'var(--gre-warning)', medium: 'var(--gre-blue)', easy: 'var(--gre-text2)' };
+  const s2Label = S2_FORM_LABEL[state.section2Form] || 'Standard Difficulty';
+  const s2Color = S2_FORM_COLOR[state.section2Form] || 'var(--gre-blue)';
   document.getElementById('break-preview').innerHTML =
     `Section 1: <strong>${r1.correct} / ${r1.total}</strong> correct (${pct}%)<br>
     <span style="font-size:12px;color:${s2Color};margin-top:6px;display:inline-block;font-weight:700;">
@@ -868,7 +912,13 @@ function mockScore() {
       rows.push({ difficulty: q.difficulty, correct: checkAnswer(q, state.answers[si+1][qi]) });
     });
   });
-  return GREScore.fromQuestions(rows, 'mock');
+  // Which Section 2 they sat caps what the paper can report, the way it does
+  // on a section-adaptive test. Weighting alone will not do it: weighted
+  // accuracy is a ratio, so a perfect easy section scores what a perfect
+  // hard one does. Omitted on a non-adaptive paper, which then scores
+  // exactly as it always did.
+  return GREScore.fromQuestions(rows, 'mock',
+    state.section2Form ? { route: state.section2Form } : undefined);
 }
 
 /* Only used when there is no estimate to show. */
@@ -976,7 +1026,8 @@ function buildLocalMockSession() {
     questions: questions,
     exportedAt: new Date().toISOString(),
     version: '2.0',
-    session_type: 'full_mock'
+    session_type: 'full_mock',
+    adaptive_route: state.section2Form || null
   };
 }
 
@@ -1088,6 +1139,15 @@ function showResults() {
   if (!(window.GREErrorLog && GREErrorLog.holding())) commitMockHistory();
 
   goTo('screen-results');
+
+  // Score first, then the review. See pro/full_mock.html for the reasoning;
+  // the history row is still only written once the gate releases.
+  if (window.GREScoreCard) {
+    GREScoreCard.show({
+      est: est, correct: totalCorrect, total: totalQs, scope: 'mock',
+      testTitle: state.mockMeta.title, studentName: state.student && state.student.name,
+    });
+  }
 }
 
 function commitMockHistory() {
@@ -1381,6 +1441,7 @@ function reviewAnswers(noScroll) {
       const correctStr = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
       html += `<div class="review-item ${status}">
         <div class="review-q"><strong>Q${qi+1}.</strong> ${escapeHtml(q.question)}</div>
+        ${window.GREExhibit ? GREExhibit.html(q) : ''}
         <div class="review-answers">
           <span>Your answer: <span class="${isCorrect?'correct-ans':'wrong-ans'}">${escapeHtml(givenStr)}</span></span>
           <span>Correct: <span class="correct-ans">${escapeHtml(correctStr)}</span></span>

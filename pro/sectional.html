@@ -133,6 +133,8 @@
 <body>
 <script src="pro-gate.js" data-feature="sectional"></script>
 <script src="../score-scale.js"></script>
+<script src="../score-card.js"></script>
+<script src="../gre-exhibit.js"></script>
 <script src="error-log.js"></script>
 <div class="app">
   <div class="app-header">
@@ -219,7 +221,7 @@
       <h2 id="res-title">Section Complete</h2>
       <p id="res-subtitle"></p>
     </div>
-    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">You have your score. Now tag why you missed each question below — it takes about a minute, and it is what turns a score into a plan. Your full analysis opens when you are done.</p>
     <div class="sx-score gel-secret">
       <div class="sx-score-row">
         <div class="sx-score-cell">
@@ -463,7 +465,9 @@ function renderQuestion(){
   var saved = state.answers[state.qIndex];
   closeReview();
   var directions = TYPE_DIRECTIONS[q.type] || '';
-  var svgHtml = q.svg ? '<div class="gre-svg">' + q.svg + '</div>' : '';
+  // Charts and tables as well as figures: see gre-exhibit.js.
+  var svgHtml = window.GREExhibit ? GREExhibit.html(q)
+    : (q.svg ? '<div class="gre-svg">' + q.svg + '</div>' : '');
   var bodyHtml = '';
   var opts = q.options || [];
 
@@ -643,6 +647,22 @@ function submitSection(autoSubmit){
   renderResults();
   track('sectional_completed', {topic:state.topic.id, set:state.setNo, correct:correct, total:list.length});
   goTo('screen-results');
+  showSectionalScoreCard();
+}
+
+/* Score first, then the review, then the analysis. The results screen behind
+   the card already has everything but the mistake log hidden by the gate, so
+   dismissing it lands the student on the review. Scope 'sectional' so the
+   card's wording matches the wider band score-scale.js gives one section. */
+function showSectionalScoreCard() {
+  if (!window.GREScoreCard) return;
+  var r = state.result;
+  var who = window.GREProgress ? (GREProgress.student() || {}) : {};
+  GREScoreCard.show({
+    est: r.est, correct: r.correct, total: r.total, scope: 'sectional',
+    testTitle: (state.topic && state.topic.name ? state.topic.name + ' — Set ' + state.setNo : 'Sectional'),
+    studentName: who.name || '',
+  });
 }
 
 // ─── ATTEMPT SUBMISSION (same contract as full_mock.html) ─────────────────────
@@ -936,6 +956,7 @@ function toggleReview(noScroll){
         : '';
       return '<div class="review-item ' + status + '">' +
         '<div class="review-q"><strong>Q' + (x.i+1) + '.</strong> ' + escapeHtml(x.q.question) + '</div>' +
+        (window.GREExhibit ? GREExhibit.html(x.q) : '') +
         optsHtml +
         '<div class="review-answers">' +
           '<span>Your answer: <span class="' + (x.correct?'correct-ans':'wrong-ans') + '">' + escapeHtml(givenStr) + '</span></span>' +

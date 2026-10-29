@@ -1040,7 +1040,7 @@ const Events = (() => {
     if (gated) evReview.refreshBanners();
     $("exam-wrong-section").onclick = leClick;
     if ($("ev-insights")) $("ev-insights").innerHTML = "";
-    if ($("resultsHeldTitle")) $("resultsHeldTitle").textContent = timedOut ? "Time is up. Now the review." : "Test complete. Now the review.";
+    if ($("resultsHeldTitle")) $("resultsHeldTitle").textContent = timedOut ? "Time is up. Now the review." : "Score recorded. Now the review.";
     // Typeset only the question review. The rest of this page is statistics
     // ("0:01 / 47:00", "7/12 (58%)"), and the typesetter would turn every
     // slash in those into a stacked fraction.
@@ -1069,6 +1069,40 @@ const Events = (() => {
 
   alert("Gmail is opening. The full result JSON has been copied to your clipboard — just paste it into the email body.");
 };
+    showEventScoreCard(result);
+  }
+
+  /* Score first, then the review, then the analysis.
+
+     Event papers are scored here rather than in buildResult() because the
+     student page has never shown a scaled score — only the coach views did,
+     through the same score-scale.js. Reading it off result.results means the
+     number on this card, the one in the saved attempt and the one the coach
+     sees all come from the same rows.
+
+     A sectioned event paper is a whole mock; a short one is a topic test, and
+     score-scale.js widens the band accordingly. */
+  function eventScore(result) {
+    if (!window.GREScore) return null;
+    var rows = (result.results || []).map(function (r) {
+      return { difficulty: r.difficulty, correct: !!r.correct && !r.skipped };
+    });
+    if (!rows.length) return null;
+    var scope = (rows.length >= 20 || (result.sections && result.sections.length > 1)) ? 'mock'
+      : (rows.length >= 12 ? 'sectional' : 'topic');
+    try { return GREScore.fromQuestions(rows, scope); } catch (e) { return null; }
+  }
+
+  function showEventScoreCard(result) {
+    if (!window.GREScoreCard) return;
+    var est = eventScore(result);
+    GREScoreCard.show({
+      est: est,
+      correct: result.correct, total: result.total_questions,
+      scope: (result.sections && result.sections.length > 1) ? 'mock' : 'sectional',
+      testTitle: result.event_name || 'Event Mock',
+      studentName: result.student && result.student.name,
+    });
   }
 
   // Resolves to the Worker's reply ({ attempt_id, log }) or null if the save did

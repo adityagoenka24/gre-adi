@@ -151,6 +151,12 @@ export default {
       if (path === '/admin/attempts/delete' && request.method === 'POST') {
         return await handleAdminAttemptsDelete(request, env);
       }
+      if (path === '/admin/attempts/purge' && request.method === 'POST') {
+        return await handleAdminAttemptsPurge(request, env);
+      }
+      if (path === '/admin/attempts/reindex' && request.method === 'POST') {
+        return await handleAdminAttemptsReindex(request, env);
+      }
       if (path === '/razorpay/webhook' && request.method === 'POST') {
         return await handleRazorpayWebhook(request, env);
       }
@@ -194,7 +200,30 @@ export default {
     } catch (err) {
       return jsonResponse({ error: 'Server error', detail: err.message }, 500);
     }
-  }
+  },
+
+  /**
+   * Optional nightly sweep. Add a cron trigger in the Cloudflare dashboard
+   * (Workers -> gre-auth -> Settings -> Triggers -> Cron, e.g. `17 20 * * *`)
+   * and this clears out attempts written before the index existed, a page per
+   * run. Everything written since carries its own expiry, so with no cron
+   * trigger at all nothing piles up — this only shortens the tail. The same
+   * work is available by hand at POST /admin/attempts/reindex.
+   */
+  async scheduled(event, env, ctx) {
+    if (!env.GRE_DB) return;
+    ctx.waitUntil((async () => {
+      let cursor;
+      for (let page = 0; page < 10; page++) {
+        let out;
+        try { out = await reindexAttemptPage(env, { cursor }); } catch (e) { return; }
+        let data;
+        try { data = await out.json(); } catch (e) { return; }
+        if (!data || data.error || data.done || !data.cursor) return;
+        cursor = data.cursor;
+      }
+    })());
+  },
 };
 
 // ─── ACCESS TIERS ────────────────────────────────────────────────────────────
@@ -433,6 +462,181 @@ async function handleAdminAnalyticsEvents(request, env, url) {
   return jsonResponse({ site, timezone: 'Asia/Kolkata', days, events });
 }
 
+
+/* ─── ATTEMPT RETENTION AND THE D1 INDEX ─────────────────────────────────────
+
+   Every event, free-mock and sectional attempt used to be a permanent KV
+   record, and every coach view re-read the lot: /admin/events walked 90 days
+   of keys, /admin/event-attempts walked 365, and each key found cost a GET.
+   An afternoon of clicking round the coach page could spend a day's free-tier
+   KV reads.
+
+   A submission now writes two things:
+
+     * the full record to KV with a 3-day expiry (ATTEMPT_DETAIL_TTL_DAYS).
+       This is the heavy half — every question, answer and time — and it is
+       only wanted while an attempt is fresh enough to review question by
+       question. KV removes an expired key itself: it is free, it does not
+       count against the daily delete allowance, and nothing has to run.
+     * a one-row summary to D1 (`mock_attempt_index`). Small, permanent and
+       queryable, so every coach list is one SQL statement and no KV reads.
+
+   An attempt whose detail has expired still appears in every list, with its
+   score, accuracy and timing intact; only the per-question drill-down goes,
+   and the page says so.
+
+   D1 is best effort throughout. No binding, no table or a failed query means
+   the old KV scan runs instead, so a half-finished deploy behaves exactly as
+   it did before — slower, never broken.
+   ──────────────────────────────────────────────────────────────────────── */
+
+const ATTEMPT_DETAIL_TTL_DAYS = 3;
+const ATTEMPT_DETAIL_TTL_SECONDS = ATTEMPT_DETAIL_TTL_DAYS * 86400;
+
+/* KV counts every get, put and delete as a subrequest and the Workers free
+   plan allows 50 per request, so anything that loops over keys stops here and
+   hands the caller a cursor instead of risking a hard failure part-way. */
+const ATTEMPT_KV_OPS_MAX = 40;
+
+const ATTEMPT_INDEX_COLUMNS =
+  'attempt_id, kv_key, date, event_key, event_id, event_name, event_type, tier, ' +
+  'submitted_at, saved_at, student_name, student_email, student_batch, team, ' +
+  'score, total_questions, accuracy, correct, incorrect, skipped, ' +
+  'total_time_seconds, average_time_seconds, diagnosis, detail_expires_at, created_at';
+
+const ATTEMPT_INDEX_INSERT =
+  'INSERT OR REPLACE INTO mock_attempt_index (' + ATTEMPT_INDEX_COLUMNS + ') ' +
+  'VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)';
+
+function attemptIndexValues(record, kvKey, expiresAt) {
+  const s = record.student || {};
+  return [
+    String(record.attempt_id || ''),
+    String(kvKey || ''),
+    String(record.date || ''),
+    normalizeKeyPart(record.event_id || 'event'),
+    String(record.event_id || ''),
+    String(record.event_name || ''),
+    String(record.event_type || ''),
+    String(record.tier || ''),
+    String(record.submitted_at || ''),
+    String(record.saved_at || ''),
+    String(s.name || ''),
+    String(s.email || ''),
+    String(s.batch || ''),
+    record.team ? JSON.stringify(record.team).slice(0, 2000) : null,
+    Number(record.score) || 0,
+    Number(record.total_questions) || 0,
+    Number(record.accuracy) || 0,
+    Number(record.correct) || 0,
+    Number(record.incorrect) || 0,
+    Number(record.skipped) || 0,
+    Number(record.total_time_seconds) || 0,
+    Number(record.average_time_seconds) || 0,
+    record.diagnosis ? JSON.stringify(record.diagnosis).slice(0, 6000) : null,
+    Number(expiresAt) || 0,
+    Math.floor(Date.now() / 1000),
+  ];
+}
+
+/* Returns false rather than throwing: the attempt is already safely in KV by
+   the time this runs, and losing the index row costs a slower coach view, not
+   a student's result. */
+async function saveAttemptIndex(env, record, kvKey, expiresAt) {
+  if (!env.GRE_DB) return false;
+  try {
+    await env.GRE_DB.prepare(ATTEMPT_INDEX_INSERT)
+      .bind(...attemptIndexValues(record, kvKey, expiresAt)).run();
+    return true;
+  } catch (e) {
+    return false;   // table not created yet
+  }
+}
+
+/* An index row back in the shape summarizeAttempt() returns, so the coach page
+   and every existing caller keep working unchanged. The two extra fields
+   (kv_key, detail_expired) are what the drill-down needs. */
+function attemptFromIndex(row) {
+  let team = null, diagnosis = null;
+  try { team = row.team ? JSON.parse(row.team) : null; } catch (e) { /* keep null */ }
+  try { diagnosis = row.diagnosis ? JSON.parse(row.diagnosis) : null; } catch (e) { /* keep null */ }
+  const expires = Number(row.detail_expires_at) || 0;
+  return {
+    attempt_id: row.attempt_id,
+    saved_at: row.saved_at,
+    date: row.date,
+    event_id: row.event_id,
+    event_name: row.event_name,
+    event_type: row.event_type,
+    tier: row.tier || '',
+    submitted_at: row.submitted_at,
+    student: { name: row.student_name || '', email: row.student_email || '', batch: row.student_batch || '' },
+    team,
+    score: row.score,
+    total_questions: row.total_questions,
+    accuracy: row.accuracy,
+    correct: row.correct,
+    incorrect: row.incorrect,
+    skipped: row.skipped,
+    total_time_seconds: row.total_time_seconds,
+    average_time_seconds: row.average_time_seconds,
+    diagnosis,
+    kv_key: row.kv_key || '',
+    detail_expires_at: expires,
+    detail_expired: !(expires && expires * 1000 > Date.now()),
+  };
+}
+
+/* `null` means there is no usable index (no binding, no table, query failed)
+   and the caller should fall back to walking KV. An empty array is a real
+   answer: the index exists and holds nothing for this window. */
+async function readAttemptIndex(env, opts) {
+  if (!env.GRE_DB) return null;
+  const o = opts || {};
+  const where = [], binds = [];
+  if (o.eventKey) { where.push('event_key = ?'); binds.push(o.eventKey); }
+  if (o.days) {
+    where.push('date >= ?');
+    binds.push(indiaDate(new Date(Date.now() - (o.days - 1) * 86400000)));
+  }
+  const limit = Math.min(Math.max(parseInt(o.limit, 10) || 5000, 1), 20000);
+  const sql = 'SELECT * FROM mock_attempt_index'
+    + (where.length ? ' WHERE ' + where.join(' AND ') : '')
+    + ' ORDER BY submitted_at DESC, saved_at DESC LIMIT ' + limit;
+  try {
+    const out = await env.GRE_DB.prepare(sql).bind(...binds).all();
+    return (out.results || []).map(attemptFromIndex);
+  } catch (e) {
+    return null;
+  }
+}
+
+/* explanation and trap are most of a result's size and no coach view shows
+   them, so they never leave the Worker. */
+function stripHeavyResult(result) {
+  if (!result) return null;
+  const out = { ...result };
+  if (Array.isArray(out.results)) {
+    out.results = out.results.map(r => {
+      const { explanation, trap, ...rest } = r || {};
+      return rest;
+    });
+  }
+  return out;
+}
+
+async function deleteAttemptIndexRows(env, attemptIds) {
+  if (!env.GRE_DB || !attemptIds.length) return false;
+  const marks = attemptIds.map(() => '?').join(',');
+  try {
+    await env.GRE_DB.prepare('DELETE FROM mock_attempt_index WHERE attempt_id IN (' + marks + ')')
+      .bind(...attemptIds).run();
+    return true;
+  } catch (e) {
+    return false;
+  }
+}
+
 // ─── MOCK SUBMISSIONS ────────────────────────────────────────────────────────
 async function handleMockSubmission(request, env) {
   const body = await safeJson(request);
@@ -474,7 +678,11 @@ async function handleMockSubmission(request, env) {
   };
 
   const key = `mock_attempt:${date}:${eventId}:${attemptId}`;
-  await env.GRE_AUTH.put(key, JSON.stringify(record));
+  const detailExpiresAt = Math.floor(Date.now() / 1000) + ATTEMPT_DETAIL_TTL_SECONDS;
+  // The full record expires by itself after ATTEMPT_DETAIL_TTL_DAYS; the
+  // permanent copy of what the coach lists is the D1 index row written next.
+  await env.GRE_AUTH.put(key, JSON.stringify(record), { expirationTtl: ATTEMPT_DETAIL_TTL_SECONDS });
+  await saveAttemptIndex(env, record, key, detailExpiresAt);
 
   // Only the new client sets this flag, so older cached pages never create a
   // requirement. Anything going wrong here leaves the student unlocked.
@@ -494,6 +702,23 @@ async function handleAdminMockAttempts(request, env, url) {
   }
   const days = Math.min(Math.max(parseInt(url.searchParams.get('days') || '30', 10) || 30, 1), 180);
   const includeResults = url.searchParams.get('include_results') === '1';
+
+  // The list view only ever needs the summary, and the index has it without
+  // touching KV at all. include_results=1 still has to read the records.
+  if (!includeResults) {
+    const indexed = await readAttemptIndex(env, { days });
+    if (indexed) {
+      return jsonResponse({
+        timezone: 'Asia/Kolkata',
+        days,
+        source: 'index',
+        detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+        count: indexed.length,
+        attempts: indexed,
+      });
+    }
+  }
+
   const dates = recentIndiaDates(days);
   const attempts = [];
 
@@ -519,6 +744,8 @@ async function handleAdminMockAttempts(request, env, url) {
   return jsonResponse({
     timezone: 'Asia/Kolkata',
     days,
+    source: 'kv',
+    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
     count: attempts.length,
     attempts,
   });
@@ -2162,8 +2389,19 @@ async function handleAdminEvents(request, env, url) {
   if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
   const days = Math.min(Math.max(parseInt(url.searchParams.get('days') || '90', 10) || 90, 1), 365);
   const state = await loadEventLogState(env, null);
-  const slim = (rec) => ({ ...summarizeAttempt(rec), log: eventLogOf(state, rec.attempt_id) });
-  const attempts = await collectEventRecords(env, days, null, slim);
+
+  // Index first: one SQL statement instead of `days` KV list calls and a GET
+  // per attempt. collectEventRecords stays as the fallback for a deploy where
+  // mock_attempt_index does not exist yet.
+  let attempts = await readAttemptIndex(env, { days });
+  let source = 'index';
+  if (attempts) {
+    attempts = attempts.map(a => ({ ...a, log: eventLogOf(state, a.attempt_id) }));
+  } else {
+    source = 'kv';
+    const slim = (rec) => ({ ...summarizeAttempt(rec), log: eventLogOf(state, rec.attempt_id) });
+    attempts = await collectEventRecords(env, days, null, slim);
+  }
 
   const byEvent = new Map();
   for (const a of attempts) {
@@ -2192,6 +2430,9 @@ async function handleAdminEvents(request, env, url) {
       avg_correct: Math.round(avg(r => r.correct) * 10) / 10,
       total_questions: Math.max(...rows.map(r => r.total_questions || 0)),
       best_accuracy: Math.max(...rows.map(r => Number(r.accuracy) || 0)),
+      // How many of this event's attempts can still be opened question by
+      // question. The rest are summary-only; their detail has expired.
+      detail_live: rows.filter(r => r.detail_expired === false).length,
       log: {
         enabled: state.ok,
         gated: gated.length,
@@ -2202,7 +2443,11 @@ async function handleAdminEvents(request, env, url) {
     });
   }
   events.sort((a, b) => String(b.last_date).localeCompare(String(a.last_date)));
-  return jsonResponse({ timezone: 'Asia/Kolkata', days, log_enabled: state.ok, count: events.length, events });
+  return jsonResponse({
+    timezone: 'Asia/Kolkata', days, source,
+    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+    log_enabled: state.ok, count: events.length, events,
+  });
 }
 
 /**
@@ -2219,19 +2464,74 @@ async function handleAdminEventAttempts(request, env, url) {
   const days = Math.min(Math.max(parseInt(url.searchParams.get('days') || '180', 10) || 180, 1), 365);
   const state = await loadEventLogState(env, eventKey);
 
-  const full = (rec) => {
-    const result = rec.result ? { ...rec.result } : null;
-    if (result && Array.isArray(result.results)) {
-      result.results = result.results.map(r => {
-        const { explanation, trap, ...rest } = r || {};
-        return rest;
-      });
+  // Detail costs one KV read each and the Workers free plan allows 50
+  // subrequests per request, so a crowded event is served in pages: the reply
+  // carries detail_next and the page asks again until detail_done.
+  const detailOffset = Math.max(parseInt(url.searchParams.get('detail_offset') || '0', 10) || 0, 0);
+  const detailLimit = Math.min(Math.max(parseInt(url.searchParams.get('detail_limit') || String(ATTEMPT_KV_OPS_MAX), 10) || ATTEMPT_KV_OPS_MAX, 0), 200);
+
+  const indexed = await readAttemptIndex(env, { eventKey, days });
+  if (indexed) {
+    indexed.sort((a, b) => String(a.submitted_at || a.saved_at).localeCompare(String(b.submitted_at || b.saved_at)));
+
+    // Only rows whose detail has not expired are worth a KV read, and only
+    // the slice this page asked for.
+    const live = [];
+    for (let i = 0; i < indexed.length; i++) {
+      if (!indexed[i].detail_expired && indexed[i].kv_key) live.push(i);
     }
-    return { ...rec, result, tags: state.tagsByAttempt.get(rec.attempt_id) || [], log: eventLogOf(state, rec.attempt_id) };
-  };
+    const slice = live.slice(detailOffset, detailOffset + detailLimit);
+    const fetched = new Map();
+    for (const i of slice) {
+      const row = indexed[i];
+      try {
+        const raw = await env.GRE_AUTH.get(row.kv_key);
+        // Gone early (purged by hand): the summary stays, the detail does not.
+        fetched.set(row.attempt_id, raw ? stripHeavyResult(JSON.parse(raw).result) : null);
+      } catch (e) {
+        fetched.set(row.attempt_id, null);
+      }
+    }
+
+    const attempts = indexed.map((a, i) => {
+      const got = fetched.has(a.attempt_id) ? fetched.get(a.attempt_id) : undefined;
+      return {
+        ...a,
+        result: got === undefined ? null : got,
+        // true once we know there is nothing to open: expired, or looked for
+        // and not found. A row we simply have not paged to yet is neither.
+        detail_expired: a.detail_expired || got === null,
+        detail_pending: got === undefined && !a.detail_expired,
+        tags: state.tagsByAttempt.get(a.attempt_id) || [],
+        log: eventLogOf(state, a.attempt_id),
+      };
+    });
+
+    const nextOffset = detailOffset + slice.length;
+    return jsonResponse({
+      timezone: 'Asia/Kolkata', event_id: eventId, days, source: 'index',
+      detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+      detail_total: live.length,
+      detail_next: nextOffset,
+      detail_done: nextOffset >= live.length,
+      log_enabled: state.ok, count: attempts.length, attempts,
+    });
+  }
+
+  const full = (rec) => ({
+    ...rec,
+    result: stripHeavyResult(rec.result),
+    tags: state.tagsByAttempt.get(rec.attempt_id) || [],
+    log: eventLogOf(state, rec.attempt_id),
+  });
   const attempts = await collectEventRecords(env, days, eventKey, full);
   attempts.sort((a, b) => String(a.submitted_at || a.saved_at).localeCompare(String(b.submitted_at || b.saved_at)));
-  return jsonResponse({ timezone: 'Asia/Kolkata', event_id: eventId, days, log_enabled: state.ok, count: attempts.length, attempts });
+  return jsonResponse({
+    timezone: 'Asia/Kolkata', event_id: eventId, days, source: 'kv',
+    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+    detail_total: attempts.length, detail_next: attempts.length, detail_done: true,
+    log_enabled: state.ok, count: attempts.length, attempts,
+  });
 }
 
 /**
@@ -2329,6 +2629,10 @@ async function handleAdminAttemptsDelete(request, env) {
       logCleaned = true;
     } catch (e) { /* event tables not created yet: nothing to clean */ }
   }
+  // The index row is what the coach page lists, so it has to go too, and it
+  // goes even for a `missing` attempt — that is exactly the row left behind
+  // when the KV record expired before the coach got round to deleting it.
+  await deleteAttemptIndexRows(env, targets.map(t => t.id));
 
   return jsonResponse({
     status: failed ? (gone.length ? 'partial' : 'failed') : 'deleted',
@@ -2337,6 +2641,226 @@ async function handleAdminAttemptsDelete(request, env) {
     failed,
     log_cleaned: logCleaned,
   }, failed && !gone.length ? 500 : 200);
+}
+
+
+/**
+ * POST /admin/attempts/purge — clear attempts in bulk.
+ *
+ * Body: { scope: 'all' | 'event', event_id?, older_than_days?, hard? }
+ *
+ *   scope 'all'    every event, free-mock and sectional attempt
+ *   scope 'event'  one event, named by event_id
+ *   older_than_days  keeps anything newer, so "clear everything before this
+ *                    week's batch" does not need a list of attempt ids
+ *   hard           also delete the KV records now (see below)
+ *
+ * The default is a soft purge: it deletes the D1 index rows and the error-log
+ * rows and leaves the KV records to expire by themselves within
+ * ATTEMPT_DETAIL_TTL_DAYS. The index is what every coach view reads, so the
+ * view is clear immediately, at a cost of three SQL statements and no KV
+ * operations whatever the size of the purge. Deleting the KV keys by hand
+ * instead would spend the free tier's 1,000 daily deletes to remove records
+ * that disappear on their own within three days.
+ *
+ * hard:true is for when the data itself has to go now rather than within three
+ * days. It is capped at ATTEMPT_KV_OPS_MAX keys per call and the reply carries
+ * `remaining`, so the page loops until it reaches zero.
+ *
+ * Pro progress is a different store: see POST /admin/progress/delete.
+ * Nothing here can be undone; the coach page asks for a typed confirmation.
+ */
+async function handleAdminAttemptsPurge(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_DB) return jsonResponse({ error: 'Attempt index not configured' }, 503);
+
+  const body = await safeJson(request);
+  const scope = String(body.scope || '').trim();
+  const hard = body.hard === true;
+  const olderThan = Math.max(parseInt(body.older_than_days, 10) || 0, 0);
+  if (scope !== 'all' && scope !== 'event') {
+    return jsonResponse({ error: "scope must be 'all' or 'event'" }, 400);
+  }
+
+  const where = [], binds = [];
+  if (scope === 'event') {
+    const eventId = String(body.event_id || '').trim();
+    if (!eventId) return jsonResponse({ error: 'Missing event_id' }, 400);
+    where.push('event_key = ?');
+    binds.push(normalizeKeyPart(eventId));
+  }
+  if (olderThan) {
+    where.push('date < ?');
+    binds.push(indiaDate(new Date(Date.now() - olderThan * 86400000)));
+  }
+  const clause = where.length ? ' WHERE ' + where.join(' AND ') : '';
+
+  let rows;
+  try {
+    const out = await env.GRE_DB.prepare(
+      'SELECT attempt_id, kv_key, detail_expires_at FROM mock_attempt_index' + clause
+    ).bind(...binds).all();
+    rows = out.results || [];
+  } catch (e) {
+    return jsonResponse({ error: 'Attempt index not configured' }, 503);
+  }
+  if (!rows.length) return jsonResponse({ status: 'nothing_to_delete', deleted: 0, remaining: 0 });
+
+  // Hard purge: only keys that have not expired are worth a delete call.
+  let kvDeleted = 0, kvFailed = 0, remaining = 0;
+  let handled = rows;
+  if (hard) {
+    const now = Date.now();
+    const liveKeys = rows.filter(r => r.kv_key && Number(r.detail_expires_at) * 1000 > now);
+    const batch = liveKeys.slice(0, ATTEMPT_KV_OPS_MAX);
+    remaining = Math.max(liveKeys.length - batch.length, 0);
+    for (const r of batch) {
+      try { await env.GRE_AUTH.delete(r.kv_key); kvDeleted += 1; } catch (e) { kvFailed += 1; }
+    }
+    // Keep the index rows for anything still holding a live KV record, so the
+    // next call can find them again. Everything else goes now.
+    const stillLive = new Set(liveKeys.slice(batch.length).map(r => r.attempt_id));
+    handled = rows.filter(r => !stillLive.has(r.attempt_id));
+  }
+
+  const ids = handled.map(r => r.attempt_id);
+  let logCleaned = false;
+  // D1 caps the number of bound parameters, so large purges go in chunks.
+  for (let i = 0; i < ids.length; i += 200) {
+    const chunk = ids.slice(i, i + 200);
+    const marks = chunk.map(() => '?').join(',');
+    try {
+      await env.GRE_DB.batch([
+        env.GRE_DB.prepare('DELETE FROM mock_attempt_index WHERE attempt_id IN (' + marks + ')').bind(...chunk),
+        env.GRE_DB.prepare('DELETE FROM event_error_log WHERE attempt_id IN (' + marks + ')').bind(...chunk),
+        env.GRE_DB.prepare('DELETE FROM event_log_required WHERE attempt_id IN (' + marks + ')').bind(...chunk),
+      ]);
+      logCleaned = true;
+    } catch (e) {
+      // event tables may not exist; the index delete still has to happen
+      try {
+        await env.GRE_DB.prepare('DELETE FROM mock_attempt_index WHERE attempt_id IN (' + marks + ')').bind(...chunk).run();
+      } catch (e2) { /* nothing more to try */ }
+    }
+  }
+
+  return jsonResponse({
+    status: remaining ? 'partial' : 'deleted',
+    scope,
+    deleted: ids.length,
+    kv_deleted: kvDeleted,
+    kv_failed: kvFailed,
+    remaining,
+    log_cleaned: logCleaned,
+    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+    note: hard ? undefined : 'Stored results expire on their own within ' + ATTEMPT_DETAIL_TTL_DAYS + ' days.',
+  });
+}
+
+/**
+ * POST /admin/attempts/reindex — one-off migration, and the nightly sweep.
+ *
+ * Attempts written before the index existed have no D1 row and no expiry, so
+ * they would both vanish from the coach page and sit in KV for ever. This
+ * walks the `mock_attempt:` keyspace a page at a time and, for each key:
+ *
+ *   * writes the index row if it is missing, so the attempt keeps showing;
+ *   * deletes the KV record if it is already older than the retention window,
+ *     which is what the expiry would have done had it been set.
+ *
+ * Body: { cursor?, max_ops? }. KV work is capped at ATTEMPT_KV_OPS_MAX per
+ * call and the reply carries `cursor` and `done`, so the coach page (or the
+ * scheduled handler below) loops until it finishes. Safe to re-run: an
+ * already-indexed, in-window key costs nothing but the list call.
+ */
+async function handleAdminAttemptsReindex(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  if (!env.GRE_DB) return jsonResponse({ error: 'Attempt index not configured' }, 503);
+  const body = await safeJson(request);
+  return await reindexAttemptPage(env, {
+    cursor: body.cursor ? String(body.cursor) : undefined,
+    maxOps: Math.min(Math.max(parseInt(body.max_ops, 10) || ATTEMPT_KV_OPS_MAX, 1), ATTEMPT_KV_OPS_MAX),
+  });
+}
+
+async function reindexAttemptPage(env, opts) {
+  const o = opts || {};
+  const maxOps = o.maxOps || ATTEMPT_KV_OPS_MAX;
+  const cutoff = indiaDate(new Date(Date.now() - ATTEMPT_DETAIL_TTL_DAYS * 86400000));
+
+  let listed;
+  try {
+    listed = await env.GRE_AUTH.list({ prefix: 'mock_attempt:', cursor: o.cursor, limit: 1000 });
+  } catch (e) {
+    return jsonResponse({ error: 'Could not list attempts' }, 500);
+  }
+
+  // Key shape is mock_attempt:{date}:{event}:{attemptId}, so the date and the
+  // id come out of the name itself — no read needed to decide what to do.
+  const parsed = [];
+  for (const k of listed.keys) {
+    const bits = String(k.name).split(':');
+    if (bits.length < 4) continue;
+    parsed.push({ key: k.name, date: bits[1], attemptId: bits.slice(3).join(':') });
+  }
+
+  let known = new Set();
+  if (parsed.length) {
+    for (let i = 0; i < parsed.length; i += 200) {
+      const chunk = parsed.slice(i, i + 200);
+      const marks = chunk.map(() => '?').join(',');
+      try {
+        const out = await env.GRE_DB.prepare(
+          'SELECT attempt_id FROM mock_attempt_index WHERE attempt_id IN (' + marks + ')'
+        ).bind(...chunk.map(p => p.attemptId)).all();
+        for (const r of out.results || []) known.add(r.attempt_id);
+      } catch (e) {
+        return jsonResponse({ error: 'Attempt index table missing — run schema.sql first' }, 503);
+      }
+    }
+  }
+
+  let ops = 0, indexed = 0, deleted = 0, failed = 0, skipped = 0, stoppedEarly = false;
+  for (const p of parsed) {
+    const stale = p.date < cutoff;
+    const needsIndex = !known.has(p.attemptId);
+    if (!stale && !needsIndex) { skipped += 1; continue; }
+    if (ops + (needsIndex ? 1 : 0) + (stale ? 1 : 0) > maxOps) { stoppedEarly = true; break; }
+
+    if (needsIndex) {
+      ops += 1;
+      try {
+        const raw = await env.GRE_AUTH.get(p.key);
+        if (raw) {
+          const rec = JSON.parse(raw);
+          // Legacy records carry no expiry. Index them as already expired when
+          // they are past the window, otherwise give them the time they have
+          // left so the drill-down still works until the sweep reaches them.
+          const expiresAt = stale ? 0 : Math.floor(Date.now() / 1000) + ATTEMPT_DETAIL_TTL_SECONDS;
+          if (!rec.attempt_id) rec.attempt_id = p.attemptId;
+          if (!rec.date) rec.date = p.date;
+          if (await saveAttemptIndex(env, rec, p.key, expiresAt)) indexed += 1;
+          else failed += 1;
+        }
+      } catch (e) { failed += 1; }
+    }
+    if (stale) {
+      ops += 1;
+      try { await env.GRE_AUTH.delete(p.key); deleted += 1; } catch (e) { failed += 1; }
+    }
+  }
+
+  const done = !stoppedEarly && listed.list_complete;
+  return jsonResponse({
+    status: 'ok',
+    scanned: parsed.length,
+    indexed, deleted, failed, skipped,
+    // Re-list the same page when we stopped early: the deleted keys are gone
+    // and the indexed ones are now skipped, so each pass gets further.
+    cursor: done ? null : (stoppedEarly ? (o.cursor || null) : (listed.cursor || null)),
+    done,
+    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+  });
 }
 
 /* ─── COACH / ADMIN VIEWS ─────────────────────────────────────────────────── */

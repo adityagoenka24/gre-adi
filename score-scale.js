@@ -55,6 +55,102 @@ window.GREScore = (function () {
   var ANCHORS = [[0, 134], [0.25, 145], [0.40, 152], [0.50, 156],
                  [0.60, 159], [0.70, 162], [0.80, 165], [0.90, 168], [1, 170]];
 
+
+  /* ── ADAPTIVE ROUTING ───────────────────────────────────────────
+
+     The mocks now serve one of three second sections depending on how
+     Section 1 went, as the real test does. That has to reach the
+     score, and weighting alone will not carry it: weighted accuracy
+     is a ratio, so its denominator grows with the paper's difficulty
+     and a perfect easy section scores exactly what a perfect hard one
+     does. On the real GRE it does not — the second section you are
+     routed to sets the ceiling of what the form can report.
+
+     So each route carries a ceiling and the 130–170 result is
+     compressed into 130–ceiling. Compressed, not clipped, so the top
+     of the easier routes is still a slope and not a flat line: two
+     students on the easy route who answered different numbers
+     correctly still get different scores.
+
+     The ceilings are the usual published shape of a section-adaptive
+     form — an easy second section cannot reach the high 160s, a
+     middle one stops short of the top. They are approximations of an
+     algorithm ETS does not publish, which is the same caveat the
+     whole estimate already carries.
+
+     No route means no adjustment, so sectionals, topic tests and
+     every stored attempt from before this existed score exactly as
+     they did. */
+  var ROUTE_CEILING = { easy: 158, medium: 165, hard: MAX };
+
+  function normRoute(r) {
+    var k = String(r == null ? '' : r).toLowerCase().trim();
+    return ROUTE_CEILING[k] == null ? null : k;
+  }
+
+  function applyRoute(score, route) {
+    var ceiling = ROUTE_CEILING[route];
+    if (ceiling == null || ceiling >= MAX) return score;
+    return clampScore(MIN + (score - MIN) * (ceiling - MIN) / (MAX - MIN));
+  }
+
+  /* Which second section a Section 1 raw score earns. Thresholds are
+     on the raw count, as the real test's are, and a paper may override
+     them in its own meta so a form can be tuned without a code change.
+
+     This lives here, beside the scoring, because the routing decision
+     and the ceiling it implies have to agree — a page picking the hard
+     section while the score thinks it served the easy one would report
+     a number nobody can reproduce. */
+  var DEFAULT_ROUTING = { medium: 6, hard: 9 };
+
+  function routeFor(correct, total, routing) {
+    var r = routing || DEFAULT_ROUTING;
+    var n = Number(correct) || 0;
+    // Thresholds are written for a 12-question Section 1; a different
+    // length is scaled so the same proportions apply.
+    var scale = (Number(total) || 12) / 12;
+    if (n >= (Number(r.hard) || DEFAULT_ROUTING.hard) * scale) return 'hard';
+    if (n >= (Number(r.medium) || DEFAULT_ROUTING.medium) * scale) return 'medium';
+    return 'easy';
+  }
+
+  /* The Section 2 form a route should be served, given what the paper
+     actually carries. Papers built before three forms existed only have
+     `easy` and `hard`, and a paper may yet be built with one more or one
+     fewer, so this walks outwards from the wanted level rather than
+     assuming. Returns { form, questions } or null. */
+  var ROUTE_ORDER = ['easy', 'medium', 'hard'];
+
+  function pickForm(forms, route) {
+    if (!forms || typeof forms !== 'object') return null;
+    var want = normRoute(route) || 'medium';
+    var at = ROUTE_ORDER.indexOf(want);
+    for (var step = 0; step < ROUTE_ORDER.length; step++) {
+      // The wanted level, then one step down, then one step up: a student
+      // routed to `medium` on a two-form paper sits the easier section,
+      // which is the cautious way round.
+      var tries = step === 0 ? [at] : [at - step, at + step];
+      for (var k = 0; k < tries.length; k++) {
+        var name = ROUTE_ORDER[tries[k]];
+        if (name && Array.isArray(forms[name]) && forms[name].length) {
+          return { form: name, questions: forms[name] };
+        }
+      }
+    }
+    // A paper with form names we do not know: take the first usable one.
+    for (var key in forms) {
+      if (Array.isArray(forms[key]) && forms[key].length) return { form: key, questions: forms[key] };
+    }
+    return null;
+  }
+
+  var ROUTE_LABEL = {
+    easy: 'Section 2 was the easier form, which is what a section-adaptive test serves after a weaker Section 1. The highest score reachable on it is about ' + ROUTE_CEILING.easy + '.',
+    medium: 'Section 2 was the middle form, served after a solid Section 1. The highest score reachable on it is about ' + ROUTE_CEILING.medium + '.',
+    hard: 'Section 2 was the hardest form, served after a strong Section 1, so the full range was reachable.'
+  };
+
   /* Which surface the questions came from. Scope widens the band:
      a mock samples the whole syllabus, a topic test samples one
      subtopic, and the narrower sample is the weaker predictor. */
@@ -159,15 +255,22 @@ window.GREScore = (function () {
     if (!graded) return null;
     var sc = SCOPE_SPREAD[scope] == null ? 'topic' : scope;
     var wacc = den > 0 ? (num / den) : 0;
-    var scaled = scaledFromWeighted(wacc);
+    var route = normRoute(opts.route);
+    var scaled = applyRoute(scaledFromWeighted(wacc), route);
     var half = opts.spread == null ? spread(total, sc) : opts.spread;
     var conf = confidenceOf(total, sc);
+    // The band is capped by the same ceiling, or a 157 on the easy route
+    // would advertise a 160 it could not have produced.
+    var ceiling = route ? ROUTE_CEILING[route] : MAX;
+    var lo = Math.max(MIN, scaled - half), hi = Math.min(ceiling, scaled + half);
     return {
       scaled: scaled,
-      low: Math.max(MIN, scaled - half),
-      high: Math.min(MAX, scaled + half),
-      range: Math.max(MIN, scaled - half) + '–' + Math.min(MAX, scaled + half),
+      low: lo,
+      high: hi,
+      range: lo + '–' + hi,
       spread: half,
+      route: route,
+      route_ceiling: route ? ceiling : null,
       wacc: Math.round(wacc * 1000) / 1000,
       accuracy: total ? Math.round((correct / total) * 100) : 0,
       correct: correct,
@@ -175,7 +278,7 @@ window.GREScore = (function () {
       scope: sc,
       graded: graded,
       confidence: conf,
-      note: noteFor(sc, total, conf),
+      note: noteFor(sc, total, conf) + (route ? ' ' + ROUTE_LABEL[route] : ''),
       min: MIN,
       max: MAX
     };
@@ -220,7 +323,12 @@ window.GREScore = (function () {
      session re-scores identically to what the student saw. */
   function fromSession(session) {
     if (!session || !Array.isArray(session.questions)) return null;
-    return fromQuestions(session.questions, scopeFor(session.session_type));
+    // A stored adaptive mock has to re-score to the number the student was
+    // shown, so the form they were served travels with the session. Older
+    // sessions carry none and score exactly as they always did.
+    var route = normRoute(session.adaptive_route || session.section_2_form);
+    return fromQuestions(session.questions, scopeFor(session.session_type),
+      route ? { route: route } : undefined);
   }
 
   /* From pre-aggregated difficulty counts, which is all the coach
@@ -262,6 +370,11 @@ window.GREScore = (function () {
     scopeFor: scopeFor,
     spread: spread,
     bandFor: bandFor,
+    routeFor: routeFor,
+    pickForm: pickForm,
+    ROUTE_CEILING: ROUTE_CEILING,
+    ROUTE_LABEL: ROUTE_LABEL,
+    DEFAULT_ROUTING: DEFAULT_ROUTING,
     WEIGHTS: WEIGHTS,
     ANCHORS: ANCHORS,
     MIN: MIN,

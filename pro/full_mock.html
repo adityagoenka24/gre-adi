@@ -19,6 +19,8 @@
 <body>
 <script src="pro-gate.js" data-feature="mocks"></script>
 <script src="../score-scale.js"></script>
+<script src="../score-card.js"></script>
+<script src="../gre-exhibit.js"></script>
 <script src="error-log.js"></script>
 <div class="app">
   <div class="app-header">
@@ -106,7 +108,7 @@
       <h2>Mock Complete!</h2>
       <p id="res-subtitle"></p>
     </div>
-    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">Before your score and analytics, tag why you missed each question below. It takes about a minute, and it is what turns a score into a plan.</p>
+    <p class="gel-held-only" style="display:none;margin:0 0 16px;font-size:14px;line-height:1.55;color:var(--gre-text2)">You have your score. Now tag why you missed each question below — it takes about a minute, and it is what turns a score into a plan. Your full analysis opens when you are done.</p>
     <div class="score-ring-wrap gel-secret">
       <div class="score-ring">
         <svg width="160" height="160" viewBox="0 0 160 160">
@@ -206,18 +208,25 @@
 <script>
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 const MOCK_INDEX = [
-  { id:'mock_01', title:'Mock Test 1', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
-  { id:'mock_02', title:'Mock Test 2', difficulty:'Balanced', tags:['All Topics','Balanced','160 Level'] },
-  { id:'mock_03', title:'Mock Test 3', difficulty:'Moderate', tags:['All Topics','Moderate','162 Level'] },
-  { id:'mock_04', title:'Mock Test 4', difficulty:'Moderate', tags:['All Topics','Moderate','162 Level'] },
-  { id:'mock_05', title:'Mock Test 5', difficulty:'Moderate-Hard', tags:['All Topics','Moderate-Hard','164 Level'] },
-  { id:'mock_06', title:'Mock Test 6', difficulty:'Moderate-Hard', tags:['All Topics','Moderate-Hard','164 Level'] },
-  { id:'mock_07', title:'Mock Test 7', difficulty:'Hard', tags:['All Topics','Hard','166 Level'] },
-  { id:'mock_08', title:'Mock Test 8', difficulty:'Hard', tags:['All Topics','Hard','166 Level'] },
-  { id:'mock_09', title:'Mock Test 9', difficulty:'Very Hard', tags:['All Topics','Very Hard','168 Level'] },
-  { id:'mock_10', title:'Mock Test 10', difficulty:'Expert', tags:['All Topics','Expert','170 Level'] },
+  { id:'mock_01', title:'Mock Test 1', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_02', title:'Mock Test 2', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_03', title:'Mock Test 3', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_04', title:'Mock Test 4', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_05', title:'Mock Test 5', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_06', title:'Mock Test 6', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_07', title:'Mock Test 7', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_08', title:'Mock Test 8', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_09', title:'Mock Test 9', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
+  { id:'mock_10', title:'Mock Test 10', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
 ];
-const DIFF_COLORS = { Balanced:'#1a5da6', Moderate:'#1e7e46', 'Moderate-Hard':'#b06000', Hard:'#c0392b', 'Very Hard':'#8e44ad', Expert:'#6b1f6e' };
+/* Every paper is now built to the same real-GRE blueprint — Section 1 is
+   3 easy / 7 medium / 2 hard whichever mock you pick, and Section 2 adapts
+   to how that went. So the old 'Balanced → Expert' ladder is gone: a mock
+   is no longer easier or harder than the next one, and the score scale,
+   not the paper, is what separates a 150 from a 168. The cards say what
+   now actually distinguishes them, which is nothing but which questions
+   you get. */
+const DIFF_COLORS = { 'Real GRE':'#1a5da6', Balanced:'#1a5da6', Moderate:'#1e7e46', 'Moderate-Hard':'#b06000', Hard:'#c0392b', 'Very Hard':'#8e44ad', Expert:'#6b1f6e' };
 const SECTION_TIMES = { 1: 21 * 60, 2: 26 * 60 }; // real GRE: S1=21min, S2=26min
 
 const TYPE_DIRECTIONS = {
@@ -230,7 +239,7 @@ const TYPE_DIRECTIONS = {
 // ─── STATE ────────────────────────────────────────────────────────────────────
 let state = {
   mockData: null, mockMeta: null,
-  currentSection: 1, currentQIndex: 0,
+  currentSection: 1, currentQIndex: 0, section2Form: null,
   answers: { 1: {}, 2: {} },
   timings: { 1: {}, 2: {} },
   marked: { 1: {}, 2: {} },
@@ -401,7 +410,11 @@ function renderQuestion() {
   closeReview();
 
   const directions = TYPE_DIRECTIONS[q.type] || '';
-  const svgHtml = q.svg ? `<div class="gre-svg">${q.svg}</div>` : '';
+  // Charts and tables as well as figures: Data Interpretation questions
+  // carry a `chart` or a `table_data`, and before gre-exhibit.js nothing
+  // here could draw one, which is why the papers had no DI set.
+  const svgHtml = window.GREExhibit ? GREExhibit.html(q)
+    : (q.svg ? `<div class="gre-svg">${q.svg}</div>` : '');
   let bodyHtml = '';
 
   if (q.type === 'quantitative_comparison' && /(Column|Quantity)\s*[AB]\s*:/i.test(q.question)) {
@@ -611,8 +624,26 @@ function submitSection(autoSubmit) {
     autoSubmit
   };
 
-  if (state.currentSection === 1) showBreak();
+  if (state.currentSection === 1) { pickSection2(correct, qs.length); showBreak(); }
   else showResults();
+}
+
+/* Which Section 2 the student has earned. The Pro papers are now adaptive in
+   the same way the free ones have been: three forms, picked on the Section 1
+   raw score, with the thresholds in the paper's own meta.
+
+   score-scale.js owns both the thresholds and the picking, because the form
+   served sets the ceiling of what the paper can report — a page choosing one
+   form while the scorer assumed another would print a number nobody could
+   reproduce. A paper with no `forms` is left exactly as it is. */
+function pickSection2(correct, total) {
+  const sec = state.mockData.sections[1];
+  const forms = sec && sec.forms;
+  state.section2Form = null;
+  if (!forms || !window.GREScore || !GREScore.pickForm) return;
+  const route = GREScore.routeFor(correct, total, (state.mockMeta && state.mockMeta.routing) || null);
+  const chosen = GREScore.pickForm(forms, route);
+  if (chosen) { state.section2Form = chosen.form; sec.questions = chosen.questions; }
 }
 
 // Numeric entry: forgive surrounding spaces, thousands commas and a leading +
@@ -708,6 +739,10 @@ function buildProgressSession() {
     exportedAt: new Date().toISOString(),
     version: '2.0',
     session_type: 'full_mock',
+    // Which Section 2 was served. GREScore.fromSession reads this, so the
+    // coach view reproduces the number the student saw rather than an
+    // uncapped one.
+    adaptive_route: state.section2Form || null,
     requires_error_log: true
   };
 }
@@ -725,7 +760,11 @@ function mockScore() {
       rows.push({ difficulty: q.difficulty, correct: checkAnswer(q, state.answers[si+1][qi]) });
     });
   });
-  return GREScore.fromQuestions(rows, 'mock');
+  // Which Section 2 they sat caps what the paper can report, as on a
+  // section-adaptive test. Omitted on a non-adaptive paper, which then
+  // scores exactly as it always did.
+  return GREScore.fromQuestions(rows, 'mock',
+    state.section2Form ? { route: state.section2Form } : undefined);
 }
 
 function showResults() {
@@ -812,6 +851,17 @@ function showResults() {
   renderDiagnosis(pct, totalCorrect, totalQs, est);
   setupMockErrorLog();
   goTo('screen-results');
+
+  // Score first, then the review. The results screen behind this card is the
+  // one the gate already built: everything but the mistake log is hidden on
+  // it, so dismissing the card lands the student exactly where they should
+  // be. If score-card.js did not load, that is simply where they start.
+  if (window.GREScoreCard) {
+    GREScoreCard.show({
+      est: est, correct: totalCorrect, total: totalQs, scope: 'mock',
+      testTitle: state.mockMeta.title, studentName: state.student && state.student.name,
+    });
+  }
 }
 
 /* ─── ERROR LOG (Pro) ─────────────────────────────────────────────────────────
@@ -1019,6 +1069,7 @@ function reviewAnswers(noScroll) {
       const correctStr = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
       html += `<div class="review-item ${status}">
         <div class="review-q"><strong>Q${qi+1}.</strong> ${escapeHtml(q.question)}</div>
+        ${window.GREExhibit ? GREExhibit.html(q) : ''}
         <div class="review-answers">
           <span>Your answer: <span class="${isCorrect?'correct-ans':'wrong-ans'}">${escapeHtml(givenStr)}</span></span>
           <span>Correct: <span class="correct-ans">${escapeHtml(correctStr)}</span></span>
