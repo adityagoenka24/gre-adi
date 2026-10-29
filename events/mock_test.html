@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
   <script defer src="../gre-math.js"></script>
+  <script defer src="../gre-calculator.js"></script>
 </head>
 <body>
   <main class="shell">
@@ -45,33 +46,31 @@
           <div class="field"><label for="studentEmail">Email</label><input id="studentEmail" type="email" autocomplete="email"></div>
           <div class="field"><label for="studentBatch">Class / Batch</label><input id="studentBatch" placeholder="Optional"></div>
           <p class="muted" id="startError"></p>
-          <button class="primary-btn" id="startBtn">Start Mock Test</button>
+          <button class="primary-btn" id="startBtn">Continue &rarr;</button>
         </div>
       </div>
       <div class="notice warning">No feedback appears during the test. At the end, your analysis appears instantly: score, timing, weak areas, and the traps that cost you marks.</div>
     </section>
 
-    <section id="examSection" class="hidden">
-      <div class="bank-meta-bar">
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;">
-          <div class="meta-item"><span class="meta-label">Student</span><span class="meta-value" id="eventMetaName">-</span></div>
-          <div class="meta-item"><span class="meta-label">Event</span><span class="meta-value" id="eventMetaTopic">-</span></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;">
-          <div class="bank-progress-pill" id="progressText">Q 1 / 1</div>
-          <div class="exam-countdown" id="timer">--:--</div>
+    <section id="instructionsSection" class="hidden">
+      <div class="instr-card">
+        <h2>Before You Begin</h2>
+        <div class="instr-highlight" id="instrHighlight"></div>
+        <ul class="instr-list" id="instrList"></ul>
+        <div class="instr-actions">
+          <button class="ghost-btn" id="instrBackBtn">&larr; Back</button>
+          <button class="primary-btn" id="beginBtn">Start &rarr;</button>
         </div>
       </div>
-      <div class="exam-layout">
-        <aside class="exam-sidebar">
-          <div class="exam-sidebar-title">Navigator</div>
-          <div class="exam-dots-wrap" id="numberNav"></div>
-          <div class="exam-sidebar-unanswered" id="unansweredWarning"></div>
-          <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--border);">
-            <button class="btn btn-danger" style="width:100%;padding:10px;" id="submitBtn">Submit</button>
-          </div>
-        </aside>
-        <div id="eventQuestionArea"></div>
+    </section>
+
+    <section id="breakSection" class="hidden">
+      <div class="break-card">
+        <h2 id="breakTitle">Section 1 Complete</h2>
+        <p>Take a moment before the next section.</p>
+        <div class="break-preview" id="breakPreview"></div>
+        <p class="muted" style="margin-bottom:22px">The next section&rsquo;s clock starts only when you press the button.</p>
+        <button class="primary-btn" id="breakNextBtn">Start Next Section &rarr;</button>
       </div>
     </section>
 
@@ -104,6 +103,70 @@
       <div id="gelProceedHost"></div>
     </section>
   </main>
+
+  <!-- EXAM: GRE replica shell (same markup and classes as full_mock.html) -->
+  <div id="examSection" class="gre-shell hidden" role="application" aria-label="GRE test screen">
+    <div class="gre-topbar">
+      <div class="gre-topbar-left">
+        <b id="gre-sec-label">Section 1 of 1</b>
+        <span aria-hidden="true">&nbsp;|&nbsp;</span>
+        <span id="gre-q-label">Question 1 of 1</span>
+      </div>
+      <div class="gre-topbar-btns">
+        <button class="gre-tb-btn" id="submitBtn" aria-label="Exit Section">
+          <svg viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span id="greExitLabel">Exit Section</span>
+        </button>
+        <button class="gre-tb-btn" id="btn-calc" data-gre-calc-btn onclick="GRECalc.toggle()" aria-label="Calculator" aria-pressed="false">
+          <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="8" y1="6" x2="16" y2="6"/><line x1="8" y1="11" x2="8.01" y2="11"/><line x1="12" y1="11" x2="12.01" y2="11"/><line x1="16" y1="11" x2="16.01" y2="11"/><line x1="8" y1="15" x2="8.01" y2="15"/><line x1="12" y1="15" x2="12.01" y2="15"/><line x1="16" y1="15" x2="16.01" y2="15"/><line x1="8" y1="19" x2="16" y2="19"/></svg>
+          Calculator
+        </button>
+        <button class="gre-tb-btn" id="btn-help" onclick="Events.showHelp()" aria-label="Help">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+          Help
+        </button>
+        <button class="gre-tb-btn" id="btn-mark" onclick="Events.toggleMark()" aria-label="Mark question for review" aria-pressed="false">
+          <svg viewBox="0 0 24 24"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>
+          Mark
+        </button>
+        <button class="gre-tb-btn" id="btn-review" onclick="Events.openReview()" aria-label="Review section">
+          <svg viewBox="0 0 24 24"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+          Review
+        </button>
+        <button class="gre-tb-btn" id="btn-prev" onclick="Events.prevQuestion()" aria-label="Back">
+          <svg viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+          Back
+        </button>
+        <button class="gre-tb-btn" id="btn-next" onclick="Events.nextQuestion()" aria-label="Next">
+          <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          Next
+        </button>
+      </div>
+    </div>
+    <div class="gre-strip">
+      <div class="gre-strip-title">GRE<sup>&reg;</sup> Mock &mdash; Quantitative Reasoning <span id="gre-strip-mock"></span></div>
+      <div class="gre-strip-right">
+        <div class="gre-timer" id="exam-timer" aria-live="off">
+          <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          <span id="timer">--:--:--</span>
+        </div>
+        <button class="gre-hide-time" id="btn-hide-time" onclick="Events.toggleTimer()">Hide Time</button>
+      </div>
+    </div>
+    <div class="gre-body" id="gre-body">
+      <div class="gre-qwrap" id="eventQuestionArea"></div>
+      <div class="gre-review" id="gre-review-area" style="display:none;"></div>
+    </div>
+  </div>
+
+  <!-- MODAL -->
+  <div class="gre-modal-backdrop" id="gre-modal" role="dialog" aria-modal="true" aria-labelledby="gre-modal-title">
+    <div class="gre-modal">
+      <div class="gre-modal-head" id="gre-modal-title">Notice</div>
+      <div class="gre-modal-body" id="gre-modal-body"></div>
+      <div class="gre-modal-actions" id="gre-modal-actions"></div>
+    </div>
+  </div>
   <script src="../progress-local.js"></script>
   <script src="../score-scale.js"></script>
   <script src="../score-card.js"></script>

@@ -158,3 +158,137 @@ sup.mexp{font-size:.72em;vertical-align:super;line-height:0;}
 /* Question figures */
 .pq-figure{text-align:center;margin:4px 0 22px;}
 .pq-figure svg{max-width:100%;}
+
+/* ============================================================
+   EXAM SHELL — the strict GRE replica, same as full_mock.html
+   Class names match gre-exam-theme.css so the event mock and the
+   free / Pro mocks look and behave the same. The three exam
+   screens (check-in, instructions, break) reuse the .reg/.instr/
+   .break card look from those mocks.
+   ============================================================ */
+:root{
+  --gre-bar-text:#ffffff;
+  --gre-blue:#1a5da6;
+  --gre-blue-dark:#124a87;
+  --gre-bg:#eef1f4;
+  --gre-surface:#ffffff;
+  --gre-text:#16191d;
+  --gre-text2:#4a545e;
+  --gre-text3:#77828c;
+  --gre-border:#c9d2da;
+  --gre-border-soft:#e2e8ee;
+  --gre-success:#1e7e46;
+  --gre-warning:#b06000;
+  --gre-danger:#c0392b;
+  --gre-mark:#d9822b;
+}
+body.gre-exam-open{overflow:hidden;}
+.gre-shell{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--gre-surface);z-index:100;font-family:var(--font-body);}
+.gre-shell.hidden{display:none!important;}
+
+/* Top control bar */
+.gre-topbar{background:linear-gradient(180deg,var(--gre-bar),var(--gre-bar-dark));color:var(--gre-bar-text);display:flex;align-items:stretch;justify-content:space-between;flex-shrink:0;min-height:58px;}
+.gre-topbar-left{display:flex;align-items:center;padding:0 18px;font-size:13.5px;gap:8px;white-space:nowrap;overflow:hidden;}
+.gre-topbar-left b{font-weight:700;overflow:hidden;text-overflow:ellipsis;}
+.gre-topbar-btns{display:flex;align-items:stretch;}
+.gre-tb-btn{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;background:transparent;border:none;border-left:1px solid rgba(255,255,255,.16);color:var(--gre-bar-text);min-width:72px;padding:7px 12px;font-size:11px;font-weight:600;letter-spacing:.3px;transition:background .12s;cursor:pointer;font-family:var(--font-body);}
+.gre-tb-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.gre-tb-btn:hover{background:rgba(255,255,255,.13);}
+.gre-tb-btn:active{background:rgba(255,255,255,.22);}
+.gre-tb-btn:disabled{opacity:.4;cursor:not-allowed;background:transparent;}
+.gre-tb-btn.marked{color:#ffce7a;}
+.gre-tb-btn.marked svg{fill:#ffce7a;stroke:#ffce7a;}
+.gre-tb-btn[hidden]{display:none;}
+
+/* Section / timer strip */
+.gre-strip{background:var(--gre-strip);border-bottom:1px solid var(--gre-strip-border);display:flex;align-items:center;justify-content:space-between;padding:7px 18px;flex-shrink:0;gap:12px;flex-wrap:wrap;}
+.gre-strip-title{font-size:13px;color:#2b3947;font-weight:700;}
+.gre-strip-title span{font-weight:400;color:#51606e;}
+.gre-strip-right{display:flex;align-items:center;gap:14px;}
+.gre-timer{font-family:var(--font-mono);font-size:17px;font-weight:700;color:#1d2833;letter-spacing:1px;display:flex;align-items:center;gap:7px;}
+.gre-timer svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:2;}
+.gre-timer.urgent{color:var(--gre-danger);}
+.gre-timer.hidden-time{visibility:hidden;}
+.gre-hide-time{background:none;border:none;color:#3b5a77;font-size:12px;text-decoration:underline;padding:6px;cursor:pointer;font-family:var(--font-body);}
+.gre-hide-time[hidden]{display:none;}
+
+/* Question area */
+.gre-body{flex:1;overflow-y:auto;background:var(--gre-surface);}
+.gre-qwrap{max-width:860px;margin:0 auto;padding:44px 34px 80px;}
+.gre-directions{font-size:13.5px;color:var(--gre-text2);border-bottom:1px solid var(--gre-border-soft);padding-bottom:12px;margin-bottom:26px;font-style:italic;}
+.gre-qtext{font-size:18px;line-height:1.7;color:var(--gre-text);margin-bottom:30px;white-space:pre-wrap;}
+.gre-svg{text-align:center;margin:8px 0 26px;}
+.gre-svg svg{max-width:100%;}
+
+/* Options — real radio / checkbox rows */
+.gre-options{display:flex;flex-direction:column;gap:6px;max-width:640px;}
+.gre-option{display:flex;align-items:flex-start;gap:14px;padding:12px 14px;border:1px solid transparent;border-radius:4px;cursor:pointer;font-size:16.5px;line-height:1.55;transition:background .12s;min-height:48px;}
+.gre-option:hover{background:#f3f6f9;}
+.gre-option.selected{background:var(--gre-selected);border-color:#b7d0e8;}
+.gre-option input{width:19px;height:19px;min-width:19px;min-height:0;padding:0;margin:3px 0 0;accent-color:var(--gre-blue);cursor:pointer;}
+.gre-option .opt-body{flex:1;}
+.gre-option,.gre-option .opt-body{text-transform:none;letter-spacing:normal;font-weight:400;color:var(--gre-text);font-family:var(--font-body);}
+
+/* Quantitative Comparison layout */
+.gre-qc-info{font-size:17px;line-height:1.7;text-align:center;margin-bottom:28px;white-space:pre-wrap;}
+.gre-qc-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;max-width:620px;margin:0 auto 34px;}
+.gre-qc-col{text-align:center;padding:0 18px;}
+.gre-qc-head{font-size:16px;font-weight:700;text-decoration:underline;margin-bottom:14px;}
+.gre-qc-val{font-size:18px;line-height:1.6;}
+
+/* Numeric entry */
+.gre-ne{margin-top:6px;}
+.gre-ne input{width:100%;max-width:180px;min-height:44px;font-size:20px;text-align:center;padding:12px;background:#fff;color:var(--gre-text);border:1px solid var(--gre-text3);border-radius:3px;font-family:var(--font-body);}
+.gre-ne input:focus{border-color:var(--gre-blue);box-shadow:0 0 0 3px rgba(26,93,166,.15);outline:none;}
+
+/* Review screen */
+.gre-review{max-width:760px;margin:0 auto;padding:40px 30px;}
+.gre-review h2{font-size:21px;color:var(--gre-bar);margin-bottom:8px;}
+.gre-review p{font-size:14px;color:var(--gre-text2);margin-bottom:22px;}
+.gre-review-table{width:100%;border-collapse:collapse;font-size:14.5px;background:#fff;}
+.gre-review-table th{background:var(--gre-strip);color:#2b3947;text-align:left;padding:10px 14px;border:1px solid var(--gre-strip-border);font-size:12.5px;text-transform:uppercase;letter-spacing:.5px;}
+.gre-review-table td{padding:10px 14px;border:1px solid var(--gre-border-soft);}
+.gre-review-table tbody tr.go{cursor:pointer;}
+.gre-review-table tbody tr.go:hover{background:var(--gre-selected);}
+.gre-review-table .st-answered{color:var(--gre-success);font-weight:700;}
+.gre-review-table .st-unanswered{color:var(--gre-danger);font-weight:700;}
+.gre-review-table .mark-flag{color:var(--gre-mark);font-weight:700;}
+.gre-review-actions{margin-top:24px;display:flex;gap:12px;flex-wrap:wrap;}
+
+/* Modal dialog (ETS-style) */
+.gre-modal-backdrop{position:fixed;inset:0;background:rgba(20,30,40,.5);display:none;align-items:center;justify-content:center;z-index:300;padding:20px;}
+.gre-modal-backdrop.open{display:flex;}
+.gre-modal{background:#fff;border-radius:6px;max-width:460px;width:100%;overflow:hidden;box-shadow:0 12px 48px rgba(0,0,0,.3);}
+.gre-modal-head{background:var(--gre-bar);color:#fff;padding:12px 18px;font-size:15px;font-weight:700;}
+.gre-modal-body{padding:22px 18px;font-size:14.5px;color:var(--gre-text2);line-height:1.6;}
+.gre-modal-body strong{color:var(--gre-text);}
+.gre-modal-actions{display:flex;justify-content:flex-end;gap:10px;padding:0 18px 18px;}
+
+/* Instructions + section break cards (same look as the free mocks) */
+.instr-card,.break-card{background:#fff;border:1px solid var(--gre-border);border-radius:6px;padding:34px;max-width:620px;margin:0 auto;}
+.break-card{text-align:center;}
+.instr-card h2,.break-card h2{font-size:24px;color:var(--gre-bar);margin-bottom:10px;font-family:var(--font-body);}
+.instr-highlight{background:#eef4fb;border:1px solid #c9dcf0;border-radius:4px;padding:16px;margin-bottom:22px;font-size:13px;color:var(--gre-text2);line-height:1.6;}
+.instr-highlight strong{color:var(--gre-text);}
+.instr-list{list-style:none;margin:0 0 26px;padding:0;display:flex;flex-direction:column;gap:11px;}
+.instr-list li{display:flex;gap:10px;align-items:flex-start;font-size:14px;color:var(--gre-text2);}
+.instr-list li::before{content:'•';color:var(--gre-blue);flex-shrink:0;font-weight:700;}
+.instr-list li strong{color:var(--gre-text);}
+.instr-actions{display:flex;gap:12px;flex-wrap:wrap;}
+.break-card p{color:var(--gre-text2);font-size:15px;margin-bottom:8px;}
+.break-preview{background:var(--gre-bg);border:1px solid var(--gre-border-soft);border-radius:4px;padding:16px;margin:18px 0 22px;font-size:14px;color:var(--gre-text2);}
+.break-preview strong{color:var(--gre-text);font-size:17px;}
+
+@media(max-width:720px){
+  .gre-topbar{flex-direction:column;}
+  .gre-topbar-left{padding:9px 14px;border-bottom:1px solid rgba(255,255,255,.15);}
+  .gre-topbar-btns{width:100%;justify-content:space-between;}
+  .gre-tb-btn{flex:1;min-width:0;border-left:none;border-right:1px solid rgba(255,255,255,.12);padding:6px 4px;font-size:10px;}
+  .gre-qwrap{padding:26px 18px 70px;}
+  .gre-qtext{font-size:17px;}
+  .gre-qc-grid{grid-template-columns:1fr;gap:20px;}
+  .gre-review{padding:26px 16px;}
+  .instr-card,.break-card{padding:24px 18px;}
+}
+.instr-card h2,.break-card h2{margin-top:0;}
+.gre-review-table th{font-family:var(--font-body);}

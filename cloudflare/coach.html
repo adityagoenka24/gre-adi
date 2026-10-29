@@ -184,7 +184,7 @@ tr.clickable:hover td{background:var(--surface2);}
 
   <div class="tab-panel" data-tab-panel="mocks">
     <div class="card">
-      <h2>Free attempts &mdash; mocks, sectionals &amp; events</h2>
+      <h2>Free attempts &mdash; mocks &amp; sectionals</h2>
       <div class="row" style="margin-bottom:12px;">
         <div class="field"><label for="mock-days">Days</label><input id="mock-days" type="number" value="30" min="1" max="180"></div>
         <div class="field"><label for="mock-filter">Filter by name or email</label><input id="mock-filter" type="text" oninput="renderMocks()" placeholder="Type to filter…"></div>
@@ -196,8 +196,8 @@ tr.clickable:hover td{background:var(--surface2);}
       </label>
       <div class="hint" id="mock-summary" style="margin:0 0 12px;"></div>
       <div id="mock-bulk" style="margin:0 0 12px;"></div>
-      <div class="table-wrap" id="mocks-table"><div class="empty">Load to see free attempts.</div></div>
-      <div class="hint">Every attempt on the free full mock, free sectionals and the event papers, newest first. Name and email are required on all three, so they appear for every attempt from now on. Attempts saved before that change may show a dash. They are kept apart from Pro progress, and people with no Pro account appear here too.</div>
+      <div class="table-wrap" id="mocks-table"><div class="empty">Load to see free mock and sectional attempts.</div></div>
+      <div class="hint">Every attempt on the free full mock and the free sectionals, newest first. Event papers are not listed here &mdash; they are in the <a href="#events" onclick="switchTab('events')">Events</a> tab, grouped by event. Name and email are required, so they appear for every attempt from now on; attempts saved before that change may show a dash. These are kept apart from Pro progress, and people with no Pro account appear here too.</div>
     </div>
   </div>
 </div>
@@ -876,20 +876,23 @@ async function loadMocks() {
   }
 }
 
-function setMockKind(k) { mockKind = k; renderMocks(); }
+function setMockKind(k) { mockKind = (k === 'event' ? 'all' : k); renderMocks(); }
 
 function renderMocks() {
   const q = (document.getElementById('mock-filter').value || '').toLowerCase().trim();
   const includePro = document.getElementById('mock-include-pro').checked;
 
-  // Pro students' sectionals also land in these records. Unless asked for,
-  // they stay out: this tab is the free funnel.
-  const pool = mockAttempts.filter(a => includePro || a.tier !== 'pro');
+  // Two filters on the way in. Event-paper attempts are read in the Events
+  // tab, which groups them by event and analyses the cohort, so listing them
+  // here as well was the same attempt twice. Pro students' sectionals also
+  // land in these records; unless asked for they stay out, because this tab
+  // is the free funnel.
+  const pool = mockAttempts.filter(a => attemptKind(a) !== 'event' && (includePro || a.tier !== 'pro'));
 
-  const counts = { all: pool.length, mock: 0, sectional: 0, event: 0 };
+  const counts = { all: pool.length, mock: 0, sectional: 0 };
   pool.forEach(a => { counts[attemptKind(a)] += 1; });
   document.getElementById('mock-kinds').innerHTML =
-    [['all', 'All', ''], ['mock', KIND_META.mock.label, KIND_META.mock.icon], ['sectional', KIND_META.sectional.label, KIND_META.sectional.icon], ['event', KIND_META.event.label, KIND_META.event.icon]]
+    [['all', 'All', ''], ['mock', KIND_META.mock.label, KIND_META.mock.icon], ['sectional', KIND_META.sectional.label, KIND_META.sectional.icon]]
       .map(([k, label, icon]) =>
         '<button class="btn btn-sm ' + (mockKind === k ? 'btn-primary' : 'btn-ghost') + '" onclick="setMockKind(\'' + k + '\')">' +
         (icon ? icon + ' ' : '') + esc(label) + ' · ' + counts[k] + '</button>').join('');

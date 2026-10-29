@@ -67,28 +67,28 @@
       <div class="ru-inner">
         <div class="ru-top-bar"></div>
         <div class="ru-kicker">Pro Plan — 8 More Mocks Waiting</div>
-        <div class="ru-headline">You've seen what free looks like.<br><span>Pro is a different league.</span></div>
-        <div class="ru-sub">These 2 mocks are the warm-up. The real GRE battlefield — escalating from Moderate (162) to Expert (170) — lives in Pro. Every mock has trap analysis, question-level diagnostics, and section-break feedback.</div>
+        <div class="ru-headline">Two mocks tell you where you are.<br><span>Ten tell you whether it holds.</span></div>
+        <div class="ru-sub">Every Pro mock is built to the same real-GRE blueprint as these two: a Section 1 with no easy questions, an adaptive Section 2, and 456 questions you have not seen. Each one carries trap analysis, question-level diagnostics and section-break feedback.</div>
         <div class="ru-mocks">
           <div class="ru-mock-pill">
-            <div class="rmp-num">Mock 03–04</div>
-            <div class="rmp-diff">Moderate</div>
-            <div class="rmp-level">Target: 162+</div>
+            <div class="rmp-num">8 more papers</div>
+            <div class="rmp-diff">456 questions</div>
+            <div class="rmp-level">none of them repeated</div>
           </div>
           <div class="ru-mock-pill">
-            <div class="rmp-num">Mock 05–06</div>
-            <div class="rmp-diff">Moderate–Hard</div>
-            <div class="rmp-level">Target: 164+</div>
+            <div class="rmp-num">Every paper</div>
+            <div class="rmp-diff">Real GRE</div>
+            <div class="rmp-level">no easy questions in Section 1</div>
           </div>
           <div class="ru-mock-pill">
-            <div class="rmp-num">Mock 07–08</div>
-            <div class="rmp-diff">Hard</div>
-            <div class="rmp-level">Target: 166+</div>
+            <div class="rmp-num">Section 2</div>
+            <div class="rmp-diff">Adaptive</div>
+            <div class="rmp-level">three forms in every paper</div>
           </div>
           <div class="ru-mock-pill">
-            <div class="rmp-num">Mock 09–10</div>
-            <div class="rmp-diff">Very Hard + Expert</div>
-            <div class="rmp-level">Target: 168–170</div>
+            <div class="rmp-num">Every question</div>
+            <div class="rmp-diff">Trap analysis</div>
+            <div class="rmp-level">and a worked solution</div>
           </div>
         </div>
         <div class="ru-bottom">
@@ -1298,24 +1298,26 @@ function renderDiagnosis(pct, correct, total, est) {
 
 function renderUpgradeCTA(pct) {
   const headlines = {
-    high:   { kicker: "You're ready for the next level", headline: "Push to <span>165+</span> with 8 harder full-length mocks.", sub: "You've proven the foundation is solid. The Pro mocks escalate from Moderate (162) all the way to Expert 170-level — the kind of difficulty that separates a 163 from a 168 on test day." },
-    mid:    { kicker: "The gaps are clear — now close them", headline: "8 more mocks that target exactly <span>where you slipped.</span>", sub: "Each Pro mock goes harder and more specific. Moderate, Hard, Very Hard, and Expert levels give you the reps needed to convert weak spots into reliable scores." },
-    low:    { kicker: "Diagnose faster. Fix deeper.", headline: "Go from foundation to <span>160+</span> with structured mock progression.", sub: "The Pro pack gives you 8 more full-length mocks in escalating difficulty — so you're not just practising, you're building toward a target score with each paper." },
+    high:   { kicker: "You're ready for the next level", headline: "Hold that score across <span>8 more papers.</span>", sub: "One strong mock can be a good day. The Pro pack is 8 more papers at the same real-GRE difficulty, so you find out whether the score repeats — and the trap analysis shows you what nearly cost you this one." },
+    mid:    { kicker: "The gaps are clear — now close them", headline: "8 more mocks that target exactly <span>where you slipped.</span>", sub: "Every Pro paper is built to the same real-GRE blueprint, with 456 questions you have not seen. The question-level diagnostics tell you which subtopics keep costing you marks, so the reps go where they are needed." },
+    low:    { kicker: "Diagnose faster. Fix deeper.", headline: "Build the foundation across <span>8 more papers.</span>", sub: "The Pro pack gives you 8 more full-length mocks at real-GRE difficulty, each with a worked solution and the trap on every question — so you are not just practising, you are seeing why each miss happened." },
   };
   const { kicker, headline, sub } = pct >= 75 ? headlines.high : pct >= 50 ? headlines.mid : headlines.low;
 
+  /* The papers no longer form a difficulty ladder — every mock is built to the
+     same real-GRE blueprint — so these say what Pro actually adds. */
   const mocks = [
-    { num:'03–04', diff:'Moderate',      level:'162' },
-    { num:'05–06', diff:'Moderate-Hard', level:'164' },
-    { num:'07–08', diff:'Hard',          level:'166' },
-    { num:'09–10', diff:'Very Hard / Expert', level:'168–170' },
+    { num:'8 more papers',  diff:'456 questions', level:'none of them repeated' },
+    { num:'Every paper',    diff:'Real GRE',      level:'no easy questions in Section 1' },
+    { num:'Section 2',      diff:'Adaptive',      level:'three forms in every paper' },
+    { num:'Every question', diff:'Trap analysis', level:'and a worked solution' },
   ];
 
   const mockPills = mocks.map(m => `
     <div class="ru-mock-pill">
-      <div class="rmp-num">Mock ${m.num}</div>
+      <div class="rmp-num">${m.num}</div>
       <div class="rmp-diff">${m.diff}</div>
-      <div class="rmp-level">${m.level} level</div>
+      <div class="rmp-level">${m.level}</div>
     </div>`).join('');
 
   document.getElementById('result-upgrade').innerHTML = `

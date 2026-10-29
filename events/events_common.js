@@ -2,7 +2,7 @@ const Events = (() => {
   const SUBMISSION_ENDPOINT = "https://gre-auth.goenka-aditya-kol.workers.dev/mock/submission";
   const $ = (id) => document.getElementById(id);
   const state = { config: null, current: 0, answers: [], qTimes: [], qStartedAt: 0, startedAt: null, submitted: false, timer: null, remaining: 0,
-    sectionIndex: 0, sectionStartedAt: 0, sectionUsed: [], onBreak: false };
+    sectionIndex: 0, sectionStartedAt: 0, sectionUsed: [], onBreak: false, marked: [], timerHidden: false, timerLimit: 0 };
 
   // ── Full-mock events: a paper split into timed sections ──────────────────
   // A config with 2+ entries in `sections` runs like the real test: each
@@ -386,94 +386,127 @@ const Events = (() => {
     state.qStartedAt = now;
   }
 
-  function renderQuestion() {
-    const q = state.config.questions[state.current];
-    const diff = q.difficulty || "medium";
-    const [secFirst, secLast] = currentBounds();
-    const isLast = state.current === secLast;
-    $("eventQuestionArea").innerHTML = `
-      <div class="practice-q-card">
-        <div class="pq-header">
-          <div class="pq-left">
-            <span class="q-number">Q${questionLabel(state.current)}</span>
-            <!-- <span class="pq-badge ${escapeHtml(diff)}">${escapeHtml(difficultyLabel(diff))}</span> -->
-            <span class="pq-type-badge">${escapeHtml(typeLabel(q.type))}</span>
-          </div>
-          <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);">~${q.estimated_time_seconds || 90}s suggested</span>
-        </div>
-        <div class="pq-body">${q.svg ? `<div class="pq-figure">${q.svg}</div>` : ""}${renderAnswerControl(q, state.answers[state.current])}</div>
-        <div class="pq-footer">
-          <button class="btn btn-ghost btn-sm" id="prevBtn" onclick="Events.prevQuestion()" ${state.current === secFirst || state.config.allow_navigation === false ? "disabled" : ""}>Prev</button>
-          <span style="font-size:12px;color:var(--text3);font-family:var(--font-mono);" id="examQuestionStatus"></span>
-          <button class="btn btn-primary btn-sm" id="nextBtn" onclick="Events.nextQuestion()">${isLast ? "Last Question" : "Next"}</button>
-        </div>
-      </div>`;
-    renderNav();
-    if (window.GREMath) window.GREMath.renderIn($("eventQuestionArea"));
+  // ── GRE-replica exam shell ───────────────────────────────────────────────
+  // Same interface as full_mock.html: control bar (Exit / Calculator / Help /
+  // Mark / Review / Back / Next), timer strip, one question at a time, a
+  // Review table and ETS-style dialogs. The data model is unchanged:
+  // state.answers[i] holds "A", ["A","C"] or "12.5", exactly as before.
+  const TYPE_DIRECTIONS = {
+    mcq: "Select one answer choice.",
+    quantitative_comparison: "Compare Quantity A and Quantity B, using additional information given, if any. Select one answer choice.",
+    numeric_entry: "Enter your answer in the box.",
+    multiple_answer: "Select one or more answer choices. Select all that apply."
+  };
+
+  function hasAnswer(i) {
+    const a = state.answers[i];
+    return !!(a && (!Array.isArray(a) || a.length));
   }
 
-  function renderAnswerControl(q, currentAnswer) {
+  function clock(seconds) {
+    const s = Math.max(0, Math.floor(Number(seconds) || 0));
+    return [Math.floor(s / 3600), Math.floor((s % 3600) / 60), s % 60].map((n) => String(n).padStart(2, "0")).join(":");
+  }
+
+  function showModal(title, bodyHtml, buttons) {
+    $("gre-modal-title").textContent = title;
+    $("gre-modal-body").innerHTML = bodyHtml;
+    const actions = $("gre-modal-actions");
+    actions.innerHTML = "";
+    buttons.forEach((b) => {
+      const btn = document.createElement("button");
+      btn.className = "btn " + (b.cls || "btn-ghost");
+      btn.textContent = b.label;
+      btn.onclick = () => { closeModal(); if (b.action) b.action(); };
+      actions.appendChild(btn);
+    });
+    $("gre-modal").classList.add("open");
+  }
+  function closeModal() { const m = $("gre-modal"); if (m) m.classList.remove("open"); }
+
+  function showExam() {
+    $("examSection").classList.remove("hidden");
+    document.body.classList.add("gre-exam-open");
+  }
+  function hideExam() {
+    closeModal();
+    if (window.GRECalc) window.GRECalc.close();
+    $("examSection").classList.add("hidden");
+    document.body.classList.remove("gre-exam-open");
+  }
+
+  function parseQC(text) {
+    const isQ = (line, x) => new RegExp("^\\s*(Column|Quantity)\\s*" + x + "\\s*:", "i").test(line);
+    const lines = String(text || "").split("\n");
+    return {
+      info: lines.filter((line) => !isQ(line, "A") && !isQ(line, "B")).join("\n").trim(),
+      a: (lines.find((line) => isQ(line, "A")) || "—").replace(/^\s*(Column|Quantity)\s*A\s*:/i, "").trim(),
+      b: (lines.find((line) => isQ(line, "B")) || "—").replace(/^\s*(Column|Quantity)\s*B\s*:/i, "").trim()
+    };
+  }
+
+  function qcOptionText(option) {
+    return String(option).replace(/^[A-E]\.\s*/, "").replace(/Column\s+A/g, "Quantity A").replace(/Column\s+B/g, "Quantity B")
+      .replace(/The two columns are equal/i, "The two quantities are equal");
+  }
+
+  function renderQuestion() {
+    const q = state.config.questions[state.current];
+    closeReviewPanel();
+    const figure = window.GREExhibit ? window.GREExhibit.html(q) : (q.svg ? `<div class="gre-svg">${q.svg}</div>` : "");
+    const directions = TYPE_DIRECTIONS[q.type] || "";
+    $("eventQuestionArea").innerHTML = `${directions ? `<div class="gre-directions">${directions}</div>` : ""}${renderAnswerControl(q, state.answers[state.current], figure)}`;
+    if (window.GREMath) window.GREMath.renderIn($("eventQuestionArea"));
+    renderNav();
+    $("gre-body").scrollTop = 0;
+  }
+
+  function optionRow(letter, text, selected, multiple) {
+    return `<label class="gre-option${selected ? " selected" : ""}">
+      <input type="${multiple ? "checkbox" : "radio"}" ${multiple ? "" : 'name="gre-q" '}value="${letter}" ${selected ? "checked" : ""} onchange="Events.chooseOption('${letter}', ${multiple})">
+      <span class="opt-body">${escapeHtml(text)}</span>
+    </label>`;
+  }
+
+  function renderAnswerControl(q, currentAnswer, figure) {
     if (q.type === "numeric_entry") {
-      return `<p class="pq-question-text">${escapeHtml(q.question)}</p>
-        <div class="pq-numeric-wrap">
-          <input id="numericAnswer" type="text" value="${escapeHtml(currentAnswer || "")}" placeholder="Enter answer" oninput="Events.setAnswer(this.value)" onkeydown="if(event.key==='Enter')Events.nextQuestion()">
-          <div style="font-size:12px;color:var(--text3);margin-top:8px;font-family:var(--font-mono);">Type your answer · Enter to go next</div>
-        </div>`;
+      return `<div class="gre-qtext">${escapeHtml(q.question)}</div>${figure}
+        <div class="gre-ne"><input id="ne-input" type="text" inputmode="decimal" autocomplete="off" aria-label="Your answer" value="${escapeHtml(currentAnswer || "")}" oninput="Events.setAnswer(this.value)"></div>`;
     }
-    if (q.type === "quantitative_comparison") {
-      const lines = String(q.question || "").split("\n");
-      const isQ = (line, x) => new RegExp('^\\s*(Column|Quantity)\\s*' + x + '\\s*:', 'i').test(line);
-      const intro = lines.filter((line) => !isQ(line, 'A') && !isQ(line, 'B')).join('\n').trim();
-      const colA = (lines.find((line) => isQ(line, 'A')) || '-').replace(/^\s*(Column|Quantity)\s*A\s*:/i, '').trim();
-      const colB = (lines.find((line) => isQ(line, 'B')) || '-').replace(/^\s*(Column|Quantity)\s*B\s*:/i, '').trim();
-      const selected = new Set(currentAnswer ? [Array.isArray(currentAnswer) ? currentAnswer[0] : currentAnswer] : []);
-      return `<p class="pq-question-text">${escapeHtml(intro)}</p>
-        <div class="pq-qc-grid">
-          <div class="pq-qc-col"><div class="pq-qc-label">Quantity A</div><div class="pq-qc-content">${escapeHtml(colA)}</div></div>
-          <div class="pq-qc-col"><div class="pq-qc-label">Quantity B</div><div class="pq-qc-content">${escapeHtml(colB)}</div></div>
+    if (q.type === "quantitative_comparison" && /(Column|Quantity)\s*[AB]\s*:/i.test(q.question || "")) {
+      const qc = parseQC(q.question);
+      const picked = Array.isArray(currentAnswer) ? currentAnswer[0] : currentAnswer;
+      return `${qc.info ? `<div class="gre-qc-info">${escapeHtml(qc.info)}</div>` : ""}${figure}
+        <div class="gre-qc-grid">
+          <div class="gre-qc-col"><div class="gre-qc-head">Quantity A</div><div class="gre-qc-val">${escapeHtml(qc.a)}</div></div>
+          <div class="gre-qc-col"><div class="gre-qc-head">Quantity B</div><div class="gre-qc-val">${escapeHtml(qc.b)}</div></div>
         </div>
-        <div class="pq-qc-options">${(q.options || []).map((option) => {
+        <div class="gre-options" role="radiogroup" aria-label="Answer choices">${(q.options || []).map((option) => {
           const letter = answerLetter(option);
-          const display = String(option).replace(/Column\s+A/g, "Quantity A").replace(/Column\s+B/g, "Quantity B").replace(/The two columns are equal/i, "The two quantities are equal");
-          return `<button class="pq-option ${selected.has(letter) ? "selected" : ""}" onclick="Events.chooseOption('${letter}', false)">${escapeHtml(display)}</button>`;
+          return optionRow(letter, qcOptionText(option), picked === letter, false);
         }).join("")}</div>`;
     }
     const multiple = q.type === "multiple_answer";
     const selected = new Set(Array.isArray(currentAnswer) ? currentAnswer : currentAnswer ? [currentAnswer] : []);
-    return `<p class="pq-question-text">${escapeHtml(q.question)}</p>
-      ${multiple ? '<p style="font-size:12px;color:var(--warning);font-family:var(--font-mono);margin-bottom:12px;">Select all that apply</p>' : ""}
-      <div class="pq-options">${(q.options || []).map((option) => {
-      const letter = answerLetter(option);
-      const isSelected = selected.has(letter);
-      return `<button class="pq-option ${isSelected ? "selected" : ""}" onclick="Events.chooseOption('${letter}', ${multiple})">
-        <span class="pq-opt-letter">${letter}</span>${escapeHtml(String(option).replace(/^[A-E]\.\s*/, ""))}</button>`;
-    }).join("")}</div>`;
+    return `<div class="gre-qtext">${escapeHtml(q.question)}</div>${figure}
+      <div class="gre-options" role="${multiple ? "group" : "radiogroup"}" aria-label="Answer choices">${(q.options || []).map((option) => {
+        const letter = answerLetter(option);
+        return optionRow(letter, String(option).replace(/^[A-E]\.\s*/, ""), selected.has(letter), multiple);
+      }).join("")}</div>`;
   }
 
+  // Everything on the control bar that depends on where the student is.
   function renderNav() {
     const [secFirst, secLast] = currentBounds();
-    const inScope = state.answers.slice(secFirst, secLast + 1);
-    const answeredCount = inScope.filter((a) => a && (!Array.isArray(a) || a.length)).length;
-    const unanswered = inScope.length - answeredCount;
-    const doneMark = state.answers[state.current] && (!Array.isArray(state.answers[state.current]) || state.answers[state.current].length) ? " ✓" : "";
-    $("progressText").textContent = isSectioned()
-      ? `Section ${state.sectionIndex + 1} of ${state.config.sections.length} · Q ${questionLabel(state.current)} / ${secLast - secFirst + 1}${doneMark}`
-      : `Q ${state.current + 1} / ${state.config.questions.length}${doneMark}`;
-    $("numberNav").innerHTML = state.config.questions.map((_, i) => ({ i })).filter(({ i }) => i >= secFirst && i <= secLast).map(({ i }) => {
-      const canJump = state.config.allow_navigation !== false;
-      const click = canJump ? `onclick="Events.goQuestion(${i})"` : "";
-      return `<button class="exam-dot ${i === state.current ? "current" : ""} ${state.answers[i] && (!Array.isArray(state.answers[i]) || state.answers[i].length) ? "answered" : ""}" ${click} ${canJump ? "" : "disabled"}>${questionLabel(i)}</button>`;
-    }).join("");
-    if ($("unansweredWarning")) {
-      $("unansweredWarning").textContent = unanswered > 0 ? `${unanswered} unanswered` : "All answered";
-      $("unansweredWarning").style.color = unanswered > 0 ? "var(--warning)" : "var(--success)";
-    }
-    if ($("examQuestionStatus")) {
-      const answer = state.answers[state.current];
-      $("examQuestionStatus").textContent = answer && (!Array.isArray(answer) || answer.length)
-        ? `Answered: ${Array.isArray(answer) ? answer.join(", ") : answer}`
-        : "Not answered";
-    }
+    const locked = state.config.allow_navigation === false;
+    $("gre-sec-label").textContent = isSectioned() ? `Section ${state.sectionIndex + 1} of ${state.config.sections.length}` : (state.config.event_name || "GRE Quant Mock");
+    $("gre-q-label").textContent = `Question ${questionLabel(state.current)} of ${secLast - secFirst + 1}`;
+    $("btn-prev").disabled = locked || state.current <= secFirst;
+    $("btn-next").disabled = state.current >= secLast;
+    $("btn-review").hidden = locked;
+    const marked = !!state.marked[state.current];
+    $("btn-mark").classList.toggle("marked", marked);
+    $("btn-mark").setAttribute("aria-pressed", marked ? "true" : "false");
   }
 
   function chooseOption(letter, multiple) {
@@ -484,11 +517,22 @@ const Events = (() => {
     } else {
       state.answers[state.current] = letter;
     }
-    renderQuestion();
+    // Update the rows in place so the page does not jump or lose focus.
+    const chosen = new Set(Array.isArray(state.answers[state.current]) ? state.answers[state.current] : [state.answers[state.current]]);
+    document.querySelectorAll("#eventQuestionArea .gre-option").forEach((row) => {
+      const input = row.querySelector("input");
+      row.classList.toggle("selected", chosen.has(input.value));
+    });
+    renderNav();
   }
 
   function setAnswer(value) {
     state.answers[state.current] = value;
+  }
+
+  function toggleMark() {
+    if (state.submitted || state.onBreak) return;
+    state.marked[state.current] = !state.marked[state.current];
     renderNav();
   }
 
@@ -498,17 +542,98 @@ const Events = (() => {
     if (state.config.allow_navigation === false && index !== state.current + 1) return;
     setQuestionTime(state.current);
     state.current = index;
+    state.qStartedAt = Date.now();   // also restarts the clock after a visit to Review
     renderQuestion();
   }
 
   function nextQuestion() {
     if (state.current < currentBounds()[1]) goQuestion(state.current + 1);
-    else $("numberNav").scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
   function prevQuestion() {
     if (state.config.allow_navigation === false) return;
     if (state.current > currentBounds()[0]) goQuestion(state.current - 1);
+  }
+
+  // ── Review screen: status of every question in this section ──────────────
+  function openReview() {
+    if (state.submitted || state.onBreak || state.config.allow_navigation === false) return;
+    setQuestionTime(state.current);
+    state.qStartedAt = 0;            // time on the Review screen is not charged to a question
+    const [secFirst, secLast] = currentBounds();
+    let answered = 0;
+    const rows = [];
+    for (let i = secFirst; i <= secLast; i++) {
+      const done = hasAnswer(i);
+      if (done) answered += 1;
+      rows.push(`<tr class="go" onclick="Events.goQuestion(${i})" tabindex="0" onkeydown="if(event.key==='Enter')Events.goQuestion(${i})" aria-label="Go to question ${questionLabel(i)}">
+        <td>Question ${questionLabel(i)}${i === state.current ? " (current)" : ""}</td>
+        <td class="${done ? "st-answered" : "st-unanswered"}">${done ? "Answered" : "Not Answered"}</td>
+        <td>${state.marked[i] ? '<span class="mark-flag">⚑ Marked</span>' : ""}</td>
+      </tr>`);
+    }
+    const total = secLast - secFirst + 1;
+    $("gre-review-area").innerHTML = `
+      <h2>Review${isSectioned() ? ` — Section ${state.sectionIndex + 1}` : ""}</h2>
+      <p>Below is the status of each question. Select a question to return to it. ${answered} of ${total} answered.</p>
+      <table class="gre-review-table">
+        <thead><tr><th scope="col">Question</th><th scope="col">Status</th><th scope="col">Marked</th></tr></thead>
+        <tbody>${rows.join("")}</tbody>
+      </table>
+      <div class="gre-review-actions">
+        <button class="btn btn-primary" onclick="Events.returnFromReview()">Return to Question</button>
+        <button class="btn btn-outline" onclick="Events.confirmExit()">${isSectioned() ? "Exit Section" : "Submit Test"}</button>
+      </div>`;
+    $("eventQuestionArea").style.display = "none";
+    $("gre-review-area").style.display = "block";
+    $("gre-body").scrollTop = 0;
+  }
+
+  function closeReviewPanel() {
+    const review = $("gre-review-area");
+    if (review) review.style.display = "none";
+    const area = $("eventQuestionArea");
+    if (area) area.style.display = "block";
+  }
+
+  function returnFromReview() {
+    closeReviewPanel();
+    state.qStartedAt = Date.now();
+  }
+
+  function showHelp() {
+    const locked = state.config.allow_navigation === false;
+    showModal("Test Help", locked
+      ? `<strong>Next</strong> — move to the next question. This event is in a locked order, so you cannot go back.<br>
+         <strong>Mark</strong> — flag the current question.<br>
+         <strong>Calculator</strong> — open the on-screen calculator.<br>
+         <strong>${isSectioned() ? "Exit Section" : "Submit Test"}</strong> — finish. You cannot return afterwards.<br><br>
+         Unanswered questions count as wrong. The timer shows in the final 5 minutes even if hidden.`
+      : `<strong>Back / Next</strong> — move between questions${isSectioned() ? " in this section" : ""}.<br>
+         <strong>Mark</strong> — flag the current question so you can find it on the Review screen.<br>
+         <strong>Review</strong> — see the answered / marked status of every question and jump to any of them.<br>
+         <strong>Calculator</strong> — open the on-screen calculator.<br>
+         <strong>${isSectioned() ? "Exit Section" : "Submit Test"}</strong> — finish${isSectioned() ? " this section" : ""}. You cannot return to ${isSectioned() ? "it" : "the test"} afterwards.<br><br>
+         Unanswered questions count as wrong. The timer shows in the final 5 minutes even if hidden.`,
+      [{ label: "Return to Test", cls: "btn-primary" }]);
+  }
+
+  // ── Timer ────────────────────────────────────────────────────────────────
+  function updateTimerDisplay() {
+    const limit = state.timerLimit;
+    $("timer").textContent = limit ? clock(state.remaining) : "Untimed";
+    const el = $("exam-timer");
+    const last5 = !!limit && state.remaining <= 300;
+    el.classList.toggle("urgent", last5 && state.remaining > 0);
+    // Like the real test, a hidden clock comes back for the last five minutes.
+    el.classList.toggle("hidden-time", !!state.timerHidden && !last5);
+    $("btn-hide-time").hidden = !limit;
+    $("btn-hide-time").textContent = state.timerHidden ? "Show Time" : "Hide Time";
+  }
+
+  function toggleTimer() {
+    state.timerHidden = !state.timerHidden;
+    updateTimerDisplay();
   }
 
   function startTimer() {
@@ -517,11 +642,11 @@ const Events = (() => {
     const limit = sectioned
       ? Number(state.config.sections[state.sectionIndex].time_limit_seconds) || 0
       : Number(state.config.timer_seconds) || 0;
+    state.timerLimit = limit;
     state.remaining = limit;
     state.sectionStartedAt = Date.now();
     const tick = () => {
-      $("timer").textContent = limit ? formatTime(state.remaining) : "Untimed";
-      $("timer").classList.toggle("critical", state.remaining > 0 && state.remaining <= 120);
+      updateTimerDisplay();
       if (limit && state.remaining <= 0) {
         clearInterval(state.timer);
         if (sectioned) endSection(true); else submitEvent(true);
@@ -533,17 +658,31 @@ const Events = (() => {
     if (state.remaining) state.timer = setInterval(tick, 1000);
   }
 
+  // ── Leaving a section ────────────────────────────────────────────────────
+  function confirmExit() {
+    if (state.submitted || state.onBreak) return;
+    const [secFirst, secLast] = currentBounds();
+    let open = 0;
+    for (let i = secFirst; i <= secLast; i++) if (!hasAnswer(i)) open += 1;
+    const sectioned = isSectioned();
+    const final = !sectioned || state.sectionIndex >= state.config.sections.length - 1;
+    const warn = open ? `<br><br><strong>You have ${open} unanswered question${open === 1 ? "" : "s"}.</strong>` : "";
+    showModal(sectioned ? "Exit Section" : "Submit Test",
+      `Are you sure you want to ${sectioned ? "exit this section" : "submit the test"}?${warn}<br><br>Once you exit, you cannot return to ${sectioned ? "this section" : "the test"}.${sectioned && final ? " This is the last section, so your test will be submitted." : ""}`,
+      [
+        { label: "Cancel", cls: "btn-ghost" },
+        { label: sectioned ? "Exit Section" : "Submit Test", cls: "btn-primary", action: () => (sectioned ? endSection(false, true) : submitEvent(false)) }
+      ]);
+  }
+
   // Close the current section. The last one submits the whole paper; an
   // earlier one shows the break card, and the next section's clock only
   // starts when the student presses the button on it.
-  function endSection(timedOut = false) {
+  function endSection(timedOut = false, confirmed = false) {
     if (state.submitted || state.onBreak) return;
+    if (!timedOut && !confirmed) { confirmExit(); return; }
+    closeModal();
     const [secFirst, secLast] = currentBounds();
-    if (!timedOut && state.sectionIndex < state.config.sections.length - 1) {
-      const open = state.answers.slice(secFirst, secLast + 1).filter((a) => !(a && (!Array.isArray(a) || a.length))).length;
-      const msg = `End Section ${state.sectionIndex + 1}?` + (open ? ` ${open} question${open === 1 ? " is" : "s are"} unanswered.` : "") + " You will not be able to come back to it.";
-      if (!window.confirm(msg)) return;
-    }
     setQuestionTime(state.current);
     clearInterval(state.timer);
     state.sectionUsed[state.sectionIndex] = Math.min(
@@ -554,26 +693,18 @@ const Events = (() => {
       submitEvent(timedOut);
       return;
     }
-    const answered = state.answers.slice(secFirst, secLast + 1).filter((a) => a && (!Array.isArray(a) || a.length)).length;
+    let answered = 0;
+    for (let i = secFirst; i <= secLast; i++) if (hasAnswer(i)) answered += 1;
     const total = secLast - secFirst + 1;
     const next = state.config.sections[state.sectionIndex + 1];
     state.onBreak = true;
-    $("numberNav").innerHTML = "";
-    $("timer").textContent = "Break";
-    $("timer").classList.remove("critical");
-    $("progressText").textContent = `Section ${state.sectionIndex + 1} of ${state.config.sections.length} complete`;
-    if ($("unansweredWarning")) $("unansweredWarning").textContent = "";
-    $("submitBtn").disabled = true;
-    $("eventQuestionArea").innerHTML = `
-      <div class="practice-q-card">
-        <div class="pq-body" style="text-align:center;padding:40px 24px;">
-          <div class="eyebrow">${timedOut ? "Time is up" : "Section complete"}</div>
-          <h2 style="margin:8px 0 12px;">Section ${state.sectionIndex + 1} of ${state.config.sections.length} is finished</h2>
-          <p class="muted">You answered ${answered} of ${total} questions. This section is now locked.</p>
-          <p class="muted" style="margin-top:14px;">Next: <strong>${escapeHtml(next.name || `Section ${state.sectionIndex + 2}`)}</strong> · ${next.question_count || ""} questions · ${formatTime(next.time_limit_seconds)}. Take a breather. The clock for the next section starts only when you press the button.</p>
-          <div class="actions" style="justify-content:center;margin-top:22px;"><button class="primary-btn" onclick="Events.startNextSection()">Start Section ${state.sectionIndex + 2}</button></div>
-        </div>
-      </div>`;
+    hideExam();
+    $("breakTitle").textContent = timedOut ? `Time is up — Section ${state.sectionIndex + 1} ended` : `Section ${state.sectionIndex + 1} Complete`;
+    $("breakPreview").innerHTML = `You answered <strong>${answered} of ${total}</strong> questions. This section is now locked.<br><br>
+      Next: <strong>${escapeHtml(next.name || `Section ${state.sectionIndex + 2}`)}</strong> · ${next.question_count || ""} questions · ${formatTime(next.time_limit_seconds)}`;
+    $("breakNextBtn").textContent = `Start Section ${state.sectionIndex + 2} →`;
+    $("breakSection").classList.remove("hidden");
+    window.scrollTo(0, 0);
   }
 
   function startNextSection() {
@@ -582,15 +713,69 @@ const Events = (() => {
     state.sectionIndex += 1;
     state.current = currentBounds()[0];
     state.qStartedAt = Date.now();
-    $("submitBtn").disabled = false;
-    $("submitBtn").textContent = sectionButtonLabel();
+    $("breakSection").classList.add("hidden");
+    showExam();
+    updateExitLabel();
     renderQuestion();
     startTimer();
   }
 
-  function sectionButtonLabel() {
-    if (!isSectioned()) return "Submit";
-    return state.sectionIndex >= state.config.sections.length - 1 ? "Submit Test" : `End Section ${state.sectionIndex + 1}`;
+  function updateExitLabel() {
+    $("greExitLabel").textContent = isSectioned() ? "Exit Section" : "Submit Test";
+    $("submitBtn").setAttribute("aria-label", $("greExitLabel").textContent);
+  }
+
+  // ── "Before you begin" ───────────────────────────────────────────────────
+  function showInstructions() {
+    const cfg = state.config;
+    const sectioned = isSectioned();
+    const locked = cfg.allow_navigation === false;
+    const total = cfg.question_count || cfg.questions.length;
+    $("instrHighlight").innerHTML = sectioned
+      ? `<strong>This is a timed, full-length GRE Quant mock — real format, real interface.</strong><br>${cfg.sections.map((sec, i) => `<strong>Section ${i + 1}:</strong> ${sec.question_count || ""} questions · ${formatTime(sec.time_limit_seconds)}`).join(" &nbsp;|&nbsp; ")}`
+      : `<strong>This is a timed GRE Quant mock — real format, real interface.</strong><br>${total} questions · ${cfg.timer_seconds ? formatTime(cfg.timer_seconds) : "Untimed"}`;
+    const items = [
+      locked
+        ? "Questions are in a <strong>locked order</strong>. Use <strong>Next</strong> to move on; you cannot go back to a previous question."
+        : "The test screen replicates the real GRE: use <strong>Back / Next</strong> to move, <strong>Mark</strong> to flag a question, and <strong>Review</strong> to see the status of every question" + (sectioned ? " in the section." : "."),
+      sectioned
+        ? "Each section has its own clock. Time does not carry over, and a section locks when you exit it or time runs out."
+        : (cfg.timer_seconds ? "When time runs out, the test is submitted automatically." : "This event is untimed."),
+      "An on-screen <strong>Calculator</strong> is available from the top bar, as on the real GRE.",
+      locked ? "Once you move on from a question you cannot change your answer." : `You can change your answer any time before exiting ${sectioned ? "the section" : "the test"}.`,
+      ...(sectioned ? ["There is a short break between sections. The next clock starts only when you press the button."] : []),
+      "Unanswered questions count as wrong — attempt everything.",
+      "No feedback is shown during the test. Your review appears as soon as you finish."
+    ];
+    $("instrList").innerHTML = items.map((html) => `<li><span>${html}</span></li>`).join("");
+    $("beginBtn").textContent = sectioned ? "Start Section 1 →" : "Start Test →";
+    $("startSection").classList.add("hidden");
+    $("instructionsSection").classList.remove("hidden");
+    window.scrollTo(0, 0);
+  }
+
+  function beginTest() {
+    $("instructionsSection").classList.add("hidden");
+    if ($("gre-strip-mock")) $("gre-strip-mock").textContent = "· " + (state.config.event_name || "");
+    if (window.GQP) window.GQP.track('mock_started', {
+      event_id: state.config.event_id,
+      event_name: state.config.event_name,
+      mode: 'solo'
+    });
+    state.startedAt = new Date();
+    state.answers = new Array(state.config.questions.length).fill(null);
+    state.qTimes = new Array(state.config.questions.length).fill(0);
+    state.marked = [];
+    state.timerHidden = false;
+    state.qStartedAt = Date.now();
+    state.sectionIndex = 0;
+    state.sectionUsed = [];
+    state.onBreak = false;
+    state.current = 0;
+    showExam();
+    updateExitLabel();
+    renderQuestion();
+    startTimer();
   }
 
   function kpiCard(icon, value, label, color) {
@@ -995,8 +1180,9 @@ const Events = (() => {
   }
 
   function renderResults(result, timedOut) {
-    $("examSection").classList.add("hidden");
+    hideExam();
     $("resultsSection").classList.remove("hidden");
+    window.scrollTo(0, 0);
     $("resultsTitle").textContent = timedOut ? "Time is up. Exam analysis saved." : "Exam Analysis";
     if ($("analysisMeta")) {
       $("analysisMeta").innerHTML = `
@@ -1126,6 +1312,7 @@ const Events = (() => {
 
   function submitEvent(timedOut = false) {
     if (state.submitted) return;
+    closeModal();
     setQuestionTime(state.current);
     state.submitted = true;
     clearInterval(state.timer);
@@ -1172,28 +1359,23 @@ const Events = (() => {
           $("startError").textContent = "Name and email are required before starting.";
           return;
         }
-        $("startSection").classList.add("hidden");
-        $("examSection").classList.remove("hidden");
-        if ($("eventMetaName")) $("eventMetaName").textContent = $("studentName").value.trim();
-        if ($("eventMetaTopic")) $("eventMetaTopic").textContent = state.config.event_name;
-        if (window.GQP) window.GQP.track('mock_started', {
-          event_id: state.config.event_id,
-          event_name: state.config.event_name,
-          mode: 'solo'
-        });
-        state.startedAt = new Date();
-        state.answers = new Array(state.config.questions.length).fill(null);
-        state.qTimes = new Array(state.config.questions.length).fill(0);
-        state.qStartedAt = Date.now();
-        state.sectionIndex = 0;
-        state.sectionUsed = [];
-        state.onBreak = false;
-        state.current = 0;
-        $("submitBtn").textContent = sectionButtonLabel();
-        renderQuestion();
-        startTimer();
+        $("startError").textContent = "";
+        showInstructions();
       };
-      $("submitBtn").onclick = () => (isSectioned() ? endSection(false) : submitEvent(false));
+      $("instrBackBtn").onclick = () => {
+        $("instructionsSection").classList.add("hidden");
+        $("startSection").classList.remove("hidden");
+      };
+      $("beginBtn").onclick = beginTest;
+      $("breakNextBtn").onclick = startNextSection;
+      $("submitBtn").onclick = confirmExit;
+      document.addEventListener("keydown", (e) => {
+        if ($("examSection").classList.contains("hidden") || $("gre-modal").classList.contains("open")) return;
+        if (["INPUT", "TEXTAREA"].includes(document.activeElement && document.activeElement.tagName)) return;
+        if ($("gre-review-area").style.display === "block") return;
+        if (e.key === "ArrowRight") nextQuestion();
+        else if (e.key === "ArrowLeft") prevQuestion();
+      });
     } catch (error) {
       $("startSection").innerHTML = `<div class="notice danger">Could not load event config. ${escapeHtml(error.message)}</div>`;
     }
@@ -1201,6 +1383,7 @@ const Events = (() => {
 
   return {
     $, state, escapeHtml, slug, formatTime, downloadJson, downloadText, shuffle, loadJson, enrichQuestion, isCorrect, summarize, breakdown,
-    chooseOption, setAnswer, goQuestion, nextQuestion, prevQuestion, submitEvent, endSection, startNextSection, initStudentPage
+    chooseOption, setAnswer, goQuestion, nextQuestion, prevQuestion, submitEvent, endSection, startNextSection, initStudentPage,
+    toggleMark, openReview, returnFromReview, showHelp, toggleTimer, confirmExit
   };
 })();
