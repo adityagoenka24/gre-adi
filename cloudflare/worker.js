@@ -4,6 +4,12 @@
  *
  * KV Namespace: GRE_AUTH (bind as GRE_AUTH in Cloudflare dashboard)
  *
+ * 2026-10-30: KV is now only a FALLBACK and a one-time source. Students, the
+ * payment review queue, leads and full attempt records live in D1 (GRE_DB; see
+ * schema.sql: students, kv_meta, webhook_queue, leads, mock_attempt_detail).
+ * Existing KV records are copied across a chunk at a time from the admin
+ * screens. Without the D1 tables the Worker runs on KV exactly as before.
+ *
  * KV Key structure:
  *   student:{email}  →  { fingerprints: [fp1, fp2], addedAt: ISO, name: "", plan?, paidAt?, paymentId?, source?, access? }
  *
@@ -117,12 +123,6 @@ export default {
       }
       if (path === '/admin/leads' && request.method === 'GET') {
         return await handleAdminLeads(request, env);
-      }
-      if (path === '/admin/analytics' && request.method === 'GET') {
-        return await handleAdminAnalytics(request, env, url);
-      }
-      if (path === '/admin/analytics/events' && request.method === 'GET') {
-        return await handleAdminAnalyticsEvents(request, env, url);
       }
       if (path === '/mock/submission' && request.method === 'POST') {
         return await handleMockSubmission(request, env);
@@ -263,6 +263,261 @@ function normalizeAccessInput(access) {
   return filtered.length ? filtered : null;
 }
 
+// ─── D1-FIRST STORAGE (students, webhook queue, leads) ───────────────────────
+/* Workers KV's free tier is 100k reads / 1,000 writes / 1,000 lists a day, and
+   /validate runs on every Pro page load. Everything that used to live in KV
+   under student:, webhook_manual:, webhook_noemail: and lead: now lives in D1
+   (tables in schema.sql), where the free tier is millions of reads a day.
+
+   Old KV records are not lost. Each store reads D1 first and falls back to KV
+   only when D1 has no row AND the one-off copy for that store has not finished
+   (a flag in kv_meta). The copy runs a chunk at a time from the admin screens
+   that list the data, so no deploy step is needed. With no GRE_DB binding or
+   no tables the Worker behaves exactly as it did before, on KV. */
+
+const KV_MIGRATED = new Set();        // sticky per isolate: once true, always true
+const KV_MIGRATE_CHUNK = 30;          // 1 list + 30 gets stays under 50 subrequests
+
+async function metaGet(env, k) {
+  const r = await env.GRE_DB.prepare('SELECT v FROM kv_meta WHERE k = ?').bind(k).first();
+  return r ? r.v : null;
+}
+async function metaSet(env, k, v) {
+  await env.GRE_DB.prepare('INSERT OR REPLACE INTO kv_meta (k, v) VALUES (?, ?)').bind(k, String(v)).run();
+}
+async function kvMigrated(env, name) {
+  if (KV_MIGRATED.has(name)) return true;
+  const v = await metaGet(env, name + '_done');
+  if (v) { KV_MIGRATED.add(name); return true; }
+  return false;
+}
+/* Copies one chunk of a KV prefix into D1 (INSERT OR IGNORE, so a newer D1 row
+   or a delete tombstone always wins). Returns true when the prefix is done. */
+async function migrateKvChunk(env, name, prefix, toStatement) {
+  const cursor = (await metaGet(env, name + '_cursor')) || undefined;
+  const listed = await env.GRE_AUTH.list({ prefix, cursor, limit: KV_MIGRATE_CHUNK });
+  const stmts = [];
+  for (const k of listed.keys) {
+    const raw = await env.GRE_AUTH.get(k.name);
+    if (!raw) continue;
+    const st = toStatement(k.name, raw);
+    if (st) stmts.push(st);
+  }
+  if (stmts.length) await env.GRE_DB.batch(stmts);
+  if (listed.list_complete) {
+    await metaSet(env, name + '_done', '1');
+    KV_MIGRATED.add(name);
+    return true;
+  }
+  await metaSet(env, name + '_cursor', listed.cursor);
+  return false;
+}
+
+// ── students ──
+function studentEmail(email) { return String(email || '').toLowerCase().trim(); }
+
+function studentCopyStatement(env) {
+  return (name, raw) => {
+    const em = name.slice('student:'.length);
+    return env.GRE_DB.prepare(
+      'INSERT OR IGNORE INTO students (email, data, deleted, updated_at) VALUES (?, ?, 0, ?)'
+    ).bind(em, raw, Date.now());
+  };
+}
+
+async function getStudent(env, email) {
+  const em = studentEmail(email);
+  if (!em) return null;
+  let d1Ok = false;
+  if (env.GRE_DB) {
+    try {
+      const row = await env.GRE_DB.prepare('SELECT data, deleted FROM students WHERE email = ?').bind(em).first();
+      d1Ok = true;
+      if (row) return row.deleted ? null : JSON.parse(row.data);
+      if (await kvMigrated(env, 'students')) return null;   // D1 is complete: unknown email
+    } catch (e) { /* table missing or query failed: use KV */ }
+  }
+  const raw = await env.GRE_AUTH.get('student:' + em);
+  if (!raw) return null;
+  const student = JSON.parse(raw);
+  if (d1Ok) {
+    try { await studentCopyStatement(env)('student:' + em, raw).run(); } catch (e) { /* best effort */ }
+  }
+  return student;
+}
+
+async function putStudent(env, email, student) {
+  const em = studentEmail(email);
+  if (env.GRE_DB) {
+    try {
+      await env.GRE_DB.prepare(
+        'INSERT OR REPLACE INTO students (email, data, deleted, updated_at) VALUES (?, ?, 0, ?)'
+      ).bind(em, JSON.stringify(student), Date.now()).run();
+      return;
+    } catch (e) { /* fall back to KV so a payment is never lost */ }
+  }
+  await env.GRE_AUTH.put('student:' + em, JSON.stringify(student));
+}
+
+/* A delete is a tombstone row, not a KV delete: it costs no KV operation and
+   stops the old KV copy being read back in by the one-off copy. */
+async function deleteStudent(env, email) {
+  const em = studentEmail(email);
+  if (env.GRE_DB) {
+    try {
+      await env.GRE_DB.prepare(
+        "INSERT OR REPLACE INTO students (email, data, deleted, updated_at) VALUES (?, '{}', 1, ?)"
+      ).bind(em, Date.now()).run();
+      return;
+    } catch (e) { /* fall back to KV */ }
+  }
+  await env.GRE_AUTH.delete('student:' + em);
+}
+
+async function legacyListStudents(env) {
+  const out = [];
+  let cursor;
+  do {
+    const list = await env.GRE_AUTH.list({ prefix: 'student:', cursor, limit: 1000 });
+    for (const key of list.keys) {
+      const raw = await env.GRE_AUTH.get(key.name);
+      if (raw) out.push(JSON.parse(raw));
+    }
+    cursor = list.list_complete ? undefined : list.cursor;
+  } while (cursor);
+  return out;
+}
+
+async function listStudents(env) {
+  if (env.GRE_DB) {
+    try {
+      if (!(await kvMigrated(env, 'students'))) {
+        await migrateKvChunk(env, 'students', 'student:', studentCopyStatement(env));
+      }
+      const out = await env.GRE_DB.prepare('SELECT data FROM students WHERE deleted = 0').all();
+      const students = [];
+      for (const r of out.results || []) { try { students.push(JSON.parse(r.data)); } catch (e) { /* skip */ } }
+      return { students, migrating: !KV_MIGRATED.has('students') };
+    } catch (e) { /* table missing: use KV */ }
+  }
+  return { students: await legacyListStudents(env), migrating: false };
+}
+
+// ── webhook queue (payments needing a person) ──
+const WEBHOOK_QUEUE_KEEP_SECONDS = 60 * 60 * 24 * 90;
+
+async function queueWebhookItem(env, kind, paymentId, data) {
+  if (env.GRE_DB) {
+    try {
+      await env.GRE_DB.batch([
+        env.GRE_DB.prepare(
+          'INSERT OR REPLACE INTO webhook_queue (kind, payment_id, data, created_at) VALUES (?, ?, ?, ?)'
+        ).bind(kind, paymentId, JSON.stringify(data), Date.now()),
+        env.GRE_DB.prepare('DELETE FROM webhook_queue WHERE created_at < ?')
+          .bind(Date.now() - WEBHOOK_QUEUE_KEEP_SECONDS * 1000),
+      ]);
+      return;
+    } catch (e) { /* fall back to KV */ }
+  }
+  await env.GRE_AUTH.put(`webhook_${kind}:${paymentId}`, JSON.stringify(data), { expirationTtl: WEBHOOK_QUEUE_KEEP_SECONDS });
+}
+
+async function listWebhookQueue(env, kind) {
+  const prefix = `webhook_${kind}:`;
+  if (env.GRE_DB) {
+    try {
+      const name = 'webhook_' + kind;
+      if (!(await kvMigrated(env, name))) {
+        await migrateKvChunk(env, name, prefix, (k, raw) => env.GRE_DB.prepare(
+          'INSERT OR IGNORE INTO webhook_queue (kind, payment_id, data, created_at) VALUES (?, ?, ?, ?)'
+        ).bind(kind, k.slice(prefix.length), raw, Date.now()));
+      }
+      const out = await env.GRE_DB.prepare('SELECT data FROM webhook_queue WHERE kind = ?').bind(kind).all();
+      const items = [];
+      for (const r of out.results || []) { try { items.push(JSON.parse(r.data)); } catch (e) { /* skip */ } }
+      return items;
+    } catch (e) { /* table missing: use KV */ }
+  }
+  const list = await env.GRE_AUTH.list({ prefix });
+  const items = [];
+  for (const k of list.keys) {
+    const raw = await env.GRE_AUTH.get(k.name);
+    if (raw) items.push(JSON.parse(raw));
+  }
+  return items;
+}
+
+async function dismissWebhookItem(env, kind, paymentId) {
+  let d1Done = false;
+  if (env.GRE_DB) {
+    try {
+      await env.GRE_DB.prepare('DELETE FROM webhook_queue WHERE kind = ? AND payment_id = ?').bind(kind, paymentId).run();
+      d1Done = true;
+    } catch (e) { /* use KV */ }
+  }
+  // While the one-off copy is unfinished the item may still be in KV and would
+  // be copied back in, so it has to be removed there too.
+  let migrated = false;
+  if (d1Done) { try { migrated = await kvMigrated(env, 'webhook_' + kind); } catch (e) { migrated = false; } }
+  if (!d1Done || !migrated) await env.GRE_AUTH.delete(`webhook_${kind}:${paymentId}`);
+}
+
+// ── leads ──
+async function recordLead(env, email, site, source, now) {
+  if (env.GRE_DB) {
+    try {
+      await env.GRE_DB.prepare(
+        `INSERT INTO leads (email, site, first_seen, last_seen, count, source, sources)
+         VALUES (?, ?, ?, ?, 1, ?, json_object(?, 1))
+         ON CONFLICT(email) DO UPDATE SET
+           last_seen = excluded.last_seen,
+           count = leads.count + 1,
+           source = excluded.source,
+           sources = json_set(COALESCE(leads.sources, '{}'), '$."' || ? || '"',
+                       COALESCE(json_extract(leads.sources, '$."' || ? || '"'), 0) + 1)`
+      ).bind(email, site, now, now, source, source, source, source).run();
+      return;
+    } catch (e) { /* fall back to KV */ }
+  }
+  const key = `lead:${email}`;
+  const raw = await env.GRE_AUTH.get(key);
+  const rec = raw ? JSON.parse(raw) : { email, site, firstSeen: now, count: 0, sources: {} };
+  rec.lastSeen = now;
+  rec.count = (rec.count || 0) + 1;
+  rec.sources = rec.sources || {};
+  rec.sources[source] = (rec.sources[source] || 0) + 1;
+  rec.source = source;
+  await env.GRE_AUTH.put(key, JSON.stringify(rec));
+}
+
+async function listLeads(env) {
+  if (env.GRE_DB) {
+    try {
+      if (!(await kvMigrated(env, 'leads'))) {
+        await migrateKvChunk(env, 'leads', 'lead:', (k, raw) => {
+          let r; try { r = JSON.parse(raw); } catch (e) { return null; }
+          return env.GRE_DB.prepare(
+            'INSERT OR IGNORE INTO leads (email, site, first_seen, last_seen, count, source, sources) VALUES (?, ?, ?, ?, ?, ?, ?)'
+          ).bind(String(r.email || k.slice(5)), String(r.site || ''), String(r.firstSeen || ''), String(r.lastSeen || ''),
+                 Number(r.count) || 1, String(r.source || ''), JSON.stringify(r.sources || {}));
+        });
+      }
+      const out = await env.GRE_DB.prepare('SELECT * FROM leads').all();
+      return (out.results || []).map(r => {
+        let sources = {}; try { sources = JSON.parse(r.sources || '{}'); } catch (e) { /* keep {} */ }
+        return { email: r.email, site: r.site, firstSeen: r.first_seen, lastSeen: r.last_seen, count: r.count, source: r.source, sources };
+      });
+    } catch (e) { /* table missing: use KV */ }
+  }
+  const list = await env.GRE_AUTH.list({ prefix: 'lead:' });
+  const leads = [];
+  for (const key of list.keys) {
+    const raw = await env.GRE_AUTH.get(key.name);
+    if (raw) leads.push(JSON.parse(raw));
+  }
+  return leads;
+}
+
 // ─── VALIDATE ────────────────────────────────────────────────────────────────
 // Called every time the pro app loads.
 // Returns: { status: 'ok' | 'unknown_email' | 'device_limit' | 'device_mismatch', access?: string[] }
@@ -273,15 +528,12 @@ async function handleValidate(request, env) {
     return jsonResponse({ status: 'error', message: 'Missing email or fingerprint' }, 400);
   }
 
-  const key = `student:${email.toLowerCase().trim()}`;
-  const raw = await env.GRE_AUTH.get(key);
+  const student = await getStudent(env, email);
 
   // Email not in allowed list
-  if (!raw) {
+  if (!student) {
     return jsonResponse({ status: 'unknown_email' });
   }
-
-  const student = JSON.parse(raw);
 
   // Access revoked
   if (student.revoked) {
@@ -312,154 +564,17 @@ async function handleValidate(request, env) {
   return jsonResponse({ status: 'device_limit' });
 }
 
-// ─── ANALYTICS: PAGEVIEW ─────────────────────────────────────────────────────
-// Privacy-light analytics:
-// - no names/emails
-// - no IP storage
-// - one anonymous browser id generated client-side
-// - daily buckets use Asia/Kolkata dates
-async function handleAnalyticsView(request, env) {
-  const body = await safeJson(request);
-  const visitorId = normalizeVisitorId(body.visitorId);
-  const page = normalizePage(body.path);
-  const site = String(body.site || 'grequantpro').slice(0, 60);
-  const date = indiaDate();
-  const key = `analytics:${site}:${date}`;
-  const raw = await env.GRE_AUTH.get(key);
-  const data = raw ? JSON.parse(raw) : {
-    date,
-    site,
-    pageviews: 0,
-    uniqueVisitors: 0,
-    visitors: {},
-    pages: {},
-    updatedAt: null,
-  };
-
-  data.pageviews = (data.pageviews || 0) + 1;
-  data.pages = data.pages || {};
-  data.pages[page] = (data.pages[page] || 0) + 1;
-  data.visitors = data.visitors || {};
-  if (visitorId && !data.visitors[visitorId]) {
-    data.visitors[visitorId] = new Date().toISOString();
-  }
-  data.uniqueVisitors = Object.keys(data.visitors).length;
-  data.updatedAt = new Date().toISOString();
-
-  await env.GRE_AUTH.put(key, JSON.stringify(data));
-  return jsonResponse({ status: 'ok' });
+// ─── ANALYTICS (switched off 2026-10-30) ──────────────────────────────────
+// First-party page-view and click logging cost a KV get + put on every page
+// load and was a main driver of the free-tier KV limit. The routes stay so a
+// cached copy of an old analytics.js gets a clean 200 instead of an error,
+// but they read nothing and write nothing. The /admin/analytics* readers and
+// their per-day KV list scans were removed with them.
+async function handleAnalyticsView() {
+  return jsonResponse({ status: 'ok', disabled: true });
 }
-
-// ─── ANALYTICS: CUSTOM EVENTS ────────────────────────────────────────────────
-// Stores named event counts per day.
-// KV key: event:{site}:{date}:{event_name}
-// → { date, site, event, count, visitors: {}, last_props: {} }
-async function handleAnalyticsEvent(request, env) {
-  const body = await safeJson(request);
-  const visitorId = normalizeVisitorId(body.visitorId);
-  const eventName = String(body.event || 'unknown').replace(/[^a-zA-Z0-9_]/g, '_').slice(0, 60);
-  const site = String(body.site || 'grequantpro').slice(0, 60);
-  const props = (body.props && typeof body.props === 'object') ? body.props : {};
-  const from = String(props.from || '').slice(0, 60);
-  const date = indiaDate();
-  const key = `event:${site}:${date}:${eventName}`;
-
-  const raw = await env.GRE_AUTH.get(key);
-  const data = raw ? JSON.parse(raw) : {
-    date, site, event: eventName, count: 0, visitors: {}, sources: {}, last_props: {}
-  };
-
-  data.count = (data.count || 0) + 1;
-  data.visitors = data.visitors || {};
-  if (visitorId) data.visitors[visitorId] = new Date().toISOString();
-  data.unique = Object.keys(data.visitors).length;
-  // Track breakdown by `from` source
-  if (from) {
-    data.sources = data.sources || {};
-    data.sources[from] = (data.sources[from] || 0) + 1;
-  }
-  data.last_props = props;
-  data.updatedAt = new Date().toISOString();
-
-  await env.GRE_AUTH.put(key, JSON.stringify(data));
-  return jsonResponse({ status: 'ok' });
-}
-
-// ─── ADMIN: ANALYTICS ────────────────────────────────────────────────────────
-async function handleAdminAnalytics(request, env, url) {
-  if (!isAdmin(request, env)) {
-    return jsonResponse({ error: 'Unauthorized' }, 401);
-  }
-  const site = String(url.searchParams.get('site') || 'grequantpro').slice(0, 60);
-  const days = Math.min(Math.max(parseInt(url.searchParams.get('days') || '30', 10) || 30, 1), 180);
-  const dates = recentIndiaDates(days);
-  const daily = [];
-
-  for (const date of dates) {
-    const raw = await env.GRE_AUTH.get(`analytics:${site}:${date}`);
-    if (!raw) {
-      daily.push({ date, pageviews: 0, uniqueVisitors: 0, pages: [] });
-      continue;
-    }
-    const data = JSON.parse(raw);
-    const pages = Object.entries(data.pages || {})
-      .map(([path, views]) => ({ path, views }))
-      .sort((a, b) => b.views - a.views);
-    daily.push({
-      date,
-      pageviews: data.pageviews || 0,
-      uniqueVisitors: data.uniqueVisitors || Object.keys(data.visitors || {}).length,
-      pages,
-      updatedAt: data.updatedAt || null,
-    });
-  }
-
-  return jsonResponse({
-    site,
-    timezone: 'Asia/Kolkata',
-    days,
-    daily,
-    totals: {
-      pageviews: daily.reduce((sum, d) => sum + d.pageviews, 0),
-      uniqueDailyVisitors: daily.reduce((sum, d) => sum + d.uniqueVisitors, 0),
-    },
-  });
-}
-
-// ─── ADMIN: CUSTOM EVENTS ────────────────────────────────────────────────────
-// GET /admin/analytics/events?days=N&site=grequantpro
-// Returns per-event counts aggregated across the requested date range.
-async function handleAdminAnalyticsEvents(request, env, url) {
-  if (!isAdmin(request, env)) {
-    return jsonResponse({ error: 'Unauthorized' }, 401);
-  }
-  const site = String(url.searchParams.get('site') || 'grequantpro').slice(0, 60);
-  const days = Math.min(Math.max(parseInt(url.searchParams.get('days') || '30', 10) || 30, 1), 180);
-  const dates = recentIndiaDates(days);
-
-  // Scan all event keys for the date range
-  const eventTotals = {}; // { event_name: { count, unique_visitors: Set, daily: [] } }
-
-  for (const date of dates) {
-    const listed = await env.GRE_AUTH.list({ prefix: `event:${site}:${date}:` });
-    for (const k of listed.keys) {
-      const raw = await env.GRE_AUTH.get(k.name);
-      if (!raw) continue;
-      const d = JSON.parse(raw);
-      const name = d.event;
-      if (!eventTotals[name]) eventTotals[name] = { event: name, count: 0, unique_visitors: 0, sources: {}, daily: [] };
-      eventTotals[name].count += d.count || 0;
-      eventTotals[name].unique_visitors += d.unique || Object.keys(d.visitors || {}).length;
-      // Merge per-source counts
-      for (const [src, cnt] of Object.entries(d.sources || {})) {
-        eventTotals[name].sources[src] = (eventTotals[name].sources[src] || 0) + cnt;
-      }
-      eventTotals[name].daily.push({ date, count: d.count || 0, unique: d.unique || 0 });
-    }
-  }
-
-  const events = Object.values(eventTotals).sort((a, b) => b.count - a.count);
-  return jsonResponse({ site, timezone: 'Asia/Kolkata', days, events });
+async function handleAnalyticsEvent() {
+  return jsonResponse({ status: 'ok', disabled: true });
 }
 
 
@@ -490,8 +605,57 @@ async function handleAdminAnalyticsEvents(request, env, url) {
    it did before — slower, never broken.
    ──────────────────────────────────────────────────────────────────────── */
 
-const ATTEMPT_DETAIL_TTL_DAYS = 3;
+const ATTEMPT_DETAIL_TTL_DAYS = 3;          // legacy KV records only
 const ATTEMPT_DETAIL_TTL_SECONDS = ATTEMPT_DETAIL_TTL_DAYS * 86400;
+
+/* 2026-10-30: the full record now goes to D1 (`mock_attempt_detail`), not KV,
+   so a submission costs no KV write and a drill-down costs no KV read. The
+   index row's kv_key is `d1:{attempt_id}` for these (anything else is a legacy
+   KV key). Rows older than ATTEMPT_DETAIL_D1_DAYS are deleted on the next
+   submission and by the nightly sweep. If D1 refuses the write, the record
+   goes to KV with the old 3-day expiry, so a result is never lost. */
+const ATTEMPT_DETAIL_D1_DAYS = 14;
+const ATTEMPT_DETAIL_D1_SECONDS = ATTEMPT_DETAIL_D1_DAYS * 86400;
+const D1_DETAIL_PREFIX = 'd1:';
+function isD1DetailKey(k) { return typeof k === 'string' && k.startsWith(D1_DETAIL_PREFIX); }
+
+async function saveAttemptDetail(env, attemptId, record, expiresAt) {
+  if (!env.GRE_DB) return false;
+  try {
+    await env.GRE_DB.batch([
+      env.GRE_DB.prepare('INSERT OR REPLACE INTO mock_attempt_detail (attempt_id, data, expires_at) VALUES (?, ?, ?)')
+        .bind(attemptId, JSON.stringify(record), expiresAt),
+      env.GRE_DB.prepare('DELETE FROM mock_attempt_detail WHERE expires_at < ?')
+        .bind(Math.floor(Date.now() / 1000)),
+    ]);
+    return true;
+  } catch (e) {
+    return false;   // table not created yet
+  }
+}
+
+/* The raw JSON text of an attempt's full record, from wherever it lives. */
+async function readAttemptDetailRaw(env, kvKey) {
+  if (!kvKey) return null;
+  if (isD1DetailKey(kvKey)) {
+    if (!env.GRE_DB) return null;
+    const row = await env.GRE_DB.prepare('SELECT data FROM mock_attempt_detail WHERE attempt_id = ?')
+      .bind(kvKey.slice(D1_DETAIL_PREFIX.length)).first();
+    return row ? row.data : null;
+  }
+  return await env.GRE_AUTH.get(kvKey);
+}
+
+async function deleteAttemptDetailRows(env, attemptIds) {
+  if (!env.GRE_DB || !attemptIds.length) return;
+  for (let i = 0; i < attemptIds.length; i += 200) {
+    const chunk = attemptIds.slice(i, i + 200);
+    try {
+      await env.GRE_DB.prepare('DELETE FROM mock_attempt_detail WHERE attempt_id IN (' + chunk.map(() => '?').join(',') + ')')
+        .bind(...chunk).run();
+    } catch (e) { /* table missing: nothing stored there */ }
+  }
+}
 
 /* KV counts every get, put and delete as a subrequest and the Workers free
    plan allows 50 per request, so anything that loops over keys stops here and
@@ -677,11 +841,17 @@ async function handleMockSubmission(request, env) {
     result,
   };
 
-  const key = `mock_attempt:${date}:${eventId}:${attemptId}`;
-  const detailExpiresAt = Math.floor(Date.now() / 1000) + ATTEMPT_DETAIL_TTL_SECONDS;
-  // The full record expires by itself after ATTEMPT_DETAIL_TTL_DAYS; the
-  // permanent copy of what the coach lists is the D1 index row written next.
-  await env.GRE_AUTH.put(key, JSON.stringify(record), { expirationTtl: ATTEMPT_DETAIL_TTL_SECONDS });
+  // The full record goes to D1 (no KV operation at all). Only if D1 refuses it
+  // does it fall back to KV with the old 3-day expiry. The permanent copy of
+  // what the coach lists is the D1 index row written next.
+  const nowSec = Math.floor(Date.now() / 1000);
+  let key = D1_DETAIL_PREFIX + attemptId;
+  let detailExpiresAt = nowSec + ATTEMPT_DETAIL_D1_SECONDS;
+  if (!(await saveAttemptDetail(env, attemptId, record, detailExpiresAt))) {
+    key = `mock_attempt:${date}:${eventId}:${attemptId}`;
+    detailExpiresAt = nowSec + ATTEMPT_DETAIL_TTL_SECONDS;
+    await env.GRE_AUTH.put(key, JSON.stringify(record), { expirationTtl: ATTEMPT_DETAIL_TTL_SECONDS });
+  }
   await saveAttemptIndex(env, record, key, detailExpiresAt);
 
   // Only the new client sets this flag, so older cached pages never create a
@@ -712,14 +882,55 @@ async function handleAdminMockAttempts(request, env, url) {
         timezone: 'Asia/Kolkata',
         days,
         source: 'index',
-        detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+        detail_ttl_days: ATTEMPT_DETAIL_D1_DAYS,
         count: indexed.length,
         attempts: indexed,
       });
     }
   }
 
-  const dates = recentIndiaDates(days);
+  // include_results=1 with an index: full records come from D1 (one query per
+  // 200 attempts); only a legacy KV-held record still costs a KV read, capped.
+  // An attempt whose detail has expired comes back as its summary row.
+  if (includeResults) {
+    const indexed = await readAttemptIndex(env, { days });
+    if (indexed) {
+      const records = [];
+      const have = new Set();
+      const d1ids = indexed.filter(a => isD1DetailKey(a.kv_key) && !a.detail_expired).map(a => a.attempt_id);
+      for (let i = 0; i < d1ids.length; i += 100) {
+        const chunk = d1ids.slice(i, i + 100);
+        try {
+          const out = await env.GRE_DB.prepare(
+            'SELECT attempt_id, data FROM mock_attempt_detail WHERE attempt_id IN (' + chunk.map(() => '?').join(',') + ')'
+          ).bind(...chunk).all();
+          for (const r of out.results || []) {
+            try { records.push(JSON.parse(r.data)); have.add(r.attempt_id); } catch (e) { /* skip unreadable */ }
+          }
+        } catch (e) { /* detail table missing: summaries only */ }
+      }
+      const legacy = indexed.filter(a => a.kv_key && !isD1DetailKey(a.kv_key) && !a.detail_expired).slice(0, ATTEMPT_KV_OPS_MAX);
+      for (const a of legacy) {
+        try {
+          const raw = await env.GRE_AUTH.get(a.kv_key);
+          if (raw) { records.push(JSON.parse(raw)); have.add(a.attempt_id); }
+        } catch (e) { /* skip */ }
+      }
+      for (const a of indexed) if (!have.has(a.attempt_id)) records.push(a);
+      records.sort((a, b) => String(b.submitted_at || b.saved_at).localeCompare(String(a.submitted_at || a.saved_at)));
+      return jsonResponse({
+        timezone: 'Asia/Kolkata',
+        days,
+        source: 'index',
+        detail_ttl_days: ATTEMPT_DETAIL_D1_DAYS,
+        count: records.length,
+        attempts: records,
+      });
+    }
+  }
+
+  // KV fallback only (index missing): capped, see KV_FALLBACK_MAX_DAYS.
+  const dates = recentIndiaDates(Math.min(days, KV_FALLBACK_MAX_DAYS));
   const attempts = [];
 
   for (const date of dates) {
@@ -745,7 +956,7 @@ async function handleAdminMockAttempts(request, env, url) {
     timezone: 'Asia/Kolkata',
     days,
     source: 'kv',
-    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+    detail_ttl_days: ATTEMPT_DETAIL_D1_DAYS,
     count: attempts.length,
     attempts,
   });
@@ -761,14 +972,12 @@ async function handleRegister(request, env) {
     return jsonResponse({ status: 'error', message: 'Missing email or fingerprint' }, 400);
   }
 
-  const key = `student:${email.toLowerCase().trim()}`;
-  const raw = await env.GRE_AUTH.get(key);
+  const student = await getStudent(env, email);
 
-  if (!raw) {
+  if (!student) {
     return jsonResponse({ status: 'unknown_email' });
   }
 
-  const student = JSON.parse(raw);
   const fingerprints = student.fingerprints || [];
 
   if (!fingerprints.includes(fingerprint)) {
@@ -777,7 +986,7 @@ async function handleRegister(request, env) {
 
   student.fingerprints = fingerprints;
   student.lastSeen = new Date().toISOString();
-  await env.GRE_AUTH.put(key, JSON.stringify(student));
+  await putStudent(env, email, student);
 
   return jsonResponse({ status: 'registered' });
 }
@@ -798,11 +1007,9 @@ async function handleAdminAddStudent(request, env) {
   }
   const normalizedAccess = normalizeAccessInput(access) || ALL_FEATURES.slice();
 
-  const key = `student:${email.toLowerCase().trim()}`;
-  const existing = await env.GRE_AUTH.get(key);
+  const existingStudent = await getStudent(env, email);
 
-  if (existing) {
-    const existingStudent = JSON.parse(existing);
+  if (existingStudent) {
     // Re-add a previously revoked student
     if (existingStudent.revoked) {
       existingStudent.revoked = false;
@@ -811,7 +1018,7 @@ async function handleAdminAddStudent(request, env) {
       existingStudent.reactivatedAt = new Date().toISOString();
       if (name) existingStudent.name = name;
       existingStudent.access = normalizedAccess;
-      await env.GRE_AUTH.put(key, JSON.stringify(existingStudent));
+      await putStudent(env, email, existingStudent);
       return jsonResponse({ status: 'reactivated', email: existingStudent.email, access: normalizedAccess });
     }
     return jsonResponse({ status: 'already_exists', message: 'Student already registered' });
@@ -826,7 +1033,7 @@ async function handleAdminAddStudent(request, env) {
     access: normalizedAccess,
   };
 
-  await env.GRE_AUTH.put(key, JSON.stringify(record));
+  await putStudent(env, record.email, record);
   return jsonResponse({ status: 'added', email: record.email, access: normalizedAccess });
 }
 
@@ -848,16 +1055,14 @@ async function handleAdminSetName(request, env) {
     return jsonResponse({ error: 'Missing email' }, 400);
   }
 
-  const key = `student:${email}`;
-  const raw = await env.GRE_AUTH.get(key);
-  if (!raw) {
+  const student = await getStudent(env, email);
+  if (!student) {
     return jsonResponse({ error: 'Student not found' }, 404);
   }
 
-  const student = JSON.parse(raw);
   student.name = String(body.name == null ? '' : body.name).trim().slice(0, 120);
   student.nameUpdatedAt = new Date().toISOString();
-  await env.GRE_AUTH.put(key, JSON.stringify(student));
+  await putStudent(env, email, student);
 
   return jsonResponse({ status: 'ok', email, name: student.name });
 }
@@ -881,16 +1086,14 @@ async function handleAdminSetAccess(request, env) {
     return jsonResponse({ error: 'access must be an array of feature names' }, 400);
   }
 
-  const key = `student:${email.toLowerCase().trim()}`;
-  const raw = await env.GRE_AUTH.get(key);
-  if (!raw) {
+  const student = await getStudent(env, email);
+  if (!student) {
     return jsonResponse({ error: 'Student not found' }, 404);
   }
 
-  const student = JSON.parse(raw);
   // access: [] or ["full"] or omitted → full access (stored explicitly for clarity in /admin/list)
   student.access = normalizeAccessInput(access) || ALL_FEATURES.slice();
-  await env.GRE_AUTH.put(key, JSON.stringify(student));
+  await putStudent(env, email, student);
 
   return jsonResponse({ status: 'ok', email: student.email, access: student.access });
 }
@@ -908,18 +1111,16 @@ async function handleAdminResetDevice(request, env) {
     return jsonResponse({ error: 'Missing email' }, 400);
   }
 
-  const key = `student:${email.toLowerCase().trim()}`;
-  const raw = await env.GRE_AUTH.get(key);
+  const student = await getStudent(env, email);
 
-  if (!raw) {
+  if (!student) {
     return jsonResponse({ error: 'Student not found' });
   }
 
-  const student = JSON.parse(raw);
   student.fingerprints = [];
   student.resetAt = new Date().toISOString();
 
-  await env.GRE_AUTH.put(key, JSON.stringify(student));
+  await putStudent(env, email, student);
   return jsonResponse({ status: 'reset', email: email.toLowerCase().trim() });
 }
 
@@ -936,19 +1137,17 @@ async function handleAdminRemoveStudent(request, env) {
     return jsonResponse({ error: 'Missing email' }, 400);
   }
 
-  const key = `student:${email.toLowerCase().trim()}`;
-  const raw = await env.GRE_AUTH.get(key);
+  const student = await getStudent(env, email);
 
-  if (!raw) {
+  if (!student) {
     return jsonResponse({ error: 'Student not found' }, 404);
   }
 
-  const student = JSON.parse(raw);
   student.revoked = true;
   student.revokedAt = new Date().toISOString();
   student.fingerprints = [];  // clear devices so they can't continue an existing session
 
-  await env.GRE_AUTH.put(key, JSON.stringify(student));
+  await putStudent(env, email, student);
   return jsonResponse({ status: 'revoked', email: email.toLowerCase().trim() });
 }
 
@@ -968,14 +1167,13 @@ async function handleAdminDeleteStudent(request, env) {
   }
 
   const normalized = email.toLowerCase().trim();
-  const key = `student:${normalized}`;
-  const raw = await env.GRE_AUTH.get(key);
+  const existing = await getStudent(env, normalized);
 
-  if (!raw) {
+  if (!existing) {
     return jsonResponse({ error: 'Student not found' }, 404);
   }
 
-  await env.GRE_AUTH.delete(key);
+  await deleteStudent(env, normalized);
   return jsonResponse({ status: 'deleted', email: normalized });
 }
 
@@ -985,29 +1183,21 @@ async function handleAdminList(request, env) {
     return jsonResponse({ error: 'Unauthorized' }, 401);
   }
 
-  const list = await env.GRE_AUTH.list({ prefix: 'student:' });
-  const students = [];
+  const { students: all, migrating } = await listStudents(env);
+  const students = all.map(s => ({
+    email: s.email,
+    name: s.name,
+    devices: s.fingerprints?.length || 0,
+    addedAt: s.addedAt,
+    lastSeen: s.lastSeen,
+    revoked: s.revoked || false,
+    source: s.source || 'manual',
+    plan: s.plan || '',
+    paymentId: s.paymentId || '',
+    access: resolveAccess(s),
+  }));
 
-  for (const key of list.keys) {
-    const raw = await env.GRE_AUTH.get(key.name);
-    if (raw) {
-      const s = JSON.parse(raw);
-      students.push({
-        email: s.email,
-        name: s.name,
-        devices: s.fingerprints?.length || 0,
-        addedAt: s.addedAt,
-        lastSeen: s.lastSeen,
-        revoked: s.revoked || false,
-        source: s.source || 'manual',
-        plan: s.plan || '',
-        paymentId: s.paymentId || '',
-        access: resolveAccess(s),
-      });
-    }
-  }
-
-  return jsonResponse({ students });
+  return jsonResponse({ students, migrating });
 }
 
 // ─── ADMIN: WEBHOOK QUEUE ────────────────────────────────────────────────────
@@ -1021,40 +1211,21 @@ async function handleAdminWebhookQueue(request, env) {
     return jsonResponse({ error: 'Unauthorized' }, 401);
   }
 
-  // Fetch manual-review queue
-  const manualList = await env.GRE_AUTH.list({ prefix: 'webhook_manual:' });
-  const manual = [];
-  for (const k of manualList.keys) {
-    const raw = await env.GRE_AUTH.get(k.name);
-    if (raw) manual.push(JSON.parse(raw));
-  }
-
-  // Fetch no-email queue
-  const noEmailList = await env.GRE_AUTH.list({ prefix: 'webhook_noemail:' });
-  const noemail = [];
-  for (const k of noEmailList.keys) {
-    const raw = await env.GRE_AUTH.get(k.name);
-    if (raw) noemail.push(JSON.parse(raw));
-  }
+  const manual = await listWebhookQueue(env, 'manual');
+  const noemail = await listWebhookQueue(env, 'noemail');
 
   // Recent auto-provisioned students (source = razorpay_webhook)
-  const studentList = await env.GRE_AUTH.list({ prefix: 'student:' });
-  const autoProvisioned = [];
-  for (const k of studentList.keys) {
-    const raw = await env.GRE_AUTH.get(k.name);
-    if (!raw) continue;
-    const s = JSON.parse(raw);
-    if (s.source === 'razorpay_webhook') {
-      autoProvisioned.push({
-        email: s.email,
-        name: s.name || '',
-        plan: s.plan || 'pro',
-        paidAt: s.paidAt || s.addedAt,
-        paymentId: s.paymentId || '',
-        revoked: s.revoked || false,
-      });
-    }
-  }
+  const { students: allStudents } = await listStudents(env);
+  const autoProvisioned = allStudents
+    .filter(s => s.source === 'razorpay_webhook')
+    .map(s => ({
+      email: s.email,
+      name: s.name || '',
+      plan: s.plan || 'pro',
+      paidAt: s.paidAt || s.addedAt,
+      paymentId: s.paymentId || '',
+      revoked: s.revoked || false,
+    }));
 
   // Sort all by date desc
   const byDate = arr => arr.sort((a, b) =>
@@ -1087,7 +1258,7 @@ async function handleAdminDismissWebhookItem(request, env) {
     return jsonResponse({ error: 'Missing or invalid type/paymentId' }, 400);
   }
 
-  await env.GRE_AUTH.delete(`webhook_${type}:${paymentId}`);
+  await dismissWebhookItem(env, type, paymentId);
   return jsonResponse({ status: 'dismissed', type, paymentId });
 }
 
@@ -1185,31 +1356,23 @@ async function handleRazorpayWebhook(request, env) {
 
   if (!email) {
     // Razorpay payment had no email — log to KV for manual follow-up
-    await env.GRE_AUTH.put(
-      `webhook_noemail:${paymentId}`,
-      JSON.stringify({ paymentId, amount, paidAt, contact: payment.contact || '', name: buyerName }),
-      { expirationTtl: 60 * 60 * 24 * 90 } // keep 90 days
-    );
+    await queueWebhookItem(env, 'noemail', paymentId,
+      { paymentId, amount, paidAt, contact: payment.contact || '', name: buyerName });
     return jsonResponse({ status: 'no_email', paymentId });
   }
 
   const access = AMOUNT_ACCESS[amount];
   if (!access) {
     // Unrecognized amount — log for manual review, don't auto-provision
-    await env.GRE_AUTH.put(
-      `webhook_manual:${paymentId}`,
-      JSON.stringify({ paymentId, email, amount, paidAt, name: buyerName }),
-      { expirationTtl: 60 * 60 * 24 * 90 }
-    );
+    await queueWebhookItem(env, 'manual', paymentId,
+      { paymentId, email, amount, paidAt, name: buyerName });
     return jsonResponse({ status: 'manual_review_required', amount, email, paymentId });
   }
 
   const plan = 'pro';
-  const key = `student:${email}`;
-  const existing = await env.GRE_AUTH.get(key);
+  const student = await getStudent(env, email);
 
-  if (existing) {
-    const student = JSON.parse(existing);
+  if (student) {
     // Reactivate a previously revoked student who repurchased
     if (student.revoked) {
       student.revoked = false;
@@ -1222,7 +1385,7 @@ async function handleRazorpayWebhook(request, env) {
       student.source = 'razorpay_webhook';
       student.access = access.slice();
       if (!student.name && buyerName) student.name = buyerName;
-      await env.GRE_AUTH.put(key, JSON.stringify(student));
+      await putStudent(env, email, student);
       return jsonResponse({ status: 'reactivated', email, plan, access: student.access, name: student.name || '' });
     }
     // Already has access — merge in whatever this payment adds (e.g. an
@@ -1234,7 +1397,7 @@ async function handleRazorpayWebhook(request, env) {
     student.paymentId = paymentId;
     student.source = 'razorpay_webhook';
     if (!student.name && buyerName) student.name = buyerName;
-    await env.GRE_AUTH.put(key, JSON.stringify(student));
+    await putStudent(env, email, student);
     return jsonResponse({ status: 'already_exists', email, plan, access: student.access, name: student.name || '' });
   }
 
@@ -1252,7 +1415,7 @@ async function handleRazorpayWebhook(request, env) {
     access: access.slice(),
   };
 
-  await env.GRE_AUTH.put(key, JSON.stringify(record));
+  await putStudent(env, email, record);
   return jsonResponse({ status: 'provisioned', email, plan, access: record.access, name: record.name });
 }
 
@@ -1387,30 +1550,10 @@ async function handleLead(request, env) {
   const source = String(body.source || 'unknown').replace(/[^a-zA-Z0-9_-]/g, '_').slice(0, 60);
   const site = String(body.site || 'grequantpro').slice(0, 60);
   const now = new Date().toISOString();
-  const key = `lead:${email}`;
+  await recordLead(env, email, site, source, now);
 
-  const raw = await env.GRE_AUTH.get(key);
-  const rec = raw ? JSON.parse(raw) : { email, site, firstSeen: now, count: 0, sources: {} };
-
-  rec.lastSeen = now;
-  rec.count = (rec.count || 0) + 1;
-  rec.sources = rec.sources || {};
-  rec.sources[source] = (rec.sources[source] || 0) + 1;
-  rec.source = source;
-
-  await env.GRE_AUTH.put(key, JSON.stringify(rec));
-
-  // Also bump the daily counter so leads show up beside the other analytics.
-  const dayKey = `event:${site}:${indiaDate()}:lead_captured`;
-  const dayRaw = await env.GRE_AUTH.get(dayKey);
-  const day = dayRaw ? JSON.parse(dayRaw) : {
-    date: indiaDate(), site, event: 'lead_captured', count: 0, sources: {},
-  };
-  day.count = (day.count || 0) + 1;
-  day.sources = day.sources || {};
-  day.sources[source] = (day.sources[source] || 0) + 1;
-  day.updatedAt = now;
-  await env.GRE_AUTH.put(dayKey, JSON.stringify(day));
+  // The daily lead_captured counter was removed 2026-10-30: nothing reads it
+  // any more (Website Analytics is gone) and it cost a further KV get + put.
 
   return jsonResponse({ status: 'ok' });
 }
@@ -1421,13 +1564,7 @@ async function handleAdminLeads(request, env) {
     return jsonResponse({ error: 'Unauthorized' }, 401);
   }
 
-  const list = await env.GRE_AUTH.list({ prefix: 'lead:' });
-  const leads = [];
-
-  for (const key of list.keys) {
-    const raw = await env.GRE_AUTH.get(key.name);
-    if (raw) leads.push(JSON.parse(raw));
-  }
+  const leads = await listLeads(env);
 
   leads.sort((a, b) => String(b.firstSeen || '').localeCompare(String(a.firstSeen || '')));
   return jsonResponse({ count: leads.length, leads });
@@ -2158,7 +2295,7 @@ async function recordEventLogRequirement(env, ctx) {
 async function loadEventRecord(env, kvKey) {
   if (!kvKey) return null;
   try {
-    const raw = await env.GRE_AUTH.get(kvKey);
+    const raw = await readAttemptDetailRaw(env, kvKey);
     return raw ? JSON.parse(raw) : null;
   } catch (e) { return null; }
 }
@@ -2360,8 +2497,12 @@ function eventLogOf(state, attemptId) {
 
 // Walks the KV keys for one date range. eventKey narrows by key prefix, which
 // is exact: keys are mock_attempt:{date}:{event}:{attemptId}.
+const KV_FALLBACK_MAX_DAYS = 14;
 async function collectEventRecords(env, days, eventKey, summarise) {
   const out = [];
+  // Each day is a KV list plus one GET per attempt, so the KV fallback is
+  // capped. The D1 index path is not capped and is the normal route.
+  days = Math.min(days, KV_FALLBACK_MAX_DAYS);
   for (const date of recentIndiaDates(days)) {
     let cursor;
     do {
@@ -2445,7 +2586,7 @@ async function handleAdminEvents(request, env, url) {
   events.sort((a, b) => String(b.last_date).localeCompare(String(a.last_date)));
   return jsonResponse({
     timezone: 'Asia/Kolkata', days, source,
-    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+    detail_ttl_days: ATTEMPT_DETAIL_D1_DAYS,
     log_enabled: state.ok, count: events.length, events,
   });
 }
@@ -2485,7 +2626,7 @@ async function handleAdminEventAttempts(request, env, url) {
     for (const i of slice) {
       const row = indexed[i];
       try {
-        const raw = await env.GRE_AUTH.get(row.kv_key);
+        const raw = await readAttemptDetailRaw(env, row.kv_key);
         // Gone early (purged by hand): the summary stays, the detail does not.
         fetched.set(row.attempt_id, raw ? stripHeavyResult(JSON.parse(raw).result) : null);
       } catch (e) {
@@ -2510,7 +2651,7 @@ async function handleAdminEventAttempts(request, env, url) {
     const nextOffset = detailOffset + slice.length;
     return jsonResponse({
       timezone: 'Asia/Kolkata', event_id: eventId, days, source: 'index',
-      detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+      detail_ttl_days: ATTEMPT_DETAIL_D1_DAYS,
       detail_total: live.length,
       detail_next: nextOffset,
       detail_done: nextOffset >= live.length,
@@ -2528,7 +2669,7 @@ async function handleAdminEventAttempts(request, env, url) {
   attempts.sort((a, b) => String(a.submitted_at || a.saved_at).localeCompare(String(b.submitted_at || b.saved_at)));
   return jsonResponse({
     timezone: 'Asia/Kolkata', event_id: eventId, days, source: 'kv',
-    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+    detail_ttl_days: ATTEMPT_DETAIL_D1_DAYS,
     detail_total: attempts.length, detail_next: attempts.length, detail_done: true,
     log_enabled: state.ok, count: attempts.length, attempts,
   });
@@ -2608,9 +2749,24 @@ async function handleAdminAttemptsDelete(request, env) {
   }
 
   // Records first (what the coach sees), log rows after (best effort).
+  // Attempts whose full record is in D1 need no KV call; the detail rows are
+  // deleted with one statement below.
+  const d1Held = new Set();
+  if (env.GRE_DB) {
+    for (let i = 0; i < targets.length; i += 200) {
+      const chunk = targets.slice(i, i + 200);
+      try {
+        const out = await env.GRE_DB.prepare(
+          'SELECT attempt_id, kv_key FROM mock_attempt_index WHERE attempt_id IN (' + chunk.map(() => '?').join(',') + ')'
+        ).bind(...chunk.map(t => t.id)).all();
+        for (const r of out.results || []) if (isD1DetailKey(r.kv_key)) d1Held.add(r.attempt_id);
+      } catch (e) { /* no index: every record is in KV */ }
+    }
+  }
   const gone = [];
   let failed = 0, missing = 0;
   for (const t of targets) {
+    if (d1Held.has(t.id)) { gone.push(t.id); continue; }
     try {
       if ((await env.GRE_AUTH.get(t.key)) == null) { missing += 1; continue; }
       await env.GRE_AUTH.delete(t.key);
@@ -2629,6 +2785,7 @@ async function handleAdminAttemptsDelete(request, env) {
       logCleaned = true;
     } catch (e) { /* event tables not created yet: nothing to clean */ }
   }
+  await deleteAttemptDetailRows(env, targets.map(t => t.id));
   // The index row is what the coach page lists, so it has to go too, and it
   // goes even for a `missing` attempt — that is exactly the row left behind
   // when the KV record expired before the coach got round to deleting it.
@@ -2711,7 +2868,7 @@ async function handleAdminAttemptsPurge(request, env) {
   let handled = rows;
   if (hard) {
     const now = Date.now();
-    const liveKeys = rows.filter(r => r.kv_key && Number(r.detail_expires_at) * 1000 > now);
+    const liveKeys = rows.filter(r => r.kv_key && !isD1DetailKey(r.kv_key) && Number(r.detail_expires_at) * 1000 > now);
     const batch = liveKeys.slice(0, ATTEMPT_KV_OPS_MAX);
     remaining = Math.max(liveKeys.length - batch.length, 0);
     for (const r of batch) {
@@ -2729,6 +2886,7 @@ async function handleAdminAttemptsPurge(request, env) {
   for (let i = 0; i < ids.length; i += 200) {
     const chunk = ids.slice(i, i + 200);
     const marks = chunk.map(() => '?').join(',');
+    await deleteAttemptDetailRows(env, chunk);
     try {
       await env.GRE_DB.batch([
         env.GRE_DB.prepare('DELETE FROM mock_attempt_index WHERE attempt_id IN (' + marks + ')').bind(...chunk),
@@ -2752,8 +2910,8 @@ async function handleAdminAttemptsPurge(request, env) {
     kv_failed: kvFailed,
     remaining,
     log_cleaned: logCleaned,
-    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
-    note: hard ? undefined : 'Stored results expire on their own within ' + ATTEMPT_DETAIL_TTL_DAYS + ' days.',
+    detail_ttl_days: ATTEMPT_DETAIL_D1_DAYS,
+    note: hard ? undefined : 'Stored results expire on their own within ' + ATTEMPT_DETAIL_D1_DAYS + ' days.',
   });
 }
 
@@ -2787,6 +2945,12 @@ async function reindexAttemptPage(env, opts) {
   const o = opts || {};
   const maxOps = o.maxOps || ATTEMPT_KV_OPS_MAX;
   const cutoff = indiaDate(new Date(Date.now() - ATTEMPT_DETAIL_TTL_DAYS * 86400000));
+
+  // D1-held records past their window go first; this costs no KV operation.
+  try {
+    await env.GRE_DB.prepare('DELETE FROM mock_attempt_detail WHERE expires_at < ?')
+      .bind(Math.floor(Date.now() / 1000)).run();
+  } catch (e) { /* table not created yet */ }
 
   let listed;
   try {
@@ -2859,7 +3023,7 @@ async function reindexAttemptPage(env, opts) {
     // and the indexed ones are now skipped, so each pass gets further.
     cursor: done ? null : (stoppedEarly ? (o.cursor || null) : (listed.cursor || null)),
     done,
-    detail_ttl_days: ATTEMPT_DETAIL_TTL_DAYS,
+    detail_ttl_days: ATTEMPT_DETAIL_D1_DAYS,
   });
 }
 

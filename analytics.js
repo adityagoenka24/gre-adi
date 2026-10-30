@@ -1,4 +1,11 @@
 (function(){
+  // 2026-10-30: first-party page-view / event logging to the Worker is OFF.
+  // Every page load and tracked click used to cost a Workers KV read plus a
+  // KV write, which ate the free-tier daily KV limit. The Google Ads
+  // conversions and the window.GQP.track() API below still work; they just no
+  // longer call the Worker. Flip SEND_TO_WORKER to true to bring it back
+  // (the Worker routes are also no-ops now, so redeploy an older Worker too).
+  const SEND_TO_WORKER = false;
   const PAGEVIEW_ENDPOINT = 'https://gre-auth.goenka-aditya-kol.workers.dev/analytics/view';
   const EVENT_ENDPOINT    = 'https://gre-auth.goenka-aditya-kol.workers.dev/analytics/event';
   const STORAGE_KEY = 'gqp_anon_visitor_id';
@@ -17,6 +24,7 @@
   }
 
   function track(){
+    if(!SEND_TO_WORKER) return;
     const payload = {
       site: 'grequantpro',
       visitorId: visitorId(),
@@ -36,6 +44,7 @@
 
   // Custom event tracking — call window.GQP.track('event_name', { ...props })
   function trackEvent(eventName, props){
+    if(!SEND_TO_WORKER) return;
     try{
       fetch(EVENT_ENDPOINT, {
         method: 'POST',

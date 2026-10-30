@@ -156,3 +156,56 @@ CREATE TABLE IF NOT EXISTS mock_attempt_index (
 CREATE INDEX IF NOT EXISTS idx_mai_event ON mock_attempt_index(event_key, date);
 CREATE INDEX IF NOT EXISTS idx_mai_date  ON mock_attempt_index(date);
 CREATE INDEX IF NOT EXISTS idx_mai_email ON mock_attempt_index(student_email);
+
+
+-- ─── 2026-10-30: move KV-held data to D1 ─────────────────────────────────────
+-- Workers KV's free tier is 100k reads / 1,000 writes / 1,000 lists a day.
+-- /validate alone read KV on every Pro page load. These tables take over the
+-- student records, the full attempt records, the payment review queue and
+-- lead capture. The Worker copies existing KV data across by itself, a chunk
+-- at a time, from the admin screens, and falls back to KV if a table is
+-- missing. Safe to re-run.
+
+-- One row per Pro student; `data` is the same JSON the KV record held.
+-- A delete is a tombstone (deleted = 1), so the old KV copy cannot come back.
+CREATE TABLE IF NOT EXISTS students (
+  email      TEXT PRIMARY KEY,
+  data       TEXT NOT NULL,
+  deleted    INTEGER NOT NULL DEFAULT 0,
+  updated_at INTEGER NOT NULL
+);
+
+-- Progress flags for the one-off KV -> D1 copies (students_done etc.).
+CREATE TABLE IF NOT EXISTS kv_meta (
+  k TEXT PRIMARY KEY,
+  v TEXT
+);
+
+-- Full attempt record (every question, answer and time), kept 14 days.
+-- The coach list reads mock_attempt_index; this is only the drill-down.
+CREATE TABLE IF NOT EXISTS mock_attempt_detail (
+  attempt_id TEXT PRIMARY KEY,
+  data       TEXT NOT NULL,
+  expires_at INTEGER NOT NULL        -- unix seconds
+);
+CREATE INDEX IF NOT EXISTS idx_mad_expires ON mock_attempt_detail(expires_at);
+
+-- Payments that need a person: unknown amount (manual) or no email (noemail).
+CREATE TABLE IF NOT EXISTS webhook_queue (
+  kind       TEXT NOT NULL,          -- 'manual' | 'noemail'
+  payment_id TEXT NOT NULL,
+  data       TEXT NOT NULL,
+  created_at INTEGER NOT NULL,       -- ms; rows older than 90 days are dropped
+  PRIMARY KEY (kind, payment_id)
+);
+
+-- Handbook / email-capture leads.
+CREATE TABLE IF NOT EXISTS leads (
+  email      TEXT PRIMARY KEY,
+  site       TEXT,
+  first_seen TEXT,
+  last_seen  TEXT,
+  count      INTEGER NOT NULL DEFAULT 1,
+  source     TEXT,
+  sources    TEXT                    -- JSON {source: count}
+);

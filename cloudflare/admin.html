@@ -114,8 +114,7 @@ td:last-child{white-space:nowrap;}
     <button class="tab-btn" data-tab="students" onclick="switchTab('students')">👥 Students</button>
     <button class="tab-btn" data-tab="access" onclick="switchTab('access')">🎚️ Access &amp; Devices</button>
     <button class="tab-btn" data-tab="webhooks" onclick="switchTab('webhooks')">💳 Webhooks</button>
-    <button class="tab-btn" data-tab="leads" onclick="switchTab('leads')">📧 Leads</button>
-    <button class="tab-btn" data-tab="analytics" onclick="switchTab('analytics')">📊 Analytics</button>
+    <button class="tab-btn" data-tab="attempts" onclick="switchTab('attempts')">📝 Mock Attempts</button>
   </div>
 
   <!-- ═══ STUDENTS ═══ -->
@@ -251,56 +250,8 @@ td:last-child{white-space:nowrap;}
 
   </div>
 
-  <!-- ═══ LEADS ═══ -->
-  <div class="tab-panel" id="tab-leads" data-tab-panel="leads">
-
-    <!-- Captured Emails -->
-    <div class="card">
-      <h2>📧 Captured Emails</h2>
-      <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
-        Everyone who gave an email to download a free asset — currently the
-        <a href="/handbook/" target="_blank" rel="noopener" style="color:var(--text);text-decoration:underline;">revision handbook</a> PDF.
-        These are <strong>not</strong> paying students; nothing here grants any access.
-        A repeat download updates the existing row rather than adding a second one, so
-        <em>Times</em> counts how often the same person came back.
-      </p>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        <button class="btn btn-primary" onclick="loadLeads()">🔄 Refresh Leads</button>
-        <button class="btn btn-ghost" onclick="downloadLeadsCsv()">Download CSV</button>
-      </div>
-      <div id="leads-table" style="margin-top:16px;"><div class="empty">Click "Refresh Leads" to load.</div></div>
-    </div>
-
-  </div>
-
-  <!-- ═══ ANALYTICS ═══ -->
-  <div class="tab-panel" id="tab-analytics" data-tab-panel="analytics">
-
-    <!-- Website Analytics -->
-    <div class="card">
-      <h2>📈 Website Analytics</h2>
-      <div class="row">
-        <div class="field">
-          <label>Days to show</label>
-          <input type="number" id="analytics-days" min="1" max="180" value="1">
-        </div>
-        <button class="btn btn-primary" onclick="loadAnalytics()">Refresh Analytics</button>
-      </div>
-      <div id="analytics-table" style="margin-top:16px;"><div class="empty">Click "Refresh Analytics" to load daily visitors.</div></div>
-    </div>
-
-    <!-- Event Funnel -->
-    <div class="card">
-      <h2>🎯 Conversion Funnel</h2>
-      <div class="row">
-        <div class="field">
-          <label>Days to show</label>
-          <input type="number" id="event-days" min="1" max="180" value="1">
-        </div>
-        <button class="btn btn-primary" onclick="loadEvents()">Refresh Events</button>
-      </div>
-      <div id="event-table" style="margin-top:16px;"><div class="empty">Click "Refresh Events" to load funnel data.</div></div>
-    </div>
+  <!-- ═══ MOCK ATTEMPTS ═══ -->
+  <div class="tab-panel" id="tab-attempts" data-tab-panel="attempts">
 
     <!-- Mock Attempts -->
     <div class="card">
@@ -308,7 +259,7 @@ td:last-child{white-space:nowrap;}
       <div class="row">
         <div class="field">
           <label>Days to show</label>
-          <input type="number" id="attempt-days" min="1" max="180" value="1">
+          <input type="number" id="attempt-days" min="1" max="14" value="1">
         </div>
         <button class="btn btn-primary" onclick="loadMockAttempts()">Refresh Attempts</button>
         <button class="btn btn-ghost" onclick="downloadAttemptsCsv()">Download CSV</button>
@@ -356,119 +307,10 @@ function loadConfig() {
   if (secret) { document.getElementById('admin-secret').value = secret; document.getElementById('display-secret').textContent = '••••••••'; }
 }
 
-// ─── Analytics ───────────────────────────────────────────────────────────────
-async function loadAnalytics() {
-  const { url, secret } = getConfig();
-  const days = Math.min(Math.max(Number(document.getElementById('analytics-days').value) || 30, 1), 180);
-  const el = document.getElementById('analytics-table');
-  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
-  el.innerHTML = '<div class="empty">Loading analytics…</div>';
-  try {
-    const res = await fetch(`${url}/admin/analytics?days=${days}`, {
-      headers: { 'X-Admin-Secret': secret }
-    });
-    const data = await res.json();
-    if (data.error) { el.innerHTML = `<div class="empty">Error: ${data.error}</div>`; return; }
-    const rows = (data.daily || []).slice().reverse().map(day => {
-      const topPages = (day.pages || []).slice(0, 3).map(p => `${p.path} (${p.views})`).join('<br>') || '<span style="color:var(--text3)">—</span>';
-      return `<tr>
-        <td style="font-family:var(--font-mono);">${day.date}</td>
-        <td><span class="badge badge-ok">${day.uniqueVisitors}</span></td>
-        <td><span class="badge badge-warn">${day.pageviews}</span></td>
-        <td style="font-size:12px;color:var(--text3);line-height:1.6;">${topPages}</td>
-      </tr>`;
-    }).join('');
-    el.innerHTML = `
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
-        <span class="badge badge-ok">${data.totals?.uniqueDailyVisitors || 0} summed daily uniques</span>
-        <span class="badge badge-warn">${data.totals?.pageviews || 0} pageviews</span>
-        <span class="badge">Timezone: ${data.timezone || 'Asia/Kolkata'}</span>
-      </div>
-      <div class="table-wrap"><table>
-        <thead><tr><th>Date</th><th>Unique Visitors</th><th>Pageviews</th><th>Top Pages</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table></div>`;
-  } catch (e) {
-    el.innerHTML = `<div class="empty">Network error: ${e.message}</div>`;
-  }
-}
-
-// ─── Leads ───────────────────────────────────────────────────────────────────
-let latestLeads = [];
-
-function leadDate(value) {
-  if (!value) return '—';
-  const d = new Date(value);
-  return isNaN(d) ? '—' : d.toISOString().slice(0, 10);
-}
-
-async function loadLeads() {
-  const { url, secret } = getConfig();
-  const el = document.getElementById('leads-table');
-  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
-  el.innerHTML = '<div class="empty">Loading leads…</div>';
-  try {
-    const res = await fetch(`${url}/admin/leads`, { headers: { 'X-Admin-Secret': secret } });
-    const data = await res.json();
-    if (data.error) { el.innerHTML = `<div class="empty">Error: ${data.error}</div>`; return; }
-
-    latestLeads = data.leads || [];
-    if (!latestLeads.length) {
-      el.innerHTML = '<div class="empty">No leads captured yet. They appear here as soon as someone downloads the handbook PDF.</div>';
-      return;
-    }
-
-    // last 7 days, and a count per source
-    const weekAgo = Date.now() - 7 * 86400000;
-    const recent = latestLeads.filter(l => new Date(l.firstSeen).getTime() >= weekAgo).length;
-    const bySource = {};
-    latestLeads.forEach(l => {
-      Object.keys(l.sources || { [l.source || 'unknown']: 1 }).forEach(s => {
-        bySource[s] = (bySource[s] || 0) + 1;
-      });
-    });
-    const sourceBadges = Object.entries(bySource)
-      .sort((a, b) => b[1] - a[1])
-      .map(([s, n]) => `<span class="badge">${escapeHtml(s)}: ${n}</span>`)
-      .join('');
-
-    const rows = latestLeads.map(l => `<tr>
-      <td style="font-family:var(--font-mono);">${escapeHtml(l.email)}</td>
-      <td style="font-family:var(--font-mono);">${leadDate(l.firstSeen)}</td>
-      <td style="font-family:var(--font-mono);">${leadDate(l.lastSeen)}</td>
-      <td><span class="badge">${l.count || 1}</span></td>
-      <td style="font-size:12px;color:var(--text3);">${escapeHtml(l.source || 'unknown')}</td>
-    </tr>`).join('');
-
-    el.innerHTML = `
-      <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
-        <span class="badge badge-ok">${latestLeads.length} total</span>
-        <span class="badge badge-warn">${recent} in the last 7 days</span>
-        ${sourceBadges}
-      </div>
-      <div class="table-wrap"><table>
-        <thead><tr><th>Email</th><th>First Seen</th><th>Last Seen</th><th>Times</th><th>Source</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table></div>`;
-  } catch (e) {
-    el.innerHTML = `<div class="empty">Network error: ${e.message}</div>`;
-  }
-}
-
-function downloadLeadsCsv() {
-  if (!latestLeads.length) return alert('Load the leads first.');
-  const esc = v => `"${String(v ?? '').replace(/"/g, '""')}"`;
-  const lines = [['email', 'first_seen', 'last_seen', 'times', 'source'].join(',')];
-  latestLeads.forEach(l => lines.push([
-    esc(l.email), esc(l.firstSeen), esc(l.lastSeen), esc(l.count || 1), esc(l.source || 'unknown'),
-  ].join(',')));
-  downloadBlob('leads.csv', lines.join('\n'), 'text/csv');
-}
-
 // ─── Mock Attempts ───────────────────────────────────────────────────────────
 async function loadMockAttempts() {
   const { url, secret } = getConfig();
-  const days = Math.min(Math.max(Number(document.getElementById('attempt-days').value) || 30, 1), 180);
+  const days = Math.min(Math.max(Number(document.getElementById('attempt-days').value) || 30, 1), 14);
   const el = document.getElementById('attempt-table');
   if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
   el.innerHTML = '<div class="empty">Loading attempts…</div>';
@@ -565,7 +407,7 @@ function downloadAttemptsCsv() {
 
 async function downloadAttemptsJson() {
   const { url, secret } = getConfig();
-  const days = Math.min(Math.max(Number(document.getElementById('attempt-days').value) || 30, 1), 180);
+  const days = Math.min(Math.max(Number(document.getElementById('attempt-days').value) || 30, 1), 14);
   if (!url || !secret) return alert('Set Worker URL and Admin Secret first.');
   try {
     const res = await fetch(`${url}/admin/mock-attempts?days=${days}&include_results=1`, {
@@ -576,127 +418,6 @@ async function downloadAttemptsJson() {
     downloadBlob('mock_attempts_full.json', JSON.stringify(data, null, 2), 'application/json');
   } catch (e) {
     alert(`Network error: ${e.message}`);
-  }
-}
-
-// ─── Event Funnel ────────────────────────────────────────────────────────────
-async function loadEvents() {
-  const { url, secret } = getConfig();
-  const days = Math.min(Math.max(Number(document.getElementById('event-days').value) || 7, 1), 180);
-  const el = document.getElementById('event-table');
-  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
-  el.innerHTML = '<div class="empty">Loading…</div>';
-  try {
-    const res = await fetch(`${url}/admin/analytics/events?days=${days}`, {
-      headers: { 'X-Admin-Secret': secret }
-    });
-    const data = await res.json();
-    if (data.error) { el.innerHTML = `<div class="empty">Error: ${escapeHtml(data.error)}</div>`; return; }
-
-    const events = data.events || [];
-    const byName = Object.fromEntries(events.map(e => [e.event, e]));
-    const pct = (num, den) => den > 0 ? Math.round((num / den) * 100) + '%' : '—';
-    const g = (name) => byName[name] || { count: 0, unique_visitors: 0, sources: {} };
-
-    // ── Section 1: Mock Funnel ──────────────────────────────────────────────
-    const started   = g('mock_started').count;
-    const submitted = g('mock_submitted').count;
-    const ctaClick  = g('pro_cta_clicked').count;
-
-    const funnelRows = [
-      { step: '1. Mock Started',    count: started,   rate: '—',                     note: 'Filled name/email & clicked Start' },
-      { step: '2. Mock Submitted',  count: submitted, rate: pct(submitted, started),  note: 'Completed & submitted the mock' },
-      { step: '3. Pro CTA Clicked', count: ctaClick,  rate: pct(ctaClick, submitted), note: '"Unlock My Practice Plan" on result page' },
-    ].map(r => `<tr>
-      <td>${escapeHtml(r.step)}</td>
-      <td><span class="badge badge-ok">${r.count}</span></td>
-      <td><span class="badge badge-warn">${r.rate}</span></td>
-      <td style="font-size:12px;color:var(--text3);">${escapeHtml(r.note)}</td>
-    </tr>`).join('');
-
-    // ── Section 2: Purchase Intent — Buy Pro breakdown by source ───────────
-    const SOURCE_LABELS = {
-      nav: 'Nav bar',
-      hero: 'Hero section',
-      mock_section: 'Mock section ("See what Pro unlocks")',
-      cta_strip: 'CTA strip (mid-page)',
-      pricing: 'Pricing section',
-      bottom_cta: 'Bottom CTA',
-      mock_result: 'Mock result page',
-    };
-    const buyPro   = g('buy_pro_clicked');
-
-    const buyProSources = Object.entries(buyPro.sources || {})
-      .sort((a, b) => b[1] - a[1])
-      .map(([src, cnt]) => `<tr>
-        <td style="padding-left:20px;font-size:12px;color:var(--text2);">↳ ${escapeHtml(SOURCE_LABELS[src] || src)}</td>
-        <td><span class="badge badge-ok">${cnt}</span></td>
-        <td><span class="badge badge-warn">${pct(cnt, buyPro.count)}</span></td>
-        <td style="font-size:12px;color:var(--text3);">of Buy Pro clicks</td>
-      </tr>`).join('');
-
-    const intentRows = `
-      <tr>
-        <td><strong>Buy Pro clicked (any plan, ₹399–₹999)</strong></td>
-        <td><span class="badge badge-ok">${buyPro.count}</span></td>
-        <td><span class="badge badge-warn">${pct(buyPro.count, started)}</span></td>
-        <td style="font-size:12px;color:var(--text3);">of mock starters</td>
-      </tr>
-      ${buyProSources}`;
-
-    // ── Section 3: Top-of-funnel ────────────────────────────────────────────
-    const tofNames = ['start_mock_clicked', 'try_free_clicked', 'upgrade_to_pro_clicked'];
-    const TOF_LABELS = {
-      start_mock_clicked:    'Start Free Mock (landing page)',
-      try_free_clicked:      'Try Free App (any button)',
-      upgrade_to_pro_clicked:'Upgrade to Pro (free app)',
-    };
-    const tofRows = tofNames.map(name => {
-      const ev = g(name);
-      const srcs = Object.entries(ev.sources || {}).sort((a,b) => b[1]-a[1]);
-      const srcDetail = srcs.length
-        ? srcs.map(([s,c]) => `${SOURCE_LABELS[s]||s}: ${c}`).join(' · ')
-        : '';
-      return `<tr>
-        <td>${escapeHtml(TOF_LABELS[name] || name)}</td>
-        <td><span class="badge badge-ok">${ev.count}</span></td>
-        <td style="font-size:12px;color:var(--text3);" colspan="2">${escapeHtml(srcDetail) || '—'}</td>
-      </tr>`;
-    }).join('');
-
-    // ── Section 4: Any other events not already shown ───────────────────────
-    const knownEvents = new Set([
-      'mock_started','mock_submitted','pro_cta_clicked',
-      'buy_pro_clicked',
-      'start_mock_clicked','try_free_clicked','upgrade_to_pro_clicked',
-    ]);
-    const otherRows = events
-      .filter(e => !knownEvents.has(e.event))
-      .map(e => `<tr>
-        <td style="font-family:var(--font-mono);font-size:12px;">${escapeHtml(e.event)}</td>
-        <td><span class="badge badge-ok">${e.count}</span></td>
-        <td><span class="badge">${e.unique_visitors || 0} uniq</span></td>
-        <td style="font-size:12px;color:var(--text3);">—</td>
-      </tr>`).join('');
-
-    const section = (title, tableBody) => `
-      <p style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin:20px 0 8px;">${title}</p>
-      <div class="table-wrap"><table>
-        <thead><tr><th>Event</th><th>Count</th><th>Rate</th><th>Detail</th></tr></thead>
-        <tbody>${tableBody}</tbody>
-      </table></div>`;
-
-    el.innerHTML = `
-      <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:4px;">Last ${days} days · ${escapeHtml(data.timezone || 'Asia/Kolkata')}</p>
-      ${section('Mock Funnel', funnelRows)}
-      ${section('Purchase Intent', intentRows)}
-      ${section('Top of Funnel', tofRows)}
-      ${otherRows ? section('Other Events', otherRows) : ''}
-      <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-top:16px;">
-        Full conversion: Mock Started → Buy Pro clicked = ${pct(buyPro.count, started)}
-      </p>`;
-  } catch (e) {
-    el.innerHTML = `<div class="empty">Network error: ${escapeHtml(e.message)}</div>`;
   }
 }
 

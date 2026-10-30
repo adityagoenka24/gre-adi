@@ -1,6 +1,6 @@
 # GRE Quant Pro — Master Handoff
 
-**Current as of 2026-10-29.** This is the only handoff. It replaces the repo's `HANDOFF_STUDENT_PROGRESS_2026-10-24.md` and 18 older project docs (listed in section 9). Read sections 0 to 2 first. The rest is reference.
+**Current as of 2026-10-30.** This is the only handoff. It replaces the repo's `HANDOFF_STUDENT_PROGRESS_2026-10-24.md` and 18 older project docs (listed in section 9). Read sections 0 to 2 first. The rest is reference.
 
 ---
 
@@ -9,7 +9,7 @@
 | | |
 |---|---|
 | Repo | `~/GitHub/gre-adi` → `github.com/adityagoenka24/gre-adi`, branch `main` |
-| Git | HEAD `a2fb531` ("mocks", 2026-10-29 16:10), level with `origin/main`. Everything described in section 4 is committed and pushed. This handoff file is not committed. |
+| Git | HEAD `a2fb531` ("mocks", 2026-10-29 16:10), level with `origin/main`. Everything in section 4 except the 2026-10-30 KV work (section 5, item 0 in section 1) is committed and pushed. **The 2026-10-30 changes to `analytics.js`, `cloudflare/worker.js`, `cloudflare/admin.html` and `cloudflare/coach.html` are written to the working tree but not committed, and the Worker is not redeployed.** This handoff file is not committed. |
 | Static site | GitHub Pages at `grequantpro.com` (`CNAME`) |
 | Backend | Cloudflare Worker `gre-auth` (`cloudflare/worker.js`, pasted into the dashboard, no wrangler), KV namespace `GRE_AUTH`, D1 database `gre-progress` bound as `GRE_DB` |
 | **Not verifiable from the repo** | Whether the Worker, the D1 tables and the one-off "Tidy up old storage" run have actually been done. Section 6 is the checklist. Confirm each before trusting any Coach View screen. |
@@ -19,6 +19,48 @@
 ---
 
 ## 1. Open decisions and next work (ranked)
+
+### 0. Cloudflare KV free-tier alert (2026-10-30) — done in code, needs deploy
+Cloudflare emailed that 50% of the daily Workers KV free limit (100k reads, 1,000 writes, 1,000 deletes, 1,000 lists) was used. The owner wants to stay on the free plan. At 100% KV reads and writes fail with 429, which would break Razorpay webhook provisioning, student registration and mock submissions.
+
+**Likely causes (found by reading the code, not by looking at dashboard metrics):**
+1. **Coach View → Events on the KV fallback.** Without the `mock_attempt_index` D1 table (or with a stale Worker) every Events open made about 90 KV `list` calls plus a `get` per attempt, and every drill-down up to 365 lists. About 500 lists alone is the 50%. The tab was added 2026-10-27 and the owner says the alert never came before it. Check: the Events tab shows "The attempt index is not in D1 yet — this view is reading KV directly" when it is on the slow path.
+2. **`analytics.js` on 124 pages** POSTed to the Worker on every page load and every tracked click, each a KV get plus a put of a growing JSON blob. No dedup, no bot filter, no owner exclusion.
+
+**Changes made (uncommitted), in two passes:**
+
+*Pass 1, stop the obvious burn:*
+- `analytics.js`: `SEND_TO_WORKER = false`. No request goes to the Worker. Google Ads conversions, `window.GQP.track()` and the `[data-track]` click handler still work.
+- `worker.js`: `/analytics/view` and `/analytics/event` are pure no-ops (they return `{status:'ok', disabled:true}`; kept only so cached old copies of `analytics.js` get a 200). The `/admin/analytics*` readers and their per-day KV list scans were deleted. The KV fallback scan is capped at `KV_FALLBACK_MAX_DAYS = 14` in `collectEventRecords` and `handleAdminMockAttempts`; the D1 index path is not capped.
+- `admin.html`: removed the Leads tab, the Website Analytics card and the Conversion Funnel card. Tabs now: Students, Access & Devices, Webhooks, Mock Attempts (day range capped at 14).
+- `coach.html`: removed the Free attempts tab and all its code. Events lists only mock events (`mock_test`, `full_mock_event`); `sectional`, `full_mock` and `team_battle` rows are hidden by `HIDDEN_EVENT_TYPES`. Heading is "Mock events". The owner does not want the free-attempts screen back.
+
+*Pass 2, move everything that was still hot on KV to D1 (owner: "minimize KV touches, bring everything from D1"):*
+
+| Data | Was | Now |
+|---|---|---|
+| Student records (`/validate` on every Pro page load, register, admin edits, Razorpay webhook) | KV `student:{email}` | D1 `students` (`getStudent` / `putStudent` / `deleteStudent` / `listStudents`). A delete is a tombstone row (`deleted = 1`), costing no KV delete and stopping the old KV copy being read back |
+| Full attempt record (every question, answer, time) | KV `mock_attempt:…`, 3-day expiry | D1 `mock_attempt_detail`, kept 14 days (`ATTEMPT_DETAIL_D1_DAYS`). Index `kv_key` is `d1:{attempt_id}`; anything else is a legacy KV key. Expired rows are deleted on the next submission and by the sweep. Error-log gate, drill-down, delete, purge and the Mock Attempts JSON download all read D1 |
+| Payment review queue (unknown amount, no email) | KV `webhook_manual:` / `webhook_noemail:`, 90-day expiry | D1 `webhook_queue` (90-day cleanup on insert) |
+| Leads | KV `lead:{email}` (get + put per lead) | D1 `leads`, one upsert per lead |
+| Migration | | Each store reads D1 first and falls back to KV only while its one-off copy is unfinished (flag in D1 `kv_meta`). The copy runs 30 keys per call from `/admin/list`, the Webhooks tab and `/admin/leads`; `INSERT OR IGNORE`, so a newer D1 row or a tombstone always wins |
+| Fail-open | | No `GRE_DB` binding or a missing table means the old KV path runs unchanged. A failed D1 write falls back to KV, so a payment or a result is never dropped |
+
+Remaining KV use after this: the fallback paths above, the one-off copies, and the nightly sweep's single `list` call. A normal day should be close to zero.
+
+**Verified:** a local harness (Node + SQLite standing in for D1, a counting Map standing in for KV, `worker.js` imported as a module) ran about 65 checks, all passing: validate / register / admin add, revoke, reset, set-name, set-access, delete; the Razorpay webhook (valid signature, bad signature, paid, unknown amount, no email); leads upsert; submission, drill-down, error-log save, download, delete, purge, expiry sweep; the fallbacks (D1 present but detail table missing; no D1 at all); and a 70-student migration in three chunks (at most 31 KV ops each). The harness lives in a scratch folder and is not in the repo. **Not tested against real Cloudflare KV or D1.**
+
+**Consequences to know:**
+- Page-view and funnel stats are gone. Use Cloudflare Web Analytics (free, no KV) or GA4 if you want them back.
+- `/lead` still stores emails (now in D1 `leads`); `GET /admin/leads` returns them but no screen shows them.
+- Free full-mock and free sectional attempts are still stored and indexed; they are just not listed. "Delete all events" still deletes them too.
+- Deleting a student writes a tombstone; the old KV record, if any, is left to sit there unread.
+- If D1 has a transient read error, `getStudent` falls back to the KV copy, which could be stale (for example a just-revoked student). Rare; accepted.
+- Until the `students` copy has finished, an unknown email costs one KV read. Opening Admin → Students once finishes it.
+
+**To finish:** section 6 items 1, 2, 4 and 7. Watch Workers & Pages → KV → Metrics for a day. Not yet checked against live metrics.
+
+---
 
 ### 1. Scoring after the mock rebuild — needs a decision
 `score-scale.js` scores on difficulty-weighted accuracy, which is a ratio. A harder paper has a bigger denominator, so the same student gets a lower number. Routing cannot compensate: every threshold pair in the search space gave the same −6.6 to −7.1 mean shift.
@@ -58,8 +100,8 @@ If the Worker is stale, Coach View falls back to the slow KV scan and some butto
 ### 6. The same label inflation is still in the practice bank and sectionals
 A bank `medium` is really a one-step item, so a student drilling "medium" in the logger gets easy questions. Re-tier the practice bank and sectionals the way the mocks were (4.5). Re-solve any generated-hard item before trusting its label.
 
-### 7. Coach View mirror case
-Event attempts no longer appear in the Free attempts tab. Free full-mock and free sectional attempts **still appear in the Events tab**, grouped as events (type `full_mock` / `sectional`). Add better labels and a type filter, or split them out.
+### 7. Free mock and sectional attempts have no screen
+The Free attempts tab was removed 2026-10-30 and the Events tab now hides `full_mock`, `sectional` and `team_battle` rows. Those attempts are still stored and indexed; add a screen back only if the owner wants free-tier attempt data again.
 
 ### 8. Smaller items
 
@@ -115,7 +157,8 @@ Event attempts no longer appear in the Free attempts tab. Free full-mock and fre
 | Group | Routes |
 |---|---|
 | Auth | `/validate` (returns access, name, `progress_token`), Razorpay webhook (`razorpayName` extracts the buyer name) |
-| Leads | `POST /lead`, `GET /admin/leads` |
+| Leads | `POST /lead` (one D1 upsert), `GET /admin/leads` (no UI) |
+| Analytics (switched off 2026-10-30) | `POST /analytics/view`, `POST /analytics/event` (no-ops that touch nothing). `/admin/analytics*` was removed |
 | Pro progress | `POST /progress/save`, `GET /progress/sessions`, `POST /progress/error-log`, `GET /progress/pending-log`, `GET /progress/log-status` |
 | Mock and event attempts | `POST /mock/submission` (returns `attempt_id`, `log`), `POST /mock/error-log`, `GET /mock/pending-log`, `GET /mock/log-status` |
 | Admin, students | `GET /admin/progress-students`, `GET /admin/progress?email=` (`include_payloads=1`), `POST /admin/progress/delete`, `POST /admin/progress/waive-log`, `POST /admin/set-name` |
@@ -126,8 +169,8 @@ Admin routes need `X-Admin-Secret`. Secrets: `ADMIN_SECRET`; `PROGRESS_SECRET` i
 
 ### Storage
 
-- **D1** (`cloudflare/schema.sql`, idempotent): `sessions`, `attempts`, `error_log`, `log_required`, `event_log_required`, `event_error_log`, `mock_attempt_index`. If the binding is not named exactly `GRE_DB`, every `/progress/*` call returns 503.
-- **KV `GRE_AUTH`:** `student:{email}`, `lead:{email}`, `mock_attempt:{date}:{event}:{id}` (now expires after 3 days), `webhook_manual:` / `webhook_noemail:` queues, daily counters.
+- **D1** (`cloudflare/schema.sql`, idempotent): `sessions`, `attempts`, `error_log`, `log_required`, `event_log_required`, `event_error_log`, `mock_attempt_index`, and since 2026-10-30 `students`, `kv_meta`, `mock_attempt_detail`, `webhook_queue`, `leads` (twelve tables). If the binding is not named exactly `GRE_DB`, every `/progress/*` call returns 503 and the Worker falls back to KV for everything else.
+- **KV `GRE_AUTH`:** legacy and fallback only since 2026-10-30. Old `student:{email}`, `lead:{email}`, `mock_attempt:{date}:{event}:{id}` (3-day expiry), `webhook_manual:` / `webhook_noemail:` records are copied into D1 on demand; new data is written to KV only if D1 refuses it.
 
 ---
 
@@ -140,18 +183,17 @@ Admin routes need `X-Admin-Secret`. Secrets: `ADMIN_SECRET`; `PROGRESS_SECRET` i
 - **Session types:** `bank_practice`, `bank_exam`, `sectional`, `full_mock`, `event_mock`, `manual` (unreachable now).
 - **Removed from the loggers:** Save Session / Send to Tutor buttons, the "Log a Session" tab, the JSON import zone and Generate Dashboard / Clear All buttons, the cohort tab and endpoint, and `pro/analytics.html` ("My Analytics"; "My Progress" at `gre_practice_logger_pro.html#progress` replaced it).
 - **Names:** `/validate` returns `name`; the Pro logger pre-fills and hides the name field and `pro-gate.js` stores it. The field stays in the DOM because `startBankSession()` and the exam override read it. The webhook takes the name from the payment link customer, then `notes.*`, then the card, and rejects emails, bare phone numbers, "NA" style placeholders and anything over 120 characters. A name is never overwritten once set. `admin.html` has a Student Name card and Edit/Add Name buttons.
-- **Coach View** (`cloudflare/coach.html`, light theme matching `site.css`) has three tabs: **Students** (Pro), **Events**, **Free attempts**.
+- **Coach View** (`cloudflare/coach.html`, light theme matching `site.css`) has two tabs: **Students** (Pro) and **Events** (mock events only; the Free attempts tab was removed 2026-10-30).
   - Students list: type chips, sessions, accuracy, Est. score with range, error-log column. Detail: KPIs, a card per attempt type, an estimated-score trend (axis pinned 130–170) above the accuracy trend (0–100), weak subtopics, subtopic and difficulty tables, the session log with question-by-question drill-down, Mistake patterns, a waive banner.
   - Events: `#events` (list), `#events/<event>` (KPIs, score spread, by-section table, question-by-question with the trap answer, subtopic accuracy, cohort mistake analytics, every student), `#events/<event>/<attempt>` (one student against the cohort). Retakes show "attempt 2 of 2".
-  - Free attempts: free full mocks and free sectionals only. Event papers are excluded. Pro students' sectional attempts are hidden unless "Include Pro students' sectional attempts" is ticked.
+  - Events tab hides `sectional`, `full_mock` and `team_battle` attempts (they exist in storage; see open item 7).
 - **Deleting** (permanent; no undo in KV or D1):
 
 | Where | What | Confirmation |
 |---|---|---|
 | Students | a student's whole progress (✕ on the row); one session (✕ inside) | confirm dialog |
 | Events | a whole event; one student's attempt | type DELETE for the event, confirm for one attempt |
-| Free attempts | one attempt; "Delete all n shown" (follows filters) | confirm; type DELETE for all |
-| Events | **Delete all events** (clears every event, free-mock and sectional attempt and its log tags) | type DELETE |
+| Events | **Delete all events** (clears every event, **including the hidden free-mock and sectional attempts**, and their log tags) | type DELETE |
 | Events | **Tidy up old storage** (see section 6) | one click |
 
   `POST /admin/attempts/delete` takes up to 20 attempts per call and rebuilds the KV key itself, so it can only touch `mock_attempt:` records. Deleting an attempt also clears its tags and log requirement. A Pro student's access record (`student:{email}`) is **not** touched by any of these; that stays in `admin.html`.
@@ -160,6 +202,8 @@ Admin routes need `X-Admin-Secret`. Secrets: `ADMIN_SECRET`; `PROGRESS_SECRET` i
 It used to make 90 `list` calls plus a `get` per attempt on every Events open, and 365 plus a `get` per attempt on every drill-down. Now every submission writes a small summary row to D1 `mock_attempt_index` (kept forever) and the full answer sheet to KV with a 3-day expiry. List views cost zero KV reads. Drill-downs read only unexpired attempts, in pages of 40 (the free plan allows 50 subrequests per request). An attempt whose detail expired still shows score, accuracy, timing and tags; only the question-by-question view goes.
 
 Purge clears the D1 index and log rows (three SQL statements regardless of size) and lets KV expire on its own, because manual deletes would spend the 1,000 daily free deletes on records already leaving. `hard: true` forces KV deletion in capped batches. Everything fails open: with no D1 binding, no `mock_attempt_index` table or a failed query, views fall back to the old KV scan.
+
+**2026-10-30 addendum:** the D1 index only helps if it is live. Section 1 item 0 records the KV-limit alert that came from the fallback path being hit, the cap of 14 days now applied to that fallback, and the move of the full attempt record (14-day retention, `mock_attempt_detail`), students, the payment queue and leads from KV to D1.
 
 ### 4.3 Error log and the review-first gate
 
@@ -237,7 +281,11 @@ Purge clears the D1 index and log rows (three SQL statements regardless of size)
 
 ---
 
-## 5. Files changed in the most recent round (committed in a2fb531)
+## 5. Files changed in the most recent rounds
+
+**2026-10-30, uncommitted** (KV alert, section 1 item 0): `analytics.js`, `cloudflare/worker.js`, `cloudflare/schema.sql` (five new tables), `cloudflare/admin.html`, `cloudflare/coach.html`. Checks run: `node --check` on all of them; Playwright load of admin and coach (tabs as listed above, filter hides the three types, no page errors); the local SQLite/KV harness described in section 1 item 0. The Worker was not run against a live KV or D1.
+
+**2026-10-29, committed in a2fb531:**
 
 | File | Change |
 |---|---|
@@ -256,6 +304,12 @@ Purge clears the D1 index and log rows (three SQL statements regardless of size)
 4. **Once after deploying the Worker:** Coach View → Events → **Tidy up old storage**. Attempts saved before the expiry existed have no index row and never expire; this indexes them and removes the ones past three days. Safe to re-run.
 5. **Smoke test, about five minutes:** sit `full_mock.html`, get about half of Section 1 right; check question 5 shows an exhibit, the break appears, the score page shows nothing but the score, Continue lands on the error log with Proceed greyed, tagging everything enables it, and the analysis matches the score. Then open Coach View → Events and confirm the list loads and the retention line appears. Waive a log from the Events tab while a review is open and watch the button enable within about 30 seconds. Publishing pages before the Worker is safe: delete buttons alert and nothing is lost.
 6. **Lead capture** records nothing until the Worker with `/lead` is live.
+7. **2026-10-30 KV fix, in this order:**
+   1. In the D1 console, run the new statements at the bottom of `cloudflare/schema.sql` (five tables: `students`, `kv_meta`, `mock_attempt_detail`, `webhook_queue`, `leads`). Re-running the whole file is safe. Deploying the Worker first is also safe (it just keeps using KV until the tables exist).
+   2. Commit and push the site files (`analytics.js`, `admin.html`, `coach.html`).
+   3. Paste `cloudflare/worker.js` into the dashboard and deploy.
+   4. Open Admin → Students once (finishes the student copy; 30 per call, refresh if more than 30), then the Webhooks tab (copies the payment queue). Open Coach View → Events and check the "attempt index is not in D1 yet" warning is NOT shown; run Tidy up old storage once.
+   5. Check KV Metrics the next day. Leave `ANALYTICS_ENABLED` alone; it no longer exists.
 
 ---
 
@@ -268,6 +322,7 @@ Purge clears the D1 index and log rows (three SQL statements regardless of size)
 - **Match by id within claude-generated questions** (text hashes break once stems are rewritten); 12 pairs of different ids share identical text, a pre-existing duplication.
 - **Weighted accuracy is a ratio.** Making papers harder lowers every score unless something moves, and without explicit route ceilings a perfect easy section scores like a perfect hard one.
 - **Label inflation is uneven.** Check the stratum (KMF / sectional / generated) before trusting a bank difficulty label.
+- **Anything that runs per page load or per click must not touch KV.** The 2026-10-30 alert came partly from per-pageview KV writes. Use D1, Cloudflare Web Analytics or GA4 instead.
 - **Free-tier limits that shape design:** KV 1,000 writes and 1,000 deletes a day, 100k reads a day; Workers 50 subrequests per request; D1 100,000 row writes a day (a 10-question session costs 11).
 - **Regex hazards:** a terminology pass once capitalised sentence-initial maths variables ("x is a positive integer" → "X is …") across 531 questions; restore from backup and replay. `validate.py` flags "column a" inside phrases like "column and answer"; reword.
 - **KMF-style rewriting:** prose rules alone made leakage worse; recording `_source_stem` and policing it with a masked verbatim check fixed it (mask numbers and variables, ignore pure placeholder runs). Parallel agents need their own scratch folders. Make agents save every few items. Sonnet suits bulk passes; Opus suits adversarial ones (key triage, option-letter resolution, distractor design).

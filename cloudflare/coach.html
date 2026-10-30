@@ -145,7 +145,6 @@ tr.clickable:hover td{background:var(--surface2);}
   <div class="tabs">
     <button class="tab-btn active" data-tab="students" onclick="switchTab('students')">Students</button>
     <button class="tab-btn" data-tab="events" onclick="switchTab('events')">Events</button>
-    <button class="tab-btn" data-tab="mocks" onclick="switchTab('mocks')">Free attempts</button>
   </div>
 
   <div class="tab-panel active" data-tab-panel="students">
@@ -165,7 +164,7 @@ tr.clickable:hover td{background:var(--surface2);}
 
   <div class="tab-panel" data-tab-panel="events">
     <div class="card" id="ev-list-card">
-      <h2>Events</h2>
+      <h2>Mock events</h2>
       <div class="row" style="margin-bottom:12px;">
         <div class="field"><label for="ev-days">Days</label><input id="ev-days" type="number" value="90" min="1" max="365"></div>
         <div class="field"><label for="ev-filter">Filter by event name</label><input id="ev-filter" type="text" oninput="renderEvents()" placeholder="Type to filter…"></div>
@@ -175,54 +174,31 @@ tr.clickable:hover td{background:var(--surface2);}
       </div>
       <div id="ev-note"></div>
       <div class="table-wrap" id="ev-table"><div class="empty">Set the connection above to load events.</div></div>
-      <div class="hint">One row per event. Click an event for its overall analysis and every student who sat it, then click a student for their full breakdown, the same mistake analytics a Pro student sees about themselves.</div>
+      <div class="hint">One row per mock event. Free full-mock and sectional attempts are not listed here. Click an event for its overall analysis and every student who sat it, then click a student for their full breakdown, the same mistake analytics a Pro student sees about themselves.</div>
       <div class="hint" id="ev-retention"></div>
     </div>
     <div class="card" id="ev-event-card" style="display:none;"></div>
     <div class="card" id="ev-student-card" style="display:none;"></div>
   </div>
 
-  <div class="tab-panel" data-tab-panel="mocks">
-    <div class="card">
-      <h2>Free attempts &mdash; mocks &amp; sectionals</h2>
-      <div class="row" style="margin-bottom:12px;">
-        <div class="field"><label for="mock-days">Days</label><input id="mock-days" type="number" value="30" min="1" max="180"></div>
-        <div class="field"><label for="mock-filter">Filter by name or email</label><input id="mock-filter" type="text" oninput="renderMocks()" placeholder="Type to filter…"></div>
-        <button class="btn btn-ghost" onclick="loadMocks()">Load</button>
-      </div>
-      <div class="chips" id="mock-kinds" style="margin-bottom:10px;"></div>
-      <label style="display:flex;align-items:center;gap:8px;margin-bottom:14px;text-transform:none;letter-spacing:0;font-size:12.5px;cursor:pointer;">
-        <input type="checkbox" id="mock-include-pro" onchange="renderMocks()" style="width:auto;min-height:0;"> Include Pro students' sectional attempts
-      </label>
-      <div class="hint" id="mock-summary" style="margin:0 0 12px;"></div>
-      <div id="mock-bulk" style="margin:0 0 12px;"></div>
-      <div class="table-wrap" id="mocks-table"><div class="empty">Load to see free mock and sectional attempts.</div></div>
-      <div class="hint">Every attempt on the free full mock and the free sectionals, newest first. Event papers are not listed here &mdash; they are in the <a href="#events" onclick="switchTab('events')">Events</a> tab, grouped by event. Name and email are required, so they appear for every attempt from now on; attempts saved before that change may show a dash. These are kept apart from Pro progress, and people with no Pro account appear here too.</div>
-    </div>
-  </div>
 </div>
 
 <script>
 /* ════════════════════════════════════════════════════════════════════════════
    Coach View — student-centric
 
-   Three Worker endpoints:
+   Worker endpoints:
      GET /admin/progress-students          — list, with per-type session counts
      GET /admin/progress?email=&include_payloads=1
                                            — one student, with full session JSON
                                              so question-level drill-down needs
                                              no extra request
-     GET /admin/mock-attempts              — the separate free/event mock records
 
    Shares admin.html's localStorage keys, so the secret is entered once for
    both pages. No external libraries: charts are inline SVG and CSS.
    ══════════════════════════════════════════════════════════════════════════ */
 
 let students = [];
-let mockAttempts = [];
-let mockKind = 'all';       // all | mock | sectional | event
-let mocksLoaded = false;
-let mockShown = [];          // the rows currently on screen (after filters), for delete
 let currentDetail = null;   // { email, data } for the open student
 
 /* How each stored session_type is presented. `group` rolls the two topic-test
@@ -318,8 +294,6 @@ async function api(path) {
 function switchTab(name, fromRoute) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tabPanel === name));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.toggle('active', b.dataset.tab === name));
-  // First visit to the attempts tab loads it; no separate Load click needed.
-  if (name === 'mocks' && !mocksLoaded && getConfig().url && getConfig().secret) loadMocks();
   if (name === 'events' && !fromRoute) {
     // Clicking the tab means "the list"; a deep link already picked its own view.
     if (!/^#events/.test(location.hash)) history.replaceState(null, '', location.pathname + location.search + '#events');
@@ -845,110 +819,13 @@ function trendSvg(sessions, mode) {
     '</div>';
 }
 
-/* ─── Free attempts (the separate KV records) ───────────────────────────── */
-/* Three kinds, whatever the stored event_type: the free full mock
-   ('full_mock'), free sectionals ('sectional'), and everything run from the
-   event builder (topic tests, full-mock events). */
-const KIND_META = {
-  mock:      { label:'Full Mock', icon:'📝' },
-  sectional: { label:'Sectional', icon:'📐' },
-  event:     { label:'Event',     icon:'🏆' },
-};
-const EVENT_SUB = { mock_test:'Topic test', full_mock_event:'Full mock event', team_battle:'Team battle (retired)' };   // team_battle: old attempts still read properly
-
-function attemptKind(a) {
-  const t = String(a.event_type || '');
-  if (t === 'sectional') return 'sectional';
-  if (t === 'full_mock') return 'mock';
-  return 'event';
-}
-
-async function loadMocks() {
-  setBusy('mocks-table', 'Loading attempts…');
-  const days = Math.min(180, Math.max(1, Number(document.getElementById('mock-days').value) || 30));
-  try {
-    const d = await api('/admin/mock-attempts?days=' + days);
-    mockAttempts = d.attempts || [];
-    mocksLoaded = true;
-    renderMocks();
-  } catch (e) {
-    setBusy('mocks-table', e.message);
-  }
-}
-
-function setMockKind(k) { mockKind = (k === 'event' ? 'all' : k); renderMocks(); }
-
-function renderMocks() {
-  const q = (document.getElementById('mock-filter').value || '').toLowerCase().trim();
-  const includePro = document.getElementById('mock-include-pro').checked;
-
-  // Two filters on the way in. Event-paper attempts are read in the Events
-  // tab, which groups them by event and analyses the cohort, so listing them
-  // here as well was the same attempt twice. Pro students' sectionals also
-  // land in these records; unless asked for they stay out, because this tab
-  // is the free funnel.
-  const pool = mockAttempts.filter(a => attemptKind(a) !== 'event' && (includePro || a.tier !== 'pro'));
-
-  const counts = { all: pool.length, mock: 0, sectional: 0 };
-  pool.forEach(a => { counts[attemptKind(a)] += 1; });
-  document.getElementById('mock-kinds').innerHTML =
-    [['all', 'All', ''], ['mock', KIND_META.mock.label, KIND_META.mock.icon], ['sectional', KIND_META.sectional.label, KIND_META.sectional.icon]]
-      .map(([k, label, icon]) =>
-        '<button class="btn btn-sm ' + (mockKind === k ? 'btn-primary' : 'btn-ghost') + '" onclick="setMockKind(\'' + k + '\')">' +
-        (icon ? icon + ' ' : '') + esc(label) + ' · ' + counts[k] + '</button>').join('');
-
-  const rows = pool.filter(a => {
-    if (mockKind !== 'all' && attemptKind(a) !== mockKind) return false;
-    if (!q) return true;
-    const s = a.student || {};
-    return String(s.email || '').toLowerCase().includes(q) || String(s.name || '').toLowerCase().includes(q);
-  });
-
-  mockShown = rows;
-  document.getElementById('mock-bulk').innerHTML = rows.length
-    ? '<button class="btn btn-danger btn-sm" id="mock-del-all">Delete all ' + rows.length + ' shown…</button>'
-    : '';
-  const bulk = document.getElementById('mock-del-all');
-  if (bulk) bulk.addEventListener('click', delMockShown);
-
-  const people = new Set(rows.map(a => String((a.student || {}).email || '').toLowerCase()).filter(Boolean));
-  const noEmail = rows.filter(a => !String((a.student || {}).email || '').trim()).length;
-  document.getElementById('mock-summary').textContent = rows.length
-    ? rows.length + ' attempt' + (rows.length === 1 ? '' : 's') + ' · ' + people.size + ' distinct email' + (people.size === 1 ? '' : 's') +
-      (noEmail ? ' · ' + noEmail + ' with no email on record' : '')
-    : '';
-
-  if (!rows.length) {
-    setBusy('mocks-table', mockAttempts.length ? 'No attempt matches those filters.' : 'No attempts in this window.');
-    return;
-  }
-
-  const dash = '<span style="color:var(--text3);">—</span>';
-  document.getElementById('mocks-table').innerHTML =
-    '<table><thead><tr><th>Date</th><th>Name</th><th>Email</th><th>Type</th><th>Paper</th><th>Score</th>' +
-    '<th>Accuracy</th><th>Time</th><th>Band</th><th></th></tr></thead><tbody>' +
-    rows.map((a, i) => {
-      const s = a.student || {};
-      const km = KIND_META[attemptKind(a)];
-      const sub = attemptKind(a) === 'event' ? (EVENT_SUB[a.event_type] || '') : '';
-      const band = (a.diagnosis && (a.diagnosis.band || a.diagnosis.label)) || '';
-      const bandTxt = typeof band === 'object' ? (band.label || '') : band;
-      return '<tr><td class="mono">' + fmtDate(a.submitted_at || a.date) + '</td>' +
-        '<td style="font-weight:600;">' + (s.name ? esc(s.name) : dash) + '</td>' +
-        '<td class="mono" style="font-size:12.5px;">' + (s.email ? esc(s.email) : dash) + '</td>' +
-        '<td><span class="chip">' + km.icon + ' ' + esc(km.label) + '</span>' +
-          (sub ? '<div class="mono" style="font-size:11px;color:var(--text3);margin-top:3px;">' + esc(sub) + '</div>' : '') + '</td>' +
-        '<td>' + esc(a.event_name || a.event_id || '—') + '</td>' +
-        '<td class="mono">' + (a.correct || 0) + '/' + (a.total_questions || 0) + '</td>' +
-        '<td>' + accBadge(Math.round(Number(a.accuracy) || 0)) + '</td>' +
-        '<td class="mono" style="color:var(--text2);">' + fmtTime(a.total_time_seconds) + '</td>' +
-        '<td>' + (bandTxt ? '<span class="badge badge-mute">' + esc(bandTxt) + '</span>' : '—') + '</td>' +
-        '<td><button class="row-del" data-mockdel="' + i + '" title="Delete this attempt">✕</button></td></tr>';
-    }).join('') + '</tbody></table>';
-  document.querySelectorAll('#mocks-table button[data-mockdel]').forEach(btn => {
-    btn.addEventListener('click', () => delMockAttempt(Number(btn.dataset.mockdel)));
-  });
-}
+/* ─── Which events are listed ───────────────────────────────────────────────
+   Only mock events. Free full-mock and free-sectional attempts go through the
+   same Worker route but are not read here, and retired team-battle attempts
+   are not mock events. */
+const EVENT_SUB = { mock_test:'Topic test', full_mock_event:'Full mock event' };
+const HIDDEN_EVENT_TYPES = ['sectional', 'full_mock', 'team_battle'];
+function isMockEvent(e) { return HIDDEN_EVENT_TYPES.indexOf(String((e && e.event_type) || '')) === -1; }
 
 /* ─── Events: one list of events, one analysis per event, one drill-down per student ───
    Reads /admin/events (the list) and /admin/event-attempts (every attempt at one
@@ -1033,7 +910,7 @@ async function loadEvents() {
   const days = Math.min(365, Math.max(1, Number(document.getElementById('ev-days').value) || 90));
   try {
     const d = await api('/admin/events?days=' + days);
-    evList = d.events || []; evLogEnabled = d.log_enabled !== false; evLoaded = true;
+    evList = (d.events || []).filter(isMockEvent); evLogEnabled = d.log_enabled !== false; evLoaded = true;
     evTtlDays = Number(d.detail_ttl_days) || 0;
     evSource = d.source || '';
     renderEvents();
@@ -1460,8 +1337,8 @@ async function evWaive(body, label) {
 }
 
 /* ─── Delete (permanent) ──────────────────────────────────────────────────
-   Event, free-mock and free-sectional attempts are the same kind of record, so
-   the Events tab and the Free attempts tab share one endpoint. A Pro student's
+   Event, free-mock and free-sectional attempts are the same kind of record and
+   share one endpoint; only event attempts are listed now. A Pro student's
    own progress is a different store and keeps using deleteProgress() above.
    Single deletes ask once; anything bigger asks for the word DELETE. */
 const DEL_CHUNK = 20;      // matches ATTEMPT_DELETE_MAX in the Worker
@@ -1493,9 +1370,8 @@ async function deleteAttempts(list) {
   return done;
 }
 
-/* Both lists are stale after any delete; the one on screen reloads, the other
-   reloads the next time its tab opens. */
-function attemptsChanged() { mocksLoaded = false; evLoaded = false; }
+/* The event list is stale after any delete and reloads the next time it is needed. */
+function attemptsChanged() { evLoaded = false; }
 
 /* Bulk delete. /admin/attempts/purge clears the index rows and the error-log
    rows in one statement whatever the size, and lets the stored answer sheets
@@ -1513,35 +1389,6 @@ async function purgeAttempts(body, onProgress) {
     if (!r.remaining || guard++ > 200) return { deleted: total, note: r.note || '' };
     if (onProgress) onProgress(r.remaining);
   }
-}
-
-/* Free attempts tab */
-async function delMockAttempt(i) {
-  const a = mockShown[i];
-  if (!a || delBusy) return;
-  const s = a.student || {};
-  if (!confirm('Delete this attempt?\n\n' + attemptWho(a) + (s.email && s.name ? ' · ' + s.email : '') + '\n' +
-    (a.event_name || a.event_id || 'attempt') + ' · ' + fmtDate(a.submitted_at || a.date) +
-    '\n\nIt also disappears from the Events tab, with any error-log tags. This cannot be undone.')) return;
-  delBusy = true;
-  setBusy('mocks-table', 'Deleting…');
-  try { await deleteAttempts([a]); }
-  catch (e) { alert('Could not delete: ' + e.message); }
-  delBusy = false;
-  attemptsChanged(); await loadMocks();
-}
-
-async function delMockShown() {
-  const rows = mockShown.slice();
-  if (!rows.length || delBusy) return;
-  if (!typedConfirm('Delete ALL ' + rows.length + ' attempt' + (rows.length === 1 ? '' : 's') + ' currently shown in this list?\n' +
-    'Change the filters first if that is not the set you mean. Their error-log tags go too.')) return;
-  delBusy = true;
-  setBusy('mocks-table', 'Deleting ' + rows.length + ' attempt' + (rows.length === 1 ? '' : 's') + '…');
-  try { await deleteAttempts(rows); }
-  catch (e) { alert('Could not finish deleting: ' + e.message); }
-  delBusy = false;
-  attemptsChanged(); await loadMocks();
 }
 
 /* Events tab */
