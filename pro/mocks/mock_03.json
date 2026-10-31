@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
+     "easy": 3,
      "medium": 7,
-     "hard": 5
+     "hard": 2
     },
     "types": {
      "numeric_entry": 2,
@@ -40,7 +41,8 @@
     "difficulty": {
      "easy": {
       "medium": 10,
-      "hard": 5
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "hard": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -91,27 +97,32 @@
     },
     {
      "id": "MOCK-03-S1-002",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "q < p\nq = jk\nr = jpq\n\nIf j, k, p, q and r are positive even integers related by the system shown, what is the median of the integers j, k, p, q and r?",
+     "question": "A marble is drawn at random from a jar holding only white, black and gray marbles. The probability of drawing a white marble is w, and the probability of drawing a gray marble is three times the probability of drawing a black marble. How likely is a gray marble, written in terms of w?",
      "options": [
-      "A. j",
-      "B. k",
-      "C. p",
-      "D. q",
-      "E. r"
+      "A. (1 - w)/4",
+      "B. 3(1 - w)/4",
+      "C. 3(1 - w)",
+      "D. (3 - w)/4",
+      "E. 1 - 4w"
      ],
-     "answer": "D",
-     "explanation": "Every variable is a positive even integer, so each is at least 2. From q = jk with both j and k at least 2, we get q is at least 2j, which exceeds j, and likewise q exceeds k — so both j and k sit below q. We are given q < p. And r = jpq, where j and q are each at least 2, so r is at least 4p and exceeds p. That orders all five values: j and k below q, then q, then p, then r. With five values the median is the third, which is q.",
-     "trap": "Students notice r = jpq is clearly the largest and assume p must be the middle value because the given chain q < p places p between q and r. But two further variables, j and k, are forced below q, which pushes q itself into the middle position.",
-     "estimated_time_seconds": 115,
+     "answer": "B",
+     "explanation": "Let the probability of black be b. Then gray is 3b.\nThe three probabilities total 1: w + b + 3b = 1, so 4b = 1 - w and b = (1 - w)/4.\nGray = 3b = 3(1 - w)/4.\nCheck with w = 0.4: b = 0.15, gray = 0.45, and 0.4 + 0.15 + 0.45 = 1.",
+     "trap": "Stopping after finding b = (1 - w)/4 and reporting it as the answer (choice A), which is the black marble, not the gray one.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "inequalities",
-      "median"
+      "probability-sum-to-one",
+      "ratio-of-probabilities"
      ],
-     "bank_id": "SEC-AL-019",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "origin": "kmf1804",
+     "origin_set": "Section 32 Hard",
+     "source_pages": [
+      204
+     ],
+     "bank_id": "STA-PRB-KMF-009",
+     "topic": "statistics",
+     "subtopic": "basic probability"
     },
     {
      "id": "MOCK-03-S1-003",
@@ -139,27 +150,28 @@
     },
     {
      "id": "MOCK-03-S1-004",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "3^(-7) - 3^(-8) =",
+     "question": "A town's population increased by 15% from Year 1 to Year 2, and then increased by 20% from Year 2 to Year 3. What is the overall percent increase in population from Year 1 to Year 3?",
      "options": [
-      "A. 3^(-15)",
-      "B. (2)(3^(-15))",
-      "C. 3^(-8)",
-      "D. (2)(3^(-8))",
-      "E. 3^(-1)"
+      "A. 35%",
+      "B. 36%",
+      "C. 37%",
+      "D. 38%",
+      "E. 40%"
      ],
      "answer": "D",
-     "explanation": "Pull out the smaller power as a common factor: 3^(-7) - 3^(-8) = 3^(-8)(3^1 - 1) = 3^(-8)(2) = (2)(3^(-8)). Checking numerically, 3^(-7) is 1/2187 and 3^(-8) is 1/6561, and their difference is 2/6561, which matches.",
-     "trap": "Students subtract the exponents and answer 3^(-15), or recall the base-2 version of this problem where the leftover factor is 2 - 1 = 1 and answer 3^(-8). Factoring leaves 3 - 1 = 2 here, so the coefficient does not disappear.",
-     "estimated_time_seconds": 80,
+     "explanation": "Combined multiplier = 1.15 × 1.20 = 1.38. Overall increase = 38%. Check: if original population = 100, after 15% increase → 115. After 20% increase on 115: 115 × 1.20 = 138. Increase from 100 to 138 = 38%.",
+     "trap": "Students add the percentages: 15% + 20% = 35%, choosing A. Successive percent increases must be multiplied, not added.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "exponents",
-      "factoring"
+      "successive-percent",
+      "population",
+      "two-step"
      ],
-     "bank_id": "SEC-AL-053",
-     "topic": "arithmetic",
-     "subtopic": "arithmetic"
+     "bank_id": "WRD-PCT-015",
+     "topic": "word_problems",
+     "subtopic": "percentage word problems"
     },
     {
      "id": "MOCK-03-S1-005",
@@ -432,31 +444,39 @@
     },
     {
      "id": "MOCK-03-S1-012",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "multiple_answer",
-     "question": "-2 < a < -1 and 0 < b < 1\n\nWhich of the following must be true?\n\nIndicate all such statements.",
+     "question": "The integers p and q are both positive and odd.\n\nWhich of the following digits are impossible as the ones place of the number pq + 3?\n\nIndicate all such digits.",
      "options": [
-      "A. a + b < 0",
-      "B. ab < a",
-      "C. a^2 + b^2 > 1",
-      "D. a - b > -3",
-      "E. 1/a > 1/b"
+      "A. 0",
+      "B. 1",
+      "C. 3",
+      "D. 4",
+      "E. 5",
+      "F. 6",
+      "G. 9"
      ],
      "answer": [
-      "A",
+      "B",
       "C",
-      "D"
+      "E",
+      "G"
      ],
-     "explanation": "A is true: a is below -1 and b is below 1, so a + b is below 0. C is true: a^2 exceeds 1 because |a| > 1, and b^2 is non-negative, so the sum exceeds 1. D is true: a is greater than -2 and b is less than 1, so a - b is greater than -2 - 1 = -3. B is false: multiplying the negative a by a factor b between 0 and 1 shrinks its magnitude, so ab is closer to zero and therefore greater than a. E is false: 1/a is negative while 1/b is positive, so 1/a is smaller.",
-     "trap": "B catches the reflex that multiplying makes a number smaller. For a negative number, multiplying by a fraction between 0 and 1 moves it toward zero, which makes it larger, not smaller.",
-     "estimated_time_seconds": 115,
+     "explanation": "An odd integer times an odd integer is odd, so pq is odd and its ones digit is one of 1, 3, 5, 7, 9.\nAdding 3 to an odd number gives an even number, so pq + 3 is even and its ones digit must be 0, 2, 4, 6 or 8.\nCheck each option: 0 is possible (p=1, q=7 gives 7+3=10); 1 is odd, impossible; 3 is odd, impossible; 4 is possible (p=q=1 gives 4); 5 is odd, impossible; 6 is possible (p=1, q=3 gives 6); 9 is odd, impossible.\nImpossible digits: 1, 3, 5, 9 (options B, C, E, G).",
+     "trap": "Reading 'impossible' backwards, or forgetting that +3 flips parity, and selecting the digits 0, 4 and 6 (options A, D, F) that actually can occur.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "inequalities",
-      "signs"
+      "odd-even",
+      "units-digit"
      ],
-     "bank_id": "SEC-AL-040",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "origin": "kmf1804",
+     "origin_set": "Section 33 Base",
+     "source_pages": [
+      211
+     ],
+     "bank_id": "NUM-EOP-KMF-006",
+     "topic": "number_properties",
+     "subtopic": "even odd properties"
     }
    ]
   },
@@ -558,28 +578,28 @@
      },
      {
       "id": "MOCK-03-S2E-005",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "mcq",
-      "question": "Which of the following quantities is the greatest?",
+      "question": "Liquids X and Y are combined in the ratio 3:2 by volume. The resulting mixture is then combined with liquid Z in the ratio 4:1 by volume, mixture to Z. Finally, 60 liters of liquid Y are added to that blend. If liquid Z now makes up exactly 1/6 of the blend by volume, how many liters of liquid X does the blend contain?",
       "options": [
-       "A. 12^8 + 3^8",
-       "B. (12 + 3)^8",
-       "C. (4 + 12)^8",
-       "D. 4^80 + 3^80",
-       "E. (4 + 3)^80"
+       "A. 60",
+       "B. 96",
+       "C. 144",
+       "D. 156",
+       "E. 180"
       ],
-      "answer": "E",
-      "explanation": "Sort by the size of the exponent first. Choices A, B and C all sit at the 8th power of a number no bigger than 16, so each is at most about 16^8 = 2^32, roughly 4.3 * 10^9. Choices D and E carry an 80th power. Choice D is 4^80 + 3^80, which is less than 2 * 4^80 because 3^80 < 4^80. Choice E is 7^80, and 7^80 / 4^80 = (7/4)^80 = 1.75^80, a number astronomically larger than 2. So 7^80 > 2 * 4^80 > 4^80 + 3^80, and both dwarf anything at the 8th power. Choice E is greatest.",
-      "trap": "Choosing C because 16 is the largest visible base. The exponent, not the base, drives the size here: 16^8 = 2^32 is about four billion, while 4^80 = 2^160 is larger than that by a factor of 2^128. A second trap is choosing D on the idea that adding two 80th powers beats a single one, but the sum is under 2 * 4^80 while 7^80 exceeds it by the factor 1.75^80.",
-      "estimated_time_seconds": 110,
+      "answer": "C",
+      "explanation": "Step 1 — fuse the two stages into one chain before touching the 60 liters.\nStage two: mixture : Z = 4:1. Stage one splits that mixture into X and Y as 3:2, which is 5 parts, so scale the second ratio by 5 to make the mixture divisible: mixture : Z = 20:5, and the 20 splits as X = 12, Y = 8.\nX : Y : Z = 12 : 8 : 5, which is 25 parts in all.\nStep 2 — name t for one part: X = 12t, Y = 8t, Z = 5t, blend = 25t.\nStep 3 — add the 60 liters of Y. Only Y and the total move:\nX = 12t, Y = 8t + 60, Z = 5t, blend = 25t + 60.\nStep 4 — impose the condition that Z is 1/6 of the blend:\n5t/(25t + 60) = 1/6\n6(5t) = 25t + 60\n30t = 25t + 60\n5t = 60\nt = 12\nStep 5 — answer what was asked: X = 12t = 12 x 12 = 144 liters.\nCheck: X = 144, Y = 8(12) + 60 = 156, Z = 60, blend = 144 + 156 + 60 = 360, and 60/360 = 1/6. Before the 60 liters went in: X + Y = 144 + 96 = 240 with Z = 60, so mixture : Z = 240:60 = 4:1, and X:Y = 144:96 = 3:2. Correct.\nAnswer: 144 liters.",
+      "trap": "Applying the 3:2 to a whole it does not govern: the blend before the addition is 300 liters, and 3/5 x 300 = 180 (choice E). The 3:2 rules only the X-Y mixture, 240 of those 300 liters. A second slip is imposing 'Z is 1/6' on the 25t blend instead of on 25t + 60, which is impossible - Z is already exactly 5/25 = 1/5 of it, so the 60 liters of Y are what dilute Z from 1/5 down to 1/6. Choices D (156), B (96) and A (60) are the final Y, the Y before the addition and the Z volume - right arithmetic, wrong quantity.",
+      "estimated_time_seconds": 130,
       "tags": [
-       "exponents",
-       "comparing-powers",
-       "estimation"
+       "two-stage-mixture",
+       "combining-ratios",
+       "change-then-condition"
       ],
-      "bank_id": "SEC-AL-073",
-      "topic": "arithmetic",
-      "subtopic": "arithmetic"
+      "bank_id": "WRD-RAT-048",
+      "topic": "word_problems",
+      "subtopic": "ratio word problems"
      },
      {
       "id": "MOCK-03-S2E-006",

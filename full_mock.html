@@ -68,7 +68,7 @@
         <div class="ru-top-bar"></div>
         <div class="ru-kicker">Pro Plan — 8 More Mocks Waiting</div>
         <div class="ru-headline">Two mocks tell you where you are.<br><span>Ten tell you whether it holds.</span></div>
-        <div class="ru-sub">Every Pro mock is built to the same real-GRE blueprint as these two: a Section 1 with no easy questions, an adaptive Section 2, and 456 questions you have not seen. Each one carries trap analysis, question-level diagnostics and section-break feedback.</div>
+        <div class="ru-sub">Every Pro mock is built to the same real-GRE blueprint as these two: a Section 1 built to the real test's difficulty mix, an adaptive Section 2, and 456 questions you have not seen. Each one carries trap analysis, question-level diagnostics and section-break feedback.</div>
         <div class="ru-mocks">
           <div class="ru-mock-pill">
             <div class="rmp-num">8 more papers</div>
@@ -78,7 +78,7 @@
           <div class="ru-mock-pill">
             <div class="rmp-num">Every paper</div>
             <div class="rmp-diff">Real GRE</div>
-            <div class="rmp-level">no easy questions in Section 1</div>
+            <div class="rmp-level">the ETS difficulty mix, section by section</div>
           </div>
           <div class="ru-mock-pill">
             <div class="rmp-num">Section 2</div>
@@ -362,8 +362,9 @@ function buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2) {
 
 // ─── CONFIG ───────────────────────────────────────────────────────────────────
 /* Every paper is now built to the same real-GRE blueprint — Section 1 is
-   3 easy / 7 medium / 2 hard whichever mock you pick, and Section 2 adapts
-   to how that went. So the old 'Balanced → Expert' ladder is gone: a mock
+   3 easy / 7 medium / 2 hard whichever mock you pick (the real test's L2/L3/L4
+   spread), and Section 2 adapts to how that went, each of its three forms
+   spanning L3/L4/L5. So the old 'Balanced → Expert' ladder is gone: a mock
    is no longer easier or harder than the next one, and the score scale,
    not the paper, is what separates a 150 from a 168. The cards say what
    now actually distinguishes them, which is nothing but which questions
@@ -817,7 +818,12 @@ function pickSection2(correct, total) {
 
   let route = (correct >= ADAPTIVE_THRESHOLD) ? 'hard' : 'easy';
   if (window.GREScore && GREScore.routeFor) {
-    route = GREScore.routeFor(correct, total, (state.mockMeta && state.mockMeta.routing) || null);
+    // The thresholds live in the paper's own meta (meta.routing), not in MOCK_INDEX —
+    // state.mockMeta is the page's card entry and has never carried them, so reading only
+    // that silently fell back to score-scale's defaults (6 / 9) instead of the paper's 4 / 7.
+    const routing = (state.mockData && state.mockData.meta && state.mockData.meta.routing)
+                 || (state.mockMeta && state.mockMeta.routing) || null;
+    route = GREScore.routeFor(correct, total, routing);
   }
   const chosen = (window.GREScore && GREScore.pickForm)
     ? GREScore.pickForm(forms, route)
@@ -1308,7 +1314,7 @@ function renderUpgradeCTA(pct) {
      same real-GRE blueprint — so these say what Pro actually adds. */
   const mocks = [
     { num:'8 more papers',  diff:'456 questions', level:'none of them repeated' },
-    { num:'Every paper',    diff:'Real GRE',      level:'no easy questions in Section 1' },
+    { num:'Every paper',    diff:'Real GRE',      level:'the ETS difficulty mix, section by section' },
     { num:'Section 2',      diff:'Adaptive',      level:'three forms in every paper' },
     { num:'Every question', diff:'Trap analysis', level:'and a worked solution' },
   ];

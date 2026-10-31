@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
+     "easy": 3,
      "medium": 7,
-     "hard": 5
+     "hard": 2
     },
     "types": {
      "quantitative_comparison": 4,
@@ -39,8 +40,9 @@
    "section_2": {
     "difficulty": {
      "easy": {
-      "hard": 5,
-      "medium": 10
+      "medium": 10,
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "hard": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -121,47 +127,47 @@
     },
     {
      "id": "MOCK-01-S1-003",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "In the figure above, angle W is a right angle, angle B measures 30 degrees, and UH is perpendicular to VB. Also, VW = 25, VU = 25, UA = 26, and UH = 24. What is the length of AB?\n\nNote: Figure not drawn to scale.",
+     "question": "In what ratio must a 12% brine solution be mixed with a 36% brine solution to obtain a 20% brine solution? Give the ratio of the 12% solution to the 36% solution.",
      "options": [
-      "A. 26",
-      "B. 33",
-      "C. 36",
-      "D. 40",
-      "E. 50"
+      "A. 1:3",
+      "B. 1:2",
+      "C. 1:1",
+      "D. 2:1",
+      "E. 3:1"
      ],
-     "answer": "B",
-     "explanation": "Work the two halves separately. Below the line, UH = 24 is a leg of two right triangles. In triangle VHU, VU = 25 and UH = 24, so VH = sqrt(625 - 576) = 7. In triangle AHU, UA = 26 and UH = 24, so HA = sqrt(676 - 576) = 10. Therefore VA = 7 + 10 = 17. Above the line, triangle VWB has a right angle at W and a 30-degree angle at B, so it is a 30-60-90 triangle in which VW is the side opposite the 30-degree angle. The hypotenuse VB is twice that side: VB = 2(25) = 50. Finally AB = VB - VA = 50 - 17 = 33.",
-     "trap": "Students find HA = 10 from the 10-24-26 triangle but forget that A is 7 units to the right of V, subtracting only 10 from 50 and answering 40. The point V sits 7 units left of H, so the whole segment VA is 17, not 10.",
-     "estimated_time_seconds": 120,
+     "answer": "D",
+     "explanation": "Step 1 — alligation. Measure each source's distance from the target of 20:\n36 - 20 = 16\n20 - 12 = 8\nStep 2 — cross them. The quantities are the INVERSE of the distances:\n(12% solution) : (36% solution) = 16 : 8 = 2 : 1.\nStep 3 — run the direction check before committing. 20 is much nearer 12 than 36, so most of the blend must be the 12% solution. Two parts to one - correct.\nCheck: (2 x 12 + 1 x 36)/3 = (24 + 36)/3 = 60/3 = 20%. Correct.",
+     "trap": "Writing 8 : 16 = 1 : 2, choice B - the crossing done backwards, and the single most common mixture error. The one-second cure is the direction check: the target sits closer to 12%, so there must be MORE of the 12% solution. Choice C, 1:1, comes from assuming equal parts, which would give the midpoint (12 + 36)/2 = 24%, not 20%. Choice A, 1:3, weights each solution by its own strength, 12 : 36 = 1 : 3, instead of by its distance from the target. Choice E, 3:1, measures both gaps from the 12% end rather than from the target: 36 - 12 = 24 against 20 - 12 = 8, giving 24 : 8 = 3 : 1.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "pythagorean-triples",
-      "special-right-triangles",
-      "composite-figures"
+      "alligation",
+      "mixing-ratio",
+      "direction-check"
      ],
-     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 302 280\" width=\"302\" height=\"280\" role=\"img\"><polygon points=\"26.1,134.1 88.6,26 275.9,134.1\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"26.1\" y1=\"134.1\" x2=\"61.1\" y2=\"254\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"61.1\" y1=\"254\" x2=\"111\" y2=\"134.1\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"61.1\" y1=\"254\" x2=\"61.1\" y2=\"134.1\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><path d=\"M 84.1 33.8 L 91.9 38.3 L 96.4 30.5\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><path d=\"M 69.1 134.1 L 69.1 142.1 L 61.1 142.1\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><path d=\"M 245.9 134.1 A 30 30 0 0 1 249.9 119.1\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"232.4\" y=\"125.7\" font-family=\"Georgia,serif\" font-size=\"11\" fill=\"#16191d\" text-anchor=\"end\">30°</text><text x=\"47.8\" y=\"77.6\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">25</text><text x=\"33.1\" y=\"202.7\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">25</text><text x=\"96.2\" y=\"204.2\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">26</text><text x=\"66.1\" y=\"198.7\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">24</text><text x=\"16.1\" y=\"138.8\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">V</text><text x=\"86.8\" y=\"17.6\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">W</text><text x=\"285.9\" y=\"138.8\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">B</text><text x=\"56.1\" y=\"127.3\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">H</text><text x=\"113.6\" y=\"126\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">A</text><text x=\"61.1\" y=\"272.9\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">U</text></svg>",
-     "bank_id": "SEC-PG-003",
-     "topic": "geometry",
-     "subtopic": "geometry"
+     "bank_id": "WRD-MIX-017",
+     "topic": "word_problems",
+     "subtopic": "mixture problems"
     },
     {
      "id": "MOCK-01-S1-004",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "numeric_entry",
-     "question": "In the xy-plane, line m passes through the point (6, 6) and is perpendicular to the line x + y = 2. The point (a, b) lies on line m and is halfway between (6, 6) and the line x + y = 2. What is the value of a + b?",
+     "question": "How many trailing zeros does 50! have?",
      "options": null,
-     "answer": "7",
-     "explanation": "The line x + y = 2 rearranges to y = -x + 2, so its slope is -1 and any perpendicular line has slope 1. Line m therefore passes through (6, 6) with slope 1, which makes it y = x. Line m meets x + y = 2 where x + x = 2, that is at x = 1 and y = 1, the point (1, 1). Being halfway between (6, 6) and the line means being the midpoint of (6, 6) and (1, 1), which is (3.5, 3.5). So a + b = 3.5 + 3.5 = 7.",
-     "trap": "Students give line m the slope -1, copying x + y = 2 instead of taking its negative reciprocal; that line is parallel to x + y = 2 and never meets it, so there is no foot to measure from. Others locate the foot (1, 1) correctly but then report a + b for the foot itself, answering 2, rather than for the midpoint (3.5, 3.5).",
-     "estimated_time_seconds": 110,
+     "answer": "12",
+     "explanation": "Count factors of 5 in 50! using Legendre's formula: ⌊50/5⌋ + ⌊50/25⌋ + ⌊50/125⌋ = 10 + 2 + 0 = 12. There are 10 multiples of 5 up to 50, and 2 of them (25 and 50) are multiples of 25, each contributing an extra factor of 5.",
+     "trap": "Students count only multiples of 5 (there are 10) and answer 10, missing the extra factors of 5 from 25 and 50 (both multiples of 25 = 5²). Always apply Legendre's formula iteratively for higher powers.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "perpendicular-lines",
-      "midpoint"
+      "trailing-zeros",
+      "factorial",
+      "legendre-formula"
      ],
-     "bank_id": "SEC-CG-035",
-     "topic": "coordinate_geometry",
-     "subtopic": "coordinate geometry"
+     "bank_id": "NUM-PRF-021",
+     "topic": "number_properties",
+     "subtopic": "prime numbers factorization"
     },
     {
      "id": "MOCK-01-S1-005",
@@ -393,27 +399,28 @@
     },
     {
      "id": "MOCK-01-S1-009",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "What is the value of (3^20 - 3^18)/(9^20 - 9^19)?",
+     "question": "A line segment has one endpoint at (2, −1) and a length of 13. If the other endpoint has x-coordinate 2, what are the possible y-coordinates of the other endpoint?",
      "options": [
-      "A. 3^(-38)",
-      "B. 3^(-20)",
-      "C. 3^(-2)",
-      "D. 3^2",
-      "E. 3^20"
+      "A. 12 only",
+      "B. −14 only",
+      "C. 12 or −14",
+      "D. 12 or 14",
+      "E. 13 or −13"
      ],
-     "answer": "B",
-     "explanation": "Factor each difference rather than trying to subtract the powers. The numerator is 3^18(3^2 - 1) = 8 x 3^18. For the denominator, rewrite 9 as 3^2 first: 9^20 - 9^19 = 9^19(9 - 1) = 8 x 9^19 = 8 x 3^38. The factor of 8 cancels, leaving 3^18/3^38 = 3^(18 - 38) = 3^(-20).",
-     "trap": "Students subtract exponents term by term, reading the expression as 3^(20 - 20) over 9^(20 - 19) or similar, and answer 3^2 or 3^(-2). Subtraction inside a numerator is not division, so the only safe move is to factor out the smaller power on each line. Forgetting to convert 9^19 into 3^38 gives 3^(-1) territory and misses the answer entirely.",
-     "estimated_time_seconds": 110,
+     "answer": "C",
+     "explanation": "Since both endpoints share x = 2, the segment is vertical. Length = |y2 − (−1)| = |y2 + 1| = 13. Case 1: y2 + 1 = 13 → y2 = 12. Case 2: y2 + 1 = −13 → y2 = −14. The other endpoint is at (2, 12) or (2, −14).",
+     "trap": "Students solve only the positive case (y = 12) and miss y = −14. An absolute value equation |y + 1| = 13 always has two solutions.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "exponents",
-      "factoring"
+      "distance-formula",
+      "coordinate-geometry",
+      "two-step"
      ],
-     "bank_id": "SEC-AO-016",
-     "topic": "arithmetic",
-     "subtopic": "arithmetic"
+     "bank_id": "COG-DST-018",
+     "topic": "coordinate_geometry",
+     "subtopic": "distance between points"
     },
     {
      "id": "MOCK-01-S1-010",
@@ -575,22 +582,22 @@
      },
      {
       "id": "MOCK-01-S2E-004",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "numeric_entry",
-      "question": "The figure shows a quadrilateral in the xy-plane with vertices (2, 10), (10, 4), (6, 0) and (0, 6). What is the area of the quadrilateral?",
+      "question": "A data set of 4 values has a mean of 10 and a variance of 20. Two of the values are 4 and 8. What is the greatest of the four values?",
       "options": null,
-      "answer": "46",
-      "explanation": "Enclose the quadrilateral in the square running from x = 0 to x = 10 and from y = 0 to y = 10, which has area 100. Each of the four vertices lands on a different side of that square, so the leftover area is exactly four right triangles, one in each corner. At the corner (0, 10) the legs run from (0, 6) up to (0, 10), a length of 4, and from (0, 10) across to (2, 10), a length of 2, giving area 4. At (10, 10) the legs are 8 and 6, giving area 24. At (10, 0) the legs are 4 and 4, giving area 8. At (0, 0) the legs are 6 and 6, giving area 18. The corners total 4 + 24 + 8 + 18 = 54, so the quadrilateral has area 100 - 54 = 46.",
-      "trap": "Students eyeball the shape as roughly a 10-by-10 square with the corners shaved and guess 80, or they pair up sides that look parallel and apply the trapezoid formula. No two sides of this quadrilateral are parallel, and none is horizontal or vertical, so only the enclose-and-subtract route is reliable.",
-      "estimated_time_seconds": 105,
+      "answer": "16",
+      "explanation": "Let the two unknown values be p and q. Two totals are fixed: the sum of the values and the sum of the squared deviations.\nStep 1 — the sum. Mean 10 over 4 values gives a total of 4 x 10 = 40. The known values contribute 4 + 8 = 12, so p + q = 40 - 12 = 28.\nStep 2 — the sum of squared deviations. Variance 20 over 4 values gives 4 x 20 = 80. The known values contribute (4 - 10)^2 + (8 - 10)^2 = 36 + 4 = 40, so (p - 10)^2 + (q - 10)^2 = 80 - 40 = 40.\nStep 3 — switch to deviations. Let u = p - 10 and v = q - 10. Then\nu + v = 28 - 20 = 8 and u^2 + v^2 = 40.\nStep 4 — use the identity (u + v)^2 = u^2 + v^2 + 2uv:\n64 = 40 + 2uv, so uv = 12.\nStep 5 — u and v are the roots of t^2 - 8t + 12 = 0, which factors as (t - 2)(t - 6) = 0, giving t = 2 and t = 6.\nStep 6 — convert back: p = 12 and q = 16.\nThe four values are 4, 8, 12, 16, and the greatest is 16.\nCheck: mean = 40/4 = 10; squared deviations 36, 4, 4, 36 sum to 80; variance = 80/4 = 20. Correct.\nAnswer: 16.",
+      "trap": "Using only the mean, splitting the missing 28 evenly as 14 and 14, and answering 14 - that gives squared deviations 36, 4, 16, 16 summing to 72, so the variance would be 18, not 20. One equation cannot pin down two unknowns; the variance condition is not decoration here, it is the second equation. The other slip is forgetting that the variance divides by n, and using 20 rather than 4 x 20 = 80 as the total squared deviation.",
+      "estimated_time_seconds": 130,
       "tags": [
-       "area",
-       "coordinate-polygons"
+       "variance",
+       "missing-value",
+       "sum-of-squares"
       ],
-      "svg": "<svg viewBox=\"0 0 320 260\" width=\"320\" height=\"260\" xmlns=\"http://www.w3.org/2000/svg\"><defs><marker id=\"a\" markerWidth=\"8\" markerHeight=\"8\" refX=\"6\" refY=\"3\" orient=\"auto\"><path d=\"M0,0 L6,3 L0,6 Z\" fill=\"#1f2937\"/></marker></defs><path d=\"M85.7 234.0V26.0M145.1 234.0V26.0M204.6 234.0V26.0M264.0 234.0V26.0M56.0 204.3H264.0M56.0 144.9H264.0M56.0 85.4H264.0M56.0 26.0H264.0\" stroke=\"#d7dee8\" stroke-width=\"1\" fill=\"none\"/><line x1=\"56.0\" y1=\"204.3\" x2=\"264.0\" y2=\"204.3\" stroke=\"#1f2937\" stroke-width=\"2\" marker-end=\"url(#a)\"/><line x1=\"85.7\" y1=\"234.0\" x2=\"85.7\" y2=\"26.0\" stroke=\"#1f2937\" stroke-width=\"2\" marker-end=\"url(#a)\"/><text x=\"260.0\" y=\"220.3\" font-family=\"Georgia, serif\" font-size=\"13\" fill=\"#1f2937\">x</text><text x=\"92.7\" y=\"37.0\" font-family=\"Georgia, serif\" font-size=\"13\" fill=\"#1f2937\">y</text><text x=\"72.7\" y=\"219.3\" font-family=\"Georgia, serif\" font-size=\"13\" fill=\"#1f2937\">O</text><polygon points=\"115.4,55.7 234.3,144.9 174.9,204.3 85.7,115.1\" stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"/><circle cx=\"115.4\" cy=\"55.7\" r=\"3.5\" fill=\"#1f2937\"/><text x=\"126\" y=\"48\" font-family=\"Georgia, serif\" font-size=\"13\" fill=\"#1f2937\">(2, 10)</text><circle cx=\"234.3\" cy=\"144.9\" r=\"3.5\" fill=\"#1f2937\"/><text x=\"242.3\" y=\"149.9\" font-family=\"Georgia, serif\" font-size=\"13\" fill=\"#1f2937\">(10, 4)</text><circle cx=\"174.9\" cy=\"204.3\" r=\"3.5\" fill=\"#1f2937\"/><text x=\"176.9\" y=\"222.3\" font-family=\"Georgia, serif\" font-size=\"13\" fill=\"#1f2937\" text-anchor=\"middle\">(6, 0)</text><circle cx=\"85.7\" cy=\"115.1\" r=\"3.5\" fill=\"#1f2937\"/><text x=\"78.7\" y=\"120.1\" font-family=\"Georgia, serif\" font-size=\"13\" fill=\"#1f2937\" text-anchor=\"end\">(0, 6)</text></svg>",
-      "bank_id": "SEC-CG-031",
-      "topic": "coordinate_geometry",
-      "subtopic": "coordinate geometry"
+      "bank_id": "STA-RSD-047",
+      "topic": "statistics",
+      "subtopic": "range standard deviation"
      },
      {
       "id": "MOCK-01-S2E-005",
@@ -673,25 +680,25 @@
       "id": "MOCK-01-S2E-008",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "p, q and r are positive numbers with p < q < r.\n\nQuantity A: p/q + q/r\nQuantity B: p/r + 1",
+      "question": "A set of 6 positive integers has a mean of 10, and its two smallest values are each equal to 1.\nQuantity A: The greatest possible value of the median of the set\nQuantity B: 11",
       "options": [
        "A. Quantity A is greater.",
        "B. Quantity B is greater.",
        "C. The two quantities are equal.",
        "D. The relationship cannot be determined from the information given."
       ],
-      "answer": "B",
-      "explanation": "Step 1 — do not try to evaluate; subtract and factor. Quantity B - Quantity A = p/r + 1 - p/q - q/r.\nStep 2 — group the terms that share a denominator: (p/r - q/r) + (1 - p/q) = (p - q)/r + (q - p)/q.\nStep 3 — the second numerator is the negative of the first, so factor out (p - q): (p - q)/r - (p - q)/q = (p - q)(1/r - 1/q).\nStep 4 — determine the sign of each factor. Since p < q, the factor p - q is negative. Since 0 < q < r, taking reciprocals of positives reverses the order, so 1/r < 1/q and the factor 1/r - 1/q is negative.\nStep 5 — a negative times a negative is positive, so Quantity B - Quantity A > 0. Quantity B is greater, for every allowed p, q, r.\nCheck: substitute two different triples. p = 1, q = 2, r = 4: Quantity A = 1/2 + 1/2 = 1 and Quantity B = 1/4 + 1 = 1.25, so B is greater. p = 3, q = 10, r = 11: Quantity A = 0.3 + 0.909 = 1.209 and Quantity B = 0.273 + 1 = 1.273, so B is greater again. Correct.\nAnswer: B.",
-      "trap": "Noticing that p/q and q/r are each less than 1 and concluding nothing, then answering D because three free variables feel indeterminate. The difference factors as (p - q)(1/r - 1/q), whose sign is pinned by the single ordering p < q < r, so no test value can ever reverse it. Testing near-equal values such as p = 9, q = 10, r = 11 makes the two columns nearly equal (1.809 versus 1.818) and can tempt an answer of C, but they never actually meet.",
-      "estimated_time_seconds": 110,
+      "answer": "A",
+      "explanation": "Step 1 — sum = 6 x 10 = 60. Two of the values are 1, so the other four sum to 58. Call them v3 <= v4 <= v5 <= v6.\nStep 2 — with 6 sorted values the median is (v3 + v4)/2, so the job is to make v3 + v4 as large as possible.\nStep 3 — the ceiling comes from the top pair: v5 and v6 are each at least v4, so v5 + v6 >= 2 x v4 >= v3 + v4. Since (v3 + v4) + (v5 + v6) = 58, that forces v3 + v4 <= 29.\nStep 4 — 29 is not reachable with integers: it would need v4 >= 15, leaving only 29 for v5 + v6 while both must be at least 15. So try 28: v3 = v4 = 14 and v5 = v6 = 15 gives {1, 1, 14, 14, 15, 15}, which sums to 1 + 1 + 14 + 14 + 15 + 15 = 60. Valid.\nStep 5 — the greatest possible median is 28/2 = 14, and 14 > 11. Quantity A is greater.",
+      "trap": "Assuming the median cannot exceed the mean of 10 and choosing B. Two values are pinned at 1, which frees a large share of the total for the middle of the set. The real ceiling comes from the requirement that the two values ABOVE the median be at least as large as the median's own pair - that is what caps v3 + v4 at 28.",
+      "estimated_time_seconds": 105,
       "tags": [
-       "qc",
-       "factor-the-difference",
-       "ordering-constraint"
+       "median",
+       "maximize",
+       "qc"
       ],
-      "bank_id": "ALG-INQ-052",
-      "topic": "algebra",
-      "subtopic": "algebra"
+      "bank_id": "STA-MMM-044",
+      "topic": "statistics",
+      "subtopic": "mean median mode"
      },
      {
       "id": "MOCK-01-S2E-009",

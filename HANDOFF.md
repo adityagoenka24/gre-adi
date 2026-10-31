@@ -1,6 +1,6 @@
 # GRE Quant Pro — Master Handoff
 
-**Current as of 2026-10-30.** This is the only handoff. It replaces the repo's `HANDOFF_STUDENT_PROGRESS_2026-10-24.md` and 18 older project docs (listed in section 9). Read sections 0 to 2 first. The rest is reference.
+**Current as of 2026-10-31.** This is the only handoff. It replaces the repo's `HANDOFF_STUDENT_PROGRESS_2026-10-24.md` and 18 older project docs (listed in section 9). Read sections 0 to 2 first. The rest is reference.
 
 ---
 
@@ -222,36 +222,41 @@ Purge clears the D1 index and log rows (three SQL statements regardless of size)
 - **Weights:** easy 1.00, medium 1.15, hard 1.35, extreme_hard 1.55. Keys normalise (`extreme_hard`, `Extreme Hard`, `extreme hard`).
 - **Anchors** (weighted accuracy → scaled): 0 → 134, .25 → 145, .40 → 152, .50 → 156, .60 → 159, .70 → 162, .80 → 165, .90 → 168, 1 → 170.
 - **Band:** `round(16/√n)` plus a scope penalty (mock 0, sectional +1, topic test +2), clamped 3–10. A 27-question mock is ±3, a 14-question sectional ±6, a 10-question topic test ±7. `note` text is printed verbatim by every page; sets under 8 questions are prefixed "Too few questions to be reliable yet". A set with no recognised difficulty returns `null` ("—").
+- **Routing wiring fixed (2026-10-31):** both full-mock shells read the Section 1 thresholds with `state.mockMeta && state.mockMeta.routing`, but `state.mockMeta` is the page's `MOCK_INDEX` card entry (`{id, title, difficulty, tags}`) and has never carried `routing`. So `routeFor` silently fell back to its defaults of 6 / 9 and every paper's own `meta.routing` of 4 / 7 was ignored — a student on 7/12 in Section 1 was served the *medium* form and capped at 165 instead of 170. Both shells now read `state.mockData.meta.routing` first and fall back to `mockMeta`. Verified in a headless browser: 0-3 -> easy, 4-6 -> medium, 7-12 -> hard, ceilings 158 / 165 / 170.
 - **Route ceilings** (full mocks only): the Section 2 form served compresses 130–170 into 130–ceiling: easy 158, medium 165, hard 170. A perfect easy section cannot out-score a hard one. The form is stored on the session so Coach View re-scores to the number the student saw. Sectionals, topic tests and attempts stored before this pass no route and score as before.
 - **Surfaces:** every mock, sectional and topic test shows an estimated Quant score with a range; Coach View recomputes it from the stored questions rather than reading a saved field.
 - **API:** `fromQuestions`, `fromResults`, `fromSession`, `fromCounts`, `scaledFromWeighted`, `bandFor`, `scopeFor`, `routeFor`, `pickForm`.
 - **Known calibration issue:** anchors are generous (58% raw on a sectional gives 158; real GRE puts it nearer 152–155). They were kept so no past score moved. Open decision 1 is the same lever.
 - **Score-first page (`score-card.js`, loaded by both full mocks, both sectionals and the event mock):** order is score page → error log → analysis. The score page is full-screen and deliberately bare: the scaled score out of 170 and its range, nothing else (no accuracy, counts, section split or diagnosis). If the script fails to load the student lands on the review as before.
 
-### 4.5 The 10 mocks (rebuilt 2026-10-29)
+### 4.5 The 10 mocks (rebuilt 2026-10-29, level spread corrected 2026-10-31)
 
 **Why Section 1 felt "very very easy":** all 570 questions in the old papers came from the bank's `easy` and `medium` tiers, never the hard tier, and the labels are inflated about a level (a bank `medium` is a one-step item). The two items labelled `hard` in the old mock_01 Section 1 were one-liners. Three of the Section 1 DI sets (mocks 02, 03, 07) were also unanswerable: the stems asked about categories the exhibit did not contain.
 
 **The hard tier has three strata:** KMF-origin (287, genuinely ETS-hard, 12/12 in a blind sample), sectional (176, genuinely hard, 12/12), and generated (905, only about a third truly hard).
 
-**Decisions taken with the owner:** every mock at true real-GRE level (no escalating ladder); Section 1 has no easy items.
+**Decisions taken with the owner:** every mock at true real-GRE level (no escalating ladder). The 2026-10-29 "Section 1 has no easy items" call was **reversed on 2026-10-31** in favour of the real test's published level spread: ETS runs Section 1 at L2/L3/L4 and Section 2 at L3/L4/L5, so Section 1 is now 3 easy / 7 medium / 2 hard and every Section 2 form carries at least one `extreme_hard`.
 
 **What a paper is:** 57 slots, 570 distinct questions across the ten papers, none repeated. Labels reflect work required (`ETS_RUBRIC` Part 2.5):
 
 | mock label | source | band |
 |---|---|---|
+| `easy` | bank medium tier, one-step items (65–80 s), re-labelled to the work required | 150–157 |
 | `medium` | generated-hard | 155–162 |
 | `hard` | KMF + sectional | 162–167 |
-| `extreme_hard` | bank extreme, 2 per paper, Section 2 only | 167–170 |
+| `extreme_hard` | bank extreme, 3 per paper, Section 2 only (one in each form) | 167–170 |
 
-- **Section 1** (12 q, 21 min): 7 medium / 5 hard. 9 bank items (QC 4, MCQ 3, select-all 1, numeric 1) plus a three-question DI set at positions 5–7 off one shared exhibit.
-- **Section 2** (15 q, 26 min), three forms: easy 10 medium / 5 hard; medium 7 / 7 / 1 extreme; hard 4 / 10 / 1 extreme. Types QC 5, MCQ 6, select-all 2, numeric 2.
+- **Section 1** (12 q, 21 min): 3 easy / 7 medium / 2 hard — the L2/L3/L4 spread. The DI set at positions 5–7 supplies one medium and both hard items; the three easy slots replaced the three non-DI hard items, type for type. The nine non-DI slots are QC 4, MCQ 3, select-all 1, numeric 1; the DI set sits off one shared exhibit. Time budget 1055–1140 s of 1260 (84–90%).
+- **Section 2** (15 q, 26 min), three forms, each spanning L3/L4/L5: easy 10 medium / 4 hard / 1 extreme; medium 7 / 7 / 1 extreme; hard 4 / 10 / 1 extreme. The easy form gained its extreme on 2026-10-31; nine papers needed one or two within-tier time repairs to absorb it, and that also brought mocks 07 and 09 back under the 1560 s clock (they had been at 1585 s). Types QC 5, MCQ 6, select-all 2, numeric 2.
 - **Routing** (`meta.routing` `{medium: 4, hard: 7}`, `adaptive_threshold` 7): Section 1 correct < 4 → easy form, 4–6 → medium, 7 or more → hard.
 - **Pacing:** Section 1 runs 100–103 s per question (real GRE 105); Section 2 forms 102–108. Drawing only from the hard tier first pushed every paper to 96–107% of its clock, so a repair pass swapped within tier and type, then across papers.
 - **Free mocks** `mocks/mock_01-02.json` are byte-identical to pro 01–02. Files are `indent=1`, `ensure_ascii=False`, no trailing newline. Meta carries `built: "2026-10-29"`, `built_from`, `blueprint`, `adaptive_forms`.
 - **DI sets:** ten rebuilt, 30 questions, each ramping medium → hard → hard. Every key is computed from the exhibit data, never typed, and was recomputed independently (`validate.py --solutions`: 0 errors, 0 warnings). Writing the independent solver caught eight defects in the first draft (seven explanations contradicting computed keys, one negative answer).
 - **Method, if you need to redo it:** pool the hard tier; drop 15 structurally defective ids; drop items budgeted over 130 s (140 for extreme); reserve exhibit items for DI sets; assign per container so QC (only 90 hard-stratum items for about 80 slots) lands on medium slots and the other types buy the hard slots; spread across source files and topics; then time-repair. Remember open decision 2 (type order).
 - **Verification:** `validate.py` over all 570: 0 errors (348 `estimated_time_seconds unusual for <difficulty>` warnings, expected from re-labelling items down); seven bank keys re-solved with sympy, all correct; free `full_mock.html` run end to end in a browser, no page errors.
+- **Level-spread pass (2026-10-31):** 50 slots re-sourced across the ten papers — 30 Section 1 easy slots, 10 Section 2 easy-form extremes, 10 within-tier time repairs. Every incoming item is an existing bank item reused in place: slot ids, question counts and the per-section type mix are byte-for-byte unchanged, and no bank question appears in two papers (items shared between forms of the *same* paper are fine, since a student sits only one form). The 30 easy slots use 30 distinct subtopics, no paper carries a subtopic twice in Section 1, and no topic exceeds three items in one Section 1.
+- **Gate run for that pass:** all 50 items cleared `validate.py` hard rules (0 errors), a wording-contract screen (US spelling, interrogative stems, canonical select-all directives, no shouty caps, no redundant entry instructions, stem/exhibit agreement) and `--solutions` against keys solved independently from each stem (0 mismatches). Four candidates were rejected by that gate and replaced: `ALG-INQ-054` (explanation names Cauchy–Schwarz, trap uses "Maximising"), `STA-DDI-014` (stem corrupted — "0.05" split, leaving "P(X ≥ x) < 0?" and "Indicate all such values.05."), `DAT-TBL-027` (stem says "contingency table" but the exhibit is a bar chart with Total bars baked in) and the `MIX-GEN` roll-up family (duplicates subtopic-file items).
+- **Pre-existing bank defects found while screening (not fixed, outside that pass):** of 10,943 bank items, ~908 carry shouty caps (mostly `TRUE`/`FALSE` in statistics select-all stems), 76 fail a `validate.py` hard rule, 26 repeat a redundant entry instruction, 9 have a truncated or split number in the stem, and 15 stems are shared by two different ids. The medium and hard Section 2 forms still run 98–104% of their clock, as they did before.
 - **Real GRE shape** (reconstructed from the KMF import's "Section N Base / Hard" tags): real Section 1 is 27% easy / 56% medium / 17% hard / 1% extreme; the hardest real Section 2 is 3% / 58% / 37% / 2%. Real mixes are never all-extreme.
 
 ### 4.6 Event mocks (`events/mock_test.html`)

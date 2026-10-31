@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
+     "easy": 3,
      "medium": 7,
-     "hard": 5
+     "hard": 2
     },
     "types": {
      "multiple_answer": 2,
@@ -40,7 +41,8 @@
     "difficulty": {
      "easy": {
       "medium": 10,
-      "hard": 5
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "medium": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -127,27 +133,28 @@
     },
     {
      "id": "MOCK-04-S1-003",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "For each positive integer n, the function f is defined by f(n) = 3^(n(-1)^n). What is the value of f(3) * f(4) ?",
+     "question": "A committee of 4 must be chosen from 6 men and 4 women, all 10 people distinct. The committee members hold no distinct roles, so order does not matter, and no person may serve twice. How many committees contain exactly 2 men and exactly 2 women?",
      "options": [
-      "A. 1/3",
-      "B. 1",
-      "C. 3",
-      "D. 9",
-      "E. 27"
+      "A. 21",
+      "B. 60",
+      "C. 90",
+      "D. 180",
+      "E. 210"
      ],
      "answer": "C",
-     "explanation": "Work out the exponent for each input. For n = 3, (-1)^3 = -1, so the exponent is 3 times -1, which is -3, giving f(3) = 3^(-3) = 1/27. For n = 4, (-1)^4 = 1, so the exponent is 4, giving f(4) = 3^4 = 81. The product is 81/27 = 3.",
-     "trap": "Students read n(-1)^n as (n times -1) raised to the n, or drop the alternating sign entirely and compute 3^3 times 3^4 = 3^7. The factor (-1)^n only flips the sign of the exponent, and it does so on odd inputs.",
-     "estimated_time_seconds": 100,
+     "explanation": "Step 1 — the committee is built from two separate pools, so choose from each pool and MULTIPLY.\nStep 2 — men: C(6,2) = (6 x 5)/2 = 15.\nStep 3 — women: C(4,2) = (4 x 3)/2 = 6.\nStep 4 — total = 15 x 6 = 90.\nCheck the size: 90 is well under C(10,4) = 210, the number of committees with no composition requirement. Correct.\nAnswer: 90.",
+     "trap": "Choice A, 21, comes from ADDING the pools (15 + 6) instead of multiplying - but each of the 15 pairs of men can be paired with each of the 6 pairs of women, so the counts multiply. Choice B, 60, is C(6,2) x C(4,1) = 15 x 4, from choosing only one woman. Choice E, 210 = C(10,4), ignores the 2-and-2 requirement altogether, and choice D, 180, is P(6,2) x C(4,2) = 30 x 6, from ordering the two men.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "functions",
-      "exponents"
+      "two-pools",
+      "multiply-independent-choices",
+      "committee-selection"
      ],
-     "bank_id": "SEC-AL-047",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "bank_id": "STA-CMB-016",
+     "topic": "statistics",
+     "subtopic": "combinations"
     },
     {
      "id": "MOCK-04-S1-004",
@@ -397,26 +404,27 @@
     },
     {
      "id": "MOCK-04-S1-010",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "quantitative_comparison",
-     "question": "p is not 0, q is not 0, and p + q is not 0.\nQuantity A: p^(-2) + q^(-2)\nQuantity B: (p + q)^(-2)",
+     "question": "A principal of $2,000 is invested for 2 years at 8 percent per year.\nQuantity A: The total amount if the interest is simple\nQuantity B: The total amount if the interest is compounded annually",
      "options": [
       "A. Quantity A is greater.",
       "B. Quantity B is greater.",
       "C. The two quantities are equal.",
       "D. The relationship cannot be determined from the information given."
      ],
-     "answer": "D",
-     "explanation": "Rewrite both columns as ordinary fractions: Quantity A is 1/p^2 + 1/q^2 and Quantity B is 1/(p + q)^2. Both are positive, and which one wins depends on how big p + q is compared with p and q individually. Take p = q = 1: Quantity A is 1 + 1 = 2 while Quantity B is 1/4, so Quantity A is greater. Now take p = 10 and q = -9.9, which is allowed since their sum is 0.1, not 0: Quantity A is 1/100 + 1/98.01, roughly 0.02, while Quantity B is 1/(0.1)^2 = 100, so Quantity B is greater. Both orderings occur.",
-     "trap": "Students treat the negative exponent as distributing over the sum and write (p + q)^(-2) = p^(-2) + q^(-2), then choose 'equal.' Exponents never distribute across addition. The setup also quietly permits one variable to be negative, which is what lets p + q become tiny and blow Quantity B up.",
-     "estimated_time_seconds": 105,
+     "answer": "B",
+     "explanation": "Step 1 — Quantity A: A = 2000 * (1 + 0.08*2) = 2000 * 1.16 = 2320.\nStep 2 — Quantity B: A = 2000 * (1.08)^2 = 2000 * 1.1664 = 2332.80.\nStep 3 — the structural route needs no multiplication of the whole amount: over exactly 2 years the compound account beats the simple account by P*r^2 = 2000 * (0.08)^2 = 2000 * 0.0064 = 12.80, and 12.80 is positive, so Quantity B is greater.\nCheck: 2320 + 12.80 = 2332.80, matching Step 2. Correct.\nAnswer: B.",
+     "trap": "Answering C by recalling that simple and compound agree for one period and failing to notice that t = 2 here; the accounts are equal only after the first period. Answering D because 'the compounding frequency of the simple account is unstated' misreads the setup: simple interest has no compounding at all, so both columns are fully determined.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "negative-exponents",
-      "comparison"
+      "simple-vs-compound",
+      "two-year-difference",
+      "qc"
      ],
-     "bank_id": "SEC-AO-029",
-     "topic": "arithmetic",
-     "subtopic": "arithmetic"
+     "bank_id": "WRD-INT-015",
+     "topic": "word_problems",
+     "subtopic": "interest simple compound"
     },
     {
      "id": "MOCK-04-S1-011",
@@ -444,23 +452,23 @@
     },
     {
      "id": "MOCK-04-S1-012",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "numeric_entry",
-     "question": "In the figure above, ACEG is a square. Square ABIH shares vertex A with it, with B on side AC and H on side AG. Square JDEF shares vertex E with it, with D on side CE and F on side EG. Squares ABIH and JDEF have equal areas, and the area of square ACEG is 25 times the area of square ABIH. BJFI is a parallelogram. If the area of square ABIH is 20, what is the area of parallelogram BJFI?\n\nNote: Figure not drawn to scale.",
+     "question": "The table above shows how many of 50 inspected units had each possible number of defects. What is the average (arithmetic mean) number of defects per inspected unit?",
      "options": null,
-     "answer": "60",
-     "explanation": "Let each small square have side s, so its area is s^2 = 20. Since square ACEG has 25 times that area, its side is 5s. Put A at the origin with AG along one axis and AC along the other. Then B is s from A along AC and I is the far corner of the small square, so segment BI is horizontal with length s and sits s from side AG. The far small square at E puts J and F at a height of 5s - s = 4s, with JF horizontal of length s. So BJFI has base BI = s and its opposite side JF parallel to it at a height of 4s - s = 3s. Its area is base times height = s(3s) = 3s^2 = 3(20) = 60.",
-     "trap": "Students take the parallelogram's height to be the full 4s that separates the two small squares' far edges and answer 80, or they slide the slanted side BJ into the area formula and use it as a height. The height of a parallelogram is the perpendicular distance between the two parallel sides BI and JF, which is 3s, not 4s and not the slant.",
-     "estimated_time_seconds": 130,
+     "answer": "1.24",
+     "explanation": "Weight each defect count by how many units had it. The total number of defects is 0(18) + 1(14) + 2(9) + 3(6) + 4(3) = 0 + 14 + 18 + 18 + 12 = 62. The 50 units share those 62 defects, so the average is 62/50 = 1.24 defects per unit.",
+     "trap": "A student who averages the five defect values in the left column, ignoring how many units fall in each row, computes (0 + 1 + 2 + 3 + 4)/5 = 2. The rows are far from equally populated, with 18 units at zero defects, so the weighted average is 1.24 rather than 2.",
+     "estimated_time_seconds": 75,
      "tags": [
-      "parallelogram-area",
-      "squares",
-      "composite-figures"
+      "mean",
+      "weighted-average",
+      "frequency-table"
      ],
-     "svg": "<svg viewBox=\"0 0 300 260\" width=\"300\" height=\"260\" xmlns=\"http://www.w3.org/2000/svg\"><polygon points=\"40,180 200,60 240,60 80,180\" fill=\"#e5edf7\" stroke=\"none\"/><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"40\" y=\"20\" width=\"200\" height=\"200\"/><rect x=\"40\" y=\"180\" width=\"40\" height=\"40\"/><rect x=\"200\" y=\"20\" width=\"40\" height=\"40\"/><polygon points=\"40,180 200,60 240,60 80,180\"/></g><g font-family=\"Georgia, serif\" font-size=\"14\" fill=\"#1f2937\"><text x=\"26\" y=\"234\">A</text><text x=\"24\" y=\"186\">B</text><text x=\"26\" y=\"16\">C</text><text x=\"192\" y=\"14\">D</text><text x=\"244\" y=\"16\">E</text><text x=\"246\" y=\"64\">F</text><text x=\"244\" y=\"234\">G</text><text x=\"74\" y=\"236\">H</text><text x=\"87\" y=\"197\">I</text><text x=\"185\" y=\"48\">J</text></g></svg>",
-     "bank_id": "SEC-PG-046",
-     "topic": "geometry",
-     "subtopic": "geometry"
+     "svg": "<svg viewBox=\"0 0 380 228\" width=\"380\" height=\"228\" xmlns=\"http://www.w3.org/2000/svg\"><g stroke=\"#1f2937\" fill=\"none\" stroke-width=\"2\"><rect x=\"30\" y=\"42\" width=\"320\" height=\"174\" fill=\"#ffffff\"/><rect x=\"30\" y=\"42\" width=\"320\" height=\"29\" fill=\"#e5edf7\"/><line x1=\"30\" y1=\"71\" x2=\"350\" y2=\"71\"/><line x1=\"30\" y1=\"100\" x2=\"350\" y2=\"100\"/><line x1=\"30\" y1=\"129\" x2=\"350\" y2=\"129\"/><line x1=\"30\" y1=\"158\" x2=\"350\" y2=\"158\"/><line x1=\"30\" y1=\"187\" x2=\"350\" y2=\"187\"/><line x1=\"230\" y1=\"42\" x2=\"230\" y2=\"216\"/></g><g font-family=\"Georgia, serif\" fill=\"#1f2937\" text-anchor=\"middle\"><text x=\"190\" y=\"26\" font-size=\"15\">Defects Found in 50 Inspected Units</text><text x=\"130\" y=\"62\" font-size=\"13\">Number of Defects</text><text x=\"290\" y=\"62\" font-size=\"13\">Number of Units</text><text x=\"130\" y=\"91\" font-size=\"14\">0</text><text x=\"290\" y=\"91\" font-size=\"14\">18</text><text x=\"130\" y=\"120\" font-size=\"14\">1</text><text x=\"290\" y=\"120\" font-size=\"14\">14</text><text x=\"130\" y=\"149\" font-size=\"14\">2</text><text x=\"290\" y=\"149\" font-size=\"14\">9</text><text x=\"130\" y=\"178\" font-size=\"14\">3</text><text x=\"290\" y=\"178\" font-size=\"14\">6</text><text x=\"130\" y=\"207\" font-size=\"14\">4</text><text x=\"290\" y=\"207\" font-size=\"14\">3</text></g></svg>",
+     "bank_id": "SEC-ST-026",
+     "topic": "sectional",
+     "subtopic": "sectional"
     }
    ]
   },
@@ -695,22 +703,20 @@
       "id": "MOCK-04-S2E-010",
       "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "A 1-foot-wide border of grass surrounds a rectangular garden on all sides. The outer perimeter (including the border) is 56 feet. The ratio of the garden's length to its width is 2:1. What is the area of the garden alone, in square feet?",
+      "question": "N is a three-digit positive integer and M is the integer formed by writing the digits of N in reverse order. If N - M = 297 and the digits of N sum to 18, how many possible values of N are there?",
       "options": null,
-      "answer": "128",
-      "explanation": "Let garden width = w, length = 2w (ratio 2:1). The border adds 1 ft on each side, so outer dimensions are (w+2) by (2w+2). Outer perimeter = 2[(w+2) + (2w+2)] = 2(3w+4) = 6w+8 = 56 → 6w = 48 → w = 8. Garden: 8 ft wide, 16 ft long. Area = 8 × 16 = 128 sq ft.",
-      "trap": "Students add 1 (not 2) to each dimension: outer = (w+1) by (2w+1), perimeter = 2(3w+2) = 6w+4 = 56 → 6w = 52 → w ≈ 8.67 (non-integer), which signals an error. The border adds 1 foot to EACH side, so each dimension gains 2 feet in total.",
-      "estimated_time_seconds": 115,
+      "answer": "4",
+      "explanation": "Step 1 — let N have hundreds digit a, tens digit b and units digit c, so N = 100a + 10b + c and M = 100c + 10b + a.\nStep 2 — subtract: N - M = 99a - 99c = 99(a - c). The tens digit cancels.\nStep 3 — set 99(a - c) = 297, so a - c = 3.\nStep 4 — use the digit sum: a + b + c = 18. Substituting a = c + 3 gives (c + 3) + b + c = 18, so b = 15 - 2c.\nStep 5 — impose the digit ranges. b = 15 - 2c must be from 0 to 9, so 2c >= 6, that is c >= 3. Also a = c + 3 must be at most 9, so c <= 6.\nStep 6 — c = 3, 4, 5, 6 give b = 9, 7, 5, 3 and a = 6, 7, 8, 9: the integers 693, 774, 855 and 936. That is 4 values.\nCheck one: 936 - 639 = 297, and 9 + 3 + 6 = 18. Check another: 693 - 396 = 297, and 6 + 9 + 3 = 18. Correct.\nAnswer: 4.",
+      "trap": "Stopping at c >= 3 without also imposing a = c + 3 <= 9, which lets c run from 3 to 7 and gives 5 values - the fifth, c = 7, would need a = 10. Answering 3 is the other live error: dividing 297 by 99 to get a - c = 3 and reporting that difference instead of counting the integers.",
+      "estimated_time_seconds": 110,
       "tags": [
-       "area",
-       "perimeter",
-       "composite-figure",
-       "multi-step"
+       "digit-reversal",
+       "three-digit-expansion",
+       "digit-range-constraint"
       ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 206\" width=\"330\" height=\"206\" role=\"img\"><polygon points=\"26,180.2 304,180.2 304,25.8 26,25.8\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><polygon points=\"41.4,164.8 288.6,164.8 288.6,41.2 41.4,41.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"288.6\" y1=\"103\" x2=\"304\" y2=\"103\" stroke=\"#16191d\" stroke-width=\"1.0\" stroke-linecap=\"round\"/><line x1=\"165\" y1=\"41.2\" x2=\"165\" y2=\"25.8\" stroke=\"#16191d\" stroke-width=\"1.0\" stroke-linecap=\"round\"/><text x=\"296.3\" y=\"96.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">1</text><text x=\"170\" y=\"37.8\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">1</text></svg>",
-      "bank_id": "GEO-PNA-055",
-      "topic": "geometry",
-      "subtopic": "geometry"
+      "bank_id": "NUM-DPV-044",
+      "topic": "number_properties",
+      "subtopic": "digit problems place value"
      },
      {
       "id": "MOCK-04-S2E-011",
@@ -795,21 +801,22 @@
      },
      {
       "id": "MOCK-04-S2E-014",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "numeric_entry",
-      "question": "Integers a and b both lie strictly between 10 and 40, and the fraction (3+a)/(5+b) equals 3/5. What is the largest possible value of a + b?",
+      "question": "In the 4-digit number 3d4e, d and e are single digits (the digits are 3, d, 4, e from left to right). What is the greatest value of 3d4e that is divisible by 44?",
       "options": null,
-      "answer": "56",
-      "explanation": "Cross-multiply: 5(3 + a) = 3(5 + b), so 15 + 5a = 15 + 3b and 5a = 3b.\nSo a = 3t and b = 5t for a positive integer t.\nBoth must be between 11 and 39: b = 5t <= 39 gives t <= 7; a = 3t >= 11 gives t >= 4.\nSo t = 4, 5, 6, 7 and a + b = 8t is largest at t = 7: a = 21, b = 35, sum 56.\nCheck: (3 + 21)/(5 + 35) = 24/40 = 3/5.",
-      "trap": "Using t = 8 (a = 24, b = 40) to get 64, forgetting that b must be strictly less than 40; or a pair such as a = 39, b = 65 ignoring the upper bound.",
-      "estimated_time_seconds": 105,
+      "answer": "3740",
+      "explanation": "Step 1 — split 44 into COPRIME factors: 44 = 4 x 11. Both tests must pass.\nStep 2 — the 4-test reads the last two digits, 4e, that is 40 + e. Since 40 is a multiple of 4, we need e divisible by 4: e = 0, 4 or 8.\nStep 3 — the 11-test. Positions from the right: e is 1st, 4 is 2nd, d is 3rd, 3 is 4th. Alternating sum = (e + d) - (4 + 3) = d + e - 7. This must be 0 or a multiple of 11. With d and e digits, d + e runs from 0 to 18, so d + e - 7 runs from -7 to 11. The multiples of 11 available are 0 and 11, giving d + e = 7 or d + e = 18.\nStep 4 — combine with the three allowed values of e, and prefer the largest d since d is the more significant digit.\nd + e = 18 forces d = e = 9, but e = 9 is not one of 0, 4, 8. Rejected.\nd + e = 7 with e = 0 gives d = 7: the number 3,740.\nd + e = 7 with e = 4 gives d = 3: the number 3,344.\nd + e = 7 with e = 8 would give d = -1, impossible.\nStep 5 — the two valid numbers are 3,740 and 3,344. The greater is 3,740.\nCheck: 3,740/44 = 85, and 3,344/44 = 76. Both exact, and 3,740 > 3,344.\nAnswer: 3740.",
+      "trap": "Splitting 44 as 2 x 22 and testing only 'even' plus 'divisible by 22'. Those factors are not coprime, so the pair is not equivalent to 44. The commoner error is finding one valid number and stopping: a student who lands on 3,344 first answers 3344, missing that d = 7, e = 0 also works and is larger. The stem asks for the GREATEST value, so every allowed e must be checked. Answering 2 - the count of valid numbers rather than the number itself - is the third live error.",
+      "estimated_time_seconds": 130,
       "tags": [
-       "proportion-integers",
-       "bounded-solutions"
+       "coprime-factors",
+       "divisible-by-44",
+       "two-unknown-digits"
       ],
-      "bank_id": "ALG-LN2-KMF-003",
-      "topic": "algebra",
-      "subtopic": "linear equations 2var"
+      "bank_id": "NUM-DIV-054",
+      "topic": "number_properties",
+      "subtopic": "divisibility rules"
      },
      {
       "id": "MOCK-04-S2E-015",

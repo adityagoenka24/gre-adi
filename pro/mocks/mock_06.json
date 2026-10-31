@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
+     "easy": 3,
      "medium": 7,
-     "hard": 5
+     "hard": 2
     },
     "types": {
      "quantitative_comparison": 4,
@@ -40,7 +41,8 @@
     "difficulty": {
      "easy": {
       "medium": 10,
-      "hard": 5
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "hard": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -98,27 +104,28 @@
     },
     {
      "id": "MOCK-06-S1-002",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "The function f is defined by f(x) = |x - a| - |b - x| for all numbers x, where a and b are positive constants. What is the value of f(-6) ?",
+     "question": "In a survey of 150 people, 85 like action movies, 70 like comedy movies, and 30 like neither genre. How many people like both action and comedy?",
      "options": [
-      "A. a + b",
-      "B. a - b",
-      "C. a - b - 12",
-      "D. -a - b",
-      "E. -a - b + 12"
+      "A. 5",
+      "B. 30",
+      "C. 35",
+      "D. 50",
+      "E. 120"
      ],
-     "answer": "B",
-     "explanation": "Substitute x = -6. The first term is |-6 - a|. Since a is positive, -6 - a is negative, so its absolute value is 6 + a. The second term is |b - (-6)| = |b + 6|. Since b is positive, b + 6 is positive, so its absolute value is b + 6. Therefore f(-6) = (6 + a) - (b + 6) = a - b. The 6 cancels.",
-     "trap": "Students strip the absolute value bars without checking signs, getting (-6 - a) - (b + 6) = -a - b - 12. The sign conditions on a and b are given precisely so that both expressions inside the bars have a determinate sign.",
-     "estimated_time_seconds": 105,
+     "answer": "C",
+     "explanation": "Step 1 — strip out the 'neither' group before touching the formula. People who like at least one genre = 150 - 30 = 120.\nStep 2 — inclusion-exclusion on that union: 120 = 85 + 70 - both.\nStep 3 — both = 155 - 120 = 35.\nCheck the four regions: action only 50, comedy only 35, both 35, neither 30. Total 150. Correct.\nAnswer: 35.",
+     "trap": "Using the grand total 150 as the union: 85 + 70 - 150 = 5, choice A. The 30 who like neither are inside the 150 but outside the union, so the union is 120. Choice B, 30, is copying the 'neither' count; choice D, 50, is the action-only region, 85 - 35, which answers a different question; choice E, 120, stops at the union itself.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "functions",
-      "absolute value"
+      "neither",
+      "inclusion-exclusion",
+      "two-step"
      ],
-     "bank_id": "SEC-AL-056",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "bank_id": "STA-OVL-014",
+     "topic": "statistics",
+     "subtopic": "overlapping sets venn diagrams"
     },
     {
      "id": "MOCK-06-S1-003",
@@ -509,21 +516,26 @@
     },
     {
      "id": "MOCK-06-S1-008",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "numeric_entry",
-     "question": "A certain list consists of 40 different positive integers, each of which is a multiple of the positive integer m. The greatest integer in the list is 600. What is the greatest possible value of m?",
+     "question": "The line 0.35x + 0.15y = 8 meets the line y = x at exactly one point, P. What is the sum of the two coordinates of P?",
      "options": null,
-     "answer": "15",
-     "explanation": "Two conditions constrain m. First, 600 is in the list and every member is a multiple of m, so m must be a divisor of 600. Second, every member is a positive multiple of m that is at most 600, and there are only 600/m such multiples in total, so we need 600/m to be at least 40, which gives m at most 15. The largest divisor of 600 that is at most 15 is 15 itself, and it works: the multiples 15, 30, 45, ..., 600 number exactly 600/15 = 40, so a list of 40 different multiples of 15 with greatest member 600 exists. Therefore the greatest possible value of m is 15.",
-     "trap": "Students use only the divisibility condition and answer with a large divisor of 600 such as 60 or 100. A larger m means fewer available multiples below 600: with m = 60 there are only 10 multiples of 60 up to 600, far short of the 40 different integers the list requires. Both conditions have to hold at once.",
-     "estimated_time_seconds": 110,
+     "answer": "32",
+     "explanation": "On the line y = x, both coordinates are equal. Call the point (c, c).\nSubstitute: 0.35c + 0.15c = 8, so 0.5c = 8 and c = 16.\nP = (16, 16), and the sum of its coordinates is 16 + 16 = 32.\nCheck: 0.35*16 + 0.15*16 = 5.6 + 2.4 = 8.",
+     "trap": "Giving only one coordinate, 16, instead of the sum of both coordinates.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "multiples",
-      "divisors"
+      "intersection",
+      "line-y-equals-x"
      ],
-     "bank_id": "SEC-NP-022",
-     "topic": "number_properties",
-     "subtopic": "factors multiples"
+     "origin": "kmf1804",
+     "origin_set": "Section 26 Hard",
+     "source_pages": [
+      159
+     ],
+     "bank_id": "COG-GLE-KMF-005",
+     "topic": "coordinate_geometry",
+     "subtopic": "graphs of linear equations"
     },
     {
      "id": "MOCK-06-S1-009",
@@ -609,27 +621,27 @@
     },
     {
      "id": "MOCK-06-S1-012",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "If -6 <= p <= 9 and p + q = -3, what is the least possible value of pq ?",
+     "question": "A gardening club has 9 members, one of whom is the club treasurer. A subcommittee of 3 members is to be formed, and the subcommittee must include the treasurer. The three members of a subcommittee serve as equals, with no titles. How many different subcommittees are possible?",
      "options": [
-      "A. -108",
-      "B. -81",
-      "C. -54",
-      "D. -18",
-      "E. 0"
+      "A. 24",
+      "B. 28",
+      "C. 56",
+      "D. 84",
+      "E. 168"
      ],
-     "answer": "A",
-     "explanation": "From p + q = -3 we get q = -3 - p, so the product is pq = p(-3 - p) = -p^2 - 3p. As a function of p this is a downward-opening parabola, so it has a maximum in the middle and its smallest values at the ends of the allowed interval. At p = -6 the product is -36 + 18 = -18. At p = 9 the product is -81 - 27 = -108. The least possible value is -108.",
-     "trap": "Students hunt for the minimum where the parabola turns, at p = -1.5, but that point is the maximum. For a downward parabola the smallest value on a closed interval always sits at one of the two endpoints.",
-     "estimated_time_seconds": 110,
+     "answer": "B",
+     "explanation": "The treasurer occupies one of the three seats automatically, so the only real choice is which 2 of the remaining 8 members fill the other two seats. Because the three members serve as equals, order does not matter, so the count is C(8,2) = (8*7)/(2*1) = 28.",
+     "trap": "A student who reads the restriction backwards removes the treasurer from the pool and computes C(8,3) = 56, choice C. That counts the subcommittees that exclude the treasurer, which is the opposite of what the stem requires.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "quadratics",
-      "optimization"
+      "combinations",
+      "restricted-selection"
      ],
-     "bank_id": "SEC-AL-052",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "bank_id": "SEC-CP-001",
+     "topic": "sectional",
+     "subtopic": "sectional"
     }
    ]
   },
@@ -784,31 +796,32 @@
      },
      {
       "id": "MOCK-06-S2E-007",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "multiple_answer",
-      "question": "34, 41, z, 29, 45, 38, 31\n\nThe list of seven numbers above gives the weights, in kilograms, of seven parcels. The range of the seven weights is 22. Which of the following could be the value of z?\n\nIndicate all such values.",
+      "question": "Circle O has radius 5. Point P is outside the circle with PO = 13. A line through P meets the circle at two points, C and D, with C nearer to P.\n\nWhich of the following values are possible for PC?\n\nIndicate all such values.",
       "options": [
-       "A. 7",
-       "B. 23",
-       "C. 29",
-       "D. 45",
-       "E. 51",
-       "F. 67"
+       "A. 6",
+       "B. 8",
+       "C. 9",
+       "D. 12",
+       "E. 16"
       ],
       "answer": [
        "B",
-       "E"
+       "C"
       ],
-      "explanation": "Ignore z for a moment. The six known weights are 34, 41, 29, 45, 38, 31.\nTheir smallest is 29 and their largest is 45, so their range is 45 - 29 = 16.\nThe range of all seven is 22, which is larger than 16, so z must sit outside the interval from 29 to 45 and become either the new minimum or the new maximum.\nCase 1, z is the new minimum: then the maximum is still 45 and 45 - z = 22, so z = 23. Since 23 < 29, z really is the minimum, so this works.\nCase 2, z is the new maximum: then the minimum is still 29 and z - 29 = 22, so z = 51. Since 51 > 45, z really is the maximum, so this works.\nNow test each option.\nA, z = 7: range = 45 - 7 = 38, not 22. No.\nB, z = 23: range = 45 - 23 = 22. Yes.\nC, z = 29: z lies inside the existing spread, so the range stays 16. No.\nD, z = 45: again inside, range stays 16. No.\nE, z = 51: range = 51 - 29 = 22. Yes.\nF, z = 67: range = 67 - 29 = 38, not 22. No.\nCheck: the two working values are 23 and 51.",
-      "trap": "Adding the range of 22 to the current maximum of 45 gives 67, option F.",
-      "estimated_time_seconds": 105,
+      "explanation": "The tangent from P has length √(13² - 5²) = √144 = 12. For any line through P that meets the circle at C and D, PC × PD equals the square of this tangent length, so PC × PD = 144.\nPC is smallest when the line passes through O: PC = 13 - 5 = 8. As the line tilts toward a tangent, PC increases toward 12 but never reaches it, because at PC = 12 the two points coincide. So 8 <= PC < 12.\nA (6): less than 8. Not possible.\nB (8): PD = 144/8 = 18, a valid chord of length 10 through O. Possible.\nC (9): PD = 144/9 = 16, so CD = 7. Possible.\nD (12): PD = 12, so C and D coincide (tangent). Not possible.\nE (16): PD = 144/16 = 9 < PC, contradicting C being nearer. Not possible.\nThe answers are B and C.",
+      "trap": "Students who accept any value of PC from 8 up (taking D, PC = 12, because 12 is the tangent length) forget that a tangent touches the circle only once; others pick E because 16 < 18 = 13 + 5.",
+      "estimated_time_seconds": 130,
       "tags": [
-       "range",
-       "case-split"
+       "tangent-line",
+       "chord",
+       "multiple-answer",
+       "multi-step"
       ],
-      "bank_id": "STA-RSD-KMF-004",
-      "topic": "statistics",
-      "subtopic": "range standard deviation"
+      "bank_id": "GEO-CTS-039",
+      "topic": "geometry",
+      "subtopic": "chords tangents secants"
      },
      {
       "id": "MOCK-06-S2E-008",
@@ -833,25 +846,25 @@
       "id": "MOCK-06-S2E-009",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "a and b are real numbers with a > b, a + b = 7 and ab = 10.\nQuantity A: a^3 - b^3\nQuantity B: 3(a^2 + ab + b^2)",
+      "question": "A box contains red, green and yellow balls in the ratio 2:3:4. Then 9 green balls are added to the box and no other change is made.\nQuantity A: The ratio of red balls to green balls after the addition\nQuantity B: The ratio of red balls to yellow balls before the addition",
       "options": [
        "A. Quantity A is greater.",
        "B. Quantity B is greater.",
        "C. The two quantities are equal.",
        "D. The relationship cannot be determined from the information given."
       ],
-      "answer": "C",
-      "explanation": "Step 1 — the givens do not hand you a - b, so build it. Expand (a - b)^2 and rewrite it with what you have:\n(a - b)^2 = a^2 - 2ab + b^2 = (a^2 + 2ab + b^2) - 4ab = (a + b)^2 - 4ab = 49 - 40 = 9\nStep 2 — take the root with the right sign. a - b = 3 or -3, and a > b forces a - b = 3.\nStep 3 — expand the product (a - b)(a^2 + ab + b^2) and watch the middle terms die:\n(a - b)(a^2 + ab + b^2) = a^3 + a^2 b + ab^2 - a^2 b - ab^2 - b^3 = a^3 - b^3\nStep 4 — so Quantity A = a^3 - b^3 = (a - b)(a^2 + ab + b^2) = 3(a^2 + ab + b^2), which is exactly Quantity B. The two columns are equal whatever a^2 + ab + b^2 turns out to be.\nCheck with the actual numbers: a + b = 7 and ab = 10 give a = 5 and b = 2. Quantity A = 125 - 8 = 117. a^2 + ab + b^2 = 25 + 10 + 4 = 39, so Quantity B = 3(39) = 117. Equal.\nAnswer: C.",
-      "trap": "Forgetting the square root in Step 1 and using a - b = 9 instead of 3; that makes Quantity A nine times the bracket and Quantity B only three times it, so Quantity A looks greater - choice A. Ignoring a > b and taking a - b = -3 makes Quantity A negative while Quantity B is positive, giving choice B. Choosing D because a and b are never given separately; they never need to be, since (a + b)^2 - 4ab pins a - b down to a single value.",
-      "estimated_time_seconds": 105,
+      "answer": "D",
+      "explanation": "Step 1 — name k. Red = 2k, green = 3k, yellow = 4k, with k a positive integer.\nStep 2 — Quantity B first, because it is the simple one: red : yellow = 2k : 4k = 1/2. The k cancels, so Quantity B is 1/2 no matter what.\nStep 3 — Quantity A: only green changed, so it is 2k/(3k + 9). Here the k does NOT cancel, because the 9 is a fixed number of balls, not a number of parts.\nStep 4 — test values.\nk = 1: 2/12 = 1/6, which is less than 1/2.\nk = 9: 18/36 = 1/2, which is equal.\nk = 20: 40/69 = 0.58, which is greater than 1/2.\nAll three verdicts occur, so the relationship cannot be determined.\nAnswer: D.",
+      "trap": "Picking k = 1, getting 2:12 = 1/6, and concluding that Quantity B is greater. A ratio plus a fixed change is not another ratio - it is an equation waiting for k, and here nothing in the problem pins k down. Solving 2k/(3k + 9) = 1/2 shows the crossover sits at k = 9, so both directions are reachable.",
+      "estimated_time_seconds": 100,
       "tags": [
-       "difference-of-cubes",
-       "derived-identities",
-       "quantitative-comparison"
+       "ratio-change",
+       "k-not-determined",
+       "qc"
       ],
-      "bank_id": "ALG-EXP-040",
-      "topic": "algebra",
-      "subtopic": "algebra"
+      "bank_id": "WRD-RAT-038",
+      "topic": "word_problems",
+      "subtopic": "ratio word problems"
      },
      {
       "id": "MOCK-06-S2E-010",

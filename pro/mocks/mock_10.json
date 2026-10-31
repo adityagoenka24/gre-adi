@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
+     "easy": 3,
      "medium": 7,
-     "hard": 5
+     "hard": 2
     },
     "types": {
      "quantitative_comparison": 4,
@@ -40,7 +41,8 @@
     "difficulty": {
      "easy": {
       "medium": 10,
-      "hard": 5
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "medium": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -312,26 +318,27 @@
     },
     {
      "id": "MOCK-10-S1-008",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "quantitative_comparison",
-     "question": "The sequence Z(1), Z(2), Z(3), ... is defined by Z(1) = 3 and Z(i + 1) = (1/3)Z(i) for each positive integer i.\nQuantity A: Z(5)\nQuantity B: (9^4)Z(13)",
+     "question": "List 1 = {1, 2, 3, 4, 5}\nList 2 = {1, 2, 3, 4, 100}\nQuantity A: Standard deviation of List 1\nQuantity B: Standard deviation of List 2",
      "options": [
       "A. Quantity A is greater.",
       "B. Quantity B is greater.",
       "C. The two quantities are equal.",
       "D. The relationship cannot be determined from the information given."
      ],
-     "answer": "C",
-     "explanation": "Each term is one third of the previous one, so Z(i) = 3 x (1/3)^(i - 1) = 3^(2 - i). Quantity A is therefore Z(5) = 3^(2 - 5) = 3^(-3) = 1/27. For Quantity B, Z(13) = 3^(2 - 13) = 3^(-11), and 9^4 = (3^2)^4 = 3^8, so Quantity B = 3^8 x 3^(-11) = 3^(-3) = 1/27. The two quantities are equal.",
-     "trap": "Students see an early term compared against a much later one in a decreasing sequence and assume Quantity A must win, without converting 9^4 into 3^8 to notice it cancels the eight extra divisions exactly. Rewriting both sides on a common base is what collapses the comparison.",
-     "estimated_time_seconds": 105,
+     "answer": "B",
+     "explanation": "List 1 = {1, 2, 3, 4, 5}: values are closely clustered, mean = 3, small SD. List 2 = {1, 2, 3, 4, 100}: the outlier 100 is far from the mean (which shifts to (1+2+3+4+100)/5 = 110/5 = 22). The large distance of 100 from the mean of 22 (deviation = 78) dramatically increases the SD. Quantity B is greater.",
+     "trap": "Students compare the first four elements (identical) and assume the SDs are the same, ignoring the dramatic effect the outlier 100 has on spread.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "exponents",
-      "sequences"
+      "standard-deviation",
+      "qc",
+      "data-distribution"
      ],
-     "bank_id": "SEC-AO-010",
-     "topic": "arithmetic",
-     "subtopic": "arithmetic"
+     "bank_id": "STA-RSD-019",
+     "topic": "statistics",
+     "subtopic": "range standard deviation"
     },
     {
      "id": "MOCK-10-S1-009",
@@ -387,51 +394,60 @@
     },
     {
      "id": "MOCK-10-S1-011",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "numeric_entry",
-     "question": "The integers u and v satisfy 3 <= u <= 9 and 6 <= v <= 20, and u is not equal to v. What is the greatest possible value of 12/(u - v)?",
+     "question": "A cafe's supplier charged it an average of $1.20 per liter for the 3,500 liters delivered in March. The April delivery was 4,000 liters, and the April invoice came to $520 more than the March invoice. What average price per liter did the cafe pay in April, in dollars?",
      "options": null,
-     "answer": "12",
-     "explanation": "The fraction 12/(u - v) is largest when u - v is positive and as small as possible, since a small positive denominator makes the quotient big. Any negative value of u - v makes the whole fraction negative and therefore not a candidate for the maximum. Because u and v are integers, the smallest positive value u - v can take is 1. That value is attainable inside the stated ranges: u = 7 and v = 6 gives u - v = 1, with both 3 <= 7 <= 9 and 6 <= 6 <= 20 satisfied and u not equal to v. The resulting value is 12/1 = 12, and no larger value is possible.",
-     "trap": "Pushing u and v to the far endpoints, u = 9 and v = 6, to get 12/3 = 4, or u = 9 and v = 20 to get a negative value. The endpoints do not maximize this expression; the smallest positive integer gap does. The reverse trap is imagining the denominator can slide toward 0 for an unbounded answer, but integers cannot produce a gap between 0 and 1.",
-     "estimated_time_seconds": 105,
+     "answer": "1.18",
+     "explanation": "March bill = 3,500 x 1.20 = 4,200 dollars.\nApril bill = 4,200 + 520 = 4,720 dollars.\nApril average price = 4,720 / 4,000 = 1.18 dollars per liter.\nCheck: 4,000 x 1.18 = 4,720, which is 520 more than 4,200.",
+     "trap": "Dividing the 520 difference by the April volume (520 / 4,000 = 0.13) or adding 0.13 to the March price confuses the bill difference with a price difference; adding 520/3,500 gives about 1.35.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "optimization",
-      "integer-constraints",
-      "fractions"
+      "average-price",
+      "bill-difference"
      ],
-     "bank_id": "SEC-AL-093",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "origin": "kmf1804",
+     "origin_set": "Section 50 Hard",
+     "source_pages": [
+      327
+     ],
+     "bank_id": "WRD-MST-KMF-005",
+     "topic": "word_problems",
+     "subtopic": "multi step problems"
     },
     {
      "id": "MOCK-10-S1-012",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "multiple_answer",
-     "question": "In the xy-plane, a region is defined by the two inequalities y < 2x + 1 and x + y > 4.\n\nWhich of the following points lie in this region?\n\nIndicate all such points.",
+     "question": "A freight depot weighed 75 crates. The combined weight was 1,950 kg, the lightest crate weighed 12.4 kg, and the heaviest crate weighed 30.8 kg more than the lightest.\n\nWhich of the following quantities are fully determined by these facts?\n\nIndicate all such quantities.",
      "options": [
-      "A. (3, 4)",
-      "B. (2, 2)",
-      "C. (5, 0)",
-      "D. (0, 6)",
-      "E. (4, -1)",
-      "F. (6, 3)"
+      "A. The mean weight of the 75 crates",
+      "B. The weight of the heaviest crate",
+      "C. The median weight of the 75 crates",
+      "D. The standard deviation of the 75 weights",
+      "E. The average of the lightest and heaviest weights",
+      "F. The number of crates lighter than the mean weight"
      ],
      "answer": [
       "A",
-      "C",
-      "F"
+      "B",
+      "E"
      ],
-     "explanation": "A point qualifies only if it satisfies both inequalities. For (3, 4): 4 < 2(3) + 1 = 7 holds, and 3 + 4 = 7 > 4 holds, so it qualifies. For (2, 2): 2 < 5 holds, but 2 + 2 = 4 is not greater than 4, so it fails. For (5, 0): 0 < 11 holds and 5 > 4 holds, so it qualifies. For (0, 6): 6 < 1 fails immediately. For (4, -1): -1 < 9 holds, but 4 + (-1) = 3 is not greater than 4, so it fails. For (6, 3): 3 < 13 holds and 6 + 3 = 9 > 4 holds, so it qualifies.",
-     "trap": "Point (2, 2) is the expensive one: it gives x + y = 4 exactly, and students treat the strict inequality as though equality were allowed. With the sign > rather than >=, a point sitting on the boundary line is outside the region.",
-     "estimated_time_seconds": 115,
+     "explanation": "Mean = 1,950 / 75 = 26 kg, so A is determined.\nHeaviest = 12.4 + 30.8 = 43.2 kg, so B is determined.\nMedian: only the total, the minimum and the maximum are known; the middle values can shift without changing them, so C is not determined.\nStandard deviation depends on how the weights spread between 12.4 and 43.2, which is not fixed, so D is not determined.\nAverage of lightest and heaviest = (12.4 + 43.2)/2 = 27.8 kg, so E is determined.\nHow many crates fall below 26 kg depends on the unknown distribution, so F is not determined.\nA true, B true, C false, D false, E true, F false.",
+     "trap": "Assuming the median must equal the mean (26) or the midpoint (27.8) of the extremes; picking C or F treats a symmetric distribution as given when it is not stated.",
+     "estimated_time_seconds": 80,
      "tags": [
-      "inequalities",
-      "half-planes"
+      "determinable-statistics",
+      "range-and-extremes"
      ],
-     "bank_id": "SEC-CG-009",
-     "topic": "coordinate_geometry",
-     "subtopic": "coordinate geometry"
+     "origin": "kmf1804",
+     "origin_set": "Section 15 Base",
+     "source_pages": [
+      94
+     ],
+     "bank_id": "STA-MMM-KMF-010",
+     "topic": "statistics",
+     "subtopic": "mean median mode"
     }
    ]
   },
@@ -466,27 +482,28 @@
      },
      {
       "id": "MOCK-10-S2E-002",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "mcq",
-      "question": "A jar holds 20 beads: 3 red, 4 blue, 5 yellow, and the rest green. Beads are pulled out singly and never put back, and the pulling stops the moment beads of three different colors have appeared. What is the largest number of draws that could be needed?",
+      "question": "Worker A's output falls by 20 percent each hour: A completes 1/5 of the task during hour 1, and during hour n completes (1/5) x 0.8^(n - 1) of the task. Worker B works at a constant 1/20 of the task per hour. They work together from the start. During which hour is the task first completed?",
       "options": [
-       "A. 3",
-       "B. 10",
-       "C. 13",
-       "D. 14",
-       "E. 18"
+       "A. Hour 3",
+       "B. Hour 4",
+       "C. Hour 5",
+       "D. Hour 6",
+       "E. Hour 7"
       ],
       "answer": "D",
-      "explanation": "1. Green beads number 20 - 3 - 4 - 5 = 8.\n2. To delay a third color as long as possible, draw only two colors: take the two largest groups, green (8) and yellow (5), all 13 of them.\n3. The next draw must be red or blue, which makes a third color, so the drawing ends on draw 14.\nCheck: any other pair of colors has fewer than 13 beads, so it ends sooner.",
-      "trap": "Counting only the 13 beads drawn before the third color appears, and forgetting the draw that ends the process, gives choice C.",
-      "estimated_time_seconds": 90,
+      "explanation": "Step 1 — A's total after n hours is a geometric sum: (1/5)(1 + 0.8 + 0.8^2 + ... + 0.8^(n-1)) = (1/5) x (1 - 0.8^n)/(1 - 0.8) = (1/5) x (1 - 0.8^n)/0.2 = 1 - 0.8^n.\nStep 2 — B's total after n hours is n/20.\nStep 3 — total after n hours = 1 - 0.8^n + n/20.\nStep 4 — n = 4: 0.8^4 = 0.4096, so the total is 1 - 0.4096 + 0.20 = 0.7904. Not done.\nStep 5 — n = 5: 0.8^5 = 0.32768, so the total is 1 - 0.32768 + 0.25 = 0.92232. Not done.\nStep 6 — n = 6: 0.8^6 = 0.262144, so the total is 1 - 0.262144 + 0.30 = 1.037856, which is past 1. The task is finished during hour 6.\nCheck against the story: at the end of hour 5 the pair has 0.92232 done, so 0.07768 remains; during hour 6 A adds (1/5)(0.8^5) = 0.0655 and B adds 0.05, a total of 0.1155, which more than covers the remainder. Correct.\nAnswer: D.",
+      "trap": "Treating A's rate as a constant 1/5 per hour: then A and B together do 1/5 + 1/20 = 1/4 per hour and the task looks finished in hour 4, choice B. A decaying rate means the hourly contributions shrink, so the true answer must be later than the constant-rate estimate, never earlier. Choice C, hour 5, comes from stopping at 0.92232 and rounding it up to a full task. Choice A, hour 3, is an estimate from A's opening pace with B's help shaved off the front; it is ruled out by a bound, since even the never-decaying pair manages only 1/4 per hour and cannot finish before hour 4, while the real total after 3 hours is 1 - 0.8^3 + 3/20 = 0.638. Choice E, hour 7, is an off-by-one the other way: the total first passes 1 partway through hour 6, and only a worker who has already finished would still be on the clock in hour 7.",
+      "estimated_time_seconds": 130,
       "tags": [
-       "worst-case",
-       "pigeonhole-style"
+       "decaying-rate",
+       "geometric-series",
+       "extreme-hard"
       ],
-      "bank_id": "STA-PRB-KMF-015",
-      "topic": "statistics",
-      "subtopic": "basic probability"
+      "bank_id": "WRD-WRK-057",
+      "topic": "word_problems",
+      "subtopic": "work rate"
      },
      {
       "id": "MOCK-10-S2E-003",
@@ -772,32 +789,30 @@
       "id": "MOCK-10-S2E-015",
       "difficulty": "medium",
       "type": "multiple_answer",
-      "question": "Which of the following sets of three points form a right triangle? Select all that apply.",
+      "question": "A cylinder has radius 4 and height 9. Which of the following are greater than the volume of the cylinder? Use π ≈ 3.14. Indicate all such values.",
       "options": [
-       "A. (0,0), (3,4), (4,3)",
-       "B. (0,0), (5,0), (0,12)",
-       "C. (1,1), (4,5), (8,2)",
-       "D. (0,0), (6,0), (0,8)",
-       "E. (2,2), (5,6), (9,3)"
+       "A. 400",
+       "B. 420",
+       "C. 430",
+       "D. 460",
+       "E. 500"
       ],
       "answer": [
-       "B",
-       "C",
        "D",
        "E"
       ],
-      "explanation": "Compute all pairwise distances for each set and test a²+b²=c² (where c is the longest side). A: sides 5, 5, √2. 5²+(√2)²=27≠25=5². Not a right triangle. B: sides 5, 12, 13. 5²+12²=169=13². Right triangle ✓. C: sides AB=5, BC=5, AC=√50. 5²+5²=50=(√50)². Right triangle ✓ (right angle at B). D: sides 6, 8, 10. 6²+8²=100=10². Right triangle ✓. E: sides (2,2)→(5,6)=5, (5,6)→(9,3)=5, (2,2)→(9,3)=√50. 5²+5²=50=(√50)². Right triangle ✓. Answers: B, C, D, E.",
-      "trap": "Students may identify set A as a right triangle because it contains two sides of length 5 (familiar from the 3-4-5 triple). But the third side is √2, and 5²+5² = 50 ≠ 2 and 5²+(√2)² = 27 ≠ 25. Set A is isoceles, not right.",
-      "estimated_time_seconds": 120,
+      "explanation": "The volume is π(4²)(9) = 144π, which is about 144 x 3.14 = 452.2. The values greater than 452.2 are 460 and 500 (C and D); 400, 430 and 420 are less.",
+      "trap": "Students who round 144π to about 450 and treat 430 or 460 as close to it mis-sort; students who use the diameter 8 instead of the radius 4 find 576π and select everything.",
+      "estimated_time_seconds": 95,
       "tags": [
-       "distance-formula",
-       "right-triangle",
+       "volume",
        "multiple-answer",
-       "multi-step"
+       "approximation"
       ],
-      "bank_id": "COG-DST-036",
-      "topic": "coordinate_geometry",
-      "subtopic": "coordinate geometry"
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 184 240\" width=\"184\" height=\"240\" role=\"img\"><ellipse cx=\"92\" cy=\"45.8\" rx=\"66\" ry=\"19.8\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><polyline points=\"26,194.2 26.2,195.5 26.6,196.8 27.3,198.1 28.3,199.3 29.5,200.6 31.1,201.8 32.8,203 34.9,204.1 37.2,205.2 39.7,206.3 42.4,207.3 45.4,208.2 48.5,209.1 51.8,209.9 55.4,210.7 59,211.3 62.8,212 66.8,212.5 70.8,212.9 74.9,213.3 79.1,213.6 83.4,213.8 87.7,214 92,214 96.3,214 100.6,213.8 104.9,213.6 109.1,213.3 113.2,212.9 117.2,212.5 121.2,212 125,211.3 128.6,210.7 132.2,209.9 135.5,209.1 138.6,208.2 141.6,207.3 144.3,206.3 146.8,205.2 149.1,204.1 151.2,203 152.9,201.8 154.5,200.6 155.7,199.3 156.7,198.1 157.4,196.8 157.8,195.5 158,194.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><polyline points=\"158,194.2 157.8,192.9 157.4,191.6 156.7,190.3 155.7,189.1 154.5,187.8 152.9,186.6 151.2,185.5 149.1,184.3 146.8,183.2 144.3,182.2 141.6,181.2 138.6,180.2 135.5,179.3 132.2,178.5 128.6,177.8 125,177.1 121.2,176.5 117.2,175.9 113.2,175.5 109.1,175.1 104.9,174.8 100.6,174.6 96.3,174.5 92,174.4 87.7,174.5 83.4,174.6 79.1,174.8 74.9,175.1 70.8,175.5 66.8,175.9 62.8,176.5 59,177.1 55.4,177.8 51.8,178.5 48.5,179.3 45.4,180.2 42.4,181.2 39.7,182.2 37.2,183.2 34.9,184.3 32.8,185.5 31.1,186.6 29.5,187.8 28.3,189.1 27.3,190.3 26.6,191.6 26.2,192.9 26,194.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"26\" y1=\"194.2\" x2=\"26\" y2=\"45.8\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"158\" y1=\"194.2\" x2=\"158\" y2=\"45.8\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"92\" y1=\"45.8\" x2=\"158\" y2=\"45.8\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><circle cx=\"92\" cy=\"45.8\" r=\"2\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><text x=\"170\" y=\"124.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">9</text><text x=\"125\" y=\"79\" font-family=\"Georgia,serif\" font-size=\"11\" fill=\"#16191d\" text-anchor=\"middle\">4</text></svg>",
+      "bank_id": "GEO-3DG-045",
+      "topic": "geometry",
+      "subtopic": "3d geometry cubes cylinders"
      }
     ],
     "medium": [

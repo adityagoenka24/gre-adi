@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
+     "easy": 3,
      "medium": 7,
-     "hard": 5
+     "hard": 2
     },
     "types": {
      "mcq": 4,
@@ -39,8 +40,9 @@
    "section_2": {
     "difficulty": {
      "easy": {
-      "hard": 5,
-      "medium": 10
+      "medium": 10,
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "medium": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -314,50 +320,56 @@
     },
     {
      "id": "MOCK-07-S1-008",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "If y is a nonzero number and y^(-4) < y^(-8), which of the following could be the value of y ?",
+     "question": "Which of the following correctly describes the parabola in the xy-plane given by y = -(x + 3)^2 + 4?",
      "options": [
-      "A. -2",
-      "B. -1",
-      "C. -1/2",
-      "D. 1",
-      "E. 2"
+      "A. Opens upward; vertex at (-3, 4); never crosses the x-axis",
+      "B. Opens upward; vertex at (3, -4); crosses the x-axis at x = 1 and x = 5",
+      "C. Opens downward; vertex at (-3, -4); never crosses the x-axis",
+      "D. Opens downward; vertex at (3, 4); crosses the x-axis at x = 1 and x = 5",
+      "E. Opens downward; vertex at (-3, 4); crosses the x-axis at x = -5 and x = -1"
      ],
-     "answer": "C",
-     "explanation": "Let u = y^(-4). Because the exponent is even, u is positive for every nonzero y, and y^(-8) = u^2. The condition becomes u < u^2, which for positive u means u > 1. So y^(-4) > 1, hence y^4 < 1, hence |y| < 1. Among the choices only -1/2 has absolute value below 1. Checking it: (-1/2)^(-4) = 16 and (-1/2)^(-8) = 256, and 16 < 256 holds.",
-     "trap": "Students assume a more negative exponent always gives a smaller value and rule out every negative base on sign grounds. Both exponents here are even, so sign is irrelevant — only the size of |y| relative to 1 matters.",
-     "estimated_time_seconds": 105,
+     "answer": "E",
+     "explanation": "1. The equation is in vertex form y = a(x - h)^2 + k with a = -1, h = -3 and k = 4.\n2. a < 0, so the parabola opens downward, and the vertex is (h, k) = (-3, 4).\n3. x-intercepts: set y = 0, so (x + 3)^2 = 4, giving x + 3 = 2 or x + 3 = -2, so x = -1 or x = -5.\n4. Check the y-intercept: x = 0 gives y = -9 + 4 = -5, consistent with a downward parabola whose vertex lies above the axis.\nChoice A drops the minus sign in front of the squared term; B flips both the direction and the sign of the shift; D reads (x + 3) as a shift of 3 to the right; E flips the sign of the 4.",
+     "trap": "Reading (x + 3) as a shift 3 units to the right, so the vertex is placed at x = 3, which gives choice D.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "exponents",
-      "inequalities"
+      "vertex-form",
+      "parabola-features"
      ],
-     "bank_id": "SEC-AL-044",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "origin": "kmf1804",
+     "origin_set": "Section 55 Base",
+     "source_pages": [
+      363
+     ],
+     "bank_id": "COG-GQF-KMF-002",
+     "topic": "coordinate_geometry",
+     "subtopic": "graphs of quadratic functions"
     },
     {
      "id": "MOCK-07-S1-009",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "quantitative_comparison",
-     "question": "0 < x^y < 1, and y is an integer.\nQuantity A: y\nQuantity B: 0",
+     "question": "A fair die is rolled three times.\n\nQuantity A: P(all three rolls show the same number)\nQuantity B: 1/36",
      "options": [
       "A. Quantity A is greater.",
       "B. Quantity B is greater.",
       "C. The two quantities are equal.",
       "D. The relationship cannot be determined from the information given."
      ],
-     "answer": "D",
-     "explanation": "A power lands strictly between 0 and 1 in two different ways. Taking x = 1/2 and y = 1 gives x^y = 1/2, which satisfies the condition with y positive. Taking x = 2 and y = -1 gives x^y = 1/2 as well, satisfying the same condition with y negative. So y can sit on either side of 0 and the relationship cannot be determined.",
-     "trap": "Students reason that a result below 1 means the exponent must be negative, picking B. That holds only when the base exceeds 1 — a base between 0 and 1 produces a small result from a positive exponent.",
-     "estimated_time_seconds": 95,
+     "answer": "C",
+     "explanation": "P(all three same) = P(2nd matches 1st) × P(3rd matches 1st) = 1/6 × 1/6 = 1/36. Alternatively: favorable outcomes = 6 (one for each matching triple); total = 6³ = 216. P = 6/216 = 1/36. Quantity A = Quantity B.",
+     "trap": "Students compute 1/6 × 1/6 × 1/6 = 1/216, treating the first die as constrained. The first die can show any number — the constraint is that dice 2 and 3 match it.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "exponents",
-      "inequalities"
+      "compound-probability",
+      "independent-events",
+      "qc"
      ],
-     "bank_id": "SEC-AL-055",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "bank_id": "STA-CPR-032",
+     "topic": "statistics",
+     "subtopic": "compound probability"
     },
     {
      "id": "MOCK-07-S1-010",
@@ -385,26 +397,28 @@
     },
     {
      "id": "MOCK-07-S1-011",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "quantitative_comparison",
-     "question": "x is a negative integer.\nQuantity A: (3^x)^2\nQuantity B: (x^2)^x",
+     "question": "A store buys 100 units at $5 each and has fixed overhead costs of $200.\n\nQuantity A: The selling price per unit at which the store's revenue from selling all 100 units equals its total cost\nQuantity B: $7",
      "options": [
       "A. Quantity A is greater.",
       "B. Quantity B is greater.",
       "C. The two quantities are equal.",
       "D. The relationship cannot be determined from the information given."
      ],
-     "answer": "D",
-     "explanation": "Both columns simplify to a power with exponent 2x: Quantity A is 3^(2x) and Quantity B is x^(2x). Since 2x is negative, each is the reciprocal of a positive power, so the column with the larger base is the smaller quantity. At x = -1, Quantity A is 3^(-2) = 1/9 while Quantity B is 1^(-1) = 1, so B is greater. At x = -3, Quantity A is 3^(-6) = 1/729 and Quantity B is 9^(-3) = 1/729, so they are equal. At x = -4, Quantity A is 3^(-8) = 1/6561 and Quantity B is 16^(-4) = 1/65536, so A is greater. All three outcomes occur.",
-     "trap": "Students test a single value, usually x = -1, and lock in B. Because the base of Quantity B is x^2, which grows as x moves further from zero while the base of Quantity A stays at 3, the two cross over as x decreases.",
-     "estimated_time_seconds": 120,
+     "answer": "C",
+     "explanation": "Total cost = variable cost + overhead = (100 × $5) + $200 = $500 + $200 = $700.\nBreak-even SP per unit = Total cost / Units = 700 / 100 = $7.\nQuantity A = $7 = Quantity B = $7. The two quantities are equal.",
+     "trap": "Students forget to include overhead costs and compute break-even as $5/unit (just the purchase price), choosing B ($7 > $5).",
+     "estimated_time_seconds": 70,
      "tags": [
-      "exponents",
-      "negative exponents"
+      "profit-loss",
+      "cost-price",
+      "word-problem-setup",
+      "qc"
      ],
-     "bank_id": "SEC-AL-057",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "bank_id": "WRD-PNL-028",
+     "topic": "word_problems",
+     "subtopic": "profit loss"
     },
     {
      "id": "MOCK-07-S1-012",
@@ -463,25 +477,25 @@
       "id": "MOCK-07-S2E-002",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "n is a negative odd integer.\n\nQuantity A: ⌊n/2⌋\nQuantity B: −(n + 1)/2",
+      "question": "0 < x < 1\nQuantity A: x / (1 - x)\nQuantity B: x^2 / (1 - x^2)",
       "options": [
        "A. Quantity A is greater.",
        "B. Quantity B is greater.",
        "C. The two quantities are equal.",
        "D. The relationship cannot be determined from the information given."
       ],
-      "answer": "B",
-      "explanation": "Step 1 — Evaluate Quantity A. n is odd, so write n = 2k + 1 with k an integer. Then n/2 = k + 0.5 and ⌊n/2⌋ = k = (n − 1)/2.\nStep 2 — Quantity B is −(n + 1)/2, which is an integer because n is odd.\nStep 3 — Compare. (n − 1)/2 versus −(n + 1)/2. Multiply both by 2: n − 1 versus −n − 1. Add n + 1 to both sides: 2n versus 0.\nStep 4 — Since n is negative, 2n < 0, so Quantity A < Quantity B for every negative odd integer n. Quantity B is greater.\nCheck: n = −5: Quantity A = ⌊−2.5⌋ = −3; Quantity B = −(−4)/2 = 2. −3 < 2 ✓. n = −1: Quantity A = ⌊−0.5⌋ = −1; Quantity B = −(0)/2 = 0. −1 < 0 ✓.\nNote the sign condition matters: for a positive odd n such as 5, Quantity A = 2 and Quantity B = −3, and Quantity A would be greater.",
-      "trap": "Students truncate toward zero and read ⌊−5/2⌋ as −2 instead of −3, then chase the comparison with the wrong Quantity A. Others ignore the word 'negative' and test n = 5, getting Quantity A greater, and answer D or A. The stem's sign condition is exactly what fixes the direction.",
-      "estimated_time_seconds": 100,
+      "answer": "A",
+      "explanation": "Step 1 — factor the denominator of Quantity B as a difference of squares: 1 - x^2 = (1 - x)(1 + x).\nStep 2 — split Quantity B to expose Quantity A inside it:\nx^2/((1 - x)(1 + x)) = [x/(1 - x)] x [x/(1 + x)].\nSo Quantity B = Quantity A x [x/(1 + x)].\nStep 3 — bound the extra factor. For 0 < x < 1 we have x < 1 + x, so 0 < x/(1 + x) < 1.\nStep 4 — Quantity A is positive (numerator x > 0, denominator 1 - x > 0), and multiplying a positive number by a factor strictly below 1 makes it smaller. So Quantity B < Quantity A.\nCheck with x = 1/2: Quantity A = (1/2)/(1/2) = 1; Quantity B = (1/4)/(3/4) = 1/3. Check with x = 9/10: Quantity A = 9; Quantity B = 0.81/0.19 = 4.26. Quantity A wins both.\nQuantity A is greater.",
+      "trap": "Reading Quantity B as 'Quantity A squared' and, since squaring shrinks numbers below 1, guessing the answer flips somewhere - it does not. The real relationship is Quantity B = Quantity A x x/(1 + x), and that multiplier is below 1 for every allowed x, so Quantity A wins on the whole interval. Choosing D because one test value gave Quantity A = 1 (a value that could go either way against Quantity B) is the other slip; the algebra covers all x at once.",
+      "estimated_time_seconds": 95,
       "tags": [
-       "floor-function",
-       "negatives",
+       "algebraic-fractions",
+       "difference-of-squares",
        "qc"
       ],
-      "bank_id": "NUM-INT-040",
-      "topic": "number_properties",
-      "subtopic": "integers divisibility"
+      "bank_id": "ARI-FRC-052",
+      "topic": "arithmetic",
+      "subtopic": "fractions decimals"
      },
      {
       "id": "MOCK-07-S2E-003",
@@ -741,29 +755,28 @@
      },
      {
       "id": "MOCK-07-S2E-013",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "quantitative_comparison",
-      "question": "In the figure, triangle PQR is equilateral with each side equal to 6. Arc QSR is part of the circle with center P that passes through Q and R, and S is on the arc below chord QR.\nQuantity A: The area of the region bounded by chord QR and arc QSR\nQuantity B: 3",
+      "question": "A portfolio of 1,000 investments is divided into four asset classes: Stocks p%, Bonds q%, Real Estate r%, and Cash s%.\n\np, q, r, and s are positive integers with p + q + r + s = 100, p > q > r > s, and p > 2q.\n\nQuantity A: The least possible number of Real Estate investments (r% of 1,000)\nQuantity B: 50",
       "options": [
        "A. Quantity A is greater.",
        "B. Quantity B is greater.",
        "C. The two quantities are equal.",
        "D. The relationship cannot be determined from the information given."
       ],
-      "answer": "A",
-      "explanation": "1. The arc is centered at P with radius PQ = 6, and angle QPR = 60 degrees (equilateral triangle).\n2. The sector PQSR has area (60/360) * pi * 6^2 = 6*pi.\n3. The triangle PQR has area (sqrt(3)/4) * 6^2 = 9*sqrt(3).\n4. The region in Quantity A is the sector minus the triangle: 6*pi - 9*sqrt(3).\n5. Numerically 6*pi is about 18.850 and 9*sqrt(3) is about 15.588, so the region is about 3.26, which is more than 3.\n6. Safe bounds: 6*3.14 = 18.84 and 9*1.7321 = 15.589, giving 3.25 even with the pessimistic values. Quantity A is greater.",
-      "trap": "Rounding too coarsely, with pi as 3 and sqrt(3) as 1.7, gives 18 - 15.3 = 2.7, which seems to make Quantity B greater, choice B; the true value is only about 0.26 above 3, so the approximations must be tight.",
-      "estimated_time_seconds": 120,
+      "answer": "B",
+      "explanation": "Since s ≥ 1 and r > s, r ≥ 2. The value r = 2 is attainable: s = 1, r = 2, q = 3, p = 94 satisfies p + q + r + s = 100, p > q > r > s, and p > 2q. So the least possible number of Real Estate investments is 2% of 1,000 = 20, which is less than 50. Quantity B is greater.",
+      "trap": "Students assume four categories sharing 100% must each be near 25%, so Real Estate must be large, or forget that 2% of 1,000 is 20 investments and not 2.",
+      "estimated_time_seconds": 125,
       "tags": [
-       "circular-segment",
-       "sector-minus-triangle",
-       "estimation"
+       "data-interpretation",
+       "qc",
+       "multi-step",
+       "ratio-basics"
       ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><polygon points=\"120,26 26,188.8 214,188.8\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><path d=\"M 26 188.8 A 188 188 0 0 0 214 188.8\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"120\" cy=\"214\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><text x=\"176.5\" y=\"104.7\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">6</text><text x=\"120\" y=\"18.4\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">P</text><text x=\"17\" y=\"193.5\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">Q</text><text x=\"223\" y=\"193.5\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">R</text><text x=\"120\" y=\"232.9\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">S</text></svg>",
-      "figure_description": "Triangle PQR with apex P at the top and horizontal base QR of length 6, all sides equal. A circular arc runs from Q to R, bulging downward past the base, centered at P (radius PQ = PR = 6). S is the lowest point of the arc, on the vertical line through P. The thin region between chord QR and arc QSR is the region in Quantity A.",
-      "bank_id": "GEO-CIR-KMF-022",
-      "topic": "geometry",
-      "subtopic": "circles"
+      "bank_id": "DAT-PIE-038",
+      "topic": "data_interpretation",
+      "subtopic": "pie charts"
      },
      {
       "id": "MOCK-07-S2E-014",
@@ -787,25 +800,26 @@
       "id": "MOCK-07-S2E-015",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "k is a number such that k^2 + k is an odd integer.\nQuantity A: k\nQuantity B: 0",
+      "question": "N and p are positive. A number N is increased by p%, and the result is then decreased by p%.\nQuantity A: The final number\nQuantity B: N",
       "options": [
        "A. Quantity A is greater.",
        "B. Quantity B is greater.",
        "C. The two quantities are equal.",
        "D. The relationship cannot be determined from the information given."
       ],
-      "answer": "D",
-      "explanation": "Step 1 — test the reflex first. If k were an integer, then k^2 + k = k(k + 1) would be a product of two consecutive integers, and one of any two consecutive integers is even, so k^2 + k would be even. It is given as odd, so k is NOT an integer.\nStep 2 — that is the whole point of the stem: it says 'a number', not 'an integer'. Parity is defined only for integers, so no parity rule constrains k itself. The condition is a plain equation to be solved.\nStep 3 — take the smallest odd integer value, k^2 + k = 1, that is k^2 + k - 1 = 0. The quadratic formula gives k = (-1 + sqrt(5))/2 or k = (-1 - sqrt(5))/2.\nStep 4 — sqrt(5) is about 2.24, so the two roots are about 0.62 and about -1.62. Both satisfy the stem, and both are legal values of k.\nStep 5 — k = 0.62 makes Quantity A greater than Quantity B; k = -1.62 makes Quantity B greater. The relationship is not determined.\nCheck the positive root: 0.618^2 + 0.618 = 0.382 + 0.618 = 1, an odd integer. Check the negative root: (-1.618)^2 + (-1.618) = 2.618 - 1.618 = 1, an odd integer. Both are valid.\nAnswer: D.",
-      "trap": "The stem never says k is an integer, and that omission is the question. A student who assumes it is applies k(k + 1) is always even, concludes the condition is impossible, and then guesses - or decides the problem must intend some odd k and picks A. Parity is defined only for integers: the moment k is allowed to be any number, k^2 + k can be odd, and it happens at two values of opposite sign. Choice B fails for the mirror-image reason: the positive root, about 0.618, exists just as surely as the negative one, so Quantity B is not forced either. Choice C fails because neither root is 0 - at k = 0, k^2 + k = 0, which is even, not odd - so the two columns are never equal.",
-      "estimated_time_seconds": 105,
+      "answer": "B",
+      "explanation": "Final = N x (1 + p/100) x (1 - p/100).\nThis is a difference of squares: (1 + p/100)(1 - p/100) = 1 - p^2/10000.\nSince p > 0, the term p^2/10000 is strictly positive, so the multiplier is strictly less than 1.\nWith N > 0, the final number is always less than N, whatever p is. Quantity B is greater.\nThe loss is exactly p^2/100 percent - for p = 10 that is 1%, for p = 20 it is 4%, for p = 50 it is 25%.",
+      "trap": "Choosing C because the same p goes up and comes back down. The rise is p% of N, but the fall is p% of the LARGER number N(1 + p/100), so more is removed than was added. Note the answer does not depend on the size of p, so D is also wrong.",
+      "estimated_time_seconds": 80,
       "tags": [
-       "parity-needs-integers",
+       "algebraic-percent",
        "qc",
-       "consecutive-integers"
+       "general-proof",
+       "hard"
       ],
-      "bank_id": "NUM-EOP-045",
-      "topic": "number_properties",
-      "subtopic": "even odd properties"
+      "bank_id": "ARI-PCT-052",
+      "topic": "arithmetic",
+      "subtopic": "percentages"
      }
     ],
     "medium": [

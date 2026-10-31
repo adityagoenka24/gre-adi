@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
+     "easy": 3,
      "medium": 7,
-     "hard": 5
+     "hard": 2
     },
     "types": {
      "quantitative_comparison": 5,
@@ -39,8 +40,9 @@
    "section_2": {
     "difficulty": {
      "easy": {
-      "hard": 5,
-      "medium": 10
+      "medium": 10,
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "hard": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -97,27 +103,28 @@
     },
     {
      "id": "MOCK-09-S1-002",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "A scooter travels at a constant rate such that its wheels turn through 45 degrees every 0.05 second. If each wheel of the scooter has a diameter of 16 inches, how many inches does the scooter travel in 3 seconds?",
+     "question": "A shade of paint is made by mixing red and white paint in the ratio 3:1 by volume. A painter has exactly 12 liters of red paint and an unlimited supply of white paint. What is the greatest number of liters of the shade he can mix?",
      "options": [
-      "A. 16*pi",
-      "B. 40*pi",
-      "C. 120*pi",
-      "D. 240*pi",
-      "E. 1200*pi"
+      "A. 4",
+      "B. 12",
+      "C. 16",
+      "D. 36",
+      "E. 48"
      ],
      "answer": "C",
-     "explanation": "First find the rotation rate. Turning 45 degrees in 0.05 second means turning 45/0.05 = 900 degrees per second, and 900/360 = 2.5 revolutions per second. In 3 seconds the wheel makes 2.5 x 3 = 7.5 revolutions. Each revolution carries the scooter forward one circumference, and with a diameter of 16 inches the circumference is pi x 16 = 16*pi inches. The distance traveled is 7.5 x 16*pi = 120*pi inches.",
-     "trap": "Students treat 16 inches as the radius and use a circumference of 32*pi, doubling the answer to 240*pi. The problem gives the diameter, so the circumference is pi times 16, not 2*pi times 16. A second slip is converting 45 degrees per 0.05 second into revolutions by dividing by 360 before scaling up to a full second.",
-     "estimated_time_seconds": 110,
+     "explanation": "Step 1 — name k. Red = 3k, white = 1k, so the mixture is 4k in total.\nStep 2 — red is the limiting ingredient, since white is unlimited. 3k = 12, so k = 4.\nStep 3 — the question asks for the mixture, which is all 4 parts: 4k = 4 x 4 = 16 liters.\nCheck: 12 L red + 4 L white = 16 L, and 12:4 = 3:1. Correct.\nAnswer: 16 liters.",
+     "trap": "Answering 12 (the red he already has) or 4 (the white he must add) instead of the mixture, which is the sum. Choice D (36) comes from multiplying 12 by 3 - scaling by the wrong factor; red is 3/4 of the mixture, so the mixture is 12 x 4/3.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "rates",
-      "circular-motion"
+      "part-to-whole",
+      "limiting-ingredient",
+      "mixture"
      ],
-     "bank_id": "SEC-PR-028",
-     "topic": "arithmetic",
-     "subtopic": "arithmetic"
+     "bank_id": "WRD-RAT-028",
+     "topic": "word_problems",
+     "subtopic": "ratio word problems"
     },
     {
      "id": "MOCK-09-S1-003",
@@ -145,21 +152,23 @@
     },
     {
      "id": "MOCK-09-S1-004",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "numeric_entry",
-     "question": "n is an integer and (3/5)^n * (5/3)^(-n) = 9/25.\n\nWhat is the value of n ?",
+     "question": "A line has x-intercept 5 and y-intercept -3. What is the slope of the line?",
      "options": null,
-     "answer": "1",
-     "explanation": "A negative exponent inverts the base, so (5/3)^(-n) = (3/5)^n. The left side is therefore (3/5)^n times (3/5)^n = (3/5)^(2n). The right side is 9/25 = (3/5)^2. Matching the exponents on the same base gives 2n = 2, so n = 1.",
-     "trap": "Students treat (3/5)^n and (5/3)^(-n) as reciprocals of each other and cancel them to 1, concluding the equation has no solution. Both the base inversion and the negative exponent flip, and the two flips cancel — leaving two identical factors, not reciprocal ones.",
-     "estimated_time_seconds": 110,
+     "answer": "0.6",
+     "explanation": "The x-intercept is the point (5, 0) and the y-intercept is the point (0, -3). Slope = (0 - (-3)) / (5 - 0) = 3/5 = 0.6.",
+     "trap": "Students compute (-3 - 0)/(0 - 5) = (-3)/(-5) = 3/5 correctly but then think it should be negative because the y-intercept is negative. Or they compute (0 - 5)/(-3 - 0) = -5/-3 = 5/3 by reversing x and y differences.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "exponents",
-      "reciprocals"
+      "slope",
+      "x-intercept",
+      "y-intercept",
+      "two-step"
      ],
-     "bank_id": "SEC-AL-072",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "bank_id": "COG-SLO-019",
+     "topic": "coordinate_geometry",
+     "subtopic": "slope intercepts"
     },
     {
      "id": "MOCK-09-S1-005",
@@ -363,28 +372,28 @@
     },
     {
      "id": "MOCK-09-S1-009",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "Which of the following is closest to (24.6 * 10^5) / (0.41 * 10^(-8))?",
+     "question": "A bag contains 5 red, 3 blue, and 2 green marbles. Two marbles are drawn at random one at a time, without replacement. What is the probability that the first is red and the second is blue?",
      "options": [
-      "A. 6.0 * 10^12",
-      "B. 6.0 * 10^13",
-      "C. 6.0 * 10^14",
-      "D. 6.0 * 10^15",
-      "E. 6.0 * 10^16"
+      "A. 1/9",
+      "B. 3/20",
+      "C. 1/6",
+      "D. 1/3",
+      "E. 1/2"
      ],
      "answer": "C",
-     "explanation": "Split the calculation into the decimal part and the power of ten. The decimal part is 24.6 / 0.41. Multiplying numerator and denominator by 100 gives 2460 / 41 = 60 exactly. The power of ten part is 10^5 / 10^(-8) = 10^(5 - (-8)) = 10^13. Multiplying the pieces gives 60 * 10^13. That is not yet in standard form, since 60 = 6.0 * 10, so 60 * 10^13 = 6.0 * 10^14.",
-     "trap": "Computing 24.6 / 0.41 = 60 and 10^5 / 10^(-8) = 10^13 correctly, then writing the answer as 6.0 * 10^13 and picking B. The leftover factor of 10 hidden inside 60 must be carried into the exponent. The other trap is subtracting the exponents as 5 - 8 = -3 instead of 5 - (-8) = 13.",
-     "estimated_time_seconds": 90,
+     "explanation": "Step 1 — total marbles = 5 + 3 + 2 = 10. Without replacement means dependent draws, so use P(A) x P(B | A).\nStep 2 — P(first is red) = 5/10 = 1/2.\nStep 3 — after a red marble leaves, the bag holds 4 red, 3 blue, 2 green = 9 marbles. The blue count is untouched.\nP(second is blue | first is red) = 3/9 = 1/3.\nStep 4 — multiply: (1/2) x (1/3) = 1/6.\nAnswer: 1/6.",
+     "trap": "Keeping the denominator at 10 for the second draw: (5/10) x (3/10) = 3/20, choice B. That is the with-replacement answer, and the stem says the marble is not replaced. Choice A, 1/9, comes from shrinking the blue count to 2 as well - but the marble removed was red, so only the total drops. Choice D, 1/3, is P(one red and one blue in either order). Choice E, 1/2, is the first factor P(first is red) = 5/10 handed in alone, with the second stage never priced.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "scientific-notation",
-      "exponents",
-      "estimation"
+      "dependent-events",
+      "without-replacement",
+      "conditional-probability"
      ],
-     "bank_id": "SEC-AL-085",
-     "topic": "arithmetic",
-     "subtopic": "arithmetic"
+     "bank_id": "STA-IDE-011",
+     "topic": "statistics",
+     "subtopic": "independent dependent events"
     },
     {
      "id": "MOCK-09-S1-010",
@@ -472,52 +481,52 @@
     "easy": [
      {
       "id": "MOCK-09-S2E-001",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "mcq",
-      "question": "In the xy-plane, the three lines y = 2x + 1, y = -x + 7 and y = mx - 5 all pass through a single common point. What is the value of m?",
+      "question": "A data set consists of 20 positive integers, no two of which are equal. The least of them is 1 and the greatest is 100. Quartiles are found by the standard method: with 20 values the lower half is the 10 smallest and the upper half is the 10 largest. What is the greatest possible value of Q1?",
       "options": [
-       "A. -5",
-       "B. 0",
-       "C. 2.5",
-       "D. 3",
-       "E. 5"
+       "A. 84.5",
+       "B. 85.5",
+       "C. 86",
+       "D. 89.5",
+       "E. 95.5"
       ],
-      "answer": "E",
-      "explanation": "The first two lines already pin down the common point. Setting 2x + 1 = -x + 7 gives 3x = 6, so x = 2, and then y = 2(2) + 1 = 5. The shared point is (2, 5). Since the third line must pass through it, substitute: 5 = m(2) - 5, so 2m = 10 and m = 5.",
-      "trap": "Students substitute the point but forget the -5, solving 5 = 2m to get m = 2.5, option C. Others read the constant -5 in the third equation as the answer and pick A. The point (2, 5) has to satisfy y = mx - 5 in full, which forces 2m = 10.",
-      "estimated_time_seconds": 110,
+      "answer": "B",
+      "explanation": "Write the sorted values as v1 < v2 < ... < v20, with v1 = 1 and v20 = 100.\nStep 1 — locate Q1. The lower half is v1..v10, so Q1 is the median of ten values: Q1 = (v5 + v6)/2.\nStep 2 — bound v6. Above v6 sit v7, v8, ..., v20, which is 14 values, all distinct integers and all larger than v6, with the largest equal to 100. To fit 14 distinct integers strictly above v6 and at most 100, we need v6 <= 100 - 14 = 86.\nStep 3 — bound v5. It must be a distinct integer below v6, so v5 <= v6 - 1 <= 85.\nStep 4 — therefore Q1 = (v5 + v6)/2 <= (85 + 86)/2 = 85.5.\nStep 5 — 85.5 is achievable. Take 1, 82, 83, 84, 85, 86, 87, 88, ..., 99, 100: that is v1 = 1, then 82 through 100, which is 19 more values, 20 in all, strictly increasing and distinct. Here v5 = 85 and v6 = 86, so Q1 = (85 + 86)/2 = 85.5.\nAnswer: 85.5.",
+      "trap": "Choice D, 89.5, comes from counting only the ten values of the UPPER half as needing to sit above v6, giving v6 <= 90 and v5 <= 89. The values v7, v8, v9 and v10 are also above v6, so 14 integers must fit, not 10. Choice C, 86, reports v6 by itself, as though Q1 with an even-sized half were a single data value rather than the average of two. Choice A, 84.5, is the same argument off by one, using v6 <= 85. Choice E, 95.5, answers the wrong question: it is the greatest possible Q3, where only v17 through v20 have to fit above v16, so v16 <= 96 and v15 <= 95.",
+      "estimated_time_seconds": 130,
       "tags": [
-       "systems",
-       "intersections"
+       "quartile",
+       "extremal-reasoning",
+       "distinct-integers"
       ],
-      "bank_id": "SEC-CG-012",
-      "topic": "coordinate_geometry",
-      "subtopic": "coordinate geometry"
+      "bank_id": "STA-IQR-043",
+      "topic": "statistics",
+      "subtopic": "interquartile range percentiles"
      },
      {
       "id": "MOCK-09-S2E-002",
       "difficulty": "medium",
       "type": "quantitative_comparison",
-      "question": "m and n are positive integers where m = 2^a × 3^b and n = 2^c × 3^d, with a, b, c, d being positive integers.\n\nQuantity A: The number of factors of mn\nQuantity B: The number of factors of m × the number of factors of n",
+      "question": "For a certain data set, Q1 = 20 and Q3 = 50. The lower outlier fence is Q1 - 1.5 x IQR and the upper outlier fence is Q3 + 1.5 x IQR.\nQuantity A: The distance from the lower fence to the upper fence\nQuantity B: 120",
       "options": [
        "A. Quantity A is greater.",
        "B. Quantity B is greater.",
        "C. The two quantities are equal.",
        "D. The relationship cannot be determined from the information given."
       ],
-      "answer": "B",
-      "explanation": "mn = 2^(a+c) × 3^(b+d). Number of factors of mn = (a+c+1)(b+d+1). Number of factors of m = (a+1)(b+1). Number of factors of n = (c+1)(d+1). Product = (a+1)(b+1)(c+1)(d+1). Compare (a+c+1)(b+d+1) vs (a+1)(b+1)(c+1)(d+1). By expansion: (a+c+1) ≤ (a+1)(c+1) since (a+1)(c+1) = ac+a+c+1 ≥ a+c+1 (because ac ≥ 0 for positive a,c, with equality only when ac=0 — but a,c are positive, so ac ≥ 1 > 0). Similarly (b+d+1) ≤ (b+1)(d+1). So (a+c+1)(b+d+1) < (a+1)(b+1)(c+1)(d+1). Quantity A < Quantity B. Answer: B.",
-      "trap": "Students assume the number of factors is multiplicative (i.e., Quantity A = Quantity B). It is multiplicative only for coprime numbers. Since m and n share factors of 2 and 3, the factors of mn overlap with those of m and n, making Quantity A < Quantity B.",
-      "estimated_time_seconds": 115,
+      "answer": "C",
+      "explanation": "Step 1 - IQR = Q3 - Q1 = 50 - 20 = 30, so 1.5 x IQR = 45.\nStep 2 - lower fence = 20 - 45 = -25. Upper fence = 50 + 45 = 95.\nStep 3 - the distance between them = 95 - (-25) = 120.\nQuantity A = 120 = Quantity B, so the two quantities are equal.\nThe shortcut worth remembering: the fences sit 1.5 IQRs outside a box that is itself 1 IQR wide, so fence to fence is always 1.5 + 1 + 1.5 = 4 IQRs. Here 4 x 30 = 120 with no fence values needed at all.",
+      "trap": "Subtracting the two fences as 95 - 25 = 70, by treating the lower fence as +25 and losing its negative sign - a data set can perfectly well have a negative fence even when every value in it is positive. The other error is computing only 3 x IQR = 90, the span outside the box, and forgetting to include the box itself.",
+      "estimated_time_seconds": 85,
       "tags": [
-       "divisibility",
-       "qc",
-       "multi-step",
-       "conceptual"
+       "interquartile-range",
+       "outlier-fences",
+       "qc"
       ],
-      "bank_id": "NUM-DIV-042",
-      "topic": "number_properties",
-      "subtopic": "divisibility rules"
+      "bank_id": "STA-DDI-036",
+      "topic": "statistics",
+      "subtopic": "data distribution"
      },
      {
       "id": "MOCK-09-S2E-003",
@@ -673,26 +682,26 @@
       "id": "MOCK-09-S2E-009",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "The sum of the first n positive integers is 120. What is the sum of the first 2n positive integers?",
+      "question": "A store buys a product for $C and sells it at a 20% markup. During a sale, the price is reduced by 10%. A customer uses a coupon for an additional 5% off the sale price. What single discount off the original marked price is equivalent to the coupon and sale combined?",
       "options": [
-       "A. 240",
-       "B. 435",
-       "C. 465",
-       "D. 480",
-       "E. 496"
+       "A. 13.5%",
+       "B. 14%",
+       "C. 14.5%",
+       "D. 15%",
+       "E. 15.5%"
       ],
       "answer": "C",
-      "explanation": "Step 1 — use sum(1 to n) = n(n+1)/2. So n(n+1)/2 = 120, giving n(n+1) = 240 = 15 x 16, so n = 15.\nStep 2 — then 2n = 30, and sum(1 to 30) = 30 x 31/2 = 465.\nCheck the other way: sum(1 to 30) = sum(1 to 15) + sum(16 to 30) = 120 + (15 terms averaging (16 + 30)/2 = 23) = 120 + 15 x 23 = 120 + 345 = 465. Correct.\nAnswer: C, 465.",
-      "trap": "Doubling the sum because the count doubled gives 240, choice A - but the triangular sum grows like n^2, not like n. Remembering that and quadrupling gives 480, choice D, which is also wrong because n(n+1)/2 is not exactly n^2/2. Choices B and E, 435 and 496, are sum(1 to 29) and sum(1 to 31), the off-by-one landings for a student who solves n(n+1) = 240 sloppily and gets n = 14 or 16.",
-      "estimated_time_seconds": 105,
+      "explanation": "Start from the marked price (100%). Sale reduces to 90%. Coupon reduces further to 90% × 95% = 85.5% of marked price. Discount off marked price = 100% − 85.5% = 14.5%.",
+      "trap": "Students add 10% + 5% = 15% combined discount. Sequential discounts multiply: 0.90 × 0.95 = 0.855, giving only an 14.5% total discount.",
+      "estimated_time_seconds": 90,
       "tags": [
-       "triangular-numbers",
-       "sum-formula",
-       "two-stage"
+       "successive-percent",
+       "discount",
+       "multi-step"
       ],
-      "bank_id": "NUM-CON-037",
-      "topic": "number_properties",
-      "subtopic": "consecutive integers"
+      "bank_id": "WRD-PCT-038",
+      "topic": "word_problems",
+      "subtopic": "percentage word problems"
      },
      {
       "id": "MOCK-09-S2E-010",

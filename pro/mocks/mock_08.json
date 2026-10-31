@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
-     "hard": 5,
-     "medium": 7
+     "easy": 3,
+     "medium": 7,
+     "hard": 2
     },
     "types": {
      "quantitative_comparison": 5,
@@ -39,8 +40,9 @@
    "section_2": {
     "difficulty": {
      "easy": {
-      "hard": 5,
-      "medium": 10
+      "medium": 10,
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "hard": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -72,51 +78,52 @@
    "questions": [
     {
      "id": "MOCK-08-S1-001",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "quantitative_comparison",
-     "question": "A list consists of the first 45 terms of the rule t_n = (-1)^n(5n + 1), so it begins -6, 11, -16, 21, and ends with t_45.\nQuantity A: The sum of all 45 terms in the list\nQuantity B: -110",
+     "question": "Quantity A: Number of ways to arrange 4 people in a circle\nQuantity B: Number of ways to arrange 4 people in a line, divided by 4",
      "options": [
       "A. Quantity A is greater.",
       "B. Quantity B is greater.",
       "C. The two quantities are equal.",
       "D. The relationship cannot be determined from the information given."
      ],
-     "answer": "B",
-     "explanation": "1. Group the first 44 terms into pairs (t_1 + t_2), (t_3 + t_4), ..., (t_43 + t_44). Each pair is -(5m + 1) + (5(m + 1) + 1) = 5 for odd m, for example -6 + 11 = 5 and -16 + 21 = 5.\n2. There are 22 pairs, so the first 44 terms sum to 22*5 = 110.\n3. The 45th term is left over: t_45 = (-1)^45 * (5*45 + 1) = -226.\n4. Total = 110 - 226 = -116.\n5. -116 < -110, so Quantity B is greater.\nCheck: t_43 = -216 and t_44 = 221 give 5, and 110 + (-226) = -116.",
-     "trap": "Pairing the terms and forgetting the unpaired 45th term gives a sum of 110, which beats -110 and points to choice A.",
-     "estimated_time_seconds": 120,
+     "answer": "C",
+     "explanation": "Quantity A: Circular arrangements of 4 people = (4-1)! = 3! = 6. Quantity B: Linear arrangements = 4! = 24; divided by 4 gives 24/4 = 6. Both equal 6. This is not a coincidence: n!/n = (n-1)!, which is the circular formula.",
+     "trap": "Students compute Quantity A as 4! = 24 (using the linear formula) and Quantity B as 24/4 = 6, then choose B. The circular formula is (n-1)! = 6, not 4! = 24.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "alternating-series",
-      "pairing",
-      "odd-count"
+      "permutations",
+      "qc",
+      "conceptual"
      ],
-     "bank_id": "ALG-SEQ-KMF-020",
-     "topic": "algebra",
-     "subtopic": "sequences series"
+     "bank_id": "STA-PRM-021",
+     "topic": "statistics",
+     "subtopic": "permutations"
     },
     {
      "id": "MOCK-08-S1-002",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "In the sequence a(1), a(2), a(3), ..., the nth term a(n) is the distance in the xy-plane between the point (0, 3) and the point (n, 0), for each positive integer n. What is the value of a(24)?",
+     "question": "Mei is currently 14 years old and her younger sister Yuki is 6 years old. In how many years will Mei be exactly twice Yuki's age?",
      "options": [
-      "A. sqrt(27)",
-      "B. sqrt(75)",
-      "C. sqrt(567)",
-      "D. sqrt(585)",
-      "E. sqrt(633)"
+      "A. 1",
+      "B. 2",
+      "C. 3",
+      "D. 4",
+      "E. 6"
      ],
-     "answer": "D",
-     "explanation": "The two points differ by 24 in the x-direction and by 3 in the y-direction, so they are the legs of a right triangle with the distance as its hypotenuse. By the distance formula, a(n) = sqrt((n - 0)^2 + (0 - 3)^2) = sqrt(n^2 + 9). Substituting n = 24 gives a(24) = sqrt(24^2 + 9) = sqrt(576 + 9) = sqrt(585).",
-     "trap": "Students subtract the squares instead of adding them, treating 24 as the hypotenuse, and answer sqrt(567). Others add the coordinates directly to get 24 + 3 = 27 and choose sqrt(27). The point (0, 3) sits on the y-axis and (24, 0) on the x-axis, so both coordinate gaps are legs and both squares must be added.",
-     "estimated_time_seconds": 95,
+     "answer": "B",
+     "explanation": "Let x = number of years from now.\nMei in x years: 14 + x\nYuki in x years: 6 + x\nEquation: 14 + x = 2(6 + x)\n14 + x = 12 + 2x\n2 = x\nIn 2 years, Mei = 16, Yuki = 8, and 16 = 2 × 8. Correct.",
+     "trap": "Students write 14 = 2 × 6 to check if the doubling holds now: 14/6 ≈ 2.33, then assume x must be negative (i.e., it happened in the past) and pick a large future value, not realizing the ratio decreases toward 2 over time.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "sequences",
-      "distance-formula"
+      "word-problem-setup",
+      "linear-equation",
+      "two-step"
      ],
-     "bank_id": "SEC-AO-027",
-     "topic": "arithmetic",
-     "subtopic": "arithmetic"
+     "bank_id": "WRD-AGE-017",
+     "topic": "word_problems",
+     "subtopic": "age problems"
     },
     {
      "id": "MOCK-08-S1-003",
@@ -369,33 +376,32 @@
     },
     {
      "id": "MOCK-08-S1-008",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "multiple_answer",
-     "question": "A hiking trail runs 45.0 kilometers from a trailhead to a lake. A water station sits at the 30.0 kilometer mark, and a ranger is always within 1.2 kilometers of the water station (the ranger may be exactly 1.2 kilometers away). A hiker stops at a point on the trail that is more than 2 kilometers but less than 3 kilometers short of the lake.\n\nWhich of the following distance, in kilometers along the trail, could separate the ranger from the hiker?\n\nIndicate all such distances.",
+     "question": "For which of the following values of integer k is −84 divisible by k? Select all that apply.",
      "options": [
-      "A. 10.4",
-      "B. 10.8",
-      "C. 11.5",
-      "D. 12.9",
-      "E. 13.7",
-      "F. 14.2",
-      "G. 14.9"
+      "A. −12",
+      "B. −7",
+      "C. 6",
+      "D. 11",
+      "E. 13"
      ],
      "answer": [
-      "C",
-      "D",
-      "E"
+      "A",
+      "B",
+      "C"
      ],
-     "explanation": "Measure positions from the trailhead. The ranger is at r with 28.8 <= r <= 31.2. The hiker is at h with 42 < h < 43 (the lake is at 45, so 2 to 3 km short of it).\nThe gap is d = h - r. Smallest: h just above 42 and r at most 31.2, so d is just above 10.8 (never equal to 10.8, because h > 42 strictly).\nLargest: h just below 43 and r at least 28.8, so d is just below 14.2 (never equal to 14.2).\nSo 10.8 < d < 14.2 and every value strictly between is reachable.\nA 10.4: false (below 10.8). B 10.8: false (excluded endpoint). C 11.5: true. D 12.9: true. E 13.7: true. F 14.2: false (excluded endpoint). G 14.9: false (above 14.2).\nCheck C: r = 31.0, h = 42.5 gives 11.5.",
-     "trap": "Treating the endpoints as reachable because the ranger's bound is inclusive, so choosing 10.8 and 14.2 (options B and F); the hiker's strict inequalities make both endpoints unattainable.",
-     "estimated_time_seconds": 120,
+     "explanation": "−84 is divisible by k if −84 = k × m for some integer m, i.e., k divides 84 (since |−84| = 84). 84 = 2² × 3 × 7. Divisors of 84: 1, 2, 3, 4, 6, 7, 12, 14, 21, 28, 42, 84 (and their negatives). B: k = −7: −84 = (−7) × 12. ✓ C: k = 6: −84 = 6 × (−14). ✓ D: k = 11: −84/11 ≈ −7.6... Not an integer. ✗ A: k = −12: −84 = (−12) × 7. ✓ E: k = 13: −84/13 ≈ −6.46... Not an integer. ✗ Correct: A, B, A.",
+     "trap": "Students ignore negative divisors like −7 and −12, thinking 'divisibility only applies to positive numbers.' Negative integers can be divisors — the key check is whether the quotient is an integer.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "interval-arithmetic",
-      "strict-inequality"
+      "divisibility",
+      "integers",
+      "multiple-answer"
      ],
-     "bank_id": "ARI-NLO-KMF-006",
-     "topic": "arithmetic",
-     "subtopic": "number line ordering"
+     "bank_id": "NUM-INT-026",
+     "topic": "number_properties",
+     "subtopic": "integers divisibility"
     },
     {
      "id": "MOCK-08-S1-009",
@@ -553,28 +559,29 @@
      },
      {
       "id": "MOCK-08-S2E-003",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "mcq",
-      "question": "A square has sides of length 6. On each side of the square a semicircle is drawn outside the square, using that side as its diameter, and each semicircle touches the large circle shown at exactly one point. What is the total area of the four shaded regions?",
+      "question": "A quadrilateral ABCD has vertices at A = (0, 0), B = (6, 0), C = (8, 4), and D = (2, 4). A line is drawn from B perpendicular to diagonal AC, meeting AC at point F. What is the length of BF?",
       "options": [
-       "A. 9*pi - 18",
-       "B. 18*pi - 36",
-       "C. 18*pi - 18",
-       "D. 24*pi - 36",
-       "E. 36*pi - 36"
+       "A. 6√5/5",
+       "B. 8√5/5",
+       "C. 2√5",
+       "D. 12√5/5",
+       "E. 4√5"
       ],
-      "answer": "B",
-      "explanation": "Each semicircle has diameter 6 and so radius 3, and it bulges 3 units beyond the side it sits on. The center of the square is 3 units from each side, so the farthest point of every semicircle is 3 + 3 = 6 units from the center; that is where it touches the large circle, so the large circle has radius 6 and area 36*pi. The square and the four semicircles together cover 36 + 4(1/2)(pi)(3^2) = 36 + 18*pi, and adjacent semicircles only meet at the corners of the square, so nothing is double counted. The shaded area is 36*pi - 36 - 18*pi = 18*pi - 36.",
-      "trap": "Students take the radius of the large circle to be half the diagonal of the square, 3*sqrt(2), instead of noticing that the semicircles reach farther out than the corners do. Others subtract only the semicircles and forget the square itself, arriving at 18*pi.",
+      "answer": "A",
+      "explanation": "Step 1 — Line AC from A=(0,0) to C=(8,4): from A to C is 8 right and 4 up, so the slope is 1/2. Equation: x − 2y = 0. Step 2 — Find foot of perpendicular F from B=(6,0) to line AC. Parameterize AC as (8t, 4t). For BF ⊥ AC the slope of BF must be −2, the negative reciprocal of 1/2. With F = (8t, 4t), the slope of BF is (4t − 0)/(8t − 6) = −2, so 4t = −16t + 12, giving 20t = 12 and t = 3/5. So F = (8×3/5, 4×3/5) = (24/5, 12/5). Step 3 — BF = √((6−24/5)² + (0−12/5)²) = √((6/5)² + (12/5)²) = √(36+144)/5 = √180/5 = 6√5/5.",
+      "trap": "Students compute the length of diagonal AC (= √80 = 4√5, option E) and report it as BF. The perpendicular from B to line AC requires projecting B onto the line using parametric or dot-product methods — it is not the same as the diagonal length.",
       "estimated_time_seconds": 125,
       "tags": [
-       "shaded-region",
-       "semicircles"
+       "coordinate-geometry",
+       "distance-formula",
+       "multi-step"
       ],
-      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><path d=\"M 214 120 A 94 94 0 0 0 26 120 A 94 94 0 0 0 214 120 Z M 167 73 A 47 47 0 0 0 73 73 A 47 47 0 0 0 73 167 A 47 47 0 0 0 167 167 A 47 47 0 0 0 167 73 Z\" fill=\"#d8e1e9\" stroke=\"none\" fill-rule=\"evenodd\"/><circle cx=\"120\" cy=\"120\" r=\"94\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><polygon points=\"73,167 167,167 167,73 73,73\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><path d=\"M 167 73 A 47 47 0 0 0 73 73\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 73 73 A 47 47 0 0 0 73 167\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 73 167 A 47 47 0 0 0 167 167\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 167 167 A 47 47 0 0 0 167 73\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"120\" y=\"161.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">6</text></svg>",
-      "bank_id": "SEC-CS-005",
-      "topic": "geometry",
-      "subtopic": "circles"
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 183\" width=\"260\" height=\"183\" role=\"img\"><line x1=\"30.0\" y1=\"120.0\" x2=\"230.0\" y2=\"120.0\" stroke=\"#9aa7b2\" stroke-width=\"1\"/><line x1=\"63.3\" y1=\"153.3\" x2=\"63.3\" y2=\"20.0\" stroke=\"#9aa7b2\" stroke-width=\"1\"/><text x=\"238.0\" y=\"124.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"font-style:italic;\">x</text><text x=\"63.3\" y=\"14.0\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\" style=\"font-style:italic;\">y</text><polygon points=\"63.3,120.0 163.3,120.0 196.7,53.3 96.7,53.3\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><circle cx=\"63.3\" cy=\"120.0\" r=\"3\" fill=\"#16191d\"/><text x=\"71.3\" y=\"112.0\" font-family=\"Georgia,serif\" font-size=\"11.5\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">(0, 0)</text><circle cx=\"163.3\" cy=\"120.0\" r=\"3\" fill=\"#16191d\"/><text x=\"155.3\" y=\"112.0\" font-family=\"Georgia,serif\" font-size=\"11.5\" fill=\"#16191d\" text-anchor=\"end\" style=\"\">(6, 0)</text><circle cx=\"196.7\" cy=\"53.3\" r=\"3\" fill=\"#16191d\"/><text x=\"188.7\" y=\"45.3\" font-family=\"Georgia,serif\" font-size=\"11.5\" fill=\"#16191d\" text-anchor=\"end\" style=\"\">(8, 4)</text><circle cx=\"96.7\" cy=\"53.3\" r=\"3\" fill=\"#16191d\"/><text x=\"104.7\" y=\"45.3\" font-family=\"Georgia,serif\" font-size=\"11.5\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">(2, 4)</text></svg>",
+      "bank_id": "COG-WPR-037",
+      "topic": "coordinate_geometry",
+      "subtopic": "coordinate geometry word problems"
      },
      {
       "id": "MOCK-08-S2E-004",

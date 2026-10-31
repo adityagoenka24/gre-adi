@@ -26,8 +26,9 @@
   "blueprint": {
    "section_1": {
     "difficulty": {
-     "hard": 5,
-     "medium": 7
+     "easy": 3,
+     "medium": 7,
+     "hard": 2
     },
     "types": {
      "mcq": 4,
@@ -40,7 +41,8 @@
     "difficulty": {
      "easy": {
       "medium": 10,
-      "hard": 5
+      "hard": 4,
+      "extreme_hard": 1
      },
      "medium": {
       "hard": 7,
@@ -62,8 +64,12 @@
    }
   },
   "bank": "GRE Quant Pro Question Bank",
-  "built": "2026-10-29",
-  "built_from": "Bank hard/extreme_hard tier only. Hard slots are KMF-1804 and sectional items (rewrites of real ETS questions); medium slots are generated-hard items re-labelled to the work required. Section 1 carries no easy items."
+  "built": "2026-10-31",
+  "built_from": "Bank hard/extreme_hard tier for the medium and hard slots (hard slots are KMF-1804 and sectional items, medium slots are generated-hard items re-labelled to the work required). Section 1's three easy slots are bank medium-tier one-step items re-labelled easy, giving the real-GRE L2/L3/L4 spread (3 easy / 7 medium / 2 hard); the DI set at positions 5-7 is unchanged and supplies the medium plus both hard items. Each Section 2 form spans L3/L4/L5: the easy form carries one extreme_hard item, as the medium and hard forms already did.",
+  "level_spread": {
+   "section_1": "L2/L3/L4",
+   "section_2": "L3/L4/L5"
+  }
  },
  "sections": [
   {
@@ -72,28 +78,28 @@
    "questions": [
     {
      "id": "MOCK-02-S1-001",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "For every integer n greater than 1, B(n) = n/(n + 2). For every integer n greater than 2, C(n) = B(n) + B(n - 1). If k is an integer greater than 2, which of the following is equal to C(k)?",
+     "question": "A line passes through the point (4, -2) and has slope -1. Which of the following is the equation of this line?",
      "options": [
-      "A. (2k^2 + 2k - 2)/(k^2 + 3k + 2)",
-      "B. (2k^2 - 2)/(k^2 + 3k + 2)",
-      "C. (2k - 1)/(2k + 3)",
-      "D. (2k^2 + 2k - 2)/(2k + 3)",
-      "E. (k^2 + k - 2)/(k^2 + 3k + 2)"
+      "A. y = -x - 2",
+      "B. y = -x + 2",
+      "C. y = -x + 4",
+      "D. y = -x - 6",
+      "E. y = x + 2"
      ],
-     "answer": "A",
-     "explanation": "Substitute the definition twice. B(k) = k/(k + 2) and B(k - 1) = (k - 1)/((k - 1) + 2) = (k - 1)/(k + 1). Adding them over the common denominator (k + 2)(k + 1) gives [k(k + 1) + (k - 1)(k + 2)]/[(k + 2)(k + 1)]. The numerator expands to (k^2 + k) + (k^2 + k - 2) = 2k^2 + 2k - 2, and the denominator expands to k^2 + 3k + 2. So C(k) = (2k^2 + 2k - 2)/(k^2 + 3k + 2). Checking at k = 3: B(3) = 3/5 and B(2) = 2/4, summing to 1.1, and the formula gives 22/20 = 1.1.",
-     "trap": "Students add the two fractions by adding numerators and denominators straight across, producing (2k - 1)/(2k + 3). That is never how fractions add. The other frequent slip is evaluating B(k - 1) as (k - 1)/(k + 2), reusing the old denominator instead of shifting it, which yields the numerator 2k^2 + k - 1 and no matching option.",
-     "estimated_time_seconds": 120,
+     "answer": "B",
+     "explanation": "Using point-slope form with (x1, y1) = (4, -2) and m = -1:\ny - (-2) = -1(x - 4)\ny + 2 = -x + 4\ny = -x + 4 - 2\ny = -x + 2.",
+     "trap": "Students forget that y - (-2) = y + 2, not y - 2. Writing y - 2 = -1(x - 4) gives y = -x + 4 + 2 = -x + 6, which is not among the options — the classic point-slope sign error with a negative y-coordinate.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "sequences",
-      "fractions",
-      "substitution"
+      "equation-of-line",
+      "slope",
+      "two-step"
      ],
-     "bank_id": "SEC-AO-037",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "bank_id": "COG-EQL-015",
+     "topic": "coordinate_geometry",
+     "subtopic": "equation of a line"
     },
     {
      "id": "MOCK-02-S1-002",
@@ -409,48 +415,46 @@
     },
     {
      "id": "MOCK-02-S1-010",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "numeric_entry",
-     "question": "A plank 26 feet long rests horizontally on a support placed at the plank's midpoint, and the top of the support is 5 feet above level ground, as shown above. The plank is then tilted about the support, which stays at the plank's midpoint, until the left end of the plank just touches the ground. How many feet above the ground is the right end of the plank at that moment?\n\nNote: Figure not drawn to scale.",
+     "question": "Pipe A fills a tank in 8 hours. Pipe B fills the same tank in 12 hours. Pipe C drains it in 24 hours. If all three are open simultaneously on an empty tank, how many hours does it take to fill the tank?",
      "options": null,
-     "answer": "10",
-     "explanation": "The support touches the plank at its midpoint, so each half of the plank is 13 feet long. Look at the left half: it runs from the support, 5 feet above the ground, down to the ground, so it is the hypotenuse of a right triangle with vertical leg 5 and hypotenuse 13 (a 5-12-13 triangle). The right half is the same 13-foot length tilted by the same angle in the opposite direction, so its far end rises 5 feet above the support. The support is already 5 feet up, so the right end is 5 + 5 = 10 feet above the ground.",
-     "trap": "Students answer 5, reading off only the height gained above the support, or they answer 13 by treating the half-plank as vertical. The two halves are mirror images about the support, so the right end climbs as far above the support as the left end dropped below it, and the support's own 5 feet must be added on.",
-     "estimated_time_seconds": 110,
+     "answer": "6",
+     "explanation": "Fill rate of A = 1/8. Fill rate of B = 1/12. Drain rate of C = 1/24. Net rate = 1/8 + 1/12 − 1/24. LCD = 24: 3/24 + 2/24 − 1/24 = 4/24 = 1/6 per hour. Time = 6 hours.",
+     "trap": "Students add all three rates as fill rates: 1/8 + 1/12 + 1/24 = 3/24 + 2/24 + 1/24 = 6/24 = 1/4, giving 4 hours. The drain pipe empties the tank — its rate must be SUBTRACTED.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "pythagorean-triples",
-      "similar-triangles",
-      "symmetry"
+      "pipes-cisterns",
+      "filling-draining",
+      "multi-step"
      ],
-     "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 142\" width=\"330\" height=\"142\" role=\"img\"><line x1=\"26\" y1=\"115.8\" x2=\"304\" y2=\"115.8\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><polygon points=\"148.9,115.8 172.2,115.8 160.5,71\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"43.9\" y1=\"71\" x2=\"277.1\" y2=\"71\" stroke=\"#16191d\" stroke-width=\"2.0\" stroke-linecap=\"round\"/><line x1=\"52.9\" y1=\"115.8\" x2=\"268.1\" y2=\"26.2\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"268.1\" y1=\"115.8\" x2=\"268.1\" y2=\"26.2\" stroke=\"#16191d\" stroke-width=\"1.0\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><circle cx=\"160.5\" cy=\"71\" r=\"2.4\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><path d=\"M 275.1 115.8 L 275.1 108.8 L 268.1 108.8\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"102.2\" y=\"65.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">26 ft</text><text x=\"171.9\" y=\"98.6\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">5 ft</text><text x=\"274.1\" y=\"52\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">?</text><text x=\"304\" y=\"133.8\" font-family=\"Georgia,serif\" font-size=\"11\" fill=\"#16191d\" text-anchor=\"end\">ground</text></svg>",
-     "bank_id": "SEC-PG-022",
-     "topic": "geometry",
-     "subtopic": "geometry"
+     "bank_id": "WRD-WRK-017",
+     "topic": "word_problems",
+     "subtopic": "work rate"
     },
     {
      "id": "MOCK-02-S1-011",
-     "difficulty": "hard",
+     "difficulty": "easy",
      "type": "mcq",
-     "question": "The numbers p, q and r satisfy p is not equal to q, q is not equal to r, and r is not equal to p. Let\nS = 1/((p - q)*(q - r)) + 1/((q - r)*(r - p)) + 1/((r - p)*(p - q)).\nWhat is the value of S?",
+     "question": "The product of all the factors of 10 is:",
      "options": [
-      "A. -1",
-      "B. 0",
-      "C. 1",
-      "D. 3",
-      "E. 1/((p - q)*(q - r)*(r - p))"
+      "A. 10",
+      "B. 50",
+      "C. 100",
+      "D. 200",
+      "E. 1000"
      ],
-     "answer": "B",
-     "explanation": "Use the common denominator D = (p−q)(q−r)(r−p), nonzero since the three numbers are distinct. The terms become (r−p)/D, (p−q)/D and (q−r)/D. The numerators sum to (r−p)+(p−q)+(q−r) = 0, so S = 0 for all distinct p, q, r.",
-     "trap": "Choice D: treating each of the three terms as 1 and adding. Choice E reports the common denominator's reciprocal rather than the completed sum. Choices A and C come from sign slips in the numerators.",
-     "estimated_time_seconds": 130,
+     "answer": "C",
+     "explanation": "Factors of 10: 1, 2, 5, 10. Product = 1 × 2 × 5 × 10 = 100. There is also a shortcut: if n has k factors, the product of all its factors = n^(k/2). Here n = 10, k = 4, so product = 10^(4/2) = 10² = 100.",
+     "trap": "Students may only multiply the 'middle' factors (2 × 5 = 10) or forget to include 1 and 10 in the product.",
+     "estimated_time_seconds": 70,
      "tags": [
-      "algebraic-identities",
-      "common-denominator",
-      "telescoping"
+      "factors",
+      "factor-product"
      ],
-     "bank_id": "SEC-AL-084",
-     "topic": "algebra",
-     "subtopic": "algebra"
+     "bank_id": "NUM-FAM-019",
+     "topic": "number_properties",
+     "subtopic": "factors multiples"
     },
     {
      "id": "MOCK-02-S1-012",
@@ -511,26 +515,26 @@
       "id": "MOCK-02-S2E-002",
       "difficulty": "medium",
       "type": "mcq",
-      "question": "A car travels 12.5 km on each liter of fuel, and fuel costs $1.60 per liter. A tune-up costing $60 would raise the car's fuel efficiency to 20 km per liter, with no change in the price of fuel. Over how many kilometers of driving after the tune-up does the fuel saved first equal the $60 cost of the tune-up?",
+      "question": "A retailer sells an item at a 25% profit on cost. The cost price then rises by 20% while the selling price is held unchanged. What is the new profit or loss percent?",
       "options": [
-       "A. 125 km",
-       "B. 468.75 km",
-       "C. 750 km",
-       "D. 1,250 km",
-       "E. 2,000 km"
+       "A. 5% loss",
+       "B. 4.17% loss",
+       "C. 4% profit",
+       "D. 4.17% profit",
+       "E. 5% profit"
       ],
       "answer": "D",
-      "explanation": "Convert each efficiency into a cost PER KILOMETRE, then divide the tune-up cost by the saving per kilometer.\nStep 1 — cost per km before: ($1.60 per L) x (1 L per 12.5 km) = 1.60/12.5 = $0.128 per km.\nStep 2 — cost per km after: 1.60/20 = $0.08 per km.\nStep 3 — saving per km: 0.128 - 0.08 = $0.048 per km.\nStep 4 — kilometers needed: $60 / ($0.048 per km) = 60/0.048 = 1,250 km. The units cancel correctly - dollars divided by dollars per km leaves km.\nCheck: over 1,250 km the old car burns 1,250/12.5 = 100 L costing $160, and the tuned car burns 1,250/20 = 62.5 L costing $100. The difference is exactly $60. Correct.\nAnswer: 1,250 km.",
-      "trap": "Choice E, 2,000 km, works in liters and forgets to price them: the liters saved per km are 1/12.5 - 1/20 = 0.08 - 0.05 = 0.03 L per km, and 60/0.03 = 2,000 - a dollar figure divided by a liter figure, which the units expose at once. Choice C, 750, divides $60 by the NEW cost per km ($0.08), treating the whole post-tune-up fuel bill as if it were the saving; choice B, 468.75, does the same with the OLD cost per km ($0.128), as if the tune-up removed the fuel bill entirely. Choice A, 125, is a decimal slip: subtracting 0.128 - 0.08 as 0.48 instead of 0.048, so 60/0.48 = 125.",
-      "estimated_time_seconds": 105,
+      "explanation": "Step 1 — pick CP = 100. Then SP = 1.25 x 100 = 125.\nStep 2 — the new cost: 100 x 1.20 = 120. The selling price stays at 125.\nStep 3 — profit = 125 - 120 = 5, and profit percent is always taken on COST.\n5/120 x 100 = 500/120 = 4.166... = 4.17% profit.",
+      "trap": "Two errors compete here. First, assuming a 20% cost rise must wipe out the margin and produce a loss - it does not, because the original markup was large enough to absorb it. Second, dividing by the selling price: 5/125 = 4%, which is choice C. Profit percent always divides by cost, and here that means the NEW cost of 120.",
+      "estimated_time_seconds": 95,
       "tags": [
-       "multi-step-conversion",
-       "cost-rate",
-       "break-even"
+       "profit-loss",
+       "cost-price-change",
+       "hard"
       ],
-      "bank_id": "ARI-RAE-072",
+      "bank_id": "ARI-PCT-051",
       "topic": "arithmetic",
-      "subtopic": "rates unit conversions"
+      "subtopic": "percentages"
      },
      {
       "id": "MOCK-02-S2E-003",
@@ -616,21 +620,22 @@
      },
      {
       "id": "MOCK-02-S2E-006",
-      "difficulty": "hard",
+      "difficulty": "extreme_hard",
       "type": "numeric_entry",
-      "question": "For each positive integer n, the nth term of a sequence is 12 divided by 2^n, so the sequence begins 6, 3, 1.5, and so on. What is the least number of terms that must be added together, starting from the first, for the total to be greater than 11.9?",
+      "question": "A collection of tokens consists only of green tokens and white tokens, and exactly 30 of the tokens are white. When 12 green tokens are removed from the collection, the green tokens that remain make up 1/4 of the tokens that remain. Green tokens are then added to that reduced collection until green tokens make up 2/5 of it. How many tokens are in the collection at that point?",
       "options": null,
-      "answer": "7",
-      "explanation": "Each term is half the previous one, and the first n terms add up to 12 - 12/2^n (the shortfall from 12 is always equal to the last term added).\nCheck the pattern: n = 1 gives 12 - 6 = 6; n = 2 gives 12 - 3 = 9 = 6 + 3.\nWe need 12 - 12/2^n > 11.9, so 12/2^n < 0.1, so 2^n > 120.\n2^6 = 64 is too small and 2^7 = 128 works.\nSums: n = 6 gives 12 - 0.1875 = 11.8125 (not enough); n = 7 gives 12 - 0.09375 = 11.90625 (greater than 11.9).\nLeast n = 7.",
-      "trap": "Stopping at 6 terms because the later terms look negligible: the sum of 6 terms is only 12 - 0.1875 = 11.8125, which is below 11.9. Another error is to solve 12/2^n < 0.1 as 2^n > 12 and answer 4.",
-      "estimated_time_seconds": 100,
+      "answer": "50",
+      "explanation": "Step 1 — name one unknown. The white count is given, so the only unknown is the green count: let g be the number of green tokens in the original collection. The original total is g + 30.\nStep 2 — translate the removal, and keep hold of the fact that taking tokens out shrinks the total as well as one color. What remains is g - 12 green tokens out of g + 30 - 12 = g + 18 tokens in all:\ng - 12 = (1/4)(g + 18).\nStep 3 — clear the fraction by multiplying both sides by 4: 4g - 48 = g + 18. Collect: 3g = 66, so g = 22. The reduced collection is 10 green and 30 white, 40 tokens in all.\nStep 4 — the second stage brings its own single unknown. Let n be the number of green tokens added. Adding green tokens raises the green count and the total by the same n, so n appears in the numerator and the denominator at once:\n(10 + n)/(40 + n) = 2/5.\nStep 5 — clear the fraction by cross-multiplying: 5(10 + n) = 2(40 + n), so 50 + 5n = 80 + 2n. Collect: 3n = 30 and n = 10.\nStep 6 — the question asks for the size of the collection at that point, not for n and not for the green count: 40 + 10 = 50.\nCheck: substitute back into the original wording. The collection starts as 22 green and 30 white, 52 in all. Remove 12 green: 10 green out of 40 remaining, and 10/40 = 1/4. Add green until greens are 2/5: adding 10 gives 20 green out of 50, and 20/50 = 2/5. Correct.\nAnswer: 50.",
+      "trap": "Three of the four quantities in play are not the one asked for: 52 is the original total, 10 is the number added (and also the green count before adding), and 20 is the green count at the end. The live algebraic error is in Step 4: writing (10 + n)/40 = 2/5, as though adding tokens changed the green count but not the total. That gives n = 6 and a collection of 46, which fails the check, because 16 green out of 46 is not 2/5. Step 2 carries the same error in reverse: writing g - 12 = (1/4)(g + 30) forgets that removing green tokens shrinks the total too.",
+      "estimated_time_seconds": 130,
       "tags": [
-       "geometric-partial-sum",
-       "halving-pattern"
+       "translation",
+       "two-stage",
+       "answer-the-right-quantity"
       ],
-      "bank_id": "ALG-SEQ-KMF-008",
+      "bank_id": "ALG-LIN-056",
       "topic": "algebra",
-      "subtopic": "sequences series"
+      "subtopic": "linear equations 1 variable"
      },
      {
       "id": "MOCK-02-S2E-007",

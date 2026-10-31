@@ -220,8 +220,9 @@ const MOCK_INDEX = [
   { id:'mock_10', title:'Mock Test 10', difficulty:'Real GRE', tags:['All Topics','Adaptive S2','130–170'] },
 ];
 /* Every paper is now built to the same real-GRE blueprint — Section 1 is
-   7 medium / 5 hard whichever mock you pick, with no easy questions at all,
-   and Section 2 adapts to how that went. So the old 'Balanced → Expert' ladder is gone: a mock
+   3 easy / 7 medium / 2 hard whichever mock you pick (the real test's L2/L3/L4
+   spread), and Section 2 adapts to how that went, each of its three forms
+   spanning L3/L4/L5. So the old 'Balanced → Expert' ladder is gone: a mock
    is no longer easier or harder than the next one, and the score scale,
    not the paper, is what separates a 150 from a 168. The cards say what
    now actually distinguishes them, which is nothing but which questions
@@ -641,7 +642,11 @@ function pickSection2(correct, total) {
   const forms = sec && sec.forms;
   state.section2Form = null;
   if (!forms || !window.GREScore || !GREScore.pickForm) return;
-  const route = GREScore.routeFor(correct, total, (state.mockMeta && state.mockMeta.routing) || null);
+  // meta.routing lives on the loaded paper, not on the MOCK_INDEX card entry; reading only
+  // state.mockMeta fell back to score-scale's defaults (6 / 9) instead of the paper's 4 / 7.
+  const routing = (state.mockData && state.mockData.meta && state.mockData.meta.routing)
+               || (state.mockMeta && state.mockMeta.routing) || null;
+  const route = GREScore.routeFor(correct, total, routing);
   const chosen = GREScore.pickForm(forms, route);
   if (chosen) { state.section2Form = chosen.form; sec.questions = chosen.questions; }
 }
