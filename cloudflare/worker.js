@@ -2312,7 +2312,7 @@ function eventPendingItem(r, i) {
     time_taken: Number(r && r.time_taken_seconds) || 0,
     status: skipped ? 'skipped' : 'wrong',
     your_answer: skipped ? '' : progressText(Array.isArray(r.student_answer) ? r.student_answer.join(', ') : r.student_answer, 120),
-    stem: progressText(r && r.question_text, 160),
+    stem: progressText(r && r.question_text, 2000),   // 160 cut most stems mid-sentence
   };
 }
 

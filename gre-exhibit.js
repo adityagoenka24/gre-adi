@@ -274,7 +274,17 @@
     '.gex-legend{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;margin:0 0 12px;font-size:12px;color:' + INK + ';}',
     '.gex-key{display:inline-flex;align-items:center;gap:6px;}',
     '.gex-key i{width:11px;height:11px;border-radius:2px;display:inline-block;}',
-    '.gex-tablewrap{margin:0 0 14px;overflow-x:auto;}',
+    /* A wide DI table has to scroll on a phone. Without a cue students read the
+       visible columns and think that is the whole exhibit, so the edges carry a
+       shadow that appears only while there is more to scroll to (pure CSS: the
+       'local' layers sit on the content, the 'scroll' layers on the frame). */
+    '.gex-tablewrap{margin:0 0 14px;overflow-x:auto;-webkit-overflow-scrolling:touch;' +
+      'background:linear-gradient(to right,#fff 30%,rgba(255,255,255,0)) left center,' +
+      'linear-gradient(to left,#fff 30%,rgba(255,255,255,0)) right center,' +
+      'radial-gradient(farthest-side at 0 50%,rgba(22,25,29,.16),rgba(22,25,29,0)) left center,' +
+      'radial-gradient(farthest-side at 100% 50%,rgba(22,25,29,.16),rgba(22,25,29,0)) right center;' +
+      'background-repeat:no-repeat;background-size:30px 100%,30px 100%,14px 100%,14px 100%;' +
+      'background-attachment:local,local,scroll,scroll;}',
     '.gex-table{border-collapse:collapse;margin:0 auto;font-size:13.5px;background:#fff;}',
     '.gex-table th,.gex-table td{border:1px solid ' + LINE + ';padding:7px 13px;text-align:center;color:' + INK + ';}',
     '.gex-table th{background:#f2f5f8;font-weight:700;}',
@@ -282,7 +292,22 @@
     '.gex-figdesc{font-size:13px;color:' + MUTE + ';font-style:italic;margin:0 0 12px;text-align:center;}',
     '.gex-svgraw{text-align:center;margin:0 0 14px;}',
     '.gex-svgraw svg{max-width:100%;height:auto;}',
-    '@media print{.gex-fig{break-inside:avoid;} .gex-tablewrap{break-inside:avoid;}}'
+    /* Answer choices, review-time only. Students were seeing "Correct: A" with no
+       way to tell what A said, so the review now lists every choice and marks
+       the key and their own pick. */
+    '.gex-opts{display:flex;flex-direction:column;gap:5px;margin:0 0 12px;}',
+    '.gex-opt{position:relative;font-size:13.5px;line-height:1.5;color:' + INK + ';padding:7px 10px;border:1px solid ' + SOFT + ';border-radius:4px;background:#fff;white-space:pre-wrap;overflow-wrap:anywhere;}',
+    '.gex-opt-key{border-color:#1e7e46;background:#f1f8f3;}',
+    '.gex-opt-wrong{border-color:#c0392b;background:#fdf3f2;}',
+    '.gex-opt-tag{display:inline-block;margin-left:8px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:' + MUTE + ';white-space:nowrap;}',
+    '.gex-opt-key .gex-opt-tag{color:#1e7e46;}',
+    '.gex-opt-wrong .gex-opt-tag{color:#c0392b;}',
+    /* Give a wide exhibit a better chance of fitting before it has to scroll. */
+    '@media (max-width:560px){.gex-table{font-size:12px;}' +
+      '.gex-table th,.gex-table td{padding:5px 7px;}' +
+      '.gex-opt{font-size:13px;padding:6px 8px;}' +
+      '.gex-opt-tag{display:block;margin:3px 0 0;}}',
+    '@media print{.gex-fig{break-inside:avoid;} .gex-tablewrap{break-inside:avoid;} .gex-opts{break-inside:avoid;}}'
   ].join('\n');
 
   function injectCss() {
@@ -312,5 +337,53 @@
     }
   }
 
-  window.GREExhibit = { html: html, chart: chartHtml, table: tableHtml };
+  /* 'A' from 'A. 3/8'. Returns '' for an unlettered option. */
+  function letterOf(opt) {
+    var m = /^\s*([A-H])\s*[.)]/.exec(String(opt == null ? '' : opt));
+    return m ? m[1] : '';
+  }
+
+  /* An answer in any of the shapes the banks and the loggers use: 'A',
+     ['A','C'], 'A, C' or 'A C'. Numeric-entry values fall out as non-letters
+     and simply match nothing. */
+  function letters(v) {
+    if (v == null) return [];
+    var list = Array.isArray(v) ? v : String(v).split(/[,;\s]+/);
+    return list.map(function (x) { return String(x).trim().toUpperCase(); })
+               .filter(function (x) { return /^[A-H]$/.test(x); });
+  }
+
+  /* The answer choices as the review needs them: every option shown in full,
+     with the key and the student's own pick marked. Returns '' when the
+     question has no options (numeric entry), where the answer line already
+     shows the value. `given` is the student's answer and may be omitted. */
+  function choices(q, given) {
+    if (!q || !Array.isArray(q.options) || !q.options.length) return '';
+    try {
+      injectCss();
+      var key = letters(q.answer), mine = letters(given);
+      return '<div class="gex-opts">' + q.options.map(function (o) {
+        var L = letterOf(o);
+        var isKey = !!L && key.indexOf(L) !== -1;
+        var isMine = !!L && mine.indexOf(L) !== -1;
+        var tag = isKey && isMine ? 'your answer \u00b7 correct'
+                : isKey ? 'correct'
+                : isMine ? 'your answer' : '';
+        return '<div class="gex-opt' + (isKey ? ' gex-opt-key' : (isMine ? ' gex-opt-wrong' : '')) + '">' +
+               esc(o) + (tag ? '<span class="gex-opt-tag">' + tag + '</span>' : '') + '</div>';
+      }).join('') + '</div>';
+    } catch (e) {
+      if (window.console) console.warn('exhibit choices', e);
+      return '';
+    }
+  }
+
+  /* Everything a student needs to see the whole question again after the test:
+     the exhibit it hangs off, then the answer choices. One call so every
+     surface's review shows the same thing. */
+  function review(q, given) {
+    return html(q) + choices(q, given);
+  }
+
+  window.GREExhibit = { html: html, chart: chartHtml, table: tableHtml, choices: choices, review: review };
 })();

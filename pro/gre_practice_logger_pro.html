@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="../gre-math.js"></script>
+<script defer src="../gre-exhibit.js"></script>
 <script defer src="../gre-calculator.js"></script>
 <script defer src="../score-scale.js"></script>
 <script src="error-log.js"></script>
@@ -2899,6 +2900,7 @@ function renderBankMistakeReview(){
         </div>
         <div class="wrong-q-body">
           <div class="wrong-q-text">${escHtml(q.question)}</div>
+          ${window.GREExhibit ? GREExhibit.review(q, mine) : ''}
           <div class="wrong-q-answers">
             <span class="wrong-q-your">Your answer: ${escHtml(mine)}</span>
             <span style="color:var(--text3);">·</span>
@@ -3694,6 +3696,7 @@ function examRenderAnalysis() {
               </div>
               <div class="wrong-q-body">
                 <div class="wrong-q-text">${escHtml(q.question)}</div>
+                ${window.GREExhibit ? GREExhibit.review(q, r.studentAnswer) : ''}
                 <div class="wrong-q-answers">
                   <span class="wrong-q-your">Your answer: ${escHtml(r.studentAnswer)}</span>
                   <span style="color:var(--text3);">·</span>

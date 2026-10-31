@@ -23,6 +23,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="gre-math.js"></script>
+<script defer src="gre-exhibit.js"></script>
 <style>.gre-math{white-space:normal}.katex{font-size:1.08em!important}.pq-question-text .katex,.pq-qc-content .katex{font-size:1.12em!important}</style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -2331,6 +2332,7 @@ function renderBankMistakeReview(){
         </div>
         <div class="wrong-q-body">
           <div class="wrong-q-text">${escHtml(q.question)}</div>
+          ${window.GREExhibit ? GREExhibit.review(q, mine) : ''}
           <div class="wrong-q-answers">
             <span class="wrong-q-your">Your answer: ${escHtml(mine)}</span>
             <span style="color:var(--text3);">·</span>
@@ -3184,6 +3186,7 @@ function examRenderAnalysis() {
               </div>
               <div class="wrong-q-body">
                 <div class="wrong-q-text">${escHtml(q.question)}</div>
+                ${window.GREExhibit ? GREExhibit.review(q, r.studentAnswer) : ''}
                 <div class="wrong-q-answers">
                   <span class="wrong-q-your">Your answer: ${escHtml(r.studentAnswer)}</span>
                   <span style="color:var(--text3);">·</span>

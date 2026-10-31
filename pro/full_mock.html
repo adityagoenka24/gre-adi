@@ -1074,7 +1074,7 @@ function reviewAnswers(noScroll) {
       const correctStr = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
       html += `<div class="review-item ${status}">
         <div class="review-q"><strong>Q${qi+1}.</strong> ${escapeHtml(q.question)}</div>
-        ${window.GREExhibit ? GREExhibit.html(q) : ''}
+        ${window.GREExhibit ? GREExhibit.review(q, given) : ''}
         <div class="review-answers">
           <span>Your answer: <span class="${isCorrect?'correct-ans':'wrong-ans'}">${escapeHtml(givenStr)}</span></span>
           <span>Correct: <span class="correct-ans">${escapeHtml(correctStr)}</span></span>

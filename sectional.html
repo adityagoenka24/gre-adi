@@ -704,7 +704,7 @@ function buildSubmissionPayload(){
     return {
       id: x.q.id,
       question_id: x.q.id,
-      question_text: String(x.q.question || '').slice(0, 400),
+      question_text: String(x.q.question || '').slice(0, 2000),
       student_answer: x.skipped ? null : (Array.isArray(x.given) ? x.given.join(',') : x.given),
       correct: x.correct,
       skipped: x.skipped,
@@ -936,14 +936,12 @@ function toggleReview(noScroll){
       var status = x.skipped ? 'skipped' : (x.correct ? 'correct' : 'incorrect');
       var givenStr = Array.isArray(x.given) ? x.given.join(', ') : (x.given || '—');
       var correctStr = Array.isArray(x.q.answer) ? x.q.answer.join(', ') : x.q.answer;
-      var optsHtml = (x.q.options && x.q.options.length)
-        ? '<div class="review-answers" style="flex-direction:column;align-items:flex-start;gap:3px;">' +
-          x.q.options.map(function(o){ return '<span style="font-size:13px;color:var(--gre-text2)">' + escapeHtml(o) + '</span>'; }).join('') +
-          '</div>'
-        : '';
+      // The exhibit and the answer choices both come from GREExhibit now, so
+      // every surface's review shows the whole question the same way.
+      var optsHtml = '';
       return '<div class="review-item ' + status + '">' +
         '<div class="review-q"><strong>Q' + (x.i+1) + '.</strong> ' + escapeHtml(x.q.question) + '</div>' +
-        (window.GREExhibit ? GREExhibit.html(x.q) : '') +
+        (window.GREExhibit ? GREExhibit.review(x.q, x.given) : '') +
         optsHtml +
         '<div class="review-answers">' +
           '<span>Your answer: <span class="' + (x.correct?'correct-ans':'wrong-ans') + '">' + escapeHtml(givenStr) + '</span></span>' +

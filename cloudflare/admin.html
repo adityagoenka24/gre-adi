@@ -114,7 +114,6 @@ td:last-child{white-space:nowrap;}
     <button class="tab-btn" data-tab="students" onclick="switchTab('students')">👥 Students</button>
     <button class="tab-btn" data-tab="access" onclick="switchTab('access')">🎚️ Access &amp; Devices</button>
     <button class="tab-btn" data-tab="webhooks" onclick="switchTab('webhooks')">💳 Webhooks</button>
-    <button class="tab-btn" data-tab="attempts" onclick="switchTab('attempts')">📝 Mock Attempts</button>
   </div>
 
   <!-- ═══ STUDENTS ═══ -->
@@ -250,31 +249,9 @@ td:last-child{white-space:nowrap;}
 
   </div>
 
-  <!-- ═══ MOCK ATTEMPTS ═══ -->
-  <div class="tab-panel" id="tab-attempts" data-tab-panel="attempts">
-
-    <!-- Mock Attempts -->
-    <div class="card">
-      <h2>📝 Mock Attempts</h2>
-      <div class="row">
-        <div class="field">
-          <label>Days to show</label>
-          <input type="number" id="attempt-days" min="1" max="14" value="1">
-        </div>
-        <button class="btn btn-primary" onclick="loadMockAttempts()">Refresh Attempts</button>
-        <button class="btn btn-ghost" onclick="downloadAttemptsCsv()">Download CSV</button>
-        <button class="btn btn-ghost" onclick="downloadAttemptsJson()">Download JSON</button>
-      </div>
-      <div id="attempt-table" style="margin-top:16px;"><div class="empty">Click "Refresh Attempts" to load completed mocks.</div></div>
-    </div>
-
-  </div>
-
 </div>
 
 <script>
-let latestAttempts = [];
-
 // ─── Tabs ─────────────────────────────────────────────────────────────────────
 function switchTab(name) {
   document.querySelectorAll('.tab-panel').forEach(p => p.classList.toggle('active', p.dataset.tabPanel === name));
@@ -305,120 +282,6 @@ function loadConfig() {
   const { url, secret } = getConfig();
   if (url) { document.getElementById('worker-url').value = url; document.getElementById('display-url').textContent = url; }
   if (secret) { document.getElementById('admin-secret').value = secret; document.getElementById('display-secret').textContent = '••••••••'; }
-}
-
-// ─── Mock Attempts ───────────────────────────────────────────────────────────
-async function loadMockAttempts() {
-  const { url, secret } = getConfig();
-  const days = Math.min(Math.max(Number(document.getElementById('attempt-days').value) || 30, 1), 14);
-  const el = document.getElementById('attempt-table');
-  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
-  el.innerHTML = '<div class="empty">Loading attempts…</div>';
-  try {
-    const res = await fetch(`${url}/admin/mock-attempts?days=${days}`, {
-      headers: { 'X-Admin-Secret': secret }
-    });
-    const data = await res.json();
-    if (data.error) { el.innerHTML = `<div class="empty">Error: ${escapeHtml(data.error)}</div>`; return; }
-    latestAttempts = data.attempts || [];
-    renderMockAttempts(latestAttempts, data);
-  } catch (e) {
-    el.innerHTML = `<div class="empty">Network error: ${escapeHtml(e.message)}</div>`;
-  }
-}
-
-function renderMockAttempts(attempts, data) {
-  const el = document.getElementById('attempt-table');
-  if (!attempts.length) {
-    el.innerHTML = '<div class="empty">No completed mock attempts found for this period.</div>';
-    return;
-  }
-  const rows = attempts.map(a => {
-    const student = a.student || {};
-    const diagnosis = a.diagnosis || {};
-    const weak = diagnosis.weak_area?.label || '—';
-    const band = diagnosis.band?.label || '—';
-    const submitted = a.submitted_at ? new Date(a.submitted_at).toLocaleString('en-IN') : '—';
-    return `<tr>
-      <td>
-        <strong>${escapeHtml(student.name || 'Unknown')}</strong><br>
-        <span style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(student.email || '—')}</span>
-      </td>
-      <td>
-        ${escapeHtml(a.event_name || a.event_id || 'Mock')}<br>
-        <span style="font-family:var(--font-mono);font-size:11px;color:var(--text3);">${escapeHtml(submitted)}</span>
-      </td>
-      <td><span class="badge badge-ok">${Number(a.score || 0)}/${Number(a.total_questions || 0)}</span></td>
-      <td><span class="badge badge-warn">${Number(a.accuracy || 0)}%</span></td>
-      <td style="font-size:12px;color:var(--text3);">${escapeHtml(band)}<br>${escapeHtml(weak)}</td>
-    </tr>`;
-  }).join('');
-  el.innerHTML = `
-    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
-      <span class="badge badge-ok">${data.count || attempts.length} attempts</span>
-      <span class="badge">Timezone: ${escapeHtml(data.timezone || 'Asia/Kolkata')}</span>
-    </div>
-    <div class="table-wrap"><table>
-      <thead><tr><th>Student</th><th>Event / Time</th><th>Score</th><th>Accuracy</th><th>Diagnosis</th></tr></thead>
-      <tbody>${rows}</tbody>
-    </table></div>`;
-}
-
-function attemptsCsv(attempts) {
-  const headers = ['submitted_at','name','email','batch','event_id','event_name','team','score','total_questions','accuracy','correct','incorrect','skipped','total_time_seconds','diagnosis_band','weak_area'];
-  const esc = value => `"${String(value ?? '').replaceAll('"','""')}"`;
-  const rows = attempts.map(a => {
-    const s = a.student || {};
-    return {
-      submitted_at: a.submitted_at || '',
-      name: s.name || '',
-      email: s.email || '',
-      batch: s.batch || '',
-      event_id: a.event_id || '',
-      event_name: a.event_name || '',
-      team: a.team || '',
-      score: a.score || 0,
-      total_questions: a.total_questions || 0,
-      accuracy: a.accuracy || 0,
-      correct: a.correct || 0,
-      incorrect: a.incorrect || 0,
-      skipped: a.skipped || 0,
-      total_time_seconds: a.total_time_seconds || 0,
-      diagnosis_band: a.diagnosis?.band?.label || '',
-      weak_area: a.diagnosis?.weak_area?.label || '',
-    };
-  });
-  return [headers.join(','), ...rows.map(row => headers.map(h => esc(row[h])).join(','))].join('\n');
-}
-
-function downloadBlob(filename, text, type) {
-  const blob = new Blob([text], { type });
-  const a = document.createElement('a');
-  a.href = URL.createObjectURL(blob);
-  a.download = filename;
-  a.click();
-  setTimeout(() => URL.revokeObjectURL(a.href), 1000);
-}
-
-function downloadAttemptsCsv() {
-  if (!latestAttempts.length) return alert('Load attempts first.');
-  downloadBlob('mock_attempts.csv', attemptsCsv(latestAttempts), 'text/csv');
-}
-
-async function downloadAttemptsJson() {
-  const { url, secret } = getConfig();
-  const days = Math.min(Math.max(Number(document.getElementById('attempt-days').value) || 30, 1), 14);
-  if (!url || !secret) return alert('Set Worker URL and Admin Secret first.');
-  try {
-    const res = await fetch(`${url}/admin/mock-attempts?days=${days}&include_results=1`, {
-      headers: { 'X-Admin-Secret': secret }
-    });
-    const data = await res.json();
-    if (data.error) return alert(`Error: ${data.error}`);
-    downloadBlob('mock_attempts_full.json', JSON.stringify(data, null, 2), 'application/json');
-  } catch (e) {
-    alert(`Network error: ${e.message}`);
-  }
 }
 
 // ─── Access helpers ───────────────────────────────────────────────────────────

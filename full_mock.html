@@ -316,7 +316,7 @@ function buildSubmissionPayload(totalCorrect, totalQs, pct, r1, r2) {
       results.push({
         id: q.id,
         question_id: q.id,
-        question_text: String(q.question || '').slice(0, 400),
+        question_text: String(q.question || '').slice(0, 2000),
         student_answer: isSkipped ? null : (Array.isArray(given) ? given.join(',') : given),
         correct: isCorrect,
         skipped: isSkipped,
@@ -1449,7 +1449,7 @@ function reviewAnswers(noScroll) {
       const correctStr = Array.isArray(q.answer) ? q.answer.join(', ') : q.answer;
       html += `<div class="review-item ${status}">
         <div class="review-q"><strong>Q${qi+1}.</strong> ${escapeHtml(q.question)}</div>
-        ${window.GREExhibit ? GREExhibit.html(q) : ''}
+        ${window.GREExhibit ? GREExhibit.review(q, given) : ''}
         <div class="review-answers">
           <span>Your answer: <span class="${isCorrect?'correct-ans':'wrong-ans'}">${escapeHtml(givenStr)}</span></span>
           <span>Correct: <span class="correct-ans">${escapeHtml(correctStr)}</span></span>

@@ -32,7 +32,7 @@ Cloudflare emailed that 50% of the daily Workers KV free limit (100k reads, 1,00
 *Pass 1, stop the obvious burn:*
 - `analytics.js`: `SEND_TO_WORKER = false`. No request goes to the Worker. Google Ads conversions, `window.GQP.track()` and the `[data-track]` click handler still work.
 - `worker.js`: `/analytics/view` and `/analytics/event` are pure no-ops (they return `{status:'ok', disabled:true}`; kept only so cached old copies of `analytics.js` get a 200). The `/admin/analytics*` readers and their per-day KV list scans were deleted. The KV fallback scan is capped at `KV_FALLBACK_MAX_DAYS = 14` in `collectEventRecords` and `handleAdminMockAttempts`; the D1 index path is not capped.
-- `admin.html`: removed the Leads tab, the Website Analytics card and the Conversion Funnel card. Tabs now: Students, Access & Devices, Webhooks, Mock Attempts (day range capped at 14).
+- `admin.html`: removed the Leads tab, the Website Analytics card and the Conversion Funnel card. Tabs now: Students, Access & Devices, Webhooks. The Mock Attempts tab was later removed from the page (the `/admin/mock-attempts` endpoint in `worker.js` is untouched).
 - `coach.html`: removed the Free attempts tab and all its code. Events lists only mock events (`mock_test`, `full_mock_event`); `sectional`, `full_mock` and `team_battle` rows are hidden by `HIDDEN_EVENT_TYPES`. Heading is "Mock events". The owner does not want the free-attempts screen back.
 
 *Pass 2, move everything that was still hot on KV to D1 (owner: "minimize KV touches, bring everything from D1"):*
@@ -258,6 +258,47 @@ Purge clears the D1 index and log rows (three SQL statements regardless of size)
 - **Gate run for that pass:** all 50 items cleared `validate.py` hard rules (0 errors), a wording-contract screen (US spelling, interrogative stems, canonical select-all directives, no shouty caps, no redundant entry instructions, stem/exhibit agreement) and `--solutions` against keys solved independently from each stem (0 mismatches). Four candidates were rejected by that gate and replaced: `ALG-INQ-054` (explanation names Cauchy–Schwarz, trap uses "Maximising"), `STA-DDI-014` (stem corrupted — "0.05" split, leaving "P(X ≥ x) < 0?" and "Indicate all such values.05."), `DAT-TBL-027` (stem says "contingency table" but the exhibit is a bar chart with Total bars baked in) and the `MIX-GEN` roll-up family (duplicates subtopic-file items).
 - **Pre-existing bank defects found while screening (not fixed, outside that pass):** of 10,943 bank items, ~908 carry shouty caps (mostly `TRUE`/`FALSE` in statistics select-all stems), 76 fail a `validate.py` hard rule, 26 repeat a redundant entry instruction, 9 have a truncated or split number in the stem, and 15 stems are shared by two different ids. The medium and hard Section 2 forms still run 98–104% of their clock, as they did before.
 - **Real GRE shape** (reconstructed from the KMF import's "Section N Base / Hard" tags): real Section 1 is 27% easy / 56% medium / 17% hard / 1% extreme; the hardest real Section 2 is 3% / 58% / 37% / 2%. Real mixes are never all-extreme.
+
+### 4.5b The post-test review shows the whole question (2026-10-31)
+
+Students reported that the review they see straight after a test did not show the whole
+question. Three separate causes, all now fixed:
+
+- **No answer choices anywhere but the sectionals.** The full mocks, both practice loggers and
+  the event mock printed the stem and then "Your answer: B · Correct: C" with no way to see what
+  B or C actually said. The sectionals listed the options but in their own markup.
+- **No exhibit in the topic-test and event reviews.** The practice loggers never loaded
+  `gre-exhibit.js` at all, and `events_common.js` rendered only `r.question_text`, so every
+  geometry figure, chart and data table vanished from the review. A DI question became
+  unanswerable prose.
+- **The stem was truncated twice on the server round-trip.** `eventPendingItem` cut
+  `stem` to 160 characters, which clips **35% of the bank (3,850 of 10,943 stems)** mid-sentence
+  in the resume modal; the mock and sectional pages also cut `question_text` to 400 before
+  submitting it. The longest stem in the bank is 671 characters, so both caps are now 2000.
+
+**The fix is one shared renderer.** `GREExhibit` gained `choices(q, given)` and
+`review(q, given)` (exhibit + choices, in reading order). Every surface's review now calls
+`GREExhibit.review(...)`: `full_mock.html`, `pro/full_mock.html`, `sectional.html`,
+`pro/sectional.html`, both practice loggers (which now load `gre-exhibit.js`) and both review
+blocks in `events/events_common.js`. The sectionals' bespoke option markup was removed so all
+six surfaces render identically. `choices()` returns '' for numeric entry, marks the key and the
+student's own pick, and handles `'A'`, `['A','C']` and `'A, C'` answer shapes.
+
+Event rows carry no options or exhibit, so `reviewQuestion(result, idx)` in `events_common.js`
+prefers the live `state.config.questions[idx]` (confirmed by id) and falls back to the payload
+row, which degrades to the old text-only card rather than breaking.
+
+**Phone width:** a wide DI table used to scroll with no cue, so students read the visible columns
+and thought that was the exhibit. `.gex-tablewrap` now carries a pure-CSS edge shadow that shows
+only while there is more to scroll to, and tables and options shrink below 560px. Verified at
+390px: the four-column Veyra table fits with no page overflow.
+
+**Verification:** the free full mock and the free sectional were driven end to end in a headless
+browser. Full mock: 27 review items, 23 with the choice list and the key marked (the other 4 are
+numeric entry), 4 exhibits, every stem rendered in full, nothing clipped, no overflow at 390px.
+Sectional: 10 items, 7 with choices (3 numeric entry), 5 exhibits, old markup gone. The dark
+event theme was checked separately — the white choice rows match the white exhibit tables already
+used there.
 
 ### 4.6 Event mocks (`events/mock_test.html`)
 

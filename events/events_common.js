@@ -1020,6 +1020,18 @@ const Events = (() => {
     return rows;
   }
 
+  /* The question as it was asked, for the review. The submitted rows carry the
+     stem but not the exhibit or the answer choices, so prefer the live config
+     question (same index, confirmed by id) and fall back to the row. */
+  function reviewQuestion(result, idx) {
+    const rows = (result && result.results) || [];
+    const r = rows[idx] || {};
+    const qs = (state.config && state.config.questions) || [];
+    const q = qs[idx];
+    if (q && (!r.question_id || q.id === r.question_id)) return q;
+    return { question: r.question_text, answer: r.correct_answer, options: null };
+  }
+
   function renderWrongReview(result) {
     const wrong = (result.results || []).filter((r) => !r.correct);
     if (!wrong.length) {
@@ -1034,6 +1046,7 @@ const Events = (() => {
       <div class="wrong-q-list">${wrong.map((r) => {
         const correctAnswer = Array.isArray(r.correct_answer) ? r.correct_answer.join(", ") : r.correct_answer;
         const studentAnswer = r.skipped ? "(no answer)" : Array.isArray(r.student_answer) ? r.student_answer.join(", ") : r.student_answer;
+        const idx = result.results.indexOf(r);
         return `<div class="wrong-q-card">
           <div class="wrong-q-header">
             <span class="pq-badge ${escapeHtml(r.difficulty)}">${escapeHtml(difficultyLabel(r.difficulty))}</span>
@@ -1043,6 +1056,7 @@ const Events = (() => {
           </div>
           <div class="wrong-q-body">
             <div class="wrong-q-text">${escapeHtml(r.question_text)}</div>
+            ${window.GREExhibit ? GREExhibit.review(reviewQuestion(result, idx), r.student_answer) : ""}
             <div class="wrong-q-answers">
               <span class="wrong-q-your">Your answer: ${escapeHtml(studentAnswer)}</span>
               <span style="color:var(--text3);">·</span>
@@ -1050,7 +1064,7 @@ const Events = (() => {
             </div>
             ${r.explanation ? `<div class="wrong-q-explanation">${escapeHtml(r.explanation)}</div>` : ""}
             ${r.trap ? `<div class="wrong-q-trap">⚠️ Trap: ${escapeHtml(r.trap)}</div>` : ""}
-            ${leBox(result.results.indexOf(r), r)}
+            ${leBox(idx, r)}
           </div>
         </div>`;
       }).join("")}</div>
@@ -1082,6 +1096,7 @@ const Events = (() => {
             </div>
             <div class="wrong-q-body">
               <div class="wrong-q-text">${escapeHtml(r.question_text)}</div>
+              ${window.GREExhibit ? GREExhibit.review(reviewQuestion(result, i), r.student_answer) : ""}
               <div class="wrong-q-answers">
                 <span class="${r.correct ? "wrong-q-correct" : "wrong-q-your"}">Your answer: ${escapeHtml(studentAnswer)}</span>
                 <span style="color:var(--text3);">·</span>
