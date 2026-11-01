@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ShopNow Internship — Mentor Console</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Archivo:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ═══ THE SHOPNOW OFFICE — mentor console, matches app.html/index.html ═══ */
+  :root{
+    --bg:#F4EEDE;--paper:#FFFDF6;--panel:#FFFDF6;--surface:#FFFDF6;
+    --ink:#17181D;--line:#17181D;--line2:#17181D;--soft:#E7DFC9;
+    --accent:#2B50F0;--accent2:#1E3ED0;--accenttext:#2B50F0;
+    --yellow:#FFD23F;--yellow2:#FFE066;--pink:#FF5D8F;--orange:#FF8A3D;
+    --green:#00894F;--greenBg:#BFEFD4;--amber:#B26B00;--red:#C41E3A;--redBg:#FFD9DE;
+    --txt:#17181D;--mut:#6E6857;--purple:#7C3AED;
+    --shadow:4px 4px 0 var(--ink);--shadow-sm:3px 3px 0 var(--ink);--shadow-xs:2px 2px 0 var(--ink);
+    --font-display:'Bricolage Grotesque','Archivo',sans-serif;
+    --font-body:'Archivo',-apple-system,sans-serif;
+    --font-mono:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;height:100%;}
+  body{font-family:var(--font-body);background:var(--bg);color:var(--txt);font-size:14px;display:flex;flex-direction:column;height:100vh;overflow:hidden;-webkit-font-smoothing:antialiased;
+    background-image:radial-gradient(rgba(23,24,29,.055) 1px,transparent 1px);background-size:22px 22px;}
+  ::selection{background:var(--yellow);color:var(--ink);}
+  *{scrollbar-width:thin;scrollbar-color:var(--ink) transparent;}
+  ::-webkit-scrollbar{width:10px;height:10px;}
+  ::-webkit-scrollbar-thumb{background:var(--ink);border:3px solid var(--bg);border-radius:99px;}
+  ::-webkit-scrollbar-track{background:transparent;}
+
+  header{display:flex;align-items:center;justify-content:space-between;padding:12px 22px;background:var(--ink);color:#F4EEDE;border-bottom:3px solid var(--ink);flex:0 0 auto;gap:10px;}
+  header .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16px;letter-spacing:.2px;font-family:var(--font-display);}
+  header .brand::before{content:"S";width:27px;height:27px;border-radius:6px;background:var(--yellow);color:var(--ink);border:2px solid var(--ink);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;box-shadow:2px 2px 0 rgba(244,238,222,.35);transform:rotate(-6deg);}
+  header .brand span{color:var(--yellow);}
+  #connStatus{font-size:11px;font-family:var(--font-mono);color:#A9A290;letter-spacing:.5px;}
+
+  .wrap{display:flex;flex:1 1 auto;min-height:0;}
+  #side{width:190px;flex:0 0 auto;border-right:3px solid var(--ink);overflow-y:auto;padding:16px 0 20px;}
+  .navphase{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:var(--mut);padding:0 18px 8px;font-family:var(--font-mono);font-weight:600;}
+  .navphase::before{content:"■ ";color:var(--pink);font-size:8px;}
+  .navitem{margin:5px 12px;padding:9px 12px;cursor:pointer;display:flex;gap:9px;align-items:center;border:2px solid transparent;border-radius:6px;color:var(--ink);font-weight:600;font-size:13px;transition:transform .08s,background .1s;}
+  .navitem:hover{background:var(--paper);border-color:var(--ink);}
+  .navitem.active{background:var(--yellow);border-color:var(--ink);font-weight:700;box-shadow:var(--shadow-xs);transform:rotate(-.5deg);}
+
+  #main{flex:1 1 auto;overflow-y:auto;padding:26px 32px 60px;min-width:0;}
+  .tabpanel{max-width:880px;}
+  h1{font-family:var(--font-display);font-size:26px;font-weight:800;margin:0 0 4px;letter-spacing:-.5px;line-height:1.1;position:relative;display:inline-block;z-index:0;}
+  h1::after{content:"";position:absolute;left:-4px;right:-8px;bottom:2px;height:11px;background:var(--yellow);z-index:-1;transform:rotate(-.8deg);}
+  .goal{color:var(--mut);font-size:13px;margin:6px 0 18px;line-height:1.6;}
+  h2.section{font-family:var(--font-mono);font-size:11.5px;text-transform:uppercase;letter-spacing:1.8px;color:var(--ink);font-weight:700;margin:30px 0 12px;border-bottom:2px solid var(--ink);padding-bottom:6px;display:flex;align-items:baseline;gap:10px;}
+  h2.section::before{content:"■ ";color:var(--accent);font-size:9px;}
+  h2.section .hint-inline{font-family:var(--font-body);text-transform:none;letter-spacing:0;font-weight:500;font-size:11.5px;color:var(--mut);}
+
+  .card{border:2px solid var(--ink);border-radius:8px;margin:0 0 16px;overflow:hidden;background:var(--paper);box-shadow:var(--shadow);}
+  .cbody{padding:16px;}
+  .note-txt{font-size:12.5px;color:var(--mut);margin:0 0 10px;line-height:1.55;}
+
+  label{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.6px;color:var(--mut);margin:10px 0 4px;font-family:var(--font-mono);font-weight:600;}
+  input,select,textarea{width:100%;background:var(--paper);color:var(--txt);border:2px solid var(--ink);border-radius:6px;padding:9px 11px;font-size:13px;font-family:var(--font-body);box-shadow:2px 2px 0 var(--ink);}
+  input:focus,select:focus,textarea:focus{outline:none;box-shadow:3px 3px 0 var(--accent);border-color:var(--accent);}
+  textarea{font-family:var(--font-mono);font-size:12.5px;resize:vertical;}
+  .row{display:flex;gap:14px;flex-wrap:wrap;}
+  .row>div{flex:1 1 200px;}
+  .radiorow{display:flex;gap:18px;align-items:center;font-size:12.5px;color:var(--txt);margin:12px 0 2px;}
+  .radiorow label{display:flex;align-items:center;gap:6px;margin:0;text-transform:none;letter-spacing:0;font-size:12.5px;color:var(--txt);font-family:var(--font-body);font-weight:500;}
+  .radiorow input{width:auto;box-shadow:none;padding:0;}
+
+  .btns{display:flex;gap:12px;margin-top:14px;flex-wrap:wrap;align-items:center;}
+  button{border:2px solid var(--ink);border-radius:6px;padding:9px 16px;font-weight:700;cursor:pointer;font-size:12.5px;font-family:var(--font-body);background:var(--paper);color:var(--ink);box-shadow:var(--shadow-sm);transition:transform .08s,box-shadow .08s,background .1s;}
+  button:hover{transform:translate(-1px,-1px);box-shadow:4px 4px 0 var(--ink);}
+  button:active{transform:translate(2px,2px);box-shadow:0 0 0 var(--ink);}
+  button:disabled{opacity:.4;cursor:default;box-shadow:none;transform:none;}
+  .submit{background:var(--accent);color:#fff;}
+  .submit:hover{background:var(--accent2);}
+  .danger{background:var(--redBg);color:#8F1D1D;}
+  .success{background:var(--greenBg);color:var(--ink);}
+  .ghost{background:none;color:var(--accent);font-weight:700;padding:6px 4px;border:none;box-shadow:none;text-decoration:underline;text-decoration-style:dashed;text-underline-offset:4px;}
+  .ghost:hover{transform:none;box-shadow:none;color:var(--accent2);}
+  .small{font-size:11px;padding:5px 10px;}
+  .link{color:var(--accent);cursor:pointer;font-weight:700;font-size:12.5px;text-decoration:underline;text-decoration-style:dashed;text-underline-offset:3px;}
+  .link:hover{color:var(--accent2);}
+
+  .mono{font-family:var(--font-mono);}
+  .tag{display:inline-block;font-family:var(--font-mono);font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.4px;padding:2px 8px;border:1.5px solid var(--ink);border-radius:4px;box-shadow:1.5px 1.5px 0 var(--ink);white-space:nowrap;}
+  .tag.ok{background:var(--greenBg);color:var(--ink);}
+  .tag.warn{background:var(--redBg);color:#8F1D1D;}
+  .tag.managed{background:var(--purple);color:#fff;}
+  .tag.subscriber{background:var(--paper);color:var(--mut);}
+  .tag.pending{background:var(--soft);color:var(--mut);}
+  .badge{display:inline-block;background:var(--yellow);color:var(--ink);border:1.5px solid var(--ink);border-radius:4px;padding:2px 8px;font-size:11px;font-weight:700;box-shadow:1.5px 1.5px 0 var(--ink);}
+
+  table{width:100%;border-collapse:collapse;font-size:12.5px;}
+  th,td{padding:8px 10px;border-bottom:1px solid var(--soft);text-align:left;vertical-align:middle;}
+  th{font-family:var(--font-mono);color:var(--mut);font-weight:600;font-size:10.5px;text-transform:uppercase;letter-spacing:.5px;}
+  .tablewrap{overflow-x:auto;}
+  tr:last-child td{border-bottom:none;}
+
+  /* cohort card w/ inline sub-tabs */
+  .ccard .chead{display:flex;align-items:center;gap:14px;padding:14px 16px;background:#FBF6E8;border-bottom:2px dashed var(--ink);flex-wrap:wrap;}
+  .dot{width:11px;height:11px;border-radius:2px;background:var(--yellow);border:2px solid var(--ink);flex:0 0 auto;}
+  .ctitle{font-weight:800;font-size:14.5px;font-family:var(--font-display);}
+  .cid{font-family:var(--font-mono);font-size:11px;color:var(--mut);margin-top:2px;}
+  .subtabs{display:flex;gap:6px;margin-left:auto;}
+  .subtabbtn{border:2px solid var(--ink);border-radius:6px;padding:6px 12px;font-weight:700;font-size:11.5px;cursor:pointer;background:var(--paper);color:var(--ink);box-shadow:none;margin:0;}
+  .subtabbtn.active{background:var(--accent);color:#fff;box-shadow:var(--shadow-xs);}
+  .panelhead{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px;gap:10px;flex-wrap:wrap;}
+
+  #cohorts .card{margin-bottom:18px;}
+
+  /* modal */
+  .modaloverlay{position:fixed;inset:0;background:rgba(23,24,29,.45);display:none;align-items:flex-start;justify-content:center;z-index:60;padding:6vh 20px;overflow-y:auto;}
+  .modaloverlay.show{display:flex;}
+  .modalcard{background:var(--paper);border:3px solid var(--ink);border-radius:10px;padding:22px 24px;width:440px;max-width:100%;box-shadow:8px 8px 0 var(--ink);transform:rotate(-.3deg);position:relative;}
+  .modalclose{position:absolute;top:12px;right:14px;border:2px solid var(--ink);border-radius:6px;width:28px;height:28px;padding:0;font-size:14px;line-height:1;box-shadow:var(--shadow-xs);}
+  .modaltitle{font-family:var(--font-display);font-size:18px;font-weight:800;margin:0 26px 14px 0;}
+
+  .empty{padding:18px 16px;color:var(--mut);font-size:13px;}
+</style>
+</head>
+<body>
+<header>
+  <div class="brand">ShopNow <span>Mentor Console</span></div>
+  <div id="connStatus">○ not connected</div>
+</header>
+<div class="wrap">
+  <aside id="side">
+    <div class="navphase">Console</div>
+    <div class="navitem active" data-tab="setup">⚙ Setup</div>
+    <div class="navitem" data-tab="cohorts">🏫 Cohorts</div>
+    <div class="navitem" data-tab="managed">🎯 Managed Students</div>
+  </aside>
+  <main id="main">
+
+    <section id="tab-setup" class="tabpanel">
+      <h1>Setup</h1>
+      <div class="goal">Connect to your Worker API. Cohorts and managed students each have their own tab once you're connected.</div>
+
+      <h2 class="section">Connection</h2>
+      <div class="card"><div class="cbody">
+        <div class="row">
+          <div><label>API base URL</label><input id="apiUrl" placeholder="https://shopnow-internship-api.&lt;you&gt;.workers.dev"></div>
+          <div><label>Admin token</label><input id="adminTok" type="password" placeholder="your ADMIN_TOKEN secret"></div>
+        </div>
+        <div class="btns"><button class="submit" id="saveCfg">Save &amp; connect</button><span id="cfgMsg" class="note-txt" style="margin:0"></span></div>
+      </div></div>
+
+      <h2 class="section">Danger zone</h2>
+      <div class="card" style="border-color:#8F1D1D"><div class="cbody">
+        <div class="note-txt">Permanently clears <b style="color:var(--ink)">every</b> student: all registered users, the allowlist on every cohort, all assignments, and all submissions. Deletes the auto-created <span class="mono">Managed · &lt;name&gt;</span> cohorts too. Regular cohorts (their name + join code) are kept, just emptied out. This cannot be undone.</div>
+        <label>Type CLEAR to enable the button</label>
+        <input id="resetConfirmTxt" placeholder="CLEAR">
+        <div class="btns"><button class="danger" id="resetStudentsBtn" disabled>Clear all students</button><span id="resetMsg" class="note-txt" style="margin:0"></span></div>
+      </div></div>
+    </section>
+
+    <section id="tab-cohorts" class="tabpanel" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px">
+        <h1>Cohorts</h1>
+        <button class="ghost" id="refreshCohorts">↻ Refresh</button>
+      </div>
+      <div class="goal">Self-service subscribers only — one join code per cohort, students self-register and self-pace. 1:1 managed students live in their own tab.</div>
+
+      <h2 class="section">Create a cohort</h2>
+      <div class="card"><div class="cbody">
+        <div class="note-txt">One join code, students self-register, self-paced.</div>
+        <div class="row">
+          <div><label>Cohort name</label><input id="cName" placeholder="Batch A · Jul 2026"></div>
+          <div><label>Join code (students enter this)</label><input id="cCode" placeholder="e.g. SHOPNOW-A"></div>
+        </div>
+        <div class="btns"><button class="submit" id="createCohort">Create cohort</button><span id="createMsg" class="note-txt" style="margin:0"></span></div>
+      </div></div>
+
+      <h2 class="section">Cohorts <span class="hint-inline">tap Allowlist or Roster to switch view</span></h2>
+      <div id="cohorts"><div class="empty">Connect in Setup first.</div></div>
+    </section>
+
+    <section id="tab-managed" class="tabpanel" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:10px">
+        <h1>Managed Students</h1>
+        <button class="ghost" id="refreshManaged">↻ Refresh</button>
+      </div>
+      <div class="goal">1:1, paid-offline students. Each gets a dedicated join code and sees only the one ticket you assign at a time — no shared cohort, no self-paced board.</div>
+
+      <h2 class="section">Add a managed student</h2>
+      <div class="card"><div class="cbody">
+        <div class="note-txt">Creates a dedicated join code just for this student and puts them straight into managed mode. Give them the join code + their email to sign in; you then assign their first ticket below.</div>
+        <div class="row">
+          <div><label>Student name</label><input id="mgName" placeholder="e.g. Priya Sharma"></div>
+          <div><label>Student email</label><input id="mgEmail" type="email" placeholder="priya@example.com"></div>
+        </div>
+        <div class="btns"><button class="submit" id="createManaged">Add managed student</button><span id="createManagedMsg" class="note-txt" style="margin:0"></span></div>
+        <div id="createManagedResult"></div>
+      </div></div>
+
+      <h2 class="section">Roster</h2>
+      <div id="managedList"><div class="empty">Connect in Setup first.</div></div>
+    </section>
+
+  </main>
+</div>
+
+<div id="modalOverlay" class="modaloverlay">
+  <div class="modalcard" id="modalCard"></div>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+function esc(s){return String(s??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+
+/* ---------- tabs ---------- */
+document.querySelectorAll('#side .navitem').forEach(item=>{
+  item.onclick=()=>switchTab(item.dataset.tab);
+});
+let loadedCohorts=false, loadedManaged=false;
+function switchTab(tab){
+  document.querySelectorAll('#side .navitem').forEach(n=>n.classList.toggle('active',n.dataset.tab===tab));
+  document.querySelectorAll('.tabpanel').forEach(p=>p.style.display='none');
+  $('tab-'+tab).style.display='block';
+  if(tab==='cohorts' && cfg.url && cfg.tok && !loadedCohorts){ loadedCohorts=true; loadCohorts(); }
+  if(tab==='managed' && cfg.url && cfg.tok && !loadedManaged){ loadedManaged=true; loadManagedStudents(); }
+}
+
+/* ---------- modal ---------- */
+function openModal(html){ $('modalCard').innerHTML=`<button class="modalclose" id="modalX">✕</button>`+html; $('modalOverlay').classList.add('show'); $('modalX').onclick=closeModal; }
+function closeModal(){ $('modalOverlay').classList.remove('show'); $('modalCard').innerHTML=''; }
+$('modalOverlay').onclick=(e)=>{ if(e.target.id==='modalOverlay') closeModal(); };
+document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+/* ---------- connection ---------- */
+const cfg={ url:localStorage.getItem('mentor.url')||'', tok:localStorage.getItem('mentor.tok')||'' };
+$('apiUrl').value=cfg.url; $('adminTok').value=cfg.tok;
+const api=(p)=> (cfg.url.replace(/\/+$/,'')) + p;
+const hdr=()=>({ 'Content-Type':'application/json','X-Admin-Token':cfg.tok });
+function setConn(ok){
+  $('connStatus').textContent = ok ? '● connected' : '○ not connected';
+  $('connStatus').style.color = ok ? '#7CE0B0' : '#A9A290';
+}
+
+$('saveCfg').onclick=async()=>{
+  cfg.url=$('apiUrl').value.trim(); cfg.tok=$('adminTok').value.trim();
+  localStorage.setItem('mentor.url',cfg.url); localStorage.setItem('mentor.tok',cfg.tok);
+  $('cfgMsg').textContent=' connecting…';
+  loadedCohorts=false; loadedManaged=false;
+  const ok=await loadCohorts();
+  loadedCohorts=true;
+  if(ok) switchTab('cohorts');
+};
+$('resetConfirmTxt').oninput=()=>{ $('resetStudentsBtn').disabled = $('resetConfirmTxt').value.trim()!=='CLEAR'; };
+$('resetStudentsBtn').onclick=async()=>{
+  if(!confirm('This permanently deletes every student, allowlist entry, assignment, and submission across every cohort, and removes the auto-created "Managed · <name>" cohorts. Regular cohorts stay but end up empty. This cannot be undone.\n\nAre you sure?')) return;
+  $('resetStudentsBtn').disabled=true; $('resetMsg').textContent=' clearing…';
+  try{
+    const r=await fetch(api('/api/admin/reset-students'),{method:'POST',headers:hdr()});
+    const d=await r.json();
+    if(!r.ok){ $('resetMsg').textContent=' '+(d.error||'error'); $('resetStudentsBtn').disabled=false; return; }
+    const c=d.deleted||{};
+    $('resetMsg').textContent=` done ✓ users:${c.users||0} allowlist:${c.allowedStudents||0} assignments:${c.assignments||0} submissions:${c.submissions||0} managed cohorts:${c.managedCohorts||0}`;
+    $('resetConfirmTxt').value='';
+    loadedCohorts=false; loadedManaged=false;
+    if($('tab-cohorts').style.display!=='none') loadCohorts();
+    if($('tab-managed').style.display!=='none') loadManagedStudents();
+  }catch(e){ $('resetMsg').textContent=' '+e; $('resetStudentsBtn').disabled=false; }
+};
+$('createCohort').onclick=async()=>{
+  const name=$('cName').value.trim(), joinCode=$('cCode').value.trim();
+  if(!name||!joinCode){$('createMsg').textContent=' name and join code required';return;}
+  const r=await fetch(api('/api/admin/cohort'),{method:'POST',headers:hdr(),body:JSON.stringify({name,joinCode})});
+  const d=await r.json();
+  $('createMsg').textContent=r.ok?' created ✓':(' '+(d.error||'error'));
+  if(r.ok){$('cName').value='';$('cCode').value='';loadCohorts();}
+};
+$('createManaged').onclick=async()=>{
+  const name=$('mgName').value.trim(), email=$('mgEmail').value.trim();
+  if(!name||!email){$('createManagedMsg').textContent=' name and email required';return;}
+  $('createManagedMsg').textContent=' adding…';
+  const r=await fetch(api('/api/admin/managed/create'),{method:'POST',headers:hdr(),body:JSON.stringify({name,email})});
+  const d=await r.json();
+  if(!r.ok){$('createManagedMsg').textContent=' '+(d.error||'error');return;}
+  $('createManagedMsg').textContent=' added ✓';
+  $('createManagedResult').innerHTML=`<div class="card" style="margin-top:12px"><div class="cbody">
+    <div class="note-txt" style="margin-bottom:8px">Give this to <b style="color:var(--ink)">${esc(name)}</b> to sign in:</div>
+    <div>Join code <span class="badge mono">${esc(d.joinCode)}</span> &nbsp; Email <span class="mono">${esc(d.email)}</span></div>
+  </div></div>`;
+  $('mgName').value='';$('mgEmail').value='';
+  loadManagedStudents();
+};
+
+const isManagedCohort=c=>(c.name||'').startsWith('Managed · ');
+
+/* ---------- cohorts list (self-service subscribers only) ---------- */
+async function loadCohorts(){
+  try{
+    const r=await fetch(api('/api/admin/cohorts'),{headers:hdr()});
+    const d=await r.json();
+    if(!r.ok){$('cfgMsg').textContent=' '+(d.error||'error'); setConn(false); return false;}
+    $('cfgMsg').textContent=' connected ✓'; setConn(true);
+    const el=$('cohorts');
+    const cohorts=(d.cohorts||[]).filter(c=>!isManagedCohort(c));
+    if(!cohorts.length){ el.innerHTML='<div class="empty">No cohorts yet — create one above.</div>'; return true; }
+    el.innerHTML='';
+    cohorts.forEach(c=>{
+      const div=document.createElement('div'); div.className='card ccard'; div.dataset.cid=c.id;
+      div.innerHTML=`
+        <div class="chead">
+          <div class="dot"></div>
+          <div style="min-width:0">
+            <div class="ctitle">${esc(c.name)}</div>
+            <div class="cid">join <b>${esc(c.join_code)}</b> · ${c.students} student${c.students===1?'':'s'}</div>
+          </div>
+          <div class="subtabs">
+            <button class="subtabbtn active" data-panel="allow">Allowlist</button>
+            <button class="subtabbtn" data-panel="roster">Roster</button>
+          </div>
+        </div>
+        <div class="cbody" data-panel-body="allow"></div>
+        <div class="cbody" data-panel-body="roster" style="display:none"></div>`;
+      el.appendChild(div);
+      wireCohortCard(div,c);
+    });
+    return true;
+  }catch(e){$('cfgMsg').textContent=' '+e; setConn(false); return false;}
+}
+$('refreshCohorts').onclick=loadCohorts;
+
+function wireCohortCard(div,c){
+  const allowBtn=div.querySelector('[data-panel="allow"]');
+  const rosterBtn=div.querySelector('[data-panel="roster"]');
+  const allowBody=div.querySelector('[data-panel-body="allow"]');
+  const rosterBody=div.querySelector('[data-panel-body="roster"]');
+  allowBtn.onclick=()=>{
+    allowBtn.classList.add('active'); rosterBtn.classList.remove('active');
+    allowBody.style.display='block'; rosterBody.style.display='none';
+  };
+  rosterBtn.onclick=()=>{
+    rosterBtn.classList.add('active'); allowBtn.classList.remove('active');
+    rosterBody.style.display='block'; allowBody.style.display='none';
+    if(!rosterBody.dataset.loaded){ rosterBody.dataset.loaded='1'; renderRoster(c.id,c.name,rosterBody); }
+  };
+  renderAllowlist(c.id,c.name,allowBody);
+}
+
+/* ---------- allowlist (inline, per cohort card) ---------- */
+async function renderAllowlist(cohortId,name,el){
+  el.innerHTML='<div class="empty">Loading…</div>';
+  const r=await fetch(api('/api/admin/allowlist?cohortId='+encodeURIComponent(cohortId)),{headers:hdr()});
+  const d=await r.json();
+  let h=`<div class="panelhead"><span class="note-txt" style="margin:0">Only emails on this list can register with the join code.</span><button class="ghost small" id="refA-${cohortId}">↻ Refresh</button></div>`;
+  h+=`<div style="margin-bottom:16px">
+    <label>Add student emails (one per line, or comma-separated)</label>
+    <textarea id="allowEmails-${cohortId}" rows="3" placeholder="jane@example.com
+sam@example.com"></textarea>
+    <div class="radiorow">
+      <label><input type="radio" name="allowMode-${cohortId}" value="subscriber" checked> Subscriber (self-paced)</label>
+      <label><input type="radio" name="allowMode-${cohortId}" value="managed"> Managed (this cohort's code, 1:1 assigned)</label>
+    </div>
+    <div class="btns"><button class="submit" id="addAllow-${cohortId}">Add to allowlist</button><span id="addAllowMsg-${cohortId}" class="note-txt" style="margin:0"></span></div>
+  </div>`;
+  if(!d.allowlist||!d.allowlist.length){
+    h+='<div class="empty">No approved emails yet — students can\'t register until you add some above.</div>';
+  } else {
+    h+='<div class="tablewrap"><table><thead><tr><th>Email</th><th>Mode</th><th>Registered</th><th></th></tr></thead><tbody>';
+    d.allowlist.forEach(a=>{
+      let reg='<span class="tag pending">not yet</span>';
+      if(a.user_id) reg = a.user_status==='revoked' ? '<span class="tag warn">revoked</span>' : '<span class="tag ok">yes</span>';
+      const modeLbl=a.mode==='managed'?'<span class="tag managed">managed</span>':'<span class="tag subscriber">subscriber</span>';
+      h+=`<tr><td class="mono">${esc(a.email)}</td><td>${modeLbl}</td><td>${reg}</td><td><span class="link" data-rm="${esc(a.email)}">Remove</span></td></tr>`;
+    });
+    h+='</tbody></table></div>';
+  }
+  el.innerHTML=h;
+  $(`refA-${cohortId}`).onclick=()=>renderAllowlist(cohortId,name,el);
+  $(`addAllow-${cohortId}`).onclick=async()=>{
+    const emails=$(`allowEmails-${cohortId}`).value.trim();
+    if(!emails) return;
+    const mode=(el.querySelector(`input[name=allowMode-${cohortId}]:checked`)||{}).value||'subscriber';
+    const r2=await fetch(api('/api/admin/allowlist/add'),{method:'POST',headers:hdr(),body:JSON.stringify({cohortId,emails,mode})});
+    const d2=await r2.json();
+    $(`addAllowMsg-${cohortId}`).textContent=r2.ok?` added ${d2.added}/${d2.total} ✓`:(' '+(d2.error||'error'));
+    if(r2.ok){ renderAllowlist(cohortId,name,el); loadCohorts(); }
+  };
+  el.querySelectorAll('[data-rm]').forEach(s=>s.onclick=async()=>{
+    if(!confirm('Remove '+s.dataset.rm+' from the allowlist?\n\nThey will no longer be able to register with the join code. Existing progress (if already registered) is not deleted — use Revoke in the Roster for that.')) return;
+    await fetch(api('/api/admin/allowlist/remove'),{method:'POST',headers:hdr(),body:JSON.stringify({cohortId,email:s.dataset.rm})});
+    renderAllowlist(cohortId,name,el);
+  });
+}
+
+/* ---------- shared roster table (used by cohort Roster panel + Managed Students tab) ---------- */
+function rosterRowHtml(u){
+  const revoked = u.status==='revoked';
+  const managed = u.mode==='managed';
+  const statusLabel = revoked ? '<span class="tag warn">revoked</span>' : '<span class="tag ok">active</span>';
+  const toggleLabel = revoked ? 'Restore' : 'Revoke';
+  const toggleClass = revoked ? 'success' : 'danger';
+  const modeLabel = managed ? '<span class="tag managed">managed</span>' : '<span class="tag subscriber">subscriber</span>';
+  // Mode toggle is one-way (subscriber -> managed only) — a managed student can't be flipped
+  // back to subscriber from here. Add them to a subscriber cohort's allowlist manually instead.
+  const modeToggleBtn = managed ? '' : `<button class="ghost small" data-modetoggle="${u.id}">→ Managed</button> `;
+  let assignCell = '<span class="note-txt" style="margin:0">—</span>';
+  if(managed){
+    if(u.activeTicket){
+      const due = u.activeDue ? ` <span class="note-txt" style="margin:0">(due ${new Date(u.activeDue).toLocaleDateString()})</span>` : '';
+      assignCell = `<span class="mono">${esc(u.activeTicket)}</span>${due}`;
+    } else {
+      assignCell = '<span class="note-txt" style="margin:0">waiting</span>';
+    }
+  }
+  return `<tr><td>${esc(u.name)}</td><td class="mono">${esc(u.email)}</td><td>${statusLabel}</td><td>${modeLabel}</td><td><span class="badge">${u.doneCount}</span></td><td>${assignCell}</td><td class="note-txt" style="margin:0">${u.updatedAt?new Date(u.updatedAt).toLocaleDateString():'—'}</td>
+      <td style="white-space:nowrap">${managed?`<span class="link" data-assign="${u.id}" data-uname="${esc(u.name)}">Assign</span> `:''}<span class="link" data-subs="${u.id}" data-uname="${esc(u.name)}">Subs</span> ${modeToggleBtn}<span class="link" data-resetprog="${u.id}" data-uname="${esc(u.name)}" style="color:var(--red)">Reset progress</span> <button class="${toggleClass} small" data-toggle="${u.id}" data-cur="${u.status}">${toggleLabel}</button></td></tr>`;
+}
+function wireRosterRows(el,refreshFn){
+  el.querySelectorAll('[data-subs]').forEach(a=>a.onclick=()=>openSubsModal(a.dataset.subs,a.dataset.uname));
+  el.querySelectorAll('[data-assign]').forEach(a=>a.onclick=()=>openAssignModal(a.dataset.assign,a.dataset.uname,refreshFn));
+  // Wipes this one student's progress board + submission history (see worker.js comment on
+  // /api/admin/user/reset-progress). Leaves their account, allowlist entry, mode, and (for
+  // managed students) assignment history untouched.
+  el.querySelectorAll('[data-resetprog]').forEach(a=>a.onclick=async()=>{
+    if(!confirm(`Reset ${a.dataset.uname}'s progress? This clears their saved board AND deletes all their submission history. Their account and login stay intact. This cannot be undone.`)) return;
+    const r=await fetch(api('/api/admin/user/reset-progress'),{method:'POST',headers:hdr(),body:JSON.stringify({userId:a.dataset.resetprog})});
+    const d=await r.json();
+    if(!r.ok){ alert(d.error||'error'); return; }
+    refreshFn();
+  });
+  // One-way only: subscriber -> managed. There's no button for managed -> subscriber —
+  // add that student to a subscriber cohort's allowlist manually if they need to move back.
+  el.querySelectorAll('[data-modetoggle]').forEach(b=>b.onclick=async()=>{
+    if(!confirm('Switch this student to managed mode? They will only see one assigned ticket at a time, and this cannot be undone from here.')) return;
+    await fetch(api('/api/admin/user/set-mode'),{method:'POST',headers:hdr(),body:JSON.stringify({userId:b.dataset.modetoggle,mode:'managed'})});
+    refreshFn();
+  });
+  el.querySelectorAll('[data-toggle]').forEach(b=>b.onclick=async()=>{
+    const revoke = b.dataset.cur!=='revoked';
+    const verb = revoke?'revoke':'restore';
+    const warn = revoke ? 'Revoke this student\'s access? They will be signed out and blocked from syncing progress or submitting until restored.' : 'Restore this student\'s access?';
+    if(!confirm(warn)) return;
+    await fetch(api('/api/admin/user/'+verb),{method:'POST',headers:hdr(),body:JSON.stringify({userId:b.dataset.toggle})});
+    refreshFn();
+  });
+}
+
+/* ---------- roster (inline, per cohort card) ---------- */
+async function renderRoster(cohortId,name,el){
+  el.innerHTML='<div class="empty">Loading…</div>';
+  const r=await fetch(api('/api/admin/roster?cohortId='+encodeURIComponent(cohortId)),{headers:hdr()});
+  const d=await r.json();
+  const refreshFn=()=>renderRoster(cohortId,name,el);
+  let h=`<div class="panelhead"><span></span><button class="ghost small" id="refR-${cohortId}">↻ Refresh</button></div>`;
+  if(!d.roster||!d.roster.length){ h+='<div class="empty">No students have signed in yet.</div>'; el.innerHTML=h; $(`refR-${cohortId}`).onclick=refreshFn; return; }
+  h+='<div class="tablewrap"><table><thead><tr><th>Name</th><th>Email</th><th>Status</th><th>Mode</th><th>Done</th><th>Assignment</th><th>Last active</th><th></th></tr></thead><tbody>';
+  d.roster.forEach(u=>{ h+=rosterRowHtml(u); });
+  h+='</tbody></table></div>';
+  el.innerHTML=h;
+  $(`refR-${cohortId}`).onclick=refreshFn;
+  wireRosterRows(el,refreshFn);
+}
+
+/* ---------- managed students (flat, aggregated across each student's dedicated cohort) ---------- */
+async function loadManagedStudents(){
+  const el=$('managedList');
+  el.innerHTML='<div class="empty">Loading…</div>';
+  try{
+    const r=await fetch(api('/api/admin/cohorts'),{headers:hdr()});
+    const d=await r.json();
+    if(!r.ok){ el.innerHTML='<div class="empty">'+esc(d.error||'error')+'</div>'; return; }
+    const managedCohorts=(d.cohorts||[]).filter(isManagedCohort);
+    if(!managedCohorts.length){ el.innerHTML='<div class="empty">No managed students yet — add one above.</div>'; return; }
+    const rosters=await Promise.all(managedCohorts.map(c=>
+      fetch(api('/api/admin/roster?cohortId='+encodeURIComponent(c.id)),{headers:hdr()}).then(rr=>rr.json()).catch(()=>({roster:[]}))
+    ));
+    const rows=[];
+    rosters.forEach(rd=>(rd.roster||[]).forEach(u=>rows.push(u)));
+    if(!rows.length){ el.innerHTML='<div class="empty">Managed students added, but none have signed in yet — give them their join code + email.</div>'; return; }
+    rows.sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+    let h='<div class="card"><div class="cbody"><div class="tablewrap"><table><thead><tr><th>Name</th><th>Email</th><th>Status</th><th>Mode</th><th>Done</th><th>Assignment</th><th>Last active</th><th></th></tr></thead><tbody>';
+    rows.forEach(u=>{ h+=rosterRowHtml(u); });
+    h+='</tbody></table></div></div></div>';
+    el.innerHTML=h;
+    wireRosterRows(el,loadManagedStudents);
+  }catch(e){ el.innerHTML='<div class="empty">'+esc(String(e))+'</div>'; }
+}
+$('refreshManaged').onclick=loadManagedStudents;
+
+/* ---------- assign modal ---------- */
+async function openAssignModal(userId,uname,refreshFn){
+  openModal(`<div class="modaltitle">Assign · ${esc(uname)}</div><div id="assignBody" class="empty">Loading…</div>`);
+  const r=await fetch(api('/api/admin/assignment?userId='+encodeURIComponent(userId)),{headers:hdr()});
+  const d=await r.json();
+  const el=$('assignBody');
+  let h='';
+  if(d.assignment){
+    h+=`<div class="note-txt">Currently assigned:</div><div style="margin:4px 0 14px"><span class="badge">${esc(d.assignment.ticketId)}</span>${d.assignment.dueAt?` &nbsp;due <b>${new Date(d.assignment.dueAt).toLocaleDateString()}</b>`:' &nbsp;<span class="note-txt" style="margin:0">no due date</span>'}</div>`;
+    if(d.assignment.note) h+=`<div class="note-txt" style="margin-bottom:14px">Note: ${esc(d.assignment.note)}</div>`;
+  } else {
+    h+='<div class="note-txt" style="margin-bottom:14px">No active assignment — this student sees a "waiting" screen.</div>';
+  }
+  h+=`<label>Ticket ID (e.g. SHOP-201 — see the sprint content files for exact IDs)</label><input id="asnTicket" placeholder="SHOP-201">
+      <div class="row">
+        <div><label>Due date (optional)</label><input id="asnDue" type="date"></div>
+        <div><label>Note to student (optional)</label><input id="asnNote" placeholder="Focus on the acceptance criteria"></div>
+      </div>
+      <div class="btns"><button class="submit" id="doAssign">${d.assignment?'Reassign':'Assign'}</button><span id="asnMsg" class="note-txt" style="margin:0"></span></div>`;
+  if(d.history&&d.history.length){
+    h+='<div style="margin-top:18px;padding-top:14px;border-top:2px dashed var(--ink)"><div class="note-txt" style="margin-bottom:6px">Completed</div>';
+    d.history.forEach(a=>{h+=`<div style="margin:6px 0;font-size:12.5px"><span class="mono">${esc(a.ticketId)}</span> <span class="note-txt" style="margin:0">· done ${a.completedAt?new Date(a.completedAt).toLocaleString():''}</span></div>`;});
+    h+='</div>';
+  }
+  el.className=''; el.innerHTML=h;
+  $('doAssign').onclick=async()=>{
+    const ticketId=$('asnTicket').value.trim(); const due=$('asnDue').value; const note=$('asnNote').value.trim();
+    if(!ticketId){$('asnMsg').textContent=' ticket ID required';return;}
+    const r2=await fetch(api('/api/admin/assign'),{method:'POST',headers:hdr(),body:JSON.stringify({userId,ticketId,dueAt:due||null,note:note||null})});
+    const d2=await r2.json();
+    $('asnMsg').textContent=r2.ok?' assigned ✓':(' '+(d2.error||'error'));
+    if(r2.ok){ openAssignModal(userId,uname,refreshFn); if(refreshFn) refreshFn(); }
+  };
+}
+
+/* ---------- submissions modal ---------- */
+async function openSubsModal(userId,uname){
+  openModal(`<div class="modaltitle">Submissions · ${esc(uname)}</div><div id="subsBody" class="empty">Loading…</div>`);
+  const r=await fetch(api('/api/admin/submissions?userId='+encodeURIComponent(userId)),{headers:hdr()});
+  const d=await r.json();
+  const el=$('subsBody');
+  if(!d.submissions||!d.submissions.length){ el.innerHTML='No submissions.'; return; }
+  el.className=''; el.style.maxHeight='60vh'; el.style.overflowY='auto';
+  let h='';
+  d.submissions.forEach(s=>{
+    h+=`<div style="margin:0 0 14px;padding-bottom:14px;border-bottom:1px solid var(--soft)"><span class="mono">${esc(s.ticket_id)}</span> · <b style="color:${s.status==='done'?'var(--green)':s.status==='review'?'var(--purple)':'var(--amber)'}">${esc(s.status)}</b> <span class="note-txt" style="margin:0">· ${new Date(s.created_at).toLocaleString()}</span>`;
+    if(s.work) h+=`<pre style="background:var(--ink);color:#F2EFDF;border:2px solid var(--ink);border-radius:6px;padding:10px 12px;margin-top:8px;font-family:var(--font-mono);font-size:12px;white-space:pre-wrap;overflow-x:auto">${esc(s.work)}</pre>`;
+    h+='</div>';
+  });
+  el.innerHTML=h;
+}
+
+if(cfg.url&&cfg.tok){ switchTab('cohorts'); }
+</script>
+</body>
+</html>
