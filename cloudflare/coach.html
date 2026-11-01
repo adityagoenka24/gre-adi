@@ -754,7 +754,10 @@ const QV_TYPE = { mcq: 'Multiple choice', quantitative_comparison: 'Quantity com
 function qvJson(path) {
   let p = QV.files.get(path);
   if (!p) {
-    p = fetch(path).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + path); return r.json(); });
+    // The Pro bank and Pro mocks are no longer public files: they come from the Worker (admin route).
+    p = /^\.\.\/pro\//.test(path)
+      ? api('/admin/pro-data/get?path=' + encodeURIComponent(decodeURI(path.slice('../pro/'.length))))
+      : fetch(path).then(r => { if (!r.ok) throw new Error('HTTP ' + r.status + ' for ' + path); return r.json(); });
     QV.files.set(path, p);
     p.catch(() => QV.files.delete(path));      // a failed load can be retried
   }

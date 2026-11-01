@@ -209,3 +209,12 @@ CREATE TABLE IF NOT EXISTS leads (
   source     TEXT,
   sources    TEXT                    -- JSON {source: count}
 );
+
+-- Files a student fetched from /pro-data today, per student. Powers the daily
+-- cap that makes bulk scraping of the paid bank show up as a 429.
+CREATE TABLE IF NOT EXISTS pro_data_usage (
+  email TEXT NOT NULL,
+  day   TEXT NOT NULL,                -- YYYY-MM-DD, Asia/Kolkata
+  n     INTEGER NOT NULL DEFAULT 0,
+  PRIMARY KEY (email, day)
+);

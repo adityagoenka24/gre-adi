@@ -18,6 +18,7 @@
 </head>
 <body>
 <script src="pro-gate.js" data-feature="mocks"></script>
+<script src="pro-data.js"></script>
 <script src="../score-scale.js"></script>
 <script src="../score-card.js"></script>
 <script src="../gre-exhibit.js"></script>
@@ -303,8 +304,8 @@ function selectMock(mockId, title) {
 
 async function loadMock(mockId) {
   try {
-    const res = await fetch(`mocks/${mockId}.json`);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const res = await greProFetch(`mocks/${mockId}.json`);
+    if (!res.ok) throw new Error(greProMessage(res.status));
     state.mockData = await res.json();
     // ETS audit 2026-10-08: drop any question withdrawn by the audit.
     if (state.mockData && Array.isArray(state.mockData.sections)) {

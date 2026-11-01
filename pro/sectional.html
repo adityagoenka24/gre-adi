@@ -132,6 +132,7 @@
 </head>
 <body>
 <script src="pro-gate.js" data-feature="sectional"></script>
+<script src="pro-data.js"></script>
 <script src="../score-scale.js"></script>
 <script src="../score-card.js"></script>
 <script src="../gre-exhibit.js"></script>
@@ -384,8 +385,8 @@ function openTopic(id){
 function chooseSet(n){
   state.setNo = n; state.data = null; state.loadError = null;
   var file = 'bank/sectional/' + state.topic.file + '_set' + n + '.json';
-  fetch(file).then(function(res){
-    if(!res.ok) throw new Error('HTTP ' + res.status);
+  greProFetch(file).then(function(res){
+    if(!res.ok) throw new Error(greProMessage(res.status));
     return res.json();
   }).then(function(json){
     state.data = json;
@@ -1077,8 +1078,8 @@ window.addEventListener('beforeunload', function(e){
 });
 
 function loadCatalogue(){
-  fetch('bank/sectional/index.json')
-    .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+  greProFetch('bank/sectional/index.json')
+    .then(function(r){ if(!r.ok) throw new Error(greProMessage(r.status)); return r.json(); })
     .then(function(idx){
       TOPICS = idx.topics || [];
       if(idx.section_size) SECTION_SIZE = idx.section_size;

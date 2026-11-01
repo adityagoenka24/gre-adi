@@ -24,6 +24,10 @@
  * Endpoints:
  *   POST /validate              — check email + fingerprint (called on every app load)
  *   POST /register              — save fingerprint after first successful email check
+ *   POST /pro-data              — a student fetches one paid question file (bank/*.json, mocks/*.json); checked against email + registered device + plan
+ *   POST /admin/pro-data/put    — store one paid file in KV (?path=bank/x.json, body = the file text) (protected by ADMIN_SECRET)
+ *   GET  /admin/pro-data/get    — read one stored paid file back (?path=...) (protected by ADMIN_SECRET)
+ *   POST /admin/pro-data/delete — remove one stored paid file (?path=...) (protected by ADMIN_SECRET)
  *   POST /admin/add-student     — add a new paying student (protected by ADMIN_SECRET)
  *   POST /admin/set-access      — change a student's feature access (protected by ADMIN_SECRET)
  *   POST /admin/reset-device    — clear fingerprints for a student (protected by ADMIN_SECRET)
@@ -193,6 +197,19 @@ export default {
       }
       if (path === '/admin/progress/waive-log' && request.method === 'POST') {
         return await handleAdminWaiveLog(request, env);
+      }
+
+      if (path === '/pro-data' && request.method === 'POST') {
+        return await handleProData(request, env);
+      }
+      if (path === '/admin/pro-data/put' && request.method === 'POST') {
+        return await handleAdminProDataPut(request, env, url);
+      }
+      if (path === '/admin/pro-data/get' && request.method === 'GET') {
+        return await handleAdminProDataGet(request, env, url);
+      }
+      if (path === '/admin/pro-data/delete' && request.method === 'POST') {
+        return await handleAdminProDataDelete(request, env, url);
       }
 
       return jsonResponse({ error: 'Not found' }, 404);
@@ -1439,6 +1456,137 @@ async function verifyRazorpayHmac(body, signature, secret) {
   } catch {
     return false;
   }
+}
+
+// ─── PRO DATA (the paid question files) ──────────────────────────────────────
+/* pro/bank/*.json and pro/mocks/*.json are no longer published on the website.
+   They sit in KV under data:{path} (uploaded from Admin -> Pro data) and are
+   served only by POST /pro-data, to a current student on a device that is
+   already registered, whose plan covers that file.
+
+   KV cost: one get per file served. There is no KV list anywhere in this
+   feature, and the browser keeps what it has fetched for a few hours, so the
+   free tier (100k reads a day) is nowhere near. An optional daily cap per
+   student (D1 table pro_data_usage) makes bulk scraping show up as a 429. */
+const PRO_DATA_KEY_PREFIX = 'data:';
+const PRO_DATA_MAX_CHARS = 5 * 1024 * 1024;   // KV allows 25 MiB; the biggest real file is about 1.6 MB
+const PRO_DATA_DAILY_CAP = 600;               // files per student per day; env PRO_DATA_DAILY_CAP overrides
+
+/* Returns the cleaned path ("bank/algebra/x.json", "mocks/mock_03.json") or
+   null. Anything else — other roots, "..", "//", odd characters — is refused,
+   so the KV key can never be steered outside data:bank/ and data:mocks/. */
+function cleanProDataPath(raw) {
+  if (typeof raw !== 'string') return null;
+  const p = raw.trim();
+  if (!p || p.length > 200) return null;
+  if (!/^(bank|mocks)\/[A-Za-z0-9_ .\-\/]+\.json$/.test(p)) return null;
+  if (p.includes('..') || p.includes('//')) return null;
+  return p;
+}
+
+// Which plan feature a file belongs to (same three features as resolveAccess).
+function proDataFeature(path) {
+  if (path.startsWith('mocks/')) return 'mocks';
+  if (path.startsWith('bank/sectional/')) return 'sectional';
+  return 'practice';
+}
+
+/* Counts this request against the student's daily total and says whether they
+   are over the cap. Fails OPEN: no D1 binding, a missing table or a D1 hiccup
+   never locks a paying student out. */
+async function proDataOverCap(env, em) {
+  if (!env.GRE_DB) return false;
+  const cap = parseInt(env.PRO_DATA_DAILY_CAP || '', 10) || PRO_DATA_DAILY_CAP;
+  try {
+    const ist = d => new Date(d + 19800000).toISOString().slice(0, 10);   // Asia/Kolkata day
+    const row = await env.GRE_DB.prepare(
+      'INSERT INTO pro_data_usage (email, day, n) VALUES (?, ?, 1) ' +
+      'ON CONFLICT(email, day) DO UPDATE SET n = n + 1 RETURNING n'
+    ).bind(em, ist(Date.now())).first();
+    if (row && row.n === 1) {
+      // first file of the day for this student: drop usage rows older than 30 days
+      await env.GRE_DB.prepare('DELETE FROM pro_data_usage WHERE day < ?')
+        .bind(ist(Date.now() - 30 * 86400000)).run();
+    }
+    return !!(row && row.n > cap);
+  } catch (e) {
+    return false;
+  }
+}
+
+function proDataResponse(stream) {
+  return new Response(stream, {
+    status: 200,
+    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'private, no-store' },
+  });
+}
+
+// Body: { email, fingerprint, path }. Never registers a device (that is /register).
+async function handleProData(request, env) {
+  const body = await safeJson(request);
+  const email = body && body.email;
+  const fingerprint = body && body.fingerprint;
+  const path = cleanProDataPath(body && body.path);
+  if (!email || typeof fingerprint !== 'string' || !fingerprint || !path) {
+    return jsonResponse({ status: 'error', message: 'Missing or invalid email, fingerprint or path' }, 400);
+  }
+
+  const student = await getStudent(env, email);
+  if (!student || student.revoked) {
+    return jsonResponse({ status: 'unknown_email' }, 401);
+  }
+  const fingerprints = Array.isArray(student.fingerprints) ? student.fingerprints : [];
+  if (!fingerprints.includes(fingerprint)) {
+    return jsonResponse({ status: 'device_not_registered' }, 401);
+  }
+
+  const feature = proDataFeature(path);
+  if (!resolveAccess(student).includes(feature)) {
+    return jsonResponse({ status: 'no_access', feature }, 403);
+  }
+
+  if (await proDataOverCap(env, studentEmail(email))) {
+    return jsonResponse({ status: 'rate_limited' }, 429);
+  }
+
+  const stream = await env.GRE_AUTH.get(PRO_DATA_KEY_PREFIX + path, 'stream');
+  if (!stream) return jsonResponse({ status: 'not_uploaded', path }, 404);
+  return proDataResponse(stream);
+}
+
+// POST /admin/pro-data/put?path=bank/algebra/x.json   body: the file's JSON text
+async function handleAdminProDataPut(request, env, url) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  const path = cleanProDataPath(url.searchParams.get('path'));
+  if (!path) return jsonResponse({ error: 'Bad path. Use bank/... or mocks/... ending in .json' }, 400);
+  const text = await request.text();
+  if (!text) return jsonResponse({ error: 'Empty body' }, 400);
+  if (text.length > PRO_DATA_MAX_CHARS) return jsonResponse({ error: 'File too large' }, 413);
+  // Light check only: a full JSON.parse of a 1.6 MB file would eat the free plan's CPU budget.
+  // The admin page parses every file in the browser before sending it.
+  const first = text.slice(0, 200).trimStart().charAt(0);
+  if (first !== '{' && first !== '[') return jsonResponse({ error: 'Not JSON' }, 400);
+  await env.GRE_AUTH.put(PRO_DATA_KEY_PREFIX + path, text);
+  return jsonResponse({ status: 'stored', path, chars: text.length });
+}
+
+// GET /admin/pro-data/get?path=...  — also feeds Coach View's question viewer.
+async function handleAdminProDataGet(request, env, url) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  const path = cleanProDataPath(url.searchParams.get('path'));
+  if (!path) return jsonResponse({ error: 'Bad path' }, 400);
+  const stream = await env.GRE_AUTH.get(PRO_DATA_KEY_PREFIX + path, 'stream');
+  if (!stream) return jsonResponse({ error: 'Not uploaded', path }, 404);
+  return proDataResponse(stream);
+}
+
+// POST /admin/pro-data/delete?path=...
+async function handleAdminProDataDelete(request, env, url) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  const path = cleanProDataPath(url.searchParams.get('path'));
+  if (!path) return jsonResponse({ error: 'Bad path' }, 400);
+  await env.GRE_AUTH.delete(PRO_DATA_KEY_PREFIX + path);
+  return jsonResponse({ status: 'deleted', path });
 }
 
 // ─── HELPERS ─────────────────────────────────────────────────────────────────

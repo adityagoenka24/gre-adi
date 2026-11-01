@@ -11,6 +11,7 @@
 <script defer src="../gre-calculator.js"></script>
 <script defer src="../score-scale.js"></script>
 <script src="error-log.js"></script>
+<script src="pro-data.js"></script>
 <style>.gre-math{white-space:normal}.katex{font-size:1.08em!important}.pq-question-text .katex,.pq-qc-content .katex{font-size:1.12em!important}</style>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
@@ -2268,15 +2269,15 @@ let BANK_INDEX = null;          // loaded from bank/index.json
 // Load the bank manifest on startup
 async function loadBankIndex() {
   try {
-    const res = await fetch('bank/index.json');
-    if (!res.ok) throw new Error('index not found');
+    const res = await greProFetch('bank/index.json');
+    if (!res.ok) throw new Error(greProMessage(res.status));
     BANK_INDEX = await res.json();
     bankPopulateTopicDropdown();
   } catch(e) {
     console.warn('Bank index not found — running without question bank.', e);
     const topicEl = document.getElementById('bank-topic');
     if (topicEl) {
-      topicEl.innerHTML = '<option value="">Bank unavailable — check bank/index.json</option>';
+      topicEl.innerHTML = '<option value="">Bank unavailable — ' + String(e && e.message || 'please refresh').replace(/</g, '&lt;') + '</option>';
       topicEl.disabled = true;
     }
     document.getElementById('bank-start-btn').disabled = true;
@@ -2306,8 +2307,8 @@ async function loadSubtopic(topic, subtopic, silent) {
   const path = BANK_INDEX.topics[topic][subtopic].file;
   if (!silent) showLoading('Loading ' + subtopic + ' questions...');
   try {
-    const res = await fetch('bank/' + path);
-    if (!res.ok) throw new Error('File not found: bank/' + path);
+    const res = await greProFetch('bank/' + path);
+    if (!res.ok) throw new Error(res.status === 404 ? 'File not found: bank/' + path : greProMessage(res.status));
     const data = await res.json();
     // ETS audit 2026-10-08: never serve questions withdrawn by the audit.
     if (Array.isArray(data.questions)) data.questions = data.questions.filter(function(q){ return !(q && q.ets_withdrawn); });

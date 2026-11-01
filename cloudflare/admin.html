@@ -114,6 +114,7 @@ td:last-child{white-space:nowrap;}
     <button class="tab-btn" data-tab="students" onclick="switchTab('students')">👥 Students</button>
     <button class="tab-btn" data-tab="access" onclick="switchTab('access')">🎚️ Access &amp; Devices</button>
     <button class="tab-btn" data-tab="webhooks" onclick="switchTab('webhooks')">💳 Webhooks</button>
+    <button class="tab-btn" data-tab="prodata" onclick="switchTab('prodata')">📦 Pro Data</button>
   </div>
 
   <!-- ═══ STUDENTS ═══ -->
@@ -245,6 +246,53 @@ td:last-child{white-space:nowrap;}
       </p>
       <button class="btn btn-primary" onclick="loadWebhookQueue()">🔄 Refresh Queue</button>
       <div id="webhook-queue" style="margin-top:16px;"><div class="empty">Click "Refresh Queue" to load.</div></div>
+    </div>
+
+  </div>
+
+  <!-- ═══ PRO DATA ═══ -->
+  <div class="tab-panel" id="tab-prodata" data-tab-panel="prodata">
+
+    <div class="card">
+      <h2>📦 Pro Question Files</h2>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+        The paid question bank and the paid mocks are no longer published on the website. They sit in Cloudflare KV and the Worker hands them only to signed-in students on a registered device whose plan covers the file.
+        Use this to put them there, and again whenever you change a file.
+      </p>
+      <ol style="font-size:13px;color:var(--text2);line-height:1.9;margin:0 0 16px 20px;">
+        <li>Save your Worker URL and admin secret at the top of this page.</li>
+        <li>Click <b>Choose folder</b> below and pick the <code>pro</code> folder of your repo. Only <code>bank/</code> and <code>mocks/</code> JSON files are read; everything else in it is ignored.</li>
+        <li>Click <b>Upload</b>. Files that have not changed since your last upload in this browser are skipped, so a normal update writes only what you edited.</li>
+      </ol>
+      <div class="row">
+        <div class="field">
+          <label>The <code>pro</code> folder</label>
+          <input type="file" id="pd-files" webkitdirectory multiple>
+        </div>
+        <button class="btn btn-primary" id="pd-go" onclick="proDataUpload()">Upload</button>
+      </div>
+      <label class="access-check" style="margin-top:12px;"><input type="checkbox" id="pd-force"> Upload every file again, even unchanged ones</label>
+      <p style="font-size:12px;color:var(--text3);margin-top:10px;line-height:1.55;">
+        Each uploaded file is one KV write and Cloudflare's free plan allows 1,000 writes a day, so a full upload of about 140 files is fine but do not repeat it dozens of times in a day.
+        Students may see the old copy of a changed file for up to 6 hours (their browser keeps it).
+      </p>
+      <progress id="pd-bar" value="0" max="1" style="width:100%;margin-top:12px;display:none;"></progress>
+      <div id="pd-status" style="font-size:13px;color:var(--text2);margin-top:6px;font-family:var(--font-mono);"></div>
+      <div class="result" id="pd-result"></div>
+      <pre id="pd-failed" style="display:none;margin-top:10px;font-size:12px;white-space:pre-wrap;color:var(--danger);"></pre>
+    </div>
+
+    <div class="card">
+      <h2>🔎 Check or Remove One File</h2>
+      <div class="row">
+        <div class="field">
+          <label>Path</label>
+          <input type="text" id="pd-path" placeholder="bank/index.json or mocks/mock_03.json">
+        </div>
+        <button class="btn btn-ghost" onclick="proDataCheck()">Check</button>
+        <button class="btn btn-danger" onclick="proDataDelete()">Remove</button>
+      </div>
+      <div class="result" id="pd-check-result"></div>
     </div>
 
   </div>
@@ -713,6 +761,138 @@ async function deleteStudent(email) {
 }
 
 // ─── Helper ───────────────────────────────────────────────────────────────────
+// ─── Pro data (paid question files) ───────────────────────────────────────────
+const PD_HASH_KEY = 'gre_prodata_hashes';
+const PD_MAX_CHARS = 5 * 1024 * 1024;
+
+function pdHashes() {
+  try { return JSON.parse(localStorage.getItem(PD_HASH_KEY) || '{}') || {}; } catch { return {}; }
+}
+function pdSaveHashes(h) { try { localStorage.setItem(PD_HASH_KEY, JSON.stringify(h)); } catch {} }
+async function pdSha(text) {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+  return Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+}
+
+/* Maps a picked file to its published path ("bank/..." or "mocks/..."), or
+   null for anything that is not a Pro data file. Picking the repo root is safe:
+   its free bank/ is not under a pro/ folder, so it is ignored. */
+function pdPathFor(file) {
+  const segs = (file.webkitRelativePath || file.name).split('/');
+  const i = segs.indexOf('pro');
+  let rest = null;
+  if (i >= 0 && (segs[i + 1] === 'bank' || segs[i + 1] === 'mocks')) rest = segs.slice(i + 1);
+  else if (segs[0] === 'bank' || segs[0] === 'mocks') rest = segs;
+  if (!rest || !/\.json$/i.test(rest[rest.length - 1])) return null;
+  return rest.join('/');
+}
+
+async function proDataUpload() {
+  const { url, secret } = getConfig();
+  const out = document.getElementById('pd-result');
+  if (!url || !secret) return showResult(out, 'error', 'Save the Worker URL and admin secret at the top of the page first.');
+
+  const jobs = []; let ignored = 0;
+  for (const f of Array.from(document.getElementById('pd-files').files)) {
+    const p = pdPathFor(f);
+    if (p) jobs.push({ f, p }); else ignored++;
+  }
+  if (!jobs.length) return showResult(out, 'error', 'No bank/ or mocks/ JSON files found. Choose the pro folder.');
+
+  const force = document.getElementById('pd-force').checked;
+  const hashes = pdHashes();
+  const base = url.replace(/\/+$/, '');
+  const btn = document.getElementById('pd-go');
+  const bar = document.getElementById('pd-bar');
+  const status = document.getElementById('pd-status');
+  const failedBox = document.getElementById('pd-failed');
+  const failed = [];
+  let done = 0, sent = 0, unchanged = 0, stop = false;
+
+  btn.disabled = true;
+  failedBox.style.display = 'none';
+  bar.style.display = 'block'; bar.max = jobs.length; bar.value = 0;
+  const tick = () => { bar.value = done; status.textContent = `${done} of ${jobs.length} checked · ${sent} uploaded · ${unchanged} unchanged · ${failed.length} failed`; };
+  tick();
+
+  const queue = jobs.slice();
+  async function lane() {
+    while (queue.length && !stop) {
+      const { f, p } = queue.shift();
+      try {
+        const text = await f.text();
+        try { JSON.parse(text); } catch { throw new Error('not valid JSON'); }
+        if (text.length > PD_MAX_CHARS) throw new Error('larger than 5 MB');
+        const h = await pdSha(text);
+        if (!force && hashes[p] === h) {
+          unchanged++;
+        } else {
+          const res = await fetch(`${base}/admin/pro-data/put?path=${encodeURIComponent(p)}`, {
+            method: 'POST',
+            headers: { 'X-Admin-Secret': secret, 'Content-Type': 'text/plain' },
+            body: text,
+          });
+          const j = await res.json().catch(() => ({}));
+          if (res.status === 401) { stop = true; throw new Error('admin secret rejected'); }
+          if (!res.ok || j.status !== 'stored' || j.chars !== text.length) throw new Error(j.error || ('HTTP ' + res.status));
+          hashes[p] = h; sent++;
+        }
+      } catch (e) {
+        failed.push(`${p} — ${e.message}`);
+      }
+      done++; tick();
+    }
+  }
+  try { await Promise.all([lane(), lane(), lane()]); }
+  finally { pdSaveHashes(hashes); btn.disabled = false; }
+
+  if (failed.length) {
+    failedBox.textContent = failed.join('\n'); failedBox.style.display = 'block';
+  }
+  const parts = [`${sent} uploaded`, `${unchanged} unchanged`];
+  if (failed.length) parts.push(`${failed.length} FAILED (listed below, run Upload again to retry them)`);
+  if (ignored) parts.push(`${ignored} other files ignored`);
+  showResult(out, failed.length ? 'error' : 'success', parts.join(' · '));
+}
+
+async function proDataCheck() {
+  const { url, secret } = getConfig();
+  const out = document.getElementById('pd-check-result');
+  const p = document.getElementById('pd-path').value.trim();
+  if (!url || !secret) return showResult(out, 'error', 'Save the Worker URL and admin secret first.');
+  if (!p) return showResult(out, 'error', 'Enter a path such as bank/index.json');
+  try {
+    const res = await fetch(`${url.replace(/\/+$/, '')}/admin/pro-data/get?path=${encodeURIComponent(p)}`, { headers: { 'X-Admin-Secret': secret } });
+    if (res.status === 404) return showResult(out, 'error', 'Not uploaded: ' + p);
+    if (!res.ok) return showResult(out, 'error', 'Failed: HTTP ' + res.status);
+    const text = await res.text();
+    let detail = '';
+    try {
+      const d = JSON.parse(text);
+      const n = Array.isArray(d) ? d.length
+        : Array.isArray(d.questions) ? d.questions.length
+        : Array.isArray(d.sections) ? d.sections.reduce((a, s) => a + ((s.questions || []).length), 0) : null;
+      if (n != null) detail = ` · ${n} questions`;
+    } catch { detail = ' · (not parseable JSON!)'; }
+    showResult(out, 'success', `${p} is stored · ${text.length.toLocaleString('en-IN')} characters${detail}`);
+  } catch (e) { showResult(out, 'error', 'Could not reach the Worker: ' + e.message); }
+}
+
+async function proDataDelete() {
+  const { url, secret } = getConfig();
+  const out = document.getElementById('pd-check-result');
+  const p = document.getElementById('pd-path').value.trim();
+  if (!url || !secret) return showResult(out, 'error', 'Save the Worker URL and admin secret first.');
+  if (!p) return showResult(out, 'error', 'Enter a path such as bank/index.json');
+  if (!confirm(`Remove ${p} from the Pro files?\n\nStudents will no longer be able to load it.`)) return;
+  try {
+    const res = await fetch(`${url.replace(/\/+$/, '')}/admin/pro-data/delete?path=${encodeURIComponent(p)}`, { method: 'POST', headers: { 'X-Admin-Secret': secret } });
+    if (!res.ok) return showResult(out, 'error', 'Failed: HTTP ' + res.status);
+    const h = pdHashes(); delete h[p]; pdSaveHashes(h);
+    showResult(out, 'success', 'Removed: ' + p);
+  } catch (e) { showResult(out, 'error', 'Could not reach the Worker: ' + e.message); }
+}
+
 function showResult(el, type, msg) {
   el.textContent = msg;
   el.className = `result ${type} show`;
