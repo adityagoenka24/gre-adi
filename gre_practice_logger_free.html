@@ -377,6 +377,39 @@ tr:hover td{background:rgba(26,93,166,0.04);}
 .bank-filters{display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;margin-bottom:20px;}
 .bank-filter-group{display:flex;flex-direction:column;gap:8px;}
 
+/* TOPIC / SUBTOPIC PICKER */
+.topic-picker{border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);margin-bottom:20px;overflow:hidden;}
+.tp-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:14px 16px 10px;}
+.tp-title{font-size:13px;font-weight:700;color:var(--text);letter-spacing:.2px;}
+.tp-hint{font-size:12px;color:var(--text3);margin-top:3px;line-height:1.45;max-width:46ch;}
+.tp-actions{display:flex;gap:2px;flex-wrap:wrap;}
+.tp-link{background:none;border:none;color:var(--accent);font-family:var(--font-mono);font-size:12px;font-weight:700;padding:8px 10px;min-height:36px;cursor:pointer;border-radius:var(--radius-sm);}
+.tp-link:hover{background:rgba(26,93,166,0.08);}
+.tp-total{padding:9px 16px;background:var(--surface2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);font-family:var(--font-mono);font-size:13px;color:var(--text3);}
+.tp-group{border-bottom:1px solid var(--border);}
+.tp-group:last-child{border-bottom:none;}
+.tp-grouphead{display:flex;align-items:center;gap:10px;padding:2px 6px 2px 16px;min-height:48px;cursor:pointer;}
+.tp-grouphead:hover{background:var(--surface2);}
+.tp-group.has-sel .tp-grouphead{background:rgba(26,93,166,0.06);}
+.tp-check{display:flex;align-items:center;gap:10px;flex:1;min-width:0;cursor:pointer;padding:10px 0;}
+.tp-check input,.tp-sub input{width:18px;height:18px;flex:none;accent-color:var(--accent);cursor:pointer;margin:0;}
+.tp-check,.tp-sub{text-transform:none;letter-spacing:0;font-family:var(--font-body);}
+.tp-name{font-size:14px;font-weight:600;color:var(--text);}
+.tp-meta{font-family:var(--font-mono);font-size:11.5px;color:var(--text3);white-space:nowrap;}
+.tp-chev{background:none;border:none;color:var(--text3);width:40px;height:40px;cursor:pointer;font-size:14px;transition:transform .15s;flex:none;border-radius:var(--radius-sm);}
+.tp-chev:hover{color:var(--accent);}
+.tp-group.open .tp-chev{transform:rotate(90deg);}
+.tp-subs{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:2px 8px;padding:2px 16px 12px 44px;}
+.tp-subs[hidden]{display:none;}
+.tp-sub{display:flex;align-items:center;gap:10px;min-height:40px;padding:4px 8px;border-radius:var(--radius-sm);cursor:pointer;font-size:13px;color:var(--text2);}
+.tp-sub:hover{background:var(--surface2);}
+.tp-sub.on{color:var(--text);background:rgba(26,93,166,0.09);}
+.tp-subname{flex:1;min-width:0;line-height:1.3;}
+.tp-n{font-family:var(--font-mono);font-size:11.5px;color:var(--text3);}
+.tp-sub.empty .tp-n{opacity:.5;}
+.tp-empty{padding:18px 16px;font-size:13px;color:var(--text3);}
+@media(max-width:640px){.tp-subs{padding-left:16px;grid-template-columns:1fr;}.tp-meta{display:none;}.tp-hint{max-width:none;}}
+
 /* Tag-style multi-select buttons */
 .tag-select{display:flex;flex-wrap:wrap;gap:6px;}
 .tag-opt{padding:10px 16px;min-height:42px;display:inline-flex;align-items:center;justify-content:center;border-radius:20px;border:1px solid var(--border);background:var(--surface2);color:var(--text2);font-size:12px;font-weight:600;cursor:pointer;transition:all 0.15s;font-family:var(--font-mono);}
@@ -895,24 +928,24 @@ tr:hover td{background:rgba(26,93,166,0.04);}
         </div>
 
         <div class="form-grid" style="margin-bottom:20px;">
-          <div class="form-group"><label>Student Name</label><input type="text" id="bank-student-name" placeholder="Your full name"></div>
-          <div class="form-group">
-            <label>Topic</label>
-            <select id="bank-topic" onchange="bankTopicChanged()">
-              <option value="">— Select Topic —</option>
-              <option value="Arithmetic">Arithmetic</option>
-            </select>
+          <div class="form-group full"><label>Student Name</label><input type="text" id="bank-student-name" placeholder="Your full name"></div>
+        </div>
+
+        <!-- Topic + subtopic picker: tick whole topics or single subtopics, in any mix -->
+        <div class="topic-picker" id="topic-picker">
+          <div class="tp-head">
+            <div class="tp-head-text">
+              <div class="tp-title">Topics &amp; Subtopics</div>
+              <div class="tp-hint">Tick a whole topic, or open it and pick individual subtopics. Mix as many as you like.</div>
+            </div>
+            <div class="tp-actions">
+              <button type="button" class="tp-link" onclick="bankSelectAll(true)">Select all</button>
+              <button type="button" class="tp-link" onclick="bankSelectAll(false)">Clear</button>
+              <button type="button" class="tp-link" id="tp-expand-btn" onclick="bankToggleExpandAll()">Expand all</button>
+            </div>
           </div>
-          <div class="form-group">
-            <label>Subtopic</label>
-            <select id="bank-subtopic" onchange="bankSubtopicChanged()">
-              <option value="">— Select Subtopic —</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label>Available Questions</label>
-            <div id="bank-avail-count" style="padding:12px 16px;background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);font-family:var(--font-mono);font-size:14px;color:var(--text3);">Select a subtopic</div>
-          </div>
+          <div id="bank-avail-count" class="tp-total">Loading topics…</div>
+          <div id="topic-picker-list" class="tp-list"><div class="tp-empty">Loading topics…</div></div>
         </div>
 
         <div class="bank-filters">
@@ -1007,6 +1040,7 @@ tr:hover td{background:rgba(26,93,166,0.04);}
         <div class="chart-card"><h3>By Difficulty</h3><div id="exam-diff-bars"></div></div>
         <div class="chart-card"><h3>By Question Type</h3><div id="exam-type-bars"></div></div>
       </div>
+      <div class="gel-secret" id="exam-sub-bars" style="margin-bottom:24px;"></div>
       <div class="table-card gel-secret" style="margin-bottom:24px;"><h3>Time Per Question</h3><div id="exam-time-table"></div></div>
       <div id="exam-wrong-section"></div>
       <div id="exam-proceed-host"></div>
@@ -1774,41 +1808,21 @@ async function loadBankIndex() {
     const res = await fetch('bank/index.json');
     if (!res.ok) throw new Error('index not found');
     BANK_INDEX = await res.json();
-    bankPopulateTopicDropdown();
+    bankRenderPicker();
   } catch(e) {
     console.warn('Bank index not found — running without question bank.', e);
-    const topicEl = document.getElementById('bank-topic');
-    if (topicEl) {
-      topicEl.innerHTML = '<option value="">Bank unavailable — check bank/index.json</option>';
-      topicEl.disabled = true;
-    }
+    const host = document.getElementById('topic-picker-list');
+    if (host) host.innerHTML = '<div class="tp-empty" style="color:var(--danger)">Question bank unavailable — check bank/index.json</div>';
+    const tot = document.getElementById('bank-avail-count');
+    if (tot) { tot.textContent = 'Question bank unavailable'; tot.style.color = 'var(--danger)'; }
     document.getElementById('bank-start-btn').disabled = true;
   }
 }
 
-// Populate the topic dropdown from the manifest
-function bankPopulateTopicDropdown() {
-  const topicEl = document.getElementById('bank-topic');
-  if (!topicEl || !BANK_INDEX) return;
-  topicEl.innerHTML = '<option value="">— Select Topic —</option>';
-  Object.keys(BANK_INDEX.topics).sort().forEach(topic => {
-    // Only show topic if it has at least one complete subtopic
-    const subtopics = BANK_INDEX.topics[topic];
-    const hasComplete = Object.values(subtopics).some(s => s.status === 'complete');
-    if (!hasComplete) return;
-    const opt = document.createElement('option');
-    opt.value = topic; opt.textContent = topic;
-    topicEl.appendChild(opt);
-  });
-}
-
-// Load a specific subtopic JSON on demand
-async function loadSubtopic(topic, subtopic) {
-  const cacheKey = topic + '/' + subtopic;
-  if (BANK_CACHE[cacheKey]) return BANK_CACHE[cacheKey]; // already cached
-  const path = BANK_INDEX.topics[topic][subtopic].file;
-  showLoading('Loading ' + subtopic + ' questions...');
+// Fetch one subtopic file into memory. Resolves to its questions, or null (the reason is left in bankLastLoadError).
+async function bankFetchSubtopic(topic, subtopic) {
   try {
+    const path = BANK_INDEX.topics[topic][subtopic].file;
     const res = await fetch('bank/' + path);
     if (!res.ok) throw new Error('File not found: bank/' + path);
     const data = await res.json();
@@ -1816,16 +1830,362 @@ async function loadSubtopic(topic, subtopic) {
     if (Array.isArray(data.questions)) data.questions = data.questions.filter(function(q){ return !(q && q.ets_withdrawn); });
     if (!QUESTION_BANK[topic]) QUESTION_BANK[topic] = {};
     QUESTION_BANK[topic][subtopic] = data.questions;
-    BANK_CACHE[cacheKey] = data.questions;
-    hideLoading();
+    BANK_CACHE[topic + '/' + subtopic] = data.questions;
     return data.questions;
   } catch(e) {
-    hideLoading();
-    showToast('Could not load ' + subtopic + ': ' + e.message, 'error');
+    bankLastLoadError = (e && e.message) || 'network error';
     return null;
   }
 }
 
+// ============================================================
+// TOPIC / SUBTOPIC PICKER (checkboxes)
+// ============================================================
+// BANK_SEL is exactly what the student ticked: topic -> Set of subtopic names.
+// The counts, the Start button and the question queue are all derived from it,
+// so there is one source of truth and nothing to keep in step.
+const BANK_SEL = {};
+const BANK_DIFFS = ['easy','medium','hard','extreme_hard'];
+const BANK_PREFETCH_MAX = 10;        // quietly pre-load up to this many ticked subtopics
+const BANK_SHOW_DIFF_COUNTS = false;   // show a count on each difficulty button
+const BANK_INFLIGHT = {};            // subtopic key -> pending fetch (never fetch one file twice)
+let bankPrefetchTimer = null;
+let bankLastLoadError = '';
+
+// Topics and subtopics this student may use, in display order.
+function bankTopicsAvailable(){
+  if(!BANK_INDEX || !BANK_INDEX.topics) return [];
+  const out = [];
+  Object.keys(BANK_INDEX.topics).sort().forEach(topic => {
+    const all = BANK_INDEX.topics[topic];
+    let subs = Object.keys(all).filter(s => all[s].status === 'complete');
+    if(isFreeTier()){
+      const allow = FREE_CONFIG.allowedSubtopics[topic] || [];
+      subs = subs.filter(s => allow.includes(s));
+    }
+    subs.sort();
+    if(subs.length) out.push({topic, subs});
+  });
+  return out;
+}
+
+function bankSelHas(topic, sub){ return !!(BANK_SEL[topic] && BANK_SEL[topic].has(sub)); }
+function bankSelSet(topic, sub, on){
+  if(on){
+    (BANK_SEL[topic] = BANK_SEL[topic] || new Set()).add(sub);
+  }else if(BANK_SEL[topic]){
+    BANK_SEL[topic].delete(sub);
+    if(!BANK_SEL[topic].size) delete BANK_SEL[topic];
+  }
+}
+// Ticked [topic, subtopic] pairs, in display order.
+function bankSelPairs(){
+  const out = [];
+  bankTopicsAvailable().forEach(g => g.subs.forEach(s => { if(bankSelHas(g.topic, s)) out.push([g.topic, s]); }));
+  return out;
+}
+
+// "Mixed Bag" and "General Mixed" files are roll-ups: every question in them also lives in a regular subtopic file.
+function bankIsRollup(topic, sub){ return topic === 'Mixed Practice' || /mixed bag$/i.test(sub); }
+
+// Build the checkbox tree from the manifest. Ticks and open/closed state survive a re-render.
+function bankRenderPicker(){
+  const host = document.getElementById('topic-picker-list');
+  if(!host) return;
+  const groups = bankTopicsAvailable();
+  if(!groups.length){
+    host.innerHTML = '<div class="tp-empty">No topics available yet.</div>';
+    bankUpdateSummary();
+    return;
+  }
+  const wasOpen = new Set(Array.from(host.querySelectorAll('.tp-group.open')).map(g => g.dataset.topic));
+  host.innerHTML = groups.map(g => {
+    const t = escHtml(g.topic);
+    return '<div class="tp-group" data-topic="' + t + '">' +
+      '<div class="tp-grouphead">' +
+        '<label class="tp-check"><input type="checkbox" class="tp-topic-cb" data-topic="' + t + '"><span class="tp-name">' + t + '</span></label>' +
+        '<span class="tp-meta"></span>' +
+        '<button type="button" class="tp-chev" aria-expanded="false" aria-label="Show or hide the subtopics of ' + t + '">&#9656;</button>' +
+      '</div>' +
+      '<div class="tp-subs" hidden>' +
+        g.subs.map(s => '<label class="tp-sub"><input type="checkbox" class="tp-sub-cb" data-topic="' + t + '" data-sub="' + escHtml(s) + '"><span class="tp-subname">' + escHtml(s) + '</span><span class="tp-n"></span></label>').join('') +
+      '</div>' +
+    '</div>';
+  }).join('');
+  host.querySelectorAll('.tp-group').forEach(grp => { if(wasOpen.has(grp.dataset.topic)) bankToggleGroup(grp, true); });
+  bankUpdateSummary();
+}
+
+// Push the current selection and counts into the tree (checkbox states, counts, tri-state topic boxes).
+function bankSyncPicker(){
+  const host = document.getElementById('topic-picker-list');
+  if(!host) return;
+  const groups = bankTopicsAvailable();
+  host.querySelectorAll('.tp-group').forEach(grp => {
+    const topic = grp.dataset.topic;
+    const g = groups.find(x => x.topic === topic);
+    if(!g) return;
+    let sel = 0, qSel = 0, qAll = 0;
+    // Roll-up ("Mixed Bag") files repeat questions from the regular subtopics, so a topic's headline count leaves them out
+    const allRoll = g.subs.every(x => bankIsRollup(topic, x));
+    const regularTicked = g.subs.some(x => !bankIsRollup(topic, x) && bankSelHas(topic, x));
+    grp.querySelectorAll('.tp-sub-cb').forEach(cb => {
+      const s = cb.dataset.sub, on = bankSelHas(topic, s);
+      const c = bankAvailCounts(topic, s);
+      const n = c ? c.matching : 0;
+      const roll = bankIsRollup(topic, s);
+      cb.checked = on;
+      const row = cb.closest('.tp-sub');
+      row.classList.toggle('on', on);
+      row.classList.toggle('empty', !n);
+      row.querySelector('.tp-n').textContent = n;
+      if(!roll || allRoll) qAll += n;
+      if(on){ sel++; if(!roll || allRoll || !regularTicked) qSel += n; }
+    });
+    const tcb = grp.querySelector('.tp-topic-cb');
+    tcb.checked = sel === g.subs.length;
+    tcb.indeterminate = sel > 0 && sel < g.subs.length;
+    grp.classList.toggle('has-sel', sel > 0);
+    grp.querySelector('.tp-meta').textContent = sel
+      ? sel + ' of ' + g.subs.length + ' ticked · ' + qSel + ' Q'
+      : g.subs.length + ' subtopics · ' + qAll + ' Q';
+  });
+}
+
+function bankToggleGroup(grp, open){
+  if(!grp) return;
+  const subs = grp.querySelector('.tp-subs'), chev = grp.querySelector('.tp-chev');
+  const willOpen = open === undefined ? subs.hidden : !!open;
+  subs.hidden = !willOpen;
+  chev.setAttribute('aria-expanded', willOpen ? 'true' : 'false');
+  grp.classList.toggle('open', willOpen);
+  bankSyncExpandBtn();
+}
+function bankSyncExpandBtn(){
+  const btn = document.getElementById('tp-expand-btn');
+  if(!btn) return;
+  const groups = document.querySelectorAll('#topic-picker-list .tp-group');
+  const allOpen = groups.length > 0 && Array.from(groups).every(g => g.classList.contains('open'));
+  btn.textContent = allOpen ? 'Collapse all' : 'Expand all';
+}
+function bankToggleExpandAll(){
+  const groups = Array.from(document.querySelectorAll('#topic-picker-list .tp-group'));
+  const allOpen = groups.length > 0 && groups.every(g => g.classList.contains('open'));
+  groups.forEach(g => bankToggleGroup(g, !allOpen));
+}
+function bankSelectAll(on){
+  Object.keys(BANK_SEL).forEach(k => delete BANK_SEL[k]);
+  if(on) bankTopicsAvailable().forEach(g => g.subs.forEach(s => bankSelSet(g.topic, s, true)));
+  bankUpdateSummary();
+  bankSchedulePrefetch();
+}
+
+// One listener each for the whole tree (the tree is rebuilt when the manifest loads).
+document.addEventListener('change', function(e){
+  const t = e.target;
+  if(!t || !t.closest || !t.closest('#topic-picker-list')) return;
+  if(t.classList.contains('tp-topic-cb')){
+    const g = bankTopicsAvailable().find(x => x.topic === t.dataset.topic);
+    if(g) g.subs.forEach(s => bankSelSet(g.topic, s, t.checked));
+  }else if(t.classList.contains('tp-sub-cb')){
+    bankSelSet(t.dataset.topic, t.dataset.sub, t.checked);
+  }else{
+    return;
+  }
+  bankUpdateSummary();
+  bankSchedulePrefetch();
+});
+document.addEventListener('click', function(e){
+  const head = e.target && e.target.closest && e.target.closest('#topic-picker-list .tp-grouphead');
+  if(!head || e.target.closest('.tp-check')) return;      // ticking the box must not also fold the group
+  bankToggleGroup(head.closest('.tp-group'));
+});
+
+// ── Counts ───────────────────────────────────────────────────
+// Questions in one subtopic under the current difficulty and type filters.
+// Exact once the subtopic file is loaded; until then it comes from the
+// per-difficulty distribution in the manifest (the type filter is not known yet).
+function bankAvailCounts(topic, subtopic){
+  const meta = BANK_INDEX && BANK_INDEX.topics[topic] && BANK_INDEX.topics[topic][subtopic];
+  if(!meta) return null;
+  const loaded = QUESTION_BANK[topic] && QUESTION_BANK[topic][subtopic];
+  const byDiff = {}; BANK_DIFFS.forEach(d => byDiff[d] = 0);
+  if(loaded){
+    const typeOk = q => bankState.selectedTypes.includes('all') || bankState.selectedTypes.includes(q.type);
+    loaded.forEach(q => { if(typeOk(q) && byDiff[q.difficulty] !== undefined) byDiff[q.difficulty]++; });
+    return {total: loaded.length, matching: bankGetFiltered(topic, subtopic).length, byDiff, exact: true};
+  }
+  const dist = meta.distribution || {};
+  BANK_DIFFS.forEach(d => byDiff[d] = dist[d] || 0);
+  // the distribution counts only questions that are actually served (withdrawn ones excluded)
+  const served = BANK_DIFFS.reduce((n, d) => n + byDiff[d], 0) || meta.count;
+  const allDiffs = bankState.selectedDiffs.includes('all');
+  const matching = allDiffs ? served : BANK_DIFFS.reduce((n, d) => n + (bankState.selectedDiffs.includes(d) ? byDiff[d] : 0), 0);
+  return {total: served, matching, byDiff, exact: false};
+}
+
+// The same counts added up over everything ticked. A question that lives in two ticked files
+// (a roll-up and its regular subtopic) is counted once.
+function bankSelCounts(){
+  const pairs = bankSelPairs();
+  const byDiff = {}; BANK_DIFFS.forEach(d => byDiff[d] = 0);
+  const cs = pairs.map(([t, s]) => bankAvailCounts(t, s));
+  const exact = cs.every(c => !c || c.exact);
+  const rollup = pairs.some(p => bankIsRollup(p[0], p[1]));
+  let total = 0, matching = 0;
+  if(exact){
+    const typeOk = q => bankState.selectedTypes.includes('all') || bankState.selectedTypes.includes(q.type);
+    const seen = new Set(), seenM = new Set();
+    pairs.forEach(([t, s]) => {
+      ((QUESTION_BANK[t] && QUESTION_BANK[t][s]) || []).forEach(q => {
+        if(!seen.has(q.id)){ seen.add(q.id); total++; if(typeOk(q) && byDiff[q.difficulty] !== undefined) byDiff[q.difficulty]++; }
+      });
+      bankGetFiltered(t, s).forEach(q => { if(!seenM.has(q.id)){ seenM.add(q.id); matching++; } });
+    });
+  }else{
+    pairs.forEach(([t, s], i) => {
+      const c = cs[i];
+      if(!c) return;
+      // an unloaded roll-up's questions already sit inside the regular files ticked alongside it
+      if(bankIsRollup(t, s) && pairs.some(p => !bankIsRollup(p[0], p[1]) && (p[0] === t || t === 'Mixed Practice'))) return;
+      total += c.total; matching += c.matching;
+      BANK_DIFFS.forEach(d => byDiff[d] += c.byDiff[d]);
+    });
+  }
+  return {subs: pairs.length, total, matching, exact, byDiff, rollup};
+}
+
+// Redraws the one-line total above the tree (and the count on each difficulty button where the page shows them).
+function bankRefreshAvail(){
+  const el = document.getElementById('bank-avail-count');
+  const c = bankSelCounts();
+  if(BANK_SHOW_DIFF_COUNTS){
+    document.querySelectorAll('#bank-diff-select .tag-opt').forEach(b => {
+      if(!b.dataset.label) b.dataset.label = b.textContent.trim();
+      const v = b.dataset.val;
+      const n = !c.subs ? null : (v === 'all' ? (c.exact ? BANK_DIFFS.reduce((t, d) => t + c.byDiff[d], 0) : c.total) : c.byDiff[v]);
+      b.innerHTML = n === null ? b.dataset.label : b.dataset.label + ' <span class="tag-count">' + n + '</span>';
+    });
+  }
+  if(!el || !BANK_INDEX) return;
+  if(!c.subs){ el.textContent = 'Nothing ticked yet'; el.style.color = 'var(--text3)'; return; }
+  const lead = c.subs + (c.subs === 1 ? ' subtopic' : ' subtopics') + ' ticked · ';
+  const narrowed = !bankState.selectedDiffs.includes('all') || (c.exact && !bankState.selectedTypes.includes('all'));
+  if(!narrowed){
+    el.textContent = lead + c.total + ' questions available'; el.style.color = 'var(--success)';
+  }else if(!c.matching){
+    el.textContent = lead + '0 of ' + c.total + ' match your filters'; el.style.color = 'var(--danger)';
+  }else{
+    el.textContent = lead + c.matching + ' of ' + c.total + ' match your filters'; el.style.color = 'var(--success)';
+  }
+  // Free tier: the upgrade nudge that used to sit beside the subtopic count
+  if(isFreeTier()) el.insertAdjacentHTML('beforeend', ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">9,629 practice questions in Pro across 95 subtopics →</a>');
+}
+
+// ── Building a session from the ticks ────────────────────────
+// How the session is named: one subtopic keeps its own name; a mix gets a summary.
+function bankSelLabels(pairs){
+  const topics = Array.from(new Set(pairs.map(p => p[0])));
+  if(pairs.length === 1) return {topic: pairs[0][0], subtopic: pairs[0][1]};
+  const subs = pairs.map(p => p[1]);
+  return {
+    topic: topics.length === 1 ? topics[0] : 'Custom Mix',
+    subtopic: subs.length <= 2 ? subs.join(' + ') : subs.length + ' subtopics' + (topics.length > 1 ? ' across ' + topics.length + ' topics' : '')
+  };
+}
+
+// The question queue: every ticked subtopic gets a fair share (cards are dealt round-robin from
+// each subtopic's shuffled pile), then the deal is shuffled so topics are interleaved. Each question
+// is stamped with the topic and subtopic it really came from, which is what progress tracking reads.
+function bankDrawQueue(pairs){
+  // roll-up files go last so a question that also lives in its own subtopic file is credited to that subtopic
+  const ordered = pairs.slice().sort((a, b) => bankIsRollup(a[0], a[1]) - bankIsRollup(b[0], b[1]));
+  const seen = new Set();
+  const pools = ordered.map(([t, s]) => shuffle(bankGetFiltered(t, s)).filter(q => {
+    if(seen.has(q.id)) return false;
+    seen.add(q.id);
+    q.topic = t; q.subtopic = s;
+    return true;
+  })).filter(p => p.length);
+  const total = pools.reduce((n, p) => n + p.length, 0);
+  const want = bankState.questionCount === 999 ? total : Math.min(total, bankState.questionCount);
+  const deal = shuffle(pools), out = [];
+  for(let i = 0; out.length < want; i++){
+    const p = deal[i % deal.length];
+    if(p.length) out.push(p.shift());
+  }
+  return shuffle(out);
+}
+
+// ── Loading ──────────────────────────────────────────────────
+function loadSubtopic(topic, subtopic){
+  const key = topic + '/' + subtopic;
+  if(BANK_CACHE[key]) return Promise.resolve(BANK_CACHE[key]);
+  if(!BANK_INFLIGHT[key]) BANK_INFLIGHT[key] = bankFetchSubtopic(topic, subtopic).then(r => { delete BANK_INFLIGHT[key]; return r; });
+  return BANK_INFLIGHT[key];
+}
+
+// Make sure every ticked subtopic is in memory. A few at a time, so ticking everything
+// does not fire a hundred requests at once. Resolves true when all loaded.
+async function bankLoadSelected(silent){
+  const need = bankSelPairs().filter(([t, s]) => !(QUESTION_BANK[t] && QUESTION_BANK[t][s]));
+  if(!need.length) return true;
+  if(!silent) showLoading('Loading ' + need.length + (need.length === 1 ? ' subtopic' : ' subtopics') + '…');
+  let failed = 0, done = 0;
+  const todo = need.slice();
+  async function lane(){
+    while(todo.length){
+      const [t, s] = todo.shift();
+      if(!(await loadSubtopic(t, s))) failed++;
+      done++;
+      const lt = document.getElementById('loading-text');
+      if(!silent && lt && need.length > 1) lt.textContent = 'Loading subtopics… ' + done + ' / ' + need.length;
+    }
+  }
+  await Promise.all(Array.from({length: Math.min(5, need.length)}, lane));
+  if(!silent){
+    hideLoading();
+    if(failed) showToast('Could not load ' + failed + (failed === 1 ? ' subtopic' : ' subtopics') + (bankLastLoadError ? ': ' + bankLastLoadError : '') + '. Please try again.', 'error');
+  }
+  return failed === 0;
+}
+
+// After the student stops ticking for a moment, fetch what they ticked so the counts become exact
+// and Start is instant. Skipped for big selections; those load when Start is pressed.
+function bankSchedulePrefetch(){
+  clearTimeout(bankPrefetchTimer);
+  bankPrefetchTimer = setTimeout(function(){
+    const need = bankSelPairs().filter(([t, s]) => !(QUESTION_BANK[t] && QUESTION_BANK[t][s]));
+    if(!need.length || need.length > BANK_PREFETCH_MAX) return;
+    bankLoadSelected(true).then(function(){ bankUpdateSummary(); });
+  }, 400);
+}
+
+// ── Results by subtopic (shown when a session mixed several) ─
+function bankSubtopicCard(res, marginTop){
+  const m = {};
+  res.forEach(r => {
+    const k = r.question && r.question.subtopic;
+    if(!k) return;
+    const s = m[k] || (m[k] = {total: 0, correct: 0});
+    s.total++; if(r.correct) s.correct++;
+  });
+  const keys = Object.keys(m);
+  if(keys.length < 2) return '';
+  const rows = keys.sort((a, b) => (m[a].correct / m[a].total) - (m[b].correct / m[b].total) || a.localeCompare(b)).map(k => {
+    const s = m[k], pct = Math.round((s.correct / s.total) * 100);
+    const col = pct >= 75 ? 'var(--success)' : pct >= 50 ? 'var(--warning)' : 'var(--danger)';
+    return '<div style="display:flex;align-items:center;gap:12px;padding:10px 0;border-bottom:1px solid var(--border);">' +
+      '<span style="flex:0 0 38%;font-size:13px;color:var(--text2);line-height:1.3;">' + escHtml(k) + '</span>' +
+      '<div style="flex:1;height:6px;background:var(--surface3);border-radius:3px;overflow:hidden;"><div style="width:' + pct + '%;height:100%;background:' + col + ';border-radius:3px;"></div></div>' +
+      '<span style="font-family:var(--font-mono);font-size:12px;color:' + col + ';min-width:70px;">' + s.correct + '/' + s.total + ' (' + pct + '%)</span>' +
+    '</div>';
+  }).join('');
+  return '<div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;margin-top:' + (marginTop === undefined ? 16 : marginTop) + 'px;">' +
+    '<div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">By Subtopic · weakest first</div>' + rows + '</div>';
+}
+
+function bankSlug(s){ return String(s || '').toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, ''); }
 
 
 
@@ -1839,46 +2199,6 @@ let bankState = {
   bankSessionTimer:null, bankQTimer:null
 };
 window.bankSelectedOptions = [];
-
-function bankTopicChanged(){
-  const topic=document.getElementById('bank-topic').value;
-  bankState.topic=topic;
-  const sub=document.getElementById('bank-subtopic');
-  sub.innerHTML='<option value="">— Select Subtopic —</option>';
-  document.getElementById('bank-avail-count').textContent='Select a subtopic';
-  document.getElementById('bank-avail-count').style.color='var(--text3)';
-  document.getElementById('bank-start-btn').disabled=true;
-  if(!topic||!BANK_INDEX||!BANK_INDEX.topics[topic])return;
-  Object.keys(BANK_INDEX.topics[topic]).sort().forEach(s=>{
-    // Only show subtopics with questions available (status = complete)
-    if(BANK_INDEX.topics[topic][s].status !== 'complete') return;
-    const o=document.createElement('option');o.value=s;o.textContent=s;sub.appendChild(o);
-  });
-  bankUpdateSummary();
-}
-
-function bankSubtopicChanged(){
-  const topic=document.getElementById('bank-topic').value;
-  const subtopic=document.getElementById('bank-subtopic').value;
-  bankState.subtopic=subtopic;
-  const el=document.getElementById('bank-avail-count');
-  if(!subtopic){
-    el.textContent='Select a subtopic';el.style.color='var(--text3)';
-    document.getElementById('bank-start-btn').disabled=true;return;
-  }
-  // Read count from manifest (always available)
-  const meta=BANK_INDEX&&BANK_INDEX.topics[topic]&&BANK_INDEX.topics[topic][subtopic];
-  if(!meta){
-    el.textContent='Not found in bank';el.style.color='var(--danger)';
-    document.getElementById('bank-start-btn').disabled=true;return;
-  }
-  el.innerHTML = meta.count + ' questions available in this subtopic'
-    + (isFreeTier()
-      ? ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">9,629 practice questions in Pro across 95 subtopics →</a>'
-      : '');
-  el.style.color='var(--success)';
-  bankUpdateSummary();
-}
 
 function bankToggleDiff(btn){
   const val=btn.dataset.val;
@@ -1935,39 +2255,25 @@ function bankGetFiltered(topic,subtopic){
 }
 
 function bankUpdateSummary(){
-  const topic=document.getElementById('bank-topic').value;
-  const subtopic=document.getElementById('bank-subtopic').value;
   const sumEl=document.getElementById('bank-filter-summary');
-  if(!topic||!subtopic){
-    sumEl.textContent='Select topic and subtopic to begin';
-    sumEl.style.color='var(--text3)';
-    document.getElementById('bank-start-btn').disabled=true;return;
+  const startBtn=document.getElementById('bank-start-btn');
+  bankRefreshAvail();
+  bankSyncPicker();
+  if(!sumEl) return;
+  const c=bankSelCounts();
+  if(!c.subs){
+    sumEl.textContent='Tick at least one topic or subtopic to begin';
+    sumEl.style.color='var(--text3)';startBtn.disabled=true;return;
   }
-  // Use BANK_INDEX count before questions are loaded; real filtered count after load
-  const isLoaded = QUESTION_BANK[topic]&&QUESTION_BANK[topic][subtopic];
-  if(isLoaded){
-    const f=bankGetFiltered(topic,subtopic);
-    const toServe=bankState.questionCount===999?f.length:Math.min(f.length,bankState.questionCount);
-    if(!f.length){
-      sumEl.textContent='⚠️ No questions match these filters. Adjust difficulty or type.';
-      sumEl.style.color='var(--danger)';document.getElementById('bank-start-btn').disabled=true;
-    }else{
-      sumEl.textContent=f.length+' questions match filters → '+toServe+' will be served';
-      sumEl.style.color='var(--text3)';document.getElementById('bank-start-btn').disabled=false;
-    }
-  }else{
-    // Not loaded yet — use total count from manifest, enable button
-    const total=BANK_INDEX&&BANK_INDEX.topics[topic]&&BANK_INDEX.topics[topic][subtopic]
-      ?BANK_INDEX.topics[topic][subtopic].count:0;
-    if(!total){
-      sumEl.textContent='⚠️ Subtopic not found in bank.';
-      sumEl.style.color='var(--danger)';document.getElementById('bank-start-btn').disabled=true;
-    }else{
-      const toServe=bankState.questionCount===999?total:Math.min(total,bankState.questionCount);
-      sumEl.textContent=total+' questions available → '+toServe+' will be loaded on Start';
-      sumEl.style.color='var(--text3)';document.getElementById('bank-start-btn').disabled=false;
-    }
+  if(!c.matching){
+    sumEl.textContent='⚠️ No questions match these filters. Adjust difficulty or type.';
+    sumEl.style.color='var(--danger)';startBtn.disabled=true;return;
   }
+  // Until the ticked files are loaded the type filter is not known, so say so rather than overpromise.
+  const est=(!c.exact&&(c.rollup||!bankState.selectedTypes.includes('all')))?'~':'';
+  const toServe=bankState.questionCount===999?c.matching:Math.min(c.matching,bankState.questionCount);
+  sumEl.textContent=est+c.matching+' questions match filters → '+est+toServe+' will be served'+(c.subs>1?', spread across '+c.subs+' subtopics':'');
+  sumEl.style.color='var(--text3)';startBtn.disabled=false;
 }
 
 function shuffle(arr){
@@ -1978,17 +2284,17 @@ function shuffle(arr){
 
 function startBankSession(){
   const name=document.getElementById('bank-student-name').value.trim()||'Student';
-  const topic=document.getElementById('bank-topic').value;
-  const subtopic=document.getElementById('bank-subtopic').value;
-  const f=bankGetFiltered(topic,subtopic);
-  const n=bankState.questionCount===999?f.length:Math.min(f.length,bankState.questionCount);
-  const queue=shuffle(f).slice(0,n);
-  bankState={...bankState,studentName:name,topic,subtopic,queue,currentIndex:0,results:[],
+  const pairs=bankSelPairs();
+  const queue=bankDrawQueue(pairs);
+  const n=queue.length;
+  if(!n){showToast('No questions match these filters. Adjust difficulty or type.','error');bankUpdateSummary();return;}
+  const lab=bankSelLabels(pairs);
+  bankState={...bankState,studentName:name,topic:lab.topic,subtopic:lab.subtopic,queue,currentIndex:0,results:[],
     sessionStartTime:Date.now(),qStartTime:Date.now()};
   document.getElementById('bank-setup-screen').style.display='none';
   document.getElementById('bank-active-screen').style.display='block';
   document.getElementById('bank-meta-name').textContent=name;
-  document.getElementById('bank-meta-topic').textContent=topic+' › '+subtopic;
+  document.getElementById('bank-meta-topic').textContent=lab.topic+' › '+lab.subtopic;
   bankState.bankSessionTimer=setInterval(()=>{
     const s=Math.floor((Date.now()-bankState.sessionStartTime)/1000);
     const el=document.getElementById('bank-session-timer');
@@ -2245,7 +2551,7 @@ function bankFinish(){
     <div style="background:var(--surface2);border:1px solid var(--border);border-radius:var(--radius-sm);padding:16px 20px;">
       <div style="font-size:11px;color:var(--text3);font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">By Difficulty</div>
       ${breakdown}
-    </div>`;
+    </div>${bankSubtopicCard(res)}`;
   window.scrollTo({top:0,behavior:'smooth'});
   // With mistakes to log the score is held back, so the toast must not give it away.
   if(window.GREErrorLog && wrong>0) showToast('Session complete! Log your mistakes to see your score.','info');
@@ -2359,7 +2665,7 @@ function buildBankSessionData(sessionType){
     type:r.question.type==='numeric_entry'?'numeric':r.question.type==='multiple_answer'?'multi':'mcq',
     answers:Array.isArray(r.studentAnswer)?r.studentAnswer:[r.studentAnswer],
     numericAnswer:r.question.type==='numeric_entry'?r.studentAnswer:'',
-    topic:bankState.topic,subtopic:bankState.subtopic,
+    topic:r.question.topic||bankState.topic,subtopic:r.question.subtopic||bankState.subtopic,
     correct:r.correct,
     difficulty:r.question.difficulty.replace('_',' ').replace(/\b\w/g,c=>c.toUpperCase()),
     notes:'',submitted:true,bank_question_id:r.question.id,source:"GRE Quant Pro Question Bank · our coaching team"
@@ -2378,7 +2684,7 @@ function saveBankSessionAsJSON(){
   const blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});
   const url=URL.createObjectURL(blob);
   const a=document.createElement('a');a.href=url;
-  a.download='gre_bank_'+bankState.topic.toLowerCase()+'_'+bankState.subtopic.toLowerCase().replace(/\s+/g,'_')+'_'+data.date+'.json';
+  a.download='gre_bank_'+bankSlug(bankState.topic)+'_'+bankSlug(bankState.subtopic)+'_'+data.date+'.json';
   a.click();URL.revokeObjectURL(url);
   showToast('Session file downloaded 💾','success');
 }
@@ -2415,6 +2721,7 @@ function resetBankSession(){
   document.getElementById('bank-complete-screen').style.display='none';
   document.getElementById('bank-active-screen').style.display='none';
   document.getElementById('bank-setup-screen').style.display='block';
+  bankUpdateSummary();
   showToast('Ready for another session!','info');
 }
 
@@ -2568,41 +2875,6 @@ function applyFreeModeLimitations() {
   }
 }
 
-// Filter topic dropdown to free subtopics only
-function bankPopulateTopicDropdownFree() {
-  if (!isFreeTier()) { bankPopulateTopicDropdown(); return; }
-  const topicEl = document.getElementById('bank-topic');
-  if (!topicEl) return;
-  topicEl.innerHTML = '<option value="">— Select Topic —</option>';
-  Object.keys(FREE_CONFIG.allowedSubtopics).sort().forEach(topic => {
-    const opt = document.createElement('option');
-    opt.value = topic; opt.textContent = topic;
-    topicEl.appendChild(opt);
-  });
-}
-
-// Override bankTopicChanged to respect free subtopic limits
-const _origBankTopicChanged = bankTopicChanged;
-bankTopicChanged = function() {
-  if (!isFreeTier()) { _origBankTopicChanged(); return; }
-  const topic = document.getElementById('bank-topic').value;
-  bankState.topic = topic;
-  const sub = document.getElementById('bank-subtopic');
-  sub.innerHTML = '<option value="">— Select Subtopic —</option>';
-  document.getElementById('bank-avail-count').textContent = 'Select a subtopic';
-  document.getElementById('bank-avail-count').style.color = 'var(--text3)';
-  document.getElementById('bank-start-btn').disabled = true;
-  if (!topic || !FREE_CONFIG.allowedSubtopics[topic]) return;
-  FREE_CONFIG.allowedSubtopics[topic].forEach(s => {
-    // Only show subtopic if it exists in BANK_INDEX
-    if (!BANK_INDEX || !BANK_INDEX.topics[topic] || !BANK_INDEX.topics[topic][s]) return;
-    const o = document.createElement('option');
-    o.value = s; o.textContent = s;
-    sub.appendChild(o);
-  });
-  bankUpdateSummary();
-};
-
 // Override bankGetFiltered to strip hard/extreme in free mode
 const _origBankGetFiltered = bankGetFiltered;
 bankGetFiltered = function(topic, subtopic) {
@@ -2668,13 +2940,6 @@ function showUpgradePrompt(feature) {
   modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
 }
 
-// Override loadBankIndex to use free-aware topic population
-const _origLoadBankIndex = loadBankIndex;
-loadBankIndex = async function() {
-  await _origLoadBankIndex();
-  if (isFreeTier()) bankPopulateTopicDropdownFree();
-};
-
 // Apply UI limitations on DOM ready
 document.addEventListener('DOMContentLoaded', () => {
   setTimeout(applyFreeModeLimitations, 100);
@@ -2714,16 +2979,9 @@ bankUpdateSummary = function() {
   _origBankUpdateSummary();
   // Add exam mode time estimate on top of the base summary
   if (bankState.mode !== 'exam') return;
-  const topic = document.getElementById('bank-topic')?.value;
-  const subtopic = document.getElementById('bank-subtopic')?.value;
-  if (!topic || !subtopic) return;
   const sumEl = document.getElementById('bank-filter-summary');
   if (!sumEl || document.getElementById('bank-start-btn').disabled) return;
-  // Count from manifest or loaded data
-  const available = (QUESTION_BANK[topic] && QUESTION_BANK[topic][subtopic])
-    ? bankGetFiltered(topic, subtopic).length
-    : (BANK_INDEX && BANK_INDEX.topics[topic] && BANK_INDEX.topics[topic][subtopic]
-        ? BANK_INDEX.topics[topic][subtopic].count : 0);
+  const available = bankSelCounts().matching;
   if (!available) return;
   const n = bankState.questionCount === 999 ? available : Math.min(available, bankState.questionCount);
   const mins = Math.floor(Math.round(n * 105) / 60);
@@ -2737,20 +2995,17 @@ const _origStartBankSession = startBankSession;
 
 // Master entry point — fetches data then routes to practice or exam
 startBankSession = async function() {
-  const topic = document.getElementById('bank-topic').value;
-  const subtopic = document.getElementById('bank-subtopic').value;
-  // Fetch subtopic data if not already cached
-  if (topic && subtopic && (!QUESTION_BANK[topic] || !QUESTION_BANK[topic][subtopic])) {
-    const loaded = await loadSubtopic(topic, subtopic);
-    if (!loaded) return;
-  }
+  if (!bankSelPairs().length) { showToast('Tick at least one topic or subtopic first', 'error'); return; }
+  // Fetch every ticked subtopic that is not in memory yet
+  if (!(await bankLoadSelected(false))) return;
   if (bankState.mode !== 'exam') { _origStartBankSession(); return; }
 
   const name = document.getElementById('bank-student-name').value.trim() || 'Student';
-  // topic and subtopic already declared above
-  const f = bankGetFiltered(topic, subtopic);
-  const n = bankState.questionCount === 999 ? f.length : Math.min(f.length, bankState.questionCount);
-  const queue = shuffle(f).slice(0, n);
+  const pairs = bankSelPairs();
+  const queue = bankDrawQueue(pairs);
+  const n = queue.length;
+  if (!n) { showToast('No questions match these filters. Adjust difficulty or type.', 'error'); bankUpdateSummary(); return; }
+  const { topic, subtopic } = bankSelLabels(pairs);
 
   // exam-specific state
   bankState = { ...bankState, studentName: name, topic, subtopic, queue,
@@ -3145,6 +3400,9 @@ function examRenderAnalysis() {
     const col = pct>=75?'var(--success)':pct>=50?'var(--warning)':'var(--danger)';
     return barRow(typeLabels[t]||t, s.correct, s.total, pct, col);
   }).join('') || '<p style="color:var(--text3);font-size:13px;">No data</p>';
+
+  // By Subtopic (only when the session mixed several)
+  document.getElementById('exam-sub-bars').innerHTML = bankSubtopicCard(res, 0);
 
   // Time table
   document.getElementById('exam-time-table').innerHTML = `
@@ -3878,7 +4136,7 @@ function openErrorReport() {
     <div class="error-modal-card">
       <div class="error-modal-title">⚑ Report a Question Error</div>
       <div class="error-modal-meta">
-        ID: ${escHtml(q.id)} &nbsp;·&nbsp; ${escHtml(bankState.topic)} › ${escHtml(bankState.subtopic)}<br>
+        ID: ${escHtml(q.id)} &nbsp;·&nbsp; ${escHtml(q.topic||bankState.topic)} › ${escHtml(q.subtopic||bankState.subtopic)}<br>
         We review all reports within 24 hours.
       </div>
       <label class="error-modal-label" for="error-textarea">Describe the issue</label>
@@ -3913,8 +4171,8 @@ function submitErrorReport() {
     'QUESTION ERROR REPORT\n' +
     '═══════════════════════════════════════\n\n' +
     'Question ID     : ' + q.id + '\n' +
-    'Topic           : ' + bankState.topic + '\n' +
-    'Subtopic        : ' + bankState.subtopic + '\n' +
+    'Topic           : ' + (q.topic||bankState.topic) + '\n' +
+    'Subtopic        : ' + (q.subtopic||bankState.subtopic) + '\n' +
     'Difficulty      : ' + q.difficulty + '\n' +
     'Type            : ' + q.type + '\n\n' +
     '───────────────────────────────────────\n' +
@@ -3938,7 +4196,7 @@ function submitErrorReport() {
 // ── Guided First Session (1.4 + 3.2) ────────────────────────────────────────
 // Called from hero CTA and recommended preset chip.
 // Pre-fills the bank setup form and scrolls to it — student still clicks Start.
-function startGuidedSession(topicName, subtopicName) {
+function startGuidedSession(topicName, subtopicName, tries) {
   // 1. Switch to bank tab
   const bankBtn = document.getElementById('tab-btn-bank');
   if (bankBtn && !bankBtn.classList.contains('active')) {
@@ -3948,29 +4206,28 @@ function startGuidedSession(topicName, subtopicName) {
   // 2. Set mode to Practice
   bankSetMode('practice');
 
-  // 3. Set topic → Arithmetic
-  const topicEl = document.getElementById('bank-topic');
-  if (topicEl) {
-    topicEl.value = topicName || 'Arithmetic';
-    if (!Array.from(topicEl.options).some(o => o.value === topicEl.value)) topicEl.value = 'Arithmetic';
-    bankTopicChanged();
+  // 3. The manifest loads asynchronously and a deep link fires right at page load, so wait for it
+  if (!BANK_INDEX) {
+    if ((tries || 0) < 40) setTimeout(function(){ startGuidedSession(topicName, subtopicName, (tries || 0) + 1); }, 150);
+    return;
   }
 
-  // 4. Set subtopic → Percentages (after a tick so dropdown populates)
-  setTimeout(() => {
-    const subEl = document.getElementById('bank-subtopic');
-    if (subEl) {
-      if (subtopicName && Array.from(subEl.options).some(o => o.value === subtopicName)) {
-        subEl.value = subtopicName;
-      } else if (topicName) {
-        const first = Array.from(subEl.options).find(o => o.value);
-        if (first) subEl.value = first.value;
-      } else {
-        subEl.value = 'Percentages';
-      }
-      bankSubtopicChanged();
-    }
+  // 4. Tick exactly one subtopic: the one asked for, else the topic's first, else Arithmetic › Percentages
+  const groups = bankTopicsAvailable();
+  const g = groups.find(x => x.topic === topicName) || groups.find(x => x.topic === 'Arithmetic') || groups[0];
+  if (!g) return;
+  let sub;
+  if (subtopicName && g.subs.includes(subtopicName)) sub = subtopicName;
+  else if (topicName && g.topic === topicName) sub = g.subs[0];
+  else sub = g.subs.includes('Percentages') ? 'Percentages' : g.subs[0];
+  Object.keys(BANK_SEL).forEach(k => delete BANK_SEL[k]);
+  bankSelSet(g.topic, sub, true);
+  const grp = Array.from(document.querySelectorAll('#topic-picker-list .tp-group')).find(x => x.dataset.topic === g.topic);
+  if (grp) bankToggleGroup(grp, true);
+  bankUpdateSummary();
+  bankSchedulePrefetch();
 
+  setTimeout(() => {
     // 5. Set difficulty: Medium only
     document.querySelectorAll('#bank-diff-select .tag-opt').forEach(btn => {
       const isLocked = btn.style.cursor === 'not-allowed';
