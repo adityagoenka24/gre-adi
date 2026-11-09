@@ -1,6 +1,6 @@
 # GRE Quant Pro — Master Handoff
 
-**Current as of 2026-10-31.** This is the only handoff. It replaces the repo's `HANDOFF_STUDENT_PROGRESS_2026-10-24.md` and 18 older project docs (listed in section 9). Read sections 0 to 2 first. The rest is reference.
+**Current as of 2026-11-07** (section 1 item 0a and the KMF bullets in section 4.7; everything else 2026-10-31). This is the only handoff. It replaces the repo's `HANDOFF_STUDENT_PROGRESS_2026-10-24.md` and 18 older project docs (listed in section 9). Read sections 0 to 2 first. The rest is reference.
 
 ---
 
@@ -9,25 +9,25 @@
 | | |
 |---|---|
 | Repo | `~/GitHub/gre-adi` → `github.com/adityagoenka24/gre-adi`, branch `main` |
-| Git | HEAD `a2fb531` ("mocks", 2026-10-29 16:10), level with `origin/main`. Everything in section 4 except the 2026-10-30 KV work (section 5, item 0 in section 1) is committed and pushed. **The 2026-10-30 changes to `analytics.js`, `cloudflare/worker.js`, `cloudflare/admin.html` and `cloudflare/coach.html` are written to the working tree but not committed, and the Worker is not redeployed.** This handoff file is not committed. |
+| Git | HEAD `e0b7931` ("math js"), level with `origin/main`. The 2026-10-30 KV work and the 2026-11-01 pro-data gate are both committed and pushed (`0bc2982`, `13aba1f`). Uncommitted in the working tree: this handoff file, `pro/full_mock.html` (mocks 11-14 added to `MOCK_INDEX`), `bank/algebra/inequalities.json` and `concepts/practice/_source/validate.py`. **`pro/bank/` and `pro/mocks/` are gitignored, so the whole KMF-1804 import and mocks 11-14 are invisible to `git status` and `git diff` and will not appear in any commit. They reach students only through Admin -> Pro Data (item 3).** Whether `worker.js` has actually been pasted into the Cloudflare dashboard since `0bc2982` cannot be checked from the repo. |
 | Static site | GitHub Pages at `grequantpro.com` (`CNAME`) |
 | Backend | Cloudflare Worker `gre-auth` (`cloudflare/worker.js`, pasted into the dashboard, no wrangler), KV namespace `GRE_AUTH`, D1 database `gre-progress` bound as `GRE_DB` |
 | **Not verifiable from the repo** | Whether the Worker, the D1 tables and the one-off "Tidy up old storage" run have actually been done. Section 6 is the checklist. Confirm each before trusting any Coach View screen. |
 | Tests | The Worker and browser suites quoted in earlier handoffs were run from scratch folders and **are not in the repo**. The only tracked tests are `diagnostic/test-*.mjs`. Regression cover for everything below has to be rebuilt or re-run by hand. |
-| Build scripts | The scripts that rebuilt the 10 mocks (section 4.5) lived in a scratch folder and were not kept. The papers themselves are the source of truth. The method is in 4.5. |
+| Build scripts | The scripts that rebuilt the 10 mocks (2026-10-29) were not kept; those papers are their own source of truth, and the method is in 4.5. The KMF-1804 import tooling **was** kept, in `_ets_audit_tmp/`: `merge_kmf2.py` (merge + index rebuild), `leakcheck.py` (masked verbatim check), `bankdupe.py` (mechanism-fingerprint duplicate check), `scatter.py` (inline-SVG scatter exhibits), `xyplane.py` (inline-SVG coordinate planes), `build_mocks.py` (assembles papers from unused bank items) and one `solutions_kmf2_batch*.py` per batch. `_ets_audit_tmp/` is gitignored, so none of it is in the repo and it is lost if the folder is cleared. |
 
 ---
 
 ## 1. Open decisions and next work (ranked)
 
-### 0. Cloudflare KV free-tier alert (2026-10-30) — done in code, needs deploy
+### 0. Cloudflare KV free-tier alert (2026-10-30) — committed, still needs the Cloudflare deploy
 Cloudflare emailed that 50% of the daily Workers KV free limit (100k reads, 1,000 writes, 1,000 deletes, 1,000 lists) was used. The owner wants to stay on the free plan. At 100% KV reads and writes fail with 429, which would break Razorpay webhook provisioning, student registration and mock submissions.
 
 **Likely causes (found by reading the code, not by looking at dashboard metrics):**
 1. **Coach View → Events on the KV fallback.** Without the `mock_attempt_index` D1 table (or with a stale Worker) every Events open made about 90 KV `list` calls plus a `get` per attempt, and every drill-down up to 365 lists. About 500 lists alone is the 50%. The tab was added 2026-10-27 and the owner says the alert never came before it. Check: the Events tab shows "The attempt index is not in D1 yet — this view is reading KV directly" when it is on the slow path.
 2. **`analytics.js` on 124 pages** POSTed to the Worker on every page load and every tracked click, each a KV get plus a put of a growing JSON blob. No dedup, no bot filter, no owner exclusion.
 
-**Changes made (uncommitted), in two passes:**
+**Changes made (committed and pushed as `0bc2982`; the Cloudflare side of step 7 below may still be outstanding), in two passes:**
 
 *Pass 1, stop the obvious burn:*
 - `analytics.js`: `SEND_TO_WORKER = false`. No request goes to the Worker. Google Ads conversions, `window.GQP.track()` and the `[data-track]` click handler still work.
@@ -62,6 +62,55 @@ Remaining KV use after this: the fallback paths above, the one-off copies, and t
 
 ---
 
+### 0a. What is left of the KMF import (2026-11-09)
+**Part 1 is complete. Part 2 has 175 of 364 pages untouched, but only about 70 of them are worth
+mining.** Earlier figures of ~1,730, ~580 and ~450 are all wrong - ignore them wherever quoted.
+
+Two bad inferences were made on 2026-11-07 and both are retracted here:
+
+1. *"Each section ships two sets, so ~980 complementary questions are missing."* No. Counting the
+   source's own section headers shows **no section carries two sets**: PDF B holds 71 section
+   blocks, odd -> Medium (= "Base"), even -> Hard, zero with both. "Base & Hard" describes the
+   collection, not a section. The alternating `origin_set` pattern in the bank mirrors the source
+   correctly.
+2. *"Sections 1-4 were never imported (~49 questions)."* No - that read a missing **tag** as
+   missing **content**. The 61 items with a blank `origin_set` are sections 1-4. Two independent
+   checks: grouping the 996 items by `origin_set` gives an unbroken page run at ~6.5 pages per
+   section from page 29 to 486 covering sections 5-74, leaving pages 4-30 for the untagged 61 at
+   the same 2.2 items-per-page density; and matching the **pre-rewrite** originals from
+   the pre-leakfix backup (deleted 2026-11-09) against PDF B puts 12 of the 14 that score >= 0.30 in sections 1-4, with
+   PDF A pages 7->23 mapping monotonically onto PDF B pages 14->58. Those items predate the
+   tagging discipline, which is also why they failed leakage at 37.7% against the tagged items'
+   1.6%.
+
+So 61 (sections 1-4) + 935 (sections 5-74) = 996, against 74 sections at the observed 12-16
+questions each. Nothing is left over. PDF B is in fact *thinner* than PDF A - its text layer
+lacks sections 12, 41 and 66, all of which the bank holds. Keep `kmf_pdfB_textlayer.txt` as the
+part-1 leakage corpus; do not mine it for content.
+
+**What is actually left in part 2** (PDF A pages 488-851; 326 distinct items imported from 189
+worked pages). Computed from the `source_pages` recorded on the items themselves, not from the
+batch log:
+
+| Pages | What is there | Untouched | Verdict |
+|---|---|---|---|
+| 690-794 | **full 10-question mock sections** from other test IDs, not topic sections | 105 | **Skip deliberately.** Their only use was mock material, and mocks 11-14 were assembled from unused bank items instead (4.5). Mining them would add ~200 items to topics already at target. |
+| 579-638 | chapter 3.7 and chapter 4 geometry gaps | 26 | **Mine next.** Every remaining item needs a drawn figure; `_ets_audit_tmp/xyplane.py` now builds coordinate planes and `geofig` covers plane geometry. |
+| 795-850 | sections 5.1.1-5.1.7 as 15-question DI sets | 19 | Mine. 832-839 need two new exhibit builders (a Gantt-style chart and a daily high/low range chart) that `gre-exhibit.js` cannot draw. |
+| 647-671 | sections 5.1.5-5.3.3 as 4-question sets | 14 | 647-653 need **no work**: they are the 4-question versions of 5.1.5-5.1.7, built on exhibits already mined from the 15-question versions. That leaves 7 pages. |
+| 672-689, 488-578, 851 | chapter 6 two-question sets and front-matter gaps | 11 | Low yield, mostly non-question pages. |
+
+So the real remaining content is roughly **70 pages, call it 25-30 batches' worth at 12-15 items
+each only if every page carried questions - in practice nearer 8-10 batches**, and all of it is
+figure-heavy. There is no shortcut that keeps the quality bar.
+
+**A new chat needs the KMF 1804 PDF re-attached.** Part 2 is full-page scans with no text layer:
+the workflow is OCR for the stem skeleton plus a visual read of every page, because OCR mangles
+options and fractions and the source answer key is a checkmark visible only to the eye.
+
+Full state, workflow, artifact inventory and a paste-ready prompt:
+**`claude/kmf_import_CONTINUE_HERE.md`**.
+
 ### 1. Scoring after the mock rebuild — needs a decision
 `score-scale.js` scores on difficulty-weighted accuracy, which is a ratio. A harder paper has a bigger denominator, so the same student gets a lower number. Routing cannot compensate: every threshold pair in the search space gave the same −6.6 to −7.1 mean shift.
 
@@ -82,10 +131,16 @@ The earlier 10-29 build had the real shape: Section 1 = four QC first, then a th
 
 Fix: within each section and each form, put QC items first, keep the DI set at positions 5–7 sharing one exhibit, then reorder and renumber ids (`MOCK-NN-S1-###`, `MOCK-NN-S2E/S2M/S2H-###`; keep `bank_id`). Re-check the shared-exhibit set, the per-form counts and the time budgets afterwards. Free mocks 01–02 must stay byte-identical to pro 01–02.
 
-### 3. Paid content is publicly fetchable
-`pro/bank/` (132 files) and `pro/mocks/` (10 files) are tracked in git and served by GitHub Pages, so every Pro question and all 10 mocks (03–10 are paid) can be downloaded by URL. `learn/pro-body/*.html` is a documented soft gate. A fix was designed on 2026-10-19 (a Worker route `POST /pro-data {email, fingerprint, path}` that checks the plan and streams a file from KV key `data:<path>`) but was **never merged into `worker.js`** (no `pro-data` string in it today). The design and exact deploy commands are in git: `git show 8f99c73^:HANDOFF_ETS_AUDIT_2026-10-06.md` (Addendum 4).
+### 3. Paid content is gated now; git history is the part still open
+Closed 2026-11-01 and committed as `13aba1f` "Stop publishing Pro question files". `pro/bank/` (132 files) and `pro/mocks/` (14 files) are gitignored and tracked nowhere — `git ls-files pro/bank pro/mocks` returns 0 — so they are not on GitHub Pages and not fetchable by URL. The local copies stay on disk and are served only by the Worker route `POST /pro-data {email, fingerprint, path}`, which checks that the student is known and not revoked, that the fingerprint is already registered, that the plan covers the file and that the daily cap is not spent, then streams the file from KV key `data:<path>`. Wired and present today: the route in `cloudflare/worker.js`, the loader `pro/pro-data.js`, its use in `pro/full_mock.html`, `pro/sectional.html` and `pro/gre_practice_logger_pro.html`, and the **Pro Data** tab in `cloudflare/admin.html`. Design, test results and deploy order: `claude/pro_data_gate_2026-11-01.md`.
 
-Residual risks if you do it: git history still holds the bank (purging needs `git filter-repo`, a force-push and a GitHub support request); `/validate` authenticates by email plus a browser fingerprint with 2 device slots, so anyone who knows a student's email can register a device while a slot is free; no per-student rate limit.
+**Consequence to remember: the bank on disk is not what students see.** Anything added or edited since the last upload — the KMF-1804 batches and mocks 11-14 included — reaches students only after Admin -> Pro Data -> Upload, and cached copies can lag a further 6 hours. A bank change is not shipped until that upload runs.
+
+Still open:
+- **Git history still holds the bank.** 35 commits touched `pro/bank`, and on a public repo every old blob stays fetchable by SHA, so removing the files from `HEAD` did not un-publish them. Purging means `git filter-repo --invert-paths --path pro/bank --path pro/mocks`, a force-push, and a GitHub support request to drop cached views; anyone who already cloned keeps their copy. Making the repo private is the alternative — GitHub Pages from a private repo needs a paid plan, so confirm that first.
+- `learn/pro-body/*.html` (75 lesson pages) is still a documented soft gate, with no `pro-data` route of its own. The same pattern would work.
+- `events/event_builder.html` still fetches `../pro/bank/`, so its "Pro bank" option works from a local server only, not from the live site.
+- `/validate` authenticates by email plus browser fingerprint with 2 device slots, so anyone who knows a student's email can register a device while a slot is free. A paying student can still script the route for their own plan; the daily cap (default 600 files/student/day, env `PRO_DATA_DAILY_CAP`) makes that visible: `SELECT email, n FROM pro_data_usage WHERE day = date('now','+330 minutes') ORDER BY n DESC LIMIT 20;`
 
 ### 4. Marketing still sells the retired difficulty ladder
 Now false, because every mock is at real-GRE level. Three lines, left untouched because marketing is the owner's call:
@@ -106,7 +161,7 @@ The Free attempts tab was removed 2026-10-30 and the Events tab now hides `full_
 ### 8. Smaller items
 
 - **DI exhibits for mocks 02, 03, 07** are new. Their questions are verified; the exhibits have not been looked at in a browser at phone width.
-- **Only 13 shared-exhibit DI sets of 3+ exist in the bank** and 10 are used, one per mock. A few more (source: the KMF 1804 import) would give room.
+- **Shared-exhibit DI sets:** 13 existed and 10 were used, one per mock. The 2026-11-07/08 DI import (batches Q–V) took Data Interpretation from 344 to 410 and left **38 unused shared-exhibit sets of 3 or more**, which is what made mocks 11–14 possible; each new paper carries one. Pages 795–850 of KMF 1804 are now mined.
 - **Five live capsule defects** found while building the handbook (2026-10-24, capsules not touched): `concepts/…/05-geometry/01-lines-angles.md` says GRE figures are "drawn to scale unless stated" (ETS says not necessarily; this one costs marks, so also grep bank and mock explanations); `07-statistics-probability/07-combinations.md` says a committee of 3 from 9 is 126 (it is 84); `01-arithmetic/05-rates-unit-conversions.md` says two people taking 6 hours each do not take 3 together (they do); `01-arithmetic/10-estimation-approximation.md` demonstrates opposite-direction rounding as "same direction"; `05-geometry/02-triangles-fundamentals.md` still carries Heron's formula. Fix 1–4, then rerun `build_learn.py`.
 - **19 questions** carry a prose `figure_description` instead of a drawn figure (2026-10-22). Use the diagram workflow in the `gre-question-gen` skill.
 - **Content gaps** (2026-10-24 counts): extreme-hard is thin (340 pro, 70 free). Data Interpretation is the thinnest topic after the audit. Both are generation jobs for the skill.
@@ -229,7 +284,22 @@ Purge clears the D1 index and log rows (three SQL statements regardless of size)
 - **Known calibration issue:** anchors are generous (58% raw on a sectional gives 158; real GRE puts it nearer 152–155). They were kept so no past score moved. Open decision 1 is the same lever.
 - **Score-first page (`score-card.js`, loaded by both full mocks, both sectionals and the event mock):** order is score page → error log → analysis. The score page is full-screen and deliberately bare: the scaled score out of 170 and its range, nothing else (no accuracy, counts, section split or diagnosis). If the script fails to load the student lands on the review as before.
 
-### 4.5 The 10 mocks (rebuilt 2026-10-29, level spread corrected 2026-10-31)
+### 4.5 The mocks (10 rebuilt 2026-10-29, level spread corrected 2026-10-31; 11-14 added 2026-11-08)
+
+> **Mocks 11-14 (2026-11-08)** were assembled from the bank rather than imported, which is why the
+> remaining ~200 general mock-section questions in KMF 1804 were not mined: their only use is as
+> mock material and the bank had 5,285 items no paper had ever touched. Each new paper is 57 bank
+> items (Section 1's 12, plus all three 15-question Section 2 forms) and meets the same blueprint
+> as 1-10 on **both** margins, difficulty and type. Every hard and extreme_hard slot is drawn only
+> from the KMF-1804 and sectional strata, because the 2026-10 audit found generated hard-labelled
+> items are only about a third genuinely hard; the binding constraint is the trusted extreme_hard
+> supply, which is 13 items and allowed 4 papers, not 5. Builder:
+> `_ets_audit_tmp/build_mocks.py <root> <first> <count>`. Verified: blueprint exact on every
+> section and form, zero bank ids shared with existing papers or between the new ones, every
+> question byte-identical to its bank entry, a contiguous shared-exhibit DI set of 3 in each
+> Section 1, and no renderer problems (QC stems all carry a Quantity A/B line, every chart,
+> table and svg well formed). `pro/full_mock.html`'s `MOCK_INDEX` was extended to 14.
+
 
 **Why Section 1 felt "very very easy":** all 570 questions in the old papers came from the bank's `easy` and `medium` tiers, never the hard tier, and the labels are inflated about a level (a bank `medium` is a one-step item). The two items labelled `hard` in the old mock_01 Section 1 were one-liners. Three of the Section 1 DI sets (mocks 02, 03, 07) were also unanswerable: the stems asked about categories the exhibit did not contain.
 
@@ -310,10 +380,72 @@ used there.
 
 ### 4.7 Content and bank state
 
-- **Counts** (2026-10-24, unchanged since): free 848 topic + 48 sectional; pro 9,629 topic + 418 sectional. Difficulty mix after the purge: free 258 / 319 / 201 / 70, pro 2,510 / 4,451 / 2,328 / 340 (easy / medium / hard / extreme). Marketing quotes 9,629 and 95 subtopics, 24 free subtopics, 10 mocks (2 free).
+- **Counts** (2026-10-24; the pro figure is now 11,237 index entries / 5,839 distinct, see the integrity passes below): free 848 topic + 48 sectional; pro 9,629 topic + 418 sectional. Difficulty mix after the purge: free 258 / 319 / 201 / 70, pro 2,510 / 4,451 / 2,328 / 340 (easy / medium / hard / extreme). Marketing quotes 9,629 and 95 subtopics, 24 free subtopics, 10 mocks (2 free).
 - **Purge (2026-10-24):** every question scoring ≤ 2 on the ETS-fidelity scale or carrying a structural defect tag (`explanation_error`, `no_correct_option`, `wrong_key`, `figure_contradicts_stem`, `chart_data_corrupt`, `missing_data`, `figure_missing`, `malformed_type`) was deleted, plus 13 cross-file free-bank duplicates. **370 distinct questions** were removed (793 entries across files; 271 pro only, 11 free only, 88 in both). The homepage briefly said 806, which counted entries; it was corrected to 370 everywhere. 38,646 `ets_*` QA fields were stripped from shipped JSON. The pre-purge bank with every verdict is in git at `3195cd3`.
 - **Public audit page** `/audit/`: all 370 ids, bank, topic, label, failure tags and the reviewer's note; no question text. Biggest reasons: filler distractors (138), trap mismatch (114), textbook phrasing (88). Geometry (91) and Data Interpretation (67) lost the most.
-- **KMF 1804 import (merged 2026-10-03/04):** 996 rewritten questions in 82 subtopic files, ids `<SUBTOPIC>-KMF-###`, tagged `origin: "kmf1804"`, `origin_set` ("Section N Base" / "Section N Hard"), `source_pages`. Audited twice (754 sonnet key audits, 411 opus audits of the riskiest, 141 flags re-solved; every stated answer correct). `GEO-CIR-KMF-023` (ellipse) was dropped. Three source items were unbuildable (S49 Base Q11, S55 Base Q10, S56 Hard Q4). The pro logger now stacks chart + table + svg instead of showing one exhibit.
+- **Bank integrity sweep (2026-11-07).** Five true duplicates removed (`ARI-SEQ-031`,
+  `MIX-GEN-019`, `MIX-GEN-090`, `MIX-GEN-016`, `STA-CPR-003`; nine other same-stem groups were
+  checked and are legitimately distinct — generic stem, different options). Separately, **1,110
+  items were missing from the topic mixed bags, including 100% of the 1,057 KMF items** — the
+  roll-ups never received them, so mixed-bag drilling never showed the bank's strongest content.
+  All rolled in and `index.json` rebuilt from the files: **index total 9,629 → 10,901**, 5,671
+  distinct, 11,319 entries. Zero duplicates, zero diverging copies, zero mixed-bag gaps, zero
+  broken mock `bank_id` refs, zero structural errors. **`merge_kmf2.py` was fixed the same day to do the roll-up
+  itself** (original at `merge_kmf2.py.bak`), so new batches stay consistent. Detail in
+  `claude/kmf_pdf_import_assessment_2026-11-06.md` §6b.
+- **Bank integrity, second pass (2026-11-07, later).** Three findings, two fixed and one left for
+  the owner.
+  - **The "zero duplicates" result above was understated.** That scan keyed items by id into a
+    dict, so a second copy of an id silently overwrote the first. Counting occurrences instead
+    shows **111 questions stored under two topics at once**: Remainders and Absolute Value each
+    exist under both Arithmetic and Number Properties and share one pool (Remainders 63 of 66
+    shared, Absolute Value 48 of 62). Copies are byte-identical, so nothing is inconsistent, but
+    the Arithmetic and Number Properties **mixed bags overlap by 111 items**. **Not acted on:**
+    removing the shared items from the Arithmetic side would leave Arithmetic / Remainders with 3
+    questions and Arithmetic / Absolute Value with 14, which is a product decision. Mocks
+    reference these ids and would still resolve against the Number Properties copy.
+  - **US English sweep:** 63 items carried British spellings the wording contract bans (`fibre`,
+    `centimetres`, `litres`, `centre`, `maximise`, `labelled`, `travelled`, `ageing`, `recognise`,
+    `kilometre`). Fixed across subtopic, mixed-bag and sectional copies; residual 0. The pre-sweep backup
+    was deleted 2026-11-09 once the bank was verified. Offenders included part-1 KMF imports and one of
+    ours, so the contract was not enforced at generation time on either side.
+  - **New gate `_ets_audit_tmp/bankdupe.py`.** Parts 1 and 2 of KMF 1804 reprint the same ETS
+    exhibits, so a part-2 item can pass the source-leakage check and still duplicate a part-1
+    import. Surface similarity cannot see this: a cover-story rewrite scores 0.13. The gate scores
+    a reduced token stream instead — cover-story nouns deleted, units folded to roles — on which
+    the same pair scores 0.89. It caught 4 duplicates in batch R before merge. **Run it on every
+    batch and read by eye the nearest item it names for every row, not just the flagged ones.**
+  - Bank now **11,237 index entries / 5,839 distinct** (2026-11-09, after batch Z), counts
+    reconciled against the files, zero mixed-bag gaps, zero content divergence among the 5,192
+    ids held in more than one file. 418 of those ids differ between copies in `origin` and
+    `origin_set` only, because the sectional copies were written before those fields existed;
+    question, options, answer, explanation and trap are identical, so this is cosmetic. A
+    divergence check that compares whole JSON objects will report those 418 - compare the content
+    fields instead.
+- **KMF 1804 import, part 1 (merged 2026-10-03/04):** 996 rewritten questions in 82 subtopic files, ids `<SUBTOPIC>-KMF-###`, tagged `origin: "kmf1804"`, `origin_set` ("Section N Base" / "Section N Hard"), `source_pages`. Audited twice (754 sonnet key audits, 411 opus audits of the riskiest, 141 flags re-solved; every stated answer correct). `GEO-CIR-KMF-023` (ellipse) was dropped. Three source items were unbuildable (S49 Base Q11, S55 Base Q10, S56 Hard Q4). The pro logger now stacks chart + table + svg instead of showing one exhibit. **That is one set per section, which is all the source has — see section 1 item 0a; part 1 is complete and nothing in it is outstanding.** A leakage remediation on 2026-11-06 rewrote 24 of these items (masked 5-gram containment against the PDF B text layer; 0 of 905 scorable items now flagged).
+- **KMF 1804 import, part 2 (merged 2026-11-05/09; 175 of 364 pages untouched, of which only ~70 are worth mining — see 0a):** 326 rewritten questions from pages 488–851 of the KMF 1804 PDF, tagged `origin: "kmf1804_p2"`, ids `<SUBTOPIC>-KMF2-NNN`, across batches pilot and A–Z. 22 carry a drawn figure built with the skill's `geofig` toolchain. Type mix MCQ 38% / QC 25% / numeric 22% / select-all 15%, every type at or within a point of target; difficulty 8 easy / 91 medium / 59 hard. Every key was re-derived in an independent `solutions_kmf2_*.py` before merge. Gates: 0 structural errors, 0 wording-contract violations, 0 of 107 scorable items flagged for leakage (worst 0.39), 0 diverging mixed-bag copies. A separate pass repaired 30 part-1 geometry items whose sectional copies carried stale or missing figures. The source corpus for part 2 is OCR, not a text layer; pointing the leakage checker at the part-1 corpus by mistake hid 24 leaks for a week (`claude/kmf_part2_leakage_defect_2026-11-06.md`).
+
+- **Batch Z (2026-11-09), coordinate geometry, pages 579–588.** 14 items into the seven
+  `coordinate_geometry` subtopic files; bank 11,209 → 11,237. Mix MCQ 6 / QC 3 / numeric 3 /
+  select-all 2; difficulty 9 medium / 4 hard / 1 extreme. Three carry a figure from the new
+  **`_ets_audit_tmp/xyplane.py`**, which draws a true coordinate plane — axes crossing at a
+  labelled origin, arrowheads, unit gridlines, negative quadrants, shaded regions, placed point
+  labels — none of which `scatter.py` can do. It asserts every plotted point sits on a gridline
+  intersection, because a point between gridlines cannot be read off and makes the question
+  unanswerable. Figures checked by eye in both light and dark.
+  **Two gate findings worth keeping:**
+  (1) The first draft scored up to **1.00 masked** against the source on seven of fourteen items.
+  The cause was the same one that reached batches S, T, U and W: the numbers were changed and the
+  sentences were not. Rewriting the *ask* rather than the nouns — least member instead of
+  greatest, where a function is zero instead of another of its values, how many points lie below
+  a line instead of how many satisfy an inequality — took the worst to 0.30 and the batch to 0
+  flagged.
+  (2) `bankdupe.py` then named two genuine bank duplicates that the leak check could not see:
+  the drafted "line through two points, which equation" item duplicated **COG-EQL-016**, and the
+  "x-intercept plus a point, find the y-intercept" item sat among eleven existing intercept
+  items including **COG-SLO-031**. Both were re-asked (evaluate the line at x = 10; find the
+  distance between the two intercepts). The gate's remaining flags were read and cleared as
+  template matches on "which of the following is an equation of…", not duplicated content.
 - **Wording audit (2026-10-22):** 1,376 questions edited; hard-rule errors across the pro bank went 868 → 65 (all accepted or checker false positives); all 59 mock QC items had used "Column A/B" and were rewritten; 3,100 "Column A/B" occurrences rewritten across 112 files; the pro logger had printed "Compare Column A and Column B" above every QC. 39 questions reordered to ascending options; four malformed items repaired. `learn/practice` and `learn/pro-body` are otherwise still September snapshots.
 - **ETS-fidelity audit (2026-10-06 to 10-19):** 4,920 claude-generated questions re-solved blind and scored; 111 key disputes triaged (only 4 were the first auditor's error; 24 keys were really wrong); 89 corrupted exhibits rebuilt from stems; 889 difficulty labels recalibrated, all downward; 654 weak questions revised; 12 flagged questions repaired. Four free sectional sets (`bank/sectional/*_set1.json`) are the free samples; do not delete them.
 - **Handbook** `/handbook/`: 63-page A4 revision handbook, 28,050 words, from one source `concepts/handbook/HANDBOOK.md` via `concepts/build_handbook.py` (never hand-edit the HTML). Plain-text math. Page is free and indexable; the PDF sits behind a one-field email gate posting to `/lead`, which releases the download even if the Worker call fails. A Pro conversion layer (bridge band, rail card, end-of-section boxes, end offer; clicks fire `handbook_pro_clicked` with a `data-track-from` slot) uses only facts already on `pricing.html`. Leads are stored as `lead:{email}` and are not students. Three agents re-derived every formula in sympy: eight defects found and fixed.
@@ -356,6 +488,7 @@ used there.
    3. Paste `cloudflare/worker.js` into the dashboard and deploy.
    4. Open Admin → Students once (finishes the student copy; 30 per call, refresh if more than 30), then the Webhooks tab (copies the payment queue). Open Coach View → Events and check the "attempt index is not in D1 yet" warning is NOT shown; run Tidy up old storage once.
    5. Check KV Metrics the next day. Leave `ANALYTICS_ENABLED` alone; it no longer exists.
+8. **Upload the Pro content to KV — outstanding as of 2026-11-08.** `pro/bank/` and `pro/mocks/` are gitignored and served only from KV (item 3), so pushing the repo ships nothing: the KMF-1804 import (1,000+ rewritten items across the bank) and mocks 11-14 are on disk only. Open `cloudflare/admin.html`, save the Worker URL and admin secret, then **Pro Data** -> choose the `pro` folder -> Upload. Unchanged files are skipped, so expect roughly the touched files, 0 failed; 146 on a first run from a fresh browser. Verify with Check on `bank/index.json` (95 subtopic entries, `total_questions: 11209`, `last_updated: 2026-11-08`) and on `mocks/mock_14.json` (57 distinct `bank_id`s, three Section 2 forms), then open a Pro sectional and mock 14 while signed in and confirm the Network tab shows `pro-data` POSTs returning 200. Students on a cached copy see the change within 6 hours.
 
 ---
 
@@ -389,6 +522,6 @@ Use it for any question generation, repair or diagram work, even for a few quest
 **Removed from the project (2026-10-29), each folded into the sections above:**
 `mock_difficulty_rebuild_2026-10-29`, `event_gre_shell_handoff_2026-10-29`, `kv_scorepage_adaptive_handoff_2026-10-29`, `delete_options_handoff_2026-10-27`, `review_first_gate_handoff_2026-10-27`, `events_error_log_handoff_2026-10-27`, `error_log_handoff_2026-10-26`, `scaled_score_2026-10-25`, `student_progress_d1_2026-10-24`, `fixes_applied_2026-10-24`, `homepage_slim_2026-10-24`, `audit_page_2026-10-24`, `handbook_2026-10-24`, `handbook_pro_conversion_2026-10-24`, `wording_audit_2026-10-22`, `ets_fidelity_followup_2026-10-19`, `ets_fidelity_audit_2026-10-06`, `kmf_1804_import_progress`.
 
-**Kept in the project:** `conversion_diagnosis_marketing_2026-10-24` and `trust_strategy_2026-10-24` (strategy, not handoffs).
+**Kept in the project:** `conversion_diagnosis_marketing_2026-10-24` and `trust_strategy_2026-10-24` (strategy, not handoffs); `pro_data_gate_2026-11-01`; and four KMF import docs — `kmf_import_CONTINUE_HERE` (start here for the import), `kmf_pdf_import_assessment_2026-11-06` (the master per-batch record), `kmf_part2_leakage_defect_2026-11-06` (the wrong-corpus defect and its standing rules) and `kmf_figure_pipeline_notes_2026-11-07` (the figure toolchain and its clipping defect).
 
 **Recoverable from git:** nine repo handoffs deleted in commit `8f99c73` are in its parent, for example `git show 8f99c73^:HANDOFF_ETS_AUDIT_2026-10-06.md`, and likewise `HANDOFF_WORDING_AUDIT_2026-10-22.md`, `HANDOFF_HANDBOOK_2026-10-24.md`, `HANDOFF_FIXES_APPLIED_2026-10-24.md`, `HANDOFF_HOMEPAGE_SLIM_2026-10-24.md`, `HANDOFF_AUDIT_PAGE_2026-10-24.md`, `HANDOFF_TRUST_STRATEGY_2026-10-24.md`, `HANDOFF_CONVERSION_MARKETING_2026-10-24.md`, `HANDOFF_2026-09-26.md`. The repo's `HANDOFF_STUDENT_PROGRESS_2026-10-24.md` was renamed to `HANDOFF.md` and rewritten. The project docs for 2026-10-25 to 2026-10-29 (scaled score, error log, events error log, review gate, delete options, KV/score page/adaptive, event shell, mock rebuild) and the KMF import progress doc had no git copy; their load-bearing content is in this file.
