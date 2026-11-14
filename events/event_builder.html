@@ -49,12 +49,23 @@
         <h2>Event Settings</h2>
         <div class="builder-form-grid">
           <div class="field"><label for="eventId">Event ID</label><input id="eventId" value="mock_001"></div>
-          <div class="field"><label for="eventType">Event Type</label><select id="eventType"><option value="mock_test">Mock Test (topic test)</option><option value="full_mock_event">Full Mock (2 sections)</option></select></div>
+          <div class="field"><label for="eventType">Event Type</label><select id="eventType"><option value="mock_test">Topic test</option><option value="sectional_event">Sectional test</option><option value="full_mock_event">Full mock (2 sections)</option></select></div>
         </div>
         <div class="field"><label for="eventName">Event Name</label><input id="eventName" value="GRE Quant Pro Sunday Mock 1"></div>
         <div class="builder-form-grid" id="flatPaperFields">
           <div class="field"><label for="questionCount">Questions</label><input id="questionCount" type="number" min="1" value="27"></div>
           <div class="field"><label for="secondsPerQuestion">Seconds per Question</label><input id="secondsPerQuestion" type="number" min="15" value="105"></div>
+        </div>
+        <div id="sectionalFields" class="hidden">
+          <div class="field">
+            <label for="sectionalSet">Sectional set</label>
+            <select id="sectionalSet"><option value="bank">Assemble from the filtered pool</option></select>
+            <p class="muted" id="sectionalHint" style="margin-top:6px"></p>
+          </div>
+          <div class="builder-form-grid">
+            <div class="field"><label for="secCount">Questions</label><input id="secCount" type="number" min="1" value="12"></div>
+            <div class="field"><label for="secMinutes">Minutes</label><input id="secMinutes" type="number" min="1" value="21"></div>
+          </div>
         </div>
         <div id="fullMockFields" class="hidden">
           <div class="field">
@@ -209,6 +220,25 @@
     const DEFAULT_FULL_MOCK_INSTRUCTIONS = "This is a full-length mock with two timed sections. Each section has its own clock and locks when you end it or time runs out, so you cannot return to it. No feedback is shown during the test. Your score, timing, weak areas, and trap review appear instantly after you submit Section 2.";
 
     function isFullMock(){ return Events.$("eventType").value === "full_mock_event"; }
+    function isSectional(){ return Events.$("eventType").value === "sectional_event"; }
+
+    /* The 36 sectional sets live as standalone files under <bank>/sectional/ and
+       are not in index.json, so the list is built from whatever folder was
+       picked. Without a folder, only the assemble-from-pool option is offered. */
+    function populateSectionalSets(){
+      const sel = Events.$("sectionalSet");
+      const prev = sel.value;
+      const sets = [...builder.localFiles.keys()]
+        .filter(k => /(^|\/)sectional\/[^/]+\.json$/.test(k))
+        .map(k => ({ key: k, name: k.split("/").pop().replace(/\.json$/, "") }))
+        .sort((a, b) => a.name.localeCompare(b.name));
+      sel.innerHTML = '<option value="bank">Assemble from the filtered pool</option>' +
+        sets.map(x => `<option value="${Events.escapeHtml(x.key)}">${Events.escapeHtml(x.name.replace(/_/g, " "))}</option>`).join("");
+      if ([...sel.options].some(o => o.value === prev)) sel.value = prev;
+      Events.$("sectionalHint").textContent = sets.length
+        ? `${sets.length} ready-made sets found in the folder you picked. A set uses its questions exactly as they are, so the filters on the right do not apply.`
+        : "No ready-made sets available — pick your local pro folder in Bank Source to list them. Meanwhile the filtered pool on the right is used.";
+    }
 
     function populatePaperSources(){
       const pro = Events.$("bankSource").value.includes("pro/");
@@ -227,8 +257,11 @@
 
     function syncEventType(){
       const full = isFullMock();
-      Events.$("flatPaperFields").classList.toggle("hidden", full);
+      const sectional = isSectional();
+      Events.$("flatPaperFields").classList.toggle("hidden", full || sectional);
+      Events.$("sectionalFields").classList.toggle("hidden", !sectional);
       Events.$("fullMockFields").classList.toggle("hidden", !full);
+      if (sectional) populateSectionalSets();
       const fromMock = Events.$("paperSource").value !== "bank";
       Events.$("section2FormField").classList.toggle("hidden", !full || !fromMock);
       Events.$("paperHint").textContent = fromMock
@@ -396,6 +429,62 @@
       };
     }
 
+    /* A sectional is a single timed section, so it stays a flat config (no
+       `sections` array) — events_common treats anything under two sections as
+       flat. Either a ready-made set verbatim, or the filtered pool trimmed. */
+    async function buildSectionalConfig(){
+      const chosen = Events.$("sectionalSet").value;
+      const minutes = Math.max(1, Number(Events.$("secMinutes").value) || 21);
+      let picked, subject, source;
+
+      if (chosen && chosen !== "bank") {
+        const handle = builder.localFiles.get(chosen);
+        if (!handle) { Events.$("poolStatus").textContent = "That set is no longer in the folder you picked. Choose the folder again."; return null; }
+        let file;
+        try { file = JSON.parse(await handle.text()); }
+        catch (e) { Events.$("poolStatus").textContent = `${chosen} is not valid JSON: ${e.message}`; return null; }
+        const meta = (file && file.meta) || {};
+        const qs = (file && file.questions) || [];
+        if (!qs.length) { Events.$("poolStatus").textContent = "That set holds no questions."; return null; }
+        const topic = meta.topic || "Sectional";
+        const sub = meta.subtopic || chosen.split("/").pop().replace(/\.json$/, "");
+        picked = qs.map(q => Events.enrichQuestion(q, topic, sub));
+        subject = `${topic} — ${sub}`;
+        source = { bank_source: builder.base, topic, subtopic: sub, set_file: chosen };
+      } else {
+        const pool = builder.questions.length ? builder.questions : [];
+        if (!pool.length) { Events.$("poolStatus").textContent = "No matching questions. Adjust filters."; return null; }
+        const want = Math.max(1, Number(Events.$("secCount").value) || 12);
+        picked = Events.shuffle(pool).slice(0, Math.min(want, pool.length));
+        subject = Events.$("subtopicSelect").value !== "all"
+          ? Events.$("subtopicSelect").value
+          : (Events.$("topicSelect").value !== "all" ? Events.$("topicSelect").value : "Mixed Quant");
+        source = {
+          bank_source: builder.base,
+          topic: Events.$("topicSelect").value,
+          subtopic: Events.$("subtopicSelect").value,
+          difficulties: checkedValues("difficultyChecks"),
+          types: checkedValues("typeChecks")
+        };
+      }
+
+      return {
+        event_id: Events.$("eventId").value.trim() || `event_${Date.now()}`,
+        event_name: Events.$("eventName").value.trim() || "GRE Quant Pro Sectional",
+        event_type: "sectional_event",
+        event_subject: subject,
+        created_at: new Date().toISOString(),
+        timer_seconds: minutes * 60,
+        question_count: picked.length,
+        shuffle_questions_for_students: Events.$("shuffleForStudents").checked,
+        allow_navigation: Events.$("allowNavigation").checked,
+        show_feedback_during_test: false,
+        instructions: Events.$("instructions").value.trim(),
+        source_filters: source,
+        questions: picked
+      };
+    }
+
     async function buildConfig(){
       if (isFullMock()) {
         const config = await buildFullMockConfig();
@@ -404,6 +493,17 @@
         Events.$("downloadBtn").disabled = false;
         Events.$("configPreview").textContent = JSON.stringify(config, null, 2);
         Events.$("poolStatus").textContent = `Built a full mock: ${config.sections.map(s => `${s.question_count} questions in ${Math.round(s.time_limit_seconds / 60)} min`).join(" + ")}.`;
+        localStorage.setItem("gre_quant_last_event_config", JSON.stringify(config));
+        return;
+      }
+      if (isSectional()) {
+        const config = await buildSectionalConfig();
+        if (!config) return;
+        builder.config = config;
+        Events.$("downloadBtn").disabled = false;
+        Events.$("configPreview").textContent = JSON.stringify(config, null, 2);
+        Events.$("poolStatus").textContent =
+          `Built a sectional: ${config.question_count} questions in ${Math.round(config.timer_seconds / 60)} min.`;
         localStorage.setItem("gre_quant_last_event_config", JSON.stringify(config));
         return;
       }
@@ -465,6 +565,7 @@
       Events.$("bankStatus").textContent = n
         ? `${n} JSON files read from this computer — bank index ${hasBank ? "found" : "NOT found"}, ${mocks} mock paper(s). Now press Load Bank.`
         : "No JSON files found in that folder.";
+      if (isSectional()) populateSectionalSets();
     };
     syncBankSource();
     /* The schedule panel's four keys are what the student landing page reads.
@@ -489,7 +590,7 @@
 
     // Keep the kind in step with the event type unless it has been set by hand.
     Events.$("eventType").addEventListener("change", () => {
-      Events.$("evKind").value = isFullMock() ? "mock" : "topic";
+      Events.$("evKind").value = isFullMock() ? "mock" : (isSectional() ? "sectional" : "topic");
     });
 
     Events.$("downloadBtn").onclick = () => Events.downloadJson("current.json", withSchedule(builder.config));
