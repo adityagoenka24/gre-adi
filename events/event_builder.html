@@ -34,8 +34,13 @@
             <option value="../pro/bank/">Pro bank</option>
           </select>
         </div>
+        <div class="field hidden" id="proFolderField">
+          <label for="proFolder">Your local <code>pro</code> folder</label>
+          <input type="file" id="proFolder" webkitdirectory directory multiple>
+          <p class="muted" style="margin-top:6px">The Pro bank and mocks are not published to the website, so the builder reads them straight off this computer. Pick the <code>pro</code> folder inside your repo (the one holding <code>bank/</code> and <code>mocks/</code>). Nothing is uploaded anywhere — the files are read in this browser only.</p>
+        </div>
         <button class="primary-btn" id="loadBankBtn" style="width:100%">Load Bank</button>
-        <p class="muted" id="bankStatus">Free bank is safest for the first preview. Pro bank is served from gre-free/pro/bank/.</p>
+        <p class="muted" id="bankStatus">Free bank loads straight from the site. For the Pro bank, choose your local <code>pro</code> folder above first.</p>
       </div>
     </section>
 
@@ -107,10 +112,29 @@
       </div>
     </section>
 
+    <section class="panel" style="margin-top:18px">
+      <h2>Schedule</h2>
+      <p class="muted">These are written into the downloaded <code>current.json</code>. They drive the student landing page — the kind badge, the date line, the registration heading — and the "Register free" vs "Start the test" switch on the homepage card. Leave the date blank for a paper that is simply open.</p>
+      <div class="builder-form-grid">
+        <div class="field"><label for="evKind">Kind shown to students</label>
+          <select id="evKind">
+            <option value="mock">Full mock</option>
+            <option value="sectional">Sectional</option>
+            <option value="topic">Topic test</option>
+          </select></div>
+        <div class="field"><label for="evSubject">Subject (what it is about)</label><input id="evSubject" placeholder="e.g. Percentages"></div>
+      </div>
+      <div class="builder-form-grid">
+        <div class="field"><label for="evDate">Sitting date</label><input id="evDate" type="date"></div>
+        <div class="field"><label for="evTime">Start time (IST)</label><input id="evTime" type="time" value="10:00"></div>
+      </div>
+      <div class="field"><label for="evRecurring">Cadence line (blank for a one-off)</label><input id="evRecurring" value="Every Sunday, 10:00 AM IST"></div>
+    </section>
+
     <section class="panel builder-output" style="margin-top:18px">
       <div>
         <h2>Built Config</h2>
-        <p class="muted">Download this JSON as `current.json` and place it under `gre-free/events/config/`. The landing page and Mock Test links will automatically use it by default.</p>
+        <p class="muted">Download this as <code>current.json</code> and save it over <code>events/config/current.json</code> in the repo, then commit and push. The event page and the homepage card both read that file.</p>
       </div>
       <div class="actions">
         <button class="primary-btn" id="downloadBtn" disabled>Download current.json</button>
@@ -124,7 +148,49 @@
   </main>
   <script src="events_common.js"></script>
   <script>
-    const builder = { base:"../bank/", manifest:null, questions:[], config:null };
+    const builder = { base:"../bank/", manifest:null, questions:[], config:null, localFiles:new Map() };
+
+    /* pro/bank and pro/mocks are gitignored and served from KV, so they are not
+       on the website and a relative fetch 404s. They ARE on the coach's disk, so
+       the folder picker indexes them here and bankJson serves from that index.
+       Everything stays in the browser: no upload, no Worker, no admin secret. */
+    function indexLocalFolder(fileList) {
+      builder.localFiles = new Map();
+      for (const f of fileList) {
+        if (!f.name.toLowerCase().endsWith(".json")) continue;
+        const rel = (f.webkitRelativePath || f.name).replace(/\\/g, "/");
+        builder.localFiles.set(rel, f);
+      }
+      return builder.localFiles.size;
+    }
+
+    /* The picked folder's own name leads every path, and the coach may pick
+       `pro`, the repo root, or `bank` itself — so match on the tail. */
+    function findLocal(suffix) {
+      if (builder.localFiles.has(suffix)) return builder.localFiles.get(suffix);
+      for (const [key, file] of builder.localFiles) {
+        if (key === suffix || key.endsWith("/" + suffix)) return file;
+      }
+      return null;
+    }
+
+    async function bankJson(path) {
+      const m = String(path).match(/(?:^|\/)pro\/(.+)$/);
+      if (!m) return Events.loadJson(path);           // free bank: still a plain fetch
+      const wanted = m[1];                             // e.g. bank/index.json, mocks/mock_03.json
+      if (!builder.localFiles.size) {
+        throw new Error(`The Pro bank is not published to the website. Choose your local "pro" folder in the Bank Source panel, then Load Bank again.`);
+      }
+      const file = findLocal(wanted);
+      if (!file) {
+        throw new Error(`${wanted} is not in the folder you chose. Pick the "pro" folder itself — the one containing bank/ and mocks/.`);
+      }
+      try {
+        return JSON.parse(await file.text());
+      } catch (e) {
+        throw new Error(`${wanted} is not valid JSON: ${e.message}`);
+      }
+    }
     const allDifficulties = ["easy","medium","hard","extreme_hard"];
     const allTypes = ["mcq","numeric_entry","quantitative_comparison","multiple_answer"];
 
@@ -147,7 +213,7 @@
     function populatePaperSources(){
       const pro = Events.$("bankSource").value.includes("pro/");
       const dir = pro ? "../pro/mocks/" : "../mocks/";
-      const count = pro ? 10 : 2;
+      const count = pro ? 14 : 2;
       const opts = [`<option value="bank">Assemble from the bank (balanced across topics)</option>`];
       for (let i = 1; i <= count; i++) {
         const id = String(i).padStart(2, "0");
@@ -196,7 +262,7 @@
     async function loadBank(){
       builder.base = Events.$("bankSource").value;
       Events.$("bankStatus").textContent = "Loading manifest...";
-      builder.manifest = await Events.loadJson(`${builder.base}index.json`);
+      builder.manifest = await bankJson(`${builder.base}index.json`);
       const topicSelect = Events.$("topicSelect");
       topicSelect.innerHTML = `<option value="all">All topics</option>` + Object.keys(builder.manifest.topics).map(topic => `<option>${Events.escapeHtml(topic)}</option>`).join("");
       renderChecks("difficultyChecks", allDifficulties, ["easy","medium","hard"]);
@@ -228,7 +294,7 @@
         for (const [subtopic, meta] of Object.entries(subtopics)) {
           if (meta.status !== "complete") continue;
           if (subtopicFilter !== "all" && subtopic !== subtopicFilter) continue;
-          const file = await Events.loadJson(`${builder.base}${meta.file}`);
+          const file = await bankJson(`${builder.base}${meta.file}`);
           for (const q of file.questions || []) {
             if (difficulties.length && !difficulties.includes(q.difficulty)) continue;
             if (types.length && !types.includes(q.type)) continue;
@@ -269,7 +335,7 @@
     }
 
     async function sectionsFromMock(path, form){
-      const mock = await Events.loadJson(path);
+      const mock = await bankJson(path);
       const out = (mock.sections || []).slice(0, 2).map(sec => {
         const list = sec.questions || (sec.forms && (sec.forms[form] || sec.forms.easy || Object.values(sec.forms)[0])) || [];
         return {
@@ -386,8 +452,47 @@
     };
     Events.$("eventType").onchange = syncEventType;
     Events.$("paperSource").onchange = syncEventType;
-    Events.$("bankSource").onchange = populatePaperSources;
-    Events.$("downloadBtn").onclick = () => Events.downloadJson("current.json", builder.config);
+    function syncBankSource() {
+      const pro = Events.$("bankSource").value.includes("pro/");
+      Events.$("proFolderField").classList.toggle("hidden", !pro);
+      populatePaperSources();
+    }
+    Events.$("bankSource").onchange = syncBankSource;
+    Events.$("proFolder").onchange = (e) => {
+      const n = indexLocalFolder(e.target.files || []);
+      const hasBank = !!findLocal("bank/index.json");
+      const mocks = [...builder.localFiles.keys()].filter(k => /(^|\/)mocks\/mock_\d+\.json$/.test(k)).length;
+      Events.$("bankStatus").textContent = n
+        ? `${n} JSON files read from this computer — bank index ${hasBank ? "found" : "NOT found"}, ${mocks} mock paper(s). Now press Load Bank.`
+        : "No JSON files found in that folder.";
+    };
+    syncBankSource();
+    /* The schedule panel's four keys are what the student landing page reads.
+       Applied at download so they always reflect the fields as they stand. */
+    function withSchedule(config) {
+      const date = Events.$("evDate").value;
+      const time = Events.$("evTime").value || "10:00";
+      const subject = (Events.$("evSubject").value || "").trim()
+        || (config.source_filters && config.source_filters.subtopic) || "";
+      const out = { ...config, event_kind: Events.$("evKind").value, event_subject: subject };
+      if (date) out.starts_at = `${date}T${time}:00+05:30`;
+      const recurring = (Events.$("evRecurring").value || "").trim();
+      out.recurring_label = recurring || null;
+      return out;
+    }
+
+    (function defaultSittingDate() {
+      const d = new Date();
+      d.setDate(d.getDate() + ((7 - d.getDay()) % 7 || 7));   // next Sunday
+      if (!Events.$("evDate").value) Events.$("evDate").value = d.toISOString().slice(0, 10);
+    })();
+
+    // Keep the kind in step with the event type unless it has been set by hand.
+    Events.$("eventType").addEventListener("change", () => {
+      Events.$("evKind").value = isFullMock() ? "mock" : "topic";
+    });
+
+    Events.$("downloadBtn").onclick = () => Events.downloadJson("current.json", withSchedule(builder.config));
     document.querySelectorAll(".builder-toggle").forEach(btn => {
       syncToggleButton(btn);
       btn.onclick = () => {

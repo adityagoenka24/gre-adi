@@ -1,7 +1,8 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta name="robots" content="noindex, follow">
+<meta name="robots" content="index, follow">
+  <meta name="description" content="Free full-length GRE Quant mock, every Sunday at 10:00 AM IST. Two timed sections, real GRE interface, instant score report with your weakest topics. No card.">
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18184272300"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -13,40 +14,73 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>GRE Quant Pro Event Mock</title>
+  <title>Free GRE Quant Mock — Every Sunday 10 AM IST · GRE Quant Pro</title>
   <link rel="stylesheet" href="events.css">
   <link rel="stylesheet" href="gre-exam.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
   <script defer src="../gre-math.js"></script>
   <script defer src="../gre-calculator.js"></script>
 </head>
 <body>
   <main class="shell">
     <div class="topbar">
-      <a class="nav-logo" href="https://grequantpro.com/">GRE<span>Quant</span> Pro</a>
+      <a class="nav-logo" href="https://grequantpro.com/">GRE Quant <span>Pro</span><small>Sunday Mock</small></a>
       <nav class="nav">
-        <a href="https://grequantpro.com/#mock">Free Mock</a>
-        <a href="https://grequantpro.com/#plans">Upgrade to Pro</a>
+        <span class="badge-free">Free</span>
+        <a href="https://grequantpro.com/#free">More free practice</a>
+        <a href="https://grequantpro.com/#plans">See Pro plans</a>
       </nav>
     </div>
 
     <section id="startSection">
       <div class="hero">
         <div class="panel">
-          <div class="eyebrow">Mock Test Event</div>
+          <div class="eyebrow" id="eventEyebrow">Free</div>
           <h1 id="eventName">Loading event...</h1>
           <p id="instructions">The event config is loading.</p>
-          <div class="notice" style="margin-top:18px;margin-bottom:0">This free event gives you a sample of GRE Quant Pro: timed practice, trap-aware analytics, and topic-level feedback. Pro unlocks the full 5,868 question practice system.</div>
+
+          <!-- The selling point, before the test. A stranger arriving from a
+               forum link decides here whether this is worth 47 minutes. Every
+               claim below is checkable in one click — that is the whole pitch. -->
+          <div class="why">
+            <div class="why-head">Why this paper is not like the free mocks you have downloaded</div>
+            <ul class="why-list">
+              <li><b>Every question names the trap.</b> Not just a worked solution — the specific wrong turn that makes the tempting answer tempting, written out for each one.</li>
+              <li><b>Held to a written ETS standard.</b> Stem, distractors, figures and explanation are checked against the key. Questions that fail get pulled, not patched — <a href="https://grequantpro.com/audit/">370 deleted this year, listed by id with the reason</a>.</li>
+              <li><b>Nothing AI-generated and shipped unread.</b> Every answer checked by hand against its own explanation.</li>
+              <li><b>The real interface.</b> Same on-screen calculator, the same section clock and review screen as the actual test. Full mocks carry a genuinely adaptive Section 2.</li>
+            </ul>
+            <div class="why-foot">
+              <span><b>5,868</b> questions in the bank</span>
+              <span><b>14</b> full-length mocks</span>
+              <span><b>370</b> pulled for failing the standard</span>
+            </div>
+          </div>
+
+          <div class="notice" style="margin-top:18px;margin-bottom:0">Judge the explanations, not the credentials. You can't verify a stranger's score — you can verify an explanation in two minutes, and this paper hands you 27 of them to check.</div>
         </div>
         <div class="panel">
-          <h2>Student Check-In</h2>
+          <h2 id="registerHead">Register free</h2>
+          <div class="get-list">
+            <div class="get-head">What lands in your inbox afterwards</div>
+            <ul>
+              <li>Your <b>estimated Quant score</b> on the 130–170 scale, with a range</li>
+              <li>The <b>three subtopics costing you the most marks</b>, by name</li>
+              <li><b>Where your time went</b>, question by question, against the pace you need</li>
+              <li>A <b>worked explanation and the named trap</b> for every question you missed</li>
+              <li>A <b>PDF report</b> you can keep, and a drill set built from your weakest topic</li>
+            </ul>
+          </div>
+          <p class="muted" id="eventWhen" style="font-weight:700"></p>
           <p class="muted" id="eventDetails">Loading details...</p>
-          <div class="field"><label for="studentName">Name</label><input id="studentName" autocomplete="name"></div>
+          <div class="field"><label for="studentName">Name <span style="font-weight:400;opacity:.7">(optional)</span></label><input id="studentName" autocomplete="name"></div>
           <div class="field"><label for="studentEmail">Email</label><input id="studentEmail" type="email" autocomplete="email"></div>
           <div class="field"><label for="studentBatch">Class / Batch</label><input id="studentBatch" placeholder="Optional"></div>
+          <p class="muted" style="margin-bottom:10px">Your email is where the score report goes — your estimated Quant score, your timing, and the topics that cost you the most marks. We do not call, and we do not pass it on.</p>
           <p class="muted" id="startError"></p>
-          <button class="primary-btn" id="startBtn">Continue &rarr;</button>
+          <button class="primary-btn" id="startBtn">Register &amp; start &rarr;</button>
         </div>
       </div>
       <div class="notice warning">No feedback appears during the test. At the end, your analysis appears instantly: score, timing, weak areas, and the traps that cost you marks.</div>
@@ -87,13 +121,15 @@
         </div>
         <div class="actions gel-secret">
           <a class="primary-btn" href="https://grequantpro.com/#plans">Unlock Targeted Practice</a>
-          <button class="ghost-btn" id="emailResultBtn">Send To our coaching team</button>
-          <button class="ghost-btn" id="downloadResultBtn">Download Result JSON</button>
+          <button class="ghost-btn" id="downloadPdfBtn">📄 Download PDF report</button>
+          <button class="ghost-btn" id="emailResultBtn">Email my report</button>
+          <button class="ghost-btn" id="downloadResultBtn">Raw data (JSON)</button>
         </div>
       </div>
       <div class="gel-secret" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:16px;margin-bottom:24px;" id="exam-kpi-row"></div>
       <div id="ev-insights" class="gel-secret"></div>
       <div id="proCta" class="gel-secret"></div>
+      <div id="drillCta" class="gel-secret"></div>
       <div class="charts-grid gel-secret" style="margin-bottom:24px;">
         <div class="chart-card"><h3>By Difficulty</h3><div id="exam-diff-bars"></div></div>
         <div class="chart-card"><h3>By Question Type</h3><div id="exam-type-bars"></div></div>

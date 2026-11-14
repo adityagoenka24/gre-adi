@@ -194,7 +194,7 @@ body.qv-lock{overflow:hidden;}
 
   <div class="tab-panel" data-tab-panel="events">
     <div class="card" id="ev-list-card">
-      <h2>Mock events</h2>
+      <h2>Events</h2>
       <div class="row" style="margin-bottom:12px;">
         <div class="field"><label for="ev-days">Days</label><input id="ev-days" type="number" value="90" min="1" max="365"></div>
         <div class="field"><label for="ev-filter">Filter by event name</label><input id="ev-filter" type="text" oninput="renderEvents()" placeholder="Type to filter…"></div>
@@ -204,7 +204,7 @@ body.qv-lock{overflow:hidden;}
       </div>
       <div id="ev-note"></div>
       <div class="table-wrap" id="ev-table"><div class="empty">Set the connection above to load events.</div></div>
-      <div class="hint">One row per mock event. Free full-mock and sectional attempts are not listed here. Click an event for its overall analysis and every student who sat it, then click a student for their full breakdown, the same mistake analytics a Pro student sees about themselves.</div>
+      <div class="hint">One row per published event — full mocks, sectionals and topic tests alike. Free full-mock and sectional attempts are not listed here. Click an event for its overall analysis and every student who sat it, then click a student for their full breakdown, the same mistake analytics a Pro student sees about themselves.</div>
       <div class="hint" id="ev-retention"></div>
     </div>
     <div class="card" id="ev-event-card" style="display:none;"></div>
@@ -1074,7 +1074,7 @@ function trendSvg(sessions, mode) {
    Only mock events. Free full-mock and free-sectional attempts go through the
    same Worker route but are not read here, and retired team-battle attempts
    are not mock events. */
-const EVENT_SUB = { mock_test:'Topic test', full_mock_event:'Full mock event' };
+const EVENT_SUB = { mock_test:'Topic test', full_mock_event:'Full mock event', sectional_event:'Sectional event', topic_event:'Topic test event' };
 const HIDDEN_EVENT_TYPES = ['sectional', 'full_mock', 'team_battle'];
 function isMockEvent(e) { return HIDDEN_EVENT_TYPES.indexOf(String((e && e.event_type) || '')) === -1; }
 

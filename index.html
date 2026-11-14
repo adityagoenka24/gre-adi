@@ -73,7 +73,7 @@
           <a href="full_mock.html">Full Mock</a>
           <a href="gre_practice_logger_free.html">Topic-wise Practice</a>
           <a href="sectional.html">Sectional Tests</a>
-          <a href="events/mock_test.html">Daily Challenge</a>
+          <a href="events/mock_test.html">Sunday Mock</a>
         </div>
       </div>
       <a href="#plans">Pricing</a>
@@ -98,7 +98,7 @@
     <a href="full_mock.html">Full Mock</a>
     <a href="gre_practice_logger_free.html">Topic-wise Practice</a>
     <a href="sectional.html">Sectional Tests</a>
-    <a href="events/mock_test.html">Daily Challenge</a>
+    <a href="events/mock_test.html">Sunday Mock</a>
   </div>
   <a href="#plans">Pricing</a>
   <a href="#faq">FAQ</a>
@@ -223,11 +223,11 @@
     <a class="free-opt-featured" href="events/mock_test.html" data-track="free_topic_of_day_clicked" data-track-from="free_section"
        onclick="if(window.GQP&&window.GQP.track)window.GQP.track('free_topic_of_day_clicked',{from:'free_section'});">
       <div class="free-opt-featured-text">
-        <div class="free-opt-kicker" style="color:var(--gold)">Daily Challenge</div>
-        <div class="free-opt-title" id="topicOfDayTitle">Today&rsquo;s challenge &mdash; one focus topic, updated regularly</div>
+        <div class="free-opt-kicker" style="color:var(--gold)" id="topicOfDayKicker">Sunday Mock &middot; Free</div>
+        <div class="free-opt-title" id="topicOfDayTitle">Free full-length mock, every Sunday at 10:00 AM IST</div>
         <div class="free-opt-desc" id="topicOfDayDesc">Same GRE-timed interface · instant score &amp; trap review</div>
       </div>
-      <span class="free-opt-featured-go">Start today's challenge →</span>
+      <span class="free-opt-featured-go" id="topicOfDayCta">Register for Sunday →</span>
     </a>
     <ul class="free-list">
       <li><span>✓</span>No card, ever — steps 1 and 2 open instantly; the sectional and mock ask only for an email, to save your report</li>
@@ -722,7 +722,30 @@ updateProSelector();
       const subtopic = filters.subtopic && filters.subtopic !== "all" ? filters.subtopic : null;
       const label = subtopic ? `${topic || "Mixed"} — ${subtopic}` : (topic || config.event_name || "Mixed Topics");
       const isFullMock = config.event_type === "full_mock_event";
-      titleEl.textContent = isFullMock ? `This week's full mock: ${config.event_name || "Full Mock"}` : `Today's focus: ${label}`;
+      const kickerEl = document.getElementById("topicOfDayKicker");
+      const ctaEl = document.getElementById("topicOfDayCta");
+      // Three states: before the sitting (register), on the day and after it
+      // (sit it now — the paper stays open until the next config is published).
+      let when = config.starts_at ? new Date(config.starts_at) : null;
+      if (when && isNaN(when)) when = null;
+      const live = when ? (new Date() >= when) : true;
+      if (when) {
+        const whenStr = when.toLocaleString("en-IN", {
+          weekday: "long", day: "numeric", month: "long",
+          hour: "numeric", minute: "2-digit", hour12: true,
+          timeZone: "Asia/Kolkata"
+        });
+        // event_kind is set by events/publish_event.py: mock | sectional | topic.
+        const KIND = { mock: "Full mock", sectional: "Sectional", topic: "Topic test" };
+        const kind = KIND[config.event_kind] || "Free test";
+        titleEl.textContent = live
+          ? `${config.event_name || kind} \u2014 open now`
+          : `${config.event_name || kind} \u2014 ${whenStr} IST`;
+        if (kickerEl) kickerEl.innerHTML = kind + (live ? " &middot; Open now" : " &middot; Free");
+        if (ctaEl) ctaEl.innerHTML = live ? "Start the test \u2192" : "Register free \u2192";
+      } else {
+        titleEl.textContent = isFullMock ? `This week's full mock: ${config.event_name || "Full Mock"}` : `Today's focus: ${label}`;
+      }
       const qCount = config.question_count || (config.questions || []).length;
       const minutes = config.timer_seconds ? Math.round(config.timer_seconds / 60) : null;
       const parts = [];

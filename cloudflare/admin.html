@@ -87,7 +87,7 @@ td:last-child{white-space:nowrap;}
 <div class="wrapper">
 
   <h1>🔐 GRE Pro — Admin Panel</h1>
-  <p class="subtitle">our coaching team &nbsp;·&nbsp; Student Access Management &nbsp;·&nbsp; <a href="coach.html" style="color:var(--accent);text-decoration:none;">Coach View &rarr;</a></p>
+  <p class="subtitle">GRE Quant Pro &nbsp;·&nbsp; Student Access Management &nbsp;·&nbsp; <a href="coach.html" style="color:var(--accent);text-decoration:none;">Coach View &rarr;</a></p>
 
   <div class="config-bar">
     <span>Worker URL: <strong id="display-url">not set</strong></span>
@@ -115,6 +115,7 @@ td:last-child{white-space:nowrap;}
     <button class="tab-btn" data-tab="access" onclick="switchTab('access')">🎚️ Access &amp; Devices</button>
     <button class="tab-btn" data-tab="webhooks" onclick="switchTab('webhooks')">💳 Webhooks</button>
     <button class="tab-btn" data-tab="prodata" onclick="switchTab('prodata')">📦 Pro Data</button>
+    <button class="tab-btn" data-tab="leads" onclick="switchTab('leads')">📧 Sunday Mock Leads</button>
   </div>
 
   <!-- ═══ STUDENTS ═══ -->
@@ -293,6 +294,26 @@ td:last-child{white-space:nowrap;}
         <button class="btn btn-danger" onclick="proDataDelete()">Remove</button>
       </div>
       <div class="result" id="pd-check-result"></div>
+    </div>
+
+  </div>
+
+  <!-- ═══ SUNDAY MOCK LEADS ═══ -->
+  <div class="tab-panel" id="tab-leads" data-tab-panel="leads">
+
+    <div class="card">
+      <h2>📧 Sunday Mock Registrations</h2>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+        Only emails captured at the Sunday Mock registration screen (<code>source: sunday_mock</code>).
+        Handbook downloads and every other capture source are deliberately left out — this list is the
+        one you actually write to. The email is banked the moment a student registers, not when they
+        submit, so students who ran out of time or closed the tab are still here.
+      </p>
+      <button class="btn btn-primary" onclick="loadSundayLeads()">🔄 Refresh</button>
+      <button class="btn btn-ghost" onclick="copySundayLeads()">📋 Copy emails</button>
+      <button class="btn btn-ghost" onclick="downloadSundayLeads()">⬇️ Download CSV</button>
+      <div class="result" id="leads-action-result"></div>
+      <div id="leads-table" style="margin-top:16px;"><div class="empty">Click "Refresh" to load.</div></div>
     </div>
 
   </div>
@@ -897,6 +918,83 @@ function showResult(el, type, msg) {
   el.textContent = msg;
   el.className = `result ${type} show`;
   setTimeout(() => el.classList.remove('show'), 6000);
+}
+
+// ─── Sunday Mock leads ────────────────────────────────────────────────────────
+// Scoped on purpose: this tab shows ONLY source=sunday_mock. Other sources are
+// reported as a single count so nothing is hidden, but nothing else is listed.
+let sundayLeadsCache = [];
+
+function isSundayLead(l) {
+  if (String(l.source || '') === 'sunday_mock') return true;
+  const srcs = l.sources || {};
+  return Object.prototype.hasOwnProperty.call(srcs, 'sunday_mock');
+}
+
+async function loadSundayLeads() {
+  const { url, secret } = getConfig();
+  const el = document.getElementById('leads-table');
+  if (!url || !secret) { el.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
+  el.innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    const res = await fetch(`${url.replace(/\/+$/, '')}/admin/leads`, { headers: { 'X-Admin-Secret': secret } });
+    if (!res.ok) { el.innerHTML = `<div class="empty">Request failed (${res.status}).</div>`; return; }
+    const data = await res.json();
+    const all = data.leads || [];
+    const mine = all.filter(isSundayLead);
+    sundayLeadsCache = mine;
+
+    const fmtDate = iso => iso ? new Date(iso).toLocaleString('en-IN', { dateStyle: 'short', timeStyle: 'short' }) : '—';
+
+    const rows = mine.map(l => {
+      const n = (l.sources && l.sources.sunday_mock) || l.count || 1;
+      return `
+      <tr>
+        <td style="font-family:var(--font-mono);font-size:12px;">${escapeHtml(l.email)}</td>
+        <td style="font-size:12px;color:var(--text3);">${fmtDate(l.firstSeen)}</td>
+        <td style="font-size:12px;color:var(--text3);">${fmtDate(l.lastSeen)}</td>
+        <td style="font-size:12px;text-align:center;">${escapeHtml(String(n))}</td>
+      </tr>`;
+    }).join('') || '<tr><td colspan="4" style="color:var(--text3);text-align:center;">No Sunday Mock registrations yet.</td></tr>';
+
+    const others = all.length - mine.length;
+    el.innerHTML = `
+      <p style="font-size:12px;color:var(--text3);font-family:var(--font-mono);margin-bottom:12px;">
+        ${mine.length} Sunday Mock registration${mine.length === 1 ? '' : 's'}
+        ${others > 0 ? `&nbsp;·&nbsp;${others} lead${others === 1 ? '' : 's'} from other sources (not listed here)` : ''}
+      </p>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Email</th><th>First registered</th><th>Last seen</th><th style="text-align:center;">Times</th></tr></thead>
+        <tbody>${rows}</tbody>
+      </table></div>`;
+  } catch (e) {
+    el.innerHTML = `<div class="empty">Could not load leads: ${escapeHtml(e.message)}</div>`;
+  }
+}
+
+function copySundayLeads() {
+  if (!sundayLeadsCache.length) { showResult(document.getElementById('leads-action-result'), 'error', 'Nothing loaded yet — hit Refresh first.'); return; }
+  const text = sundayLeadsCache.map(l => l.email).join(', ');
+  navigator.clipboard.writeText(text)
+    .then(() => showResult(document.getElementById('leads-action-result'), 'success', `${sundayLeadsCache.length} email(s) copied.`))
+    .catch(() => showResult(document.getElementById('leads-action-result'), 'error', 'Clipboard blocked — use Download CSV instead.'));
+}
+
+function downloadSundayLeads() {
+  if (!sundayLeadsCache.length) { showResult(document.getElementById('leads-action-result'), 'error', 'Nothing loaded yet — hit Refresh first.'); return; }
+  const esc = v => `"${String(v == null ? '' : v).replace(/"/g, '""')}"`;
+  const lines = [['email', 'first_seen', 'last_seen', 'sunday_mock_count'].join(',')];
+  sundayLeadsCache.forEach(l => {
+    const n = (l.sources && l.sources.sunday_mock) || l.count || 1;
+    lines.push([esc(l.email), esc(l.firstSeen), esc(l.lastSeen), esc(n)].join(','));
+  });
+  const blob = new Blob([lines.join('\n')], { type: 'text/csv;charset=utf-8;' });
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = `sunday-mock-leads-${new Date().toISOString().slice(0, 10)}.csv`;
+  a.click();
+  URL.revokeObjectURL(a.href);
+  showResult(document.getElementById('leads-action-result'), 'success', `${sundayLeadsCache.length} row(s) exported.`);
 }
 
 function escapeHtml(value) {

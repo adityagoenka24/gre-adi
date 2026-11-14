@@ -1,5 +1,6 @@
 const Events = (() => {
   const SUBMISSION_ENDPOINT = "https://gre-auth.goenka-aditya-kol.workers.dev/mock/submission";
+  const LEAD_ENDPOINT = "https://gre-auth.goenka-aditya-kol.workers.dev/lead";
   const $ = (id) => document.getElementById(id);
   const state = { config: null, current: 0, answers: [], qTimes: [], qStartedAt: 0, startedAt: null, submitted: false, timer: null, remaining: 0,
     sectionIndex: 0, sectionStartedAt: 0, sectionUsed: [], onBreak: false, marked: [], timerHidden: false, timerLimit: 0 };
@@ -1229,6 +1230,7 @@ const Events = (() => {
     renderAnalysisBars(result);
     renderTimeTable(result);
     if ($("proCta")) $("proCta").innerHTML = renderSmartDiagnosis(result) + renderProCta(result);
+    renderDrillCta(result);
     errorLog = {};
     errorMeta = {};
     const gated = setupEventLog(result);
@@ -1246,6 +1248,7 @@ const Events = (() => {
     // ("0:01 / 47:00", "7/12 (58%)"), and the typesetter would turn every
     // slash in those into a stacked fraction.
     if (window.GREMath) window.GREMath.renderIn($("exam-wrong-section"));
+    if ($("downloadPdfBtn")) $("downloadPdfBtn").onclick = () => downloadEventPdf(result);
     $("downloadResultBtn").onclick = () => {
       const errors = leEntries();
       downloadJson(`${slug(result.event_id)}_${slug(result.student.name)}_result.json`, errors.length ? { ...result, error_log: errors } : result);
@@ -1259,13 +1262,13 @@ const Events = (() => {
     }
     document.getElementById("emailResultBtn").onclick = async () => {
   const subject = encodeURIComponent(`GRE Quant Pro Event Result - ${result.event_name} - ${result.student.name}`);
-  const bodyText = `Hi our coaching team,\n\nAttached/pasted below is my event result JSON.\n\n${JSON.stringify(result, null, 2)}`;
+  const bodyText = `Hi,\n\nAttached/pasted below is my event result JSON.\n\n${JSON.stringify(result, null, 2)}`;
   
   // Copy full body to clipboard
   await navigator.clipboard.writeText(bodyText);
 
   // Open Gmail with a short nudge to paste
-  const shortBody = encodeURIComponent("Hi our coaching team,\n\n[Paste your result here — it has been copied to your clipboard]");
+  const shortBody = encodeURIComponent("Hi,\n\n[Paste your result here — it has been copied to your clipboard]");
   window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=goenka.aditya.kol@gmail.com&su=${subject}&body=${shortBody}`, '_blank');
 
   alert("Gmail is opening. The full result JSON has been copied to your clipboard — just paste it into the email body.");
@@ -1292,6 +1295,59 @@ const Events = (() => {
     var scope = (rows.length >= 20 || (result.sections && result.sections.length > 1)) ? 'mock'
       : (rows.length >= 12 ? 'sectional' : 'topic');
     try { return GREScore.fromQuestions(rows, scope); } catch (e) { return null; }
+  }
+
+  // The free topic logger keys off these; anything else has no drill page to
+  // send a student to, so we fall back to the practice app's own picker.
+  const DRILLABLE = ["arithmetic", "algebra", "geometry", "coordinate_geometry",
+                     "number_properties", "statistics", "word_problems", "data_interpretation"];
+
+  /* A score with nothing to do about it is a dead end. The weakest topic is
+     already computed for the diagnosis; this turns it into one click. */
+  function renderDrillCta(result) {
+    const host = $("drillCta");
+    if (!host) return;
+    const weakest = weakestBreakdown((result.breakdowns || {}).topic, 2)
+                 || weakestBreakdown((result.breakdowns || {}).topic, 1);
+    if (!weakest) { host.innerHTML = ""; return; }
+    const key = String(weakest.label || "").toLowerCase().replace(/\s+/g, "_");
+    const pretty = String(weakest.label || "").replace(/_/g, " ");
+    const base = "https://grequantpro.com/gre_practice_logger_free.html";
+    const href = DRILLABLE.indexOf(key) === -1 ? base
+               : base + "?start=guided&topic=" + encodeURIComponent(key);
+    host.innerHTML = `<div class="notice" style="margin-bottom:24px">
+      <b>Next step — drill ${escapeHtml(pretty)}.</b>
+      It was your weakest topic here at ${Math.round(weakest.accuracy)}% over
+      ${weakest.total} question${weakest.total === 1 ? "" : "s"}.
+      <div style="margin-top:12px"><a class="primary-btn" href="${href}"
+        data-track="drill_from_event">Drill ${escapeHtml(pretty)} free &rarr;</a></div>
+    </div>`;
+    if (window.GQP && window.GQP.track) {
+      window.GQP.track("event_drill_offered", { topic: key });
+    }
+  }
+
+  /* Same report the student is looking at, as a file they keep. Action buttons
+     and the upsell are hidden in the capture, then restored. */
+  function downloadEventPdf(result) {
+    if (window.GREErrorLog && window.GREErrorLog.isBlocking && window.GREErrorLog.isBlocking()) return;
+    const el = $("resultsSection");
+    if (!el || typeof html2pdf === "undefined") {
+      alert("The PDF library did not load. Use \"Raw data (JSON)\" instead, or print this page.");
+      return;
+    }
+    const hidden = el.querySelectorAll(".actions, #proCta, #drillCta, .ev-top-banner");
+    hidden.forEach((n) => { n.style.display = "none"; });
+    const restore = () => hidden.forEach((n) => { n.style.display = ""; });
+    const who = slug((result.student && result.student.name) || "student");
+    html2pdf().set({
+      margin: [8, 8],
+      filename: `${slug(result.event_id)}_${who}_report.pdf`,
+      image: { type: "jpeg", quality: 0.95 },
+      html2canvas: { scale: 2, backgroundColor: "#ffffff", useCORS: true },
+      jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+    }).from(el).save().then(restore).catch(restore);
+    if (window.GQP && window.GQP.track) window.GQP.track("event_pdf_downloaded", {});
   }
 
   function showEventScoreCard(result) {
@@ -1332,7 +1388,7 @@ const Events = (() => {
     state.submitted = true;
     clearInterval(state.timer);
     const student = {
-      name: $("studentName").value.trim(),
+      name: $("studentName").value.trim() || "Student",
       email: $("studentEmail").value.trim(),
       batch: $("studentBatch").value.trim()
     };
@@ -1358,6 +1414,62 @@ const Events = (() => {
     }
   }
 
+  // The date line on the check-in panel. Driven entirely by optional config
+  // fields, so an event config without them renders exactly as it did before.
+  function renderEventWhen() {
+    const el = $("eventWhen");
+    if (!el) return;
+    const cfg = state.config || {};
+    const bits = [];
+    if (cfg.starts_at) {
+      const when = new Date(cfg.starts_at);
+      if (!isNaN(when)) {
+        bits.push(when.toLocaleString("en-IN", {
+          weekday: "long", day: "numeric", month: "long",
+          hour: "numeric", minute: "2-digit", hour12: true,
+          timeZone: "Asia/Kolkata"
+        }) + " IST");
+      }
+    }
+    if (cfg.recurring_label) bits.push(cfg.recurring_label);
+    if (!bits.length) el.style.display = "none";
+    else el.textContent = bits.join(" · ");
+
+    // The page serves full mocks, sectionals and topic tests, so nothing above
+    // may hard-code "mock". event_kind is written by events/publish_event.py.
+    var KIND = { mock: "Full mock", sectional: "Sectional", topic: "Topic test" };
+    var kind = KIND[cfg.event_kind] || "Free test";
+    var eyebrow = $("eventEyebrow");
+    if (eyebrow) eyebrow.textContent = ["Free", kind, cfg.recurring_label].filter(Boolean).join(" · ");
+    var head = $("registerHead");
+    if (head) head.textContent = "Register free — " + kind.toLowerCase();
+    var logoSub = document.querySelector(".nav-logo small");
+    if (logoSub) logoSub.textContent = kind;
+  }
+
+  // Registration is the point of this page, so the email is banked the moment
+  // it is given — not at submission, which a student who runs out of time or
+  // closes the tab never reaches. Fire-and-forget: never blocks the test.
+  function captureLead(email) {
+    try {
+      fetch(LEAD_ENDPOINT, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          email: email,
+          source: "sunday_mock",
+          site: "grequantpro",
+          event_id: (state.config && state.config.event_id) || null
+        })
+      }).catch(() => {});
+    } catch (e) { /* registration must never be blocked by the list */ }
+    if (window.GQP && window.GQP.track) {
+      window.GQP.track("sunday_mock_registered", {
+        event_id: (state.config && state.config.event_id) || null
+      });
+    }
+  }
+
   async function initStudentPage() {
     // A student who left a previous attempt untagged is held here until it is done.
     if (window.GREErrorLog) window.GREErrorLog.resumeEvents();
@@ -1369,12 +1481,15 @@ const Events = (() => {
         ? `${state.config.question_count || state.config.questions.length} questions · ${state.config.sections.map((sec) => `${sec.question_count || ""} Q in ${formatTime(sec.time_limit_seconds)}`).join(" + ")} · each section timed separately`
         : `${state.config.question_count || state.config.questions.length} questions · ${state.config.timer_seconds ? formatTime(state.config.timer_seconds) : "Untimed"} · ${state.config.allow_navigation === false ? "Locked order" : "Navigation allowed"}`;
       $("instructions").textContent = state.config.instructions || "Answer all questions. Feedback is shown only after submission.";
+      renderEventWhen();
       $("startBtn").onclick = () => {
-        if (!$("studentName").value.trim() || !$("studentEmail").value.trim()) {
-          $("startError").textContent = "Name and email are required before starting.";
+        const email = $("studentEmail").value.trim();
+        if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+          $("startError").textContent = "A valid email is needed — that is where your score report goes.";
           return;
         }
         $("startError").textContent = "";
+        captureLead(email);
         showInstructions();
       };
       $("instrBackBtn").onclick = () => {
