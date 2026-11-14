@@ -3179,7 +3179,10 @@ async function reindexAttemptPage(env, opts) {
 
 /**
  * GET /admin/progress-students
- * One row per student who has any stored progress, for the coach page list.
+ * One row per Pro student, for the coach page list. The roster is the paid
+ * students (listStudents), with progress attached where they have any. It used
+ * to be built from the sessions table alone, so a paid student who had not yet
+ * saved a session had no row at all and the coach list looked short.
  */
 async function handleAdminProgressStudents(request, env) {
   if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
@@ -3263,15 +3266,61 @@ async function handleAdminProgressStudents(request, env) {
     }
   } catch (e) { /* tables not created yet */ }
 
-  const students = (totalRows.results || []).map(r => ({
-    ...r,
-    accuracy: r.questions ? Math.round((r.correct / r.questions) * 100) : 0,
-    by_type: typeMap.get(r.email) || {},
-    by_difficulty: diffMap.get(r.email) || [],
-    unlogged: unlogged.get(r.email) || 0,
-  }));
+  // Paid roster. Progress emails are matched case-insensitively against it.
+  let roster = [];
+  try { roster = (await listStudents(env)).students || []; } catch (e) { /* roster unavailable: progress-only list */ }
+  const rosterMap = new Map();
+  for (const st of roster) {
+    const em = studentEmail(st.email);
+    if (em) rosterMap.set(em, st);
+  }
 
-  return jsonResponse({ status: 'ok', count: students.length, students });
+  const withProgress = new Set();
+  const students = (totalRows.results || []).map(r => {
+    const em = studentEmail(r.email);
+    withProgress.add(em);
+    const st = rosterMap.get(em);
+    return {
+      ...r,
+      student_name: r.student_name || (st && st.name) || '',
+      accuracy: r.questions ? Math.round((r.correct / r.questions) * 100) : 0,
+      by_type: typeMap.get(r.email) || {},
+      by_difficulty: diffMap.get(r.email) || [],
+      unlogged: unlogged.get(r.email) || 0,
+      paid: !!st,
+      plan: st ? (st.plan || 'pro') : '',
+      revoked: !!(st && st.revoked),
+      paid_at: st ? (st.paidAt || st.addedAt || null) : null,
+    };
+  });
+
+  // Paid students with no saved session yet: still listed, with zeroed progress.
+  const idle = [];
+  for (const [em, st] of rosterMap) {
+    if (withProgress.has(em)) continue;
+    idle.push({
+      email: st.email || em,
+      student_name: st.name || '',
+      sessions: 0,
+      questions: 0,
+      correct: 0,
+      first_date: null,
+      last_date: null,
+      last_saved: null,
+      accuracy: 0,
+      by_type: {},
+      by_difficulty: [],
+      unlogged: 0,
+      paid: true,
+      plan: st.plan || 'pro',
+      revoked: !!st.revoked,
+      paid_at: st.paidAt || st.addedAt || null,
+    });
+  }
+  idle.sort((a, b) => String(b.paid_at || '').localeCompare(String(a.paid_at || '')));
+  students.push(...idle);
+
+  return jsonResponse({ status: 'ok', count: students.length, with_progress: withProgress.size, students });
 }
 
 /**

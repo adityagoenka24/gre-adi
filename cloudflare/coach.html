@@ -405,13 +405,15 @@ function renderStudents() {
             .sort((a, b) => types[b].sessions - types[a].sessions)
             .map(t => typeChip(t, types[t].sessions)).join('') + '</div>'
         : '<span style="color:var(--text3);">—</span>';
+      const idle = !(s.sessions > 0);
+      const revokedTag = s.revoked ? ' <span class="badge badge-bad" title="Access revoked">revoked</span>' : '';
       return '<tr class="clickable" data-email="' + esc(s.email) + '">' +
-        '<td><div style="font-weight:600;">' + esc(s.student_name || '—') + '</div>' +
+        '<td><div style="font-weight:600;">' + esc(s.student_name || '—') + revokedTag + '</div>' +
           '<div class="mono" style="font-size:11.5px;color:var(--text3);">' + esc(s.email) + '</div></td>' +
-        '<td>' + chips + '</td>' +
+        '<td>' + (idle ? '<span style="color:var(--text3);">No sessions yet</span>' : chips) + '</td>' +
         '<td class="mono">' + (s.sessions || 0) + '</td>' +
         '<td class="mono">' + (s.questions || 0) + '</td>' +
-        '<td>' + accBadge(s.accuracy || 0) + '</td>' +
+        '<td>' + (idle ? '<span style="color:var(--text3);">—</span>' : accBadge(s.accuracy || 0)) + '</td>' +
         '<td>' + scoreCell(overallScore(s.by_difficulty, 'mock')) + '</td>' +
         '<td>' + (s.unlogged > 0
           ? '<span class="badge badge-warn" title="Mistakes this student still has to tag. Their review is locked until they finish.">' + s.unlogged + ' to tag</span>'
