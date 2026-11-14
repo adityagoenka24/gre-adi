@@ -8,8 +8,10 @@ the markdown practice sheet AND the portal question bank are both generated from
 1. Read the subtopic's lecture capsule (markdown) to learn the method vocabulary, the
    named traps, and the worked examples ALREADY in the capsule.
 2. Read the subtopic's bank JSON (all questions).
-3. **Curate exactly 30 questions** from the existing bank — 5 easy, 8 medium, 12 hard,
-   5 extreme_hard — keeping each question's ORIGINAL `id`.
+3. **Curate exactly 30 questions** from the existing bank, keeping each question's ORIGINAL `id`.
+   Aim for roughly 6 easy, 12 medium, 10 hard and 0-2 extreme_hard, but **the labels are honest and
+   the split follows them** (changed 2026-11-10; the old fixed 5/8/12/5 quota manufactured
+   non-GRE difficulty and is retired). A subtopic that is one move by nature has few hard items.
 4. **Upgrade every one of the 30 to gold standard** (rules below).
 5. Write the patch JSON.
 
@@ -141,31 +143,48 @@ An adversarial verifier found ~50 defects in the first batch. Do not repeat them
 5. **Exclusivity in "mixture"/"group" stems.** "The ratio of water to juice is 2:3" does not say the
    mixture is only water and juice. If your solution treats the parts as summing to the whole, the
    stem must say "consists only of".
-6. **Difficulty must be honest.** If a bank question labelled hard is one subtraction, do not
-   relabel it (the 5/8/12/5 split must hold) - STRENGTHEN it: same id, same story, harder ask, then
-   recompute the key and rebuild the options.
+6. **Difficulty must be honest.** If a bank question labelled hard is one subtraction, relabel it
+   to what it is. Strengthen it instead only when a GRE-style harder ask exists - a hidden case, a
+   second constraint, a comparison made without solving. Never add algebra ladders, bigger numbers or
+   extra story to reach a tier (rule changed 2026-11-10: the 5/8/12/5 split is no longer enforced).
 7. **Explanations must match the stem after any rewrite.** A leftover sentence from the earlier
    version is a defect. Re-read the whole object once you have finished editing it.
 8. **Recompute every key in python.** The stored bank answers are not trustworthy; several were
    wrong. Your own computation wins.
 
+## Addendum — pipeline direction reversed (2026-11-14)
+
+The bank is the source of truth now, not the patch. `sync_bank.py` is retired (it wrote stale
+sources over the bank); the 2026-11-10 difficulty recalibration was applied to the bank and pushed
+down into `_source/` with `apply_recal.py --sync-sources`. So a patch question must be a
+**verbatim copy** of its bank object — same answer, same explanation, same `difficulty`, same
+notation. A defect found while curating is fixed **in the bank first**, then re-copied.
+
+The fixed 5 easy / 8 medium / 12 hard / 5 extreme quota is retired with it: it manufactured
+difficulty. Sheets stay 30 questions in level order and the split follows the subtopic's honest
+labels, so an intrinsically easy subtopic ships few hard items and no extreme ones.
+
 ## Addendum — GEOMETRY ONLY (added 2026-09-26, read before building any GEO set)
 
-1. **No degree glyph.** The bank writes `34°`; that is non-ASCII and `validate.py` rejects it.
-   Write "34 degrees" in stems, options, explanations and traps. The capsules already do this — zero
-   degree glyphs across all 14 of them. Same for pi: write `pi`, never the symbol.
+1. **Notation follows the bank (amended 2026-11-14).** The bank is now canonical and patches are
+   copies of it, so a curated question keeps the bank's own notation byte-for-byte — `34°` and `π`
+   included. `validate.py` treats math glyphs as an advisory, not an error, and `gre-math.js`
+   renders `34°` and `34 degrees` identically. Only genuinely unexpected non-ASCII is a defect.
+   Write "degrees" and `pi` in any question you author from scratch.
 2. **`figure_description` and `svg` are real fields on geometry bank questions and must be
    preserved.** `sync_bank.py` now carries both through a sync (it did not before 2026-09-26) and
    never drops one the bank already holds. If a curated question has a `figure_description`, keep it
    in the patch verbatim unless the rewrite changes the figure; if it has an `svg`, do not touch it.
    A question whose stem you rewrote so the figure no longer matches must have its
    `figure_description` rewritten to match, or the portal shows one problem and the sheet another.
-3. **Prefer questions that stand without a picture.** The practice sheet is plain markdown with no
-   images: a `figure_description` renders as an italic "Figure: ..." line, which is a description, not
-   a diagram. So favour questions whose stem states every measurement in words, and when a figure is
-   genuinely load-bearing make the description complete enough to draw from — every labelled point,
-   every marked equality, every right angle, and what is NOT stated (most GRE geometry traps live in
-   "the figure is not drawn to scale").
+3. **Sheets carry figures (amended 2026-11-14).** `render_assets.py` rasterises a question's `svg`
+   and its `chart` to `<sheet folder>/assets/<ID>.png`, and `build_practice_md.py` emits a relative
+   image link; `table_data` is printed as a native markdown table. So a figure question is now fully
+   shippable, and geometry sheets should carry figures in roughly the proportion the bank does —
+   the skill wants most configuration items illustrated.
+   **Run `render_assets.py` before `build_practice_md.py`**, and look at every rendered PNG.
+   A `figure_description` with no drawn `svg` is still a defect: both scripts report it. Either
+   draw the figure with the skill's `add_figures.py` toolchain or pick a different question.
 4. **Never infer a measurement from a figure.** If the answer depends on something only a picture
    shows, the question is broken for this sheet. State it in the stem.
 5. **Geometry's two multi-file sheets**, per the capsules' own headers: `01-lines-angles` draws on

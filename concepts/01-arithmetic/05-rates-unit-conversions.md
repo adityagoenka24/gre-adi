@@ -78,7 +78,7 @@ Time = 20/3 = **6 hours 40 minutes**.
 
 - **Averaging the speeds.** In Example 1, 50 km/h is the trap answer and it is wrong.
 - **Not converting units first.** If speed is in km/h and time is in minutes, convert before multiplying.
-- **Adding times instead of rates.** Two people who each take 6 hours do not together take 12 hours (or 3 hours by "averaging") — add their *rates*.
+- **Adding times instead of rates.** Two people who each take 6 hours do not together take 12 hours — add their *rates*: 1/6 + 1/6 = 1/3, so they finish in 3 hours. (Here halving the time happens to be right because the two rates are equal; it is wrong the moment they differ, so always add the rates.)
 - **Forgetting the leak subtracts.** Combined rate is a sum only if both agents push in the same direction.
 - **Assuming "twice as fast" halves the time correctly but "50% faster" does too.** 50% faster means rate x 1.5, so time x 2/3, not time x 0.5.
 - **Rounding mid-problem.** Keep fractions until the end; 20/3 hours is exact, 6.67 hours invites error.

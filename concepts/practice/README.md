@@ -1,6 +1,6 @@
 # Practice Sets
 
-Level-wise practice for each concept capsule. One sheet per subtopic, **30 questions**: 5 easy · 8 medium · 12 hard · 5 extreme.
+Level-wise practice for each concept capsule. One sheet per subtopic, **30 questions** in level order. Difficulty labels are honest real-GRE labels (recalibrated 2026-11-10), so the split varies by subtopic — most sheets carry few or no Extreme questions, because few questions on the real test are.
 
 Each sheet has three parts — **A** the questions (clean, printable), **B** a one-glance answer key, **C** full worked solutions with the trap named.
 
@@ -13,7 +13,14 @@ _source/<BANK-CODE>.json   →   build_practice_md.py   →   <subtopic>-practic
                            →   sync_bank.py           →   gre-pro/bank/…  (+ all bank copies)
 ```
 
-So the markdown and the JSON can never drift. To change a question: edit `_source/<CODE>.json`, then re-run both scripts.
+**Since 2026-11-10 the question bank (`pro/bank`) is the source of truth, not `_source/`.** The bank received the ETS wording and difficulty audits that the sources never did, so the sources are now refreshed *from* the bank and the sheets regenerated:
+
+```
+python3 _ets_audit_tmp/recal/apply_recal.py <verdicts.json> --sync-sources --write   # bank -> _source
+python3 _source/build_practice_md.py _source/<CODE>.json <sheet>.md                  # _source -> sheet
+```
+
+Do **not** run `sync_bank.py`: it writes sources over the bank and targets the old `gre-pro/` folder layout. The steps below are kept for history.
 
 ```
 python3 _source/build_practice_md.py _source/ARI-PCT.json 01-arithmetic/01-percentages-practice.md

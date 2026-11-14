@@ -10,7 +10,7 @@
       "options": null,
       "answer": "4032",
       "explanation": "Step 1 — let the run start at a. Then sum = n x a + n(n-1)/2 = 2016, so n(2a + n - 1) = 4032. Note that a may be negative or zero; nothing restricts the integers to be positive.\nStep 2 — to make n huge, make the other factor tiny. The smallest usable value of |2a + n - 1| is 1, which needs n = 4032 and 2a + 4031 = 1, so a = -2015.\nStep 3 — check that run: the integers from -2015 to 2016. Every pair k and -k cancels for k = 1 to 2015, and 0 contributes nothing, so the sum is just 2016.\nStep 4 — its count is 2016 - (-2015) + 1 = 4032, and n cannot exceed 4032: any larger n would force |2a + n - 1| to be less than 1, that is 0, making the product 0 rather than 4032.\nCheck: 4032 x (2(-2015) + 4032 - 1) = 4032 x 1 = 4032 = 2 x 2016. Correct.\nAnswer: 4032.",
-      "trap": "Assuming the integers must be positive caps the answer at 63, because 1 + 2 + ... + 63 = 2016 is the longest run of consecutive POSITIVE integers with that sum. The stem says integers, and a run that reaches back below zero cancels itself out almost entirely, leaving only the top term - that is the whole trick. Answering 2016 or 2017 comes from taking the run as -2015 to 2016 but then counting it with 2016 - 2015 or forgetting to count 0.",
+      "trap": "Assuming the integers must be positive caps the answer at 63, because 1 + 2 + ... + 63 = 2016 is the longest run of consecutive positive integers with that sum. The stem says integers, and a run that reaches back below zero cancels itself out almost entirely, leaving only the top term - that is the whole trick. Answering 2016 or 2017 comes from taking the run as -2015 to 2016 but then counting it with 2016 - 2015 or forgetting to count 0.",
       "estimated_time_seconds": 130,
       "tags": [
         "negative-integers",
@@ -126,7 +126,7 @@
       "question": "What is the smallest integer greater than 100 that is divisible by both 2 and 5?",
       "options": null,
       "answer": "110",
-      "explanation": "Step 1 — 2 and 5 are coprime, so a number divisible by both is divisible by 2 x 5 = 10.\nStep 2 — multiples of 10 are exactly the integers ending in 0.\nStep 3 — the multiples of 10 near 100 are 100 and 110. The question says GREATER than 100, so 100 is excluded.\nCheck: 110/2 = 55 and 110/5 = 22, both integers, and there is no multiple of 10 strictly between 100 and 110.\nAnswer: 110.",
+      "explanation": "Step 1 — 2 and 5 are coprime, so a number divisible by both is divisible by 2 x 5 = 10.\nStep 2 — multiples of 10 are exactly the integers ending in 0.\nStep 3 — the multiples of 10 near 100 are 100 and 110. The question says greater than 100, so 100 is excluded.\nCheck: 110/2 = 55 and 110/5 = 22, both integers, and there is no multiple of 10 strictly between 100 and 110.\nAnswer: 110.",
       "trap": "Answering 100, which is divisible by 2 and by 5 but is not greater than 100. The second live error is answering 102: it is even and bigger than 100, but 102 does not end in 0 or 5, so 5 does not divide it.",
       "estimated_time_seconds": 45,
       "tags": [
@@ -152,7 +152,7 @@
         "C",
         "D"
       ],
-      "explanation": "Use the digit-sum test: a number is divisible by 3 exactly when its digit sum is divisible by 3.\nA. 123: 1 + 2 + 3 = 6, and 6/3 = 2. TRUE (123 = 3 x 41).\nB. 247: 2 + 4 + 7 = 13, and 13 is not a multiple of 3. FALSE.\nC. 351: 3 + 5 + 1 = 9, and 9/3 = 3. TRUE (351 = 3 x 117).\nD. 462: 4 + 6 + 2 = 12, and 12/3 = 4. TRUE (462 = 3 x 154).\nE. 589: 5 + 8 + 9 = 22, and 22 is not a multiple of 3. FALSE.\nAnswer: A, C and D.",
+      "explanation": "Use the digit-sum test: a number is divisible by 3 exactly when its digit sum is divisible by 3.\nA. 123: 1 + 2 + 3 = 6, and 6/3 = 2. True (123 = 3 x 41).\nB. 247: 2 + 4 + 7 = 13, and 13 is not a multiple of 3. False.\nC. 351: 3 + 5 + 1 = 9, and 9/3 = 3. True (351 = 3 x 117).\nD. 462: 4 + 6 + 2 = 12, and 12/3 = 4. True (462 = 3 x 154).\nE. 589: 5 + 8 + 9 = 22, and 22 is not a multiple of 3. False.\nAnswer: A, C and D.",
       "trap": "Mis-adding 2 + 4 + 7 as 12 instead of 13 and selecting B, which is the single most common way this question goes wrong. The other live error is rejecting 351 because it is odd: divisibility by 3 has nothing to do with parity, and 351 = 3 x 117.",
       "estimated_time_seconds": 55,
       "tags": [
@@ -174,7 +174,7 @@
         "E. N is divisible by 6"
       ],
       "answer": "C",
-      "explanation": "Digit sum = 27. Since 27 is divisible by 3 (27÷3=9), N is divisible by 3. Since 27 is also divisible by 9 (27÷9=3), N is divisible by 9 as well. So N is divisible by BOTH 3 and 9. Option A is wrong: digit sum 27 does not mean the number itself is divisible by 27. Option B is wrong: N is divisible by 3 as well as 9. Option D is wrong: N is divisible by 9 (not 3 only). Option E: we do not know if N is even, so divisibility by 6 is not guaranteed.",
+      "explanation": "Digit sum = 27. Since 27 is divisible by 3 (27÷3=9), N is divisible by 3. Since 27 is also divisible by 9 (27÷9=3), N is divisible by 9 as well. So N is divisible by both 3 and 9. Option A is wrong: digit sum 27 does not mean the number itself is divisible by 27. Option B is wrong: N is divisible by 3 as well as 9. Option D is wrong: N is divisible by 9 (not 3 only). Option E: we do not know if N is even, so divisibility by 6 is not guaranteed.",
       "trap": "Students see digit sum 27 and conclude the number is divisible by 27 itself, confusing the digit sum with the number. The digit sum rule tells us about divisibility by 3 and 9, not by the digit sum value.",
       "estimated_time_seconds": 50,
       "tags": [
@@ -332,7 +332,7 @@
     },
     {
       "id": "NUM-DIV-021",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "n is a positive integer and 6n is divisible by 8. Which of the following must be true?",
       "options": [
@@ -345,7 +345,7 @@
       "answer": "B",
       "explanation": "Step 1 — write the condition in prime factors. 6n = 2 x 3 x n, and 8 = 2^3.\nStep 2 — the factor 6 contributes exactly one 2. The 3 in 6 is useless here, since 8 has no factor of 3.\nStep 3 — so n must supply the remaining two 2s: n must be divisible by 2^2 = 4.\nStep 4 — check that 4 is enough: if n = 4, then 6n = 24 and 24/8 = 3. It works, so n does NOT have to be 8, 24 or a multiple of 3.\nStep 5 — check that 4 is necessary: if n = 2, then 6n = 12 and 12/8 = 1.5. Fails. So 'even' alone is not enough, which kills C.\nAnswer: B. n is divisible by 4.",
       "trap": "Cancelling carelessly: reading '6n divisible by 8' as 'n divisible by 8' and choosing A, which n = 4 refutes (6 x 4 = 24 is divisible by 8 while 4 is not). Choice C is the opposite slip - noticing that n must be even and stopping, when n = 2 already fails. Choice D imports the 3 from the 6, but 8 contains no 3 at all. Choice E multiplies both imports together, demanding 8 x 3 = 24, as if n had to supply the 3 as well as the missing 2s; n = 4 satisfies the stem and is not a multiple of 24.",
-      "estimated_time_seconds": 100,
+      "estimated_time_seconds": 90,
       "tags": [
         "prime-factors",
         "must-be-true",
@@ -391,7 +391,7 @@
     },
     {
       "id": "NUM-DIV-034",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "How many integers from 1 to 200 are divisible by 3 or 5 (or both)?",
       "options": [
@@ -465,7 +465,7 @@
         "C",
         "E"
       ],
-      "explanation": "Step 1 - factor: n^3 - n = n(n^2 - 1) = (n - 1)n(n + 1), the product of three consecutive integers.\nStep 2 - among three consecutive integers one is a multiple of 3 and at least one is even, so 6 divides the product for every n. Split 12 into COPRIME factors: 12 = 3 x 4. The 3 is already guaranteed, so everything turns on 4.\nStep 3 - if n is odd, n - 1 and n + 1 are consecutive even numbers and one of them is a multiple of 4, so the product carries 4 automatically. If n is even, n - 1 and n + 1 are both odd and the only even factor is n itself, so 4 divides the product only when 4 divides n.\nA. n = 2: 1 x 2 x 3 = 6, and 6/12 is not an integer. n is even and 4 does not divide 2. FALSE.\nB. n = 3: 2 x 3 x 4 = 24 = 12 x 2. TRUE.\nC. n = 5: 4 x 5 x 6 = 120 = 12 x 10. TRUE.\nD. n = 6: 5 x 6 x 7 = 210, and 210/12 = 17.5. n is even and 4 does not divide 6. FALSE.\nE. n = 8: 7 x 8 x 9 = 504 = 12 x 42. n is even, but 4 divides 8, so the factor of 4 arrives anyway. TRUE.\nCheck: the rule is 'every odd n works, and an even n works exactly when 4 divides n'. The even values offered are 2, 6 and 8; 4 divides only 8, and 8 is the only even one selected.\nAnswer: B, C and E.",
+      "explanation": "Step 1 - factor: n^3 - n = n(n^2 - 1) = (n - 1)n(n + 1), the product of three consecutive integers.\nStep 2 - among three consecutive integers one is a multiple of 3 and at least one is even, so 6 divides the product for every n. Split 12 into COPRIME factors: 12 = 3 x 4. The 3 is already guaranteed, so everything turns on 4.\nStep 3 - if n is odd, n - 1 and n + 1 are consecutive even numbers and one of them is a multiple of 4, so the product carries 4 automatically. If n is even, n - 1 and n + 1 are both odd and the only even factor is n itself, so 4 divides the product only when 4 divides n.\nA. n = 2: 1 x 2 x 3 = 6, and 6/12 is not an integer. n is even and 4 does not divide 2. False.\nB. n = 3: 2 x 3 x 4 = 24 = 12 x 2. True.\nC. n = 5: 4 x 5 x 6 = 120 = 12 x 10. True.\nD. n = 6: 5 x 6 x 7 = 210, and 210/12 = 17.5. n is even and 4 does not divide 6. False.\nE. n = 8: 7 x 8 x 9 = 504 = 12 x 42. n is even, but 4 divides 8, so the factor of 4 arrives anyway. True.\nCheck: the rule is 'every odd n works, and an even n works exactly when 4 divides n'. The even values offered are 2, 6 and 8; 4 divides only 8, and 8 is the only even one selected.\nAnswer: B, C and E.",
       "trap": "Stopping at Step 2 and selecting all five on the correct but insufficient fact that three consecutive integers are always divisible by 6. Twelve needs a second factor of 2: n = 2 gives 6 and n = 6 gives 210, and 12 divides neither. The opposite error is reading Step 3 as 'n must be odd' and selecting only B and C, dropping E; n = 8 supplies the factor of 4 by itself.",
       "estimated_time_seconds": 100,
       "tags": [
@@ -476,29 +476,28 @@
     },
     {
       "id": "NUM-DIV-038",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
-      "question": "What is the largest integer k such that 3^k divides 50! (50 factorial)?",
+      "question": "If n is a positive integer such that n/15 and n/20 are both integers, which of the following must also be an integer?",
       "options": [
-        "A. 16",
-        "B. 20",
-        "C. 22",
-        "D. 25",
-        "E. 30"
+        "A. n/25",
+        "B. n/40",
+        "C. n/60",
+        "D. n/75",
+        "E. n/300"
       ],
       "answer": "C",
-      "explanation": "Use Legendre's formula: sum of ⌊50/3^i⌋ for i=1, 2, 3, ... until 3^i > 50. ⌊50/3⌋ = 16. ⌊50/9⌋ = 5. ⌊50/27⌋ = 1. ⌊50/81⌋ = 0 (stop). Total = 16 + 5 + 1 = 22. So 3²² divides 50! and 3²³ does not.",
-      "trap": "Students count only multiples of 3 up to 50 (there are ⌊50/3⌋=16) and answer 16, missing that multiples of 9 contribute an extra factor of 3 each, multiples of 27 contribute yet another factor, etc.",
-      "estimated_time_seconds": 100,
+      "explanation": "n is a multiple of both 15 and 20, so n is a multiple of their least common multiple.\n15 = 3 * 5 and 20 = 2^2 * 5, so the least common multiple is 2^2 * 3 * 5 = 60.\nn/60 must be an integer.\nn = 60 shows that none of the others must be: 60/25, 60/40, 60/75 and 60/300 are not integers.\nAnswer: C.",
+      "trap": "Multiplying 15 by 20 and choosing n/300 (choice E). 15 and 20 share the factor 5, so a number can be a multiple of both without being a multiple of 300; 60 is the smallest example.",
+      "estimated_time_seconds": 80,
       "tags": [
         "divisibility",
-        "multi-step",
-        "memorisation"
+        "least-common-multiple"
       ]
     },
     {
       "id": "NUM-DIV-039",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "quantitative_comparison",
       "question": "n is a positive integer.\n\nQuantity A: The remainder when (n³ − n) is divided by 6\nQuantity B: 0",
       "options": [
@@ -510,7 +509,7 @@
       "answer": "C",
       "explanation": "n³ - n = n(n²-1) = n(n-1)(n+1) = (n-1)·n·(n+1), the product of three consecutive integers. The product of any three consecutive integers is divisible by 3! = 6. Proof: among any 3 consecutive integers, one is divisible by 2 and one is divisible by 3, so their product is divisible by 2×3=6. Therefore n³-n is always divisible by 6, and the remainder is always 0. Quantity A = 0 = Quantity B.",
       "trap": "Students test n=2: 8-2=6, 6÷6=1, remainder 0. Test n=3: 27-3=24, 24÷6=4, remainder 0. They verify a few cases but do not prove it generally, then hedge toward D. The key algebraic insight — product of 3 consecutive integers is always divisible by 6 — makes this always true.",
-      "estimated_time_seconds": 100,
+      "estimated_time_seconds": 90,
       "tags": [
         "divisibility",
         "qc",
@@ -558,7 +557,7 @@
     },
     {
       "id": "NUM-DIV-046",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "mcq",
       "question": "How many positive integers from 1 to 500 (inclusive) are divisible by exactly two of the three numbers 4, 6, and 10?",
       "options": [
@@ -571,7 +570,7 @@
       "answer": "C",
       "explanation": "Let A = multiples of 4 ≤ 500, B = multiples of 6 ≤ 500, C = multiples of 10 ≤ 500. Pairwise intersections: the least common multiple of 4 and 6=12: ⌊500/12⌋=41. The least common multiple of 4 and 10=20: ⌊500/20⌋=25. The least common multiple of 6 and 10=30: ⌊500/30⌋=16. Triple intersection: the least common multiple of 4, 6 and 10=60: ⌊500/60⌋=8. Using the 'exactly two' formula: |exactly 2| = (|A∩B| − |A∩B∩C|) + (|A∩C| − |A∩B∩C|) + (|B∩C| − |A∩B∩C|) = (41−8) + (25−8) + (16−8) = 33 + 17 + 8 = 58. Answer: C (58).",
       "trap": "Students compute |A∩B| + |A∩C| + |B∩C| = 41+25+16 = 82 and stop, not subtracting the triple-overlap that was counted in all three pairwise intersections. Numbers divisible by all three (multiples of 60) are NOT 'exactly two' and must be removed from each pairwise count.",
-      "estimated_time_seconds": 130,
+      "estimated_time_seconds": 110,
       "tags": [
         "divisibility",
         "multi-step",
@@ -617,7 +616,7 @@
     },
     {
       "id": "NUM-DIV-049",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "multiple_answer",
       "question": "n is a positive integer and E = n(n + 1)(n + 2)(n + 3). Which of the following must divide E for every positive integer n? Select all that apply.",
       "options": [
@@ -631,9 +630,9 @@
         "B",
         "D"
       ],
-      "explanation": "E is a product of FOUR consecutive integers. Count the prime factors that are guaranteed.\nFactors of 2: among four consecutive integers there are exactly two even numbers, and they differ by 2, so one of them is a multiple of 4. That gives at least 4 x 2 = 8, i.e. three factors of 2.\nFactors of 3: among four consecutive integers at least one is a multiple of 3.\nSo E is always divisible by 2^3 x 3 = 24. And n = 1 gives E = 1 x 2 x 3 x 4 = 24 exactly, so 24 is the whole of what is forced: an integer must divide E for every n precisely when it divides 24.\nA. 5: 5 does not divide 24. n = 1 gives E = 24 and 24/5 = 4.8. FALSE.\nB. 12: 12 divides 24, so 12 divides E for every n. TRUE.\nC. 16: 16 = 2^4 needs a fourth factor of 2. n = 1 gives 24 and 24/16 = 1.5. FALSE.\nD. 24: guaranteed by the count above, and attained at n = 1. TRUE.\nE. 48: 48 = 2^4 x 3 has the same missing factor of 2. n = 1 gives 24 and 24/48 = 0.5. FALSE.\nCheck across values: n = 2 gives 120 = 24 x 5, n = 3 gives 360 = 24 x 15, n = 5 gives 1,680 = 24 x 70 - all multiples of 12 and of 24. Note that 5 divides E at n = 2, where E = 120, and 16 divides E at n = 5, where E = 1,680; 'must divide' means for every n, and n = 1 kills A, C and E at once.\nAnswer: B and D.",
+      "explanation": "E is a product of FOUR consecutive integers. Count the prime factors that are guaranteed.\nFactors of 2: among four consecutive integers there are exactly two even numbers, and they differ by 2, so one of them is a multiple of 4. That gives at least 4 x 2 = 8, i.e. three factors of 2.\nFactors of 3: among four consecutive integers at least one is a multiple of 3.\nSo E is always divisible by 2^3 x 3 = 24. And n = 1 gives E = 1 x 2 x 3 x 4 = 24 exactly, so 24 is the whole of what is forced: an integer must divide E for every n precisely when it divides 24.\nA. 5: 5 does not divide 24. n = 1 gives E = 24 and 24/5 = 4.8. False.\nB. 12: 12 divides 24, so 12 divides E for every n. True.\nC. 16: 16 = 2^4 needs a fourth factor of 2. n = 1 gives 24 and 24/16 = 1.5. False.\nD. 24: guaranteed by the count above, and attained at n = 1. True.\nE. 48: 48 = 2^4 x 3 has the same missing factor of 2. n = 1 gives 24 and 24/48 = 0.5. False.\nCheck across values: n = 2 gives 120 = 24 x 5, n = 3 gives 360 = 24 x 15, n = 5 gives 1,680 = 24 x 70 - all multiples of 12 and of 24. Note that 5 divides E at n = 2, where E = 120, and 16 divides E at n = 5, where E = 1,680; 'must divide' means for every n, and n = 1 kills A, C and E at once.\nAnswer: B and D.",
       "trap": "Selecting E on the rule of thumb that a product of k consecutive integers is divisible by k factorial and then over-reaching past 4! = 24 to 48. The bound 24 is exact, not a floor: n = 1 gives E = 24 itself and nothing larger than 24 divides 24. Choice C is the same over-reach in smaller form, counting the two even factors as 2 x 2 x 4 = 16 instead of 2 x 4 = 8. Choice A assumes four consecutive integers must contain a multiple of 5, which needs five of them; n = 1 gives 24 again.",
-      "estimated_time_seconds": 120,
+      "estimated_time_seconds": 110,
       "tags": [
         "consecutive-integers",
         "power-of-2-count",
@@ -642,7 +641,7 @@
     },
     {
       "id": "NUM-DIV-050",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "quantitative_comparison",
       "question": "Let T be the number of integers from 1 to 1,000 that are divisible by at least one of 3, 5, and 7.\n\nQuantity A: T\nQuantity B: 600",
       "options": [
@@ -654,7 +653,7 @@
       "answer": "B",
       "explanation": "The fraction of integers not divisible by any of 3, 5, or 7 is (2/3)(4/5)(6/7) = 48/105, so the fraction divisible by at least one is 57/105, a little over 54%. So T is close to 543, well below 600. (Exact count by inclusion-exclusion: 333 + 200 + 142 − 66 − 47 − 28 + 9 = 543.) Quantity B is greater.",
       "trap": "Adding 333 + 200 + 142 = 675 without removing overlaps gives a count above 600 and leads to choosing A.",
-      "estimated_time_seconds": 130,
+      "estimated_time_seconds": 110,
       "tags": [
         "divisibility",
         "multi-step",
@@ -697,7 +696,7 @@
       ],
       "answer": "D",
       "explanation": "Step 1 — name the digits. Let N have hundreds digit a, tens digit b, units digit c, so N = 100a + 10b + c and M = 100c + 10b + a.\nStep 2 — subtract. N - M = (100a + 10b + c) - (100c + 10b + a) = 99a - 99c = 99(a - c).\nStep 3 — the tens digit cancels completely, so N - M is always 99 times the difference of the outer digits.\nStep 4 — 99 divides 99(a - c) for every a and c, so 99 always works - and so do its divisors 9, 11 and 33.\nStep 5 — can anything larger be forced? Take a - c = 1, for example N = 201 and M = 102: N - M = 99. Nothing bigger than 99 divides 99, so 198 fails.\nCheck: N = 731, M = 137, N - M = 594 = 99 x 6. N = 852, M = 258, N - M = 594 again. N = 923, M = 329, N - M = 594. Every difference is a multiple of 99.\nAnswer: D. 99.",
-      "trap": "Choosing A or B by finding one rule that works and stopping: 9 divides N - M and 11 divides N - M, but the question asks for the GREATEST forced divisor, and 99 = 9 x 11 beats both (9 and 11 are coprime, so both dividing forces 99 to divide). Choice C is the half-finished version of that multiplication: spotting the factors 3 and 11 inside 99 and multiplying those two to get 33, which drops the second factor of 3. Choice E is for assuming a - c is at least 2, or for doubling 99 after testing only an example such as N = 852 where N - M = 594 happens to be divisible by 198; N = 201 gives N - M = 99 and settles it.",
+      "trap": "Choosing A or B by finding one rule that works and stopping: 9 divides N - M and 11 divides N - M, but the question asks for the greatest forced divisor, and 99 = 9 x 11 beats both (9 and 11 are coprime, so both dividing forces 99 to divide). Choice C is the half-finished version of that multiplication: spotting the factors 3 and 11 inside 99 and multiplying those two to get 33, which drops the second factor of 3. Choice E is for assuming a - c is at least 2, or for doubling 99 after testing only an example such as N = 852 where N - M = 594 happens to be divisible by 198; N = 201 gives N - M = 99 and settles it.",
       "estimated_time_seconds": 100,
       "tags": [
         "digit-reversal",
@@ -707,7 +706,7 @@
     },
     {
       "id": "NUM-DIV-053",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "quantitative_comparison",
       "question": "N is a three-digit integer, and the sum of the digits of N is 12.\nQuantity A: The remainder when N is divided by 9\nQuantity B: 3",
       "options": [
@@ -719,7 +718,7 @@
       "answer": "C",
       "explanation": "Step 1 — the fact behind the 9-rule is stronger than the rule itself: every integer leaves the SAME remainder on division by 9 as its digit sum does.\nWhy: 100a + 10b + c = (99a + 9b) + (a + b + c), and 99a + 9b is a multiple of 9, so only a + b + c survives.\nStep 2 — here the digit sum is 12, and 12 = 9 x 1 + 3, so the remainder is 3.\nStep 3 — that holds for every 3-digit N with digit sum 12, so Quantity A = 3 = Quantity B.\nCheck three different numbers: 903 -> 903 = 9 x 100 + 3, remainder 3. 480 -> 480 = 9 x 53 + 3, remainder 3. 336 -> 336 = 9 x 37 + 3, remainder 3. Same remainder every time.\nAnswer: C.",
       "trap": "Keying D because N is not a single number - 903, 480 and 336 all qualify - without noticing that the digit sum alone fixes the remainder on division by 9. The other live error is reading 'digit sum 12 is a multiple of 3' and concluding the remainder is 0, which gives Quantity B greater, choice B; that argument settles division by 3, not by 9.",
-      "estimated_time_seconds": 95,
+      "estimated_time_seconds": 90,
       "tags": [
         "digit-sum",
         "remainder-mod-9",
@@ -728,14 +727,14 @@
     },
     {
       "id": "NUM-DIV-054",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "numeric_entry",
       "question": "In the 4-digit number 3d4e, d and e are single digits (the digits are 3, d, 4, e from left to right). What is the greatest value of 3d4e that is divisible by 44?",
       "options": null,
       "answer": "3740",
       "explanation": "Step 1 — split 44 into COPRIME factors: 44 = 4 x 11. Both tests must pass.\nStep 2 — the 4-test reads the last two digits, 4e, that is 40 + e. Since 40 is a multiple of 4, we need e divisible by 4: e = 0, 4 or 8.\nStep 3 — the 11-test. Positions from the right: e is 1st, 4 is 2nd, d is 3rd, 3 is 4th. Alternating sum = (e + d) - (4 + 3) = d + e - 7. This must be 0 or a multiple of 11. With d and e digits, d + e runs from 0 to 18, so d + e - 7 runs from -7 to 11. The multiples of 11 available are 0 and 11, giving d + e = 7 or d + e = 18.\nStep 4 — combine with the three allowed values of e, and prefer the largest d since d is the more significant digit.\nd + e = 18 forces d = e = 9, but e = 9 is not one of 0, 4, 8. Rejected.\nd + e = 7 with e = 0 gives d = 7: the number 3,740.\nd + e = 7 with e = 4 gives d = 3: the number 3,344.\nd + e = 7 with e = 8 would give d = -1, impossible.\nStep 5 — the two valid numbers are 3,740 and 3,344. The greater is 3,740.\nCheck: 3,740/44 = 85, and 3,344/44 = 76. Both exact, and 3,740 > 3,344.\nAnswer: 3740.",
-      "trap": "Splitting 44 as 2 x 22 and testing only 'even' plus 'divisible by 22'. Those factors are not coprime, so the pair is not equivalent to 44. The commoner error is finding one valid number and stopping: a student who lands on 3,344 first answers 3344, missing that d = 7, e = 0 also works and is larger. The stem asks for the GREATEST value, so every allowed e must be checked. Answering 2 - the count of valid numbers rather than the number itself - is the third live error.",
-      "estimated_time_seconds": 130,
+      "trap": "Splitting 44 as 2 x 22 and testing only 'even' plus 'divisible by 22'. Those factors are not coprime, so the pair is not equivalent to 44. The commoner error is finding one valid number and stopping: a student who lands on 3,344 first answers 3344, missing that d = 7, e = 0 also works and is larger. The stem asks for the greatest value, so every allowed e must be checked. Answering 2 - the count of valid numbers rather than the number itself - is the third live error.",
+      "estimated_time_seconds": 110,
       "tags": [
         "coprime-factors",
         "divisible-by-44",
@@ -778,7 +777,7 @@
       "answer": "C",
       "explanation": "Step 1 — split 99 into coprime factors: 99 = 9 x 11. N must pass both tests.\nStep 2 — the 9-test. Every digit is 7, so the digit sum is 7k. We need 7k divisible by 9. Since 7 and 9 are coprime, the 7 cannot help, so k itself must be a multiple of 9: k = 9, 18, 27, ...\nStep 3 — the 11-test. The alternating sum adds the digits in odd positions and subtracts those in even positions. All digits equal 7, so each adjacent pair cancels: if k is even the alternating sum is 0, and if k is odd it is 7 (one unpaired digit). We need 0 or a multiple of 11, and 7 is neither, so k must be EVEN.\nStep 4 — combine: k must be a multiple of 9 and even, so k must be a multiple of 18. The smallest positive such k is 18.\nCheck k = 18: digit sum = 7 x 18 = 126 = 9 x 14, so 9 divides N. k is even, so the alternating sum is 0 and 11 divides N. Check k = 9: digit sum 63 passes the 9-test, but 9 is odd so the alternating sum is 7 and the 11-test fails - 777,777,777 is not divisible by 99.\nAnswer: C. 18.",
       "trap": "Running only the 9-test, finding k = 9 and choosing A. The 11-test is the half that is easy to skip because the digits are all the same, and it is exactly what rules 9 out: with an odd count of sevens the alternating sum is 7, not 0. Choice B is for reading '99 needs 11' as 'k = 11'; k = 11 is even-handed on neither test (digit sum 77 is not a multiple of 9). Choice D is for taking the smallest even multiple of 11 rather than combining the two conditions, and choice E for assuming k must reach 99 itself.",
-      "estimated_time_seconds": 125,
+      "estimated_time_seconds": 110,
       "tags": [
         "repdigit",
         "divisible-by-99",
@@ -787,7 +786,7 @@
     },
     {
       "id": "NUM-EOP-050",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "multiple_answer",
       "question": "For a positive integer k, let E(k) be the largest power of 2 that divides k. For example, E(12) = 4, because 12 = 4 x 3 and 8 does not divide 12. Which of the following statements are true for all positive integers n and m? Select all that apply.",
       "options": [
@@ -802,9 +801,9 @@
         "C",
         "D"
       ],
-      "explanation": "Write n = 2^s x t with t odd; then E(n) = 2^s. Every statement is a claim about how s behaves.\nA - 2n = 2^(s+1) x t, so E(2n) = 2^(s+1) = 2 x 2^s = 2 x E(n). Check n = 12: E(24) = 8 = 2 x 4. TRUE.\nB - multiplying by the odd number 3 adds no factors of 2, so E(3n) = E(n), not 3 x E(n). Check n = 1: E(3) = 1 but 3 x E(1) = 3. FALSE.\nC - an odd n has no factor of 2, so the largest power of 2 dividing it is 2^0 = 1. Check n = 7: E(7) = 1. TRUE.\nD - n^2 = 2^(2s) x t^2 with t^2 odd, so E(n^2) = 2^(2s) = (2^s)^2 = [E(n)]^2. Check n = 12: E(144) = 16 = 4^2. TRUE.\nE - addition can create new factors of 2 out of nowhere. Check n = 1, m = 3: E(4) = 4 but E(1) + E(3) = 1 + 1 = 2. FALSE.\nCheck A, C and D once more on n = 40 = 2^3 x 5, so E(40) = 8: E(80) = 16 = 2 x 8; 40 is not odd so C does not apply; E(1600) = 64 = 8^2. All hold.\nAnswer: A, C, D.",
+      "explanation": "Write n = 2^s x t with t odd; then E(n) = 2^s. Every statement is a claim about how s behaves.\nA - 2n = 2^(s+1) x t, so E(2n) = 2^(s+1) = 2 x 2^s = 2 x E(n). Check n = 12: E(24) = 8 = 2 x 4. True.\nB - multiplying by the odd number 3 adds no factors of 2, so E(3n) = E(n), not 3 x E(n). Check n = 1: E(3) = 1 but 3 x E(1) = 3. False.\nC - an odd n has no factor of 2, so the largest power of 2 dividing it is 2^0 = 1. Check n = 7: E(7) = 1. True.\nD - n^2 = 2^(2s) x t^2 with t^2 odd, so E(n^2) = 2^(2s) = (2^s)^2 = [E(n)]^2. Check n = 12: E(144) = 16 = 4^2. True.\nE - addition can create new factors of 2 out of nowhere. Check n = 1, m = 3: E(4) = 4 but E(1) + E(3) = 1 + 1 = 2. False.\nCheck A, C and D once more on n = 40 = 2^3 x 5, so E(40) = 8: E(80) = 16 = 2 x 8; 40 is not odd so C does not apply; E(1600) = 64 = 8^2. All hold.\nAnswer: A, C, D.",
       "trap": "Selecting B by treating E as if it multiplied through any factor, when only the factors of 2 inside k count - multiplying by the odd number 3 leaves E untouched. Selecting E is the same error for sums: n = 1 and m = 3 are each odd with E = 1, yet their sum 4 has E = 4, because two odds add to an even.",
-      "estimated_time_seconds": 130,
+      "estimated_time_seconds": 110,
       "tags": [
         "powers-of-2",
         "function-properties",
@@ -813,19 +812,18 @@
     },
     {
       "id": "NUM-INT-046",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "How many integers n in the range 1 ≤ n ≤ 1000 have the property that ⌊√n⌋ divides n?",
+      "question": "If x and y are integers and xy = 36, how many different values of x + y are possible?",
       "options": null,
-      "answer": "92",
-      "explanation": "Let k = ⌊√n⌋. Then k² ≤ n ≤ (k+1)²−1 = k²+2k. We need k|n. For each fixed k, the multiples of k in [k², k²+2k] are k×k = k², k×(k+1) = k²+k, and k×(k+2) = k²+2k. All three satisfy k² ≤ value ≤ k²+2k, so there are exactly 3 valid n for each k — except in the last group. k ranges from 1 to 31 since 31² = 961 ≤ 1000 < 1024 = 32². For k = 1 to 30: 3 values each → 30 × 3 = 90 values. For k = 31: range is [961, 1000]. Multiples of 31: 31×31=961 ✓, 31×32=992 ✓, 31×33=1023 > 1000 ✗. Only 2 values. Total: 90 + 2 = 92.",
-      "trap": "Students try to enumerate case by case without recognizing that for each value of k=⌊√n⌋, exactly 3 multiples of k fall in the range [k², (k+1)²−1], giving a systematic count. The final group k=31 has only 2 qualifying values since 31×33=1023>1000.",
-      "estimated_time_seconds": 130,
+      "answer": "10",
+      "explanation": "Positive factor pairs of 36: 1 and 36, 2 and 18, 3 and 12, 4 and 9, 6 and 6.\nTheir sums: 37, 20, 15, 13, 12. That is 5 values.\nTwo negative integers also have a positive product: -1 and -36, -2 and -18, -3 and -12, -4 and -9, -6 and -6.\nTheir sums: -37, -20, -15, -13, -12. That is 5 more values.\nSwapping x and y does not change the sum, and no sum is repeated.\nTotal: 10 different values.",
+      "trap": "Counting only the positive pairs and answering 5. The stem says integers, not positive integers, so both factors may be negative. Counting ordered pairs instead of sums (18) is the opposite error.",
+      "estimated_time_seconds": 95,
       "tags": [
-        "floor-function",
-        "divisibility",
         "integers",
-        "multi-step"
+        "factor-pairs",
+        "negative-integers"
       ]
     },
     {
@@ -863,7 +861,7 @@
         "E. I, II and III"
       ],
       "answer": "E",
-      "explanation": "Let v be the exponent of p in the prime factorization of a, so a = p^v x m with m not divisible by p. Then a^2 = p^(2v) x m^2, and the exponent of p in a^2 is 2v - always an EVEN number.\nStep 1 — the hypothesis p^3 | a^2 says 2v >= 3. Since 2v is an even integer, 2v >= 3 forces 2v >= 4, that is v >= 2. This is the whole question: the exponent inside a square cannot be odd, so it cannot stop at 3.\nStep 2 — statement I. v >= 2 means p^2 divides a. TRUE.\nStep 3 — statement II. 2v >= 4 means p^4 divides a^2. TRUE.\nStep 4 — statement III. v >= 2 >= 1, so p divides a. TRUE.\nCheck with the tightest case, p = 2 and a = 4: a^2 = 16, and 2^3 = 8 divides 16, so the hypothesis holds. Then 4 | 4 (I), 16 | 16 (II) and 2 | 4 (III) all hold. Check that no smaller a works: a = 2 gives a^2 = 4, and 8 does not divide 4, so the hypothesis fails there.\nAnswer: E. I, II and III.",
+      "explanation": "Let v be the exponent of p in the prime factorization of a, so a = p^v x m with m not divisible by p. Then a^2 = p^(2v) x m^2, and the exponent of p in a^2 is 2v - always an EVEN number.\nStep 1 — the hypothesis p^3 | a^2 says 2v >= 3. Since 2v is an even integer, 2v >= 3 forces 2v >= 4, that is v >= 2. This is the whole question: the exponent inside a square cannot be odd, so it cannot stop at 3.\nStep 2 — statement I. v >= 2 means p^2 divides a. True.\nStep 3 — statement II. 2v >= 4 means p^4 divides a^2. True.\nStep 4 — statement III. v >= 2 >= 1, so p divides a. True.\nCheck with the tightest case, p = 2 and a = 4: a^2 = 16, and 2^3 = 8 divides 16, so the hypothesis holds. Then 4 | 4 (I), 16 | 16 (II) and 2 | 4 (III) all hold. Check that no smaller a works: a = 2 gives a^2 = 4, and 8 does not divide 4, so the hypothesis fails there.\nAnswer: E. I, II and III.",
       "trap": "Choosing D by stopping at the half-insight: seeing that the exponent in a^2 is even, so p^3 | a^2 upgrades to p^4 | a^2 (II), and that p | a follows (III), but never pushing the same parity argument back into a to get v >= 2 and statement I. Choosing B comes from reading 2v >= 3 as v >= 1.5 and rounding DOWN to v >= 1, which yields only III. Choosing C drops II by treating it as a claim about a rather than about a^2. Choosing A is the mirror of that: having done the real work and derived v >= 2, the student reads II and III as mere restatements of the same fact about a rather than as separate consequences that still have to be checked, and so selects only the statement he feels he actually proved, I.",
       "estimated_time_seconds": 110,
       "tags": [

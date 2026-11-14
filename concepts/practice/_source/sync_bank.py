@@ -1,5 +1,8 @@
 #!/usr/bin/env python3
-"""Write the gold-standard practice questions back into every copy of the bank.
+"""RETIRED 2026-11-10 - do not run. The bank (pro/bank) is now the source of truth and the
+practice sources are refreshed FROM it (see ../README.md). Kept for history.
+
+Write the gold-standard practice questions back into every copy of the bank.
 
 Run from the workspace root (the folder containing gre-pro/ and gre-free/).
 
@@ -16,6 +19,7 @@ Idempotent: running it twice changes nothing the second time.
 """
 import json, os, glob, sys, collections
 
+sys.exit("sync_bank.py is retired: the bank is the source of truth. See concepts/practice/README.md.")
 ROOT = os.path.abspath(sys.argv[1] if len(sys.argv) > 1 else ".")
 SOURCE_DIR = os.path.join(ROOT, "concepts", "practice", "_source")
 TREES = ["gre-pro/bank", "gre-free/bank", "gre-free/pro/bank"]

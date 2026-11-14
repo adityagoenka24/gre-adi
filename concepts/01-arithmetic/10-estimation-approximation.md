@@ -84,7 +84,7 @@ Exact value is 121.2, so the estimate is well inside 1%.
 ## 4. GRE Traps
 
 - **Rounding intermediate steps and then being asked for an exact value.** Estimate only when the question or the answer spread allows it.
-- **Compounding errors in the same direction.** Rounding 4.6 up to 5 and 2.4 down to 2 in a product 4.6 x 2.4 gives 10 vs a true 11.04 — a 10% miss.
+- **Compounding errors in a product — the direction rule flips.** In a *quotient* you round numerator and denominator the same way so the errors cancel. In a *product* that is exactly what compounds them: 4.6 x 2.4 is truly 11.04, and rounding both up to 5 x 3 gives 15, a 36% miss. Rounding one up and the other down (5 x 2 = 10) is the one that partly cancels.
 - **Over-rounding percentages.** Treating 19.8% as 20% is fine; treating 17% as 20% usually is not.
 - **Rounding before simplifying.** Cancel common factors first — often the exact answer becomes easy.
 - **Assuming "approximately" means the answer choices are loose.** Check the spread. Sometimes they are 2% apart.

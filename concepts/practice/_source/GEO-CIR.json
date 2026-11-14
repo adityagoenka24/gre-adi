@@ -1,0 +1,661 @@
+{
+  "set": {
+    "subtopic_id": "GEO-CIR",
+    "topic": "Geometry",
+    "subtopic": "Circles",
+    "capsule": "05-geometry/10-circles.md",
+    "bank_files": [
+      "geometry/circles.json"
+    ],
+    "practice_path": "05-geometry/10-circles-practice.md",
+    "one_liner": "Every arc and sector is just a fraction of the whole circle, and that fraction is the central angle over 360; scaling the radius by k scales area by k squared."
+  },
+  "questions": [
+    {
+      "id": "GEO-CIR-001",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A circle has a radius of 5. What is its area?",
+      "options": [
+        "A. 10π",
+        "B. 20π",
+        "C. 25π",
+        "D. 50π",
+        "E. 100π"
+      ],
+      "answer": "C",
+      "explanation": "Area of a circle = πr². With r = 5: Area = π(5²) = 25π.",
+      "trap": "Using diameter (10) instead of radius (5) in the formula gives π(10²) = 100π.",
+      "estimated_time_seconds": 35,
+      "tags": [
+        "circle-area"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">5</text></svg>"
+    },
+    {
+      "id": "GEO-CIR-002",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "What is the circumference of a circle with diameter 14?",
+      "options": [
+        "A. 7π",
+        "B. 14π",
+        "C. 28π",
+        "D. 49π",
+        "E. 196π"
+      ],
+      "answer": "B",
+      "explanation": "Circumference = 2πr = πd. With diameter = 14: C = π(14) = 14π.",
+      "trap": "Using r = 14 instead of r = 7 gives C = 2π(14) = 28π. Always check if the given value is radius or diameter.",
+      "estimated_time_seconds": 35,
+      "tags": [
+        "circumference"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"33.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"105.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">14</text></svg>"
+    },
+    {
+      "id": "GEO-CIR-003",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "A circle has circumference 10π. What is its radius?",
+      "options": null,
+      "answer": "5",
+      "explanation": "Circumference = 2πr. Set 2πr = 10π. Divide both sides by 2π: r = 10π / 2π = 5.",
+      "trap": "Forgetting to divide by 2 and concluding r = 10 because C = 10π.",
+      "estimated_time_seconds": 40,
+      "tags": [
+        "circumference"
+      ]
+    },
+    {
+      "id": "GEO-CIR-005",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "What is the area of a sector with radius 4 and central angle 90°?",
+      "options": [
+        "A. 2π",
+        "B. 4π",
+        "C. 8π",
+        "D. 16π",
+        "E. 32π"
+      ],
+      "answer": "B",
+      "explanation": "Sector area = (θ/360) × πr² = (90/360) × π(4²) = (1/4) × 16π = 4π.",
+      "trap": "Computing arc length instead of sector area: (90/360) × 2π(4) = 2π. The sector area formula uses πr², not 2πr.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "sector-area"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><path d=\"M 120 120 L 214 120 A 94 94 0 0 0 120 26 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"120\" cy=\"120\" r=\"94\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><line x1=\"120\" y1=\"120\" x2=\"214\" y2=\"120\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"120\" y1=\"120\" x2=\"120\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><circle cx=\"120\" cy=\"120\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><path d=\"M 120 102 A 18 18 0 0 1 138 120\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"139.1\" y=\"102.9\" font-family=\"Georgia,serif\" font-size=\"11\" fill=\"#16191d\" text-anchor=\"start\">90°</text><text x=\"107.8\" y=\"77.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">4</text></svg>"
+    },
+    {
+      "id": "GEO-CIR-006",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "Circle A has radius 3. Circle B has radius 6.\n\nQuantity A: Area of Circle A\nQuantity B: One-fourth the area of Circle B",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "Circle A area = π(3²) = 9π. Circle B area = π(6²) = 36π, and one-fourth of that = 9π. Quantity A = 9π = Quantity B, so the quantities are equal.",
+      "trap": "Assuming that because radius doubles, one-fourth the area equals the smaller circle. Actually this is exactly true: if r₂ = 2r₁, then πr₂²/4 = π(2r₁)²/4 = 4πr₁²/4 = πr₁². The two are equal.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "circle-area",
+        "qc"
+      ]
+    },
+    {
+      "id": "GEO-CIR-009",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A circle has radius r. If the radius is tripled, the new area is how many times the original area?",
+      "options": [
+        "A. 3",
+        "B. 6",
+        "C. 9",
+        "D. 12",
+        "E. 27"
+      ],
+      "answer": "C",
+      "explanation": "Original area = πr². New radius = 3r. New area = π(3r)² = 9πr². Ratio = 9πr²/πr² = 9.",
+      "trap": "Thinking area scales linearly with radius and answering 3. Area scales with the square of radius.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "circle-area",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "GEO-CIR-012",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "A circle has a circumference of 18π. The area of the circle is kπ. What is the value of k?",
+      "options": null,
+      "answer": "81",
+      "explanation": "C = 2πr = 18π → r = 9. Area = πr² = π(9²) = 81π. Coefficient is 81.",
+      "trap": "Forgetting to square r: computing area = π(9) = 9π instead of 81π.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "circumference",
+        "circle-area",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-020",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The area of a sector is 12π and the radius of the circle is 6. What is the central angle of the sector?",
+      "options": [
+        "A. 60°",
+        "B. 90°",
+        "C. 120°",
+        "D. 150°",
+        "E. 180°"
+      ],
+      "answer": "C",
+      "explanation": "Sector area = (θ/360) × πr². So 12π = (θ/360) × π(36) = (θ/360) × 36π. Dividing both sides by 36π: 12/36 = θ/360 → 1/3 = θ/360 → θ = 120°.",
+      "trap": "Setting up 12π = (θ/360) × 6π (using radius instead of r²) and getting θ = 720°, which is impossible.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "sector-area",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-021",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "Two concentric circles have radii 5 and 9. The area of the region between the two circles is kπ. What is the value of k?",
+      "options": null,
+      "answer": "56",
+      "explanation": "Area of ring = Area of large circle − Area of small circle = π(9²) − π(5²) = 81π − 25π = 56π. Coefficient = 56.",
+      "trap": "Subtracting radii first: π(9−5)² = π(4²) = 16π. You must subtract the areas, not compute π(r₂−r₁)².",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "circle-area",
+        "area",
+        "two-step"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><path d=\"M 214 120 A 94 94 0 0 0 26 120 A 94 94 0 0 0 214 120 Z M 172.2 120 A 52.2 52.2 0 0 0 67.8 120 A 52.2 52.2 0 0 0 172.2 120 Z\" fill=\"#d8e1e9\" stroke=\"none\" fill-rule=\"evenodd\"/><circle cx=\"120\" cy=\"120\" r=\"94\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"120\" cy=\"120\" r=\"52.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><line x1=\"120\" y1=\"120\" x2=\"70.9\" y2=\"137.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"120\" y1=\"120\" x2=\"192\" y2=\"59.6\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><circle cx=\"120\" cy=\"120\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><text x=\"92.6\" y=\"125.4\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">5</text><text x=\"170.8\" y=\"70.8\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">9</text></svg>"
+    },
+    {
+      "id": "GEO-CIR-025",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A circle has radius 10. Which of the following could be the arc length of a sector of this circle, if a sector may be the entire circle? Select all that apply.",
+      "options": [
+        "A. 5π",
+        "B. 10π",
+        "C. 20π",
+        "D. 40π",
+        "E. 100π"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "The circumference is 2π(10) = 20π. The arc of a sector (the full circle allowed) can have any length greater than 0 and at most 20π. A: 5π ≤ 20π, true (a 90° sector). B: 10π ≤ 20π, true (a semicircle). C: 20π equals the circumference, true (the full circle). D: 40π is twice the circumference, false. E: 100π is the circle's area πr², not an arc length, false.",
+      "trap": "Treating the area πr² = 100π as an arc length (E), or doubling the circumference to 4πr = 40π (D). Some students also reject 20π because a full circle does not look like a sector.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "arc-length",
+        "multiple-answer",
+        "conceptual"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 210 215\" width=\"210\" height=\"215\" role=\"img\"><circle cx=\"105.0\" cy=\"105.0\" r=\"72.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"105\" cy=\"105\" r=\"2.4\" fill=\"#16191d\"/><line x1=\"105.0\" y1=\"105.0\" x2=\"177.0\" y2=\"105.0\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"141.0\" y=\"97.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">10</text></svg>"
+    },
+    {
+      "id": "GEO-CIR-026",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A circle has radius 12. What is the length of an arc that subtends a central angle of 150°?",
+      "options": [
+        "A. 5π",
+        "B. 10π",
+        "C. 15π",
+        "D. 20π",
+        "E. 24π"
+      ],
+      "answer": "B",
+      "explanation": "Arc length = (θ/360) × 2πr = (150/360) × 2π(12) = (5/12) × 24π = 10π.",
+      "trap": "Using 150/360 = 5/12 correctly but then multiplying by πr (= 12π) instead of 2πr (= 24π): (5/12) × 12π = 5π.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "arc-length"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><circle cx=\"120\" cy=\"120\" r=\"94\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><line x1=\"120\" y1=\"120\" x2=\"167\" y2=\"201.4\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"120\" y1=\"120\" x2=\"120\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><circle cx=\"120\" cy=\"120\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><path d=\"M 120 102 A 18 18 0 0 1 129 135.6\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"146.1\" y=\"116.3\" font-family=\"Georgia,serif\" font-size=\"11\" fill=\"#16191d\" text-anchor=\"start\">150°</text><text x=\"107.8\" y=\"77.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">12</text></svg>"
+    },
+    {
+      "id": "GEO-CIR-027",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Circle P has radius r. Circle Q has circumference equal to the area of Circle P.\n\nQuantity A: Radius of Circle Q\nQuantity B: r²/2",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "Area of Circle P = πr². Circumference of Circle Q = πr². So 2πR = πr² where R is radius of Q. Solving: R = πr²/(2π) = r²/2. Quantity A = r²/2 = Quantity B. They are equal.",
+      "trap": "Setting area of P equal to area of Q (instead of circumference of Q) giving R = r, then concluding Quantity B = r²/2 < r for r > 2.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "circle-area",
+        "circumference",
+        "qc",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-031",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A wheel of radius 2 feet rolls along a flat surface. How many complete rotations does it make to travel 40π feet?",
+      "options": [
+        "A. 5",
+        "B. 10",
+        "C. 20",
+        "D. 40",
+        "E. 80"
+      ],
+      "answer": "B",
+      "explanation": "One complete rotation covers a distance equal to the circumference = 2π(2) = 4π feet. Number of rotations = 40π / 4π = 10.",
+      "trap": "Using the radius (2) directly: 40π/2 = 20π, then not dividing by π to get a number.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "circumference",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-032",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A semicircle has diameter 8.\n\nQuantity A: Area of the semicircle\nQuantity B: Area of a circle with circumference 4π",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "A",
+      "explanation": "Quantity A: Semicircle with diameter 8 → r = 4. Area = πr²/2 = π(16)/2 = 8π. Quantity B: Circumference = 4π → 2πr = 4π → r = 2. Area = π(4) = 4π. Quantity A (8π) > Quantity B (4π).",
+      "trap": "For Quantity B, computing r = 4 from circumference 4π by skipping the factor of 2: 2πr = 4π so r = 4 (wrong) gives area = 16π.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "circle-area",
+        "circumference",
+        "qc",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-033",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A circle has a sector with area 27π and central angle 120°. What is the radius of the circle?",
+      "options": null,
+      "answer": "9",
+      "explanation": "Sector area = (θ/360)πr². So 27π = (120/360)πr² = (1/3)πr². Then r² = 81 and r = 9.",
+      "trap": "Solving for r² = 81 and then reporting 81 instead of taking the square root to get r = 9.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "sector-area",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-039",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A circle has area 100π. What is the arc length of a sector with central angle 72°?",
+      "options": [
+        "A. 2π",
+        "B. 4π",
+        "C. 5π",
+        "D. 10π",
+        "E. 20π"
+      ],
+      "answer": "B",
+      "explanation": "Area = πr² = 100π → r² = 100 → r = 10. Arc length = (72/360) × 2π(10) = (1/5) × 20π = 4π.",
+      "trap": "Confusing sector area with arc length: (72/360) × 100π = 20π. That is a fraction of the total area, not arc length.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "circle-area",
+        "arc-length",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-044",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A circle has radius r > 0.\n\nQuantity A: Area of a sector with central angle 120°\nQuantity B: (1/3) × circumference of the same circle",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "D",
+      "explanation": "Quantity A: (120/360)πr² = (1/3)πr². Quantity B: (1/3)(2πr) = (2/3)πr. Comparing (1/3)πr² vs (2/3)πr. Divide both by (1/3)π: r² vs 2r → r vs 2. If r < 2, Quantity B > Quantity A. If r = 2, they're equal. If r > 2, Quantity A > Quantity B. The relationship cannot be determined without knowing r.",
+      "trap": "Thinking sector area and arc length are always comparable without considering r, and selecting C.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "sector-area",
+        "circumference",
+        "qc",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "GEO-CIR-056",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A sector has radius 9 and arc length 6π. The area of the sector is kπ. What is the value of k?",
+      "options": null,
+      "answer": "27",
+      "explanation": "First find the central angle. Arc length = (θ/360) × 2πr → 6π = (θ/360) × 2π(9) = (θ/360) × 18π. So θ/360 = 6π/18π = 1/3 → θ = 120°. Sector area = (θ/360) × πr² = (1/3) × π(81) = 27π. Coefficient = 27. Alternative: sector area = (1/2) × r × arc length = (1/2)(9)(6π) = 27π.",
+      "trap": "Forgetting the elegant formula: sector area = (1/2)r × arc length. Students who use the long route may make arithmetic errors.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "sector-area",
+        "arc-length",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-060",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A circle has center (0, 0) and radius 5. Which of the following points lie strictly INSIDE the circle? Select all that apply.",
+      "options": [
+        "A. (3, 4)",
+        "B. (−4, 2)",
+        "C. (0, 5)",
+        "D. (2, −4)",
+        "E. (1, 4)"
+      ],
+      "answer": [
+        "B",
+        "D",
+        "E"
+      ],
+      "explanation": "A point (x, y) is strictly inside when x² + y² < 25. A: 9 + 16 = 25 (on the circle) ✗; B: 16 + 4 = 20 < 25 ✓; C: 0 + 25 = 25 (on the circle) ✗; D: 4 + 16 = 20 < 25 ✓; E: 1 + 16 = 17 < 25 ✓. So B, D, and E.",
+      "trap": "Confusing 'strictly inside' with 'on or inside': including points A and C which lie exactly on the circle.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "circle-area",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "GEO-CIR-068",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A circular garden with a radius of 10 meters is surrounded by a path that is 2 meters wide. What is the area of the path, in square meters?",
+      "options": [
+        "A. 4π",
+        "B. 24π",
+        "C. 40π",
+        "D. 44π",
+        "E. 144π"
+      ],
+      "answer": "D",
+      "explanation": "The outer edge of the path is a circle of radius 10 + 2 = 12 meters.\nArea inside the outer edge: π * 12^2 = 144π.\nArea of the garden: π * 10^2 = 100π.\nArea of the path: 144π - 100π = 44π.\nAnswer: D.",
+      "trap": "Squaring the width alone, π * 2^2 = 4π (choice A), or multiplying the garden's circumference by the width, 20π * 2 = 40π (choice C). The path is the region between circles of radius 12 and radius 10.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "circles",
+        "area"
+      ]
+    },
+    {
+      "id": "GEO-CIR-KMF-012",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Arc PQ of a circle is 21 units long and makes up 35 percent of the circle's circumference.\nQuantity A: The radius of the circle\nQuantity B: 10",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "B",
+      "explanation": "Circumference = 21 / 0.35 = 60.\nRadius = circumference / (2 * pi) = 60/(2 pi) = 30/pi.\nSince pi is greater than 3, 30/pi is less than 30/3 = 10. (30/3.14 is about 9.55.)\nQuantity A is under 10, so Quantity B is greater.\nCheck: 2 * pi * 9.55 is about 60 and 35 percent of 60 is 21.",
+      "trap": "Rounding pi to 3, which makes the radius exactly 10 and suggests the quantities are equal (choice C).",
+      "estimated_time_seconds": 60,
+      "tags": [
+        "arc-length",
+        "circumference-radius",
+        "pi-estimate"
+      ],
+      "origin": "kmf1804",
+      "origin_set": "Section 33 Base",
+      "source_pages": [
+        206
+      ]
+    },
+    {
+      "id": "GEO-CIR-KMF-025",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A sprinkler at the center of a circular lawn of radius 12 meters waters a sector-shaped part of the lawn. The watered area is 30pi square meters. What is the length, in meters, of the arc along the lawn's edge that bounds the watered region?",
+      "options": [
+        "A. 5pi/2",
+        "B. 5pi",
+        "C. 24pi",
+        "D. 30pi",
+        "E. 60pi"
+      ],
+      "answer": "B",
+      "explanation": "1. The watered region is a sector. Its area is the fraction f of the whole lawn: f = 30pi / (pi * 12^2) = 30/144 = 5/24.\n2. The arc is the same fraction of the circumference: 2 * pi * 12 = 24pi.\n3. Arc length = (5/24) * 24pi = 5pi.\nCheck with the formula area = (1/2) * radius * arc length: (1/2) * 12 * 5pi = 30pi, as given.\nOther choices: 24pi is the whole circumference; 30pi repeats the area; 60pi is 2 * area with no division by the radius.",
+      "trap": "Using area = radius * arc length and forgetting the factor of 1/2 gives arc = 30pi / 12 = 5pi/2, which is choice A.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "sector-area",
+        "arc-length"
+      ],
+      "origin": "kmf1804",
+      "origin_set": "Section 62 Hard",
+      "source_pages": [
+        410
+      ]
+    },
+    {
+      "id": "SEC-CS-006",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "A circular jogging track of uniform width is to be laid around a circular lawn whose diameter is 80 meters. The outer edge of the track must have a length between 120*pi meters and 260*pi meters. Which of the following could be the width, in meters, of the track?\n\nIndicate all such values.",
+      "options": [
+        "A. 10",
+        "B. 25",
+        "C. 40",
+        "D. 75",
+        "E. 95",
+        "F. 120"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "The lawn has diameter 80, so its radius, which is also the inner radius of the track, is 40. The outer edge is a circle of circumference 2*pi*R, so a circumference between 120*pi and 260*pi means 2R is between 120 and 260, giving an outer radius R between 60 and 130. The width of the track is R - 40, which therefore lies strictly between 20 and 90. Of the choices, 25, 40 and 75 fall in that range.",
+      "trap": "Students forget to subtract the inner radius and test the choices against 60 to 130 directly, which wrongly admits 75 and 95 and 120 while excluding 25 and 40. The width is the difference of the two radii, not the outer radius itself.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "annulus",
+        "circumference"
+      ]
+    },
+    {
+      "id": "GEO-CIR-050",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "Three circles, each with radius 2, are mutually externally tangent to each other. What is the area of the region bounded between the three circles (the 'gap' in the middle)?",
+      "options": [
+        "A. 4√3 − 4π",
+        "B. 2√3 − π",
+        "C. 4√3 − 2π",
+        "D. 4√3 − 4π/3",
+        "E. 4√3 − π"
+      ],
+      "answer": "C",
+      "explanation": "Joining the three centers gives an equilateral triangle of side 2 + 2 = 4, with area (√3/4)(4²) = 4√3. Inside it, each circle contributes a 60° sector of radius 2, totaling 3 × (60/360)π(2²) = 3 × (1/6)(4π) = 2π. The central gap = 4√3 − 2π.",
+      "trap": "Using r = 2 but computing sectors with r = 4 (the side length), or forgetting to multiply sector area by 3.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "sector-area",
+        "area",
+        "multi-step"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 253 240\" width=\"253\" height=\"240\" role=\"img\"><path d=\"M 126.5 163.6 A 50.4 50.4 0 0 1 151.7 120 A 50.4 50.4 0 0 1 101.3 120 A 50.4 50.4 0 0 1 126.5 163.6 Z\" fill=\"#d8e1e9\" stroke=\"none\" fill-rule=\"evenodd\"/><circle cx=\"76.1\" cy=\"163.6\" r=\"50.4\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"176.9\" cy=\"163.6\" r=\"50.4\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><circle cx=\"126.5\" cy=\"76.4\" r=\"50.4\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><line x1=\"76.1\" y1=\"163.6\" x2=\"34.9\" y2=\"192.5\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><circle cx=\"76.1\" cy=\"163.6\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><circle cx=\"176.9\" cy=\"163.6\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><circle cx=\"126.5\" cy=\"76.4\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><text x=\"59.8\" y=\"188.6\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">2</text></svg>"
+    },
+    {
+      "id": "GEO-CIR-058",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Circle C₁ has radius r₁ and circle C₂ has radius r₂, where r₁ + r₂ = 10.\n\nQuantity A: Sum of the areas of C₁ and C₂\nQuantity B: Area of a circle with radius 5",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "A",
+      "explanation": "Quantity B = π(5²) = 25π. Quantity A = π(r₁²) + π(r₂²) = π(r₁² + r₂²). We need to compare r₁² + r₂² with 25 given r₁ + r₂ = 10. By the identity (r₁+r₂)² = r₁²+r₂²+2r₁r₂: 100 = r₁²+r₂²+2r₁r₂ → r₁²+r₂² = 100−2r₁r₂. Because (r₁ − r₂)² ≥ 0, 4r₁r₂ ≤ (r₁+r₂)² = 100, so r₁r₂ ≤ 25. So r₁²+r₂² = 100−2r₁r₂ ≥ 100−50 = 50 > 25. Equality only when r₁ = r₂ = 5, but then Quantity A = π(25+25) = 50π > 25π = Quantity B. Quantity A is always strictly greater (≥ 50π > 25π).",
+      "trap": "Thinking that since r₁ + r₂ = 10 = 2×5, the sum of areas equals the area of one circle with radius 5. Area is not linear in radius.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "circle-area",
+        "qc",
+        "conceptual",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "GEO-CIR-KMF2-001",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "The figure above consists of an equilateral triangle with sides of length 10 and 3 semicircles, each having one side of the triangle as its diameter. All 4 regions are shaded.\nQuantity A: The combined area of the 4 shaded regions\nQuantity B: 150",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "A",
+      "explanation": "The semicircles stick out from the triangle and meet only at its vertices, so the four regions do not overlap and their areas simply add.\nThe triangle is equilateral with side 10. Its area is (sqrt(3)/4)(10^2) = 25sqrt(3), which is about 25(1.732) = 43.3.\nEach semicircle has the side of length 10 as its diameter, so its radius is 5 and its area is (1/2)pi(5^2) = 12.5pi.\nThree of them give 37.5pi, which is about 37.5(3.14) = 117.8.\nThe total shaded area is about 43.3 + 117.8 = 161.1.\nSince 161.1 is greater than 150, Quantity A is greater.",
+      "trap": "Students treat each shape as a full circle rather than a semicircle, or count only the three semicircles and leave the triangle out. Leaving the triangle out gives about 117.8, which would reverse the comparison.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "circles",
+        "composite-area",
+        "equilateral-triangle"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 502 339\" width=\"502\" height=\"339\" role=\"img\"><path d=\"M 276 212.8 L 176 212.8 A 100 100 0 0 0 376 212.8 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 326 126.2 L 376 212.8 A 100 100 0 0 0 276 39.6 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 226 126.2 L 276 39.6 A 100 100 0 0 0 176 212.8 Z\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\"/><polygon points=\"176,212.8 376,212.8 276,39.6\" fill=\"#d8e1e9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><text x=\"276\" y=\"201.1\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">10</text></svg>",
+      "origin": "kmf1804_p2",
+      "origin_set": "4.3.4",
+      "source_pages": [
+        604
+      ]
+    },
+    {
+      "id": "SEC-CS-005",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A square has sides of length 6. On each side of the square a semicircle is drawn outside the square, using that side as its diameter, and each semicircle touches the large circle shown at exactly one point. What is the total area of the four shaded regions?",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><path d=\"M 214 120 A 94 94 0 0 0 26 120 A 94 94 0 0 0 214 120 Z M 167 73 A 47 47 0 0 0 73 73 A 47 47 0 0 0 73 167 A 47 47 0 0 0 167 167 A 47 47 0 0 0 167 73 Z\" fill=\"#d8e1e9\" stroke=\"none\" fill-rule=\"evenodd\"/><circle cx=\"120\" cy=\"120\" r=\"94\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><polygon points=\"73,167 167,167 167,73 73,73\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><path d=\"M 167 73 A 47 47 0 0 0 73 73\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 73 73 A 47 47 0 0 0 73 167\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 73 167 A 47 47 0 0 0 167 167\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><path d=\"M 167 167 A 47 47 0 0 0 167 73\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><text x=\"120\" y=\"161.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">6</text></svg>",
+      "options": [
+        "A. 9*pi - 18",
+        "B. 18*pi - 36",
+        "C. 18*pi - 18",
+        "D. 24*pi - 36",
+        "E. 36*pi - 36"
+      ],
+      "answer": "B",
+      "explanation": "Each semicircle has diameter 6 and so radius 3, and it bulges 3 units beyond the side it sits on. The center of the square is 3 units from each side, so the farthest point of every semicircle is 3 + 3 = 6 units from the center; that is where it touches the large circle, so the large circle has radius 6 and area 36*pi. The square and the four semicircles together cover 36 + 4(1/2)(pi)(3^2) = 36 + 18*pi, and adjacent semicircles only meet at the corners of the square, so nothing is double counted. The shaded area is 36*pi - 36 - 18*pi = 18*pi - 36.",
+      "trap": "Students take the radius of the large circle to be half the diagonal of the square, 3*sqrt(2), instead of noticing that the semicircles reach farther out than the corners do. Others subtract only the semicircles and forget the square itself, arriving at 18*pi.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "shaded-region",
+        "semicircles"
+      ]
+    },
+    {
+      "id": "SEC-CS-010",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "The area of a circle with radius m is greater than the area of a square with sides of length t*m, where m and t are both positive. Which of the following could be the value of t?\n\nIndicate all such values.",
+      "options": [
+        "A. 1/2",
+        "B. 5/4",
+        "C. 7/4",
+        "D. 9/5",
+        "E. 11/6",
+        "F. 2"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "The circle has area pi*m^2 and the square has area (t*m)^2 = t^2*m^2. Since m^2 is positive, the condition reduces to t^2 < pi, that is t < sqrt(pi), which is about 1.7725. Now test the choices: 1/2 and 5/4 are clearly below that; 7/4 = 1.75 and (7/4)^2 = 3.0625, which is less than pi, so it works; 9/5 = 1.8, 2, and 11/6 which is about 1.833 all exceed 1.7725 and fail.",
+      "trap": "Students compare t itself with pi rather than comparing t^2 with pi, which would wrongly admit every choice here since all are below 3.14. The squaring is what makes 7/4 and 9/5 land on opposite sides of the boundary despite being close together.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "area-comparison",
+        "inequalities"
+      ]
+    },
+    {
+      "id": "SEC-CS-022",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A gardener builds a flower bed in the shape of a semicircle, using a straight stone wall as the flat edge and 30 feet of fencing along the curved edge. The area of the flower bed is k/pi square feet. What is the value of k?",
+      "options": null,
+      "answer": "450",
+      "explanation": "The curved edge of a semicircle of radius r has length pi*r, so pi*r = 30 and r = 30/pi. The area of a semicircle is half the area of the full circle, that is (1/2)pi*r^2. Substituting gives (1/2)*pi*(30/pi)^2 = (1/2)*pi*(900/pi^2) = 450/pi. So k = 450.",
+      "trap": "Students treat the 30 feet as the full circumference and set 2*pi*r = 30, halving the radius and cutting the area to a quarter of the correct value. Only the curved half of the boundary is fenced; the straight diameter is the wall and contributes no fencing.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "semicircle",
+        "area"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 167\" width=\"330\" height=\"167\" role=\"img\"><path d=\"M 69.1 141 A 95.9 95.9 0 0 1 260.9 141 Z\" fill=\"#d8e1e9\" stroke=\"none\" fill-rule=\"evenodd\"/><path d=\"M 260.9 141 A 95.9 95.9 0 0 0 69.1 141\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\"/><line x1=\"26\" y1=\"141\" x2=\"304\" y2=\"141\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"165\" y=\"37.5\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">30</text></svg>"
+    },
+    {
+      "id": "SEC-CS-036",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Circle C and square S have the same perimeter. Which of the following statements must be true?\n\nIndicate all such statements.",
+      "options": [
+        "A. The area enclosed by C is greater than the area enclosed by S.",
+        "B. The ratio of the area enclosed by C to the area enclosed by S is 4/pi.",
+        "C. The area enclosed by C is more than 25 percent greater than the area enclosed by S.",
+        "D. The area enclosed by C is exactly twice the area enclosed by S.",
+        "E. The two enclosed areas are equal.",
+        "F. The ratio of the area enclosed by C to the area enclosed by S is pi/4."
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "Call the common perimeter p. For the circle, 2*pi*r = p gives r = p/(2*pi), so its area is pi*r^2 = p^2/(4*pi). For the square, the side is p/4, so its area is p^2/16. Dividing, the ratio of circle area to square area is 16/(4*pi) = 4/pi, which is about 1.273. That makes B true and F false, since pi/4 is the reciprocal and is less than 1. A ratio above 1 makes A true, and 1.273 means the circle encloses about 27.3 percent more area, so C is true while D and E are false.",
+      "trap": "Students reach for pi/4, the familiar ratio of a circle's area to the area of the square that circumscribes it, and endorse F. That ratio applies when the square's side equals the circle's diameter, not when the two figures share a perimeter; with equal perimeters the circle is the larger region, so the ratio must exceed 1.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "perimeter",
+        "area-comparison"
+      ]
+    }
+  ]
+}

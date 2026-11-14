@@ -11,7 +11,7 @@ LEVELS = [
     ("easy", "Level 1 · Easy", "warm-up — these must be automatic"),
     ("medium", "Level 2 · Medium", "two or three steps, one planted trap each"),
     ("hard", "Level 3 · Hard", "where 162+ is won or lost"),
-    ("extreme_hard", "Level 4 · Extreme", "165+ — expect to need the insight, not the grind"),
+    ("extreme_hard", "Level 4 · Extreme", "the top of a real hard section — expect to need the insight, not the grind"),
 ]
 
 TYPE_LABEL = {
@@ -22,7 +22,7 @@ TYPE_LABEL = {
 }
 
 QC_KEY = """> **Quantitative Comparison — the four choices are always the same, so they are not reprinted:**
-> **(A)** Column A is greater · **(B)** Column B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
+> **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 """
 
 
@@ -40,7 +40,7 @@ def render_stem(q):
             p = p.strip()
             if not p:
                 continue
-            if p.startswith("Column A") or p.startswith("Column B"):
+            if p.startswith(("Column A", "Column B", "Quantity A", "Quantity B")):
                 head, body = p.split(":", 1)
                 cols.append("> **{}:**  {}".format(head.strip(), body.strip()))
             else:
@@ -65,11 +65,53 @@ def render_options(q):
     return "  \n".join(lines)
 
 
+def render_table(td):
+    """table_data -> a native markdown table (prints and searches better than an image)."""
+    heads = td.get("headers") or []
+    rows = td.get("rows") or []
+    if not heads and not rows:
+        return ""
+    if not heads:
+        heads = [""] * len(rows[0])
+    L = ["| " + " | ".join(str(h) for h in heads) + " |",
+         "|" + "---|" * len(heads)]
+    for r in rows:
+        L.append("| " + " | ".join(str(c) for c in r) + " |")
+    title = (td.get("title") or "").strip()
+    if title:
+        L.insert(0, "**{}**".format(title.upper()))
+        L.insert(1, "")
+    return "\n".join(L)
+
+
+def render_exhibit(q, assets_dir, warn):
+    """Figure or chart as a relative image link; table_data as a markdown table."""
+    out = []
+    if q.get("svg") or q.get("chart"):
+        name = q["id"] + ".png"
+        if os.path.exists(os.path.join(assets_dir, name)):
+            out.append("![Figure for {}](assets/{})".format(q["id"], name))
+        else:
+            warn.append("{}: has {} but assets/{} is missing — run render_assets.py".format(
+                q["id"], "svg" if q.get("svg") else "chart", name))
+    if q.get("table_data"):
+        t = render_table(q["table_data"])
+        if t:
+            out.append(t)
+    if not out and q.get("figure_description"):
+        warn.append("{}: figure_description with no drawn figure — the skill bans shipping "
+                    "a prose figure box; redraw it or drop the question".format(q["id"]))
+        out.append("*Figure: {}*".format(q["figure_description"].strip().rstrip(".") + "."))
+    return "\n\n".join(out)
+
+
 def render_explanation(text):
     return "\n".join(l.strip() for l in text.split("\n") if l.strip())
 
 
 def build(patch_path, out_path):
+    assets_dir = os.path.join(os.path.dirname(out_path), "assets")
+    warn = []
     with open(patch_path) as f:
         data = json.load(f)
     s = data["set"]
@@ -127,8 +169,9 @@ def build(patch_path, out_path):
             L.append("")
             L.append(render_stem(q))
             L.append("")
-            if q.get("figure_description"):
-                L.append("*Figure: {}*".format(q["figure_description"].strip().rstrip(".") + "."))
+            ex = render_exhibit(q, assets_dir, warn)
+            if ex:
+                L.append(ex)
                 L.append("")
             opts = render_options(q)
             if opts:
@@ -162,7 +205,10 @@ def build(patch_path, out_path):
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, "w") as f:
         f.write("\n".join(L).rstrip() + "\n")
-    print("wrote", out_path, len(qs), "questions")
+    n_ex = sum(1 for q in qs if q.get("svg") or q.get("chart") or q.get("table_data"))
+    print("wrote", out_path, len(qs), "questions,", n_ex, "with an exhibit")
+    for w in warn:
+        print("  WARN", w)
 
 
 if __name__ == "__main__":

@@ -2,117 +2,678 @@
   "set": {
     "subtopic_id": "GEO-PYT",
     "topic": "Geometry",
-    "subtopic": "Pythagorean Theorem",
+    "subtopic": "The Pythagorean Theorem",
     "capsule": "05-geometry/03-pythagorean-theorem.md",
     "bank_files": [
       "geometry/pythagorean_theorem.json"
     ],
     "practice_path": "05-geometry/03-pythagorean-theorem-practice.md",
-    "one_liner": "Name the hypotenuse first - it is the side opposite the right angle and the longest side - then a^2 + b^2 = c^2 turns every right-triangle, rectangle-diagonal, box-diagonal and distance question into the same single equation."
+    "one_liner": "Know 3-4-5, 5-12-13, 8-15-17 and 7-24-25 on sight; the theorem runs backwards to find a leg, and it reaches into three dimensions for a space diagonal."
   },
   "questions": [
     {
-      "id": "GEO-PYT-002",
+      "id": "GEO-PYT-001",
       "difficulty": "easy",
       "type": "mcq",
-      "question": "A right triangle has a hypotenuse of length 13 and one leg of length 5. What is the length of the other leg?",
+      "question": "A right triangle has legs of length 3 and 4. What is the length of the hypotenuse?",
       "options": [
-        "A. 8",
-        "B. 12",
-        "C. sqrt(194)",
-        "D. 18",
-        "E. 144"
+        "A. 5",
+        "B. 6",
+        "C. 7",
+        "D. 12",
+        "E. 25"
       ],
-      "answer": "B",
-      "explanation": "Step 1 - name the hypotenuse. The 13 is the hypotenuse, so it is the c in a^2 + b^2 = c^2. The 5 is a leg.\nStep 2 - because the unknown is a LEG, subtract: b^2 = c^2 - a^2 = 13^2 - 5^2 = 169 - 25 = 144.\nStep 3 - take the square root: b = sqrt(144) = 12.\nFaster route: 5-12-13 is one of the triples worth memorising, so 5 and 13 force 12 with no arithmetic at all.\nCheck: 5^2 + 12^2 = 25 + 144 = 169 = 13^2. Correct.\nAnswer: B.",
-      "trap": "Adding the squares instead of subtracting them: 169 + 25 = 194, giving sqrt(194) = about 13.93, which is option C - and it is impossible, since a leg can never be longer than the hypotenuse. Stopping at 144 without taking the square root gives option E, and subtracting the lengths rather than the squares (13 - 5) gives option A.",
-      "estimated_time_seconds": 45,
-      "tags": [
-        "finding-a-leg",
-        "pythagorean-triples"
-      ]
-    },
-    {
-      "id": "GEO-PYT-014",
-      "difficulty": "easy",
-      "type": "mcq",
-      "question": "The sides of a triangle are 6, 8, and 11. Which of the following correctly describes the triangle?",
-      "options": [
-        "A. Right, since 6^2 + 8^2 = 100 and sqrt(100) = 10",
-        "B. Right, since 6 + 8 > 11",
-        "C. Acute, since 8^2 + 11^2 = 185 > 36 = 6^2",
-        "D. Acute, since 6^2 + 8^2 = 100 < 121 = 11^2",
-        "E. Obtuse, since 6^2 + 8^2 = 100 < 121 = 11^2"
-      ],
-      "answer": "E",
-      "explanation": "Step 1 - identify the longest side. It is 11, so 11 is the side the test must be run against.\nStep 2 - square the two shorter sides and add: 6^2 + 8^2 = 36 + 64 = 100.\nStep 3 - square the longest side: 11^2 = 121.\nStep 4 - compare. 100 < 121, so a^2 + b^2 < c^2, which is the obtuse test. The angle opposite the side of length 11 is greater than 90 degrees.\nCheck the other two outcomes: equality would mean right, and 100 > 121 would mean acute. Neither holds.\nAnswer: E.",
-      "trap": "Option D runs the comparison correctly and then reads it backwards: a^2 + b^2 LESS than c^2 means the triangle opens out past 90 degrees, so it is obtuse, not acute. Option A computes sqrt(100) = 10, the hypotenuse the triangle would need in order to be right, and then ignores that the third side is actually 11. Options B and C test the wrong thing: 6 + 8 > 11 only says the triangle exists, and option C compares against 6 instead of against the longest side 11.",
-      "estimated_time_seconds": 55,
-      "tags": [
-        "converse",
-        "obtuse-test"
-      ]
-    },
-    {
-      "id": "GEO-PYT-007",
-      "difficulty": "easy",
-      "type": "numeric_entry",
-      "question": "In the coordinate plane, point A is at (0, 0) and point B is at (3, 4). What is the distance AB? Enter your answer as a number.",
-      "options": null,
-      "answer": "5",
-      "explanation": "Step 1 - the distance formula IS the Pythagorean theorem. Drop a vertical from B and a horizontal from A; they meet at (3, 0) and form a right triangle whose legs are the two gaps.\nStep 2 - horizontal leg = 3 - 0 = 3. Vertical leg = 4 - 0 = 4.\nStep 3 - the distance is the hypotenuse: AB^2 = 3^2 + 4^2 = 9 + 16 = 25, so AB = sqrt(25) = 5.\nFaster route: 3-4-5 is a triple, so the answer is 5 on sight.\nCheck: 5 is bigger than each leg (3 and 4) and smaller than their sum (7), exactly as a hypotenuse must be. Correct.\nAnswer: 5.",
-      "trap": "Answering 7 by adding the legs, which is the c = a + b error; or answering 25 by forgetting the final square root. A third slip is answering 1, subtracting the coordinates as if distance were 4 - 3.",
+      "answer": "A",
+      "explanation": "Apply the Pythagorean theorem: c² = a² + b².\nc² = 3² + 4² = 9 + 16 = 25.\nc = √25 = 5.\nThis is the classic (3, 4, 5) Pythagorean triple.",
+      "trap": "Students who forget to take the square root at the end select E (25) instead of 5.",
       "estimated_time_seconds": 40,
       "tags": [
-        "distance-formula",
-        "pythagorean-triples"
-      ]
+        "pythagorean-theorem",
+        "pythagorean-triple",
+        "right-triangle"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 285 230\" width=\"285\" height=\"230\" role=\"img\"><polygon points=\"45.0,190.0 215.0,190.0 45.0,62.5\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><polyline points=\"56.0,190.0 56.0,179.0 45.0,179.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"130.0\" y=\"210.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\">4</text><text x=\"35.0\" y=\"130.2\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\" style=\"\">3</text></svg>"
     },
     {
-      "id": "GEO-PYT-013",
+      "id": "GEO-PYT-004",
       "difficulty": "easy",
-      "type": "quantitative_comparison",
-      "question": "A right triangle has legs of length 3 and 4.\nColumn A: The perimeter of the triangle\nColumn B: 12",
+      "type": "mcq",
+      "question": "What is the length of the diagonal of a rectangle with length 5 and width 12?",
       "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
+        "A. 11",
+        "B. 13",
+        "C. 15",
+        "D. 17",
+        "E. 60"
       ],
-      "answer": "C",
-      "explanation": "Step 1 - the perimeter needs all three sides, so find the hypotenuse first.\nStep 2 - both given sides are legs, so the unknown is the hypotenuse: c^2 = 3^2 + 4^2 = 9 + 16 = 25, c = 5.\nStep 3 - perimeter = 3 + 4 + 5 = 12.\nStep 4 - Column A = 12 and Column B = 12, so the two quantities are equal.\nCheck: 5 is the longest side, as the hypotenuse must be. Correct.\nAnswer: C.",
-      "trap": "Reading c = a + b and taking the hypotenuse to be 3 + 4 = 7. That gives a perimeter of 14 and points at option A. The theorem adds the SQUARES, never the sides: 3 + 4 = 7 is exactly the error the 3-4-5 triangle is famous for exposing.",
+      "answer": "B",
+      "explanation": "The diagonal of a rectangle divides it into two right triangles. The diagonal is the hypotenuse.\nc² = 5² + 12² = 25 + 144 = 169.\nc = √169 = 13.\nThis is the (5, 12, 13) Pythagorean triple.",
+      "trap": "Students who add 5 + 12 = 17 (treating the diagonal as the sum of the sides) select D.",
       "estimated_time_seconds": 45,
       "tags": [
-        "perimeter",
-        "pythagorean-triples",
+        "pythagorean-theorem",
+        "pythagorean-triple",
+        "right-triangle"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 126 230\" width=\"126\" height=\"230\" role=\"img\"><polygon points=\"25.9,204 100.1,204 100.1,26 25.9,26\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"25.9\" y1=\"204\" x2=\"100.1\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><text x=\"63\" y=\"222.9\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">5</text><text x=\"14.9\" y=\"119.7\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">12</text></svg>"
+    },
+    {
+      "id": "GEO-PYT-005",
+      "difficulty": "easy",
+      "type": "quantitative_comparison",
+      "question": "A right triangle has legs a = 9 and b = 12.\n\nQuantity A: The hypotenuse of the triangle\nQuantity B: 15",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "Apply the Pythagorean theorem: c² = 9² + 12² = 81 + 144 = 225.\nc = √225 = 15.\nQuantity A = 15 = Quantity B.\nThis is a scaled (3, 4, 5) triple multiplied by 3: (9, 12, 15).",
+      "trap": "Students who estimate rather than compute may doubt that the hypotenuse is exactly 15 and select D.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "pythagorean-theorem",
+        "pythagorean-triple",
         "qc"
       ]
     },
     {
-      "id": "GEO-PYT-019",
+      "id": "GEO-PYT-006",
       "difficulty": "easy",
-      "type": "multiple_answer",
-      "question": "Which of the following sets of three numbers can be the side lengths of a right triangle? Select all that apply.",
+      "type": "mcq",
+      "question": "Which of the following sets of three numbers can be the side lengths of a right triangle?",
       "options": [
-        "A. 4, 6, 8",
-        "B. 6, 9, 12",
-        "C. 9, 12, 15",
-        "D. 10, 24, 26",
-        "E. 16, 30, 34"
+        "A. 2, 3, 4",
+        "B. 3, 4, 6",
+        "C. 5, 12, 13",
+        "D. 6, 7, 8",
+        "E. 4, 5, 7"
+      ],
+      "answer": "C",
+      "explanation": "Test each set using a² + b² = c² (c is the largest value):\nA: 2² + 3² = 4 + 9 = 13 ≠ 4² = 16. Not a right triangle.\nB: 3² + 4² = 9 + 16 = 25 ≠ 6² = 36. Not a right triangle.\nC: 5² + 12² = 25 + 144 = 169 = 13². YES — right triangle!\nD: 6² + 7² = 36 + 49 = 85 ≠ 8² = 64. Not a right triangle.\nE: 4² + 5² = 16 + 25 = 41 ≠ 7² = 49. Not a right triangle.\nOnly option C satisfies the Pythagorean theorem.",
+      "trap": "Students may assume any set with familiar-looking numbers forms a right triangle without verifying with the theorem.",
+      "estimated_time_seconds": 55,
+      "tags": [
+        "pythagorean-theorem",
+        "pythagorean-triple",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "GEO-PYT-008",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "A right triangle has a hypotenuse of 10 and one leg of 8. What is the length of the other leg?",
+      "options": [
+        "A. 2",
+        "B. 4",
+        "C. 6",
+        "D. 9",
+        "E. 18"
+      ],
+      "answer": "C",
+      "explanation": "Apply the Pythagorean theorem: a² + b² = c².\n8² + b² = 10²\n64 + b² = 100\nb² = 100 - 64 = 36\nb = √36 = 6.\nThis is a scaled (3, 4, 5) triple multiplied by 2: (6, 8, 10).",
+      "trap": "Students who compute 10 - 8 = 2 (subtracting instead of using the theorem) select A.",
+      "estimated_time_seconds": 45,
+      "tags": [
+        "pythagorean-theorem",
+        "pythagorean-triple",
+        "right-triangle"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 242 230\" width=\"242\" height=\"230\" role=\"img\"><polygon points=\"45.0,190.0 172.5,190.0 45.0,20.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><polyline points=\"56.0,190.0 56.0,179.0 45.0,179.0\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"108.8\" y=\"210.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" style=\"\"></text><text x=\"35.0\" y=\"109.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\" style=\"\">8</text><text x=\"120.8\" y=\"101.0\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\" style=\"\">10</text></svg>"
+    },
+    {
+      "id": "GEO-PYT-035",
+      "difficulty": "easy",
+      "type": "mcq",
+      "question": "The side lengths of a right triangle are consecutive integers. What are the three side lengths?",
+      "options": [
+        "A. 1, 2, 3",
+        "B. 2, 3, 4",
+        "C. 3, 4, 5",
+        "D. 4, 5, 6",
+        "E. 5, 6, 7"
+      ],
+      "answer": "C",
+      "explanation": "For consecutive integers n, n+1, n+2 to form a right triangle:\nn² + (n+1)² = (n+2)²\nn² + n² + 2n + 1 = n² + 4n + 4\n2n² + 2n + 1 = n² + 4n + 4\nn² − 2n − 3 = 0\n(n−3)(n+1) = 0\nn = 3.\nSides are 3, 4, 5. Check: 9 + 16 = 25 ✓.\nThis is the only set of three consecutive integers forming a right triangle.",
+      "trap": "Students who test each option by checking the triangle inequality (valid for all options) rather than the Pythagorean theorem may struggle to eliminate wrong answers.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "pythagorean-theorem",
+        "pythagorean-triple",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-PYT-044",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "Right triangle ABC has legs AB = 3 and BC = 4 with the right angle at B. A square is constructed on the outside of the triangle with the hypotenuse AC as one of its sides. What is the area of that square?",
+      "options": null,
+      "answer": "25",
+      "explanation": "Step 1: Find the hypotenuse AC.\nAC² = AB² + BC² = 3² + 4² = 9 + 16 = 25.\nAC = 5.\nStep 2: The area of the square with side length AC.\nArea = AC² = 5² = 25.\nNote: The area of the square on the hypotenuse (25) equals the sum of the areas of the squares on the two legs (9 + 16 = 25). This is the geometric interpretation of the Pythagorean theorem.",
+      "trap": "Students who compute AC = 5 but then compute the square's perimeter (20) or confuse area with side length and enter 5 make the final-step error.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "pythagorean-theorem",
+        "area",
+        "conceptual"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 240 240\" width=\"240\" height=\"240\" role=\"img\"><polygon points=\"26,133.4 26,214 133.4,214\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><polygon points=\"26,133.4 133.4,214 214,106.6 106.6,26\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><path d=\"M 26 205 L 35 205 L 35 214\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"15\" y=\"178\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"end\">3</text><text x=\"79.7\" y=\"232.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">4</text><text x=\"14.7\" y=\"130\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">A</text><text x=\"16.8\" y=\"230.2\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">B</text><text x=\"144.7\" y=\"226.8\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">C</text></svg>"
+    },
+    {
+      "id": "GEO-PYT-016",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A rectangle has a diagonal of length 20 and a width of 12. What is the area of the rectangle?",
+      "options": [
+        "A. 96",
+        "B. 128",
+        "C. 192",
+        "D. 240",
+        "E. 256"
+      ],
+      "answer": "C",
+      "explanation": "Step 1: Find the length of the rectangle using the Pythagorean theorem.\nlength² + 12² = 20²\nlength² + 144 = 400\nlength² = 256\nlength = 16.\nStep 2: Calculate the area.\nArea = length × width = 16 × 12 = 192.",
+      "trap": "Students who use the diagonal as one dimension compute 20 × 12 = 240 (option D) without first finding the actual length.",
+      "estimated_time_seconds": 70,
+      "tags": [
+        "pythagorean-theorem",
+        "area",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-PYT-017",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A right triangle has a hypotenuse of 25 and one leg of 7.\n\nQuantity A: The length of the other leg\nQuantity B: 24",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "Apply the Pythagorean theorem: 7² + b² = 25².\n49 + b² = 625\nb² = 576\nb = 24.\nQuantity A = 24 = Quantity B.\nThis is the (7, 24, 25) Pythagorean triple.",
+      "trap": "Students who estimate instead of computing may guess D (cannot be determined) without verifying the exact value.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "pythagorean-theorem",
+        "pythagorean-triple",
+        "qc"
+      ]
+    },
+    {
+      "id": "GEO-PYT-020",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A ladder 15 feet long leans against a vertical wall. The base of the ladder is 9 feet from the wall. How high up the wall does the ladder reach, in feet?",
+      "options": null,
+      "answer": "12",
+      "explanation": "The ladder, wall, and ground form a right triangle. The ladder is the hypotenuse (15 ft), the distance from wall to base is one leg (9 ft), and the height on the wall is the other leg (h).\n9² + h² = 15²\n81 + h² = 225\nh² = 144\nh = 12.\nThe ladder reaches 12 feet up the wall.",
+      "trap": "Students who compute 15 - 9 = 6 (subtracting instead of using the theorem) enter 6.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "pythagorean-theorem",
+        "right-triangle",
+        "two-step"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 227 240\" width=\"227\" height=\"240\" role=\"img\"><line x1=\"46.4\" y1=\"214\" x2=\"46.4\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"26.2\" y1=\"214\" x2=\"200.8\" y2=\"214\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"167.2\" y1=\"214\" x2=\"46.4\" y2=\"52.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><path d=\"M 46.4 205 L 55.4 205 L 55.4 214\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"114.8\" y=\"129.9\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">15 ft</text><text x=\"106.8\" y=\"235.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">9 ft</text><text x=\"41\" y=\"43.4\" font-family=\"Georgia,serif\" font-size=\"11\" fill=\"#16191d\" text-anchor=\"end\">wall</text></svg>"
+    },
+    {
+      "id": "GEO-PYT-021",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "The area of a right triangle is 30 square units. One leg has length 5. What is the length of the hypotenuse?",
+      "options": [
+        "A. 8",
+        "B. 10",
+        "C. 11",
+        "D. 13",
+        "E. 25"
+      ],
+      "answer": "D",
+      "explanation": "Step 1: Find the other leg using the area formula.\nArea = ½ × leg₁ × leg₂\n30 = ½ × 5 × leg₂\nleg₂ = 60/5 = 12.\nStep 2: Find the hypotenuse using the Pythagorean theorem.\nc² = 5² + 12² = 25 + 144 = 169.\nc = √169 = 13.\nThis is the (5, 12, 13) Pythagorean triple.",
+      "trap": "Students who find leg₂ = 12 and then select B (confusing leg₂ with the hypotenuse) or who forget to apply the theorem and pick C (estimating 5 + 12 − 6 = 11) make characteristic errors.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "pythagorean-theorem",
+        "area",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-PYT-024",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A right triangle has a perimeter of 30 and a hypotenuse of 13. What is the area of the triangle?",
+      "options": null,
+      "answer": "30",
+      "explanation": "Step 1: Find the sum of the two legs.\nleg₁ + leg₂ = perimeter − hypotenuse = 30 − 13 = 17.\nStep 2: Use the Pythagorean theorem to find the product of the legs.\nleg₁² + leg₂² = 13² = 169.\nStep 3: Use the identity (leg₁ + leg₂)² = leg₁² + 2·leg₁·leg₂ + leg₂².\n17² = 169 + 2·leg₁·leg₂\n289 = 169 + 2·leg₁·leg₂\n2·leg₁·leg₂ = 120\nleg₁·leg₂ = 60.\nStep 4: Area = ½ × leg₁ × leg₂ = ½ × 60 = 30.\n(Check: legs are 5 and 12; 5 + 12 + 13 = 30 ✓; ½ × 5 × 12 = 30 ✓.)",
+      "trap": "Students who try to solve for individual legs by setting up a quadratic spend too much time. The identity (a+b)² = a²+b²+2ab shortcut avoids this.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "pythagorean-theorem",
+        "area",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "GEO-PYT-026",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Right triangle XYZ has integer side lengths and a hypotenuse of length 65. Which of the following could be the length of one of its legs? Select all that apply.",
+      "options": [
+        "A. 16",
+        "B. 33",
+        "C. 40",
+        "D. 50",
+        "E. 60"
       ],
       "answer": [
-        "C",
-        "D",
+        "A",
+        "B",
         "E"
       ],
-      "explanation": "Test each set with the converse: square the two smaller numbers, add, and compare with the square of the largest.\nA. 4, 6, 8: 16 + 36 = 52, but 8^2 = 64. 52 is not 64, so FALSE.\nB. 6, 9, 12: 36 + 81 = 117, but 12^2 = 144. Not equal, so FALSE.\nC. 9, 12, 15: 81 + 144 = 225 = 15^2. TRUE - this is 3-4-5 multiplied by 3.\nD. 10, 24, 26: 100 + 576 = 676 = 26^2. TRUE - this is 5-12-13 multiplied by 2.\nE. 16, 30, 34: 256 + 900 = 1156 = 34^2. TRUE - this is 8-15-17 multiplied by 2.\nFaster route: divide out the common factor and look for a familiar triple. C is 3*(3,4,5), D is 2*(5,12,13), E is 2*(8,15,17). A divides to 2*(2,3,4) and B to 3*(2,3,4), and 2-3-4 is not a triple.\nAnswer: C, D and E.",
-      "trap": "Selecting A and B because their entries are evenly spaced like 3, 4, 5. Even spacing is not what makes a triple; 2-3-4 fails (4 + 9 = 13, not 16), so every multiple of it fails too. A second slip is checking only that the two smaller numbers sum to more than the largest, which merely says the triangle exists and says nothing about a right angle.",
-      "estimated_time_seconds": 60,
+      "explanation": "A value L is a leg if 65² − L² = 4225 − L² is a perfect square. A: 4225 − 256 = 3969 = 63² ✓; C: 4225 − 1600 = 2625, not a perfect square ✗; B: 4225 − 1089 = 3136 = 56² ✓; D: 4225 − 2500 = 1725, not a perfect square ✗; E: 4225 − 3600 = 625 = 25² ✓. So A, C, and E (triples 16-63-65, 33-56-65, 25-60-65).",
+      "trap": "Students who only test scaled (3,4,5) or (5,12,13) triples will miss the (16,63,65) and (33,56,65) triples, which are less well-known.",
+      "estimated_time_seconds": 90,
       "tags": [
-        "converse",
+        "pythagorean-theorem",
+        "pythagorean-triple",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "GEO-PYT-027",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "In a right triangle, one leg has length 5.\n\nQuantity A: The hypotenuse of the right triangle when the other leg = 12\nQuantity B: The hypotenuse of the right triangle when the other leg = 13",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "B",
+      "explanation": "Quantity A: c² = 5² + 12² = 25 + 144 = 169, so c = 13.\nQuantity B: c² = 5² + 13² = 25 + 169 = 194, so c = √194 ≈ 13.93.\nQuantity B (≈13.93) > Quantity A (13).",
+      "trap": "Students who note that both values are 'around 13' and guess C fail to compute Quantity B precisely enough.",
+      "estimated_time_seconds": 75,
+      "tags": [
+        "pythagorean-theorem",
+        "right-triangle",
+        "qc"
+      ]
+    },
+    {
+      "id": "GEO-PYT-028",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A right triangle has legs in the ratio 3:4. If the hypotenuse is 20, what is the length of the shorter leg?",
+      "options": [
+        "A. 8",
+        "B. 10",
+        "C. 12",
+        "D. 15",
+        "E. 16"
+      ],
+      "answer": "C",
+      "explanation": "Let the legs be 3k and 4k.\nApply the Pythagorean theorem:\n(3k)² + (4k)² = 20²\n9k² + 16k² = 400\n25k² = 400\nk² = 16\nk = 4.\nShorter leg = 3k = 12. Longer leg = 4k = 16.\nCheck: 12² + 16² = 144 + 256 = 400 = 20². ✓",
+      "trap": "Students who set 3k + 4k = 20 (treating the ratio as an additive split of the hypotenuse) get k = 20/7 ≈ 2.86 and a non-integer answer.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "pythagorean-theorem",
+        "right-triangle",
+        "two-step"
+      ]
+    },
+    {
+      "id": "GEO-PYT-030",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "For a triangle with sides a, b, and c where c is the longest side, which of the following conditions guarantee that the triangle is NOT a right triangle? Select all that apply.",
+      "options": [
+        "A. a² + b² > c²",
+        "B. a² + b² < c²",
+        "C. a² + b² = c²",
+        "D. c² − a² = b² + 1",
+        "E. a + b > c only (with no information about squares)"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "A right triangle satisfies a² + b² = c² exactly.\nA: a² + b² > c² → angle opposite c is ACUTE. Triangle is NOT right. ✓\nB: a² + b² < c² → angle opposite c is OBTUSE. Triangle is NOT right. ✓\nC: a² + b² = c² → this IS the right triangle condition. Does NOT guarantee NOT right. ✗\nD: c² − a² = b² + 1 → rearranging: c² = a² + b² + 1, so a² + b² ≠ c². NOT a right triangle. ✓\nE: a + b > c is the triangle inequality, required for any valid triangle but does not exclude right triangles. ✗\nAnswers: A, B, D.",
+      "trap": "Students may mark E as correct, thinking the triangle inequality somehow rules out right triangles — it does not. Every right triangle satisfies a + b > c.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "pythagorean-theorem",
+        "conceptual",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "GEO-PYT-041",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "In right triangle ABC with right angle at C, the altitude from C meets AB at point D. If AD = 4 and DB = 9, what is the length of CD?",
+      "options": [
+        "A. √13",
+        "B. 5",
+        "C. 6",
+        "D. 6.5",
+        "E. 7"
+      ],
+      "answer": "C",
+      "explanation": "When the altitude is drawn from the right angle to the hypotenuse of a right triangle, the altitude is the geometric mean of the two hypotenuse segments.\nCD² = AD × DB = 4 × 9 = 36.\nCD = √36 = 6.\nThis follows from similar triangles: triangles ACD and CDB are both similar to ABC.",
+      "trap": "Students who use the arithmetic mean instead of the geometric mean compute CD = (AD + DB)/2 = (4+9)/2 = 6.5 and select D.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "pythagorean-theorem",
+        "right-triangle",
+        "multi-step"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 180\" width=\"330\" height=\"180\" role=\"img\"><polygon points=\"26,154.2 304,154.2 111.5,25.8\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"111.5\" y1=\"25.8\" x2=\"111.5\" y2=\"154.2\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><path d=\"M 106.5 33.3 L 114 38.3 L 119 30.8\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><path d=\"M 119.5 154.2 L 119.5 146.2 L 111.5 146.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"68.8\" y=\"174.5\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">4</text><text x=\"207.8\" y=\"174.5\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">9</text><text x=\"13.8\" y=\"164.4\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">A</text><text x=\"316.2\" y=\"164.4\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">B</text><text x=\"111.5\" y=\"14.3\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">C</text><text x=\"111.5\" y=\"175.1\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">D</text></svg>"
+    },
+    {
+      "id": "GEO-PYT-042",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A rectangular box has length 6, width 6, and variable height h.\n\nQuantity A: Space diagonal when h = 7\nQuantity B: Space diagonal when h = 8",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "B",
+      "explanation": "Quantity A: d = √(6² + 6² + 7²) = √(36 + 36 + 49) = √121 = 11.\nQuantity B: d = √(6² + 6² + 8²) = √(36 + 36 + 64) = √136 ≈ 11.66.\nQuantity B (≈11.66) > Quantity A (11).",
+      "trap": "Students who compute Quantity A = 11 exactly (a clean integer) but then estimate Quantity B as 'also about 11' without computing may mistakenly select C.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "pythagorean-theorem",
+        "3d-geometry",
+        "qc"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 223 240\" width=\"223\" height=\"240\" role=\"img\"><polygon points=\"26.2,214 150.9,214 150.9,58.2 26.2,58.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"150.9\" y1=\"214\" x2=\"196.8\" y2=\"181.8\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"196.8\" y1=\"181.8\" x2=\"196.8\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"150.9\" y1=\"58.2\" x2=\"196.8\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"196.8\" y1=\"26\" x2=\"72.1\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"72.1\" y1=\"26\" x2=\"26.2\" y2=\"58.2\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"26.2\" y1=\"214\" x2=\"72.1\" y2=\"181.8\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"72.1\" y1=\"181.8\" x2=\"196.8\" y2=\"181.8\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"72.1\" y1=\"181.8\" x2=\"72.1\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"26.2\" y1=\"214\" x2=\"196.8\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><text x=\"88.5\" y=\"235.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">6</text><text x=\"180.7\" y=\"214.5\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">6</text><text x=\"12.2\" y=\"140.4\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"end\">h</text></svg>"
+    },
+    {
+      "id": "GEO-PYT-051",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "For a right triangle with legs a, b and hypotenuse c, which of the following statements are always true? Select all that apply.",
+      "options": [
+        "A. a + b > c",
+        "B. a + b = c",
+        "C. c > a and c > b",
+        "D. a² + b² = c²",
+        "E. c² > a² + b²"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "A: a + b > c — true. Proof: (a+b)² = a²+2ab+b² > a²+b² = c² (since 2ab > 0), so a+b > c. ✓\nB: a + b = c — false. This is the degenerate case (collinear points, not a triangle). ✗\nC: c > a and c > b — true. Since c² = a²+b² > a² (because b²>0), we get c > a. Similarly c > b. The hypotenuse is always the longest side. ✓\nD: a² + b² = c² — true. This is the defining property of a right triangle (Pythagorean theorem). ✓\nE: c² > a² + b² — false. This would describe an obtuse triangle, not a right triangle. ✗",
+      "trap": "Students who confuse 'the hypotenuse is longer than each individual leg' (true, option C) with 'the hypotenuse is longer than the sum of the legs' (false, option B) may incorrectly select B.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "pythagorean-theorem",
+        "right-triangle",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "GEO-PYT-053",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A rectangular box has a square base with side length 6 and a height of 2. What is the length of the space diagonal (connecting opposite corners through the interior), rounded to the nearest integer?",
+      "options": null,
+      "answer": "9",
+      "explanation": "The space diagonal formula: d = √(l² + w² + h²).\nWith l = 6, w = 6, h = 2:\nd = √(6² + 6² + 2²) = √(36 + 36 + 4) = √76.\n√76 ≈ 8.72.\nRounded to the nearest integer: 9.",
+      "trap": "Students who include only the base diagonal and forget the height dimension compute √(36+36) = √72 ≈ 8.49, which also rounds to 8 — the wrong answer.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "pythagorean-theorem",
+        "3d-geometry",
+        "multi-step"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 300 159\" width=\"300\" height=\"159\" role=\"img\"><polygon points=\"26,133.1 207.2,133.1 207.2,72.7 26,72.7\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"207.2\" y1=\"133.1\" x2=\"274\" y2=\"86.3\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"274\" y1=\"86.3\" x2=\"274\" y2=\"25.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"207.2\" y1=\"72.7\" x2=\"274\" y2=\"25.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"274\" y1=\"25.9\" x2=\"92.8\" y2=\"25.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"92.8\" y1=\"25.9\" x2=\"26\" y2=\"72.7\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"26\" y1=\"133.1\" x2=\"92.8\" y2=\"86.3\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"92.8\" y1=\"86.3\" x2=\"274\" y2=\"86.3\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"92.8\" y1=\"86.3\" x2=\"92.8\" y2=\"25.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"26\" y1=\"133.1\" x2=\"274\" y2=\"25.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><text x=\"116.6\" y=\"154.4\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">6</text><text x=\"247.5\" y=\"126.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">6</text><text x=\"12\" y=\"107.2\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"end\">2</text></svg>"
+    },
+    {
+      "id": "GEO-PYT-056",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Let T be a right triangle with legs a and b and hypotenuse c. Define the ratio R = (a² + b² + c²) / (ab).\n\nQuantity A: R for the (3, 4, 5) right triangle\nQuantity B: R for the (5, 12, 13) right triangle",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "B",
+      "explanation": "Since a² + b² = c² for any right triangle, we have a² + b² + c² = c² + c² = 2c².\nSo R = 2c² / (ab).\nFor (3,4,5): R = 2(25) / (3×4) = 50/12 = 25/6 ≈ 4.167.\nFor (5,12,13): R = 2(169) / (5×12) = 338/60 = 169/30 ≈ 5.633.\nCompare 25/6 vs 169/30: Convert to same denominator: 125/30 vs 169/30.\n125 < 169, so 25/6 < 169/30.\nQuantity A (25/6) < Quantity B (169/30). Quantity B is greater.",
+      "trap": "Students may assume R is constant for all right triangles (it is NOT — it depends on the specific shape). The ratio R = 2c²/(ab) varies with the triangle's proportions.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "pythagorean-theorem",
+        "pythagorean-triple",
+        "conceptual"
+      ]
+    },
+    {
+      "id": "GEO-PYT-KMF-001",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A triangular sail has sides whose lengths are in the ratio 8 to 15 to 17. The sail encloses an area of 240 square feet. What is the perimeter of the sail, in feet?",
+      "options": [
+        "A. 40",
+        "B. 60",
+        "C. 80",
+        "D. 120",
+        "E. 160"
+      ],
+      "answer": "C",
+      "explanation": "Let the sides be 8k, 15k, and 17k for some positive number k.\nSince 8^2 + 15^2 = 64 + 225 = 289 = 17^2, the triangle is a right triangle with legs 8k and 15k.\nIts area is (1/2)(8k)(15k) = 60k^2 = 240, so k^2 = 4 and k = 2.\nThe sides are 16, 30, and 34, so the perimeter is 16 + 30 + 34 = 80 feet.",
+      "trap": "Students find k = 2 correctly but then report the sum of the ratio numbers, 8 + 15 + 17 = 40, as the perimeter, forgetting to scale by k. That gives option A.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "pythagorean-triple",
+        "area"
+      ],
+      "origin": "kmf1804",
+      "origin_set": "",
+      "source_pages": [
+        6
+      ]
+    },
+    {
+      "id": "GEO-PYT-KMF-005",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "A 17-foot ladder rests against a vertical wall with its top exactly 15 feet above the level ground. The top then slips 3 feet straight down the wall, and the foot of the ladder slides along the ground directly away from the wall.\nQuantity A: The distance the foot of the ladder slides along the ground\nQuantity B: 3 feet",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "A",
+      "explanation": "1. First position: the foot is sqrt(17^2 - 15^2) = sqrt(289 - 225) = sqrt(64) = 8 feet from the wall.\n2. After the slip the top is at height 15 - 3 = 12 feet, so the foot is sqrt(17^2 - 12^2) = sqrt(289 - 144) = sqrt(145) from the wall.\n3. sqrt(145) is about 12.04, so the foot slides about 12.04 - 8 = 4.04 feet.\n4. 4.04 > 3, so Quantity A is greater.\nCheck: 12^2 = 144 < 145 < 169 = 13^2, so sqrt(145) > 12 and the slide exceeds 12 - 8 = 4, which is already more than 3.",
+      "trap": "Assuming the foot moves as far horizontally as the top moves vertically (a 3-foot slide for a 3-foot drop) gives equality, which is choice C.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "pythagorean-triple",
+        "ladder",
+        "comparison-by-estimation"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 273 240\" width=\"273\" height=\"240\" role=\"img\"><line x1=\"85.7\" y1=\"214\" x2=\"85.7\" y2=\"26\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"75\" y1=\"214\" x2=\"246.9\" y2=\"214\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"171.7\" y1=\"214\" x2=\"85.7\" y2=\"52.9\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><line x1=\"215.1\" y1=\"214\" x2=\"85.7\" y2=\"85.1\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\" stroke-dasharray=\"5 4\"/><line x1=\"29.9\" y1=\"52.9\" x2=\"29.9\" y2=\"214\" stroke=\"#16191d\" stroke-width=\"0.9\" stroke-linecap=\"round\"/><line x1=\"26.1\" y1=\"52.9\" x2=\"33.6\" y2=\"52.9\" stroke=\"#16191d\" stroke-width=\"0.9\" stroke-linecap=\"round\"/><line x1=\"26.1\" y1=\"214\" x2=\"33.6\" y2=\"214\" stroke=\"#16191d\" stroke-width=\"0.9\" stroke-linecap=\"round\"/><line x1=\"72.8\" y1=\"52.9\" x2=\"72.8\" y2=\"85.1\" stroke=\"#16191d\" stroke-width=\"0.9\" stroke-linecap=\"round\"/><line x1=\"69.1\" y1=\"52.9\" x2=\"76.6\" y2=\"52.9\" stroke=\"#16191d\" stroke-width=\"0.9\" stroke-linecap=\"round\"/><line x1=\"69.1\" y1=\"85.1\" x2=\"76.6\" y2=\"85.1\" stroke=\"#16191d\" stroke-width=\"0.9\" stroke-linecap=\"round\"/><path d=\"M 85.7 205 L 94.7 205 L 94.7 214\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><circle cx=\"85.7\" cy=\"52.9\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><circle cx=\"85.7\" cy=\"85.1\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><text x=\"138.9\" y=\"170\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"end\">17 ft</text><text x=\"177.8\" y=\"173.2\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">17 ft</text><text x=\"21.9\" y=\"137.7\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"end\">15 ft</text><text x=\"64.8\" y=\"73.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"end\">3 ft</text></svg>",
+      "figure_description": "Side view of a ladder (hypotenuse, length 17 ft) leaning on a vertical wall. In its first position the top is 15 ft up the wall and the foot is on the ground at a horizontal distance from the wall. In its second position the top is 3 ft lower and the foot is farther from the wall. The wall and ground meet at a right angle.",
+      "origin": "kmf1804",
+      "origin_set": "Section 58 Hard",
+      "source_pages": [
+        380
+      ]
+    },
+    {
+      "id": "SEC-PG-008",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "All angles in the figure above are right angles, and the lengths of the six segments are as marked. What is the straight-line distance from point P to point Q?",
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 249 200\" width=\"249\" height=\"200\" role=\"img\"><polyline points=\"25.8,174 99.8,174 99.8,124.7 149.2,124.7 149.2,50.7 223.2,50.7 223.2,26\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><circle cx=\"25.8\" cy=\"174\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><circle cx=\"223.2\" cy=\"26\" r=\"2.6\" fill=\"#16191d\" stroke=\"#16191d\" stroke-width=\"1\"/><text x=\"15.8\" y=\"178.7\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">P</text><text x=\"228.2\" y=\"19.2\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">Q</text><text x=\"62.8\" y=\"194.3\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">3</text><text x=\"110.8\" y=\"153.7\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">2</text><text x=\"124.5\" y=\"115\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">2</text><text x=\"160.2\" y=\"92\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">3</text><text x=\"186.2\" y=\"41\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"middle\">3</text><text x=\"234.2\" y=\"42.7\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">1</text></svg>",
+      "options": null,
+      "answer": "10",
+      "explanation": "Ignore the staircase shape and track only the net displacement. Moving from P to Q, the horizontal steps are 3, 2 and 3, for a total of 8 to the right. The vertical steps are 2, 3 and 1, for a total of 6 upward. The straight-line distance from P to Q is the hypotenuse of a right triangle with legs 8 and 6, which is a 6-8-10 triangle, so the distance is 10.",
+      "trap": "Students add all six segment lengths and answer 14, which is the length of the path walked, not the straight-line distance. The question asks for the direct segment PQ, so only the totals in each direction matter.",
+      "estimated_time_seconds": 85,
+      "tags": [
         "pythagorean-triples",
-        "scaled-triples"
+        "coordinate-reasoning"
+      ]
+    },
+    {
+      "id": "GEO-PYT-045",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "Right triangle PQR has legs PQ = 9 and QR = 12, with right angle at Q. Point S lies on PR such that QS is perpendicular to PR. Which of the following statements are true? Select all that apply.",
+      "options": [
+        "A. PR = 15",
+        "B. QS = 7.5",
+        "C. PS = 27/5",
+        "D. The area of triangle PQS is 27",
+        "E. The area of triangle PQR is 54"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "E"
+      ],
+      "explanation": "A: PR = √(81 + 144) = 15, true. B: QS = (9·12)/15 = 36/5 = 7.2, not 7.5 (7.5 is half of PR, the median to the hypotenuse), false. C: triangle PQS ~ triangle PRQ, so PS = PQ²/PR = 81/15 = 27/5, true. D: area of PQS = (1/2)(27/5)(36/5) = 486/25 = 19.44, not 27; 27 would be half of triangle PQR, which is true only if S were the midpoint of PR, so false. E: area of PQR = (1/2)(9)(12) = 54, true.",
+      "trap": "Treating S as the midpoint of PR, which gives QS = 7.5 (B) and half the area, 27 (D). S is the foot of the altitude, which is not the midpoint in a 9-12-15 triangle.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "pythagorean-theorem",
+        "right-triangle",
+        "multiple-answer"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 330 185\" width=\"330\" height=\"185\" role=\"img\"><polygon points=\"26,159.2 126.1,25.8 304,159.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><line x1=\"126.1\" y1=\"25.8\" x2=\"126.1\" y2=\"159.2\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linecap=\"round\"/><path d=\"M 120.7 33 L 127.9 38.4 L 133.3 31.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><path d=\"M 134.1 159.2 L 134.1 151.2 L 126.1 151.2\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"67.2\" y=\"88.4\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"end\">9</text><text x=\"221.6\" y=\"85.6\" font-family=\"Georgia,serif\" font-size=\"12\" fill=\"#16191d\" text-anchor=\"start\">12</text><text x=\"14.2\" y=\"170.7\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\">P</text><text x=\"126.1\" y=\"14.2\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">Q</text><text x=\"316.3\" y=\"169\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\">R</text><text x=\"126.1\" y=\"180.2\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\">S</text></svg>"
+    },
+    {
+      "id": "GEO-PYT-048",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "A right triangle has an area of 84 and a hypotenuse of 25. What is the perimeter of the triangle?",
+      "options": [
+        "A. 50",
+        "B. 56",
+        "C. 60",
+        "D. 63",
+        "E. 70"
+      ],
+      "answer": "B",
+      "explanation": "Let the legs be a and b.\nGiven: ½ab = 84 → ab = 168.\nGiven: a² + b² = 25² = 625.\nUse the identity (a + b)² = a² + 2ab + b²:\n(a+b)² = 625 + 2(168) = 625 + 336 = 961.\na + b = √961 = 31.\nPerimeter = a + b + c = 31 + 25 = 56.\n(Verification: legs are 7 and 24; 7×24=168 ✓, 7²+24²=625 ✓, 7+24+25=56 ✓.)",
+      "trap": "Students who try to find individual legs by solving a quadratic (t² − 31t + 168 = 0, so (t−7)(t−24)=0) get the right answer but waste time. The identity shortcut gives the perimeter directly.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "pythagorean-theorem",
+        "perimeter",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "GEO-PYT-049",
+      "difficulty": "hard",
+      "type": "numeric_entry",
+      "question": "A right triangle has legs a and b with a > b. If a − b = 7 and the hypotenuse is 13, what is the value of a + b?",
+      "options": null,
+      "answer": "17",
+      "explanation": "Given: a − b = 7 and a² + b² = 13² = 169.\nUse the identity (a − b)² = a² − 2ab + b²:\n7² = 169 − 2ab\n49 = 169 − 2ab\n2ab = 120\nab = 60.\nNow use (a + b)² = a² + 2ab + b² = 169 + 2(60) = 169 + 120 = 289.\na + b = √289 = 17.\n(Check: a=12, b=5; 12−5=7 ✓, 12+5=17 ✓, 12²+5²=169 ✓.)",
+      "trap": "Students who guess a=10, b=3 (since 10−3=7) quickly discover 10²+3²=109≠169 and then get stuck without the algebraic identity approach.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "pythagorean-theorem",
+        "right-triangle",
+        "multi-step"
+      ]
+    },
+    {
+      "id": "GEO-PYT-KMF-004",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A right triangle has legs of length p and q, both greater than 1, and hypotenuse h. A second right triangle is formed by shortening every leg of the first one by 1 unit.\nQuantity A: The longest side of the second triangle\nQuantity B: h - 1",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "B",
+      "explanation": "1. Let A be the new longest side (the hypotenuse of the second triangle): A^2 = (p - 1)^2 + (q - 1)^2 = p^2 + q^2 - 2(p + q) + 2 = h^2 - 2(p + q) + 2.\n2. Quantity B squared is (h - 1)^2 = h^2 - 2h + 1, and both A and h - 1 are positive.\n3. A^2 - (h - 1)^2 = -2(p + q) + 2 + 2h - 1 = 1 - 2(p + q - h).\n4. The quantity p + q - h grows whenever either leg grows, so for legs greater than 1 it exceeds its value at p = q = 1, which is 2 - sqrt(2), about 0.586.\n5. So 2(p + q - h) > 1.17 > 1, A^2 - (h - 1)^2 is negative, and Quantity B is larger.\n6. Check: p = 3, q = 4, h = 5 gives A = sqrt(4 + 9) = 3.61 versus h - 1 = 4. With p = q = 1.5 the values are 0.71 versus 1.12. Quantity B wins every time.",
+      "trap": "Expecting that shortening both legs by 1 shortens the hypotenuse by exactly 1 (the way lengths add along a straight line), which makes the two quantities equal, choice C; in fact the hypotenuse shrinks by less than 1.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "pythagorean-theorem",
+        "triangle-inequality",
+        "qc-reasoning"
+      ],
+      "svg": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 260 208\" width=\"260\" height=\"208\" role=\"img\"><polygon points=\"26,182 26,26 234,182\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.4\" stroke-linejoin=\"round\"/><path d=\"M 26 172 L 36 172 L 36 182\" fill=\"none\" stroke=\"#16191d\" stroke-width=\"1.1\"/><text x=\"15\" y=\"108.7\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"end\" font-style=\"italic\">p</text><text x=\"130\" y=\"202.9\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"middle\" font-style=\"italic\">q</text><text x=\"136.6\" y=\"97.3\" font-family=\"Georgia,serif\" font-size=\"13\" fill=\"#16191d\" text-anchor=\"start\" font-style=\"italic\">h</text></svg>",
+      "figure_description": "A right triangle with the right angle at the lower left, a vertical leg of length p, a horizontal leg of length q and hypotenuse h. Both p and q exceed 1.",
+      "origin": "kmf1804",
+      "origin_set": "Section 56 Hard",
+      "source_pages": [
+        366
+      ]
+    },
+    {
+      "id": "SEC-PG-012",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A rectangular photograph has a diagonal 25 centimeters long. One side of the photograph is longer than 7 centimeters and shorter than 15 centimeters. Which of the following could be the area, in square centimeters, of the photograph?\n\nIndicate all such values.",
+      "options": [
+        "A. 150",
+        "B. 180",
+        "C. 240",
+        "D. 294",
+        "E. 300",
+        "F. 320"
+      ],
+      "answer": [
+        "B",
+        "C",
+        "D"
+      ],
+      "explanation": "Call the given side s. The other side is sqrt(625 - s^2) and the area is s * sqrt(625 - s^2). At s = 7 the other side is sqrt(625 - 49) = 24, giving area 168. At s = 15 the other side is sqrt(625 - 225) = 20, giving area 300. The area of a rectangle with a fixed diagonal grows as the rectangle moves toward a square, and a square with diagonal 25 would have side about 17.7, so on the whole interval 7 < s < 15 the area is still increasing. The area therefore runs strictly between 168 and 300. Of the choices, 180, 240 and 294 qualify; 150 is below the range, and 300 and 320 are at or above it.",
+      "trap": "Students include 300, which is the value at exactly s = 15, an endpoint the problem excludes. Others cap the area at 312.5, the largest possible for a diagonal of 25, and wrongly admit 300 and even 320 on that basis; the side restriction pulls the ceiling down to 300 and makes it unreachable.",
+      "estimated_time_seconds": 125,
+      "tags": [
+        "rectangles",
+        "pythagorean-theorem",
+        "area-range"
+      ]
+    },
+    {
+      "id": "SEC-PG-027",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "The advertised size of a television is the length of the diagonal of its rectangular viewing screen. For a television advertised as 55-inch, if the lengths of the sides of the viewing screen are in the ratio 16 to 9, which of the following is closest to the area, in square inches, of the viewing screen?",
+      "options": [
+        "A. 697",
+        "B. 1,100",
+        "C. 1,293",
+        "D. 1,485",
+        "E. 3,025"
+      ],
+      "answer": "C",
+      "explanation": "Write the sides as 16x and 9x. By the Pythagorean theorem the diagonal is x*sqrt(16^2 + 9^2) = x*sqrt(256 + 81) = x*sqrt(337). Setting x*sqrt(337) = 55 gives x^2 = 55^2/337 = 3,025/337, which is about 8.98. The area is (16x)(9x) = 144x^2, which is about 144 x 8.98 = 1,293 square inches.",
+      "trap": "Students treat 16, 9 and the diagonal as a 16-9-25 triple, set x = 55/25 = 2.2, and compute 144(2.2)^2 = 697. The hypotenuse of a 16-9 right triangle is sqrt(337), roughly 18.36, not 25, so the scale factor is close to 3, not 2.2.",
+      "estimated_time_seconds": 115,
+      "tags": [
+        "rectangles",
+        "pythagorean-theorem",
+        "ratio"
       ]
     }
   ]

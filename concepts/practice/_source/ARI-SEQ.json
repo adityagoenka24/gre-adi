@@ -69,28 +69,12 @@
       ],
       "answer": "C",
       "explanation": "Step 1 — count the terms. The list is 2, 4, 6, ..., 20 with step 2, so the count is (20 - 2)/2 + 1 = 9 + 1 = 10 terms. Say the '+1' out loud.\nStep 2 — sum = count x average, and for an evenly spaced list the average is (first + last)/2 = (2 + 20)/2 = 11.\nStep 3 — sum = 10 x 11 = 110.\nCheck: 2 + 20 = 22, 4 + 18 = 22, 6 + 16 = 22, 8 + 14 = 22, 10 + 12 = 22. Five pairs of 22 = 110. Correct.\nAnswer: 110.",
-      "trap": "Stopping the count at (20 - 2)/2 = 9 terms, which gives 9 x 11 = 99 (choice A); overshooting to 11 terms gives 121 (choice D). Choice E, 210, is the sum of ALL integers from 1 to 20, and choice B, 100, is 10^2, the sum of the first 10 ODD numbers, not the even ones.",
+      "trap": "Stopping the count at (20 - 2)/2 = 9 terms, which gives 9 x 11 = 99 (choice A); overshooting to 11 terms gives 121 (choice D). Choice E, 210, is the sum of all integers from 1 to 20, and choice B, 100, is 10^2, the sum of the first 10 ODD numbers, not the even ones.",
       "estimated_time_seconds": 55,
       "tags": [
         "arithmetic-sequence",
         "sum-formula",
         "counting-terms"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-015",
-      "difficulty": "easy",
-      "type": "numeric_entry",
-      "question": "How many terms are in the arithmetic sequence 5, 8, 11, ..., 56? Enter your answer as a number.",
-      "options": null,
-      "answer": "18",
-      "explanation": "Step 1 — the step size is d = 8 - 5 = 3, first term 5, last term 56.\nStep 2 — count = (last - first)/step + 1 = (56 - 5)/3 + 1 = 51/3 + 1 = 17 + 1 = 18.\nStep 3 — why the +1: 51/3 = 17 counts the GAPS between terms, and a row of 17 gaps has 18 terms at its ends.\nCheck with the nth-term formula: 56 = 5 + (n - 1)3 gives (n - 1)3 = 51, n - 1 = 17, n = 18. Correct.\nAnswer: 18.",
-      "trap": "Answering 17, the number of steps of 3 needed to walk from 5 up to 56. Fence posts, not fence panels: from 5 to 56 there are 17 jumps but 18 numbers. This is the single most common error in the whole topic.",
-      "estimated_time_seconds": 50,
-      "tags": [
-        "counting-terms",
-        "off-by-one",
-        "arithmetic-sequence"
       ]
     },
     {
@@ -110,12 +94,129 @@
         "D",
         "E"
       ],
-      "explanation": "A sequence is arithmetic when the DIFFERENCES between consecutive terms are constant.\nA - differences are 2, 4, 8: not constant. The ratios are constant (r = 2), so this one is geometric. FALSE.\nB - differences are 4, 4, 4. Constant, so arithmetic with d = 4. TRUE.\nC - differences are 3, 5, 7: not constant. These are the perfect squares. FALSE.\nD - differences are -3, -3, -3. Constant, so arithmetic with d = -3. A negative common difference is still a common difference. TRUE.\nE - differences are 0, 0, 0. Constant, so arithmetic with d = 0. TRUE.\nAnswer: B, D, E.",
+      "explanation": "A sequence is arithmetic when the DIFFERENCES between consecutive terms are constant.\nA - differences are 2, 4, 8: not constant. The ratios are constant (r = 2), so this one is geometric. False.\nB - differences are 4, 4, 4. Constant, so arithmetic with d = 4. True.\nC - differences are 3, 5, 7: not constant. These are the perfect squares. False.\nD - differences are -3, -3, -3. Constant, so arithmetic with d = -3. A negative common difference is still a common difference. True.\nE - differences are 0, 0, 0. Constant, so arithmetic with d = 0. True.\nAnswer: B, D, E.",
       "trap": "Two errors sit on opposite sides. Including A, because 2, 4, 8, 16 'has a pattern' - it does, but a multiplicative one. Excluding D or E, because the differences are not positive: d = -3 and d = 0 are perfectly legal common differences.",
       "estimated_time_seconds": 60,
       "tags": [
         "arithmetic-sequence",
         "geometric-sequence",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-015",
+      "difficulty": "easy",
+      "type": "numeric_entry",
+      "question": "How many terms are in the arithmetic sequence 5, 8, 11, ..., 56?",
+      "options": null,
+      "answer": "18",
+      "explanation": "Step 1 — the step size is d = 8 - 5 = 3, first term 5, last term 56.\nStep 2 — count = (last - first)/step + 1 = (56 - 5)/3 + 1 = 51/3 + 1 = 17 + 1 = 18.\nStep 3 — why the +1: 51/3 = 17 counts the GAPS between terms, and a row of 17 gaps has 18 terms at its ends.\nCheck with the nth-term formula: 56 = 5 + (n - 1)3 gives (n - 1)3 = 51, n - 1 = 17, n = 18. Correct.\nAnswer: 18.",
+      "trap": "Answering 17, the number of steps of 3 needed to walk from 5 up to 56. Fence posts, not fence panels: from 5 to 56 there are 17 jumps but 18 numbers. This is the single most common error in the whole topic.",
+      "estimated_time_seconds": 50,
+      "tags": [
+        "counting-terms",
+        "off-by-one",
+        "arithmetic-sequence"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-014",
+      "difficulty": "medium",
+      "type": "mcq",
+      "question": "A sequence repeats the block 4, 9, 2 over and over: 4, 9, 2, 4, 9, 2, 4, 9, 2, ... What is the sum of the first 50 terms?",
+      "options": [
+        "A. 240",
+        "B. 244",
+        "C. 251",
+        "D. 253",
+        "E. 255"
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — one block has length 3 and sums to 4 + 9 + 2 = 15.\nStep 2 — divide the position count by the cycle length: 50 = 3 x 16 + 2. So there are 16 complete blocks (48 terms) with 2 terms left over.\nStep 3 — the complete blocks contribute 16 x 15 = 240.\nStep 4 — the remainder is 2, so the leftover terms are the FIRST two of a fresh block: term 49 = 4 and term 50 = 9, contributing 4 + 9 = 13.\nStep 5 — total = 240 + 13 = 253.\nCheck: term 48 is the last of block 16, so term 49 restarts at 4. Correct.\nAnswer: 253.",
+      "trap": "Stopping at 240 (choice A), the 16 complete blocks, and forgetting the two terms hanging off the end. Choice E, 255, is the opposite error of rounding 50/3 up to 17 whole blocks, which counts 51 terms. Choice C, 251, takes the leftover terms from the wrong end of the block (9 + 2 instead of 4 + 9), and choice B, 244, counts only one leftover term instead of two. In a cycle question the remainder tells you how far INTO the next block you land, counting from its start.",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "repeating-pattern",
+        "position-in-cycle",
+        "remainder"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-017",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In an arithmetic sequence, the 3rd term is 11 and the 7th term is 27. What is the 15th term?",
+      "options": null,
+      "answer": "59",
+      "explanation": "Step 1 — count the steps between the known terms: from position 3 to position 7 is 7 - 3 = 4 steps, not 5 and not 7.\nStep 2 — those 4 steps produce a rise of 27 - 11 = 16, so d = 16/4 = 4.\nStep 3 — jump straight from the 7th term to the 15th: that is 15 - 7 = 8 more steps.\na_15 = 27 + 8 x 4 = 27 + 32 = 59.\nCheck by going back to the first term instead: a_3 = 11 means a_1 = 11 - 2 x 4 = 3, and a_15 = 3 + 14 x 4 = 3 + 56 = 59. Both routes agree. Correct.\nAnswer: 59.",
+      "trap": "Dividing 16 by 5 (positions counted instead of gaps) or by 7, which corrupts d before the work even starts. The other slip is treating a_3 = 11 as 'a_1 plus 3d' when it is a_1 plus 2d - working forward from a_7 avoids that step entirely.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "arithmetic-sequence",
+        "nth-term",
+        "counting-steps"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-019",
+      "difficulty": "medium",
+      "type": "quantitative_comparison",
+      "question": "Sequence A is arithmetic with first term 4 and common difference 15. Sequence B is geometric with first term 4 and common ratio 2.\nQuantity A: The 5th term of sequence A\nQuantity B: The 5th term of sequence B",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — Quantity A, arithmetic: a_5 = 4 + (5 - 1) x 15 = 4 + 60 = 64.\nStep 2 — Quantity B, geometric: b_5 = 4 x 2^(5-1) = 4 x 2^4 = 4 x 16 = 64.\nStep 3 — 64 = 64, so the two quantities are equal.\nCheck by listing. A: 4, 19, 34, 49, 64. B: 4, 8, 16, 32, 64. Both fifth entries are 64. Correct.\nNote the shape of the two formulas: the arithmetic term adds d exactly (n - 1) times and the geometric term multiplies by r exactly (n - 1) times. Here 4 additions of 15 and 4 doublings happen to land on the same number; one term later the doubling has already run away, 128 against 79.\nAnswer: The two quantities are equal.",
+      "trap": "Using the exponent n instead of n - 1 in Quantity B: 4 x 2^5 = 128, which makes Quantity B look greater and gives choice B. The mirror slip, reading the geometric term as first term x n x r = 4 x 5 x 2 = 40, makes Quantity A look greater and gives choice A. The exponent is n - 1 = 4, exactly parallel to the (n - 1)d = 4 x 15 in Quantity A, and with the exponent right the columns tie at 64.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "arithmetic-sequence",
+        "geometric-sequence",
+        "qc"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-021",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A sequence is defined recursively by a_1 = 2 and a_n = 3a_(n-1) - 1 for every integer n > 1. What is a_4?",
+      "options": null,
+      "answer": "41",
+      "explanation": "Do not look for a closed form - four terms is faster to list.\nStep 1 — a_1 = 2.\nStep 2 — a_2 = 3 x 2 - 1 = 5.\nStep 3 — a_3 = 3 x 5 - 1 = 14.\nStep 4 — a_4 = 3 x 14 - 1 = 41.\nCheck by running the rule backwards from 41: (41 + 1)/3 = 14, (14 + 1)/3 = 5, (5 + 1)/3 = 2 = a_1. Correct.\nAnswer: 41.",
+      "trap": "Feeding a_1 into the rule for the wrong term, e.g. a_4 = 3 x 2 - 1 = 5, or treating the rule as geometric and computing 2 x 3^3 - 1 = 53. Each term must be built from the one immediately before it; the '-1' is applied at every single step, not once at the end.",
+      "estimated_time_seconds": 65,
+      "tags": [
+        "recursive-sequence",
+        "term-by-term",
+        "pattern"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-023",
+      "difficulty": "medium",
+      "type": "multiple_answer",
+      "question": "Consider the arithmetic sequence 6, 10, 14, 18, ... , which continues without end. Which of the following numbers are terms of this sequence? Select all that apply.",
+      "options": [
+        "A. 50",
+        "B. 62",
+        "C. 78",
+        "D. 100",
+        "E. 200"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "C"
+      ],
+      "explanation": "The sequence has a = 6 and d = 4, so its terms are 6 + 4k for whole numbers k. A number x is a term exactly when x - 6 is a non-negative multiple of 4.\nA - 50 - 6 = 44, and 44/4 = 11. True (it is the 12th term).\nB - 62 - 6 = 56, and 56/4 = 14. True (the 15th term).\nC - 78 - 6 = 72, and 72/4 = 18. True (the 19th term).\nD - 100 - 6 = 94, and 94/4 = 23.5, not a whole number. False.\nE - 200 - 6 = 194, and 194/4 = 48.5, not a whole number. False.\nAnswer: A, B, C.",
+      "trap": "Testing only whether the candidate is even. Every term here is even, but the terms are exactly the numbers that leave remainder 2 on division by 4 - and 100 and 200 are multiples of 4, so they are skipped over. The test is (x - a) divisible by d, not (x divisible by d).",
+      "estimated_time_seconds": 85,
+      "tags": [
+        "arithmetic-sequence",
+        "membership-test",
         "multiple-answer"
       ]
     },
@@ -164,147 +265,29 @@
       ]
     },
     {
-      "id": "ARI-SEQ-014",
-      "difficulty": "medium",
-      "type": "mcq",
-      "question": "A sequence repeats the block 4, 9, 2 over and over: 4, 9, 2, 4, 9, 2, 4, 9, 2, ... What is the sum of the first 50 terms?",
-      "options": [
-        "A. 240",
-        "B. 244",
-        "C. 251",
-        "D. 253",
-        "E. 255"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — one block has length 3 and sums to 4 + 9 + 2 = 15.\nStep 2 — divide the position count by the cycle length: 50 = 3 x 16 + 2. So there are 16 complete blocks (48 terms) with 2 terms left over.\nStep 3 — the complete blocks contribute 16 x 15 = 240.\nStep 4 — the remainder is 2, so the leftover terms are the FIRST two of a fresh block: term 49 = 4 and term 50 = 9, contributing 4 + 9 = 13.\nStep 5 — total = 240 + 13 = 253.\nCheck: term 48 is the last of block 16, so term 49 restarts at 4. Correct.\nAnswer: 253.",
-      "trap": "Stopping at 240 (choice A), the 16 complete blocks, and forgetting the two terms hanging off the end. Choice E, 255, is the opposite error of rounding 50/3 up to 17 whole blocks, which counts 51 terms. Choice C, 251, takes the leftover terms from the wrong end of the block (9 + 2 instead of 4 + 9), and choice B, 244, counts only one leftover term instead of two. In a cycle question the remainder tells you how far INTO the next block you land, counting from its start.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "repeating-pattern",
-        "position-in-cycle",
-        "remainder"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-017",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "In an arithmetic sequence, the 3rd term is 11 and the 7th term is 27. What is the 15th term? Enter your answer as a number.",
-      "options": null,
-      "answer": "59",
-      "explanation": "Step 1 — count the steps between the known terms: from position 3 to position 7 is 7 - 3 = 4 steps, not 5 and not 7.\nStep 2 — those 4 steps produce a rise of 27 - 11 = 16, so d = 16/4 = 4.\nStep 3 — jump straight from the 7th term to the 15th: that is 15 - 7 = 8 more steps.\na_15 = 27 + 8 x 4 = 27 + 32 = 59.\nCheck by going back to the first term instead: a_3 = 11 means a_1 = 11 - 2 x 4 = 3, and a_15 = 3 + 14 x 4 = 3 + 56 = 59. Both routes agree. Correct.\nAnswer: 59.",
-      "trap": "Dividing 16 by 5 (positions counted instead of gaps) or by 7, which corrupts d before the work even starts. The other slip is treating a_3 = 11 as 'a_1 plus 3d' when it is a_1 plus 2d - working forward from a_7 avoids that step entirely.",
-      "estimated_time_seconds": 80,
-      "tags": [
-        "arithmetic-sequence",
-        "nth-term",
-        "counting-steps"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-021",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "A sequence is defined recursively by a_1 = 2 and a_n = 3a_(n-1) - 1 for every integer n > 1. What is a_4? Enter your answer as a number.",
-      "options": null,
-      "answer": "41",
-      "explanation": "Do not look for a closed form - four terms is faster to list.\nStep 1 — a_1 = 2.\nStep 2 — a_2 = 3 x 2 - 1 = 5.\nStep 3 — a_3 = 3 x 5 - 1 = 14.\nStep 4 — a_4 = 3 x 14 - 1 = 41.\nCheck by running the rule backwards from 41: (41 + 1)/3 = 14, (14 + 1)/3 = 5, (5 + 1)/3 = 2 = a_1. Correct.\nAnswer: 41.",
-      "trap": "Feeding a_1 into the rule for the wrong term, e.g. a_4 = 3 x 2 - 1 = 5, or treating the rule as geometric and computing 2 x 3^3 - 1 = 53. Each term must be built from the one immediately before it; the '-1' is applied at every single step, not once at the end.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "recursive-sequence",
-        "term-by-term",
-        "pattern"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-031",
-      "difficulty": "medium",
-      "type": "numeric_entry",
-      "question": "How many 3-digit positive integers are divisible by 11? Enter your answer as a number.",
-      "options": null,
-      "answer": "81",
-      "explanation": "Step 1 — find the endpoints. The smallest 3-digit multiple of 11 is 110 = 11 x 10 (since 99 = 11 x 9 has two digits). The largest is 990 = 11 x 90 (since 11 x 91 = 1001 has four digits).\nStep 2 — the multiples run 11 x 10, 11 x 11, ..., 11 x 90, so counting them is counting the integers from 10 to 90 inclusive.\nStep 3 — count = 90 - 10 + 1 = 81.\nCheck with the spacing formula: (990 - 110)/11 + 1 = 880/11 + 1 = 80 + 1 = 81. Correct.\nAnswer: 81.",
-      "trap": "Answering 80, from 90 - 10 or from (990 - 110)/11 without the +1. The number of integers from a to b inclusive is b - a + 1, always. The other error is taking floor(999/11) = 90 as the answer, which counts every multiple of 11 from 11 up, including the nine 2-digit and 1-digit ones.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "counting-terms",
-        "off-by-one",
-        "multiples"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-023",
-      "difficulty": "medium",
-      "type": "multiple_answer",
-      "question": "Consider the arithmetic sequence 6, 10, 14, 18, ... , which continues without end. Which of the following numbers are terms of this sequence? Select all that apply.",
-      "options": [
-        "A. 50",
-        "B. 62",
-        "C. 78",
-        "D. 100",
-        "E. 200"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "C"
-      ],
-      "explanation": "The sequence has a = 6 and d = 4, so its terms are 6 + 4k for whole numbers k. A number x is a term exactly when x - 6 is a non-negative multiple of 4.\nA - 50 - 6 = 44, and 44/4 = 11. TRUE (it is the 12th term).\nB - 62 - 6 = 56, and 56/4 = 14. TRUE (the 15th term).\nC - 78 - 6 = 72, and 72/4 = 18. TRUE (the 19th term).\nD - 100 - 6 = 94, and 94/4 = 23.5, not a whole number. FALSE.\nE - 200 - 6 = 194, and 194/4 = 48.5, not a whole number. FALSE.\nAnswer: A, B, C.",
-      "trap": "Testing only whether the candidate is even. Every term here is even, but the terms are exactly the numbers that leave remainder 2 on division by 4 - and 100 and 200 are multiples of 4, so they are skipped over. The test is (x - a) divisible by d, not (x divisible by d).",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "arithmetic-sequence",
-        "membership-test",
-        "multiple-answer"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-019",
-      "difficulty": "medium",
-      "type": "quantitative_comparison",
-      "question": "Sequence A is arithmetic with first term 4 and common difference 15. Sequence B is geometric with first term 4 and common ratio 2.\nColumn A: The 5th term of sequence A\nColumn B: The 5th term of sequence B",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "Step 1 — Column A, arithmetic: a_5 = 4 + (5 - 1) x 15 = 4 + 60 = 64.\nStep 2 — Column B, geometric: b_5 = 4 x 2^(5-1) = 4 x 2^4 = 4 x 16 = 64.\nStep 3 — 64 = 64, so the two quantities are equal.\nCheck by listing. A: 4, 19, 34, 49, 64. B: 4, 8, 16, 32, 64. Both fifth entries are 64. Correct.\nNote the shape of the two formulas: the arithmetic term adds d exactly (n - 1) times and the geometric term multiplies by r exactly (n - 1) times. Here 4 additions of 15 and 4 doublings happen to land on the same number; one term later the doubling has already run away, 128 against 79.\nAnswer: The two quantities are equal.",
-      "trap": "Using the exponent n instead of n - 1 in Column B: 4 x 2^5 = 128, which makes Column B look greater and gives choice B. The mirror slip, reading the geometric term as first term x n x r = 4 x 5 x 2 = 40, makes Column A look greater and gives choice A. The exponent is n - 1 = 4, exactly parallel to the (n - 1)d = 4 x 15 in Column A, and with the exponent right the columns tie at 64.",
-      "estimated_time_seconds": 65,
-      "tags": [
-        "arithmetic-sequence",
-        "geometric-sequence",
-        "qc"
-      ]
-    },
-    {
       "id": "ARI-SEQ-039",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
-      "question": "The sum of the first n terms of an arithmetic sequence is S_n = n^2 + 3n for every positive integer n. What is the common difference?",
+      "question": "In a certain arithmetic sequence, the 4th term is 11 and the 10th term is 29. What is the 20th term of the sequence?",
       "options": [
-        "A. 1",
-        "B. 2",
-        "C. 3",
-        "D. 4",
-        "E. 6"
+        "A. 56",
+        "B. 59",
+        "C. 60",
+        "D. 62",
+        "E. 65"
       ],
       "answer": "B",
-      "explanation": "Step 1 — recover terms from sums. Any single term is the difference of two consecutive cumulative sums: a_n = S_n - S_(n-1).\nStep 2 — compute the first few directly.\nS_1 = 1 + 3 = 4, so a_1 = 4.\nS_2 = 4 + 6 = 10, so a_2 = 10 - 4 = 6.\nS_3 = 9 + 9 = 18, so a_3 = 18 - 10 = 8.\nStep 3 — the sequence is 4, 6, 8, ... so d = 2.\nAlgebraic route: a_n = (n^2 + 3n) - ((n-1)^2 + 3(n-1)) = (n^2 + 3n) - (n^2 + n - 2) = 2n + 2, which is arithmetic with d = 2.\nCheck: 4 + 6 + 8 = 18 = S_3. Correct.\nAnswer: 2.",
-      "trap": "Reading the common difference straight off the formula: the coefficient 3 on the n term (choice C) or the coefficient 1 on n^2 (choice A). Neither is d - for an arithmetic sequence S_n = (d/2)n^2 + (a - d/2)n, so d is TWICE the coefficient of n^2. Choice D, 4, is a_1 mistaken for d, and choice E, 6, is a_2 reported as the difference.",
-      "estimated_time_seconds": 90,
+      "explanation": "From the 4th term to the 10th term there are 6 steps, and the terms rise by 29 - 11 = 18.\nEach step adds 18/6 = 3.\nFrom the 10th term to the 20th term there are 10 steps: 29 + 10 * 3 = 59.\nAnswer: B.",
+      "trap": "Dividing 18 by 7, the number of terms from the 4th through the 10th, instead of by the 6 steps between them. Counting steps, not terms, gives a common difference of 3.",
+      "estimated_time_seconds": 80,
       "tags": [
-        "arithmetic-sequence",
-        "sum-vs-term",
-        "hard"
+        "sequences",
+        "arithmetic-sequences"
       ]
     },
     {
       "id": "ARI-SEQ-042",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "Three numbers form an arithmetic sequence. Their sum is 18 and their product is 162. What are the three numbers?",
       "options": [
@@ -315,7 +298,7 @@
         "E. 6, 6, 6"
       ],
       "answer": "C",
-      "explanation": "Step 1 — name the terms symmetrically as a - d, a, a + d. The d's cancel in the sum, which is the whole point of this labelling.\nStep 2 — sum: (a - d) + a + (a + d) = 3a = 18, so a = 6. In any evenly spaced set the mean equals the middle term.\nStep 3 — product: (6 - d)(6)(6 + d) = 6(36 - d^2) = 162, so 36 - d^2 = 27, giving d^2 = 9 and d = 3.\nStep 4 — the numbers are 3, 6, 9.\nCheck: 3 + 6 + 9 = 18 and 3 x 6 x 9 = 162. Correct.\nEvery option already sums to 18, so only the product separates them: A gives 66, B gives 120, D gives 192, E gives 216.\nAnswer: 3, 6, 9.",
+      "explanation": "Step 1 — name the terms symmetrically as a - d, a, a + d. The d's cancel in the sum, which is the whole point of this labeling.\nStep 2 — sum: (a - d) + a + (a + d) = 3a = 18, so a = 6. In any evenly spaced set the mean equals the middle term.\nStep 3 — product: (6 - d)(6)(6 + d) = 6(36 - d^2) = 162, so 36 - d^2 = 27, giving d^2 = 9 and d = 3.\nStep 4 — the numbers are 3, 6, 9.\nCheck: 3 + 6 + 9 = 18 and 3 x 6 x 9 = 162. Correct.\nEvery option already sums to 18, so only the product separates them: A gives 66, B gives 120, D gives 192, E gives 216.\nAnswer: 3, 6, 9.",
       "trap": "All five choices are arithmetic and all five sum to 18, so a student who checks only the sum picks at random. The second trap is choice E: the mean is 6, but 'mean = middle term' does not force all three terms to equal the mean. Only the product 162 pins down d.",
       "estimated_time_seconds": 90,
       "tags": [
@@ -325,30 +308,23 @@
       ]
     },
     {
-      "id": "ARI-SEQ-048",
-      "difficulty": "hard",
-      "type": "mcq",
-      "question": "An infinite geometric series has first term a, where a > 0, and its sum is exactly 3 times its first term. What is the common ratio?",
-      "options": [
-        "A. 1/4",
-        "B. 1/3",
-        "C. 1/2",
-        "D. 2/3",
-        "E. 3/4"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — the infinite sum formula, valid because a finite sum is asserted (so |r| < 1): S = a/(1 - r).\nStep 2 — set it equal to 3a: a/(1 - r) = 3a.\nStep 3 — a > 0, so divide both sides by a: 1/(1 - r) = 3.\nStep 4 — cross-multiply: 1 = 3(1 - r) = 3 - 3r, so 3r = 2 and r = 2/3.\nCheck with a = 1: 1 + 2/3 + 4/9 + 8/27 + ... = 1/(1 - 2/3) = 1/(1/3) = 3 = 3 x 1. Correct.\nAnswer: 2/3.",
-      "trap": "Stopping one line early at 1 - r = 1/3 and reporting 1/3 (choice B) instead of solving for r. Choice E, 3/4, answers a different question: it is the ratio for which the terms AFTER the first sum to 3a, since a x r/(1 - r) = 3a gives r = 3/4. Choice C, 1/2, is the familiar halving series, whose sum is only 2a.",
+      "id": "ARI-SEQ-043",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "In a certain sequence, each term after the first term is 2 more than 3 times the preceding term. If the third term of the sequence is 62, what is the first term?",
+      "options": null,
+      "answer": "6",
+      "explanation": "Work backward. If a term is t, the next term is 3t + 2.\nThird term: 3 * (second term) + 2 = 62, so the second term is 60/3 = 20.\nSecond term: 3 * (first term) + 2 = 20, so the first term is 18/3 = 6.\nCheck: 6, then 3 * 6 + 2 = 20, then 3 * 20 + 2 = 62.",
+      "trap": "Undoing the steps in the wrong order: dividing 62 by 3 first and then subtracting 2. To reverse 'multiply by 3, then add 2', subtract 2 first and then divide by 3.",
       "estimated_time_seconds": 85,
       "tags": [
-        "geometric-series",
-        "infinite-sum",
-        "hard"
+        "sequences",
+        "working-backward"
       ]
     },
     {
       "id": "ARI-SEQ-053",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "mcq",
       "question": "In an arithmetic sequence, the 6th term is twice the 3rd term, and the 2nd term is 4. What is the first term?",
       "options": [
@@ -366,6 +342,137 @@
         "arithmetic-sequence",
         "two-conditions",
         "hard"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-062",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "How many terms of the arithmetic sequence 7, 11, 15, 19, ... are less than 100?",
+      "options": null,
+      "answer": "24",
+      "explanation": "The nth term is 7 + 4(n - 1).\n7 + 4(n - 1) < 100 gives 4(n - 1) < 93, so n - 1 < 23.25.\nn - 1 is at most 23, so n is at most 24.\nCheck: the 24th term is 7 + 92 = 99 and the 25th is 103.",
+      "trap": "Entering 23, the largest value of n - 1, and forgetting to add 1 for the first term.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "sequences",
+        "arithmetic-sequences",
+        "counting"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-KMF-006",
+      "difficulty": "medium",
+      "type": "numeric_entry",
+      "question": "A technician services a wind turbine on a Friday and then repeats the service at 4-day intervals, so the second service is on a Tuesday. Counting the first service as number 1, how many of the first 24 services fall on a Friday?",
+      "options": null,
+      "answer": "4",
+      "explanation": "1. Services are 4 days apart, so service number j falls 4(j - 1) days after the first one.\n2. Weekdays repeat every 7 days, so service j is on a Friday exactly when 4(j - 1) is a multiple of 7.\n3. Because 4 and 7 have no common factor, this requires (j - 1) to be a multiple of 7: j - 1 = 0, 7, 14, 21, so j = 1, 8, 15, 22.\n4. The next such service would be j = 29, which is past 24, so exactly 4 services fall on a Friday.\nCheck: service 22 is 84 days after the first and 84 = 12 * 7, so it is a Friday; service 23 is 88 days later, which is not a multiple of 7.",
+      "trap": "Dividing 24 by 7 and keeping only the whole part gives 3, which forgets that service number 1 is itself on a Friday.",
+      "estimated_time_seconds": 80,
+      "tags": [
+        "cyclic-patterns",
+        "weekday-cycles"
+      ],
+      "origin": "kmf1804",
+      "origin_set": "Section 61 Base",
+      "source_pages": [
+        403
+      ]
+    },
+    {
+      "id": "ARI-SEQ-044",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A geometric sequence has first term 6 and common ratio 3/2. Which of the following statements are true? Select all that apply.",
+      "options": [
+        "A. The 4th term is 20.25",
+        "B. The sum of the first 4 terms is 48.75",
+        "C. The 5th term is 18",
+        "D. Every term after the first is greater than the term before it",
+        "E. The 10th term is 10 times the 1st term"
+      ],
+      "answer": [
+        "A",
+        "B",
+        "D"
+      ],
+      "explanation": "Build the first few terms: 6, 9, 13.5, 20.25, 30.375, ...\nA - a_4 = 6 x (3/2)^3 = 6 x 27/8 = 20.25. True.\nB - 6 + 9 + 13.5 + 20.25 = 48.75. True.\nC - a_5 = 6 x (3/2)^4 = 6 x 81/16 = 30.375, not 18. The value 18 comes from adding 3 each time (6, 9, 12, 15, 18), as if the sequence were arithmetic. False.\nD - r = 1.5 > 1 and the first term is positive, so each term is 1.5 times the previous one and strictly larger. True.\nE - a_10 = 6 x (3/2)^9 = 6 x 38.44... = 230.66..., which is about 38 times the first term, not 10 times. False.\nAnswer: A, B, D.",
+      "trap": "Choice C catches students who see 6 to 9 as \"add 3\" and keep adding 3 (6, 9, 12, 15, 18); the sequence multiplies by 3/2 each step, so the 5th term is 30.375. Choice E punishes the same linear thinking: the 10th term is 9 multiplications away from the first, so it is (3/2)^9 times as large, not 10 times.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "geometric-sequence",
+        "arithmetic-vs-geometric",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-049",
+      "difficulty": "hard",
+      "type": "multiple_answer",
+      "question": "A sequence begins 2, 5, 10, 17, 26, ... and continues by the same rule. Which of the following statements are true? Select all that apply.",
+      "options": [
+        "A. The nth term is n^2 + 1",
+        "B. The 10th term is 100",
+        "C. The differences between consecutive terms form an arithmetic sequence with common difference 2",
+        "D. 122 is a term of the sequence",
+        "E. 200 is a term of the sequence"
+      ],
+      "answer": [
+        "A",
+        "C",
+        "D"
+      ],
+      "explanation": "First find the rule. The differences are 3, 5, 7, 9 - not constant, so the sequence is not arithmetic. But the differences themselves rise by a constant 2, which signals a quadratic rule. Testing n^2 + 1: 1 + 1 = 2, 4 + 1 = 5, 9 + 1 = 10, 16 + 1 = 17, 25 + 1 = 26. All five match.\nA - the rule is a_n = n^2 + 1, confirmed on every given term. True.\nB - a_10 = 10^2 + 1 = 101, not 100. False.\nC - the differences 3, 5, 7, 9 go up by 2 each time. True.\nD - a term equals 122 when n^2 + 1 = 122, so n^2 = 121 and n = 11. True.\nE - a term equals 200 when n^2 = 199, and 199 is not a perfect square (14^2 = 196, 15^2 = 225). False.\nAnswer: A, C, D.",
+      "trap": "Choice B is the whole question in miniature: having found the rule n^2 + 1, students compute 10^2 and report 100, dropping the +1 they just derived. Choice E baits the assumption that a fast-growing sequence 'must' hit a round number like 200 eventually - membership has to be tested by solving for n and checking it is a positive integer.",
+      "estimated_time_seconds": 100,
+      "tags": [
+        "pattern",
+        "second-differences",
+        "multiple-answer"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-050",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In a geometric sequence every term is positive. The sum of the first two terms is 12 and the sum of the first four terms is 36. What is the sum of the first six terms?",
+      "options": [
+        "A. 48",
+        "B. 60",
+        "C. 72",
+        "D. 84",
+        "E. 108"
+      ],
+      "answer": "D",
+      "explanation": "The insight: chop the sequence into blocks of two. Each block is r^2 times the block before it, because every term is r^2 times the term two places earlier.\nStep 1 — name the blocks.\nBlock 1 = a_1 + a_2 = 12.\nBlock 2 = a_3 + a_4 = S_4 - S_2 = 36 - 12 = 24.\nStep 2 — the block ratio: 24/12 = 2, so r^2 = 2.\nStep 3 — Block 3 = a_5 + a_6 = 24 x r^2 = 24 x 2 = 48.\nStep 4 — S_6 = S_4 + Block 3 = 36 + 48 = 84.\nCheck by solving outright: r^2 = 2 gives r = sqrt(2), and a(1 + sqrt(2)) = 12 gives a = 12/(1 + sqrt(2)) = 4.9706. The six terms sum to 84.00 to two decimals. Correct.\nAnswer: 84.",
+      "trap": "The blocks are 12, 24, 48 - they double. Treating them as an ARITHMETIC progression instead gives a third block of 36 and a total of 72 (choice C), which is the most common wrong answer here. Choice B, 60, repeats the second block unchanged (36 + 24); choice A, 48, adds S_2 to S_4; choice E, 108, uses S_4/S_2 = 3 as the block ratio, forgetting that the second block is S_4 - S_2, not S_4.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "geometric-series",
+        "block-sums",
+        "extreme-hard"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-051",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "A sequence is defined by a_1 = 1 and a_n = a_(n-1) + n - 1 for every integer n >= 2.\nQuantity A: a_10\nQuantity B: 46",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "The amount added changes at every step, so this is not an arithmetic sequence - build it.\na_1 = 1\na_2 = 1 + 1 = 2\na_3 = 2 + 2 = 4\na_4 = 4 + 3 = 7\na_5 = 7 + 4 = 11\na_6 = 11 + 5 = 16\na_7 = 16 + 6 = 22\na_8 = 22 + 7 = 29\na_9 = 29 + 8 = 37\na_10 = 37 + 9 = 46\nQuantity A = 46 = Quantity B, so the two quantities are equal.\nFaster route: the increments added on the way to a_10 are 1, 2, 3, ..., 9, so a_10 = 1 + (1 + 2 + ... + 9) = 1 + 9 x 10/2 = 1 + 45 = 46. Correct.",
+      "trap": "Adding 1 + 2 + ... + 10 = 55 to nothing, or adding the increments up to 10 instead of 9: reaching a_10 takes 9 steps, and the step into a_n adds n - 1, so the last increment is 9. Reading the rule as 'add n' instead of 'add n - 1' gives 1 + 54 = 55 and the wrong column.",
+      "estimated_time_seconds": 90,
+      "tags": [
+        "recursive-sequence",
+        "triangular-numbers",
+        "qc"
       ]
     },
     {
@@ -391,223 +498,10 @@
       ]
     },
     {
-      "id": "ARI-SEQ-046",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "S is the sum of the infinite series 1/2 + 1/4 + 1/8 + 1/16 + ... , in which each term is half the term before it.\nColumn A: S\nColumn B: 1 - 1/2^100",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "A",
-      "explanation": "Column A - the series is geometric with a = 1/2 and r = 1/2. Since |r| < 1 it converges:\nS = a/(1 - r) = (1/2)/(1 - 1/2) = (1/2)/(1/2) = 1.\nColumn B - 1/2^100 is a positive number, tiny but not zero, so 1 - 1/2^100 is strictly less than 1.\nTherefore Column A = 1 > Column B. Column A is greater.\nWhere Column B comes from: the sum of the first n terms of this series is exactly 1 - 1/2^n, so Column B is the 100th PARTIAL sum. Every partial sum falls short of 1; only the completed infinite sum reaches it.",
-      "trap": "Choosing C because 1/2^100 is 'basically zero'. It is unimaginably small but strictly positive, so the two quantities are never equal - a partial sum of a positive-term series is always less than the full sum. The opposite error is choosing B on the belief that an endless sum of positive numbers must exceed any fixed bound; with |r| < 1 it converges to a ceiling it never passes.",
-      "estimated_time_seconds": 85,
-      "tags": [
-        "infinite-geometric",
-        "partial-sum",
-        "qc"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-051",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "A sequence is defined by a_1 = 1 and a_n = a_(n-1) + n - 1 for every integer n >= 2.\nColumn A: a_10\nColumn B: 46",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "The amount added changes at every step, so this is not an arithmetic sequence - build it.\na_1 = 1\na_2 = 1 + 1 = 2\na_3 = 2 + 2 = 4\na_4 = 4 + 3 = 7\na_5 = 7 + 4 = 11\na_6 = 11 + 5 = 16\na_7 = 16 + 6 = 22\na_8 = 22 + 7 = 29\na_9 = 29 + 8 = 37\na_10 = 37 + 9 = 46\nColumn A = 46 = Column B, so the two quantities are equal.\nFaster route: the increments added on the way to a_10 are 1, 2, 3, ..., 9, so a_10 = 1 + (1 + 2 + ... + 9) = 1 + 9 x 10/2 = 1 + 45 = 46. Correct.",
-      "trap": "Adding 1 + 2 + ... + 10 = 55 to nothing, or adding the increments up to 10 instead of 9: reaching a_10 takes 9 steps, and the step into a_n adds n - 1, so the last increment is 9. Reading the rule as 'add n' instead of 'add n - 1' gives 1 + 54 = 55 and the wrong column.",
-      "estimated_time_seconds": 90,
-      "tags": [
-        "recursive-sequence",
-        "triangular-numbers",
-        "qc"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-061",
-      "difficulty": "hard",
-      "type": "quantitative_comparison",
-      "question": "Column A: The number of multiples of 3 from 3 to 300, inclusive, that are not multiples of 5\nColumn B: The number of integers from 50 to 150, inclusive, that are not multiples of 5",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "Step 1 — Column A, count the multiples of 3 from 3 to 300. They are 3 x 1, 3 x 2, ..., 3 x 100, so there are 100 of them; the spacing formula agrees: (300 - 3)/3 + 1 = 99 + 1 = 100.\nStep 2 — strip out the ones that are also multiples of 5, that is the multiples of 15: 15, 30, ..., 300, and (300 - 15)/15 + 1 = 19 + 1 = 20 of them.\nStep 3 — Column A = 100 - 20 = 80.\nStep 4 — Column B, count the integers from 50 to 150: 150 - 50 + 1 = 101.\nStep 5 — strip out the multiples of 5 in that range: 50, 55, ..., 150, and (150 - 50)/5 + 1 = 20 + 1 = 21 of them.\nStep 6 — Column B = 101 - 21 = 80.\n80 = 80, so the two quantities are equal.\nCheck: all four counts are (last - first)/step + 1, and each one needs its own +1. Drop a single one of those four +1s and the tie disappears, which is exactly what the wrong answers are made of.\nAnswer: The two quantities are equal.",
-      "trap": "Dropping the +1 on the total in Column B, 150 - 50 = 100, gives 100 - 21 = 79 and makes Column A look greater, choice A. Dropping the +1 on the multiples of 5 instead, (150 - 50)/5 = 20, gives 101 - 20 = 81 and makes Column B look greater, choice B - the same off-by-one lands on either wrong letter depending on which of the four counts it hits. Forgetting to remove the multiples of 15 from Column A leaves 100 against 80 and also points at A.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "counting-terms",
-        "off-by-one",
-        "overlap-removal"
-      ],
-      "is_new": true
-    },
-    {
-      "id": "ARI-SEQ-043",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "What is the value of 1x2 + 2x3 + 3x4 + ... + 10x11? Enter your answer as a number.",
-      "options": null,
-      "answer": "440",
-      "explanation": "Step 1 — the general term is n(n + 1) = n^2 + n, for n running from 1 to 10.\nStep 2 — split the sum into two known sums:\nsum of n^2 for n = 1 to 10 is n(n+1)(2n+1)/6 = 10 x 11 x 21/6 = 2310/6 = 385\nsum of n for n = 1 to 10 is n(n+1)/2 = 10 x 11/2 = 55\nStep 3 — add them: 385 + 55 = 440.\nCheck with the closed form for this family, sum of n(n+1) = n(n+1)(n+2)/3 = 10 x 11 x 12/3 = 1320/3 = 440. Correct.\nAnswer: 440.",
-      "trap": "Multiplying the two sums instead of adding the split pieces, or computing (1 + 2 + ... + 10) x (2 + 3 + ... + 11) = 55 x 65 = 3575 - a sum of products is not the product of the sums. Adding the ten products by hand is legal but invites a slip; the two standard formulas make it two lines.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "series",
-        "sum-formula",
-        "hard"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-062",
-      "difficulty": "hard",
-      "type": "numeric_entry",
-      "question": "What is the value of 1/(1x2) + 1/(2x3) + 1/(3x4) + ... + 1/(19x20)? Enter your answer as a number.",
-      "options": null,
-      "answer": "0.95",
-      "explanation": "Step 1 — spot the telescoping identity. For each n, 1/(n(n+1)) = 1/n - 1/(n+1). Verify on the first term: 1/1 - 1/2 = 1/2 = 1/(1x2). Correct.\nStep 2 — rewrite the whole sum:\n(1/1 - 1/2) + (1/2 - 1/3) + (1/3 - 1/4) + ... + (1/19 - 1/20)\nStep 3 — every interior fraction appears once with a plus and once with a minus, so everything cancels except the very first and the very last:\nsum = 1/1 - 1/20 = 19/20 = 0.95.\nCheck the pattern on a short version: 1/(1x2) + 1/(2x3) = 1/2 + 1/6 = 2/3, and 1 - 1/3 = 2/3. Correct.\nAnswer: 0.95.",
-      "trap": "Trying to add nineteen fractions with a common denominator, which is slow and error-prone, or assuming the sum must reach 1 because the terms are shrinking - it stops exactly 1/20 short. A third slip is dropping the last term's tail and answering 1 - 1/19; the final denominator is 20, the larger factor in the last product.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "telescoping",
-        "series",
-        "hard"
-      ],
-      "is_new": true
-    },
-    {
-      "id": "ARI-SEQ-049",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "A sequence begins 2, 5, 10, 17, 26, ... and continues by the same rule. Which of the following statements are true? Select all that apply.",
-      "options": [
-        "A. The nth term is n^2 + 1",
-        "B. The 10th term is 100",
-        "C. The differences between consecutive terms form an arithmetic sequence with common difference 2",
-        "D. 122 is a term of the sequence",
-        "E. 200 is a term of the sequence"
-      ],
-      "answer": [
-        "A",
-        "C",
-        "D"
-      ],
-      "explanation": "First find the rule. The differences are 3, 5, 7, 9 - not constant, so the sequence is not arithmetic. But the differences themselves rise by a constant 2, which signals a quadratic rule. Testing n^2 + 1: 1 + 1 = 2, 4 + 1 = 5, 9 + 1 = 10, 16 + 1 = 17, 25 + 1 = 26. All five match.\nA - the rule is a_n = n^2 + 1, confirmed on every given term. TRUE.\nB - a_10 = 10^2 + 1 = 101, not 100. FALSE.\nC - the differences 3, 5, 7, 9 go up by 2 each time. TRUE.\nD - a term equals 122 when n^2 + 1 = 122, so n^2 = 121 and n = 11. TRUE.\nE - a term equals 200 when n^2 = 199, and 199 is not a perfect square (14^2 = 196, 15^2 = 225). FALSE.\nAnswer: A, C, D.",
-      "trap": "Choice B is the whole question in miniature: having found the rule n^2 + 1, students compute 10^2 and report 100, dropping the +1 they just derived. Choice E baits the assumption that a fast-growing sequence 'must' hit a round number like 200 eventually - membership has to be tested by solving for n and checking it is a positive integer.",
-      "estimated_time_seconds": 100,
-      "tags": [
-        "pattern",
-        "second-differences",
-        "multiple-answer"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-044",
-      "difficulty": "hard",
-      "type": "multiple_answer",
-      "question": "A geometric sequence has first term 6 and common ratio 3/2. Which of the following statements are true? Select all that apply.",
-      "options": [
-        "A. The 4th term is 20.25",
-        "B. The sum of the first 4 terms is 48.75",
-        "C. The 5th term is 18",
-        "D. Every term after the first is greater than the term before it",
-        "E. The 10th term is 10 times the 1st term"
-      ],
-      "answer": [
-        "A",
-        "B",
-        "D"
-      ],
-      "explanation": "Build the first few terms: 6, 9, 13.5, 20.25, 30.375, ...\nA - a_4 = 6 x (3/2)^3 = 6 x 27/8 = 20.25. TRUE.\nB - 6 + 9 + 13.5 + 20.25 = 48.75. TRUE.\nC - a_5 = 6 x (3/2)^4 = 6 x 81/16 = 30.375, not 18. The value 18 comes from adding 3 each time (6, 9, 12, 15, 18), as if the sequence were arithmetic. FALSE.\nD - r = 1.5 > 1 and the first term is positive, so each term is 1.5 times the previous one and strictly larger. TRUE.\nE - a_10 = 6 x (3/2)^9 = 6 x 38.44... = 230.66..., which is about 38 times the first term, not 10 times. FALSE.\nAnswer: A, B, D.",
-      "trap": "Choice C catches students who see 6 to 9 as \"add 3\" and keep adding 3 (6, 9, 12, 15, 18); the sequence multiplies by 3/2 each step, so the 5th term is 30.375. Choice E punishes the same linear thinking: the 10th term is 9 multiplications away from the first, so it is (3/2)^9 times as large, not 10 times.",
-      "estimated_time_seconds": 105,
-      "tags": [
-        "geometric-sequence",
-        "arithmetic-vs-geometric",
-        "multiple-answer"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-050",
-      "difficulty": "extreme_hard",
-      "type": "mcq",
-      "question": "In a geometric sequence every term is positive. The sum of the first two terms is 12 and the sum of the first four terms is 36. What is the sum of the first six terms?",
-      "options": [
-        "A. 48",
-        "B. 60",
-        "C. 72",
-        "D. 84",
-        "E. 108"
-      ],
-      "answer": "D",
-      "explanation": "The insight: chop the sequence into blocks of two. Each block is r^2 times the block before it, because every term is r^2 times the term two places earlier.\nStep 1 — name the blocks.\nBlock 1 = a_1 + a_2 = 12.\nBlock 2 = a_3 + a_4 = S_4 - S_2 = 36 - 12 = 24.\nStep 2 — the block ratio: 24/12 = 2, so r^2 = 2.\nStep 3 — Block 3 = a_5 + a_6 = 24 x r^2 = 24 x 2 = 48.\nStep 4 — S_6 = S_4 + Block 3 = 36 + 48 = 84.\nCheck by solving outright: r^2 = 2 gives r = sqrt(2), and a(1 + sqrt(2)) = 12 gives a = 12/(1 + sqrt(2)) = 4.9706. The six terms sum to 84.00 to two decimals. Correct.\nAnswer: 84.",
-      "trap": "The blocks are 12, 24, 48 - they double. Treating them as an ARITHMETIC progression instead gives a third block of 36 and a total of 72 (choice C), which is the most common wrong answer here. Choice B, 60, repeats the second block unchanged (36 + 24); choice A, 48, adds S_2 to S_4; choice E, 108, uses S_4/S_2 = 3 as the block ratio, forgetting that the second block is S_4 - S_2, not S_4.",
-      "estimated_time_seconds": 115,
-      "tags": [
-        "geometric-series",
-        "block-sums",
-        "extreme-hard"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-041",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "An infinite geometric sequence has first term a > 0 and common ratio r with 0 < r < 1. S denotes the sum of the entire infinite series.\nColumn A: The sum of the first 10 terms of the sequence\nColumn B: S x (1 - r^10)",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "C",
-      "explanation": "Step 1 — write each column algebraically.\nColumn A = a(1 - r^10)/(1 - r), the partial-sum formula written so the numerator is positive for 0 < r < 1.\nColumn B: S = a/(1 - r), so Column B = [a/(1 - r)] x (1 - r^10) = a(1 - r^10)/(1 - r).\nStep 2 — the two expressions are identical, for every legal a and r. The two quantities are equal.\nWhy this is not a coincidence: the terms from the 11th onward are just the whole series scaled by r^10, so their sum is S x r^10. Removing them leaves S - S x r^10 = S(1 - r^10), which is exactly the first ten terms.\nCheck numerically with a = 5, r = 1/3: the first ten terms sum to 147620/19683, and S x (1 - r^10) = (15/2) x (1 - 1/59049) = 147620/19683. Identical. Correct.",
-      "trap": "Choosing B because a partial sum must be less than the infinite sum - true of S alone, but Column B is S shrunk by the factor (1 - r^10), which is exactly the right amount to remove the tail. Choosing D because a and r are unknown is the other error: both columns carry the same a and the same r, so the unknowns cancel identically and the relationship is fixed.",
-      "estimated_time_seconds": 115,
-      "tags": [
-        "infinite-geometric",
-        "partial-sum-identity",
-        "qc"
-      ]
-    },
-    {
-      "id": "ARI-SEQ-059",
-      "difficulty": "extreme_hard",
-      "type": "quantitative_comparison",
-      "question": "An arithmetic sequence has first term a and common difference d, where a > 0 and d > 0, and n is a positive integer.\nColumn A: (the sum of the first 2n terms) divided by (the sum of the first n terms)\nColumn B: 4",
-      "options": [
-        "A. Column A is greater",
-        "B. Column B is greater",
-        "C. The two quantities are equal",
-        "D. The relationship cannot be determined from the information given"
-      ],
-      "answer": "D",
-      "explanation": "Step 1 — write the ratio. S_n = (n/2)[2a + (n-1)d], so\nColumn A = [n(2a + (2n-1)d)] / [(n/2)(2a + (n-1)d)] = 2(2a + (2n-1)d)/(2a + (n-1)d).\nThe n does not cancel out of the brackets, so the ratio depends on a, d and n together. Test the extremes.\nStep 2 — make d small next to a. Take a = 1, d = 1, n = 1: S_2 = 1 + 2 = 3 and S_1 = 1, so the ratio is 3, which is LESS than 4.\nStep 3 — make d large next to a. Take a = 1, d = 100, n = 1: S_2 = 1 + 101 = 102 and S_1 = 1, so the ratio is 102, which is GREATER than 4.\nBoth cases satisfy every condition in the stem, and they land on opposite sides of 4. The relationship cannot be determined.\nA third data point: a = 1, d = 1, n = 5 gives S_10/S_5 = 55/15 = 11/3, again below 4.",
-      "trap": "Assuming that doubling the number of terms multiplies the sum by a fixed factor - by 2 (as it would if all terms were equal) or by 4 (as it would if a = 0, where S_n is proportional to n^2). Both are special cases, not the general rule: as d/a grows the ratio climbs without limit, and as d/a shrinks toward 0 it falls toward 2. Anything above 2 is reachable, so no single comparison with 4 holds.",
-      "estimated_time_seconds": 120,
-      "tags": [
-        "arithmetic-series",
-        "ratio-of-sums",
-        "qc"
-      ]
-    },
-    {
       "id": "ARI-SEQ-056",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "What is the value of 1^2 - 2^2 + 3^2 - 4^2 + ... + 99^2 - 100^2? Enter your answer as a number.",
+      "question": "What is the value of 1^2 - 2^2 + 3^2 - 4^2 + ... + 99^2 - 100^2?",
       "options": null,
       "answer": "-5050",
       "explanation": "Step 1 — pair the terms in the order they are written: (1^2 - 2^2) + (3^2 - 4^2) + ... + (99^2 - 100^2). There are 100 terms, so exactly 50 pairs.\nStep 2 — factor each pair as a difference of squares: k^2 - (k+1)^2 = (k - (k+1))(k + (k+1)) = -(2k + 1).\nSo each pair is simply minus the sum of its two bases: 1^2 - 2^2 = -3, 3^2 - 4^2 = -7, 5^2 - 6^2 = -11, and so on.\nStep 3 — the pair values are -3, -7, -11, ..., -199, an arithmetic list with d = -4. Count: (199 - 3)/4 + 1 = 49 + 1 = 50 pairs, matching Step 1.\nStep 4 — sum them: 50 x (-3 + -199)/2 = 50 x (-101) = -5050.\nCheck by a second route: since each pair equals -(sum of its two bases), the whole expression equals -(1 + 2 + 3 + ... + 100) = -(100 x 101/2) = -5050. Correct.\nAnswer: -5050.",
@@ -621,28 +515,138 @@
     },
     {
       "id": "ARI-SEQ-057",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "multiple_answer",
-      "question": "An infinite geometric series has first term a, where a is not 0, and common ratio r. Which of the following conditions, on its own, guarantees that the series has a finite sum? Select all that apply.",
+      "question": "A sequence is defined by a_1 = 2 and a_(n+1) = 3*a_n - 2 for every positive integer n. Which of the following are terms of the sequence? Select all that apply.",
       "options": [
-        "A. |r| < 1",
-        "B. r < 1",
-        "C. 0 < r < 1",
-        "D. -1 < r < 0",
-        "E. a > 0 and r > 0"
+        "A. 28",
+        "B. 81",
+        "C. 82",
+        "D. 243",
+        "E. 730"
       ],
       "answer": [
         "A",
         "C",
-        "D"
+        "E"
       ],
-      "explanation": "The series converges to a/(1 - r) exactly when |r| < 1, and diverges otherwise. So a condition qualifies precisely when it forces |r| < 1.\nA - this is the convergence condition itself. TRUE.\nB - r < 1 also allows r = -2, where the terms a, -2a, 4a, -8a, ... grow without bound. Not sufficient. FALSE.\nC - 0 < r < 1 gives |r| = r < 1, so it forces convergence. It is narrower than needed, but the question asks what guarantees a finite sum, and this does. TRUE.\nD - -1 < r < 0 gives |r| < 1 as well; the terms alternate in sign and shrink, and the series converges. TRUE.\nE - a > 0 and r > 0 allows r = 3, which diverges. Not sufficient. FALSE.\nAnswer: A, C, D.",
-      "trap": "Choice B is the headline error: dropping the absolute value turns the true condition into one that admits every negative ratio, including r = -2 and r = -10. Choice E tempts a student who thinks positivity is what matters, when only the SIZE of r decides convergence. The other direction of error is rejecting C or D for being 'too narrow' - a sufficient condition does not have to be the full condition.",
+      "explanation": "Step 1 - compute the first terms: 2, 4, 10, 28, 82, 244, 730, ...\nStep 2 - find the structure by subtracting 1 from the rule: a_(n+1) - 1 = 3*a_n - 3 = 3*(a_n - 1). So the values a_n - 1 form a geometric sequence with first term a_1 - 1 = 1 and ratio 3, which means a_n = 3^(n-1) + 1.\nStep 3 - a number is a term exactly when it is 1 more than a power of 3 (1, 3, 9, 27, 81, 243, 729, ...).\nA: 28 = 27 + 1. True.\nB: 81 = 80 + 1, and 80 is not a power of 3. False (81 is itself a power of 3, which is the trap).\nC: 82 = 81 + 1. True.\nD: 243 = 242 + 1, and 242 is not a power of 3. False.\nE: 730 = 729 + 1. True.\nAnswer: A, C, E.",
+      "trap": "Students notice powers of 3 and select 81 and 243 (B and D). The terms are one more than a power of 3, so 28, 82 and 730 qualify instead.",
       "estimated_time_seconds": 110,
       "tags": [
-        "infinite-geometric",
-        "convergence",
+        "recursive-sequence",
+        "geometric-sequence",
+        "pattern-recognition",
         "multiple-answer"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-061",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "Quantity A: The number of multiples of 3 from 3 to 300, inclusive, that are not multiples of 5\nQuantity B: The number of integers from 50 to 150, inclusive, that are not multiples of 5",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "Step 1 — Quantity A, count the multiples of 3 from 3 to 300. They are 3 x 1, 3 x 2, ..., 3 x 100, so there are 100 of them; the spacing formula agrees: (300 - 3)/3 + 1 = 99 + 1 = 100.\nStep 2 — strip out the ones that are also multiples of 5, that is the multiples of 15: 15, 30, ..., 300, and (300 - 15)/15 + 1 = 19 + 1 = 20 of them.\nStep 3 — Quantity A = 100 - 20 = 80.\nStep 4 — Quantity B, count the integers from 50 to 150: 150 - 50 + 1 = 101.\nStep 5 — strip out the multiples of 5 in that range: 50, 55, ..., 150, and (150 - 50)/5 + 1 = 20 + 1 = 21 of them.\nStep 6 — Quantity B = 101 - 21 = 80.\n80 = 80, so the two quantities are equal.\nCheck: all four counts are (last - first)/step + 1, and each one needs its own +1. Drop a single one of those four +1s and the tie disappears, which is exactly what the wrong answers are made of.\nAnswer: The two quantities are equal.",
+      "trap": "Dropping the +1 on the total in Quantity B, 150 - 50 = 100, gives 100 - 21 = 79 and makes Quantity A look greater, choice A. Dropping the +1 on the multiples of 5 instead, (150 - 50)/5 = 20, gives 101 - 20 = 81 and makes Quantity B look greater, choice B - the same off-by-one lands on either wrong letter depending on which of the four counts it hits. Forgetting to remove the multiples of 15 from Quantity A leaves 100 against 80 and also points at A.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "counting-terms",
+        "off-by-one",
+        "overlap-removal"
+      ]
+    },
+    {
+      "id": "SEC-AO-010",
+      "difficulty": "hard",
+      "type": "quantitative_comparison",
+      "question": "The sequence Z(1), Z(2), Z(3), ... is defined by Z(1) = 3 and Z(i + 1) = (1/3)Z(i) for each positive integer i.\nQuantity A: Z(5)\nQuantity B: (9^4)Z(13)",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "C",
+      "explanation": "Each term is one third of the previous one, so Z(i) = 3 x (1/3)^(i - 1) = 3^(2 - i). Quantity A is therefore Z(5) = 3^(2 - 5) = 3^(-3) = 1/27. For Quantity B, Z(13) = 3^(2 - 13) = 3^(-11), and 9^4 = (3^2)^4 = 3^8, so Quantity B = 3^8 x 3^(-11) = 3^(-3) = 1/27. The two quantities are equal.",
+      "trap": "Students see an early term compared against a much later one in a decreasing sequence and assume Quantity A must win, without converting 9^4 into 3^8 to notice it cancels the eight extra divisions exactly. Rewriting both sides on a common base is what collapses the comparison.",
+      "estimated_time_seconds": 105,
+      "tags": [
+        "exponents",
+        "sequences"
+      ]
+    },
+    {
+      "id": "SEC-AO-027",
+      "difficulty": "hard",
+      "type": "mcq",
+      "question": "In the sequence a(1), a(2), a(3), ..., the nth term a(n) is the distance in the xy-plane between the point (0, 3) and the point (n, 0), for each positive integer n. What is the value of a(24)?",
+      "options": [
+        "A. sqrt(27)",
+        "B. sqrt(75)",
+        "C. sqrt(567)",
+        "D. sqrt(585)",
+        "E. sqrt(633)"
+      ],
+      "answer": "D",
+      "explanation": "The two points differ by 24 in the x-direction and by 3 in the y-direction, so they are the legs of a right triangle with the distance as its hypotenuse. By the distance formula, a(n) = sqrt((n - 0)^2 + (0 - 3)^2) = sqrt(n^2 + 9). Substituting n = 24 gives a(24) = sqrt(24^2 + 9) = sqrt(576 + 9) = sqrt(585).",
+      "trap": "Students subtract the squares instead of adding them, treating 24 as the hypotenuse, and answer sqrt(567). Others add the coordinates directly to get 24 + 3 = 27 and choose sqrt(27). The point (0, 3) sits on the y-axis and (24, 0) on the x-axis, so both coordinate gaps are legs and both squares must be added.",
+      "estimated_time_seconds": 95,
+      "tags": [
+        "sequences",
+        "distance-formula"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-059",
+      "difficulty": "extreme_hard",
+      "type": "quantitative_comparison",
+      "question": "An arithmetic sequence has first term a and common difference d, where a > 0 and d > 0, and n is a positive integer.\nQuantity A: (the sum of the first 2n terms) divided by (the sum of the first n terms)\nQuantity B: 4",
+      "options": [
+        "A. Quantity A is greater.",
+        "B. Quantity B is greater.",
+        "C. The two quantities are equal.",
+        "D. The relationship cannot be determined from the information given."
+      ],
+      "answer": "D",
+      "explanation": "Step 1 — write the ratio. S_n = (n/2)[2a + (n-1)d], so\nQuantity A = [n(2a + (2n-1)d)] / [(n/2)(2a + (n-1)d)] = 2(2a + (2n-1)d)/(2a + (n-1)d).\nThe n does not cancel out of the brackets, so the ratio depends on a, d and n together. Test the extremes.\nStep 2 — make d small next to a. Take a = 1, d = 1, n = 1: S_2 = 1 + 2 = 3 and S_1 = 1, so the ratio is 3, which is LESS than 4.\nStep 3 — make d large next to a. Take a = 1, d = 100, n = 1: S_2 = 1 + 101 = 102 and S_1 = 1, so the ratio is 102, which is greater than 4.\nBoth cases satisfy every condition in the stem, and they land on opposite sides of 4. The relationship cannot be determined.\nA third data point: a = 1, d = 1, n = 5 gives S_10/S_5 = 55/15 = 11/3, again below 4.",
+      "trap": "Assuming that doubling the number of terms multiplies the sum by a fixed factor - by 2 (as it would if all terms were equal) or by 4 (as it would if a = 0, where S_n is proportional to n^2). Both are special cases, not the general rule: as d/a grows the ratio climbs without limit, and as d/a shrinks toward 0 it falls toward 2. Anything above 2 is reachable, so no single comparison with 4 holds.",
+      "estimated_time_seconds": 110,
+      "tags": [
+        "arithmetic-series",
+        "ratio-of-sums",
+        "qc"
+      ]
+    },
+    {
+      "id": "ARI-SEQ-KMF-002",
+      "difficulty": "extreme_hard",
+      "type": "mcq",
+      "question": "Sequence U lists the even integers from 2 through 130 in increasing order. To build sequence W, delete the number 6 from U, and then also delete every fourth term of U that follows 6, continuing to the end. To build sequence Z, delete the fourth term of W, and then also delete every sixth term of W that follows it, continuing to the end. How many terms does Z contain?",
+      "options": [
+        "A. 39",
+        "B. 40",
+        "C. 41",
+        "D. 42",
+        "E. 49"
+      ],
+      "answer": "C",
+      "explanation": "U has (130 - 2)/2 + 1 = 65 terms. The number 6 is the 3rd term, so W deletes positions 3, 7, 11, ..., i.e. positions 3 + 4k.\nThe largest such position within 65 is 63 (k = 15), so k = 0..15 gives 16 deletions and W has 65 - 16 = 49 terms.\nZ deletes W-positions 4, 10, 16, ..., i.e. 4 + 6k, within 49: the largest is 46 (k = 7), so k = 0..7 gives 8 deletions.\nZ has 49 - 8 = 41 terms.\nCheck: 6k + 4 <= 49 means k <= 7.5, so exactly 8 values of k.",
+      "trap": "Stopping after the first construction and reporting W's 49 terms (choice E); or, in the second stage, rounding 49/6 up to 9 deletions and answering 40 (choice B).",
+      "estimated_time_seconds": 120,
+      "tags": [
+        "arithmetic-progression-positions",
+        "deletion-patterns"
+      ],
+      "origin": "kmf1804",
+      "origin_set": "Section 16 Hard",
+      "source_pages": [
+        97
       ]
     }
   ]

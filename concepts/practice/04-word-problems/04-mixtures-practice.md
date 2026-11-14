@@ -1,6 +1,6 @@
 # Mixture Problems — Practice Set
 
-**Bank code:** `WRD-MIX` · **Section:** Word Problems · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `WRD-MIX` · **Section:** Word Problems · **30 questions** — Easy 4 · Medium 12 · Hard 13 · Extreme 1
 
 **Lecture capsule:** [04-mixtures.md](../../04-word-problems/04-mixtures.md)
 
@@ -16,7 +16,7 @@ Every question below is live in the question bank under the ID shown — the she
 > **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
-### Level 1 · Easy — 5 questions · ~4 min
+### Level 1 · Easy — 4 questions · ~3 min
 
 *warm-up — these must be automatic*
 
@@ -57,6 +57,12 @@ A 20-liter solution of 30% acid is diluted by adding 10 liters of pure water.
 > **Quantity A:**  The new acid concentration
 > **Quantity B:**  20%
 
+---
+
+### Level 2 · Medium — 12 questions · ~16 min
+
+*two or three steps, one planted trap each*
+
 **Q5** · `WRD-MIX-015` · Select all that apply · 60s
 
 A chemist has Solution P, which is 60% acid, and Solution Q, which is 20% acid. She makes a blend using a positive amount of each. Which of the following could be the acid concentration of the blend? Select all that apply.
@@ -66,12 +72,6 @@ A chemist has Solution P, which is 60% acid, and Solution Q, which is 20% acid. 
 **(C)** 40%  
 **(D)** 55%  
 **(E)** 60%
-
----
-
-### Level 2 · Medium — 8 questions · ~11 min
-
-*two or three steps, one planted trap each*
 
 **Q6** · `WRD-MIX-016` · MCQ · 75s
 
@@ -115,7 +115,7 @@ Solution A is 50% alcohol and Solution B is 20% alcohol. Which of the following 
 
 **Q10** · `WRD-MIX-023` · Numeric Entry · 90s
 
-A grocer blends nuts costing $5 per kg with nuts costing $8 per kg. He sells the blend at $9 per kg and makes a profit of 50% on cost. If he uses 6 kg of the $8 nuts, how many kilograms of the $5 nuts does he use? Enter your answer as a number.
+A grocer blends nuts costing $5 per kg with nuts costing $8 per kg. He sells the blend at $9 per kg and makes a profit of 50% on cost. If he uses 6 kg of the $8 nuts, how many kilograms of the $5 nuts does he use?
 
 *Numeric entry — write the number.*
 
@@ -140,17 +140,38 @@ A mixture contains alcohol and water in the ratio 4:1 by volume. After 5 liters 
 
 **Q13** · `WRD-MIX-038` · Numeric Entry · 85s
 
-Forty liters of a 60% acid solution is mixed with some volume of a 90% acid solution to produce an 80% acid solution. How many liters of the 90% solution are used? Enter your answer as a number.
+Forty liters of a 60% acid solution is mixed with some volume of a 90% acid solution to produce an 80% acid solution. How many liters of the 90% solution are used?
 
 *Numeric entry — write the number.*
 
+**Q14** · `WRD-MIX-056` · QC · 90s
+
+A 200-liter tank starts full of a 50% acid solution. In each cycle, 100 liters of the mixture is drained and the tank is refilled with pure water. Cycles continue until the acid concentration first falls below 10%.
+
+> **Quantity A:**  The number of cycles performed
+> **Quantity B:**  4
+
+**Q15** · `WRD-MIX-042` · QC · 90s
+
+A barrel holds W liters of wine, where W > 0. In one round, k liters of the contents is drawn off and replaced with water, where 0 < k < W. After two such rounds the wine makes up 49/100 of the barrel.
+
+> **Quantity A:**  k/W
+> **Quantity B:**  1/10
+
+**Q16** · `WRD-MIX-052` · QC · 90s
+
+Container P holds 90 liters of a 40% alcohol solution and Container Q holds 60 liters of a 70% alcohol solution. Exactly 30 liters is poured from P into Q and stirred thoroughly; then exactly 30 liters is poured from Q back into P.
+
+> **Quantity A:**  The final alcohol concentration in P
+> **Quantity B:**  40%
+
 ---
 
-### Level 3 · Hard — 12 questions · ~21 min
+### Level 3 · Hard — 13 questions · ~22 min
 
 *where 162+ is won or lost*
 
-**Q14** · `WRD-MIX-039` · MCQ · 95s
+**Q17** · `WRD-MIX-039` · MCQ · 95s
 
 A 100-liter tank contains a 50% alcohol solution. 20 liters of the mixture is drained and replaced with pure water; this operation is performed a total of three times. What is the final alcohol concentration?
 
@@ -160,20 +181,13 @@ A 100-liter tank contains a 50% alcohol solution. 20 liters of the mixture is dr
 **(D)** 40%  
 **(E)** 51.2%
 
-**Q15** · `WRD-MIX-040` · Numeric Entry · 105s
+**Q18** · `WRD-MIX-040` · Numeric Entry · 105s
 
-Solution A is 70% acid, Solution B is 40% acid, and Solution C is 10% acid. A and B are first mixed in the ratio 1:2 by volume. That blend is then mixed with C to produce 60 liters of a 30% acid solution. How many liters of Solution A are used? Enter your answer as a number.
+Solution A is 70% acid, Solution B is 40% acid, and Solution C is 10% acid. A and B are first mixed in the ratio 1:2 by volume. That blend is then mixed with C to produce 60 liters of a 30% acid solution. How many liters of Solution A are used?
 
 *Numeric entry — write the number.*
 
-**Q16** · `WRD-MIX-042` · QC · 95s
-
-A barrel holds W liters of wine, where W > 0. In one round, k liters of the contents is drawn off and replaced with water, where 0 < k < W. After two such rounds the wine makes up 49/100 of the barrel.
-
-> **Quantity A:**  k/W
-> **Quantity B:**  1/10
-
-**Q17** · `WRD-MIX-045` · Select all that apply · 110s
+**Q19** · `WRD-MIX-045` · Select all that apply · 110s
 
 A 120-liter tank is full of a solution that is c% acid, where 0 < c < 100. Exactly 30 liters of the mixture is drained and replaced with pure water, and then the same operation is performed once more. Which of the following could be the final acid concentration? Select all that apply.
 
@@ -183,7 +197,7 @@ A 120-liter tank is full of a solution that is c% acid, where 0 < c < 100. Exact
 **(D)** 56.25%  
 **(E)** 60%
 
-**Q18** · `WRD-MIX-046` · MCQ · 100s
+**Q20** · `WRD-MIX-046` · MCQ · 100s
 
 A 5-liter vessel contains a 20% alcohol solution. x liters of the mixture is removed and replaced with x liters of pure alcohol, leaving the vessel 60% alcohol. What is x?
 
@@ -193,16 +207,14 @@ A 5-liter vessel contains a 20% alcohol solution. x liters of the mixture is rem
 **(D)** 3.0  
 **(E)** 3.75
 
-**Q19** · `WRD-MIX-047` · QC · 105s
+**Q21** · `WRD-MIX-047` · QC · 90s
 
-Process 1: from 60 liters of a 40% alcohol solution, some of the alcohol evaporates and an equal volume of pure water is added, leaving the solution 25% alcohol.
+x liters of a solution that is 30 percent acid are mixed with y liters of a solution that is 60 percent acid, and the resulting solution is 40 percent acid.
 
-Process 2: from a separate 60 liters of a 40% alcohol solution, some of the water evaporates and an equal volume of pure alcohol is added, leaving the solution 55% alcohol.
+> **Quantity A:**  x
+> **Quantity B:**  2y
 
-> **Quantity A:**  The volume of alcohol that evaporates in Process 1
-> **Quantity B:**  The volume of water that evaporates in Process 2
-
-**Q20** · `WRD-MIX-048` · MCQ · 100s
+**Q22** · `WRD-MIX-048` · MCQ · 100s
 
 Mixing 60 liters of a 10% salt solution with 40 liters of Solution S produces 100 liters of a 25% salt solution. If instead 40 liters of the 10% solution were mixed with 60 liters of Solution S, what would the salt concentration of the 100-liter result be?
 
@@ -212,7 +224,7 @@ Mixing 60 liters of a 10% salt solution with 40 liters of Solution S produces 10
 **(D)** 41.5%  
 **(E)** 47.5%
 
-**Q21** · `WRD-MIX-050` · Select all that apply · 110s
+**Q23** · `WRD-MIX-050` · Select all that apply · 110s
 
 Three containers each hold exactly 50 liters. Container 1 is 20% acid, Container 2 is 50% acid, and Container 3 is 80% acid. The entire contents of one container are combined with exactly half the contents of a different container. Which of the following could be the acid concentration of the result? Select all that apply.
 
@@ -222,7 +234,7 @@ Three containers each hold exactly 50 liters. Container 1 is 20% acid, Container
 **(D)** 60%  
 **(E)** 70%
 
-**Q22** · `WRD-MIX-051` · MCQ · 95s
+**Q24** · `WRD-MIX-051` · MCQ · 95s
 
 A tank of capacity 200 liters currently holds 120 liters of a 30% acid solution. Pure acid may be added, but nothing may be removed and the tank may not overflow. What is the greatest acid concentration the contents of the tank can be brought to?
 
@@ -232,45 +244,49 @@ A tank of capacity 200 liters currently holds 120 liters of a 30% acid solution.
 **(D)** 58%  
 **(E)** 70%
 
-**Q23** · `WRD-MIX-052` · QC · 110s
+**Q25** · `WRD-MIX-053` · Numeric Entry · 110s
 
-Container P holds 90 liters of a 40% alcohol solution and Container Q holds 60 liters of a 70% alcohol solution. Exactly 30 liters is poured from P into Q and stirred thoroughly; then exactly 30 liters is poured from Q back into P.
-
-> **Quantity A:**  The final alcohol concentration in P
-> **Quantity B:**  40%
-
-**Q24** · `WRD-MIX-053` · Numeric Entry · 110s
-
-A 150-liter mixture is 60% water and 40% juice. Pure water is removed until the mixture is 50% water. Then pure juice is added until the mixture is 30% water. What is the net change in the total volume, in liters? Enter your answer as a number, using a negative sign for a net loss.
+A 150-liter mixture is 60% water and 40% juice. Pure water is removed until the mixture is 50% water. Then pure juice is added until the mixture is 30% water. What is the net change in the total volume, in liters?
 
 *Numeric entry — write the number.*
 
-**Q25** · `WRD-MIX-061` · Numeric Entry · 100s
+**Q26** · `WRD-MIX-061` · Numeric Entry · 100s
 
-A 90-liter solution is 4% salt by volume. The container is left open and water evaporates until the solution is 6% salt by volume. Then 20 liters of pure water is added. What percent of the final solution is salt? Enter your answer as a number.
+A 90-liter solution is 4% salt by volume. The container is left open and water evaporates until the solution is 6% salt by volume. Then 20 liters of pure water is added. What percent of the final solution is salt?
 
 *Numeric entry — write the number.*
+
+**Q27** · `WRD-MIX-055` · Numeric Entry · 110s
+
+Alloy P contains copper and zinc in the ratio 3:2, Alloy Q contains copper and zinc in the ratio 2:3, and Alloy R contains copper and zinc in the ratio 4:1. Equal weights of P and Q are melted together with some weight of R to produce 90 kg of an alloy that is exactly 60% copper. How many kilograms of Alloy R are used?
+
+*Numeric entry — write the number.*
+
+**Q28** · `WRD-MIX-058` · Numeric Entry · 110s
+
+A vessel holds 1 liter of pure acid. In each step, half the liquid in the vessel is discarded and the vessel is topped back up to 1 liter with a 20% acid solution. After 4 steps, what percent of the liquid in the vessel is acid?
+
+*Numeric entry — write the number.*
+
+**Q29** · `WRD-MIX-059` · Select all that apply · 105s
+
+Solution P is 10 percent alcohol by volume, and solution Q is 40 percent alcohol by volume. A mixture is made from a positive amount of each solution, using at least twice as much of solution P as of solution Q. Which of the following could be the percent of alcohol, by volume, in the mixture?
+
+Indicate all such values.
+
+**(A)** 10  
+**(B)** 14  
+**(C)** 20  
+**(D)** 24  
+**(E)** 30
 
 ---
 
-### Level 4 · Extreme — 5 questions · ~10 min
+### Level 4 · Extreme — 1 questions · ~2 min
 
-*165+ — expect to need the insight, not the grind*
+*the top of a real hard section — expect to need the insight, not the grind*
 
-**Q26** · `WRD-MIX-055` · Numeric Entry · 120s
-
-Alloy P contains copper and zinc in the ratio 3:2, Alloy Q contains copper and zinc in the ratio 2:3, and Alloy R contains copper and zinc in the ratio 4:1. Equal weights of P and Q are melted together with some weight of R to produce 90 kg of an alloy that is exactly 60% copper. How many kilograms of Alloy R are used? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q27** · `WRD-MIX-056` · QC · 120s
-
-A 200-liter tank starts full of a 50% acid solution. In each cycle, 50 liters of the mixture is drained and the tank is refilled with pure water. Cycles continue until the acid concentration first falls below 10%.
-
-> **Quantity A:**  The number of cycles performed
-> **Quantity B:**  7
-
-**Q28** · `WRD-MIX-057` · MCQ · 130s
+**Q30** · `WRD-MIX-057` · MCQ · 130s
 
 A merchant blends Grade A coffee at $10 per kg, Grade B at $15 per kg and Grade C at $20 per kg into 50 kg of a blend worth exactly $14 per kg. Each grade is used in a positive whole number of kilograms. What is the greatest possible number of kilograms of Grade A in such a blend?
 
@@ -279,22 +295,6 @@ A merchant blends Grade A coffee at $10 per kg, Grade B at $15 per kg and Grade 
 **(C)** 29  
 **(D)** 30  
 **(E)** 38
-
-**Q29** · `WRD-MIX-058` · Numeric Entry · 130s
-
-A vessel holds 1 liter of pure acid. In each step, half the liquid in the vessel is discarded and the vessel is topped back up to 1 liter with a 20% acid solution. After 4 steps, what percent of the liquid in the vessel is acid? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q30** · `WRD-MIX-059` · Select all that apply · 125s
-
-A tank holds V liters of a solution that is p% acid, where 0 < p < 100. Exactly k liters of the mixture is drained and the tank is refilled with pure water, where 0 < k < V. Which of the following must be true? Select all that apply.
-
-**(A)** The concentration after the operation is p(1 - k/V) percent  
-**(B)** The volume of acid removed by the draining is kp/100 liters  
-**(C)** The tank holds less than V liters after the operation  
-**(D)** After a second identical operation the concentration is p(1 - 2k/V) percent  
-**(E)** If k = V/2, then after two such operations the concentration is p/4 percent
 
 ---
 
@@ -306,7 +306,7 @@ A tank holds V liters of a solution that is p% acid, where 0 < p < 100. Exactly 
 | 2 | `WRD-MIX-003` | easy | MCQ | **B** |
 | 3 | `WRD-MIX-011` | easy | MCQ | **C** |
 | 4 | `WRD-MIX-013` | easy | QC | **C** |
-| 5 | `WRD-MIX-015` | easy | Select all that apply | **B, C, D** |
+| 5 | `WRD-MIX-015` | medium | Select all that apply | **B, C, D** |
 | 6 | `WRD-MIX-016` | medium | MCQ | **C** |
 | 7 | `WRD-MIX-017` | medium | MCQ | **D** |
 | 8 | `WRD-MIX-019` | medium | MCQ | **C** |
@@ -315,23 +315,23 @@ A tank holds V liters of a solution that is p% acid, where 0 < p < 100. Exactly 
 | 11 | `WRD-MIX-029` | medium | QC | **B** |
 | 12 | `WRD-MIX-032` | medium | MCQ | **C** |
 | 13 | `WRD-MIX-038` | medium | Numeric Entry | **80** |
-| 14 | `WRD-MIX-039` | hard | MCQ | **B** |
-| 15 | `WRD-MIX-040` | hard | Numeric Entry | **10** |
-| 16 | `WRD-MIX-042` | hard | QC | **A** |
-| 17 | `WRD-MIX-045` | hard | Select all that apply | **A, B, C** |
-| 18 | `WRD-MIX-046` | hard | MCQ | **C** |
-| 19 | `WRD-MIX-047` | hard | QC | **C** |
-| 20 | `WRD-MIX-048` | hard | MCQ | **C** |
-| 21 | `WRD-MIX-050` | hard | Select all that apply | **A, D, E** |
-| 22 | `WRD-MIX-051` | hard | MCQ | **D** |
-| 23 | `WRD-MIX-052` | hard | QC | **A** |
-| 24 | `WRD-MIX-053` | hard | Numeric Entry | **50** |
-| 25 | `WRD-MIX-061` | hard | Numeric Entry | **4.5** |
-| 26 | `WRD-MIX-055` | extreme hard | Numeric Entry | **30** |
-| 27 | `WRD-MIX-056` | extreme hard | QC | **B** |
-| 28 | `WRD-MIX-057` | extreme hard | MCQ | **C** |
-| 29 | `WRD-MIX-058` | extreme hard | Numeric Entry | **25** |
-| 30 | `WRD-MIX-059` | extreme hard | Select all that apply | **A, B, E** |
+| 14 | `WRD-MIX-056` | medium | QC | **B** |
+| 15 | `WRD-MIX-042` | medium | QC | **A** |
+| 16 | `WRD-MIX-052` | medium | QC | **A** |
+| 17 | `WRD-MIX-039` | hard | MCQ | **B** |
+| 18 | `WRD-MIX-040` | hard | Numeric Entry | **10** |
+| 19 | `WRD-MIX-045` | hard | Select all that apply | **A, B, C** |
+| 20 | `WRD-MIX-046` | hard | MCQ | **C** |
+| 21 | `WRD-MIX-047` | hard | QC | **C** |
+| 22 | `WRD-MIX-048` | hard | MCQ | **C** |
+| 23 | `WRD-MIX-050` | hard | Select all that apply | **A, D, E** |
+| 24 | `WRD-MIX-051` | hard | MCQ | **D** |
+| 25 | `WRD-MIX-053` | hard | Numeric Entry | **50** |
+| 26 | `WRD-MIX-061` | hard | Numeric Entry | **4.5** |
+| 27 | `WRD-MIX-055` | hard | Numeric Entry | **30** |
+| 28 | `WRD-MIX-058` | hard | Numeric Entry | **25** |
+| 29 | `WRD-MIX-059` | hard | Select all that apply | **B, C** |
+| 30 | `WRD-MIX-057` | extreme hard | MCQ | **C** |
 
 ---
 
@@ -386,14 +386,14 @@ Quantity A = 20% = Quantity B, so the two quantities are equal.
 ### Q5 · `WRD-MIX-015` — Answer: B, C, D
 
 A blend of two sources is a weighted average, so it must land strictly between the two source concentrations whenever both are actually used. The reachable range is 20% < c < 60%.
-A - 20% is Solution Q by itself, which would mean using none of P. FALSE.
-B - 25% is inside the range: mostly Q with a little P. TRUE.
-C - 40% is inside the range: equal volumes give exactly (60 + 20)/2 = 40%. TRUE.
-D - 55% is inside the range: mostly P. Alligation gives P : Q = (55 - 20) : (60 - 55) = 35 : 5 = 7 : 1. TRUE.
-E - 60% is Solution P by itself, which would mean using none of Q. FALSE.
+A - 20% is Solution Q by itself, which would mean using none of P. False.
+B - 25% is inside the range: mostly Q with a little P. True.
+C - 40% is inside the range: equal volumes give exactly (60 + 20)/2 = 40%. True.
+D - 55% is inside the range: mostly P. Alligation gives P : Q = (55 - 20) : (60 - 55) = 35 : 5 = 7 : 1. True.
+E - 60% is Solution P by itself, which would mean using none of Q. False.
 Answer: B, C, D.
 
-**Trap.** Including A and E because 'some ratio' feels as though it should cover the extremes. A positive amount of BOTH is required, so the endpoints are unreachable. The opposite error is rejecting D as 'too close to 60%': every value strictly inside the interval is reachable, however close it sits to an end.
+**Trap.** Including A and E because 'some ratio' feels as though it should cover the extremes. A positive amount of both is required, so the endpoints are unreachable. The opposite error is rejecting D as 'too close to 60%': every value strictly inside the interval is reachable, however close it sits to an end.
 
 ### Q6 · `WRD-MIX-016` — Answer: C
 
@@ -419,7 +419,7 @@ Step 2 — cross them. The quantities are the INVERSE of the distances:
 Step 3 — run the direction check before committing. 20 is much nearer 12 than 36, so most of the blend must be the 12% solution. Two parts to one - correct.
 Check: (2 x 12 + 1 x 36)/3 = (24 + 36)/3 = 60/3 = 20%. Correct.
 
-**Trap.** Writing 8 : 16 = 1 : 2, choice B - the crossing done backwards, and the single most common mixture error. The one-second cure is the direction check: the target sits closer to 12%, so there must be MORE of the 12% solution. Choice C, 1:1, comes from assuming equal parts, which would give the midpoint (12 + 36)/2 = 24%, not 20%. Choice A, 1:3, weights each solution by its own strength, 12 : 36 = 1 : 3, instead of by its distance from the target. Choice E, 3:1, measures both gaps from the 12% end rather than from the target: 36 - 12 = 24 against 20 - 12 = 8, giving 24 : 8 = 3 : 1.
+**Trap.** Writing 8 : 16 = 1 : 2, choice B - the crossing done backwards, and the single most common mixture error. The one-second cure is the direction check: the target sits closer to 12%, so there must be more of the 12% solution. Choice C, 1:1, comes from assuming equal parts, which would give the midpoint (12 + 36)/2 = 24%, not 20%. Choice A, 1:3, weights each solution by its own strength, 12 : 36 = 1 : 3, instead of by its distance from the target. Choice E, 3:1, measures both gaps from the 12% end rather than from the target: 36 - 12 = 24 against 20 - 12 = 8, giving 24 : 8 = 3 : 1.
 
 ### Q8 · `WRD-MIX-019` — Answer: C
 
@@ -437,11 +437,11 @@ Check: 3.84 - 3.20 = $0.64, and 0.64/3.20 = 0.20 = 20%. Correct.
 ### Q9 · `WRD-MIX-022` — Answer: A, B, E
 
 For a ratio A:B = p:q the blend is (50p + 20q)/(p + q).
-A - 1:1: (50 + 20)/2 = 35%. Inside the window. TRUE.
-B - 1:2: (50 + 40)/3 = 90/3 = 30%. Exactly the lower bound, and the stem says inclusive. TRUE.
-C - 1:3: (50 + 60)/4 = 110/4 = 27.5%. Below 30%. FALSE.
-D - 1:4: (50 + 80)/5 = 130/5 = 26%. Below 30%. FALSE.
-E - 2:1: (100 + 20)/3 = 120/3 = 40%. Exactly the upper bound. TRUE.
+A - 1:1: (50 + 20)/2 = 35%. Inside the window. True.
+B - 1:2: (50 + 40)/3 = 90/3 = 30%. Exactly the lower bound, and the stem says inclusive. True.
+C - 1:3: (50 + 60)/4 = 110/4 = 27.5%. Below 30%. False.
+D - 1:4: (50 + 80)/5 = 130/5 = 26%. Below 30%. False.
+E - 2:1: (100 + 20)/3 = 120/3 = 40%. Exactly the upper bound. True.
 Answer: A, B, E.
 Faster route - run alligation backwards to find the two boundary ratios. For 30%: A : B = (30 - 20) : (50 - 30) = 10 : 20 = 1 : 2. For 40%: A : B = 20 : 10 = 2 : 1. So the admissible window is exactly 1:2 up to 2:1, which lets in 1:1, 1:2 and 2:1 and shuts out everything more dilute.
 
@@ -507,7 +507,40 @@ Answer: 80.
 
 **Trap.** Inverting the crossing, giving the 90% solution 1 part against the 60% solution's 2 parts, and answering 20. The direction check kills it instantly: the blend sits only 10 points below 90 but 20 points above 60, so the 90% solution has to be the larger share.
 
-### Q14 · `WRD-MIX-039` — Answer: B
+### Q14 · `WRD-MIX-056` — Answer: B
+
+Draining half of the mixture removes half of the acid, and the refill adds none, so each cycle halves the concentration. After 1, 2, and 3 cycles the concentration is 25%, 12.5%, and 6.25%. It first falls below 10% on the 3rd cycle, so Quantity A = 3. Since 3 < 4, Quantity B is greater.
+
+**Trap.** Stopping at 2 cycles (12.5% looks close to 10%) gives A = 2, and answering 4 by continuing past the first cycle that clears 10% gives A = 4, which would make the quantities equal.
+
+### Q15 · `WRD-MIX-042` — Answer: A
+
+Step 1 — each round multiplies the wine by (1 - k/W), because the draw-off removes wine in proportion to what is present and the top-up adds none.
+After two rounds the wine fraction is (1 - k/W)^2.
+Step 2 — set that equal to what the stem gives.
+(1 - k/W)^2 = 49/100
+Step 3 — take the square root. Since 0 < k < W, the quantity 1 - k/W is strictly positive, so only the positive root is admissible.
+1 - k/W = 7/10
+k/W = 3/10
+Step 4 — compare. 3/10 > 1/10, so Quantity A is greater.
+Check: draw off 3/10 twice and the wine is left at (7/10)^2 = 49/100. Correct.
+
+**Trap.** Skipping the square root and reading 1 - k/W = 49/100, which gives k/W = 51/100. That happens to land on the same side of 1/10, so the letter comes out right by luck and the error survives to the next question. The other error is treating two rounds as removing 2k/W of the wine, giving 1 - 2k/W = 49/100 and k/W = 51/200.
+
+### Q16 · `WRD-MIX-052` — Answer: A
+
+Step 1 — the first pour. P keeps 60 liters at 40%, holding 0.40 x 60 = 24 liters of alcohol. The 30 liters that leaves carries 0.40 x 30 = 12 liters of alcohol.
+Step 2 — Q after receiving it. Q held 0.70 x 60 = 42 liters of alcohol; it now holds 42 + 12 = 54 liters in 60 + 30 = 90 liters.
+54/90 = 0.60, so Q is now 60% alcohol.
+Step 3 — the pour back. 30 liters of a 60% mixture carries 0.60 x 30 = 18 liters of alcohol.
+Step 4 — P at the end. Alcohol = 24 + 18 = 42 liters in a total of 60 + 30 = 90 liters.
+42/90 = 46.67%.
+46.67% > 40%, so Quantity A is greater.
+The shortcut: P sent liquid out at 40% and got liquid back at 60%, so it must end richer than it began. That settles the comparison with no arithmetic at all.
+
+**Trap.** Assuming the two equal pours cancel and P returns to 40%, choice C. The volumes cancel; the concentrations do not, because the returning liquid comes from a container that was richer. The second error is forgetting that P gave away 30 liters before it received 30 back, and dividing the final 42 liters of alcohol by 120 instead of 90: that gives 35%, which points to choice B. P's volume returns to the 90 liters it started with.
+
+### Q17 · `WRD-MIX-039` — Answer: B
 
 Step 1 — find the fraction removed each round: f = 20/100 = 1/5.
 What is drained is a MIXTURE, so it carries off that same fraction of whatever alcohol is present, and the top-up adds none. Each round therefore multiplies the alcohol by (1 - f) = 4/5.
@@ -522,7 +555,7 @@ Answer: 25.6%.
 
 **Trap.** Subtracting a fixed 10 percentage points each round (20% of the original 50%) to land on 20%, choice A. Each round takes 20% of what is CURRENTLY there, so the losses shrink: 10 points, then 8, then 6.4. Choices D and C are the concentrations after one and two rounds - right method, stopped early. Choice E, 51.2%, applies (0.8)^3 to 100% instead of to the 50% actually in the tank.
 
-### Q15 · `WRD-MIX-040` — Answer: 10
+### Q18 · `WRD-MIX-040` — Answer: 10
 
 Step 1 — collapse the inner blend into a single source before touching C. Take 1 liter of A and 2 liters of B.
 acid = 0.70(1) + 0.40(2) = 0.70 + 0.80 = 1.5 liters, in 3 liters
@@ -539,35 +572,21 @@ Answer: 10.
 
 **Trap.** Stopping at 30 - the whole A-B blend - and reporting it as the volume of A. Two ratios have to be unwound, not one, and the 1:2 inside the blend cuts that 30 liters to 10. The other error is treating the three solutions as a single blend in the ratio 1:2:x and alligating A directly against C, which ignores that the 1:1 split weighs the entire A-B blend against C, not A against C. Averaging all three sources, (70 + 40 + 10)/3 = 40%, discards both ratios outright.
 
-### Q16 · `WRD-MIX-042` — Answer: A
-
-Step 1 — each round multiplies the wine by (1 - k/W), because the draw-off removes wine in proportion to what is present and the top-up adds none.
-After two rounds the wine fraction is (1 - k/W)^2.
-Step 2 — set that equal to what the stem gives.
-(1 - k/W)^2 = 49/100
-Step 3 — take the square root. Since 0 < k < W, the quantity 1 - k/W is strictly positive, so only the positive root is admissible.
-1 - k/W = 7/10
-k/W = 3/10
-Step 4 — compare. 3/10 > 1/10, so Quantity A is greater.
-Check: draw off 3/10 twice and the wine is left at (7/10)^2 = 49/100. Correct.
-
-**Trap.** Skipping the square root and reading 1 - k/W = 49/100, which gives k/W = 51/100. That happens to land on the same side of 1/10, so the letter comes out right by luck and the error survives to the next question. The other error is treating two rounds as removing 2k/W of the wine, giving 1 - 2k/W = 49/100 and k/W = 51/200.
-
-### Q17 · `WRD-MIX-045` — Answer: A, B, C
+### Q19 · `WRD-MIX-045` — Answer: A, B, C
 
 Step 1 — each round drains the fraction 30/120 = 1/4 of a mixture and refills with water, so the acid is multiplied by 3/4 and the volume returns to 120. After two rounds:
 final = c x (3/4)^2 = c x 9/16 = 0.5625c.
 Step 2 — c runs strictly between 0 and 100, so the final concentration runs strictly between 0% and 56.25%. Test each option by solving for the c it would need: c = final/0.5625.
-A - 5%: c = 5/0.5625 = 8.89%, legal. TRUE.
-B - 20%: c = 20/0.5625 = 35.56%, legal. TRUE.
-C - 42%: c = 42/0.5625 = 74.67%, legal. TRUE.
-D - 56.25%: c = 100, which the stem excludes - a solution that is 100% acid is not a solution of concentration c < 100. FALSE.
-E - 60%: c = 106.67%, impossible. FALSE.
+A - 5%: c = 5/0.5625 = 8.89%, legal. True.
+B - 20%: c = 20/0.5625 = 35.56%, legal. True.
+C - 42%: c = 42/0.5625 = 74.67%, legal. True.
+D - 56.25%: c = 100, which the stem excludes - a solution that is 100% acid is not a solution of concentration c < 100. False.
+E - 60%: c = 106.67%, impossible. False.
 Answer: A, B, C.
 
 **Trap.** Choosing E because 60% still sounds like a plausible concentration. Dilution can only lower the acid, so the ceiling is not 100% but 0.5625 x 100 = 56.25%, and even that is unreachable. Choice D is the fine point: 56.25% is the value the process approaches only if the tank started as pure acid, which 0 < c < 100 forbids.
 
-### Q18 · `WRD-MIX-046` — Answer: C
+### Q20 · `WRD-MIX-046` — Answer: C
 
 Step 1 — the pure component at the start. Alcohol = 0.20 x 5 = 1 liter.
 Step 2 — account for both moves. Removing x liters of the MIXTURE carries off 0.20x liters of alcohol; adding x liters of pure alcohol puts back x. The total returns to 5 liters.
@@ -582,23 +601,17 @@ Faster route - alligation. The operation replaces a fraction of a 20% solution w
 
 **Trap.** Forgetting that the scoop takes alcohol out as well: 1 + x = 3 gives x = 2, choice B. Choice A, 1.0, is the 1 liter of alcohol already in the vessel (20% of 5 liters), mistaken for the volume moved. Choice D, 3.0, is the alcohol the vessel must END with (60% of 5 liters), the same confusion at the other end of the problem. Choice E, 3.75, comes from 0.80x = 3, dropping the 1 liter of alcohol that was already there.
 
-### Q19 · `WRD-MIX-047` — Answer: C
+### Q21 · `WRD-MIX-047` — Answer: C
 
-Both processes keep the total at 60 liters, since whatever evaporates is replaced by an equal volume. Alcohol at the start = 0.40 x 60 = 24 liters.
-Process 1 — x liters of ALCOHOL leaves and water comes in, so the alcohol falls by exactly x and nothing else changes.
-(24 - x)/60 = 0.25
-24 - x = 15
-x = 9 liters.
-Process 2 — y liters of WATER leaves and alcohol comes in, so the alcohol rises by exactly y.
-(24 + y)/60 = 0.55
-24 + y = 33
-y = 9 liters.
-Both are 9 liters, so the two quantities are equal.
-Why they match: 25% is 15 points below 40% and 55% is 15 points above it, and in each process the volume that leaves is entirely one component, so the alcohol moves one-for-one with that volume. 15% of 60 is 9 in both directions.
+Acid in the mixture: 0.30x + 0.60y = 0.40(x + y).
+0.30x + 0.60y = 0.40x + 0.40y, so 0.20y = 0.10x.
+x = 2y.
+Check with y = 5 and x = 10: acid is 3 + 3 = 6 liters in 15 liters, which is 40 percent.
+Answer: C.
 
-**Trap.** Reading these as ordinary draw-off-and-replace problems, where what leaves is a MIXTURE and carries away only 40% of its volume as alcohol. Here only one component leaves, so the exchange is one-for-one with no proportional loss. Assuming a mixture scoop in Process 1 gives (24 - 0.4x)/60 = 0.25, i.e. x = 22.5, and Quantity A looks far larger.
+**Trap.** Choosing D because neither volume is given. The 40 percent result fixes the ratio of the volumes: 40 is twice as far from 60 as from 30, so twice as much of the 30 percent solution is needed.
 
-### Q20 · `WRD-MIX-048` — Answer: C
+### Q22 · `WRD-MIX-048` — Answer: C
 
 Step 1 — the first blend pins down S. The finished 100 liters must contain 0.25 x 100 = 25 liters of salt, and the known solution brings 0.10 x 60 = 6 liters.
 salt from S = 25 - 6 = 19 liters, carried by 40 liters of S
@@ -611,7 +624,7 @@ Direction check on Step 1: the volumes are 60 and 40, so the first blend leans t
 
 **Trap.** Choice A, 25%, assumes the swap changes nothing because the same two solutions still make 100 liters; what fixes a weighted average is the SPLIT, and the swap hands the majority to the stronger solution. Choice E, 47.5%, is S itself - the intermediate result reported as the answer. Choice B, 28.75%, is the plain average of 10% and 47.5%, which would need equal 50-liter volumes. Choice D, 41.5%, comes from computing S as 25/40 = 62.5%, crediting the unknown solution with all 25 liters of salt and forgetting the 6 liters the 10% solution supplied.
 
-### Q21 · `WRD-MIX-050` — Answer: A, D, E
+### Q23 · `WRD-MIX-050` — Answer: A, D, E
 
 Step 1 — fix the weights. The full container contributes 50 liters and the half container 25 liters, so every result is a weighted average in the ratio 2 : 1, with the DOUBLE weight on whichever container is poured in whole.
 blend = (2 x full + 1 x half)/3
@@ -624,17 +637,17 @@ Step 2 — the order matters, so there are six cases, not three. Run them all.
 3 full, 2 half: (2 x 80 + 50)/3 = 210/3 = 70%
 The reachable set is {30%, 40%, 60%, 70%}.
 Step 3 — test each option.
-A - 30%, from Container 1 whole plus half of Container 2. TRUE.
-B - 35% is the midpoint of 20 and 50, which would need EQUAL volumes of the two. FALSE.
-C - 50% is the midpoint of 20 and 80, again an equal-volume result. FALSE.
-D - 60%, from Container 2 whole plus half of Container 3 (or Container 3 whole plus half of Container 1). TRUE.
-E - 70%, from Container 3 whole plus half of Container 2. TRUE.
+A - 30%, from Container 1 whole plus half of Container 2. True.
+B - 35% is the midpoint of 20 and 50, which would need EQUAL volumes of the two. False.
+C - 50% is the midpoint of 20 and 80, again an equal-volume result. False.
+D - 60%, from Container 2 whole plus half of Container 3 (or Container 3 whole plus half of Container 1). True.
+E - 70%, from Container 3 whole plus half of Container 2. True.
 Answer: A, D, E.
 Check on A: 50 liters at 20% carries 10 liters of acid, 25 liters at 50% carries 12.5, so 22.5 liters of acid in 75 liters = 30%. Correct.
 
 **Trap.** Choice B, 35%, and choice C, 50%, are plain averages - (20 + 50)/2 and (20 + 80)/2 - the answers you get by pouring both containers in whole and forgetting that only half of the second one is used. The 2:1 weighting is what the question turns on. The second error is treating the pairs as unordered and finding only three results; pouring 2 whole with half of 3 gives 60% while pouring 3 whole with half of 2 gives 70%, so which container is halved changes the answer.
 
-### Q22 · `WRD-MIX-051` — Answer: D
+### Q24 · `WRD-MIX-051` — Answer: D
 
 Step 1 — the pure component now. Acid = 0.30 x 120 = 36 liters.
 Step 2 — see what the capacity is doing. Adding x liters of pure acid raises the acid to 36 + x and the total to 120 + x, and the concentration (36 + x)/(120 + x) rises with every extra liter, since each added liter is 100% acid and so is stronger than whatever is already in the tank. The best you can do is therefore the most you can pour in.
@@ -648,20 +661,7 @@ Sanity check on the direction: 58% must lie between the 30% already in the tank 
 
 **Trap.** Choice C, 40%, reports the 80 liters of added acid over the 200-liter total, 80/200, forgetting the 36 liters of acid the tank already held. Choice E, 70%, computes the acid already present from the tank's CAPACITY rather than its contents, 0.30 x 200 = 60, giving (60 + 80)/200. Choice B, 30%, is what you would get by topping the tank up with 80 more liters of the same 30% solution - the concentration cannot move if the addition matches what is there. Choice A, 18%, fills the 80 liters of headroom with water instead of acid: 36/200.
 
-### Q23 · `WRD-MIX-052` — Answer: A
-
-Step 1 — the first pour. P keeps 60 liters at 40%, holding 0.40 x 60 = 24 liters of alcohol. The 30 liters that leaves carries 0.40 x 30 = 12 liters of alcohol.
-Step 2 — Q after receiving it. Q held 0.70 x 60 = 42 liters of alcohol; it now holds 42 + 12 = 54 liters in 60 + 30 = 90 liters.
-54/90 = 0.60, so Q is now 60% alcohol.
-Step 3 — the pour back. 30 liters of a 60% mixture carries 0.60 x 30 = 18 liters of alcohol.
-Step 4 — P at the end. Alcohol = 24 + 18 = 42 liters in a total of 60 + 30 = 90 liters.
-42/90 = 46.67%.
-46.67% > 40%, so Quantity A is greater.
-The shortcut: P sent liquid out at 40% and got liquid back at 60%, so it must end richer than it began. That settles the comparison with no arithmetic at all.
-
-**Trap.** Assuming the two equal pours cancel and P returns to 40%, choice C. The volumes cancel; the concentrations do not, because the returning liquid comes from a container that was richer. The second error is forgetting that P gave away 30 liters before it received 30 back, and dividing the final 42 liters of alcohol by 120 instead of 90: that gives 35%, which points to choice B. P's volume returns to the 90 liters it started with.
-
-### Q24 · `WRD-MIX-053` — Answer: 50
+### Q25 · `WRD-MIX-053` — Answer: 50
 
 Step 1 — the two pure components at the start.
 water = 0.60 x 150 = 90 liters
@@ -676,7 +676,7 @@ Answer: 50.
 
 **Trap.** Adding the two movements to get 110, which measures how much liquid was handled rather than the net change - the two run in opposite directions. The habit this question rewards is switching which component you track: pure water leaving freezes the juice, pure juice arriving freezes the water, and each stage then becomes a single division.
 
-### Q25 · `WRD-MIX-061` — Answer: 4.5
+### Q26 · `WRD-MIX-061` — Answer: 4.5
 
 Step 1 — write the pure component and notice that it never moves. Salt = 0.04 x 90 = 3.6 liters. Evaporation removes water only, and the water added later brings no salt, so 3.6 liters of salt is fixed for the entire problem. Only the total volume changes.
 Step 2 — after evaporation the salt is 6% of the total.
@@ -690,7 +690,7 @@ Answer: 4.5.
 
 **Trap.** Letting evaporation take salt with the water. Only water leaves, so the numerator is frozen at 3.6 the whole time and every step is just a new denominator. A second error is treating the concentration changes as additive - 4% up to 6% and then 'back down by the same amount' to 4% - instead of recomputing 3.6 over the final 80 liters.
 
-### Q26 · `WRD-MIX-055` — Answer: 30
+### Q27 · `WRD-MIX-055` — Answer: 30
 
 Step 1 — convert every ratio into a copper percentage, which is what plays the role of concentration here. A ratio of parts must be divided by the SUM of the parts.
 P: 3/(3 + 2) = 3/5 = 60% copper
@@ -708,23 +708,36 @@ Answer: 30.
 
 **Trap.** Reading 3:2 as '3/2 copper' or as 60% zinc - a ratio of parts is not a fraction of the whole until you divide by 3 + 2. The second trap is stopping at the ratio 2:1 and reporting half of 90, or 45 kg; the parts must be divided by the SUM of the parts, so R is 1/3 of the total, not 1/2.
 
-### Q27 · `WRD-MIX-056` — Answer: B
+### Q28 · `WRD-MIX-058` — Answer: 25
 
-Step 1 — each cycle drains the fraction f = 50/200 = 1/4 of a mixture, so it removes 1/4 of the acid present, and the refill adds none. The acid is multiplied by 3/4 every cycle and the volume returns to 200.
-After n cycles: concentration = 50% x (3/4)^n.
-Step 2 — find the smallest whole n with 50 x (3/4)^n < 10, i.e. (3/4)^n < 0.2. Build the powers rather than reaching for logs.
-n = 1: 0.75 -> 37.5%
-n = 2: 0.5625 -> 28.13%
-n = 3: 0.4219 -> 21.09%
-n = 4: 0.3164 -> 15.82%
-n = 5: 0.2373 -> 11.87%, still above 10%
-n = 6: 0.1780 -> 8.90%, below 10%
-Step 3 — the concentration first drops below 10% on the 6th cycle, so Quantity A = 6.
-6 < 7, so Quantity B is greater.
+Step 1 — write the rule for one step in terms of the pure component. Discarding half leaves half the acid; the top-up is 0.5 liters of a 20% solution, which brings 0.5 x 0.20 = 0.1 liters of acid back in. The total returns to 1 liter, so in percent terms
+c_new = c_old/2 + 10.
+Step 2 — run it four times from 100%.
+step 1: 100/2 + 10 = 60%
+step 2: 60/2 + 10 = 40%
+step 3: 40/2 + 10 = 30%
+step 4: 30/2 + 10 = 25%
+Step 3 — verify the last step directly. Before it there is 0.30 liters of acid; discard half to leave 0.15 liters in 0.5 liters; add 0.5 liters at 20% to add 0.10 liters. Acid = 0.25 liters in 1 liter = 25%. Correct.
+Answer: 25.
+Why the numbers fall this way: because the top-up is not pure solvent, the concentration does not head for 0 - it closes half the remaining gap down to 20% each step. The gaps above 20% are 80, 40, 20, 10, 5, so after 4 steps the concentration is 20 + 5 = 25%.
 
-**Trap.** Stopping at n = 5, whose 11.87% looks close enough to 10% to count, or overshooting to n = 7 by checking only the value that is comfortably below the threshold instead of the FIRST one that clears it. The deeper error is linear thinking - 'a quarter goes each time, so four cycles empty it'. Each cycle takes a quarter of a shrinking amount, so the concentration falls forever without reaching zero.
+**Trap.** Reaching for the standard repeated-replacement formula: 100% x (1/2)^4 = 6.25%. That formula assumes the top-up is PURE SOLVENT and contributes nothing to the numerator. Here every top-up returns 0.1 liters of acid, which is exactly why the concentration levels off at 20% instead of falling toward zero. Answering 6.25 is the right machinery applied to the wrong operation.
 
-### Q28 · `WRD-MIX-057` — Answer: C
+### Q29 · `WRD-MIX-059` — Answer: B, C
+
+With p liters of P and q liters of Q, the percent of alcohol is (10p + 40q)/(p + q).
+If p = 2q exactly: (20q + 40q)/(3q) = 20 percent.
+Using more P than that moves the result down toward 10 percent, but it stays above 10 because some Q is used.
+So the percent is greater than 10 and at most 20.
+A: 10 is not possible (that would need no Q).
+B: 14 is possible (for example p = 13, q = 2: (130 + 80)/15 = 14).
+C: 20 is possible (p = 2q).
+D: 24 and E: 30 exceed 20. Not possible.
+Answer: B, C.
+
+**Trap.** Selecting 24 or 30 because they lie between 10 and 40. The condition that at least twice as much P is used caps the result at 20 percent. Excluding 20 is the other error: 'at least twice' includes exactly twice.
+
+### Q30 · `WRD-MIX-057` — Answer: C
 
 Step 1 — write the two conditions. With a, b and c kilograms of A, B and C:
 a + b + c = 50
@@ -740,30 +753,3 @@ Check: 29 + 2 + 19 = 50 kg, and 10(29) + 15(2) + 20(19) = 290 + 30 + 380 = 700 =
 Answer: 29 kg.
 
 **Trap.** Choice D, 30, ignores the requirement that all three grades appear: c = 20 with b = 0 satisfies b + 2c = 40 and gives a = 30, but a blend containing no Grade B is not one of the blends described. Choice B, 20, is the Grade C weight in that illegal blend. Choice A, 11, minimizes a instead of maximizing it (c = 1, b = 38), and choice E, 38, is the Grade B weight in that same blend.
-
-### Q29 · `WRD-MIX-058` — Answer: 25
-
-Step 1 — write the rule for one step in terms of the pure component. Discarding half leaves half the acid; the top-up is 0.5 liters of a 20% solution, which brings 0.5 x 0.20 = 0.1 liters of acid back in. The total returns to 1 liter, so in percent terms
-c_new = c_old/2 + 10.
-Step 2 — run it four times from 100%.
-step 1: 100/2 + 10 = 60%
-step 2: 60/2 + 10 = 40%
-step 3: 40/2 + 10 = 30%
-step 4: 30/2 + 10 = 25%
-Step 3 — verify the last step directly. Before it there is 0.30 liters of acid; discard half to leave 0.15 liters in 0.5 liters; add 0.5 liters at 20% to add 0.10 liters. Acid = 0.25 liters in 1 liter = 25%. Correct.
-Answer: 25.
-Why the numbers fall this way: because the top-up is not pure solvent, the concentration does not head for 0 - it closes half the remaining gap down to 20% each step. The gaps above 20% are 80, 40, 20, 10, 5, so after 4 steps the concentration is 20 + 5 = 25%.
-
-**Trap.** Reaching for the standard repeated-replacement formula: 100% x (1/2)^4 = 6.25%. That formula assumes the top-up is PURE SOLVENT and contributes nothing to the numerator. Here every top-up returns 0.1 liters of acid, which is exactly why the concentration levels off at 20% instead of falling toward zero. Answering 6.25 is the right machinery applied to the wrong operation.
-
-### Q30 · `WRD-MIX-059` — Answer: A, B, E
-
-At the start the tank holds Vp/100 liters of acid, and what is drained is a MIXTURE at concentration p%.
-A - the draining carries off the fraction k/V of the acid and the refill adds none, so the acid is multiplied by (1 - k/V) while the volume returns to V. The concentration is therefore p(1 - k/V) percent. TRUE.
-B - k liters at p% contains k x p/100 liters of acid. TRUE.
-C - the tank is refilled to V liters, so the volume is unchanged, not smaller. FALSE.
-D - each operation multiplies by (1 - k/V), so two give p(1 - k/V)^2, not p(1 - 2k/V). Test with V = 200, p = 40, k = 50: the true value is 40 x (3/4)^2 = 22.5%, while p(1 - 2k/V) = 40 x (1/2) = 20%. FALSE.
-E - with k = V/2 the factor is 1 - 1/2 = 1/2, so two operations give p x (1/2)^2 = p/4 percent. TRUE.
-Answer: A, B, E.
-
-**Trap.** D is the whole topic compressed into one option: the losses are multiplicative, never additive, so two rounds do not subtract twice the one-round loss. A free way to spot that D is wrong without any arithmetic - if k > V/2 then 1 - 2k/V is negative, and a concentration cannot be. C catches anyone who reads 'drained' and forgets the refill named in the same sentence.

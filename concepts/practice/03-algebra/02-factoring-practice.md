@@ -1,6 +1,6 @@
 # Factoring — Practice Set
 
-**Bank code:** `ALG-FAC` · **Section:** Algebra · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `ALG-FAC` · **Section:** Algebra · **30 questions** — Easy 5 · Medium 13 · Hard 12
 
 **Lecture capsule:** [02-factoring.md](../../03-algebra/02-factoring.md)
 
@@ -24,15 +24,15 @@ Every question below is live in the question bank under the ID shown — the she
 
 Which of the following shows 12x^3 + 18x^2 factored completely over the integers?
 
-**(A)** 6x(2x^2 + 3x)  
-**(B)** 6x^2(2x + 3)  
-**(C)** 3x^2(4x + 6)  
-**(D)** 2x^2(6x + 9)  
-**(E)** 12x^2(x + 1.5)
+**(A)** 6x(2x + 3)  
+**(B)** 6x^2(x + 3)  
+**(C)** 6x^2(2x + 3)  
+**(D)** 6x^2(2x − 3)  
+**(E)** 6x^3(2x + 3)
 
 **Q2** · `ALG-FAC-012` · MCQ · 45s
 
-Factor: x^2 - 14x + 49.
+Which of the following is equal to x² − 14x + 49 for all values of x?
 
 **(A)** (x - 7)^2  
 **(B)** (x + 7)^2  
@@ -49,7 +49,7 @@ x^2 - 16 = 0, where x is a positive integer.
 
 **Q4** · `ALG-FAC-011` · Numeric Entry · 50s
 
-What is the value of sqrt(85^2 - 84^2)? Enter your answer as a number.
+What is the value of sqrt(85^2 - 84^2)?
 
 *Numeric entry — write the number.*
 
@@ -65,13 +65,13 @@ Which of the following expressions are equal to (x^2 - 25)/(x^2 + 10x + 25) for 
 
 ---
 
-### Level 2 · Medium — 8 questions · ~10 min
+### Level 2 · Medium — 13 questions · ~18 min
 
 *two or three steps, one planted trap each*
 
 **Q6** · `ALG-FAC-014` · MCQ · 80s
 
-Factor completely: 6x^2 - 5x - 6.
+Which of the following is equal to 6x^2 - 5x - 6 and is completely factored?
 
 **(A)** (3x + 2)(2x - 3)  
 **(B)** (3x - 2)(2x + 3)  
@@ -115,13 +115,13 @@ x is a real number and x^3 = 9x.
 
 **Q11** · `ALG-FAC-019` · Numeric Entry · 75s
 
-(x + p)(x + q) = x^2 + 3x - 28 for all x, where p and q are integers. What is the value of |p - q|? Enter your answer as a number.
+(x + p)(x + q) = x^2 + 3x - 28 for all x, where p and q are integers. What is the value of |p - q|?
 
 *Numeric entry — write the number.*
 
 **Q12** · `ALG-FAC-030` · Numeric Entry · 80s
 
-The solutions of (x - 3)(x + 5) = 9 are x = p and x = q, where p > q. What is the value of p - q? Enter your answer as a number.
+The solutions of (x - 3)(x + 5) = 9 are x = p and x = q, where p > q. What is the value of p - q?
 
 *Numeric entry — write the number.*
 
@@ -135,99 +135,13 @@ Which of the following expressions are equal to 0 when x = 4? Select all that ap
 **(D)** x^2 - 4x - 32  
 **(E)** x^3 - 16x
 
----
+**Q14** · `ALG-FAC-036` · Numeric Entry · 100s
 
-### Level 3 · Hard — 12 questions · ~21 min
-
-*where 162+ is won or lost*
-
-**Q14** · `ALG-FAC-034` · MCQ · 110s
-
-For x not equal to 2, which of the following is equal to [(x^4 - 16)/(x^3 - 8)] * [(x^2 + 2x + 4)/(x^2 + 4)]?
-
-**(A)** x + 2  
-**(B)** x - 2  
-**(C)** (x + 2)(x^2 + 4)/(x^2 + 2x + 4)  
-**(D)** (x + 2)/(x^2 + 4)  
-**(E)** (x + 2)(x^2 + 2x + 4)/(x^2 + 4)
-
-**Q15** · `ALG-FAC-035` · MCQ · 110s
-
-Factor completely: 4x^4 - 37x^2 + 9.
-
-**(A)** (2x - 1)(2x + 1)(x - 3)(x + 3)  
-**(B)** (2x - 1)^2(x - 3)^2  
-**(C)** (2x - 3)(2x + 3)(x - 1)(x + 1)  
-**(D)** (2x - 1)(2x + 1)(x^2 + 9)  
-**(E)** 4(x^2 - 1)(x^2 - 9)
-
-**Q16** · `ALG-FAC-036` · Numeric Entry · 100s
-
-The expression x^3 + x^2 - 4x - 4 factors completely as (x + a)(x + b)(x + c), where a, b and c are integers. What is the value of a + b + c? Enter your answer as a number.
+The expression x^3 + x^2 - 4x - 4 factors completely as (x + a)(x + b)(x + c), where a, b and c are integers. What is the value of a + b + c?
 
 *Numeric entry — write the number.*
 
-**Q17** · `ALG-FAC-037` · MCQ · 110s
-
-Which of the following is the complete factorisation of x^8 - 256 into factors that cannot be factored further over the integers?
-
-**(A)** (x - 2)(x + 2)(x^2 + 4)(x^4 + 16)  
-**(B)** (x^2 - 4)(x^2 + 4)(x^4 + 16)  
-**(C)** (x - 2)^2(x + 2)^2(x^4 + 16)  
-**(D)** (x - 2)(x + 2)(x^2 + 4)^3  
-**(E)** (x - 2)(x + 2)(x^2 + 4)(x^4 - 16)
-
-**Q18** · `ALG-FAC-038` · QC · 105s
-
-x is a nonzero real number.
-
-> **Quantity A:**  x^2 + 1/x^2
-> **Quantity B:**  2
-
-**Q19** · `ALG-FAC-039` · Select all that apply · 110s
-
-x and y are positive integers with x > y and x^2 - y^2 = 84. Which of the following could be the value of x + y? Select all that apply.
-
-**(A)** 14  
-**(B)** 21  
-**(C)** 28  
-**(D)** 42  
-**(E)** 84
-
-**Q20** · `ALG-FAC-040` · MCQ · 95s
-
-If x^2 - y^2 = 60 and x - y = 5, what is the value of x^2 + 2xy + y^2?
-
-**(A)** 12  
-**(B)** 25  
-**(C)** 60  
-**(D)** 144  
-**(E)** 3600
-
-**Q21** · `ALG-FAC-041` · Numeric Entry · 110s
-
-x, y and z are real numbers with x + y + z = 9, x^2 + y^2 + z^2 = 41 and xyz = 12. What is the value of (x + y)(y + z)(z + x)? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q22** · `ALG-FAC-042` · MCQ · 100s
-
-Factor completely: x^2 + 6x + 9 - 4y^2.
-
-**(A)** (x + 3 - 2y)(x + 3 + 2y)  
-**(B)** (x + 3 - 4y)(x + 3 + 4y)  
-**(C)** (x + 3 - 2y)^2  
-**(D)** (x + 9 - 2y)(x + 9 + 2y)  
-**(E)** (x + 3)(x + 3 - 4y^2)
-
-**Q23** · `ALG-FAC-043` · QC · 105s
-
-k is a positive integer, and x^2 - kx + 12 can be factored into two binomials with integer coefficients.
-
-> **Quantity A:**  the number of possible values of k
-> **Quantity B:**  4
-
-**Q24** · `ALG-FAC-044` · Select all that apply · 105s
+**Q15** · `ALG-FAC-044` · Select all that apply · 105s
 
 x^3 - 7x + 6 = (x - 1)(x - a)(x - b) for all x, where a and b are integers with a > b. Which of the following are true? Select all that apply.
 
@@ -237,19 +151,99 @@ x^3 - 7x + 6 = (x - 1)(x - a)(x - b) for all x, where a and b are integers with 
 **(D)** The equation x^3 - 7x + 6 = 0 has three positive solutions  
 **(E)** a = 2
 
-**Q25** · `ALG-FAC-045` · Numeric Entry · 110s
+**Q16** · `ALG-FAC-034` · MCQ · 80s
 
-What is the greatest prime factor of 2^18 - 1? Enter your answer as a number.
+If (x + y)^2 - (x - y)^2 = 60, what is the value of xy?
+
+**(A)** 10  
+**(B)** 15  
+**(C)** 20  
+**(D)** 30  
+**(E)** 60
+
+**Q17** · `ALG-FAC-040` · MCQ · 90s
+
+If x^2 - y^2 = 60 and x - y = 5, what is the value of x^2 + 2xy + y^2?
+
+**(A)** 12  
+**(B)** 25  
+**(C)** 60  
+**(D)** 144  
+**(E)** 3600
+
+**Q18** · `ALG-FAC-041` · Numeric Entry · 70s
+
+What is the value of 47^2 - 2(47)(17) + 17^2?
 
 *Numeric entry — write the number.*
 
 ---
 
-### Level 4 · Extreme — 5 questions · ~11 min
+### Level 3 · Hard — 12 questions · ~20 min
 
-*165+ — expect to need the insight, not the grind*
+*where 162+ is won or lost*
 
-**Q26** · `ALG-FAC-046` · MCQ · 125s
+**Q19** · `ALG-FAC-035` · MCQ · 110s
+
+Which of the following is equal to 4x^4 - 37x^2 + 9 and is completely factored?
+
+**(A)** (2x - 1)(2x + 1)(x - 3)(x + 3)  
+**(B)** (2x - 1)^2(x - 3)^2  
+**(C)** (2x - 3)(2x + 3)(x - 1)(x + 1)  
+**(D)** (2x - 1)(2x + 1)(x^2 + 9)  
+**(E)** 4(x^2 - 1)(x^2 - 9)
+
+**Q20** · `ALG-FAC-037` · MCQ · 110s
+
+Which of the following is the complete factorization of x^8 - 256 into factors that cannot be factored further over the integers?
+
+**(A)** (x - 2)(x + 2)(x^2 + 4)(x^4 + 16)  
+**(B)** (x^2 - 4)(x^2 + 4)(x^4 + 16)  
+**(C)** (x - 2)^2(x + 2)^2(x^4 + 16)  
+**(D)** (x - 2)(x + 2)(x^2 + 4)^3  
+**(E)** (x - 2)(x + 2)(x^2 + 4)(x^4 - 16)
+
+**Q21** · `ALG-FAC-038` · QC · 105s
+
+x is a nonzero real number.
+
+> **Quantity A:**  x^2 + 1/x^2
+> **Quantity B:**  2
+
+**Q22** · `ALG-FAC-039` · Select all that apply · 110s
+
+x and y are positive integers with x > y and x^2 - y^2 = 84. Which of the following could be the value of x + y? Select all that apply.
+
+**(A)** 14  
+**(B)** 21  
+**(C)** 28  
+**(D)** 42  
+**(E)** 84
+
+**Q23** · `ALG-FAC-042` · MCQ · 100s
+
+Which of the following is equal to x^2 + 6x + 9 - 4y^2 and is completely factored?
+
+**(A)** (x + 3 - 2y)(x + 3 + 2y)  
+**(B)** (x + 3 - 4y)(x + 3 + 4y)  
+**(C)** (x + 3 - 2y)^2  
+**(D)** (x + 9 - 2y)(x + 9 + 2y)  
+**(E)** (x + 3)(x + 3 - 4y^2)
+
+**Q24** · `ALG-FAC-043` · QC · 105s
+
+k is a positive integer, and x^2 - kx + 12 can be factored into two binomials with integer coefficients.
+
+> **Quantity A:**  the number of possible values of k
+> **Quantity B:**  4
+
+**Q25** · `ALG-FAC-045` · Numeric Entry · 85s
+
+If x - 1/x = 3, what is the value of x^2 + 1/x^2?
+
+*Numeric entry — write the number.*
+
+**Q26** · `ALG-FAC-046` · MCQ · 110s
 
 p and q are real numbers with p - q = 2 and p^3 - q^3 = 98. What is the value of p^2 + q^2?
 
@@ -259,38 +253,40 @@ p and q are real numbers with p - q = 2 and p^3 - q^3 = 98. What is the value of
 **(D)** 49  
 **(E)** 64
 
-**Q27** · `ALG-FAC-047` · Numeric Entry · 130s
+**Q27** · `ALG-FAC-047` · Numeric Entry · 90s
 
-x^4 + 4x^2 + 16 = (x^2 + ax + 4)(x^2 + bx + 4) for all x, where a and b are integers. What is the value of a^2 + b^2? Enter your answer as a number.
+What is the greatest prime factor of 2,499?
 
 *Numeric entry — write the number.*
 
-**Q28** · `ALG-FAC-048` · QC · 130s
+**Q28** · `ALG-FAC-048` · QC · 95s
 
-x^4 - 10x^3 + 33x^2 - 40x + 16 = 0
+For all values of x, x^2 + kx + 12 = (x + a)(x + b), where k is a constant and a and b are integers.
 
-> **Quantity A:**  the product of all DISTINCT real solutions of the equation
-> **Quantity B:**  the sum of all DISTINCT real solutions of the equation
+> **Quantity A:**  k
+> **Quantity B:**  6
 
-**Q29** · `ALG-FAC-049` · Select all that apply · 125s
+**Q29** · `ALG-FAC-049` · Select all that apply · 100s
 
-Which of the following are factors of x^6 - 1? Select all that apply.
+Which of the following are factors of x^4 - 13x^2 + 36?
+
+Indicate all such expressions.
 
 **(A)** x - 1  
-**(B)** x + 1  
-**(C)** x^2 + 1  
-**(D)** x^2 - x + 1  
-**(E)** x^2 + x - 1
+**(B)** x + 2  
+**(C)** x^2 + 4  
+**(D)** x^2 - 9  
+**(E)** x^2 - x - 6
 
-**Q30** · `ALG-FAC-050` · MCQ · 130s
+**Q30** · `ALG-FAC-050` · MCQ · 105s
 
-x and y are integers with xy + 5x - 3y = 27. How many ordered pairs (x, y) satisfy this equation?
+If x and y are positive integers and x^2 - y^2 = 21, what is the sum of all possible values of x?
 
-**(A)** 3  
-**(B)** 6  
-**(C)** 12  
-**(D)** 24  
-**(E)** There are infinitely many.
+**(A)** 5  
+**(B)** 10  
+**(C)** 11  
+**(D)** 16  
+**(E)** 21
 
 ---
 
@@ -298,7 +294,7 @@ x and y are integers with xy + 5x - 3y = 27. How many ordered pairs (x, y) satis
 
 | Q | ID | Level | Type | Answer |
 |---|---|---|---|---|
-| 1 | `ALG-FAC-001` | easy | MCQ | **B** |
+| 1 | `ALG-FAC-001` | easy | MCQ | **C** |
 | 2 | `ALG-FAC-012` | easy | MCQ | **A** |
 | 3 | `ALG-FAC-006` | easy | QC | **C** |
 | 4 | `ALG-FAC-011` | easy | Numeric Entry | **13** |
@@ -311,38 +307,38 @@ x and y are integers with xy + 5x - 3y = 27. How many ordered pairs (x, y) satis
 | 11 | `ALG-FAC-019` | medium | Numeric Entry | **11** |
 | 12 | `ALG-FAC-030` | medium | Numeric Entry | **10** |
 | 13 | `ALG-FAC-020` | medium | Select all that apply | **A, C, E** |
-| 14 | `ALG-FAC-034` | hard | MCQ | **A** |
-| 15 | `ALG-FAC-035` | hard | MCQ | **A** |
-| 16 | `ALG-FAC-036` | hard | Numeric Entry | **1** |
-| 17 | `ALG-FAC-037` | hard | MCQ | **A** |
-| 18 | `ALG-FAC-038` | hard | QC | **D** |
-| 19 | `ALG-FAC-039` | hard | Select all that apply | **A, D** |
-| 20 | `ALG-FAC-040` | hard | MCQ | **D** |
-| 21 | `ALG-FAC-041` | hard | Numeric Entry | **168** |
-| 22 | `ALG-FAC-042` | hard | MCQ | **A** |
-| 23 | `ALG-FAC-043` | hard | QC | **B** |
-| 24 | `ALG-FAC-044` | hard | Select all that apply | **A, B, C, E** |
-| 25 | `ALG-FAC-045` | hard | Numeric Entry | **73** |
-| 26 | `ALG-FAC-046` | extreme hard | MCQ | **B** |
-| 27 | `ALG-FAC-047` | extreme hard | Numeric Entry | **8** |
-| 28 | `ALG-FAC-048` | extreme hard | QC | **B** |
-| 29 | `ALG-FAC-049` | extreme hard | Select all that apply | **A, B, D** |
-| 30 | `ALG-FAC-050` | extreme hard | MCQ | **C** |
+| 14 | `ALG-FAC-036` | medium | Numeric Entry | **1** |
+| 15 | `ALG-FAC-044` | medium | Select all that apply | **A, B, C, E** |
+| 16 | `ALG-FAC-034` | medium | MCQ | **B** |
+| 17 | `ALG-FAC-040` | medium | MCQ | **D** |
+| 18 | `ALG-FAC-041` | medium | Numeric Entry | **900** |
+| 19 | `ALG-FAC-035` | hard | MCQ | **A** |
+| 20 | `ALG-FAC-037` | hard | MCQ | **A** |
+| 21 | `ALG-FAC-038` | hard | QC | **D** |
+| 22 | `ALG-FAC-039` | hard | Select all that apply | **A, D** |
+| 23 | `ALG-FAC-042` | hard | MCQ | **A** |
+| 24 | `ALG-FAC-043` | hard | QC | **B** |
+| 25 | `ALG-FAC-045` | hard | Numeric Entry | **11** |
+| 26 | `ALG-FAC-046` | hard | MCQ | **B** |
+| 27 | `ALG-FAC-047` | hard | Numeric Entry | **17** |
+| 28 | `ALG-FAC-048` | hard | QC | **D** |
+| 29 | `ALG-FAC-049` | hard | Select all that apply | **B, D, E** |
+| 30 | `ALG-FAC-050` | hard | MCQ | **D** |
 
 ---
 
 ## Part C — Worked Solutions
 
-### Q1 · `ALG-FAC-001` — Answer: B
+### Q1 · `ALG-FAC-001` — Answer: C
 
 Step 1 — take the numbers. The greatest common factor of 12 and 18 is 6.
 Step 2 — take the variables. The lower power of x present is x^2, so x^2 comes out.
 Step 3 — divide each term by 6x^2: 12x^3/(6x^2) = 2x, and 18x^2/(6x^2) = 3.
 So 12x^3 + 18x^2 = 6x^2(2x + 3).
 Check: expand 6x^2(2x + 3) = 12x^3 + 18x^2. Correct.
-Answer: B.
+Answer: C.
 
-**Trap.** Pulling out only 6x and stopping at 6x(2x^2 + 3x), choice A. The bracket still contains a common factor of x, so the factoring is not complete. Choices C and D pull out too small a number, 3 and 2, leaving brackets 4x + 6 and 6x + 9 that still share a factor. Choice E takes 12 as the common number and pays for it with 1.5 inside the bracket, so it is not a factorisation over the integers at all.
+**Trap.** Students choose A, 6x(2x + 3), having spotted the common factor 6x^2 but then dividing each term by only 6x — it expands to 12x^2 + 18x, not 12x^3 + 18x^2. Always expand the bracket back. Choice B drops the coefficient quotient 12/6 = 2, choice E pulls out x^3 rather than the lower power x^2, and choice D flips the sign of the 3.
 
 ### Q2 · `ALG-FAC-012` — Answer: A
 
@@ -378,11 +374,11 @@ Answer: 13.
 ### Q5 · `ALG-FAC-013` — Answer: A, C
 
 Factor top and bottom before doing anything else. The numerator is a difference of squares, x^2 - 25 = (x - 5)(x + 5). The denominator is a perfect square trinomial - two numbers with product 25 and sum 10 are 5 and 5 - so x^2 + 10x + 25 = (x + 5)^2. The shared factor (x + 5) cancels, which is exactly why x = -5 has to be excluded.
-A - (x - 5)(x + 5)/(x + 5)^2 = (x - 5)/(x + 5). TRUE.
-B - (x + 5)/(x - 5) is the same two brackets the other way up, which is what you get by cancelling (x - 5) instead of (x + 5); but (x - 5) is not a factor of the denominator at all. At x = 1 it gives -3/2 while the target gives -24/36 = -2/3. FALSE.
-C - a second route that never cancels anything. Write the numerator of the simplified form as x - 5 = (x + 5) - 10, then divide term by term: [(x + 5) - 10]/(x + 5) = 1 - 10/(x + 5). TRUE. At x = 1 it gives 1 - 10/6 = -2/3, matching.
-D - 1 - 5/(x + 5) is the same split with the wrong constant: it equals x/(x + 5), because (x + 5) - 5 = x, not x - 5. At x = 1 it gives 1/6. FALSE.
-E - -25/(10x + 25) comes from striking out the x^2 at the top against the x^2 at the bottom. Those are TERMS, not factors, so nothing may be cancelled there. At x = 1 it gives -25/35 = -5/7. FALSE.
+A - (x - 5)(x + 5)/(x + 5)^2 = (x - 5)/(x + 5). True.
+B - (x + 5)/(x - 5) is the same two brackets the other way up, which is what you get by cancelling (x - 5) instead of (x + 5); but (x - 5) is not a factor of the denominator at all. At x = 1 it gives -3/2 while the target gives -24/36 = -2/3. False.
+C - a second route that never cancels anything. Write the numerator of the simplified form as x - 5 = (x + 5) - 10, then divide term by term: [(x + 5) - 10]/(x + 5) = 1 - 10/(x + 5). True. At x = 1 it gives 1 - 10/6 = -2/3, matching.
+D - 1 - 5/(x + 5) is the same split with the wrong constant: it equals x/(x + 5), because (x + 5) - 5 = x, not x - 5. At x = 1 it gives 1/6. False.
+E - -25/(10x + 25) comes from striking out the x^2 at the top against the x^2 at the bottom. Those are TERMS, not factors, so nothing may be cancelled there. At x = 1 it gives -25/35 = -5/7. False.
 Check at x = 1: the target is (1 - 25)/(1 + 10 + 25) = -24/36 = -2/3, and A and C both give -2/3.
 Answer: A and C.
 
@@ -469,41 +465,17 @@ Answer: 10.
 ### Q13 · `ALG-FAC-020` — Answer: A, C, E
 
 Factor each one and read off its roots.
-A - x^2 - 8x + 16 = (x - 4)^2. Its only root is x = 4. TRUE.
-B - x^2 + 16 is a sum of squares and has no real root; at x = 4 it equals 16 + 16 = 32. FALSE.
-C - x^2 - 2x - 8 = (x - 4)(x + 2). Roots 4 and -2. TRUE.
-D - x^2 - 4x - 32 = (x - 8)(x + 4). Roots 8 and -4; at x = 4 it equals 16 - 16 - 32 = -32. FALSE.
-E - x^3 - 16x = x(x^2 - 16) = x(x - 4)(x + 4). Roots 0, 4 and -4. TRUE.
+A - x^2 - 8x + 16 = (x - 4)^2. Its only root is x = 4. True.
+B - x^2 + 16 is a sum of squares and has no real root; at x = 4 it equals 16 + 16 = 32. False.
+C - x^2 - 2x - 8 = (x - 4)(x + 2). Roots 4 and -2. True.
+D - x^2 - 4x - 32 = (x - 8)(x + 4). Roots 8 and -4; at x = 4 it equals 16 - 16 - 32 = -32. False.
+E - x^3 - 16x = x(x^2 - 16) = x(x - 4)(x + 4). Roots 0, 4 and -4. True.
 Check by substitution at x = 4: A gives 16 - 32 + 16 = 0, C gives 16 - 8 - 8 = 0, E gives 64 - 64 = 0.
 Answer: A, C and E.
 
 **Trap.** Selecting B by treating x^2 + 16 as a difference of squares and writing (x - 4)(x + 4). That product is x^2 - 16; a sum of squares does not factor over the reals, and at x = 4 the expression is 32. Selecting D comes from seeing the -4x term and matching it to x = 4 by eye instead of factoring; its roots are 8 and -4.
 
-### Q14 · `ALG-FAC-034` — Answer: A
-
-Step 1 — factor x^4 - 16 as a difference of squares twice: x^4 - 16 = (x^2 - 4)(x^2 + 4) = (x - 2)(x + 2)(x^2 + 4).
-Step 2 — factor x^3 - 8 as a difference of cubes with a = x and b = 2: x^3 - 8 = (x - 2)(x^2 + 2x + 4). The quadratic factor carries a plus in the middle.
-Step 3 — write the whole product with everything factored:
-[(x - 2)(x + 2)(x^2 + 4)] / [(x - 2)(x^2 + 2x + 4)] * (x^2 + 2x + 4) / (x^2 + 4).
-Step 4 — cancel three matching factors: (x - 2) top and bottom, (x^2 + 2x + 4) bottom and top, and (x^2 + 4) top and bottom. Nothing else survives, leaving x + 2.
-Check at x = 3: the first fraction is (81 - 16)/(27 - 8) = 65/19, the second is (9 + 6 + 4)/(9 + 4) = 19/13, and (65/19)(19/13) = 65/13 = 5, which is 3 + 2. Correct.
-Answer: A.
-
-**Trap.** Writing the difference of cubes with the wrong middle sign, x^3 - 8 = (x - 2)(x^2 - 2x + 4), so the second fraction's numerator no longer cancels and the answer is dragged to choice E. Choice C is the first fraction simplified on its own, from cancelling only (x - 2) and forgetting that the second fraction still has to be multiplied in. Choice D cancels the cubic factor but leaves x^2 + 4 downstairs, missing that it cancels against the x^2 + 4 that came out of x^4 - 16. Choice B comes from cancelling (x + 2) rather than (x - 2), the factor the two denominators actually share.
-
-### Q15 · `ALG-FAC-035` — Answer: A
-
-Step 1 — there is no common factor, but the expression is a quadratic in x^2: 4(x^2)^2 - 37(x^2) + 9.
-Step 2 — use the ac method: ac = 4 * 9 = 36, and two numbers with product 36 and sum -37 are -36 and -1.
-Step 3 — split the middle term: 4x^4 - 36x^2 - x^2 + 9 = 4x^2(x^2 - 9) - 1(x^2 - 9) = (x^2 - 9)(4x^2 - 1).
-Step 4 — each bracket is a difference of squares: x^2 - 9 = (x - 3)(x + 3) and 4x^2 - 1 = (2x - 1)(2x + 1).
-So 4x^4 - 37x^2 + 9 = (2x - 1)(2x + 1)(x - 3)(x + 3).
-Check at x = 2: the original is 64 - 148 + 9 = -75; the factored form is (3)(5)(-1)(5) = -75. Correct.
-Answer: A.
-
-**Trap.** Choice C pairs the numbers the wrong way round, putting the 9 with the 4x^2 and the 1 with the x^2; it expands to 4x^4 - 13x^2 + 9, so the middle term is wrong. Choice B reads each difference of squares as a square of a difference, (4x^2 - 1) as (2x - 1)^2 and (x^2 - 9) as (x - 3)^2, which introduces x^3 and x terms that the original does not have. Choice D keeps x^2 + 9 instead of x^2 - 9 and so changes the sign of the constant to -9. Choice E pulls a 4 out of every term, but 4 does not divide 37x^2 or 9; it expands to 4x^4 - 40x^2 + 36.
-
-### Q16 · `ALG-FAC-036` — Answer: 1
+### Q14 · `ALG-FAC-036` — Answer: 1
 
 Step 1 — four terms, so group in pairs: (x^3 + x^2) + (-4x - 4).
 Step 2 — factor each pair, taking a negative out of the second so the brackets match: x^2(x + 1) - 4(x + 1).
@@ -515,44 +487,33 @@ Answer: 1.
 
 **Trap.** Pulling +4 out of the second pair instead of -4, which gives x^2(x + 1) + 4(-x - 1) with brackets that do not match, and the grouping looks like it has failed. When a pair begins with a minus, the factor you remove must be negative. A second error is answering -1, the sum of the roots -1, 2 and -2, rather than the sum of the constants a, b and c sitting inside the factors.
 
-### Q17 · `ALG-FAC-037` — Answer: A
+### Q15 · `ALG-FAC-044` — Answer: A, B, C, E
 
-Step 1 — 256 = 16^2, so this is a difference of squares with a = x^4 and b = 16: x^8 - 256 = (x^4 - 16)(x^4 + 16).
-Step 2 — x^4 - 16 is a difference of squares again, with a = x^2 and b = 4: (x^2 - 4)(x^2 + 4).
-Step 3 — x^2 - 4 is a difference of squares a third time: (x - 2)(x + 2).
-Step 4 — decide where to stop. A sum of squares does not factor over the integers, so x^2 + 4 stops. Neither does x^4 + 16: any integer factorisation into two quadratics x^2 + mx + 4 and x^2 - mx + 4 would need -m^2 + 8 = 0, and 8 is not a perfect square, so no integer m works.
-So x^8 - 256 = (x - 2)(x + 2)(x^2 + 4)(x^4 + 16).
-Check at x = 1: the original is 1 - 256 = -255; the factored form is (-1)(3)(5)(17) = -255. Correct.
-Answer: A.
+Step 1 — split the middle term so the expression groups: x^3 - 7x + 6 = x^3 - x - 6x + 6.
+Group: x(x^2 - 1) - 6(x - 1) = x(x - 1)(x + 1) - 6(x - 1) = (x - 1)(x^2 + x - 6).
+Step 2 — factor the quadratic: x^2 + x - 6 = (x + 3)(x - 2), which in the form (x - a)(x - b) is (x - 2)(x - (-3)).
+Step 3 — with a > b, a = 2 and b = -3.
+A - a + b = 2 + (-3) = -1. True.
+B - ab = 2 * (-3) = -6. True.
+C - a - b = 2 - (-3) = 5. True.
+D - the solutions are x = 1, x = 2 and x = -3. One of them is negative. False.
+E - a = 2. True.
+Check: (x - 1)(x - 2)(x + 3) at x = 0 gives (-1)(-2)(3) = 6, and x^3 - 7x + 6 at x = 0 gives 6. At x = 4: 3 * 2 * 7 = 42, and 64 - 28 + 6 = 42. Correct.
+Answer: A, B, C and E.
 
-**Trap.** Choice B runs the difference of squares twice and stops: it is equal to x^8 - 256, but x^2 - 4 still factors, so it is not the complete factorisation the stem asks for. Choice C reads x^4 - 16 as a perfect square (x^2 - 4)^2 and so loses the x^2 + 4 factor entirely. Choice D treats x^4 + 16 as (x^2 + 4)^2, which is x^4 + 8x^2 + 16, not x^4 + 16. Choice E writes the second factor of Step 1 as x^4 - 16 instead of x^4 + 16, the sign slip of factoring a^2 - b^2 as (a - b)(a - b).
+**Trap.** Selecting D because the constant +6 and the template (x - 1)(x - a)(x - b) are all written with minus signs, which makes the roots look positive. The third factor is really (x + 3), so one root is -3. Reading signs off the template rather than off the finished factorization is the error.
 
-### Q18 · `ALG-FAC-038` — Answer: D
+### Q16 · `ALG-FAC-034` — Answer: B
 
-Step 1 — compare by subtracting and look for a factorable form: x^2 + 1/x^2 - 2.
-With a = x and b = 1/x, note that 2ab = 2 * x * (1/x) = 2, so this is exactly a^2 - 2ab + b^2 = (x - 1/x)^2.
-Step 2 — a real square is never negative, so Quantity A - Quantity B = (x - 1/x)^2 >= 0. Quantity A is never below 2.
-Step 3 — the square is 0 exactly when x - 1/x = 0, that is x^2 = 1, so x = 1 or x = -1. At those two values the columns are equal.
-Step 4 — at any other value the square is positive. At x = 2, Quantity A = 4 + 1/4 = 4.25 > 2.
-Equal at some allowed values and Quantity A greater at others, so nothing is fixed.
-Check: x = 1 gives 1 + 1 = 2, equal; x = 2 gives 4.25, Quantity A greater. Correct.
-Answer: D.
+(x + y)^2 = x^2 + 2xy + y^2 and (x - y)^2 = x^2 - 2xy + y^2.
+Subtracting: (x + y)^2 - (x - y)^2 = 4xy.
+4xy = 60, so xy = 15.
+Check with x = 5, y = 3: 64 - 4 = 60.
+Answer: B.
 
-**Trap.** Testing x = 2, x = 3 and x = 0.5, getting a value above 2 every time, and choosing A. The only values that tie are x = 1 and x = -1, and a single tie is enough to force D. The factorisation x^2 + 1/x^2 - 2 = (x - 1/x)^2 shows precisely where the tie sits instead of leaving it to be stumbled on.
+**Trap.** Taking the difference as 2xy, which gives xy = 30 (choice D). The +2xy and the -2xy are subtracted, so they combine to 4xy.
 
-### Q19 · `ALG-FAC-039` — Answer: A, D
-
-Factor first: x^2 - y^2 = (x - y)(x + y) = 84. So x + y must be a factor of 84, and the matching factor is x - y = 84/(x + y). Adding and subtracting gives x = [(x + y) + (x - y)]/2 and y = [(x + y) - (x - y)]/2, so both x + y and x - y must be even for x and y to be integers, and x + y must be the larger of the pair so that y is positive.
-A - x + y = 14 gives x - y = 6. Both even, so x = 10 and y = 4. Check: 100 - 16 = 84. TRUE.
-B - x + y = 21 gives x - y = 4. One odd, one even, so x = 12.5, not an integer. FALSE.
-C - x + y = 28 gives x - y = 3. Again mixed parity, x = 15.5. FALSE.
-D - x + y = 42 gives x - y = 2. Both even, so x = 22 and y = 20. Check: 484 - 400 = 84. TRUE.
-E - x + y = 84 gives x - y = 1. Mixed parity, x = 42.5. FALSE.
-Answer: A and D.
-
-**Trap.** Selecting every factor of 84 on the list. Being a factor is necessary but not sufficient: 84 is even but not divisible by 4, so its factor pairs are either both even (2 and 42, 6 and 14) or mixed (1 and 84, 3 and 28, 4 and 21, 12 and 7), and a mixed pair makes x = [(x+y) + (x-y)]/2 a half-integer. That is why 21, 28 and 84 fail even though each divides 84. The reverse error is rejecting 42 because 42 seems too large; x = 22 and y = 20 are perfectly legal positive integers.
-
-### Q20 · `ALG-FAC-040` — Answer: D
+### Q17 · `ALG-FAC-040` — Answer: D
 
 Step 1 — factor the given equation instead of solving for x and y: x^2 - y^2 = (x - y)(x + y) = 60.
 Step 2 — substitute x - y = 5: 5(x + y) = 60, so x + y = 12.
@@ -563,24 +524,64 @@ Answer: D.
 
 **Trap.** Stopping at x + y = 12, choice A, without squaring. Choice B squares the wrong given, producing (x - y)^2 = 25. Choice C mistakes the perfect square x^2 + 2xy + y^2 for the difference of squares and reads 60 straight off the stem; the two differ by the cross term 2xy. Choice E squares the 60.
 
-### Q21 · `ALG-FAC-041` — Answer: 168
+### Q18 · `ALG-FAC-041` — Answer: 900
 
-Step 1 — do not hunt for x, y and z. Use the sum to rewrite each bracket in ONE letter: since x + y + z = 9,
-x + y = 9 - z, y + z = 9 - x, z + x = 9 - y.
-So the target is (9 - x)(9 - y)(9 - z), a product of three brackets in the three variables separately.
-Step 2 — expand that product in terms of the symmetric sums:
-(9 - x)(9 - y)(9 - z) = 729 - 81(x + y + z) + 9(xy + yz + zx) - xyz
-Every piece is known except xy + yz + zx.
-Step 3 — build xy + yz + zx by squaring the first given. Squaring a three-term sum produces every pairwise product twice:
-(x + y + z)^2 = x^2 + y^2 + z^2 + 2(xy + yz + zx)
-81 = 41 + 2(xy + yz + zx), so xy + yz + zx = 40/2 = 20. The halving is the step that is easiest to lose.
-Step 4 — substitute: 729 - 81(9) + 9(20) - 12 = 729 - 729 + 180 - 12 = 168.
-Check: x + y + z = 9, xy + yz + zx = 20 and xyz = 12 are the coefficients of t^3 - 9t^2 + 20t - 12 = 0, whose roots are t = 1, 2 and 6. Those satisfy 1 + 2 + 6 = 9, 1 + 4 + 36 = 41 and 1 * 2 * 6 = 12, and (1 + 2)(2 + 6)(6 + 1) = 3 * 8 * 7 = 168. Correct.
-Answer: 168.
+The expression has the form a^2 - 2ab + b^2 with a = 47 and b = 17.
+a^2 - 2ab + b^2 = (a - b)^2.
+(47 - 17)^2 = 30^2 = 900.
 
-**Trap.** Forgetting to halve in Step 3 and using xy + yz + zx = 40, which gives 729 - 729 + 360 - 12 = 348. Losing the sign on the last term and adding xyz, giving 192; in (9 - x)(9 - y)(9 - z) the three minus signs multiply to one minus, so xyz is subtracted. Trying to solve for x, y and z first: that means factoring t^3 - 9t^2 + 20t - 12, far more work than the identity, and the question never needs the individual values. Assuming (x + y)(y + z)(z + x) is (x + y + z)(xy + yz + zx) = 180 and stopping there - that product overshoots by exactly xyz.
+**Trap.** Reading the expression as a difference of squares, (47 - 17)(47 + 17) = 30 * 64 = 1,920. The middle term -2(47)(17) marks it as a perfect square, (47 - 17)^2.
 
-### Q22 · `ALG-FAC-042` — Answer: A
+### Q19 · `ALG-FAC-035` — Answer: A
+
+Step 1 — there is no common factor, but the expression is a quadratic in x^2: 4(x^2)^2 - 37(x^2) + 9.
+Step 2 — use the ac method: ac = 4 * 9 = 36, and two numbers with product 36 and sum -37 are -36 and -1.
+Step 3 — split the middle term: 4x^4 - 36x^2 - x^2 + 9 = 4x^2(x^2 - 9) - 1(x^2 - 9) = (x^2 - 9)(4x^2 - 1).
+Step 4 — each bracket is a difference of squares: x^2 - 9 = (x - 3)(x + 3) and 4x^2 - 1 = (2x - 1)(2x + 1).
+So 4x^4 - 37x^2 + 9 = (2x - 1)(2x + 1)(x - 3)(x + 3).
+Check at x = 2: the original is 64 - 148 + 9 = -75; the factored form is (3)(5)(-1)(5) = -75. Correct.
+Answer: A.
+
+**Trap.** Choice C pairs the numbers the wrong way round, putting the 9 with the 4x^2 and the 1 with the x^2; it expands to 4x^4 - 13x^2 + 9, so the middle term is wrong. Choice B reads each difference of squares as a square of a difference, (4x^2 - 1) as (2x - 1)^2 and (x^2 - 9) as (x - 3)^2, which introduces x^3 and x terms that the original does not have. Choice D keeps x^2 + 9 instead of x^2 - 9 and so changes the sign of the constant to -9. Choice E pulls a 4 out of every term, but 4 does not divide 37x^2 or 9; it expands to 4x^4 - 40x^2 + 36.
+
+### Q20 · `ALG-FAC-037` — Answer: A
+
+Step 1 — 256 = 16^2, so this is a difference of squares with a = x^4 and b = 16: x^8 - 256 = (x^4 - 16)(x^4 + 16).
+Step 2 — x^4 - 16 is a difference of squares again, with a = x^2 and b = 4: (x^2 - 4)(x^2 + 4).
+Step 3 — x^2 - 4 is a difference of squares a third time: (x - 2)(x + 2).
+Step 4 — decide where to stop. A sum of squares does not factor over the integers, so x^2 + 4 stops. Neither does x^4 + 16: any integer factorization into two quadratics x^2 + mx + 4 and x^2 - mx + 4 would need -m^2 + 8 = 0, and 8 is not a perfect square, so no integer m works.
+So x^8 - 256 = (x - 2)(x + 2)(x^2 + 4)(x^4 + 16).
+Check at x = 1: the original is 1 - 256 = -255; the factored form is (-1)(3)(5)(17) = -255. Correct.
+Answer: A.
+
+**Trap.** Choice B runs the difference of squares twice and stops: it is equal to x^8 - 256, but x^2 - 4 still factors, so it is not the complete factorization the stem asks for. Choice C reads x^4 - 16 as a perfect square (x^2 - 4)^2 and so loses the x^2 + 4 factor entirely. Choice D treats x^4 + 16 as (x^2 + 4)^2, which is x^4 + 8x^2 + 16, not x^4 + 16. Choice E writes the second factor of Step 1 as x^4 - 16 instead of x^4 + 16, the sign slip of factoring a^2 - b^2 as (a - b)(a - b).
+
+### Q21 · `ALG-FAC-038` — Answer: D
+
+Step 1 — compare by subtracting and look for a factorable form: x^2 + 1/x^2 - 2.
+With a = x and b = 1/x, note that 2ab = 2 * x * (1/x) = 2, so this is exactly a^2 - 2ab + b^2 = (x - 1/x)^2.
+Step 2 — a real square is never negative, so Quantity A - Quantity B = (x - 1/x)^2 >= 0. Quantity A is never below 2.
+Step 3 — the square is 0 exactly when x - 1/x = 0, that is x^2 = 1, so x = 1 or x = -1. At those two values the columns are equal.
+Step 4 — at any other value the square is positive. At x = 2, Quantity A = 4 + 1/4 = 4.25 > 2.
+Equal at some allowed values and Quantity A greater at others, so nothing is fixed.
+Check: x = 1 gives 1 + 1 = 2, equal; x = 2 gives 4.25, Quantity A greater. Correct.
+Answer: D.
+
+**Trap.** Testing x = 2, x = 3 and x = 0.5, getting a value above 2 every time, and choosing A. The only values that tie are x = 1 and x = -1, and a single tie is enough to force D. The factorization x^2 + 1/x^2 - 2 = (x - 1/x)^2 shows precisely where the tie sits instead of leaving it to be stumbled on.
+
+### Q22 · `ALG-FAC-039` — Answer: A, D
+
+Factor first: x^2 - y^2 = (x - y)(x + y) = 84. So x + y must be a factor of 84, and the matching factor is x - y = 84/(x + y). Adding and subtracting gives x = [(x + y) + (x - y)]/2 and y = [(x + y) - (x - y)]/2, so both x + y and x - y must be even for x and y to be integers, and x + y must be the larger of the pair so that y is positive.
+A - x + y = 14 gives x - y = 6. Both even, so x = 10 and y = 4. Check: 100 - 16 = 84. True.
+B - x + y = 21 gives x - y = 4. One odd, one even, so x = 12.5, not an integer. False.
+C - x + y = 28 gives x - y = 3. Again mixed parity, x = 15.5. False.
+D - x + y = 42 gives x - y = 2. Both even, so x = 22 and y = 20. Check: 484 - 400 = 84. True.
+E - x + y = 84 gives x - y = 1. Mixed parity, x = 42.5. False.
+Answer: A and D.
+
+**Trap.** Selecting every factor of 84 on the list. Being a factor is necessary but not sufficient: 84 is even but not divisible by 4, so its factor pairs are either both even (2 and 42, 6 and 14) or mixed (1 and 84, 3 and 28, 4 and 21, 12 and 7), and a mixed pair makes x = [(x+y) + (x-y)]/2 a half-integer. That is why 21, 28 and 84 fail even though each divides 84. The reverse error is rejecting 42 because 42 seems too large; x = 22 and y = 20 are perfectly legal positive integers.
+
+### Q23 · `ALG-FAC-042` — Answer: A
 
 Step 1 — four terms, but they do not split into two matching pairs. Look instead at the first three: x^2 + 6x + 9 = (x + 3)^2.
 Step 2 — the expression is now (x + 3)^2 - 4y^2, and 4y^2 = (2y)^2, so this is a difference of squares with a = x + 3 and b = 2y.
@@ -590,7 +591,7 @@ Answer: A.
 
 **Trap.** Choice B uses 4y as the square root of 4y^2; the square root of 4y^2 is 2y. Choice D makes the same slip with the constant, using 9 rather than sqrt(9) = 3. Choice C forgets that the minus sign in front of 4y^2 makes this a difference, not a square. Choice E tries to pull (x + 3) out as a common factor, but 4y^2 contains no (x + 3).
 
-### Q23 · `ALG-FAC-043` — Answer: B
+### Q24 · `ALG-FAC-043` — Answer: B
 
 Step 1 — if x^2 - kx + 12 = (x - p)(x - q) with p and q integers, then pq = 12 and p + q = k.
 Step 2 — the product 12 is positive, so p and q share a sign. If both were negative their sum k would be negative, which the stem forbids, so both are positive.
@@ -604,34 +605,13 @@ Answer: B.
 
 **Trap.** Counting the negative pairs as well, (-1, -12), (-2, -6) and (-3, -4), to reach 6 values and choosing A. Those give k = -13, -8 and -7, all excluded by 'k is a positive integer'. Counting ordered pairs rather than unordered ones also reaches 6.
 
-### Q24 · `ALG-FAC-044` — Answer: A, B, C, E
+### Q25 · `ALG-FAC-045` — Answer: 11
 
-Step 1 — split the middle term so the expression groups: x^3 - 7x + 6 = x^3 - x - 6x + 6.
-Group: x(x^2 - 1) - 6(x - 1) = x(x - 1)(x + 1) - 6(x - 1) = (x - 1)(x^2 + x - 6).
-Step 2 — factor the quadratic: x^2 + x - 6 = (x + 3)(x - 2), which in the form (x - a)(x - b) is (x - 2)(x - (-3)).
-Step 3 — with a > b, a = 2 and b = -3.
-A - a + b = 2 + (-3) = -1. TRUE.
-B - ab = 2 * (-3) = -6. TRUE.
-C - a - b = 2 - (-3) = 5. TRUE.
-D - the solutions are x = 1, x = 2 and x = -3. One of them is negative. FALSE.
-E - a = 2. TRUE.
-Check: (x - 1)(x - 2)(x + 3) at x = 0 gives (-1)(-2)(3) = 6, and x^3 - 7x + 6 at x = 0 gives 6. At x = 4: 3 * 2 * 7 = 42, and 64 - 28 + 6 = 42. Correct.
-Answer: A, B, C and E.
+Square both sides: (x - 1/x)^2 = 9.
+(x - 1/x)^2 = x^2 - 2(x)(1/x) + 1/x^2 = x^2 - 2 + 1/x^2.
+So x^2 + 1/x^2 - 2 = 9, and x^2 + 1/x^2 = 11.
 
-**Trap.** Selecting D because the constant +6 and the template (x - 1)(x - a)(x - b) are all written with minus signs, which makes the roots look positive. The third factor is really (x + 3), so one root is -3. Reading signs off the template rather than off the finished factorisation is the error.
-
-### Q25 · `ALG-FAC-045` — Answer: 73
-
-Step 1 — do not compute 2^18 and start trial dividing 262143; factor the exponent instead. 18 = 2 * 9, so 2^18 = (2^9)^2 and this is a difference of squares:
-2^18 - 1 = (2^9 - 1)(2^9 + 1) = 511 * 513
-Step 2 — factor each piece. 513 is divisible by 3 (5 + 1 + 3 = 9): 513 = 3 * 171 = 3 * 3 * 57 = 27 * 19, so 513 = 3^3 * 19.
-Step 3 — 511 is the harder half. It is not even, not divisible by 3 (5 + 1 + 1 = 7) or 5. Try 7: 7 * 73 = 511. And 73 is prime - it is not divisible by 2, 3, 5 or 7, and 11^2 = 121 > 73 stops the search there.
-So 511 = 7 * 73.
-Step 4 — 2^18 - 1 = 3^3 * 7 * 19 * 73, and the greatest prime factor is 73.
-Check: 3^3 * 7 * 19 * 73 = 27 * 7 * 19 * 73 = 189 * 1387 = 262143, and 2^18 - 1 = 262144 - 1 = 262143. Correct.
-Answer: 73.
-
-**Trap.** Answering 511 or 513, the two factors produced by the first split, without checking whether they are prime; neither is. The second error is splitting on the cube instead, 2^18 - 1 = (2^6)^3 - 1 = (2^6 - 1)(2^12 + 2^6 + 1) = 63 * 4161, and stopping at 4161, which is 3 * 19 * 73 and so hides the same answer one step further down. The third is stopping at 19 after 513 factors easily and never pushing 511 past its first divisor 7. Every route is legal, but the question asks for a prime, so the splitting has to continue until every factor is prime.
+**Trap.** Squaring term by term to get x^2 - 1/x^2 = 9, or forgetting the middle term and entering 9, or subtracting 2 to get 7. The middle term of (x - 1/x)^2 is -2, so 2 is added to 9.
 
 ### Q26 · `ALG-FAC-046` — Answer: B
 
@@ -645,58 +625,47 @@ Answer: B.
 
 **Trap.** Choice D, 49, is the value of p^2 + pq + q^2 from Step 2, handed in as though the pq term were not there. Choice C, 45, is 3pq from Step 4, one division short of pq and two steps short of the answer. Choice A, 4, is (p - q)^2, which is p^2 + q^2 minus 2pq, not p^2 + q^2. Choice E, 64, is (p + q)^2 = 8^2, computed after solving for p = 5 and q = 3 but answering the wrong symmetric quantity.
 
-### Q27 · `ALG-FAC-047` — Answer: 8
+### Q27 · `ALG-FAC-047` — Answer: 17
 
-Step 1 — treating this as a quadratic in x^2 fails: no two integers multiply to 16 and add to 4. The missing odd-power terms are the hint that it is a square minus a square instead.
-Step 2 — force the perfect square. (x^2 + 4)^2 = x^4 + 8x^2 + 16, which is 4x^2 too big, so
-x^4 + 4x^2 + 16 = (x^2 + 4)^2 - 4x^2.
-Step 3 — that is a difference of squares with the two squares (x^2 + 4)^2 and (2x)^2:
-(x^2 + 4 - 2x)(x^2 + 4 + 2x) = (x^2 - 2x + 4)(x^2 + 2x + 4).
-Step 4 — matching the given form, a and b are 2 and -2 in some order, so a^2 + b^2 = 4 + 4 = 8.
-Check by expanding: (x^2 + 4 - 2x)(x^2 + 4 + 2x) = (x^2 + 4)^2 - (2x)^2 = x^4 + 8x^2 + 16 - 4x^2 = x^4 + 4x^2 + 16. Also at x = 1: the original is 1 + 4 + 16 = 21, and the product is 3 * 7 = 21. Correct.
-Answer: 8.
+2,499 is 1 less than 2,500 = 50^2.
+So 2,499 = 50^2 - 1^2 = (50 - 1)(50 + 1) = 49 * 51.
+49 = 7 * 7 and 51 = 3 * 17.
+2,499 = 3 * 7 * 7 * 17, so the greatest prime factor is 17.
+Check: 3 * 49 = 147 and 147 * 17 = 2,499.
 
-**Trap.** Concluding the expression does not factor because no integer pair multiplies to 16 and sums to 4. That test only settles whether it factors as a quadratic in x^2; it says nothing about a hidden difference of squares. A second error is assuming a = b by symmetry and answering 0, but a = b would leave a cubic term 2ax^3 in the product, and there is none.
+**Trap.** Stopping at 49 * 51 and entering 51. Neither factor is prime: 51 = 3 * 17. Testing primes one at a time without seeing 2,500 - 1 also works but costs far more time.
 
-### Q28 · `ALG-FAC-048` — Answer: B
+### Q28 · `ALG-FAC-048` — Answer: D
 
-Step 1 — the quartic is a perfect square. The constant 16 = 4^2 and the leading term is x^4, so try (x^2 + px + 4)^2: its x^3 coefficient is 2p, and 2p = -10 gives p = -5.
-Check the middle: (x^2 - 5x + 4)^2 = x^4 - 10x^3 + (25 + 8)x^2 - 40x + 16 = x^4 - 10x^3 + 33x^2 - 40x + 16. It matches, so the equation is (x^2 - 5x + 4)^2 = 0.
-Step 2 — factor the inside: x^2 - 5x + 4 = (x - 1)(x - 4), so the equation is (x - 1)^2 (x - 4)^2 = 0.
-Step 3 — the zero-product property gives x = 1 and x = 4, each a DOUBLE root. Counted with multiplicity there are four roots, 1, 1, 4 and 4, but the solution SET is {1, 4}: only two distinct real solutions.
-Step 4 — Quantity A: the product of the distinct solutions is 1 * 4 = 4.
-Step 5 — Quantity B: the sum of the distinct solutions is 1 + 4 = 5.
-4 < 5, so Quantity B is greater.
-Check x = 4: 256 - 640 + 528 - 160 + 16 = 0, and x = 1: 1 - 10 + 33 - 40 + 16 = 0. Correct.
-Answer: B.
+Expanding, (x + a)(x + b) = x^2 + (a + b)x + ab, so ab = 12 and k = a + b.
+Positive pairs: 1 and 12 give k = 13; 2 and 6 give k = 8; 3 and 4 give k = 7.
+Negative pairs: -1 and -12 give k = -13; -2 and -6 give k = -8; -3 and -4 give k = -7.
+k can be 7 (greater than 6) or -7 (less than 6).
+Answer: D.
 
-**Trap.** Counting the repeated roots twice, as the solutions 1, 1, 4, 4: the product becomes 16 and the sum 10, which flips the answer to Quantity A. Both columns say DISTINCT, so each root is used once however many times its factor appears. Reading the answers straight off the coefficients by Vieta gives the same wrong pair - product of the roots = 16/1 = 16 and sum = 10/1 = 10 - because Vieta always counts multiplicity; it answers a question about the quartic, not about its solution set. The third slip is assuming a quartic must have four different real solutions and hunting for two more; the squared factors say there are none. Only the fully factored form (x - 1)^2 (x - 4)^2 makes the repetition visible.
+**Trap.** Listing only the positive factor pairs of 12, which give k = 7, 8 or 13, all greater than 6, and choosing A. Two negative integers also multiply to 12, and they make k negative.
 
-### Q29 · `ALG-FAC-049` — Answer: A, B, D
+### Q29 · `ALG-FAC-049` — Answer: B, D, E
 
-Factor x^6 - 1 completely over the integers before testing anything.
-Treat it first as a difference of squares with a = x^3: x^6 - 1 = (x^3 - 1)(x^3 + 1).
-Then use the cube identities: x^3 - 1 = (x - 1)(x^2 + x + 1) and x^3 + 1 = (x + 1)(x^2 - x + 1).
-So x^6 - 1 = (x - 1)(x + 1)(x^2 + x + 1)(x^2 - x + 1), and none of those four factors breaks down further over the integers.
-A - (x - 1) is one of the four. TRUE.
-B - (x + 1) is one of the four. TRUE.
-C - x^2 + 1 is not. Dividing shows why: (x^2 + 1)(x^4 - x^2 + 1) = x^6 + 1, so x^6 - 1 = (x^2 + 1)(x^4 - x^2 + 1) - 2, a remainder of -2. FALSE.
-D - x^2 - x + 1 is one of the four. TRUE.
-E - x^2 + x - 1 is not among them, and the factorisation into irreducible integer factors is unique, so nothing else can be a factor. FALSE.
-Check the product at x = 2: (1)(3)(4 + 2 + 1)(4 - 2 + 1) = 1 * 3 * 7 * 3 = 63, and 2^6 - 1 = 63. Correct.
-Answer: A, B and D.
+Treat the expression as a quadratic in x^2: x^4 - 13x^2 + 36 = (x^2 - 4)(x^2 - 9).
+Each factor is a difference of squares: (x - 2)(x + 2)(x - 3)(x + 3).
+A: x - 1 is not among the factors (at x = 1 the expression is 1 - 13 + 36 = 24, not 0). Not a factor.
+B: x + 2 appears. Factor.
+C: x^2 + 4 does not appear; the factor is x^2 - 4. Not a factor.
+D: x^2 - 9 = (x - 3)(x + 3). Factor.
+E: x^2 - x - 6 = (x - 3)(x + 2), a product of two of the four linear factors. Factor.
+Answer: B, D, E.
 
-**Trap.** Selecting C because x^2 + 1 looks like the natural next factor after x - 1 and x + 1. It divides x^6 + 1, not x^6 - 1, and leaves remainder -2 here. Selecting E comes from half-remembering that a quadratic with a minus sign appears and grabbing the wrong one: the cube identities produce x^2 - x + 1, with the minus on the linear term, not on the constant.
+**Trap.** Selecting C by factoring 36 as 4 * 9 without checking signs: the middle term -13x^2 requires (x^2 - 4)(x^2 - 9). Missing E is also common; it is the product (x - 3)(x + 2), one linear factor taken from each quadratic.
 
-### Q30 · `ALG-FAC-050` — Answer: C
+### Q30 · `ALG-FAC-050` — Answer: D
 
-Step 1 — four terms suggest grouping, but xy + 5x - 3y has only three. Group the two terms containing x: xy + 5x - 3y = x(y + 5) - 3y.
-Step 2 — to finish the grouping the second piece must also carry (y + 5), so write -3y as -3(y + 5) + 15:
-x(y + 5) - 3(y + 5) + 15 = (x - 3)(y + 5) + 15.
-Step 3 — the equation becomes (x - 3)(y + 5) + 15 = 27, so (x - 3)(y + 5) = 12.
-Step 4 — x and y are integers, so x - 3 and y + 5 are integers whose product is 12. Every divisor d of 12, positive or negative, gives exactly one pair: x - 3 = d and y + 5 = 12/d, so x = d + 3 and y = 12/d - 5.
-Step 5 — 12 has six positive divisors, 1, 2, 3, 4, 6 and 12, and six negative ones, so there are 12 values of d and 12 ordered pairs.
-Check d = 4: x = 7 and y = -2, and 7(-2) + 5(7) - 3(-2) = -14 + 35 + 6 = 27. Check d = -4: x = -1 and y = -8, and (-1)(-8) + 5(-1) - 3(-8) = 8 - 5 + 24 = 27. Correct.
-Answer: C.
+Factor: (x - y)(x + y) = 21.
+x and y are positive integers, so x + y is a positive integer greater than x - y, and both are factors of 21.
+Case 1: x - y = 1 and x + y = 21. Adding gives 2x = 22, so x = 11 (y = 10).
+Case 2: x - y = 3 and x + y = 7. Adding gives 2x = 10, so x = 5 (y = 2).
+Sum of the possible values of x: 11 + 5 = 16.
+Check: 121 - 100 = 21 and 25 - 4 = 21.
+Answer: D.
 
-**Trap.** Choice E comes from the rule of thumb that one equation in two unknowns has infinitely many solutions; the integer condition plus the factorisation (x - 3)(y + 5) = 12 cuts that down to a finite list. Choice B counts only the six positive divisors of 12 and forgets that d = -1, -2, -3, -4, -6 and -12 also multiply to 12. Choice A counts the three unordered positive factorisations 1 * 12, 2 * 6 and 3 * 4, ignoring both the order and the signs. Choice D counts each of the 12 pairs twice, as if (x - 3, y + 5) and (y + 5, x - 3) were different solutions, which they are not once the brackets are labelled.
+**Trap.** Finding only the pair 3 and 7 and answering 5 (choice A), or only the pair 1 and 21 and answering 11 (choice C). Every factor pair of 21 has to be tried.

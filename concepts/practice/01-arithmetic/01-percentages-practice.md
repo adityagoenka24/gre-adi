@@ -1,6 +1,6 @@
 # Percentages — Practice Set
 
-**Bank code:** `ARI-PCT` · **Section:** Arithmetic · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `ARI-PCT` · **Section:** Arithmetic · **30 questions** — Easy 4 · Medium 20 · Hard 5 · Extreme 1
 
 **Lecture capsule:** [01-percentages.md](../../01-arithmetic/01-percentages.md)
 
@@ -16,7 +16,7 @@ Every question below is live in the question bank under the ID shown — the she
 > **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
-### Level 1 · Easy — 5 questions · ~4 min
+### Level 1 · Easy — 4 questions · ~3 min
 
 *warm-up — these must be automatic*
 
@@ -32,7 +32,7 @@ A shirt is priced at $80. During a sale it is marked 25% off. What is the sale p
 
 **Q2** · `ARI-PCT-003` · Numeric Entry · 45s
 
-45 is what percent of 150? Enter your answer as a number.
+45 is what percent of 150?
 
 *Numeric entry — write the number.*
 
@@ -45,25 +45,25 @@ A price increases from $50 to $60.
 
 **Q4** · `ARI-PCT-011` · Numeric Entry · 55s
 
-After a 20% discount, a product sells for $240. What was the price before the discount, in dollars? Enter your answer as a number.
+After a 20% discount, a product sells for $240. What was the price before the discount, in dollars?
 
 *Numeric entry — write the number.*
+
+---
+
+### Level 2 · Medium — 20 questions · ~27 min
+
+*two or three steps, one planted trap each*
 
 **Q5** · `ARI-PCT-014` · MCQ · 60s
 
 A number is increased by 10%, and the result is then decreased by 10%. What is the net percent change?
 
-**(A)** 0%  
-**(B)** -1%  
-**(C)** +1%  
-**(D)** -2%  
-**(E)** -10%
-
----
-
-### Level 2 · Medium — 8 questions · ~10 min
-
-*two or three steps, one planted trap each*
+**(A)** -10%  
+**(B)** -2%  
+**(C)** -1%  
+**(D)** 0%  
+**(E)** +1%
 
 **Q6** · `ARI-PCT-021` · MCQ · 60s
 
@@ -94,7 +94,7 @@ The price of an item increased from $P to $1.3P, where P > 0. Which of the follo
 
 **Q9** · `ARI-PCT-026` · Numeric Entry · 75s
 
-After a 20% increase followed by a 20% decrease, a number becomes 576. What was the original number? Enter your answer as a number.
+After a 20% increase followed by a 20% decrease, a number becomes 576. What was the original number?
 
 *Numeric entry — write the number.*
 
@@ -107,11 +107,11 @@ After a 20% increase followed by a 20% decrease, a number becomes 576. What was 
 
 A shopkeeper sells two items for $240 each. On one he makes a 20% profit; on the other he takes a 20% loss. Overall, what is his profit or loss percent?
 
-**(A)** No profit, no loss  
+**(A)** 8% loss  
 **(B)** 4% loss  
-**(C)** 4% profit  
-**(D)** 2% loss  
-**(E)** 8% loss
+**(C)** 2% loss  
+**(D)** No profit, no loss  
+**(E)** 4% profit
 
 **Q12** · `ARI-PCT-043` · MCQ · 70s
 
@@ -125,42 +125,26 @@ In a town, 55% of residents own a car and 40% own a bike. If 15% own both, what 
 
 **Q13** · `ARI-PCT-050` · Numeric Entry · 85s
 
-In a class, the boys averaged 75% on a test and the girls averaged 80%. The class as a whole averaged 78%. What percent of the class are boys? Enter your answer as a number.
+In a class, the boys averaged 75% on a test and the girls averaged 80%. The class as a whole averaged 78%. What percent of the class are boys?
 
 *Numeric entry — write the number.*
 
----
-
-### Level 3 · Hard — 12 questions · ~18 min
-
-*where 162+ is won or lost*
-
-**Q14** · `ARI-PCT-051` · MCQ · 95s
-
-A retailer sells an item at a 25% profit on cost. The cost price then rises by 20% while the selling price is held unchanged. What is the new profit or loss percent?
-
-**(A)** 4.17% profit  
-**(B)** 4% profit  
-**(C)** 4.17% loss  
-**(D)** 5% profit  
-**(E)** 5% loss
-
-**Q15** · `ARI-PCT-052` · QC · 80s
+**Q14** · `ARI-PCT-052` · QC · 80s
 
 N and p are positive. A number N is increased by p%, and the result is then decreased by p%.
 
 > **Quantity A:**  The final number
 > **Quantity B:**  N
 
-**Q16** · `ARI-PCT-053` · Numeric Entry · 85s
+**Q15** · `ARI-PCT-053` · Numeric Entry · 85s
 
-The price of a commodity falls by 20%. By what percent must consumption increase so that total expenditure is unchanged? Enter your answer as a number.
+The price of a commodity falls by 20%. By what percent must consumption increase so that total expenditure is unchanged?
 
 *Numeric entry — write the number.*
 
-**Q17** · `ARI-PCT-054` · MCQ · 80s
+**Q16** · `ARI-PCT-054` · MCQ · 80s
 
-In a school, 60% of students passed Math, 50% passed Science, and 25% failed both subjects. What percent of students passed BOTH subjects?
+In a school, 60% of students passed Math, 50% passed Science, and 25% failed both subjects. What percent of students passed both subjects?
 
 **(A)** 10%  
 **(B)** 15%  
@@ -168,7 +152,7 @@ In a school, 60% of students passed Math, 50% passed Science, and 25% failed bot
 **(D)** 35%  
 **(E)** 45%
 
-**Q18** · `ARI-PCT-055` · Select all that apply · 105s
+**Q17** · `ARI-PCT-055` · Select all that apply · 90s
 
 A store offers successive discounts of 20%, 10%, and 5% on an item. Which of the following are true? Select all that apply.
 
@@ -178,50 +162,30 @@ A store offers successive discounts of 20%, 10%, and 5% on an item. Which of the
 **(D)** The order in which the three discounts are applied does not affect the final price  
 **(E)** A single discount of 35% would give a lower final price than these three discounts
 
-**Q19** · `ARI-PCT-060` · Select all that apply · 95s
+**Q18** · `ARI-PCT-061` · Numeric Entry · 80s
 
-A price P increases by x% to become Q, where 0 < P < Q. Which of the following expressions correctly represent x? Select all that apply.
-
-**(A)** (Q - P)/P x 100  
-**(B)** (Q/P - 1) x 100  
-**(C)** (Q/P) x 100 - 100  
-**(D)** (Q - P)/Q x 100  
-**(E)** 100(Q - P)/P
-
-**Q20** · `ARI-PCT-061` · Numeric Entry · 80s
-
-A's income is 30% more than B's. B's income is 20% less than C's. A's income is what percent of C's income? Enter your answer as a number.
+A's income is 30% more than B's. B's income is 20% less than C's. A's income is what percent of C's income?
 
 *Numeric entry — write the number.*
 
-**Q21** · `ARI-PCT-062` · MCQ · 85s
+**Q19** · `ARI-PCT-062` · MCQ · 85s
 
 In 2020 the ratio of A's salary to B's salary was 3:4. In 2021 A's salary rose by 25% and B's salary fell by 25%. What is the new ratio of A's salary to B's salary?
 
 **(A)** 3:4  
-**(B)** 4:3  
+**(B)** 15:16  
 **(C)** 5:4  
-**(D)** 5:3  
-**(E)** 15:16
+**(D)** 4:3  
+**(E)** 5:3
 
-**Q22** · `ARI-PCT-063` · QC · 75s
+**Q20** · `ARI-PCT-063` · QC · 75s
 
 A product's price increases by 10% each year for 7 years.
 
 > **Quantity A:**  The total percent increase over the 7 years
 > **Quantity B:**  70%
 
-**Q23** · `ARI-PCT-066` · MCQ · 95s
-
-A dishonest dealer claims to sell goods at cost price, but his 'kilogram' weight is actually 900 grams. What is his real profit percent?
-
-**(A)** 9.09%  
-**(B)** 10%  
-**(C)** 11.11%  
-**(D)** 12.5%  
-**(E)** 20%
-
-**Q24** · `ARI-PCT-069` · MCQ · 90s
+**Q21** · `ARI-PCT-069` · MCQ · 90s
 
 An employee's salary increases by 10% every year. After how many complete years will the salary first exceed 150% of the current salary?
 
@@ -231,39 +195,13 @@ An employee's salary increases by 10% every year. After how many complete years 
 **(D)** 8  
 **(E)** 10
 
-**Q25** · `ARI-PCT-070` · Select all that apply · 100s
+**Q22** · `ARI-PCT-073` · Numeric Entry · 90s
 
-In a class, 70% of students passed English and 60% passed Math. Which of the following could be the percent who passed both? Select all that apply.
-
-**(A)** 25%  
-**(B)** 30%  
-**(C)** 40%  
-**(D)** 55%  
-**(E)** 65%
-
----
-
-### Level 4 · Extreme — 5 questions · ~9 min
-
-*165+ — expect to need the insight, not the grind*
-
-**Q26** · `ARI-PCT-071` · MCQ · 115s
-
-A merchant mixes tea costing $40 per kg with tea costing $60 per kg and sells the mixture at $60 per kg, making a 25% profit on his average cost. In what ratio, by weight, did he mix the two varieties?
-
-**(A)** 1:1  
-**(B)** 2:3  
-**(C)** 3:2  
-**(D)** 3:1  
-**(E)** 4:1
-
-**Q27** · `ARI-PCT-073` · Numeric Entry · 90s
-
-A sum of money invested at compound interest amounts to $5,000 in 2 years and $5,500 in 3 years. What is the annual rate of interest, as a percent? Enter your answer as a number.
+A sum of money invested at compound interest amounts to $5,000 in 2 years and $5,500 in 3 years. What is the annual rate of interest, as a percent?
 
 *Numeric entry — write the number.*
 
-**Q28** · `ARI-PCT-074` · Select all that apply · 110s
+**Q23** · `ARI-PCT-074` · Select all that apply · 110s
 
 A company's profit changed by x% in year 1 and by y% in year 2 (x and y may be negative), and the overall change over the two years was exactly +44%. Which of the following (x, y) pairs are possible? Select all that apply.
 
@@ -273,7 +211,7 @@ A company's profit changed by x% in year 1 and by y% in year 2 (x and y may be n
 **(D)** x = 20, y = 21  
 **(E)** x = 100, y = -28
 
-**Q29** · `ARI-PCT-075` · MCQ · 100s
+**Q24** · `ARI-PCT-075` · MCQ · 100s
 
 Numbers A, B, C and D satisfy: A is 20% more than B, B is 25% less than C, and C is 60% of D. A is what percent of D?
 
@@ -283,7 +221,71 @@ Numbers A, B, C and D satisfy: A is 20% more than B, B is 25% less than C, and C
 **(D)** 66%  
 **(E)** 72%
 
-**Q30** · `ARI-PCT-077` · QC · 115s
+---
+
+### Level 3 · Hard — 5 questions · ~8 min
+
+*where 162+ is won or lost*
+
+**Q25** · `ARI-PCT-051` · MCQ · 95s
+
+A retailer sells an item at a 25% profit on cost. The cost price then rises by 20% while the selling price is held unchanged. What is the new profit or loss percent?
+
+**(A)** 5% loss  
+**(B)** 4.17% loss  
+**(C)** 4% profit  
+**(D)** 4.17% profit  
+**(E)** 5% profit
+
+**Q26** · `ARI-PCT-066` · MCQ · 100s
+
+In a certain town, 40 percent of the registered voters are under the age of 40. In the last election, 30 percent of the registered voters under 40 voted, and 60 percent of the other registered voters voted. What percent of the registered voters who voted in the election were under 40?
+
+**(A)** 12%  
+**(B)** 20%  
+**(C)** 25%  
+**(D)** 30%  
+**(E)** 33 1/3%
+
+**Q27** · `ARI-PCT-070` · Select all that apply · 100s
+
+In a class, 70% of students passed English and 60% passed Math. Which of the following could be the percent who passed both? Select all that apply.
+
+**(A)** 25%  
+**(B)** 30%  
+**(C)** 40%  
+**(D)** 55%  
+**(E)** 65%
+
+**Q28** · `ARI-PCT-071` · MCQ · 100s
+
+In a jar of marbles, 60 percent of the marbles are red. After 20 of the red marbles are removed and no other marbles are added or removed, 50 percent of the marbles in the jar are red. How many marbles were in the jar originally?
+
+**(A)** 40  
+**(B)** 80  
+**(C)** 100  
+**(D)** 120  
+**(E)** 200
+
+**Q29** · `SEC-PR-012` · Select all that apply · 110s
+
+A ball is dropped from a height of 4 meters and bounces repeatedly. After each bounce it reaches a height that is 70 percent of its previous height. If the height of the ball after the nth bounce is less than 25 centimeters, which of the following could be the value of n?
+
+Indicate all such values.
+
+**(A)** 5  
+**(B)** 6  
+**(C)** 7  
+**(D)** 8  
+**(E)** 9
+
+---
+
+### Level 4 · Extreme — 1 questions · ~2 min
+
+*the top of a real hard section — expect to need the insight, not the grind*
+
+**Q30** · `ARI-PCT-077` · QC · 110s
 
 An item's price increases by r% each year for n years.
 
@@ -300,7 +302,7 @@ An item's price increases by r% each year for n years.
 | 2 | `ARI-PCT-003` | easy | Numeric Entry | **30** |
 | 3 | `ARI-PCT-008` | easy | QC | **C** |
 | 4 | `ARI-PCT-011` | easy | Numeric Entry | **300** |
-| 5 | `ARI-PCT-014` | easy | MCQ | **B** |
+| 5 | `ARI-PCT-014` | medium | MCQ | **C** |
 | 6 | `ARI-PCT-021` | medium | MCQ | **B** |
 | 7 | `ARI-PCT-023` | medium | QC | **A** |
 | 8 | `ARI-PCT-025` | medium | Select all that apply | **A, C, D** |
@@ -309,22 +311,22 @@ An item's price increases by r% each year for n years.
 | 11 | `ARI-PCT-033` | medium | MCQ | **B** |
 | 12 | `ARI-PCT-043` | medium | MCQ | **C** |
 | 13 | `ARI-PCT-050` | medium | Numeric Entry | **40** |
-| 14 | `ARI-PCT-051` | hard | MCQ | **A** |
-| 15 | `ARI-PCT-052` | hard | QC | **B** |
-| 16 | `ARI-PCT-053` | hard | Numeric Entry | **25** |
-| 17 | `ARI-PCT-054` | hard | MCQ | **D** |
-| 18 | `ARI-PCT-055` | hard | Select all that apply | **B, C, D, E** |
-| 19 | `ARI-PCT-060` | hard | Select all that apply | **A, B, C, E** |
-| 20 | `ARI-PCT-061` | hard | Numeric Entry | **104** |
-| 21 | `ARI-PCT-062` | hard | MCQ | **C** |
-| 22 | `ARI-PCT-063` | hard | QC | **A** |
-| 23 | `ARI-PCT-066` | hard | MCQ | **C** |
-| 24 | `ARI-PCT-069` | hard | MCQ | **B** |
-| 25 | `ARI-PCT-070` | hard | Select all that apply | **B, C, D** |
-| 26 | `ARI-PCT-071` | extreme hard | MCQ | **C** |
-| 27 | `ARI-PCT-073` | extreme hard | Numeric Entry | **10** |
-| 28 | `ARI-PCT-074` | extreme hard | Select all that apply | **A, C, E** |
-| 29 | `ARI-PCT-075` | extreme hard | MCQ | **A** |
+| 14 | `ARI-PCT-052` | medium | QC | **B** |
+| 15 | `ARI-PCT-053` | medium | Numeric Entry | **25** |
+| 16 | `ARI-PCT-054` | medium | MCQ | **D** |
+| 17 | `ARI-PCT-055` | medium | Select all that apply | **B, C, D, E** |
+| 18 | `ARI-PCT-061` | medium | Numeric Entry | **104** |
+| 19 | `ARI-PCT-062` | medium | MCQ | **C** |
+| 20 | `ARI-PCT-063` | medium | QC | **A** |
+| 21 | `ARI-PCT-069` | medium | MCQ | **B** |
+| 22 | `ARI-PCT-073` | medium | Numeric Entry | **10** |
+| 23 | `ARI-PCT-074` | medium | Select all that apply | **A, C, E** |
+| 24 | `ARI-PCT-075` | medium | MCQ | **A** |
+| 25 | `ARI-PCT-051` | hard | MCQ | **D** |
+| 26 | `ARI-PCT-066` | hard | MCQ | **C** |
+| 27 | `ARI-PCT-070` | hard | Select all that apply | **B, C, D** |
+| 28 | `ARI-PCT-071` | hard | MCQ | **C** |
+| 29 | `SEC-PR-012` | hard | Select all that apply | **D, E** |
 | 30 | `ARI-PCT-077` | extreme hard | QC | **B** |
 
 ---
@@ -370,7 +372,7 @@ Answer: 300.
 
 **Trap.** Adding 20% back to the sale price: 240 x 1.20 = 288. The 20% was taken off $300, not off $240, so you must divide by the multiplier rather than add the percent back on.
 
-### Q5 · `ARI-PCT-014` — Answer: B
+### Q5 · `ARI-PCT-014` — Answer: C
 
 Step 1 — pick 100 as the starting value (legal, since the question is all percents).
 Step 2 — up 10%: 100 x 1.10 = 110.
@@ -400,11 +402,11 @@ $94.50 > $90.00, so Quantity A is greater.
 
 ### Q8 · `ARI-PCT-025` — Answer: A, C, D
 
-A - percent increase = (1.3P - P)/P x 100 = 0.3P/P x 100 = 30%. The P cancels, so this is true for every P. TRUE.
-B - the increase is 0.3P dollars, not $0.30. That would only be right if P = $1. FALSE.
-C - 1.3P = 130% of P by definition of the multiplier. TRUE.
-D - since P > 0, 1.3P > P. TRUE.
-E - the P cancelled in A, so the percent increase is 30% for every P. FALSE.
+A - percent increase = (1.3P - P)/P x 100 = 0.3P/P x 100 = 30%. The P cancels, so this is true for every P. True.
+B - the increase is 0.3P dollars, not $0.30. That would only be right if P = $1. False.
+C - 1.3P = 130% of P by definition of the multiplier. True.
+D - since P > 0, 1.3P > P. True.
+E - the P cancelled in A, so the percent increase is 30% for every P. False.
 Answer: A, C, D.
 
 **Trap.** Picking B by reading the 0.3 as a dollar amount instead of a coefficient, and picking E because P is unknown. When the unknown cancels out of the ratio, the percent is fixed even though the dollar change is not.
@@ -456,16 +458,7 @@ Answer: 40.
 
 **Trap.** Answering 60. The class average of 78 sits closer to the girls' 80, which means girls are the LARGER group - so boys must be the smaller share. In alligation the bigger group is the one nearer the overall mean, which flips the ratio you first write down.
 
-### Q14 · `ARI-PCT-051` — Answer: A
-
-Step 1 — pick CP = 100. Then SP = 1.25 x 100 = 125.
-Step 2 — the new cost: 100 x 1.20 = 120. The selling price stays at 125.
-Step 3 — profit = 125 - 120 = 5, and profit percent is always taken on COST.
-5/120 x 100 = 500/120 = 4.166... = 4.17% profit.
-
-**Trap.** Two errors compete here. First, assuming a 20% cost rise must wipe out the margin and produce a loss - it does not, because the original markup was large enough to absorb it. Second, dividing by the selling price: 5/125 = 4%, which is choice B. Profit percent always divides by cost, and here that means the NEW cost of 120.
-
-### Q15 · `ARI-PCT-052` — Answer: B
+### Q14 · `ARI-PCT-052` — Answer: B
 
 Final = N x (1 + p/100) x (1 - p/100).
 This is a difference of squares: (1 + p/100)(1 - p/100) = 1 - p^2/10000.
@@ -475,7 +468,7 @@ The loss is exactly p^2/100 percent - for p = 10 that is 1%, for p = 20 it is 4%
 
 **Trap.** Choosing C because the same p goes up and comes back down. The rise is p% of N, but the fall is p% of the LARGER number N(1 + p/100), so more is removed than was added. Note the answer does not depend on the size of p, so D is also wrong.
 
-### Q16 · `ARI-PCT-053` — Answer: 25
+### Q15 · `ARI-PCT-053` — Answer: 25
 
 Expenditure = price x consumption, so for expenditure to be unchanged the two multipliers must multiply to 1.
 Step 1 — price multiplier = 0.80.
@@ -486,7 +479,7 @@ Answer: 25.
 
 **Trap.** Answering 20 to mirror the 20% price fall. Test it: 0.80 x 1.20 = 0.96, so expenditure would still be 4% lower. A fall of 1/5 needs a rise of 1/4 - a drop of 1/(n+1) always needs a rise of 1/n.
 
-### Q17 · `ARI-PCT-054` — Answer: D
+### Q16 · `ARI-PCT-054` — Answer: D
 
 Step 1 — 'failed both' is the complement of 'passed at least one', so the union is 100 - 25 = 75%.
 Step 2 — inclusion-exclusion: (passed Math) + (passed Science) - (passed both) = (passed at least one).
@@ -497,33 +490,21 @@ Answer: 35%.
 
 **Trap.** Treating the 25% who failed both AS the overlap and answering 25% (choice C). Those 25% sit OUTSIDE both circles; the overlap has to be computed. The other slip is stopping at 75% - that is the union, the answer to a different question.
 
-### Q18 · `ARI-PCT-055` — Answer: B, C, D, E
+### Q17 · `ARI-PCT-055` — Answer: B, C, D, E
 
 Build the chain: 0.80 x 0.90 x 0.95.
 0.80 x 0.90 = 0.72, and 0.72 x 0.95 = 0.684.
 So the final price is 68.4% of the original and the effective discount is 100 - 68.4 = 31.6%.
-A - 31.6% is not 35%. FALSE.
-B - 31.6% < 35%. TRUE.
-C - final price = 68.4% of the original. TRUE.
-D - multiplication is commutative, so any order gives 0.684. TRUE.
-E - a single 35% discount leaves 65% of the price, and 65% < 68.4%, so it is the cheaper deal. TRUE.
+A - 31.6% is not 35%. False.
+B - 31.6% < 35%. True.
+C - final price = 68.4% of the original. True.
+D - multiplication is commutative, so any order gives 0.684. True.
+E - a single 35% discount leaves 65% of the price, and 65% < 68.4%, so it is the cheaper deal. True.
 Answer: B, C, D, E.
 
 **Trap.** A is the obvious bait - adding 20 + 10 + 5. The subtler one is E: because successive discounts are weaker than their sum, the single 35% discount actually beats the three, so a student who reasons 'successive discounts must be better for the customer' gets E backwards.
 
-### Q19 · `ARI-PCT-060` — Answer: A, B, C, E
-
-The definition: x = (change / original) x 100 = (Q - P)/P x 100.
-A - that is the definition itself. TRUE.
-B - Q/P - 1 = (Q - P)/P, so multiplying by 100 gives the same thing. TRUE.
-C - (Q/P) x 100 - 100 = 100(Q/P - 1) = 100(Q - P)/P. Same expression rearranged. TRUE.
-D - divides by Q, the NEW price. That is the percent decrease going from Q back down to P, a different (smaller) number. FALSE.
-E - identical to A, just written with the 100 in front. TRUE.
-Answer: A, B, C, E.
-
-**Trap.** D is the classic wrong formula and it looks symmetric with A, so it gets picked. The percent rise from P to Q and the percent fall from Q back to P are never equal, because they use different denominators.
-
-### Q20 · `ARI-PCT-061` — Answer: 104
+### Q18 · `ARI-PCT-061` — Answer: 104
 
 Step 1 — pick C = 100, since C is the base at the end of the chain.
 Step 2 — B is 20% less than C: B = 0.80 x 100 = 80.
@@ -534,7 +515,7 @@ Answer: 104.
 
 **Trap.** Netting the percents to 30 - 20 = 10 and answering 110. The 30% is measured on B while the 20% is measured on C - different bases, so they cannot be added. Chain the multipliers instead.
 
-### Q21 · `ARI-PCT-062` — Answer: C
+### Q19 · `ARI-PCT-062` — Answer: C
 
 Step 1 — write the salaries as 3k and 4k so the ratio is preserved.
 Step 2 — apply each multiplier to its own term:
@@ -543,9 +524,9 @@ new B = 4k x 0.75 = 3k
 Step 3 — the ratio: 3.75k : 3k = 3.75 : 3 = 375 : 300 = 5 : 4.
 Answer: 5:4.
 
-**Trap.** Expecting the +25% and -25% to cancel and leave the ratio at 3:4 (choice A) - they act on different salaries, so nothing cancels except k. Choice E, 15:16, is the other live error: raising A to 3.75 but forgetting to shrink B, which leaves 3.75:4 = 15:16.
+**Trap.** Expecting the +25% and -25% to cancel and leave the ratio at 3:4 (choice A) - they act on different salaries, so nothing cancels except k. Choice B, 15:16, is the other live error: raising A to 3.75 but forgetting to shrink B, which leaves 3.75:4 = 15:16.
 
-### Q22 · `ARI-PCT-063` — Answer: A
+### Q20 · `ARI-PCT-063` — Answer: A
 
 The price multiplier is 1.10^7.
 Build it in pieces: 1.10^2 = 1.21, so 1.10^4 = 1.21^2 = 1.4641, and 1.10^3 = 1.331.
@@ -555,18 +536,7 @@ You do not even need the exact value: 1.10^7 = 1.10^4 x 1.10^3 > 1.4 x 1.3 = 1.8
 
 **Trap.** Multiplying 10% x 7 = 70% and choosing C. That is simple-interest thinking. Once there is more than one period, each year's rise is computed on a larger amount, so compound growth always exceeds the simple sum.
 
-### Q23 · `ARI-PCT-066` — Answer: C
-
-Set the true cost at $1 per gram.
-Step 1 — the customer is charged for 1000 g, so revenue = $1000.
-Step 2 — the dealer actually hands over 900 g, so his cost = $900.
-Step 3 — profit = 1000 - 900 = $100, taken on a cost of $900.
-100/900 x 100 = 11.11%.
-General rule for false weights: profit % = (true weight - false weight)/false weight x 100.
-
-**Trap.** Dividing by 1000 to get 10% (choice B). The 1000 is what he charged for - that is revenue, not cost. Profit percent is always taken on what he gave up, the 900 g actually delivered. Choice A, 9.09%, is 100/1100, from adding the shortfall to the kilo instead of subtracting it; choice D, 12.5%, is 100/800, from mistaking the false weight for 800 g.
-
-### Q24 · `ARI-PCT-069` — Answer: B
+### Q21 · `ARI-PCT-069` — Answer: B
 
 We need the smallest whole n with 1.10^n > 1.50.
 1.10^2 = 1.21
@@ -578,30 +548,7 @@ Answer: 5.
 
 **Trap.** Reading '150% of the current salary' as 'a 150% increase', which means 2.5 times the salary and takes 10 years (1.10^10 = 2.594) - choice E. 150% OF a number is 1.5 times it; a 150% INCREASE makes it 2.5 times. A second error is stopping at year 4 because 1.4641 looks close enough to 1.5.
 
-### Q25 · `ARI-PCT-070` — Answer: B, C, D
-
-The overlap of two sets is squeezed between two bounds.
-Maximum: the overlap can never exceed the smaller set, so both <= min(70, 60) = 60%.
-Minimum: 70 + 60 = 130, but only 100% of the class exists, so at least 130 - 100 = 30% must be counted twice. So both >= 30%.
-The overlap therefore satisfies 30% <= both <= 60%.
-A (25%) is below the minimum. B (30%) is exactly at the minimum, achievable when everyone passed at least one. C (40%) and D (55%) are inside the range. E (65%) exceeds the smaller set.
-Answer: B, C, D.
-
-**Trap.** Assuming the overlap could be anything from 0 to 60 and including A. When the two percents sum to more than 100 there is not enough room to keep the groups apart, so a forced overlap of (sum - 100) exists. E catches the opposite error - forgetting that the overlap cannot be bigger than the smaller group.
-
-### Q26 · `ARI-PCT-071` — Answer: C
-
-Step 1 — recover the cost from the selling price. A 25% profit means SP = 1.25 x cost, so cost = 60/1.25 = $48 per kg.
-Step 2 — alligation on the average cost of 48:
-distance from the $40 tea: 48 - 40 = 8
-distance from the $60 tea: 60 - 48 = 12
-Step 3 — the quantities are in the INVERSE ratio of these distances: cheap : dear = 12 : 8 = 3 : 2.
-Check: (3 x 40 + 2 x 60)/5 = (120 + 120)/5 = 240/5 = $48. Correct.
-Answer: 3:2.
-
-**Trap.** Two traps stack. First, taking 25% OFF the selling price (60 x 0.75 = 45) instead of dividing by 1.25 - profit is measured on cost, so the cost is SP/1.25 = 48, not 45. Second, writing the ratio as 8:12 = 2:3 (choice B): in alligation the quantities are the inverse of the distances, so the tea whose price is CLOSER to the average is the one you need MORE of.
-
-### Q27 · `ARI-PCT-073` — Answer: 10
+### Q22 · `ARI-PCT-073` — Answer: 10
 
 The insight: under compound interest every year multiplies the balance by the same factor (1 + r).
 The balance goes from $5,000 at the end of year 2 to $5,500 at the end of year 3, so that factor is:
@@ -612,19 +559,19 @@ Answer: 10.
 
 **Trap.** Setting up P(1+r)^2 = 5000 and P(1+r)^3 = 5500 as a system in two unknowns and grinding through it. Dividing one equation by the other eliminates P in one step. The other error is computing 500/5500 = 9.09%, using the END balance as the base instead of the balance the interest was earned on.
 
-### Q28 · `ARI-PCT-074` — Answer: A, C, E
+### Q23 · `ARI-PCT-074` — Answer: A, C, E
 
 The condition is (1 + x/100)(1 + y/100) = 1.44.
-A - 1.20 x 1.20 = 1.44. TRUE.
-B - 1.10 x 1.30 = 1.43, not 1.44. FALSE.
-C - 1.44 x 1.00 = 1.44. TRUE.
-D - 1.20 x 1.21 = 1.452, not 1.44. FALSE.
-E - 2.00 x 0.72 = 1.44. TRUE.
+A - 1.20 x 1.20 = 1.44. True.
+B - 1.10 x 1.30 = 1.43, not 1.44. False.
+C - 1.44 x 1.00 = 1.44. True.
+D - 1.20 x 1.21 = 1.452, not 1.44. False.
+E - 2.00 x 0.72 = 1.44. True.
 Answer: A, C, E.
 
 **Trap.** Every option except E has x + y within a whisker of 40, so additive reasoning cannot tell A (40) from B (40) or D (41) - and adding to the target 44 points only at C, which happens to be correct for the wrong reason. The test is the PRODUCT of the multipliers, never the sum of the percents: 1.10 x 1.30 = 1.43 and 1.20 x 1.21 = 1.452 both miss 1.44. E checks whether you will accept a negative second year, which the stem allows.
 
-### Q29 · `ARI-PCT-075` — Answer: A
+### Q24 · `ARI-PCT-075` — Answer: A
 
 Work from D, the base at the far end of the chain, and attach each percent to its own base.
 C = 0.60D
@@ -635,6 +582,54 @@ One line: 1.20 x 0.75 x 0.60 = 0.54.
 Answer: 54%.
 
 **Trap.** Adding and subtracting the percents - 60 - 25 + 20 = 55 - which is planted as choice B. Each percent is measured against a different quantity, so they cannot be combined additively. Choice E, 72%, is the second live error: chaining 1.20 x 0.60 and dropping the 25% cut entirely.
+
+### Q25 · `ARI-PCT-051` — Answer: D
+
+Step 1 — pick CP = 100. Then SP = 1.25 x 100 = 125.
+Step 2 — the new cost: 100 x 1.20 = 120. The selling price stays at 125.
+Step 3 — profit = 125 - 120 = 5, and profit percent is always taken on COST.
+5/120 x 100 = 500/120 = 4.166... = 4.17% profit.
+
+**Trap.** Two errors compete here. First, assuming a 20% cost rise must wipe out the margin and produce a loss - it does not, because the original markup was large enough to absorb it. Second, dividing by the selling price: 5/125 = 4%, which is choice C. Profit percent always divides by cost, and here that means the NEW cost of 120.
+
+### Q26 · `ARI-PCT-066` — Answer: C
+
+Take 100 registered voters: 40 are under 40 and 60 are 40 or older.
+Under 40 who voted: 30 percent of 40 = 12.
+Others who voted: 60 percent of 60 = 36.
+Total who voted: 12 + 36 = 48.
+Share of the voters who were under 40: 12/48 = 25 percent.
+Answer: C.
+
+**Trap.** Answering 12 percent (choice A), which is the under-40 voters as a percent of all registered voters. The question asks for a percent of those who voted, so the base is 48, not 100.
+
+### Q27 · `ARI-PCT-070` — Answer: B, C, D
+
+The overlap of two sets is squeezed between two bounds.
+Maximum: the overlap can never exceed the smaller set, so both <= min(70, 60) = 60%.
+Minimum: 70 + 60 = 130, but only 100% of the class exists, so at least 130 - 100 = 30% must be counted twice. So both >= 30%.
+The overlap therefore satisfies 30% <= both <= 60%.
+A (25%) is below the minimum. B (30%) is exactly at the minimum, achievable when everyone passed at least one. C (40%) and D (55%) are inside the range. E (65%) exceeds the smaller set.
+Answer: B, C, D.
+
+**Trap.** Assuming the overlap could be anything from 0 to 60 and including A. When the two percents sum to more than 100 there is not enough room to keep the groups apart, so a forced overlap of (sum - 100) exists. E catches the opposite error - forgetting that the overlap cannot be bigger than the smaller group.
+
+### Q28 · `ARI-PCT-071` — Answer: C
+
+Let T be the original number of marbles. Red marbles: 0.6T.
+After the removal there are 0.6T - 20 red marbles and T - 20 marbles in all.
+0.6T - 20 = 0.5(T - 20) = 0.5T - 10.
+0.1T = 10, so T = 100.
+Check: 60 red of 100 becomes 40 red of 80, which is 50 percent.
+Answer: C.
+
+**Trap.** Treating the fall from 60 percent to 50 percent as 10 percent of the original total, so that 20 marbles is 10 percent and the total is 200 (choice E). The second percent is of a smaller total, T - 20, so the two percents cannot be subtracted directly.
+
+### Q29 · `SEC-PR-012` — Answer: D, E
+
+The height after n bounces is 4(0.70)^n meters, and 25 centimeters is 0.25 meters, so the condition is 4(0.70)^n < 0.25, or (0.70)^n < 0.0625. Working up the powers: 0.70^7 = 0.0824, still too large, and 0.70^8 = 0.0576, which is below 0.0625. So the condition first holds at n = 8 and holds for every larger n. Of the options, 8 and 9 qualify.
+
+**Trap.** Students treat the 30 percent lost per bounce as if it accumulated by subtraction and estimate that three or four bounces are enough. The heights form a geometric sequence, each term 0.70 times the last, and it takes eight bounces to fall below one sixteenth of the drop height.
 
 ### Q30 · `ARI-PCT-077` — Answer: B
 

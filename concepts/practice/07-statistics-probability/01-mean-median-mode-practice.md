@@ -1,6 +1,6 @@
 # Mean, Median & Mode — Practice Set
 
-**Bank code:** `STA-MMM` · **Section:** Statistics · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `STA-MMM` · **Section:** Statistics · **30 questions** — Easy 5 · Medium 15 · Hard 8 · Extreme 2
 
 **Lecture capsule:** [01-mean-median-mode.md](../../07-statistics-probability/01-mean-median-mode.md)
 
@@ -32,7 +32,7 @@ What is the median of the five measurements 6, 19, 4, 12, 9?
 
 **Q2** · `STA-MMM-004` · Numeric Entry · 50s
 
-The mean of five numbers is 12. Four of the numbers are 8, 15, 10, and 14. What is the fifth number? Enter your answer as a number.
+The mean of five numbers is 12. Four of the numbers are 8, 15, 10, and 14. What is the fifth number?
 
 *Numeric entry — write the number.*
 
@@ -65,7 +65,7 @@ Which of the following correctly describes the mode or modes of the set {3, 3, 5
 
 ---
 
-### Level 2 · Medium — 8 questions · ~10 min
+### Level 2 · Medium — 15 questions · ~20 min
 
 *two or three steps, one planted trap each*
 
@@ -78,7 +78,7 @@ A set contains the five values 2, 4, 6, 8, and n, where n > 6.
 
 **Q7** · `STA-MMM-018` · Numeric Entry · 70s
 
-Class A has 10 students with a mean score of 78. Class B has 15 students with a mean score of 88. What is the mean score of all 25 students combined? Enter your answer as a number.
+Class A has 10 students with a mean score of 78. Class B has 15 students with a mean score of 88. What is the mean score of all 25 students combined?
 
 *Numeric entry — write the number.*
 
@@ -114,7 +114,7 @@ In the set {2, 5, 8, 11, x}, x is a positive integer and the mean of the set equ
 
 **Q11** · `STA-MMM-033` · Numeric Entry · 70s
 
-A shop's sales, in units, on seven consecutive days were 12, 20, 12, 25, 20, 12, and 15. What is the sum of the median and the mode of these seven values? Enter your answer as a number.
+A shop's sales, in units, on seven consecutive days were 12, 20, 12, 25, 20, 12, and 15. What is the sum of the median and the mode of these seven values?
 
 *Numeric entry — write the number.*
 
@@ -138,36 +138,13 @@ Set S = {4, 8, 8, 10, 20}. Set T is formed by adding 6 to each value of S. Set U
 **(D)** The mode of U is 48  
 **(E)** The range of U is 6 greater than the range of S
 
----
+**Q14** · `STA-MMM-041` · Numeric Entry · 90s
 
-### Level 3 · Hard — 12 questions · ~19 min
-
-*where 162+ is won or lost*
-
-**Q14** · `STA-MMM-039` · MCQ · 95s
-
-The average (arithmetic mean) of five numbers is 30. The average of the three largest is 36 and the average of the three smallest is 25. What is the median of the five numbers?
-
-**(A)** 25  
-**(B)** 30  
-**(C)** 30.5  
-**(D)** 33  
-**(E)** 36
-
-**Q15** · `STA-MMM-040` · QC · 100s
-
-A set of 10 positive integers has a mean of 15 and a median of 12.
-
-> **Quantity A:**  The sum of the 5 largest values
-> **Quantity B:**  The sum of the 5 smallest values
-
-**Q16** · `STA-MMM-041` · Numeric Entry · 100s
-
-Team A has 8 players with a mean height of 72 inches. Team B has 12 players with a mean height of 75 inches. The two teams merge into a single 20-player team, and then one player whose height is 70 inches leaves. What is the mean height, in inches, of the remaining players? Enter your answer as a number.
+Team A has 8 players with a mean height of 72 inches. Team B has 12 players with a mean height of 75 inches. The two teams merge into a single 20-player team, and then one player whose height is 70 inches leaves. What is the mean height, in inches, of the remaining players?
 
 *Numeric entry — write the number.*
 
-**Q17** · `STA-MMM-042` · MCQ · 90s
+**Q15** · `STA-MMM-042` · MCQ · 90s
 
 A set of 9 values has a mean of 40 and a median of 35. The largest value in the set is then increased by 30, and nothing else changes. Which of the following describes the new mean and the new median?
 
@@ -177,30 +154,7 @@ A set of 9 values has a mean of 40 and a median of 35. The largest value in the 
 **(D)** The mean increases by 30/9; the median increases by 30  
 **(E)** Both the mean and the median increase by 30
 
-**Q18** · `STA-MMM-043` · Numeric Entry · 95s
-
-A set of 5 distinct positive integers has a mean of 18 and a median of 16. The smallest value is 8 and the largest is 30. What is the greatest possible value of the second largest number in the set? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q19** · `STA-MMM-044` · QC · 105s
-
-A set of 6 positive integers has a mean of 10, and its two smallest values are each equal to 1.
-
-> **Quantity A:**  The greatest possible value of the median of the set
-> **Quantity B:**  11
-
-**Q20** · `STA-MMM-045` · Select all that apply · 90s
-
-The mean of a list of 10 numbers is 20. One additional number is added to the list, and the mean of the resulting 11 numbers is an integer. Which of the following could be the number that was added? Select all that apply.
-
-**(A)** 9  
-**(B)** 20  
-**(C)** 30  
-**(D)** 31  
-**(E)** 50
-
-**Q21** · `STA-MMM-046` · MCQ · 90s
+**Q16** · `STA-MMM-046` · MCQ · 90s
 
 The mean of 12 numbers is 15. The mean of the first 5 of them is 12, and the mean of the last 4 is 18. What is the mean of the remaining 3 numbers?
 
@@ -210,13 +164,13 @@ The mean of 12 numbers is 15. The mean of the first 5 of them is 12, and the mea
 **(D)** 18  
 **(E)** 48
 
-**Q22** · `STA-MMM-048` · Numeric Entry · 95s
+**Q17** · `STA-MMM-048` · Numeric Entry · 90s
 
-A set of 8 numbers has a mean of 30. When its largest and its smallest values are both removed, the remaining 6 numbers have a mean of 28. The largest value is 5 times the smallest. What is the largest value? Enter your answer as a number.
+A set of 8 numbers has a mean of 30. When its largest and its smallest values are both removed, the remaining 6 numbers have a mean of 28. The largest value is 5 times the smallest. What is the largest value?
 
 *Numeric entry — write the number.*
 
-**Q23** · `STA-MMM-049` · MCQ · 95s
+**Q18** · `STA-MMM-049` · MCQ · 90s
 
 Section 1 has 20 students with a mean score of 72. Section 2 has n students with a mean score of 84. When the two sections are combined, the mean score of all the students is 80. What is n?
 
@@ -226,7 +180,7 @@ Section 1 has 20 students with a mean score of 72. Section 2 has n students with
 **(D)** 40  
 **(E)** 50
 
-**Q24** · `STA-MMM-051` · Select all that apply · 100s
+**Q19** · `STA-MMM-051` · Select all that apply · 90s
 
 A set of 8 integers has a mean of 25. Which of the following changes to the set would leave the mean exactly 25? Select all that apply.
 
@@ -236,7 +190,7 @@ A set of 8 integers has a mean of 25. Which of the following changes to the set 
 **(D)** Increasing one value by 12 and decreasing another value by 12  
 **(E)** Adding 25 to one of the values
 
-**Q25** · `STA-MMM-052` · MCQ · 90s
+**Q20** · `STA-MMM-052` · MCQ · 90s
 
 In a data set of n numbers the mean is 50. One value of 80 is replaced by a value of 20, and the mean falls by 3. What is n?
 
@@ -248,11 +202,51 @@ In a data set of n numbers the mean is 50. One value of 80 is replaced by a valu
 
 ---
 
-### Level 4 · Extreme — 5 questions · ~10 min
+### Level 3 · Hard — 8 questions · ~14 min
 
-*165+ — expect to need the insight, not the grind*
+*where 162+ is won or lost*
 
-**Q26** · `STA-MMM-054` · MCQ · 125s
+**Q21** · `STA-MMM-039` · MCQ · 95s
+
+The average (arithmetic mean) of five numbers is 30. The average of the three largest is 36 and the average of the three smallest is 25. What is the median of the five numbers?
+
+**(A)** 25  
+**(B)** 30  
+**(C)** 30.5  
+**(D)** 33  
+**(E)** 36
+
+**Q22** · `STA-MMM-040` · QC · 100s
+
+A set of 10 positive integers has a mean of 15 and a median of 12.
+
+> **Quantity A:**  The sum of the 5 largest values
+> **Quantity B:**  The sum of the 5 smallest values
+
+**Q23** · `STA-MMM-043` · Numeric Entry · 95s
+
+A set of 5 distinct positive integers has a mean of 18 and a median of 16. The smallest value is 8 and the largest is 30. What is the greatest possible value of the second largest number in the set?
+
+*Numeric entry — write the number.*
+
+**Q24** · `STA-MMM-044` · QC · 105s
+
+A set of 6 positive integers has a mean of 10, and its two smallest values are each equal to 1.
+
+> **Quantity A:**  The greatest possible value of the median of the set
+> **Quantity B:**  11
+
+**Q25** · `STA-MMM-045` · Select all that apply · 90s
+
+The mean of a list of 10 numbers is 20. One additional number is added to the list, and the mean of the resulting 11 numbers is an integer. Which of the following could be the number that was added? Select all that apply.
+
+**(A)** 9  
+**(B)** 20  
+**(C)** 30  
+**(D)** 31  
+**(E)** 50
+
+**Q26** · `STA-MMM-054` · MCQ · 110s
 
 A set of 2n numbers, listed from least to greatest as a1 <= a2 <= ... <= a2n, has mean M and median K, where M > K. Each of the n smallest values is replaced by the number M. Which of the following describes the mean and the median of the new set?
 
@@ -262,20 +256,13 @@ A set of 2n numbers, listed from least to greatest as a1 <= a2 <= ... <= a2n, ha
 **(D)** The mean decreases and the median increases  
 **(E)** Both the mean and the median are unchanged
 
-**Q27** · `STA-MMM-055` · Numeric Entry · 120s
+**Q27** · `STA-MMM-055` · Numeric Entry · 110s
 
-A set of 5 positive integers has a mean of 16, a median of 15, and a unique mode of 12 that appears exactly twice. What is the greatest possible value of the largest number in the set? Enter your answer as a number.
+A set of 5 positive integers has a mean of 16, a median of 15, and a unique mode of 12 that appears exactly twice. What is the greatest possible value of the largest number in the set?
 
 *Numeric entry — write the number.*
 
-**Q28** · `STA-MMM-056` · QC · 120s
-
-A company has 100 employees. The mean salary is $60,000, the median salary is $50,000, and the highest-paid employee earns $500,000. That employee's salary is then changed to $60,000, and no other salary changes.
-
-> **Quantity A:**  The new mean salary
-> **Quantity B:**  The new median salary
-
-**Q29** · `STA-MMM-057` · Select all that apply · 115s
+**Q28** · `STA-MMM-057` · Select all that apply · 115s
 
 A set of 5 integers, not necessarily distinct, has a mean of 10, a smallest value of 4, and a range of 14. Which of the following could be the median of the set? Select all that apply.
 
@@ -285,7 +272,20 @@ A set of 5 integers, not necessarily distinct, has a mean of 10, a smallest valu
 **(D)** 12  
 **(E)** 14
 
-**Q30** · `STA-MMM-060` · QC · 125s
+---
+
+### Level 4 · Extreme — 2 questions · ~4 min
+
+*the top of a real hard section — expect to need the insight, not the grind*
+
+**Q29** · `STA-MMM-056` · QC · 110s
+
+A company has 100 employees. The mean salary is $60,000, the median salary is $50,000, and the highest-paid employee earns $500,000. That employee's salary is then changed to $60,000, and no other salary changes.
+
+> **Quantity A:**  The new mean salary
+> **Quantity B:**  The new median salary
+
+**Q30** · `STA-MMM-060` · QC · 110s
 
 The numbers a1 <= a2 <= ... <= a2n, where n >= 2, are such that the average of the n smallest equals the average of the n largest, and each of those two averages is M.
 
@@ -311,22 +311,22 @@ The numbers a1 <= a2 <= ... <= a2n, where n >= 2, are such that the average of t
 | 11 | `STA-MMM-033` | medium | Numeric Entry | **27** |
 | 12 | `STA-MMM-034` | medium | MCQ | **B** |
 | 13 | `STA-MMM-038` | medium | Select all that apply | **A, C, D** |
-| 14 | `STA-MMM-039` | hard | MCQ | **D** |
-| 15 | `STA-MMM-040` | hard | QC | **A** |
-| 16 | `STA-MMM-041` | hard | Numeric Entry | **74** |
-| 17 | `STA-MMM-042` | hard | MCQ | **B** |
-| 18 | `STA-MMM-043` | hard | Numeric Entry | **27** |
-| 19 | `STA-MMM-044` | hard | QC | **A** |
-| 20 | `STA-MMM-045` | hard | Select all that apply | **A, B, D** |
-| 21 | `STA-MMM-046` | hard | MCQ | **C** |
-| 22 | `STA-MMM-048` | hard | Numeric Entry | **60** |
-| 23 | `STA-MMM-049` | hard | MCQ | **D** |
-| 24 | `STA-MMM-051` | hard | Select all that apply | **A, C, D** |
-| 25 | `STA-MMM-052` | hard | MCQ | **B** |
-| 26 | `STA-MMM-054` | extreme hard | MCQ | **A** |
-| 27 | `STA-MMM-055` | extreme hard | Numeric Entry | **25** |
-| 28 | `STA-MMM-056` | extreme hard | QC | **A** |
-| 29 | `STA-MMM-057` | extreme hard | Select all that apply | **B, C, D** |
+| 14 | `STA-MMM-041` | medium | Numeric Entry | **74** |
+| 15 | `STA-MMM-042` | medium | MCQ | **B** |
+| 16 | `STA-MMM-046` | medium | MCQ | **C** |
+| 17 | `STA-MMM-048` | medium | Numeric Entry | **60** |
+| 18 | `STA-MMM-049` | medium | MCQ | **D** |
+| 19 | `STA-MMM-051` | medium | Select all that apply | **A, C, D** |
+| 20 | `STA-MMM-052` | medium | MCQ | **B** |
+| 21 | `STA-MMM-039` | hard | MCQ | **D** |
+| 22 | `STA-MMM-040` | hard | QC | **A** |
+| 23 | `STA-MMM-043` | hard | Numeric Entry | **27** |
+| 24 | `STA-MMM-044` | hard | QC | **A** |
+| 25 | `STA-MMM-045` | hard | Select all that apply | **A, B, D** |
+| 26 | `STA-MMM-054` | hard | MCQ | **A** |
+| 27 | `STA-MMM-055` | hard | Numeric Entry | **25** |
+| 28 | `STA-MMM-057` | hard | Select all that apply | **B, C, D** |
+| 29 | `STA-MMM-056` | extreme hard | QC | **A** |
 | 30 | `STA-MMM-060` | extreme hard | QC | **C** |
 
 ---
@@ -342,7 +342,7 @@ The 3rd value is 9.
 Check: two values (4 and 6) lie below 9 and two values (12 and 19) lie above it, so 9 really is the middle. Correct.
 Answer: 9.
 
-**Trap.** Choice A, 4, is the middle entry of the list as printed - the error of taking the median without sorting. Choice D, 10, is the mean, (6 + 19 + 4 + 12 + 9)/5 = 50/5 = 10, which is a different measure of centre. Choices B and E are the values one position either side of the middle after sorting.
+**Trap.** Choice A, 4, is the middle entry of the list as printed - the error of taking the median without sorting. Choice D, 10, is the mean, (6 + 19 + 4 + 12 + 9)/5 = 50/5 = 10, which is a different measure of center. Choices B and E are the values one position either side of the middle after sorting.
 
 ### Q2 · `STA-MMM-004` — Answer: 13
 
@@ -389,7 +389,7 @@ Step 2 — the mean is (2 + 4 + 6 + 8 + n)/5 = (20 + n)/5.
 Step 3 — the mean beats 6 exactly when 20 + n > 30, that is when n > 10.
 Step 4 — test both sides of that threshold, staying inside n > 6:
 n = 7 gives mean = 27/5 = 5.4, which is LESS than the median 6, so Quantity B is greater.
-n = 20 gives mean = 40/5 = 8, which is MORE than 6, so Quantity A is greater.
+n = 20 gives mean = 40/5 = 8, which is more than 6, so Quantity A is greater.
 Two legal values of n give opposite answers, so the relationship cannot be determined.
 
 **Trap.** Choosing A on the reasoning that n could be enormous and would drag the mean up. All we are told is n > 6, and every n from just above 6 up to 10 leaves the mean BELOW the fixed median of 6. On any mean-versus-median comparison with a free variable, test one value just inside the constraint and one far outside it before committing.
@@ -408,14 +408,14 @@ Answer: 84.
 ### Q8 · `STA-MMM-026` — Answer: A, B, E
 
 The count is 5 and the mean is 10, so the sum is 5 x 10 = 50: p + p + 8 + 14 + q = 50.
-A - that simplifies to 2p + q = 28. TRUE.
-B - p occupies two of the five slots. The only way another value could match that is if q equals 8 or 14, and then it too appears exactly twice - never more. So no value ever appears more often than p, which makes p a mode (sometimes one of two). TRUE.
-C - take p = 10, forcing q = 28 - 20 = 8. Then q < p. FALSE.
-D - with p = 10 and q = 8 the sorted set is {8, 8, 10, 10, 14} and the median is 10, not 8. FALSE.
-E - q is a positive integer, so q >= 1 and 2p = 28 - q <= 27, giving p <= 13.5, so p <= 13. TRUE.
+A - that simplifies to 2p + q = 28. True.
+B - p occupies two of the five slots. The only way another value could match that is if q equals 8 or 14, and then it too appears exactly twice - never more. So no value ever appears more often than p, which makes p a mode (sometimes one of two). True.
+C - take p = 10, forcing q = 28 - 20 = 8. Then q < p. False.
+D - with p = 10 and q = 8 the sorted set is {8, 8, 10, 10, 14} and the median is 10, not 8. False.
+E - q is a positive integer, so q >= 1 and 2p = 28 - q <= 27, giving p <= 13.5, so p <= 13. True.
 Answer: A, B, E.
 
-**Trap.** Rejecting B by reading it as 'p is the ONLY mode' - with p = 7 the set is {7, 7, 8, 14, 14}, which is bimodal, yet p is still a mode. C and D both look safe because the set is written in what appears to be increasing order; it is not sorted, and p can be larger than q and larger than 8. E is the one most people skip: the fact that q must be at least 1 is what caps p.
+**Trap.** Rejecting B by reading it as 'p is the only mode' - with p = 7 the set is {7, 7, 8, 14, 14}, which is bimodal, yet p is still a mode. C and D both look safe because the set is written in what appears to be increasing order; it is not sorted, and p can be larger than q and larger than 8. E is the one most people skip: the fact that q must be at least 1 is what caps p.
 
 ### Q9 · `STA-MMM-027` — Answer: C
 
@@ -463,51 +463,27 @@ Answer: 15.
 
 First describe S: it is already sorted, so mean = 50/5 = 10, median = 8 (3rd of 5), mode = 8, range = 20 - 4 = 16.
 T = {10, 14, 14, 16, 26} and U = {24, 48, 48, 60, 120}.
-A - mean of T = 80/5 = 16 = 10 + 6. Adding a constant shifts the mean by that constant. TRUE.
-B - median of T = 14, while the median of S is 8. A shift moves the median too. FALSE.
-C - range of T = 26 - 10 = 16, the same as the range of S. Every value moved by the same amount, so the gap between the largest and the smallest is untouched. TRUE.
-D - in U the value 48 appears twice and everything else once, so the mode is 48 = 6 x 8. Scaling multiplies the mode. TRUE.
-E - range of U = 120 - 24 = 96, which is 6 TIMES the range of S, not 6 more than it. FALSE.
+A - mean of T = 80/5 = 16 = 10 + 6. Adding a constant shifts the mean by that constant. True.
+B - median of T = 14, while the median of S is 8. A shift moves the median too. False.
+C - range of T = 26 - 10 = 16, the same as the range of S. Every value moved by the same amount, so the gap between the largest and the smallest is untouched. True.
+D - in U the value 48 appears twice and everything else once, so the mode is 48 = 6 x 8. Scaling multiplies the mode. True.
+E - range of U = 120 - 24 = 96, which is 6 TIMES the range of S, not 6 more than it. False.
 Answer: A, C, D.
 
-**Trap.** B and E swap the two rules. Adding a constant moves the centre (mean, median, mode) but leaves the spread (range, standard deviation) alone; multiplying by a constant scales the centre AND the spread. Picking B treats the median as if it were a measure of spread; picking E treats multiplication as if it were addition.
+**Trap.** B and E swap the two rules. Adding a constant moves the center (mean, median, mode) but leaves the spread (range, standard deviation) alone; multiplying by a constant scales the center AND the spread. Picking B treats the median as if it were a measure of spread; picking E treats multiplication as if it were addition.
 
-### Q14 · `STA-MMM-039` — Answer: D
-
-Step 1 — write the sorted values as a <= b <= c <= d <= e. The median is c.
-Step 2 — turn every average into a sum:
-all five: a + b + c + d + e = 5 x 30 = 150
-three smallest: a + b + c = 3 x 25 = 75
-three largest: c + d + e = 3 x 36 = 108
-Step 3 — add the two group sums: 75 + 108 = 183. That total counts each of a, b, d, e exactly once, but counts c TWICE, because the middle value belongs to both groups.
-Step 4 — so 183 = (a + b + c + d + e) + c = 150 + c, giving c = 33.
-Check: a + b = 75 - 33 = 42 and d + e = 108 - 33 = 75, so the set could be 20, 22, 33, 37, 38 - sum 150, three smallest averaging 25, three largest averaging 36. Correct.
-Answer: 33.
-
-**Trap.** Choice B, 30, assumes the median must equal the mean. It is the overlap that pins the answer down: the two groups share the middle value, so 75 + 108 - 150 = 33. Choice C averages the two group means, (25 + 36)/2 = 30.5, and choices A and E simply report one of the group averages.
-
-### Q15 · `STA-MMM-040` — Answer: A
-
-Step 1 — the whole set: sum = 10 x 15 = 150. The two columns split that total, so Quantity A + Quantity B = 150.
-Step 2 — use the median. For 10 sorted values the median is the average of the 5th and 6th, so the 5th value + the 6th value = 24. Since the 5th is no larger than the 6th, the 5th value is at most 12.
-Step 3 — every one of the 5 smallest values is at most the 5th value, hence at most 12. So Quantity B <= 5 x 12 = 60.
-Step 4 — therefore Quantity A = 150 - Quantity B >= 150 - 60 = 90.
-Quantity A is at least 90 while Quantity B is at most 60, so Quantity A is greater no matter what the actual numbers are.
-
-**Trap.** Choosing D because no individual values are given. Two facts settle it: the median caps each of the bottom five at 12 (at most 60 altogether), while the mean fixes the whole set at 150. Whenever a set's mean sits above its median, the weight of the set is in its upper half.
-
-### Q16 · `STA-MMM-041` — Answer: 74
+### Q14 · `STA-MMM-041` — Answer: 74
 
 Step 1 — convert each average into a total. Team A: 8 x 72 = 576 inches. Team B: 12 x 75 = 900 inches.
 Step 2 — merged team: sum = 576 + 900 = 1476 over 20 players (a mean of 73.8).
-Step 3 — the departure changes BOTH the sum and the count: new sum = 1476 - 70 = 1406, new count = 20 - 1 = 19.
+Step 3 — the departure changes both the sum and the count: new sum = 1476 - 70 = 1406, new count = 20 - 1 = 19.
 Step 4 — 1406/19 = 74.
 Check: 19 x 74 = 1406. Correct.
 Answer: 74.
 
 **Trap.** Subtracting the 70 from the total but still dividing by 20, which gives 1406/20 = 70.3. When a member leaves, the count must fall with the sum. A second error is averaging the two team means, (72 + 75)/2 = 73.5, which ignores that Team B has more players and so pulls the merged mean toward 75.
 
-### Q17 · `STA-MMM-042` — Answer: B
+### Q15 · `STA-MMM-042` — Answer: B
 
 Step 1 — the mean. Old sum = 9 x 40 = 360. Raising one value by 30 makes the new sum 390.
 Step 2 — new mean = 390/9 = 43.33..., which is 40 + 30/9 = 40 + 3.33. The extra 30 is shared out over all 9 values, so the mean rises by 30/9, not by 30.
@@ -517,41 +493,7 @@ Answer: B.
 
 **Trap.** Choice A adds the whole 30 to the mean, forgetting that a mean divides by the count. Choices C, D and E move the median: the median depends only on POSITION, and pushing the top value further up changes no ranks at all. Had the largest value been DECREASED by 30 it could have fallen past the middle, and then the median would have moved.
 
-### Q18 · `STA-MMM-043` — Answer: 27
-
-Step 1 — sum = 5 x 18 = 90. Sorted, the set looks like {8, b, 16, d, 30}, where 8 < b < 16 < d < 30.
-Step 2 — the sum equation: 8 + b + 16 + d + 30 = 90, so b + d = 90 - 54 = 36.
-Step 3 — d is largest when b is smallest. The integers are distinct and b must sit strictly between 8 and 16, so the smallest b can be is 9.
-Step 4 — d = 36 - 9 = 27.
-Check: {8, 9, 16, 27, 30} - five distinct positive integers, sum 90, mean 18, median 16, and 27 is still below the largest value 30. Correct.
-Answer: 27.
-
-**Trap.** Answering 36, which is the SUM b + d rather than either value on its own. The other slip is allowing b = 8 (which would give d = 28): the integers are distinct, so the second value must be at least 9. And d = 27 is only legal because it stays under the stated largest value, 30.
-
-### Q19 · `STA-MMM-044` — Answer: A
-
-Step 1 — sum = 6 x 10 = 60. Two of the values are 1, so the other four sum to 58. Call them v3 <= v4 <= v5 <= v6.
-Step 2 — with 6 sorted values the median is (v3 + v4)/2, so the job is to make v3 + v4 as large as possible.
-Step 3 — the ceiling comes from the top pair: v5 and v6 are each at least v4, so v5 + v6 >= 2 x v4 >= v3 + v4. Since (v3 + v4) + (v5 + v6) = 58, that forces v3 + v4 <= 29.
-Step 4 — 29 is not reachable with integers: it would need v4 >= 15, leaving only 29 for v5 + v6 while both must be at least 15. So try 28: v3 = v4 = 14 and v5 = v6 = 15 gives {1, 1, 14, 14, 15, 15}, which sums to 1 + 1 + 14 + 14 + 15 + 15 = 60. Valid.
-Step 5 — the greatest possible median is 28/2 = 14, and 14 > 11. Quantity A is greater.
-
-**Trap.** Assuming the median cannot exceed the mean of 10 and choosing B. Two values are pinned at 1, which frees a large share of the total for the middle of the set. The real ceiling comes from the requirement that the two values ABOVE the median be at least as large as the median's own pair - that is what caps v3 + v4 at 28.
-
-### Q20 · `STA-MMM-045` — Answer: A, B, D
-
-Step 1 — the original list sums to 10 x 20 = 200.
-Step 2 — after adding x the list has 11 numbers, so the new mean is (200 + x)/11. That is an integer exactly when 200 + x is a multiple of 11.
-A - 200 + 9 = 209 = 11 x 19, so the new mean is 19. TRUE.
-B - 200 + 20 = 220 = 11 x 20, so the new mean is 20; adding a value equal to the mean leaves the mean alone. TRUE.
-C - 200 + 30 = 230, and 230/11 = 20.909..., not an integer. FALSE.
-D - 200 + 31 = 231 = 11 x 21, so the new mean is 21. TRUE.
-E - 200 + 50 = 250, and 250/11 = 22.727..., not an integer. FALSE.
-Answer: A, B, D.
-
-**Trap.** Choices C and E are exactly the values that make the new SUM a multiple of 10 - the OLD count. Once the eleventh number joins, the divisor is 11. Notice the workable additions sit 11 apart: 9, 20, 31, 42, 53, and so on.
-
-### Q21 · `STA-MMM-046` — Answer: C
+### Q16 · `STA-MMM-046` — Answer: C
 
 Step 1 — total sum = 12 x 15 = 180.
 Step 2 — first group: 5 x 12 = 60. Last group: 4 x 18 = 72.
@@ -562,7 +504,7 @@ Answer: 16.
 
 **Trap.** Choice E is the leftover sum, 48, reported before dividing by 3; choice A divides that 48 by 4 instead of 3. The conceptual trap is choice B: assuming a leftover group must average the overall mean. It would only do so if the two known groups already averaged 15 between them - in fact they average (60 + 72)/9 = 14.67, so the final three have to come in above 15 to compensate.
 
-### Q22 · `STA-MMM-048` — Answer: 60
+### Q17 · `STA-MMM-048` — Answer: 60
 
 Step 1 — total sum = 8 x 30 = 240.
 Step 2 — the 6 survivors sum to 6 x 28 = 168.
@@ -573,7 +515,7 @@ Answer: 60.
 
 **Trap.** Answering 72, which is the combined value of the two removed numbers rather than the larger one. The other slip is splitting 72 by dividing by 5 (giving 14.4): the two pieces are 5 parts and 1 part, so there are 6 parts in total and each part is 12.
 
-### Q23 · `STA-MMM-049` — Answer: D
+### Q18 · `STA-MMM-049` — Answer: D
 
 Step 1 — write the combined mean as one equation in sums:
 (20 x 72 + 84n)/(20 + n) = 80
@@ -585,19 +527,19 @@ Answer: 40.
 
 **Trap.** Choice B, 20, assumes the sections must be the same size. They cannot be: equal sizes would put the combined mean at (72 + 84)/2 = 78, not 80. The combined mean sits twice as far from 72 as it does from 84, so the group averaging 84 must be twice as large.
 
-### Q24 · `STA-MMM-051` — Answer: A, C, D
+### Q19 · `STA-MMM-051` — Answer: A, C, D
 
 The set starts with sum = 8 x 25 = 200 across 8 values.
-A - new sum 225 across 9 values: 225/9 = 25. Adding a value equal to the mean never moves the mean. TRUE.
-B - new sum 400 across 8 values: 400/8 = 50. Scaling every value scales the mean by the same factor. FALSE.
-C - new sum 250 across 10 values: 250/10 = 25. The two new values average 25 between them, so they behave like two copies of the mean. TRUE.
-D - the sum stays at 200 (the +12 and the -12 cancel) and the count stays at 8: 200/8 = 25. TRUE.
-E - new sum 225 across 8 values: 225/8 = 28.125. FALSE.
+A - new sum 225 across 9 values: 225/9 = 25. Adding a value equal to the mean never moves the mean. True.
+B - new sum 400 across 8 values: 400/8 = 50. Scaling every value scales the mean by the same factor. False.
+C - new sum 250 across 10 values: 250/10 = 25. The two new values average 25 between them, so they behave like two copies of the mean. True.
+D - the sum stays at 200 (the +12 and the -12 cancel) and the count stays at 8: 200/8 = 25. True.
+E - new sum 225 across 8 values: 225/8 = 28.125. False.
 Answer: A, C, D.
 
 **Trap.** A and E look like the same move and are not: adding 25 AS a new member raises the sum and the count in step, while adding 25 TO an existing member raises the sum with no extra member to absorb it. B is the other bait - doubling every value doubles the mean rather than preserving it.
 
-### Q25 · `STA-MMM-052` — Answer: B
+### Q20 · `STA-MMM-052` — Answer: B
 
 Step 1 — find the change in the sum. Swapping 80 for 20 removes 80 - 20 = 60 from the total, and the count does not change.
 Step 2 — a drop of 60 in the sum lowers the mean by 60/n.
@@ -606,6 +548,64 @@ Check: with n = 20 the old sum is 20 x 50 = 1000; the new sum is 940, and 940/20
 Answer: 20.
 
 **Trap.** Choice E is the drop in the SUM and choice D is the new mean - neither answers 'how many numbers'. Choice A uses the wrong gap: 80 - 50 = 30 measures the removed value's distance from the mean, but what actually leaves the total is 80 - 20 = 60, the distance between the old and new values. Choice C halves that 60 because two values were 'involved', though only one slot changed.
+
+### Q21 · `STA-MMM-039` — Answer: D
+
+Step 1 — write the sorted values as a <= b <= c <= d <= e. The median is c.
+Step 2 — turn every average into a sum:
+All five: a + b + c + d + e = 5 x 30 = 150
+three smallest: a + b + c = 3 x 25 = 75
+three largest: c + d + e = 3 x 36 = 108
+Step 3 — add the two group sums: 75 + 108 = 183. That total counts each of a, b, d, e exactly once, but counts c TWICE, because the middle value belongs to both groups.
+Step 4 — so 183 = (a + b + c + d + e) + c = 150 + c, giving c = 33.
+Check: a + b = 75 - 33 = 42 and d + e = 108 - 33 = 75, so the set could be 20, 22, 33, 37, 38 - sum 150, three smallest averaging 25, three largest averaging 36. Correct.
+Answer: 33.
+
+**Trap.** Choice B, 30, assumes the median must equal the mean. It is the overlap that pins the answer down: the two groups share the middle value, so 75 + 108 - 150 = 33. Choice C averages the two group means, (25 + 36)/2 = 30.5, and choices A and E simply report one of the group averages.
+
+### Q22 · `STA-MMM-040` — Answer: A
+
+Step 1 — the whole set: sum = 10 x 15 = 150. The two columns split that total, so Quantity A + Quantity B = 150.
+Step 2 — use the median. For 10 sorted values the median is the average of the 5th and 6th, so the 5th value + the 6th value = 24. Since the 5th is no larger than the 6th, the 5th value is at most 12.
+Step 3 — every one of the 5 smallest values is at most the 5th value, hence at most 12. So Quantity B <= 5 x 12 = 60.
+Step 4 — therefore Quantity A = 150 - Quantity B >= 150 - 60 = 90.
+Quantity A is at least 90 while Quantity B is at most 60, so Quantity A is greater no matter what the actual numbers are.
+
+**Trap.** Choosing D because no individual values are given. Two facts settle it: the median caps each of the bottom five at 12 (at most 60 altogether), while the mean fixes the whole set at 150. Whenever a set's mean sits above its median, the weight of the set is in its upper half.
+
+### Q23 · `STA-MMM-043` — Answer: 27
+
+Step 1 — sum = 5 x 18 = 90. Sorted, the set looks like {8, b, 16, d, 30}, where 8 < b < 16 < d < 30.
+Step 2 — the sum equation: 8 + b + 16 + d + 30 = 90, so b + d = 90 - 54 = 36.
+Step 3 — d is largest when b is smallest. The integers are distinct and b must sit strictly between 8 and 16, so the smallest b can be is 9.
+Step 4 — d = 36 - 9 = 27.
+Check: {8, 9, 16, 27, 30} - five distinct positive integers, sum 90, mean 18, median 16, and 27 is still below the largest value 30. Correct.
+Answer: 27.
+
+**Trap.** Answering 36, which is the SUM b + d rather than either value on its own. The other slip is allowing b = 8 (which would give d = 28): the integers are distinct, so the second value must be at least 9. And d = 27 is only legal because it stays under the stated largest value, 30.
+
+### Q24 · `STA-MMM-044` — Answer: A
+
+Step 1 — sum = 6 x 10 = 60. Two of the values are 1, so the other four sum to 58. Call them v3 <= v4 <= v5 <= v6.
+Step 2 — with 6 sorted values the median is (v3 + v4)/2, so the job is to make v3 + v4 as large as possible.
+Step 3 — the ceiling comes from the top pair: v5 and v6 are each at least v4, so v5 + v6 >= 2 x v4 >= v3 + v4. Since (v3 + v4) + (v5 + v6) = 58, that forces v3 + v4 <= 29.
+Step 4 — 29 is not reachable with integers: it would need v4 >= 15, leaving only 29 for v5 + v6 while both must be at least 15. So try 28: v3 = v4 = 14 and v5 = v6 = 15 gives {1, 1, 14, 14, 15, 15}, which sums to 1 + 1 + 14 + 14 + 15 + 15 = 60. Valid.
+Step 5 — the greatest possible median is 28/2 = 14, and 14 > 11. Quantity A is greater.
+
+**Trap.** Assuming the median cannot exceed the mean of 10 and choosing B. Two values are pinned at 1, which frees a large share of the total for the middle of the set. The real ceiling comes from the requirement that the two values ABOVE the median be at least as large as the median's own pair - that is what caps v3 + v4 at 28.
+
+### Q25 · `STA-MMM-045` — Answer: A, B, D
+
+Step 1 — the original list sums to 10 x 20 = 200.
+Step 2 — after adding x the list has 11 numbers, so the new mean is (200 + x)/11. That is an integer exactly when 200 + x is a multiple of 11.
+A - 200 + 9 = 209 = 11 x 19, so the new mean is 19. True.
+B - 200 + 20 = 220 = 11 x 20, so the new mean is 20; adding a value equal to the mean leaves the mean alone. True.
+C - 200 + 30 = 230, and 230/11 = 20.909..., not an integer. False.
+D - 200 + 31 = 231 = 11 x 21, so the new mean is 21. True.
+E - 200 + 50 = 250, and 250/11 = 22.727..., not an integer. False.
+Answer: A, B, D.
+
+**Trap.** Choices C and E are exactly the values that make the new SUM a multiple of 10 - the OLD count. Once the eleventh number joins, the divisor is 11. Notice the workable additions sit 11 apart: 9, 20, 31, 42, 53, and so on.
 
 ### Q26 · `STA-MMM-054` — Answer: A
 
@@ -623,14 +623,30 @@ Answer: A.
 Step 1 — sum = 5 x 16 = 80. Write the sorted set as v1 <= v2 <= v3 <= v4 <= v5, with v3 = 15 since the median of 5 values is the 3rd.
 Step 2 — locate the two 12s. Everything from position 3 onward is at least 15, so neither 12 can sit at position 3, 4 or 5. Both must sit at the bottom: v1 = v2 = 12.
 Step 3 — the sum: 12 + 12 + 15 + v4 + v5 = 80, so v4 + v5 = 41.
-Step 4 — to maximise v5, minimise v4. We know v4 >= 15, but v4 = 15 would make 15 a second value appearing twice, so the set would be bimodal and 12 would no longer be the UNIQUE mode. Hence v4 >= 16.
+Step 4 — to maximize v5, minimize v4. We know v4 >= 15, but v4 = 15 would make 15 a second value appearing twice, so the set would be bimodal and 12 would no longer be the UNIQUE mode. Hence v4 >= 16.
 Step 5 — v4 = 16 gives v5 = 41 - 16 = 25.
 Check: {12, 12, 15, 16, 25} has sum 80 (mean 16), median 15, and 12 is the only value appearing more than once. Correct.
 Answer: 25.
 
 **Trap.** Answering 26 by taking v4 = 15. That set, {12, 12, 15, 15, 26}, has two values appearing twice, so 12 is not the unique mode. The other error is letting a 12 sit at position 3 or 4: with a median of 15, every value from the third slot on is at least 15, which pins both 12s to the bottom two slots.
 
-### Q28 · `STA-MMM-056` — Answer: A
+### Q28 · `STA-MMM-057` — Answer: B, C, D
+
+Step 1 — range = largest - smallest, so the largest value is 4 + 14 = 18. Sum = 5 x 10 = 50.
+Step 2 — sorted, the set is {4, a, m, b, 18} with 4 <= a <= m <= b <= 18, and 4 + a + m + b + 18 = 50, so a + m + b = 28.
+Step 3 — how small can the median m be? Since a <= m and b <= 18, we get 28 = a + m + b <= m + m + 18, so 2m >= 10 and m >= 5.
+Step 4 — how large can m be? Since a >= 4 and b >= m, we get 28 = a + m + b >= 4 + m + m, so 2m <= 24 and m <= 12.
+Step 5 — so the median can be any integer from 5 to 12, and both ends are reachable.
+A - 4 is below the floor. Concretely, a median of 4 forces the three smallest to be 4, 4, 4, so the fourth value would be 50 - 4 - 4 - 4 - 18 = 20, which exceeds the largest value 18. False.
+B - 5 works: {4, 5, 5, 18, 18} has sum 50, median 5, smallest 4, largest 18. True.
+C - 9 works: {4, 6, 9, 13, 18} has sum 50 and median 9. True.
+D - 12 works: {4, 4, 12, 12, 18} has sum 50 and median 12. True.
+E - 14 is above the ceiling of 12. With m = 14 the remaining two values satisfy a + b = 28 - 14 = 14, but a >= 4 and b >= m = 14, so a + b >= 18. Impossible. False.
+Answer: B, C, D.
+
+**Trap.** Both wrong choices come from forgetting that the median is squeezed from both sides. Choice A ignores that the two values ABOVE the median plus the 18 must still fit inside a total of 50; choice E ignores that the two values BELOW the median cannot drop under 4. Fixing the range at 14 also fixes the maximum at exactly 18 - it is an equation, not a lower bound.
+
+### Q29 · `STA-MMM-056` — Answer: A
 
 Step 1 — Quantity A is pinned exactly. Old total = 100 x 60,000 = 6,000,000. Replacing 500,000 with 60,000 removes 440,000, so the new total is 5,560,000 and the new mean is 5,560,000/100 = 55,600.
 Step 2 — cap Quantity B. Sort the old salaries v1 <= v2 <= ... <= v100. The median says v50 + v51 = 100,000, and since v50 <= v51 the 50th salary is at most 50,000.
@@ -640,27 +656,11 @@ Quantity A is exactly 55,600 and Quantity B is at most 50,000, so Quantity A is 
 
 **Trap.** Choosing D because the individual salaries are unknown. The mean is fixed exactly and the median is capped by the old median - no arrangement of the other 99 salaries can push it past 50,000, so the comparison resolves without knowing a single value. Choosing C assumes the mean collapses onto the median once the outlier is gone; it does not, because the other 99 salaries have not moved.
 
-### Q29 · `STA-MMM-057` — Answer: B, C, D
-
-Step 1 — range = largest - smallest, so the largest value is 4 + 14 = 18. Sum = 5 x 10 = 50.
-Step 2 — sorted, the set is {4, a, m, b, 18} with 4 <= a <= m <= b <= 18, and 4 + a + m + b + 18 = 50, so a + m + b = 28.
-Step 3 — how small can the median m be? Since a <= m and b <= 18, we get 28 = a + m + b <= m + m + 18, so 2m >= 10 and m >= 5.
-Step 4 — how large can m be? Since a >= 4 and b >= m, we get 28 = a + m + b >= 4 + m + m, so 2m <= 24 and m <= 12.
-Step 5 — so the median can be any integer from 5 to 12, and both ends are reachable.
-A - 4 is below the floor. Concretely, a median of 4 forces the three smallest to be 4, 4, 4, so the fourth value would be 50 - 4 - 4 - 4 - 18 = 20, which exceeds the largest value 18. FALSE.
-B - 5 works: {4, 5, 5, 18, 18} has sum 50, median 5, smallest 4, largest 18. TRUE.
-C - 9 works: {4, 6, 9, 13, 18} has sum 50 and median 9. TRUE.
-D - 12 works: {4, 4, 12, 12, 18} has sum 50 and median 12. TRUE.
-E - 14 is above the ceiling of 12. With m = 14 the remaining two values satisfy a + b = 28 - 14 = 14, but a >= 4 and b >= m = 14, so a + b >= 18. Impossible. FALSE.
-Answer: B, C, D.
-
-**Trap.** Both wrong choices come from forgetting that the median is squeezed from both sides. Choice A ignores that the two values ABOVE the median plus the 18 must still fit inside a total of 50; choice E ignores that the two values BELOW the median cannot drop under 4. Fixing the range at 14 also fixes the maximum at exactly 18 - it is an equation, not a lower bound.
-
 ### Q30 · `STA-MMM-060` — Answer: C
 
 Step 1 — Quantity A. The bottom half sums to nM and the top half sums to nM, so all 2n numbers sum to 2nM and the mean is 2nM/(2n) = M.
 Step 2 — Quantity B looks unpinned, but the sorted order hides a very strong consequence. Pair each bottom value with the top value the same distance along the list: a1 with a_{n+1}, a2 with a_{n+2}, and so on up to a_n with a_2n. Because the list is sorted, a_i <= a_{n+i} for every i from 1 to n.
-Step 3 — add those n inequalities: a1 + ... + a_n <= a_{n+1} + ... + a_2n. We are told both sides equal nM, so the sum of the inequalities is actually an equality - which can only happen if EVERY one of them is an equality. Hence a_i = a_{n+i} for all i.
+Step 3 — add those n inequalities: a1 + ... + a_n <= a_{n+1} + ... + a_2n. We are told both sides equal nM, so the sum of the inequalities is actually an equality - which can only happen if every one of them is an equality. Hence a_i = a_{n+i} for all i.
 Step 4 — combine that with the sorted order: a1 = a_{n+1} forces a1 = a2 = ... = a_{n+1}, and the same chain carries through to a_2n. Every value in the set is the same number, and since the mean is M, every value equals M.
 Step 5 — the median of a list whose values are all M is M.
 Quantity A = Quantity B = M. The two quantities are equal.

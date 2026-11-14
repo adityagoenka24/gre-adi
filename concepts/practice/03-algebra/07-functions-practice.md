@@ -1,6 +1,6 @@
 # Functions — Practice Set
 
-**Bank code:** `ALG-FNC` · **Section:** Algebra · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `ALG-FNC` · **Section:** Algebra · **30 questions** — Easy 5 · Medium 13 · Hard 12
 
 **Lecture capsule:** [07-functions.md](../../03-algebra/07-functions.md)
 
@@ -22,7 +22,7 @@ Every question below is live in the question bank under the ID shown — the she
 
 **Q1** · `ALG-FNC-003` · Numeric Entry · 40s
 
-The function h is defined by h(x) = 2x^2 + 3 for all real numbers x. What is h(-2)? Enter your answer as a number.
+The function h is defined by h(x) = 2x^2 + 3 for all real numbers x. What is h(-2)?
 
 *Numeric entry — write the number.*
 
@@ -65,7 +65,7 @@ The function f is defined by f(x) = 3x + 2 for all real numbers x. Which of the 
 
 ---
 
-### Level 2 · Medium — 8 questions · ~11 min
+### Level 2 · Medium — 13 questions · ~19 min
 
 *two or three steps, one planted trap each*
 
@@ -81,7 +81,7 @@ The functions f and g are defined by f(x) = x^2 + x and g(x) = 3x - 2. What is f
 
 **Q7** · `ALG-FNC-018` · Numeric Entry · 85s
 
-The function f is defined by f(x) = (3x + 1)/2 for all real numbers x. What is the value of f^(-1)(5) + f(5)? Enter your answer as a number.
+The function f is defined by f(x) = (3x + 1)/2 for all real numbers x. What is the value of f^(-1)(5) + f(5)?
 
 *Numeric entry — write the number.*
 
@@ -111,7 +111,7 @@ f(x) = x^2 + 2x + 1 for all real numbers x.
 
 **Q11** · `ALG-FNC-026` · Numeric Entry · 85s
 
-For all numbers p and q with q not equal to -2, the operation p ? q is defined by p ? q = (3p + q)/(q + 2). If 6 ? y = 5, what is the value of y? Enter your answer as a number.
+For all numbers p and q with q not equal to -2, the operation p ? q is defined by p ? q = (3p + q)/(q + 2). If 6 ? y = 5, what is the value of y?
 
 *Numeric entry — write the number.*
 
@@ -135,127 +135,13 @@ The function f is defined for all real numbers. The graph of the function h is o
 **(D)** h(x) = f(x + 4) - 5  
 **(E)** h(x) = f(x + 5) + 4
 
----
+**Q14** · `ALG-FNC-041` · Numeric Entry · 100s
 
-### Level 3 · Hard — 12 questions · ~21 min
-
-*where 162+ is won or lost*
-
-**Q14** · `ALG-FNC-037` · Select all that apply · 110s
-
-For all real numbers a and b, the operation a # b is defined by a # b = 2a + b^2. Which of the following statements are true? Select all that apply.
-
-**(A)** 2 # 3 = 3 # 2  
-**(B)** (1 # 2) # 3 = 1 # (2 # 3)  
-**(C)** a # 0 = 0 # a for exactly two real values of a  
-**(D)** a # b = b # a whenever a + b = 2  
-**(E)** (a + c) # b = (a # b) + 2c for all real a, b and c
-
-**Q15** · `ALG-FNC-039` · MCQ · 100s
-
-The function f is defined by f(x) = (x + 1)/(x - 1) for all x not equal to 1. Which of the following is equal to f(f(x)) wherever both sides are defined?
-
-**(A)** -x  
-**(B)** (x + 1)/(x - 1)  
-**(C)** (x - 1)/(x + 1)  
-**(D)** x  
-**(E)** 2x/(x - 1)^2
-
-**Q16** · `ALG-FNC-040` · MCQ · 100s
-
-For all numbers a and b with ab not equal to -1, the operation a # b is defined by a # b = (a + b)/(1 + ab). If 0.5 # x = 1, what is the value of x?
-
-**(A)** 1/3  
-**(B)** 1/2  
-**(C)** 1  
-**(D)** 2  
-**(E)** 3
-
-**Q17** · `ALG-FNC-041` · Numeric Entry · 100s
-
-The function f is defined by f(x) = 2x + 1, and the function g satisfies g(f(x)) = 4x + 5 for all real numbers x. What is the value of g(3)? Enter your answer as a number.
+The function f is defined by f(x) = 2x + 1, and the function g satisfies g(f(x)) = 4x + 5 for all real numbers x. What is the value of g(3)?
 
 *Numeric entry — write the number.*
 
-**Q18** · `ALG-FNC-042` · MCQ · 105s
-
-The function f is defined for all real numbers by:
-
-f(x) = 3 - x, if x <= 1
-
-f(x) = x^2 - 1, if x > 1
-
-For how many values of c is f(c) = 2?
-
-**(A)** 0  
-**(B)** 1  
-**(C)** 2  
-**(D)** 3  
-**(E)** 4
-
-**Q19** · `ALG-FNC-043` · QC · 105s
-
-f(x) = x/(x + 1) for all x > 0.
-
-> **Quantity A:**  f(f(f(3)))
-> **Quantity B:**  f(1/3)
-
-**Q20** · `ALG-FNC-044` · Numeric Entry · 100s
-
-The function f is defined by f(x) = (2x + 3)/(x - 1) for all x not equal to 1, and f^(-1) denotes its inverse. There is exactly one real number that is not in the domain of f^(-1). What is that number? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q21** · `ALG-FNC-045` · MCQ · 105s
-
-For all real numbers x, the function f satisfies f(x) + f(x + 1) = x^2. What is the value of f(3) - f(1)?
-
-**(A)** -3  
-**(B)** 0  
-**(C)** 3  
-**(D)** 5  
-**(E)** 8
-
-**Q22** · `ALG-FNC-046` · Select all that apply · 110s
-
-The function f is defined by f(x) = (x - 2)/(x^2 - 5x + 6) for every real number x at which the expression is defined. Which of the following statements are true? Select all that apply.
-
-**(A)** f(x) = 1/(x - 3) for every x in the domain of f  
-**(B)** f(2) = -1  
-**(C)** f(x) = 0 has no solution  
-**(D)** The range of f excludes both 0 and -1  
-**(E)** f(x) > 0 for every x in the domain of f
-
-**Q23** · `ALG-FNC-047` · QC · 105s
-
-The functions f and g are defined by f(x) = 3x - 1 and g(x) = x/2 for all real numbers x, and h is defined by h(x) = f(g(x)). The notation ^(-1) denotes the inverse of a function.
-
-> **Quantity A:**  h^(-1)(5)
-> **Quantity B:**  g^(-1)(f^(-1)(5))
-
-**Q24** · `ALG-FNC-049` · Numeric Entry · 105s
-
-A function f satisfies f(2x) = 4*f(x) + 6 for all real numbers x. If f(1) + f(2) = 16, what is the value of f(8)? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q25** · `ALG-FNC-053` · Select all that apply · 110s
-
-A function f is defined for all real numbers and satisfies f(x + 2) = f(x) + 4 for every real x, and f(1) = 3. Which of the following statements can be determined to be true from this information? Select all that apply.
-
-**(A)** f(3) = 7  
-**(B)** f(5) = 11  
-**(C)** f(0) = -1  
-**(D)** f(-1) = -1  
-**(E)** f(2) = 5
-
----
-
-### Level 4 · Extreme — 5 questions · ~10 min
-
-*165+ — expect to need the insight, not the grind*
-
-**Q26** · `ALG-FNC-054` · MCQ · 120s
+**Q15** · `ALG-FNC-054` · MCQ · 120s
 
 In the xy-plane, a curve has all of the following properties:
 
@@ -277,13 +163,123 @@ Which of the following could be an equation for this curve?
 **(D)** x = y^2 + 4y + 3  
 **(E)** y = |x - 1| - 4
 
-**Q27** · `ALG-FNC-055` · Numeric Entry · 120s
+**Q16** · `ALG-FNC-040` · MCQ · 90s
 
-The function f is defined by f(x) = x/(1 + x) for all x > 0. If n is a positive integer and f(f(f(n))) = n/10, what is the value of n? Enter your answer as a number.
+For all numbers a and b with ab not equal to -1, the operation a # b is defined by a # b = (a + b)/(1 + ab). If 0.5 # x = 1, what is the value of x?
+
+**(A)** 1/3  
+**(B)** 1/2  
+**(C)** 1  
+**(D)** 2  
+**(E)** 3
+
+**Q17** · `ALG-FNC-045` · MCQ · 80s
+
+The function f is defined by f(x) = x^2 + c for all numbers x, where c is a constant. If f(3) = 2 * f(1), what is the value of f(2)?
+
+**(A)** 4  
+**(B)** 7  
+**(C)** 9  
+**(D)** 11  
+**(E)** 16
+
+**Q18** · `ALG-FNC-049` · Numeric Entry · 75s
+
+For all numbers x and y, the operation @ is defined by x @ y = x^2 - y. If (3 @ 2) @ k = 40, what is the value of k?
 
 *Numeric entry — write the number.*
 
-**Q28** · `ALG-FNC-056` · MCQ · 125s
+---
+
+### Level 3 · Hard — 12 questions · ~21 min
+
+*where 162+ is won or lost*
+
+**Q19** · `ALG-FNC-037` · Select all that apply · 110s
+
+For all real numbers a and b, the operation a # b is defined by a # b = 2a + b^2. Which of the following statements are true? Select all that apply.
+
+**(A)** 2 # 3 = 3 # 2  
+**(B)** (1 # 2) # 3 = 1 # (2 # 3)  
+**(C)** a # 0 = 0 # a for exactly two real values of a  
+**(D)** a # b = b # a whenever a + b = 2  
+**(E)** (a + c) # b = (a # b) + 2c for all real a, b and c
+
+**Q20** · `ALG-FNC-039` · MCQ · 100s
+
+The function f is defined by f(x) = (x + 1)/(x - 1) for all x not equal to 1. Which of the following is equal to f(f(x)) wherever both sides are defined?
+
+**(A)** -x  
+**(B)** (x + 1)/(x - 1)  
+**(C)** (x - 1)/(x + 1)  
+**(D)** x  
+**(E)** 2x/(x - 1)^2
+
+**Q21** · `ALG-FNC-042` · MCQ · 105s
+
+The function f is defined for all real numbers by:
+
+f(x) = 3 - x, if x <= 1
+
+f(x) = x^2 - 1, if x > 1
+
+For how many values of c is f(c) = 2?
+
+**(A)** 0  
+**(B)** 1  
+**(C)** 2  
+**(D)** 3  
+**(E)** 4
+
+**Q22** · `ALG-FNC-043` · QC · 105s
+
+f(x) = x/(x + 1) for all x > 0.
+
+> **Quantity A:**  f(f(f(3)))
+> **Quantity B:**  f(1/3)
+
+**Q23** · `ALG-FNC-044` · Numeric Entry · 95s
+
+The function f is defined by f(x) = x^2 - 2x for all numbers x. If f(k) = f(k + 4), what is the value of k?
+
+*Numeric entry — write the number.*
+
+**Q24** · `ALG-FNC-046` · Select all that apply · 100s
+
+The function f is defined by f(x) = x^2 - 4x for all numbers x. Which of the following statements are true?
+
+Indicate all such statements.
+
+**(A)** f(0) = f(4)  
+**(B)** f(1) = f(3)  
+**(C)** f(-1) = f(4)  
+**(D)** f(x) >= -4 for all numbers x  
+**(E)** f(x) > 0 for all x > 3
+
+**Q25** · `ALG-FNC-047` · QC · 80s
+
+The function f is defined by f(x) = x^2 for all numbers x.
+
+> **Quantity A:**  f(a + 1)
+> **Quantity B:**  f(a) + 1
+
+**Q26** · `ALG-FNC-053` · Select all that apply · 110s
+
+A function f is defined for all real numbers and satisfies f(x + 2) = f(x) + 4 for every real x, and f(1) = 3. Which of the following statements can be determined to be true from this information? Select all that apply.
+
+**(A)** f(3) = 7  
+**(B)** f(5) = 11  
+**(C)** f(0) = -1  
+**(D)** f(-1) = -1  
+**(E)** f(2) = 5
+
+**Q27** · `ALG-FNC-055` · Numeric Entry · 120s
+
+The function f is defined by f(x) = x/(1 + x) for all x > 0. If n is a positive integer and f(f(f(n))) = n/10, what is the value of n?
+
+*Numeric entry — write the number.*
+
+**Q28** · `ALG-FNC-056` · MCQ · 110s
 
 A function f satisfies f(x)*f(1 - x) = 1 for every x at which both values are defined, and f(1/2) > 0. If f(1/3) = 2, what is the value of f(1/3) + f(2/3) + f(1/2)?
 
@@ -293,22 +289,24 @@ A function f satisfies f(x)*f(1 - x) = 1 for every x at which both values are de
 **(D)** 3  
 **(E)** 7/2
 
-**Q29** · `ALG-FNC-057` · QC · 130s
+**Q29** · `ALG-FNC-057` · QC · 110s
 
 f(x) = x + 1/x for all x > 0. The numbers a and b are positive and satisfy a + b = 4.
 
 > **Quantity A:**  f(a) + f(b)
 > **Quantity B:**  f(4)
 
-**Q30** · `ALG-FNC-058` · Select all that apply · 125s
+**Q30** · `ALG-FNC-058` · Select all that apply · 100s
 
-A function f is defined for all positive integers and satisfies f(mn) = f(m) + f(n) for all positive integers m and n. If f(2) = 1, which of the following statements can be determined to be true from this information? Select all that apply.
+For which of the following functions f is f(a + b) = f(a) + f(b) for all numbers a and b?
 
-**(A)** f(4) = 2  
-**(B)** f(8) = 3  
-**(C)** f(6) = 1 + f(3)  
-**(D)** f(1) = 1  
-**(E)** f(3) = 1
+Indicate all such functions.
+
+**(A)** f(x) = 5x  
+**(B)** f(x) = x - 5  
+**(C)** f(x) = x^2  
+**(D)** f(x) = -x/4  
+**(E)** f(x) = 5
 
 ---
 
@@ -329,23 +327,23 @@ A function f is defined for all positive integers and satisfies f(mn) = f(m) + f
 | 11 | `ALG-FNC-026` | medium | Numeric Entry | **2** |
 | 12 | `ALG-FNC-027` | medium | MCQ | **D** |
 | 13 | `ALG-FNC-061` | medium | MCQ | **B** |
-| 14 | `ALG-FNC-037` | hard | Select all that apply | **C, D, E** |
-| 15 | `ALG-FNC-039` | hard | MCQ | **D** |
-| 16 | `ALG-FNC-040` | hard | MCQ | **C** |
-| 17 | `ALG-FNC-041` | hard | Numeric Entry | **9** |
-| 18 | `ALG-FNC-042` | hard | MCQ | **C** |
-| 19 | `ALG-FNC-043` | hard | QC | **A** |
-| 20 | `ALG-FNC-044` | hard | Numeric Entry | **2** |
-| 21 | `ALG-FNC-045` | hard | MCQ | **C** |
-| 22 | `ALG-FNC-046` | hard | Select all that apply | **A, C, D** |
-| 23 | `ALG-FNC-047` | hard | QC | **C** |
-| 24 | `ALG-FNC-049` | hard | Numeric Entry | **254** |
-| 25 | `ALG-FNC-053` | hard | Select all that apply | **A, B, D** |
-| 26 | `ALG-FNC-054` | extreme hard | MCQ | **A** |
-| 27 | `ALG-FNC-055` | extreme hard | Numeric Entry | **3** |
-| 28 | `ALG-FNC-056` | extreme hard | MCQ | **E** |
-| 29 | `ALG-FNC-057` | extreme hard | QC | **A** |
-| 30 | `ALG-FNC-058` | extreme hard | Select all that apply | **A, B, C** |
+| 14 | `ALG-FNC-041` | medium | Numeric Entry | **9** |
+| 15 | `ALG-FNC-054` | medium | MCQ | **A** |
+| 16 | `ALG-FNC-040` | medium | MCQ | **C** |
+| 17 | `ALG-FNC-045` | medium | MCQ | **D** |
+| 18 | `ALG-FNC-049` | medium | Numeric Entry | **9** |
+| 19 | `ALG-FNC-037` | hard | Select all that apply | **C, D, E** |
+| 20 | `ALG-FNC-039` | hard | MCQ | **D** |
+| 21 | `ALG-FNC-042` | hard | MCQ | **C** |
+| 22 | `ALG-FNC-043` | hard | QC | **A** |
+| 23 | `ALG-FNC-044` | hard | Numeric Entry | **-1** |
+| 24 | `ALG-FNC-046` | hard | Select all that apply | **A, B, D** |
+| 25 | `ALG-FNC-047` | hard | QC | **D** |
+| 26 | `ALG-FNC-053` | hard | Select all that apply | **A, B, D** |
+| 27 | `ALG-FNC-055` | hard | Numeric Entry | **3** |
+| 28 | `ALG-FNC-056` | hard | MCQ | **E** |
+| 29 | `ALG-FNC-057` | hard | QC | **A** |
+| 30 | `ALG-FNC-058` | hard | Select all that apply | **A, D** |
 
 ---
 
@@ -386,7 +384,7 @@ Answer: C.
 Step 1 — read the definition as a template: the first entry is doubled, the second is added as it stands.
 Step 2 — substitute p = 3 and q = 4: 3 # 4 = 2*3 + 4.
 Step 3 — compute: 6 + 4 = 10.
-Check: compute 4 # 3 the same way, 2*4 + 3 = 11. The two disagree, which is the expected behaviour - the definition treats the two slots differently, so the order cannot be swapped. Correct.
+Check: compute 4 # 3 the same way, 2*4 + 3 = 11. The two disagree, which is the expected behavior - the definition treats the two slots differently, so the order cannot be swapped. Correct.
 Answer: B.
 
 **Trap.** Assuming the new symbol must be commutative like + or *, and computing 4 # 3 = 2*4 + 3 = 11, which is choice C. A made-up symbol carries no properties beyond its written definition. Choice A, 7, ignores the 2 and just adds; choice D, 14, applies the 2 to the whole sum as 2*(3 + 4); choice E, 24, multiplies all three numbers as 2*3*4.
@@ -435,11 +433,11 @@ Answer: B.
 
 Step 1 — state the restriction. A square root is defined only when what sits under it is greater than or equal to 0, so g(x) is defined exactly when x^2 - 4 >= 0.
 Step 2 — test each option by computing f(x) first.
-A. x = -3: f(-3) = 9 - 4 = 5, and sqrt(5) is defined. TRUE.
-B. x = -1: f(-1) = 1 - 4 = -3, and sqrt(-3) is not a real number. FALSE.
-C. x = 0: f(0) = 0 - 4 = -4, and sqrt(-4) is not a real number. FALSE.
-D. x = 2: f(2) = 4 - 4 = 0, and sqrt(0) = 0, which is perfectly defined. TRUE.
-E. x = 3: f(3) = 9 - 4 = 5, and sqrt(5) is defined. TRUE.
+A. x = -3: f(-3) = 9 - 4 = 5, and sqrt(5) is defined. True.
+B. x = -1: f(-1) = 1 - 4 = -3, and sqrt(-3) is not a real number. False.
+C. x = 0: f(0) = 0 - 4 = -4, and sqrt(-4) is not a real number. False.
+D. x = 2: f(2) = 4 - 4 = 0, and sqrt(0) = 0, which is perfectly defined. True.
+E. x = 3: f(3) = 9 - 4 = 5, and sqrt(5) is defined. True.
 Check: the condition x^2 >= 4 means the distance from x to 0 is at least 2, so the allowed inputs are x <= -2 together with x >= 2. Of the five listed values, -3, 2 and 3 satisfy that and -1 and 0 do not, which matches the option-by-option work. Correct.
 Answer: A, D and E.
 
@@ -486,43 +484,7 @@ Answer: B.
 
 **Trap.** Matching the sign to the direction word and choosing A, f(x + 4) + 5, because 'right' sounds like 'add'. Inputs work backwards: f(x + 4) reaches forward to what f does later, which slides the picture LEFT, and f(x - 4) slides it right. Choice E swaps the two numbers as well as the sign; choices C and D take the vertical shift downward.
 
-### Q14 · `ALG-FNC-037` — Answer: C, D, E
-
-Step 1 — fix the template: the LEFT entry is doubled, the RIGHT entry is squared. Every claim below is decided by substitution alone.
-A. 2 # 3 = 2*2 + 3^2 = 4 + 9 = 13, while 3 # 2 = 2*3 + 2^2 = 6 + 4 = 10. 13 is not 10. FALSE.
-B. Left side: 1 # 2 = 2 + 4 = 6, then 6 # 3 = 12 + 9 = 21. Right side: 2 # 3 = 4 + 9 = 13, then 1 # 13 = 2 + 169 = 171. 21 is not 171. FALSE.
-C. a # 0 = 2a + 0 = 2a, and 0 # a = 0 + a^2 = a^2. Setting 2a = a^2 gives a^2 - 2a = 0, so a(a - 2) = 0 and a = 0 or a = 2. That is exactly two values. TRUE.
-D. a # b = 2a + b^2 and b # a = 2b + a^2. Their difference is 2a + b^2 - 2b - a^2 = -(a^2 - b^2) + 2(a - b) = -(a - b)(a + b) + 2(a - b) = -(a - b)(a + b - 2). If a + b = 2 the second factor is 0, so the difference is 0 and the two sides agree. TRUE.
-E. (a + c) # b = 2(a + c) + b^2 = 2a + 2c + b^2, and (a # b) + 2c = (2a + b^2) + 2c = 2a + b^2 + 2c. Identical for every a, b and c. TRUE.
-Check: the factorisation in D also settles A and C at a glance. The difference vanishes exactly when a = b or a + b = 2; the pair (2, 3) satisfies neither, which is why A fails, and the pair (a, 0) satisfies one of them only when a = 0 or a = 2, which is C. Correct.
-Answer: C, D and E.
-
-**Trap.** Treating # as if it inherited the properties of + and *, and selecting A and B because familiar operations are commutative and associative. A made-up symbol has only the properties its definition forces. The subtler error is rejecting D on the strength of A: a # b = b # a fails for most pairs, but it does not fail for all of them, and a + b = 2 is precisely the extra family where it holds. Rejecting E by assuming that nothing distributes across a strange symbol misses that c enters only the doubled slot, where it contributes exactly 2c.
-
-### Q15 · `ALG-FNC-039` — Answer: D
-
-Step 1 — substitute the whole of f(x) into the rule in place of x. Writing u = (x + 1)/(x - 1), f(f(x)) = f(u) = (u + 1)/(u - 1).
-Step 2 — build the numerator: u + 1 = (x + 1)/(x - 1) + 1 = [(x + 1) + (x - 1)]/(x - 1) = 2x/(x - 1).
-Step 3 — build the denominator: u - 1 = (x + 1)/(x - 1) - 1 = [(x + 1) - (x - 1)]/(x - 1) = 2/(x - 1).
-Step 4 — divide the two. Both carry the same denominator (x - 1), which cancels: f(f(x)) = [2x/(x - 1)] / [2/(x - 1)] = 2x/2 = x.
-Check: test a number the algebra did not use. f(3) = 4/2 = 2, then f(2) = 3/1 = 3, which is the number we started from. Try another: f(0) = 1/(-1) = -1, then f(-1) = 0/(-2) = 0. The rule is its own inverse. Correct.
-Answer: D.
-
-**Trap.** Multiplying the rule by itself instead of feeding it into itself, which gives (x + 1)^2/(x - 1)^2 and, after a mis-cancellation, choice B - the same answer a student reaches by assuming f(f(x)) just means f(x) again. Choice C is the reciprocal of f(x), from swapping numerator and denominator instead of composing; choice E is the Step 2 numerator 2x/(x - 1) divided by (x - 1) rather than by the Step 3 denominator 2/(x - 1); choice A, -x, comes from subtracting in the wrong order in Step 3, writing u - 1 as [(x - 1) - (x + 1)]/(x - 1) = -2/(x - 1), which flips the sign of the quotient.
-
-### Q16 · `ALG-FNC-040` — Answer: C
-
-Step 1 - do not substitute yet. Ask what a # b = 1 means in general: (a + b)/(1 + ab) = 1 forces a + b = 1 + ab.
-Step 2 - move everything to one side: 0 = 1 - a - b + ab, and that factors as (1 - a)(1 - b) = 0.
-Step 3 - read the factorisation. The output is 1 exactly when a = 1 or b = 1, and nothing else about a and b matters. The 0.5 in the stem is a decoy: since 0.5 is not 1, the only way to hit 1 is the other factor.
-Step 4 - conclude x = 1.
-Step 5 - confirm by the slow route, which must agree: (0.5 + x)/(1 + 0.5x) = 1 gives 0.5 + x = 1 + 0.5x, so x - 0.5x = 1 - 0.5, so 0.5x = 0.5 and x = 1.
-Check: 0.5 # 1 = (0.5 + 1)/(1 + 0.5*1) = 1.5/1.5 = 1, and ab = 0.5 is not -1, so the operation is defined. Correct.
-Answer: C.
-
-**Trap.** Choice B, 1/2, comes from ignoring the denominator and solving 0.5 + x = 1; the 1 + ab underneath moves when x moves, so it cannot be dropped. Choice A, 1/3, comes from using the minus version of the template, (a + b)/(1 - ab), so that Step 5 reads 0.5 + x = 1 - 0.5x and 1.5x = 0.5. Choice E, 3, comes from carrying the 0.5 across with the wrong sign, x - 0.5x = 1 + 0.5, giving 0.5x = 1.5. Choice D, 2, comes from the guess that an output of 1 means the inputs are reciprocals, so x = 1/0.5; the factorisation shows the condition is a = 1 or b = 1, not ab = 1.
-
-### Q17 · `ALG-FNC-041` — Answer: 9
+### Q14 · `ALG-FNC-041` — Answer: 9
 
 Step 1 — notice what g is actually told. The identity gives the output of g only when the input is of the form f(x). To learn g(3), find the x for which f(x) = 3.
 Step 2 — solve f(x) = 3: 2x + 1 = 3, so 2x = 2 and x = 1.
@@ -533,7 +495,72 @@ Answer: 9.
 
 **Trap.** Substituting 3 straight into the right-hand side and answering 4*3 + 5 = 17. That computes g(f(3)) = g(7), not g(3). The x in 4x + 5 is the input to f, not the input to g, so it must first be pulled back through f. A second error is reversing the composition and computing f(g(3)) or reading the identity as g(x)*f(x).
 
-### Q18 · `ALG-FNC-042` — Answer: C
+### Q15 · `ALG-FNC-054` — Answer: A
+
+Step 1 — use the last property first, because it eliminates without any arithmetic. 'No vertical line meets it more than once' is the vertical line test: the curve must be the graph of a function of x. Choice D is solved for x in terms of y, and at x = 0 it gives y^2 + 4y + 3 = 0, so y = -3 and y = -1 - two points on one vertical line. Choice D is out, even though it does pass through (0, -3) and (3, 0).
+Step 2 — test the cheapest point, x = 0, which is the standard first move on a 'which function has this graph' question. A: 0 - 0 - 3 = -3, passes. B: -3, passes. C: 0 + 0 + 3 = 3, not -3, so choice C is out. E: |0 - 1| - 4 = 1 - 4 = -3, passes.
+Step 3 — test the second point, x = 3. A: 9 - 6 - 3 = 0, passes. B: 9 + 6 - 3 = 12, not 0, so choice B is out. E: |3 - 1| - 4 = 2 - 4 = -2, not 0, so choice E is out.
+Step 4 — only choice A survives, so confirm it against the two remaining properties. y = x^2 - 2x - 3 = (x - 1)^2 - 4, a parabola with vertex (1, -4), so it is symmetric about x = 1 as required. Setting it to 0 gives (x - 1)^2 = 4, so x = 3 and x = -1: exactly two x-intercepts.
+Check: choice A satisfies all five properties. (0, -3) and (3, 0) lie on it, its axis of symmetry is x = 1, it cuts the x-axis at 3 and -1 only, and every parabola of the form y = (a function of x) passes the vertical line test. Correct.
+Answer: A.
+
+**Trap.** Choosing D because it is the only option that passes through both named points and is symmetric in the way a sideways parabola looks symmetric. An equation solved for x in terms of y is not automatically a function of x, and this one fails the vertical line test at every x greater than -1. Choice E is the strongest near-miss: it hits (0, -3), is symmetric about x = 1, and has exactly two x-intercepts (at x = 5 and x = -3), but it misses (3, 0), giving -2 instead. Choice C is choice A reflected in the x-axis, which keeps the x-intercepts 3 and -1 and the axis x = 1 but flips the y-intercept to +3. Choice B keeps the y-intercept -3 but is symmetric about x = -1, so it sends x = 3 to 12.
+
+### Q16 · `ALG-FNC-040` — Answer: C
+
+Step 1 - do not substitute yet. Ask what a # b = 1 means in general: (a + b)/(1 + ab) = 1 forces a + b = 1 + ab.
+Step 2 - move everything to one side: 0 = 1 - a - b + ab, and that factors as (1 - a)(1 - b) = 0.
+Step 3 - read the factorization. The output is 1 exactly when a = 1 or b = 1, and nothing else about a and b matters. The 0.5 in the stem is a decoy: since 0.5 is not 1, the only way to hit 1 is the other factor.
+Step 4 - conclude x = 1.
+Step 5 - confirm by the slow route, which must agree: (0.5 + x)/(1 + 0.5x) = 1 gives 0.5 + x = 1 + 0.5x, so x - 0.5x = 1 - 0.5, so 0.5x = 0.5 and x = 1.
+Check: 0.5 # 1 = (0.5 + 1)/(1 + 0.5*1) = 1.5/1.5 = 1, and ab = 0.5 is not -1, so the operation is defined. Correct.
+Answer: C.
+
+**Trap.** Choice B, 1/2, comes from ignoring the denominator and solving 0.5 + x = 1; the 1 + ab underneath moves when x moves, so it cannot be dropped. Choice A, 1/3, comes from using the minus version of the template, (a + b)/(1 - ab), so that Step 5 reads 0.5 + x = 1 - 0.5x and 1.5x = 0.5. Choice E, 3, comes from carrying the 0.5 across with the wrong sign, x - 0.5x = 1 + 0.5, giving 0.5x = 1.5. Choice D, 2, comes from the guess that an output of 1 means the inputs are reciprocals, so x = 1/0.5; the factorization shows the condition is a = 1 or b = 1, not ab = 1.
+
+### Q17 · `ALG-FNC-045` — Answer: D
+
+f(3) = 9 + c and f(1) = 1 + c.
+9 + c = 2(1 + c) = 2 + 2c, so c = 7.
+f(2) = 4 + 7 = 11.
+Check: f(3) = 16 and f(1) = 8, and 16 = 2 * 8.
+Answer: D.
+
+**Trap.** Stopping at c = 7 (choice B). The question asks for f(2), which is 2^2 + 7.
+
+### Q18 · `ALG-FNC-049` — Answer: 9
+
+First: 3 @ 2 = 3^2 - 2 = 7.
+Then: 7 @ k = 7^2 - k = 49 - k.
+49 - k = 40, so k = 9.
+
+**Trap.** Squaring the wrong entry in the second step: k^2 - 7 = 40 gives k^2 = 47. The operation squares its first entry, and 3 @ 2 = 7 is the first entry of the second operation.
+
+### Q19 · `ALG-FNC-037` — Answer: C, D, E
+
+Step 1 — fix the template: the LEFT entry is doubled, the RIGHT entry is squared. Every claim below is decided by substitution alone.
+A. 2 # 3 = 2*2 + 3^2 = 4 + 9 = 13, while 3 # 2 = 2*3 + 2^2 = 6 + 4 = 10. 13 is not 10. False.
+B. Left side: 1 # 2 = 2 + 4 = 6, then 6 # 3 = 12 + 9 = 21. Right side: 2 # 3 = 4 + 9 = 13, then 1 # 13 = 2 + 169 = 171. 21 is not 171. False.
+C. a # 0 = 2a + 0 = 2a, and 0 # a = 0 + a^2 = a^2. Setting 2a = a^2 gives a^2 - 2a = 0, so a(a - 2) = 0 and a = 0 or a = 2. That is exactly two values. True.
+D. a # b = 2a + b^2 and b # a = 2b + a^2. Their difference is 2a + b^2 - 2b - a^2 = -(a^2 - b^2) + 2(a - b) = -(a - b)(a + b) + 2(a - b) = -(a - b)(a + b - 2). If a + b = 2 the second factor is 0, so the difference is 0 and the two sides agree. True.
+E. (a + c) # b = 2(a + c) + b^2 = 2a + 2c + b^2, and (a # b) + 2c = (2a + b^2) + 2c = 2a + b^2 + 2c. Identical for every a, b and c. True.
+Check: the factorization in D also settles A and C at a glance. The difference vanishes exactly when a = b or a + b = 2; the pair (2, 3) satisfies neither, which is why A fails, and the pair (a, 0) satisfies one of them only when a = 0 or a = 2, which is C. Correct.
+Answer: C, D and E.
+
+**Trap.** Treating # as if it inherited the properties of + and *, and selecting A and B because familiar operations are commutative and associative. A made-up symbol has only the properties its definition forces. The subtler error is rejecting D on the strength of A: a # b = b # a fails for most pairs, but it does not fail for all of them, and a + b = 2 is precisely the extra family where it holds. Rejecting E by assuming that nothing distributes across a strange symbol misses that c enters only the doubled slot, where it contributes exactly 2c.
+
+### Q20 · `ALG-FNC-039` — Answer: D
+
+Step 1 — substitute the whole of f(x) into the rule in place of x. Writing u = (x + 1)/(x - 1), f(f(x)) = f(u) = (u + 1)/(u - 1).
+Step 2 — build the numerator: u + 1 = (x + 1)/(x - 1) + 1 = [(x + 1) + (x - 1)]/(x - 1) = 2x/(x - 1).
+Step 3 — build the denominator: u - 1 = (x + 1)/(x - 1) - 1 = [(x + 1) - (x - 1)]/(x - 1) = 2/(x - 1).
+Step 4 — divide the two. Both carry the same denominator (x - 1), which cancels: f(f(x)) = [2x/(x - 1)] / [2/(x - 1)] = 2x/2 = x.
+Check: test a number the algebra did not use. f(3) = 4/2 = 2, then f(2) = 3/1 = 3, which is the number we started from. Try another: f(0) = 1/(-1) = -1, then f(-1) = 0/(-2) = 0. The rule is its own inverse. Correct.
+Answer: D.
+
+**Trap.** Multiplying the rule by itself instead of feeding it into itself, which gives (x + 1)^2/(x - 1)^2 and, after a mis-cancellation, choice B - the same answer a student reaches by assuming f(f(x)) just means f(x) again. Choice C is the reciprocal of f(x), from swapping numerator and denominator instead of composing; choice E is the Step 2 numerator 2x/(x - 1) divided by (x - 1) rather than by the Step 3 denominator 2/(x - 1); choice A, -x, comes from subtracting in the wrong order in Step 3, writing u - 1 as [(x - 1) - (x + 1)]/(x - 1) = -2/(x - 1), which flips the sign of the quotient.
+
+### Q21 · `ALG-FNC-042` — Answer: C
 
 Step 1 — treat the two branches as two separate equations, and check every solution against the condition that owns its branch.
 Step 2 — first branch, valid only for c <= 1. Solve 3 - c = 2: c = 1. Since 1 <= 1, this solution is admissible. That is one value.
@@ -545,7 +572,7 @@ Answer: C.
 
 **Trap.** Keeping -sqrt(3) because it solves c^2 - 1 = 2, which gives 3 values and choice D. A root of a branch counts only if it lies in the region where that branch is the rule. The mirror-image error is discarding c = 1 on the belief that the boundary belongs to the other piece; the condition is x <= 1, so 1 is covered by the first branch, and dropping it gives choice B. Choice E, 4, comes from squaring the equation to f(c)^2 = 4 and then solving both branches for both signs without the conditions: 3 - c = 2 gives c = 1, 3 - c = -2 gives c = 5, c^2 - 1 = 2 gives c = sqrt(3) and c = -sqrt(3), four candidates in all. Choice A, 0, comes from compounding two screening slips: reading the first branch's condition as the strict c < 1, which throws away c = 1, and mis-solving the second branch as c^2 = 2 - 1 = 1, whose roots 1 and -1 both fail c > 1. With nothing left after either screen the count reads 0.
 
-### Q19 · `ALG-FNC-043` — Answer: A
+### Q22 · `ALG-FNC-043` — Answer: A
 
 Step 1 — work the innermost application in Quantity A first: f(3) = 3/(3 + 1) = 3/4.
 Step 2 — feed that output back in: f(3/4) = (3/4)/((3/4) + 1) = (3/4)/(7/4). The 4s cancel, leaving 3/7.
@@ -558,96 +585,52 @@ Answer: A.
 
 **Trap.** Dropping the brackets in Quantity B and reading f(1/3) as (1/3)/(1/3) + 1 = 2. That makes Quantity B look far larger and produces choice B. The whole of x + 1 sits under the fraction bar, so the denominator is 4/3, not 1/3. Reading the triple application as f(3) cubed, 27/64, or as 3*f(3) = 9/4 reaches the right letter for the wrong reason and would fail on closer columns. Answering D because three nested applications look unpredictable ignores that x is pinned at 3 and every value is computable.
 
-### Q20 · `ALG-FNC-044` — Answer: 2
+### Q23 · `ALG-FNC-044` — Answer: -1
 
-Step 1 — translate the question. The domain of f^(-1) is the set of numbers f^(-1) can accept, which is exactly the set of outputs f actually produces - the range of f. So the question asks which value f never takes.
-Step 2 — build the inverse rule. Put y = (2x + 3)/(x - 1) and solve for x: y*(x - 1) = 2x + 3, so xy - y = 2x + 3, then xy - 2x = y + 3 and x*(y - 2) = y + 3.
-Step 3 — divide: x = (y + 3)/(y - 2), so f^(-1)(y) = (y + 3)/(y - 2). This rule is defined for every y except y = 2, where the denominator is 0.
-Step 4 — confirm from the forward direction. Setting f(x) = 2 gives (2x + 3)/(x - 1) = 2, so 2x + 3 = 2x - 2 and 3 = -2, which is impossible. No input is sent to 2, so 2 is outside the range of f and outside the domain of f^(-1).
-Check: test the rule at a value that is allowed. f^(-1)(4) = (4 + 3)/(4 - 2) = 7/2, and running it forward, f(7/2) = (7 + 3)/(7/2 - 1) = 10/(5/2) = 4. The rule works everywhere except at y = 2. Correct.
-Answer: 2.
+f(k) = k^2 - 2k.
+f(k + 4) = (k + 4)^2 - 2(k + 4) = k^2 + 8k + 16 - 2k - 8 = k^2 + 6k + 8.
+Set them equal: k^2 - 2k = k^2 + 6k + 8, so -8k = 8 and k = -1.
+Check: f(-1) = 1 + 2 = 3 and f(3) = 9 - 6 = 3.
 
-**Trap.** Answering 1, copying the excluded input x = 1 straight across. That number is missing from the domain of f, and the domain of f is the RANGE of f^(-1), not its domain - the two restrictions sit on opposite sides. A second error is answering -3, the value that makes the inverse rule's numerator zero; f^(-1)(-3) = 0, which is perfectly defined. A third is reading f^(-1) as the reciprocal 1/f and hunting for where f(x) = 0, which gives x = -3/2.
+**Trap.** Expanding (k + 4)^2 as k^2 + 16 and losing the 8k term; the equation then reduces to 0 = 8, which has no solution. With the 8k term kept, -8k = 8 and k = -1.
 
-### Q21 · `ALG-FNC-045` — Answer: C
+### Q24 · `ALG-FNC-046` — Answer: A, B, D
 
-Step 1 — notice that no formula for f is available or needed. The identity links consecutive outputs, so choose the two substitutions whose overlap is the unwanted term.
-Step 2 — put x = 1 into the identity: f(1) + f(2) = 1^2 = 1.
-Step 3 — put x = 2 into the identity: f(2) + f(3) = 2^2 = 4.
-Step 4 — subtract the first equation from the second. The f(2) terms cancel: [f(2) + f(3)] - [f(1) + f(2)] = 4 - 1, so f(3) - f(1) = 3.
-Check: build an actual f consistent with the identity and test it. Pick f(1) = 0. Then f(2) = 1 from Step 2, and f(3) = 4 - 1 = 3 from Step 3, so f(3) - f(1) = 3 - 0 = 3. Pick f(1) = 10 instead: f(2) = -9 and f(3) = 13, and 13 - 10 = 3 again. The difference is fixed even though the individual values are not. Correct.
-Answer: C.
+A: f(0) = 0 and f(4) = 16 - 16 = 0. True.
+B: f(1) = 1 - 4 = -3 and f(3) = 9 - 12 = -3. True.
+C: f(-1) = 1 + 4 = 5 and f(4) = 0. False.
+D: f(x) = x^2 - 4x = (x - 2)^2 - 4, and (x - 2)^2 >= 0, so f(x) >= -4. True.
+E: f(3.5) = 12.25 - 14 = -1.75, which is not positive. False. (f(x) = x(x - 4) is positive only for x > 4 or x < 0.)
+Answer: A, B, D.
 
-**Trap.** Substituting x = 3 and x = 1 straight into the identity and subtracting the right-hand sides, 9 - 1 = 8, which is choice E. Each equation contains two unknown outputs, so a right-hand side is never a single value of f. Choice A, -3, subtracts the two correct equations in the wrong order, giving f(1) - f(3) = 1 - 4; choice D, 5, adds them instead of subtracting, 1 + 4, which leaves f(1) + 2*f(2) + f(3) rather than a difference; choice B, 0, assumes the identity makes f repeat every 2 units, so that f(3) = f(1).
+**Trap.** Selecting E after testing x = 5 or x = 10. Between 3 and 4 the factor x - 4 is still negative, so f(x) is negative there.
 
-### Q22 · `ALG-FNC-046` — Answer: A, C, D
+### Q25 · `ALG-FNC-047` — Answer: D
 
-Step 1 — factor the denominator: x^2 - 5x + 6 = (x - 2)(x - 3). The domain therefore excludes x = 2 and x = 3, the two inputs that make the denominator 0.
-Step 2 — cancel the common factor, which is legal only where it is not 0, that is for x not equal to 2: f(x) = (x - 2)/[(x - 2)(x - 3)] = 1/(x - 3).
-Step 3 — test each statement.
-A. The cancellation in Step 2 is valid at every x the domain allows, since the domain already excludes 2 and 3. TRUE.
-B. x = 2 makes the original denominator 0, so 2 is not in the domain and f(2) is not a number at all. The simplified form is not a licence to evaluate outside the domain. FALSE.
-C. A fraction is 0 only when its numerator is 0. In the simplified form the numerator is the constant 1, which is never 0. TRUE.
-D. As x runs over the domain, 1/(x - 3) takes every nonzero value once - so 0 is excluded. The value -1 would need 1/(x - 3) = -1, that is x - 3 = -1 and x = 2, and x = 2 is not in the domain. So -1 is excluded too. TRUE.
-E. Take x = 0, which is in the domain: f(0) = 1/(0 - 3) = -1/3, a negative number. FALSE.
-Check: evaluate two admissible inputs directly from the original expression. At x = 4: (4 - 2)/(16 - 20 + 6) = 2/2 = 1, and 1/(4 - 3) = 1, so A holds there. At x = 0: (0 - 2)/(0 - 0 + 6) = -2/6 = -1/3, matching the simplified value and confirming E is false. The output -1 never appears, which is exactly what D claims. Correct.
-Answer: A, C and D.
+Quantity A: (a + 1)^2 = a^2 + 2a + 1.
+Quantity B: a^2 + 1.
+Quantity A minus Quantity B = 2a.
+If a > 0, Quantity A is greater; if a = 0, the two are equal; if a < 0, Quantity B is greater.
+Answer: D.
 
-**Trap.** Selecting B by simplifying first and then substituting: 1/(2 - 3) = -1 looks like a value of f, but cancelling (x - 2) removed the very point x = 2, where the original expression is 0/0. Cancellation changes the domain, and the domain is set by the expression as written. Statement D is the same fact stated from the output side, so a student who accepts B must reject D; the two cannot both hold. Rejecting C by hunting for a root of the numerator x - 2 and finding x = 2 is the other trap - that candidate is outside the domain.
+**Trap.** Testing a = 1 or a = 2 and choosing A. Nothing restricts a to positive values; at a = 0 the quantities are equal and at a = -1 Quantity B is greater.
 
-### Q23 · `ALG-FNC-047` — Answer: C
-
-Step 1 — build h explicitly, inner function first: h(x) = f(g(x)) = f(x/2) = 3*(x/2) - 1 = (3x)/2 - 1.
-Step 2 — Quantity A asks which input h sends to 5. Solve (3x)/2 - 1 = 5: (3x)/2 = 6, so 3x = 12 and x = 4.
-Step 3 — Quantity B, inner first. f^(-1)(5) asks which input f sends to 5: 3x - 1 = 5 gives 3x = 6 and x = 2.
-Step 4 — now the outer piece. g^(-1)(2) asks which input g sends to 2: x/2 = 2 gives x = 4.
-Step 5 — both columns equal 4, so the quantities are equal.
-Step 6 — the general fact behind it, which decides the comparison without any arithmetic: h applies g and then f, so undoing h means undoing f first and then g. That is (f(g(x)))^(-1) evaluated at y equals g^(-1)(f^(-1)(y)) for every y, not only for y = 5. The two columns are the same quantity written two ways.
-Check: run the common value forward through h. h(4) = 3*(4/2) - 1 = 6 - 1 = 5, which is the number both columns were asked about. Correct.
-Answer: C.
-
-**Trap.** Undoing the composite in the order it was built rather than in reverse: computing f^(-1)(g^(-1)(5)) = f^(-1)(10) = 11/3, which is less than 4 and points at choice A. Inverses of a composite come off in the opposite order, outermost first. A second error is reading h^(-1)(5) as the reciprocal 1/h(5) = 1/(13/2) = 2/13, far below Quantity B, which points at choice B. A third is answering D on the grounds that nothing is known about the inverses, when both f and g are one-to-one linear rules whose inverses are explicit.
-
-### Q24 · `ALG-FNC-049` — Answer: 254
-
-Step 1 — see what the identity buys and what it does not. It converts knowledge of f at some input into knowledge of f at twice that input, but no value of f is given outright, so the starting value must be recovered from the extra condition first.
-Step 2 — put x = 1 into the identity: f(2) = 4*f(1) + 6.
-Step 3 — substitute that into the given sum: f(1) + [4*f(1) + 6] = 16, so 5*f(1) + 6 = 16, giving 5*f(1) = 10 and f(1) = 2.
-Step 4 — back-substitute: f(2) = 4*2 + 6 = 8 + 6 = 14.
-Step 5 — put x = 2: f(4) = 4*f(2) + 6 = 4*14 + 6 = 56 + 6 = 62.
-Step 6 — put x = 4: f(8) = 4*f(4) + 6 = 4*62 + 6 = 248 + 6 = 254.
-Check: the recovered values satisfy the given condition, f(1) + f(2) = 2 + 14 = 16. A size check on the chain: three doublings multiply the start by 4^3 = 64 and accumulate 6*(16 + 4 + 1) = 6*21 = 126, so f(8) = 64*2 + 126 = 128 + 126 = 254. Correct.
-Answer: 254.
-
-**Trap.** Splitting the 16 evenly, f(1) = f(2) = 8. The identity already fixes f(2) in terms of f(1), and 8 = 4*8 + 6 is false, so the split contradicts the rule; carrying it forward gives f(4) = 38, f(8) = 158 (or 638 if the 8 is used as f(1) instead). A second error is stopping one doubling short and answering f(4) = 62: reaching 8 from 1 takes three doublings, not two. A third is adding the 6 only once at the end, computing 4^3*2 + 6 = 134.
-
-### Q25 · `ALG-FNC-053` — Answer: A, B, D
+### Q26 · `ALG-FNC-053` — Answer: A, B, D
 
 Step 1 — see exactly what the identity reaches. It connects an input to the input 2 greater, so from the single known value f(1) = 3 it can only reach inputs that differ from 1 by a multiple of 2 - that is, the odd numbers. Nothing at all is fixed at an even input.
 Step 2 — step up from 1. Put x = 1: f(3) = f(1) + 4 = 3 + 4 = 7.
 Step 3 — step up again. Put x = 3: f(5) = f(3) + 4 = 7 + 4 = 11.
 Step 4 — step down from 1. Put x = -1: f(-1 + 2) = f(-1) + 4, that is f(1) = f(-1) + 4, so f(-1) = 3 - 4 = -1.
 Step 5 — evaluate each statement.
-A. f(3) = 7 from Step 2. TRUE.
-B. f(5) = 11 from Step 3. TRUE.
-C. f(0) is at an even input. The identity ties f(0) to f(2), f(4), f(-2) and so on, but that whole chain has no known value in it, so f(0) could be anything. NOT DETERMINED, so the statement cannot be affirmed. FALSE.
-D. f(-1) = -1 from Step 4. TRUE.
-E. f(2) sits on the same unreachable even chain as f(0). NOT DETERMINED. FALSE.
+A. f(3) = 7 from Step 2. True.
+B. f(5) = 11 from Step 3. True.
+C. f(0) is at an even input. The identity ties f(0) to f(2), f(4), f(-2) and so on, but that whole chain has no known value in it, so f(0) could be anything. NOT DETERMINED, so the statement cannot be affirmed. False.
+D. f(-1) = -1 from Step 4. True.
+E. f(2) sits on the same unreachable even chain as f(0). NOT DETERMINED. False.
 Check: build two functions that both obey the identity and both have f(1) = 3, and see that they disagree at the even inputs. Take f(x) = 2x + 1: then f(x + 2) = 2x + 5 = f(x) + 4 and f(1) = 3, giving f(0) = 1 and f(2) = 5. Now take g(x) = 2x + 1 for odd integer x and g(x) = 2x + 100 elsewhere, adjusted so the identity still holds on each chain: g(1) = 3 as required, but g(0) = 100 and g(2) = 104. The odd-input values agree at 7, 11 and -1 in both, while the even-input values do not. Correct.
 Answer: A, B and D.
 
 **Trap.** Assuming f must be the linear rule f(x) = 2x + 1 because that is the simplest rule fitting the identity, and then reading off f(0) = 1 and f(2) = 5 as determined - which makes E look true and, with the sign slip f(0) = -1, makes C look true as well. The identity only ever moves in steps of 2, so it partitions the inputs into chains that never meet. The one known value sits on the odd chain, so every even input is free. The other error is stepping the wrong way in Step 4, writing f(-1) = f(1) + 4 = 7 instead of subtracting.
-
-### Q26 · `ALG-FNC-054` — Answer: A
-
-Step 1 — use the last property first, because it eliminates without any arithmetic. 'No vertical line meets it more than once' is the vertical line test: the curve must be the graph of a function of x. Choice D is solved for x in terms of y, and at x = 0 it gives y^2 + 4y + 3 = 0, so y = -3 and y = -1 - two points on one vertical line. Choice D is out, even though it does pass through (0, -3) and (3, 0).
-Step 2 — test the cheapest point, x = 0, which is the standard first move on a 'which function has this graph' question. A: 0 - 0 - 3 = -3, passes. B: -3, passes. C: 0 + 0 + 3 = 3, not -3, so choice C is out. E: |0 - 1| - 4 = 1 - 4 = -3, passes.
-Step 3 — test the second point, x = 3. A: 9 - 6 - 3 = 0, passes. B: 9 + 6 - 3 = 12, not 0, so choice B is out. E: |3 - 1| - 4 = 2 - 4 = -2, not 0, so choice E is out.
-Step 4 — only choice A survives, so confirm it against the two remaining properties. y = x^2 - 2x - 3 = (x - 1)^2 - 4, a parabola with vertex (1, -4), so it is symmetric about x = 1 as required. Setting it to 0 gives (x - 1)^2 = 4, so x = 3 and x = -1: exactly two x-intercepts.
-Check: choice A satisfies all five properties. (0, -3) and (3, 0) lie on it, its axis of symmetry is x = 1, it cuts the x-axis at 3 and -1 only, and every parabola of the form y = (a function of x) passes the vertical line test. Correct.
-Answer: A.
-
-**Trap.** Choosing D because it is the only option that passes through both named points and is symmetric in the way a sideways parabola looks symmetric. An equation solved for x in terms of y is not automatically a function of x, and this one fails the vertical line test at every x greater than -1. Choice E is the strongest near-miss: it hits (0, -3), is symmetric about x = 1, and has exactly two x-intercepts (at x = 5 and x = -3), but it misses (3, 0), giving -2 instead. Choice C is choice A reflected in the x-axis, which keeps the x-intercepts 3 and -1 and the axis x = 1 but flips the y-intercept to +3. Choice B keeps the y-intercept -3 but is symmetric about x = -1, so it sends x = 3 to 12.
 
 ### Q27 · `ALG-FNC-055` — Answer: 3
 
@@ -686,16 +669,13 @@ Answer: A.
 
 **Trap.** Answering D on the grounds that a and b are not pinned down. They are not, but the quantity 4 + 4/(ab) is bounded below by 5 across every admissible pair, so the comparison resolves even though neither column's input is unique. The other live error is assuming f respects addition and writing f(a) + f(b) = f(a + b) = f(4), which forces C - the same false step as f(a) + f(b) = f(a + b) in general. Testing the single symmetric pair a = b = 2, getting 5, and then guessing that other pairs might drop below 4.25 also points at D; in fact a = b = 2 is the minimum, not a typical case.
 
-### Q30 · `ALG-FNC-058` — Answer: A, B, C
+### Q30 · `ALG-FNC-058` — Answer: A, D
 
-Step 1 — understand the reach of the identity. It converts a product of two inputs into a sum of two outputs, so an input can be evaluated only by factoring it into pieces whose values are already known. The single known value is f(2) = 1, so every power of 2 is reachable and any input carrying a new prime is not.
-Step 2 — evaluate each statement.
-A. Take m = n = 2: f(4) = f(2*2) = f(2) + f(2) = 1 + 1 = 2. TRUE.
-B. Take m = 2 and n = 4: f(8) = f(2) + f(4) = 1 + 2 = 3. TRUE.
-C. Take m = 2 and n = 3: f(6) = f(2) + f(3) = 1 + f(3). This is an identity between f(6) and f(3), and it holds whatever the unknown f(3) turns out to be. The statement does not claim a number, only the relation, so it is determined. TRUE.
-D. Take m = 1 and n = 1: f(1) = f(1*1) = f(1) + f(1), so f(1) = 2*f(1), which forces f(1) = 0, not 1. FALSE.
-E. Nothing in the identity connects 3 to 2. Since 3 is prime, factoring it only ever gives 3 = 1*3, which returns f(3) = f(1) + f(3) - true but empty. f(3) can be assigned any value at all, so it cannot be determined to equal 1. FALSE.
-Check: build two functions that both satisfy the identity and both have f(2) = 1, and confirm they agree on A-C and disagree on E. Let f count the prime factors of the input weighted by exponent, with each prime given weight 1: f(2) = 1, f(4) = 2, f(8) = 3, f(1) = 0, f(3) = 1, f(6) = 2 = 1 + f(3). Now let g give weight 1 to the prime 2 and weight 7 to the prime 3: g(2) = 1, g(4) = 2, g(8) = 3, g(1) = 0, g(3) = 7, g(6) = 8 = 1 + g(3). Both obey the identity. A, B and C hold in both; E holds in the first and fails in the second, so E is not determined; and D fails in both. Correct.
-Answer: A, B and C.
+A: f(a + b) = 5(a + b) = 5a + 5b = f(a) + f(b). True for all a and b.
+B: f(a + b) = a + b - 5, but f(a) + f(b) = a + b - 10. Not equal.
+C: f(a + b) = a^2 + 2ab + b^2, but f(a) + f(b) = a^2 + b^2. They differ by 2ab.
+D: f(a + b) = -(a + b)/4 = -a/4 - b/4 = f(a) + f(b). True for all a and b.
+E: f(a + b) = 5, but f(a) + f(b) = 10. Not equal.
+Answer: A, D.
 
-**Trap.** Selecting E because the first function that comes to mind - count the prime factors, each worth 1 - does give f(3) = 1. That function is only one of infinitely many solutions: the identity fixes the value of every power of 2 once f(2) is known, but it places no constraint at all on a new prime, so f(3) is free. Selecting D comes from carrying over the rule for multiplicative functions, where f(1) = 1; here the identity is additive in the output, and m = n = 1 forces f(1) = 0. The opposite error is rejecting C because f(3) is unknown: C asserts a relation, not a number, and the relation follows directly from 6 = 2*3.
+**Trap.** Selecting B because x - 5 is a straight-line function. A constant term is counted once in f(a + b) and twice in f(a) + f(b), so only functions of the form f(x) = kx work.

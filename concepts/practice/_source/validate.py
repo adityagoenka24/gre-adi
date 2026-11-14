@@ -54,7 +54,10 @@ for p in paths:
     dif=collections.Counter(q['difficulty'] for q in qs)
     typ=collections.Counter(q['type'] for q in qs)
     dup=[i for i,c in collections.Counter(q['id'] for q in qs).items() if c>1]
-    split_ok = (len(qs)==30 and dif['easy']==5 and dif['medium']==8 and dif['hard']==12 and dif['extreme_hard']==5)
+    # 2026-11-10: labels are honest, so the split varies by subtopic. The sheet must still hold 30
+    # questions in level order; a fixed 5/8/12/5 quota is no longer enforced (it manufactured difficulty).
+    _lv=['easy','medium','hard','extreme_hard']; _o=[_lv.index(q['difficulty']) for q in qs]
+    split_ok = (len(qs)==30 and _o==sorted(_o))
     print("%-16s n=%-3d %s %s" % (p.split('/')[-1], len(qs), dict(dif), dict(typ)))
     print("   split_ok=%s dup=%s new=%s flagged=%s" % (split_ok, dup or '-',
         [q['id'] for q in qs if q.get('is_new')] or '-', [q['id'] for q in qs if q.get('review_flag')] or '-'))

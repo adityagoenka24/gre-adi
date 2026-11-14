@@ -25,9 +25,11 @@ JSON is already publicly fetchable. Pro bodies live in pro-body/ so they are at
 least out of the page source and out of Google's index.
 """
 
+import glob
 import json
 import os
 import re
+import shutil
 import sys
 from datetime import date
 
@@ -35,7 +37,8 @@ import markdown
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
 CONCEPTS = os.path.join(ROOT, 'concepts')
-SITE = os.path.join(ROOT, 'gre-free')
+# the gre-free/ tree was flattened into the repo root, so the site root IS the root
+SITE = ROOT
 OUT = os.path.join(SITE, 'learn')
 TAXONOMY = os.path.join(SITE, 'diagnostic', 'taxonomy.json')
 ORIGIN = 'https://grequantpro.com'
@@ -303,8 +306,56 @@ def capsule_page(c, prev_c, next_c):
 
 # ----------------------------------------------------------------- build
 
+def discover_practice(taxonomy):
+    """Point every bank code at its practice sheet, read from the _source patches.
+
+    A sheet may draw on more than one bank file (distance+midpoint, lines+parallel
+    lines, solids), so every contributing code gets the same sheet; build_practice()
+    dedupes by path and renders it once.
+    """
+    found = 0
+    for f in sorted(glob.glob(os.path.join(CONCEPTS, 'practice', '_source', '*.json'))):
+        try:
+            d = json.load(open(f, encoding='utf-8'))
+        except Exception:
+            continue
+        s_ = d.get('set') or {}
+        pp = s_.get('practice_path')
+        if not pp:
+            continue
+        rel = 'concepts/practice/' + pp
+        if not os.path.exists(os.path.join(ROOT, rel)):
+            continue
+        codes = {s_['subtopic_id']} if s_.get('subtopic_id') else set()
+        for bf in s_.get('bank_files', []):
+            bp = os.path.join(ROOT, 'pro', 'bank', bf)
+            if os.path.exists(bp):
+                m = json.load(open(bp, encoding='utf-8')).get('meta', {})
+                if m.get('subtopic_id'):
+                    codes.add(m['subtopic_id'])
+        for c in codes:
+            if c in taxonomy and taxonomy[c].get('practice') != rel:
+                taxonomy[c]['practice'] = rel
+                found += 1
+    return found
+
+
+def copy_practice_assets():
+    """Figure and chart PNGs referenced by the sheets, so <img src="assets/..."> resolves."""
+    dst = os.path.join(OUT, 'practice', 'assets')
+    os.makedirs(dst, exist_ok=True)
+    n = 0
+    for p in sorted(glob.glob(os.path.join(CONCEPTS, 'practice', '*', 'assets', '*.png'))):
+        d = os.path.join(dst, os.path.basename(p))
+        if not os.path.exists(d) or os.path.getmtime(p) > os.path.getmtime(d):
+            shutil.copy2(p, d)
+            n += 1
+    return n
+
+
 def main():
     taxonomy = json.load(open(TAXONOMY, encoding='utf-8'))
+    linked = discover_practice(taxonomy)
 
     # capsule path -> the subtopic codes that use it
     by_path = {}
@@ -314,7 +365,9 @@ def main():
 
     capsules = []
     for dirpath, _, files in sorted(os.walk(CONCEPTS)):
-        if 'practice' in dirpath:
+        if 'practice' in dirpath or 'handbook' in dirpath:
+            # handbook/ is the 28k-word revision handbook, built separately by
+            # build_handbook.py into /handbook/ — it is not a concept capsule
             continue
         topic_dir = os.path.basename(dirpath)
         if topic_dir == 'concepts':
@@ -360,6 +413,7 @@ def main():
 
     # ---- practice sheets: same gating, same template
     sheets = build_practice(taxonomy, capsules)
+    assets = copy_practice_assets()
 
     # ---- the concept map
     open(os.path.join(OUT, 'index.html'), 'w', encoding='utf-8').write(index_page(capsules))
@@ -389,6 +443,8 @@ def main():
     write_sitemap([c for c in capsules if c['free']] + [x for x in sheets if x['free']])
 
     free = FREE_COUNT
+    print(f'sheets linked     : {linked} taxonomy codes')
+    print(f'figure assets     : {assets} copied to learn/practice/assets/')
     print(f'practice sheets   : {len(sheets)}  ({sum(1 for x in sheets if x["free"])} free, '
           f'{sum(1 for x in sheets if not x["free"])} Pro)')
     print(f'capsules rendered : {len(capsules)}  ({free} free, {len(capsules)-free} Pro)')
@@ -420,6 +476,13 @@ def build_practice(taxonomy, capsules):
         s = slug(os.path.basename(rel)).replace('-practice', '')
         free = bool(v.get('free'))
         title, _meta, html = parse_capsule(src)
+        # the sheet's real length - a few sets are not exactly 30
+        try:
+            nq = len(json.load(open(os.path.join(
+                CONCEPTS, 'practice', '_source',
+                code.split('/')[0] + '.json'), encoding='utf-8'))['questions'])
+        except Exception:
+            nq = 30
         note = by_capsule.get(v.get('capsule'))
 
         back = (f'<div class="lrn-res-row"><a class="lrn-res" href="{note["url"]}">'
@@ -458,7 +521,7 @@ def build_practice(taxonomy, capsules):
       <header class="lrn-head">
         <h1>{esc(title)}</h1>
         <div class="lrn-chips"><span class="lrn-chip">Bank code: <b>{esc(code)}</b></span>
-        <span class="lrn-chip">30 questions</span>
+        <span class="lrn-chip">{nq} questions</span>
         {'' if free else '<span class="lrn-chip lrn-chip-pro">Pro</span>'}</div>
       </header>
       {content}

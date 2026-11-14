@@ -1,6 +1,6 @@
 # Linear Equations — Practice Set
 
-**Bank code:** `ALG-LIN` · **Section:** Algebra · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `ALG-LIN` · **Section:** Algebra · **30 questions** — Easy 6 · Medium 14 · Hard 9 · Extreme 1
 
 **Lecture capsule:** [03-linear-equations.md](../../03-algebra/03-linear-equations.md)
 
@@ -16,7 +16,7 @@ Every question below is live in the question bank under the ID shown — the she
 > **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
-### Level 1 · Easy — 5 questions · ~4 min
+### Level 1 · Easy — 6 questions · ~5 min
 
 *warm-up — these must be automatic*
 
@@ -27,33 +27,23 @@ x + 4 = 10
 > **Quantity A:**  x
 > **Quantity B:**  7
 
-**Q2** · `ALG-LIN-005` · MCQ · 45s
+**Q2** · `ALG-LIN-011` · Numeric Entry · 40s
 
-If 8 - 3x = 2, what is the value of x?
-
-**(A)** -2  
-**(B)** 2  
-**(C)** -2/3  
-**(D)** 6  
-**(E)** -6
-
-**Q3** · `ALG-LIN-011` · Numeric Entry · 40s
-
-If (x + 3)/4 = 5, what is the value of x? Enter your answer as a number.
+If (x + 3)/4 = 5, what is the value of x?
 
 *Numeric entry — write the number.*
 
-**Q4** · `ALG-LIN-012` · Select all that apply · 55s
+**Q3** · `ALG-LIN-012` · Select all that apply · 55s
 
-The equation 3x - 5 = 7 has the solution x = 4. Which of the following statements are true? Select all that apply.
+Which of the following equations have x = 4 as a solution? Select all that apply.
 
-**(A)** 6x - 5 = 14 has the solution x = 4  
-**(B)** 3x - 5 + x = 7 + x has the solution x = 4  
-**(C)** (3x - 5)/2 = 7 has the solution x = 4  
-**(D)** x = 4 is the only solution of 3x - 5 = 7  
-**(E)** 5 - 3x = 7 has the solution x = 4
+**(A)** 6x - 5 = 14  
+**(B)** 3x - 5 + x = 7 + x  
+**(C)** (3x - 5)/2 = 7  
+**(D)** 3x = 12  
+**(E)** 5 - 3x = 7
 
-**Q5** · `ALG-LIN-013` · MCQ · 45s
+**Q4** · `ALG-LIN-013` · MCQ · 45s
 
 If 3(x + 4) = 21, what is the value of x?
 
@@ -63,19 +53,36 @@ If 3(x + 4) = 21, what is the value of x?
 **(D)** 11  
 **(E)** 17
 
+**Q5** · `ALG-LIN-016` · MCQ · 70s
+
+If x/2 + x/3 = 10, what is the value of x?
+
+**(A)** 8  
+**(B)** 10  
+**(C)** 12  
+**(D)** 15  
+**(E)** 20
+
+**Q6** · `ALG-LIN-024` · QC · 60s
+
+5x - 3 = 3x + 9
+
+> **Quantity A:**  x
+> **Quantity B:**  x + 1
+
 ---
 
-### Level 2 · Medium — 8 questions · ~10 min
+### Level 2 · Medium — 14 questions · ~19 min
 
 *two or three steps, one planted trap each*
 
-**Q6** · `ALG-LIN-017` · Numeric Entry · 70s
+**Q7** · `ALG-LIN-017` · Numeric Entry · 70s
 
-If (2x - 1)/3 = (x + 4)/2, what is the value of x? Enter your answer as a number.
+If (2x - 1)/3 = (x + 4)/2, what is the value of x?
 
 *Numeric entry — write the number.*
 
-**Q7** · `ALG-LIN-018` · MCQ · 75s
+**Q8** · `ALG-LIN-018` · MCQ · 75s
 
 If 3(2x - 4) - 2(x + 1) = 14, what is the value of x?
 
@@ -85,7 +92,7 @@ If 3(2x - 4) - 2(x + 1) = 14, what is the value of x?
 **(D)** 25/4  
 **(E)** 7
 
-**Q8** · `ALG-LIN-021` · MCQ · 70s
+**Q9** · `ALG-LIN-021` · MCQ · 70s
 
 A number is increased by 12 and the result is then multiplied by 3. The final result is 51. What is the original number?
 
@@ -95,16 +102,9 @@ A number is increased by 12 and the result is then multiplied by 3. The final re
 **(D)** 17  
 **(E)** 29
 
-**Q9** · `ALG-LIN-024` · QC · 60s
-
-5x - 3 = 3x + 9
-
-> **Quantity A:**  x
-> **Quantity B:**  x + 1
-
 **Q10** · `ALG-LIN-027` · Numeric Entry · 75s
 
-The perimeter of a rectangle is given by P = 2l + 2w, where l is the length and w is the width. A certain rectangle has perimeter 56 and its length is 3 times its width. What is the width? Enter your answer as a number.
+A rectangle has perimeter 56, and its length is 3 times its width. What is the width of the rectangle?
 
 *Numeric entry — write the number.*
 
@@ -120,7 +120,7 @@ In the equation ax - b = c, the constant a is not 0. Which of the following corr
 
 **Q12** · `ALG-LIN-033` · Select all that apply · 85s
 
-Consider the statement: three more than a number n is twice as much as the number decreased by 9. Which of the following must be true? Select all that apply.
+Three more than a number n is twice the result of decreasing n by 9. Which of the following must be true? Indicate all such statements.
 
 **(A)** n + 3 = 2(n - 9)  
 **(B)** n + 3 = 2n - 9  
@@ -128,7 +128,17 @@ Consider the statement: three more than a number n is twice as much as the numbe
 **(D)** n is a multiple of 7  
 **(E)** n is less than 20
 
-**Q13** · `ALG-LIN-038` · Select all that apply · 85s
+**Q13** · `ALG-LIN-034` · MCQ · 80s
+
+On a 30-question quiz, each correct answer earns 5 points and each incorrect answer loses 2 points. Dev answered all 30 questions and scored 94 points. How many questions did Dev answer correctly?
+
+**(A)** 18  
+**(B)** 20  
+**(C)** 22  
+**(D)** 24  
+**(E)** 26
+
+**Q14** · `ALG-LIN-038` · Select all that apply · 85s
 
 Which of the following equations have x = 2 as a solution? Select all that apply.
 
@@ -138,36 +148,20 @@ Which of the following equations have x = 2 as a solution? Select all that apply
 **(D)** 3x - 2(x + 1) = 4  
 **(E)** (x + 4)/3 + (x - 4)/2 = 1
 
----
+**Q15** · `ALG-LIN-040` · Numeric Entry · 90s
 
-### Level 3 · Hard — 12 questions · ~21 min
-
-*where 162+ is won or lost*
-
-**Q14** · `ALG-LIN-034` · MCQ · 110s
-
-In the formula S = a/(1 - r), the constants satisfy S is not 0, a is not 0, r is not 1 and r is not -1. A second quantity T is defined by T = a/(1 + r). Which of the following expresses T in terms of S and a?
-
-**(A)** T = aS/(2S - a)  
-**(B)** T = S  
-**(C)** T = aS/(S + a)  
-**(D)** T = (2S - a)/(aS)  
-**(E)** T = a(2S - a)/S
-
-**Q15** · `ALG-LIN-040` · Numeric Entry · 105s
-
-Solve for x: (2x + 5)^2 - (2x - 3)^2 = 176. Enter your answer as a number.
+If (2x + 5)^2 - (2x - 3)^2 = 176, what is the value of x?
 
 *Numeric entry — write the number.*
 
-**Q16** · `ALG-LIN-041` · QC · 95s
+**Q16** · `ALG-LIN-041` · QC · 90s
 
 p and q are nonzero constants, and the equation px + 5 = qx + 3 has no solution.
 
 > **Quantity A:**  p
 > **Quantity B:**  q
 
-**Q17** · `ALG-LIN-042` · MCQ · 110s
+**Q17** · `ALG-LIN-042` · MCQ · 90s
 
 Jian's age now is 4 years more than twice Ben's age now. Six years ago, Jian was three times as old as Ben was then. In how many years from now will Jian be exactly twice as old as Ben?
 
@@ -177,37 +171,13 @@ Jian's age now is 4 years more than twice Ben's age now. Six years ago, Jian was
 **(D)** 20  
 **(E)** 40
 
-**Q18** · `ALG-LIN-043` · Numeric Entry · 105s
+**Q18** · `ALG-LIN-043` · Numeric Entry · 90s
 
-The equations 3(x - n) = 2x + 5 and x + 2n = 20 have the same solution for x, where n is a constant. What is the value of n? Enter your answer as a number.
+The equations 3(x - n) = 2x + 5 and x + 2n = 20 have the same solution for x, where n is a constant. What is the value of n?
 
 *Numeric entry — write the number.*
 
-**Q19** · `ALG-LIN-044` · MCQ · 105s
-
-Solve for x in terms of a, b and c: (x - a)/b = (x + a)/c, where b and c are nonzero and b is not equal to c.
-
-**(A)** x = a(b + c)/(c - b)  
-**(B)** x = a(c - b)/(b + c)  
-**(C)** x = -a  
-**(D)** x = a(c + b)/(b - c)  
-**(E)** x = 2a/(c - b)
-
-**Q20** · `ALG-LIN-045` · QC · 105s
-
-In the equation 4 - c(x + 2) = k, c is a nonzero constant, k is a given constant and x is the resulting solution.
-
-> **Quantity A:**  the value of x when k = 1
-> **Quantity B:**  the value of x when k = 7
-
-**Q21** · `ALG-LIN-049` · QC · 105s
-
-n is a positive integer, and x satisfies (n + 1)x = n^2 + 2n.
-
-> **Quantity A:**  x
-> **Quantity B:**  n + 1
-
-**Q22** · `ALG-LIN-050` · MCQ · 105s
+**Q19** · `ALG-LIN-050` · MCQ · 90s
 
 In the equation 2(3x - a) + 4 = 6x + b, a and b are constants and the equation has infinitely many solutions. What is the value of b + 2a?
 
@@ -217,13 +187,49 @@ In the equation 2(3x - a) + 4 = 6x + b, a and b are constants and the equation h
 **(D)** 4  
 **(E)** 8
 
-**Q23** · `ALG-LIN-051` · Numeric Entry · 105s
+**Q20** · `ALG-LIN-056` · Numeric Entry · 90s
 
-In the equation (3x + c)/(x - 4) = 5, c is a constant and x is not equal to 4. For one value of c the equation has no solution. What is that value of c? Enter your answer as a number.
+A collection of tokens consists only of green tokens and white tokens, and exactly 30 of the tokens are white. When 12 green tokens are removed from the collection, the green tokens that remain make up 1/4 of the tokens that remain. Green tokens are then added to that reduced collection until green tokens make up 2/5 of it. How many tokens are in the collection at that point?
 
 *Numeric entry — write the number.*
 
-**Q24** · `ALG-LIN-052` · MCQ · 105s
+---
+
+### Level 3 · Hard — 9 questions · ~16 min
+
+*where 162+ is won or lost*
+
+**Q21** · `ALG-LIN-044` · MCQ · 105s
+
+If (x - a)/b = (x + a)/c, where b and c are nonzero and b is not equal to c, which of the following expresses x in terms of a, b and c?
+
+**(A)** x = a(b + c)/(c - b)  
+**(B)** x = a(c - b)/(b + c)  
+**(C)** x = -a  
+**(D)** x = a(c + b)/(b - c)  
+**(E)** x = 2a/(c - b)
+
+**Q22** · `ALG-LIN-045` · QC · 105s
+
+In the equation 4 - c(x + 2) = k, c is a nonzero constant, k is a given constant and x is the resulting solution.
+
+> **Quantity A:**  the value of x when k = 1
+> **Quantity B:**  the value of x when k = 7
+
+**Q23** · `ALG-LIN-049` · QC · 105s
+
+n is a positive integer, and x satisfies (n + 1)x = n^2 + 2n.
+
+> **Quantity A:**  x
+> **Quantity B:**  n + 1
+
+**Q24** · `ALG-LIN-051` · Numeric Entry · 105s
+
+In the equation (3x + c)/(x - 4) = 5, c is a constant and x is not equal to 4. For one value of c the equation has no solution. What is that value of c?
+
+*Numeric entry — write the number.*
+
+**Q25** · `ALG-LIN-052` · MCQ · 105s
 
 In the equation 4x + k = 2x + 18, the constant k is an integer with 1 <= k <= 30, and the solution x is a positive integer. What is the sum of all possible values of k?
 
@@ -233,31 +239,17 @@ In the equation 4x + k = 2x + 18, the constant k is an integer with 1 <= k <= 30
 **(D)** 153  
 **(E)** 240
 
-**Q25** · `ALG-LIN-053` · Select all that apply · 110s
+**Q26** · `ALG-LIN-053` · Select all that apply · 105s
 
-A linear equation in x has the form px + q = rx + s, where p, q, r and s are real constants. Which of the following conditions guarantee that the equation has exactly one solution? Select all that apply.
+In the equation a(x - 1) = 2x + b, a and b are constants. For which of the following pairs of values of a and b does the equation have exactly one solution for x?
 
-**(A)** The number p - r has a multiplicative inverse  
-**(B)** p = r and q is not equal to s  
-**(C)** q is not equal to s  
-**(D)** p = 2r and r is not equal to 0  
-**(E)** p + r = 0
+Indicate all such pairs.
 
----
-
-### Level 4 · Extreme — 5 questions · ~11 min
-
-*165+ — expect to need the insight, not the grind*
-
-**Q26** · `ALG-LIN-039` · MCQ · 125s
-
-For how many integer values of k does the equation (2x + 4)/(x - 1) = k have a solution x that is an integer? (x is not equal to 1.)
-
-**(A)** 4  
-**(B)** 6  
-**(C)** 8  
-**(D)** 9  
-**(E)** Infinitely many
+**(A)** a = 2 and b = -2  
+**(B)** a = 2 and b = 3  
+**(C)** a = 0 and b = 0  
+**(D)** a = 3 and b = -3  
+**(E)** a = -2 and b = 5
 
 **Q27** · `ALG-LIN-054` · MCQ · 130s
 
@@ -269,20 +261,14 @@ At one firm every employee's net pay N is computed as N = G - r*G - F, where G i
 **(D)** $2,720  
 **(E)** $3,400
 
-**Q28** · `ALG-LIN-055` · QC · 125s
+**Q28** · `ALG-LIN-055` · QC · 110s
 
 a and b are real numbers, a + b is not 0, and 3a + 5b = 7a + 3b + 12.
 
 > **Quantity A:**  (a + 2b)/(a + b)
 > **Quantity B:**  5/3
 
-**Q29** · `ALG-LIN-056` · Numeric Entry · 130s
-
-A collection of tokens consists only of green tokens and white tokens, and exactly 30 of the tokens are white. When 12 green tokens are removed from the collection, the green tokens that remain make up 1/4 of the tokens that remain. Green tokens are then added to that reduced collection until green tokens make up 2/5 of it. How many tokens are in the collection at that point? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q30** · `ALG-LIN-057` · Select all that apply · 130s
+**Q29** · `ALG-LIN-057` · Select all that apply · 110s
 
 In the equation (2x + a)/(x - b) = 3, a and b are integers and x is not equal to b. If x = 5 is a solution, which of the following must be true? Select all that apply.
 
@@ -294,40 +280,56 @@ In the equation (2x + a)/(x - b) = 3, a and b are integers and x is not equal to
 
 ---
 
+### Level 4 · Extreme — 1 questions · ~2 min
+
+*the top of a real hard section — expect to need the insight, not the grind*
+
+**Q30** · `ALG-LIN-039` · MCQ · 125s
+
+For how many integer values of k does the equation (2x + 4)/(x - 1) = k have a solution x that is an integer? (x is not equal to 1.)
+
+**(A)** 4  
+**(B)** 6  
+**(C)** 8  
+**(D)** 9  
+**(E)** Infinitely many
+
+---
+
 ## Part B — Answer Key
 
 | Q | ID | Level | Type | Answer |
 |---|---|---|---|---|
 | 1 | `ALG-LIN-004` | easy | QC | **B** |
-| 2 | `ALG-LIN-005` | easy | MCQ | **B** |
-| 3 | `ALG-LIN-011` | easy | Numeric Entry | **17** |
-| 4 | `ALG-LIN-012` | easy | Select all that apply | **B, D** |
-| 5 | `ALG-LIN-013` | easy | MCQ | **A** |
-| 6 | `ALG-LIN-017` | medium | Numeric Entry | **14** |
-| 7 | `ALG-LIN-018` | medium | MCQ | **E** |
-| 8 | `ALG-LIN-021` | medium | MCQ | **A** |
-| 9 | `ALG-LIN-024` | medium | QC | **B** |
+| 2 | `ALG-LIN-011` | easy | Numeric Entry | **17** |
+| 3 | `ALG-LIN-012` | easy | Select all that apply | **B, D** |
+| 4 | `ALG-LIN-013` | easy | MCQ | **A** |
+| 5 | `ALG-LIN-016` | easy | MCQ | **C** |
+| 6 | `ALG-LIN-024` | easy | QC | **B** |
+| 7 | `ALG-LIN-017` | medium | Numeric Entry | **14** |
+| 8 | `ALG-LIN-018` | medium | MCQ | **E** |
+| 9 | `ALG-LIN-021` | medium | MCQ | **A** |
 | 10 | `ALG-LIN-027` | medium | Numeric Entry | **7** |
 | 11 | `ALG-LIN-030` | medium | MCQ | **B** |
 | 12 | `ALG-LIN-033` | medium | Select all that apply | **A, D** |
-| 13 | `ALG-LIN-038` | medium | Select all that apply | **B, C, E** |
-| 14 | `ALG-LIN-034` | hard | MCQ | **A** |
-| 15 | `ALG-LIN-040` | hard | Numeric Entry | **5** |
-| 16 | `ALG-LIN-041` | hard | QC | **C** |
-| 17 | `ALG-LIN-042` | hard | MCQ | **B** |
-| 18 | `ALG-LIN-043` | hard | Numeric Entry | **3** |
-| 19 | `ALG-LIN-044` | hard | MCQ | **A** |
-| 20 | `ALG-LIN-045` | hard | QC | **D** |
-| 21 | `ALG-LIN-049` | hard | QC | **B** |
-| 22 | `ALG-LIN-050` | hard | MCQ | **D** |
-| 23 | `ALG-LIN-051` | hard | Numeric Entry | **-12** |
-| 24 | `ALG-LIN-052` | hard | MCQ | **B** |
-| 25 | `ALG-LIN-053` | hard | Select all that apply | **A, D** |
-| 26 | `ALG-LIN-039` | extreme hard | MCQ | **C** |
-| 27 | `ALG-LIN-054` | extreme hard | MCQ | **E** |
-| 28 | `ALG-LIN-055` | extreme hard | QC | **D** |
-| 29 | `ALG-LIN-056` | extreme hard | Numeric Entry | **50** |
-| 30 | `ALG-LIN-057` | extreme hard | Select all that apply | **A, C** |
+| 13 | `ALG-LIN-034` | medium | MCQ | **C** |
+| 14 | `ALG-LIN-038` | medium | Select all that apply | **B, C, E** |
+| 15 | `ALG-LIN-040` | medium | Numeric Entry | **5** |
+| 16 | `ALG-LIN-041` | medium | QC | **C** |
+| 17 | `ALG-LIN-042` | medium | MCQ | **B** |
+| 18 | `ALG-LIN-043` | medium | Numeric Entry | **3** |
+| 19 | `ALG-LIN-050` | medium | MCQ | **D** |
+| 20 | `ALG-LIN-056` | medium | Numeric Entry | **50** |
+| 21 | `ALG-LIN-044` | hard | MCQ | **A** |
+| 22 | `ALG-LIN-045` | hard | QC | **D** |
+| 23 | `ALG-LIN-049` | hard | QC | **B** |
+| 24 | `ALG-LIN-051` | hard | Numeric Entry | **-12** |
+| 25 | `ALG-LIN-052` | hard | MCQ | **B** |
+| 26 | `ALG-LIN-053` | hard | Select all that apply | **C, D, E** |
+| 27 | `ALG-LIN-054` | hard | MCQ | **E** |
+| 28 | `ALG-LIN-055` | hard | QC | **D** |
+| 29 | `ALG-LIN-057` | hard | Select all that apply | **A, C** |
+| 30 | `ALG-LIN-039` | extreme hard | MCQ | **C** |
 
 ---
 
@@ -342,16 +344,7 @@ Answer: B.
 
 **Trap.** Adding 4 instead of subtracting it gives x = 14, which makes Quantity A look greater and produces choice A. The operation must undo the +4, so it is subtraction.
 
-### Q2 · `ALG-LIN-005` — Answer: B
-
-Step 1 — move the constant. Subtract 8 from both sides: -3x = 2 - 8 = -6.
-Step 2 — divide by the coefficient of x, which is -3: x = (-6)/(-3) = 2.
-Check: substitute into the original equation. 8 - 3(2) = 8 - 6 = 2. Correct.
-Answer: B.
-
-**Trap.** Losing a sign: writing 3x = 2 - 8 = -6 and then x = -6/3 = -2, choice A. The coefficient is -3, not 3, so the division must carry the minus too. Choice E, -6, is stopping at Step 1, -3x = -6, and reporting the right-hand side as x; choice D, 6, is the same halt one tidy-up later, at 3x = 6. Choice C, -2/3, comes from subtracting 8 from the left side only, leaving -3x = 2, and then dividing 2 by -3.
-
-### Q3 · `ALG-LIN-011` — Answer: 17
+### Q2 · `ALG-LIN-011` — Answer: 17
 
 Step 1 — clear the denominator. Multiply both sides by 4: x + 3 = 20.
 Step 2 — subtract 3 from both sides: x = 17.
@@ -360,20 +353,13 @@ Answer: 17.
 
 **Trap.** Dividing by 4 instead of multiplying, which gives x + 3 = 5/4 and then x = -7/4. The 4 is already dividing the left side, so the undoing operation is multiplication. A second error is subtracting the 3 before clearing the fraction, giving x/4 = 2 and x = 8.
 
-### Q4 · `ALG-LIN-012` — Answer: B, D
+### Q3 · `ALG-LIN-012` — Answer: B, D
 
-An operation preserves the solution only if it is applied to both sides in full, and to every term on each side.
-A. FALSE - both sides were meant to be doubled, but only the 3x term was. Solving 6x - 5 = 14 gives 6x = 19, so x = 19/6.
-B. TRUE - x was added to both sides. Solving 4x - 5 = 7 + x gives 3x = 12, so x = 4.
-C. FALSE - only the left side was divided by 2. Solving (3x - 5)/2 = 7 gives 3x - 5 = 14, so 3x = 19 and x = 19/3.
-D. TRUE - 3x - 5 = 7 is linear and the coefficient of x is 3, which is not 0, so it has exactly one solution.
-E. FALSE - the signs on the left were flipped but the right side was left alone. Solving 5 - 3x = 7 gives -3x = 2, so x = -2/3.
-Check: substitute x = 4 into the original equation 3x - 5 = 7. Then 3(4) - 5 = 12 - 5 = 7. Correct.
-Answer: B and D.
+Substitute x = 4 into each equation. A: 6(4) - 5 = 19, not 14. B: 12 - 5 + 4 = 11 and 7 + 4 = 11, true. C: (12 - 5)/2 = 3.5, not 7. D: 3(4) = 12, true. E: 5 - 12 = -7, not 7. The answer is B and D.
 
-**Trap.** Selecting A or C because the equation still 'looks like' the original. A doubles only the 3x term and gives x = 19/6; C divides only the left side and gives x = 19/3. Every term on both sides must receive the identical operation.
+**Trap.** Students choose A or C because they look like the original equation with one operation applied; the operation was applied to only part of the equation.
 
-### Q5 · `ALG-LIN-013` — Answer: A
+### Q4 · `ALG-LIN-013` — Answer: A
 
 Step 1 — divide both sides by 3, since 3 multiplies the whole bracket: x + 4 = 7.
 Step 2 — subtract 4 from both sides: x = 3.
@@ -383,9 +369,30 @@ Answer: A.
 
 **Trap.** Cancelling the 3 on the left without dividing the right, giving x + 4 = 21 and x = 17, which is choice E. Choice B, 7, is the value of x + 4 rather than of x, and choice C, 9, is the value of 3x. Choice D, 11, comes from distributing to 3x + 12 = 21 and then moving the 12 without changing its sign: 3x = 21 + 12 = 33.
 
-### Q6 · `ALG-LIN-017` — Answer: 14
+### Q5 · `ALG-LIN-016` — Answer: C
 
-Step 1 — clear both denominators at once by multiplying both sides by 6, the LCM of 3 and 2:
+x/2 + x/3 = 10
+Find LCD = 6: multiply every term by 6.
+6(x/2) + 6(x/3) = 6(10)
+3x + 2x = 60
+5x = 60
+x = 12
+
+**Trap.** Students add the fractions by adding the denominators: x/(2+3) = x/5 = 10, giving x = 50. Or students compute 1/2 + 1/3 = 2/5 and then 2x/5 = 10, giving x = 25.
+
+### Q6 · `ALG-LIN-024` — Answer: B
+
+Step 1 — notice that the comparison does not need the value of x. Whatever x is, x + 1 is exactly 1 more than x, so Quantity B is greater.
+Step 2 — confirm that x is in fact a single fixed number, so the comparison is well defined. 5x - 3 = 3x + 9 gives 2x = 12, so x = 6.
+Step 3 — compare: Quantity A = 6, Quantity B = 7.
+Check: substitute into the original equation. 5(6) - 3 = 27 and 3(6) + 9 = 27. Correct.
+Answer: B.
+
+**Trap.** Solving for x, getting 6, and then comparing 6 against the literal expression 'x + 1' as though the answer depended on the sign of x. It does not: x + 1 exceeds x for every real x. Answering D because a variable appears in Quantity B is the error this question is built to catch.
+
+### Q7 · `ALG-LIN-017` — Answer: 14
+
+Step 1 — clear both denominators at once by multiplying both sides by 6, the least common multiple of 3 and 2:
 2(2x - 1) = 3(x + 4).
 Step 2 — distribute on each side: 4x - 2 = 3x + 12.
 Step 3 — collect: subtract 3x from both sides, giving x - 2 = 12, so x = 14.
@@ -394,7 +401,7 @@ Answer: 14.
 
 **Trap.** Cross-multiplying but distributing only to the first term, writing 4x - 1 = 3x + 4 and getting x = 5. The multiplier must reach every term inside the bracket.
 
-### Q7 · `ALG-LIN-018` — Answer: E
+### Q8 · `ALG-LIN-018` — Answer: E
 
 Step 1 — distribute the 3: 3(2x - 4) = 6x - 12.
 Step 2 — distribute the -2 across both terms: -2(x + 1) = -2x - 2.
@@ -403,9 +410,9 @@ Step 4 — solve: 4x - 14 = 14, so 4x = 28 and x = 7.
 Check: substitute into the original equation. 3(2(7) - 4) - 2(7 + 1) = 3(10) - 2(8) = 30 - 16 = 14. Correct.
 Answer: E.
 
-**Trap.** Writing -2(x + 1) as -2x + 2, which flips the sign of the 1 instead of carrying the minus onto it: that gives 6x - 12 - 2x + 2 = 4x - 10 = 14 and x = 6, choice C. Choice D, 25/4, is the neighbouring slip -2x + 1, giving 4x - 11 = 14. Choice B, 5, comes from distributing the 3 to 2x only, 6x - 4; choice A, 4, is both bracket slips at once, 6x - 4 - 2x + 2 = 4x - 2 = 14.
+**Trap.** Writing -2(x + 1) as -2x + 2, which flips the sign of the 1 instead of carrying the minus onto it: that gives 6x - 12 - 2x + 2 = 4x - 10 = 14 and x = 6, choice C. Choice D, 25/4, is the neighboring slip -2x + 1, giving 4x - 11 = 14. Choice B, 5, comes from distributing the 3 to 2x only, 6x - 4; choice A, 4, is both bracket slips at once, 6x - 4 - 2x + 2 = 4x - 2 = 14.
 
-### Q8 · `ALG-LIN-021` — Answer: A
+### Q9 · `ALG-LIN-021` — Answer: A
 
 Step 1 — translate in the order the operations happen. Let the number be n. 'Increased by 12' gives n + 12; 'then multiplied by 3' multiplies that whole result, giving 3(n + 12).
 Step 2 — write the equation: 3(n + 12) = 51.
@@ -415,16 +422,6 @@ Check: substitute into the original wording. 5 increased by 12 is 17, and 17 mul
 Answer: A.
 
 **Trap.** Reversing the order and writing 3n + 12 = 51, which gives n = 13, choice B; the multiplication applies to the whole result, so the bracket is required. Choice C, 15, multiplies only the 12, giving n + 36 = 51. Choice D, 17, is the value of n + 12 rather than of n. Choice E, 29, divides 51 by 3 correctly and then adds 12 instead of subtracting it.
-
-### Q9 · `ALG-LIN-024` — Answer: B
-
-Step 1 — notice that the comparison does not need the value of x. Whatever x is, x + 1 is exactly 1 more than x, so Quantity B is greater.
-Step 2 — confirm that x is in fact a single fixed number, so the comparison is well defined. 5x - 3 = 3x + 9 gives 2x = 12, so x = 6.
-Step 3 — compare: Quantity A = 6, Quantity B = 7.
-Check: substitute into the original equation. 5(6) - 3 = 27 and 3(6) + 9 = 27. Correct.
-Answer: B.
-
-**Trap.** Solving for x, getting 6, and then comparing 6 against the literal expression 'x + 1' as though the answer depended on the sign of x. It does not: x + 1 exceeds x for every real x. Answering D because a variable appears in Quantity B is the error this question is built to catch.
 
 ### Q10 · `ALG-LIN-027` — Answer: 7
 
@@ -449,41 +446,39 @@ Answer: B.
 
 ### Q12 · `ALG-LIN-033` — Answer: A, D
 
-Translate first. 'Three more than a number n' is n + 3. 'The number decreased by 9' is n - 9, and 'twice as much as' that quantity doubles the whole quantity, so it is 2(n - 9).
-A. TRUE - n + 3 = 2(n - 9) is the direct translation. Distributing gives n + 3 = 2n - 18, so n = 21.
-B. FALSE - the bracket has been dropped, so only n was doubled and the 9 was not. Solving n + 3 = 2n - 9 gives n = 12.
-C. FALSE - 'three more than n' is n + 3, not n - 3. Solving n - 3 = 2(n - 9) gives n - 3 = 2n - 18, so n = 15.
-D. TRUE - n = 21, and 21 = 3 * 7, so n is a multiple of 7.
-E. FALSE - n = 21, which is greater than 20. Only the two error values, 12 and 15, are less than 20.
-Check: substitute n = 21 into the original statement. Three more than 21 is 24. The number decreased by 9 is 21 - 9 = 12, and twice as much as that is 24. Correct.
-Answer: A and D.
+'Three more than n' is n + 3. 'Decreasing n by 9' gives n − 9, and twice that result is 2(n − 9).
+A: n + 3 = 2(n − 9) is the translation. Distributing gives n + 3 = 2n − 18, so n = 21. True.
+B: n + 3 = 2n − 9 doubles n but not the 9, and gives n = 12. False.
+C: n − 3 = 2(n − 9) misreads 'three more than n' as n − 3, and gives n = 15. False.
+D: n = 21 = 3 × 7, a multiple of 7. True.
+E: n = 21, which is greater than 20. False.
+Check: three more than 21 is 24; decreasing 21 by 9 gives 12, and twice 12 is 24.
+So A and D.
 
-**Trap.** Dropping the bracket and writing n + 3 = 2n - 9, which doubles the number but not the 9; that gives n = 12, and the student who does it also picks E. Reading 'three more than n' as n - 3 gives n = 15, also less than 20.
+**Trap.** Students double only the number and not the 9, writing n + 3 = 2n − 9; that gives n = 12, which is less than 20, so they also pick E. Reading 'three more than n' as n − 3 gives n = 15, also less than 20.
 
-### Q13 · `ALG-LIN-038` — Answer: B, C, E
+### Q13 · `ALG-LIN-034` — Answer: C
+
+Let c be the number of correct answers, so 30 - c are incorrect.
+5c - 2(30 - c) = 94.
+5c - 60 + 2c = 94, so 7c = 154 and c = 22.
+Check: 22 * 5 = 110 and 8 * 2 = 16; 110 - 16 = 94.
+Answer: C.
+
+**Trap.** Ignoring the penalty and dividing 94 by 5, which gives about 18.8 and suggests 18 (choice A). Each incorrect answer costs 2 points, so 22 correct and 8 incorrect give 110 - 16 = 94.
+
+### Q14 · `ALG-LIN-038` — Answer: B, C, E
 
 Test x = 2 in each equation, and check that x = 2 is permitted before accepting it.
-A. FALSE - cancelling gives (x - 2)(x + 2)/(x - 2) = x + 2, so the equation looks like x + 2 = 4 and x = 2. But that cancellation divided by (x - 2), which is 0 at x = 2. Substituting x = 2 into the original left side gives 0/0, which is undefined, so x = 2 is not a solution; the equation has no solution at all.
-B. TRUE - 3(2 - 2) + 5 = 3(0) + 5 = 5. Correct.
-C. TRUE - (2 + 6)/(2 + 2) = 8/4 = 2, and the denominator 2 + 2 = 4 is not 0, so the value is permitted.
-D. FALSE - 3(2) - 2(2 + 1) = 6 - 6 = 0, not 4. Solving properly: 3x - 2x - 2 = 4, so x = 6.
-E. TRUE - (2 + 4)/3 + (2 - 4)/2 = 6/3 + (-2)/2 = 2 - 1 = 1. Correct.
+A. False - cancelling gives (x - 2)(x + 2)/(x - 2) = x + 2, so the equation looks like x + 2 = 4 and x = 2. But that cancellation divided by (x - 2), which is 0 at x = 2. Substituting x = 2 into the original left side gives 0/0, which is undefined, so x = 2 is not a solution; the equation has no solution at all.
+B. True - 3(2 - 2) + 5 = 3(0) + 5 = 5. Correct.
+C. True - (2 + 6)/(2 + 2) = 8/4 = 2, and the denominator 2 + 2 = 4 is not 0, so the value is permitted.
+D. False - 3(2) - 2(2 + 1) = 6 - 6 = 0, not 4. Solving properly: 3x - 2x - 2 = 4, so x = 6.
+E. True - (2 + 4)/3 + (2 - 4)/2 = 6/3 + (-2)/2 = 2 - 1 = 1. Correct.
 Check: clear the fractions in E to confirm. Multiplying every term by 6 gives 2(x + 4) + 3(x - 4) = 6, so 5x - 4 = 6 and x = 2, matching the substitution.
 Answer: B, C and E.
 
 **Trap.** Accepting A because cancelling (x - 2) leaves x + 2 = 4, which gives x = 2. Dividing by (x - 2) is only legal when x is not 2, so that cancellation destroys the very value it produces - the original equation is undefined at x = 2. Selecting D comes from writing -2(x + 1) as -2x + 2, which turns the equation into x + 2 = 4 and makes x = 2 look right; the true solution is x = 6.
-
-### Q14 · `ALG-LIN-034` — Answer: A
-
-Step 1 — solve the first formula for r. Multiply both sides by (1 - r), which is not 0: S(1 - r) = a.
-Step 2 — divide both sides by S, which is allowed because S is not 0: 1 - r = a/S.
-Step 3 — isolate r. Subtract 1 from both sides: -r = a/S - 1. Multiply by -1, changing the sign of every term: r = 1 - a/S = (S - a)/S.
-Step 4 — build the denominator of T: 1 + r = 1 + (S - a)/S = (S + S - a)/S = (2S - a)/S.
-Step 5 — substitute into T = a/(1 + r). Dividing by a fraction multiplies by its reciprocal: T = a * S/(2S - a) = aS/(2S - a).
-Check: take S = 4 and a = 3. Then r = (4 - 3)/4 = 1/4, and the original formula gives a/(1 - r) = 3/(1 - 1/4) = 3/(3/4) = 4 = S, so that value of r is right. Now T = a/(1 + r) = 3/(5/4) = 12/5, and aS/(2S - a) = (3)(4)/(8 - 3) = 12/5. Correct.
-Answer: A.
-
-**Trap.** Stopping at Step 3 with -r and reporting r = a/S - 1. Then 1 + r = a/S and T = a/(a/S) = S, which is choice B. Choice C comes from computing 1 + r as 1 + a/S instead of 1 + (1 - a/S); choice D is the correct work with the final compound fraction inverted; choice E multiplies a by (1 + r) instead of dividing by it.
 
 ### Q15 · `ALG-LIN-040` — Answer: 5
 
@@ -524,7 +519,7 @@ Step 7 — the question asks for the number of years, not for either age at that
 Check: substitute into the original wording. Jian is 36 and Ben is 16 now, and 36 is 4 more than twice 16. Six years ago Jian was 30 and Ben was 10, and 30 = 3 * 10. In 4 years Jian is 40 and Ben is 20, and 40 = 2 * 20. Correct.
 Answer: B.
 
-**Trap.** Choice E, 40, is Jian's age when the ratio holds, and choice D, 20, is Ben's age then; the question asks for the waiting time, not an age. Choice C, 16, stops at Ben's age now, the answer to the first stage only. Choice A, 2, comes from ageing Ben but not Jian in the second stage, solving 36 = 2(16 + t); a gap of years applies to both people at once. The first stage has its own live error: subtracting 6 from Jian's side only, 2B - 2 = 3B - 6, gives B = 4 and a Jian who is younger than his own past self.
+**Trap.** Choice E, 40, is Jian's age when the ratio holds, and choice D, 20, is Ben's age then; the question asks for the waiting time, not an age. Choice C, 16, stops at Ben's age now, the answer to the first stage only. Choice A, 2, comes from aging Ben but not Jian in the second stage, solving 36 = 2(16 + t); a gap of years applies to both people at once. The first stage has its own live error: subtracting 6 from Jian's side only, 2B - 2 = 3B - 6, gives B = 4 and a Jian who is younger than his own past self.
 
 ### Q18 · `ALG-LIN-043` — Answer: 3
 
@@ -538,42 +533,7 @@ Answer: 3.
 
 **Trap.** Reporting 14, the common solution, instead of n. The question asks for the constant, not for x. The other live error is distributing the 3 to x only, writing 3x - n = 2x + 5; that gives x = n + 5, then n + 5 = 20 - 2n and n = 5, which fails the check because the two equations then have solutions 10 and 10 only by coincidence of the wrong first step.
 
-### Q19 · `ALG-LIN-044` — Answer: A
-
-Step 1 — cross-multiply: c(x - a) = b(x + a).
-Step 2 — distribute on both sides: cx - ca = bx + ba.
-Step 3 — collect the x terms on the left and the constants on the right, changing the sign of each term that moves: cx - bx = ba + ca.
-Step 4 — factor each side: x(c - b) = a(b + c).
-Step 5 — divide by (c - b), which is nonzero because b is not equal to c: x = a(b + c)/(c - b).
-Check: substitute back into the original equation with a = 1, b = 2, c = 3. Then x = 1(2 + 3)/(3 - 2) = 5, and (x - a)/b = (5 - 1)/2 = 2 while (x + a)/c = (5 + 1)/3 = 2. Correct.
-Answer: A.
-
-**Trap.** Cross-multiplying the wrong pairs, b(x - a) = c(x + a), which gives x(b - c) = a(b + c) and so x = a(c + b)/(b - c), choice D: the correct magnitude with the denominator reversed in sign. Choice C, -a, comes from failing to change the sign of -ca when it moves right: cx - bx = ba - ca gives x(c - b) = -a(c - b), so x = -a. Choice B divides by (b + c) instead of by (c - b), exchanging the two factors. Choice E is a false shortcut: the numerators differ by 2a and the denominators by c - b, and those differences are divided one by the other.
-
-### Q20 · `ALG-LIN-045` — Answer: D
-
-Step 1 — clear the bracket once, keeping both letters: 4 - c*x - 2c = k.
-Step 2 — isolate x: -c*x = k - 4 + 2c, so x = (4 - 2c - k)/c.
-Step 3 — compare by difference rather than by computing either column. Quantity A - Quantity B = [(4 - 2c - 1) - (4 - 2c - 7)]/c = 6/c.
-Step 4 — read that difference. It is never 0, since c is never 0, so the columns are never equal. But its sign is the sign of c, and the stem fixes only that c is not 0.
-Step 5 — both signs are permitted. If c > 0 the coefficient of x after the bracket is cleared is -c, a negative number, so dividing by it reverses the order and the larger k gives the smaller x: Quantity A is greater. If c < 0 that coefficient is positive, the order is preserved, and Quantity B is greater.
-Check: substitute back into the original equation. With c = 3, k = 1 gives 4 - 3(x + 2) = 1, so -3x = 3 and x = -1; k = 7 gives 4 - 3(x + 2) = 7, so -3x = 9 and x = -3; here Quantity A is greater. With c = -3, k = 1 gives 4 + 3(x + 2) = 1, so 3x = -9 and x = -3; k = 7 gives 4 + 3(x + 2) = 7, so 3x = -3 and x = -1; here Quantity B is greater. Two permitted values of c give opposite orders. Correct.
-Answer: D.
-
-**Trap.** Answering A is the trained reflex from the fixed-coefficient version of this equation: clear the bracket, see a minus in front of x, and conclude that the larger k must give the smaller x. That conclusion depends on c being positive, which the stem never says. Answering B is the untrained reflex, that a larger number on the right forces a larger x, and it happens to be right only when c is negative. Answering C confuses 'the difference does not depend on k' with 'the difference is 0'; the difference is 6/c, which is never 0.
-
-### Q21 · `ALG-LIN-049` — Answer: B
-
-Step 1 — solve for x: x = (n^2 + 2n)/(n + 1). The division is legal because n is positive, so n + 1 is not 0.
-Step 2 — do not compute; compare instead. Quantity B squared would be (n + 1)^2 = n^2 + 2n + 1.
-Step 3 — so (n + 1)(n + 1) = n^2 + 2n + 1, which is exactly 1 more than the right side of the given equation.
-Step 4 — therefore (n + 1)x = n^2 + 2n < (n + 1)(n + 1). Dividing both sides by the positive number n + 1 gives x < n + 1, for every positive integer n.
-Check: substitute n = 3 into the original equation. 4x = 9 + 6 = 15, so x = 3.75, and n + 1 = 4. Indeed 3.75 < 4. Correct.
-Answer: B.
-
-**Trap.** Seeing n^2 + 2n and reading it as n(n + 2), then cancelling loosely to conclude x = n + 1 and answering C. The factorisation is n(n + 2), not (n + 1)^2, and it falls one short of (n + 1)^2, so x is always just below n + 1. Answering D because n is unknown misses that the gap has the same sign for every n.
-
-### Q22 · `ALG-LIN-050` — Answer: D
+### Q19 · `ALG-LIN-050` — Answer: D
 
 Step 1 — expand the left side: 2(3x - a) + 4 = 6x - 2a + 4.
 Step 2 — the equation is 6x - 2a + 4 = 6x + b.
@@ -585,7 +545,57 @@ Answer: D.
 
 **Trap.** Distributing the 2 onto the +4 that sits outside the bracket, giving 6x - 2a + 8 = 6x + b and b + 2a = 8, which is choice E. Choice B, -4, comes from reading -2a + 4 = b as b = -2a - 4; choice A is both errors together; choice C comes from assuming an identity forces a = b = 0.
 
-### Q23 · `ALG-LIN-051` — Answer: -12
+### Q20 · `ALG-LIN-056` — Answer: 50
+
+Step 1 — name one unknown. The white count is given, so the only unknown is the green count: let g be the number of green tokens in the original collection. The original total is g + 30.
+Step 2 — translate the removal, and keep hold of the fact that taking tokens out shrinks the total as well as one color. What remains is g - 12 green tokens out of g + 30 - 12 = g + 18 tokens in all:
+g - 12 = (1/4)(g + 18).
+Step 3 — clear the fraction by multiplying both sides by 4: 4g - 48 = g + 18. Collect: 3g = 66, so g = 22. The reduced collection is 10 green and 30 white, 40 tokens in all.
+Step 4 — the second stage brings its own single unknown. Let n be the number of green tokens added. Adding green tokens raises the green count and the total by the same n, so n appears in the numerator and the denominator at once:
+(10 + n)/(40 + n) = 2/5.
+Step 5 — clear the fraction by cross-multiplying: 5(10 + n) = 2(40 + n), so 50 + 5n = 80 + 2n. Collect: 3n = 30 and n = 10.
+Step 6 — the question asks for the size of the collection at that point, not for n and not for the green count: 40 + 10 = 50.
+Check: substitute back into the original wording. The collection starts as 22 green and 30 white, 52 in all. Remove 12 green: 10 green out of 40 remaining, and 10/40 = 1/4. Add green until greens are 2/5: adding 10 gives 20 green out of 50, and 20/50 = 2/5. Correct.
+Answer: 50.
+
+**Trap.** Three of the four quantities in play are not the one asked for: 52 is the original total, 10 is the number added (and also the green count before adding), and 20 is the green count at the end. The live algebraic error is in Step 4: writing (10 + n)/40 = 2/5, as though adding tokens changed the green count but not the total. That gives n = 6 and a collection of 46, which fails the check, because 16 green out of 46 is not 2/5. Step 2 carries the same error in reverse: writing g - 12 = (1/4)(g + 30) forgets that removing green tokens shrinks the total too.
+
+### Q21 · `ALG-LIN-044` — Answer: A
+
+Step 1 — cross-multiply: c(x - a) = b(x + a).
+Step 2 — distribute on both sides: cx - ca = bx + ba.
+Step 3 — collect the x terms on the left and the constants on the right, changing the sign of each term that moves: cx - bx = ba + ca.
+Step 4 — factor each side: x(c - b) = a(b + c).
+Step 5 — divide by (c - b), which is nonzero because b is not equal to c: x = a(b + c)/(c - b).
+Check: substitute back into the original equation with a = 1, b = 2, c = 3. Then x = 1(2 + 3)/(3 - 2) = 5, and (x - a)/b = (5 - 1)/2 = 2 while (x + a)/c = (5 + 1)/3 = 2. Correct.
+Answer: A.
+
+**Trap.** Cross-multiplying the wrong pairs, b(x - a) = c(x + a), which gives x(b - c) = a(b + c) and so x = a(c + b)/(b - c), choice D: the correct magnitude with the denominator reversed in sign. Choice C, -a, comes from failing to change the sign of -ca when it moves right: cx - bx = ba - ca gives x(c - b) = -a(c - b), so x = -a. Choice B divides by (b + c) instead of by (c - b), exchanging the two factors. Choice E is a false shortcut: the numerators differ by 2a and the denominators by c - b, and those differences are divided one by the other.
+
+### Q22 · `ALG-LIN-045` — Answer: D
+
+Step 1 — clear the bracket once, keeping both letters: 4 - c*x - 2c = k.
+Step 2 — isolate x: -c*x = k - 4 + 2c, so x = (4 - 2c - k)/c.
+Step 3 — compare by difference rather than by computing either column. Quantity A - Quantity B = [(4 - 2c - 1) - (4 - 2c - 7)]/c = 6/c.
+Step 4 — read that difference. It is never 0, since c is never 0, so the columns are never equal. But its sign is the sign of c, and the stem fixes only that c is not 0.
+Step 5 — both signs are permitted. If c > 0 the coefficient of x after the bracket is cleared is -c, a negative number, so dividing by it reverses the order and the larger k gives the smaller x: Quantity A is greater. If c < 0 that coefficient is positive, the order is preserved, and Quantity B is greater.
+Check: substitute back into the original equation. With c = 3, k = 1 gives 4 - 3(x + 2) = 1, so -3x = 3 and x = -1; k = 7 gives 4 - 3(x + 2) = 7, so -3x = 9 and x = -3; here Quantity A is greater. With c = -3, k = 1 gives 4 + 3(x + 2) = 1, so 3x = -9 and x = -3; k = 7 gives 4 + 3(x + 2) = 7, so 3x = -3 and x = -1; here Quantity B is greater. Two permitted values of c give opposite orders. Correct.
+Answer: D.
+
+**Trap.** Answering A is the trained reflex from the fixed-coefficient version of this equation: clear the bracket, see a minus in front of x, and conclude that the larger k must give the smaller x. That conclusion depends on c being positive, which the stem never says. Answering B is the untrained reflex, that a larger number on the right forces a larger x, and it happens to be right only when c is negative. Answering C confuses 'the difference does not depend on k' with 'the difference is 0'; the difference is 6/c, which is never 0.
+
+### Q23 · `ALG-LIN-049` — Answer: B
+
+Step 1 — solve for x: x = (n^2 + 2n)/(n + 1). The division is legal because n is positive, so n + 1 is not 0.
+Step 2 — do not compute; compare instead. Quantity B squared would be (n + 1)^2 = n^2 + 2n + 1.
+Step 3 — so (n + 1)(n + 1) = n^2 + 2n + 1, which is exactly 1 more than the right side of the given equation.
+Step 4 — therefore (n + 1)x = n^2 + 2n < (n + 1)(n + 1). Dividing both sides by the positive number n + 1 gives x < n + 1, for every positive integer n.
+Check: substitute n = 3 into the original equation. 4x = 9 + 6 = 15, so x = 3.75, and n + 1 = 4. Indeed 3.75 < 4. Correct.
+Answer: B.
+
+**Trap.** Seeing n^2 + 2n and reading it as n(n + 2), then cancelling loosely to conclude x = n + 1 and answering C. The factorization is n(n + 2), not (n + 1)^2, and it falls one short of (n + 1)^2, so x is always just below n + 1. Answering D because n is unknown misses that the gap has the same sign for every n.
+
+### Q24 · `ALG-LIN-051` — Answer: -12
 
 Step 1 — multiply both sides by (x - 4). This step is legal only when x is not 4, so x = 4 can never be a solution of the original equation no matter what the algebra returns.
 3x + c = 5(x - 4).
@@ -598,7 +608,7 @@ Answer: -12.
 
 **Trap.** Concluding that no value of c can fail, because x = (c + 20)/2 always comes out of the algebra. Clearing the denominator multiplies both sides by an expression containing the variable, and that is only legal away from x = 4; when the candidate root lands exactly on 4, the step has manufactured a root the original equation does not have. Reporting 4, the excluded value, instead of c is the other live error.
 
-### Q24 · `ALG-LIN-052` — Answer: B
+### Q25 · `ALG-LIN-052` — Answer: B
 
 Step 1 — solve the equation for x, treating k as a number. Collect the x terms: 4x - 2x = 18 - k, so 2x = 18 - k.
 Step 2 — isolate x: x = (18 - k)/2.
@@ -610,35 +620,19 @@ Answer: B.
 
 **Trap.** Including k = 18 and answering 90. It gives x = 0, and 0 is not a positive integer. Choice A, 36, sums the solutions x instead of the values of k, which is not what was asked. Choice D, 153, drops the parity condition and sums every k from 1 to 17; choice E, 240, drops the positivity condition and sums every even k from 2 to 30.
 
-### Q25 · `ALG-LIN-053` — Answer: A, D
+### Q26 · `ALG-LIN-053` — Answer: C, D, E
 
-Step 1 — rearrange once: (p - r)x = s - q. Everything follows from whether p - r is 0.
-If p - r is not 0, there is exactly one solution, x = (s - q)/(p - r), whatever the constants do.
-If p - r = 0, the equation reads 0 = s - q: no solution when q is not equal to s, infinitely many when q = s.
-A. TRUE - a real number has a multiplicative inverse exactly when it is not 0, since 0 times anything is 0 and can never be 1. So the condition says p - r is not 0, which is precisely the criterion from Step 1. The inverse is even the tool used: multiplying (p - r)x = s - q by 1/(p - r) is what produces the single value of x.
-B. FALSE - this is the no-solution case. Example: 2x + 1 = 2x + 5 gives 0 = 4.
-C. FALSE - it says nothing about the coefficients. Example: 2x + 1 = 2x + 5 satisfies q not equal to s yet has no solution.
-D. TRUE - substitute p = 2r into p - r: 2r - r = r, and r is not 0, so p - r is not 0 and there is exactly one solution.
-E. FALSE - p + r = 0 gives p - r = p - (-p) = 2p, which is not 0 only when p is not 0. The condition as stated allows p = r = 0, and then the equation is q = s: no solution if q is not equal to s, infinitely many if q = s.
-Check: take D with r = 3, so p = 6, and q = 1, s = 7. Then 6x + 1 = 3x + 7 gives 3x = 6 and x = 2, exactly one solution. Take A with p = 4, r = -1, q = 0, s = 5: p - r = 5, whose multiplicative inverse is 1/5, and 4x + 0 = -x + 5 gives 5x = 5 and x = 1, exactly one solution. Take E with p = r = 0, q = 1, s = 1: the equation is 1 = 1, true for every x. Correct.
-Answer: A and D.
+Rewrite: ax - a = 2x + b, so (a - 2)x = a + b.
+If a is not 2, divide by a - 2 to get exactly one solution, whatever b is.
+If a = 2, the x terms cancel and the equation becomes 0 = 2 + b: every x works when b = -2, and no x works otherwise.
+A: a = 2, b = -2. Every x is a solution. Not exactly one.
+B: a = 2, b = 3. No solution.
+C: a = 0. One solution (x = 0).
+D: a = 3. One solution (x = 0).
+E: a = -2. One solution (x = -3/4).
+Answer: C, D, E.
 
-**Trap.** Option A is the criterion itself in disguise, and the disguise is the work: 'has a multiplicative inverse' has to be turned into 'is not 0' before it can be matched against (p - r)x = s - q. Passing over it because it is phrased about a number rather than about the equation costs a correct selection. Selecting C because different constants feel as though they should force a unique answer is the mirror error: they do not, since 2x + 1 = 2x + 5 has q not equal to s and no solution at all. Selecting E is the missing-zero-case error: p + r = 0 does force p - r = 2p, but 2p is 0 when p = 0, and p = r = 0 leaves the equation with either none or infinitely many solutions.
-
-### Q26 · `ALG-LIN-039` — Answer: C
-
-Step 1 — clear the denominator: 2x + 4 = k(x - 1) = kx - k.
-Step 2 — collect the x terms: 2x - kx = -k - 4, so x(2 - k) = -(k + 4).
-Step 3 — solve, noting k = 2 must be set aside: if k = 2 the equation reads 0 = -6, a contradiction with no solution at all.
-For k not equal to 2, x = (k + 4)/(k - 2).
-Step 4 — make the divisibility visible by splitting the fraction:
-x = (k - 2 + 6)/(k - 2) = 1 + 6/(k - 2).
-Step 5 — x is an integer exactly when (k - 2) divides 6, so k - 2 is one of -6, -3, -2, -1, 1, 2, 3, 6.
-Step 6 — that is 8 values of k: k = -4, -1, 0, 1, 3, 4, 5, 8. None of them makes x equal to 1, since 6/(k - 2) is never 0.
-Check: substitute k = 5 into the original equation. x = 1 + 6/3 = 3, and (2(3) + 4)/(3 - 1) = 10/2 = 5 = k. Correct.
-Answer: C.
-
-**Trap.** Counting only the positive divisors of 6, which gives k - 2 in {1, 2, 3, 6} and the answer 4, choice A. Divisors run both ways. Choice B, 6, comes from demanding that (k - 2) divide 4 rather than 6, by reading x = (k + 4)/(k - 2) without the split; choice D, 9, comes from getting the eight values and then also counting k = 2, which in fact gives no solution.
+**Trap.** Rejecting C because a = 0 'removes' the left side. With a = 0 the equation is 0 = 2x, which still has the single solution x = 0. Only a = 2 makes the x terms cancel.
 
 ### Q27 · `ALG-LIN-054` — Answer: E
 
@@ -667,32 +661,32 @@ Answer: D.
 
 **Trap.** Answering C is the trap the constant 12 is there to set. Without it the relationship would be b = 2a, the numerator and denominator would both carry a factor of a, that factor would cancel, and Quantity A would be 5/3 for every a. The 12 breaks that cancellation: b = 2a + 6 leaves (5a + 12)/(3a + 6), whose value moves with a. Answering A or B comes from testing a single value of a - a = 0 gives 2 and suggests A, a = -3 gives 1 and suggests B - and stopping there. The one value worth hunting for is a = -2, where the denominator would vanish; the stem excludes it, which is exactly the hint that a is otherwise free on both sides of it.
 
-### Q29 · `ALG-LIN-056` — Answer: 50
-
-Step 1 — name one unknown. The white count is given, so the only unknown is the green count: let g be the number of green tokens in the original collection. The original total is g + 30.
-Step 2 — translate the removal, and keep hold of the fact that taking tokens out shrinks the total as well as one colour. What remains is g - 12 green tokens out of g + 30 - 12 = g + 18 tokens in all:
-g - 12 = (1/4)(g + 18).
-Step 3 — clear the fraction by multiplying both sides by 4: 4g - 48 = g + 18. Collect: 3g = 66, so g = 22. The reduced collection is 10 green and 30 white, 40 tokens in all.
-Step 4 — the second stage brings its own single unknown. Let n be the number of green tokens added. Adding green tokens raises the green count and the total by the same n, so n appears in the numerator and the denominator at once:
-(10 + n)/(40 + n) = 2/5.
-Step 5 — clear the fraction by cross-multiplying: 5(10 + n) = 2(40 + n), so 50 + 5n = 80 + 2n. Collect: 3n = 30 and n = 10.
-Step 6 — the question asks for the size of the collection at that point, not for n and not for the green count: 40 + 10 = 50.
-Check: substitute back into the original wording. The collection starts as 22 green and 30 white, 52 in all. Remove 12 green: 10 green out of 40 remaining, and 10/40 = 1/4. Add green until greens are 2/5: adding 10 gives 20 green out of 50, and 20/50 = 2/5. Correct.
-Answer: 50.
-
-**Trap.** Three of the four quantities in play are not the one asked for: 52 is the original total, 10 is the number added (and also the green count before adding), and 20 is the green count at the end. The live algebraic error is in Step 4: writing (10 + n)/40 = 2/5, as though adding tokens changed the green count but not the total. That gives n = 6 and a collection of 46, which fails the check, because 16 green out of 46 is not 2/5. Step 2 carries the same error in reverse: writing g - 12 = (1/4)(g + 30) forgets that removing green tokens shrinks the total too.
-
-### Q30 · `ALG-LIN-057` — Answer: A, C
+### Q29 · `ALG-LIN-057` — Answer: A, C
 
 Step 1 — substitute x = 5: (10 + a)/(5 - b) = 3. This is legal only because x is not equal to b, so 5 - b is not 0.
 Step 2 — clear the denominator: 10 + a = 3(5 - b) = 15 - 3b.
 Step 3 — rearrange: a + 3b = 5, equivalently a = 5 - 3b. That single relation is everything the stem gives; a and b are not individually determined.
-A. TRUE - a + 3b = 5 is exactly Step 3.
-B. FALSE - 2b - a = 10 together with a = 5 - 3b gives 2b - 5 + 3b = 10, so 5b = 15 and b = 3. That is one particular case, not a must.
-C. TRUE - from Step 3, a - 2 = (5 - 3b) - 2 = 3 - 3b = 3(1 - b). Since b is an integer, a - 2 is 3 times an integer.
-D. FALSE - b = 5 is impossible. Clearing the denominator in general gives 2x + a = 3x - 3b, so x = a + 3b; with a + 3b = 5 the only root is x = 5. If b were 5, that root would equal b, which the stem excludes, and the equation would have no permitted solution.
-E. FALSE - a + b = 5 with a = 5 - 3b gives 5 - 3b + b = 5, so 2b = 0 and b = 0. It holds in one case only.
+A. True - a + 3b = 5 is exactly Step 3.
+B. False - 2b - a = 10 together with a = 5 - 3b gives 2b - 5 + 3b = 10, so 5b = 15 and b = 3. That is one particular case, not a must.
+C. True - from Step 3, a - 2 = (5 - 3b) - 2 = 3 - 3b = 3(1 - b). Since b is an integer, a - 2 is 3 times an integer.
+D. False - b = 5 is impossible. Clearing the denominator in general gives 2x + a = 3x - 3b, so x = a + 3b; with a + 3b = 5 the only root is x = 5. If b were 5, that root would equal b, which the stem excludes, and the equation would have no permitted solution.
+E. False - a + b = 5 with a = 5 - 3b gives 5 - 3b + b = 5, so 2b = 0 and b = 0. It holds in one case only.
 Check: substitute a test pair back into the original equation (2x + a)/(x - b) = 3. Take b = 1, so a = 2. Then (2(5) + 2)/(5 - 1) = 12/4 = 3. Correct, and a + 3b = 2 + 3 = 5 and a - 2 = 0 = 3 * 0, while a + b = 3, not 5.
 Answer: A and C.
 
 **Trap.** Selecting E because a + b = 5 resembles the correct a + 3b = 5; it holds only when b = 0. Selecting D because the stem calls a and b integers and says nothing more about b - but b = 5 would place the excluded value x = b exactly at the root x = 5, leaving the equation with no permitted solution.
+
+### Q30 · `ALG-LIN-039` — Answer: C
+
+Step 1 — clear the denominator: 2x + 4 = k(x - 1) = kx - k.
+Step 2 — collect the x terms: 2x - kx = -k - 4, so x(2 - k) = -(k + 4).
+Step 3 — solve, noting k = 2 must be set aside: if k = 2 the equation reads 0 = -6, a contradiction with no solution at all.
+For k not equal to 2, x = (k + 4)/(k - 2).
+Step 4 — make the divisibility visible by splitting the fraction:
+x = (k - 2 + 6)/(k - 2) = 1 + 6/(k - 2).
+Step 5 — x is an integer exactly when (k - 2) divides 6, so k - 2 is one of -6, -3, -2, -1, 1, 2, 3, 6.
+Step 6 — that is 8 values of k: k = -4, -1, 0, 1, 3, 4, 5, 8. None of them makes x equal to 1, since 6/(k - 2) is never 0.
+Check: substitute k = 5 into the original equation. x = 1 + 6/3 = 3, and (2(3) + 4)/(3 - 1) = 10/2 = 5 = k. Correct.
+Answer: C.
+
+**Trap.** Counting only the positive divisors of 6, which gives k - 2 in {1, 2, 3, 6} and the answer 4, choice A. Divisors run both ways. Choice B, 6, comes from demanding that (k - 2) divide 4 rather than 6, by reading x = (k + 4)/(k - 2) without the split; choice D, 9, comes from getting the eight values and then also counting k = 2, which in fact gives no solution.

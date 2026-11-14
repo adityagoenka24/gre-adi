@@ -36,7 +36,7 @@ That third point is the one to hammer: with parallel lines there are only ever t
 | Alternate exterior angles | equal |
 | Co-interior / same-side interior (C or U shape) | supplementary (sum 180) |
 
-**The practical shortcut.** Mark one angle as x. Every other angle in the figure is either x or 180 - x. Decide which by asking: "does this angle look acute or obtuse compared to the one I marked?" On GRE figures (which are drawn to scale unless stated otherwise) this visual check is reliable.
+**The practical shortcut.** Mark one angle as x. Every other angle in the figure is either x or 180 - x. Decide which from the stated facts — which lines are parallel, which angles are vertical, which pair sits on a straight line — and never from how the angle looks. GRE geometric figures are **not necessarily drawn to scale**, so an angle drawn obtuse may be acute. (Coordinate systems and data graphs *are* drawn to scale; plane geometry figures are not.)
 
 **Angle types:** acute (< 90), right (= 90), obtuse (between 90 and 180), straight (= 180), reflex (between 180 and 360).
 
@@ -81,7 +81,7 @@ Largest = 6 x 24 = **144 degrees**.
 ## 4. GRE Traps
 
 - **Assuming lines are parallel because they look parallel.** They must be marked or stated.
-- **Assuming an angle is a right angle because it looks like one.** GRE figures are drawn to scale but a right angle must be marked or deducible.
+- **Assuming an angle is a right angle because it looks like one.** A right angle counts only when it is marked or deducible from the stated facts — geometric figures are not necessarily drawn to scale.
 - **Alternate vs co-interior confusion.** Alternate angles are *equal*; co-interior angles are *supplementary*. The Z shape means equal, the C shape means 180.
 - **Forgetting reflex angles.** "The angles around a point sum to 360" includes the reflex one if the figure shows it.
 - **Using the figure's apparent measurements** when the problem says "figure not drawn to scale".

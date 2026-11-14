@@ -72,7 +72,7 @@ At least one woman = 84 - 10 = **74**.
 
 ## 4. GRE Traps
 
-- **Using permutations for selections.** A committee of 3 from 9 is 126, not P(9,3) = 504.
+- **Using permutations for selections.** A committee of 3 from 9 is C(9,3) = 84, not P(9,3) = 504.
 - **Forgetting the symmetry shortcut** and grinding C(12,10) the long way.
 - **Adding when you should multiply.** Independent selections from separate pools multiply.
 - **Summing "at least" cases and missing one.** Use the complement.

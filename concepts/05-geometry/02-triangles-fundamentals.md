@@ -22,7 +22,6 @@ The triangle is the most-tested figure on the GRE. Four facts generate nearly ev
 | Angle sum | 180 degrees |
 | Exterior angle | equals the sum of the two remote interior angles |
 | Area | (1/2) x base x height |
-| Area (Heron) | sqrt[s(s-a)(s-b)(s-c)], s = (a+b+c)/2 |
 | Triangle inequality | \|b - c\| < a < b + c |
 | Side-angle correspondence | largest side is opposite the largest angle |
 | Perimeter | a + b + c |
@@ -68,13 +67,21 @@ Exterior angle at C = A + B = 50 + 65 = **115 degrees**.
 
 ### Example 3 — Area with a non-obvious height
 
-*A triangle has sides 13, 14 and 15. Find its area.*
+*A triangle has sides 13, 14 and 15. What is its area?*
 
-Use Heron's formula. s = (13 + 14 + 15)/2 = 21.
+Drop a perpendicular of height h onto the side of length 14, cutting it into x and 14 - x.
 
-Area = sqrt[21 x (21-13) x (21-14) x (21-15)] = sqrt[21 x 8 x 7 x 6]
+Both pieces are right triangles sharing h, so 13^2 - x^2 = h^2 = 15^2 - (14 - x)^2.
 
-= sqrt[7056] = **84**.
+169 - x^2 = 225 - 196 + 28x - x^2, so 169 = 29 + 28x, giving x = 5.
+
+Then h = sqrt(169 - 25) = sqrt(144) = 12, and the two pieces are the 5-12-13 and
+9-12-15 right triangles.
+
+Area = (1/2) x 14 x 12 = **84**.
+
+(The GRE never needs Heron's formula. When a triangle looks area-hard, drop a height
+and look for Pythagorean triples.)
 
 ---
 
@@ -95,7 +102,7 @@ Area = sqrt[21 x (21-13) x (21-14) x (21-15)] = sqrt[21 x 8 x 7 x 6]
 - **Third side range: difference < x < sum.** One line, always.
 - **Exterior angle = sum of the two remote interiors.** Faster than computing the interior angle first.
 - **Area ratios:** two triangles with the same height have areas in the ratio of their bases; with the same base, in the ratio of their heights.
-- **Heron only when nothing else works** — it involves a square root and is slow. Look for a right angle first.
+- **Drop a height instead of reaching for an area formula.** The perpendicular usually splits the triangle into two Pythagorean triples. Look for a right angle first.
 - **In any triangle, rank the sides to rank the angles** and vice versa. Many quantitative comparison questions need nothing more.
 
 ---

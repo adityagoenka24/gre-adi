@@ -1,6 +1,6 @@
 # Exponents & Roots — Practice Set
 
-**Bank code:** `ARI-EXP` · **Section:** Arithmetic · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `ARI-EXP` · **Section:** Arithmetic · **30 questions** — Easy 5 · Medium 18 · Hard 7
 
 **Lecture capsule:** [04-exponents-roots.md](../../01-arithmetic/04-exponents-roots.md)
 
@@ -32,8 +32,8 @@ Which of the following is equal to sqrt(75)?
 **(A)** 3 sqrt(5)  
 **(B)** 5 sqrt(3)  
 **(C)** 5 sqrt(15)  
-**(D)** 25 sqrt(3)  
-**(E)** 37.5
+**(D)** 37.5  
+**(E)** 25 sqrt(3)
 
 **Q3** · `ARI-EXP-011` · MCQ · 55s
 
@@ -57,13 +57,13 @@ Which of the following are equal to 32? Select all that apply.
 
 **Q5** · `ARI-EXP-015` · Numeric Entry · 40s
 
-What is the value of (1/3)^(-2)? Enter your answer as a number.
+What is the value of (1/3)^(-2)?
 
 *Numeric entry — write the number.*
 
 ---
 
-### Level 2 · Medium — 8 questions · ~9 min
+### Level 2 · Medium — 18 questions · ~24 min
 
 *two or three steps, one planted trap each*
 
@@ -79,10 +79,10 @@ If 2^x = 32, what is the value of 2^(x+3)?
 
 **Q7** · `ARI-EXP-025` · MCQ · 75s
 
-Which of the following is equal to sqrt(8)/sqrt(6), with no radical in the denominator?
+Which of the following is equal to √8/√6?
 
-**(A)** 2/3  
-**(B)** sqrt(3)/3  
+**(A)** sqrt(3)/3  
+**(B)** 2/3  
 **(C)** 2 sqrt(3)/3  
 **(D)** 4/3  
 **(E)** 2 sqrt(3)
@@ -106,13 +106,13 @@ Which of the following are rational numbers? Select all that apply.
 
 **Q10** · `ARI-EXP-039` · Numeric Entry · 65s
 
-What is the value of 16^(3/4)? Enter your answer as a number.
+What is the value of 16^(3/4)?
 
 *Numeric entry — write the number.*
 
 **Q11** · `ARI-EXP-043` · Numeric Entry · 75s
 
-The expression sqrt(45) + sqrt(80) - sqrt(20) can be written as k x sqrt(5) for some integer k. What is k? Enter your answer as a number.
+The expression sqrt(45) + sqrt(80) - sqrt(20) can be written as k x sqrt(5) for some integer k. What is k?
 
 *Numeric entry — write the number.*
 
@@ -131,30 +131,14 @@ Which of the following is equal to (2x^3 y^2)^3 ?
 > **Quantity A:**  (1/2)^100
 > **Quantity B:**  (1/3)^70
 
----
-
-### Level 3 · Hard — 12 questions · ~18 min
-
-*where 162+ is won or lost*
-
-**Q14** · `ARI-EXP-042` · MCQ · 100s
-
-Which of the following is the greatest?
-
-**(A)** 2^25  
-**(B)** 3^20  
-**(C)** 4^15  
-**(D)** 6^10  
-**(E)** 12^5
-
-**Q15** · `ARI-EXP-052` · QC · 80s
+**Q14** · `ARI-EXP-052` · QC · 80s
 
 x is a nonzero real number.
 
 > **Quantity A:**  x^2
 > **Quantity B:**  x^3
 
-**Q16** · `ARI-EXP-054` · MCQ · 85s
+**Q15** · `ARI-EXP-054` · MCQ · 85s
 
 If x > 0 and x^(2/3) = 4, what is x?
 
@@ -164,17 +148,7 @@ If x > 0 and x^(2/3) = 4, what is x?
 **(D)** 16  
 **(E)** 64
 
-**Q17** · `ARI-EXP-055` · Select all that apply · 95s
-
-a and b are nonzero real numbers. Which of the following are equal to sqrt(a^2 b^4) for ALL such a and b? Select all that apply.
-
-**(A)** a b^2  
-**(B)** |a| b^2  
-**(C)** |a b^2|  
-**(D)** sqrt(a^2) x sqrt(b^4)  
-**(E)** |a| |b|^4
-
-**Q18** · `ARI-EXP-057` · MCQ · 80s
+**Q16** · `ARI-EXP-057` · MCQ · 80s
 
 n is an integer. For which values of n is (-1)^n + (-1)^(n+1) = 0 ?
 
@@ -184,50 +158,44 @@ n is an integer. For which values of n is (-1)^n + (-1)^(n+1) = 0 ?
 **(D)** No integers n  
 **(E)** Only n = 0
 
-**Q19** · `ARI-EXP-059` · MCQ · 90s
+**Q17** · `ARI-EXP-059` · MCQ · 90s
 
 Which of the following is equal to 3/(2 + sqrt(5)) with a rational denominator?
 
-**(A)** 3 sqrt(5) - 6  
-**(B)** 6 - 3 sqrt(5)  
-**(C)** 3(2 - sqrt(5))/9  
+**(A)** 6 - 3 sqrt(5)  
+**(B)** 3(2 - sqrt(5))/9  
+**(C)** 3 sqrt(5) - 6  
 **(D)** 3(2 + sqrt(5))/9  
 **(E)** 3/2 + 3/sqrt(5)
 
-**Q20** · `ARI-EXP-060` · QC · 85s
+**Q18** · `ARI-EXP-060` · QC · 85s
 
 x > 0
 
 > **Quantity A:**  x^(1/2)
 > **Quantity B:**  x^(1/3)
 
-**Q21** · `ARI-EXP-061` · MCQ · 80s
+**Q19** · `ARI-EXP-061` · MCQ · 80s
 
 What is the value of (sqrt(5) - sqrt(3))^2 ?
 
-**(A)** 2  
-**(B)** 8  
+**(A)** 8 - 2 sqrt(15)  
+**(B)** 2  
 **(C)** 8 - 2 sqrt(8)  
-**(D)** 8 - 2 sqrt(15)  
+**(D)** 8  
 **(E)** 8 + 2 sqrt(15)
 
-**Q22** · `ARI-EXP-062` · Numeric Entry · 85s
-
-If 3^x = 5, what is the value of 9^(x+1)? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q23** · `ARI-EXP-063` · Select all that apply · 95s
+**Q20** · `ARI-EXP-063` · Select all that apply · 90s
 
 x and y are positive numbers and a and b are nonzero real numbers. Which of the following are true for all such values? Select all that apply.
 
-**(A)** x^a x x^b = x^(a+b)  
+**(A)** x^a · x^b = x^(a+b)  
 **(B)** (x + y)^2 = x^2 + y^2  
 **(C)** sqrt(x^2 + y^2) = x + y  
 **(D)** x^a / x^b = x^(a-b)  
-**(E)** sqrt(xy) = sqrt(x) x sqrt(y)
+**(E)** sqrt(xy) = sqrt(x) · sqrt(y)
 
-**Q24** · `ARI-EXP-065` · MCQ · 95s
+**Q21** · `ARI-EXP-065` · MCQ · 95s
 
 What is the value of 8^(2/3) + 16^(3/4) + 81^(1/4) - 32^(1/5) ?
 
@@ -237,27 +205,59 @@ What is the value of 8^(2/3) + 16^(3/4) + 81^(1/4) - 32^(1/5) ?
 **(D)** 13  
 **(E)** 19
 
-**Q25** · `ARI-EXP-066` · Numeric Entry · 90s
+**Q22** · `ARI-EXP-066` · Numeric Entry · 90s
 
-If 2^x + 2^x + 2^x + 2^x = 4^12, what is x? Enter your answer as a number.
+If 2^x + 2^x + 2^x + 2^x = 4^12, what is x?
+
+*Numeric entry — write the number.*
+
+**Q23** · `ARI-EXP-077` · Numeric Entry · 115s
+
+What is the units digit of 3^47 + 7^35?
 
 *Numeric entry — write the number.*
 
 ---
 
-### Level 4 · Extreme — 5 questions · ~10 min
+### Level 3 · Hard — 7 questions · ~12 min
 
-*165+ — expect to need the insight, not the grind*
+*where 162+ is won or lost*
 
-**Q26** · `ARI-EXP-073` · Numeric Entry · 110s
+**Q24** · `ARI-EXP-042` · MCQ · 100s
 
-If 2^x = 3, 3^y = 4, and 4^z = 5, what is the value of 2^(xyz)? Enter your answer as a number.
+Which of the following is the greatest?
+
+**(A)** 12^5  
+**(B)** 2^25  
+**(C)** 6^10  
+**(D)** 4^15  
+**(E)** 3^20
+
+**Q25** · `ARI-EXP-055` · Select all that apply · 95s
+
+a and b are nonzero real numbers. Which of the following are equal to sqrt(a^2 b^4) for all such a and b? Select all that apply.
+
+**(A)** a b^2  
+**(B)** |a| b^2  
+**(C)** |a b^2|  
+**(D)** sqrt(a^2) x sqrt(b^4)  
+**(E)** |a| |b|^4
+
+**Q26** · `ARI-EXP-062` · Numeric Entry · 85s
+
+If 3^x = 5, what is the value of 9^(x+1)?
 
 *Numeric entry — write the number.*
 
-**Q27** · `ARI-EXP-076` · Select all that apply · 120s
+**Q27** · `ARI-EXP-073` · Numeric Entry · 110s
 
-n is a positive integer. Which of the following expressions are integers for EVERY such n? Select all that apply.
+If 2^x = 3, 3^y = 4, and 4^z = 5, what is the value of 2^(xyz)?
+
+*Numeric entry — write the number.*
+
+**Q28** · `ARI-EXP-076` · Select all that apply · 110s
+
+n is a positive integer. Which of the following expressions are integers for every such n? Select all that apply.
 
 **(A)** n^(1/n)  
 **(B)** (2^n + 2^n)^(1/n)  
@@ -265,13 +265,7 @@ n is a positive integer. Which of the following expressions are integers for EVE
 **(D)** (n^2)^(1/2)  
 **(E)** (9^n)^(1/(2n))
 
-**Q28** · `ARI-EXP-077` · Numeric Entry · 115s
-
-What is the units digit of 3^47 + 7^35? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q29** · `ARI-EXP-078` · MCQ · 120s
+**Q29** · `ARI-EXP-078` · MCQ · 110s
 
 x is a positive number and x + 1/x = sqrt(5). What is the value of x^4 + 1/x^4 ?
 
@@ -281,10 +275,12 @@ x is a positive number and x + 1/x = sqrt(5). What is the value of x^4 + 1/x^4 ?
 **(D)** 9  
 **(E)** 25
 
-**Q30** · `ARI-EXP-079` · QC · 115s
+**Q30** · `SEC-AL-064` · QC · 120s
 
-> **Quantity A:**  sqrt(6 + sqrt(6 + sqrt(6 + ...))), where the nesting continues without end
-> **Quantity B:**  3
+n is a positive integer.
+
+> **Quantity A:**  1/3^n
+> **Quantity B:**  4/5^n
 
 ---
 
@@ -305,23 +301,23 @@ x is a positive number and x + 1/x = sqrt(5). What is the value of x^4 + 1/x^4 ?
 | 11 | `ARI-EXP-043` | medium | Numeric Entry | **5** |
 | 12 | `ARI-EXP-045` | medium | MCQ | **E** |
 | 13 | `ARI-EXP-049` | medium | QC | **A** |
-| 14 | `ARI-EXP-042` | hard | MCQ | **B** |
-| 15 | `ARI-EXP-052` | hard | QC | **D** |
-| 16 | `ARI-EXP-054` | hard | MCQ | **C** |
-| 17 | `ARI-EXP-055` | hard | Select all that apply | **B, C, D** |
-| 18 | `ARI-EXP-057` | hard | MCQ | **C** |
-| 19 | `ARI-EXP-059` | hard | MCQ | **A** |
-| 20 | `ARI-EXP-060` | hard | QC | **D** |
-| 21 | `ARI-EXP-061` | hard | MCQ | **D** |
-| 22 | `ARI-EXP-062` | hard | Numeric Entry | **225** |
-| 23 | `ARI-EXP-063` | hard | Select all that apply | **A, D, E** |
-| 24 | `ARI-EXP-065` | hard | MCQ | **D** |
-| 25 | `ARI-EXP-066` | hard | Numeric Entry | **22** |
-| 26 | `ARI-EXP-073` | extreme hard | Numeric Entry | **5** |
-| 27 | `ARI-EXP-076` | extreme hard | Select all that apply | **C, D, E** |
-| 28 | `ARI-EXP-077` | extreme hard | Numeric Entry | **0** |
-| 29 | `ARI-EXP-078` | extreme hard | MCQ | **C** |
-| 30 | `ARI-EXP-079` | extreme hard | QC | **C** |
+| 14 | `ARI-EXP-052` | medium | QC | **D** |
+| 15 | `ARI-EXP-054` | medium | MCQ | **C** |
+| 16 | `ARI-EXP-057` | medium | MCQ | **C** |
+| 17 | `ARI-EXP-059` | medium | MCQ | **C** |
+| 18 | `ARI-EXP-060` | medium | QC | **D** |
+| 19 | `ARI-EXP-061` | medium | MCQ | **A** |
+| 20 | `ARI-EXP-063` | medium | Select all that apply | **A, D, E** |
+| 21 | `ARI-EXP-065` | medium | MCQ | **D** |
+| 22 | `ARI-EXP-066` | medium | Numeric Entry | **22** |
+| 23 | `ARI-EXP-077` | medium | Numeric Entry | **0** |
+| 24 | `ARI-EXP-042` | hard | MCQ | **E** |
+| 25 | `ARI-EXP-055` | hard | Select all that apply | **B, C, D** |
+| 26 | `ARI-EXP-062` | hard | Numeric Entry | **225** |
+| 27 | `ARI-EXP-073` | hard | Numeric Entry | **5** |
+| 28 | `ARI-EXP-076` | hard | Select all that apply | **C, D, E** |
+| 29 | `ARI-EXP-078` | hard | MCQ | **C** |
+| 30 | `SEC-AL-064` | hard | QC | **D** |
 
 ---
 
@@ -344,7 +340,7 @@ Step 2 - split the radical: sqrt(75) = sqrt(25) x sqrt(3).
 Step 3 - take the root of the perfect square only: sqrt(25) = 5, so sqrt(75) = 5 sqrt(3).
 Check: (5 sqrt(3))^2 = 25 x 3 = 75. Correct.
 
-**Trap.** Choice A, 3 sqrt(5), comes from mis-factoring 75 as 9 x 5 and rooting the 9; but 9 x 5 = 45, so 3 sqrt(5) is sqrt(45), not sqrt(75). Choice C, 5 sqrt(15), splits 75 as 5 x 15 and moves the 5 outside the radical without taking its root - that is sqrt(375). Only a PERFECT SQUARE factor may come out, and only as its root. Choice D, 25 sqrt(3), uses the right factor 25 but again pulls it out unrooted. Choice E, 37.5, is 75 divided by 2, from reading the square root as 'half of'.
+**Trap.** Choice A, 3 sqrt(5), comes from mis-factoring 75 as 9 x 5 and rooting the 9; but 9 x 5 = 45, so 3 sqrt(5) is sqrt(45), not sqrt(75). Choice C, 5 sqrt(15), splits 75 as 5 x 15 and moves the 5 outside the radical without taking its root - that is sqrt(375). Only a PERFECT SQUARE factor may come out, and only as its root. Choice E, 25 sqrt(3), uses the right factor 25 but again pulls it out unrooted. Choice D, 37.5, is 75 divided by 2, from reading the square root as 'half of'.
 
 ### Q3 · `ARI-EXP-011` — Answer: B
 
@@ -359,11 +355,11 @@ Check: 256 x (1/8) = 32, and 32/4 = 8. Correct.
 ### Q4 · `ARI-EXP-013` — Answer: A, B, C
 
 Write every option as a power of 2 and compare with 32 = 2^5.
-A - 2^5 = 32. TRUE.
-B - 4^3 = 64, and 64/2 = 32. TRUE.
-C - product rule: 2^3 x 2^2 = 2^(3+2) = 2^5 = 32. TRUE.
-D - power of a power: (2^2)^3 = 2^(2x3) = 2^6 = 64, not 32. FALSE.
-E - odd power of a negative base: (-2)^5 = -32, not +32. FALSE.
+A - 2^5 = 32. True.
+B - 4^3 = 64, and 64/2 = 32. True.
+C - product rule: 2^3 x 2^2 = 2^(3+2) = 2^5 = 32. True.
+D - power of a power: (2^2)^3 = 2^(2x3) = 2^6 = 64, not 32. False.
+E - odd power of a negative base: (-2)^5 = -32, not +32. False.
 Answer: A, B, C.
 
 **Trap.** D is the bait for the student who adds the exponents in a power of a power: 2 + 3 = 5 looks like 2^5 = 32, but the rule multiplies, giving 2^6 = 64. E is the sign bait: five negative factors leave the product negative, so (-2)^5 = -32. Only an EVEN power of a negative base comes back positive.
@@ -395,7 +391,7 @@ Step 2 - split again now that the fraction is reduced: sqrt(4/3) = sqrt(4)/sqrt(
 Step 3 - rationalise by multiplying top and bottom by sqrt(3): (2 x sqrt(3))/(sqrt(3) x sqrt(3)) = 2 sqrt(3)/3.
 Check numerically: sqrt(8) = 2.828, sqrt(6) = 2.449, and 2.828/2.449 = 1.155. Also 2 x 1.732/3 = 1.155. Correct.
 
-**Trap.** Choice D, 4/3, is 8/6 reduced with the square root never taken. Choice A, 2/3, comes from rationalising 2/sqrt(3) by simply erasing the radical in the denominator rather than multiplying by sqrt(3)/sqrt(3). Choice E, 2 sqrt(3), multiplies the numerator by sqrt(3) but forgets that the denominator becomes 3. Choice B, sqrt(3)/3, drops the factor 2 from sqrt(4).
+**Trap.** Choice D, 4/3, is 8/6 reduced with the square root never taken. Choice B, 2/3, comes from rationalising 2/sqrt(3) by simply erasing the radical in the denominator rather than multiplying by sqrt(3)/sqrt(3). Choice E, 2 sqrt(3), multiplies the numerator by sqrt(3) but forgets that the denominator becomes 3. Choice A, sqrt(3)/3, drops the factor 2 from sqrt(4).
 
 ### Q8 · `ARI-EXP-026` — Answer: B
 
@@ -410,11 +406,11 @@ Quantity B is greater.
 ### Q9 · `ARI-EXP-037` — Answer: A, C, E
 
 A root is rational exactly when the radicand is a perfect power of a rational number.
-A - sqrt(49) = 7, an integer. TRUE.
-B - 0.4 = 2/5, and 2/5 is not the square of a rational number, so sqrt(0.4) = sqrt(10)/5 = 0.632... is irrational. FALSE.
-C - the cube root of -8 is -2, because (-2)^3 = -8. Cube roots of negatives are real, and -2 is rational. TRUE.
-D - sqrt(50) = sqrt(25 x 2) = 5 sqrt(2), and sqrt(2) is irrational. FALSE.
-E - multiply under one radical first: sqrt(3) x sqrt(12) = sqrt(36) = 6. TRUE.
+A - sqrt(49) = 7, an integer. True.
+B - 0.4 = 2/5, and 2/5 is not the square of a rational number, so sqrt(0.4) = sqrt(10)/5 = 0.632... is irrational. False.
+C - the cube root of -8 is -2, because (-2)^3 = -8. Cube roots of negatives are real, and -2 is rational. True.
+D - sqrt(50) = sqrt(25 x 2) = 5 sqrt(2), and sqrt(2) is irrational. False.
+E - multiply under one radical first: sqrt(3) x sqrt(12) = sqrt(36) = 6. True.
 Answer: A, C, E.
 
 **Trap.** E is the one most often left out: two irrational factors are assumed to give an irrational product, but sqrt(3) x sqrt(12) = sqrt(36) = 6. B is the mirror error - 0.04 does have a rational root (0.2), so students assume 0.4 does too; it does not, because 0.4 = 2/5 is not a perfect square. C tempts students to answer 'not defined', which is true of even roots of negatives, not odd ones.
@@ -464,21 +460,7 @@ Quantity A is greater.
 
 **Trap.** Reasoning that the larger exponent (100) must make the smaller number and choosing B. With different bases the exponents alone decide nothing; rewrite both with a common exponent and compare the bases. The second error is forgetting the reciprocal flip - once 3^70 is shown to be the larger number, its reciprocal is the SMALLER quantity.
 
-### Q14 · `ARI-EXP-042` — Answer: B
-
-Do not compute any of these. Force a COMMON EXPONENT - every exponent here (25, 20, 15, 10, 5) is a multiple of 5, so rewrite all five as fifth powers.
-Step 1 - A: 2^25 = (2^5)^5 = 32^5.
-Step 2 - B: 3^20 = (3^4)^5 = 81^5.
-Step 3 - C: 4^15 = (4^3)^5 = 64^5.
-Step 4 - D: 6^10 = (6^2)^5 = 36^5.
-Step 5 - E: 12^5 is already a fifth power, base 12.
-Step 6 - with the exponent fixed at 5, the largest base wins: 81 > 64 > 36 > 32 > 12. So 3^20 is the greatest.
-Check the two front-runners in full: 3^20 = 3,486,784,401 and 4^15 = 1,073,741,824. Correct.
-Answer: 3^20.
-
-**Trap.** Choice A is the pick of a student chasing the largest exponent (25) and choice E of one chasing the largest base (12); as fifth powers they are 32^5 and 12^5, the two smallest on the list, so neither quantity decides anything on its own. Choice C, 4^15, tempts a student who compares base and exponent separately - 4 beats 3, and 15 looks close enough to 20 - instead of rewriting: 64^5 loses to 81^5. Choice D attracts the reasoning that 6 = 2 x 3 must combine the strength of A and B, but 36^5 beats only A and E.
-
-### Q15 · `ARI-EXP-052` — Answer: D
+### Q14 · `ARI-EXP-052` — Answer: D
 
 The stem allows x to be anything except 0, so test the three regions that behave differently.
 Case 1 - x > 1, say x = 2: x^2 = 4 and x^3 = 8. Quantity B is greater.
@@ -489,7 +471,7 @@ Answer: D.
 
 **Trap.** Testing only x = 2, seeing 8 > 4, and choosing B. An even power is never negative and a fractional base reverses the order, so both x < 0 and 0 < x < 1 break that conclusion. On any QC with a bare variable, test a number greater than 1, a fraction between 0 and 1, and a negative before committing.
 
-### Q16 · `ARI-EXP-054` — Answer: C
+### Q15 · `ARI-EXP-054` — Answer: C
 
 To undo an exponent you raise both sides to its RECIPROCAL.
 Step 1 - the exponent is 2/3, so raise both sides to the power 3/2: (x^(2/3))^(3/2) = x^(2/3 x 3/2) = x^1 = x.
@@ -499,20 +481,7 @@ Check: 8^(2/3) = (cube root of 8)^2 = 2^2 = 4. Correct.
 
 **Trap.** Choice D, 16, comes from raising 4 to the power 2 instead of 3/2 - using the numerator of the exponent rather than its reciprocal. Choice E, 64, is 4^3, from taking the cube root instruction and forgetting the square. Choice B, 6, is 4 x 3/2, treating the fractional exponent as multiplication. Choice A, 2, is 4^(1/2), undoing only half the exponent.
 
-### Q17 · `ARI-EXP-055` — Answer: B, C, D
-
-The square-root symbol always returns the NON-NEGATIVE root, so sqrt(a^2) = |a|, not a. Note b^4 is already non-negative and sqrt(b^4) = b^2, which is non-negative on its own - no absolute value is needed there.
-So sqrt(a^2 b^4) = |a| b^2.
-A - a b^2 fails whenever a < 0. With a = -3, b = 2: sqrt(9 x 16) = 12, but a b^2 = -12. FALSE.
-B - |a| b^2 is exactly the simplified form. TRUE.
-C - |a b^2| = |a| x |b^2| = |a| b^2, since b^2 is never negative. TRUE.
-D - splitting the radical over a product is legal: sqrt(a^2) x sqrt(b^4) = |a| x b^2. TRUE.
-E - |a| |b|^4 = |a| b^4, which halves nothing. With a = -3, b = 2 it gives 3 x 16 = 48, not 12. FALSE.
-Answer: B, C, D.
-
-**Trap.** A is the headline trap: sqrt(x^2) = |x|, not x. It looks right because it is right whenever a happens to be positive, and the stem deliberately allows a to be negative. E is the exponent-arithmetic trap - taking a square root HALVES the exponent, so sqrt(b^4) = b^2, not b^4; with a = -3, b = 2 it produces 48 instead of 12.
-
-### Q18 · `ARI-EXP-057` — Answer: C
+### Q16 · `ARI-EXP-057` — Answer: C
 
 Factor rather than test cases.
 Step 1 - split the second term: (-1)^(n+1) = (-1)^n x (-1)^1 = -(-1)^n.
@@ -523,16 +492,16 @@ Answer: all integers n.
 
 **Trap.** Testing one even value, getting 0, and choosing A - then testing one odd value, getting 0, and switching to B. Consecutive powers of -1 always have opposite signs and equal magnitude, so the pair cancels regardless of parity. The factoring step makes that visible in one line and rules out A, B, D and E at once.
 
-### Q19 · `ARI-EXP-059` — Answer: A
+### Q17 · `ARI-EXP-059` — Answer: C
 
 Step 1 - multiply top and bottom by the CONJUGATE of the denominator, 2 - sqrt(5).
 Step 2 - the denominator becomes a difference of squares: (2 + sqrt(5))(2 - sqrt(5)) = 2^2 - (sqrt(5))^2 = 4 - 5 = -1.
 Step 3 - the expression is now 3(2 - sqrt(5))/(-1) = -3(2 - sqrt(5)) = -6 + 3 sqrt(5) = 3 sqrt(5) - 6.
 Check numerically: sqrt(5) = 2.236, so 3/(2 + 2.236) = 3/4.236 = 0.708. And 3(2.236) - 6 = 6.708 - 6 = 0.708. Correct.
 
-**Trap.** Choice B, 6 - 3 sqrt(5), is the same magnitude with the wrong sign: it drops the fact that the denominator came out as -1 rather than +1. Its value is -0.708, and the original expression is clearly positive, so a quick sign check kills it. Choice C uses 2^2 + (sqrt(5))^2 = 9 as the denominator, adding where the difference of squares subtracts. Choice D multiplies by (2 + sqrt(5)) rather than the conjugate. Choice E splits the denominator across the plus sign, which is never legal.
+**Trap.** Choice A, 6 - 3 sqrt(5), is the same magnitude with the wrong sign: it drops the fact that the denominator came out as -1 rather than +1. Its value is -0.708, and the original expression is clearly positive, so a quick sign check kills it. Choice B uses 2^2 + (sqrt(5))^2 = 9 as the denominator, adding where the difference of squares subtracts. Choice D multiplies by (2 + sqrt(5)) rather than the conjugate. Choice E splits the denominator across the plus sign, which is never legal.
 
-### Q20 · `ARI-EXP-060` — Answer: D
+### Q18 · `ARI-EXP-060` — Answer: D
 
 x^(1/2) is the square root of x and x^(1/3) is the cube root of x. Which root is larger depends entirely on which side of 1 the base sits.
 Case 1 - x > 1, say x = 64: x^(1/2) = 8 and x^(1/3) = 4. Quantity A is greater.
@@ -543,7 +512,7 @@ Answer: D.
 
 **Trap.** Reasoning that a bigger exponent always gives a bigger value - true for x > 1, false for 0 < x < 1, and an equality at x = 1. The stem says only x > 0, which covers all three regions, so the answer must be D. Had the stem said x > 1 the answer would be A, and had it said 0 < x < 1 the answer would be B; that is exactly what the missing constraint is worth.
 
-### Q21 · `ARI-EXP-061` — Answer: D
+### Q19 · `ARI-EXP-061` — Answer: A
 
 This is a binomial SQUARE, not a difference of squares: (p - q)^2 = p^2 - 2pq + q^2.
 Step 1 - p^2 = (sqrt(5))^2 = 5.
@@ -552,33 +521,21 @@ Step 3 - the cross term: 2pq = 2 x sqrt(5) x sqrt(3) = 2 sqrt(15).
 Step 4 - assemble: 5 - 2 sqrt(15) + 3 = 8 - 2 sqrt(15).
 Check numerically: sqrt(5) - sqrt(3) = 2.236 - 1.732 = 0.504, and 0.504^2 = 0.254. Also 8 - 2(3.873) = 8 - 7.746 = 0.254. Correct.
 
-**Trap.** Choice A, 2, is the classic (a - b)^2 = a^2 - b^2 error, giving 5 - 3 = 2. That formula belongs to (a + b)(a - b), not to a square. Choice B, 8, keeps both squares but drops the middle term entirely. Choice C multiplies the radicands by adding them, writing sqrt(5) x sqrt(3) as sqrt(8) instead of sqrt(15). Choice E gets the middle term right but its sign wrong.
+**Trap.** Choice B, 2, is the classic (a - b)^2 = a^2 - b^2 error, giving 5 - 3 = 2. That formula belongs to (a + b)(a - b), not to a square. Choice D, 8, keeps both squares but drops the middle term entirely. Choice C multiplies the radicands by adding them, writing sqrt(5) x sqrt(3) as sqrt(8) instead of sqrt(15). Choice E gets the middle term right but its sign wrong.
 
-### Q22 · `ARI-EXP-062` — Answer: 225
-
-Never solve for x. Rewrite 9 in terms of 3 and let the given value do the work.
-Step 1 - split the exponent: 9^(x+1) = 9^x x 9^1.
-Step 2 - rewrite the base: 9^x = (3^2)^x = 3^(2x) = (3^x)^2.
-Step 3 - substitute the given value: (3^x)^2 = 5^2 = 25.
-Step 4 - multiply back in the 9: 25 x 9 = 225.
-Check: 3^x = 5 means x = 1.465, and 9^2.465 = 225. Correct.
-Answer: 225.
-
-**Trap.** Answering 25 by computing 9^x and forgetting the +1 in the exponent. Answering 45 by treating 9^(x+1) as 9 x 5, that is by replacing 9^x with 3^x. And answering 10 by reading 9^x as 9 x x or by doubling 5. The move that makes this fast is (3^2)^x = (3^x)^2 - swapping the order of the two exponents so the given value can be substituted whole.
-
-### Q23 · `ARI-EXP-063` — Answer: A, D, E
+### Q20 · `ARI-EXP-063` — Answer: A, D, E
 
 The exponent rules apply to products and quotients. They say nothing about sums.
-A - the product rule: same base, add exponents. TRUE.
-B - (x + y)^2 = x^2 + 2xy + y^2. Since x and y are positive, 2xy > 0, so the two sides never agree. Test x = y = 1: 4 versus 2. FALSE.
-C - test x = 3, y = 4: sqrt(9 + 16) = sqrt(25) = 5, while x + y = 7. A root does not distribute over addition. FALSE.
-D - the quotient rule: same base, subtract exponents. TRUE.
-E - a root DOES distribute over a product for non-negative factors: sqrt(xy) = sqrt(x) sqrt(y). Test x = 3, y = 12: sqrt(36) = 6 = 1.732 x 3.464. TRUE.
+A - the product rule: same base, add exponents. True.
+B - (x + y)^2 = x^2 + 2xy + y^2. Since x and y are positive, 2xy > 0, so the two sides never agree. Test x = y = 1: 4 versus 2. False.
+C - test x = 3, y = 4: sqrt(9 + 16) = sqrt(25) = 5, while x + y = 7. A root does not distribute over addition. False.
+D - the quotient rule: same base, subtract exponents. True.
+E - a root DOES distribute over a product for non-negative factors: sqrt(xy) = sqrt(x) sqrt(y). Test x = 3, y = 12: sqrt(36) = 6 = 1.732 x 3.464. True.
 Answer: A, D, E.
 
 **Trap.** B and C are the same mistake wearing two costumes: pushing an operation through a PLUS sign. Squaring and square-rooting distribute over multiplication and division (A, D, E) and never over addition or subtraction. The 3-4-5 test in C is the fastest disproof to carry into the exam: sqrt(3^2 + 4^2) = 5, not 7.
 
-### Q24 · `ARI-EXP-065` — Answer: D
+### Q21 · `ARI-EXP-065` — Answer: D
 
 Rewrite every base as a prime power, then multiply the exponents.
 Step 1 - 8^(2/3) = (2^3)^(2/3) = 2^2 = 4.
@@ -590,7 +547,7 @@ Answer: 13.
 
 **Trap.** Choice C, 11, comes from reading 8^(2/3) as just the cube root of 8 (that is 2) and forgetting to square it. Choice B, 7, does the mirror thing to the second term, taking the 4th root of 16 as 2 without cubing it. Choice A, 5, makes both of those omissions. Choice E, 19, treats 81^(1/4) as sqrt(81) = 9 - a fourth root is a square root applied twice, so 81 -> 9 -> 3.
 
-### Q25 · `ARI-EXP-066` — Answer: 22
+### Q22 · `ARI-EXP-066` — Answer: 22
 
 Step 1 - the left side is four copies of the SAME term, so factor rather than combine exponents: 2^x + 2^x + 2^x + 2^x = 4 x 2^x.
 Step 2 - write the 4 as a power of 2 so the left side is a single power: 4 x 2^x = 2^2 x 2^x = 2^(x+2).
@@ -601,32 +558,7 @@ Answer: 22.
 
 **Trap.** Adding the exponents across the plus signs: 2^x + 2^x + 2^x + 2^x is read as 2^(4x). Matched against 4^12 = 2^24 that gives 4x = 24 and x = 6; matched against 4^12 while it is still written in base 4, it gives 4x = 12 and x = 3. There is no exponent rule for addition - four copies of a number is 4 times it, so you FACTOR. The other slip is stopping at x + 2 = 12 by leaving 4^12 in base 4 instead of converting it to 2^24, which returns x = 10.
 
-### Q26 · `ARI-EXP-073` — Answer: 5
-
-The insight: xyz in the exponent means three nested power-of-a-power steps, and each one hands you the next given equation.
-Step 1 - 2^(xyz) = ((2^x)^y)^z, because (a^m)^n = a^(mn) applied twice.
-Step 2 - the innermost bracket is given: 2^x = 3, so ((2^x)^y)^z = (3^y)^z.
-Step 3 - the next bracket is given: 3^y = 4, so (3^y)^z = 4^z.
-Step 4 - the last is given: 4^z = 5.
-So 2^(xyz) = 5.
-Check numerically: x = 1.585, y = 1.262, z = 1.161, so xyz = 2.322, and 2^2.322 = 5.00. Correct.
-Answer: 5.
-
-**Trap.** Solving for x, y and z separately with logarithms and then multiplying - it works but takes several minutes and invites rounding error. The other error is grouping the exponent wrongly, as 2^x x 2^y x 2^z or as 2^(x+y+z); a product in the exponent means nested powers, not a product of powers.
-
-### Q27 · `ARI-EXP-076` — Answer: C, D, E
-
-Test each expression symbolically, then check the smallest awkward value of n.
-A - n^(1/n) is 1 at n = 1, but at n = 2 it is sqrt(2), which is irrational. FALSE.
-B - factor the sum first: 2^n + 2^n = 2 x 2^n = 2^(n+1). So the expression is (2^(n+1))^(1/n) = 2^((n+1)/n). That is an integer only when n divides n+1, which happens only at n = 1. At n = 2 it is 2^(3/2) = 2 sqrt(2). FALSE.
-C - (n^n)^(1/n) = n^(n/n) = n^1 = n, an integer for every positive integer n. TRUE.
-D - (n^2)^(1/2) = |n| = n, since n is positive. TRUE.
-E - (9^n)^(1/(2n)) = 9^(n/(2n)) = 9^(1/2) = 3, a constant. TRUE.
-Answer: C, D, E.
-
-**Trap.** B is the trap that catches most people: 2^n + 2^n looks like it should be 2^(2n) or 4^n, and either misreading makes the whole expression collapse to an integer. It is actually 2^(n+1), and (n+1)/n is never a whole number for n at least 2. E looks like it depends on n, but the n cancels inside the exponent and leaves the constant 3 - a student who assumes any expression containing n must vary will wrongly reject it.
-
-### Q28 · `ARI-EXP-077` — Answer: 0
+### Q23 · `ARI-EXP-077` — Answer: 0
 
 Units digits of powers repeat in a cycle of length at most 4, so only the exponent's remainder on division by 4 matters.
 Step 1 - powers of 3 end in 3, 9, 7, 1 and then repeat (3^1 = 3, 3^2 = 9, 3^3 = 27, 3^4 = 81).
@@ -639,6 +571,70 @@ Answer: 0.
 
 **Trap.** Two errors dominate. First, using remainder 0 as position 0 rather than position 4 - a remainder of 3 means the THIRD entry of the cycle, and an exact multiple of 4 means the FOURTH (which is 1 for both 3 and 7). Second, stopping at 7 + 3 = 10 and answering 10 instead of its units digit, 0.
 
+### Q24 · `ARI-EXP-042` — Answer: E
+
+Do not compute any of these. Force a COMMON EXPONENT - every exponent here (25, 20, 15, 10, 5) is a multiple of 5, so rewrite all five as fifth powers.
+Step 1 - B: 2^25 = (2^5)^5 = 32^5.
+Step 2 - E: 3^20 = (3^4)^5 = 81^5.
+Step 3 - D: 4^15 = (4^3)^5 = 64^5.
+Step 4 - C: 6^10 = (6^2)^5 = 36^5.
+Step 5 - A: 12^5 is already a fifth power, base 12.
+Step 6 - with the exponent fixed at 5, the largest base wins: 81 > 64 > 36 > 32 > 12. So 3^20 is the greatest.
+Check the two front-runners in full: 3^20 = 3,486,784,401 and 4^15 = 1,073,741,824. Correct.
+Answer: 3^20.
+
+**Trap.** Choice B is the pick of a student chasing the largest exponent (25) and choice A of one chasing the largest base (12); as fifth powers they are 32^5 and 12^5, the two smallest on the list, so neither quantity decides anything on its own. Choice D, 4^15, tempts a student who compares base and exponent separately - 4 beats 3, and 15 looks close enough to 20 - instead of rewriting: 64^5 loses to 81^5. Choice C attracts the reasoning that 6 = 2 x 3 must combine the strength of B and E, but 36^5 beats only A and B.
+
+### Q25 · `ARI-EXP-055` — Answer: B, C, D
+
+The square-root symbol always returns the NON-negative root, so sqrt(a^2) = |a|, not a. Note b^4 is already non-negative and sqrt(b^4) = b^2, which is non-negative on its own - no absolute value is needed there.
+So sqrt(a^2 b^4) = |a| b^2.
+A - a b^2 fails whenever a < 0. With a = -3, b = 2: sqrt(9 x 16) = 12, but a b^2 = -12. False.
+B - |a| b^2 is exactly the simplified form. True.
+C - |a b^2| = |a| x |b^2| = |a| b^2, since b^2 is never negative. True.
+D - splitting the radical over a product is legal: sqrt(a^2) x sqrt(b^4) = |a| x b^2. True.
+E - |a| |b|^4 = |a| b^4, which halves nothing. With a = -3, b = 2 it gives 3 x 16 = 48, not 12. False.
+Answer: B, C, D.
+
+**Trap.** A is the headline trap: sqrt(x^2) = |x|, not x. It looks right because it is right whenever a happens to be positive, and the stem deliberately allows a to be negative. E is the exponent-arithmetic trap - taking a square root HALVES the exponent, so sqrt(b^4) = b^2, not b^4; with a = -3, b = 2 it produces 48 instead of 12.
+
+### Q26 · `ARI-EXP-062` — Answer: 225
+
+Never solve for x. Rewrite 9 in terms of 3 and let the given value do the work.
+Step 1 - split the exponent: 9^(x+1) = 9^x x 9^1.
+Step 2 - rewrite the base: 9^x = (3^2)^x = 3^(2x) = (3^x)^2.
+Step 3 - substitute the given value: (3^x)^2 = 5^2 = 25.
+Step 4 - multiply back in the 9: 25 x 9 = 225.
+Check: 3^x = 5 means x = 1.465, and 9^2.465 = 225. Correct.
+Answer: 225.
+
+**Trap.** Answering 25 by computing 9^x and forgetting the +1 in the exponent. Answering 45 by treating 9^(x+1) as 9 x 5, that is by replacing 9^x with 3^x. And answering 10 by reading 9^x as 9 x x or by doubling 5. The move that makes this fast is (3^2)^x = (3^x)^2 - swapping the order of the two exponents so the given value can be substituted whole.
+
+### Q27 · `ARI-EXP-073` — Answer: 5
+
+The insight: xyz in the exponent means three nested power-of-a-power steps, and each one hands you the next given equation.
+Step 1 - 2^(xyz) = ((2^x)^y)^z, because (a^m)^n = a^(mn) applied twice.
+Step 2 - the innermost bracket is given: 2^x = 3, so ((2^x)^y)^z = (3^y)^z.
+Step 3 - the next bracket is given: 3^y = 4, so (3^y)^z = 4^z.
+Step 4 - the last is given: 4^z = 5.
+So 2^(xyz) = 5.
+Check numerically: x = 1.585, y = 1.262, z = 1.161, so xyz = 2.322, and 2^2.322 = 5.00. Correct.
+Answer: 5.
+
+**Trap.** Solving for x, y and z separately and then multiplying - it works but takes several minutes and invites rounding error. The other error is grouping the exponent wrongly, as 2^x x 2^y x 2^z or as 2^(x+y+z); a product in the exponent means nested powers, not a product of powers.
+
+### Q28 · `ARI-EXP-076` — Answer: C, D, E
+
+Test each expression symbolically, then check the smallest awkward value of n.
+A - n^(1/n) is 1 at n = 1, but at n = 2 it is sqrt(2), which is irrational. False.
+B - factor the sum first: 2^n + 2^n = 2 x 2^n = 2^(n+1). So the expression is (2^(n+1))^(1/n) = 2^((n+1)/n). That is an integer only when n divides n+1, which happens only at n = 1. At n = 2 it is 2^(3/2) = 2 sqrt(2). False.
+C - (n^n)^(1/n) = n^(n/n) = n^1 = n, an integer for every positive integer n. True.
+D - (n^2)^(1/2) = |n| = n, since n is positive. True.
+E - (9^n)^(1/(2n)) = 9^(n/(2n)) = 9^(1/2) = 3, a constant. True.
+Answer: C, D, E.
+
+**Trap.** B is the trap that catches most people: 2^n + 2^n looks like it should be 2^(2n) or 4^n, and either misreading makes the whole expression collapse to an integer. It is actually 2^(n+1), and (n+1)/n is never a whole number for n at least 2. E looks like it depends on n, but the n cancels inside the exponent and leaves the constant 3 - a student who assumes any expression containing n must vary will wrongly reject it.
+
 ### Q29 · `ARI-EXP-078` — Answer: C
 
 Square, and use the fact that x and 1/x multiply to 1 so the cross term is always a constant.
@@ -650,14 +646,8 @@ Check: x + 1/x = sqrt(5) gives x = (sqrt(5) + 1)/2 = 1.618, so x^4 = 6.854 and 1
 
 **Trap.** Choice B, 5, is (sqrt(5))^2 read off after the first squaring, stopping before the -2 correction that turns 5 into x^2 + 1/x^2 = 3. Choice A, 3, goes one line further and stops at that intermediate value instead of squaring again. Choice D, 9, is (x^2 + 1/x^2)^2 with the middle term 2 left in on the second squaring. Choice E, 25, is (sqrt(5))^4, from assuming that raising x + 1/x to the fourth power gives x^4 + 1/x^4 directly - the (a + b)^2 = a^2 + b^2 error applied twice.
 
-### Q30 · `ARI-EXP-079` — Answer: C
+### Q30 · `SEC-AL-064` — Answer: D
 
-An infinite nested radical repeats itself, so name the whole thing and use that repetition.
-Step 1 - let x be the value of Quantity A. Everything under the outermost radical is 6 plus the SAME infinite expression, so x = sqrt(6 + x).
-Step 2 - square both sides: x^2 = 6 + x.
-Step 3 - solve: x^2 - x - 6 = 0, which factors as (x - 3)(x + 2) = 0, giving x = 3 or x = -2.
-Step 4 - a square root is never negative, so reject x = -2. Hence x = 3.
-Check by building up: sqrt(6) = 2.449, sqrt(6 + 2.449) = 2.907, sqrt(6 + 2.907) = 2.984, sqrt(6 + 2.984) = 2.997 - closing in on 3.
-The two quantities are equal.
+Cross-multiplying by the positive quantities 3^n and 5^n turns the comparison into 5^n against (4)(3^n). At n = 1 that is 5 against 12, so Quantity B is greater. At n = 2 it is 25 against 36, still Quantity B. At n = 3 it is 125 against 108, so Quantity A is now greater. Because 5^n grows faster than 3^n, the constant factor of 4 is eventually overtaken, and the relationship flips.
 
-**Trap.** Assuming an endlessly repeated addition must grow without bound and choosing A. It does not: each new square root shrinks the increment, and the sequence converges. The other error is keeping x = -2 from the quadratic; the radical symbol denotes the non-negative root, so the negative solution is discarded - the same rule that makes sqrt(x^2) = |x|.
+**Trap.** Students test n = 1 and n = 2, see Quantity B win both times, and answer B. A fixed multiplier only delays the crossover between two exponentials with different bases — it never prevents it.

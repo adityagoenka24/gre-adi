@@ -1,6 +1,6 @@
 # Independent & Dependent Events — Practice Set
 
-**Bank code:** `STA-IDE` · **Section:** statistics · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `STA-IDE` · **Section:** statistics · **30 questions** — Easy 6 · Medium 11 · Hard 12 · Extreme 1
 
 **Lecture capsule:** [10-independent-dependent-events.md](../../07-statistics-probability/10-independent-dependent-events.md)
 
@@ -16,7 +16,7 @@ Every question below is live in the question bank under the ID shown — the she
 > **(A)** Quantity A is greater · **(B)** Quantity B is greater · **(C)** The two quantities are equal · **(D)** The relationship cannot be determined from the information given
 
 
-### Level 1 · Easy — 5 questions · ~4 min
+### Level 1 · Easy — 6 questions · ~6 min
 
 *warm-up — these must be automatic*
 
@@ -32,7 +32,7 @@ A fair coin is flipped and a fair six-sided die is rolled. What is the probabili
 
 **Q2** · `STA-IDE-006` · Numeric Entry · 45s
 
-The probability that Maya's train is late on any given day is 1/5, and the days are independent of one another. What is the probability that her train is late on both of the next two days? Enter your answer as a fraction in lowest terms.
+The probability that Maya's train is late on any given day is 1/5, and the days are independent of one another. What is the probability that her train is late on both of the next two days? Give your answer as a fraction.
 
 *Numeric entry — write the number.*
 
@@ -63,111 +63,7 @@ A standard 52-card deck contains 4 aces. A card is drawn at random, returned to 
 **(D)** 1/13  
 **(E)** 2/13
 
----
-
-### Level 2 · Medium — 8 questions · ~10 min
-
-*two or three steps, one planted trap each*
-
-**Q6** · `STA-IDE-011` · MCQ · 70s
-
-A bag contains 5 red, 3 blue, and 2 green marbles. Two marbles are drawn at random one at a time, without replacement. What is the probability that the first is red and the second is blue?
-
-**(A)** 1/9  
-**(B)** 3/20  
-**(C)** 1/6  
-**(D)** 1/3  
-**(E)** 1/2
-
-**Q7** · `STA-IDE-016` · Numeric Entry · 75s
-
-Two cards are drawn at random from a standard 52-card deck (26 red cards and 26 black cards), without replacement. What is the probability that both cards are red? Enter your answer as a fraction in lowest terms, in the form a/b.
-
-*Numeric entry — write the number.*
-
-**Q8** · `STA-IDE-018` · MCQ · 65s
-
-A box holds 6 red and 4 blue balls. Two balls are drawn one at a time, without replacement. Given that the first ball drawn was blue, what is the probability that the second ball is red?
-
-**(A)** 4/15  
-**(B)** 1/3  
-**(C)** 5/9  
-**(D)** 3/5  
-**(E)** 2/3
-
-**Q9** · `STA-IDE-019` · Select all that apply · 90s
-
-A bag contains 4 red, 3 blue, and 3 green marbles. Two marbles are drawn one at a time, without replacement. Select all of the following whose probability equals 2/15.
-
-**(A)** P(first red, then blue)  
-**(B)** P(first blue, then red)  
-**(C)** P(first green, then green)  
-**(D)** P(first green, then red)  
-**(E)** P(first blue, then blue)
-
-**Q10** · `STA-IDE-020` · MCQ · 80s
-
-For two events A and B, P(A) = 0.5, P(B | A) = 0.4, and P(B | not A) = 0.4. Which statement about A and B is correct?
-
-**(A)** They are independent, because P(B | A) = P(B | not A)  
-**(B)** They are independent, because P(A) = 0.5  
-**(C)** They are not independent, because P(B | A) is not equal to P(A)  
-**(D)** They are not independent, because P(A and B) = 0.2, which is not 0  
-**(E)** Independence cannot be decided without being told P(B)
-
-**Q11** · `STA-IDE-021` · Numeric Entry · 80s
-
-A bag holds 5 red and 5 blue marbles. Two marbles are drawn one at a time, without replacement. What is the probability that the two marbles are of different colors? Enter your answer as a fraction in lowest terms, in the form a/b.
-
-*Numeric entry — write the number.*
-
-**Q12** · `STA-IDE-022` · QC · 80s
-
-One card is drawn at random from a standard 52-card deck, which has 26 red cards and 13 hearts, all hearts being red.
-
-> **Quantity A:**  P(the card is red, given that it is a heart)
-> **Quantity B:**  P(the card is a heart, given that it is red)
-
-**Q13** · `STA-IDE-025` · Select all that apply · 90s
-
-Events A and B are mutually exclusive, and P(A) > 0 and P(B) > 0. Select all statements that must be true.
-
-**(A)** P(A and B) = 0  
-**(B)** A and B are independent  
-**(C)** P(A or B) = P(A) + P(B)  
-**(D)** P(A | B) = 0  
-**(E)** P(B | A) = P(B)
-
----
-
-### Level 3 · Hard — 12 questions · ~20 min
-
-*where 162+ is won or lost*
-
-**Q14** · `STA-IDE-027` · MCQ · 100s
-
-A bag contains 4 red and 6 blue marbles. Three marbles are drawn at random, one at a time, without replacement. What is the probability that exactly two of them are red?
-
-**(A)** 1/20  
-**(B)** 1/10  
-**(C)** 36/125  
-**(D)** 3/10  
-**(E)** 1/3
-
-**Q15** · `STA-IDE-028` · QC · 95s
-
-A jar holds 4 red marbles and 6 green marbles and no others. In each column below, two marbles are drawn at random, one at a time.
-
-> **Quantity A:**  P(the second marble is red, given that the first marble is green), when the draws are made WITHOUT replacement
-> **Quantity B:**  P(the second marble is red), when the draws are made WITH replacement
-
-**Q16** · `STA-IDE-029` · Numeric Entry · 95s
-
-For two events A and B, P(A) = 0.6, P(B) = 0.5, and P(A or B) = 0.8. What is P(A | not B)? Enter your answer as a decimal.
-
-*Numeric entry — write the number.*
-
-**Q17** · `STA-IDE-030` · MCQ · 90s
+**Q6** · `STA-IDE-030` · MCQ · 90s
 
 A machine contains two components that fail independently of each other. Component A fails with probability 0.1 and component B fails with probability 0.2. The machine fails if at least one component fails. What is the probability that the machine does NOT fail?
 
@@ -177,17 +73,88 @@ A machine contains two components that fail independently of each other. Compone
 **(D)** 0.90  
 **(E)** 0.98
 
-**Q18** · `STA-IDE-031` · Select all that apply · 110s
+---
 
-Two cards are drawn at random from a standard 52-card deck (13 cards in each of the four suits), without replacement. Select all statements that are true.
+### Level 2 · Medium — 11 questions · ~15 min
 
-**(A)** P(both cards are spades) = 1/17  
-**(B)** P(the first card is a spade and the second is a heart) = 1/16  
-**(C)** P(at least one card is a spade) = 1 - (39/52)(38/51)  
-**(D)** P(the second card is a spade, given that the first card is a spade) = 4/17  
-**(E)** The two draws are independent events
+*two or three steps, one planted trap each*
 
-**Q19** · `STA-IDE-032` · MCQ · 95s
+**Q7** · `STA-IDE-011` · MCQ · 70s
+
+A bag contains 5 red, 3 blue, and 2 green marbles. Two marbles are drawn at random one at a time, without replacement. What is the probability that the first is red and the second is blue?
+
+**(A)** 1/9  
+**(B)** 3/20  
+**(C)** 1/6  
+**(D)** 1/3  
+**(E)** 1/2
+
+**Q8** · `STA-IDE-016` · Numeric Entry · 75s
+
+Two cards are drawn at random from a standard 52-card deck (26 red cards and 26 black cards), without replacement. What is the probability that both cards are red? Give your answer as a fraction.
+
+*Numeric entry — write the number.*
+
+**Q9** · `STA-IDE-018` · MCQ · 65s
+
+A box holds 6 red and 4 blue balls. Two balls are drawn one at a time, without replacement. Given that the first ball drawn was blue, what is the probability that the second ball is red?
+
+**(A)** 4/15  
+**(B)** 1/3  
+**(C)** 5/9  
+**(D)** 3/5  
+**(E)** 2/3
+
+**Q10** · `STA-IDE-019` · Select all that apply · 90s
+
+A bag contains 4 red, 3 blue, and 3 green marbles. Two marbles are drawn one at a time, without replacement. Which of the following events have probability 2/15?
+
+Indicate all such events.
+
+**(A)** P(first red, then blue)  
+**(B)** P(first blue, then red)  
+**(C)** P(first green, then green)  
+**(D)** P(first green, then red)  
+**(E)** P(first blue, then blue)
+
+**Q11** · `STA-IDE-020` · MCQ · 80s
+
+For two events A and B, P(A) = 0.5, P(B | A) = 0.4, and P(B | not A) = 0.4. Which statement about A and B is correct?
+
+**(A)** They are independent, because P(B | A) = P(B | not A)  
+**(B)** They are independent, because P(A) = 0.5  
+**(C)** They are not independent, because P(B | A) is not equal to P(A)  
+**(D)** They are not independent, because P(A and B) = 0.2, which is not 0  
+**(E)** Independence cannot be decided without being told P(B)
+
+**Q12** · `STA-IDE-021` · Numeric Entry · 80s
+
+A bag holds 5 red and 5 blue marbles. Two marbles are drawn one at a time, without replacement. What is the probability that the two marbles are of different colors? Give your answer as a fraction.
+
+*Numeric entry — write the number.*
+
+**Q13** · `STA-IDE-022` · QC · 80s
+
+One card is drawn at random from a standard 52-card deck, which has 26 red cards and 13 hearts, all hearts being red.
+
+> **Quantity A:**  P(the card is red, given that it is a heart)
+> **Quantity B:**  P(the card is a heart, given that it is red)
+
+**Q14** · `STA-IDE-025` · Select all that apply · 90s
+
+Events A and B are mutually exclusive, and P(A) > 0 and P(B) > 0.
+
+Which of the following statements must be true?
+
+Indicate all such statements.
+
+**(A)** P(A and B) = 0  
+**(B)** A and B are independent  
+**(C)** P(A or B) = P(A) + P(B)  
+**(D)** P(A | B) = 0  
+**(E)** P(B | A) = P(B)
+
+**Q15** · `STA-IDE-032` · MCQ · 95s
 
 A bag holds 5 red and 3 blue balls. Balls are drawn at random one at a time, without replacement, until a blue ball appears. What is the probability that the first blue ball appears on exactly the second draw?
 
@@ -197,20 +164,7 @@ A bag holds 5 red and 3 blue balls. Balls are drawn at random one at a time, wit
 **(D)** 3/8  
 **(E)** 3/7
 
-**Q20** · `STA-IDE-033` · QC · 90s
-
-Events A and B are independent, with P(A) = p and P(B) = q, where 0 < p < 1 and 0 < q < 1.
-
-> **Quantity A:**  P(A or B)
-> **Quantity B:**  p + q
-
-**Q21** · `STA-IDE-034` · Numeric Entry · 100s
-
-A box contains 4 red, 3 blue, and 2 green balls. Two balls are drawn at random, without replacement. Given that the two balls drawn are the same color, what is the probability that both are red? Enter your answer as a fraction in lowest terms, in the form a/b.
-
-*Numeric entry — write the number.*
-
-**Q22** · `STA-IDE-035` · MCQ · 95s
+**Q16** · `STA-IDE-035` · MCQ · 90s
 
 At a school, 70% of students play a sport and 40% play a musical instrument. Playing a sport and playing an instrument are independent. If one student is chosen at random, what is the probability that the student does exactly one of the two activities?
 
@@ -220,9 +174,13 @@ At a school, 70% of students play a sport and 40% play a musical instrument. Pla
 **(D)** 0.54  
 **(E)** 0.82
 
-**Q23** · `STA-IDE-036` · Select all that apply · 100s
+**Q17** · `STA-IDE-036` · Select all that apply · 90s
 
-A fair six-sided die is rolled three times. Select all of the following probabilities that equal 1/216.
+A fair six-sided die is rolled three times.
+
+Which of the following probabilities equal 1/216?
+
+Indicate all such probabilities.
 
 **(A)** P(a 6 on all three rolls)  
 **(B)** P(the rolls are 1, then 2, then 3, in that order)  
@@ -230,28 +188,58 @@ A fair six-sided die is rolled three times. Select all of the following probabil
 **(D)** P(a 6 on the first two rolls and a non-6 on the third)  
 **(E)** P(the rolls are 4, then 4, then 4)
 
-**Q24** · `STA-IDE-041` · QC · 105s
+---
 
-A box holds 3 red and 3 blue balls. Two balls are drawn at random, one at a time, without replacement.
+### Level 3 · Hard — 12 questions · ~20 min
 
-> **Quantity A:**  P(the second ball is red, given that the first ball is red)
-> **Quantity B:**  P(the second ball is red)
+*where 162+ is won or lost*
 
-**Q25** · `STA-IDE-042` · Numeric Entry · 105s
+**Q18** · `STA-IDE-027` · MCQ · 100s
 
-Two fair six-sided dice, one red and one white, are rolled. Given that at least one of the dice shows a 3, what is the probability that both dice show a 3? Enter your answer as a fraction in lowest terms, in the form a/b.
+A bag contains 4 red and 6 blue marbles. Three marbles are drawn at random, one at a time, without replacement. What is the probability that exactly two of them are red?
+
+**(A)** 1/20  
+**(B)** 1/10  
+**(C)** 36/125  
+**(D)** 3/10  
+**(E)** 1/3
+
+**Q19** · `STA-IDE-029` · Numeric Entry · 95s
+
+For two events A and B, P(A) = 0.6, P(B) = 0.5, and P(A or B) = 0.8. What is the probability that A occurs, given that B does not occur?
 
 *Numeric entry — write the number.*
 
----
+**Q20** · `STA-IDE-031` · Select all that apply · 110s
 
-### Level 4 · Extreme — 5 questions · ~10 min
+Two cards are drawn at random from a standard 52-card deck (13 cards in each of the four suits), without replacement.
 
-*165+ — expect to need the insight, not the grind*
+Which of the following statements are true?
 
-**Q26** · `STA-IDE-037` · MCQ · 120s
+Indicate all such statements.
 
-A bag contains 3 red and 5 blue marbles and no others. Two marbles are drawn at random, one at a time, without replacement. Given that the SECOND marble drawn is red, what is the probability that the first marble drawn was also red?
+**(A)** P(both cards are spades) = 1/17  
+**(B)** P(the first card is a spade and the second is a heart) = 1/16  
+**(C)** P(at least one card is a spade) = 1 - (39/52)(38/51)  
+**(D)** P(the second card is a spade, given that the first card is a spade) = 4/17  
+**(E)** The two draws are independent events
+
+**Q21** · `STA-IDE-033` · QC · 90s
+
+Events A and B are independent, with P(A) = p and P(B) = q, where 0 < p < 1 and 0 < q < 1.
+
+> **Quantity A:**  P(A or B)
+> **Quantity B:**  p + q
+
+**Q22** · `STA-IDE-034` · Numeric Entry · 100s
+
+A box contains 4 red, 3 blue, and 2 green balls. Two balls are drawn at random, without replacement. Given that the two balls drawn are the same color, what is the probability that both are red? Give your answer as a fraction.
+
+*Numeric entry — write the number.*
+
+**Q23** · `STA-IDE-037` · MCQ · 110s
+
+A bag contains 3 red and 5 blue marbles and no others. Two marbles are drawn at random, one at a time, without replacement. Given that the second marble drawn is red, what is the probability that the first marble drawn was also red?
 
 **(A)** 3/28  
 **(B)** 1/4  
@@ -259,38 +247,66 @@ A bag contains 3 red and 5 blue marbles and no others. Two marbles are drawn at 
 **(D)** 3/8  
 **(E)** 3/7
 
-**Q27** · `STA-IDE-038` · QC · 120s
+**Q24** · `STA-IDE-038` · QC · 110s
 
 A bag contains n red and n blue marbles, where n is an integer and n >= 2. Two marbles are drawn at random, without replacement.
 
 > **Quantity A:**  P(the two marbles are the same color)
 > **Quantity B:**  P(the two marbles are different colors)
 
-**Q28** · `STA-IDE-039` · Numeric Entry · 130s
+**Q25** · `STA-IDE-040` · Select all that apply · 90s
 
-A bag contains 4 white and 6 black balls. Balls are drawn at random one at a time, without replacement. What is the probability that the fourth ball drawn is the second white ball? Enter your answer as a fraction in lowest terms, in the form a/b.
+A fair six-sided die, with faces numbered 1 through 6, is to be rolled once. Which of the following pairs of events are mutually exclusive?
+
+Indicate all such pairs.
+
+**(A)** The number rolled is even; the number rolled is prime.  
+**(B)** The number rolled is even; the number rolled is odd.  
+**(C)** The number rolled is greater than 4; the number rolled is less than 3.  
+**(D)** The number rolled is a multiple of 3; the number rolled is even.  
+**(E)** The number rolled is less than 2; the number rolled is prime.
+
+**Q26** · `STA-IDE-041` · QC · 105s
+
+A box holds 3 red and 3 blue balls. Two balls are drawn at random, one at a time, without replacement.
+
+> **Quantity A:**  P(the second ball is red, given that the first ball is red)
+> **Quantity B:**  P(the second ball is red)
+
+**Q27** · `STA-IDE-042` · Numeric Entry · 105s
+
+Two fair six-sided dice, one red and one white, are rolled. Given that at least one of the dice shows a 3, what is the probability that both dice show a 3? Give your answer as a fraction.
 
 *Numeric entry — write the number.*
 
-**Q29** · `STA-IDE-040` · Select all that apply · 125s
+**Q28** · `STA-IDE-043` · MCQ · 90s
 
-For two events A and B, P(A) = 1/3, P(B) = 1/2, and P(A | B) = 1/4. Select all statements that are true.
+Events A and B are independent. The probability that A occurs is 1/3, and the probability that both A and B occur is 1/12. What is the probability that at least one of the events A and B occurs?
 
-**(A)** P(A and B) = 1/8  
-**(B)** A and B are independent  
-**(C)** P(B | A) = 3/8  
-**(D)** P(A or B) = 5/6  
-**(E)** P(neither A nor B) = 7/24
+**(A)** 1/4  
+**(B)** 5/12  
+**(C)** 1/2  
+**(D)** 7/12  
+**(E)** 2/3
 
-**Q30** · `STA-IDE-043` · MCQ · 130s
+**Q29** · `STA-IDE-KMF-008` · QC · 120s
 
-A fair six-sided die is rolled twice. Exactly one of the following pairs of events is independent. Which one?
+In a random experiment, the events E, F and G satisfy P(F) = P(G) = y and P(E) = cy, with c > 0 and y > 0. Events E and F can never occur together, F is independent of G, and the chance that E or F occurs equals the chance that F or G occurs.
 
-**(A)** 'The first roll is even' and 'the sum of the two rolls is 8'  
-**(B)** 'The first roll is even' and 'the sum of the two rolls is 7'  
-**(C)** 'The first roll is a 6' and 'the product of the two rolls is even'  
-**(D)** 'Both rolls are even' and 'the sum of the two rolls is even'  
-**(E)** 'The sum of the two rolls is 7' and 'the sum of the two rolls is 8'
+> **Quantity A:**  c + y
+> **Quantity B:**  1
+
+---
+
+### Level 4 · Extreme — 1 questions · ~2 min
+
+*the top of a real hard section — expect to need the insight, not the grind*
+
+**Q30** · `STA-IDE-039` · Numeric Entry · 110s
+
+A bag contains 4 white and 6 black balls. Balls are drawn at random one at a time, without replacement. What is the probability that the fourth ball drawn is the second white ball? Give your answer as a fraction.
+
+*Numeric entry — write the number.*
 
 ---
 
@@ -303,31 +319,31 @@ A fair six-sided die is rolled twice. Exactly one of the following pairs of even
 | 3 | `STA-IDE-007` | easy | MCQ | **C** |
 | 4 | `STA-IDE-009` | easy | QC | **C** |
 | 5 | `STA-IDE-010` | easy | MCQ | **C** |
-| 6 | `STA-IDE-011` | medium | MCQ | **C** |
-| 7 | `STA-IDE-016` | medium | Numeric Entry | **25/102** |
-| 8 | `STA-IDE-018` | medium | MCQ | **E** |
-| 9 | `STA-IDE-019` | medium | Select all that apply | **A, B, D** |
-| 10 | `STA-IDE-020` | medium | MCQ | **A** |
-| 11 | `STA-IDE-021` | medium | Numeric Entry | **5/9** |
-| 12 | `STA-IDE-022` | medium | QC | **A** |
-| 13 | `STA-IDE-025` | medium | Select all that apply | **A, C, D** |
-| 14 | `STA-IDE-027` | hard | MCQ | **D** |
-| 15 | `STA-IDE-028` | hard | QC | **A** |
-| 16 | `STA-IDE-029` | hard | Numeric Entry | **0.6** |
-| 17 | `STA-IDE-030` | hard | MCQ | **C** |
-| 18 | `STA-IDE-031` | hard | Select all that apply | **A, C, D** |
-| 19 | `STA-IDE-032` | hard | MCQ | **C** |
-| 20 | `STA-IDE-033` | hard | QC | **B** |
-| 21 | `STA-IDE-034` | hard | Numeric Entry | **3/5** |
-| 22 | `STA-IDE-035` | hard | MCQ | **D** |
-| 23 | `STA-IDE-036` | hard | Select all that apply | **A, B, E** |
-| 24 | `STA-IDE-041` | hard | QC | **B** |
-| 25 | `STA-IDE-042` | hard | Numeric Entry | **1/11** |
-| 26 | `STA-IDE-037` | extreme hard | MCQ | **C** |
-| 27 | `STA-IDE-038` | extreme hard | QC | **B** |
-| 28 | `STA-IDE-039` | extreme hard | Numeric Entry | **3/14** |
-| 29 | `STA-IDE-040` | extreme hard | Select all that apply | **A, C, E** |
-| 30 | `STA-IDE-043` | extreme hard | MCQ | **B** |
+| 6 | `STA-IDE-030` | easy | MCQ | **C** |
+| 7 | `STA-IDE-011` | medium | MCQ | **C** |
+| 8 | `STA-IDE-016` | medium | Numeric Entry | **25/102** |
+| 9 | `STA-IDE-018` | medium | MCQ | **E** |
+| 10 | `STA-IDE-019` | medium | Select all that apply | **A, B, D** |
+| 11 | `STA-IDE-020` | medium | MCQ | **A** |
+| 12 | `STA-IDE-021` | medium | Numeric Entry | **5/9** |
+| 13 | `STA-IDE-022` | medium | QC | **A** |
+| 14 | `STA-IDE-025` | medium | Select all that apply | **A, C, D** |
+| 15 | `STA-IDE-032` | medium | MCQ | **C** |
+| 16 | `STA-IDE-035` | medium | MCQ | **D** |
+| 17 | `STA-IDE-036` | medium | Select all that apply | **A, B, E** |
+| 18 | `STA-IDE-027` | hard | MCQ | **D** |
+| 19 | `STA-IDE-029` | hard | Numeric Entry | **0.6** |
+| 20 | `STA-IDE-031` | hard | Select all that apply | **A, C, D** |
+| 21 | `STA-IDE-033` | hard | QC | **B** |
+| 22 | `STA-IDE-034` | hard | Numeric Entry | **3/5** |
+| 23 | `STA-IDE-037` | hard | MCQ | **C** |
+| 24 | `STA-IDE-038` | hard | QC | **B** |
+| 25 | `STA-IDE-040` | hard | Select all that apply | **B, C, E** |
+| 26 | `STA-IDE-041` | hard | QC | **B** |
+| 27 | `STA-IDE-042` | hard | Numeric Entry | **1/11** |
+| 28 | `STA-IDE-043` | hard | MCQ | **C** |
+| 29 | `STA-IDE-KMF-008` | hard | QC | **C** |
+| 30 | `STA-IDE-039` | extreme hard | Numeric Entry | **3/14** |
 
 ---
 
@@ -384,7 +400,17 @@ Answer: 1/169.
 
 **Trap.** Computing (4/52) x (3/51) = 1/221, choice B, which is the without-replacement answer. The words 'returned to the deck' are the whole question. Choice A, 3/676, comes from dropping the ace count to 3 but leaving the total at 52; choice D is one ace only; choice E adds 1/13 + 1/13.
 
-### Q6 · `STA-IDE-011` — Answer: C
+### Q6 · `STA-IDE-030` — Answer: C
+
+Step 1 — translate the condition. The machine survives only if both components work, so an 'or' about failure becomes an 'and' about working.
+Step 2 — P(A works) = 1 - 0.1 = 0.9 and P(B works) = 1 - 0.2 = 0.8.
+Step 3 — the components are independent, so multiply: 0.9 x 0.8 = 0.72.
+Check the long way: P(machine fails) = P(A fails) + P(B fails) - P(both fail) = 0.1 + 0.2 - (0.1)(0.2) = 0.3 - 0.02 = 0.28, and 1 - 0.28 = 0.72. Correct.
+Answer: 0.72.
+
+**Trap.** Adding the failure rates as 0.1 + 0.2 = 0.3 and answering 0.70, choice B. That double-counts the 0.02 chance that both fail, which is why the union is 0.28 rather than 0.30. Choice A, 0.28, is P(machine fails) - the question asked for its complement. Choice D, 0.90, is P(component A works) = 1 - 0.1 on its own, stopping after the first component instead of multiplying in component B's 0.8. Choice E, 0.98, comes from reading 'at least one fails' as 'both fail' and computing 1 - (0.1)(0.2).
+
+### Q7 · `STA-IDE-011` — Answer: C
 
 Step 1 — total marbles = 5 + 3 + 2 = 10. Without replacement means dependent draws, so use P(A) x P(B | A).
 Step 2 — P(first is red) = 5/10 = 1/2.
@@ -395,7 +421,7 @@ Answer: 1/6.
 
 **Trap.** Keeping the denominator at 10 for the second draw: (5/10) x (3/10) = 3/20, choice B. That is the with-replacement answer, and the stem says the marble is not replaced. Choice A, 1/9, comes from shrinking the blue count to 2 as well - but the marble removed was red, so only the total drops. Choice D, 1/3, is P(one red and one blue in either order). Choice E, 1/2, is the first factor P(first is red) = 5/10 handed in alone, with the second stage never priced.
 
-### Q7 · `STA-IDE-016` — Answer: 25/102
+### Q8 · `STA-IDE-016` — Answer: 25/102
 
 Step 1 — 26 of the 52 cards are red, and the draws are dependent because the first card is not replaced.
 Step 2 — P(first is red) = 26/52 = 1/2.
@@ -407,7 +433,7 @@ Answer: 25/102.
 
 **Trap.** Using 26/52 twice: (1/2) x (1/2) = 1/4. That is the with-replacement value, and it is larger than the true 25/102 = 0.245 - a useful sanity check, since removing a red card must make a second red less likely, never more. The other slip is reducing the reds to 25 but leaving the total at 52, giving 25/104.
 
-### Q8 · `STA-IDE-018` — Answer: E
+### Q9 · `STA-IDE-018` — Answer: E
 
 Step 1 — a conditional probability restricts the universe. The condition says one BLUE ball has already been removed.
 Step 2 — rebuild the box after that removal: 6 red and 3 blue, so 9 balls remain.
@@ -415,22 +441,22 @@ Step 3 — the red count never changed, because the ball removed was blue.
 P(second is red | first is blue) = 6/9 = 2/3.
 Answer: 2/3.
 
-**Trap.** Answering 5/9, choice C, by reflexively subtracting one from the red count. Only the colour actually drawn loses a ball; here that was blue, so red stays at 6 and only the total falls from 10 to 9. Choice A, 4/15, is the JOINT probability P(first blue and second red) = (4/10)(6/9); the condition already fixes the first ball as blue, so the 4/10 factor does not belong. Choice D, 3/5 = 6/10, ignores the removal entirely, and choice B, 1/3, is P(second is blue | first is blue) - the wrong colour.
+**Trap.** Answering 5/9, choice C, by reflexively subtracting one from the red count. Only the color actually drawn loses a ball; here that was blue, so red stays at 6 and only the total falls from 10 to 9. Choice A, 4/15, is the JOINT probability P(first blue and second red) = (4/10)(6/9); the condition already fixes the first ball as blue, so the 4/10 factor does not belong. Choice D, 3/5 = 6/10, ignores the removal entirely, and choice B, 1/3, is P(second is blue | first is blue) - the wrong color.
 
-### Q9 · `STA-IDE-019` — Answer: A, B, D
+### Q10 · `STA-IDE-019` — Answer: A, B, D
 
 There are 10 marbles, and each probability is P(first) x P(second | first) with the total dropping to 9.
-A - (4/10) x (3/9) = 12/90 = 2/15. TRUE.
-B - (3/10) x (4/9) = 12/90 = 2/15. TRUE.
-C - one green is already out, so the second green has only 2 chances left: (3/10) x (2/9) = 6/90 = 1/15. FALSE.
-D - (3/10) x (4/9) = 12/90 = 2/15. TRUE.
-E - one blue is already out: (3/10) x (2/9) = 6/90 = 1/15. FALSE.
+A - (4/10) x (3/9) = 12/90 = 2/15. True.
+B - (3/10) x (4/9) = 12/90 = 2/15. True.
+C - one green is already out, so the second green has only 2 chances left: (3/10) x (2/9) = 6/90 = 1/15. False.
+D - (3/10) x (4/9) = 12/90 = 2/15. True.
+E - one blue is already out: (3/10) x (2/9) = 6/90 = 1/15. False.
 Answer: A, B, D.
 Notice what A and B show: for two draws without replacement, P(red then blue) = P(blue then red). The order of the two colors does not change the product, because the same two numbers just swap places.
 
-**Trap.** Marking C and E true by using 3/9 for the second marble of the same color. When the second draw repeats the first color, BOTH numbers drop - 3 goes to 2 and 10 goes to 9 - which halves the product to 1/15. The mirror error is rejecting B or D on the belief that drawing the rarer color first must give a different answer.
+**Trap.** Marking C and E true by using 3/9 for the second marble of the same color. When the second draw repeats the first color, both numbers drop - 3 goes to 2 and 10 goes to 9 - which halves the product to 1/15. The mirror error is rejecting B or D on the belief that drawing the rarer color first must give a different answer.
 
-### Q10 · `STA-IDE-020` — Answer: A
+### Q11 · `STA-IDE-020` — Answer: A
 
 Step 1 — independence means that learning whether A happened tells you nothing new about B. Here B has probability 0.4 whether A happened or not, so knowing A carries no information. That is independence.
 Step 2 — confirm with the formal test by first recovering P(B):
@@ -441,7 +467,7 @@ Answer: A.
 
 **Trap.** Choosing E on the grounds that P(B) was never stated. It does not need to be stated - P(B | A) = P(B | not A) forces P(B) to equal that common value, since P(B) is the weighted average of the two conditionals. Choice C compares P(B | A) with P(A), which is not the test; the test compares P(B | A) with P(B). Choice D is the mutually-exclusive confusion: independence does not require a zero overlap, it requires P(A and B) = P(A) x P(B), and 0.20 is exactly 0.5 x 0.4.
 
-### Q11 · `STA-IDE-021` — Answer: 5/9
+### Q12 · `STA-IDE-021` — Answer: 5/9
 
 Step 1 — 'different colors' happens two ways: red then blue, or blue then red.
 Step 2 — P(red then blue) = (5/10) x (5/9) = 25/90. The second fraction keeps 5 blue on top because a RED marble left; only the total drops to 9.
@@ -452,7 +478,7 @@ Answer: 5/9.
 
 **Trap.** Computing (5/10) x (5/9) = 5/18 and stopping, which counts only 'red then blue' and forgets that 'blue then red' is a second, equally likely route to two different colors. The other error is using 5/10 twice, the with-replacement value, giving 1/2.
 
-### Q12 · `STA-IDE-022` — Answer: A
+### Q13 · `STA-IDE-022` — Answer: A
 
 A conditional probability restricts the universe to the condition, so the two columns count within different universes.
 Quantity A - restrict to the 13 hearts. Every heart is red, so 13 of 13 qualify: P(red | heart) = 13/13 = 1.
@@ -462,19 +488,56 @@ Both columns use the same joint probability P(red and heart) = 13/52; only the d
 
 **Trap.** Answering C because the two expressions look like mirror images. P(X | Y) and P(Y | X) are not interchangeable: they divide the same overlap by two different totals. Here the hearts sit entirely inside the reds, so one direction is certainty and the other is a coin flip.
 
-### Q13 · `STA-IDE-025` — Answer: A, C, D
+### Q14 · `STA-IDE-025` — Answer: A, C, D
 
 Mutually exclusive means A and B cannot both occur, so their overlap is empty.
-A - an empty overlap is exactly P(A and B) = 0. TRUE.
-B - independence requires P(A and B) = P(A) x P(B). Here the left side is 0, but P(A) > 0 and P(B) > 0 make the right side strictly positive. The equation fails, so the events are NOT independent. FALSE.
-C - P(A or B) = P(A) + P(B) - P(A and B) = P(A) + P(B) - 0. TRUE.
-D - P(A | B) = P(A and B)/P(B) = 0/P(B) = 0. TRUE.
-E - P(B | A) = P(A and B)/P(A) = 0, while P(B) > 0. So P(B | A) is not P(B) - and that inequality is precisely why they are dependent. FALSE.
+A - an empty overlap is exactly P(A and B) = 0. True.
+B - independence requires P(A and B) = P(A) x P(B). Here the left side is 0, but P(A) > 0 and P(B) > 0 make the right side strictly positive. The equation fails, so the events are NOT independent. False.
+C - P(A or B) = P(A) + P(B) - P(A and B) = P(A) + P(B) - 0. True.
+D - P(A | B) = P(A and B)/P(B) = 0/P(B) = 0. True.
+E - P(B | A) = P(A and B)/P(A) = 0, while P(B) > 0. So P(B | A) is not P(B) - and that inequality is precisely why they are dependent. False.
 Answer: A, C, D.
 
 **Trap.** Selecting B because 'mutually exclusive' sounds like 'unrelated'. It is the opposite: mutually exclusive events with nonzero probability are always dependent, because learning that A occurred drops B's probability all the way to 0. Selecting E is the same mistake stated numerically.
 
-### Q14 · `STA-IDE-027` — Answer: D
+### Q15 · `STA-IDE-032` — Answer: C
+
+Step 1 — turn the wording into a fixed sequence. 'The first blue appears on draw 2' means draw 1 was red AND draw 2 was blue. There is only one such sequence.
+Step 2 — P(draw 1 is red) = 5/8.
+Step 3 — a red ball is gone, so 4 red and 3 blue remain, 7 in all. The blue count is untouched.
+P(draw 2 is blue | draw 1 is red) = 3/7.
+Step 4 — multiply: (5/8) x (3/7) = 15/56.
+Check: 15/56 is about 0.268, comfortably below P(blue on draw 1) = 3/8 = 0.375, as it must be, since this outcome requires a specific miss first.
+Answer: 15/56.
+
+**Trap.** Using blue for the first draw as well: (3/8)(3/7) = 9/56, choice A. The whole point of 'first blue on draw 2' is that draw 1 must NOT be blue. Choice B, 15/64, keeps the denominator at 8 for the second draw, the with-replacement value; choice D is P(blue on the first draw) and choice E is the conditional second factor on its own.
+
+### Q16 · `STA-IDE-035` — Answer: D
+
+Step 1 — independence lets you multiply, so build all four cells of the table from the two rates.
+P(sport) = 0.7, P(no sport) = 0.3, P(instrument) = 0.4, P(no instrument) = 0.6.
+Step 2 — 'exactly one' is two disjoint cells: sport but no instrument, or instrument but no sport.
+P(sport and no instrument) = 0.7 x 0.6 = 0.42.
+P(instrument and no sport) = 0.4 x 0.3 = 0.12.
+Step 3 — add: 0.42 + 0.12 = 0.54.
+Check all four cells: both = 0.7 x 0.4 = 0.28, neither = 0.3 x 0.6 = 0.18, and 0.28 + 0.42 + 0.12 + 0.18 = 1.00. Correct.
+Answer: 0.54.
+
+**Trap.** Answering 0.82, choice E, which is P(at least one) = 1 - 0.18. 'At least one' includes the 28% who do both; 'exactly one' excludes them, and 0.82 - 0.28 = 0.54. Choice A, 0.28, is P(both); choice C, 0.46, is 1 - 0.54, the probability of doing both or neither; choice B is the difference 0.7 - 0.4.
+
+### Q17 · `STA-IDE-036` — Answer: A, B, E
+
+The rolls are independent, so any one fully specified ordered triple has probability (1/6)^3 = 1/216. There are 6^3 = 216 equally likely triples.
+A - (6,6,6) is a single triple. (1/6)(1/6)(1/6) = 1/216. True.
+B - (1,2,3) is a single triple. 1/216. True.
+C - this is not one triple but many: 6 x 5 x 4 = 120 of them, so the probability is 120/216 = 5/9. False.
+D - the third roll is only restricted to 'not a 6', which 5 faces satisfy: (1/6)(1/6)(5/6) = 5/216. False.
+E - (4,4,4) is a single triple. 1/216. True.
+Answer: A, B, E.
+
+**Trap.** Selecting C on the rule 'every outcome of three rolls has probability 1/216'. That rule is about a single specified sequence; 'all different, in any order' bundles 120 sequences together. D is the mirror error - a slot described by a WORD rather than a number ('non-6') is not one outcome but five, so its factor is 5/6, not 1/6. Independence tells you to multiply, but you must still count how many faces each stage allows.
+
+### Q18 · `STA-IDE-027` — Answer: D
 
 Step 1 — 'exactly two red' does not fix the order, so count every arrangement of two reds and one blue: RRB, RBR, BRR.
 Step 2 — price one of them, updating both numbers at each stage:
@@ -487,19 +550,7 @@ Check with combinations, which ignore order automatically: C(4,2) x C(6,1) / C(1
 
 **Trap.** Computing one ordering, (4/10)(3/9)(6/8) = 1/10, and stopping - that is choice B, exactly one third of the right answer. Choice A, 1/20, is C(4,2)/C(10,3), which forgets to choose which blue marble joins them. Choice C, 36/125, treats the draws as independent: 3 x (0.4)^2 x (0.6) = 0.288, the with-replacement value. Choice E, 1/3, is P(at least two red).
 
-### Q15 · `STA-IDE-028` — Answer: A
-
-Quantity A - the condition says a GREEN marble has left the jar and stayed out. Rebuild the jar: 4 red and 5 green, 9 marbles in all. The red count never moved, because the marble removed was green.
-P(second is red | first is green) = 4/9.
-Quantity B - with replacement the jar is identical for the second draw, so the two draws are independent and the first one carries no information: P(second is red) = 4/10 = 2/5.
-Compare over the denominator 45: 4/9 = 20/45 and 2/5 = 18/45.
-20/45 > 18/45, so Quantity A is greater.
-The mechanism: replacement is what makes draws independent. Without it, removing a green marble raises red's share of what is left, from 4 out of 10 to 4 out of 9.
-Answer: Quantity A is greater.
-
-**Trap.** Answering C on the symmetry rule 'the second draw is just as likely to be red as the first, 4/10, whatever the mechanism'. That rule is about the UNCONDITIONAL second draw; Quantity A has already been told a green marble is gone, which lifts it to 4/9. Answering B is the mirror error - assuming that removing a marble must lower the chance of red. It lowers it only for the colour actually removed; a green leaving makes red relatively more plentiful.
-
-### Q16 · `STA-IDE-029` — Answer: 0.6
+### Q19 · `STA-IDE-029` — Answer: 0.6
 
 Step 1 — recover the overlap from inclusion-exclusion:
 P(A or B) = P(A) + P(B) - P(A and B)
@@ -513,40 +564,18 @@ Answer: 0.6.
 
 **Trap.** Stopping at 0.3, which is P(A and not B) - the size of that region, not its share of the 'not B' world. A conditional probability must be divided by the probability of the condition. The other slip is inverting the conditional: 0.3/0.6 = 0.5 computes P(not B | A) instead of P(A | not B). Note also that independence is a CONCLUSION here, not an assumption: it had to be earned from P(A or B) = 0.8, which could just as easily have contradicted it.
 
-### Q17 · `STA-IDE-030` — Answer: C
+### Q20 · `STA-IDE-031` — Answer: A, C, D
 
-Step 1 — translate the condition. The machine survives only if BOTH components work, so an 'or' about failure becomes an 'and' about working.
-Step 2 — P(A works) = 1 - 0.1 = 0.9 and P(B works) = 1 - 0.2 = 0.8.
-Step 3 — the components are independent, so multiply: 0.9 x 0.8 = 0.72.
-Check the long way: P(machine fails) = P(A fails) + P(B fails) - P(both fail) = 0.1 + 0.2 - (0.1)(0.2) = 0.3 - 0.02 = 0.28, and 1 - 0.28 = 0.72. Correct.
-Answer: 0.72.
-
-**Trap.** Adding the failure rates as 0.1 + 0.2 = 0.3 and answering 0.70, choice B. That double-counts the 0.02 chance that both fail, which is why the union is 0.28 rather than 0.30. Choice A, 0.28, is P(machine fails) - the question asked for its complement. Choice D, 0.90, is P(component A works) = 1 - 0.1 on its own, stopping after the first component instead of multiplying in component B's 0.8. Choice E, 0.98, comes from reading 'at least one fails' as 'both fail' and computing 1 - (0.1)(0.2).
-
-### Q18 · `STA-IDE-031` — Answer: A, C, D
-
-A - (13/52)(12/51) = (1/4)(12/51) = 12/204 = 1/17. TRUE.
-B - the correct value is (13/52)(13/51) = (1/4)(13/51) = 13/204, which is about 0.0637. The stated 1/16 = 0.0625 is what you get from (13/52)(13/52), i.e. from treating the deck as restored. FALSE.
-C - 'at least one spade' is the complement of 'no spade on either draw'. There are 39 non-spades, so P(no spade) = (39/52)(38/51), and the complement is 1 minus that. TRUE.
-D - once a spade is removed, 12 spades sit among 51 remaining cards, so the conditional probability is 12/51, which reduces by 3 to 4/17. TRUE.
-E - without replacement the first card changes the deck. Statement D shows P(second spade | first spade) = 4/17, which is about 0.235, while the unconditional P(the second card is a spade) is 1/4, by symmetry with the first card. Since 4/17 is not 1/4, knowing the first card changes the second one's odds, so the draws are dependent. FALSE.
+A - (13/52)(12/51) = (1/4)(12/51) = 12/204 = 1/17. True.
+B - the correct value is (13/52)(13/51) = (1/4)(13/51) = 13/204, which is about 0.0637. The stated 1/16 = 0.0625 is what you get from (13/52)(13/52), i.e. from treating the deck as restored. False.
+C - 'at least one spade' is the complement of 'no spade on either draw'. There are 39 non-spades, so P(no spade) = (39/52)(38/51), and the complement is 1 minus that. True.
+D - once a spade is removed, 12 spades sit among 51 remaining cards, so the conditional probability is 12/51, which reduces by 3 to 4/17. True.
+E - without replacement the first card changes the deck. Statement D shows P(second spade | first spade) = 4/17, which is about 0.235, while the unconditional P(the second card is a spade) is 1/4, by symmetry with the first card. Since 4/17 is not 1/4, knowing the first card changes the second one's odds, so the draws are dependent. False.
 Answer: A, C, D.
 
 **Trap.** B and E are the same mistake wearing different clothes: both come from treating drawing without replacement as if the deck reset between draws. B is that error given a number to hide behind - 1/16 is close enough to the true 13/204 that it survives a careless glance. Whenever a suit's count stays at 13 out of 52 on the second draw, the calculation has quietly assumed replacement.
 
-### Q19 · `STA-IDE-032` — Answer: C
-
-Step 1 — turn the wording into a fixed sequence. 'The first blue appears on draw 2' means draw 1 was red AND draw 2 was blue. There is only one such sequence.
-Step 2 — P(draw 1 is red) = 5/8.
-Step 3 — a red ball is gone, so 4 red and 3 blue remain, 7 in all. The blue count is untouched.
-P(draw 2 is blue | draw 1 is red) = 3/7.
-Step 4 — multiply: (5/8) x (3/7) = 15/56.
-Check: 15/56 is about 0.268, comfortably below P(blue on draw 1) = 3/8 = 0.375, as it must be, since this outcome requires a specific miss first.
-Answer: 15/56.
-
-**Trap.** Using blue for the first draw as well: (3/8)(3/7) = 9/56, choice A. The whole point of 'first blue on draw 2' is that draw 1 must NOT be blue. Choice B, 15/64, keeps the denominator at 8 for the second draw, the with-replacement value; choice D is P(blue on the first draw) and choice E is the conditional second factor on its own.
-
-### Q20 · `STA-IDE-033` — Answer: B
+### Q21 · `STA-IDE-033` — Answer: B
 
 Step 1 — the general addition rule always holds:
 P(A or B) = P(A) + P(B) - P(A and B).
@@ -558,7 +587,7 @@ Spot-check p = 0.5, q = 0.4: Quantity A = 0.5 + 0.4 - 0.20 = 0.70, Quantity B = 
 
 **Trap.** Answering C by using P(A or B) = P(A) + P(B), which is the addition rule for MUTUALLY EXCLUSIVE events. Independent events with positive probabilities are never mutually exclusive: their overlap pq is strictly positive, so it must be subtracted once. A second temptation is D, since p and q are unnamed - but pq > 0 holds throughout the stated range, so the comparison is settled.
 
-### Q21 · `STA-IDE-034` — Answer: 3/5
+### Q22 · `STA-IDE-034` — Answer: 3/5
 
 Step 1 — a conditional probability restricts the universe to the pairs that are the same color, so count only those.
 Step 2 — count unordered pairs. Total pairs = C(9,2) = 36.
@@ -570,32 +599,41 @@ Answer: 3/5.
 
 **Trap.** Answering 1/6, the unconditional P(both red), and ignoring the condition entirely. The condition throws away all 26 mixed pairs, so the denominator collapses from 36 to 10 and the probability rises sharply. The other error is answering 4/9, the raw share of red balls, which is the answer to 'what is the probability one drawn ball is red' - a different question.
 
-### Q22 · `STA-IDE-035` — Answer: D
+### Q23 · `STA-IDE-037` — Answer: C
 
-Step 1 — independence lets you multiply, so build all four cells of the table from the two rates.
-P(sport) = 0.7, P(no sport) = 0.3, P(instrument) = 0.4, P(no instrument) = 0.6.
-Step 2 — 'exactly one' is two disjoint cells: sport but no instrument, or instrument but no sport.
-P(sport and no instrument) = 0.7 x 0.6 = 0.42.
-P(instrument and no sport) = 0.4 x 0.3 = 0.12.
-Step 3 — add: 0.42 + 0.12 = 0.54.
-Check all four cells: both = 0.7 x 0.4 = 0.28, neither = 0.3 x 0.6 = 0.18, and 0.28 + 0.42 + 0.12 + 0.18 = 1.00. Correct.
-Answer: 0.54.
+Step 1 — the condition sits on the LATER draw, so run the definition rather than intuition: P(first red | second red) = P(both red) / P(second red).
+Step 2 — numerator: P(both red) = (3/8)(2/7) = 6/56 = 3/28.
+Step 3 — denominator: P(second red) = 3/8. By symmetry each of the 8 marbles is equally likely to occupy position 2, and 3 of them are red. The long route agrees: (3/8)(2/7) + (5/8)(3/7) = 6/56 + 15/56 = 21/56 = 3/8.
+Step 4 — divide: (3/28) / (3/8) = (3/28) x (8/3) = 8/28 = 2/7.
+Check by counting ordered draws: there are 8 x 7 = 56 of them, 21 have a red second, and 6 of those 21 have a red first as well, so 6/21 = 2/7. Correct.
+Answer: 2/7.
 
-**Trap.** Answering 0.82, choice E, which is P(at least one) = 1 - 0.18. 'At least one' includes the 28% who do both; 'exactly one' excludes them, and 0.82 - 0.28 = 0.54. Choice A, 0.28, is P(both); choice C, 0.46, is 1 - 0.54, the probability of doing both or neither; choice B is the difference 0.7 - 0.4.
+**Trap.** Choice D, 3/8, is the unconditional P(first is red), which throws away the information about the second draw. Dependence runs backwards as well as forwards: learning that a red came out second must pull the first-draw estimate DOWN, from 3/8 to 2/7. Choice A, 3/28, is P(both red) - the numerator handed in without dividing by P(second red). Choice B, 1/4, removes a red from the count but not from the total, 2/8. Choice E, 3/7, is P(first red | second BLUE), conditioning on the wrong color.
 
-### Q23 · `STA-IDE-036` — Answer: A, B, E
+### Q24 · `STA-IDE-038` — Answer: B
 
-The rolls are independent, so any one fully specified ordered triple has probability (1/6)^3 = 1/216. There are 6^3 = 216 equally likely triples.
-A - (6,6,6) is a single triple. (1/6)(1/6)(1/6) = 1/216. TRUE.
-B - (1,2,3) is a single triple. 1/216. TRUE.
-C - this is not one triple but many: 6 x 5 x 4 = 120 of them, so the probability is 120/216 = 5/9. FALSE.
-D - the third roll is only restricted to 'not a 6', which 5 faces satisfy: (1/6)(1/6)(5/6) = 5/216. FALSE.
-E - (4,4,4) is a single triple. 1/216. TRUE.
-Answer: A, B, E.
+Step 1 — the insight: fix the first marble, whatever color it turns out to be. The bag then holds 2n - 1 marbles, of which n - 1 match it and n do not.
+Step 2 — so P(same color) = (n - 1)/(2n - 1) and P(different colors) = n/(2n - 1). The two columns have the SAME denominator.
+Step 3 — compare the numerators: n > n - 1 for every n, so Quantity B is greater. Nothing about the size of n can change this, so D is wrong.
+The algebraic route agrees: P(same) = 2 x [n/(2n)][(n-1)/(2n-1)] = (n-1)/(2n-1).
+Spot-check n = 2: same = 1/3, different = 2/3. Spot-check n = 10: same = 9/19, different = 10/19.
+Note that as n grows the two columns approach 1/2 each, but they never meet - the gap 1/(2n-1) stays positive.
 
-**Trap.** Selecting C on the rule 'every outcome of three rolls has probability 1/216'. That rule is about a single specified sequence; 'all different, in any order' bundles 120 sequences together. D is the mirror error - a slot described by a WORD rather than a number ('non-6') is not one outcome but five, so its factor is 5/6, not 1/6. Independence tells you to multiply, but you must still count how many faces each stage allows.
+**Trap.** Answering C from the equal counts of red and blue. The colors are balanced only for the FIRST draw; after it, the drawn color is one short, so a match is always the less likely outcome. Answering D because n is unspecified is the second temptation - but the comparison reduces to n vs n - 1 over a common denominator, which is settled for every n >= 2.
 
-### Q24 · `STA-IDE-041` — Answer: B
+### Q25 · `STA-IDE-040` — Answer: B, C, E
+
+Two events are mutually exclusive when no outcome belongs to both.
+A: 2 is both even and prime. Not mutually exclusive.
+B: No integer is both even and odd. Mutually exclusive.
+C: Greater than 4 means 5 or 6; less than 3 means 1 or 2. No overlap. Mutually exclusive.
+D: 6 is both a multiple of 3 and even. Not mutually exclusive.
+E: Less than 2 means 1, and 1 is not prime. No overlap. Mutually exclusive.
+Answer: B, C, E.
+
+**Trap.** Selecting A on the belief that primes are odd, and rejecting E on the belief that 1 is prime. 2 is an even prime, and 1 is not a prime number.
+
+### Q26 · `STA-IDE-041` — Answer: B
 
 Quantity A - the condition removes one red ball, leaving 2 red among 5. P(second red | first red) = 2/5 = 0.4.
 Quantity B - here nothing is known about the first ball, so both cases must be weighted:
@@ -607,7 +645,7 @@ The gap between the columns, 1/2 against 2/5, is precisely the dependence create
 
 **Trap.** Answering C by reasoning that the draws are 'symmetric', so the second ball must behave like the first. Quantity B is indeed 1/2 by that symmetry, but Quantity A is not an unconditional probability - it has already been told a red ball is gone, which leaves the box 2 red against 3 blue. The reverse error is answering A, from a vague sense that conditioning on red should make red more likely; without replacement it does the opposite.
 
-### Q25 · `STA-IDE-042` — Answer: 1/11
+### Q27 · `STA-IDE-042` — Answer: 1/11
 
 Step 1 — the two rolls are independent, but the CONDITION links them, so work inside the restricted universe.
 Step 2 — count the outcomes with at least one 3. Writing them as (red, white):
@@ -621,29 +659,27 @@ Answer: 1/11.
 
 **Trap.** Answering 1/6 by reasoning 'one die is a 3, so I only need the other one to be a 3'. That would be right if the stem named a die - 'the red die shows a 3' gives 1/6. 'At least one' names no die, so it admits 11 outcomes rather than 6, and the extra 5 all fail. Answering 1/36 ignores the condition altogether.
 
-### Q26 · `STA-IDE-037` — Answer: C
+### Q28 · `STA-IDE-043` — Answer: C
 
-Step 1 — the condition sits on the LATER draw, so run the definition rather than intuition: P(first red | second red) = P(both red) / P(second red).
-Step 2 — numerator: P(both red) = (3/8)(2/7) = 6/56 = 3/28.
-Step 3 — denominator: P(second red) = 3/8. By symmetry each of the 8 marbles is equally likely to occupy position 2, and 3 of them are red. The long route agrees: (3/8)(2/7) + (5/8)(3/7) = 6/56 + 15/56 = 21/56 = 3/8.
-Step 4 — divide: (3/28) / (3/8) = (3/28) x (8/3) = 8/28 = 2/7.
-Check by counting ordered draws: there are 8 x 7 = 56 of them, 21 have a red second, and 6 of those 21 have a red first as well, so 6/21 = 2/7. Correct.
-Answer: 2/7.
+For independent events, P(A and B) = P(A) * P(B).
+1/12 = (1/3) * P(B), so P(B) = 1/4.
+P(A or B) = P(A) + P(B) - P(A and B) = 1/3 + 1/4 - 1/12 = 4/12 + 3/12 - 1/12 = 6/12 = 1/2.
+Answer: C.
 
-**Trap.** Choice D, 3/8, is the unconditional P(first is red), which throws away the information about the second draw. Dependence runs backwards as well as forwards: learning that a red came out second must pull the first-draw estimate DOWN, from 3/8 to 2/7. Choice A, 3/28, is P(both red) - the numerator handed in without dividing by P(second red). Choice B, 1/4, removes a red from the count but not from the total, 2/8. Choice E, 3/7, is P(first red | second BLUE), conditioning on the wrong colour.
+**Trap.** Adding 1/3 + 1/4 = 7/12 and stopping (choice D). Outcomes in which both events occur are counted in each term, so 1/12 must be subtracted.
 
-### Q27 · `STA-IDE-038` — Answer: B
+### Q29 · `STA-IDE-KMF-008` — Answer: C
 
-Step 1 — the insight: fix the first marble, whatever color it turns out to be. The bag then holds 2n - 1 marbles, of which n - 1 match it and n do not.
-Step 2 — so P(same color) = (n - 1)/(2n - 1) and P(different colors) = n/(2n - 1). The two columns have the SAME denominator.
-Step 3 — compare the numerators: n > n - 1 for every n, so Quantity B is greater. Nothing about the size of n can change this, so D is wrong.
-The algebraic route agrees: P(same) = 2 x [n/(2n)][(n-1)/(2n-1)] = (n-1)/(2n-1).
-Spot-check n = 2: same = 1/3, different = 2/3. Spot-check n = 10: same = 9/19, different = 10/19.
-Note that as n grows the two columns approach 1/2 each, but they never meet - the gap 1/(2n-1) stays positive.
+1. E and F cannot occur together, so P(E or F) = P(E) + P(F) = cy + y.
+2. F and G are independent, so P(F and G) = y*y and P(F or G) = y + y - y^2 = 2y - y^2.
+3. Set them equal: cy + y = 2y - y^2.
+4. Divide by y (y is positive): c + 1 = 2 - y, so c + y = 1.
+5. Quantity A = 1 = Quantity B, so the quantities are equal.
+Check with y = 0.4 and c = 0.6: P(E) = 0.24, P(E or F) = 0.64; P(F or G) = 0.8 - 0.16 = 0.64.
 
-**Trap.** Answering C from the equal counts of red and blue. The colors are balanced only for the FIRST draw; after it, the drawn color is one short, so a match is always the less likely outcome. Answering D because n is unspecified is the second temptation - but the comparison reduces to n vs n - 1 over a common denominator, which is settled for every n >= 2.
+**Trap.** Treating F and G as mutually exclusive as well gives P(F or G) = 2y, so c = 1 and c + y = 1 + y, which exceeds 1 and points to choice A.
 
-### Q28 · `STA-IDE-039` — Answer: 3/14
+### Q30 · `STA-IDE-039` — Answer: 3/14
 
 Step 1 — decode the condition. Draw 4 must be white, and exactly one white must appear among draws 1 to 3 (so that draw 4 is the SECOND white, not the first or the third).
 Step 2 — list the qualifying patterns for the first three draws: the single white sits in position 1, 2 or 3, so there are C(3,1) = 3 patterns - WBBW, BWBW, BBWW.
@@ -657,30 +693,3 @@ Check by counting ordered 4-draw sequences: favourable = 3 x (4 x 6 x 5 x 3) = 3
 Answer: 3/14.
 
 **Trap.** Computing P(exactly two white among the first four draws) = C(4,2)C(6,2)/C(10,4) = 6 x 15/210 = 3/7, which is exactly twice the right answer. That count allows the second white to land in position 1, 2 or 3; the stem pins it to position 4, which keeps only half the sequences. The other error is pricing WBBW and stopping at 1/14, forgetting that the lone early white has three places to sit.
-
-### Q29 · `STA-IDE-040` — Answer: A, C, E
-
-Start by converting the conditional into a joint probability, since everything else follows from it.
-P(A and B) = P(A | B) x P(B) = (1/4)(1/2) = 1/8.
-A - that is the computation just made. TRUE.
-B - the test is P(A and B) = P(A) x P(B). Here P(A) x P(B) = (1/3)(1/2) = 1/6, but P(A and B) = 1/8. Since 1/8 is not 1/6, the events are dependent. FALSE.
-C - P(B | A) = P(A and B)/P(A) = (1/8)/(1/3) = (1/8)(3/1) = 3/8. TRUE.
-D - P(A or B) = P(A) + P(B) - P(A and B) = 1/3 + 1/2 - 1/8 = 8/24 + 12/24 - 3/24 = 17/24, not 5/6 = 20/24. The stated 5/6 is 1/3 + 1/2 with no overlap subtracted. FALSE.
-E - 'neither' is the complement of the union: 1 - 17/24 = 7/24. TRUE.
-Answer: A, C, E.
-Notice the direction of the conditionals: P(A | B) = 1/4 while P(B | A) = 3/8. They are different numbers, as they almost always are.
-
-**Trap.** Selecting B because 1/4 looks near enough to P(A) = 1/3. Independence is an exact equality, and 1/8 against 1/6 fails it - in fact P(A | B) = 1/4 < 1/3 = P(A) means B makes A LESS likely. D is the other bait: adding 1/3 + 1/2 = 5/6 forgets that the overlap of 1/8 is counted twice, and a student who takes D also gets E wrong, since E is built on the correct union of 17/24.
-
-### Q30 · `STA-IDE-043` — Answer: B
-
-There are 36 equally likely ordered pairs. Apply the one test that decides independence: P(A and B) = P(A) x P(B).
-A - P(first even) = 18/36 = 1/2. Sum 8 happens 5 ways: (2,6),(3,5),(4,4),(5,3),(6,2), so P = 5/36. Both: (2,6),(4,4),(6,2) = 3/36 = 1/12. But (1/2)(5/36) = 5/72, and 1/12 = 6/72. Not equal, so DEPENDENT.
-B - P(first even) = 1/2. Sum 7 happens 6 ways: (1,6),(2,5),(3,4),(4,3),(5,2),(6,1), so P = 6/36 = 1/6. Both: (2,5),(4,3),(6,1) = 3/36 = 1/12. And (1/2)(1/6) = 1/12. Equal, so INDEPENDENT.
-C - P(first is 6) = 1/6. P(product even) = 1 - P(both odd) = 1 - 9/36 = 3/4. Both: if the first roll is a 6 the product is automatically even, so P = 1/6. But (1/6)(3/4) = 1/8, and 1/6 is not 1/8. DEPENDENT.
-D - P(both even) = 9/36 = 1/4. P(sum even) = 18/36 = 1/2. Both even forces an even sum, so P(both) = 1/4. But (1/4)(1/2) = 1/8. DEPENDENT.
-E - the two sums cannot both happen, so P(both) = 0, while P(sum 7) x P(sum 8) = (1/6)(5/36) > 0. DEPENDENT.
-Answer: B.
-Why B works: whatever the first roll is, exactly one face on the second die completes a sum of 7. So P(sum 7 | first roll) = 1/6 no matter what the first roll was, which is independence by definition. Only 7 has this property, because it is the one total reachable from every starting face.
-
-**Trap.** Choice E is the headline trap: mutually exclusive events feel maximally 'unrelated', but a zero overlap against two positive probabilities is the strongest possible dependence - if the sum is 7 you know for certain it is not 8. Choice D catches the belief that independence means 'built from different-looking descriptions'; in fact 'both even' guarantees 'sum even', which is again as dependent as events get. Choice A is the near miss: it differs from the correct B only in the target sum, and 8 fails precisely because it is not reachable from every first roll.

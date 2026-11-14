@@ -1,6 +1,6 @@
 # Overlapping Sets — Practice Set
 
-**Bank code:** `STA-OVL` · **Section:** statistics · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `STA-OVL` · **Section:** statistics · **30 questions** — Easy 5 · Medium 8 · Hard 15 · Extreme 2
 
 **Lecture capsule:** [11-overlapping-sets.md](../../07-statistics-probability/11-overlapping-sets.md)
 
@@ -22,7 +22,7 @@ Every question below is live in the question bank under the ID shown — the she
 
 **Q1** · `STA-OVL-003` · Numeric Entry · 50s
 
-In a group of 60 students, 35 study French and 28 study Spanish. Every student studies at least one of the two languages. How many students study both French and Spanish? Enter your answer as a number.
+In a group of 60 students, 35 study French and 28 study Spanish. Every student studies at least one of the two languages. How many students study both French and Spanish?
 
 *Numeric entry — write the number.*
 
@@ -128,7 +128,7 @@ In a class of 50 students, 30 study French and 25 study German. Every student st
 
 **Q12** · `STA-OVL-027` · Numeric Entry · 70s
 
-A hotel surveyed its guests: 40 percent ordered room service, 35 percent used the spa, and 25 percent used neither service. What percent of guests used both room service and the spa? Enter your answer as a number.
+A hotel surveyed its guests: 40 percent ordered room service, 35 percent used the spa, and 25 percent used neither service. What percent of guests used both room service and the spa?
 
 *Numeric entry — write the number.*
 
@@ -144,7 +144,7 @@ In a survey of 500 people, 55 percent watch TV daily and 40 percent use social m
 
 ---
 
-### Level 3 · Hard — 12 questions · ~20 min
+### Level 3 · Hard — 15 questions · ~26 min
 
 *where 162+ is won or lost*
 
@@ -160,7 +160,7 @@ In a school of 300 students, every student studies at least one of three subject
 
 **Q15** · `STA-OVL-035` · Numeric Entry · 95s
 
-In a survey of 200 people about three streaming services X, Y, and Z, 110 use X, 95 use Y, and 80 use Z. 45 use both X and Y, 35 use both X and Z, and 30 use both Y and Z; each of these pairwise counts includes everyone who uses all three services. Every person surveyed uses at least one of the three services. How many people use all three services? Enter your answer as a number.
+In a survey of 200 people about three streaming services X, Y, and Z, 110 use X, 95 use Y, and 80 use Z. 45 use both X and Y, 35 use both X and Z, and 30 use both Y and Z; each of these pairwise counts includes everyone who uses all three services. Every person surveyed uses at least one of the three services. How many people use all three services?
 
 *Numeric entry — write the number.*
 
@@ -183,7 +183,7 @@ In a class, 70 percent of the students passed exam A and 80 percent passed exam 
 
 **Q18** · `STA-OVL-038` · Numeric Entry · 100s
 
-In a group of 120 people, 75 have taken a cooking class, 60 have taken a pottery class, and 45 have taken a painting class. 30 have taken both cooking and pottery, 25 have taken both cooking and painting, and 20 have taken both pottery and painting; each of these three pairwise counts includes the 10 people who have taken all three classes. Some people have taken none of the three. How many people have taken exactly two of the three classes? Enter your answer as a number.
+In a group of 120 people, 75 have taken a cooking class, 60 have taken a pottery class, and 45 have taken a painting class. 30 have taken both cooking and pottery, 25 have taken both cooking and painting, and 20 have taken both pottery and painting; each of these three pairwise counts includes the 10 people who have taken all three classes. Some people have taken none of the three. How many people have taken exactly two of the three classes?
 
 *Numeric entry — write the number.*
 
@@ -216,7 +216,7 @@ In a group of 100 people, 70 speak language A and 60 speak language B. No other 
 
 **Q22** · `STA-OVL-042` · Numeric Entry · 110s
 
-In a school of 80 students, every student belongs to at least one of three clubs: A, B, or C. Club A has 50 members, club B has 45 members, and club C has 38 members. Exactly 15 students belong to A and B but not C, exactly 12 belong to A and C but not B, and exactly 10 belong to B and C but not A. How many students belong to all three clubs? Enter your answer as a number.
+In a school of 80 students, every student belongs to at least one of three clubs: A, B, or C. Club A has 50 members, club B has 45 members, and club C has 38 members. Exactly 15 students belong to A and B but not C, exactly 12 belong to A and C but not B, and exactly 10 belong to B and C but not A. How many students belong to all three clubs?
 
 *Numeric entry — write the number.*
 
@@ -247,36 +247,32 @@ In a group of 100 people, 80 like product A, 70 like product B, and 60 like prod
 **(D)** 60  
 **(E)** 70
 
----
+**Q26** · `STA-OVL-047` · Numeric Entry · 110s
 
-### Level 4 · Extreme — 5 questions · ~10 min
-
-*165+ — expect to need the insight, not the grind*
-
-**Q26** · `STA-OVL-046` · MCQ · 125s
-
-At a conference with 200 attendees, every person speaks at least one of three languages: English, French, or Mandarin. 140 speak English, 120 speak French, and 90 speak Mandarin. What is the greatest possible number of attendees who speak all three languages?
-
-**(A)** 50  
-**(B)** 60  
-**(C)** 75  
-**(D)** 90  
-**(E)** 150
-
-**Q27** · `STA-OVL-047` · Numeric Entry · 125s
-
-In a survey of 400 people, 60 percent like product A, 50 percent like product B, and 35 percent like product C. Every person likes at least one of the three products, and the number of people who like exactly two of the products is three times the number who like all three. How many people like exactly one product? Enter your answer as a number.
+In a survey of 400 people, 60 percent like product A, 50 percent like product B, and 35 percent like product C. Every person likes at least one of the three products, and the number of people who like exactly two of the products is three times the number who like all three. How many people like exactly one product?
 
 *Numeric entry — write the number.*
 
-**Q28** · `STA-OVL-048` · QC · 125s
+**Q27** · `STA-OVL-048` · QC · 110s
 
 In a group of 100 students, 50 belong to club X, 40 belong to club Y, and 30 belong to club Z. Every student belongs to at least one of the three clubs. Nothing is given about the pairwise overlaps.
 
 > **Quantity A:**  The number of students who belong to all three clubs
 > **Quantity B:**  5
 
-**Q29** · `STA-OVL-049` · Select all that apply · 125s
+**Q28** · `STA-OVL-050` · Numeric Entry · 110s
+
+A company has 300 employees, each of whom speaks at least one of three languages: English, Spanish, and French. The number who speak English only is twice the number who speak Spanish only, and the number who speak Spanish only is twice the number who speak French only. Exactly 30 speak English and Spanish but not French, exactly 10 speak English and French but not Spanish, exactly 5 speak Spanish and French but not English, and exactly 10 speak all three languages. How many employees speak English?
+
+*Numeric entry — write the number.*
+
+---
+
+### Level 4 · Extreme — 2 questions · ~4 min
+
+*the top of a real hard section — expect to need the insight, not the grind*
+
+**Q29** · `STA-OVL-049` · Select all that apply · 110s
 
 In a class of 100 students, 55 passed math, 50 passed English, and 45 passed science. 25 passed both math and English, 20 passed both math and science, and 18 passed both English and science; each of these three pairwise counts includes the x students who passed all three subjects. Some students may have passed none of the three. Which of the following could be the value of x? Select all that apply.
 
@@ -286,11 +282,15 @@ In a class of 100 students, 55 passed math, 50 passed English, and 45 passed sci
 **(D)** 20  
 **(E)** 25
 
-**Q30** · `STA-OVL-050` · Numeric Entry · 130s
+**Q30** · `STA-OVL-046` · MCQ · 125s
 
-A company has 300 employees, each of whom speaks at least one of three languages: English, Spanish, and French. The number who speak English only is twice the number who speak Spanish only, and the number who speak Spanish only is twice the number who speak French only. Exactly 30 speak English and Spanish but not French, exactly 10 speak English and French but not Spanish, exactly 5 speak Spanish and French but not English, and exactly 10 speak all three languages. How many employees speak English? Enter your answer as a number.
+At a conference with 200 attendees, every person speaks at least one of three languages: English, French, or Mandarin. 140 speak English, 120 speak French, and 90 speak Mandarin. What is the greatest possible number of attendees who speak all three languages?
 
-*Numeric entry — write the number.*
+**(A)** 50  
+**(B)** 60  
+**(C)** 75  
+**(D)** 90  
+**(E)** 150
 
 ---
 
@@ -323,11 +323,11 @@ A company has 300 employees, each of whom speaks at least one of three languages
 | 23 | `STA-OVL-043` | hard | MCQ | **C** |
 | 24 | `STA-OVL-044` | hard | QC | **A** |
 | 25 | `STA-OVL-045` | hard | Select all that apply | **B, C, D** |
-| 26 | `STA-OVL-046` | extreme hard | MCQ | **C** |
-| 27 | `STA-OVL-047` | extreme hard | Numeric Entry | **256** |
-| 28 | `STA-OVL-048` | extreme hard | QC | **D** |
+| 26 | `STA-OVL-047` | hard | Numeric Entry | **256** |
+| 27 | `STA-OVL-048` | hard | QC | **D** |
+| 28 | `STA-OVL-050` | hard | Numeric Entry | **190** |
 | 29 | `STA-OVL-049` | extreme hard | Select all that apply | **A, B** |
-| 30 | `STA-OVL-050` | extreme hard | Numeric Entry | **190** |
+| 30 | `STA-OVL-046` | extreme hard | MCQ | **C** |
 
 ---
 
@@ -378,11 +378,11 @@ Let x be the number who own both. Two bounds squeeze x.
 Upper bound: the overlap cannot be larger than the smaller set, so x <= min(24, 18) = 18.
 Lower bound: the union is 24 + 18 - x = 42 - x, and the union cannot exceed the 40 people who exist, so 42 - x <= 40, giving x >= 2.
 So 2 <= x <= 18.
-A - 0 is below 2. FALSE.
-B - 2 is exactly the minimum, reached when nobody owns neither. TRUE.
-C - 10 is inside the range. TRUE.
-D - 18 is exactly the maximum, reached when every tablet owner also owns a smartphone. TRUE.
-E - 20 exceeds the 18 tablet owners. FALSE.
+A - 0 is below 2. False.
+B - 2 is exactly the minimum, reached when nobody owns neither. True.
+C - 10 is inside the range. True.
+D - 18 is exactly the maximum, reached when every tablet owner also owns a smartphone. True.
+E - 20 exceeds the 18 tablet owners. False.
 Answer: B, C, D.
 
 **Trap.** Selecting A because 'they might not overlap at all'. Since 24 + 18 = 42 is greater than 40, there is not enough room to keep the two groups apart: at least 42 - 40 = 2 people must be in both. Selecting E is the mirror error - forgetting that the overlap lives inside the smaller set.
@@ -448,11 +448,11 @@ Answer: 42.
 Step 1 — 'every student studies at least one' forces neither = 0, so the union is 50.
 Step 2 — 50 = 30 + 25 - both, so both = 55 - 50 = 5. The overlap is pinned exactly, not merely bounded.
 Step 3 — French only = 30 - 5 = 25; German only = 25 - 5 = 20; exactly one language = 25 + 20 = 45.
-A - both is exactly 5. TRUE.
-B - 5 >= 5, so 'at least 5' also holds. TRUE.
-C - 25 > 20. TRUE.
-D - French only is 25; 20 is GERMAN only. FALSE.
-E - 45 is the number who study exactly one language, not French only. FALSE.
+A - both is exactly 5. True.
+B - 5 >= 5, so 'at least 5' also holds. True.
+C - 25 > 20. True.
+D - French only is 25; 20 is GERMAN only. False.
+E - 45 is the number who study exactly one language, not French only. False.
 Answer: A, B, C.
 
 **Trap.** Rejecting A because the stem never says 'exactly'. The clause 'every student studies at least one' removes the last free variable, so the overlap is determined, not a range. D and E are the two nearby region values - German only (20) and exactly-one (45) - which catch students who compute the right numbers and then attach them to the wrong label.
@@ -507,22 +507,22 @@ Answer: 25.
 
 Step 1 — convert to counts: coffee = 0.60 x 500 = 300; tea = 0.45 x 500 = 225; both = 0.25 x 500 = 125.
 Step 2 — the sample space is restricted to 'at least one beverage', so find that union: 300 + 225 - 125 = 400.
-Step 3 — the favourable group is ALL tea drinkers, 225 of them, including the 125 who also drink coffee.
+Step 3 — the favourable group is all tea drinkers, 225 of them, including the 125 who also drink coffee.
 Step 4 — probability = 225/400 = 9/16.
 Check the regions: coffee only 175, tea only 100, both 125, neither 100. They sum to 500, and 175 + 100 + 125 = 400. Correct.
 Answer: 9/16.
 
-**Trap.** Choice C, 9/20, uses all 500 adults as the denominator; the stem restricts the draw to the 400 who drink something. Choice A, 1/4, is 100/400, the probability of drinking ONLY tea; choice B, 5/16, is 125/400, the probability of drinking both; choice E, 3/4, is 300/400, the coffee answer.
+**Trap.** Choice C, 9/20, uses all 500 adults as the denominator; the stem restricts the draw to the 400 who drink something. Choice A, 1/4, is 100/400, the probability of drinking only tea; choice B, 5/16, is 125/400, the probability of drinking both; choice E, 3/4, is 300/400, the coffee answer.
 
 ### Q17 · `STA-OVL-037` — Answer: A
 
-Step 1 — minimise the overlap for Quantity A. The union can never exceed 100%, so 70 + 80 - both <= 100, giving both >= 50%. The smallest possible overlap is 50%, reached when nobody fails both exams.
-Step 2 — maximise 'neither' for Quantity B. Neither = 100 - union, so making 'neither' as large as possible means making the union as small as possible. The union can never be smaller than the larger of the two sets, so union >= 80%. The smallest union is 80%, reached when every exam-A passer also passed exam B, and then neither = 100 - 80 = 20%.
+Step 1 — minimize the overlap for Quantity A. The union can never exceed 100%, so 70 + 80 - both <= 100, giving both >= 50%. The smallest possible overlap is 50%, reached when nobody fails both exams.
+Step 2 — maximize 'neither' for Quantity B. Neither = 100 - union, so making 'neither' as large as possible means making the union as small as possible. The union can never be smaller than the larger of the two sets, so union >= 80%. The smallest union is 80%, reached when every exam-A passer also passed exam B, and then neither = 100 - 80 = 20%.
 Step 3 — compare: 50% > 20%, so Quantity A is greater.
 Note that the two scenarios describe different classes; each column is optimised on its own, which is exactly what 'smallest possible' and 'largest possible' ask for.
 Answer: A.
 
-**Trap.** Reading Quantity A as the LARGEST possible overlap, which is min(70, 80) = 70%, or reading Quantity B as the smallest 'neither', which is 0%. A second slip is computing the maximum 'neither' as 100 - 70 = 30% by shrinking the union to the wrong set - the union must contain the bigger set, 80%, not the smaller one.
+**Trap.** Reading Quantity A as the largest possible overlap, which is min(70, 80) = 70%, or reading Quantity B as the smallest 'neither', which is 0%. A second slip is computing the maximum 'neither' as 100 - 70 = 30% by shrinking the union to the wrong set - the union must contain the bigger set, 80%, not the smaller one.
 
 ### Q18 · `STA-OVL-038` — Answer: 45
 
@@ -537,7 +537,7 @@ Answer: 45.
 
 ### Q19 · `STA-OVL-039` — Answer: E
 
-This is a double matrix: location down the side, leads-a-team across the top. Fill the leader column one row at a time, because each percent applies to its own row.
+This is a two-way table: location down the side, leads-a-team across the top. Fill the leader column one row at a time, because each percent applies to its own row.
 Step 1 — row sizes: city = 0.50 x 400 = 200; remote = 0.35 x 400 = 140; satellite = 400 - 200 - 140 = 60.
 Step 2 — leaders in each row: city = 0.30 x 200 = 60; remote = 0.20 x 140 = 28; satellite = 0.20 x 60 = 12.
 Step 3 — total leaders = 60 + 28 + 12 = 100.
@@ -562,18 +562,18 @@ Answer: A.
 ### Q21 · `STA-OVL-041` — Answer: A, B, D, E
 
 Let x be the number who speak both. Union = 70 + 60 - x = 130 - x, and neither = 100 - (130 - x) = x - 30.
-A - the union cannot exceed 100, so 130 - x <= 100 and x >= 30. TRUE.
-B - the overlap cannot exceed the smaller set, so x <= 60. TRUE.
-C - neither = x - 30, and x can be exactly 30, which makes neither = 0. So 'at least 10 speak neither' is not forced. FALSE.
-D - neither = x - 30 and x <= 60, so neither <= 30. TRUE.
-E - if neither = 0 then the union is 100, so 130 - x = 100 and x = 30 exactly. TRUE.
+A - the union cannot exceed 100, so 130 - x <= 100 and x >= 30. True.
+B - the overlap cannot exceed the smaller set, so x <= 60. True.
+C - neither = x - 30, and x can be exactly 30, which makes neither = 0. So 'at least 10 speak neither' is not forced. False.
+D - neither = x - 30 and x <= 60, so neither <= 30. True.
+E - if neither = 0 then the union is 100, so 130 - x = 100 and x = 30 exactly. True.
 Answer: A, B, D, E.
 
 **Trap.** Selecting C by reasoning that 70 + 60 = 130 overshoots 100 by 30, so 30 people must be 'left over' outside the sets. The excess is absorbed by the OVERLAP, not by the 'neither' region: when exactly 30 speak both, the union is exactly 100 and nobody is left out. Note also that neither = both - 30 here, so the two regions move together, one always 30 behind the other.
 
 ### Q22 · `STA-OVL-042` — Answer: 8
 
-The three given numbers are EXACTLY-TWO counts, not full pairwise intersections, so the standard inclusion-exclusion formula does not apply as written. Use the membership-counting identity instead.
+The three given numbers are exactly-TWO counts, not full pairwise intersections, so the standard inclusion-exclusion formula does not apply as written. Use the membership-counting identity instead.
 Step 1 — name the regions: let T be the number in all three. Exactly two = 15 + 12 + 10 = 37. Since every student is in at least one club, exactly one = 80 - 37 - T = 43 - T.
 Step 2 — count club memberships. Adding the three club sizes counts a one-club student once, a two-club student twice, and a three-club student three times:
 50 + 45 + 38 = (exactly one) + 2(exactly two) + 3T
@@ -616,31 +616,16 @@ Upper bound: everyone in all three is in C, so the triple cannot exceed the smal
 Lower bound: count the people who are MISSING something. 20 do not like A, 30 do not like B, 40 do not like C, and 20 + 30 + 40 = 90. At most 90 people can be missing at least one product, so at least 100 - 90 = 10 people like all three. Equivalently 80 + 70 + 60 - 2(100) = 10.
 That minimum is reachable: make the three 'missing' groups disjoint, and the remaining 10 people like everything.
 So the triple overlap runs from 10 to 60.
-A - 5 is below the minimum of 10. FALSE.
-B - 10 is exactly the minimum. TRUE.
-C - 30 is inside the range. TRUE.
-D - 60 is exactly the maximum. TRUE.
-E - 70 exceeds the 60 people who like C. FALSE.
+A - 5 is below the minimum of 10. False.
+B - 10 is exactly the minimum. True.
+C - 30 is inside the range. True.
+D - 60 is exactly the maximum. True.
+E - 70 exceeds the 60 people who like C. False.
 Answer: B, C, D.
 
 **Trap.** Selecting A because 'a small overlap seems possible' - with three sets this large there is not enough room outside them: only 90 person-slots exist for people missing something, so 10 people are forced into all three. Selecting E is the opposite error, forgetting that the triple intersection is a subset of the smallest set.
 
-### Q26 · `STA-OVL-046` — Answer: C
-
-The insight: compare the number of PEOPLE with the number of language memberships.
-Step 1 — let e1, e2, e3 be the numbers speaking exactly one, exactly two, and all three languages. Since everyone speaks at least one:
-e1 + e2 + e3 = 200
-Step 2 — adding the three language totals counts a one-language speaker once, a two-language speaker twice, and a three-language speaker three times:
-e1 + 2e2 + 3e3 = 140 + 120 + 90 = 350
-Step 3 — subtract the first equation from the second:
-e2 + 2e3 = 350 - 200 = 150
-Step 4 — maximise e3. Since e2 cannot be negative, 2e3 <= 150, so e3 <= 75.
-Step 5 — check that 75 is achievable. Put e2 = 0 and e3 = 75. Then English only = 140 - 75 = 65, French only = 120 - 75 = 45, Mandarin only = 90 - 75 = 15, all non-negative, and 65 + 45 + 15 + 75 = 200. It works.
-Answer: 75.
-
-**Trap.** Choice D, 90, is the standard two-set instinct - 'the overlap cannot exceed the smallest set' - which gives a valid upper bound but not a reachable one: 90 people in all three would force 350 - 270 = 80 memberships across the remaining 110 people, which is impossible since each of them needs at least one. Choice E, 150, is the raw excess e2 + 2e3; choice A, 50, divides that excess by 3 instead of 2. Choice B, 60, is the two-set formula 140 + 120 - 200 read as a ceiling; that number is the SMALLEST possible English-and-French overlap, not the largest, and it says nothing about Mandarin.
-
-### Q27 · `STA-OVL-047` — Answer: 256
+### Q26 · `STA-OVL-047` — Answer: 256
 
 Step 1 — convert to counts: A = 0.60 x 400 = 240; B = 0.50 x 400 = 200; C = 0.35 x 400 = 140. Their sum is 580 product-likes.
 Step 2 — name the regions. Let t be the number who like all three; then exactly two = 3t, and since everyone likes at least one, exactly one = 400 - 3t - t = 400 - 4t.
@@ -653,11 +638,11 @@ Answer: 256.
 
 **Trap.** Answering 45 by solving 4t = 180 - that treats the 180-membership excess as if all of it came from the exactly-one shortfall, when in fact each two-product person contributes 1 extra membership and each three-product person contributes 2. The other slip is stopping at t = 36 or at 3t = 108 and reporting a region the question did not ask for.
 
-### Q28 · `STA-OVL-048` — Answer: D
+### Q27 · `STA-OVL-048` — Answer: D
 
 Step 1 — let e1, e2, e3 be the numbers in exactly one, exactly two, and all three clubs. Everyone is in at least one club, so e1 + e2 + e3 = 100.
 Step 2 — the club totals count memberships: e1 + 2e2 + 3e3 = 50 + 40 + 30 = 120.
-Step 3 — subtract: e2 + 2e3 = 20. That single equation is ALL the data pins down; e3 is not determined.
+Step 3 — subtract: e2 + 2e3 = 20. That single equation is all the data pins down; e3 is not determined.
 Step 4 — test the two extremes.
 e3 = 0 (so e2 = 20): let X-and-Y-only = 10, X-and-Z-only = 5, Y-and-Z-only = 5. Then X only = 50 - 15 = 35, Y only = 40 - 15 = 25, Z only = 30 - 10 = 20. Regions: 35 + 25 + 20 + 20 = 100. Valid, and Quantity A = 0 < 5.
 e3 = 10 (so e2 = 0): X only = 40, Y only = 30, Z only = 20, all three = 10. Regions: 40 + 30 + 20 + 10 = 100. Valid, and Quantity A = 10 > 5.
@@ -666,23 +651,7 @@ Answer: D.
 
 **Trap.** Feeding the numbers into the three-set formula as though the pairwise intersections were known and reporting a single value for the triple. Compare a problem that DOES give |X and Y|, |X and Z|, |Y and Z|: there the triple is forced. Here only the combination e2 + 2e3 = 20 is fixed, so the triple ranges from 0 to 10 and both C and A are wrong.
 
-### Q29 · `STA-OVL-049` — Answer: A, B
-
-Step 1 — write the union with x left as an unknown:
-union = 55 + 50 + 45 - 25 - 20 - 18 + x = 150 - 63 + x = 87 + x
-Step 2 — the union cannot exceed the class, so 87 + x <= 100, giving x <= 13. (Equivalently, the number who passed none is 100 - (87 + x) = 13 - x, which must be at least 0.)
-Step 3 — check the other constraints. The exactly-two regions are 25 - x, 20 - x and 18 - x, all of which must be non-negative, so x <= 18. The exactly-one regions are math only = 55 - 25 - 20 + x = 10 + x, English only = 50 - 25 - 18 + x = 7 + x and science only = 45 - 20 - 18 + x = 7 + x, all non-negative for x >= 0.
-Step 4 — the binding constraint is the union one: 0 <= x <= 13.
-A - 8 is inside the range; 5 students passed none. TRUE.
-B - 13 is the maximum; 0 students passed none. TRUE.
-C - 18 would make the union 105, more than the whole class. FALSE.
-D - 20 exceeds both 13 and the 18-student English-and-science overlap. FALSE.
-E - 25 fails for the same reasons. FALSE.
-Answer: A, B.
-
-**Trap.** Selecting C because 18 is the smallest of the three pairwise counts, so 'the triple can be as big as the smallest pair'. That bound is real but slack here: the union constraint bites first at 13. An x of 18 would put 105 percent of the class into the union, which the roster cannot supply.
-
-### Q30 · `STA-OVL-050` — Answer: 190
+### Q28 · `STA-OVL-050` — Answer: 190
 
 All seven regions of the Venn diagram are either given or expressible in one variable, so build them and add.
 Step 1 — let f be the number who speak French only. Then Spanish only = 2f and English only = 4f.
@@ -697,4 +666,35 @@ English = 140 + 30 + 10 + 10 = 190
 Check the whole company: 140 + 70 + 35 + 30 + 10 + 5 + 10 = 300. Correct.
 Answer: 190.
 
-**Trap.** Answering 140 - that is English ONLY, the centre-most region of the English circle rather than the whole circle. Answering 180 is the same error stopped one step short: adding the two exactly-two English regions but forgetting the 10 who speak all three, who are also English speakers.
+**Trap.** Answering 140 - that is English only, the center-most region of the English circle rather than the whole circle. Answering 180 is the same error stopped one step short: adding the two exactly-two English regions but forgetting the 10 who speak all three, who are also English speakers.
+
+### Q29 · `STA-OVL-049` — Answer: A, B
+
+Step 1 — write the union with x left as an unknown:
+union = 55 + 50 + 45 - 25 - 20 - 18 + x = 150 - 63 + x = 87 + x
+Step 2 — the union cannot exceed the class, so 87 + x <= 100, giving x <= 13. (Equivalently, the number who passed none is 100 - (87 + x) = 13 - x, which must be at least 0.)
+Step 3 — check the other constraints. The exactly-two regions are 25 - x, 20 - x and 18 - x, all of which must be non-negative, so x <= 18. The exactly-one regions are math only = 55 - 25 - 20 + x = 10 + x, English only = 50 - 25 - 18 + x = 7 + x and science only = 45 - 20 - 18 + x = 7 + x, all non-negative for x >= 0.
+Step 4 — the binding constraint is the union one: 0 <= x <= 13.
+A - 8 is inside the range; 5 students passed none. True.
+B - 13 is the maximum; 0 students passed none. True.
+C - 18 would make the union 105, more than the whole class. False.
+D - 20 exceeds both 13 and the 18-student English-and-science overlap. False.
+E - 25 fails for the same reasons. False.
+Answer: A, B.
+
+**Trap.** Selecting C because 18 is the smallest of the three pairwise counts, so 'the triple can be as big as the smallest pair'. That bound is real but slack here: the union constraint bites first at 13. An x of 18 would put 105 percent of the class into the union, which the roster cannot supply.
+
+### Q30 · `STA-OVL-046` — Answer: C
+
+The insight: compare the number of PEOPLE with the number of language memberships.
+Step 1 — let e1, e2, e3 be the numbers speaking exactly one, exactly two, and all three languages. Since everyone speaks at least one:
+e1 + e2 + e3 = 200
+Step 2 — adding the three language totals counts a one-language speaker once, a two-language speaker twice, and a three-language speaker three times:
+e1 + 2e2 + 3e3 = 140 + 120 + 90 = 350
+Step 3 — subtract the first equation from the second:
+e2 + 2e3 = 350 - 200 = 150
+Step 4 — maximize e3. Since e2 cannot be negative, 2e3 <= 150, so e3 <= 75.
+Step 5 — check that 75 is achievable. Put e2 = 0 and e3 = 75. Then English only = 140 - 75 = 65, French only = 120 - 75 = 45, Mandarin only = 90 - 75 = 15, all non-negative, and 65 + 45 + 15 + 75 = 200. It works.
+Answer: 75.
+
+**Trap.** Choice D, 90, is the standard two-set instinct - 'the overlap cannot exceed the smallest set' - which gives a valid upper bound but not a reachable one: 90 people in all three would force 350 - 270 = 80 memberships across the remaining 110 people, which is impossible since each of them needs at least one. Choice E, 150, is the raw excess e2 + 2e3; choice A, 50, divides that excess by 3 instead of 2. Choice B, 60, is the two-set formula 140 + 120 - 200 read as a ceiling; that number is the smallest possible English-and-French overlap, not the largest, and it says nothing about Mandarin.

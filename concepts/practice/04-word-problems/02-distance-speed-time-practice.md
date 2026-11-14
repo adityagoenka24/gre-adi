@@ -1,6 +1,6 @@
 # Distance, Speed & Time — Practice Set
 
-**Bank code:** `WRD-DST` · **Section:** Word Problems · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `WRD-DST` · **Section:** Word Problems · **30 questions** — Easy 5 · Medium 12 · Hard 12 · Extreme 1
 
 **Lecture capsule:** [02-distance-speed-time.md](../../04-word-problems/02-distance-speed-time.md)
 
@@ -49,7 +49,7 @@ Train P travels 300 miles at a constant 75 miles per hour. Train Q travels 240 m
 
 **Q4** · `WRD-DST-013` · Numeric Entry · 35s
 
-A boat's speed in still water is 15 miles per hour. The river current flows at 3 miles per hour. What is the boat's speed, in miles per hour, when it travels downstream? Enter your answer as a number.
+A boat's speed in still water is 15 miles per hour. The river current flows at 3 miles per hour. What is the boat's speed, in miles per hour, when it travels downstream?
 
 *Numeric entry — write the number.*
 
@@ -65,7 +65,7 @@ A driver covers 60 miles at a constant 30 miles per hour and then covers a furth
 
 ---
 
-### Level 2 · Medium — 8 questions · ~11 min
+### Level 2 · Medium — 12 questions · ~17 min
 
 *two or three steps, one planted trap each*
 
@@ -115,13 +115,13 @@ One runner's average speed for a certain race is 8 miles per hour. A second runn
 
 **Q11** · `WRD-DST-019` · Numeric Entry · 80s
 
-A boat travels 48 miles upstream in 4 hours and travels the same 48 miles downstream in 3 hours. What is the speed of the current, in miles per hour? Enter your answer as a number.
+A boat travels 48 miles upstream in 4 hours and travels the same 48 miles downstream in 3 hours. What is the speed of the current, in miles per hour?
 
 *Numeric entry — write the number.*
 
 **Q12** · `WRD-DST-032` · Numeric Entry · 80s
 
-A train leaves station A at 9:00 AM for station B, 300 kilometers away, and is scheduled to make the run at a constant 60 kilometers per hour. After 2 hours of travel it is held at a crossing for 30 minutes. At what constant speed, in kilometers per hour, must it cover the rest of the route to reach B at the originally scheduled time? Enter your answer as a number.
+A train leaves station A at 9:00 AM for station B, 300 kilometers away, and is scheduled to make the run at a constant 60 kilometers per hour. After 2 hours of travel it is held at a crossing for 30 minutes. At what constant speed, in kilometers per hour, must it cover the rest of the route to reach B at the originally scheduled time?
 
 *Numeric entry — write the number.*
 
@@ -135,33 +135,63 @@ A car leaves town X at 8:00 AM and drives toward town Y, 300 kilometers away, at
 **(D)** The bus reaches X at the same time as the car reaches Y  
 **(E)** Had the bus also left at 8:00 AM, the meeting point would be 30 kilometers nearer to X
 
+**Q14** · `WRD-DST-048` · Select all that apply · 105s
+
+On a straight highway, Car A travels at a constant 100 kilometers per hour and Car B travels at a constant 80 kilometers per hour in the same direction. At the start, Car A is 40 kilometers behind Car B. Select all that apply.
+
+**(A)** Car A catches Car B 2 hours after the start  
+**(B)** The gap closes at 90 km/h, the average of the two speeds  
+**(C)** When Car A catches Car B, Car A has traveled 240 kilometers  
+**(D)** Car B travels 160 kilometers before it is caught  
+**(E)** If Car A also traveled at 80 km/h, the two cars would never meet
+
+**Q15** · `WRD-DST-042` · QC · 90s
+
+A motorist drives from X to Y. She drives the first half of the time at a constant 40 miles per hour and the second half of the time at a constant 60 miles per hour.
+
+> **Quantity A:**  Her average speed for the trip
+> **Quantity B:**  48 miles per hour
+
+**Q16** · `WRD-DST-046` · QC · 90s
+
+Train A and Train B start at the same moment from opposite ends of a 600-kilometer track and move toward each other at constant speeds. The ratio of Train A's speed to Train B's speed is 3:2.
+
+> **Quantity A:**  The distance between the point where the trains meet and the midpoint of the track
+> **Quantity B:**  60 kilometers
+
+**Q17** · `WRD-DST-045` · Numeric Entry · 90s
+
+A runner covers a 12-kilometer course in three sections: the first 3 kilometers at a constant 9 kilometers per hour, the next 5 kilometers at a constant 10 kilometers per hour, and the final 4 kilometers at some other constant speed. Her total time for the whole course is 80 minutes. What is her speed, in kilometers per hour, on the final section?
+
+*Numeric entry — write the number.*
+
 ---
 
-### Level 3 · Hard — 12 questions · ~20 min
+### Level 3 · Hard — 12 questions · ~21 min
 
 *where 162+ is won or lost*
 
-**Q14** · `WRD-DST-039` · MCQ · 100s
+**Q18** · `WRD-DST-039` · MCQ · 100s
 
-Two trains, each 150 meters long, run on parallel tracks in opposite directions. Train A travels at a constant 54 kilometers per hour and Train B at a constant 126 kilometers per hour. How many seconds does it take, from the moment their fronts meet, for the two trains to pass each other completely?
+At noon two cars leave the same intersection. One travels due north at a constant 60 miles per hour and the other travels due east at a constant 45 miles per hour. At what time are the two cars 150 miles apart?
 
-**(A)** 3 seconds  
-**(B)** 6 seconds  
-**(C)** 10 seconds  
-**(D)** 15 seconds  
-**(E)** 20 seconds
+**(A)** 1:26 PM  
+**(B)** 2:00 PM  
+**(C)** 2:30 PM  
+**(D)** 3:20 PM  
+**(E)** 10:00 PM
 
-**Q15** · `WRD-DST-043` · MCQ · 110s
+**Q19** · `WRD-DST-043` · MCQ · 100s
 
-A boat whose speed in still water is 9 kilometers per hour takes 2 hours longer to travel 24 kilometers upstream than to travel the same 24 kilometers downstream. What is the speed of the current, in kilometers per hour?
+A freight train left station A for station B, traveling at a constant 60 miles per hour. One hour later a passenger train left station A on the same route, traveling at a constant 80 miles per hour, and it arrived at station B 30 minutes before the freight train. What is the distance, in miles, from station A to station B?
 
-**(A)** 1 km/h  
-**(B)** 2 km/h  
-**(C)** 3 km/h  
-**(D)** 4.5 km/h  
-**(E)** 6 km/h
+**(A)** 120  
+**(B)** 240  
+**(C)** 360  
+**(D)** 420  
+**(E)** 480
 
-**Q16** · `WRD-DST-047` · MCQ · 105s
+**Q20** · `WRD-DST-047` · MCQ · 105s
 
 A thief steals a car and drives away along a straight road at a constant 60 miles per hour. A police car sets off from the same point along the same road 10 minutes later. If the police car is to catch the thief within 15 minutes of setting off, what is the least constant speed, in miles per hour, the police car must maintain?
 
@@ -171,17 +201,17 @@ A thief steals a car and drives away along a straight road at a constant 60 mile
 **(D)** 100 mph  
 **(E)** 180 mph
 
-**Q17** · `WRD-DST-049` · MCQ · 100s
+**Q21** · `WRD-DST-049` · MCQ · 105s
 
-A man rows 21 kilometers downstream in 3 hours and rows 10 kilometers upstream in 2 hours. The current then doubles in speed, while his rowing effort stays the same. How many hours would he take to row 24 kilometers upstream against the doubled current?
+Jo ran a 10-kilometer route at a constant speed. If she had run 2 kilometers per hour faster, she would have finished the route 15 minutes sooner. What was Jo's speed, in kilometers per hour?
 
-**(A)** 4 hours  
-**(B)** 4.8 hours  
-**(C)** 6 hours  
-**(D)** 8 hours  
-**(E)** 12 hours
+**(A)** 6  
+**(B)** 8  
+**(C)** 10  
+**(D)** 12  
+**(E)** 20
 
-**Q18** · `WRD-DST-052` · MCQ · 95s
+**Q22** · `WRD-DST-052` · MCQ · 95s
 
 A train travels the first 200 kilometers of its route at a constant 100 kilometers per hour, then stands at a signal, then travels the remaining 300 kilometers at a constant 150 kilometers per hour. Its average speed for the whole journey, including the stop, is exactly 80 kilometers per hour. How many minutes does the train stand at the signal?
 
@@ -191,51 +221,23 @@ A train travels the first 200 kilometers of its route at a constant 100 kilomete
 **(D)** 145 minutes  
 **(E)** 225 minutes
 
-**Q19** · `WRD-DST-042` · QC · 100s
+**Q23** · `WRD-DST-041` · Numeric Entry · 105s
 
-A motorist drives from X to Y. She drives the first half of the time at a constant 40 miles per hour and the second half of the time at a constant 60 miles per hour.
-
-> **Quantity A:**  Her average speed for the trip
-> **Quantity B:**  48 miles per hour
-
-**Q20** · `WRD-DST-046` · QC · 95s
-
-Train A and Train B start at the same moment from opposite ends of a 600-kilometer track and move toward each other at constant speeds. The ratio of Train A's speed to Train B's speed is 3:2.
-
-> **Quantity A:**  The distance between the point where the trains meet and the midpoint of the track
-> **Quantity B:**  60 kilometers
-
-**Q21** · `WRD-DST-041` · Numeric Entry · 105s
-
-City A and City B are 450 kilometers apart. A train leaves City A at 6:00 AM travelling toward City B at a constant 90 kilometers per hour. A second train leaves City B at 8:00 AM travelling toward City A at a constant 60 kilometers per hour. The two trains meet at some time after 8:00 AM. How many minutes after 9:00 AM do they meet? Enter your answer as a number.
+City A and City B are 450 kilometers apart. A train leaves City A at 6:00 AM traveling toward City B at a constant 90 kilometers per hour. A second train leaves City B at 8:00 AM traveling toward City A at a constant 60 kilometers per hour. The two trains meet at some time after 8:00 AM. How many minutes after 9:00 AM do they meet?
 
 *Numeric entry — write the number.*
 
-**Q22** · `WRD-DST-045` · Numeric Entry · 100s
+**Q24** · `WRD-DST-050` · Numeric Entry · 95s
 
-A runner covers a 12-kilometer course in three sections: the first 3 kilometers at a constant 9 kilometers per hour, the next 5 kilometers at a constant 10 kilometers per hour, and the final 4 kilometers at some other constant speed. Her total time for the whole course is 80 minutes. What is her speed, in kilometers per hour, on the final section? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q23** · `WRD-DST-050` · Numeric Entry · 95s
-
-Cities P and Q are 420 kilometers apart. A car leaves P toward Q at a constant 40 kilometers per hour. Ninety minutes later a motorcycle leaves Q toward P at a constant 80 kilometers per hour. After the two pass each other, the motorcycle continues on to P. How many kilometers does the motorcycle still have to travel, after the moment they pass, to reach P? Enter your answer as a number.
+Cities P and Q are 420 kilometers apart. A car leaves P toward Q at a constant 40 kilometers per hour. Ninety minutes later a motorcycle leaves Q toward P at a constant 80 kilometers per hour. After the two pass each other, the motorcycle continues on to P. How many kilometers does the motorcycle still have to travel, after the moment they pass, to reach P?
 
 *Numeric entry — write the number.*
-
-**Q24** · `WRD-DST-048` · Select all that apply · 105s
-
-On a straight highway, Car A travels at a constant 100 kilometers per hour and Car B travels at a constant 80 kilometers per hour in the same direction. At the start, Car A is 40 kilometers behind Car B. Select all that apply.
-
-**(A)** Car A catches Car B 2 hours after the start  
-**(B)** The gap closes at 90 km/h, the average of the two speeds  
-**(C)** When Car A catches Car B, Car A has travelled 240 kilometers  
-**(D)** Car B travels 160 kilometers before it is caught  
-**(E)** If Car A also travelled at 80 km/h, the two cars would never meet
 
 **Q25** · `WRD-DST-053` · Select all that apply · 110s
 
-A car makes a round trip of 240 miles in total, 120 miles each way. It travels out at a constant speed S1 and back at a constant speed S2, where 0 < S1 < S2. Select all that apply.
+A car makes a round trip of 240 miles in total, 120 miles each way. It travels out at a constant speed S1 and back at a constant speed S2, where 0 < S1 < S2. Which of the following statements must be true?
+
+Indicate all such statements.
 
 **(A)** The average speed for the round trip is less than (S1 + S2)/2  
 **(B)** The average speed for the round trip equals 2*S1*S2/(S1 + S2)  
@@ -243,15 +245,9 @@ A car makes a round trip of 240 miles in total, 120 miles each way. It travels o
 **(D)** If S1 = 40 mph and S2 = 60 mph, the average speed is 50 mph  
 **(E)** If S2 is doubled, the average speed for the round trip is also doubled
 
----
+**Q26** · `WRD-DST-054` · MCQ · 110s
 
-### Level 4 · Extreme — 5 questions · ~11 min
-
-*165+ — expect to need the insight, not the grind*
-
-**Q26** · `WRD-DST-054` · MCQ · 120s
-
-Three runners A, B and C start at the same moment from the same point on a circular track of circumference 600 meters and run in the same direction at constant speeds of 10, 6 and 4 meters per second respectively. After how many seconds are all three runners together at the STARTING POINT for the first time?
+Three runners A, B and C start at the same moment from the same point on a circular track of circumference 600 meters and run in the same direction at constant speeds of 10, 6 and 4 meters per second respectively. After how many seconds are all three runners together at the starting point for the first time?
 
 **(A)** 150 seconds  
 **(B)** 200 seconds  
@@ -259,9 +255,9 @@ Three runners A, B and C start at the same moment from the same point on a circu
 **(D)** 600 seconds  
 **(E)** 1200 seconds
 
-**Q27** · `WRD-DST-058` · MCQ · 125s
+**Q27** · `WRD-DST-058` · MCQ · 110s
 
-Runner A completes one lap of a circular track in 40 seconds and Runner B completes one lap of the same track in 60 seconds. They start at the same moment from the same point and run in opposite directions at constant speeds. After how many seconds do they meet for the THIRD time, not counting the start?
+Runner A completes one lap of a circular track in 40 seconds and Runner B completes one lap of the same track in 60 seconds. They start at the same moment from the same point and run in opposite directions at constant speeds. After how many seconds do they meet for the third time, not counting the start?
 
 **(A)** 24 seconds  
 **(B)** 48 seconds  
@@ -269,28 +265,36 @@ Runner A completes one lap of a circular track in 40 seconds and Runner B comple
 **(D)** 72 seconds  
 **(E)** 120 seconds
 
-**Q28** · `WRD-DST-057` · QC · 130s
+**Q28** · `WRD-DST-057` · QC · 110s
 
-A car travels from P to Q. It covers the first half of the DISTANCE at a constant a kilometers per hour and the second half of the distance at a constant b kilometers per hour, where a > 0, b > 0 and a is not equal to b.
+A car travels from P to Q. It covers the first half of the distance at a constant a kilometers per hour and the second half of the distance at a constant b kilometers per hour, where a > 0, b > 0 and a is not equal to b.
 
 > **Quantity A:**  The car's average speed for the trip
 > **Quantity B:**  sqrt(a*b)
 
-**Q29** · `WRD-DST-060` · Numeric Entry · 130s
+**Q29** · `WRD-DST-059` · Select all that apply · 110s
 
-City A and City B are 300 kilometers apart on a straight road. A bus leaves City A toward City B at a constant 60 kilometers per hour, and at the same moment a car leaves City B toward City A at a constant 90 kilometers per hour. Each vehicle turns around instantly on reaching a city and keeps shuttling back and forth at the same speed. At what distance from City A, in kilometers, do the bus and the car meet for the SECOND time? Enter your answer as a number.
+Train X is 250 meters long and travels at a constant 90 kilometers per hour. Train Y is 150 meters long and travels at a constant 54 kilometers per hour. Which of the following statements are true?
 
-*Numeric entry — write the number.*
-
-**Q30** · `WRD-DST-059` · Select all that apply · 130s
-
-Train X is 250 meters long and travels at a constant 90 kilometers per hour. Train Y is 150 meters long and travels at a constant 54 kilometers per hour. Select all that apply.
+Indicate all such statements.
 
 **(A)** Train X passes a stationary signal post in 10 seconds  
 **(B)** Travelling in opposite directions on parallel tracks, the two trains pass each other completely in 10 seconds  
 **(C)** Travelling in the same direction on parallel tracks, the two trains pass each other completely in 25 seconds  
 **(D)** Train Y crosses a 300-meter platform in 25 seconds  
 **(E)** If Train Y's speed were increased by 36 kilometers per hour, the two trains travelling in the same direction would never finish passing each other
+
+---
+
+### Level 4 · Extreme — 1 questions · ~2 min
+
+*the top of a real hard section — expect to need the insight, not the grind*
+
+**Q30** · `WRD-DST-060` · Numeric Entry · 110s
+
+City A and City B are 300 kilometers apart on a straight road. A bus leaves City A toward City B at a constant 60 kilometers per hour, and at the same moment a car leaves City B toward City A at a constant 90 kilometers per hour. Each vehicle turns around instantly on reaching a city and keeps shuttling back and forth at the same speed. At what distance from City A, in kilometers, do the bus and the car meet for the second time?
+
+*Numeric entry — write the number.*
 
 ---
 
@@ -311,23 +315,23 @@ Train X is 250 meters long and travels at a constant 90 kilometers per hour. Tra
 | 11 | `WRD-DST-019` | medium | Numeric Entry | **2** |
 | 12 | `WRD-DST-032` | medium | Numeric Entry | **72** |
 | 13 | `WRD-DST-024` | medium | Select all that apply | **A, B, E** |
-| 14 | `WRD-DST-039` | hard | MCQ | **B** |
-| 15 | `WRD-DST-043` | hard | MCQ | **C** |
-| 16 | `WRD-DST-047` | hard | MCQ | **D** |
-| 17 | `WRD-DST-049` | hard | MCQ | **C** |
-| 18 | `WRD-DST-052` | hard | MCQ | **C** |
-| 19 | `WRD-DST-042` | hard | QC | **A** |
-| 20 | `WRD-DST-046` | hard | QC | **C** |
-| 21 | `WRD-DST-041` | hard | Numeric Entry | **48** |
-| 22 | `WRD-DST-045` | hard | Numeric Entry | **8** |
-| 23 | `WRD-DST-050` | hard | Numeric Entry | **180** |
-| 24 | `WRD-DST-048` | hard | Select all that apply | **A, D, E** |
+| 14 | `WRD-DST-048` | medium | Select all that apply | **A, D, E** |
+| 15 | `WRD-DST-042` | medium | QC | **A** |
+| 16 | `WRD-DST-046` | medium | QC | **C** |
+| 17 | `WRD-DST-045` | medium | Numeric Entry | **8** |
+| 18 | `WRD-DST-039` | hard | MCQ | **B** |
+| 19 | `WRD-DST-043` | hard | MCQ | **C** |
+| 20 | `WRD-DST-047` | hard | MCQ | **D** |
+| 21 | `WRD-DST-049` | hard | MCQ | **B** |
+| 22 | `WRD-DST-052` | hard | MCQ | **C** |
+| 23 | `WRD-DST-041` | hard | Numeric Entry | **48** |
+| 24 | `WRD-DST-050` | hard | Numeric Entry | **180** |
 | 25 | `WRD-DST-053` | hard | Select all that apply | **A, B** |
-| 26 | `WRD-DST-054` | extreme hard | MCQ | **C** |
-| 27 | `WRD-DST-058` | extreme hard | MCQ | **D** |
-| 28 | `WRD-DST-057` | extreme hard | QC | **B** |
-| 29 | `WRD-DST-060` | extreme hard | Numeric Entry | **240** |
-| 30 | `WRD-DST-059` | extreme hard | Select all that apply | **A, B, E** |
+| 26 | `WRD-DST-054` | hard | MCQ | **C** |
+| 27 | `WRD-DST-058` | hard | MCQ | **D** |
+| 28 | `WRD-DST-057` | hard | QC | **B** |
+| 29 | `WRD-DST-059` | hard | Select all that apply | **A, B, E** |
+| 30 | `WRD-DST-060` | extreme hard | Numeric Entry | **240** |
 
 ---
 
@@ -375,11 +379,11 @@ Answer: 18.
 Step 1 — leg 1: T = 60/30 = 2 hours. Leg 2: T = 60/60 = 1 hour.
 Step 2 — total distance = 60 + 60 = 120 miles. Total time = 2 + 1 = 3 hours.
 Step 3 — average speed = total distance / total time = 120/3 = 40 mph.
-A. Total distance 120 miles. TRUE.
-B. Total time is 3 hours, not 2.5. FALSE - 2.5 comes from reading the first leg as 1.5 hours.
-C. Average speed 45 mph. FALSE - 45 is (30 + 60)/2, the average of the speeds, which is not the average speed here.
-D. Average speed 40 mph. TRUE.
-E. The second leg takes 1 hour out of the 3, which is one third. TRUE.
+A. Total distance 120 miles. True.
+B. Total time is 3 hours, not 2.5. False - 2.5 comes from reading the first leg as 1.5 hours.
+C. Average speed 45 mph. False - 45 is (30 + 60)/2, the average of the speeds, which is not the average speed here.
+D. Average speed 40 mph. True.
+E. The second leg takes 1 hour out of the 3, which is one third. True.
 Check: the driver spends 2 of the 3 hours at the slower speed, so the average must land below the midpoint 45 - and 40 does. Correct.
 Answer: A, D and E.
 
@@ -461,76 +465,32 @@ Answer: 72.
 Step 1 — by 9:00 AM the car has covered 50 * 1 = 50 km, so the gap between them is 300 - 50 = 250 km.
 Step 2 — they approach, closing at 50 + 75 = 125 km/h, so they meet 250/125 = 2 hours later.
 Step 3 — 9:00 AM + 2 hours = 11:00 AM, and the car is then 50 + 50 * 2 = 150 km from X, the bus 75 * 2 = 150 km from Y.
-A. Meeting at 11:00 AM. TRUE.
-B. 150 km from each town is the halfway point. TRUE.
-C. The car left at 8:00 AM, so at 11:00 AM it has been driving 3 hours, not 2. FALSE - 2 hours is the BUS's driving time.
-D. The bus needs 300/75 = 4 hours from 9:00 AM, arriving at 1:00 PM; the car needs 300/50 = 6 hours from 8:00 AM, arriving at 2:00 PM. FALSE.
-E. With both leaving at 8:00 AM they meet after 300/125 = 2.4 hours, with the car 50 * 2.4 = 120 km along - and 150 - 120 = 30 km nearer to X. TRUE.
+A. Meeting at 11:00 AM. True.
+B. 150 km from each town is the halfway point. True.
+C. The car left at 8:00 AM, so at 11:00 AM it has been driving 3 hours, not 2. False - 2 hours is the BUS's driving time.
+D. The bus needs 300/75 = 4 hours from 9:00 AM, arriving at 1:00 PM; the car needs 300/50 = 6 hours from 8:00 AM, arriving at 2:00 PM. False.
+E. With both leaving at 8:00 AM they meet after 300/125 = 2.4 hours, with the car 50 * 2.4 = 120 km along - and 150 - 120 = 30 km nearer to X. True.
 Check: 150 + 150 = 300 km, the whole road, and the head start pushes the meeting point away from X, which is why removing it moves the point back toward X. Correct.
 Answer: A, B and E.
 
 **Trap.** Selecting C by reading the 2 hours of Step 2 as the car's driving time; that clock starts at 9:00 AM for the bus but at 8:00 AM for the car. Selecting D by comparing only the running times 6 hours and 4 hours without shifting the bus's start by an hour. The other live error is dividing the full 300 km by 125 from the start, which ignores the 50 km the car has already covered and puts the meeting at 10:24 AM.
 
-### Q14 · `WRD-DST-039` — Answer: B
+### Q14 · `WRD-DST-048` — Answer: A, D, E
 
-Step 1 — convert to meters per second with the factor 5/18. Train A: 54 * 5/18 = 15 m/s. Train B: 126 * 5/18 = 35 m/s.
-Step 2 — opposite directions, so the closing speed is the sum: 15 + 35 = 50 m/s.
-Step 3 — to pass completely, the trains must cover the sum of their lengths: 150 + 150 = 300 meters.
-Step 4 — T = 300/50 = 6 seconds.
-Check: in 6 s Train A moves 90 m and Train B moves 210 m; 90 + 210 = 300 m, exactly the combined length. Correct.
-Answer: B.
+Step 1 — same direction, so the gap closes at 100 - 80 = 20 km/h.
+Step 2 — time to catch = 40/20 = 2 hours.
+Step 3 — in those 2 hours Car A travels 100 * 2 = 200 km and Car B travels 80 * 2 = 160 km. Car B started 40 km ahead, so it is at 40 + 160 = 200 km from Car A's start. Same point.
+A. Catches in 2 hours. True.
+B. Gap closes at 90 km/h. False - 90 is the average of the speeds; for two bodies moving the same way the gap closes at the difference, 20 km/h.
+C. Car A has traveled 240 km. False - Car A travels 100 * 2 = 200 km.
+D. Car B travels 80 * 2 = 160 km. True.
+E. At equal speeds the gap of 40 km never changes, so they never meet. True.
+Check: 200 km for Car A and 160 + 40 = 200 km for Car B put both at the same milestone at t = 2. Correct.
+Answer: A, D and E.
 
-**Trap.** Using only one train's length: 150/50 = 3 seconds, choice A. The trains are clear of each other only after the combined 300 m has gone by. Choice D, 15, comes from using the DIFFERENCE 35 - 15 = 20 m/s, which belongs to same-direction motion: 300/20 = 15. Choice C, 10, is one train's length at one train's own speed, 150/15. Choice E, 20, ignores relative motion altogether and sends the combined 300 m past at the slower train's 15 m/s.
+**Trap.** Selecting B by averaging the speeds - that is the move for approaching bodies gone wrong twice over; same-direction gaps close at the difference. Selecting C comes from adding Car B's 160 km to the 40 km head start twice, or from using 2 hours with the wrong car, giving 240 instead of Car A's true 200 km.
 
-### Q15 · `WRD-DST-043` — Answer: C
-
-Step 1 — let c be the current. Upstream speed = 9 - c, downstream speed = 9 + c, and c < 9 for the boat to make headway upstream.
-Step 2 — write the time difference: 24/(9 - c) - 24/(9 + c) = 2.
-Step 3 — multiply through by (9 - c)(9 + c) = 81 - c^2:
-24(9 + c) - 24(9 - c) = 2(81 - c^2)
-48c = 162 - 2c^2
-Step 4 — rearrange: 2c^2 + 48c - 162 = 0, so c^2 + 24c - 81 = 0, which factors as (c + 27)(c - 3) = 0.
-Step 5 — c = 3 or c = -27. A speed cannot be negative, so c = 3 km/h.
-Check: upstream 24/(9 - 3) = 24/6 = 4 hours; downstream 24/(9 + 3) = 24/12 = 2 hours; 4 - 2 = 2 hours, exactly as stated. Correct.
-Answer: C.
-
-**Trap.** Choice A, 1, comes from treating the 2-hour gap as a 2 km/h speed gap: the upstream and downstream speeds differ by 2c, so 2c = 2 gives c = 1. Choice B, 2, comes from misreading '2 hours longer' as '2 km/h slower upstream', which sets 9 - c = 7. Choice D, 4.5, comes from taking the current to be half the still-water speed; choice E, 6, from seeing the 2:1 time ratio and concluding the current must be two thirds of 9. The 2 is a difference of TIMES and only an equation in c can convert it.
-
-### Q16 · `WRD-DST-047` — Answer: D
-
-Step 1 — find the head start in miles. 10 minutes = 1/6 hour, so the thief is 60 * (1/6) = 10 miles ahead when the chase begins.
-Step 2 — the chase may last at most 15 minutes = 0.25 hour, and the gap of 10 miles must close within that time.
-Step 3 — required closing speed = 10/0.25 = 40 mph.
-Step 4 — same direction, so closing speed = police speed - 60. Therefore police speed = 40 + 60 = 100 mph.
-Check: at 100 mph the police car covers 100 * 0.25 = 25 miles in 15 minutes. In that same quarter hour the thief covers 60 * 0.25 = 15 miles and was 10 miles ahead, so the thief is at 25 miles. They meet exactly at the deadline. Correct.
-Answer: D.
-
-**Trap.** Answering 40, choice A - that is the required CLOSING speed, not the police car's speed; the thief's 60 mph must be added back. Choice C, 70, comes from adding the 10-mile head start to the thief's 60 mph as if a distance were a speed. Choice E, 180, comes from measuring the 15 minutes from the thief's departure, leaving only 5 minutes of chase: 10/(1/12) + 60 = 180. Choice B, 60, simply matches the thief's speed, at which the 10-mile gap never closes at all.
-
-### Q17 · `WRD-DST-049` — Answer: C
-
-Step 1 — downstream speed = 21/3 = 7 km/h, which is b + c; upstream speed = 10/2 = 5 km/h, which is b - c.
-Step 2 — add: 2b = 7 + 5 = 12, so b = 6 km/h in still water. Subtract: 2c = 7 - 5 = 2, so c = 1 km/h.
-Step 3 — the current doubles to 2 km/h, so the new upstream speed is b - 2c = 6 - 2 = 4 km/h.
-Step 4 — T = 24/4 = 6 hours.
-Check: with the original current, 6 + 1 = 7 and 6 - 1 = 5, matching both legs of the story; doubling the current can only slow the upstream trip, and 6 hours is indeed longer than 24/5 = 4.8. Correct.
-Answer: C.
-
-**Trap.** Choice B, 4.8, uses the ORIGINAL upstream speed 5 and ignores the doubling. Choice A, 4, uses the still-water speed 6 and forgets the current altogether. Choice E, 12, takes the current as the full difference 7 - 5 = 2 and then doubles it to 4, leaving an upstream speed of 2; the current is HALF the difference. Choice D, 8, subtracts the doubled current from the downstream speed 7 rather than from the still-water speed 6, giving 3.
-
-### Q18 · `WRD-DST-052` — Answer: C
-
-Step 1 — total distance = 200 + 300 = 500 km, and average speed uses total ELAPSED time, so total time = 500/80 = 6.25 hours.
-Step 2 — running time on leg 1 = 200/100 = 2 hours.
-Step 3 — running time on leg 2 = 300/150 = 2 hours.
-Step 4 — the halt is whatever elapsed time is left: 6.25 - 2 - 2 = 2.25 hours.
-Step 5 — 2.25 hours = 2.25 * 60 = 135 minutes.
-Check: 500 km in 6.25 hours is 80 km/h, and the train really was moving for only 4 of those hours, at 100 and at 150. Correct.
-Answer: C.
-
-**Trap.** Choice E, 225, reads the 2.25 hours straight off as 225 minutes; choice D, 145, reads it as 2 hours 25 minutes. Convert with 0.25 hour = 15 minutes. Choice B, 125, comes from using the harmonic mean of 100 and 150, which is 120, as the running speed for all 500 km: 500/120 = 4 hours 10 minutes of running against 6 hours 15 minutes elapsed, which leaves 2 hours 5 minutes of halt. Choice A, 75, comes from timing the whole 500 km at the first leg's 100 km/h, giving 5 running hours and 1.25 hours of halt.
-
-### Q19 · `WRD-DST-042` — Answer: A
+### Q15 · `WRD-DST-042` — Answer: A
 
 Step 1 — the two halves are equal in time, not in distance. Let each half be t hours, so the total time is 2t.
 Step 2 — distance = 40t + 60t = 100t miles.
@@ -541,7 +501,7 @@ Answer: A.
 
 **Trap.** Reading the trip as two equal DISTANCES and reaching for the harmonic mean 2 * 40 * 60/(40 + 60) = 48, which is exactly Quantity B, then choosing C. The harmonic mean applies only when the two legs are equal in distance; here they are equal in time, so the plain average (40 + 60)/2 = 50 governs, and it always exceeds the harmonic mean when the speeds differ.
 
-### Q20 · `WRD-DST-046` — Answer: C
+### Q16 · `WRD-DST-046` — Answer: C
 
 Step 1 — let Train B's speed be 2v and Train A's be 3v, with v > 0. They approach, so the gap closes at 3v + 2v = 5v.
 Step 2 — time to meet = 600/(5v) = 120/v hours.
@@ -553,7 +513,73 @@ Answer: C.
 
 **Trap.** Choosing D because no actual speed is given. The speeds cancel: in equal time the distances share the speeds' 3:2 ratio, so Train A always covers 3/5 of 600 = 360 km. The other live error is answering with 360 itself, or with 300 - 240 = 60 reached by accident from the wrong train, and then mis-signing the comparison; reversing the ratio to 2:3 puts the meeting point at 240 km, still 60 km from the midpoint but on the other side, which is why the distance, not the position, is asked for.
 
-### Q21 · `WRD-DST-041` — Answer: 48
+### Q17 · `WRD-DST-045` — Answer: 8
+
+Step 1 — section 1: T = 3/9 = 1/3 hour = 20 minutes.
+Step 2 — section 2: T = 5/10 = 1/2 hour = 30 minutes.
+Step 3 — the first two sections use 20 + 30 = 50 minutes, so the final section takes 80 - 50 = 30 minutes = 0.5 hour.
+Step 4 — S = D/T = 4/0.5 = 8 kilometers per hour.
+Check: 20 + 30 + 30 = 80 minutes for 12 km, an average of 12/(4/3) = 9 km/h, which sits between the 8 of the last section and the 10 of the middle one. Correct.
+Answer: 8.
+
+**Trap.** Answering 9, the overall average speed 12/(80/60), as if the last section had to run at the trip's average. It does not: the average is a consequence of all three sections, and the last one is the slowest here. The other live error is subtracting speeds, 9 + 10 - something, or averaging 9 and 10 to 9.5 - speeds can never be combined without weighting by time.
+
+### Q18 · `WRD-DST-039` — Answer: B
+
+After t hours the cars are 60t miles north and 45t miles east of the intersection.
+Their paths are perpendicular, so the distance between them is the hypotenuse of a right triangle with legs 60t and 45t.
+60t and 45t are 15t * 4 and 15t * 3, a 3-4-5 triangle, so the hypotenuse is 15t * 5 = 75t.
+75t = 150 gives t = 2 hours, which is 2:00 PM.
+Check: 120 miles and 90 miles; sqrt(14,400 + 8,100) = sqrt(22,500) = 150.
+Answer: B.
+
+**Trap.** Adding the speeds as if the cars moved in opposite directions: 150/105 is about 1.43 hours, or 1:26 PM (choice A). The cars move at right angles, so the gap grows at 75 miles per hour, not 105.
+
+### Q19 · `WRD-DST-043` — Answer: C
+
+The passenger train left 1 hour later and arrived 0.5 hour earlier, so its trip took 1.5 hours less.
+Let d be the distance: d/60 - d/80 = 1.5.
+d/60 - d/80 = (4d - 3d)/240 = d/240.
+d/240 = 1.5, so d = 360.
+Check: 360/60 = 6 hours and 360/80 = 4.5 hours, a difference of 1.5 hours.
+Answer: C.
+
+**Trap.** Using only the 1-hour head start as the difference in travel times: d/240 = 1 gives 240 (choice B). The passenger train also arrived 30 minutes early, so the travel times differ by 1.5 hours.
+
+### Q20 · `WRD-DST-047` — Answer: D
+
+Step 1 — find the head start in miles. 10 minutes = 1/6 hour, so the thief is 60 * (1/6) = 10 miles ahead when the chase begins.
+Step 2 — the chase may last at most 15 minutes = 0.25 hour, and the gap of 10 miles must close within that time.
+Step 3 — required closing speed = 10/0.25 = 40 mph.
+Step 4 — same direction, so closing speed = police speed - 60. Therefore police speed = 40 + 60 = 100 mph.
+Check: at 100 mph the police car covers 100 * 0.25 = 25 miles in 15 minutes. In that same quarter hour the thief covers 60 * 0.25 = 15 miles and was 10 miles ahead, so the thief is at 25 miles. They meet exactly at the deadline. Correct.
+Answer: D.
+
+**Trap.** Answering 40, choice A - that is the required CLOSING speed, not the police car's speed; the thief's 60 mph must be added back. Choice C, 70, comes from adding the 10-mile head start to the thief's 60 mph as if a distance were a speed. Choice E, 180, comes from measuring the 15 minutes from the thief's departure, leaving only 5 minutes of chase: 10/(1/12) + 60 = 180. Choice B, 60, simply matches the thief's speed, at which the 10-mile gap never closes at all.
+
+### Q21 · `WRD-DST-049` — Answer: B
+
+Let v be her speed. The time saved is 10/v - 10/(v + 2) = 1/4 hour.
+Test the choices rather than solve the quadratic.
+v = 8: 10/8 = 1.25 hours and 10/10 = 1 hour. The difference is 0.25 hour = 15 minutes. This works.
+Algebra confirms it: 10(v + 2) - 10v = (1/4)v(v + 2), so 80 = v^2 + 2v, (v + 10)(v - 8) = 0, v = 8.
+Answer: B.
+
+**Trap.** Testing v = 10 and comparing 60 minutes with 50 minutes, a saving of 10 minutes, then picking it as close enough (choice C). The saving must be exactly 15 minutes: at 8 kilometers per hour the times are 75 and 60 minutes.
+
+### Q22 · `WRD-DST-052` — Answer: C
+
+Step 1 — total distance = 200 + 300 = 500 km, and average speed uses total ELAPSED time, so total time = 500/80 = 6.25 hours.
+Step 2 — running time on leg 1 = 200/100 = 2 hours.
+Step 3 — running time on leg 2 = 300/150 = 2 hours.
+Step 4 — the halt is whatever elapsed time is left: 6.25 - 2 - 2 = 2.25 hours.
+Step 5 — 2.25 hours = 2.25 * 60 = 135 minutes.
+Check: 500 km in 6.25 hours is 80 km/h, and the train really was moving for only 4 of those hours, at 100 and at 150. Correct.
+Answer: C.
+
+**Trap.** Choice E, 225, reads the 2.25 hours straight off as 225 minutes; choice D, 145, reads it as 2 hours 25 minutes. Convert with 0.25 hour = 15 minutes. Choice B, 125, comes from using the harmonic mean of 100 and 150, which is 120, as the running speed for all 500 km: 500/120 = 4 hours 10 minutes of running against 6 hours 15 minutes elapsed, which leaves 2 hours 5 minutes of halt. Choice A, 75, comes from timing the whole 500 km at the first leg's 100 km/h, giving 5 running hours and 1.25 hours of halt.
+
+### Q23 · `WRD-DST-041` — Answer: 48
 
 Step 1 — account for the head start. Between 6:00 AM and 8:00 AM the first train travels 90 * 2 = 180 km.
 Step 2 — remaining gap at 8:00 AM = 450 - 180 = 270 km.
@@ -565,18 +591,7 @@ Answer: 48.
 
 **Trap.** Ignoring the two-hour head start and computing 450/150 = 3 hours from 8:00 AM, which gives 11:00 AM and an answer of 120. The first train has already eaten 180 km of the gap before the second one starts.
 
-### Q22 · `WRD-DST-045` — Answer: 8
-
-Step 1 — section 1: T = 3/9 = 1/3 hour = 20 minutes.
-Step 2 — section 2: T = 5/10 = 1/2 hour = 30 minutes.
-Step 3 — the first two sections use 20 + 30 = 50 minutes, so the final section takes 80 - 50 = 30 minutes = 0.5 hour.
-Step 4 — S = D/T = 4/0.5 = 8 kilometers per hour.
-Check: 20 + 30 + 30 = 80 minutes for 12 km, an average of 12/(4/3) = 9 km/h, which sits between the 8 of the last section and the 10 of the middle one. Correct.
-Answer: 8.
-
-**Trap.** Answering 9, the overall average speed 12/(80/60), as if the last section had to run at the trip's average. It does not: the average is a consequence of all three sections, and the last one is the slowest here. The other live error is subtracting speeds, 9 + 10 - something, or averaging 9 and 10 to 9.5 - speeds can never be combined without weighting by time.
-
-### Q23 · `WRD-DST-050` — Answer: 180
+### Q24 · `WRD-DST-050` — Answer: 180
 
 Step 1 — in the 90 minutes before the motorcycle starts, the car covers 40 * 1.5 = 60 km, so the gap between them is 420 - 60 = 360 km.
 Step 2 — from that moment they approach, closing the gap at 40 + 80 = 120 km/h.
@@ -588,30 +603,15 @@ Answer: 180.
 
 **Trap.** Answering 240, the distance the motorcycle has already covered rather than the distance still left. The other live error is ignoring the 90-minute head start and dividing the full 420 by 120, giving 3.5 hours and 280 km covered, hence 140 km left; the car is already 60 km along when the motorcycle starts.
 
-### Q24 · `WRD-DST-048` — Answer: A, D, E
-
-Step 1 — same direction, so the gap closes at 100 - 80 = 20 km/h.
-Step 2 — time to catch = 40/20 = 2 hours.
-Step 3 — in those 2 hours Car A travels 100 * 2 = 200 km and Car B travels 80 * 2 = 160 km. Car B started 40 km ahead, so it is at 40 + 160 = 200 km from Car A's start. Same point.
-A. Catches in 2 hours. TRUE.
-B. Gap closes at 90 km/h. FALSE - 90 is the average of the speeds; for two bodies moving the same way the gap closes at the difference, 20 km/h.
-C. Car A has travelled 240 km. FALSE - Car A travels 100 * 2 = 200 km.
-D. Car B travels 80 * 2 = 160 km. TRUE.
-E. At equal speeds the gap of 40 km never changes, so they never meet. TRUE.
-Check: 200 km for Car A and 160 + 40 = 200 km for Car B put both at the same milestone at t = 2. Correct.
-Answer: A, D and E.
-
-**Trap.** Selecting B by averaging the speeds - that is the move for approaching bodies gone wrong twice over; same-direction gaps close at the difference. Selecting C comes from adding Car B's 160 km to the 40 km head start twice, or from using 2 hours with the wrong car, giving 240 instead of Car A's true 200 km.
-
 ### Q25 · `WRD-DST-053` — Answer: A, B
 
 Step 1 — total distance = 240. Total time = 120/S1 + 120/S2. Average speed = 240/(120/S1 + 120/S2).
 Step 2 — simplify: 240/(120(S1 + S2)/(S1*S2)) = 2*S1*S2/(S1 + S2), the harmonic mean.
-A. The harmonic mean is less than the arithmetic mean whenever S1 is not equal to S2, and the stem guarantees S1 < S2. TRUE.
-B. Shown in Step 2. TRUE.
-C. FALSE - the harmonic mean always sits closer to the SMALLER speed. Its distance above S1 is S1(S2 - S1)/(S1 + S2) and its distance below S2 is S2(S2 - S1)/(S1 + S2); since S1 < S2 the first gap is smaller.
-D. FALSE - 2 * 40 * 60/100 = 48 mph, not 50. 50 is the plain average.
-E. FALSE - doubling S2 only shortens the return leg; the outbound leg still takes 120/S1. With S1 = 40 and S2 = 60 the average rises from 48 to 2 * 40 * 120/160 = 60, which is far short of 96. In fact the average can never exceed 2*S1, no matter how fast the return leg is.
+A. The harmonic mean is less than the arithmetic mean whenever S1 is not equal to S2, and the stem guarantees S1 < S2. True.
+B. Shown in Step 2. True.
+C. False - the harmonic mean always sits closer to the SMALLER speed. Its distance above S1 is S1(S2 - S1)/(S1 + S2) and its distance below S2 is S2(S2 - S1)/(S1 + S2); since S1 < S2 the first gap is smaller.
+D. False - 2 * 40 * 60/100 = 48 mph, not 50. 50 is the plain average.
+E. False - doubling S2 only shortens the return leg; the outbound leg still takes 120/S1. With S1 = 40 and S2 = 60 the average rises from 48 to 2 * 40 * 120/160 = 60, which is far short of 96. In fact the average can never exceed 2*S1, no matter how fast the return leg is.
 Check with S1 = 40, S2 = 60: time = 120/40 + 120/60 = 3 + 2 = 5 hours for 240 miles, so 48 mph - below the midpoint 50 (so A holds), equal to 2 * 40 * 60/100 (so B holds), and closer to 40 than to 60 (so C fails and D fails). Correct.
 Answer: A and B.
 
@@ -622,11 +622,11 @@ Answer: A and B.
 Step 1 — a runner is back at the starting point only at whole multiples of that runner's lap time.
 Step 2 — lap times: A = 600/10 = 60 s, B = 600/6 = 100 s, C = 600/4 = 150 s.
 Step 3 — all three are at the start together at the least common multiple of 60, 100 and 150.
-Step 4 — 60 = 2^2 * 3 * 5, 100 = 2^2 * 5^2, 150 = 2 * 3 * 5^2. LCM = 2^2 * 3 * 5^2 = 300.
+Step 4 — 60 = 2^2 * 3 * 5, 100 = 2^2 * 5^2, 150 = 2 * 3 * 5^2. Least common multiple = 2^2 * 3 * 5^2 = 300.
 Check: at 300 s, A has run 5 laps, B has run 3 laps and C has run 2 laps - all whole numbers, and no smaller time does this (at 150 s, B has run 1.5 laps). Correct.
 Answer: C.
 
-**Trap.** Answering 150, choice A, the slowest runner's lap time - runner C is back at the start then, but runner B has completed only 150/100 = 1.5 laps. Answering 600, choice D, comes from reading the circumference 600 meters as a number of seconds. Choice B, 200, is two of B's laps, but at 200 s runner A has done 200/60 = 3.33 laps, so it fails too. Choice E, 1200, is a common multiple of the three lap times (20, 12 and 8 laps) but not the LEAST one - it comes from taking a convenient multiple such as 4 * 300 instead of reducing to the LCM.
+**Trap.** Answering 150, choice A, the slowest runner's lap time - runner C is back at the start then, but runner B has completed only 150/100 = 1.5 laps. Answering 600, choice D, comes from reading the circumference 600 meters as a number of seconds. Choice B, 200, is two of B's laps, but at 200 s runner A has done 200/60 = 3.33 laps, so it fails too. Choice E, 1200, is a common multiple of the three lap times (20, 12 and 8 laps) but not the LEAST one - it comes from taking a convenient multiple such as 4 * 300 instead of reducing to the least common multiple.
 
 ### Q27 · `WRD-DST-058` — Answer: D
 
@@ -644,14 +644,27 @@ Answer: D.
 Step 1 — let the total distance be 2d. Time = d/a + d/b = d(a + b)/(a*b).
 Step 2 — average speed = 2d / [d(a + b)/(a*b)] = 2*a*b/(a + b). Quantity A is the harmonic mean of a and b.
 Step 3 — Quantity B is the geometric mean sqrt(a*b). Compare them: the harmonic mean equals (geometric mean)^2 / (arithmetic mean), that is 2ab/(a + b) = (ab)/((a + b)/2).
-Step 4 — since a is not equal to b, the AM-GM inequality is strict: (a + b)/2 > sqrt(a*b). Dividing the positive quantity ab by a LARGER number gives a smaller result, so 2ab/(a + b) < ab/sqrt(ab) = sqrt(ab).
+Step 4 — since a is not equal to b, the square of the difference is positive, so (a + b)^2 > 4ab and (a + b)/2 > sqrt(a*b). Dividing the positive quantity ab by a LARGER number gives a smaller result, so 2ab/(a + b) < ab/sqrt(ab) = sqrt(ab).
 Step 5 — therefore Quantity A < Quantity B for every admissible a and b. Quantity B is greater.
 Check with a = 4 and b = 9: Quantity A = 2 * 4 * 9/13 = 72/13 = 5.54; Quantity B = sqrt(36) = 6. Again with a = 1 and b = 100: Quantity A = 200/101 = 1.98; Quantity B = 10. Quantity B wins both times. Correct.
 Answer: B.
 
 **Trap.** Choosing D on the grounds that a and b are unknown - the inequality HM < GM < AM holds for all distinct positive values, so the comparison is settled without any numbers. Choosing C comes from remembering that all three means coincide, which is true only when a = b, a case the stem explicitly excludes.
 
-### Q29 · `WRD-DST-060` — Answer: 240
+### Q29 · `WRD-DST-059` — Answer: A, B, E
+
+Step 1 — convert with the factor 5/18. Train X: 90 * 5/18 = 25 m/s. Train Y: 54 * 5/18 = 15 m/s.
+A. A signal post is a point, so Train X covers only its own length: 250/25 = 10 seconds. True.
+B. Opposite directions: closing speed 25 + 15 = 40 m/s over the combined length 250 + 150 = 400 m, so 400/40 = 10 seconds. True.
+C. Same direction: closing speed 25 - 15 = 10 m/s over the same 400 m, so 400/10 = 40 seconds, not 25. False - 25 uses only Train X's 250 m.
+D. Train Y crossing a 300 m platform covers 150 + 300 = 450 m at 15 m/s, which takes 450/15 = 30 seconds, not 25. False.
+E. Train Y at 54 + 36 = 90 km/h is 25 m/s, the same as Train X. Their relative speed in the same direction is then 25 - 25 = 0, so the 400 m is never covered and the pass never completes. True.
+Check: a same-direction pass must take far longer than an opposite-direction pass, and 40 s against 10 s is exactly that pattern; as the speeds close up, that 40 s grows without bound. Correct.
+Answer: A, B and E.
+
+**Trap.** Selecting C, which uses only the length of Train X: a pass is complete only when the rear of one train clears the front of the other, which takes the COMBINED 400 m. Selecting D comes from converting 54 km/h by dividing by 3 instead of multiplying by 5/18: that gives a false 18 m/s and 450/18 = 25 seconds exactly, which is why 25 looks so convincing in two places at once. Rejecting E as impossible misses that same-direction passing is governed by the DIFFERENCE of the speeds, and a zero difference means no overtaking at all.
+
+### Q30 · `WRD-DST-060` — Answer: 240
 
 Step 1 — the two vehicles approach at a combined 60 + 90 = 150 km/h, and that combined rate never changes because neither vehicle ever changes speed.
 Step 2 — for the first meeting the pair must together cover the 300 km between them. For each later meeting they must together cover a further 2 * 300 = 600 km, since after meeting they separate to the ends and come back.
@@ -662,16 +675,3 @@ Check: the car travels 90 * 6 = 540 km. From B it reaches A after 300 km, turns,
 Answer: 240.
 
 **Trap.** Answering 120, the FIRST meeting point: the pair cover 300 km together in 2 hours, putting the bus at 60 * 2 = 120 km from A. The question asks for the second meeting, which needs a further 600 km of combined travel. The other live error is answering 60 - the distance the bus has come back from City B - instead of measuring from City A, which is 300 - 60 = 240.
-
-### Q30 · `WRD-DST-059` — Answer: A, B, E
-
-Step 1 — convert with the factor 5/18. Train X: 90 * 5/18 = 25 m/s. Train Y: 54 * 5/18 = 15 m/s.
-A. A signal post is a point, so Train X covers only its own length: 250/25 = 10 seconds. TRUE.
-B. Opposite directions: closing speed 25 + 15 = 40 m/s over the combined length 250 + 150 = 400 m, so 400/40 = 10 seconds. TRUE.
-C. Same direction: closing speed 25 - 15 = 10 m/s over the same 400 m, so 400/10 = 40 seconds, not 25. FALSE - 25 uses only Train X's 250 m.
-D. Train Y crossing a 300 m platform covers 150 + 300 = 450 m at 15 m/s, which takes 450/15 = 30 seconds, not 25. FALSE.
-E. Train Y at 54 + 36 = 90 km/h is 25 m/s, the same as Train X. Their relative speed in the same direction is then 25 - 25 = 0, so the 400 m is never covered and the pass never completes. TRUE.
-Check: a same-direction pass must take far longer than an opposite-direction pass, and 40 s against 10 s is exactly that pattern; as the speeds close up, that 40 s grows without bound. Correct.
-Answer: A, B and E.
-
-**Trap.** Selecting C, which uses only the length of Train X: a pass is complete only when the rear of one train clears the front of the other, which takes the COMBINED 400 m. Selecting D comes from converting 54 km/h by dividing by 3 instead of multiplying by 5/18: that gives a false 18 m/s and 450/18 = 25 seconds exactly, which is why 25 looks so convincing in two places at once. Rejecting E as impossible misses that same-direction passing is governed by the DIFFERENCE of the speeds, and a zero difference means no overtaking at all.

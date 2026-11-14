@@ -285,7 +285,7 @@
       "id": "STA-CMB-022",
       "difficulty": "hard",
       "type": "numeric_entry",
-      "question": "A basket contains 6 red balls and 5 blue balls; all 11 balls are distinguishable. Four balls are selected at once, so order does not matter and no ball may be selected twice. In how many ways can the selection contain at least 1 red ball AND at least 1 blue ball?",
+      "question": "A basket contains 6 red balls and 5 blue balls; all 11 balls are distinguishable. Four balls are selected at once, so order does not matter and no ball may be selected twice. In how many ways can the selection contain at least 1 red ball and at least 1 blue ball?",
       "options": null,
       "answer": "310",
       "explanation": "Two conditions, so take the complement of each and subtract both.\nStep 1 — total selections of 4 from 11: C(11,4) = (11 x 10 x 9 x 8)/24 = 7920/24 = 330.\nStep 2 — selections with NO blue ball (all 4 red): C(6,4) = C(6,2) = 15.\nStep 3 — selections with NO red ball (all 4 blue): C(5,4) = C(5,1) = 5.\nStep 4 — those two bad families cannot overlap: a selection of 4 cannot be all-red and all-blue at once, so there is nothing to add back.\n330 - 15 - 5 = 310.\nCheck by summing the allowed splits (red, blue): (3,1) C(6,3)C(5,1) = 20 x 5 = 100; (2,2) C(6,2)C(5,2) = 15 x 10 = 150; (1,3) C(6,1)C(5,3) = 6 x 10 = 60. Total = 100 + 150 + 60 = 310. Correct.\nAnswer: 310.",
@@ -331,7 +331,7 @@
       ],
       "answer": "C",
       "explanation": "Quantity A: C(n,2) = n(n-1)/2.\nQuantity B: C(n-1,2) + (n-1) = (n-1)(n-2)/2 + (n-1).\nFactor out (n-1)/2 from Quantity B: (n-1)/2 x [(n-2) + 2] = (n-1)/2 x n = n(n-1)/2.\nThat is exactly Quantity A, for every n > 2, so the two quantities are equal.\nThe counting reason (Pascal's identity, C(n,r) = C(n-1,r) + C(n-1,r-1)): to pick 2 people from n, either both come from the first n-1 people, which is C(n-1,2) ways, or one of them is the nth person and the partner is any of the other n-1, which is n-1 ways.\nCheck with n = 5: Quantity A = C(5,2) = 10; Quantity B = C(4,2) + 4 = 6 + 4 = 10. Equal. Test n = 8 too: 28 versus 21 + 7 = 28. Equal.\nAnswer: C.",
-      "trap": "Choosing D because n is unknown. The identity holds for EVERY integer n > 2, so the variable never gets a chance to make the columns differ - plug in two different values of n and both give equality. The other error is expecting Quantity B to be smaller because it starts from C(n-1,2); the added (n-1) is exactly the shortfall.",
+      "trap": "Choosing D because n is unknown. The identity holds for every integer n > 2, so the variable never gets a chance to make the columns differ - plug in two different values of n and both give equality. The other error is expecting Quantity B to be smaller because it starts from C(n-1,2); the added (n-1) is exactly the shortfall.",
       "estimated_time_seconds": 75,
       "tags": [
         "pascal-identity",
@@ -390,17 +390,16 @@
     },
     {
       "id": "STA-CMB-040",
-      "difficulty": "hard",
+      "difficulty": "medium",
       "type": "numeric_entry",
-      "question": "How many integers from 1 to 1000, inclusive, are divisible by at least one of 3, 5, and 7?",
+      "question": "A restaurant offers 8 different toppings for its pizzas. How many different combinations of toppings are possible for a pizza that has either exactly 2 or exactly 3 different toppings?",
       "options": null,
-      "answer": "543",
-      "explanation": "Let A = multiples of 3: ⌊1000/3⌋ = 333.\nLet B = multiples of 5: ⌊1000/5⌋ = 200.\nLet C = multiples of 7: ⌊1000/7⌋ = 142.\n|A∩B| = multiples of 15: ⌊1000/15⌋ = 66.\n|A∩C| = multiples of 21: ⌊1000/21⌋ = 47.\n|B∩C| = multiples of 35: ⌊1000/35⌋ = 28.\n|A∩B∩C| = multiples of 105: ⌊1000/105⌋ = 9.\n|A∪B∪C| = 333+200+142-66-47-28+9 = 675-141+9 = 543.",
-      "trap": "Students forget to add back |A∩B∩C| at the end of inclusion-exclusion, getting 543-9=534. The full formula is |A|+|B|+|C|-|A∩B|-|A∩C|-|B∩C|+|A∩B∩C|.",
-      "estimated_time_seconds": 110,
+      "answer": "84",
+      "explanation": "Exactly 2 toppings: 8 * 7 / 2 = 28 combinations.\nExactly 3 toppings: 8 * 7 * 6 / (3 * 2 * 1) = 56 combinations.\n28 + 56 = 84.",
+      "trap": "Treating the order of the toppings as mattering: 8 * 7 + 8 * 7 * 6 = 392. A pizza with mushrooms and olives is the same as one with olives and mushrooms, so each group is divided by the number of orderings.",
+      "estimated_time_seconds": 80,
       "tags": [
-        "combinations",
-        "multi-step"
+        "combinations"
       ]
     },
     {
@@ -544,7 +543,7 @@
         "D",
         "E"
       ],
-      "explanation": "The test is the symmetry rule C(n,r) = C(n, n-r): two combinations with the same top number are equal exactly when their bottom numbers ADD UP to the top number.\nA - 6 + 9 = 15, which matches the top. Equal. TRUE.\nB - 8 + 12 = 20, which matches the top. Equal. TRUE.\nC - 3 + 8 = 11, but the top is 10, so the rule does not apply. Compute: C(10,3) = 120 and C(10,8) = C(10,2) = 45. Not equal. FALSE.\nD - 2 + 5 = 7, which matches the top. Equal (both are 21). TRUE.\nE - choosing none and choosing all are both single acts, so C(n,0) = C(n,n) = 1 for every positive integer n; also 0 + n = n. TRUE.\nAnswer: A, B, D, E.",
+      "explanation": "The test is the symmetry rule C(n,r) = C(n, n-r): two combinations with the same top number are equal exactly when their bottom numbers ADD UP to the top number.\nA - 6 + 9 = 15, which matches the top. Equal. True.\nB - 8 + 12 = 20, which matches the top. Equal. True.\nC - 3 + 8 = 11, but the top is 10, so the rule does not apply. Compute: C(10,3) = 120 and C(10,8) = C(10,2) = 45. Not equal. False.\nD - 2 + 5 = 7, which matches the top. Equal (both are 21). True.\nE - choosing none and choosing all are both single acts, so C(n,0) = C(n,n) = 1 for every positive integer n; also 0 + n = n. True.\nAnswer: A, B, D, E.",
       "trap": "Selecting C because the numbers look like the others and 8 = 10 - 2 'feels' symmetric with 3. The partner of C(10,3) is C(10,7), not C(10,8). Always add the two lower numbers and check the sum against the upper number before declaring a pair equal.",
       "estimated_time_seconds": 85,
       "tags": [
@@ -599,14 +598,14 @@
     },
     {
       "id": "STA-CMB-055",
-      "difficulty": "extreme_hard",
+      "difficulty": "medium",
       "type": "numeric_entry",
       "question": "Six distinct people are to be divided into two groups of 3. The groups are unlabelled: the split {A, B, C} with {D, E, F} is the same division as {D, E, F} with {A, B, C}, and order within a group does not matter. In how many different ways can the division be made?",
       "options": null,
       "answer": "10",
       "explanation": "Step 1 — first count as if the groups were labeled 'Group 1' and 'Group 2'. Choosing the 3 people for Group 1 fixes everything: C(6,3) = (6 x 5 x 4)/6 = 20.\nStep 2 — the groups are NOT labeled, so each division has been counted twice: once with a given trio as Group 1, and once with the same trio as Group 2.\nStep 3 — divide by 2: 20/2 = 10.\nCheck by anchoring on one person. Fix person A; A's group is determined by which 2 of the other 5 people join A, which is C(5,2) = 10 - and this counts each division exactly once, because A lands in exactly one group. 10 confirms the answer.\nAnswer: 10.",
       "trap": "Answering 20, from C(6,3), which is the count when the two groups are distinguishable (say, 'the morning shift' and 'the evening shift'). The stem says the groups are unlabelled, so the division must be halved. The reverse error is over-dividing by 3! or by 2! twice - the only over-count here is the single swap of the two groups, so the divisor is 2.",
-      "estimated_time_seconds": 110,
+      "estimated_time_seconds": 90,
       "tags": [
         "unlabelled-groups",
         "divide-out-overcounting",
@@ -615,7 +614,7 @@
     },
     {
       "id": "STA-CMB-056",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "quantitative_comparison",
       "question": "n is an integer greater than or equal to 3.\nQuantity A: C(2n, n)\nQuantity B: 2 x C(2n-1, n-1)",
       "options": [
@@ -627,7 +626,7 @@
       "answer": "C",
       "explanation": "Step 1 — split Quantity A with Pascal's identity C(m, r) = C(m-1, r-1) + C(m-1, r), taking m = 2n and r = n:\nC(2n, n) = C(2n-1, n-1) + C(2n-1, n).\nStep 2 — apply the symmetry rule to the second term. In C(2n-1, n), the top is 2n-1 and (2n-1) - n = n-1, so\nC(2n-1, n) = C(2n-1, n-1).\nStep 3 — the two pieces are therefore identical, so\nC(2n, n) = C(2n-1, n-1) + C(2n-1, n-1) = 2 x C(2n-1, n-1),\nwhich is exactly Quantity B. This holds for every n, so the columns are equal.\nNumerical check, n = 3: Quantity A = C(6,3) = 20; Quantity B = 2 x C(5,2) = 2 x 10 = 20. And n = 4: C(8,4) = 70; 2 x C(7,3) = 2 x 35 = 70. Equal both times.\nAnswer: C.",
       "trap": "Choosing D because n is a variable, or choosing A on the feeling that C(2n, n) is 'much bigger' than a combination with a smaller top number - the factor of 2 in Quantity B closes the gap exactly. Testing one value of n and getting equality should push you to prove it rather than guess D; the identity is Pascal's rule plus symmetry, and it holds for every n.",
-      "estimated_time_seconds": 125,
+      "estimated_time_seconds": 110,
       "tags": [
         "pascal-identity",
         "symmetry-rule",
@@ -636,7 +635,7 @@
     },
     {
       "id": "STA-CMB-057",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "mcq",
       "question": "Ten distinct people are to be divided into one group of 4 and one group of 6. The two groups are distinguishable by their sizes, and within each group order does not matter. Three of the ten people are close friends who insist that all three of them end up in the same group. In how many ways can the division be made?",
       "options": [
@@ -649,7 +648,7 @@
       "answer": "C",
       "explanation": "The whole division is determined once the group of 4 is named, since everyone else falls into the group of 6. So count the valid groups of 4.\nCase 1 - the 3 friends are all in the group of 4. Then 1 more seat is left and it is filled from the other 7 people: C(7,1) = 7.\nCase 2 - the 3 friends are all in the group of 6. Then the group of 4 contains none of them, so all 4 come from the other 7: C(7,4) = C(7,3) = 35.\nThese cases cannot overlap - the friends are either all in the four or all in the six.\nTotal = 7 + 35 = 42.\nCheck: the unrestricted total is C(10,4) = 210, so 42 is exactly one fifth of all divisions. Correct.\nAnswer: 42.",
       "trap": "Choices A and B are the two cases taken alone - stopping after 'the friends are in the small group' gives 7, and stopping after 'the friends are in the big group' gives 35. Choice D, 84, doubles the answer by counting each division twice, as though naming the group of 6 were a separate outcome from naming the group of 4; it is not, because the two groups have different sizes and each choice of four fixes the six. Choice E, 210 = C(10,4), ignores the friends entirely.",
-      "estimated_time_seconds": 115,
+      "estimated_time_seconds": 110,
       "tags": [
         "case-split",
         "group-division",
@@ -673,7 +672,7 @@
     },
     {
       "id": "STA-CMB-059",
-      "difficulty": "extreme_hard",
+      "difficulty": "hard",
       "type": "multiple_answer",
       "question": "For each positive integer n, let f(n) be the number of ways to choose n objects from 2n distinct objects. Which of the following statements are true? Select all that apply.",
       "options": [
@@ -688,9 +687,9 @@
         "B",
         "D"
       ],
-      "explanation": "Compute the first few values: f(1) = C(2,1) = 2, f(2) = C(4,2) = 6, f(3) = C(6,3) = 20, f(4) = C(8,4) = 70.\nA - f(1) = C(2,1) = 2. TRUE.\nB - f(2) = C(4,2) = (4 x 3)/2 = 6. TRUE.\nC - test at n = 1: f(2) = 6, but 4 x f(1) = 4 x 2 = 8. The claim fails immediately. FALSE. (The true ratio is f(n+1)/f(n) = 2(2n+1)/(n+1), which is 3 at n = 1, then 10/3, then 3.5 - it only approaches 4 as n grows.)\nD - by Pascal's identity C(2n, n) = C(2n-1, n-1) + C(2n-1, n), and by symmetry C(2n-1, n-1) = C(2n-1, n) because (n-1) + n = 2n-1. So C(2n, n) = 2 x C(2n-1, n). Check n = 3: 2 x C(5,3) = 2 x 10 = 20 = f(3). TRUE.\nE - f(3) = C(6,3) = (6 x 5 x 4)/(3 x 2 x 1) = 120/6 = 20, not 15. FALSE.\nAnswer: A, B, D.",
+      "explanation": "Compute the first few values: f(1) = C(2,1) = 2, f(2) = C(4,2) = 6, f(3) = C(6,3) = 20, f(4) = C(8,4) = 70.\nA - f(1) = C(2,1) = 2. True.\nB - f(2) = C(4,2) = (4 x 3)/2 = 6. True.\nC - test at n = 1: f(2) = 6, but 4 x f(1) = 4 x 2 = 8. The claim fails immediately. False. (The true ratio is f(n+1)/f(n) = 2(2n+1)/(n+1), which is 3 at n = 1, then 10/3, then 3.5 - it only approaches 4 as n grows.)\nD - by Pascal's identity C(2n, n) = C(2n-1, n-1) + C(2n-1, n), and by symmetry C(2n-1, n-1) = C(2n-1, n) because (n-1) + n = 2n-1. So C(2n, n) = 2 x C(2n-1, n). Check n = 3: 2 x C(5,3) = 2 x 10 = 20 = f(3). True.\nE - f(3) = C(6,3) = (6 x 5 x 4)/(3 x 2 x 1) = 120/6 = 20, not 15. False.\nAnswer: A, B, D.",
       "trap": "E is the arithmetic bait: computing C(6,3) with the pairing formula n(n-1)/2 = (6 x 5)/2 = 15 instead of the three-item formula, which needs the extra factor 4/3. C is the pattern bait: the ratios 3, 3.33, 3.5, ... creep toward 4 without ever reaching it, so a student who checks only large n or trusts the 'doubling the top doubles the exponent' feeling will accept it.",
-      "estimated_time_seconds": 120,
+      "estimated_time_seconds": 110,
       "tags": [
         "central-binomial",
         "pascal-identity",
@@ -714,7 +713,7 @@
         "B",
         "C"
       ],
-      "explanation": "A game is an unordered pair of distinct teams, so G = C(n,2) = n(n-1)/2 - the handshake formula.\nA - that is the formula itself. TRUE.\nB - C(15,2) = (15 x 14)/2 = 210/2 = 105. TRUE.\nC - solve n(n-1)/2 = 45, so n(n-1) = 90. Since 10 x 9 = 90, n = 10. (The other root, n = -9, is rejected.) TRUE.\nD - test n = 5: G = C(5,2) = 10, and doubling to 10 teams gives C(10,2) = 45, not 20. In general C(2n,2) = n(2n-1), while 2 x C(n,2) = n(n-1), and these are equal only when 2n - 1 = n - 1, which is impossible for n >= 2. FALSE.\nE - P(n,2) = n(n-1) counts ORDERED pairs, which is exactly twice G. For n = 5 that is 20 rather than 10. FALSE.\nAnswer: A, B, C.",
+      "explanation": "A game is an unordered pair of distinct teams, so G = C(n,2) = n(n-1)/2 - the handshake formula.\nA - that is the formula itself. True.\nB - C(15,2) = (15 x 14)/2 = 210/2 = 105. True.\nC - solve n(n-1)/2 = 45, so n(n-1) = 90. Since 10 x 9 = 90, n = 10. (The other root, n = -9, is rejected.) true.\nD - test n = 5: G = C(5,2) = 10, and doubling to 10 teams gives C(10,2) = 45, not 20. In general C(2n,2) = n(2n-1), while 2 x C(n,2) = n(n-1), and these are equal only when 2n - 1 = n - 1, which is impossible for n >= 2. False.\nE - P(n,2) = n(n-1) counts ORDERED pairs, which is exactly twice G. For n = 5 that is 20 rather than 10. False.\nAnswer: A, B, C.",
       "trap": "E is the permutation-versus-combination trap in disguise: a game between Team X and Team Y is one game, not two, so the ordered count n(n-1) must be halved. D punishes linear thinking - the number of games grows roughly with the SQUARE of the number of teams, so doubling the league roughly quadruples the schedule (10 games becomes 45, not 20).",
       "estimated_time_seconds": 100,
       "tags": [
@@ -738,7 +737,7 @@
       "answer": "D",
       "explanation": "Do the unordered selection first and the ordered assignment second; mixing the two stages is what wrecks this question.\nStep 1 — count the committees. A committee is an unordered group of 4 people out of 9, and 'at least 2 women' splits into three mutually exclusive cases:\n2 women and 2 men: C(4, 2) x C(5, 2) = 6 x 10 = 60\n3 women and 1 man: C(4, 3) x C(5, 1) = 4 x 5 = 20\n4 women and 0 men: C(4, 4) x C(5, 0) = 1 x 1 = 1\nTotal = 60 + 20 + 1 = 81.\nStep 2 — check by complement: all committees C(9, 4) = 126, minus 0-woman committees C(5, 4) = 5, minus 1-woman committees C(4, 1) x C(5, 3) = 4 x 10 = 40. 126 - 5 - 40 = 81. Correct.\nStep 3 — now assign the offices. The four titles are distinct, so the four members can take them in 4! = 24 ways.\nStep 4 — multiply: 81 x 24 = 1944.\nAnswer: 1944.",
       "trap": "Choice C, 1440 = 60 x 24, reads 'at least 2 women' as 'exactly 2 women' and drops the 3-woman and 4-woman committees. Choice A, 81, stops at the committees and never assigns the offices. Choice B, 486 = 81 x 3!, uses 3! instead of 4!, the count for seating the four round a table rather than giving them four named titles. Choice E, 3024 = P(9, 4), fills four ordered offices from all nine people and ignores the requirement about women entirely.",
-      "estimated_time_seconds": 130,
+      "estimated_time_seconds": 110,
       "tags": [
         "at-least-condition",
         "case-split",
@@ -762,7 +761,7 @@
         "C",
         "D"
       ],
-      "explanation": "A - the two digits that appear form an unordered pair: C(10, 2) = 45 ways. The pattern is a multiset like x, x, y, y, which orders in 4!/(2! x 2!) = 6 ways. 45 x 6 = 270, not 540. FALSE.\nB - repetition allowed means 10 choices in each of the 4 positions: 10 x 10 x 10 x 10 = 10^4 = 10000. TRUE.\nC - repetition banned means the choices fall by one each time: 10 x 9 x 8 x 7 = 5040, which is P(10, 4). TRUE.\nD - 'some digit used more than once' is the exact complement of 'all four digits different', so it is 10000 - 5040 = 4960. TRUE.\nE - all four positions must carry the same digit, and that digit can be any of the 10, so there are exactly 10 such codes, not 40. FALSE.\nAnswer: B, C, D.",
+      "explanation": "A - the two digits that appear form an unordered pair: C(10, 2) = 45 ways. The pattern is a multiset like x, x, y, y, which orders in 4!/(2! x 2!) = 6 ways. 45 x 6 = 270, not 540. False.\nB - repetition allowed means 10 choices in each of the 4 positions: 10 x 10 x 10 x 10 = 10^4 = 10000. True.\nC - repetition banned means the choices fall by one each time: 10 x 9 x 8 x 7 = 5040, which is P(10, 4). True.\nD - 'some digit used more than once' is the exact complement of 'all four digits different', so it is 10000 - 5040 = 4960. True.\nE - all four positions must carry the same digit, and that digit can be any of the 10, so there are exactly 10 such codes, not 40. False.\nAnswer: B, C, D.",
       "trap": "A doubles the true 270 by using P(10, 2) = 90 for the pair of digits instead of C(10, 2) = 45; which of the two digits is 'first' is already decided by the arrangement step, so ordering the pair counts every code twice. E multiplies 10 digits by 4 positions, but the positions are not a free choice here - all four are forced to match. D is the statement to reach for by complement: counting 'at least one repeat' directly needs messy cases, while total minus none is a single subtraction.",
       "estimated_time_seconds": 105,
       "tags": [

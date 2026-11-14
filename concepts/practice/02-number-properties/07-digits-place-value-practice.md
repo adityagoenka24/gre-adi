@@ -1,6 +1,6 @@
 # Digits & Place Value — Practice Set
 
-**Bank code:** `NUM-DPV` · **Section:** Number Properties · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `NUM-DPV` · **Section:** Number Properties · **30 questions** — Easy 5 · Medium 9 · Hard 14 · Extreme 2
 
 **Lecture capsule:** [07-digits-place-value.md](../../02-number-properties/07-digits-place-value.md)
 
@@ -32,7 +32,7 @@ In the integer 4,728, what is the value of the digit in the hundreds place?
 
 **Q2** · `NUM-DPV-003` · Numeric Entry · 40s
 
-What is the sum of the digits of 3,456? Enter your answer as a number.
+What is the sum of the digits of 3,456?
 
 *Numeric entry — write the number.*
 
@@ -65,7 +65,7 @@ The tens digit of a two-digit positive integer is twice its units digit. If the 
 
 ---
 
-### Level 2 · Medium — 8 questions · ~11 min
+### Level 2 · Medium — 9 questions · ~12 min
 
 *two or three steps, one planted trap each*
 
@@ -91,7 +91,7 @@ A two-digit positive integer has tens digit t and units digit u. Which of the fo
 
 **Q8** · `NUM-DPV-017` · Numeric Entry · 85s
 
-In a four-digit positive integer, the thousands digit is 5, the hundreds digit and the units digit are both equal to the digit d, and the tens digit is 3. If the integer is divisible by 9, what is the integer? Enter your answer as a number.
+In a four-digit positive integer, the thousands digit is 5, the hundreds digit and the units digit are both equal to the digit d, and the tens digit is 3. If the integer is divisible by 9, what is the integer?
 
 *Numeric entry — write the number.*
 
@@ -112,7 +112,7 @@ A three-digit positive integer has hundreds digit a, tens digit b and units digi
 
 **Q11** · `NUM-DPV-021` · Numeric Entry · 75s
 
-How many three-digit positive integers have a units digit of 5? Enter your answer as a number.
+How many three-digit positive integers have a units digit of 5?
 
 *Numeric entry — write the number.*
 
@@ -128,7 +128,7 @@ Which of the following products have a units digit of 2? Select all that apply.
 
 **Q13** · `NUM-DPV-024` · MCQ · 85s
 
-A three-digit positive integer has hundreds digit h, tens digit 3 and units digit u. If h = 2u and the three digits sum to 15, what is the integer?
+A three-digit positive integer has hundreds digit h, tens digit 3 and units digit u. If h = 2u and the sum of the three digits is 15, what is the integer?
 
 **(A)** 438  
 **(B)** 633  
@@ -136,13 +136,23 @@ A three-digit positive integer has hundreds digit h, tens digit 3 and units digi
 **(D)** 834  
 **(E)** 843
 
+**Q14** · `NUM-DPV-029` · MCQ · 70s
+
+In the decimal 0.4d7, d represents a digit. If 0.4d7 rounded to the nearest hundredth is 0.46, what is the value of d?
+
+**(A)** 4  
+**(B)** 5  
+**(C)** 6  
+**(D)** 7  
+**(E)** 8
+
 ---
 
-### Level 3 · Hard — 12 questions · ~21 min
+### Level 3 · Hard — 14 questions · ~24 min
 
 *where 162+ is won or lost*
 
-**Q14** · `NUM-DPV-027` · MCQ · 100s
+**Q15** · `NUM-DPV-027` · MCQ · 100s
 
 N is a two-digit positive integer whose tens digit and units digit are both non-zero. The positive difference between N and the integer formed by reversing the digits of N is 54, and N is a multiple of 7. What is N?
 
@@ -152,21 +162,11 @@ N is a two-digit positive integer whose tens digit and units digit are both non-
 **(D)** 71  
 **(E)** 93
 
-**Q15** · `NUM-DPV-028` · Numeric Entry · 105s
+**Q16** · `NUM-DPV-028` · Numeric Entry · 105s
 
-A two-digit positive integer is 12 greater than the product of its two digits. What is the sum of all such integers? Enter your answer as a number.
+A two-digit positive integer is 12 greater than the product of its two digits. What is the sum of all such integers?
 
 *Numeric entry — write the number.*
-
-**Q16** · `NUM-DPV-029` · MCQ · 110s
-
-For how many three-digit positive integers N is N equal to 16 times the sum of the digits of N?
-
-**(A)** 2  
-**(B)** 3  
-**(C)** 4  
-**(D)** 7  
-**(E)** 21
 
 **Q17** · `NUM-DPV-032` · Select all that apply · 105s
 
@@ -178,13 +178,19 @@ A four-digit positive integer has the form AABB, where A is both the thousands a
 **(D)** The sum of the digits of AABB is even  
 **(E)** AABB is divisible by 101
 
-**Q18** · `NUM-DPV-035` · Numeric Entry · 120s
+**Q18** · `NUM-DPV-035` · Numeric Entry · 95s
 
-The product of the three digits of the positive integer N is 36. What is the sum of all possible values of N? Enter your answer as a number.
+What is the sum of the digits of the integer 10^20 - 7?
 
 *Numeric entry — write the number.*
 
-**Q19** · `NUM-DPV-041` · MCQ · 95s
+**Q19** · `NUM-DPV-038` · Numeric Entry · 100s
+
+In how many three-digit positive integers is the tens digit equal to the sum of the hundreds digit and the units digit?
+
+*Numeric entry — write the number.*
+
+**Q20** · `NUM-DPV-041` · MCQ · 95s
 
 The sum of a two-digit positive integer and the integer formed by reversing its digits is 143. How many two-digit integers have this property?
 
@@ -194,7 +200,7 @@ The sum of a two-digit positive integer and the integer formed by reversing its 
 **(D)** 11  
 **(E)** 13
 
-**Q20** · `NUM-DPV-042` · MCQ · 105s
+**Q21** · `NUM-DPV-042` · MCQ · 105s
 
 A decimal number has the form 4.d7k, so the three digits after the decimal point are d, 7 and k in that order, where k is a non-zero digit and d is a digit. The value of the digit in the tenths place is 250 times the value of the digit in the thousandths place. What is the sum of the values of the digits in the tenths and thousandths places?
 
@@ -204,20 +210,20 @@ A decimal number has the form 4.d7k, so the three digits after the decimal point
 **(D)** 0.52  
 **(E)** 7
 
-**Q21** · `NUM-DPV-043` · QC · 95s
+**Q22** · `NUM-DPV-043` · QC · 95s
 
 N is a two-digit positive integer.
 
 > **Quantity A:**  The sum of the digits of the integer N + 10
 > **Quantity B:**  The sum of the digits of N
 
-**Q22** · `NUM-DPV-044` · Numeric Entry · 110s
+**Q23** · `NUM-DPV-044` · Numeric Entry · 110s
 
-N is a three-digit positive integer and M is the integer formed by writing the digits of N in reverse order. If N - M = 297 and the digits of N sum to 18, how many possible values of N are there? Enter your answer as a number.
+N is a three-digit positive integer and M is the integer formed by writing the digits of N in reverse order. If N - M = 297 and the digits of N sum to 18, how many possible values of N are there?
 
 *Numeric entry — write the number.*
 
-**Q23** · `NUM-DPV-045` · Select all that apply · 105s
+**Q24** · `NUM-DPV-045` · Select all that apply · 105s
 
 The digits of the three-digit positive integer N are three consecutive integers in some order; for example, 213 and 654 are such integers. Which of the following must be true of every such N? Select all that apply.
 
@@ -227,7 +233,7 @@ The digits of the three-digit positive integer N are three consecutive integers 
 **(D)** No digit of N is 0  
 **(E)** N is divisible by the sum of its digits
 
-**Q24** · `NUM-DPV-046` · MCQ · 100s
+**Q25** · `NUM-DPV-046` · MCQ · 100s
 
 How many three-digit positive integers have digits that sum to 4?
 
@@ -237,26 +243,37 @@ How many three-digit positive integers have digits that sum to 4?
 **(D)** 13  
 **(E)** 15
 
-**Q25** · `NUM-DPV-047` · QC · 110s
+**Q26** · `NUM-DPV-047` · QC · 110s
 
 a is the tens digit and b is the units digit of a two-digit positive integer, so the integer is 10a + b.
 
 > **Quantity A:**  The greatest possible value of (10a + b)/(a + b)
 > **Quantity B:**  10
 
+**Q27** · `NUM-DPV-048` · MCQ · 110s
+
+What is the least positive integer whose digits are all different and whose digits have a sum of 30?
+
+**(A)** 3,999  
+**(B)** 5,889  
+**(C)** 6,789  
+**(D)** 6,798  
+**(E)** 9,876
+
+**Q28** · `NUM-DPV-KMF-002` · QC · 95s
+
+A four-digit integer W has the property that the cube of its units digit ends in 7.
+
+> **Quantity A:**  The units digit of W
+> **Quantity B:**  5
+
 ---
 
-### Level 4 · Extreme — 5 questions · ~11 min
+### Level 4 · Extreme — 2 questions · ~4 min
 
-*165+ — expect to need the insight, not the grind*
+*the top of a real hard section — expect to need the insight, not the grind*
 
-**Q26** · `NUM-DPV-038` · Numeric Entry · 130s
-
-How many four-digit positive integers have all four digits non-zero and have the sum of their first two digits equal to the sum of their last two digits? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q27** · `NUM-DPV-040` · Select all that apply · 130s
+**Q29** · `NUM-DPV-040` · Select all that apply · 130s
 
 A five-digit palindrome reads the same forwards and backwards, so its digits are d1, d2, d3, d2, d1 in order. For a particular such palindrome every digit is non-zero, 2(d1) + 2(d2) + d3 = 19, and d3 < d2 < d1. Which of the following are possible values of d1? Select all that apply.
 
@@ -265,23 +282,6 @@ A five-digit palindrome reads the same forwards and backwards, so its digits are
 **(C)** 7  
 **(D)** 8  
 **(E)** 9
-
-**Q28** · `NUM-DPV-048` · MCQ · 120s
-
-What is the least positive integer whose digits are all different and whose digits sum to 30?
-
-**(A)** 3,999  
-**(B)** 5,889  
-**(C)** 6,789  
-**(D)** 6,798  
-**(E)** 9,876
-
-**Q29** · `NUM-DPV-049` · QC · 130s
-
-N is a three-digit positive integer whose units digit is not 0, and M is the three-digit integer formed by writing the digits of N in reverse order.
-
-> **Quantity A:**  The number of such integers N for which N + M is a perfect square
-> **Quantity B:**  8
 
 **Q30** · `NUM-DPV-050` · QC · 130s
 
@@ -309,22 +309,22 @@ For a three-digit positive integer N, let S(N) denote the sum of the digits of N
 | 11 | `NUM-DPV-021` | medium | Numeric Entry | **90** |
 | 12 | `NUM-DPV-022` | medium | Select all that apply | **B, C, E** |
 | 13 | `NUM-DPV-024` | medium | MCQ | **D** |
-| 14 | `NUM-DPV-027` | hard | MCQ | **B** |
-| 15 | `NUM-DPV-028` | hard | Numeric Entry | **67** |
-| 16 | `NUM-DPV-029` | hard | MCQ | **B** |
+| 14 | `NUM-DPV-029` | medium | MCQ | **B** |
+| 15 | `NUM-DPV-027` | hard | MCQ | **B** |
+| 16 | `NUM-DPV-028` | hard | Numeric Entry | **67** |
 | 17 | `NUM-DPV-032` | hard | Select all that apply | **A, C, D** |
-| 18 | `NUM-DPV-035` | hard | Numeric Entry | **9546** |
-| 19 | `NUM-DPV-041` | hard | MCQ | **A** |
-| 20 | `NUM-DPV-042` | hard | MCQ | **C** |
-| 21 | `NUM-DPV-043` | hard | QC | **D** |
-| 22 | `NUM-DPV-044` | hard | Numeric Entry | **4** |
-| 23 | `NUM-DPV-045` | hard | Select all that apply | **A, C** |
-| 24 | `NUM-DPV-046` | hard | MCQ | **C** |
-| 25 | `NUM-DPV-047` | hard | QC | **C** |
-| 26 | `NUM-DPV-038` | extreme hard | Numeric Entry | **489** |
-| 27 | `NUM-DPV-040` | extreme hard | Select all that apply | **A, B, C** |
-| 28 | `NUM-DPV-048` | extreme hard | MCQ | **C** |
-| 29 | `NUM-DPV-049` | extreme hard | QC | **A** |
+| 18 | `NUM-DPV-035` | hard | Numeric Entry | **174** |
+| 19 | `NUM-DPV-038` | hard | Numeric Entry | **45** |
+| 20 | `NUM-DPV-041` | hard | MCQ | **A** |
+| 21 | `NUM-DPV-042` | hard | MCQ | **C** |
+| 22 | `NUM-DPV-043` | hard | QC | **D** |
+| 23 | `NUM-DPV-044` | hard | Numeric Entry | **4** |
+| 24 | `NUM-DPV-045` | hard | Select all that apply | **A, C** |
+| 25 | `NUM-DPV-046` | hard | MCQ | **C** |
+| 26 | `NUM-DPV-047` | hard | QC | **C** |
+| 27 | `NUM-DPV-048` | hard | MCQ | **C** |
+| 28 | `NUM-DPV-KMF-002` | hard | QC | **B** |
+| 29 | `NUM-DPV-040` | extreme hard | Select all that apply | **A, B, C** |
 | 30 | `NUM-DPV-050` | extreme hard | QC | **A** |
 
 ---
@@ -395,11 +395,11 @@ Answer: D.
 
 ### Q7 · `NUM-DPV-016` — Answer: B, D, E
 
-A. FALSE. Take 14: t + u = 5 and 14/5 is not an integer. (It happens to hold for 12, where t + u = 3 and 12/3 = 4, which is why the claim looks plausible.)
-B. TRUE. Place value: t counts tens and u counts units, so the integer is 10t + u.
-C. FALSE. If t = 0 the number is just u, a one-digit number. A leading digit cannot be 0.
-D. TRUE. Reversing puts u in the tens place and t in the units place: 10u + t.
-E. TRUE. (10t + u) - (10u + t) = 9t - 9u = 9(t - u), a multiple of 9 for every choice of digits.
+A. False. Take 14: t + u = 5 and 14/5 is not an integer. (It happens to hold for 12, where t + u = 3 and 12/3 = 4, which is why the claim looks plausible.)
+B. True. Place value: t counts tens and u counts units, so the integer is 10t + u.
+C. False. If t = 0 the number is just u, a one-digit number. A leading digit cannot be 0.
+D. True. Reversing puts u in the tens place and t in the units place: 10u + t.
+E. True. (10t + u) - (10u + t) = 9t - 9u = 9(t - u), a multiple of 9 for every choice of digits.
 Answer: B, D and E.
 
 **Trap.** Selecting A after testing only a friendly case such as 12 or 63, where t + u happens to divide the number. One counterexample, 14, kills it. Selecting C is the leading-zero error: 07 is not a two-digit integer.
@@ -429,7 +429,7 @@ Answer: B.
 
 ### Q10 · `NUM-DPV-020` — Answer: B
 
-Step 1 — two conditions must hold at once: the digits sum to 15, and the outer digits are equal.
+Step 1 — two conditions must hold at once: the sum of the digits is 15, and the outer digits are equal.
 Step 2 — test each option against both.
 A. 483: digit sum 4 + 8 + 3 = 15, but a = 4 and c = 3, so a is not equal to c. Out.
 B. 555: digit sum 5 + 5 + 5 = 15, and a = c = 5. Both hold.
@@ -456,11 +456,11 @@ Answer: 90.
 ### Q12 · `NUM-DPV-022` — Answer: B, C, E
 
 The units digit of a product depends only on the units digits of the factors, so multiply those and keep the last digit.
-A. 5 x 8 = 40, units digit 0. FALSE. (45 x 18 = 810.) Any product of a number ending in 5 with an even number ends in 0.
-B. 4 x 3 = 12, units digit 2. TRUE. (14 x 23 = 322.)
-C. 6 x 7 = 42, units digit 2. TRUE. (36 x 27 = 972.)
-D. 3 x 9 = 27, units digit 7. FALSE. (63 x 29 = 1827.)
-E. 9 x 8 = 72, units digit 2. TRUE. (19 x 8 = 152.)
+A. 5 x 8 = 40, units digit 0. False. (45 x 18 = 810.) Any product of a number ending in 5 with an even number ends in 0.
+B. 4 x 3 = 12, units digit 2. True. (14 x 23 = 322.)
+C. 6 x 7 = 42, units digit 2. True. (36 x 27 = 972.)
+D. 3 x 9 = 27, units digit 7. False. (63 x 29 = 1827.)
+E. 9 x 8 = 72, units digit 2. True. (19 x 8 = 152.)
 Answer: B, C and E.
 
 **Trap.** ADDING the units digits instead of multiplying them. On D that gives 3 + 9 = 12, units digit 2, so D is wrongly selected (the product 63 x 29 = 1827 ends in 7); the same habit also throws away the three correct answers, since 4 + 3 = 7, 6 + 7 = 13 and 9 + 8 = 17. The other live error selects A by multiplying the wrong pair of digits - taking 4 from 45 and 8 from 18 to get 4 x 8 = 32 - instead of the two UNITS digits 5 and 8, whose product 40 ends in 0.
@@ -476,10 +476,20 @@ Answer: D.
 
 **Trap.** Reversing the relation and solving u = 2h: then h + 2h = 12 gives h = 4 and u = 8, producing 438 - choice A. Choice E, 843, is the right pair of digits assembled in the wrong places, with the fixed digit 3 pushed into the units slot. Choice C, 735, comes from reading 'h = 2u' as 'h is 2 more than u': h + u = 12 with h = u + 2 gives u = 5, h = 7. Choice B satisfies h = 2u but has digit sum 12, not 15.
 
-### Q14 · `NUM-DPV-027` — Answer: B
+### Q14 · `NUM-DPV-029` — Answer: B
+
+The digit in the thousandths place is 7, which is 5 or more, so the number rounds up.
+Rounding up increases the hundredths digit by 1: the result is 0.4(d + 1).
+d + 1 = 6, so d = 5.
+Check: 0.457 rounds to 0.46.
+Answer: B.
+
+**Trap.** Reading d straight from the rounded result as 6 (choice C). 0.467 rounds to 0.47; because the thousandths digit is 7, the hundredths digit before rounding was one less than 6.
+
+### Q15 · `NUM-DPV-027` — Answer: B
 
 Step 1 — expand: N = 10t + u and its reverse is 10u + t, so N - reverse = 9(t - u).
-Step 2 — the difference is stated as a POSITIVE difference, so the sign of t - u is not given: 9|t - u| = 54, which gives |t - u| = 6. Both orders t - u = 6 and u - t = 6 are live, so the candidate list must include both.
+Step 2 — the difference is stated as a positive difference, so the sign of t - u is not given: 9|t - u| = 54, which gives |t - u| = 6. Both orders t - u = 6 and u - t = 6 are live, so the candidate list must include both.
 Step 3 — list every pair of non-zero digits differing by 6: (7,1), (8,2), (9,3) and their reverses (1,7), (2,8), (3,9). The six candidates are 17, 28, 39, 71, 82 and 93.
 Step 4 — apply the second condition, N divisible by 7. There is no digit-sum shortcut for 7, so divide: 17 = 7 x 2 + 3, no; 28 = 7 x 4, YES; 39 = 7 x 5 + 4, no; 71 = 7 x 10 + 1, no; 82 = 7 x 11 + 5, no; 93 = 7 x 13 + 2, no.
 Step 5 — exactly one candidate survives both conditions: N = 28.
@@ -488,7 +498,7 @@ Answer: B.
 
 **Trap.** Dropping the case split by assuming N must be larger than its reverse: that keeps only 71, 82 and 93, and the student then forces an answer out of them, usually 71 by reading the tens digit 7 as divisibility by 7 (choice D) since 71 = 7 x 10 + 1 is not a multiple of 7. Choice A, 17, is the same digit-7-is-not-divisible-by-7 slip in the other order. Choice C, 39, comes from testing the digit sum, 3 + 9 = 12, for divisibility and concluding 'divisible by 7' when the digit-sum test only detects 3 and 9. Choice E, 93, is the pair students write first because 9 - 3 = 6, chosen by anyone who checks only the difference condition and never applies the multiple-of-7 filter.
 
-### Q15 · `NUM-DPV-028` — Answer: 67
+### Q16 · `NUM-DPV-028` — Answer: 67
 
 Step 1 — let the tens digit be a (1 through 9) and the units digit be b (0 through 9). By place value the integer is 10a + b, NOT a x b; the product of its digits is the separate quantity a x b.
 Step 2 — the condition is 10a + b = (a x b) + 12.
@@ -501,56 +511,39 @@ Answer: 67.
 
 **Trap.** Writing the two-digit number as 'ab' meaning a x b. That turns the condition into a x b = a x b + 12, which has no solution at all, and the student concludes the problem is broken; the number is 10a + b. The other live error is stopping at the first integer found and entering 28 (or 39) - the stem asks for the SUM of every integer with the property.
 
-### Q16 · `NUM-DPV-029` — Answer: B
-
-Step 1 — let S be the digit sum of N, so N = 16S. A three-digit N needs 16S >= 100, so S >= 6.25, and S is at most 9 + 9 + 9 = 27. So S runs from 7 to 27.
-Step 2 — narrow the list with the digit-sum fact. Every integer differs from its digit sum by a multiple of 9, so N - S is a multiple of 9. Here N - S = 16S - S = 15S, so 15S must be a multiple of 9. Since 15 supplies one factor of 3, S must be a multiple of 3.
-Step 3 — the candidates are S = 9, 12, 15, 18, 21, 24, 27, that is N = 144, 192, 240, 288, 336, 384, 432.
-Step 4 — test each candidate by adding its digits and comparing with S:
-144: 1 + 4 + 4 = 9, matches S = 9. WORKS.
-192: 1 + 9 + 2 = 12, matches S = 12. WORKS.
-240: 2 + 4 + 0 = 6, but S = 15. Fails.
-288: 2 + 8 + 8 = 18, matches S = 18. WORKS.
-336: 3 + 3 + 6 = 12, but S = 21. Fails.
-384: 3 + 8 + 4 = 15, but S = 24. Fails.
-432: 4 + 3 + 2 = 9, but S = 27. Fails.
-Step 5 — three integers qualify: 144, 192 and 288.
-Check: 16 x 9 = 144, 16 x 12 = 192, 16 x 18 = 288. Correct.
-Answer: B.
-
-**Trap.** Demanding that S be a multiple of 9 rather than of 3: that keeps only 144 and 288 and gives 2, choice A. Choice D, 7, comes from listing the seven candidates N = 16S with S a multiple of 3 and never checking that each one's digits really sum to S. Choice C, 4, is accepting 432 as well because 16 x 27 = 432, without noticing that the digits of 432 sum to 9, not 27. Choice E, 21, is skipping the multiple-of-3 filter altogether and counting every S from 7 to 27, which is 21 values.
-
 ### Q17 · `NUM-DPV-032` — Answer: A, C, D
 
 Step 1 — expand AABB by place value: 1000A + 100A + 10B + B = 1100A + 11B = 11(100A + B).
-A. TRUE. The factor 11 is explicit in 11(100A + B).
-B. FALSE. Take A = 1, B = 0: the integer is 1,100, whose digit sum is 2, not a multiple of 3.
-C. TRUE. AABB/11 = 100A + B. With A from 1 to 9 and B from 0 to 9, that runs from 100 to 909, always three digits.
-D. TRUE. The digit sum is A + A + B + B = 2(A + B), which is even for every choice of digits.
-E. FALSE. 101 divides numbers of the form ABAB, not AABB. Test 1,100: 1,100/101 = 10.89..., not an integer.
+A. True. The factor 11 is explicit in 11(100A + B).
+B. False. Take A = 1, B = 0: the integer is 1,100, whose digit sum is 2, not a multiple of 3.
+C. True. AABB/11 = 100A + B. With A from 1 to 9 and B from 0 to 9, that runs from 100 to 909, always three digits.
+D. True. The digit sum is A + A + B + B = 2(A + B), which is even for every choice of digits.
+E. False. 101 divides numbers of the form ABAB, not AABB. Test 1,100: 1,100/101 = 10.89..., not an integer.
 Answer: A, C and D.
 
 **Trap.** Selecting E by importing the repeated-block fact from the wrong pattern: writing a two-digit block twice gives ABAB = 101 x AB, but AABB is not that pattern. Selecting B comes from noticing that the digit sum 2(A + B) is even and sliding from 'even' to 'divisible by 3 as well'; 1,100 settles it.
 
-### Q18 · `NUM-DPV-035` — Answer: 9546
+### Q18 · `NUM-DPV-035` — Answer: 174
 
-Step 1 — because the product of the digits is 36, which is not 0, no digit can be 0, and each digit is a factor of 36 from 1 to 9.
-Step 2 — find the DIGIT MULTISETS whose product is 36, taking them in non-decreasing order so none is counted twice: {1, 4, 9}, {1, 6, 6}, {2, 2, 9}, {2, 3, 6} and {3, 3, 4}. Nothing else works: {1, 1, 36} and {1, 2, 18} and {1, 3, 12} all need a two-digit entry, and {4, 9, 1} and {6, 6, 1} are repeats of ones already listed.
-Step 3 — each multiset generates several values of N, one per arrangement of its digits. A multiset of three distinct digits gives 3! = 6 arrangements; a multiset with a repeated digit gives 3 arrangements. So {1, 4, 9} and {2, 3, 6} give 6 each, and {1, 6, 6}, {2, 2, 9} and {3, 3, 4} give 3 each: 6 + 6 + 3 + 3 + 3 = 21 values in all.
-Step 4 — add each family without writing out every number. Inside one multiset the arrangements are symmetric, so each of its digits lands in the hundreds place, the tens place and the units place equally often. If the multiset has k arrangements and its digits sum to S, every place receives a total of kS/3, and the family sums to 100(kS/3) + 10(kS/3) + (kS/3) = 111kS/3 = 37kS.
-Step 5 — apply 37kS to each multiset.
-{1, 4, 9}: k = 6, S = 14, sum = 37 x 6 x 14 = 3,108.
-{2, 3, 6}: k = 6, S = 11, sum = 37 x 6 x 11 = 2,442.
-{1, 6, 6}: k = 3, S = 13, sum = 37 x 3 x 13 = 1,443.
-{2, 2, 9}: k = 3, S = 13, sum = 37 x 3 x 13 = 1,443.
-{3, 3, 4}: k = 3, S = 10, sum = 37 x 3 x 10 = 1,110.
-Step 6 — total: 3,108 + 2,442 + 1,443 + 1,443 + 1,110 = 9,546.
-Check the {1, 6, 6} family by hand: 166 + 616 + 661 = 1,443, matching 37 x 3 x 13. And 1 x 6 x 6 = 36. Correct.
-Answer: 9546.
+10^20 is a 1 followed by 20 zeros, a 21-digit integer.
+10^20 - 1 is the 20-digit integer made of twenty 9s.
+10^20 - 7 is 6 less than that, so its last digit is 9 - 6 = 3 and the other nineteen digits are 9s.
+Sum of digits = 19 * 9 + 3 = 171 + 3 = 174.
+Check with a small case: 10^3 - 7 = 993, digit sum 9 + 9 + 3 = 21 = 2 * 9 + 3.
 
-**Trap.** Summing one representative per multiset instead of every arrangement: 149 + 166 + 229 + 236 + 334 = 1,114, the answer of a student who finds the five digit combinations and forgets that N is an ordered integer. Giving every multiset 6 arrangements, including the ones with a repeated digit, double-counts {1, 6, 6}, {2, 2, 9} and {3, 3, 4} and inflates the total to 37 x 6 x (14 + 11 + 13 + 13 + 10) = 13,542. Missing a multiset is the third live error: overlooking {3, 3, 4} because 36 = 3 x 3 x 4 is the one factorisation with no digit above 4 drops 1,110 and gives 8,436. A fourth slip is answering 21, the NUMBER of qualifying integers, when the question asks for their sum.
+**Trap.** Using twenty 9s and a 3, which gives 183. 10^20 - 7 has 20 digits in all: nineteen 9s followed by one 3.
 
-### Q19 · `NUM-DPV-041` — Answer: A
+### Q19 · `NUM-DPV-038` — Answer: 45
+
+Let the hundreds digit be h (1 through 9) and the units digit be u (0 through 9). The tens digit is h + u, which must be at most 9.
+So u can be any digit from 0 through 9 - h: that is 10 - h choices.
+h = 1 gives 9 choices, h = 2 gives 8, ..., h = 9 gives 1.
+Total = 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45.
+Check a small case: h = 9 allows only u = 0, the integer 990, and 9 = 9 + 0.
+
+**Trap.** Not allowing the units digit to be 0, which leaves 9 - h choices for each h and a total of 36. Only the hundreds digit of a three-digit integer is barred from being 0.
+
+### Q20 · `NUM-DPV-041` — Answer: A
 
 Step 1 — let the tens digit be a and the units digit be b: the integer is 10a + b and its reverse is 10b + a.
 Step 2 — add them: (10a + b) + (10b + a) = 11a + 11b = 11(a + b). The sum of a two-digit number and its reverse is always 11 times the digit sum.
@@ -563,7 +556,7 @@ Answer: A.
 
 **Trap.** Letting a run over all of 1 to 9 and forgetting that b = 13 - a must itself be a digit: that counts a = 1, 2 and 3 as well and gives 9, choice C. Choice B, 7, is the same slip stopped one step early, keeping a = 3 (which needs b = 10) but not a = 1 or 2. Choice D, 11, reports the constant factor in 11(a + b) instead of the count, and choice E, 13, reports the digit sum a + b = 13 instead of the count. All four come from answering with a number that appeared in the work rather than the number of integers.
 
-### Q20 · `NUM-DPV-042` — Answer: C
+### Q21 · `NUM-DPV-042` — Answer: C
 
 Step 1 — name the places, moving RIGHT from the decimal point: tenths, hundredths, thousandths. So d sits in the tenths place, 7 in the hundredths place and k in the thousandths place.
 Step 2 — the VALUE of a digit is the digit times its place value: the tenths digit is worth d x 0.1 and the thousandths digit is worth k x 0.001.
@@ -575,7 +568,7 @@ Answer: C.
 
 **Trap.** Adding the DIGITS instead of their values: 5 + 2 = 7, choice E. Choice D, 0.52, treats the third place after the point as hundredths and values the 2 at 0.02; choice A, 0.052, is the same slip the other way, calling the first place after the point hundredths so that the 5 is worth 0.05. Choice B, 0.07, reports the value of the hundredths digit, the one place the question does not ask about.
 
-### Q21 · `NUM-DPV-043` — Answer: D
+### Q22 · `NUM-DPV-043` — Answer: D
 
 Step 1 — adding 10 raises the tens digit by 1 and leaves the units digit alone, PROVIDED the tens digit is not already 9.
 Step 2 — case 1: N is from 10 to 89. Then N + 10 is still a two-digit number with the same units digit and a tens digit one larger, so Quantity A = Quantity B + 1 and Quantity A is greater. Example: N = 34, N + 10 = 44, digit sums 8 and 7.
@@ -586,7 +579,7 @@ Answer: D.
 
 **Trap.** Reasoning 'adding 10 adds 1 to the tens digit, so the digit sum always goes up by 1' and keying A. That is true for N from 10 to 89 but fails for the ten values 90 through 99, where the carry destroys a 9 and the digit sum drops by 8. A two-digit N is allowed to be 95.
 
-### Q22 · `NUM-DPV-044` — Answer: 4
+### Q23 · `NUM-DPV-044` — Answer: 4
 
 Step 1 — let N have hundreds digit a, tens digit b and units digit c, so N = 100a + 10b + c and M = 100c + 10b + a.
 Step 2 — subtract: N - M = 99a - 99c = 99(a - c). The tens digit cancels.
@@ -599,19 +592,19 @@ Answer: 4.
 
 **Trap.** Stopping at c >= 3 without also imposing a = c + 3 <= 9, which lets c run from 3 to 7 and gives 5 values - the fifth, c = 7, would need a = 10. Answering 3 is the other live error: dividing 297 by 99 to get a - c = 3 and reporting that difference instead of counting the integers.
 
-### Q23 · `NUM-DPV-045` — Answer: A, C
+### Q24 · `NUM-DPV-045` — Answer: A, C
 
 Let the three consecutive digits be m, m + 1 and m + 2 in some order, with m from 0 to 7 so that m + 2 is still a digit, and with the leading digit not 0.
-A. TRUE. The digit sum is m + (m + 1) + (m + 2) = 3m + 3 = 3(m + 1), a multiple of 3 for every m, and an integer is divisible by 3 exactly when its digit sum is.
-B. FALSE. Take N = 123: the digit sum is 6, not a multiple of 9, so 123 is not divisible by 9.
-C. TRUE. Among any three consecutive integers at least one is even - m, m + 1, m + 2 contain either one even value or two, never none.
-D. FALSE. m = 0 gives the digits 0, 1 and 2, and 102, 120, 201 and 210 all qualify. Only the LEADING digit is barred from being 0.
-E. FALSE. N = 123 has digit sum 6 and 123/6 = 20.5, not an integer. (It does hold for 234, whose digit sum 9 divides it 26 times, which is why the claim looks plausible.)
+A. True. The digit sum is m + (m + 1) + (m + 2) = 3m + 3 = 3(m + 1), a multiple of 3 for every m, and an integer is divisible by 3 exactly when its digit sum is.
+B. False. Take N = 123: the digit sum is 6, not a multiple of 9, so 123 is not divisible by 9.
+C. True. Among any three consecutive integers at least one is even - m, m + 1, m + 2 contain either one even value or two, never none.
+D. False. m = 0 gives the digits 0, 1 and 2, and 102, 120, 201 and 210 all qualify. Only the LEADING digit is barred from being 0.
+E. False. N = 123 has digit sum 6 and 123/6 = 20.5, not an integer. (It does hold for 234, whose digit sum 9 divides it 26 times, which is why the claim looks plausible.)
 Answer: A and C.
 
 **Trap.** Selecting B by sliding from 'the digit sum is a multiple of 3' to 'a multiple of 9'; the digit sum is 3(m + 1), which is a multiple of 9 only when m + 1 is itself a multiple of 3. Selecting D applies the leading-zero rule to every slot: 0, 1, 2 are consecutive and 102 is a perfectly good three-digit integer. Selecting E comes from testing a friendly case such as 234, where the digit sum 9 does divide the integer, instead of hunting for the counterexample 123.
 
-### Q24 · `NUM-DPV-046` — Answer: C
+### Q25 · `NUM-DPV-046` — Answer: C
 
 Step 1 — let the digits be a, b, c with a + b + c = 4 and a at least 1, since a three-digit integer cannot lead with 0.
 Step 2 — handle the leading-digit restriction by substitution. Put a = a' + 1, where a' is 0 or more. Then a' + b + c = 3, with every variable from 0 up.
@@ -622,7 +615,7 @@ Answer: C.
 
 **Trap.** Answering 15, choice E - the count of non-negative solutions of a + b + c = 4, which is C(6, 2) = 15. That count includes the five with a = 0 (004, 013, 022, 031, 040), and those are not three-digit integers. Choice D, 13, comes from discarding only 004 and 040, which obviously are not three-digit, while keeping 013, 031 and 022. Choice B, 4, counts the digit multisets {4,0,0}, {3,1,0}, {2,2,0}, {2,1,1} rather than the integers they arrange into. Choice A, 3, comes from requiring every digit to be non-zero, leaving only 112, 121 and 211.
 
-### Q25 · `NUM-DPV-047` — Answer: C
+### Q26 · `NUM-DPV-047` — Answer: C
 
 Step 1 — test the natural candidate first. If b = 0 the quotient is 10a/a = 10, for any a from 1 to 9. So 10 is achievable; for instance 70/7 = 10.
 Step 2 — can the quotient ever exceed 10? Suppose (10a + b)/(a + b) > 10. Since a + b is positive, multiply through: 10a + b > 10a + 10b, which reduces to b > 10b, that is 0 > 9b, so b < 0.
@@ -633,23 +626,26 @@ Answer: C.
 
 **Trap.** Keying A after computing a few quotients and assuming the maximum must be strictly above the round number 10 - or after mis-testing 91/(9 + 1) as 91/9 = 10.1 by using only the tens digit in the denominator. Keying D because a and b are not fixed is the other error: the stem asks for the greatest value over all allowed digits, which is a single determined number.
 
-### Q26 · `NUM-DPV-038` — Answer: 489
+### Q27 · `NUM-DPV-048` — Answer: C
 
-Step 1 — every digit is from 1 to 9, so the leading-digit restriction is already covered. Let s be the common value of the two pair-sums.
-Step 2 — count the ordered pairs of digits from 1 to 9 that sum to s. Call that P(s). For s from 2 to 10, the pairs are (1, s-1) up to (s-1, 1), so P(s) = s - 1. For s from 11 to 18, the smaller digit must be at least s - 9, so P(s) = 19 - s. The extremes: P(2) = 1, P(10) = 9, P(18) = 1.
-Step 3 — for a given s, the first pair can be chosen in P(s) ways and the second pair independently in P(s) ways, so that s contributes P(s)^2 integers.
-Step 4 — total = sum of P(s)^2 for s = 2 to 18
-= (1^2 + 2^2 + ... + 9^2) for s = 2 to 10
-+ (8^2 + 7^2 + ... + 1^2) for s = 11 to 18.
-Step 5 — the first block is 1 + 4 + 9 + 16 + 25 + 36 + 49 + 64 + 81 = 285.
-The second block is 64 + 49 + 36 + 25 + 16 + 9 + 4 + 1 = 204.
-Step 6 — total = 285 + 204 = 489.
-Check the shape of the answer: the largest single contribution is s = 10 with 9^2 = 81 integers (1,9 paired with 1,9 and so on, such as 1,9|2,8), and 489 is a little over six times that, which fits a distribution peaking at s = 10 and tapering to 1 at both ends.
-Answer: 489.
+Step 1 — fewer digits beats a smaller leading digit, so first find the smallest possible number of digits. With three distinct digits the largest possible sum is 9 + 8 + 7 = 24, short of 30. With four distinct digits the largest possible sum is 9 + 8 + 7 + 6 = 30, exactly enough.
+Step 2 — so the number has four digits, and the only four distinct digits summing to 30 are 6, 7, 8 and 9 - any swap of one of them for a smaller unused digit lowers the sum below 30.
+Step 3 — to make the number as small as possible, put the digits in increasing order from the left: 6,789.
+Check: 6 + 7 + 8 + 9 = 30, the digits are all different, and no three-digit number can reach a digit sum of 30. Correct.
+Answer: C.
 
-**Trap.** Counting each value of s once instead of squaring it - summing P(s) rather than P(s)^2 - which gives 81 and forgets that the two halves are chosen independently. The other live error is allowing the digit 0, which changes P(s) for small s (0 + s becomes available) and inflates the total; the stem rules 0 out in every position, not just the leading one.
+**Trap.** Answering 3,999, choice A - the least integer with digit sum 30 when repeats are allowed - and overlooking the word 'different'. Choice B, 5,889, is the half-repaired version of that: it fixes the leading digit but still repeats the 8. Choice D, 6,798, has the right digit set but swaps the last two digits, which makes it larger than 6,789. Choice E, 9,876, is the same digits arranged for the greatest such number rather than the least.
 
-### Q27 · `NUM-DPV-040` — Answer: A, B, C
+### Q28 · `NUM-DPV-KMF-002` — Answer: B
+
+Cube each possible units digit and record the last digit of the result:
+0 gives 0, 1 gives 1, 2 gives 8, 3 gives 7, 4 gives 4, 5 gives 5, 6 gives 6, 7 gives 3, 8 gives 2, and 9 gives 9.
+Only the digit 3 has a cube ending in 7, so the units digit of W must be 3.
+Since 3 < 5, Quantity B is greater.
+
+**Trap.** Students reason by analogy with squares, where two different digits can share a final digit, assume a second possibility exists beside 3, and choose D. Cubing sends each of the ten digits to a different last digit, so the units digit is pinned down uniquely.
+
+### Q29 · `NUM-DPV-040` — Answer: A, B, C
 
 Step 1 — write d3 in terms of the other two: d3 = 19 - 2(d1 + d2). Since 19 is odd and 2(d1 + d2) is even, d3 is odd, and being non-zero it is 1, 3, 5, 7 or 9.
 Step 2 — d3 must be at least 1, so 2(d1 + d2) <= 18, that is d1 + d2 <= 9.
@@ -661,38 +657,11 @@ d2 = 3: d3 = 1 forces 2(d1 + 3) = 18, so d1 = 6. Check 1 < 3 < 6. Valid: 63136.
 d2 = 4: d3 = 1 forces 2(d1 + 4) = 18, so d1 = 5. Check 1 < 4 < 5. Valid: 54145.
 (d3 = 3 would need 2(d1 + d2) = 16, so d1 + d2 = 8 with d2 > 3, giving d2 = 4 and d1 = 4, which breaks d2 < d1. Larger odd d3 needs an even smaller d1 + d2 and fails the ordering the same way.)
 Step 5 — the possible values of d1 are 7, 6 and 5.
-A. 5. TRUE (54,145). B. 6. TRUE (63,136). C. 7. TRUE (72,127). D. 8. FALSE - d1 = 8 needs d1 + d2 <= 9, so d2 = 1, but then d3 < 1 is impossible. E. 9. FALSE - d1 = 9 forces d2 = 0 or less, and every digit must be non-zero.
-Check 54,145: digits sum to 5 + 4 + 1 + 4 + 5 = 19, it is a palindrome, and 1 < 4 < 5. Correct.
+A. 5. True (54,145). B. 6. True (63,136). C. 7. True (72,127). D. 8. False - d1 = 8 needs d1 + d2 <= 9, so d2 = 1, but then d3 < 1 is impossible. E. 9. False - d1 = 9 forces d2 = 0 or less, and every digit must be non-zero.
+Check 54,145: the sum of the digits is 5 + 4 + 1 + 4 + 5 = 19, it is a palindrome, and 1 < 4 < 5. Correct.
 Answer: A, B and C.
 
 **Trap.** Selecting D and E because a large d1 feels natural when the digit sum is as big as 19. The binding constraint is the other way round: d1 + d2 <= 9 comes from d3 >= 1, so the bigger d1 gets, the smaller d2 must be, and d2 runs out of room below d3. Dropping the non-zero requirement on d3 admits d1 = 8 with d2 = 1 and d3 = 0, which is exactly choice D.
-
-### Q28 · `NUM-DPV-048` — Answer: C
-
-Step 1 — fewer digits beats a smaller leading digit, so first find the smallest possible number of digits. With three distinct digits the largest possible sum is 9 + 8 + 7 = 24, short of 30. With four distinct digits the largest possible sum is 9 + 8 + 7 + 6 = 30, exactly enough.
-Step 2 — so the number has four digits, and the only four distinct digits summing to 30 are 6, 7, 8 and 9 - any swap of one of them for a smaller unused digit lowers the sum below 30.
-Step 3 — to make the number as small as possible, put the digits in increasing order from the left: 6,789.
-Check: 6 + 7 + 8 + 9 = 30, the digits are all different, and no three-digit number can reach a digit sum of 30. Correct.
-Answer: C.
-
-**Trap.** Answering 3,999, choice A - the least integer with digit sum 30 when repeats are allowed - and overlooking the word 'different'. Choice B, 5,889, is the half-repaired version of that: it fixes the leading digit but still repeats the 8. Choice D, 6,798, has the right digit set but swaps the last two digits, which makes it larger than 6,789. Choice E, 9,876, is the same digits arranged for the GREATEST such number rather than the least.
-
-### Q29 · `NUM-DPV-049` — Answer: A
-
-Step 1 — expand. N = 100a + 10b + c with a and c both from 1 to 9, and M = 100c + 10b + a. Then N + M = 101(a + c) + 20b. The whole question is about which values 101s + 20b can be a square, where s = a + c.
-Step 2 — bound the square. s runs from 2 to 18 and 20b runs from 0 to 180, so N + M runs from 101(2) + 0 = 202 up to 101(18) + 180 = 1998. Since 14^2 = 196 and 45^2 = 2025, the square is k^2 with k from 15 to 44.
-Step 3 — read s off the square. Mod 20, 101s + 20b is congruent to s, so k^2 is congruent to s mod 20. As s is at most 18, s is exactly the remainder of k^2 on division by 20, and then b = (k^2 - 101s)/20 must be a whole number from 0 to 9.
-Step 4 — test the squares of 15 through 44. Remainders mod 20 cycle through 0, 1, 4, 5, 9, 16, and only three squares survive the b test:
-k = 22: 484, remainder 4, so s = 4 and b = (484 - 404)/20 = 4. Valid.
-k = 25: 625, remainder 5, so s = 5 and b = (625 - 505)/20 = 6. Valid.
-k = 33: 1089, remainder 9, so s = 9 and b = (1089 - 909)/20 = 9. Valid.
-Every other k either gives s = 0 or s = 1 (too small for two non-zero digits) or a value of b outside 0 to 9 - for example k = 21 gives 441, remainder 1, and k = 32 gives 1024, remainder 4, needing b = (1024 - 404)/20 = 31.
-Step 5 — count the integers. For a fixed s, the number of ordered pairs (a, c) of non-zero digits with a + c = s is s - 1 when s is at most 10. So s = 4 gives 3 pairs, s = 5 gives 4 pairs, s = 9 gives 8 pairs, and b is already forced in each case.
-Step 6 — total = 3 + 4 + 8 = 15, and 15 > 8.
-Check: s = 4, b = 4 gives 143, 242 and 341, and 143 + 341 = 484 = 22^2. s = 9, b = 9 gives 198 + 891 = 1089 = 33^2. Correct.
-Answer: A.
-
-**Trap.** Counting unordered digit pairs instead of integers: {1,3} and {2,2} for s = 4, {1,4} and {2,3} for s = 5, and four pairs for s = 9 gives 2 + 2 + 4 = 8 and the false reading that the columns are equal, choice C. The other live error is stopping at Step 4 and reporting the number of qualifying squares, 3, which makes Quantity B look greater, choice B. A student who also lets c = 0 (so that M is not a three-digit integer) inflates the count further; the stem rules that out.
 
 ### Q30 · `NUM-DPV-050` — Answer: A
 

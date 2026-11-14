@@ -1,6 +1,6 @@
 # Consecutive Integers — Practice Set
 
-**Bank code:** `NUM-CON` · **Section:** Number Properties · **30 questions** — Easy 5 · Medium 8 · Hard 12 · Extreme 5
+**Bank code:** `NUM-CON` · **Section:** Number Properties · **30 questions** — Easy 5 · Medium 10 · Hard 14 · Extreme 1
 
 **Lecture capsule:** [05-consecutive-integers.md](../../02-number-properties/05-consecutive-integers.md)
 
@@ -42,7 +42,7 @@ The largest of three consecutive integers is 17. What is the sum of the three in
 
 **Q3** · `NUM-CON-007` · Numeric Entry · 55s
 
-What is the sum of all integers from -6 to 10, inclusive? Enter your answer as a number.
+What is the sum of all integers from -6 to 10, inclusive?
 
 *Numeric entry — write the number.*
 
@@ -65,7 +65,7 @@ n is a positive integer.
 
 ---
 
-### Level 2 · Medium — 8 questions · ~10 min
+### Level 2 · Medium — 10 questions · ~13 min
 
 *two or three steps, one planted trap each*
 
@@ -91,7 +91,7 @@ The product of two consecutive positive integers is 156. What is their sum?
 
 **Q8** · `NUM-CON-018` · Select all that apply · 85s
 
-Which of the following MUST be true for any set of five consecutive integers? Select all that apply.
+Which of the following must be true for any set of five consecutive integers? Select all that apply.
 
 **(A)** Their sum is divisible by 5  
 **(B)** Their sum is divisible by 10  
@@ -99,14 +99,20 @@ Which of the following MUST be true for any set of five consecutive integers? Se
 **(D)** Exactly one of the five integers is divisible by 5  
 **(E)** At least one of the five integers is divisible by 6
 
-**Q9** · `NUM-CON-023` · QC · 85s
+**Q9** · `NUM-CON-019` · Numeric Entry · 80s
+
+The sum of 8 consecutive integers is 92. What is the least of the 8 integers?
+
+*Numeric entry — write the number.*
+
+**Q10** · `NUM-CON-023` · QC · 85s
 
 p and q are consecutive integers with p < q.
 
 > **Quantity A:**  p^2 + q
 > **Quantity B:**  q^2 + p
 
-**Q10** · `NUM-CON-026` · MCQ · 75s
+**Q11** · `NUM-CON-026` · MCQ · 75s
 
 The sum of three consecutive odd integers is S. If the largest of the three integers is k, which of the following expresses S in terms of k?
 
@@ -116,13 +122,13 @@ The sum of three consecutive odd integers is S. If the largest of the three inte
 **(D)** 3k + 3  
 **(E)** 3k + 6
 
-**Q11** · `NUM-CON-028` · Numeric Entry · 70s
+**Q12** · `NUM-CON-028` · Numeric Entry · 70s
 
-The sum of five consecutive integers is 0. What is the product of these five integers? Enter your answer as a number.
+The sum of five consecutive integers is 0. What is the product of these five integers?
 
 *Numeric entry — write the number.*
 
-**Q12** · `NUM-CON-031` · MCQ · 85s
+**Q13** · `NUM-CON-031` · MCQ · 85s
 
 The sum of four consecutive integers is greater than 54 and less than 74. How many such sets of four consecutive integers are there?
 
@@ -132,7 +138,7 @@ The sum of four consecutive integers is greater than 54 and less than 74. How ma
 **(D)** 6  
 **(E)** 19
 
-**Q13** · `NUM-CON-033` · Select all that apply · 75s
+**Q14** · `NUM-CON-033` · Select all that apply · 75s
 
 Which of the following can be the sum of two consecutive odd integers? Select all that apply.
 
@@ -142,27 +148,25 @@ Which of the following can be the sum of two consecutive odd integers? Select al
 **(D)** 36  
 **(E)** 40
 
+**Q15** · `NUM-CON-044` · MCQ · 80s
+
+The median of a list of 10 consecutive integers is 12.5. What is the greatest integer in the list?
+
+**(A)** 16  
+**(B)** 17  
+**(C)** 18  
+**(D)** 22  
+**(E)** 23
+
 ---
 
-### Level 3 · Hard — 12 questions · ~21 min
+### Level 3 · Hard — 14 questions · ~24 min
 
 *where 162+ is won or lost*
 
-**Q14** · `NUM-CON-019` · Numeric Entry · 100s
+**Q16** · `NUM-CON-032` · Numeric Entry · 95s
 
-The sum of the consecutive integers from 50 to n, inclusive, is 3825, where n > 50. What is n? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q15** · `NUM-CON-024` · Numeric Entry · 110s
-
-What is the sum of all the integers from 100 to 600, inclusive, that are a multiple of 11, a multiple of 9, or both? Enter your answer as a number.
-
-*Numeric entry — write the number.*
-
-**Q16** · `NUM-CON-032` · Numeric Entry · 100s
-
-The sum of all the integers from -25 to n, inclusive, is 53, where n > 0. What is n? Enter your answer as a number.
+The product of three consecutive positive integers is equal to 8 times their sum. What is the middle integer?
 
 *Numeric entry — write the number.*
 
@@ -176,12 +180,12 @@ The product of four consecutive positive integers is 116,280. What is the sum of
 **(D)** 78  
 **(E)** 80
 
-**Q18** · `NUM-CON-035` · QC · 105s
+**Q18** · `NUM-CON-035` · QC · 90s
 
-n is an integer greater than 1.
+a, b, c and d are consecutive integers, and a < b < c < d.
 
-> **Quantity A:**  The remainder when the product n(n+1)(n+2)...(2n-1) of n consecutive integers is divided by (n+1)!
-> **Quantity B:**  0
+> **Quantity A:**  ad
+> **Quantity B:**  bc
 
 **Q19** · `NUM-CON-037` · MCQ · 105s
 
@@ -195,7 +199,7 @@ The sum of the first n positive integers is 120. What is the sum of the first 2n
 
 **Q20** · `NUM-CON-038` · Select all that apply · 100s
 
-Which of the following statements are ALWAYS true for any set of 5 consecutive integers? Select all that apply.
+Which of the following statements are always true for any set of 5 consecutive integers? Select all that apply.
 
 **(A)** The sum is divisible by 5  
 **(B)** The product is divisible by 5  
@@ -222,60 +226,40 @@ m and n are integers with 0 < m < n. The sum of all the integers from m to n, in
 
 **Q23** · `NUM-CON-043` · Numeric Entry · 105s
 
-The sum of all the odd integers from 1 to k, inclusive, is 3025, where k is a positive odd integer. What is the sum of all the odd integers from k + 2 to 199, inclusive? Enter your answer as a number.
+The sum of all the odd integers from 1 to k, inclusive, is 3025, where k is a positive odd integer. What is the sum of all the odd integers from k + 2 to 199, inclusive?
 
 *Numeric entry — write the number.*
 
-**Q24** · `NUM-CON-044` · MCQ · 115s
+**Q24** · `NUM-CON-045` · Select all that apply · 100s
 
-Set S contains all the integers from 1 to 100, inclusive. Set T contains all the integers from d + 1 to d + 100, inclusive, where d is a nonzero integer. The sum of the members of T is k times the sum of the members of S, where k is an integer. What is the greatest possible negative value of d?
+The sum of the integers in a list of consecutive integers is 0. Which of the following could be the number of integers in the list?
 
-**(A)** -202  
-**(B)** -101  
-**(C)** -100  
-**(D)** -1  
-**(E)** 101
-
-**Q25** · `NUM-CON-045` · Select all that apply · 110s
-
-Which of the following integers can be written as the sum of two or more consecutive positive integers? Select all that apply.
-
-**(A)** 15  
-**(B)** 16  
-**(C)** 21  
-**(D)** 30  
-**(E)** 32
-
----
-
-### Level 4 · Extreme — 5 questions · ~11 min
-
-*165+ — expect to need the insight, not the grind*
-
-**Q26** · `NUM-CON-046` · MCQ · 125s
-
-How many different sets of 3 or more consecutive positive integers have a sum of 360?
+Indicate all such numbers.
 
 **(A)** 3  
 **(B)** 4  
-**(C)** 5  
-**(D)** 6  
-**(E)** 12
+**(C)** 7  
+**(D)** 10  
+**(E)** 21
 
-**Q27** · `NUM-CON-047` · QC · 130s
+**Q25** · `NUM-CON-046` · MCQ · 100s
 
-n is an integer greater than 1. S is the sum of the integers from 1 to n^2, inclusive. T is the sum of the integers from n+1 to n^2, inclusive.
+The sum of n consecutive integers is 30. If the least of the integers is -8, what is the value of n?
 
-> **Quantity A:**  S/T
-> **Quantity B:**  (n^2 + 1)/(n^2 - n)
+**(A)** 3  
+**(B)** 12  
+**(C)** 17  
+**(D)** 20  
+**(E)** 23
 
-**Q28** · `NUM-CON-048` · Numeric Entry · 130s
+**Q26** · `NUM-CON-047` · QC · 95s
 
-A set of n consecutive integers, where n > 1, has a sum of 2016. What is the greatest possible value of n? Enter your answer as a number.
+x, y and z are consecutive integers, and x < y < z.
 
-*Numeric entry — write the number.*
+> **Quantity A:**  xyz
+> **Quantity B:**  y^3
 
-**Q29** · `NUM-CON-049` · Select all that apply · 125s
+**Q27** · `NUM-CON-049` · Select all that apply · 125s
 
 A set of consecutive integers has a mean of 15 and a sum greater than 250 and less than 350. Which of the following could be the number of integers in the set? Select all that apply.
 
@@ -285,12 +269,30 @@ A set of consecutive integers has a mean of 15 and a sum greater than 250 and le
 **(D)** 22  
 **(E)** 23
 
-**Q30** · `NUM-CON-050` · QC · 125s
+**Q28** · `NUM-CON-050` · QC · 110s
 
 k is an integer greater than 1. P is the product of all the integers from 1 to 2k, inclusive. Q is the product of all the even integers from 2 to 2k, inclusive.
 
 > **Quantity A:**  P/Q
 > **Quantity B:**  k!
+
+**Q29** · `SEC-AO-034` · Numeric Entry · 95s
+
+k is an integer greater than 1. What is the remainder when k^3 - k is divided by 6?
+
+*Numeric entry — write the number.*
+
+---
+
+### Level 4 · Extreme — 1 questions · ~2 min
+
+*the top of a real hard section — expect to need the insight, not the grind*
+
+**Q30** · `NUM-CON-048` · Numeric Entry · 130s
+
+A set of n consecutive integers, where n > 1, has a sum of 2016. What is the greatest possible value of n?
+
+*Numeric entry — write the number.*
 
 ---
 
@@ -306,28 +308,28 @@ k is an integer greater than 1. P is the product of all the integers from 1 to 2
 | 6 | `NUM-CON-014` | medium | MCQ | **E** |
 | 7 | `NUM-CON-017` | medium | MCQ | **A** |
 | 8 | `NUM-CON-018` | medium | Select all that apply | **A, C, D** |
-| 9 | `NUM-CON-023` | medium | QC | **D** |
-| 10 | `NUM-CON-026` | medium | MCQ | **A** |
-| 11 | `NUM-CON-028` | medium | Numeric Entry | **0** |
-| 12 | `NUM-CON-031` | medium | MCQ | **B** |
-| 13 | `NUM-CON-033` | medium | Select all that apply | **B, D, E** |
-| 14 | `NUM-CON-019` | hard | Numeric Entry | **100** |
-| 15 | `NUM-CON-024` | hard | Numeric Entry | **33165** |
-| 16 | `NUM-CON-032` | hard | Numeric Entry | **27** |
+| 9 | `NUM-CON-019` | medium | Numeric Entry | **8** |
+| 10 | `NUM-CON-023` | medium | QC | **D** |
+| 11 | `NUM-CON-026` | medium | MCQ | **A** |
+| 12 | `NUM-CON-028` | medium | Numeric Entry | **0** |
+| 13 | `NUM-CON-031` | medium | MCQ | **B** |
+| 14 | `NUM-CON-033` | medium | Select all that apply | **B, D, E** |
+| 15 | `NUM-CON-044` | medium | MCQ | **B** |
+| 16 | `NUM-CON-032` | hard | Numeric Entry | **5** |
 | 17 | `NUM-CON-034` | hard | MCQ | **C** |
-| 18 | `NUM-CON-035` | hard | QC | **D** |
+| 18 | `NUM-CON-035` | hard | QC | **B** |
 | 19 | `NUM-CON-037` | hard | MCQ | **C** |
 | 20 | `NUM-CON-038` | hard | Select all that apply | **A, B, C, E** |
 | 21 | `NUM-CON-039` | hard | QC | **A** |
 | 22 | `NUM-CON-041` | hard | MCQ | **C** |
 | 23 | `NUM-CON-043` | hard | Numeric Entry | **6975** |
-| 24 | `NUM-CON-044` | hard | MCQ | **B** |
-| 25 | `NUM-CON-045` | hard | Select all that apply | **A, C, D** |
-| 26 | `NUM-CON-046` | extreme hard | MCQ | **C** |
-| 27 | `NUM-CON-047` | extreme hard | QC | **B** |
-| 28 | `NUM-CON-048` | extreme hard | Numeric Entry | **4032** |
-| 29 | `NUM-CON-049` | extreme hard | Select all that apply | **B, E** |
-| 30 | `NUM-CON-050` | extreme hard | QC | **A** |
+| 24 | `NUM-CON-045` | hard | Select all that apply | **A, C, E** |
+| 25 | `NUM-CON-046` | hard | MCQ | **D** |
+| 26 | `NUM-CON-047` | hard | QC | **D** |
+| 27 | `NUM-CON-049` | hard | Select all that apply | **B, E** |
+| 28 | `NUM-CON-050` | hard | QC | **A** |
+| 29 | `SEC-AO-034` | hard | Numeric Entry | **0** |
+| 30 | `NUM-CON-048` | extreme hard | Numeric Entry | **4032** |
 
 ---
 
@@ -345,8 +347,8 @@ Answer: D, 21.
 
 ### Q2 · `NUM-CON-002` — Answer: B
 
-Step 1 — work back from the term you were given. If the LARGEST is 17, the three integers are 15, 16, 17.
-Step 2 — for a run with an odd number of terms the sum is count x middle, so the sum is 3 x 16 = 48. Note the middle is 16, not 17: the given term sits at the top of the run, not at its centre.
+Step 1 — work back from the term you were given. If the largest is 17, the three integers are 15, 16, 17.
+Step 2 — for a run with an odd number of terms the sum is count x middle, so the sum is 3 x 16 = 48. Note the middle is 16, not 17: the given term sits at the top of the run, not at its center.
 Check by adding directly: 15 + 16 + 17 = 48. Correct.
 Answer: B, 48.
 
@@ -369,7 +371,7 @@ Step 3 — the largest is 17 + 2 + 2 = 21.
 Check: 13 + 15 + 17 + 19 + 21 = 85. Correct.
 Answer: C, 21.
 
-**Trap.** Answering 17, the middle integer, is choice A. Choice B, 19, comes from spacing the integers 1 apart (15, 16, 17, 18, 19) instead of 2, the single most common error in this topic. Choice D, 23, comes from stepping up three times from the middle instead of twice, 17 + 6, as if the middle sat second from the top. Choice E, 25, comes from treating 17 as the SMALLEST of the five and adding four steps of 2.
+**Trap.** Answering 17, the middle integer, is choice A. Choice B, 19, comes from spacing the integers 1 apart (15, 16, 17, 18, 19) instead of 2, the single most common error in this topic. Choice D, 23, comes from stepping up three times from the middle instead of twice, 17 + 6, as if the middle sat second from the top. Choice E, 25, comes from treating 17 as the smallest of the five and adding four steps of 2.
 
 ### Q5 · `NUM-CON-009` — Answer: C
 
@@ -398,22 +400,32 @@ Step 3 — their sum is 12 + 13 = 25.
 Check: the two consecutive integers around 12.5 are 12 and 13, their product is 156 and their sum is 25. Correct.
 Answer: A, 25.
 
-**Trap.** Rounding sqrt(156) = 12.49 up and taking the pair 13 and 14 gives 27 (choice C), even though 13 x 14 = 182. Doubling one member instead of adding both gives 26 (choice B, 2 x 13). Choice D, 32, comes from grabbing the factor pair 6 x 26, which is a factorisation of 156 but not a consecutive one. Choice E, 79, comes from halving the product as though it were a sum, 156/2 = 78, then adding 1 to get the 'next' integer and reporting that larger member, 79, instead of a sum.
+**Trap.** Rounding sqrt(156) = 12.49 up and taking the pair 13 and 14 gives 27 (choice C), even though 13 x 14 = 182. Doubling one member instead of adding both gives 26 (choice B, 2 x 13). Choice D, 32, comes from grabbing the factor pair 6 x 26, which is a factorization of 156 but not a consecutive one. Choice E, 79, comes from halving the product as though it were a sum, 156/2 = 78, then adding 1 to get the 'next' integer and reporting that larger member, 79, instead of a sum.
 
 ### Q8 · `NUM-CON-018` — Answer: A, C, D
 
 Write the five as n, n+1, n+2, n+3, n+4. Their sum is 5n + 10 = 5(n + 2), i.e. 5 times the middle term.
-A - 5(n + 2) is a multiple of 5 for every integer n. This is the odd-count rule: the sum of an odd number of consecutive integers is the count times the middle term. TRUE.
-B - divisibility by 10 would also need the sum to be even, and 5(n + 2) is odd whenever n is odd. Take 1, 2, 3, 4, 5: the sum is 15. FALSE.
-C - the product of k consecutive integers is divisible by k!, and 5! = 120. TRUE. (Test 1 x 2 x 3 x 4 x 5 = 120 and 2 x 3 x 4 x 5 x 6 = 720 = 120 x 6.)
-D - multiples of 5 occur every fifth integer, so a window of exactly five consecutive integers catches exactly one - never zero, never two. TRUE.
-E - a multiple of 6 needs a multiple of 3 that happens to be even. Five consecutive integers must contain a multiple of 3, but not necessarily an even one: 1, 2, 3, 4, 5 contains 3 only. FALSE. (Six consecutive integers would be needed to force a multiple of 6.)
+A - 5(n + 2) is a multiple of 5 for every integer n. This is the odd-count rule: the sum of an odd number of consecutive integers is the count times the middle term. True.
+B - divisibility by 10 would also need the sum to be even, and 5(n + 2) is odd whenever n is odd. Take 1, 2, 3, 4, 5: the sum is 15. False.
+C - the product of k consecutive integers is divisible by k!, and 5! = 120. True. (Test 1 x 2 x 3 x 4 x 5 = 120 and 2 x 3 x 4 x 5 x 6 = 720 = 120 x 6.)
+D - multiples of 5 occur every fifth integer, so a window of exactly five consecutive integers catches exactly one - never zero, never two. True.
+E - a multiple of 6 needs a multiple of 3 that happens to be even. Five consecutive integers must contain a multiple of 3, but not necessarily an even one: 1, 2, 3, 4, 5 contains 3 only. False. (Six consecutive integers would be needed to force a multiple of 6.)
 Check B and E on the same run 1, 2, 3, 4, 5: sum 15 is not a multiple of 10, and no term is a multiple of 6.
 Answer: A, C, D.
 
 **Trap.** Selecting B by assuming that a sum divisible by the count is automatically divisible by twice the count; the sum is 5 x (middle term), and that middle term is odd half the time, so 1 + 2 + 3 + 4 + 5 = 15 kills it. Selecting E by stretching the guarantee 'among any 3 consecutive integers one is divisible by 3' into a guarantee for 6 - the window must be six long to force a multiple of 6, and 1, 2, 3, 4, 5 is the counterexample. The reverse slip is rejecting D on the fear that a run like 5, 6, 7, 8, 9, 10 holds two multiples of 5; that run is six integers long, not five.
 
-### Q9 · `NUM-CON-023` — Answer: D
+### Q9 · `NUM-CON-019` — Answer: 8
+
+The mean of the 8 integers is 92/8 = 11.5.
+For an even number of consecutive integers, the mean lies midway between the two middle integers, so the 4th and 5th integers are 11 and 12.
+The integers are 8, 9, 10, 11, 12, 13, 14, 15.
+The least is 8.
+Check: (8 + 15) * 8 / 2 = 92.
+
+**Trap.** Rounding the mean to 12 and treating 12 as the middle of the list, which gives a least value of 9 for a list of 7 or a wrong start for a list of 8. With 8 terms there is no single middle term; 11.5 sits between the 4th and 5th terms, 11 and 12.
+
+### Q10 · `NUM-CON-023` — Answer: D
 
 Step 1 — consecutive with p < q means q = p + 1.
 Step 2 — Quantity A = p^2 + p + 1. Quantity B = (p+1)^2 + p = p^2 + 3p + 1.
@@ -425,7 +437,7 @@ Answer: D.
 
 **Trap.** Testing only small positive values such as p = 1, 2, 3 - every one of them makes Quantity B larger - and settling on B. Nothing in the stem says the integers are positive, and p = 0 gives equality while any negative p flips the comparison. Squaring a negative is exactly where this question is won.
 
-### Q10 · `NUM-CON-026` — Answer: A
+### Q11 · `NUM-CON-026` — Answer: A
 
 Step 1 — consecutive odd integers step by 2, so counting DOWN from the largest the three are k-4, k-2, k.
 Step 2 — add them: (k-4) + (k-2) + k = 3k - 6.
@@ -434,7 +446,7 @@ Answer: A, 3k - 6.
 
 **Trap.** Using a spacing of 1 and writing the three as k-2, k-1, k gives 3k - 3, choice B - the standard consecutive-odd spacing error. Choice C, 3k, comes from treating k as the MIDDLE integer, which is true for the sum but not for the largest. Choices D and E come from stepping upward from k instead of downward, as if k were the smallest.
 
-### Q11 · `NUM-CON-028` — Answer: 0
+### Q12 · `NUM-CON-028` — Answer: 0
 
 Step 1 — the count is odd, so sum = 5 x middle. The middle integer is 0/5 = 0.
 Step 2 — the five integers are therefore -2, -1, 0, 1, 2.
@@ -444,7 +456,7 @@ Answer: 0.
 
 **Trap.** Assuming consecutive integers must be positive, concluding that no such set exists, and leaving the question blank. Negative integers and 0 are integers, and 0 is what makes the product collapse. The other slip is computing the product of the magnitudes, 2 x 1 x 1 x 2 = 4, after dropping the 0 as if it were nothing.
 
-### Q12 · `NUM-CON-031` — Answer: B
+### Q13 · `NUM-CON-031` — Answer: B
 
 Step 1 — let the smallest be n, so the four are n, n+1, n+2, n+3 and the sum is 4n + 6.
 Step 2 — the condition is 54 < 4n + 6 < 74, so 48 < 4n < 68, so 12 < n < 17.
@@ -454,51 +466,38 @@ Answer: B, 4.
 
 **Trap.** Treating the bounds as inclusive admits n = 12 (sum 54) and n = 17 (sum 74) and gives 6 sets, choice D; admitting just one of them gives 5, choice C. Choice A, 3, is the off-by-one 16 - 13 with no +1. Choice E, 19, counts the integer VALUES strictly between 54 and 74 rather than the sets, and most of those are not even achievable sums.
 
-### Q13 · `NUM-CON-033` — Answer: B, D, E
+### Q14 · `NUM-CON-033` — Answer: B, D, E
 
 Two consecutive odd integers are 2m+1 and 2m+3 for some integer m. Their sum is 4m + 4 = 4(m+1), so the sum must be a multiple of 4 - being even is not enough.
-A - 18 = 4 x 4.5, not a multiple of 4. FALSE.
-B - 24 = 4 x 6, so m + 1 = 6 and the pair is 11 and 13. TRUE.
-C - 30 = 4 x 7.5, not a multiple of 4. FALSE.
-D - 36 = 4 x 9, pair 17 and 19. TRUE.
-E - 40 = 4 x 10, pair 19 and 21. TRUE.
+A - 18 = 4 x 4.5, not a multiple of 4. False.
+B - 24 = 4 x 6, so m + 1 = 6 and the pair is 11 and 13. True.
+C - 30 = 4 x 7.5, not a multiple of 4. False.
+D - 36 = 4 x 9, pair 17 and 19. True.
+E - 40 = 4 x 10, pair 19 and 21. True.
 Check: 11 + 13 = 24, 17 + 19 = 36, 19 + 21 = 40. Correct.
 Answer: B, D, E.
 
 **Trap.** Selecting all five because the sum of two odd numbers is always even, so every even option looks reachable. The condition is stronger: two odds that are CONSECUTIVE odds differ by exactly 2, which forces their sum to 4(m+1). 18 and 30 are even but leave remainder 2 on division by 4, so neither works.
 
-### Q14 · `NUM-CON-019` — Answer: 100
+### Q15 · `NUM-CON-044` — Answer: B
 
-Step 1 — use sum = count x average with count = n - 49 and average = (50 + n)/2.
-Step 2 — (n - 49)(n + 50)/2 = 3825, so (n - 49)(n + 50) = 7650.
-Step 3 — expand: n^2 + n - 2450 = 7650, so n^2 + n - 10100 = 0.
-Step 4 — the discriminant is 1 + 40400 = 40401, and sqrt(40401) = 201. So n = (-1 + 201)/2 = 100.
-Check: from 50 to 100 there are 100 - 50 + 1 = 51 integers with average (50 + 100)/2 = 75, and 51 x 75 = 3825. Correct.
-Answer: 100.
+With 10 values, the median is the mean of the 5th and 6th values.
+The 5th and 6th are consecutive and average 12.5, so they are 12 and 13.
+The 10th value is 4 more than the 6th: 13 + 4 = 17.
+The list is 8, 9, ..., 17.
+Answer: B.
 
-**Trap.** Using n - 50 as the count instead of n - 50 + 1 gives (n - 50)(n + 50) = 7650, so n^2 = 10150 and n is about 100.7, which students round to 101. The other route is subtracting the wrong head: sum(1 to n) - sum(1 to 50) = 3825 gives n(n+1) = 10200 and no integer solution, because the head to remove is sum(1 to 49) = 1225, not 1275 - the integer 50 belongs to the run.
+**Trap.** Adding 5 to 13 to get 18 (choice C), or adding 10 to 12.5 and rounding to 22 or 23. From the 6th value to the 10th is 4 steps.
 
-### Q15 · `NUM-CON-024` — Answer: 33165
+### Q16 · `NUM-CON-032` — Answer: 5
 
-Step 1 — this is a union, so use sum(11s) + sum(9s) - sum(both), where 'both' means the multiples of 11 x 9 = 99. Each of the three is an evenly spaced run, so each sum is count x average with average = (first + last)/2.
-Step 2 — multiples of 11 from 100 to 600: the first is 110 = 11 x 10 and the last is 594 = 11 x 54, so count = 54 - 10 + 1 = 45, average = (110 + 594)/2 = 352, sum = 45 x 352 = 15840.
-Step 3 — multiples of 9: the first is 108 = 9 x 12 and the last is 594 = 9 x 66, so count = 66 - 12 + 1 = 55, average = (108 + 594)/2 = 351, sum = 55 x 351 = 19305.
-Step 4 — multiples of 99: 198, 297, 396, 495, 594, so count = 5, average = (198 + 594)/2 = 396, sum = 5 x 396 = 1980. These five were counted once in Step 2 and once in Step 3, so one copy must come out.
-Step 5 — sum = 15840 + 19305 - 1980 = 33165.
-Check by factoring: 11 x (10 + ... + 54) = 11 x 45 x 32 = 15840, and 9 x (12 + ... + 66) = 9 x 55 x 39 = 19305. Correct.
-Answer: 33165.
+Let the integers be n - 1, n and n + 1.
+Their sum is 3n and their product is (n - 1)(n)(n + 1) = n(n^2 - 1).
+n(n^2 - 1) = 8 * 3n = 24n.
+Since n is positive, divide by n: n^2 - 1 = 24, so n^2 = 25 and n = 5.
+Check: 4 * 5 * 6 = 120 and 8 * (4 + 5 + 6) = 120.
 
-**Trap.** Forgetting that 198, 297, 396, 495 and 594 are multiples of both and adding the two runs straight, which double-counts them and gives 15840 + 19305 = 35145. The opposite slip is subtracting the overlap twice, leaving 31185. Endpoint errors bite too: 99 and 693 are multiples of 11 but lie outside 100 to 600, and the inclusive count is (last index) - (first index) + 1, not a bare division.
-
-### Q16 · `NUM-CON-032` — Answer: 27
-
-Step 1 — exploit the symmetry. Every integer from -25 to 25 cancels against its opposite, and 0 adds nothing, so the integers from -25 to 25 sum to 0.
-Step 2 — whatever is left past 25 must supply the whole 53: 26 + 27 = 53, and one more term would already overshoot.
-Step 3 — so the run ends at n = 27.
-Check with sum = count x average: from -25 to 27 there are 27 - (-25) + 1 = 53 integers with average (-25 + 27)/2 = 1, and 53 x 1 = 53. Correct.
-Answer: 27.
-
-**Trap.** Treating the run as if it started at 1 and solving n(n+1)/2 = 53 - it has no integer solution, and students force n = 10. The other error is the count: from -25 to 27 there are 53 integers, not 52, because 0 is an integer in the run and must be counted even though it adds nothing to the sum.
+**Trap.** Writing the integers as n, n + 1, n + 2 and entering the value of n, which is 4, the least integer. The question asks for the middle integer.
 
 ### Q17 · `NUM-CON-034` — Answer: C
 
@@ -509,19 +508,18 @@ Step 4 — sum = 4n + 6 = 4 x 17 + 6 = 74. (Equivalently, count x average = 4 x 
 Check the product: 17 x 20 = 340 and 18 x 19 = 342, and 340 x 342 = 116280. Correct.
 Answer: C, 74.
 
-**Trap.** Estimating the fourth root of 116280 as about 18.4 and settling on a run without multiplying it out. The neighbouring runs give the flanking choices: 16 x 17 x 18 x 19 = 93024 sums to 70 (choice A) and 18 x 19 x 20 x 21 = 143640 sums to 78 (choice D). Choice B, 72, treats the estimate 18 as typical of all four and computes 4 x 18, and choice E, 80, does the same with the largest term, 4 x 20; both ignore that the sum of four consecutive integers is 4 x (average) where the average ends in .5.
+**Trap.** Estimating the fourth root of 116280 as about 18.4 and settling on a run without multiplying it out. The neighboring runs give the flanking choices: 16 x 17 x 18 x 19 = 93024 sums to 70 (choice A) and 18 x 19 x 20 x 21 = 143640 sums to 78 (choice D). Choice B, 72, treats the estimate 18 as typical of all four and computes 4 x 18, and choice E, 80, does the same with the largest term, 4 x 20; both ignore that the sum of four consecutive integers is 4 x (average) where the average ends in .5.
 
-### Q18 · `NUM-CON-035` — Answer: D
+### Q18 · `NUM-CON-035` — Answer: B
 
-Step 1 — count the factors in Quantity A. The run goes from n up to 2n-1, so it holds (2n-1) - n + 1 = n consecutive integers.
-Step 2 — the k! rule guarantees that a product of k consecutive integers is divisible by k!, so this product is certainly divisible by n!. The divisor here is (n+1)! = n! x (n+1), one factor of (n+1) more than the rule delivers. That extra factor is NOT guaranteed, so the remainder is 0 only sometimes.
-Step 3 — write the quotient: n(n+1)...(2n-1) / n! = (2n-1)! / [(n-1)! n!], which is the integer C(2n-1, n). The remainder is 0 exactly when (n+1) divides C(2n-1, n).
-Step 4 — test n = 2: the product is 2 x 3 = 6 and (n+1)! = 3! = 6, so 6 divides exactly and the remainder is 0. Quantity A = Quantity B.
-Step 5 — test n = 3: the product is 3 x 4 x 5 = 60 and (n+1)! = 4! = 24. 60 = 24 x 2 + 12, so the remainder is 12. Quantity A > Quantity B. (Here C(5,3) = 10, which is not a multiple of 4.)
-Step 6 — two different outcomes occur among the allowed values of n, so the relationship is not determined. It is not a lone edge case either: n = 7 gives remainder 20160, while n = 4, 5, 6 and 8 all give 0.
-Answer: D.
+Write b = a + 1, c = a + 2, d = a + 3.
+ad = a(a + 3) = a^2 + 3a.
+bc = (a + 1)(a + 2) = a^2 + 3a + 2.
+bc is exactly 2 more than ad, whatever the value of a.
+Check with -2, -1, 0, 1: ad = -2 and bc = 0.
+Answer: B.
 
-**Trap.** Choosing C by reaching for the k! rule without checking which factorial is in the denominator: the product holds n consecutive integers, so n! is guaranteed, but (n+1)! demands one more factor of n + 1 that the run n to 2n-1 supplies only for some n. Choosing A comes from the opposite over-correction - assuming the extra factor is never there, when n = 2, 4, 5, 6 and 8 all leave remainder 0. A remainder is never negative, so B is impossible against a column of 0 and should be eliminated on sight.
+**Trap.** Choosing D because the integers might be negative or include 0. The difference bc - ad is always 2, so the sign of the integers does not matter.
 
 ### Q19 · `NUM-CON-037` — Answer: C
 
@@ -535,19 +533,19 @@ Answer: C, 465.
 ### Q20 · `NUM-CON-038` — Answer: A, B, C, E
 
 Write the five as n-2, n-1, n, n+1, n+2.
-A - the sum collapses to 5n, a multiple of 5. The sum of an odd count of consecutive integers is always divisible by that count. TRUE.
-B - among any 5 consecutive integers exactly one is a multiple of 5, so the product carries a factor of 5. TRUE.
-C - the product of k consecutive integers is divisible by k!, and 5! = 120. TRUE. (Test 3 x 4 x 5 x 6 x 7 = 2520 = 120 x 21.)
-D - test 1, 2, 3, 4, 5: squares sum to 1 + 4 + 9 + 16 + 25 = 55, odd. Now test 2, 3, 4, 5, 6: 4 + 9 + 16 + 25 + 36 = 90, even. Not always. FALSE.
-E - the set is evenly spaced, so the middle term is both the median and the mean (5n/5 = n). TRUE.
+A - the sum collapses to 5n, a multiple of 5. The sum of an odd count of consecutive integers is always divisible by that count. True.
+B - among any 5 consecutive integers exactly one is a multiple of 5, so the product carries a factor of 5. True.
+C - the product of k consecutive integers is divisible by k!, and 5! = 120. True. (Test 3 x 4 x 5 x 6 x 7 = 2520 = 120 x 21.)
+D - test 1, 2, 3, 4, 5: squares sum to 1 + 4 + 9 + 16 + 25 = 55, odd. Now test 2, 3, 4, 5, 6: 4 + 9 + 16 + 25 + 36 = 90, even. Not always. False.
+E - the set is evenly spaced, so the middle term is both the median and the mean (5n/5 = n). True.
 Check A, B and E on 8, 9, 10, 11, 12: the sum is 50 = 5 x 10, one term (10) is a multiple of 5, and the median 10 equals the mean 50/5 = 10. Correct.
 Answer: A, B, C, E.
 
-**Trap.** Selecting D after testing a single run such as 1 through 5 and getting the odd total 55. A run of 5 consecutive integers contains either three odds and two evens or two odds and three evens, and only the first case gives an odd sum of squares - shifting the run by one flips it to 90. One example is never enough for a MUST-be-true statement.
+**Trap.** Selecting D after testing a single run such as 1 through 5 and getting the odd total 55. A run of 5 consecutive integers contains either three odds and two evens or two odds and three evens, and only the first case gives an odd sum of squares - shifting the run by one flips it to 90. One example is never enough for a must-be-true statement.
 
 ### Q21 · `NUM-CON-039` — Answer: A
 
-Step 1 — centre on the middle integer: a = b-1 and c = b+1.
+Step 1 — center on the middle integer: a = b-1 and c = b+1.
 Step 2 — Quantity A = (b-1)^2 + b^2 + (b+1)^2 = (b^2 - 2b + 1) + b^2 + (b^2 + 2b + 1) = 3b^2 + 2.
 Step 3 — a + b + c = 3b, so Quantity B = (3b)^2/3 = 9b^2/3 = 3b^2.
 Step 4 — Quantity A - Quantity B = 2, a constant, for every integer b. Quantity A is always greater, and by exactly 2.
@@ -576,84 +574,58 @@ Step 4 — if you want k: 3025 = 55^2, so the block is the first 55 odd integers
 Check directly: from 111 to 199 the odd integers number (199 - 111)/2 + 1 = 45, their average is (111 + 199)/2 = 155, and 45 x 155 = 6975. Correct.
 Answer: 6975.
 
-**Trap.** Taking sqrt(3025) = 55 to be k itself rather than the COUNT of odd integers. That student starts the remaining run at 57 and gets 10000 - 28^2 = 10000 - 784 = 9216. The other failure is reaching for the wrong identity: 1 + 2 + ... + 199 = 199 x 200/2 = 19900 is the sum of ALL the integers to 199, not the odd ones, and it yields 19900 - 3025 = 16875.
+**Trap.** Taking sqrt(3025) = 55 to be k itself rather than the COUNT of odd integers. That student starts the remaining run at 57 and gets 10000 - 28^2 = 10000 - 784 = 9216. The other failure is reaching for the wrong identity: 1 + 2 + ... + 199 = 199 x 200/2 = 19900 is the sum of all the integers to 199, not the odd ones, and it yields 19900 - 3025 = 16875.
 
-### Q24 · `NUM-CON-044` — Answer: B
+### Q24 · `NUM-CON-045` — Answer: A, C, E
 
-Step 1 — sum of S = 100 x 101/2 = 5050, using sum 1 to n = n(n+1)/2.
-Step 2 — T is S shifted by d: d+1 = 1 + d, d+2 = 2 + d, and so on to d+100 = 100 + d. Each of the 100 terms is d larger, so sum of T = 5050 + 100d. Nothing here forces d to be positive: a negative d slides the run below zero and the formula still holds.
-Step 3 — the condition is 5050 + 100d = 5050k, so 100d = 5050(k - 1) and d = 50.5(k - 1).
-Step 4 — here is the second step the problem turns on: d must be an integer, and 50.5(k - 1) is an integer only when k - 1 is even, that is only when k is ODD. Writing k = 2m + 1 gives d = 50.5 x 2m = 101m.
-Step 5 — so the admissible values of d are exactly the nonzero multiples of 101 (m = 0 is barred because d is nonzero, and it would just mean T = S). Every such m is legal, including negative m.
-Step 6 — the negative ones are -101, -202, -303, ..., so the greatest of them is -101, reached at m = -1, that is k = -1.
-Check: d = -101 makes T the integers from -100 to -1, whose sum is -5050 = -1 x 5050, and -1 is an integer, so k = -1 works. Correct.
-Answer: B, -101.
+The mean of a list of consecutive integers equals its median. A sum of 0 means the mean is 0, so the median is 0.
+If the list has an odd number of integers, the median is the middle integer, and it can be 0: for example -1, 0, 1 or -3, ..., 3 or -10, ..., 10.
+If the list has an even number of integers, the median is midway between two consecutive integers, such as 0.5, and can never be 0.
+So the number of integers must be odd.
+A: 3. Possible.  B: 4. Not possible.  C: 7. Possible.  D: 10. Not possible.  E: 21. Possible.
+Answer: A, C, E.
 
-**Trap.** Choice A, -202, comes from dividing 5050 by 100 as though it were 101, dropping the factor of 2, and writing d = 101(k - 1); at k = -1 that gives -202. Choice C, -100, comes from computing the sum of S as 100^2/2 = 5000 instead of 100 x 101/2 = 5050, which makes d = 50(k - 1) and -100 at k = -1. Choice D, -1, answers 'the greatest negative integer' outright, ignoring that d is pinned to the multiples of 101. Choice E, 101, is the answer to the easier question the eye expects: it is the least POSITIVE d, from k = 3, and it comes from never noticing that k may be negative. The two live constraints are that k must be odd for d to be an integer at all, and that k is not required to be positive.
+**Trap.** Selecting 4 or 10 on the idea that the negatives can pair off with the positives. Pairing leaves no room for 0 itself, which lies between -1 and 1 and must be in the list, so the count is always odd.
 
-### Q25 · `NUM-CON-045` — Answer: A, C, D
+### Q25 · `NUM-CON-046` — Answer: D
 
-A run of k consecutive positive integers starting at a sums to k x a + k(k-1)/2, so 2N = k(2a + k - 1). The two factors k and 2a + k - 1 always have opposite parity, so 2N must split into an even part and an odd part greater than 1. That is possible exactly when N is NOT a power of 2.
-A - 15 = 7 + 8, and also 4 + 5 + 6 and 1 + 2 + 3 + 4 + 5. TRUE.
-B - 16 = 2^4, a power of 2, so its only odd divisor is 1 and no run works. By hand: 7 + 8 = 15 and 8 + 9 = 17 straddle it, 3 + 4 + 5 = 12 and 4 + 5 + 6 = 15, 1 + 2 + 3 + 4 + 5 = 15 and 2 + 3 + 4 + 5 = 14. Nothing hits 16. FALSE.
-C - 21 = 10 + 11, and also 6 + 7 + 8 and 1 + 2 + ... + 6. TRUE.
-D - 30 = 9 + 10 + 11, and also 6 + 7 + 8 + 9 and 4 + 5 + 6 + 7 + 8. TRUE.
-E - 32 = 2^5, a power of 2. FALSE.
-Check D by the divisor route: 30 has odd divisors 1, 3, 5 and 15, and each odd divisor above 1 supplies one multi-term run - exactly the three runs listed above. Correct.
-Answer: A, C, D.
+The integers from -8 through 8 cancel in pairs (and include 0), so their sum is 0.
+From -8 through 8 there are 8 + 1 + 8 = 17 integers.
+The next integers are 9, 10, 11, and 9 + 10 + 11 = 30.
+So the list runs from -8 through 11, and n = 17 + 3 = 20.
+Check: the sum from -8 to 11 equals 9 + 10 + 11 = 30.
+Answer: D.
 
-**Trap.** Ruling out every even option, on the belief that only odd numbers are sums of consecutive integers. Odd numbers are easy - any odd N is the sum of two consecutive integers - but 30 is even and still works three different ways, so that shortcut loses choice D. The real dividing line is the power of 2: 16 and 32 fail because they have no odd divisor above 1.
+**Trap.** Counting only the three integers 9, 10, 11 that produce the sum (choice A), or counting the 17 integers from -8 through 8 that cancel and stopping there (choice C). The list contains both groups: 17 + 3 = 20 integers.
 
-### Q26 · `NUM-CON-046` — Answer: C
+### Q26 · `NUM-CON-047` — Answer: D
 
-Step 1 — apply the standard representation rule for runs of consecutive positive integers: a run of k terms starting at a sums to k(2a + k - 1)/2, so here k(2a + k - 1) = 720, and because k and 2a + k - 1 always have opposite parity, each ODD divisor of 720 produces exactly one such run.
-Step 2 — 720 = 2^4 x 3^2 x 5, so its odd divisors are the divisors of 45: 1, 3, 5, 9, 15, 45. That is six runs in total.
-Step 3 — one of those six is the trivial single-term 'run' 360 itself. And 360 is even, so it is not a sum of two consecutive integers (which is always odd). That leaves 6 - 1 = 5 runs of 3 or more terms.
-Step 4 — list them to be sure: 119 + 120 + 121; 70 + ... + 74 (5 terms); 36 + ... + 44 (9 terms); 17 + ... + 31 (15 terms); 15 + ... + 30 (16 terms).
-Check the 16-term run: it averages (15 + 30)/2 = 22.5, and 16 x 22.5 = 360. Check the 9-term run: 9 x 40 = 360. Correct.
-Answer: C, 5.
+Write x = y - 1 and z = y + 1.
+xyz = (y - 1)(y)(y + 1) = y(y^2 - 1) = y^3 - y.
+Quantity A minus Quantity B = -y.
+If y is positive (for example 1, 2, 3: 6 against 8), Quantity B is greater.
+If y is negative (for example -3, -2, -1: -6 against -8), Quantity A is greater.
+If y = 0, both are 0.
+Answer: D.
 
-**Trap.** Choice D, 6, counts all six odd divisors of 360, keeping the trivial one-term 'sum' 360 = 360. Choice B, 4, drops a run by testing only odd k and missing the 16-term run, which is the one hard case here - the even-length run whose average is 22.5. Choice A, 3, comes from stopping the search around k = 10. Choice E, 12, is half the 24 divisors of 360, from pairing all divisors instead of using only the odd ones.
+**Trap.** Testing only positive integers, where y^3 always wins, and choosing B. The integers may be negative or include 0, and the comparison reverses when y is negative.
 
-### Q27 · `NUM-CON-047` — Answer: B
-
-Step 1 — S = n^2(n^2 + 1)/2 by the triangular formula.
-Step 2 — T is S with the head 1 through n removed: T = S - n(n+1)/2 = [n^2(n^2 + 1) - n(n + 1)]/2 = n[n^3 + n - n - 1]/2 = n(n^3 - 1)/2 = n(n - 1)(n^2 + n + 1)/2.
-Step 3 — Quantity A = S/T = n^2(n^2 + 1) / [n(n - 1)(n^2 + n + 1)] = n(n^2 + 1) / [(n - 1)(n^2 + n + 1)].
-Step 4 — Quantity B = (n^2 + 1)/[n(n - 1)], since n^2 - n = n(n - 1). Divide A by B: [n(n^2 + 1)/((n-1)(n^2+n+1))] x [n(n-1)/(n^2+1)] = n^2/(n^2 + n + 1).
-Step 5 — n^2 + n + 1 > n^2 for every n > 1, so that ratio is less than 1 and Quantity A is always smaller. Both columns are positive, so the comparison is settled.
-Check with n = 2: S = 1+2+3+4 = 10, T = 3+4 = 7, so A = 10/7 = 1.43; B = 5/2 = 2.5. With n = 3: S = 45, T = 45 - 6 = 39, A = 45/39 = 1.15; B = 10/6 = 1.67.
-Answer: B.
-
-**Trap.** Choosing C because Quantity B looks like a tidied-up version of S/T - it is the value you get if you wrongly take T = n^2(n^2 - n)/2 or cancel the (n^2 + 1) factor out of S before removing the head. Choosing D because n is unspecified also fails: the ratio of the columns is n^2/(n^2 + n + 1), which is below 1 for every allowed n. A third slip is defining T from n instead of n+1, which leaves the integer n in the tail and still does not rescue Quantity A.
-
-### Q28 · `NUM-CON-048` — Answer: 4032
-
-Step 1 — let the run start at a. Then sum = n x a + n(n-1)/2 = 2016, so n(2a + n - 1) = 4032. Note that a may be negative or zero; nothing restricts the integers to be positive.
-Step 2 — to make n huge, make the other factor tiny. The smallest usable value of |2a + n - 1| is 1, which needs n = 4032 and 2a + 4031 = 1, so a = -2015.
-Step 3 — check that run: the integers from -2015 to 2016. Every pair k and -k cancels for k = 1 to 2015, and 0 contributes nothing, so the sum is just 2016.
-Step 4 — its count is 2016 - (-2015) + 1 = 4032, and n cannot exceed 4032: any larger n would force |2a + n - 1| to be less than 1, that is 0, making the product 0 rather than 4032.
-Check: 4032 x (2(-2015) + 4032 - 1) = 4032 x 1 = 4032 = 2 x 2016. Correct.
-Answer: 4032.
-
-**Trap.** Assuming the integers must be positive caps the answer at 63, because 1 + 2 + ... + 63 = 2016 is the longest run of consecutive POSITIVE integers with that sum. The stem says integers, and a run that reaches back below zero cancels itself out almost entirely, leaving only the top term - that is the whole trick. Answering 2016 or 2017 comes from taking the run as -2015 to 2016 but then counting it with 2016 - 2015 or forgetting to count 0.
-
-### Q29 · `NUM-CON-049` — Answer: B, E
+### Q27 · `NUM-CON-049` — Answer: B, E
 
 Two conditions have to hold at once.
 Condition 1 - the sum. Sum = count x mean = 15n, so 250 < 15n < 350 gives 16.67 < n < 23.33, that is n from 17 to 23.
 Condition 2 - the mean. For consecutive integers the mean is (first + last)/2. With n terms, last = first + n - 1, so first + last = 2(first) + n - 1. If n is even, n - 1 is odd and first + last is odd, making the mean a half-integer - it can never equal the integer 15. So n must be ODD.
-A - 16: sum would be 240, below 250, and 16 is even. FALSE.
-B - 17: sum 255, inside the range, and 17 is odd. The set is 7 through 23, mean 15. TRUE.
-C - 18: sum 270 is inside the range, but 18 is even, so the mean would end in .5. FALSE.
-D - 22: sum 330 is inside the range, but 22 is even. FALSE.
-E - 23: sum 345, inside the range, and 23 is odd. The set is 4 through 26, mean 15. TRUE.
+A - 16: sum would be 240, below 250, and 16 is even. False.
+B - 17: sum 255, inside the range, and 17 is odd. The set is 7 through 23, mean 15. True.
+C - 18: sum 270 is inside the range, but 18 is even, so the mean would end in .5. False.
+D - 22: sum 330 is inside the range, but 22 is even. False.
+E - 23: sum 345, inside the range, and 23 is odd. The set is 4 through 26, mean 15. True.
 Check B: 7 + 8 + ... + 23 = 17 x 15 = 255, and 250 < 255 < 350. Check E: 4 + 5 + ... + 26 = 23 x 15 = 345, and 250 < 345 < 350.
 Answer: B, E.
 
 **Trap.** Applying only the sum condition and selecting B, C, D and E because 255, 270, 330 and 345 all land between 250 and 350. An even-sized set of consecutive integers has its mean strictly between its two middle members, so that mean is always a half-integer and can never be 15. That kills 18 and 22.
 
-### Q30 · `NUM-CON-050` — Answer: A
+### Q28 · `NUM-CON-050` — Answer: A
 
 Step 1 — split P into its even and its odd factors: P = (2k)! = [2 x 4 x ... x 2k] x [1 x 3 x ... x (2k-1)] = Q x [1 x 3 x ... x (2k-1)].
 Step 2 — so Quantity A = P/Q = 1 x 3 x 5 x ... x (2k-1), the product of the first k odd integers. It is NOT k!; k! is what you get by factoring a 2 out of each even factor, Q = 2^k x k!.
@@ -663,3 +635,20 @@ Check k = 2: P = 4! = 24, Q = 2 x 4 = 8, P/Q = 3, and 2! = 2, so 3 > 2. Check k 
 Answer: A.
 
 **Trap.** Choosing C comes from mis-splitting P as Q x k!: after the even factors are removed what is left is the product of the ODD integers 1 x 3 x ... x (2k-1), not k!. (The k! is hiding inside Q, which equals 2^k x k!.) Choosing D comes from noticing that k = 1 would make both columns 1 and calling the relationship undetermined - but the stem now excludes k = 1, and for every k >= 2 each odd factor 2i - 1 is at least as large as its counterpart i and strictly larger once i >= 2, so Quantity A always wins.
+
+### Q29 · `SEC-AO-034` — Answer: 0
+
+Factor the expression: k^3 - k = k(k^2 - 1) = (k - 1)k(k + 1). That is a product of three consecutive integers. Among any three consecutive integers at least one is even, so the product is divisible by 2, and exactly one is a multiple of 3, so the product is divisible by 3. Since 2 and 3 share no factor, the product is divisible by 2 x 3 = 6 and the remainder is 0. Spot checks: k = 2 gives 6, k = 3 gives 24, k = 5 gives 120, all multiples of 6.
+
+**Trap.** Students test only k = 2, get 6, and worry that the result is a coincidence, or they test an odd k such as k = 3, see 24, and conclude the answer depends on the parity of k. The three-consecutive-integers factorization is what makes the divisibility automatic for every k.
+
+### Q30 · `NUM-CON-048` — Answer: 4032
+
+Step 1 — let the run start at a. Then sum = n x a + n(n-1)/2 = 2016, so n(2a + n - 1) = 4032. Note that a may be negative or zero; nothing restricts the integers to be positive.
+Step 2 — to make n huge, make the other factor tiny. The smallest usable value of |2a + n - 1| is 1, which needs n = 4032 and 2a + 4031 = 1, so a = -2015.
+Step 3 — check that run: the integers from -2015 to 2016. Every pair k and -k cancels for k = 1 to 2015, and 0 contributes nothing, so the sum is just 2016.
+Step 4 — its count is 2016 - (-2015) + 1 = 4032, and n cannot exceed 4032: any larger n would force |2a + n - 1| to be less than 1, that is 0, making the product 0 rather than 4032.
+Check: 4032 x (2(-2015) + 4032 - 1) = 4032 x 1 = 4032 = 2 x 2016. Correct.
+Answer: 4032.
+
+**Trap.** Assuming the integers must be positive caps the answer at 63, because 1 + 2 + ... + 63 = 2016 is the longest run of consecutive positive integers with that sum. The stem says integers, and a run that reaches back below zero cancels itself out almost entirely, leaving only the top term - that is the whole trick. Answering 2016 or 2017 comes from taking the run as -2015 to 2016 but then counting it with 2016 - 2015 or forgetting to count 0.
