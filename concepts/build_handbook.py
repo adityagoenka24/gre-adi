@@ -81,7 +81,7 @@ def section_callout(num):
     """The 'practice this' box at the end of a section. Screen only."""
     if num == '9':
         title = 'Drill these 25 traps until they stop working on you'
-        body = ('Every one of the 9,629 Pro questions is trap-tagged, and every wrong answer names '
+        body = ('Every one of the 5,868 Pro questions is trap-tagged, and every wrong answer names '
                 'the exact trap you fell into &mdash; the same traps this section lists.')
     else:
         topic, count, subs = BANK[num]
@@ -117,17 +117,17 @@ BRIDGE = f"""
       <p class="hb-bridge-sub">Knowing a formula and applying it in ninety seconds, with a trap sitting in
       the answer choices, are two different skills. The question bank is where the second one is built.</p>
       <div class="hb-bridge-grid">
-        <div><b>9,629 trap-tagged questions</b>
+        <div><b>5,868 trap-tagged questions</b>
           <span>All 95 subtopics, every difficulty level. A wrong answer shows the exact trap you fell
           into &mdash; the same ones named in Section 9.</span></div>
-        <div><b>10 full-length mocks</b>
-          <span>In the real GRE interface, from Balanced up to Expert (170). Score, diagnosis and trap
+        <div><b>14 full-length mocks</b>
+          <span>In the real GRE interface, every one at real-GRE level. Score, diagnosis and trap
           review after each one.</span></div>
         <div><b>Sectional tests with real timing</b>
           <span>One topic, exam-timed sets, so you find the weak section before the exam does.</span></div>
       </div>
       <div class="hb-bridge-act">
-        {pro_link('bridge', 'See Pro plans &mdash; from &#8377;399')}
+        {pro_link('bridge', 'See Pro plans &mdash; &#8377;999')}
         {free_link('bridge')}
       </div>
       <p class="hb-bridge-trust">{PRO_TRUST}.</p>
@@ -137,7 +137,7 @@ BRIDGE = f"""
 RAIL_CARD = f"""
         <div class="hb-rail-pro">
           <b>Done revising?</b>
-          <span>Practice it with 9,629 trap-tagged questions.</span>
+          <span>Practice it with 5,868 trap-tagged questions.</span>
           {pro_link('rail', 'See Pro plans', 'btn btn-primary btn-sm')}
         </div>
 """
@@ -151,7 +151,7 @@ ENDCARD = f"""
           <div class="hb-end-plans">
             <div><b>Topic-wise Practice</b><span>All 95 subtopics, unlimited questions</span><em>&#8377;499</em></div>
             <div><b>Sectional Tests</b><span>Every topic, exam timing</span><em>&#8377;399</em></div>
-            <div><b>Full-Length Mocks</b><span>All 10, Balanced to Expert (170)</span><em>&#8377;599</em></div>
+            <div><b>Full-Length Mocks</b><span>All 14, real-GRE level</span><em>&#8377;599</em></div>
             <div class="is-best"><b>The full bundle</b><span>Everything above, one payment</span><em>&#8377;999 <s>&#8377;1,497</s></em></div>
           </div>
           <div class="hb-end-act">
@@ -301,7 +301,7 @@ def shell(body, extra_head=''):
       </div>
       <a href="/pricing.html">Pricing</a>
       <a href="#" class="nav-cta-ghost" data-gqp-login>Log in</a>
-      <a href="/pricing.html" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — from ₹399</a>
+      <a href="/pricing.html" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — ₹999</a>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -325,7 +325,7 @@ def shell(body, extra_head=''):
   </div>
   <a href="/pricing.html">Pricing</a>
   <a href="#" data-gqp-login>Log in to Pro</a>
-  <a href="/pricing.html" style="color:var(--accent);font-weight:800">Get Pro — from ₹399 →</a>
+  <a href="/pricing.html" style="color:var(--accent);font-weight:800">Get Pro — ₹999 →</a>
 </div>
 
 {body}

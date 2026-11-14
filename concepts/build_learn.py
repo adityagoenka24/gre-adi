@@ -166,7 +166,7 @@ def shell(title, description, canonical, body, extra_head='', extra_js=''):
       <a href="/sectional.html">Sectionals</a>
       <a href="/pricing.html">Pricing</a>
       <a href="#" class="nav-cta-ghost" data-gqp-login>Log in</a>
-      <a href="/pricing.html" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — ₹499</a>
+      <a href="/pricing.html" class="nav-cta-solid" data-track="buy_pro_clicked" data-track-from="nav">Get Pro — ₹999</a>
     </div>
     <button class="hamburger" onclick="toggleMenu()" aria-label="Menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span><span></span>
@@ -181,7 +181,7 @@ def shell(title, description, canonical, body, extra_head='', extra_js=''):
   <a href="/sectional.html">Sectional Tests</a>
   <a href="/pricing.html">Pricing</a>
   <a href="#" data-gqp-login>Log in to Pro</a>
-  <a href="/pricing.html" style="color:var(--accent);font-weight:800">Get Pro — ₹499 →</a>
+  <a href="/pricing.html" style="color:var(--accent);font-weight:800">Get Pro — ₹999 →</a>
 </div>
 
 {body}
@@ -272,9 +272,9 @@ def capsule_page(c, prev_c, next_c):
             f'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>'
             f'<h2>The rest of this note is part of Pro</h2>'
             f'<p>Must-know rules, three worked examples, the GRE traps, speed tricks and a '
-            f'self-check — plus every one of the 75 concept notes and all 9,629 questions.</p>'
+            f'self-check — plus every one of the 75 concept notes and all 5,868 questions.</p>'
             f'<div class="lrn-gate-btns">'
-            f'<a class="btn btn-primary" href="/pricing.html" data-track="buy_pro_clicked" data-track-from="learn_gate">Get Pro — ₹499 for the year</a>'
+            f'<a class="btn btn-primary" href="/pricing.html" data-track="buy_pro_clicked" data-track-from="learn_gate">Get Pro — ₹999 for the year</a>'
             f'<button class="btn btn-secondary" id="lrnLogin">I already have Pro</button>'
             f'</div>'
             f'<p class="lrn-gate-free">Reading free? <a href="/learn/">{FREE_COUNT} notes are free</a>, '
@@ -504,7 +504,7 @@ def build_practice(taxonomy, capsules):
                 f'<rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>'
                 f'<h2>The rest of this sheet is part of Pro</h2>'
                 f'<p>All 30 questions, the answer key and full worked solutions with '
-                f'every trap named — plus 75 concept notes and 9,629 questions.</p>'
+                f'every trap named — plus 75 concept notes and 5,868 questions.</p>'
                 f'<div class="lrn-gate-btns">'
                 f'<a class="btn btn-primary" href="/pricing.html" data-track="buy_pro_clicked" data-track-from="learn_gate">Get Pro — \u20b9499 for the year</a>'
                 f'<button class="btn btn-secondary" id="lrnLogin">I already have Pro</button>'
@@ -571,7 +571,7 @@ def index_page(capsules):
       the core idea, the must-know rules, three worked examples, the traps the GRE actually sets,
       speed tricks and a self-check.</p>
       <p class="lrn-hero-free"><b>{free} are free</b>, including every exam-strategy note.
-      The rest come with <a href="/pricing.html">Pro — ₹499 for the year</a>.</p>
+      The rest come with <a href="/pricing.html">Pro — ₹999 for the year</a>.</p>
     </header>
     {''.join(sections)}
   </div>

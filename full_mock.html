@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="GRE Quant Pro — Free Mocks — our coaching team">
 <meta name="twitter:description" content="Take a free full-length GRE Quant mock in a pixel-accurate ETS-replica interface. Get an instant diagnosis of your weakest subtopics and the trap pattern behind your errors.">
 <meta name="twitter:image" content="https://grequantpro.com/og-image.png">
-<title>GRE Quant Pro — Free Mocks — our coaching team</title>
+<title>Free GRE Quant Full-Length Mock Tests · GRE Quant Pro</title>
 <link rel="stylesheet" href="gre-exam-theme.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
@@ -43,7 +43,7 @@
   <div class="app-header">
     <div class="logo">
       <h1>GRE Quant <span>Pro</span></h1>
-      <p>Full Mock Tests · our coaching team</p>
+      <p>Full Mock Tests</p>
     </div>
     <span class="badge-free">FREE MOCKS</span>
   </div>
@@ -94,13 +94,13 @@
         <div class="ru-bottom">
           <div>
             <div class="ru-price-block">
-              <span class="ru-price">₹499</span>
+              <span class="ru-price">₹999</span>
               <span class="ru-price-label">one-time · 1-year access</span>
             </div>
-            <div class="ru-price-vs">vs Magoosh ₹10,000+/yr · Manhattan ₹15,000+/yr</div>
+            <div class="ru-price-vs">vs Magoosh ~₹15,000 / 6 months · GregMat ~₹1,000 / month</div>
             <div class="ru-features" style="margin-top:14px;">
-              <div class="ru-feat">8 Pro mocks (Mocks 3–10)</div>
-              <div class="ru-feat">95 subtopics · 9,629 questions</div>
+              <div class="ru-feat">12 Pro mocks (Mocks 3–14)</div>
+              <div class="ru-feat">95 subtopics · 5,868 questions</div>
               <div class="ru-feat">Trap analysis on every question</div>
               <div class="ru-feat">All future content included</div>
             </div>
@@ -108,7 +108,7 @@
           <div style="flex-shrink:0;">
             <a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" rel="noopener" data-track="upgrade_clicked" data-track-from="mock_select"
                onclick="if(window.GQP&&window.GQP.track)window.GQP.track('pro_cta_clicked',{from:'mock_select'});">
-              Unlock Pro — ₹499 →
+              Unlock Pro — ₹999 →
             </a>
             <div style="font-size:11px;color:var(--gre-text3);text-align:center;margin-top:8px;">7-day money-back guarantee</div>
           </div>
@@ -121,10 +121,10 @@
   <div id="screen-register" class="screen">
     <div class="reg-card">
       <h2 id="reg-mock-title">Mock Test 1</h2>
-      <p>Enter your details to begin. Your result is saved so our coaching team can review it and follow up.</p>
+      <p>Your email is how this attempt is saved, so you can come back to the score report and the drill plan. We do not call, and we do not pass it on. Name is optional.</p>
       <div class="form-group">
-        <label for="reg-name">Your Name</label>
-        <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name" required>
+        <label for="reg-name">Your Name <span style="font-weight:400;opacity:.65">(optional)</span></label>
+        <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name">
       </div>
       <div class="form-group">
         <label for="reg-email">Email</label>
@@ -480,12 +480,13 @@ function startInstructions() {
   var regError = document.getElementById('reg-error');
   var emailOk = window.GREProgressLocal && GREProgressLocal.validEmail
     ? GREProgressLocal.validEmail(regEmail) : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(regEmail);
-  if (!regName || !emailOk) {
-    regError.textContent = !regName ? 'Please enter your name to begin.' : 'Please enter a valid email address to begin.';
+  if (!emailOk) {
+    regError.textContent = 'Please enter a valid email address to begin.';
     regError.style.display = 'block';
-    (!regName ? document.getElementById('reg-name') : document.getElementById('reg-email')).focus();
+    document.getElementById('reg-email').focus();
     return;
   }
+  if (!regName) regName = 'Student';
   regError.style.display = 'none';
   state.student.name = regName;
   state.student.email = regEmail;
@@ -1336,20 +1337,20 @@ function renderUpgradeCTA(pct) {
       <div class="ru-bottom">
         <div>
           <div class="ru-price-block">
-            <span class="ru-price">₹499</span>
+            <span class="ru-price">₹999</span>
             <span class="ru-price-label">one-time · 1-year access</span>
           </div>
           <div class="ru-price-vs">vs. Magoosh ₹10,000+/yr · Manhattan ₹15,000+/yr</div>
           <div class="ru-features">
             <span class="ru-feat">8 more full-length mocks</span>
             <span class="ru-feat">All 95 subtopics</span>
-            <span class="ru-feat">9,629 practice questions</span>
+            <span class="ru-feat">5,868 practice questions</span>
             <span class="ru-feat">All future content included</span>
           </div>
         </div>
         <a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" data-track="upgrade_clicked" data-track-from="mock_result"
            onclick="if(window.GQP&&window.GQP.track)window.GQP.track('pro_cta_clicked',{from:'mock_result'});">
-          Unlock Pro — ₹499 →
+          Unlock Pro — ₹999 →
         </a>
       </div>
     </div>

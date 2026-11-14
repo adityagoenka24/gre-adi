@@ -39,7 +39,7 @@
   "author": { "@type": "Organization", "name": "GRE Quant Pro" }
 }
 </script>
-<title>GRE Quant Sectional Tests — our coaching team</title>
+<title>Free GRE Quant Sectional Tests · GRE Quant Pro</title>
 <link rel="stylesheet" href="gre-exam-theme.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
@@ -140,7 +140,7 @@
   <div class="app-header">
     <div class="logo">
       <h1>GRE Quant <span>Pro</span></h1>
-      <p>Sectional Tests · our coaching team</p>
+      <p>Sectional Tests</p>
     </div>
     <span class="badge-free">SECTIONALS</span>
   </div>
@@ -182,15 +182,15 @@
         <li>When the timer reaches zero the section submits automatically.</li>
       </ul>
       <div class="form-group">
-        <label for="reg-name">Your Name</label>
-        <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name" required>
+        <label for="reg-name">Your Name <span style="font-weight:400;opacity:.65">(optional)</span></label>
+        <input type="text" id="reg-name" placeholder="e.g. Priya Sharma" autocomplete="name">
       </div>
       <div class="form-group">
         <label for="reg-email">Email</label>
         <input type="email" id="reg-email" placeholder="priya@email.com" autocomplete="email" required>
       </div>
       <p id="reg-error" role="alert" style="color:var(--gre-danger,#b3261e);font-size:13px;margin:-6px 0 12px;display:none;"></p>
-      <p style="font-size:12.5px;color:var(--gre-text2);margin:0 0 16px;">Your result is saved so our coaching team can review it and follow up.</p>
+      <p style="font-size:12.5px;color:var(--gre-text2);margin:0 0 16px;">Your email is how this attempt is saved, so you can come back to the score and the trap review. We do not call, and we do not pass it on. Name is optional.</p>
       <button class="btn btn-primary" onclick="beginSection()">Begin Section</button>
     </div>
   </div>
@@ -432,12 +432,13 @@ function beginSection(){
   var regError = document.getElementById('reg-error');
   var emailOk = window.GREProgressLocal && GREProgressLocal.validEmail
     ? GREProgressLocal.validEmail(regEmail) : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(regEmail);
-  if (!regName || !emailOk) {
-    regError.textContent = !regName ? 'Please enter your name to begin.' : 'Please enter a valid email address to begin.';
+  if (!emailOk) {
+    regError.textContent = 'Please enter a valid email address to begin.';
     regError.style.display = 'block';
-    (!regName ? document.getElementById('reg-name') : document.getElementById('reg-email')).focus();
+    document.getElementById('reg-email').focus();
     return;
   }
+  if (!regName) regName = 'Student';
   regError.style.display = 'none';
   state.student = { name: regName, email: regEmail, batch: '' };
   if (window.GREProgressLocal && GREProgressLocal.rememberStudent) GREProgressLocal.rememberStudent(regName, regEmail);
@@ -866,7 +867,7 @@ function renderResults(){
       '<div class="ru-kicker">Keep drilling</div>' +
       '<div class="ru-headline">More sets across <span>10 topics</span>, escalating in difficulty.</div>' +
       '<div class="ru-sub">Set 1 is free for every topic with more than three sectional sets. Pro opens every remaining set, all ten full-length mocks, and the coach review workflow.</div>' +
-      '<a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" rel="noopener" onclick="track(\'pro_cta_clicked\',{from:\'sectional_result\'})">See Pro — ₹499 →</a>' +
+      '<a href="https://grequantpro.com/#plans" class="ru-cta-btn" target="_blank" rel="noopener" onclick="track(\'pro_cta_clicked\',{from:\'sectional_result\'})">See Pro — ₹999 →</a>' +
     '</div>';
 
   document.getElementById('review-section').style.display = 'none';

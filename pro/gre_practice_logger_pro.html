@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GRE Quant Pro — our coaching team</title>
+<title>Topic-wise Practice · Pro · GRE Quant Pro</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="../gre-math.js"></script>
@@ -688,7 +688,7 @@ tr:hover td{background:rgba(26,93,166,0.04);}
 
 /* ============================================================
    ETS EXAM SKIN — topic-wise practice
-   Adi's call: the question should look like the real test screen,
+   Design call: the question should look like the real test screen,
    while the instant trap feedback that makes practice worth doing
    stays exactly as it is.
 
@@ -2577,7 +2577,7 @@ function bankRefreshAvail(){
     el.textContent = lead + c.matching + ' of ' + c.total + ' match your filters'; el.style.color = 'var(--success)';
   }
   // Free tier: the upgrade nudge that used to sit beside the subtopic count
-  if(isFreeTier()) el.insertAdjacentHTML('beforeend', ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">9,629 practice questions in Pro across 95 subtopics →</a>');
+  if(isFreeTier()) el.insertAdjacentHTML('beforeend', ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">5,868 practice questions in Pro across 95 subtopics →</a>');
 }
 
 // ── Building a session from the ticks ────────────────────────
@@ -3186,10 +3186,10 @@ function buildBankSessionData(sessionType){
     topic:r.question.topic||bankState.topic,subtopic:r.question.subtopic||bankState.subtopic,
     correct:r.correct,
     difficulty:r.question.difficulty.replace('_',' ').replace(/\b\w/g,c=>c.toUpperCase()),
-    notes:'',submitted:true,bank_question_id:r.question.id,source:"GRE Quant Pro Question Bank · our coaching team"
+    notes:'',submitted:true,bank_question_id:r.question.id,source:"GRE Quant Pro Question Bank"
   }));
   const data={studentName:bankState.studentName,date:new Date().toISOString().slice(0,10),
-    topic:bankState.topic,source:"GRE Quant Pro Question Bank · our coaching team",
+    topic:bankState.topic,source:"GRE Quant Pro Question Bank",
     notes:bankState.subtopic+' — '+bankState.results.length+' questions from bank',
     startTime:bankState.sessionStartTime,endTime:Date.now(),questions:qs,
     exportedAt:new Date().toISOString(),version:'2.0',
@@ -3220,7 +3220,7 @@ function sendBankMailto(){
     '\n\nRESULTS\n-------\nTotal: '+total+' | Correct: '+correct+' | Wrong: '+(total-correct)+
     '\nAccuracy: '+acc+'%\nTotal Time: '+fmtTime(totalTime)+' | Avg: '+fmtTime(Math.round(totalTime/total))+
     '\n\nWRONG QUESTIONS\n---------------\n'+(wrong||'All correct! 🎉')+
-    '\n\n[Sent from GRE Quant Practice App — Adi\'s Question Bank]';
+    '\n\n[Sent from the GRE Quant Pro practice app]';
   const TO='goenka.aditya.kol@gmail.com';
   const subject='GRE Bank Practice — '+bankState.studentName+' — '+bankState.subtopic+' — '+acc+'%';
   window.open('https://mail.google.com/mail/?view=cm&to='+encodeURIComponent(TO)+'&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body),'_blank');
@@ -4852,7 +4852,7 @@ function submitErrorReport() {
     '───────────────────────────────────────\n' +
     'ISSUE REPORTED BY STUDENT:\n' + issue + '\n\n' +
     '═══════════════════════════════════════\n' +
-    'Sent via GRE Quant Pro · our coaching team'
+    'Sent via GRE Quant Pro'
   );
 
   const gmailUrl = 'https://mail.google.com/mail/?view=cm&to=goenka.aditya.kol%40gmail.com&su=' + subject + '&body=' + body;

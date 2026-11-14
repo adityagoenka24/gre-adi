@@ -19,7 +19,7 @@
 <meta name="twitter:title" content="GRE Quant Pro — our coaching team">
 <meta name="twitter:description" content="Free GRE Quant practice session logger. Track your practice sets, see your progress, export a PDF, and share a report with your tutor. No login required.">
 <meta name="twitter:image" content="https://grequantpro.com/og-image.png">
-<title>GRE Quant Pro — our coaching team</title>
+<title>Free GRE Quant Practice · GRE Quant Pro</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" crossorigin="anonymous"></script>
 <script defer src="gre-math.js"></script>
@@ -646,7 +646,7 @@ tr:hover td{background:rgba(26,93,166,0.04);}
 
 /* ============================================================
    ETS EXAM SKIN — topic-wise practice
-   Adi's call: the question should look like the real test screen,
+   Design call: the question should look like the real test screen,
    while the instant trap feedback that makes practice worth doing
    stays exactly as it is.
 
@@ -753,7 +753,7 @@ tr:hover td{background:rgba(26,93,166,0.04);}
     <h2 class="hero-headline">Stop solving <em>random</em> GRE questions</h2>
     <p class="hero-sub">Practice with real exam timing, trap-based explanations, and score-band calibration — with every question re-audited against the ETS rubric in October 2026.</p>
     <div class="trust-bar">
-      <span class="trust-pill"><strong>9,629</strong> Practice Questions</span>
+      <span class="trust-pill"><strong>5,868</strong> Practice Questions</span>
       <span class="trust-pill"><strong>95</strong> Subtopics</span>
       <span class="trust-pill"><strong>8</strong> Topics</span>
       <span class="trust-pill"><strong>4</strong> Difficulty Levels</span>
@@ -2079,7 +2079,7 @@ function bankRefreshAvail(){
     el.textContent = lead + c.matching + ' of ' + c.total + ' match your filters'; el.style.color = 'var(--success)';
   }
   // Free tier: the upgrade nudge that used to sit beside the subtopic count
-  if(isFreeTier()) el.insertAdjacentHTML('beforeend', ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">9,629 practice questions in Pro across 95 subtopics →</a>');
+  if(isFreeTier()) el.insertAdjacentHTML('beforeend', ' &nbsp;<a href="https://grequantpro.com/#plans" style="color:var(--accent);font-size:12px;text-decoration:none;opacity:0.8;">5,868 practice questions in Pro across 95 subtopics →</a>');
 }
 
 // ── Building a session from the ticks ────────────────────────
@@ -2668,10 +2668,10 @@ function buildBankSessionData(sessionType){
     topic:r.question.topic||bankState.topic,subtopic:r.question.subtopic||bankState.subtopic,
     correct:r.correct,
     difficulty:r.question.difficulty.replace('_',' ').replace(/\b\w/g,c=>c.toUpperCase()),
-    notes:'',submitted:true,bank_question_id:r.question.id,source:"GRE Quant Pro Question Bank · our coaching team"
+    notes:'',submitted:true,bank_question_id:r.question.id,source:"GRE Quant Pro Question Bank"
   }));
   const data={studentName:bankState.studentName,date:new Date().toISOString().slice(0,10),
-    topic:bankState.topic,source:"GRE Quant Pro Question Bank · our coaching team",
+    topic:bankState.topic,source:"GRE Quant Pro Question Bank",
     notes:bankState.subtopic+' — '+bankState.results.length+' questions from bank',
     startTime:bankState.sessionStartTime,endTime:Date.now(),questions:qs,
     exportedAt:new Date().toISOString(),version:'2.0',
@@ -2702,7 +2702,7 @@ function sendBankMailto(){
     '\n\nRESULTS\n-------\nTotal: '+total+' | Correct: '+correct+' | Wrong: '+(total-correct)+
     '\nAccuracy: '+acc+'%\nTotal Time: '+fmtTime(totalTime)+' | Avg: '+fmtTime(Math.round(totalTime/total))+
     '\n\nWRONG QUESTIONS\n---------------\n'+(wrong||'All correct! 🎉')+
-    '\n\n[Sent from GRE Quant Practice App — Adi\'s Question Bank]';
+    '\n\n[Sent from the GRE Quant Pro practice app]';
   const TO='goenka.aditya.kol@gmail.com';
   const subject='GRE Bank Practice — '+bankState.studentName+' — '+bankState.subtopic+' — '+acc+'%';
   window.open('https://mail.google.com/mail/?view=cm&to='+encodeURIComponent(TO)+'&su='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body),'_blank');
@@ -2928,7 +2928,7 @@ function showUpgradePrompt(feature) {
 
       <a href="https://grequantpro.com/?feature=${encodeURIComponent(feature)}#plans" target="_blank"
         style="display:block;background:linear-gradient(135deg,var(--accent),#4a7fc0);color:white;text-decoration:none;padding:14px 28px;border-radius:10px;font-weight:700;font-size:15px;margin-bottom:18px;box-shadow:0 4px 20px rgba(26,93,166,0.4);">
-        Get Pro — from ₹399 →
+        Get Pro — ₹999 →
       </a>
 
       <button onclick="document.getElementById('upgrade-modal').remove()"
@@ -4182,7 +4182,7 @@ function submitErrorReport() {
     '───────────────────────────────────────\n' +
     'ISSUE REPORTED BY STUDENT:\n' + issue + '\n\n' +
     '═══════════════════════════════════════\n' +
-    'Sent via GRE Quant Pro · our coaching team'
+    'Sent via GRE Quant Pro'
   );
 
   const gmailUrl = 'https://mail.google.com/mail/?view=cm&to=goenka.aditya.kol%40gmail.com&su=' + subject + '&body=' + body;
@@ -4299,7 +4299,7 @@ function submitErrorReportForQuestion(q) {
     'CORRECT ANSWER  : ' + (Array.isArray(q.answer) ? q.answer.join(', ') : q.answer) + '\n\n' +
     '───────────────────────────────────────\n' +
     'ISSUE REPORTED BY STUDENT:\n' + issue + '\n\n' +
-    'Sent via GRE Quant Pro · our coaching team'
+    'Sent via GRE Quant Pro'
   );
   window.open('https://mail.google.com/mail/?view=cm&to=goenka.aditya.kol%40gmail.com&su=' + subject + '&body=' + body, '_blank');
   document.getElementById('error-report-modal')?.remove();
@@ -4315,7 +4315,7 @@ function showTutorTeaserExam() {
     <div class="tutor-teaser" style="margin-bottom:24px;">
       <strong>📊 Want this exam tracked?</strong><br>
       Pro saves every exam to your account — question by question, with your timing — and our coaching team reviews it.
-      <br><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — from ₹399 →</a>
+      <br><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
     </div>`;
 }
 
@@ -4328,7 +4328,7 @@ function showTutorTeaser() {
     <div class="tutor-teaser">
       <strong>📊 Want this session tracked?</strong><br>
       Pro saves every session to your account — question by question — and our coaching team reviews it.
-      <br><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — from ₹399 →</a>
+      <br><a href="https://grequantpro.com/#plans" style="color:var(--accent);text-decoration:none;font-weight:600;margin-top:6px;display:inline-block;">Get Pro — ₹999 →</a>
     </div>`;
 }
 
