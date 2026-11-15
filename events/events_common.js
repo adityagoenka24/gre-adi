@@ -762,7 +762,7 @@ const Events = (() => {
     const total = cfg.question_count || cfg.questions.length;
     $("instrHighlight").innerHTML = sectioned
       ? `<strong>This is a timed, full-length GRE Quant mock — real format, real interface.</strong><br>${cfg.sections.map((sec, i) => `<strong>Section ${i + 1}:</strong> ${sec.question_count || ""} questions · ${formatTime(sec.time_limit_seconds)}`).join(" &nbsp;|&nbsp; ")}`
-      : `<strong>This is a timed GRE Quant mock — real format, real interface.</strong><br>${total} questions · ${cfg.timer_seconds ? formatTime(cfg.timer_seconds) : "Untimed"}`;
+      : `<strong>This is a timed GRE Quant ${cfg.event_kind === "sectional" ? "sectional" : cfg.event_kind === "topic" ? "topic test" : "mock"} — real format, real interface.</strong><br>${total} questions · ${cfg.timer_seconds ? formatTime(cfg.timer_seconds) : "Untimed"}`;
     const items = [
       locked
         ? "Questions are in a <strong>locked order</strong>. Use <strong>Next</strong> to move on; you cannot go back to a previous question."
@@ -1473,6 +1473,18 @@ const Events = (() => {
     if (head) head.textContent = "Register free — " + kind.toLowerCase();
     var logoSub = document.querySelector(".nav-logo small");
     if (logoSub) logoSub.textContent = kind;
+
+    // The pitch copy must describe THIS paper: a 21-minute sectional is not
+    // "a full paper" and not "47 minutes".
+    var LEDE = { mock: "A full-length GRE Quant mock", sectional: "A timed GRE Quant sectional", topic: "A timed GRE Quant topic test" };
+    var lede = $("evKindLede");
+    if (lede) lede.textContent = LEDE[cfg.event_kind] || "A timed GRE Quant paper";
+    var secs = Array.isArray(cfg.sections) && cfg.sections.length > 1
+      ? cfg.sections.reduce(function (t, x) { return t + (Number(x.time_limit_seconds) || 0); }, 0)
+      : Number(cfg.timer_seconds) || 0;
+    var mins = Math.round(secs / 60);
+    var eb = $("evDemoEyebrow");
+    if (eb) eb.textContent = mins ? "Before you commit " + mins + " minutes" : "Before you commit your time";
   }
 
   // Registration is the point of this page, so the email is banked the moment

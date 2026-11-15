@@ -354,10 +354,13 @@ pre{background:#07070b;border:1px solid var(--border);border-radius:var(--radius
    link does not feel like arriving at a different product. The test itself
    then switches to the stark ETS replica, which is the point of the contrast.
 
-   Scoping: everything is under #startSection, so none of it can reach the
-   exam shell or the results page. The three things that have to be global
-   (the page background, the grid overlay, the top bar) hang off
-   :has(#startSection:not(.hidden)) and revert the moment the test begins.
+   Scoping: the landing's own layout is under #startSection. The page chrome
+   (background, header, type, buttons, the instructions and break cards and the
+   results page) hangs off body:not(.gre-exam-open), so every screen a student
+   sees EXCEPT the live exam wears the site's clothes. Only the exam itself
+   (#examSection, which sets body.gre-exam-open) is the stark ETS replica. An
+   earlier version flipped to the old grey/blue chrome the instant someone
+   pressed Register, which read as the site breaking.
    ══════════════════════════════════════════════════════════════════════════ */
 :root{
   --ev-paper:#faf8f4;
@@ -385,31 +388,31 @@ pre{background:#07070b;border:1px solid var(--border);border-radius:var(--radius
 }
 
 /* ── Landing mode: the three globals ──────────────────────────────────── */
-body:has(#startSection:not(.hidden)){background:var(--ev-paper);color:var(--ev-ink);font-family:var(--ev-ff)}
-body:has(#startSection:not(.hidden))::before{display:none}
-body:has(#startSection:not(.hidden)) .shell{max-width:1140px;padding:0 24px 80px}
-body:has(#startSection:not(.hidden)) .topbar{
+body:not(.gre-exam-open){background:var(--ev-paper);color:var(--ev-ink);font-family:var(--ev-ff)}
+body:not(.gre-exam-open)::before{display:none}
+body:not(.gre-exam-open) .shell{max-width:1140px;padding:0 24px 80px}
+body:not(.gre-exam-open) .topbar{
   margin:0 -24px 0;padding:0 24px;height:66px;
   background:rgba(250,248,244,.92);
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
   border-bottom:1px solid var(--ev-line);
   position:sticky;top:0;z-index:60;
 }
-body:has(#startSection:not(.hidden)) .topbar .nav-logo{
+body:not(.gre-exam-open) .topbar .nav-logo{
   font-family:var(--ev-fd);font-weight:700;font-size:21px;color:var(--ev-navy);letter-spacing:-.2px;
   display:flex;align-items:baseline;gap:9px;
 }
-body:has(#startSection:not(.hidden)) .topbar .nav-logo span{color:var(--ev-orange)}
-body:has(#startSection:not(.hidden)) .topbar .nav-logo small{
+body:not(.gre-exam-open) .topbar .nav-logo span{color:var(--ev-orange)}
+body:not(.gre-exam-open) .topbar .nav-logo small{
   font-family:var(--ev-fm);font-size:10.5px;font-weight:400;letter-spacing:1.6px;
   text-transform:uppercase;color:var(--ev-ink3);
 }
-body:has(#startSection:not(.hidden)) .topbar .nav a{
+body:not(.gre-exam-open) .topbar .nav a{
   background:transparent;border:none;color:var(--ev-ink2);font-size:14.5px;font-weight:600;
   padding:7px 9px;border-radius:8px;min-height:0;
 }
-body:has(#startSection:not(.hidden)) .topbar .nav a:hover{background:var(--ev-paper2);color:var(--ev-navy)}
-body:has(#startSection:not(.hidden)) .topbar .badge-free{
+body:not(.gre-exam-open) .topbar .nav a:hover{background:var(--ev-paper2);color:var(--ev-navy)}
+body:not(.gre-exam-open) .topbar .badge-free{
   background:var(--ev-green-soft);color:var(--ev-green);border:1px solid #bfdfcc;
   font-family:var(--ev-fm);font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;
   padding:5px 10px;border-radius:999px;
@@ -619,5 +622,91 @@ body:has(#startSection:not(.hidden)) .topbar .badge-free{
   #startSection .ev-demo-body{padding:20px 18px}
   #startSection .ev-demo-foot{padding:16px 18px}
   #startSection .ev-reg{padding:20px}
-  body:has(#startSection:not(.hidden)) .topbar{height:auto;margin:0 -24px;padding:12px 24px;flex-wrap:wrap;gap:10px}
+  body:not(.gre-exam-open) .topbar{height:auto;margin:0 -24px;padding:12px 24px;flex-wrap:wrap;gap:10px}
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════════
+   Every screen that is not the live exam: instructions, section break, results.
+   Retunes the shared variables once, on body, so everything built from them
+   (buttons, KPI cards, bars, tables, the review) follows the site without
+   being rewritten. The exam is excluded by body.gre-exam-open, and
+   score-card.js / error-log.js inject their own styles and are untouched.
+   ══════════════════════════════════════════════════════════════════════════ */
+body:not(.gre-exam-open){
+  --font-body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --font-display:"Fraunces",Georgia,serif;
+  --font-mono:"DM Mono","Courier New",monospace;
+  --accent:#c65d21;
+  --gre-bar:#16324f;
+  --bg:#faf8f4;
+  --border:#e6dfd3;
+  --gre-border:#e6dfd3;
+  --gre-border-soft:#efe9de;
+  font-family:var(--ev-ff);
+  line-height:1.6;
+}
+body:not(.gre-exam-open) .primary-btn{
+  background:var(--ev-orange);color:#fff;border:none;border-radius:10px;
+  box-shadow:0 6px 20px rgba(198,93,33,.26);font-weight:700;padding:12px 22px;
+  transition:background .15s,transform .15s,box-shadow .15s;
+}
+body:not(.gre-exam-open) .primary-btn:hover{background:var(--ev-orange-dark);transform:translateY(-1px)}
+body:not(.gre-exam-open) .ghost-btn{
+  background:#fff;color:var(--ev-navy);border:1.5px solid var(--ev-line2);border-radius:10px;font-weight:600;
+}
+body:not(.gre-exam-open) .ghost-btn:hover{background:#fff;border-color:var(--ev-navy)}
+
+/* Instructions + section break */
+body:not(.gre-exam-open) .instr-card,
+body:not(.gre-exam-open) .break-card{
+  background:#fff;border:1px solid var(--ev-line);border-radius:18px;
+  box-shadow:var(--ev-shadow-lg);padding:38px;max-width:640px;margin:56px auto 0;
+}
+body:not(.gre-exam-open) .instr-card h2,
+body:not(.gre-exam-open) .break-card h2{
+  font-family:var(--ev-fd);font-weight:640;font-size:30px;color:var(--ev-navy);letter-spacing:-.4px;margin:0 0 16px;
+}
+body:not(.gre-exam-open) .instr-highlight{
+  background:var(--ev-orange-soft);border:1px solid #eed7c2;border-radius:12px;
+  color:#8a4116;font-size:14.5px;padding:16px 18px;
+}
+body:not(.gre-exam-open) .instr-highlight strong{color:#6f3410}
+body:not(.gre-exam-open) .instr-list li{font-size:15px;color:var(--ev-ink2)}
+body:not(.gre-exam-open) .instr-list li::before{color:var(--ev-orange)}
+body:not(.gre-exam-open) .instr-list li strong{color:var(--ev-ink)}
+body:not(.gre-exam-open) .break-preview{
+  background:var(--ev-paper);border:1px solid var(--ev-line);border-radius:12px;color:var(--ev-ink2);
+}
+
+/* Results */
+body:not(.gre-exam-open) .analysis-header,
+body:not(.gre-exam-open) .table-card,
+body:not(.gre-exam-open) .chart-card{
+  border-color:var(--ev-line);border-radius:14px;box-shadow:var(--ev-shadow);
+}
+body:not(.gre-exam-open) .analysis-title{font-family:var(--ev-fd);font-weight:640;letter-spacing:-.4px;color:var(--ev-navy)}
+body:not(.gre-exam-open) .analysis-header::after{color:rgba(198,93,33,.06);font-family:var(--ev-fd)}
+
+@media (max-width:620px){
+  body:not(.gre-exam-open) .instr-card,
+  body:not(.gre-exam-open) .break-card{padding:26px 20px;margin-top:28px}
+}
+
+/* The score card (score-card.js) is shared by five surfaces and ships its own
+   ETS-grey styles. On the event page only, dress it in the site theme so the
+   moment of truth doesn't look like a different product. #gre-score-card
+   outranks the injected rules, so no !important is needed. */
+body #gre-score-card{background:var(--ev-paper);color:var(--ev-ink);font-family:var(--ev-ff)}
+#gre-score-card .gsc-bar{background:#fff;color:var(--ev-navy);border-bottom:1px solid var(--ev-line);padding:16px 24px}
+#gre-score-card .gsc-bar b{font-family:var(--ev-fd);font-size:18px;font-weight:640;letter-spacing:-.2px}
+#gre-score-card .gsc-bar-right{color:var(--ev-ink2);opacity:1}
+#gre-score-card .gsc-panel{border:1px solid var(--ev-line);border-radius:18px;box-shadow:var(--ev-shadow-lg)}
+#gre-score-card .gsc-eyebrow{color:var(--ev-orange);font-family:var(--ev-fm)}
+#gre-score-card .gsc-measure{font-family:var(--ev-fd);font-weight:640;color:var(--ev-navy);letter-spacing:-.3px}
+#gre-score-card .gsc-score{font-family:var(--ev-fd);font-weight:640;color:var(--ev-navy)}
+#gre-score-card .gsc-range{border-color:var(--ev-line2);border-radius:999px;background:var(--ev-paper);color:var(--ev-ink2)}
+#gre-score-card .gsc-btn{background:var(--ev-orange);border:none;border-radius:10px;box-shadow:0 6px 20px rgba(198,93,33,.26)}
+#gre-score-card .gsc-btn:hover{background:var(--ev-orange-dark)}
+#gre-score-card .gsc-step.gsc-now{color:var(--ev-orange)}
+#gre-score-card .gsc-step.gsc-now .gsc-dot{background:var(--ev-orange)}
