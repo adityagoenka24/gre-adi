@@ -115,6 +115,7 @@ td:last-child{white-space:nowrap;}
     <button class="tab-btn" data-tab="access" onclick="switchTab('access')">🎚️ Access &amp; Devices</button>
     <button class="tab-btn" data-tab="webhooks" onclick="switchTab('webhooks')">💳 Webhooks</button>
     <button class="tab-btn" data-tab="prodata" onclick="switchTab('prodata')">📦 Pro Data</button>
+    <button class="tab-btn" data-tab="event" onclick="switchTab('event')">🗓️ Sunday Event</button>
     <button class="tab-btn" data-tab="leads" onclick="switchTab('leads')">📧 Sunday Mock Leads</button>
   </div>
 
@@ -314,6 +315,57 @@ td:last-child{white-space:nowrap;}
       <button class="btn btn-ghost" onclick="downloadSundayLeads()">⬇️ Download CSV</button>
       <div class="result" id="leads-action-result"></div>
       <div id="leads-table" style="margin-top:16px;"><div class="empty">Click "Refresh" to load.</div></div>
+    </div>
+
+  </div>
+
+  <!-- ═══ SUNDAY EVENT ═══ -->
+  <div class="tab-panel" id="tab-event" data-tab-panel="event">
+
+    <div class="card">
+      <h2>🗓️ Publish The Live Event</h2>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+        Whatever you publish here is what a student gets at
+        <code>grequantpro.com/events/mock_test.html</code> — the one link you share. It is stored in
+        Cloudflare KV and goes live the moment you press Publish: no commit, no site rebuild, no waiting.
+        Take it down again and the <code>events/config/current.json</code> committed in the repo quietly
+        takes over, so the site never has nothing to serve.
+      </p>
+      <ol style="font-size:13px;color:var(--text2);line-height:1.9;margin:0 0 16px 20px;">
+        <li>Save your Worker URL and admin secret at the top of this page.</li>
+        <li>Build the paper in the <a href="../events/event_builder.html" target="_blank" rel="noopener" style="color:var(--accent);">event builder</a> and download its JSON.</li>
+        <li>Pick that file below, read the summary it shows you, then press <b>Publish live</b>.</li>
+      </ol>
+      <div class="row">
+        <div class="field">
+          <label>The event config the builder downloaded</label>
+          <input type="file" id="ev-file" accept=".json,application/json">
+        </div>
+        <button class="btn btn-ghost" onclick="eventPickClear()">Clear</button>
+      </div>
+      <details style="margin-top:12px;">
+        <summary style="font-size:12px;color:var(--text3);font-family:var(--font-mono);cursor:pointer;">or paste the JSON instead</summary>
+        <textarea id="ev-paste" rows="6" placeholder='{ "event_id": "...", "event_name": "...", "questions": [ ... ] }'
+          oninput="eventCheck()"
+          style="width:100%;margin-top:10px;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:10px 12px;font-family:var(--font-mono);font-size:12px;"></textarea>
+      </details>
+      <div id="ev-summary" style="margin-top:14px;"></div>
+      <div class="row" style="margin-top:14px;">
+        <button class="btn btn-primary" id="ev-publish" onclick="eventPublish()" disabled>Publish live</button>
+      </div>
+      <div class="result" id="ev-result"></div>
+    </div>
+
+    <div class="card">
+      <h2>📡 What Students See Right Now</h2>
+      <p style="font-size:13px;color:var(--text3);margin-bottom:16px;line-height:1.6;">
+        The link to share is always the same one — it serves whatever is live.
+        <a href="../events/mock_test.html" target="_blank" rel="noopener" style="color:var(--accent);">grequantpro.com/events/mock_test.html</a>
+      </p>
+      <button class="btn btn-primary" onclick="eventLoadLive()">🔄 Refresh</button>
+      <button class="btn btn-danger" onclick="eventUnpublish()">Take it down</button>
+      <div class="result" id="ev-live-result"></div>
+      <div id="ev-live" style="margin-top:16px;"><div class="empty">Click "Refresh" to load.</div></div>
     </div>
 
   </div>
@@ -996,6 +1048,233 @@ function downloadSundayLeads() {
   URL.revokeObjectURL(a.href);
   showResult(document.getElementById('leads-action-result'), 'success', `${sundayLeadsCache.length} row(s) exported.`);
 }
+
+// ─── Sunday Event ─────────────────────────────────────────────────────────────
+/* Publishing is a straight pass-through of the builder's file: it is parsed here
+   so the summary and the obvious mistakes are caught before anything goes live,
+   then POSTed verbatim. The Worker validates it again on arrival — a config that
+   would leave a student with an unanswerable question never reaches KV. */
+let evText = '';      // the config exactly as the builder wrote it
+let evParsed = null;
+
+const EV_KIND = { mock: 'Full mock', sectional: 'Sectional test', topic: 'Topic test' };
+const EV_TYPE = { full_mock_event: 'Full mock', sectional_event: 'Sectional test', topic_event: 'Topic test', mock_test: 'Topic test' };
+
+function evMinutes(seconds) {
+  const s = Number(seconds) || 0;
+  if (!s) return 'untimed';
+  const m = Math.round(s / 60);
+  return m + ' min';
+}
+
+function evWhen(startsAt) {
+  if (!startsAt) return null;
+  const d = new Date(startsAt);
+  if (isNaN(d)) return String(startsAt);
+  return d.toLocaleString('en-IN', {
+    weekday: 'long', day: 'numeric', month: 'long', year: 'numeric',
+    hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata'
+  }) + ' IST';
+}
+
+function eventPickClear() {
+  evText = ''; evParsed = null;
+  const f = document.getElementById('ev-file');
+  if (f) f.value = '';
+  const t = document.getElementById('ev-paste');
+  if (t) t.value = '';
+  document.getElementById('ev-summary').innerHTML = '';
+  document.getElementById('ev-publish').disabled = true;
+  document.getElementById('ev-result').classList.remove('show');
+}
+
+/* Parses whatever is in hand and shows what would go live. The same checks the
+   Worker runs, so a bad paper is refused here with the page still in front of you. */
+function eventCheck() {
+  const pasted = (document.getElementById('ev-paste').value || '').trim();
+  if (pasted) evText = pasted;
+  const host = document.getElementById('ev-summary');
+  const btn = document.getElementById('ev-publish');
+  evParsed = null;
+  btn.disabled = true;
+  if (!evText) { host.innerHTML = ''; return; }
+
+  let cfg;
+  try { cfg = JSON.parse(evText); }
+  catch (e) {
+    host.innerHTML = '<div class="result error show">Not valid JSON: ' + escapeHtml(e.message) + '</div>';
+    return;
+  }
+
+  const problems = [];
+  if (!cfg || typeof cfg !== 'object' || Array.isArray(cfg)) problems.push('The file is not a JSON object.');
+  if (cfg && !cfg.event_id) problems.push('event_id is missing.');
+  if (cfg && !cfg.event_name) problems.push('event_name is missing.');
+  const qs = (cfg && Array.isArray(cfg.questions)) ? cfg.questions : [];
+  if (!qs.length) problems.push('There are no questions in this config.');
+  const noKey = qs.filter(q => !q || q.answer === undefined || q.answer === null || q.answer === '');
+  if (noKey.length) problems.push(noKey.length + ' question' + (noKey.length === 1 ? '' : 's') + ' have no answer key.');
+  const sections = (cfg && Array.isArray(cfg.sections)) ? cfg.sections : [];
+  const sectioned = sections.length > 1;
+  if (sectioned) {
+    const untimed = sections.filter(sec => !(Number(sec.time_limit_seconds) > 0));
+    if (untimed.length) problems.push(untimed.length + ' section' + (untimed.length === 1 ? '' : 's') + ' have no time limit.');
+    const stray = qs.filter(q => (q.section || 0) >= sections.length);
+    if (stray.length) problems.push(stray.length + ' question' + (stray.length === 1 ? '' : 's') + ' sit outside the declared sections.');
+  } else if (cfg && !(Number(cfg.timer_seconds) > 0)) {
+    problems.push('No time limit is set (timer_seconds). Publish anyway only if you meant it to be untimed.');
+  }
+
+  // Warnings worth seeing but not worth blocking on.
+  const warn = [];
+  const noExpl = qs.filter(q => q && !q.explanation).length;
+  if (noExpl) warn.push(noExpl + ' question' + (noExpl === 1 ? '' : 's') + ' have no explanation — the post-test review will be thin there.');
+  const noTrap = qs.filter(q => q && !q.trap).length;
+  if (noTrap) warn.push(noTrap + ' question' + (noTrap === 1 ? '' : 's') + ' have no named trap.');
+  if (cfg && cfg.starts_at) {
+    const d = new Date(cfg.starts_at);
+    if (!isNaN(d) && d.getTime() < Date.now()) warn.push('The start time is in the past, so the page will tell students the test is open now.');
+  } else {
+    warn.push('No start time is set, so the page shows no date and the test opens immediately.');
+  }
+
+  const kind = EV_KIND[cfg && cfg.event_kind] || EV_TYPE[cfg && cfg.event_type] || 'Free test';
+  const total = sectioned
+    ? sections.reduce((sum, sec) => sum + (Number(sec.time_limit_seconds) || 0), 0)
+    : Number(cfg && cfg.timer_seconds) || 0;
+  const shape = sectioned
+    ? sections.map((sec, i) => (Number(sec.question_count) || qs.filter(q => (q.section || 0) === i).length) + 'Q in ' + evMinutes(sec.time_limit_seconds)).join(' + ')
+    : qs.length + 'Q in ' + evMinutes(total);
+
+  const rows = [
+    ['Name', (cfg && cfg.event_name) || '—'],
+    ['Kind', kind + ((cfg && cfg.event_subject) ? ' · ' + cfg.event_subject : '')],
+    ['Shape', shape],
+    ['Opens', evWhen(cfg && cfg.starts_at) || 'immediately (no start time set)'],
+    ['Repeats', (cfg && cfg.recurring_label) || '—'],
+    ['Event id', (cfg && cfg.event_id) || '—'],
+  ];
+
+  host.innerHTML =
+    '<div class="table-wrap"><table><tbody>' +
+    rows.map(r => '<tr><th style="width:120px;text-align:left;">' + escapeHtml(r[0]) + '</th><td>' + escapeHtml(r[1]) + '</td></tr>').join('') +
+    '</tbody></table></div>' +
+    (problems.length
+      ? '<div class="result error show" style="margin-top:12px;">Cannot publish:<br>• ' + problems.map(escapeHtml).join('<br>• ') + '</div>'
+      : '') +
+    (warn.length
+      ? '<p style="font-size:12px;color:var(--text3);margin-top:10px;line-height:1.6;">Worth a look: ' + warn.map(escapeHtml).join(' ') + '</p>'
+      : '');
+
+  if (!problems.length) { evParsed = cfg; btn.disabled = false; }
+}
+
+async function eventPublish() {
+  const { url, secret } = getConfig();
+  const el = document.getElementById('ev-result');
+  el.className = 'result';
+  if (!url || !secret) return showResult(el, 'error', 'Set your Worker URL and Admin Secret first.');
+  if (!evParsed || !evText) return showResult(el, 'error', 'Pick or paste an event config first.');
+  if (!confirm('Publish "' + (evParsed.event_name || 'this event') + '" as the live event?\n\nEvery student who opens the shared link from now on gets this paper.')) return;
+  const btn = document.getElementById('ev-publish');
+  btn.disabled = true;
+  try {
+    const res = await fetch(url + '/admin/event/publish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+      body: evText,
+    });
+    const data = await res.json();
+    if (!res.ok) { showResult(el, 'error', data.error || ('Publish failed (' + res.status + ')')); btn.disabled = false; return; }
+    showResult(el, 'success', '✅ Live now: ' + (data.event_name || data.event_id) + ' — ' + (data.question_count || 0) + ' questions. Share grequantpro.com/events/mock_test.html');
+    eventLoadLive();
+  } catch (e) {
+    showResult(el, 'error', 'Could not reach the Worker: ' + e.message);
+    btn.disabled = false;
+  }
+}
+
+async function eventUnpublish() {
+  const { url, secret } = getConfig();
+  const el = document.getElementById('ev-live-result');
+  el.className = 'result';
+  if (!url || !secret) return showResult(el, 'error', 'Set your Worker URL and Admin Secret first.');
+  if (!confirm('Take the live event down?\n\nThe shared link will fall back to events/config/current.json committed in the repo.')) return;
+  try {
+    const res = await fetch(url + '/admin/event/unpublish', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Admin-Secret': secret },
+    });
+    const data = await res.json();
+    if (!res.ok) return showResult(el, 'error', data.error || ('Failed (' + res.status + ')'));
+    showResult(el, 'success', 'Taken down. The shared link now serves the repo copy.');
+    eventLoadLive();
+  } catch (e) {
+    showResult(el, 'error', 'Could not reach the Worker: ' + e.message);
+  }
+}
+
+async function eventLoadLive() {
+  const { url, secret } = getConfig();
+  const host = document.getElementById('ev-live');
+  if (!url || !secret) { host.innerHTML = '<div class="empty">Set Worker URL and Admin Secret first.</div>'; return; }
+  host.innerHTML = '<div class="empty">Loading…</div>';
+  try {
+    const res = await fetch(url + '/admin/event/published', { headers: { 'X-Admin-Secret': secret } });
+    const data = await res.json();
+    if (!res.ok) { host.innerHTML = '<div class="empty">' + escapeHtml(data.error || ('Failed (' + res.status + ')')) + '</div>'; return; }
+    const live = data.live;
+    let html;
+    if (!live) {
+      html = '<p style="font-size:13px;color:var(--text2);line-height:1.6;">Nothing is published, so the shared link is serving ' +
+             '<code>events/config/current.json</code> from the repo. That is a perfectly good state — it just means a change needs a commit.</p>';
+    } else {
+      const kind = EV_KIND[live.event_kind] || EV_TYPE[live.event_type] || 'Free test';
+      const shape = (live.sections && live.sections.length)
+        ? live.sections.map(sec => (sec.question_count || 0) + 'Q in ' + evMinutes(sec.time_limit_seconds)).join(' + ')
+        : (live.question_count || 0) + 'Q in ' + evMinutes(live.timer_seconds);
+      const rows = [
+        ['Live now', live.event_name || '—'],
+        ['Kind', kind + (live.event_subject ? ' · ' + live.event_subject : '')],
+        ['Shape', shape],
+        ['Opens', evWhen(live.starts_at) || 'immediately'],
+        ['Published', live.published_at ? new Date(live.published_at).toLocaleString('en-IN', { day: 'numeric', month: 'short', hour: 'numeric', minute: '2-digit', hour12: true, timeZone: 'Asia/Kolkata' }) + ' IST' : '—'],
+      ];
+      html = '<div class="table-wrap"><table><tbody>' +
+        rows.map(r => '<tr><th style="width:120px;text-align:left;">' + escapeHtml(r[0]) + '</th><td>' + escapeHtml(r[1]) + '</td></tr>').join('') +
+        '</tbody></table></div>';
+    }
+    const past = Array.isArray(data.past) ? data.past : [];
+    if (past.length) {
+      html += '<h3 style="font-size:12px;font-family:var(--font-mono);color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin:20px 0 8px;">Published before (' + past.length + ')</h3>' +
+        '<div class="table-wrap"><table><thead><tr><th>Event</th><th>Shape</th><th>Opened</th></tr></thead><tbody>' +
+        past.map(r => '<tr><td>' + escapeHtml(r.event_name || r.event_id || '—') + '</td><td>' +
+          escapeHtml((r.question_count || 0) + 'Q · ' + evMinutes(r.timer_seconds)) + '</td><td>' +
+          escapeHtml(evWhen(r.starts_at) || '—') + '</td></tr>').join('') +
+        '</tbody></table></div>';
+    }
+    host.innerHTML = html;
+  } catch (e) {
+    host.innerHTML = '<div class="empty">Could not reach the Worker: ' + escapeHtml(e.message) + '</div>';
+  }
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  const f = document.getElementById('ev-file');
+  if (!f) return;
+  f.addEventListener('change', () => {
+    const file = f.files && f.files[0];
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = () => { evText = String(reader.result || ''); eventCheck(); };
+    reader.onerror = () => {
+      const el = document.getElementById('ev-result');
+      el.className = 'result';
+      showResult(el, 'error', 'Could not read that file.');
+    };
+    reader.readAsText(file);
+  });
+});
 
 function escapeHtml(value) {
   return String(value ?? '').replace(/[&<>"']/g, m => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;' }[m]));

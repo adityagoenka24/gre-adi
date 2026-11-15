@@ -25,6 +25,10 @@
  *   POST /validate              — check email + fingerprint (called on every app load)
  *   POST /register              — save fingerprint after first successful email check
  *   POST /pro-data              — a student fetches one paid question file (bank/*.json, mocks/*.json); checked against email + registered device + plan
+ *   GET  /event/current         — the event that is live right now, for events/mock_test.html (public)
+ *   POST /admin/event/publish   — make one event config live (body = the builder's JSON) (protected by ADMIN_SECRET)
+ *   POST /admin/event/unpublish — take the live event down; the static current.json takes over again (protected by ADMIN_SECRET)
+ *   GET  /admin/event/published — what is live, plus the last few published (protected by ADMIN_SECRET)
  *   POST /admin/pro-data/put    — store one paid file in KV (?path=bank/x.json, body = the file text) (protected by ADMIN_SECRET)
  *   GET  /admin/pro-data/get    — read one stored paid file back (?path=...) (protected by ADMIN_SECRET)
  *   POST /admin/pro-data/delete — remove one stored paid file (?path=...) (protected by ADMIN_SECRET)
@@ -199,6 +203,18 @@ export default {
         return await handleAdminWaiveLog(request, env);
       }
 
+      if (path === '/event/current' && request.method === 'GET') {
+        return await handleEventCurrent(request, env);
+      }
+      if (path === '/admin/event/publish' && request.method === 'POST') {
+        return await handleAdminEventPublish(request, env);
+      }
+      if (path === '/admin/event/unpublish' && request.method === 'POST') {
+        return await handleAdminEventUnpublish(request, env);
+      }
+      if (path === '/admin/event/published' && request.method === 'GET') {
+        return await handleAdminEventPublished(request, env);
+      }
       if (path === '/pro-data' && request.method === 'POST') {
         return await handleProData(request, env);
       }
@@ -1456,6 +1472,144 @@ async function verifyRazorpayHmac(body, signature, secret) {
   } catch {
     return false;
   }
+}
+
+// ─── THE LIVE EVENT ──────────────────────────────────────────────────────────
+/* Publishing a Sunday event used to mean editing events/config/current.json in
+   the repo by hand and waiting for the site to rebuild. Instead the config the
+   event builder produces is posted here from Admin -> Sunday Event and kept in
+   KV under event:live. events/mock_test.html reads GET /event/current first and
+   falls back to the static current.json, so the repo copy stays a working
+   backstop and nothing breaks if this is never used.
+
+   KV cost: one get per student who opens the page (the response is marked
+   no-store, because a published change has to be visible at once), one put per
+   publish. Both are nowhere near the free tier.
+
+   Every published config is also archived under event:past:{event_id} with a
+   small index at event:past, so an old paper can be re-published or inspected
+   without digging through git history. */
+const EVENT_LIVE_KEY = 'event:live';
+const EVENT_LIVE_META_KEY = 'event:live:meta';
+const EVENT_PAST_PREFIX = 'event:past:';
+const EVENT_PAST_INDEX_KEY = 'event:past';
+const EVENT_PAST_KEEP = 40;                    // index entries, not configs
+const EVENT_MAX_CHARS = 2 * 1024 * 1024;       // a 60-question paper with figures is well under this
+
+/* The one-line summary Admin and the publish response show. Kept small on
+   purpose: it is read on every /admin/event/published call. */
+function eventMeta(config, text) {
+  const sections = Array.isArray(config.sections) ? config.sections : [];
+  const sectioned = sections.length > 1;
+  return {
+    event_id: String(config.event_id || ''),
+    event_name: String(config.event_name || ''),
+    event_type: String(config.event_type || ''),
+    event_kind: String(config.event_kind || ''),
+    event_subject: String(config.event_subject || ''),
+    starts_at: config.starts_at || null,
+    recurring_label: config.recurring_label || null,
+    question_count: (config.questions || []).length,
+    sections: sectioned
+      ? sections.map((sec, i) => ({
+          name: String(sec.name || ('Section ' + (i + 1))),
+          question_count: Number(sec.question_count) || (config.questions || []).filter((q) => (q.section || 0) === i).length,
+          time_limit_seconds: Number(sec.time_limit_seconds) || 0,
+        }))
+      : [],
+    timer_seconds: sectioned
+      ? sections.reduce((sum, sec) => sum + (Number(sec.time_limit_seconds) || 0), 0)
+      : Number(config.timer_seconds) || 0,
+    chars: text.length,
+    published_at: new Date().toISOString(),
+  };
+}
+
+/* What the page is allowed to go live with. These are the same things that
+   would make the test unusable rather than merely imperfect, so they are
+   refused here as well as in the builder. */
+function eventConfigProblem(config) {
+  if (!config || typeof config !== 'object' || Array.isArray(config)) return 'The file is not a JSON object.';
+  if (!config.event_id) return 'event_id is missing.';
+  if (!config.event_name) return 'event_name is missing.';
+  const qs = config.questions;
+  if (!Array.isArray(qs) || !qs.length) return 'There are no questions in this config.';
+  const noAnswer = qs.filter((q) => !q || q.answer === undefined || q.answer === null || q.answer === '').length;
+  if (noAnswer) return noAnswer + ' question' + (noAnswer === 1 ? '' : 's') + ' have no answer key.';
+  const sections = Array.isArray(config.sections) ? config.sections : [];
+  if (sections.length > 1) {
+    const untimed = sections.filter((sec) => !(Number(sec.time_limit_seconds) > 0)).length;
+    if (untimed) return untimed + ' section' + (untimed === 1 ? '' : 's') + ' have no time limit.';
+    const stray = qs.filter((q) => (q.section || 0) >= sections.length).length;
+    if (stray) return stray + ' question' + (stray === 1 ? '' : 's') + ' sit outside the declared sections.';
+  }
+  return null;
+}
+
+// GET /event/current — public. 404 means "nothing published", which is the
+// page's cue to use the static config committed in the repo.
+async function handleEventCurrent(request, env) {
+  const text = await env.GRE_AUTH.get(EVENT_LIVE_KEY);
+  if (!text) return jsonResponse({ status: 'none' }, 404);
+  return new Response(text, {
+    status: 200,
+    headers: { ...CORS_HEADERS, 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' },
+  });
+}
+
+// POST /admin/event/publish — body is the event config JSON, exactly as the
+// event builder downloads it.
+async function handleAdminEventPublish(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  const text = await request.text();
+  if (!text) return jsonResponse({ error: 'Empty body' }, 400);
+  if (text.length > EVENT_MAX_CHARS) return jsonResponse({ error: 'Config too large' }, 413);
+  let config;
+  try { config = JSON.parse(text); }
+  catch (e) { return jsonResponse({ error: 'Not valid JSON: ' + e.message }, 400); }
+  const problem = eventConfigProblem(config);
+  if (problem) return jsonResponse({ error: problem }, 400);
+
+  const meta = eventMeta(config, text);
+  await env.GRE_AUTH.put(EVENT_LIVE_KEY, text);
+  await env.GRE_AUTH.put(EVENT_LIVE_META_KEY, JSON.stringify(meta));
+
+  // Archive, so a paper can be put back up later without going to git.
+  try {
+    await env.GRE_AUTH.put(EVENT_PAST_PREFIX + meta.event_id, text);
+    const raw = await env.GRE_AUTH.get(EVENT_PAST_INDEX_KEY);
+    const rows = raw ? (JSON.parse(raw) || []) : [];
+    const kept = rows.filter((r) => r && r.event_id !== meta.event_id);
+    kept.unshift(meta);
+    await env.GRE_AUTH.put(EVENT_PAST_INDEX_KEY, JSON.stringify(kept.slice(0, EVENT_PAST_KEEP)));
+  } catch (e) { /* the archive is a convenience; the live event is already up */ }
+
+  return jsonResponse({ status: 'published', ...meta });
+}
+
+// POST /admin/event/unpublish — the static events/config/current.json in the
+// repo becomes the live event again. The archive is left alone.
+async function handleAdminEventUnpublish(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  await env.GRE_AUTH.delete(EVENT_LIVE_KEY);
+  await env.GRE_AUTH.delete(EVENT_LIVE_META_KEY);
+  return jsonResponse({ status: 'unpublished' });
+}
+
+// GET /admin/event/published — the live event's summary and the recent ones.
+async function handleAdminEventPublished(request, env) {
+  if (!isAdmin(request, env)) return jsonResponse({ error: 'Unauthorized' }, 401);
+  const [metaRaw, pastRaw] = await Promise.all([
+    env.GRE_AUTH.get(EVENT_LIVE_META_KEY),
+    env.GRE_AUTH.get(EVENT_PAST_INDEX_KEY),
+  ]);
+  let live = null;
+  try { live = metaRaw ? JSON.parse(metaRaw) : null; } catch (e) { live = null; }
+  let past = [];
+  try { past = pastRaw ? (JSON.parse(pastRaw) || []) : []; } catch (e) { past = []; }
+  // A live event with no meta (published by an older Worker) still counts as live.
+  if (!live && (await env.GRE_AUTH.get(EVENT_LIVE_KEY))) live = { event_name: '(published, no summary stored)' };
+  return jsonResponse({ status: 'ok', live, past });
 }
 
 // ─── PRO DATA (the paid question files) ──────────────────────────────────────

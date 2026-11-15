@@ -113,7 +113,7 @@
   <div>
     <div class="hero-eyebrow">GRE Quant Practice · <strong>Every trap named</strong></div>
     <h1>Stop guessing why you got it wrong. <em>Know.</em></h1>
-    <p class="hero-sub">Every question here is tagged with its <strong>trap</strong> — the specific wrong turn that makes a wrong answer look right. 5,868 questions across 95 subtopics, practised in a replica of the real GRE test interface. 370 more were deleted this year for failing our own written standard — <a href="audit/" style="color:inherit;text-decoration:underline">every id is published</a>.</p>
+    <p class="hero-sub">Every question here is tagged with its <strong>trap</strong> — the specific wrong turn that makes a wrong answer look right. 5,868 questions across 95 subtopics, practised in a replica of the real GRE test interface.</p>
     <div class="hero-btns">
       <a href="gre_practice_logger_free.html?start=guided" class="btn btn-primary" data-track="free_logger_opened" data-track-from="hero">Start with 10 free questions →</a>
       <a href="#plans" class="btn btn-secondary" data-track="buy_pro_clicked" data-track-from="hero">See Pro plans — ₹999 →</a>
@@ -246,14 +246,13 @@
     <ul class="free-list" style="margin:0">
       <li><span>→</span><strong>Every question names its trap.</strong> Not just a solution — the wrong turn that makes the tempting answer tempting.</li>
       <li><span>→</span><strong>Calibrated to score bands.</strong> Easy 130–145, Medium 146–155, Hard 156–163, Extreme 164–170. Wrong band, re-scored or cut.</li>
-      <li><span>→</span><strong>Held to a written ETS standard.</strong> Stem, distractors, figures, explanation against key. Failures get pulled, not patched — 370 this year, <a href="audit/" style="color:var(--accent)">listed by id with the reason</a>.</li>
+      <li><span>→</span><strong>Held to a written ETS standard.</strong> Stem, distractors, figures, explanation against key. Failures get pulled, not patched.</li>
       <li><span>→</span><strong>Nothing is AI-generated and shipped unread.</strong> Every answer checked by hand against its own explanation.</li>
     </ul>
   </div>
   <p class="section-sub" style="margin-top:22px">Find a wrong answer and we pull it that week. Seven-day refund either way — the only guarantee that doesn't ask you to believe something you can't check.</p>
   <div style="text-align:center;margin-top:24px">
     <a href="gre_practice_logger_free.html?start=guided" class="btn btn-primary" data-track="free_logger_opened" data-track-from="how_built">Check the explanations yourself →</a>
-    <a href="audit/" class="btn btn-secondary" style="margin-left:10px" data-track="audit_opened" data-track-from="how_built">See the 370 we deleted →</a>
   </div>
 </section>
 
@@ -709,13 +708,19 @@ function updateProSelector(){
 document.querySelectorAll('.feature-check').forEach(cb => cb.addEventListener('change', updateProSelector));
 updateProSelector();
 
-// ── TOPIC OF THE DAY — reflect events/config/current.json on the homepage card ──
+// ── TOPIC OF THE DAY — reflect the live event on the homepage card ──
+/* The same order of preference the event page itself uses: whatever is
+   published from Admin -> Sunday Event, else the config committed in the repo.
+   If this card disagreed with the page the link opens, the mismatch would be
+   the first thing a student noticed. */
 (function loadTopicOfDay(){
   const titleEl = document.getElementById("topicOfDayTitle");
   const descEl = document.getElementById("topicOfDayDesc");
   if (!titleEl || !descEl) return;
-  fetch("events/config/current.json", { cache: "no-store" })
-    .then(r => r.ok ? r.json() : Promise.reject())
+  const LIVE = "https://gre-auth.goenka-aditya-kol.workers.dev/event/current";
+  const ok = r => r.ok ? r.json() : Promise.reject(new Error(String(r.status)));
+  fetch(LIVE, { cache: "no-store" }).then(ok)
+    .catch(() => fetch("events/config/current.json", { cache: "no-store" }).then(ok))
     .then(config => {
       const filters = config.source_filters || {};
       const topic = filters.topic && filters.topic !== "all" ? filters.topic : null;

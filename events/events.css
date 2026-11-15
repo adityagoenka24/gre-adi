@@ -344,3 +344,280 @@ pre{background:#07070b;border:1px solid var(--border);border-radius:var(--radius
   .builder-form-grid,.builder-toggle-row{grid-template-columns:1fr}
   .smart-diagnosis,.pro-analysis-cta{padding:18px}
 }
+
+/* ══════════════════════════════════════════════════════════════════════════
+   THE EVENT LANDING PAGE
+   Everything above is the dark exam/results chrome. This is the page a
+   stranger sees first, and it deliberately speaks the main site's language
+   instead: warm paper, navy, burnt orange, Fraunces over Source Sans — the
+   same palette and type as grequantpro.com, so arriving here from a shared
+   link does not feel like arriving at a different product. The test itself
+   then switches to the stark ETS replica, which is the point of the contrast.
+
+   Scoping: everything is under #startSection, so none of it can reach the
+   exam shell or the results page. The three things that have to be global
+   (the page background, the grid overlay, the top bar) hang off
+   :has(#startSection:not(.hidden)) and revert the moment the test begins.
+   ══════════════════════════════════════════════════════════════════════════ */
+:root{
+  --ev-paper:#faf8f4;
+  --ev-paper2:#f3efe7;
+  --ev-card:#ffffff;
+  --ev-ink:#152a3d;
+  --ev-ink2:#46586a;
+  --ev-ink3:#7c8b99;
+  --ev-navy:#16324f;
+  --ev-navy-deep:#0e2334;
+  --ev-blue:#1a5da6;
+  --ev-blue-soft:#e8f0f8;
+  --ev-orange:#c65d21;
+  --ev-orange-dark:#a84e1b;
+  --ev-orange-soft:#faeee4;
+  --ev-green:#1e7e46;
+  --ev-green-soft:#e5f2ea;
+  --ev-line:#e6dfd3;
+  --ev-line2:#d5ccbc;
+  --ev-ff:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --ev-fd:"Fraunces",Georgia,serif;
+  --ev-fm:"DM Mono","Courier New",monospace;
+  --ev-shadow:0 1px 2px rgba(22,50,79,.05),0 12px 32px rgba(22,50,79,.07);
+  --ev-shadow-lg:0 2px 4px rgba(22,50,79,.06),0 24px 56px rgba(22,50,79,.12);
+}
+
+/* ── Landing mode: the three globals ──────────────────────────────────── */
+body:has(#startSection:not(.hidden)){background:var(--ev-paper);color:var(--ev-ink);font-family:var(--ev-ff)}
+body:has(#startSection:not(.hidden))::before{display:none}
+body:has(#startSection:not(.hidden)) .shell{max-width:1140px;padding:0 24px 80px}
+body:has(#startSection:not(.hidden)) .topbar{
+  margin:0 -24px 0;padding:0 24px;height:66px;
+  background:rgba(250,248,244,.92);
+  -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--ev-line);
+  position:sticky;top:0;z-index:60;
+}
+body:has(#startSection:not(.hidden)) .topbar .nav-logo{
+  font-family:var(--ev-fd);font-weight:700;font-size:21px;color:var(--ev-navy);letter-spacing:-.2px;
+  display:flex;align-items:baseline;gap:9px;
+}
+body:has(#startSection:not(.hidden)) .topbar .nav-logo span{color:var(--ev-orange)}
+body:has(#startSection:not(.hidden)) .topbar .nav-logo small{
+  font-family:var(--ev-fm);font-size:10.5px;font-weight:400;letter-spacing:1.6px;
+  text-transform:uppercase;color:var(--ev-ink3);
+}
+body:has(#startSection:not(.hidden)) .topbar .nav a{
+  background:transparent;border:none;color:var(--ev-ink2);font-size:14.5px;font-weight:600;
+  padding:7px 9px;border-radius:8px;min-height:0;
+}
+body:has(#startSection:not(.hidden)) .topbar .nav a:hover{background:var(--ev-paper2);color:var(--ev-navy)}
+body:has(#startSection:not(.hidden)) .topbar .badge-free{
+  background:var(--ev-green-soft);color:var(--ev-green);border:1px solid #bfdfcc;
+  font-family:var(--ev-fm);font-size:10.5px;letter-spacing:1.4px;text-transform:uppercase;
+  padding:5px 10px;border-radius:999px;
+}
+
+/* ── Shared type and buttons ──────────────────────────────────────────── */
+#startSection{font-family:var(--ev-ff);color:var(--ev-ink);line-height:1.65}
+#startSection .ev-h1{
+  font-family:var(--ev-fd);font-weight:640;font-size:clamp(38px,5vw,58px);line-height:1.05;
+  letter-spacing:-1px;color:var(--ev-navy);margin:0 0 20px;
+}
+#startSection .ev-h1 em{font-style:italic;color:var(--ev-orange)}
+#startSection .ev-h2{
+  font-family:var(--ev-fd);font-weight:640;font-size:clamp(26px,3.3vw,38px);line-height:1.14;
+  letter-spacing:-.6px;color:var(--ev-navy);margin:0 0 12px;
+}
+#startSection .ev-h2 em{font-style:italic;color:var(--ev-orange)}
+#startSection .eyebrow{
+  display:inline-flex;align-items:center;gap:10px;font-family:var(--ev-fm);font-size:11.5px;
+  color:var(--ev-blue);letter-spacing:2px;text-transform:uppercase;font-weight:500;
+  margin:0 0 22px;
+}
+#startSection .eyebrow::before{content:"";width:34px;height:2px;background:var(--ev-orange);display:block;flex-shrink:0}
+#startSection .ev-lede{font-size:18.5px;color:var(--ev-ink2);max-width:560px;margin:0 0 26px;line-height:1.62}
+#startSection .ev-btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;
+  padding:16px 28px;border-radius:10px;border:none;cursor:pointer;
+  font-family:var(--ev-ff);font-size:16.5px;font-weight:700;text-decoration:none;
+  transition:background .15s,transform .15s,box-shadow .15s;min-height:0;
+}
+#startSection .ev-btn-primary{background:var(--ev-orange);color:#fff;box-shadow:0 6px 20px rgba(198,93,33,.28)}
+#startSection .ev-btn-primary:hover{background:var(--ev-orange-dark);transform:translateY(-1px);box-shadow:0 10px 26px rgba(198,93,33,.34)}
+#startSection .ev-btn-ghost{background:#fff;color:var(--ev-navy);border:1.5px solid var(--ev-line2);width:auto}
+#startSection .ev-btn-ghost:hover{border-color:var(--ev-navy);transform:translateY(-1px)}
+#startSection .ev-fine{font-size:13px;color:var(--ev-ink3);line-height:1.55;margin:12px 0 0}
+#startSection .ev-fine-centre{text-align:center}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+#startSection .ev-hero{
+  display:grid;grid-template-columns:minmax(0,1.05fr) minmax(360px,.95fr);
+  gap:52px;align-items:start;padding:64px 0 56px;
+}
+/* The event's own identity: name, when, shape. All three are filled by
+   events_common.js from the config, so this strip is the only place the
+   page states what today's paper actually is. */
+#startSection .ev-when{
+  border-left:3px solid var(--ev-orange);padding:2px 0 2px 18px;margin:0 0 26px;
+}
+#startSection .ev-when-name{
+  font-family:var(--ev-fd);font-weight:640;font-size:21px;color:var(--ev-navy);line-height:1.25;
+}
+#startSection .ev-when-row{font-size:14.5px;color:var(--ev-ink2);margin-top:3px}
+#startSection .ev-when-shape{font-family:var(--ev-fm);font-size:12.5px;color:var(--ev-ink3);letter-spacing:.2px}
+#startSection .ev-points{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+#startSection .ev-points li{font-size:15px;color:var(--ev-ink2);display:flex;gap:11px;line-height:1.55}
+/* Only the arrow is the green marker; the sentence beside it must stay body
+   text and must be free to wrap, or it runs under the register card. */
+#startSection .ev-points li > span:first-child{color:var(--ev-green);font-weight:800;flex-shrink:0}
+#startSection .ev-points li > span + span{flex:1;min-width:0}
+#startSection .ev-points li b{color:var(--ev-ink)}
+#startSection .ev-instr{font-size:13px;color:var(--ev-ink3);margin:20px 0 0;font-style:italic}
+
+/* ── Register card ────────────────────────────────────────────────────── */
+#startSection .ev-reg{
+  scroll-margin-top:90px;
+  background:var(--ev-card);border:1px solid var(--ev-line);border-radius:18px;
+  box-shadow:var(--ev-shadow-lg);padding:26px;position:sticky;top:90px;
+}
+#startSection .ev-reg h2{
+  font-family:var(--ev-fd);font-weight:640;font-size:25px;color:var(--ev-navy);
+  margin:0 0 16px;letter-spacing:-.3px;
+}
+#startSection .ev-get{
+  background:var(--ev-paper);border:1px solid var(--ev-line);border-radius:12px;
+  padding:15px 17px;margin-bottom:20px;
+}
+#startSection .ev-get-head{
+  font-family:var(--ev-fm);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;
+  color:var(--ev-orange);margin-bottom:9px;
+}
+#startSection .ev-get ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:7px}
+#startSection .ev-get li{font-size:13.5px;color:var(--ev-ink2);line-height:1.5;padding-left:17px;position:relative}
+#startSection .ev-get li::before{
+  content:"";position:absolute;left:0;top:8px;width:7px;height:7px;border-radius:50%;
+  background:var(--ev-orange-soft);border:1.5px solid var(--ev-orange);
+}
+#startSection .ev-get li b{color:var(--ev-ink);font-weight:700}
+#startSection .field{display:flex;flex-direction:column;gap:6px;margin-bottom:13px}
+#startSection .field label{
+  font-family:var(--ev-fm);font-size:10.5px;letter-spacing:1.3px;text-transform:uppercase;color:var(--ev-ink3);
+}
+#startSection .field input{
+  width:100%;background:#fff;border:1.5px solid var(--ev-line2);color:var(--ev-ink);
+  border-radius:9px;padding:12px 13px;font-family:var(--ev-ff);font-size:15.5px;outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
+#startSection .field input:focus{border-color:var(--ev-blue);box-shadow:0 0 0 3px var(--ev-blue-soft)}
+#startSection #startError{color:#b3402e;font-size:13.5px;font-weight:600;margin:0 0 10px}
+#startSection #startError:empty{margin:0}
+
+/* ── Proof bar ────────────────────────────────────────────────────────── */
+#startSection .ev-proof{
+  border-top:1px solid var(--ev-line);border-bottom:1px solid var(--ev-line);
+  background:rgba(255,255,255,.55);padding:16px 0;
+  display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap;
+}
+#startSection .ev-proof div{font-size:13.5px;color:var(--ev-ink2);white-space:nowrap}
+#startSection .ev-proof strong{font-family:var(--ev-fd);font-weight:640;font-size:19px;color:var(--ev-navy);margin-right:5px}
+
+/* ── The live trap demo ───────────────────────────────────────────────── */
+/* The one thing no other free-mock page does: let them feel the product
+   before they spend 47 minutes on it. One real question, graded for real. */
+#startSection .ev-demo{padding:62px 0 10px;text-align:center}
+#startSection .ev-demo-eyebrow{
+  font-family:var(--ev-fm);font-size:11.5px;color:var(--ev-orange);text-transform:uppercase;
+  letter-spacing:2.5px;margin-bottom:14px;font-weight:500;
+}
+#startSection .ev-demo-sub{font-size:16px;color:var(--ev-ink2);max-width:600px;margin:0 auto 30px;line-height:1.6}
+#startSection .ev-demo-card{
+  max-width:760px;margin:0 auto;text-align:left;background:#fff;
+  border:1px solid var(--ev-line);border-radius:14px;box-shadow:var(--ev-shadow-lg);overflow:hidden;
+}
+/* The header mimics the real test screen, so the demo doubles as a look at
+   the interface they are about to sit in. */
+#startSection .ev-demo-bar{
+  background:linear-gradient(180deg,#28455e,#1e3549);color:#fff;
+  display:flex;align-items:center;justify-content:space-between;padding:10px 18px;font-size:12px;
+}
+#startSection .ev-demo-bar b{font-weight:700}
+#startSection .ev-demo-bar span{font-family:var(--ev-fm);font-size:10.5px;opacity:.85;letter-spacing:.3px}
+#startSection .ev-demo-strip{
+  background:#dfe6ed;border-bottom:1px solid #c3ccd6;display:flex;justify-content:space-between;
+  padding:6px 18px;font-size:11.5px;color:#2b3947;font-weight:700;
+}
+#startSection .ev-demo-strip span:last-child{font-family:var(--ev-fm);font-weight:500}
+#startSection .ev-demo-body{padding:24px 26px}
+#startSection .ev-demo-dir{
+  font-size:12.5px;color:var(--ev-ink3);font-family:var(--ev-fm);
+  padding-bottom:12px;margin-bottom:16px;border-bottom:1px solid var(--ev-line);
+}
+#startSection .ev-demo-q{font-size:16.5px;color:#16191d;line-height:1.6;margin-bottom:18px}
+#startSection .ev-demo-opts{display:flex;flex-direction:column;gap:8px}
+#startSection .ev-opt{
+  display:flex;align-items:center;gap:12px;width:100%;text-align:left;cursor:pointer;
+  background:#fff;border:1.5px solid #dfe3e8;border-radius:9px;padding:12px 14px;
+  font-family:var(--ev-ff);font-size:15.5px;color:#2b3947;transition:border-color .12s,background .12s;
+}
+#startSection .ev-opt:hover:not(:disabled){border-color:#9fb4c7;background:#fbfcfd}
+#startSection .ev-opt .dot{
+  width:17px;height:17px;border-radius:50%;border:1.7px solid #77828c;flex-shrink:0;
+  transition:border-color .12s,background .12s;
+}
+#startSection .ev-opt .lab{font-family:var(--ev-fm);font-size:13px;color:var(--ev-ink3);flex-shrink:0}
+#startSection .ev-opt .tail{margin-left:auto;font-family:var(--ev-fm);font-size:11px;letter-spacing:1.2px;text-transform:uppercase}
+#startSection .ev-opt:disabled{cursor:default}
+#startSection .ev-opt.picked{border-color:#1a5da6;background:var(--ev-blue-soft)}
+#startSection .ev-opt.picked .dot{border-color:#1a5da6;background:radial-gradient(circle,#1a5da6 0 45%,transparent 50%)}
+#startSection .ev-opt.right{border-color:#1e7e46;background:var(--ev-green-soft)}
+#startSection .ev-opt.right .dot{border-color:#1e7e46;background:radial-gradient(circle,#1e7e46 0 45%,transparent 50%)}
+#startSection .ev-opt.right .tail{color:var(--ev-green)}
+#startSection .ev-opt.wrong{border-color:#b3402e;background:#f9e9e6}
+#startSection .ev-opt.wrong .dot{border-color:#b3402e;background:radial-gradient(circle,#b3402e 0 45%,transparent 50%)}
+#startSection .ev-opt.wrong .tail{color:#b3402e}
+#startSection .ev-reveal{margin-top:20px;display:none}
+#startSection .ev-reveal.open{display:block;animation:evFade .32s ease both}
+@keyframes evFade{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+#startSection .ev-verdict{
+  font-family:var(--ev-fd);font-weight:640;font-size:19px;color:var(--ev-navy);margin:0 0 12px;
+}
+#startSection .ev-expl{
+  background:var(--ev-paper);border:1px solid var(--ev-line);border-radius:10px;
+  padding:14px 16px;font-size:14.5px;color:var(--ev-ink2);line-height:1.62;margin-bottom:12px;
+}
+#startSection .ev-expl b{color:var(--ev-ink)}
+#startSection .ev-trap{
+  background:var(--ev-orange-soft);border:1px solid #eed7c2;border-radius:10px;
+  padding:14px 16px;font-size:14.5px;color:#8a4116;line-height:1.6;
+}
+#startSection .ev-trap b{
+  font-family:var(--ev-fm);font-size:10.5px;letter-spacing:1.5px;text-transform:uppercase;
+  display:block;margin-bottom:5px;color:var(--ev-orange);
+}
+#startSection .ev-trap em{font-style:italic}
+#startSection .ev-demo-foot{
+  border-top:1px solid var(--ev-line);background:var(--ev-paper);
+  padding:16px 26px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;
+}
+#startSection .ev-demo-foot p{margin:0;font-size:14px;color:var(--ev-ink2);line-height:1.5;flex:1;min-width:230px}
+#startSection .ev-demo-foot .ev-btn{flex-shrink:0}
+#startSection .ev-demo-foot b{color:var(--ev-ink)}
+
+/* ── Closing line ─────────────────────────────────────────────────────── */
+#startSection .ev-close{text-align:center;padding:56px 0 0;max-width:620px;margin:0 auto}
+#startSection .ev-close p{font-size:16px;color:var(--ev-ink2);line-height:1.62;margin:0 0 22px}
+
+/* ── Narrow screens ──────────────────────────────────────────────────── */
+@media (max-width:900px){
+  #startSection .ev-hero{grid-template-columns:1fr;gap:38px;padding:44px 0 40px}
+  #startSection .ev-reg{position:static;top:auto}
+  #startSection .ev-lede{max-width:none}
+}
+@media (max-width:620px){
+  #startSection .ev-h1{font-size:33px;letter-spacing:-.6px}
+  #startSection .eyebrow{display:block;letter-spacing:1.3px;font-size:11px}
+  #startSection .eyebrow::before{display:none}
+  #startSection .ev-proof{gap:18px 26px}
+  #startSection .ev-demo-body{padding:20px 18px}
+  #startSection .ev-demo-foot{padding:16px 18px}
+  #startSection .ev-reg{padding:20px}
+  body:has(#startSection:not(.hidden)) .topbar{height:auto;margin:0 -24px;padding:12px 24px;flex-wrap:wrap;gap:10px}
+}

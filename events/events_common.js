@@ -1,6 +1,7 @@
 const Events = (() => {
   const SUBMISSION_ENDPOINT = "https://gre-auth.goenka-aditya-kol.workers.dev/mock/submission";
   const LEAD_ENDPOINT = "https://gre-auth.goenka-aditya-kol.workers.dev/lead";
+  const LIVE_EVENT_ENDPOINT = "https://gre-auth.goenka-aditya-kol.workers.dev/event/current";
   const $ = (id) => document.getElementById(id);
   const state = { config: null, current: 0, answers: [], qTimes: [], qStartedAt: 0, startedAt: null, submitted: false, timer: null, remaining: 0,
     sectionIndex: 0, sectionStartedAt: 0, sectionUsed: [], onBreak: false, marked: [], timerHidden: false, timerLimit: 0 };
@@ -114,15 +115,42 @@ const Events = (() => {
     return response.json();
   }
 
+  /* The event that is live right now, published from Admin -> Sunday Event and
+     held in the Worker's KV. Returns null for anything at all — nothing
+     published, Worker down, student offline mid-flight — and the caller then
+     uses the static config committed in the repo. A published event must never
+     be the single point of failure for the page. */
+  async function loadLiveEvent() {
+    try {
+      const res = await fetch(LIVE_EVENT_ENDPOINT, { cache: "no-store" });
+      if (!res.ok) return null;                       // 404 = nothing published
+      const config = await res.json();
+      return Array.isArray(config && config.questions) && config.questions.length ? config : null;
+    } catch (e) {
+      return null;
+    }
+  }
+
   async function loadConfig(defaultPath = "config/current.json", useQueryParam = true) {
     const params = new URLSearchParams(location.search);
-    const configPath = useQueryParam ? params.get("config") || defaultPath : defaultPath;
+    const asked = useQueryParam ? params.get("config") : null;
+    // ?config=... always wins, so a link to an archived paper keeps working
+    // exactly as it did and is never shadowed by whatever is live today.
+    if (!asked && useQueryParam) {
+      const live = await loadLiveEvent();
+      if (live) return prepareConfig(live);
+    }
+    const configPath = asked || defaultPath;
     const config = await loadJson(configPath);
     if ((config.active_config || config.config_path) && !Array.isArray(config.questions)) {
       const target = String(config.active_config || config.config_path).trim();
       const resolvedPath = target.includes("/") ? target : `config/${target}`;
       return loadConfig(resolvedPath, false);
     }
+    return prepareConfig(config);
+  }
+
+  function prepareConfig(config) {
     if (config.shuffle_questions_for_students) {
       if (Array.isArray(config.sections) && config.sections.length > 1) {
         // Shuffle inside each section so a question never crosses into the other one.
@@ -1485,7 +1513,7 @@ const Events = (() => {
       $("startBtn").onclick = () => {
         const email = $("studentEmail").value.trim();
         if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-          $("startError").textContent = "A valid email is needed — that is where your score report goes.";
+          $("startError").textContent = "A valid email is needed — it is what ties this attempt, and its report, to you.";
           return;
         }
         $("startError").textContent = "";

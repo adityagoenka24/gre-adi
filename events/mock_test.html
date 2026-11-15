@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta name="robots" content="index, follow">
-  <meta name="description" content="Free full-length GRE Quant mock, every Sunday at 10:00 AM IST. Two timed sections, real GRE interface, instant score report with your weakest topics. No card.">
+  <meta name="description" content="A free GRE Quant mock in a replica of the real test interface. Instant score band, timing breakdown, and the named trap behind every question you missed. No card.">
   <script async src="https://www.googletagmanager.com/gtag/js?id=AW-18184272300"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
@@ -14,7 +14,10 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Free GRE Quant Mock — Every Sunday 10 AM IST · GRE Quant Pro</title>
+  <title>Free GRE Quant Mock — Real Interface, Every Trap Named · GRE Quant Pro</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,450..700;1,9..144,450..700&family=Source+Sans+3:wght@400;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="events.css">
   <link rel="stylesheet" href="gre-exam.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" crossorigin="anonymous">
@@ -34,56 +37,124 @@
       </nav>
     </div>
 
-    <section id="startSection">
-      <div class="hero">
-        <div class="panel">
-          <div class="eyebrow" id="eventEyebrow">Free</div>
-          <h1 id="eventName">Loading event...</h1>
-          <p id="instructions">The event config is loading.</p>
+    <!-- ═══ THE LANDING ══════════════════════════════════════════════════
+         This is the page behind the link that gets shared, so it has one job:
+         convince a stranger in twenty seconds, then take their email. It wears
+         the main site's clothes (see the landing block in events.css) because
+         arriving here should feel like arriving at grequantpro.com, not at some
+         unbranded test harness.
 
-          <!-- The selling point, before the test. A stranger arriving from a
-               forum link decides here whether this is worth 47 minutes. Every
-               claim below is checkable in one click — that is the whole pitch. -->
-          <div class="why">
-            <div class="why-head">Why this paper is not like the free mocks you have downloaded</div>
-            <ul class="why-list">
-              <li><b>Every question names the trap.</b> Not just a worked solution — the specific wrong turn that makes the tempting answer tempting, written out for each one.</li>
-              <li><b>Held to a written ETS standard.</b> Stem, distractors, figures and explanation are checked against the key. Questions that fail get pulled, not patched — <a href="https://grequantpro.com/audit/">370 deleted this year, listed by id with the reason</a>.</li>
-              <li><b>Nothing AI-generated and shipped unread.</b> Every answer checked by hand against its own explanation.</li>
-              <li><b>The real interface.</b> Same on-screen calculator, the same section clock and review screen as the actual test. Full mocks carry a genuinely adaptive Section 2.</li>
-            </ul>
-            <div class="why-foot">
-              <span><b>5,868</b> questions in the bank</span>
-              <span><b>14</b> full-length mocks</span>
-              <span><b>370</b> pulled for failing the standard</span>
-            </div>
+         The pitch is not a list of claims — it is the product. A real question
+         from the bank sits below the fold, clickable, and firing its named trap
+         the moment they answer. Nobody can verify a stranger's score; anyone
+         can verify an explanation in thirty seconds, and that is the whole
+         argument this page makes.
+
+         Every id here is written to by events_common.js: eventEyebrow,
+         eventName, eventWhen, eventDetails, instructions, registerHead,
+         studentName/Email/Batch, startError, startBtn. Renaming one silently
+         breaks the page, so they stay.
+         ══════════════════════════════════════════════════════════════════ -->
+    <section id="startSection">
+
+      <div class="ev-hero">
+        <div class="ev-hero-copy">
+          <div class="eyebrow" id="eventEyebrow">Free</div>
+          <h1 class="ev-h1">Most mocks tell you what you scored.<br><em>This one tells you why.</em></h1>
+          <p class="ev-lede">A full GRE Quant paper in a replica of the real test interface — same calculator, same section clock, same review screen. The second you submit, you get your score band, where your time went, and the <em>named trap</em> behind every question you missed.</p>
+
+          <div class="ev-when">
+            <div class="ev-when-name" id="eventName">Loading event…</div>
+            <div class="ev-when-row" id="eventWhen"></div>
+            <div class="ev-when-row ev-when-shape" id="eventDetails">Loading details…</div>
           </div>
 
-          <div class="notice" style="margin-top:18px;margin-bottom:0">Judge the explanations, not the credentials. You can't verify a stranger's score — you can verify an explanation in two minutes, and this paper hands you 27 of them to check.</div>
+          <ul class="ev-points">
+            <li><span>→</span><span><b>Every question names its trap.</b> Not a worked solution — the specific wrong turn that makes the tempting answer tempting.</span></li>
+            <li><span>→</span><span><b>Nothing AI-generated and shipped unread.</b> Every answer checked by hand against its own explanation.</span></li>
+            <li><span>→</span><span><b>Held to a written standard.</b> Stem, distractors, figures and explanation all checked against the key. Questions that fail get pulled, not patched.</span></li>
+          </ul>
+
+          <p class="ev-instr" id="instructions"></p>
         </div>
-        <div class="panel">
+
+        <aside class="ev-reg" id="register">
           <h2 id="registerHead">Register free</h2>
-          <div class="get-list">
-            <div class="get-head">What lands in your inbox afterwards</div>
+
+          <div class="ev-get">
+            <div class="ev-get-head">On screen the moment you submit</div>
             <ul>
               <li>Your <b>estimated Quant score</b> on the 130–170 scale, with a range</li>
-              <li>The <b>three subtopics costing you the most marks</b>, by name</li>
+              <li>The <b>subtopics costing you the most marks</b>, by name</li>
               <li><b>Where your time went</b>, question by question, against the pace you need</li>
-              <li>A <b>worked explanation and the named trap</b> for every question you missed</li>
-              <li>A <b>PDF report</b> you can keep, and a drill set built from your weakest topic</li>
+              <li>A <b>worked explanation and the named trap</b> for everything you missed</li>
+              <li>A <b>PDF report</b> to keep, and a drill set built from your weakest topic</li>
             </ul>
           </div>
-          <p class="muted" id="eventWhen" style="font-weight:700"></p>
-          <p class="muted" id="eventDetails">Loading details...</p>
-          <div class="field"><label for="studentName">Name <span style="font-weight:400;opacity:.7">(optional)</span></label><input id="studentName" autocomplete="name"></div>
-          <div class="field"><label for="studentEmail">Email</label><input id="studentEmail" type="email" autocomplete="email"></div>
-          <div class="field"><label for="studentBatch">Class / Batch</label><input id="studentBatch" placeholder="Optional"></div>
-          <p class="muted" style="margin-bottom:10px">Your email is where the score report goes — your estimated Quant score, your timing, and the topics that cost you the most marks. We do not call, and we do not pass it on.</p>
-          <p class="muted" id="startError"></p>
-          <button class="primary-btn" id="startBtn">Register &amp; start &rarr;</button>
+
+          <div class="field"><label for="studentName">Name <span style="letter-spacing:0;text-transform:none">(optional)</span></label><input id="studentName" autocomplete="name"></div>
+          <div class="field"><label for="studentEmail">Email</label><input id="studentEmail" type="email" autocomplete="email" placeholder="you@example.com"></div>
+          <div class="field"><label for="studentBatch">Class / batch <span style="letter-spacing:0;text-transform:none">(optional)</span></label><input id="studentBatch" placeholder="Optional"></div>
+
+          <p class="ev-fine" style="margin:4px 0 14px">Your email tags the attempt as yours, so your report and your error log stay with you across sittings. We do not call, and we do not pass it on.</p>
+          <p id="startError"></p>
+          <button class="ev-btn ev-btn-primary" id="startBtn">Register &amp; start &rarr;</button>
+          <p class="ev-fine ev-fine-centre">No card. No password. Nothing to install.</p>
+        </aside>
+      </div>
+
+      <div class="ev-proof">
+        <div><strong>5,868</strong> questions, every trap named</div>
+        <div><strong>95</strong> subtopics</div>
+        <div><strong>14</strong> full-length mocks</div>
+        <div><strong>1:45</strong> real GRE pace per question</div>
+      </div>
+
+      <!-- The demo. Static markup, one small controller at the bottom of the
+           page. It is a genuine bank question with its genuine trap text. -->
+      <div class="ev-demo">
+        <div class="ev-demo-eyebrow">Before you commit 47 minutes</div>
+        <h2 class="ev-h2">Answer one. <em>Then watch what happens.</em></h2>
+        <p class="ev-demo-sub">A real question from the bank, graded the way the whole paper is graded. You can judge the explanation in thirty seconds — which is more than you can do with anyone&rsquo;s claimed score.</p>
+
+        <div class="ev-demo-card">
+          <div class="ev-demo-bar">
+            <b>Sample &nbsp;|&nbsp; Question 1 of 1</b>
+            <span>Mark &nbsp; Review &nbsp; Back &nbsp; Next</span>
+          </div>
+          <div class="ev-demo-strip">
+            <span>GRE<sup>&reg;</sup> Mock &mdash; Quantitative Reasoning</span>
+            <span>Percentages &middot; Medium</span>
+          </div>
+          <div class="ev-demo-body">
+            <div class="ev-demo-dir">Select one answer choice.</div>
+            <div class="ev-demo-q">A store raises a price by 20%, then offers a 20% discount on the new price, then raises it again by 25%. If the final price is <b>$810</b>, what was the original price?</div>
+            <div class="ev-demo-opts" id="evDemoOpts">
+              <button class="ev-opt" type="button" data-opt="A"><span class="dot"></span><span class="lab">A</span><span>$648</span><span class="tail"></span></button>
+              <button class="ev-opt" type="button" data-opt="B"><span class="dot"></span><span class="lab">B</span><span>$660</span><span class="tail"></span></button>
+              <button class="ev-opt" type="button" data-opt="C"><span class="dot"></span><span class="lab">C</span><span>$675</span><span class="tail"></span></button>
+              <button class="ev-opt" type="button" data-opt="D"><span class="dot"></span><span class="lab">D</span><span>$720</span><span class="tail"></span></button>
+            </div>
+
+            <div class="ev-reveal" id="evDemoReveal">
+              <div class="ev-verdict" id="evDemoVerdict"></div>
+              <div class="ev-expl"><b>Explanation.</b> Multiply the three multipliers rather than adding the percentages: 1.20 &times; 0.80 &times; 1.25 = 1.20. So Original &times; 1.20 = 810, giving Original = 810 &divide; 1.20 = <b>$675</b>.</div>
+              <div class="ev-trap"><b>Named trap</b>Students add +20% &minus; 20% + 25% = +25% and compute 810 &divide; 1.25 = $648, which is option A. Successive percent changes must be <em>multiplied</em>, not added — each one applies to the previous price, not to the original.</div>
+            </div>
+          </div>
+          <div class="ev-demo-foot">
+            <p>Every question in this paper carries one of those. <b>So does every one of the 5,868 in the bank.</b></p>
+            <a class="ev-btn ev-btn-ghost" href="#register" id="evDemoCta">Register and sit the paper &rarr;</a>
+          </div>
         </div>
       </div>
-      <div class="notice warning">No feedback appears during the test. At the end, your analysis appears instantly: score, timing, weak areas, and the traps that cost you marks.</div>
+
+      <div class="ev-close">
+        <h2 class="ev-h2">Judge the explanations, <em>not the credentials.</em></h2>
+        <p>You cannot verify a stranger&rsquo;s score. You can verify an explanation in two minutes, and this paper hands you a full set of them to check. No feedback appears while the clock runs — your analysis arrives the instant you finish.</p>
+        <a class="ev-btn ev-btn-ghost" href="#register">Register free &rarr;</a>
+      </div>
+
     </section>
 
     <section id="instructionsSection" class="hidden">
@@ -217,6 +288,47 @@
   (function () {
     function typeset() { if (window.GREMath) window.GREMath.renderIn(document.querySelector('main') || document.body); }
     window.addEventListener('load', function () { typeset(); setTimeout(typeset, 600); });
+  })();
+  </script>
+  <script>
+  /* The sample question on the landing page. Deliberately self-contained: it
+     shares nothing with the Events state machine, so a bug here can never
+     touch a live attempt. One answer, then it locks and reveals. */
+  (function () {
+    var ANSWER = "C";
+    var opts = document.getElementById("evDemoOpts");
+    if (!opts) return;
+    var reveal = document.getElementById("evDemoReveal");
+    var verdict = document.getElementById("evDemoVerdict");
+    var answered = false;
+
+    opts.addEventListener("click", function (e) {
+      var btn = e.target.closest(".ev-opt");
+      if (!btn || answered) return;
+      answered = true;
+      var picked = btn.dataset.opt;
+      var right = picked === ANSWER;
+
+      Array.prototype.forEach.call(opts.querySelectorAll(".ev-opt"), function (b) {
+        b.disabled = true;
+        var tail = b.querySelector(".tail");
+        if (b.dataset.opt === ANSWER) {
+          b.classList.add("right");
+          if (tail) tail.textContent = "Correct";
+        } else if (b.dataset.opt === picked) {
+          b.classList.add("wrong");
+          if (tail) tail.textContent = "Your answer";
+        }
+      });
+
+      verdict.textContent = right
+        ? "Correct \u2014 and here is the trap you stepped around."
+        : "Not quite. Here is the exact wrong turn.";
+      reveal.classList.add("open");
+      if (window.GQP && window.GQP.track) {
+        window.GQP.track("event_sample_answered", { correct: right, choice: picked });
+      }
+    });
   })();
   </script>
   <script src="../ads-config.js"></script>

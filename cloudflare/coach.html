@@ -749,7 +749,7 @@ async function deleteProgress(email, sessionId, count) {
    GREMath, so it looks the way the student's own review looked. Prev / Next
    (or the arrow keys) step through the list the question was opened from;
    "Mistakes only" skips the ones they got right. */
-const QV = { files: new Map(), items: [], pos: -1, only: false, token: 0, removed: null };
+const QV = { files: new Map(), items: [], pos: -1, only: false, token: 0 };
 const QV_ROOTS = ['../pro/bank/', '../bank/'];
 const QV_TYPE = { mcq: 'Multiple choice', quantitative_comparison: 'Quantity comparison', numeric_entry: 'Numeric entry', multiple_answer: 'Select all that apply' };
 
@@ -777,7 +777,7 @@ function qvNorm(s) { return String(s || '').replace(/\s+/g, ' ').trim().toLowerC
 /* Finds the question by id. Event configs first (a free event carries its own
    copy), then the Pro mocks for MOCK-nn ids, then the bank: the id prefix
    names the subtopic file in index.json, and sectional ids (SEC-xx-nnn) are
-   looked up across the sectional sets. Returns { q, loaded, failed, removed }. */
+   looked up across the sectional sets. Returns { q, loaded, failed }. */
 async function qvResolve(it) {
   const id = it.id, cands = [];
   let loaded = 0, failed = null;
@@ -816,14 +816,7 @@ async function qvResolve(it) {
     }
   }
   const q = cands.find(c => it.stem && qvNorm(c.question) === qvNorm(it.stem)) || cands[0] || null;
-  let removed = null;
-  if (!q) {
-    try {
-      if (!QV.removed) QV.removed = await qvJson('../audit/removed.json');
-      removed = (QV.removed.rows || []).find(r => r.id === id) || null;
-    } catch (e) { /* the explanation is a nicety */ }
-  }
-  return { q, loaded, failed, removed, mismatch: !!(q && it.stem && qvNorm(q.question) !== qvNorm(it.stem)) };
+  return { q, loaded, failed, mismatch: !!(q && it.stem && qvNorm(q.question) !== qvNorm(it.stem)) };
 }
 
 /* The bank writes multiplication as "*". gre-math turns "3*x" into "3 × x";
@@ -861,7 +854,6 @@ function qvBodyHtml(it, res) {
   if (!q) {
     let why;
     if (res.failed && !res.loaded) why = 'Could not load the question files (' + esc(res.failed.message) + '). Coach View needs to be opened from the site, not as a local file, to read them.';
-    else if (res.removed) why = 'This question was withdrawn from the bank in the 24 Oct audit' + (res.removed.note ? ': ' + esc(String(res.removed.note).replace(/[.\s]+$/, '')) : '') + '. The student sat it before it went.';
     else why = 'Could not find ' + esc(it.id) + ' in the bank. It may have been edited out or renamed since the student sat it.';
     return qvHead(it, null) + '<div class="qv-note">' + why + '</div>';
   }
