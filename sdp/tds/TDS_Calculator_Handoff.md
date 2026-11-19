@@ -22,7 +22,7 @@ Open the calculator from the Control Center or open `tds_calculator.html` direct
 ## 3. Payment Session Workflow
 
 1. Opening the page starts a new supplier-payment session.
-2. Read an invoice image/PDF or fill the fields manually.
+2. Paste a copied invoice screenshot into the **Paste invoice screenshot here** box, read an invoice image/PDF, or fill the fields manually.
 3. Enter or confirm:
    - Supplier name
    - Invoice number
@@ -48,8 +48,9 @@ If a typed supplier does not already exist, clicking **Paid** adds that name to 
 
 ## 5. Invoice Reader
 
-The tool accepts invoice images and PDFs.
+The tool accepts pasted invoice screenshots, invoice images, and PDFs.
 
+- To read a copied screenshot, click the paste box and press Command-V on Mac or Ctrl-V on Windows.
 - A PDF with selectable text is read directly in the browser.
 - A scanned PDF or image is processed with browser-based OCR.
 - The reader attempts to fill supplier name, invoice number, invoice date, final bill amount, and GST amount.
