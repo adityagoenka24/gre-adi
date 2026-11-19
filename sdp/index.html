@@ -185,6 +185,13 @@
       href: "compliance/compliance_links.html",
       status: "active",
       icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 11l2 2 4-5"/><path d="M7 3h10l2 2v14l-2 2H7l-2-2V5z"/><path d="M8 17h8"/></svg>`
+    },
+    {
+      title: "TDS Calculator",
+      desc: "",
+      href: "tds/tds_calculator.html",
+      status: "active",
+      icon: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 5h16v14H4z"/><path d="M7 9h2M11 9h2M15 9h2M7 13h2M11 13h6M7 17h10"/></svg>`
     }
   ];
 
@@ -209,7 +216,8 @@
     grid.appendChild(a);
   });
 
-  document.getElementById("todayLine").textContent = new Date().toLocaleDateString("en-IN", {
+  const todayLine = document.getElementById("todayLine");
+  if (todayLine) todayLine.textContent = new Date().toLocaleDateString("en-IN", {
     weekday: "long", year: "numeric", month: "long", day: "numeric"
   });
 </script>
