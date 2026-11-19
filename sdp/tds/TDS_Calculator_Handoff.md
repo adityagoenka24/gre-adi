@@ -4,7 +4,7 @@
 
 ## Purpose
 
-The TDS Calculator records supplier payments in a working session. Enter the final bill amount and GST amount manually. The page calculates taxable value, 0.1% TDS rounded to the nearest rupee, and the final amount paid to the supplier.
+The TDS Calculator records supplier payments in a working session. Enter the final bill amount and GST amount manually. Choose whether TDS applies. The page calculates 0.1% TDS rounded to the nearest rupee when applicable, and the final amount paid to the supplier.
 
 No invoice image, PDF, invoice number, invoice date, OCR, or external AI service is part of this tool.
 
@@ -22,16 +22,17 @@ No invoice image, PDF, invoice number, invoice date, OCR, or external AI service
 1. Open the TDS Calculator. A new supplier-payment session begins.
 2. Select or type the supplier name.
 3. Enter the final bill amount including GST, the GST amount, and payment date.
-4. Review the calculated taxable amount, rounded TDS, and final payable amount.
-5. Click **Paid** after making the bank payment.
-6. Repeat for every supplier.
-7. Click **All payments done** to close the session and create a WhatsApp-ready summary for the accountant.
+4. Choose **Yes** or **No** for TDS deduction. Yes is selected by default.
+5. Review the calculated rounded TDS and final payable amount.
+6. Click **Paid** after making the bank payment.
+7. Repeat for every supplier.
+8. Click **All payments done** to close the session and create a WhatsApp-ready summary for the accountant.
 
 ## Calculation
 
-- Taxable amount = final bill amount − GST amount
-- TDS = 0.1% of taxable amount, rounded to the nearest rupee
-- Final payable amount = final bill amount − rounded TDS
+- When TDS is Yes: TDS = 0.1% of the final bill amount less GST, rounded to the nearest rupee.
+- When TDS is No: TDS = ₹0 and final payable amount = final bill amount.
+- When TDS is Yes: final payable amount = final bill amount − rounded TDS.
 
 ## Supplier Master and Storage
 
@@ -54,9 +55,6 @@ Exported columns:
 - Session status
 - Supplier name
 - Payment date
-- Final bill amount
-- GST amount
-- Taxable amount
 - TDS amount
 - Final paid amount
 
@@ -64,7 +62,7 @@ Exported columns:
 
 ## WhatsApp Summary
 
-After a session is closed, **Copy message** copies a summary listing each supplier’s bill amount, GST, taxable amount, TDS, final paid amount, and payment date, followed by session totals.
+After a session is closed, **Copy message** copies a summary listing each supplier’s TDS deducted, final paid amount, and payment date, followed by session totals.
 
 ## Privacy
 
